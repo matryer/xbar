@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, strong) NSDictionary *plugins;
+@property (nonatomic, strong) NSStatusBar *statusBar;
 
 - (id) initWithPluginPath:(NSString *)path;
 

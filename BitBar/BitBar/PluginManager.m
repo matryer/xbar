@@ -11,8 +11,6 @@
 
 @implementation PluginManager
 
-@synthesize plugins = _plugins;
-
 - (id) initWithPluginPath:(NSString *)path {
   if (self = [super init]) {
     
@@ -48,7 +46,7 @@
     for (file in self.pluginFiles) {
      
       // setup this plugin
-      Plugin *plugin = [[Plugin alloc] init];
+      Plugin *plugin = [[Plugin alloc] initWithManager:self];
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
@@ -62,6 +60,16 @@
   }
   
   return _plugins;
+  
+}
+
+- (NSStatusBar *)statusBar {
+  
+  if (_statusBar == nil) {
+    _statusBar = [NSStatusBar systemStatusBar];
+  }
+  
+  return _statusBar;
   
 }
 

@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Plugin.h"
+#import "PluginManager.h"
 
 @interface PluginTest : XCTestCase
 
@@ -25,6 +26,16 @@
 {
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
+}
+
+- (void)testStatusItem {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  NSStatusItem *item = p.statusItem;
+  XCTAssertNotNil(item, @"item nil?");
+  XCTAssertEqual((CGFloat)NSVariableStatusItemLength, item.length, @"length == NSVariableStatusItemLength");
+  
 }
 
 - (void)testExample

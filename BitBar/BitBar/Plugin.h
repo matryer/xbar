@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+@class PluginManager;
 
 @interface Plugin : NSObject
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
+@property (readonly, nonatomic, strong) PluginManager* manager;
+@property (nonatomic, strong) NSStatusItem *statusItem;
+
+- (id) initWithManager:(PluginManager*)manager;
 
 @end

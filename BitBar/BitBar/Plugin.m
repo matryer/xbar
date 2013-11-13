@@ -7,12 +7,30 @@
 //
 
 #import "Plugin.h"
+#import "PluginManager.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS 60
 
 @implementation Plugin
 
-@synthesize refreshIntervalSeconds = _refreshIntervalSeconds;
+- (id) initWithManager:(PluginManager*)manager {
+  if (self = [super init]) {
+    _manager = manager;
+  }
+  return self;
+}
+
+- (NSStatusItem *)statusItem {
+  
+  if (_statusItem == nil) {
+    
+    _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
+    
+  }
+  
+  return _statusItem;
+  
+}
 
 - (NSNumber *)refreshIntervalSeconds {
   

@@ -55,8 +55,24 @@
   Plugin *one = [plugins objectForKey:@"one.10s.sh"];
   
   XCTAssertNotNil(one, @"one shouldn't be nil");
+  XCTAssertEqual(manager, one.manager, @"manager");
   XCTAssert([one.name isEqualToString:@"one.10s.sh"], @"name");
   XCTAssert([one.path isEqualToString:[[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:@"one.10s.sh"]], @"path");
+  
+}
+
+- (void)testStatusBar {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+
+  NSStatusBar *statusBar = manager.statusBar;
+  XCTAssertNotNil(statusBar, @"statusBar");
+  XCTAssertEqual([NSStatusBar systemStatusBar], statusBar, @"statusBar should default to system one");
+ 
+  // set on explicitly
+  NSStatusBar *newBar = [[NSStatusBar alloc] init];
+  manager.statusBar = newBar;
+  XCTAssertEqual(newBar, manager.statusBar);
   
 }
 
