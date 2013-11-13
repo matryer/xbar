@@ -65,7 +65,7 @@
     
   }
   
-  [self.manager addHelperItemsToMenu:menu];
+  [self.manager addHelperItemsToMenu:menu asSubMenu:YES];
   
   // set the menu
   statusItem.menu = menu;

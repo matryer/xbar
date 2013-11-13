@@ -23,7 +23,7 @@
   return self;
 }
 
-- (void) showSystemStatusItem {
+- (void) showSystemStatusItemWithMessage:(NSString*)message {
   
   [self.statusBar removeStatusItem:self.defaultStatusItem];
   
@@ -32,16 +32,22 @@
   [self.defaultStatusItem setTitle:[[NSProcessInfo processInfo] processName]];
   self.defaultStatusItem.menu = [[NSMenu alloc] init];
   [self.defaultStatusItem.menu setDelegate:self];
+  
+  if (message.length > 0) {
+    NSMenuItem *messageMenuItem = [[NSMenuItem alloc] initWithTitle:message action:nil keyEquivalent:@""];
+    [self.defaultStatusItem.menu addItem:messageMenuItem];
+    [self.defaultStatusItem.menu addItem:[NSMenuItem separatorItem]];
+  }
 
-  [self addHelperItemsToMenu:self.defaultStatusItem.menu];
+  [self addHelperItemsToMenu:self.defaultStatusItem.menu asSubMenu:NO];
   
 }
 
-- (void) addHelperItemsToMenu:(NSMenu*)menu {
+- (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu {
   
   NSMenu *targetMenu;
   
-  if (menu.itemArray.count > 0) {
+  if (submenu) {
     
     NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"Settings"];
     NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"Settings" action:nil keyEquivalent:@""];
@@ -229,7 +235,7 @@
   }
   
   if (visiblePlugins == 0) {
-    [self showSystemStatusItem];
+    [self showSystemStatusItemWithMessage:@"No valid plugins found"];
   }
   
 }

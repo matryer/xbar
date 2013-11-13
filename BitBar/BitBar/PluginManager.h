@@ -24,7 +24,7 @@
 - (void) setupAllPlugins;
 - (void) reset;
 - (void) clearPathAndReset;
-- (void) showSystemStatusItem;
-- (void) addHelperItemsToMenu:(NSMenu*)menu;
+- (void) showSystemStatusItemWithMessage:(NSString*)message;
+- (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu;
 
 @end

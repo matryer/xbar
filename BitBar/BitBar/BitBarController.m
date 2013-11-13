@@ -19,7 +19,7 @@
   
   if ([self.pluginManager.plugins count] == 0) {
     
-    [self.pluginManager showSystemStatusItem];
+    [self.pluginManager showSystemStatusItemWithMessage:@"No plugins found"];
     
   } else {
     [self.pluginManager setupAllPlugins];
