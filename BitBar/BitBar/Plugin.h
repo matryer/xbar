@@ -13,10 +13,14 @@
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *errorContent;
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
 @property (readonly, nonatomic, strong) PluginManager* manager;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 
 - (id) initWithManager:(PluginManager*)manager;
+
+- (BOOL) refreshContentByExecutingCommand;
 
 @end

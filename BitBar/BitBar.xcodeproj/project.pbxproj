@@ -84,6 +84,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		059971991833E3F300EA6D8D /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
 		05DADFE7183323DD00409786 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +133,7 @@
 		05DADFF9183323DD00409786 /* BitBar */ = {
 			isa = PBXGroup;
 			children = (
+				059971991833E3F300EA6D8D /* Commands */,
 				05DAE0271833241D00409786 /* Plugins */,
 				05DAE005183323DD00409786 /* AppDelegate.h */,
 				05DAE006183323DD00409786 /* AppDelegate.m */,

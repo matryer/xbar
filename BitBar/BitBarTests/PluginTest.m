@@ -41,7 +41,8 @@
 - (void)testExample
 {
 
-  Plugin *p = [[Plugin alloc]init];
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
   
   p.name = @"name.10s.sh";
   p.refreshIntervalSeconds = nil;
@@ -88,6 +89,20 @@
   p.name = @"name.bollocks.sh";
   p.refreshIntervalSeconds = nil;
   XCTAssertEqual((double)(60), [p.refreshIntervalSeconds doubleValue], @"name.sh");
+  
+}
+
+- (void)testExecuteCommand {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  
+  p.name = @"one.10s.sh";
+  p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
+  
+  XCTAssertEqual(YES, [p refreshContentByExecutingCommand]);
+  
+  XCTAssert([p.content isEqualToString:@"This is just a test."], @"Content");
   
 }
 

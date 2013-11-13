@@ -78,4 +78,34 @@
   
 }
 
+- (BOOL) refreshContentByExecutingCommand {
+  
+  NSTask *task = [[NSTask alloc] init];
+  [task setLaunchPath:@"/bin/bash"];
+  [task setArguments:[NSArray arrayWithObjects:self.path, nil]];
+  
+  NSPipe *stdoutPipe = [NSPipe pipe];
+  [task setStandardOutput:stdoutPipe];
+  
+  NSPipe *stderrPipe = [NSPipe pipe];
+  [task setStandardError:stderrPipe];
+  
+  [task launch];
+  
+  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
+  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
+  
+  [task waitUntilExit];
+  
+  self.content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  self.errorContent = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
+  
+  if ([self.errorContent length] > 0) {
+    return NO;
+  }
+  
+  return YES;
+  
+}
+
 @end
