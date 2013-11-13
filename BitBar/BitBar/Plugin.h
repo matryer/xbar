@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *allContent;
 @property (nonatomic, assign) NSInteger currentLine;
 @property (nonatomic, strong) NSArray *allContentLines;
+@property (nonatomic, strong) NSArray *allContentLinesAfterBreak;
 @property (nonatomic, copy) NSString *errorContent;
 @property (nonatomic, assign) BOOL lastCommandWasError;
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
@@ -37,6 +38,7 @@
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
 - (BOOL) refresh;
 - (void) cycleLines;
+- (void) contentHasChanged;
 
 // actions
 - (void)changePluginsDirectorySelected:(id)sender;

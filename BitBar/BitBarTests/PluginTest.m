@@ -174,6 +174,7 @@
   
   p.content = @"  Hello \t \n\tWorld\t\n  Of  \n  BitBar";
   
+  [p contentHasChanged];
   lines = p.allContentLines;
   
   XCTAssertEqual((NSUInteger)4, lines.count);
@@ -184,6 +185,7 @@
   
   p.content = @"\n\n\n  Hello \t \n\t\n\n\nWorld\t\n\n\n\n  Of  \n  BitBar";
   
+  [p contentHasChanged];
   lines = p.allContentLines;
   
   XCTAssertEqual((NSUInteger)4, lines.count);
@@ -191,6 +193,22 @@
   XCTAssert([lines[1] isEqualToString:@"World"]);
   XCTAssert([lines[2] isEqualToString:@"Of"]);
   XCTAssert([lines[3] isEqualToString:@"BitBar"]);
+  
+  
+  p.content = @"\n\n\n  Hello \t \n\t\nWorld\n\n---\nThe World\t\n\n\n\n  Of  \n  BitBar";
+  
+  [p contentHasChanged];
+  lines = p.allContentLines;
+  
+  XCTAssertEqual((NSUInteger)2, lines.count);
+  XCTAssert([lines[0] isEqualToString:@"Hello"]);
+  XCTAssert([lines[1] isEqualToString:@"World"]);
+  
+  lines = p.allContentLinesAfterBreak;
+  XCTAssertEqual((NSUInteger)3, lines.count);
+  XCTAssert([lines[0] isEqualToString:@"World"]);
+  XCTAssert([lines[1] isEqualToString:@"Of"]);
+  XCTAssert([lines[2] isEqualToString:@"BitBar"]);
   
 }
 
@@ -207,6 +225,7 @@
   
 }
 
+
 - (void)testRefresh {
   
   PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
@@ -217,8 +236,6 @@
 
   XCTAssertEqual(YES, [p refresh]);
   XCTAssertEqual((NSInteger)0, p.currentLine);
-
-  NSLog(@"%@", p.allContentLines[0]);
   
   XCTAssert([p.statusItem.title isEqualToString:@"line 1"]);
   

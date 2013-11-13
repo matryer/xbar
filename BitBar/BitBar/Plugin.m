@@ -63,6 +63,21 @@
     // add the seperator
     [menu addItem:[NSMenuItem separatorItem]];
     
+    // are there any allContentLinesAfterBreak?
+    if (self.allContentLinesAfterBreak.count > 0) {
+      
+      // put all content as an item
+      NSString *line;
+      for (line in self.allContentLinesAfterBreak) {
+        [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+      }
+      
+      // add the seperator
+      [menu addItem:[NSMenuItem separatorItem]];
+      
+      
+    }
+    
   }
   
   [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
@@ -230,6 +245,7 @@
 - (void)contentHasChanged {
   _allContent = nil;
   _allContentLines = nil;
+  _allContentLinesAfterBreak = nil;
 }
 
 - (void) setContent:(NSString *)content {
@@ -267,8 +283,15 @@
       line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
       
       // add the line if we have something in it
-      if (line.length > 0)
+      if (line.length > 0) {
+      
+        if ([line isEqualToString:@"---"]) {
+          break;
+        }
+        
         [cleanLines addObject:line];
+      
+      }
       
     }
     
@@ -276,6 +299,43 @@
     
   }
   return _allContentLines;
+  
+}
+
+- (NSArray *)allContentLinesAfterBreak {
+  
+  if (_allContentLinesAfterBreak == nil) {
+    
+    NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSMutableArray *cleanLines = [[NSMutableArray alloc] initWithCapacity:lines.count];
+    NSString *line;
+    BOOL storing = NO;
+
+    for (line in lines) {
+      
+      // strip whitespace
+      line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+      
+      // add the line if we have something in it
+      if (line.length > 0) {
+        
+        if ([line isEqualToString:@"---"]) {
+          storing = YES;
+        } else {
+          if (storing == YES) {
+            [cleanLines addObject:line];
+          }
+        }
+        
+      }
+      
+    }
+    
+    _allContentLinesAfterBreak = [NSArray arrayWithArray:cleanLines];
+    
+  }
+  
+  return _allContentLinesAfterBreak;
   
 }
 
