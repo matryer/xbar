@@ -103,6 +103,15 @@
   XCTAssertEqual(YES, [p refreshContentByExecutingCommand]);
   
   XCTAssert([p.content isEqualToString:@"This is just a test."], @"Content");
+  XCTAssertEqual(NO, p.lastCommandWasError);
+  
+  p.name = @"two.5m.sh";
+  p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
+  
+  XCTAssertEqual(NO, [p refreshContentByExecutingCommand]);
+  
+  XCTAssert([p.content isEqualToString:@""], @"content");
+  XCTAssertEqual(YES, p.lastCommandWasError);
   
 }
 
@@ -116,7 +125,16 @@
   
   XCTAssertEqual(NO, [p refreshContentByExecutingCommand]);
   
-  XCTAssert([p.errorContent isEqualToString:@"Something went tits up."], @"Content");
+  XCTAssert([p.errorContent isEqualToString:@"Something went tits up."], @"Error content");
+  XCTAssertEqual(YES, p.lastCommandWasError);
+  
+  p.name = @"one.10s.sh";
+  p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
+  
+  XCTAssertEqual(YES, [p refreshContentByExecutingCommand]);
+  
+  XCTAssert([p.errorContent isEqualToString:@""], @"Error content");
+  XCTAssertEqual(NO, p.lastCommandWasError);
   
 }
 

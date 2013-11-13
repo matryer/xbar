@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *errorContent;
+@property (nonatomic, assign) BOOL lastCommandWasError;
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
 @property (readonly, nonatomic, strong) PluginManager* manager;
 @property (nonatomic, strong) NSStatusItem *statusItem;

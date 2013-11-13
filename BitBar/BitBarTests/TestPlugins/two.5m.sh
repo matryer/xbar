@@ -8,3 +8,4 @@
 
 echoerr() { echo -n "$@" 1>&2; }
 echoerr Something went tits up.
+exit 1

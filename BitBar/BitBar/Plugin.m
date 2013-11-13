@@ -100,10 +100,14 @@
   self.content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
   self.errorContent = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
   
-  if ([self.errorContent length] > 0) {
+  // failure
+  if ([task terminationStatus] != 0) {
+    self.lastCommandWasError = YES;
     return NO;
   }
   
+  // success
+  self.lastCommandWasError = NO;
   return YES;
   
 }
