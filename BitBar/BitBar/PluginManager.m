@@ -9,6 +9,7 @@
 #import "PluginManager.h"
 #import "Plugin.h"
 #import "Settings.h"
+#import "LaunchAtLoginController.h"
 
 @implementation PluginManager
 
@@ -30,6 +31,7 @@
   self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
   [self.defaultStatusItem setTitle:[[NSProcessInfo processInfo] processName]];
   self.defaultStatusItem.menu = [[NSMenu alloc] init];
+  [self.defaultStatusItem.menu setDelegate:self];
 
   [self addHelperItemsToMenu:self.defaultStatusItem.menu];
   
@@ -37,15 +39,46 @@
 
 - (void) addHelperItemsToMenu:(NSMenu*)menu {
   
+  NSMenu *targetMenu;
+  
+  if (menu.itemArray.count > 0) {
+    
+    NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"More"];
+    NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"More" action:nil keyEquivalent:@""];
+    moreItem.submenu = moreMenu;
+    [menu addItem:moreItem];
+    targetMenu = moreMenu;
+
+  } else {
+    
+    targetMenu = menu;
+
+  }
+  
   // add edit action
   NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(clearPathAndReset) keyEquivalent:@""];
   [prefsMenuItem setTarget:self];
-  [menu addItem:prefsMenuItem];
+  [targetMenu addItem:prefsMenuItem];
   
   // add reset
   NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Refresh" action:@selector(reset) keyEquivalent:@""];
   [refreshMenuItem setTarget:self];
-  [menu addItem:refreshMenuItem];
+  [targetMenu addItem:refreshMenuItem];
+  
+  // open at login
+  LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
+  NSMenuItem *openAtLoginMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open at login" action:@selector(toggleOpenAtLogin:) keyEquivalent:@""];
+  [openAtLoginMenuItem setTarget:self];
+  [openAtLoginMenuItem setState:lc.launchAtLogin];
+  [targetMenu addItem:openAtLoginMenuItem];
+  
+}
+
+- (void) toggleOpenAtLogin:(id)sender {
+    
+  LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
+  [lc setLaunchAtLogin:!lc.launchAtLogin];
+  [self reset];
   
 }
 
@@ -196,6 +229,16 @@
     [self showSystemStatusItem];
   }
   
+}
+
+#pragma mark - NSMenuDelegate
+
+- (void)menuWillOpen:(NSMenu *)menu {
+  [self.defaultStatusItem setHighlightMode:YES];
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+  [self.defaultStatusItem setHighlightMode:NO];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PluginManager : NSObject
+@interface PluginManager : NSObject <NSMenuDelegate>
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, strong) NSArray *plugins;
