@@ -180,12 +180,16 @@
   // update the status item
   [self cycleLines];
   
+  // sort out multi-line cycler
   if (self.isMultiline) {
     
     // start the timer to keep cycling lines
     self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
       
   }
+  
+  // schedule next refresh
+  [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
   
   return YES;
   
