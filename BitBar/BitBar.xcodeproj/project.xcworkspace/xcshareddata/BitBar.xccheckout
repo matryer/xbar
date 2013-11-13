@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6FD45CEB-E8F2-4334-92D9-A32A4C7660F9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BitBar</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F7FEA99E-BF31-40EE-AEFA-0133B74AE08F</key>
+		<string>https://github.com/matryer/bitbar.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BitBar/BitBar.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F7FEA99E-BF31-40EE-AEFA-0133B74AE08F</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/matryer/bitbar.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F7FEA99E-BF31-40EE-AEFA-0133B74AE08F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F7FEA99E-BF31-40EE-AEFA-0133B74AE08F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>bitbar</string>
+		</dict>
+	</array>
+</dict>
+</plist>
