@@ -56,6 +56,8 @@
       [plugins setValue:plugin forKey:file];
       
     }
+    
+    _plugins = [NSDictionary dictionaryWithDictionary:plugins];
   
   }
   

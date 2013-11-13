@@ -12,5 +12,6 @@
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
 
 @end
