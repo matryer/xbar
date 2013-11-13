@@ -50,19 +50,33 @@
   
   p.name = @"name.10S.sh";
   p.refreshIntervalSeconds = nil;
-  XCTAssertEqual((double)10, [p.refreshIntervalSeconds doubleValue], @"10s");
+  XCTAssertEqual((double)10, [p.refreshIntervalSeconds doubleValue], @"10S");
   
   p.name = @"name.10M.sh";
   p.refreshIntervalSeconds = nil;
-  XCTAssertEqual((double)(10*60), [p.refreshIntervalSeconds doubleValue], @"10m");
+  XCTAssertEqual((double)(10*60), [p.refreshIntervalSeconds doubleValue], @"10M");
   
   p.name = @"name.10H.sh";
   p.refreshIntervalSeconds = nil;
-  XCTAssertEqual((double)(10*60*60), [p.refreshIntervalSeconds doubleValue], @"10h");
+  XCTAssertEqual((double)(10*60*60), [p.refreshIntervalSeconds doubleValue], @"10H");
   
   p.name = @"name.10D.sh";
   p.refreshIntervalSeconds = nil;
-  XCTAssertEqual((double)(10*60*60*24), [p.refreshIntervalSeconds doubleValue], @"10d");
+  XCTAssertEqual((double)(10*60*60*24), [p.refreshIntervalSeconds doubleValue], @"10D");
+  
+  // and some failures
+  
+  p.name = @"name.10.sh";
+  p.refreshIntervalSeconds = nil;
+  XCTAssertEqual((double)(60), [p.refreshIntervalSeconds doubleValue], @"10");
+  
+  p.name = @"name.sh";
+  p.refreshIntervalSeconds = nil;
+  XCTAssertEqual((double)(60), [p.refreshIntervalSeconds doubleValue], @"name.sh");
+ 
+  p.name = @"name.bollocks.sh";
+  p.refreshIntervalSeconds = nil;
+  XCTAssertEqual((double)(60), [p.refreshIntervalSeconds doubleValue], @"name.sh");
   
 }
 
