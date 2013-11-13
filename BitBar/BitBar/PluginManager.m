@@ -88,7 +88,7 @@
 }
 
 - (void) openPluginsBrowser {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://www.github.com/matryer/bitbarplugins"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins"]];
 }
 
 - (void) toggleOpenAtLogin:(id)sender {

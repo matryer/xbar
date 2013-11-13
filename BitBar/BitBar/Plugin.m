@@ -16,7 +16,7 @@
 - (id) init {
   if (self = [super init]) {
     self.currentLine = -1;
-    self.cycleLinesIntervalSeconds = 2;
+    self.cycleLinesIntervalSeconds = 5;
   }
   return self;
 }
