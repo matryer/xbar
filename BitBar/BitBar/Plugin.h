@@ -24,4 +24,6 @@
 
 - (BOOL) refreshContentByExecutingCommand;
 
+- (NSString *)allContent;
+
 @end

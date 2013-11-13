@@ -112,4 +112,8 @@
   
 }
 
+- (NSString *)allContent {
+  return [NSString stringWithFormat:@"%@%@", self.content, self.errorContent];
+}
+
 @end
