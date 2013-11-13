@@ -18,7 +18,9 @@
   self.pluginManager = [[PluginManager alloc] initWithPluginPath:[Settings pluginsDirectory]];
   
   if ([self.pluginManager.plugins count] == 0) {
-    NSLog(@"No plugins");
+    
+    [self.pluginManager showSystemStatusItem];
+    
   } else {
     [self.pluginManager setupAllPlugins];
   }

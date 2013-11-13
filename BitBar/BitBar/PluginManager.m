@@ -139,6 +139,7 @@
   NSOpenPanel* openDlg = [NSOpenPanel openPanel];
   [openDlg setCanChooseDirectories:YES];
   [openDlg setCanChooseFiles:NO];
+  [openDlg setCanCreateDirectories:YES];
   [openDlg setPrompt:@"Use as Plugins Directory"];
   [openDlg setTitle:@"Select BitBar Plugins Directory"];
   
