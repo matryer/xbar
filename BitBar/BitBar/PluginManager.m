@@ -61,6 +61,11 @@
 
   }
   
+  // add browser item
+  NSMenuItem *openPluginBrowserMenuItem = [[NSMenuItem alloc] initWithTitle:@"Browse plugins…" action:@selector(openPluginsBrowser) keyEquivalent:@""];
+  [openPluginBrowserMenuItem setTarget:self];
+  [targetMenu addItem:openPluginBrowserMenuItem];
+
   // add edit action
   NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(clearPathAndReset) keyEquivalent:@""];
   [prefsMenuItem setTarget:self];
@@ -80,6 +85,10 @@
   [openAtLoginMenuItem setState:lc.launchAtLogin];
   [targetMenu addItem:openAtLoginMenuItem];
   
+}
+
+- (void) openPluginsBrowser {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://www.github.com/matryer/bitbarplugins"]];
 }
 
 - (void) toggleOpenAtLogin:(id)sender {
@@ -235,7 +244,7 @@
   }
   
   if (visiblePlugins == 0) {
-    [self showSystemStatusItemWithMessage:@"No valid plugins found"];
+    [self showSystemStatusItemWithMessage:@"No plugins found"];
   }
   
 }
