@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Plugin;
 
 @interface PluginManager : NSObject <NSMenuDelegate>
 
@@ -26,5 +27,7 @@
 - (void) clearPathAndReset;
 - (void) showSystemStatusItemWithMessage:(NSString*)message;
 - (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu;
+
+- (void) pluginDidUdpdateItself:(Plugin*)plugin;
 
 @end

@@ -95,7 +95,10 @@
   
   LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
   [lc setLaunchAtLogin:!lc.launchAtLogin];
-  [self reset];
+  
+  NSMenuItem *menuItem = (NSMenuItem*)sender;
+  [menuItem setState:lc.launchAtLogin];
+  //[self reset];
   
 }
 
@@ -220,6 +223,22 @@
   
 }
 
+- (void) pluginDidUdpdateItself:(Plugin*)plugin {
+  
+  NSInteger visiblePlugins = 0;
+  for (plugin in self.plugins) {
+    if (plugin.pluginIsVisible)
+      visiblePlugins++;
+  }
+  
+  if (visiblePlugins == 0) {
+    [self showSystemStatusItemWithMessage:@"No plugins found"];
+  } else {
+    [self.statusBar removeStatusItem:self.defaultStatusItem];
+  }
+  
+}
+
 - (NSStatusBar *)statusBar {
   
   if (_statusBar == nil) {
@@ -232,19 +251,9 @@
 
 - (void) setupAllPlugins {
   
-  NSInteger visiblePlugins = 0;
   Plugin *plugin;
   for (plugin in self.plugins) {
-    
     [plugin refresh];
-    if (plugin.pluginIsVisible) {
-      visiblePlugins++;
-    }
-    
-  }
-  
-  if (visiblePlugins == 0) {
-    [self showSystemStatusItemWithMessage:@"No plugins found"];
   }
   
 }

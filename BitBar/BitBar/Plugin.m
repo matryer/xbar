@@ -171,25 +171,34 @@
   self.lineCycleTimer = nil;
   
   // execute command
-  [self refreshContentByExecutingCommand];
-  [self rebuildMenuForStatusItem:self.statusItem];
-  
-  // reset the current line
-  self.currentLine = -1;
-  
-  // update the status item
-  [self cycleLines];
-  
-  // sort out multi-line cycler
-  if (self.isMultiline) {
-    
-    // start the timer to keep cycling lines
-    self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
+    [self refreshContentByExecutingCommand];
+    dispatch_sync(dispatch_get_main_queue(), ^{
       
-  }
-  
-  // schedule next refresh
-  [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
+      [self rebuildMenuForStatusItem:self.statusItem];
+      
+      // reset the current line
+      self.currentLine = -1;
+      
+      // update the status item
+      [self cycleLines];
+      
+      // sort out multi-line cycler
+      if (self.isMultiline) {
+        
+        // start the timer to keep cycling lines
+        self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
+        
+      }
+      
+      // tell the manager this plugin has updated
+      [self.manager pluginDidUdpdateItself:self];
+      
+      // schedule next refresh
+      [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
+      
+    });
+  });
   
   return YES;
   
@@ -234,11 +243,13 @@
 
 - (NSString *)allContent {
   if (_allContent == nil) {
+    
     if (self.errorContent != nil) {
       _allContent = [self.content stringByAppendingString:self.errorContent];
     } else {
       _allContent = self.content;
     }
+    
   }
   return _allContent;
 }

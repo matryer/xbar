@@ -17,13 +17,7 @@
   // make a plugin manager
   self.pluginManager = [[PluginManager alloc] initWithPluginPath:[Settings pluginsDirectory]];
   
-  if ([self.pluginManager.plugins count] == 0) {
-    
-    [self.pluginManager showSystemStatusItemWithMessage:@"No plugins found"];
-    
-  } else {
-    [self.pluginManager setupAllPlugins];
-  }
+  [self.pluginManager setupAllPlugins];
   
 }
 
