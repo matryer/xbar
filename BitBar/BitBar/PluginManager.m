@@ -30,11 +30,22 @@
   self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
   [self.defaultStatusItem setTitle:[[NSProcessInfo processInfo] processName]];
   self.defaultStatusItem.menu = [[NSMenu alloc] init];
+
+  [self addHelperItemsToMenu:self.defaultStatusItem.menu];
+  
+}
+
+- (void) addHelperItemsToMenu:(NSMenu*)menu {
   
   // add edit action
-  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(clearPathAndReset) keyEquivalent:@"E"];
+  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(clearPathAndReset) keyEquivalent:@""];
   [prefsMenuItem setTarget:self];
-  [self.defaultStatusItem.menu addItem:prefsMenuItem];
+  [menu addItem:prefsMenuItem];
+  
+  // add reset
+  NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Refresh" action:@selector(reset) keyEquivalent:@""];
+  [refreshMenuItem setTarget:self];
+  [menu addItem:refreshMenuItem];
   
 }
 

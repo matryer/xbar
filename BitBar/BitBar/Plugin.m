@@ -65,10 +65,7 @@
     
   }
   
-  // add edit action
-  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(changePluginsDirectorySelected:) keyEquivalent:@"E"];
-  [prefsMenuItem setTarget:self];
-  [menu addItem:prefsMenuItem];
+  [self.manager addHelperItemsToMenu:menu];
   
   // set the menu
   statusItem.menu = menu;
@@ -275,10 +272,12 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
   self.menuIsOpen = YES;
+  [self.statusItem setHighlightMode:YES];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
   self.menuIsOpen = NO;
+  [self.statusItem setHighlightMode:NO];
 }
 
 @end

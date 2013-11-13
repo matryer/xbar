@@ -25,5 +25,6 @@
 - (void) reset;
 - (void) clearPathAndReset;
 - (void) showSystemStatusItem;
+- (void) addHelperItemsToMenu:(NSMenu*)menu;
 
 @end
