@@ -47,6 +47,9 @@
   XCTAssertNotNil(item, @"item nil?");
   XCTAssertEqual((CGFloat)NSVariableStatusItemLength, item.length, @"length == NSVariableStatusItemLength");
   
+  // make sure it has a menu
+  XCTAssertNotNil(item.menu, @"menu");
+  
 }
 
 - (void)testExample
@@ -255,6 +258,22 @@
   XCTAssertEqual((NSInteger)2, p.currentLine);
   XCTAssert([p.statusItem.title isEqualToString:@"line 3"]);
    
+}
+
+- (void)testRebuildMenuForStatusItem {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  
+  p.name = @"three.7d.sh";
+  p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
+
+  [p refreshContentByExecutingCommand];
+  
+  [p rebuildMenuForStatusItem:p.statusItem];
+  
+  XCTAssertEqual((NSUInteger)3, [[p.statusItem.menu itemArray] count]);
+  
 }
 
 @end

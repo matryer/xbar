@@ -36,12 +36,12 @@
   return shFiles;
 }
 
-- (NSDictionary *)plugins {
+- (NSArray *)plugins {
   
   if (_plugins == nil) {
     
     NSArray *pluginFiles = self.pluginFiles;
-    NSMutableDictionary *plugins = [[NSMutableDictionary alloc] initWithCapacity:[pluginFiles count]];
+    NSMutableArray *plugins = [[NSMutableArray alloc] initWithCapacity:[pluginFiles count]];
     NSString *file;
     for (file in self.pluginFiles) {
      
@@ -51,11 +51,11 @@
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
       
-      [plugins setValue:plugin forKey:file];
+      [plugins addObject:plugin];
       
     }
     
-    _plugins = [NSDictionary dictionaryWithDictionary:plugins];
+    _plugins = [NSArray arrayWithArray:plugins];
   
   }
   
@@ -70,6 +70,17 @@
   }
   
   return _statusBar;
+  
+}
+
+- (void) setupAllPlugins {
+  
+  Plugin *plugin;
+  for (plugin in self.plugins) {
+    
+    [plugin refresh];
+    
+  }
   
 }
 

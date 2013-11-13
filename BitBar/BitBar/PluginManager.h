@@ -11,13 +11,15 @@
 @interface PluginManager : NSObject
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) NSDictionary *plugins;
+@property (nonatomic, strong) NSArray *plugins;
 @property (nonatomic, strong) NSStatusBar *statusBar;
 
 - (id) initWithPluginPath:(NSString *)path;
 
 - (NSArray *) pluginFiles;
 
-- (NSDictionary *)plugins;
+- (NSArray *)plugins;
+
+- (void) setupAllPlugins;
 
 @end

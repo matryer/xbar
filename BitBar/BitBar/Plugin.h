@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class PluginManager;
 
-@interface Plugin : NSObject
+@interface Plugin : NSObject <NSMenuDelegate>
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
@@ -21,14 +21,23 @@
 @property (nonatomic, assign) BOOL lastCommandWasError;
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
 @property (readonly, nonatomic, strong) PluginManager* manager;
-@property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, assign) NSInteger cycleLinesIntervalSeconds;
+@property (nonatomic, strong) NSTimer *lineCycleTimer;
+
+@property (nonatomic, assign) BOOL menuIsOpen;
+
+// UI
+@property (nonatomic, strong) NSStatusItem *statusItem;
 
 - (id) initWithManager:(PluginManager*)manager;
 - (BOOL) isMultiline;
 
 - (BOOL) refreshContentByExecutingCommand;
+- (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
 - (BOOL) refresh;
 - (void) cycleLines;
+
+// actions
+- (void)menuItemPreferences:(id)sender;
 
 @end

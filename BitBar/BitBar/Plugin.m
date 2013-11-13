@@ -16,7 +16,7 @@
 - (id) init {
   if (self = [super init]) {
     self.currentLine = -1;
-    self.cycleLinesIntervalSeconds = 5;
+    self.cycleLinesIntervalSeconds = 2;
   }
   return self;
 }
@@ -32,11 +32,52 @@
   
   if (_statusItem == nil) {
     
+    // make the status item
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
+
+    [_statusItem setToolTip:self.name];
+    
+    // build the menu
+    [self rebuildMenuForStatusItem:_statusItem];
     
   }
   
   return _statusItem;
+  
+}
+
+- (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
+  
+  // build the menu
+  NSMenu *menu = [[NSMenu alloc] init];
+  [menu setDelegate:self];
+  
+  if (self.isMultiline) {
+    
+    // put all content as an item
+    NSString *line;
+    for (line in self.allContentLines) {
+      [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+    }
+    
+    // add the seperator
+    [menu addItem:[NSMenuItem separatorItem]];
+    
+  }
+  
+  // add edit action
+  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences…" action:@selector(menuItemPreferences:) keyEquivalent:@"E"];
+  [prefsMenuItem setTarget:self];
+  [menu addItem:prefsMenuItem];
+  
+  // set the menu
+  statusItem.menu = menu;
+  
+}
+
+- (void)menuItemPreferences:(id)sender {
+  
+  NSLog(@"TODO: Open preferences");
   
 }
 
@@ -122,8 +163,12 @@
 
 - (BOOL) refresh {
   
+  [self.lineCycleTimer invalidate];
+  self.lineCycleTimer = nil;
+  
   // execute command
   [self refreshContentByExecutingCommand];
+  [self rebuildMenuForStatusItem:self.statusItem];
   
   // reset the current line
   self.currentLine = -1;
@@ -131,11 +176,21 @@
   // update the status item
   [self cycleLines];
   
+  if (self.isMultiline) {
+    
+    // start the timer to keep cycling lines
+    self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
+      
+  }
+  
   return YES;
   
 }
 
 - (void) cycleLines {
+  
+  // do nothing if the menu is open
+  if (self.menuIsOpen) { return; };
   
   // update the status item
   self.currentLine++;
@@ -146,7 +201,6 @@
   }
   
   [self.statusItem setTitle:self.allContentLines[self.currentLine]];
-
   
 }
 
@@ -202,6 +256,16 @@
 
 - (BOOL) isMultiline {
   return [self.allContentLines count] > 1;
+}
+
+#pragma mark - NSMenuDelegate
+
+- (void)menuWillOpen:(NSMenu *)menu {
+  self.menuIsOpen = YES;
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+  self.menuIsOpen = NO;
 }
 
 @end

@@ -7,11 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "BitBarController.h"
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+  
+  self.controller = [[BitBarController alloc] init];
+  [self.controller startApp];
+  
 }
 
 @end

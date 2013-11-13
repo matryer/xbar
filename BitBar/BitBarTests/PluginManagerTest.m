@@ -49,10 +49,10 @@
   
   PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
 
-  NSDictionary *plugins = [manager plugins];
+  NSArray *plugins = [manager plugins];
   
   XCTAssertEqual((NSUInteger)3, [plugins count], @"plugins count");
-  Plugin *one = [plugins objectForKey:@"one.10s.sh"];
+  Plugin *one = [plugins objectAtIndex:0];
   
   XCTAssertNotNil(one, @"one shouldn't be nil");
   XCTAssertEqual(manager, one.manager, @"manager");

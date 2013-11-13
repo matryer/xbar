@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class BitBarController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+
+@property (nonatomic, strong) BitBarController* controller;
 
 @end
