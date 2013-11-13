@@ -43,8 +43,8 @@
   
   if (menu.itemArray.count > 0) {
     
-    NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"More"];
-    NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"More" action:nil keyEquivalent:@""];
+    NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"Settings"];
+    NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"Settings" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
@@ -65,6 +65,8 @@
   [refreshMenuItem setTarget:self];
   [targetMenu addItem:refreshMenuItem];
   
+  [targetMenu addItem:[NSMenuItem separatorItem]];
+  
   // open at login
   LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
   NSMenuItem *openAtLoginMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open at login" action:@selector(toggleOpenAtLogin:) keyEquivalent:@""];
@@ -75,7 +77,7 @@
 }
 
 - (void) toggleOpenAtLogin:(id)sender {
-    
+  
   LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
   [lc setLaunchAtLogin:!lc.launchAtLogin];
   [self reset];
