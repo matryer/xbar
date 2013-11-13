@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitBarTests/PluginTest.m"
-            timestampString = "406055313.313215"
+            timestampString = "406058373.747486"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-testRefreshContentByExecutingCommandSuccess"
             landmarkType = "5">
             <Locations>

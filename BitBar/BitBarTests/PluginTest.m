@@ -28,6 +28,17 @@
     [super tearDown];
 }
 
+- (void)testInitWithManager {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+
+  XCTAssertEqual(p.manager, manager);
+  XCTAssertEqual((NSInteger)-1, p.currentLine);
+  XCTAssertEqual((NSInteger)5, p.cycleLinesIntervalSeconds);
+  
+}
+
 - (void)testStatusItem {
   
   PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
@@ -152,7 +163,15 @@
   
   NSArray *lines = p.allContentLines;
   
-  NSLog(@"lines[3]=%@", lines[3]);
+  XCTAssertEqual((NSUInteger)4, lines.count);
+  XCTAssert([lines[0] isEqualToString:@"Hello"]);
+  XCTAssert([lines[1] isEqualToString:@"World"]);
+  XCTAssert([lines[2] isEqualToString:@"Of"]);
+  XCTAssert([lines[3] isEqualToString:@"BitBar"]);
+  
+  p.content = @"  Hello \t \n\tWorld\t\n  Of  \n  BitBar";
+  
+  lines = p.allContentLines;
   
   XCTAssertEqual((NSUInteger)4, lines.count);
   XCTAssert([lines[0] isEqualToString:@"Hello"]);
@@ -160,6 +179,82 @@
   XCTAssert([lines[2] isEqualToString:@"Of"]);
   XCTAssert([lines[3] isEqualToString:@"BitBar"]);
   
+  p.content = @"\n\n\n  Hello \t \n\t\n\n\nWorld\t\n\n\n\n  Of  \n  BitBar";
+  
+  lines = p.allContentLines;
+  
+  XCTAssertEqual((NSUInteger)4, lines.count);
+  XCTAssert([lines[0] isEqualToString:@"Hello"]);
+  XCTAssert([lines[1] isEqualToString:@"World"]);
+  XCTAssert([lines[2] isEqualToString:@"Of"]);
+  XCTAssert([lines[3] isEqualToString:@"BitBar"]);
+  
+}
+
+- (void)testIsMultiline {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  
+  p.content = @"Hello\nWorld\nOf\nBitBar";
+  XCTAssertEqual(YES, p.isMultiline);
+  
+  p.content = @"One line mate";
+  XCTAssertEqual(NO, p.isMultiline);
+  
+}
+
+- (void)testRefresh {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  
+  p.name = @"three.7d.sh";
+  p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
+
+  XCTAssertEqual(YES, [p refresh]);
+  XCTAssertEqual((NSInteger)0, p.currentLine);
+
+  NSLog(@"%@", p.allContentLines[0]);
+  
+  XCTAssert([p.statusItem.title isEqualToString:@"line 1"]);
+  
+}
+
+- (void)testCycleLinesAndCurrentLine {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+
+  p.name = @"three.7d.sh";
+  p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
+
+  XCTAssertEqual((NSInteger)-1, p.currentLine);
+  
+  [p refresh];
+  XCTAssertEqual((NSInteger)0, p.currentLine);
+  XCTAssert([p.statusItem.title isEqualToString:@"line 1"]);
+  
+  [p cycleLines];
+  XCTAssertEqual((NSInteger)1, p.currentLine);
+  XCTAssert([p.statusItem.title isEqualToString:@"line 2"]);
+  
+  [p cycleLines];
+  XCTAssertEqual((NSInteger)2, p.currentLine);
+  XCTAssert([p.statusItem.title isEqualToString:@"line 3"]);
+  
+  [p cycleLines];
+  XCTAssertEqual((NSInteger)0, p.currentLine);
+  XCTAssert([p.statusItem.title isEqualToString:@"line 1"]);
+   
+  [p cycleLines];
+  XCTAssertEqual((NSInteger)1, p.currentLine);
+  XCTAssert([p.statusItem.title isEqualToString:@"line 2"]);
+   
+  [p cycleLines];
+  XCTAssertEqual((NSInteger)2, p.currentLine);
+  XCTAssert([p.statusItem.title isEqualToString:@"line 3"]);
+   
 }
 
 @end

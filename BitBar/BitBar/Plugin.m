@@ -13,8 +13,16 @@
 
 @implementation Plugin
 
-- (id) initWithManager:(PluginManager*)manager {
+- (id) init {
   if (self = [super init]) {
+    self.currentLine = -1;
+    self.cycleLinesIntervalSeconds = 5;
+  }
+  return self;
+}
+
+- (id) initWithManager:(PluginManager*)manager {
+  if (self = [self init]) {
     _manager = manager;
   }
   return self;
@@ -112,6 +120,36 @@
   
 }
 
+- (BOOL) refresh {
+  
+  // execute command
+  [self refreshContentByExecutingCommand];
+  
+  // reset the current line
+  self.currentLine = -1;
+  
+  // update the status item
+  [self cycleLines];
+  
+  return YES;
+  
+}
+
+- (void) cycleLines {
+  
+  // update the status item
+  self.currentLine++;
+  
+  // if we've gone too far - wrap around
+  if ((NSUInteger)self.currentLine >= self.allContentLines.count) {
+    self.currentLine = 0;
+  }
+  
+  [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+
+  
+}
+
 - (void)contentHasChanged {
   _allContent = nil;
   _allContentLines = nil;
@@ -142,11 +180,28 @@
   if (_allContentLines == nil) {
     
     NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    _allContentLines = lines;
+    NSMutableArray *cleanLines = [[NSMutableArray alloc] initWithCapacity:lines.count];
+    NSString *line;
+    for (line in lines) {
+      
+      // strip whitespace
+      line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+      
+      // add the line if we have something in it
+      if (line.length > 0)
+        [cleanLines addObject:line];
+      
+    }
+    
+    _allContentLines = [NSArray arrayWithArray:cleanLines];
     
   }
   return _allContentLines;
   
+}
+
+- (BOOL) isMultiline {
+  return [self.allContentLines count] > 1;
 }
 
 @end
