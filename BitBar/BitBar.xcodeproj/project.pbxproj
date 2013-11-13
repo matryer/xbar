@@ -150,8 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				05DAE030183329B300409786 /* TestPlugins */,
-				05DAE018183323DD00409786 /* Supporting Files */,
 				05DAE02E1833276C00409786 /* PluginManagerTest.m */,
+				05DAE018183323DD00409786 /* Supporting Files */,
 			);
 			path = BitBarTests;
 			sourceTree = "<group>";

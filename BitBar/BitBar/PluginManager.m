@@ -11,6 +11,8 @@
 
 @implementation PluginManager
 
+@synthesize plugins = _plugins;
+
 - (id) initWithPluginPath:(NSString *)path {
   if (self = [super init]) {
     
@@ -38,22 +40,26 @@
 
 - (NSDictionary *)plugins {
   
-  NSArray *pluginFiles = self.pluginFiles;
-  NSMutableDictionary *plugins = [[NSMutableDictionary alloc] initWithCapacity:[pluginFiles count]];
-  NSString *file;
-  for (file in self.pluginFiles) {
-   
-    // setup this plugin
-    Plugin *plugin = [[Plugin alloc] init];
+  if (_plugins == nil) {
     
-    [plugin setPath:[self.path stringByAppendingPathComponent:file]];
-    [plugin setName:file];
-    
-    [plugins setValue:plugin forKey:file];
-    
+    NSArray *pluginFiles = self.pluginFiles;
+    NSMutableDictionary *plugins = [[NSMutableDictionary alloc] initWithCapacity:[pluginFiles count]];
+    NSString *file;
+    for (file in self.pluginFiles) {
+     
+      // setup this plugin
+      Plugin *plugin = [[Plugin alloc] init];
+      
+      [plugin setPath:[self.path stringByAppendingPathComponent:file]];
+      [plugin setName:file];
+      
+      [plugins setValue:plugin forKey:file];
+      
+    }
+  
   }
   
-  return plugins;
+  return _plugins;
   
 }
 
