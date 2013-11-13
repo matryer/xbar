@@ -15,7 +15,12 @@
   
   // make a plugin manager
   self.pluginManager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  [self.pluginManager setupAllPlugins];
+  
+  if ([self.pluginManager.plugins count] == 0) {
+    NSLog(@"No plugins");
+  } else {
+    [self.pluginManager setupAllPlugins];
+  }
   
 }
 

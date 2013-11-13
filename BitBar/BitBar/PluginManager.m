@@ -28,7 +28,9 @@
   
   // TODO: handle error if there is one
   if (error != nil) {
+    
     NSLog(@"TODO: handle directory error: %@", error);
+    
   }
   
   // filter the files

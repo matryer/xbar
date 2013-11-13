@@ -35,7 +35,7 @@
 
   XCTAssertEqual(p.manager, manager);
   XCTAssertEqual((NSInteger)-1, p.currentLine);
-  XCTAssertEqual((NSInteger)5, p.cycleLinesIntervalSeconds);
+  XCTAssertEqual((NSInteger)2, p.cycleLinesIntervalSeconds);
   
 }
 
@@ -272,7 +272,7 @@
   
   [p rebuildMenuForStatusItem:p.statusItem];
   
-  XCTAssertEqual((NSUInteger)3, [[p.statusItem.menu itemArray] count]);
+  XCTAssertEqual((NSUInteger)3+2, [[p.statusItem.menu itemArray] count]);
   
 }
 
