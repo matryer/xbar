@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *allContent;
+@property (nonatomic, strong) NSArray *allContentLines;
 @property (nonatomic, copy) NSString *errorContent;
 @property (nonatomic, assign) BOOL lastCommandWasError;
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
@@ -23,7 +25,5 @@
 - (id) initWithManager:(PluginManager*)manager;
 
 - (BOOL) refreshContentByExecutingCommand;
-
-- (NSString *)allContent;
 
 @end

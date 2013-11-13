@@ -112,8 +112,41 @@
   
 }
 
+- (void)contentHasChanged {
+  _allContent = nil;
+  _allContentLines = nil;
+}
+
+- (void) setContent:(NSString *)content {
+  _content = content;
+  [self contentHasChanged];
+}
+- (void) setErrorContent:(NSString *)errorContent {
+  _errorContent = errorContent;
+  [self contentHasChanged];
+}
+
 - (NSString *)allContent {
-  return [NSString stringWithFormat:@"%@%@", self.content, self.errorContent];
+  if (_allContent == nil) {
+    if (self.errorContent != nil) {
+      _allContent = [self.content stringByAppendingString:self.errorContent];
+    } else {
+      _allContent = self.content;
+    }
+  }
+  return _allContent;
+}
+
+- (NSArray *)allContentLines {
+  
+  if (_allContentLines == nil) {
+    
+    NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    _allContentLines = lines;
+    
+  }
+  return _allContentLines;
+  
 }
 
 @end

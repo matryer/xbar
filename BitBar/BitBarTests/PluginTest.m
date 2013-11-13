@@ -113,6 +113,7 @@
   XCTAssertEqual(NO, [p refreshContentByExecutingCommand]);
   
   XCTAssert([p.content isEqualToString:@""], @"content");
+  XCTAssert([p.allContent isEqualToString:@"Something went tits up."], @"all content");
   XCTAssertEqual(YES, p.lastCommandWasError);
   
 }
@@ -137,7 +138,27 @@
   XCTAssertEqual(YES, [p refreshContentByExecutingCommand]);
   
   XCTAssert([p.errorContent isEqualToString:@""], @"Error content");
+  XCTAssert([p.allContent isEqualToString:@"This is just a test."], @"all content");
   XCTAssertEqual(NO, p.lastCommandWasError);
+  
+}
+
+- (void)testContentLines {
+  
+  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  
+  p.content = @"Hello\nWorld\nOf\nBitBar";
+  
+  NSArray *lines = p.allContentLines;
+  
+  NSLog(@"lines[3]=%@", lines[3]);
+  
+  XCTAssertEqual((NSUInteger)4, lines.count);
+  XCTAssert([lines[0] isEqualToString:@"Hello"]);
+  XCTAssert([lines[1] isEqualToString:@"World"]);
+  XCTAssert([lines[2] isEqualToString:@"Of"]);
+  XCTAssert([lines[3] isEqualToString:@"BitBar"]);
   
 }
 
