@@ -23,6 +23,7 @@
 @property (readonly, nonatomic, strong) PluginManager* manager;
 @property (nonatomic, assign) NSInteger cycleLinesIntervalSeconds;
 @property (nonatomic, strong) NSTimer *lineCycleTimer;
+@property (nonatomic, assign) BOOL pluginIsVisible;
 
 @property (nonatomic, assign) BOOL menuIsOpen;
 
@@ -38,6 +39,6 @@
 - (void) cycleLines;
 
 // actions
-- (void)menuItemPreferences:(id)sender;
+- (void)changePluginsDirectorySelected:(id)sender;
 
 @end

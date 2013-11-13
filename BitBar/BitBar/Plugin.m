@@ -66,7 +66,7 @@
   }
   
   // add edit action
-  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences…" action:@selector(menuItemPreferences:) keyEquivalent:@"E"];
+  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(changePluginsDirectorySelected:) keyEquivalent:@"E"];
   [prefsMenuItem setTarget:self];
   [menu addItem:prefsMenuItem];
   
@@ -75,9 +75,10 @@
   
 }
 
-- (void)menuItemPreferences:(id)sender {
+- (void)changePluginsDirectorySelected:(id)sender {
   
-  NSLog(@"TODO: Open preferences");
+  self.manager.path = nil;
+  [self.manager reset];
   
 }
 
@@ -129,9 +130,12 @@
 
 - (BOOL) refreshContentByExecutingCommand {
   
+  if (![[NSFileManager defaultManager] fileExistsAtPath:self.path]) {
+    return NO;
+  }
+  
   NSTask *task = [[NSTask alloc] init];
-  [task setLaunchPath:@"/bin/bash"];
-  [task setArguments:[NSArray arrayWithObjects:self.path, nil]];
+  [task setLaunchPath:self.path];
   
   NSPipe *stdoutPipe = [NSPipe pipe];
   [task setStandardOutput:stdoutPipe];
@@ -139,8 +143,11 @@
   NSPipe *stderrPipe = [NSPipe pipe];
   [task setStandardError:stderrPipe];
   
-  [task launch];
-  
+  @try {
+    [task launch];
+  } @catch (NSException *e) {
+    return NO;
+  }
   NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
   NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
   
@@ -200,7 +207,13 @@
     self.currentLine = 0;
   }
   
-  [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+  if (self.allContentLines.count > 0) {
+    [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+    self.pluginIsVisible = YES;
+  } else {
+    self.statusItem = nil;
+    self.pluginIsVisible = NO;
+  }
   
 }
 

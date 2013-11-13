@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, strong) NSArray *plugins;
 @property (nonatomic, strong) NSStatusBar *statusBar;
+@property (nonatomic, strong) NSStatusItem *defaultStatusItem;
 
 - (id) initWithPluginPath:(NSString *)path;
 
@@ -21,5 +22,8 @@
 - (NSArray *)plugins;
 
 - (void) setupAllPlugins;
+- (void) reset;
+- (void) clearPathAndReset;
+- (void) showSystemStatusItem;
 
 @end

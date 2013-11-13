@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05322A441833F7F2004D9AFE /* BitBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A431833F7F2004D9AFE /* BitBarController.m */; };
+		05322A49183406E2004D9AFE /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* Settings.m */; };
 		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		0599719818333DB300EA6D8D /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
 		05DADFF4183323DD00409786 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DADFF3183323DD00409786 /* Cocoa.framework */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		05322A421833F7F2004D9AFE /* BitBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitBarController.h; sourceTree = "<group>"; };
 		05322A431833F7F2004D9AFE /* BitBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitBarController.m; sourceTree = "<group>"; };
+		05322A47183406E2004D9AFE /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		05322A48183406E2004D9AFE /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		05997192183335BF00EA6D8D /* two.5m.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = two.5m.sh; sourceTree = "<group>"; };
 		05997193183335C700EA6D8D /* three.7d.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = three.7d.sh; sourceTree = "<group>"; };
 		059971941833394500EA6D8D /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
@@ -96,6 +99,15 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		05322A46183406D7004D9AFE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				05322A47183406E2004D9AFE /* Settings.h */,
+				05322A48183406E2004D9AFE /* Settings.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		059971991833E3F300EA6D8D /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +157,7 @@
 		05DADFF9183323DD00409786 /* BitBar */ = {
 			isa = PBXGroup;
 			children = (
+				05322A46183406D7004D9AFE /* Settings */,
 				05322A411833F7E4004D9AFE /* Controller */,
 				059971991833E3F300EA6D8D /* Commands */,
 				05DAE0271833241D00409786 /* Plugins */,
@@ -310,6 +323,7 @@
 			files = (
 				05DAE007183323DD00409786 /* AppDelegate.m in Sources */,
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
+				05322A49183406E2004D9AFE /* Settings.m in Sources */,
 				05322A441833F7F2004D9AFE /* BitBarController.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				05DAE000183323DD00409786 /* main.m in Sources */,

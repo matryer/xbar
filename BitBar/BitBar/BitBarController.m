@@ -8,13 +8,16 @@
 
 #import "BitBarController.h"
 #import "PluginManager.h"
+#import "Settings.h"
 
 @implementation BitBarController
 
 - (void) startApp {
   
+  NSLog(@"pluginsDirectory: %@", [Settings pluginsDirectory]);
+  
   // make a plugin manager
-  self.pluginManager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  self.pluginManager = [[PluginManager alloc] initWithPluginPath:[Settings pluginsDirectory]];
   
   if ([self.pluginManager.plugins count] == 0) {
     NSLog(@"No plugins");

@@ -8,6 +8,7 @@
 
 #import "PluginManager.h"
 #import "Plugin.h"
+#import "Settings.h"
 
 @implementation PluginManager
 
@@ -15,27 +16,117 @@
   if (self = [super init]) {
     
     self.path = [path stringByStandardizingPath];
+  
     
   }
   return self;
 }
 
+- (void) showSystemStatusItem {
+  
+  [self.statusBar removeStatusItem:self.defaultStatusItem];
+  
+  // make default menu item
+  self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
+  [self.defaultStatusItem setTitle:[[NSProcessInfo processInfo] processName]];
+  self.defaultStatusItem.menu = [[NSMenu alloc] init];
+  
+  // add edit action
+  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(clearPathAndReset) keyEquivalent:@"E"];
+  [prefsMenuItem setTarget:self];
+  [self.defaultStatusItem.menu addItem:prefsMenuItem];
+  
+}
+
 - (NSArray *) pluginFiles {
   
-  // get the listing
-  NSError *error;
-  NSArray *dirFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
+  BOOL dirIsOK = YES;
   
-  // TODO: handle error if there is one
-  if (error != nil) {
+  if (self.path == nil) {
+    dirIsOK = NO;
+  }
+  
+  if (dirIsOK) {
     
-    NSLog(@"TODO: handle directory error: %@", error);
+    BOOL isDir;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:&isDir]) {
+      dirIsOK = NO;
+    }
+    
+    if (!isDir) {
+      dirIsOK = NO;
+    }
     
   }
   
-  // filter the files
-  NSArray *shFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.sh'"]];
-  return shFiles;
+  if (dirIsOK) {
+    
+    // get the listing
+    NSError *error;
+    NSArray *dirFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
+    
+    // handle error if there is one
+    if (error != nil) {
+      dirIsOK = NO;
+    }
+
+    // filter the files
+    NSArray *shFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
+    return shFiles;
+  
+  }
+  
+  if (!dirIsOK) {
+    
+    if ([self beginSelectingPluginsDir] == YES) {
+      return [self pluginFiles];
+    }
+    
+  }
+  
+  // if no files - show the default item
+  [self showSystemStatusItem];
+  
+  return nil;
+  
+}
+
+- (BOOL) beginSelectingPluginsDir {
+  
+  NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+  [openDlg setCanChooseDirectories:YES];
+  [openDlg setCanChooseFiles:NO];
+  [openDlg setPrompt:@"Use as Plugins Directory"];
+  [openDlg setTitle:@"Select BitBar Plugins Directory"];
+  
+  if ([openDlg runModal] == NSOKButton) {
+    
+    self.path = [openDlg.directoryURL path];
+    [Settings setPluginsDirectory:self.path];
+    return YES;
+    
+  }
+  
+  return NO;
+  
+}
+
+- (void) reset {
+  
+  // remove all status items
+  Plugin *plugin;
+  for (plugin in _plugins) {
+    [self.statusBar removeStatusItem:plugin.statusItem];
+  }
+  
+  _plugins = nil;
+  [self.statusBar removeStatusItem:self.defaultStatusItem];
+  [self setupAllPlugins];
+}
+
+- (void) clearPathAndReset {
+  self.path = nil;
+  [self reset];
 }
 
 - (NSArray *)plugins {
@@ -77,11 +168,19 @@
 
 - (void) setupAllPlugins {
   
+  NSInteger visiblePlugins = 0;
   Plugin *plugin;
   for (plugin in self.plugins) {
     
     [plugin refresh];
+    if (plugin.pluginIsVisible) {
+      visiblePlugins++;
+    }
     
+  }
+  
+  if (visiblePlugins == 0) {
+    [self showSystemStatusItem];
   }
   
 }

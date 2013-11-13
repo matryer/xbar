@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  three.sh - this test contains multiple lines with whitespace
 #  BitBar

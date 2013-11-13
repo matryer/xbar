@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  one.sh - a test BitBar plugin
 #  BitBar
