@@ -79,13 +79,10 @@
   if (!dirIsOK) {
     
     if ([self beginSelectingPluginsDir] == YES) {
-      return [self pluginFiles];
+      return nil;
     }
     
   }
-  
-  // if no files - show the default item
-  [self showSystemStatusItem];
   
   return nil;
   
@@ -105,6 +102,10 @@
     [Settings setPluginsDirectory:self.path];
     return YES;
     
+  } else {
+    
+    self.path = [Settings pluginsDirectory];
+    
   }
   
   return NO;
@@ -122,6 +123,7 @@
   _plugins = nil;
   [self.statusBar removeStatusItem:self.defaultStatusItem];
   [self setupAllPlugins];
+  
 }
 
 - (void) clearPathAndReset {

@@ -14,8 +14,6 @@
 
 - (void) startApp {
   
-  NSLog(@"pluginsDirectory: %@", [Settings pluginsDirectory]);
-  
   // make a plugin manager
   self.pluginManager = [[PluginManager alloc] initWithPluginPath:[Settings pluginsDirectory]];
   
