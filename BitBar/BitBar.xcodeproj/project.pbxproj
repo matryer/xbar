@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		05DADFF4183323DD00409786 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DADFF3183323DD00409786 /* Cocoa.framework */; };
 		05DADFFE183323DD00409786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05DADFFC183323DD00409786 /* InfoPlist.strings */; };
 		05DAE000183323DD00409786 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DADFFF183323DD00409786 /* main.m */; };
@@ -32,8 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05997192183335BF00EA6D8D /* two.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = two.sh; sourceTree = "<group>"; };
-		05997193183335C700EA6D8D /* three.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = three.sh; sourceTree = "<group>"; };
+		05997192183335BF00EA6D8D /* two.5m.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = two.5m.sh; sourceTree = "<group>"; };
+		05997193183335C700EA6D8D /* three.7d.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = three.7d.sh; sourceTree = "<group>"; };
+		059971941833394500EA6D8D /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		059971951833394500EA6D8D /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
 		05DADFF0183323DD00409786 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DADFF3183323DD00409786 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05DADFF6183323DD00409786 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -55,7 +58,7 @@
 		05DAE02B1833274100409786 /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManagerTest.m; sourceTree = "<group>"; };
-		05DAE031183329C500409786 /* one.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.sh; sourceTree = "<group>"; };
+		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 			children = (
 				05DAE02B1833274100409786 /* PluginManager.h */,
 				05DAE02C1833274100409786 /* PluginManager.m */,
+				059971941833394500EA6D8D /* Plugin.h */,
+				059971951833394500EA6D8D /* Plugin.m */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";
@@ -174,9 +179,9 @@
 		05DAE030183329B300409786 /* TestPlugins */ = {
 			isa = PBXGroup;
 			children = (
-				05DAE031183329C500409786 /* one.sh */,
-				05997192183335BF00EA6D8D /* two.sh */,
-				05997193183335C700EA6D8D /* three.sh */,
+				05DAE031183329C500409786 /* one.10s.sh */,
+				05997192183335BF00EA6D8D /* two.5m.sh */,
+				05997193183335C700EA6D8D /* three.7d.sh */,
 			);
 			path = TestPlugins;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			files = (
 				05DAE007183323DD00409786 /* AppDelegate.m in Sources */,
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
+				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				05DAE000183323DD00409786 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

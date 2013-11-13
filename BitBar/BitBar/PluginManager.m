@@ -7,6 +7,7 @@
 //
 
 #import "PluginManager.h"
+#import "Plugin.h"
 
 @implementation PluginManager
 
@@ -33,6 +34,27 @@
   // filter the files
   NSArray *shFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.sh'"]];
   return shFiles;
+}
+
+- (NSDictionary *)plugins {
+  
+  NSArray *pluginFiles = self.pluginFiles;
+  NSMutableDictionary *plugins = [[NSMutableDictionary alloc] initWithCapacity:[pluginFiles count]];
+  NSString *file;
+  for (file in self.pluginFiles) {
+   
+    // setup this plugin
+    Plugin *plugin = [[Plugin alloc] init];
+    
+    [plugin setPath:[self.path stringByAppendingPathComponent:file]];
+    [plugin setName:file];
+    
+    [plugins setValue:plugin forKey:file];
+    
+  }
+  
+  return plugins;
+  
 }
 
 @end

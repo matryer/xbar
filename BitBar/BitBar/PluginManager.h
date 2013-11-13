@@ -11,9 +11,12 @@
 @interface PluginManager : NSObject
 
 @property (nonatomic, copy) NSString *path;
+@property (nonatomic, strong) NSDictionary *plugins;
 
 - (id) initWithPluginPath:(NSString *)path;
 
 - (NSArray *) pluginFiles;
+
+- (NSDictionary *)plugins;
 
 @end
