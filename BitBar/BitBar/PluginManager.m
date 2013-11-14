@@ -61,7 +61,7 @@
   }
   
   // add reset
-  NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reset " action:@selector(reset) keyEquivalent:@""];
+  NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reset " action:@selector(reset) keyEquivalent:@"r"];
   [refreshMenuItem setTarget:self];
   [targetMenu addItem:refreshMenuItem];
   
@@ -95,7 +95,7 @@
   [targetMenu addItem:[NSMenuItem separatorItem]];
 
   // add troubleshooting item
-  NSMenuItem *openHelpMenuItem = [[NSMenuItem alloc] initWithTitle:@"User guide…" action:@selector(openTroubleshootingPage) keyEquivalent:@""];
+  NSMenuItem *openHelpMenuItem = [[NSMenuItem alloc] initWithTitle:@"User guide…" action:@selector(openTroubleshootingPage) keyEquivalent:@"g"];
   [openHelpMenuItem setTarget:self];
   [targetMenu addItem:openHelpMenuItem];
   
