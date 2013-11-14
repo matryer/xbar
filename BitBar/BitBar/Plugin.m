@@ -36,7 +36,7 @@
     // make the status item
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
 
-    [_statusItem setToolTip:self.name];
+    [_statusItem setToolTip:@"Powered by BitBar"];
     
     // build the menu
     [self rebuildMenuForStatusItem:_statusItem];
