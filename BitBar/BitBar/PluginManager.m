@@ -67,7 +67,7 @@
   [targetMenu addItem:openPluginBrowserMenuItem];
 
   // add edit action
-  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(clearPathAndReset) keyEquivalent:@""];
+  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(changePluginDirectory) keyEquivalent:@""];
   [prefsMenuItem setTarget:self];
   [targetMenu addItem:prefsMenuItem];
   
@@ -194,6 +194,12 @@
 - (void) clearPathAndReset {
   self.path = nil;
   [self reset];
+}
+
+- (void)changePluginDirectory {
+  if ([self beginSelectingPluginsDir] == YES) {
+    [self reset];
+  }
 }
 
 - (NSArray *)plugins {
