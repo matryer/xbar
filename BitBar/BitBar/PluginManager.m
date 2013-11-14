@@ -66,12 +66,7 @@
   [targetMenu addItem:refreshMenuItem];
   
   [targetMenu addItem:[NSMenuItem separatorItem]];
-
-  // add browser item
-  NSMenuItem *openPluginBrowserMenuItem = [[NSMenuItem alloc] initWithTitle:@"Find plugins…" action:@selector(openPluginsBrowser) keyEquivalent:@""];
-  [openPluginBrowserMenuItem setTarget:self];
-  [targetMenu addItem:openPluginBrowserMenuItem];
-
+  
   // add edit action
   NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin folder…" action:@selector(changePluginDirectory) keyEquivalent:@""];
   [prefsMenuItem setTarget:self];
@@ -82,6 +77,12 @@
   [openPluginFolderMenuItem setTarget:self];
   [targetMenu addItem:openPluginFolderMenuItem];
 
+  // add browser item
+  NSMenuItem *openPluginBrowserMenuItem = [[NSMenuItem alloc] initWithTitle:@"Find more plugins…" action:@selector(openPluginsBrowser) keyEquivalent:@""];
+  [openPluginBrowserMenuItem setTarget:self];
+  [targetMenu addItem:openPluginBrowserMenuItem];
+
+  
   [targetMenu addItem:[NSMenuItem separatorItem]];
   
   // open at login
