@@ -18,7 +18,6 @@
     
     self.path = [path stringByStandardizingPath];
   
-    
   }
   return self;
 }
@@ -72,9 +71,11 @@
   [targetMenu addItem:prefsMenuItem];
   
   // add reset
-  NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Refresh" action:@selector(reset) keyEquivalent:@""];
+  NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reset " action:@selector(reset) keyEquivalent:@""];
   [refreshMenuItem setTarget:self];
   [targetMenu addItem:refreshMenuItem];
+  
+  
   
   [targetMenu addItem:[NSMenuItem separatorItem]];
   
@@ -98,7 +99,6 @@
   
   NSMenuItem *menuItem = (NSMenuItem*)sender;
   [menuItem setState:lc.launchAtLogin];
-  //[self reset];
   
 }
 
@@ -260,6 +260,22 @@
   Plugin *plugin;
   for (plugin in self.plugins) {
     [plugin refresh];
+  }
+  
+  [self.timerForLastUpdated invalidate];
+  self.timerForLastUpdated = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePluginLastUpdatedValues) userInfo:nil repeats:YES];
+  
+}
+
+- (void)updatePluginLastUpdatedValues {
+  
+  Plugin *plugin;
+  for (plugin in self.plugins) {
+    if (plugin.lastUpdated != nil) {
+      [plugin.lastUpdatedMenuItem setTitle:[NSString stringWithFormat:@"Updated %@", plugin.lastUpdatedString]];
+    } else {
+      [plugin.lastUpdatedMenuItem setTitle:@"Refreshing…"];
+    }
   }
   
 }

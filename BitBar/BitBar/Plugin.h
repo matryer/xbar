@@ -25,6 +25,8 @@
 @property (nonatomic, assign) NSInteger cycleLinesIntervalSeconds;
 @property (nonatomic, strong) NSTimer *lineCycleTimer;
 @property (nonatomic, assign) BOOL pluginIsVisible;
+@property (nonatomic, strong) NSMenuItem *lastUpdatedMenuItem;
+@property (nonatomic, strong) NSDate *lastUpdated;
 
 @property (nonatomic, assign) BOOL menuIsOpen;
 
@@ -39,6 +41,8 @@
 - (BOOL) refresh;
 - (void) cycleLines;
 - (void) contentHasChanged;
+
+- (NSString *)lastUpdatedString;
 
 // actions
 - (void)changePluginsDirectorySelected:(id)sender;

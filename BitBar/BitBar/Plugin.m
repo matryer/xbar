@@ -8,6 +8,7 @@
 
 #import "Plugin.h"
 #import "PluginManager.h"
+#import "NSDate+TimeAgo.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS 60
 
@@ -75,11 +76,16 @@
       // add the seperator
       [menu addItem:[NSMenuItem separatorItem]];
       
-      
     }
     
   }
   
+  self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
+  [menu addItem:self.lastUpdatedMenuItem];
+
+  // add the seperator
+  [menu addItem:[NSMenuItem separatorItem]];
+
   [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
   
   // set the menu
@@ -190,6 +196,8 @@
     [self refreshContentByExecutingCommand];
     dispatch_sync(dispatch_get_main_queue(), ^{
       
+      self.lastUpdated = [[NSDate alloc] init];
+      
       [self rebuildMenuForStatusItem:self.statusItem];
       
       // reset the current line
@@ -217,6 +225,10 @@
   
   return YES;
   
+}
+
+- (NSString *)lastUpdatedString {
+  return [self.lastUpdated timeAgo];
 }
 
 - (void) cycleLines {

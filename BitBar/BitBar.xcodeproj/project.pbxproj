@@ -10,6 +10,8 @@
 		05322A441833F7F2004D9AFE /* BitBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A431833F7F2004D9AFE /* BitBarController.m */; };
 		05322A49183406E2004D9AFE /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* Settings.m */; };
 		055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
+		055EB110183472D300FF83A6 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 055EB10E183472D300FF83A6 /* NSDate+TimeAgo.m */; };
+		055EB111183472D300FF83A6 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 055EB10F183472D300FF83A6 /* NSDateTimeAgo.bundle */; };
 		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		0599719818333DB300EA6D8D /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
 		05DADFF4183323DD00409786 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DADFF3183323DD00409786 /* Cocoa.framework */; };
@@ -43,6 +45,9 @@
 		05322A48183406E2004D9AFE /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		055819761834172E00B44B00 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		055819771834172E00B44B00 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		055EB10D183472D300FF83A6 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		055EB10E183472D300FF83A6 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
+		055EB10F183472D300FF83A6 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
 		05997192183335BF00EA6D8D /* two.5m.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = two.5m.sh; sourceTree = "<group>"; };
 		05997193183335C700EA6D8D /* three.7d.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = three.7d.sh; sourceTree = "<group>"; };
 		059971941833394500EA6D8D /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
@@ -120,6 +125,16 @@
 			name = LaunchAtLoginController;
 			sourceTree = "<group>";
 		};
+		055EB10C183472C400FF83A6 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				055EB10D183472D300FF83A6 /* NSDate+TimeAgo.h */,
+				055EB10E183472D300FF83A6 /* NSDate+TimeAgo.m */,
+				055EB10F183472D300FF83A6 /* NSDateTimeAgo.bundle */,
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
 		059971991833E3F300EA6D8D /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +184,7 @@
 		05DADFF9183323DD00409786 /* BitBar */ = {
 			isa = PBXGroup;
 			children = (
+				055EB10C183472C400FF83A6 /* Lib */,
 				055819751834171900B44B00 /* LaunchAtLoginController */,
 				05322A46183406D7004D9AFE /* Settings */,
 				05322A411833F7E4004D9AFE /* Controller */,
@@ -313,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DADFFE183323DD00409786 /* InfoPlist.strings in Resources */,
+				055EB111183472D300FF83A6 /* NSDateTimeAgo.bundle in Resources */,
 				05DAE00C183323DD00409786 /* Images.xcassets in Resources */,
 				05DAE004183323DD00409786 /* Credits.rtf in Resources */,
 				05DAE00A183323DD00409786 /* MainMenu.xib in Resources */,
@@ -337,6 +354,7 @@
 				05DAE007183323DD00409786 /* AppDelegate.m in Sources */,
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
 				05322A49183406E2004D9AFE /* Settings.m in Sources */,
+				055EB110183472D300FF83A6 /* NSDate+TimeAgo.m in Sources */,
 				05322A441833F7F2004D9AFE /* BitBarController.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
