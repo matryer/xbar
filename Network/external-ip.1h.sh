@@ -7,4 +7,6 @@
 #
 # Gets the current external IP address.
 
-curl -s ipecho.net/plain
+curl -s ipecho.net/plain; echo
+echo "---"
+echo "(External IP address)"
