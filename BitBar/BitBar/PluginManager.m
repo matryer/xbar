@@ -48,8 +48,8 @@
   
   if (submenu) {
     
-    NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"Settings"];
-    NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"Settings" action:nil keyEquivalent:@""];
+    NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"Preferences"];
+    NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
@@ -82,7 +82,6 @@
   [openPluginBrowserMenuItem setTarget:self];
   [targetMenu addItem:openPluginBrowserMenuItem];
 
-  
   [targetMenu addItem:[NSMenuItem separatorItem]];
   
   // open at login

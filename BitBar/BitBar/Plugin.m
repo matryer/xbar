@@ -91,15 +91,29 @@
     self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
     
-    // add the seperator
-    [menu addItem:[NSMenuItem separatorItem]];
-    
   }
+  
+  NSMenuItem *runItem = [[NSMenuItem alloc] initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
+  [runItem setTarget:self];
+  [menu addItem:runItem];
+  
+  
+  // add the seperator
+  [menu addItem:[NSMenuItem separatorItem]];
   
   [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
   
   // set the menu
   statusItem.menu = menu;
+  
+}
+
+- (void) runPluginExternally {
+  
+  NSString *s = [NSString stringWithFormat:
+                 @"tell application \"Terminal\" to do script \"%@\"", self.path];
+  NSAppleScript *as = [[NSAppleScript alloc] initWithSource:s];
+  [as executeAndReturnError:nil];
   
 }
 
@@ -305,8 +319,8 @@
     for (line in lines) {
       
       // strip whitespace
-      line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-      
+      line = [self cleanLine:line];
+
       // add the line if we have something in it
       if (line.length > 0) {
       
@@ -327,6 +341,16 @@
   
 }
 
+- (NSString*) cleanLine:(NSString*)line {
+  
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
+  line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+  
+  line = [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, [line length]) withTemplate:@" "];
+  
+  return line;
+}
+
 - (NSArray *)allContentLinesAfterBreak {
   
   if (_allContentLinesAfterBreak == nil) {
@@ -339,7 +363,7 @@
     for (line in lines) {
       
       // strip whitespace
-      line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+      line = [self cleanLine:line];
       
       // add the line if we have something in it
       if (line.length > 0) {
