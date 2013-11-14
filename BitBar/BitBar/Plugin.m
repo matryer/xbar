@@ -228,7 +228,7 @@
 }
 
 - (NSString *)lastUpdatedString {
-  return [self.lastUpdated timeAgo];
+  return [[self.lastUpdated timeAgo] lowercaseString];
 }
 
 - (void) cycleLines {
