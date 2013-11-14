@@ -52,7 +52,7 @@
   // build the menu
   NSMenu *menu = [[NSMenu alloc] init];
   [menu setDelegate:self];
-  
+    
   if (self.isMultiline) {
     
     // put all content as an item
@@ -293,6 +293,7 @@
   if (_allContentLines == nil) {
     
     NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
     NSMutableArray *cleanLines = [[NSMutableArray alloc] initWithCapacity:lines.count];
     NSString *line;
     for (line in lines) {
@@ -341,6 +342,7 @@
           storing = YES;
         } else {
           if (storing == YES) {
+            
             [cleanLines addObject:line];
           }
         }
@@ -358,7 +360,7 @@
 }
 
 - (BOOL) isMultiline {
-  return [self.allContentLines count] > 1;
+  return [self.allContentLines count] > 1 || [self.allContentLinesAfterBreak count]>0;
 }
 
 #pragma mark - NSMenuDelegate
