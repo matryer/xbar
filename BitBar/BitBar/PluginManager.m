@@ -86,10 +86,30 @@
   [openAtLoginMenuItem setState:lc.launchAtLogin];
   [targetMenu addItem:openAtLoginMenuItem];
   
+  [targetMenu addItem:[NSMenuItem separatorItem]];
+
+  // add troubleshooting item
+  NSMenuItem *openHelpMenuItem = [[NSMenuItem alloc] initWithTitle:@"User guide…" action:@selector(openTroubleshootingPage) keyEquivalent:@""];
+  [openHelpMenuItem setTarget:self];
+  [targetMenu addItem:openHelpMenuItem];
+  
+  // quit menu
+  NSMenuItem *quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(quit) keyEquivalent:@"q"];
+  [quitMenuItem setTarget:self];
+  [targetMenu addItem:quitMenuItem];
+  
+}
+
+- (void) quit {
+  [NSApp terminate:[NSApplication sharedApplication]];
 }
 
 - (void) openPluginsBrowser {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins"]];
+}
+
+- (void) openTroubleshootingPage {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins/wiki/User-Guide"]];
 }
 
 - (void) toggleOpenAtLogin:(id)sender {
