@@ -35,7 +35,7 @@
 
   XCTAssertEqual(p.manager, manager);
   XCTAssertEqual((NSInteger)-1, p.currentLine);
-  XCTAssertEqual((NSInteger)2, p.cycleLinesIntervalSeconds);
+  XCTAssertEqual((NSInteger)5, p.cycleLinesIntervalSeconds);
   
 }
 
@@ -206,7 +206,7 @@
   
   lines = p.allContentLinesAfterBreak;
   XCTAssertEqual((NSUInteger)3, lines.count);
-  XCTAssert([lines[0] isEqualToString:@"World"]);
+  XCTAssert([lines[0] isEqualToString:@"The World"]);
   XCTAssert([lines[1] isEqualToString:@"Of"]);
   XCTAssert([lines[2] isEqualToString:@"BitBar"]);
   
