@@ -52,7 +52,7 @@
   // build the menu
   NSMenu *menu = [[NSMenu alloc] init];
   [menu setDelegate:self];
-    
+  
   if (self.isMultiline) {
     
     // put all content as an item
@@ -70,7 +70,13 @@
       // put all content as an item
       NSString *line;
       for (line in self.allContentLinesAfterBreak) {
-        [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+        
+        if ([line isEqualToString:@"---"]) {
+          [menu addItem:[NSMenuItem separatorItem]];
+        } else {
+          [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+        }
+        
       }
       
       // add the seperator
@@ -339,10 +345,14 @@
       if (line.length > 0) {
         
         if ([line isEqualToString:@"---"]) {
+          
+          if (storing) {
+            [cleanLines addObject:line];
+          }
+          
           storing = YES;
         } else {
           if (storing == YES) {
-            
             [cleanLines addObject:line];
           }
         }
