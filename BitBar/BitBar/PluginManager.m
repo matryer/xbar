@@ -246,6 +246,7 @@
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
+      [plugin.statusItem setTitle:@"…"];
       
       [plugins addObject:plugin];
       

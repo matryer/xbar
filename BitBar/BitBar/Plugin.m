@@ -16,8 +16,10 @@
 
 - (id) init {
   if (self = [super init]) {
+    
     self.currentLine = -1;
     self.cycleLinesIntervalSeconds = 5;
+        
   }
   return self;
 }
@@ -35,8 +37,6 @@
     
     // make the status item
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
-
-    [_statusItem setToolTip:@"Powered by BitBar"];
     
     // build the menu
     [self rebuildMenuForStatusItem:_statusItem];
@@ -80,12 +80,16 @@
     
   }
   
-  self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
-  [menu addItem:self.lastUpdatedMenuItem];
-
-  // add the seperator
-  [menu addItem:[NSMenuItem separatorItem]];
-
+  if (self.lastUpdated != nil) {
+    
+    self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
+    [menu addItem:self.lastUpdatedMenuItem];
+    
+    // add the seperator
+    [menu addItem:[NSMenuItem separatorItem]];
+    
+  }
+  
   [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
   
   // set the menu
@@ -245,7 +249,9 @@
   }
   
   if (self.allContentLines.count > 0) {
+    
     [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+    
     self.pluginIsVisible = YES;
   } else {
     self.statusItem = nil;
