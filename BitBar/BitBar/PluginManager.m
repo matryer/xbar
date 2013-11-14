@@ -60,23 +60,28 @@
 
   }
   
-  // add browser item
-  NSMenuItem *openPluginBrowserMenuItem = [[NSMenuItem alloc] initWithTitle:@"Browse plugins…" action:@selector(openPluginsBrowser) keyEquivalent:@""];
-  [openPluginBrowserMenuItem setTarget:self];
-  [targetMenu addItem:openPluginBrowserMenuItem];
-
-  // add edit action
-  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin directory…" action:@selector(changePluginDirectory) keyEquivalent:@""];
-  [prefsMenuItem setTarget:self];
-  [targetMenu addItem:prefsMenuItem];
-  
   // add reset
   NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reset " action:@selector(reset) keyEquivalent:@""];
   [refreshMenuItem setTarget:self];
   [targetMenu addItem:refreshMenuItem];
   
+  [targetMenu addItem:[NSMenuItem separatorItem]];
+
+  // add browser item
+  NSMenuItem *openPluginBrowserMenuItem = [[NSMenuItem alloc] initWithTitle:@"Find plugins…" action:@selector(openPluginsBrowser) keyEquivalent:@""];
+  [openPluginBrowserMenuItem setTarget:self];
+  [targetMenu addItem:openPluginBrowserMenuItem];
+
+  // add edit action
+  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change plugin folder…" action:@selector(changePluginDirectory) keyEquivalent:@""];
+  [prefsMenuItem setTarget:self];
+  [targetMenu addItem:prefsMenuItem];
   
-  
+  // add edit action
+  NSMenuItem *openPluginFolderMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open plugin folder…" action:@selector(openPluginFolder) keyEquivalent:@""];
+  [openPluginFolderMenuItem setTarget:self];
+  [targetMenu addItem:openPluginFolderMenuItem];
+
   [targetMenu addItem:[NSMenuItem separatorItem]];
   
   // open at login
@@ -110,6 +115,10 @@
 
 - (void) openTroubleshootingPage {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins/wiki/User-Guide"]];
+}
+
+- (void) openPluginFolder {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:self.path]];
 }
 
 - (void) toggleOpenAtLogin:(id)sender {
