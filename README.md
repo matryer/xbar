@@ -1,6 +1,6 @@
 # BitBar
 
-BitBar lets you elegantly put the output from any script/program in your Mac OS X Menu Bar.
+BitBar lets you put the output from any script/program in your Mac OS X Menu Bar.
 
 ## Get started
 
