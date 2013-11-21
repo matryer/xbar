@@ -22,7 +22,7 @@ Example showing your internal and external IP addresses:
   * Ensure they can be executed
   * Enjoy
 
-## Donate
+## It's free, so please donate
 
 If you use this, please donate a fraction of a BitCoin to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR`.
 
