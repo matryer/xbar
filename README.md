@@ -2,13 +2,13 @@
 
 BitBar lets you put the output from any script/program in your Mac OS X Menu Bar.
 
+Example showing the latest Buy and Sell figures for BitCoins:
+
 ![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Bitcoins.png)
 
-  * Image showing the latest Buy and Sell figures for BitCoins
+Example showing your internal and external IP addresses:
 
 ![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-IPs.png)
-
-  * Image showing your internal and external IP addresses
 
 ## Get started
 
