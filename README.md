@@ -2,6 +2,8 @@
 
 BitBar lets you put the output from any script/program in your Mac OS X Menu Bar.
 
+![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Bitcoins.png)
+
 ## Get started
 
   * Get BitBar
