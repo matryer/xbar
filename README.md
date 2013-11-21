@@ -6,9 +6,13 @@ Example showing the latest Buy and Sell figures for BitCoins:
 
 ![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Bitcoins.png)
 
+Click to see the full output, and more options:
+
+![BitBar Example showing menu open](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Menu.png)
+
 Example showing your internal and external IP addresses:
 
-![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-IPs.png)
+![BitBar Example showing IP Addresses](https://raw.github.com/matryer/bitbar/master/BitBar-Example-IPs.png)
 
 ## Get started
 
