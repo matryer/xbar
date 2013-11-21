@@ -1,4 +1,6 @@
-# BitBar Plugins
+# BitBar
+
+Put whatever you like in your Mac Menu Bar!
 
 ## Installing plugins
 
