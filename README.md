@@ -18,7 +18,7 @@ Example showing your internal and external IP addresses:
 
   * Get BitBar
   * Run it - it will ask you to (create and) elect a plugins folder, do so
-  * Put any scripts, programs or apps in there
+  * Help yourself by [Browsing our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [#writing-a-plugin](write your own)
   * Ensure they can be executed
   * Enjoy
 
