@@ -83,3 +83,7 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
 
   * Only One, Two and Three will appear in the top bar
   * Clicking the plugin menu item will show all lines
+
+### Written something good?
+
+Please send us a pull request and we'll add it to our repos.
