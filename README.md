@@ -1,6 +1,18 @@
 # BitBar
 
-Put whatever you like in your Mac Menu Bar!
+BitBar lets you elegantly put the output from any script/program in your Mac OS X Menu Bar.
+
+## Get started
+
+  * Get BitBar
+  * Run it - it will ask you to (create and) elect a plugins folder, do so
+  * Put any scripts, programs or apps in there
+  * Ensure they can be executed
+  * Enjoy
+
+## Donate
+
+If you use this, please donate a fraction of a BitCoin to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR`.
 
 ## Installing plugins
 
