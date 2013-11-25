@@ -19,7 +19,7 @@ Example showing your internal and external IP addresses:
   * [Get BitBar](https://github.com/matryer/bitbar/releases) for FREE
   * Run it - it will ask you to (create and) elect a plugins folder, do so
   * Help yourself by [Browsing our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [write your own](#writing-a-plugin)
-  * Ensure they can be executed
+  * [Ensure they can be executed](#ensure-you-have-execution-rights)
   * Enjoy
 
 ## It's free, so please donate
