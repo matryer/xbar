@@ -18,7 +18,7 @@ Example showing your internal and external IP addresses:
 
 ## Get started
 
-  * [Get BitBar](https://github.com/matryer/bitbar/releases) for FREE
+  * [Get the latest version of BitBar](https://github.com/stretchr/bitbar/releases/download/v1.0.0/BitBar.zip) for FREE, or pick a [different release](https://github.com/matryer/bitbar/releases)
   * Run it - it will ask you to (create and) elect a plugins folder, do so
   * Help yourself by [Browsing our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [write your own](#writing-a-plugin)
   * [Ensure they can be executed](#ensure-you-have-execution-rights)
