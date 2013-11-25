@@ -1,5 +1,7 @@
 # BitBar
 
+![BitBar](https://github.com/stretchr/bitbar/raw/master/BitBar-small.tiff)
+
 BitBar lets you put the output from any script/program in your Mac OS X Menu Bar.
 
 Example showing the latest Buy and Sell figures for BitCoins:
