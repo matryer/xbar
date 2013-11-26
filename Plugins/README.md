@@ -14,4 +14,4 @@ We're always looking for new plugins, so please send us pull requests if you wri
 
 ### Got ideas?
 
-If you've got ideas, or want to report a bug, nip over to our (issues page)[https://github.com/stretchr/bitbar/issues] and let us know.
+If you've got ideas, or want to report a bug, nip over to our [issues page](https://github.com/stretchr/bitbar/issues) and let us know.
