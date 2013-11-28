@@ -34,7 +34,19 @@ Just download the plugin of your choice into your BitBar plugins directory and c
 
 ### Configure the refresh time
 
-The refresh time is in the filename of the plugin.  Most plugins will come with a default, but you can change it to anything you like:
+The refresh time is in the filename of the plugin, following this format:
+
+    {name}.{time}.{ext}
+    
+  * `name` - The name of the file
+  * `time` - The refresh rate (see below)
+  * `ext` - The file extension
+
+For example:
+
+  * `date.1m.sh` would refresh every minute.
+
+Most plugins will come with a default, but you can change it to anything you like:
 
   * 10s - ten seconds
   * 1m - one minute
