@@ -26,7 +26,7 @@ Example showing your internal and external IP addresses:
 
 ## It's free, so please donate
 
-If you use this, please donate a fraction of a BitCoin to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR`.
+If you use this, please donate BitCoin to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR`.
 
 ## Installing plugins
 
