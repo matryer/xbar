@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B2EB30C0-666C-46EA-85F2-0586829722B1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BitBar</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>58D5E363-3C19-4D83-91FE-1C8068E5C5E5</key>
+		<string>https://github.com/stretchr/bitbar-code.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BitBar/BitBar.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>58D5E363-3C19-4D83-91FE-1C8068E5C5E5</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/stretchr/bitbar-code.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>58D5E363-3C19-4D83-91FE-1C8068E5C5E5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>58D5E363-3C19-4D83-91FE-1C8068E5C5E5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>bitbar-code</string>
+		</dict>
+	</array>
+</dict>
+</plist>
