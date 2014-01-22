@@ -26,6 +26,7 @@
 		05DAE01C183323DD00409786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05DAE01A183323DD00409786 /* InfoPlist.strings */; };
 		05DAE02D1833274100409786 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
+		A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManagerTest.m; sourceTree = "<group>"; };
 		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
+		A281BDB3189066DE00C380A4 /* ExecutablePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExecutablePlugin.h; sourceTree = "<group>"; };
+		A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExecutablePlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +241,8 @@
 				05DAE02C1833274100409786 /* PluginManager.m */,
 				059971941833394500EA6D8D /* Plugin.h */,
 				059971951833394500EA6D8D /* Plugin.m */,
+				A281BDB3189066DE00C380A4 /* ExecutablePlugin.h */,
+				A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DAE007183323DD00409786 /* AppDelegate.m in Sources */,
+				A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */,
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
 				05322A49183406E2004D9AFE /* Settings.m in Sources */,
 				055EB110183472D300FF83A6 /* NSDate+TimeAgo.m in Sources */,

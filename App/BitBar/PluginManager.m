@@ -8,6 +8,7 @@
 
 #import "PluginManager.h"
 #import "Plugin.h"
+#import "ExecutablePlugin.h"
 #import "Settings.h"
 #import "LaunchAtLoginController.h"
 
@@ -256,7 +257,8 @@
     for (file in pluginFiles) {
      
       // setup this plugin
-      Plugin *plugin = [[Plugin alloc] initWithManager:self];
+      Plugin *plugin;
+        plugin = [[ExecutablePlugin alloc] initWithManager:self];
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
