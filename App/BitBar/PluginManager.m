@@ -8,6 +8,8 @@
 
 #import "PluginManager.h"
 #import "Plugin.h"
+#import "ExecutablePlugin.h"
+#import "HTMLPlugin.h"
 #import "Settings.h"
 #import "LaunchAtLoginController.h"
 
@@ -256,7 +258,12 @@
     for (file in pluginFiles) {
      
       // setup this plugin
-      Plugin *plugin = [[Plugin alloc] initWithManager:self];
+      Plugin *plugin;
+      if ([@[@"html",@"htm"] containsObject:[[file pathExtension] lowercaseString]]) {
+        plugin = [[HTMLPlugin alloc] initWithManager:self];
+      } else {
+        plugin = [[ExecutablePlugin alloc] initWithManager:self];
+      }
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];

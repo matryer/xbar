@@ -36,8 +36,9 @@
 - (id) initWithManager:(PluginManager*)manager;
 - (BOOL) isMultiline;
 
-- (BOOL) refreshContentByExecutingCommand;
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
+- (void) addAdditionalMenuItems:(NSMenu *)menu;
+
 - (BOOL) refresh;
 - (void) cycleLines;
 - (void) contentHasChanged;
