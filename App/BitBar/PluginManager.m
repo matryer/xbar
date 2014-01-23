@@ -178,11 +178,15 @@
     if (error != nil) {
       dirIsOK = NO;
     } else {
-
-      // filter the files
-      NSArray *shFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
-          
-      return shFiles;
+      // filter dot files
+      dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
+      // filter subdirectories
+      dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id name, NSDictionary *bindings) {
+        BOOL isDir;
+        NSString * path = [self.path stringByAppendingPathComponent:name];
+        return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
+      }]];
+      return dirFiles;
     }
   }
   

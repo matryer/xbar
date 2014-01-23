@@ -63,18 +63,24 @@
 }
 
 - (NSDictionary *) dictionaryForLine:(NSString *)line {
-  NSArray * pair = [line componentsSeparatedByString:@"|"];
-  NSString * title = [[pair objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  NSMutableDictionary * params = [@{ @"title": title } mutableCopy];
-  if ([pair count] > 1) {
-    NSArray * paramsArr = [[[pair objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    for (NSString * paramStr in paramsArr) {
-      NSRange found = [paramStr rangeOfString:@"="];
-      if (found.location != NSNotFound) {
-        NSString * key = [[paramStr substringToIndex:found.location] lowercaseString];
-        NSString * value = [paramStr substringFromIndex:found.location + found.length];
-        [params setObject:value forKey:key];
-      }
+  NSRange found = [line rangeOfString:@"|"];
+  if (found.location == NSNotFound) {
+    return @{ @"title": line };
+  }
+  NSString * title = [[line substringToIndex:found.location]
+                      stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  NSMutableDictionary * params = [[NSMutableDictionary alloc] init];
+  [params setObject:title forKey:@"title"];
+  NSString * paramsStr = [line substringFromIndex:found.location + found.length];
+  NSArray * paramsArr = [[paramsStr
+                          stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                         componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  for (NSString * paramStr in paramsArr) {
+    NSRange found = [paramStr rangeOfString:@"="];
+    if (found.location != NSNotFound) {
+      NSString * key = [[paramStr substringToIndex:found.location] lowercaseString];
+      NSString * value = [paramStr substringFromIndex:found.location + found.length];
+      [params setObject:value forKey:key];
     }
   }
   return params;
