@@ -47,6 +47,46 @@
   
 }
 
+- (NSMenuItem *) buildMenuItemForLine:(NSString *)line {
+  NSDictionary * params = [self dictionaryForLine:line];
+  NSString * title = [params objectForKey:@"title"];
+  SEL sel = nil;
+  if ([params objectForKey:@"href"] != nil) {
+    sel = @selector(performMenuItemHREFAction:);
+  }
+  NSMenuItem * item = [[NSMenuItem alloc] initWithTitle:title action:sel keyEquivalent:@""];
+  if (sel != nil) {
+    item.representedObject = params;
+    [item setTarget:self];
+  }
+  return item;
+}
+
+- (NSDictionary *) dictionaryForLine:(NSString *)line {
+  NSArray * pair = [line componentsSeparatedByString:@"|"];
+  NSString * title = [[pair objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  NSMutableDictionary * params = [@{ @"title": title } mutableCopy];
+  if ([pair count] > 1) {
+    NSArray * paramsArr = [[[pair objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    for (NSString * paramStr in paramsArr) {
+      NSRange found = [paramStr rangeOfString:@"="];
+      if (found.location != NSNotFound) {
+        NSString * key = [[paramStr substringToIndex:found.location] lowercaseString];
+        NSString * value = [paramStr substringFromIndex:found.location + found.length];
+        [params setObject:value forKey:key];
+      }
+    }
+  }
+  return params;
+}
+
+- (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
+  NSMutableDictionary * params = menuItem.representedObject;
+  NSString * href = [params objectForKey:@"href"];
+  NSURL * url = [NSURL URLWithString:href];
+  [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   
   // build the menu
@@ -58,7 +98,8 @@
     // put all content as an item
     NSString *line;
     for (line in self.allContentLines) {
-      [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+      NSMenuItem * item = [self buildMenuItemForLine:line];
+      [menu addItem:item];
     }
     
     // add the seperator
@@ -74,7 +115,8 @@
         if ([line isEqualToString:@"---"]) {
           [menu addItem:[NSMenuItem separatorItem]];
         } else {
-          [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+          NSMenuItem * item = [self buildMenuItemForLine:line];
+          [menu addItem:item];
         }
         
       }
