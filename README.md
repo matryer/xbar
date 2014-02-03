@@ -105,7 +105,7 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
 #### Multi-line plugin with links and colors
 
     #!/bin/bash
-    curl -m 1 http://example.com -X HEAD >/dev/null 2>&1
+    curl -m 1 http://example.com -I >/dev/null 2>&1
     [ $? -gt 0 ] && echo "FAIL | color=red" || echo "OK | color=green"
     echo "---"
     echo "Show Graphs | color=#123def href=http://example.com/graph?foo=bar"
