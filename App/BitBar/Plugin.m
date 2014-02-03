@@ -9,6 +9,7 @@
 #import "Plugin.h"
 #import "PluginManager.h"
 #import "NSDate+TimeAgo.h"
+#import "NSColor+Hex.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS 60
 
@@ -47,6 +48,72 @@
   
 }
 
+- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params {
+  NSString * title = [params objectForKey:@"title"];
+  SEL sel = nil;
+  if ([params objectForKey:@"href"] != nil) {
+    sel = @selector(performMenuItemHREFAction:);
+  }
+  NSMenuItem * item = [[NSMenuItem alloc] initWithTitle:title action:sel keyEquivalent:@""];
+  if (sel != nil) {
+    item.representedObject = params;
+    [item setTarget:self];
+  }
+  if ([params objectForKey:@"color"] != nil) {
+    item.attributedTitle = [self attributedTitleWithParams:params];
+  }
+  return item;
+}
+
+- (NSAttributedString *) attributedTitleWithParams:(NSDictionary *)params {
+  NSString * title = [params objectForKey:@"title"];
+  NSFont * font = [NSFont menuFontOfSize:14.0];
+  NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: font}];
+  if ([params objectForKey:@"color"] != nil) {
+    NSColor * fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]];
+    if (fgColor != nil) {
+      [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
+    }
+  }
+  return attributedTitle;
+}
+
+- (NSMenuItem *) buildMenuItemForLine:(NSString *)line {
+  NSDictionary * params = [self dictionaryForLine:line];
+  return [self buildMenuItemWithParams:params];
+}
+
+- (NSDictionary *) dictionaryForLine:(NSString *)line {
+  NSRange found = [line rangeOfString:@"|"];
+  if (found.location == NSNotFound) {
+    return @{ @"title": line };
+  }
+  NSString * title = [[line substringToIndex:found.location]
+                      stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  NSMutableDictionary * params = [[NSMutableDictionary alloc] init];
+  [params setObject:title forKey:@"title"];
+  NSString * paramsStr = [line substringFromIndex:found.location + found.length];
+  NSArray * paramsArr = [[paramsStr
+                          stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                         componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  for (NSString * paramStr in paramsArr) {
+    NSRange found = [paramStr rangeOfString:@"="];
+    if (found.location != NSNotFound) {
+      NSString * key = [[paramStr substringToIndex:found.location] lowercaseString];
+      NSString * value = [paramStr substringFromIndex:found.location + found.length];
+      [params setObject:value forKey:key];
+    }
+  }
+  return params;
+}
+
+- (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
+  NSMutableDictionary * params = menuItem.representedObject;
+  NSString * href = [params objectForKey:@"href"];
+  NSURL * url = [NSURL URLWithString:href];
+  [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   
   // build the menu
@@ -58,7 +125,8 @@
     // put all content as an item
     NSString *line;
     for (line in self.allContentLines) {
-      [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+      NSMenuItem * item = [self buildMenuItemForLine:line];
+      [menu addItem:item];
     }
     
     // add the seperator
@@ -74,7 +142,8 @@
         if ([line isEqualToString:@"---"]) {
           [menu addItem:[NSMenuItem separatorItem]];
         } else {
-          [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+          NSMenuItem * item = [self buildMenuItemForLine:line];
+          [menu addItem:item];
         }
         
       }
@@ -305,8 +374,8 @@
   }
   
   if (self.allContentLines.count > 0) {
-    
-    [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+    NSDictionary * params = [self dictionaryForLine:self.allContentLines[self.currentLine]];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     
     self.pluginIsVisible = YES;
   } else {
