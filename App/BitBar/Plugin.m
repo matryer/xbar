@@ -9,6 +9,7 @@
 #import "Plugin.h"
 #import "PluginManager.h"
 #import "NSDate+TimeAgo.h"
+#import "NSColor+Hex.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS 60
 
@@ -47,8 +48,7 @@
   
 }
 
-- (NSMenuItem *) buildMenuItemForLine:(NSString *)line {
-  NSDictionary * params = [self dictionaryForLine:line];
+- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params {
   NSString * title = [params objectForKey:@"title"];
   SEL sel = nil;
   if ([params objectForKey:@"href"] != nil) {
@@ -59,7 +59,28 @@
     item.representedObject = params;
     [item setTarget:self];
   }
+  if ([params objectForKey:@"color"] != nil) {
+    item.attributedTitle = [self attributedTitleWithParams:params];
+  }
   return item;
+}
+
+- (NSAttributedString *) attributedTitleWithParams:(NSDictionary *)params {
+  NSString * title = [params objectForKey:@"title"];
+  NSFont * font = [NSFont menuFontOfSize:14.0];
+  NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: font}];
+  if ([params objectForKey:@"color"] != nil) {
+    NSColor * fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]];
+    if (fgColor != nil) {
+      [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
+    }
+  }
+  return attributedTitle;
+}
+
+- (NSMenuItem *) buildMenuItemForLine:(NSString *)line {
+  NSDictionary * params = [self dictionaryForLine:line];
+  return [self buildMenuItemWithParams:params];
 }
 
 - (NSDictionary *) dictionaryForLine:(NSString *)line {
@@ -353,8 +374,8 @@
   }
   
   if (self.allContentLines.count > 0) {
-    
-    [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+    NSDictionary * params = [self dictionaryForLine:self.allContentLines[self.currentLine]];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     
     self.pluginIsVisible = YES;
   } else {
