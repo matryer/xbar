@@ -62,6 +62,8 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
   * To write a plugin, just write some form of executable script that outputs to the standard output.
   * Multiple lines will be cycled through over and over.
   * If your output contians a line consisting only of `---`, the lines below it will appear in the dropdown for that plugin, but won't appear in the menu bar itself.
+  * Your lines might contain `|` to separate the title from other parameters, such as...
+    * `href=..` to make the dropdown items clickable.
   * If you're writing scripts, ensure it has a shebang at the top.
 
 ### Examples
@@ -97,6 +99,23 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
 
   * Only One, Two and Three will appear in the top bar
   * Clicking the plugin menu item will show all lines
+
+
+#### Multi-line plugin with links
+
+    #!/bin/bash
+    SITE_STATUS="OK"
+    VISITORS="..."
+    echo "Status: ${SITE_STATUS}"
+    echo "---"
+    echo "Current Visitors: ${VISITORS}"
+    echo "Show Graphs | href=http://example.com/graph?foo=bar"
+
+  * "Status: OK" will be shown in the top bar
+  * Clicking the plugin menu item will show
+    * "Current Visitors: ..." as text
+    * and "Show Graphs" as a link to `http://example.com/graph?foo=bar`
+
 
 ### Written something good?
 
