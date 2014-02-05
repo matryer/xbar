@@ -255,8 +255,8 @@
   }
   if (params != nil) {
     NSLog(@"addMenuItem: %@", params);
-    NSString * title = [params objectForKey:@"title"];
-    [_menu addItemWithTitle:title action:nil keyEquivalent:@""];
+    NSMenuItem * item = [self buildMenuItemWithParams:params];
+    [_menu addItem:item];
   }
 }
 
@@ -269,6 +269,7 @@
   NSLog(@"showMenu");
   _menu.delegate = self;
   
+  [self addDefaultMenuItems:_menu];
   self.statusItem.menu = _menu;
   [self.statusItem popUpStatusItemMenu:self.statusItem.menu];
 }

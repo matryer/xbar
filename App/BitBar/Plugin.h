@@ -35,8 +35,10 @@
 - (id) initWithManager:(PluginManager*)manager;
 - (BOOL) isMultiline;
 
+- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params;
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
 - (void) addAdditionalMenuItems:(NSMenu *)menu;
+- (void) addDefaultMenuItems:(NSMenu *)menu;
 
 - (BOOL) refresh;
 - (void) cycleLines;
