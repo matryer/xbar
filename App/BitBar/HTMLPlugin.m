@@ -10,6 +10,13 @@
 #import "PluginManager.h"
 #import <WebKit/WebKit.h>
 
+@interface WebInspector : NSObject  { WebView *_webView; }
+- (id)initWithWebView:(WebView *)webView;
+- (void)detach:     (id)sender;
+- (void)show:       (id)sender;
+- (void)showConsole:(id)sender;
+@end
+
 @implementation HTMLPlugin
 
 -(BOOL)refresh {
@@ -92,6 +99,10 @@
 
 - (void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame
 {
+  // WebInspector * inspector = [WebInspector.alloc initWithWebView:sender];
+  // [inspector detach:sender];
+  // [inspector showConsole:sender];
+
 	NSLog(@"didClearWindowObject: windowObject: %@", windowObject);
 	WebScriptObject * script = [sender windowScriptObject];
 	NSLog(@"didClearWindowObject: script: %@", script);
@@ -119,6 +130,7 @@
     @selector(log:),
     @selector(setReloadInterval:),
     @selector(resizeToFit),
+    @selector(showWebInspector),
     @selector(resetMenu),
     @selector(addMenuItem:),
     @selector(addMenuItems:),
@@ -274,5 +286,11 @@
   [self.statusItem popUpStatusItemMenu:self.statusItem.menu];
 }
 
+- (void) showWebInspector {
+  WebView * webview = (WebView *) self.statusItem.view;
+  WebInspector * inspector = [WebInspector.alloc initWithWebView:webview];
+  // [inspector detach:sender];
+  [inspector showConsole:webview];
+}
 
 @end

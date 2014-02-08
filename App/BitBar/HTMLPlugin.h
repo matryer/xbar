@@ -27,5 +27,6 @@
 - (void) addMenuItems:(NSObject*)titleOrParamsDict;
 - (void) addMenuSeperatorItem;
 - (void) showMenu;
+- (void) showWebInspector;
 
 @end
