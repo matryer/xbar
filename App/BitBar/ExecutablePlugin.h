@@ -10,6 +10,8 @@
 
 @interface ExecutablePlugin : Plugin
 
+@property (nonatomic, strong) NSTimer *lineCycleTimer;
+
 - (BOOL) refreshContentByExecutingCommand;
 
 @end

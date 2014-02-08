@@ -160,19 +160,24 @@
     self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
     
+    [menu addItem:[NSMenuItem separatorItem]];
   }
   
-  [menu addItem:[NSMenuItem separatorItem]];
-  
   [self addAdditionalMenuItems:menu];
-  
-  [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
+  [self addDefaultMenuItems:menu];
   
   // set the menu
   statusItem.menu = menu;
   
 }
 
+- (void) addDefaultMenuItems:(NSMenu *)menu {
+  if (menu.itemArray.count>0) {
+    [menu addItem:[NSMenuItem separatorItem]];
+  }
+  [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
+  
+}
 - (void) addAdditionalMenuItems:(NSMenu *)menu {
 }
 
