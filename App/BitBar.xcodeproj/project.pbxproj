@@ -29,6 +29,8 @@
 		A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 		A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
 		A281BDBA1890721900C380A4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A281BDB91890721900C380A4 /* WebKit.framework */; };
+		A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
+		A22AF32A189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		A281BDB61890670800C380A4 /* HTMLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPlugin.h; sourceTree = "<group>"; };
 		A281BDB71890670800C380A4 /* HTMLPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPlugin.m; sourceTree = "<group>"; };
 		A281BDB91890721900C380A4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A22AF327189F823E0011DFCD /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Hex.h"; sourceTree = "<group>"; };
+		A22AF328189F823E0011DFCD /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 				055EB10D183472D300FF83A6 /* NSDate+TimeAgo.h */,
 				055EB10E183472D300FF83A6 /* NSDate+TimeAgo.m */,
 				055EB10F183472D300FF83A6 /* NSDateTimeAgo.bundle */,
+				A22AF327189F823E0011DFCD /* NSColor+Hex.h */,
+				A22AF328189F823E0011DFCD /* NSColor+Hex.m */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
 				05322A49183406E2004D9AFE /* Settings.m in Sources */,
 				055EB110183472D300FF83A6 /* NSDate+TimeAgo.m in Sources */,
+				A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */,
 				05322A441833F7F2004D9AFE /* BitBarController.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
@@ -390,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0599719818333DB300EA6D8D /* PluginTest.m in Sources */,
+				A22AF32A189F823E0011DFCD /* NSColor+Hex.m in Sources */,
 				05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
