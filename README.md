@@ -62,6 +62,9 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
   * To write a plugin, just write some form of executable script that outputs to the standard output.
   * Multiple lines will be cycled through over and over.
   * If your output contians a line consisting only of `---`, the lines below it will appear in the dropdown for that plugin, but won't appear in the menu bar itself.
+  * Your lines might contain `|` to separate the title from other parameters, such as...
+    * `href=..` to make the dropdown items clickable
+    * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
   * If you're writing scripts, ensure it has a shebang at the top.
 
 ### Examples
@@ -97,6 +100,17 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
 
   * Only One, Two and Three will appear in the top bar
   * Clicking the plugin menu item will show all lines
+
+
+#### Multi-line plugin with links and colors
+
+    #!/bin/bash
+    curl -m 1 http://example.com -I >/dev/null 2>&1
+    [ $? -gt 0 ] && echo "FAIL | color=red" || echo "OK | color=green"
+    echo "---"
+    echo "Show Graphs | color=#123def href=http://example.com/graph?foo=bar"
+    echo "Show KPI Report | color=purple href=http://example.com/report"
+
 
 ### Written something good?
 

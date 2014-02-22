@@ -9,6 +9,7 @@
 #import "Plugin.h"
 #import "PluginManager.h"
 #import "NSDate+TimeAgo.h"
+#import "NSColor+Hex.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS 60
 
@@ -47,6 +48,72 @@
   
 }
 
+- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params {
+  NSString * title = [params objectForKey:@"title"];
+  SEL sel = nil;
+  if ([params objectForKey:@"href"] != nil) {
+    sel = @selector(performMenuItemHREFAction:);
+  }
+  NSMenuItem * item = [[NSMenuItem alloc] initWithTitle:title action:sel keyEquivalent:@""];
+  if (sel != nil) {
+    item.representedObject = params;
+    [item setTarget:self];
+  }
+  if ([params objectForKey:@"color"] != nil) {
+    item.attributedTitle = [self attributedTitleWithParams:params];
+  }
+  return item;
+}
+
+- (NSAttributedString *) attributedTitleWithParams:(NSDictionary *)params {
+  NSString * title = [params objectForKey:@"title"];
+  NSFont * font = [NSFont menuFontOfSize:14.0];
+  NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: font}];
+  if ([params objectForKey:@"color"] != nil) {
+    NSColor * fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]];
+    if (fgColor != nil) {
+      [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
+    }
+  }
+  return attributedTitle;
+}
+
+- (NSMenuItem *) buildMenuItemForLine:(NSString *)line {
+  NSDictionary * params = [self dictionaryForLine:line];
+  return [self buildMenuItemWithParams:params];
+}
+
+- (NSDictionary *) dictionaryForLine:(NSString *)line {
+  NSRange found = [line rangeOfString:@"|"];
+  if (found.location == NSNotFound) {
+    return @{ @"title": line };
+  }
+  NSString * title = [[line substringToIndex:found.location]
+                      stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  NSMutableDictionary * params = [[NSMutableDictionary alloc] init];
+  [params setObject:title forKey:@"title"];
+  NSString * paramsStr = [line substringFromIndex:found.location + found.length];
+  NSArray * paramsArr = [[paramsStr
+                          stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                         componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  for (NSString * paramStr in paramsArr) {
+    NSRange found = [paramStr rangeOfString:@"="];
+    if (found.location != NSNotFound) {
+      NSString * key = [[paramStr substringToIndex:found.location] lowercaseString];
+      NSString * value = [paramStr substringFromIndex:found.location + found.length];
+      [params setObject:value forKey:key];
+    }
+  }
+  return params;
+}
+
+- (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
+  NSMutableDictionary * params = menuItem.representedObject;
+  NSString * href = [params objectForKey:@"href"];
+  NSURL * url = [NSURL URLWithString:href];
+  [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   
   // build the menu
@@ -58,7 +125,8 @@
     // put all content as an item
     NSString *line;
     for (line in self.allContentLines) {
-      [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+      NSMenuItem * item = [self buildMenuItemForLine:line];
+      [menu addItem:item];
     }
     
     // add the seperator
@@ -74,7 +142,8 @@
         if ([line isEqualToString:@"---"]) {
           [menu addItem:[NSMenuItem separatorItem]];
         } else {
-          [menu addItemWithTitle:line action:nil keyEquivalent:@""];
+          NSMenuItem * item = [self buildMenuItemForLine:line];
+          [menu addItem:item];
         }
         
       }
@@ -91,63 +160,25 @@
     self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
     
+    [menu addItem:[NSMenuItem separatorItem]];
   }
   
-  [menu addItem:[NSMenuItem separatorItem]];
-  
-  NSMenuItem *copyItem = [[NSMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyOutput) keyEquivalent:@"c"];
-  [copyItem setTarget:self];
-  [menu addItem:copyItem];
-
-  NSMenuItem *copyAllItems = [[NSMenuItem alloc] initWithTitle:@"Copy All" action:@selector(copyAllOutput) keyEquivalent:@"C"];
-  [copyAllItems setTarget:self];
-  [menu addItem:copyAllItems];
-
-  NSMenuItem *runItem = [[NSMenuItem alloc] initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
-  [runItem setTarget:self];
-  [menu addItem:runItem];
-  
-  
-  // add the seperator
-  [menu addItem:[NSMenuItem separatorItem]];
-  
-  [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
+  [self addAdditionalMenuItems:menu];
+  [self addDefaultMenuItems:menu];
   
   // set the menu
   statusItem.menu = menu;
   
 }
 
-
-- (void) copyOutput {
-
-  NSString *valueToCopy = [self.allContentLines objectAtIndex:self.currentLine];
-  NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-  [pasteboard clearContents];
-  [pasteboard writeObjects:[NSArray arrayWithObject:valueToCopy]];
+- (void) addDefaultMenuItems:(NSMenu *)menu {
+  if (menu.itemArray.count>0) {
+    [menu addItem:[NSMenuItem separatorItem]];
+  }
+  [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
   
 }
-
-- (void) copyAllOutput {
-  
-  NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-  [pasteboard clearContents];
-  [pasteboard writeObjects:[NSArray arrayWithObject:self.allContent]];
-  
-}
-
-- (void) runPluginExternally {
-  
-  NSString* script = @"tell application \"Terminal\" \n\
-	  do script \"%@\" \n\
-    activate \n\
-  end tell";
-  
-  NSString *s = [NSString stringWithFormat:
-                 script, self.path];
-  NSAppleScript *as = [[NSAppleScript alloc] initWithSource:s];
-  [as executeAndReturnError:nil];
-  
+- (void) addAdditionalMenuItems:(NSMenu *)menu {
 }
 
 - (void)changePluginsDirectorySelected:(id)sender {
@@ -203,88 +234,9 @@
   
 }
 
-- (BOOL) refreshContentByExecutingCommand {
-  
-  if (![[NSFileManager defaultManager] fileExistsAtPath:self.path]) {
-    return NO;
-  }
-  
-  NSTask *task = [[NSTask alloc] init];
-  
-  [task setEnvironment:self.manager.environment];
-  [task setLaunchPath:self.path];
-  
-  NSPipe *stdoutPipe = [NSPipe pipe];
-  [task setStandardOutput:stdoutPipe];
-  
-  NSPipe *stderrPipe = [NSPipe pipe];
-  [task setStandardError:stderrPipe];
-  
-  @try {
-    [task launch];
-  } @catch (NSException *e) {
-    NSLog(@"Error when running %@: %@", self.name, e);
-    return NO;
-  }
-  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
-  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
-  
-  [task waitUntilExit];
-  
-  self.content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
-  self.errorContent = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
-  
-  // failure
-  if ([task terminationStatus] != 0) {
-    self.lastCommandWasError = YES;
-    return NO;
-  }
-  
-  // success
-  self.lastCommandWasError = NO;
-  return YES;
-  
-}
 
 - (BOOL) refresh {
-  
-  [self.lineCycleTimer invalidate];
-  self.lineCycleTimer = nil;
-  
-  // execute command
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
-    [self refreshContentByExecutingCommand];
-    dispatch_sync(dispatch_get_main_queue(), ^{
-      
-      self.lastUpdated = [[NSDate alloc] init];
-      
-      [self rebuildMenuForStatusItem:self.statusItem];
-      
-      // reset the current line
-      self.currentLine = -1;
-      
-      // update the status item
-      [self cycleLines];
-      
-      // sort out multi-line cycler
-      if (self.isMultiline) {
-        
-        // start the timer to keep cycling lines
-        self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
-        
-      }
-      
-      // tell the manager this plugin has updated
-      [self.manager pluginDidUdpdateItself:self];
-      
-      // schedule next refresh
-      [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
-      
-    });
-  });
-  
   return YES;
-  
 }
 
 - (NSString *)lastUpdatedString {
@@ -305,8 +257,8 @@
   }
   
   if (self.allContentLines.count > 0) {
-    
-    [self.statusItem setTitle:self.allContentLines[self.currentLine]];
+    NSDictionary * params = [self dictionaryForLine:self.allContentLines[self.currentLine]];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     
     self.pluginIsVisible = YES;
   } else {

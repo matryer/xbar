@@ -23,7 +23,6 @@
 @property (nonatomic, strong) NSNumber *refreshIntervalSeconds;
 @property (readonly, nonatomic, strong) PluginManager* manager;
 @property (nonatomic, assign) NSInteger cycleLinesIntervalSeconds;
-@property (nonatomic, strong) NSTimer *lineCycleTimer;
 @property (nonatomic, assign) BOOL pluginIsVisible;
 @property (nonatomic, strong) NSMenuItem *lastUpdatedMenuItem;
 @property (nonatomic, strong) NSDate *lastUpdated;
@@ -36,8 +35,11 @@
 - (id) initWithManager:(PluginManager*)manager;
 - (BOOL) isMultiline;
 
-- (BOOL) refreshContentByExecutingCommand;
+- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params;
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
+- (void) addAdditionalMenuItems:(NSMenu *)menu;
+- (void) addDefaultMenuItems:(NSMenu *)menu;
+
 - (BOOL) refresh;
 - (void) cycleLines;
 - (void) contentHasChanged;

@@ -8,6 +8,8 @@
 
 #import "PluginManager.h"
 #import "Plugin.h"
+#import "ExecutablePlugin.h"
+#import "HTMLPlugin.h"
 #import "Settings.h"
 #import "LaunchAtLoginController.h"
 
@@ -176,11 +178,15 @@
     if (error != nil) {
       dirIsOK = NO;
     } else {
-
-      // filter the files
-      NSArray *shFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
-          
-      return shFiles;
+      // filter dot files
+      dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
+      // filter subdirectories
+      dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id name, NSDictionary *bindings) {
+        BOOL isDir;
+        NSString * path = [self.path stringByAppendingPathComponent:name];
+        return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
+      }]];
+      return dirFiles;
     }
   }
   
@@ -256,7 +262,12 @@
     for (file in pluginFiles) {
      
       // setup this plugin
-      Plugin *plugin = [[Plugin alloc] initWithManager:self];
+      Plugin *plugin;
+      if ([@[@"html",@"htm"] containsObject:[[file pathExtension] lowercaseString]]) {
+        plugin = [[HTMLPlugin alloc] initWithManager:self];
+      } else {
+        plugin = [[ExecutablePlugin alloc] initWithManager:self];
+      }
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
