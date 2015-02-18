@@ -119,18 +119,16 @@
 
 - (void) performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
     NSMutableDictionary * params = menuItem.representedObject;
-    NSString * bash = [params objectForKey:@"bash"];
+    NSString *bash = [params objectForKey:@"bash"];
     NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
-                   do script \"%@\" \n\
                    activate \n\
+                   if length of (get every window) is 0 then \n\
+                   tell application \"System Events\" to tell process \"Terminal\" to click menu item \"New Window\" of menu \"File\" of menu bar 1 \n\
+                   end if \n\
+                   do script \"%@\" in front window activate \n\
                    end tell", bash];
     NSAppleScript *as = [[NSAppleScript alloc] initWithSource: s];
     [as executeAndReturnError:nil];
-    //[menuItem setTarget:bash];
-    // Оставлю на случай если нужно будет запускать не открывая терминал.
-    //NSTask *task = [[NSTask alloc] init];
-    //[task setLaunchPath:bash];
-    //[task launch];
 }
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
