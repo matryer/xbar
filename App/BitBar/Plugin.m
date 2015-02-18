@@ -54,6 +54,9 @@
   if ([params objectForKey:@"href"] != nil) {
     sel = @selector(performMenuItemHREFAction:);
   }
+  if ([params objectForKey:@"bash"] != nil) {
+      sel = @selector(performMenuItemOpenTerminalAction:);
+  }
   NSMenuItem * item = [[NSMenuItem alloc] initWithTitle:title action:sel keyEquivalent:@""];
   if (sel != nil) {
     item.representedObject = params;
@@ -112,6 +115,22 @@
   NSString * href = [params objectForKey:@"href"];
   NSURL * url = [NSURL URLWithString:href];
   [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (void) performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
+    NSMutableDictionary * params = menuItem.representedObject;
+    NSString * bash = [params objectForKey:@"bash"];
+    NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
+                   do script \"%@\" \n\
+                   activate \n\
+                   end tell", bash];
+    NSAppleScript *as = [[NSAppleScript alloc] initWithSource: s];
+    [as executeAndReturnError:nil];
+    //[menuItem setTarget:bash];
+    // Оставлю на случай если нужно будет запускать не открывая терминал.
+    //NSTask *task = [[NSTask alloc] init];
+    //[task setLaunchPath:bash];
+    //[task launch];
 }
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
