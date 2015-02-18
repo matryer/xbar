@@ -123,22 +123,33 @@
     NSString *param1 = [params objectForKey:@"param1"];
     NSString *param2 = [params objectForKey:@"param2"];
     NSString *param3 = [params objectForKey:@"param3"];
+    NSString *terminal = [params objectForKey:@"terminal"];
     if(param1 == nil) { param1 = @""; }
     if(param2 == nil) { param2 = @""; }
     if(param3 == nil) { param3 = @""; }
-    NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@", bash, param1, param2, param3];
+    if(terminal == nil) {
+        terminal = [NSString stringWithFormat:@"%s", "true"];
+    }
     
-    //NSLog(@"%@", full_link);
+    //NSLog(@"%@", terminal);
     
-    NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
+    if([terminal  isEqual: @"false"]){
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath:bash];
+        [task setArguments:@[ param1, param2, param3 ]];
+        [task launch];
+    }else{
+        NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@", bash, param1, param2, param3];
+        NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
                    activate \n\
                    if length of (get every window) is 0 then \n\
                    tell application \"System Events\" to tell process \"Terminal\" to click menu item \"New Window\" of menu \"File\" of menu bar 1 \n\
                    end if \n\
                    do script \"%@\" in front window activate \n\
                    end tell", full_link];
-    NSAppleScript *as = [[NSAppleScript alloc] initWithSource: s];
-    [as executeAndReturnError:nil];
+        NSAppleScript *as = [[NSAppleScript alloc] initWithSource: s];
+        [as executeAndReturnError:nil];
+    }
 }
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
