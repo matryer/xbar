@@ -69,6 +69,7 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
     * `param1=..` if sh script need params
     * `param2=..` if sh script need params
     * `param3=..` if sh script need params
+    * `terminal=..` if need to start bash script without open Terminal may be true or false
   * If you're writing scripts, ensure it has a shebang at the top.
 
 ### Examples
