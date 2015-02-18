@@ -128,21 +128,10 @@
 }
 
 - (void) addAdditionalMenuItems:(NSMenu *)menu {
-  NSMenuItem *copyItem = [[NSMenuItem alloc] initWithTitle:@"Copy" action:@selector(copyOutput) keyEquivalent:@"c"];
-  [copyItem setTarget:self];
-  [menu addItem:copyItem];
-  
-  NSMenuItem *copyAllItems = [[NSMenuItem alloc] initWithTitle:@"Copy All" action:@selector(copyAllOutput) keyEquivalent:@"C"];
-  [copyAllItems setTarget:self];
-  [menu addItem:copyAllItems];
-  
+    
   NSMenuItem *runItem = [[NSMenuItem alloc] initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
   [runItem setTarget:self];
   [menu addItem:runItem];
-  
-  
-  // add the seperator
-  [menu addItem:[NSMenuItem separatorItem]];
   
 }
 
