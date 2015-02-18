@@ -1,0 +1,125 @@
+/*
+ RULES:
+ Assume value for (seconds, hours, minutes, days, weeks, months or years) is XXXY, Y is last digit, XY is last two digits;
+ */
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d days ago" = "%d dager siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _days ago" = "%d dager siden";
+
+/* If Y == 1; */
+"%d __days ago" = "%d dag siden";
+
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d hours ago" = "%d timer siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _hours ago" = "%d timer siden";
+
+/* If Y == 1; */
+"%d __hours ago" = "%d time siden";
+
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d minutes ago" = "%d minutter siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _minutes ago" = "%d minutter siden";
+
+/* If Y == 1; */
+"%d __minutes ago" = "%d minutt siden";
+
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d months ago" = "%d måneder siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _months ago" = "%d måneder siden";
+
+/* If Y == 1; */
+"%d __months ago" = "%d måned siden";
+
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d seconds ago" = "%d sekunder siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _seconds ago" = "%d sekunder siden";
+
+/* If Y == 1; */
+"%d __seconds ago" = "%d sekund siden";
+
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d weeks ago" = "%d uker siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _weeks ago" = "%d uker siden";
+
+/* If Y == 1; */
+"%d __weeks ago" = "%d uke siden";
+
+
+/* Y ==0 OR Y > 4 OR XY == 11; */
+"%d years ago" = "%d år siden";
+
+/* If Y != 1 AND Y < 5; */
+"%d _years ago" = "%d år siden";
+
+/* If Y == 1; */
+"%d __years ago" = "%d år siden";
+
+
+/* No comment provided by engineer. */
+"A minute ago" = "Et minutt siden";
+
+/* No comment provided by engineer. */
+"An hour ago" = "En time siden";
+
+/* No comment provided by engineer. */
+"Just now" = "Nå";
+
+/* No comment provided by engineer. */
+"Last month" = "For en måned siden";
+
+/* No comment provided by engineer. */
+"Last week" = "For en uke siden";
+
+/* No comment provided by engineer. */
+"Last year" = "For et år siden";
+
+/* No comment provided by engineer. */
+"Yesterday" = "I går";
+
+/* No comment provided by engineer. */
+"1 year ago" = "1 år siden";
+
+/* No comment provided by engineer. */
+"1 month ago" = "1 måned siden";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 uke siden";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1 dag siden";
+
+/* No comment provided by engineer. */
+"This morning" = "Denne morgenen";
+
+/* No comment provided by engineer. */
+"This afternoon" = "I ettermiddag";
+
+/* No comment provided by engineer. */
+"Today" = "I dag";
+
+/* No comment provided by engineer. */
+"This week" = "Denne uken";
+
+/* No comment provided by engineer. */
+"This month" = "Denne måneden";
+
+/* No comment provided by engineer. */
+"This year" = "Dette året";
