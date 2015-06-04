@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Stackoverflow reputation score
+# Stackoverflow reputation score and Emoji on change :)
 # BitBar plugin
 #
 # by Bruce Steedman
 #
-# Shows current reputation and thumbs up/down on change
+# Shows current reputation and 👍 / 👎 on change
 # 5 minute refresh is just under the 300 calls a day no-key api limit
 
 # id for user from url - e.g. https://stackoverflow.com/users/4114896/matzfan
-SO_ID=1144035 # change this value to your own (or someone else's!)
+SO_ID=22656 # CHANGE THIS VALUE to your's (or watch Mr Skeet reach 7 figures!)
 
 URI="https://api.stackexchange.com/2.2/users/"$SO_ID"?site=stackoverflow" # api
 
