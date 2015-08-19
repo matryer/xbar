@@ -65,6 +65,11 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
   * Your lines might contain `|` to separate the title from other parameters, such as...
     * `href=..` to make the dropdown items clickable
     * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
+    * `bash=..` to make the dropdown items open terminal with your script e.g. `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh`
+    * `param1=..` if sh script need params
+    * `param2=..` if sh script need params
+    * `param3=..` if sh script need params
+    * `terminal=..` if need to start bash script without open Terminal may be true or false
   * If you're writing scripts, ensure it has a shebang at the top.
 
 ### Examples
