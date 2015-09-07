@@ -1,8 +1,8 @@
 @interface NSDate (TimeAgo)
-- (NSString *) timeAgo;
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit;
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit dateFormat:(NSDateFormatterStyle)dFormatter andTimeFormat:(NSDateFormatterStyle)tFormatter;
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit dateFormatter:(NSDateFormatter *)formatter;
+- (NSString*) timeAgo;
+- (NSString*) timeAgoWithLimit:(NSTimeInterval)limit;
+- (NSString*) timeAgoWithLimit:(NSTimeInterval)limit dateFormat:(NSDateFormatterStyle)dFormatter andTimeFormat:(NSDateFormatterStyle)tFormatter;
+- (NSString*) timeAgoWithLimit:(NSTimeInterval)limit dateFormatter:(NSDateFormatter *)formatter;
 
 
 // this method only returns "{value} {unit} ago" strings and no "yesterday"/"last month" strings

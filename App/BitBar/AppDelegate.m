@@ -21,7 +21,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
   // enable usage of Safari's WebInspector to debug HTML Plugins
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitDeveloperExtras"];
+  [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
   
   self.controller = BitBarController.new;
   [self.controller startApp];

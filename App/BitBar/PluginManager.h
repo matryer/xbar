@@ -19,7 +19,7 @@
 
 - initWithPluginPath:(NSString *)path;
 
-- (NSArray *) pluginFilesWithAsking:(BOOL)shouldAsk;
+- (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk;
 
 - (void) setupAllPlugins;
 - (void) reset;

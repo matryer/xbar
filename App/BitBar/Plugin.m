@@ -15,7 +15,7 @@
 
 @implementation Plugin
 
-- (id) init {
+- init {
   if (self = [super init]) {
     
     self.currentLine = -1;
@@ -25,7 +25,7 @@
   return self;
 }
 
-- (id) initWithManager:(PluginManager*)manager {
+- initWithManager:(PluginManager*)manager {
   if (self = [self init]) {
     _manager = manager;
   }
@@ -48,7 +48,7 @@
   
 }
 
-- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params {
+- (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params {
   NSString * title = [params objectForKey:@"title"];
   SEL sel = nil;
   if ([params objectForKey:@"href"] != nil) {
@@ -68,7 +68,7 @@
   return item;
 }
 
-- (NSAttributedString *) attributedTitleWithParams:(NSDictionary *)params {
+- (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
   NSString * title = [params objectForKey:@"title"];
   NSFont * font = [NSFont menuFontOfSize:14.0];
   NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font}];
@@ -81,12 +81,12 @@
   return attributedTitle;
 }
 
-- (NSMenuItem *) buildMenuItemForLine:(NSString *)line {
+- (NSMenuItem*) buildMenuItemForLine:(NSString *)line {
   NSDictionary * params = [self dictionaryForLine:line];
   return [self buildMenuItemWithParams:params];
 }
 
-- (NSDictionary *) dictionaryForLine:(NSString *)line {
+- (NSDictionary*) dictionaryForLine:(NSString *)line {
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) {
     return @{ @"title": line };
@@ -216,17 +216,17 @@
   [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
   
 }
+
 - (void) addAdditionalMenuItems:(NSMenu *)menu {
 }
 
-- (void)changePluginsDirectorySelected:(id)sender {
+- (void) changePluginsDirectorySelected:_ {
   
   self.manager.path = nil;
   [self.manager reset];
-  
 }
 
-- (NSNumber *)refreshIntervalSeconds {
+- (NSNumber*) refreshIntervalSeconds {
   
   if (_refreshIntervalSeconds == nil) {
     
@@ -272,12 +272,11 @@
   
 }
 
-
 - (BOOL) refresh {
   return YES;
 }
 
-- (NSString *)lastUpdatedString {
+- (NSString*) lastUpdatedString {
   return [[self.lastUpdated timeAgo] lowercaseString];
 }
 
@@ -306,7 +305,7 @@
   
 }
 
-- (void)contentHasChanged {
+- (void) contentHasChanged {
   _allContent = nil;
   _allContentLines = nil;
   _allContentLinesAfterBreak = nil;
@@ -316,6 +315,7 @@
   _content = content;
   [self contentHasChanged];
 }
+
 - (void) setErrorContent:(NSString *)errorContent {
   _errorContent = errorContent;
   [self contentHasChanged];
@@ -377,7 +377,7 @@
   return line;
 }
 
-- (NSArray *)allContentLinesAfterBreak {
+- (NSArray*) allContentLinesAfterBreak {
   
   if (_allContentLinesAfterBreak == nil) {
     

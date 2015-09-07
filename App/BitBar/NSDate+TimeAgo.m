@@ -259,18 +259,18 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
 
 
 
-- (NSString *) stringFromFormat:(NSString *)format withValue:(NSInteger)value
+- (NSString*) stringFromFormat:(NSString *)format withValue:(NSInteger)value
 {
     NSString * localeFormat = [NSString stringWithFormat:format, [self getLocaleFormatUnderscoresWithValue:value]];
     return [NSString stringWithFormat:NSDateTimeAgoLocalizedStrings(localeFormat), value];
 }
 
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit
+- (NSString*) timeAgoWithLimit:(NSTimeInterval)limit
 {
     return [self timeAgoWithLimit:limit dateFormat:NSDateFormatterFullStyle andTimeFormat:NSDateFormatterFullStyle];
 }
 
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit dateFormat:(NSDateFormatterStyle)dFormatter andTimeFormat:(NSDateFormatterStyle)tFormatter
+- (NSString*) timeAgoWithLimit:(NSTimeInterval)limit dateFormat:(NSDateFormatterStyle)dFormatter andTimeFormat:(NSDateFormatterStyle)tFormatter
 {
     if (fabs([self timeIntervalSinceDate:[NSDate date]]) <= limit)
         return [self timeAgo];
@@ -280,7 +280,7 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
                                           timeStyle:tFormatter];
 }
 
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit dateFormatter:(NSDateFormatter *)formatter
+- (NSString*) timeAgoWithLimit:(NSTimeInterval)limit dateFormatter:(NSDateFormatter *)formatter
 {
     if (fabs([self timeIntervalSinceDate:[NSDate date]]) <= limit)
         return [self timeAgo];

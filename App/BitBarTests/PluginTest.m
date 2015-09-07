@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Plugin.h"
+#import "ExecutablePlugin.h"
 #import "PluginManager.h"
 
 @interface PluginTest : XCTestCase
@@ -16,17 +16,6 @@
 
 @implementation PluginTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
 
 - (void)testInitWithManager {
   
@@ -109,7 +98,7 @@
 - (void)testRefreshContentByExecutingCommandSuccess {
   
   PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [Plugin.alloc initWithManager:manager];
+  ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
   
   p.name = @"one.10s.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
@@ -135,7 +124,7 @@
 - (void)testRefreshContentByExecutingCommandError {
   
   PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [Plugin.alloc initWithManager:manager];
+  ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
   
   p.name = @"two.5m.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
@@ -280,7 +269,7 @@
 - (void)testRebuildMenuForStatusItem {
   
   PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [Plugin.alloc initWithManager:manager];
+  ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
   
   p.name = @"three.7d.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];

@@ -164,13 +164,13 @@
 
 #pragma mark - WebScriptObject Utils
 
-- (NSArray *) arrayOfKeysFromWebScriptObject:(WebScriptObject *)obj {
+- (NSArray*) arrayOfKeysFromWebScriptObject:(WebScriptObject *)obj {
   WebScriptObject* bridge = [obj evaluateWebScript:@"Object"];
   WebScriptObject* keysObj = [bridge callWebScriptMethod:@"keys" withArguments:@[obj]];
   return [self arrayFromWebScriptObject:keysObj];
 }
 
-- (NSDictionary *) dictionaryFromWebScriptObject:(WebScriptObject *)obj {
+- (NSDictionary*) dictionaryFromWebScriptObject:(WebScriptObject *)obj {
   NSArray * keys = [self arrayOfKeysFromWebScriptObject:obj];
   NSMutableDictionary * dict = [NSMutableDictionary.alloc initWithCapacity:keys.count];
   for (NSString * key in keys) {
@@ -188,7 +188,7 @@
   return [result boolValue];
 }
 
-- (NSArray *) arrayFromWebScriptObject:(WebScriptObject *)obj {
+- (NSArray*) arrayFromWebScriptObject:(WebScriptObject *)obj {
   NSMutableArray * values = NSMutableArray.new;
   id elem = nil;
   int i = 0;
@@ -202,7 +202,7 @@
 
 #pragma mark - Called from JavaScript
 
--(void)log:(NSString *) str {
+-(void)log:(NSString*) str {
   NSLog(@"JAVASCRIPT LOG: %@", str);
 }
 
@@ -254,7 +254,7 @@
     params = (NSDictionary *)titleOrParamsDict;
   }
   else if ([[titleOrParamsDict class] isSubclassOfClass:[WebScriptObject class]]) {
-    WebScriptObject * obj = (WebScriptObject *) titleOrParamsDict;
+    WebScriptObject * obj = (WebScriptObject*) titleOrParamsDict;
     if ([self isWebScriptObjectInstanceOfArray:obj]) {
       [self addMenuItems:[self arrayFromWebScriptObject:obj]];
       return;
@@ -287,7 +287,7 @@
 }
 
 - (void) showWebInspector {
-  WebView * webview = (WebView *) self.statusItem.view;
+  WebView * webview = (WebView*) self.statusItem.view;
   WebInspector * inspector = [WebInspector.alloc initWithWebView:webview];
   // [inspector detach:sender];
   [inspector showConsole:webview];

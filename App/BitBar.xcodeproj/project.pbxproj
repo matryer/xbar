@@ -71,13 +71,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		05DADFED183323DD00409786 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05DAE00E183323DD00409786 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,7 +212,6 @@
 			buildConfigurationList = 05DAE021183323DD00409786 /* Build configuration list for PBXNativeTarget "BitBar" */;
 			buildPhases = (
 				05DADFEC183323DD00409786 /* Sources */,
-				05DADFED183323DD00409786 /* Frameworks */,
 				05DADFEE183323DD00409786 /* Resources */,
 			);
 			buildRules = (

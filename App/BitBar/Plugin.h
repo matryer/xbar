@@ -27,7 +27,7 @@
 - initWithManager:(PluginManager*)manager;
 
 
-- (NSMenuItem *) buildMenuItemWithParams:(NSDictionary *)params;
+- (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params;
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
 - (void) addAdditionalMenuItems:(NSMenu *)menu;
 - (void) addDefaultMenuItems:(NSMenu *)menu;

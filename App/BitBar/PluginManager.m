@@ -132,7 +132,7 @@
   
 }
 
-- (NSArray *) pluginFilesWithAsking:(BOOL)shouldAsk {
+- (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk {
   
   BOOL dirIsOK = !!self.path;
   
@@ -161,6 +161,8 @@
     } else {
       // filter dot files
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
+      // filter markdown files
+      dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self ENDSWITH '.md'"]];
       // filter subdirectories
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id name, NSDictionary *bindings) {
         BOOL isDir;
@@ -259,19 +261,12 @@
 
 - (NSDictionary *)environment {
   
-  if (_environment == nil) {
-    
-    NSDictionary *currentEnv = [[NSProcessInfo processInfo] environment];
-    NSMutableDictionary *env = [NSMutableDictionary.alloc initWithCapacity:[currentEnv count]+1];
-    for (NSString *key in currentEnv.allKeys) {
-      [env setObject:[currentEnv objectForKey:key] forKey:key];
-    }
-    [env setObject:[NSNumber numberWithBool:YES] forKey:@"BitBar"];
-    _environment = env;
-    
-  }
-  
-  return _environment;
+  return _environment = _environment ?: ({
+
+    NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
+    env[@"BitBar"] = @YES;
+    env;
+  });
   
 }
 
