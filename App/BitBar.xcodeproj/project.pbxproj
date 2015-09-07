@@ -37,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0531DCD81844070A007F0A96 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = App.xib; sourceTree = "<group>"; };
-		0531DCE018440F93007F0A96 /* bitbar-icons.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "bitbar-icons.icns"; path = "../bitbar-icons.icns"; sourceTree = "<group>"; };
+		0531DCE018440F93007F0A96 /* bitbar-icons.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "bitbar-icons.icns"; path = "../Icons/bitbar-icons.icns"; sourceTree = "<group>"; };
 		05322A421833F7F2004D9AFE /* BitBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitBarController.h; sourceTree = "<group>"; };
 		05322A431833F7F2004D9AFE /* BitBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BitBarController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05322A47183406E2004D9AFE /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
