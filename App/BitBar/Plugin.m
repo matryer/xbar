@@ -11,54 +11,42 @@
 #import "NSDate+TimeAgo.h"
 #import "NSColor+Hex.h"
 
-#define DEFAULT_TIME_INTERVAL_SECONDS 60
+#define DEFAULT_TIME_INTERVAL_SECONDS ((double)60.)
 
 @implementation Plugin
 
 - init {
-  if (self = [super init]) {
-    
-    self.currentLine = -1;
-    self.cycleLinesIntervalSeconds = 5;
-        
-  }
-  return self;
+
+  return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil;
 }
 
 - initWithManager:(PluginManager*)manager {
-  if (self = [self init]) {
-    _manager = manager;
-  }
-  return self;
+
+  return self = self.init ? _manager = manager, self : nil;
 }
 
-- (NSStatusItem *)statusItem {
-  
-  if (_statusItem == nil) {
+- (NSStatusItem *)statusItem { return _statusItem = _statusItem ?: ({
     
     // make the status item
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
     
     // build the menu
     [self rebuildMenuForStatusItem:_statusItem];
-    
-  }
-  
-  return _statusItem;
+
+    _statusItem;
+
+  });
   
 }
 
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params {
+
   NSString * title = [params objectForKey:@"title"];
-  SEL sel = nil;
-  if ([params objectForKey:@"href"] != nil) {
-    sel = @selector(performMenuItemHREFAction:);
-  }
-  if ([params objectForKey:@"bash"] != nil) {
-      sel = @selector(performMenuItemOpenTerminalAction:);
-  }
+  SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
+          : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:) : nil;
+
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
-  if (sel != nil) {
+  if (sel) {
     item.representedObject = params;
     [item setTarget:self];
   }
@@ -83,39 +71,35 @@
 }
 
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line {
-  NSDictionary * params = [self dictionaryForLine:line];
-  return [self buildMenuItemWithParams:params];
+
+  return [self buildMenuItemWithParams:[self dictionaryForLine:line]];
 }
 
 - (NSDictionary*) dictionaryForLine:(NSString *)line {
+
   NSRange found = [line rangeOfString:@"|"];
-  if (found.location == NSNotFound) {
-    return @{ @"title": line };
-  }
+  if (found.location == NSNotFound) return @{ @"title": line };
+
   NSString * title = [[line substringToIndex:found.location]
-                      stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  NSMutableDictionary * params = NSMutableDictionary.new;
-  [params setObject:title forKey:@"title"];
+             stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+  NSMutableDictionary * params = @{@"title":title}.mutableCopy;
   NSString * paramsStr = [line substringFromIndex:found.location + found.length];
-  NSArray * paramsArr = [[paramsStr
-                          stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
-                         componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  NSArray * paramsArr = [[paramsStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet]
+                               componentsSeparatedByCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   for (NSString * paramStr in paramsArr) {
     NSRange found = [paramStr rangeOfString:@"="];
     if (found.location != NSNotFound) {
-      NSString * key = [[paramStr substringToIndex:found.location] lowercaseString];
+      NSString * key = [paramStr substringToIndex:found.location].lowercaseString;
       NSString * value = [paramStr substringFromIndex:found.location + found.length];
-      [params setObject:value forKey:key];
+      params[key] = value;
     }
   }
   return params;
 }
 
 - (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
-  NSMutableDictionary * params = menuItem.representedObject;
-  NSString * href = [params objectForKey:@"href"];
-  NSURL * url = [NSURL URLWithString:href];
-  [[NSWorkspace sharedWorkspace] openURL:url];
+
+  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:menuItem.representedObject[@"href"]]];
 }
 
 - (void) performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
@@ -323,6 +307,7 @@
 }
 
 - (NSString *)allContent {
+
   if (_allContent == nil) {
     
     if ([self.errorContent length] > 0) {

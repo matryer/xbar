@@ -16,18 +16,6 @@
 
 @implementation PluginManagerTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 - (void)testInit
 {
   
@@ -40,7 +28,7 @@
   
   PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
   
-  NSArray *pluginFiles = [manager pluginFiles];
+  NSArray *pluginFiles = manager.plugins;
   XCTAssertEqual((NSUInteger)3, [pluginFiles count], @"pluginFiles count");
   
 }
@@ -49,7 +37,7 @@
   
   PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
 
-  NSArray *plugins = [manager plugins];
+  NSArray *plugins = manager.plugins;
   
   XCTAssertEqual((NSUInteger)3, [plugins count], @"plugins count");
   Plugin *one = [plugins objectAtIndex:0];
