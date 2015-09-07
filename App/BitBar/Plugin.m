@@ -62,22 +62,23 @@
     item.representedObject = params;
     [item setTarget:self];
   }
-  if ([params objectForKey:@"color"] != nil) {
+  if (params[@"size"] || params[@"color"])
     item.attributedTitle = [self attributedTitleWithParams:params];
-  }
+
   return item;
 }
 
 - (NSAttributedString *) attributedTitleWithParams:(NSDictionary *)params {
   NSString * title = [params objectForKey:@"title"];
-  NSFont * font = [NSFont menuFontOfSize:14.0];
+  NSFont * font = [NSFont menuFontOfSize:params[@"size"] ? [params[@"size"] floatValue] : 14];
+
   NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: font}];
-  if ([params objectForKey:@"color"] != nil) {
+  if (params[@"color"]) {
     NSColor * fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]];
-    if (fgColor != nil) {
+    if (fgColor)
       [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
-    }
   }
+
   return attributedTitle;
 }
 
