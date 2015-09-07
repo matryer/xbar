@@ -1,20 +1,20 @@
 # BitBar
 
-![BitBar](https://github.com/stretchr/bitbar/raw/master/BitBar-small.png)
+![BitBar](https://github.com/stretchr/bitbar/raw/master/Docs/BitBar-small.png)
 
 BitBar lets you put the output from any script/program in your Mac OS X Menu Bar.
 
 Example showing the latest Buy and Sell figures for BitCoins:
 
-![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Bitcoins.png)
+![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Bitcoins.png)
 
 Click to see the full output, and more options:
 
-![BitBar Example showing menu open](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Menu.png)
+![BitBar Example showing menu open](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Menu.png)
 
 Example showing your internal and external IP addresses:
 
-![BitBar Example showing IP Addresses](https://raw.github.com/matryer/bitbar/master/BitBar-Example-IPs.png)
+![BitBar Example showing IP Addresses](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-IPs.png)
 
 ## Get started
 
