@@ -31,14 +31,14 @@
 - (void)testInit
 {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
   XCTAssert([manager.path isEqualToString:[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath]]);
   
 }
 
 - (void)testPluginFiles {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
   
   NSArray *pluginFiles = [manager pluginFiles];
   XCTAssertEqual((NSUInteger)3, [pluginFiles count], @"pluginFiles count");
@@ -47,7 +47,7 @@
 
 - (void)testPlugins {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
 
   NSArray *plugins = [manager plugins];
   
@@ -63,14 +63,14 @@
 
 - (void)testStatusBar {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
 
   NSStatusBar *statusBar = manager.statusBar;
   XCTAssertNotNil(statusBar, @"statusBar");
   XCTAssertEqual([NSStatusBar systemStatusBar], statusBar, @"statusBar should default to system one");
  
   // set on explicitly
-  NSStatusBar *newBar = [[NSStatusBar alloc] init];
+  NSStatusBar *newBar = NSStatusBar.new;
   manager.statusBar = newBar;
   XCTAssertEqual(newBar, manager.statusBar);
   

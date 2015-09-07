@@ -51,7 +51,7 @@
 }
 
 -(void)rebuildMenuForStatusItem:(NSStatusItem *)statusItem {
-  WebView * webview = [[WebView alloc] initWithFrame:NSMakeRect(0, 0, 15, 15)];
+  WebView * webview = [WebView.alloc initWithFrame:NSMakeRect(0, 0, 15, 15)];
 
   self.webView = webview;
   
@@ -64,7 +64,7 @@
   webview.autoresizingMask = NSViewWidthSizable;
 
   NSURL * url = [NSURL fileURLWithPath:self.path];
-  NSURLRequest * req = [[NSURLRequest alloc] initWithURL:url];
+  NSURLRequest * req = [NSURLRequest.alloc initWithURL:url];
   [webview.mainFrame loadRequest:req];
   statusItem.view = webview;
 
@@ -172,7 +172,7 @@
 
 - (NSDictionary *) dictionaryFromWebScriptObject:(WebScriptObject *)obj {
   NSArray * keys = [self arrayOfKeysFromWebScriptObject:obj];
-  NSMutableDictionary * dict = [[NSMutableDictionary alloc] initWithCapacity:keys.count];
+  NSMutableDictionary * dict = [NSMutableDictionary.alloc initWithCapacity:keys.count];
   for (NSString * key in keys) {
     NSObject * value = [obj valueForKey:key];
     if ([[value class] isSubclassOfClass:[NSString class]] || [[value class] isSubclassOfClass:[NSNumber class]]) {
@@ -189,7 +189,7 @@
 }
 
 - (NSArray *) arrayFromWebScriptObject:(WebScriptObject *)obj {
-  NSMutableArray * values = [[NSMutableArray alloc] init];
+  NSMutableArray * values = NSMutableArray.new;
   id elem = nil;
   int i = 0;
   WebUndefined *undefined = [WebUndefined undefined];
@@ -226,7 +226,7 @@
 
 - (void) resetMenu {
   NSLog(@"resetMenu");
-  _menu = [[NSMenu alloc] init];
+  _menu = NSMenu.new;
 }
 
 - (void) addMenuItem:(NSObject*)titleOrParamsDict {

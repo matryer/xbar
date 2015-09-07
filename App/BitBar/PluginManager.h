@@ -6,23 +6,20 @@
 //  Copyright (c) 2013 Bit Bar. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 @class Plugin;
 
 @interface PluginManager : NSObject <NSMenuDelegate>
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, strong) NSArray *plugins;
-@property (nonatomic, strong) NSStatusBar *statusBar;
-@property (nonatomic, strong) NSStatusItem *defaultStatusItem;
-@property (nonatomic, strong) NSTimer *timerForLastUpdated;
-@property (nonatomic, strong) NSDictionary *environment;
+@property (nonatomic)        NSArray *plugins;
+@property (nonatomic)    NSStatusBar *statusBar;
+@property (nonatomic)   NSStatusItem *defaultStatusItem;
+@property (nonatomic)        NSTimer *timerForLastUpdated;
+@property (nonatomic)   NSDictionary *environment;
 
-- (id) initWithPluginPath:(NSString *)path;
+- initWithPluginPath:(NSString *)path;
 
 - (NSArray *) pluginFilesWithAsking:(BOOL)shouldAsk;
-
-- (NSArray *)plugins;
 
 - (void) setupAllPlugins;
 - (void) reset;

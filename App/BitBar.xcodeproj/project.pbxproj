@@ -16,21 +16,13 @@
 		055EB111183472D300FF83A6 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 055EB10F183472D300FF83A6 /* NSDateTimeAgo.bundle */; };
 		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		0599719818333DB300EA6D8D /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
-		05DADFF4183323DD00409786 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DADFF3183323DD00409786 /* Cocoa.framework */; };
-		05DADFFE183323DD00409786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05DADFFC183323DD00409786 /* InfoPlist.strings */; };
-		05DAE000183323DD00409786 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DADFFF183323DD00409786 /* main.m */; };
-		05DAE004183323DD00409786 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 05DAE002183323DD00409786 /* Credits.rtf */; };
 		05DAE007183323DD00409786 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
-		05DAE013183323DD00409786 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DAE012183323DD00409786 /* XCTest.framework */; };
-		05DAE014183323DD00409786 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DADFF3183323DD00409786 /* Cocoa.framework */; };
-		05DAE01C183323DD00409786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05DAE01A183323DD00409786 /* InfoPlist.strings */; };
 		05DAE02D1833274100409786 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
 		A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
 		A22AF32A189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
 		A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 		A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
-		A281BDBA1890721900C380A4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A281BDB91890721900C380A4 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +39,7 @@
 		0531DCD81844070A007F0A96 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = App.xib; sourceTree = "<group>"; };
 		0531DCE018440F93007F0A96 /* bitbar-icons.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "bitbar-icons.icns"; path = "../bitbar-icons.icns"; sourceTree = "<group>"; };
 		05322A421833F7F2004D9AFE /* BitBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitBarController.h; sourceTree = "<group>"; };
-		05322A431833F7F2004D9AFE /* BitBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitBarController.m; sourceTree = "<group>"; };
+		05322A431833F7F2004D9AFE /* BitBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BitBarController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05322A47183406E2004D9AFE /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		05322A48183406E2004D9AFE /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		055819761834172E00B44B00 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
@@ -58,35 +50,24 @@
 		05997192183335BF00EA6D8D /* two.5m.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = two.5m.sh; sourceTree = "<group>"; };
 		05997193183335C700EA6D8D /* three.7d.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = three.7d.sh; sourceTree = "<group>"; };
 		059971941833394500EA6D8D /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
-		059971951833394500EA6D8D /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
-		0599719718333DB300EA6D8D /* PluginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginTest.m; sourceTree = "<group>"; };
+		059971951833394500EA6D8D /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Plugin.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		0599719718333DB300EA6D8D /* PluginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DADFF0183323DD00409786 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05DADFF3183323DD00409786 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		05DADFF6183323DD00409786 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		05DADFF7183323DD00409786 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		05DADFF8183323DD00409786 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05DADFFB183323DD00409786 /* BitBar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBar-Info.plist"; sourceTree = "<group>"; };
-		05DADFFD183323DD00409786 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		05DADFFF183323DD00409786 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05DAE001183323DD00409786 /* BitBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BitBar-Prefix.pch"; sourceTree = "<group>"; };
-		05DAE003183323DD00409786 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		05DAE005183323DD00409786 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		05DAE006183323DD00409786 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		05DAE006183323DD00409786 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BitBar/AppDelegate.m; sourceTree = "<group>"; };
 		05DAE011183323DD00409786 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05DAE012183323DD00409786 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		05DAE019183323DD00409786 /* BitBarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBarTests-Info.plist"; sourceTree = "<group>"; };
-		05DAE01B183323DD00409786 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05DAE02B1833274100409786 /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
-		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManager.m; sourceTree = "<group>"; };
-		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginManagerTest.m; sourceTree = "<group>"; };
+		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
 		A22AF327189F823E0011DFCD /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Hex.h"; sourceTree = "<group>"; };
 		A22AF328189F823E0011DFCD /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hex.m"; sourceTree = "<group>"; };
 		A281BDB3189066DE00C380A4 /* ExecutablePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExecutablePlugin.h; sourceTree = "<group>"; };
-		A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExecutablePlugin.m; sourceTree = "<group>"; };
+		A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ExecutablePlugin.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A281BDB61890670800C380A4 /* HTMLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPlugin.h; sourceTree = "<group>"; };
-		A281BDB71890670800C380A4 /* HTMLPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPlugin.m; sourceTree = "<group>"; };
-		A281BDB91890721900C380A4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A281BDB71890670800C380A4 /* HTMLPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HTMLPlugin.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A281BDBA1890721900C380A4 /* WebKit.framework in Frameworks */,
-				05DADFF4183323DD00409786 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05DAE014183323DD00409786 /* Cocoa.framework in Frameworks */,
-				05DAE013183323DD00409786 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +95,7 @@
 				05322A431833F7F2004D9AFE /* BitBarController.m */,
 			);
 			name = Controller;
+			path = BitBar;
 			sourceTree = "<group>";
 		};
 		05322A46183406D7004D9AFE /* Settings */ = {
@@ -127,6 +105,7 @@
 				05322A48183406E2004D9AFE /* Settings.m */,
 			);
 			name = Settings;
+			path = BitBar;
 			sourceTree = "<group>";
 		};
 		055819751834171900B44B00 /* LaunchAtLoginController */ = {
@@ -141,6 +120,7 @@
 		055EB10C183472C400FF83A6 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				055819751834171900B44B00 /* LaunchAtLoginController */,
 				055EB10D183472D300FF83A6 /* NSDate+TimeAgo.h */,
 				055EB10E183472D300FF83A6 /* NSDate+TimeAgo.m */,
 				055EB10F183472D300FF83A6 /* NSDateTimeAgo.bundle */,
@@ -148,21 +128,19 @@
 				A22AF328189F823E0011DFCD /* NSColor+Hex.m */,
 			);
 			name = Lib;
-			sourceTree = "<group>";
-		};
-		059971991833E3F300EA6D8D /* Commands */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Commands;
+			path = BitBar;
 			sourceTree = "<group>";
 		};
 		05DADFE7183323DD00409786 = {
 			isa = PBXGroup;
 			children = (
-				05DADFF9183323DD00409786 /* BitBar */,
+				055EB10C183472C400FF83A6 /* Lib */,
+				05322A46183406D7004D9AFE /* Settings */,
+				05322A411833F7E4004D9AFE /* Controller */,
+				05DAE0271833241D00409786 /* Plugins */,
+				05DAE006183323DD00409786 /* AppDelegate.m */,
+				05DADFFA183323DD00409786 /* Supporting Files */,
 				05DAE017183323DD00409786 /* BitBarTests */,
-				05DADFF2183323DD00409786 /* Frameworks */,
 				05DADFF1183323DD00409786 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,55 +154,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		05DADFF2183323DD00409786 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A281BDB91890721900C380A4 /* WebKit.framework */,
-				05DADFF3183323DD00409786 /* Cocoa.framework */,
-				05DAE012183323DD00409786 /* XCTest.framework */,
-				05DADFF5183323DD00409786 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		05DADFF5183323DD00409786 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				05DADFF6183323DD00409786 /* AppKit.framework */,
-				05DADFF7183323DD00409786 /* CoreData.framework */,
-				05DADFF8183323DD00409786 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		05DADFF9183323DD00409786 /* BitBar */ = {
-			isa = PBXGroup;
-			children = (
-				055EB10C183472C400FF83A6 /* Lib */,
-				055819751834171900B44B00 /* LaunchAtLoginController */,
-				05322A46183406D7004D9AFE /* Settings */,
-				05322A411833F7E4004D9AFE /* Controller */,
-				059971991833E3F300EA6D8D /* Commands */,
-				05DAE0271833241D00409786 /* Plugins */,
-				05DAE005183323DD00409786 /* AppDelegate.h */,
-				05DAE006183323DD00409786 /* AppDelegate.m */,
-				05DADFFA183323DD00409786 /* Supporting Files */,
-			);
-			path = BitBar;
-			sourceTree = "<group>";
-		};
 		05DADFFA183323DD00409786 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				0531DCE018440F93007F0A96 /* bitbar-icons.icns */,
 				05DADFFB183323DD00409786 /* BitBar-Info.plist */,
-				05DADFFC183323DD00409786 /* InfoPlist.strings */,
-				05DADFFF183323DD00409786 /* main.m */,
 				05DAE001183323DD00409786 /* BitBar-Prefix.pch */,
-				05DAE002183323DD00409786 /* Credits.rtf */,
 				0531DCD81844070A007F0A96 /* App.xib */,
 			);
 			name = "Supporting Files";
+			path = BitBar;
 			sourceTree = "<group>";
 		};
 		05DAE017183323DD00409786 /* BitBarTests */ = {
@@ -242,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				05DAE019183323DD00409786 /* BitBarTests-Info.plist */,
-				05DAE01A183323DD00409786 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -260,6 +198,7 @@
 				A281BDB71890670800C380A4 /* HTMLPlugin.m */,
 			);
 			name = Plugins;
+			path = BitBar;
 			sourceTree = "<group>";
 		};
 		05DAE030183329B300409786 /* TestPlugins */ = {
@@ -355,11 +294,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05DADFFE183323DD00409786 /* InfoPlist.strings in Resources */,
 				0531DCD91844070A007F0A96 /* App.xib in Resources */,
 				0531DCE118440F93007F0A96 /* bitbar-icons.icns in Resources */,
 				055EB111183472D300FF83A6 /* NSDateTimeAgo.bundle in Resources */,
-				05DAE004183323DD00409786 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05DAE01C183323DD00409786 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +324,6 @@
 				05322A441833F7F2004D9AFE /* BitBarController.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
-				05DAE000183323DD00409786 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,33 +347,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		05DADFFC183323DD00409786 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05DADFFD183323DD00409786 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		05DAE002183323DD00409786 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05DAE003183323DD00409786 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		05DAE01A183323DD00409786 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05DAE01B183323DD00409786 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		05DAE01F183323DD00409786 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -446,6 +354,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -456,7 +365,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -483,6 +392,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -495,7 +405,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

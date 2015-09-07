@@ -16,11 +16,11 @@
 @implementation PluginManager
 
 - (id) initWithPluginPath:(NSString *)path {
-  if (self = [super init]) {
+
+  if (!(self = super.init)) return nil;
     
-    self.path = [path stringByStandardizingPath];
-  
-  }
+  _path = [path stringByStandardizingPath];
+
   return self;
 }
 
@@ -30,19 +30,24 @@
   
   // make default menu item
   self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
-  [self.defaultStatusItem setTitle:[[NSProcessInfo processInfo] processName]];
-  self.defaultStatusItem.menu = [[NSMenu alloc] init];
-  [self.defaultStatusItem.menu setDelegate:self];
+  [self.defaultStatusItem setTitle:NSProcessInfo.processInfo.processName];
+  [(self.defaultStatusItem.menu = NSMenu.new) setDelegate:self];
   
-  if (message.length > 0) {
-    NSMenuItem *messageMenuItem = [[NSMenuItem alloc] initWithTitle:message action:nil keyEquivalent:@""];
+  if (message.length) {
+    NSMenuItem *messageMenuItem = [NSMenuItem.alloc initWithTitle:message action:nil keyEquivalent:@""];
     [self.defaultStatusItem.menu addItem:messageMenuItem];
-    [self.defaultStatusItem.menu addItem:[NSMenuItem separatorItem]];
+    [self.defaultStatusItem.menu addItem:NSMenuItem.separatorItem];
   }
 
   [self addHelperItemsToMenu:self.defaultStatusItem.menu asSubMenu:NO];
   
 }
+
+#define ADD_MENU(TITLE,SELECTOR,SHORTCUT,TARGET) ({ \
+  NSMenuItem *item = [NSMenuItem.alloc initWithTitle:TITLE action:NSStringFromSelector(@selector(SELECTOR)) ? @selector(SELECTOR) : NULL keyEquivalent:SHORTCUT?:@""];\
+  if (TARGET) [item setTarget:TARGET]; \
+  [targetMenu addItem:item]; item; })
+
 
 - (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu {
   
@@ -50,110 +55,86 @@
   
   if (submenu) {
     
-    NSMenu *moreMenu = [[NSMenu alloc] initWithTitle:@"Preferences"];
-    NSMenuItem *moreItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
+    NSMenu *moreMenu = [NSMenu.alloc initWithTitle:@"Preferences"];
+
+    NSMenuItem *moreItem = [NSMenuItem.alloc initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
 
-  } else {
-    
-    targetMenu = menu;
+  } else targetMenu = menu;
+  
+  // add reset, aka refreshMenuItem
+  ADD_MENU(@"Reset ", reset, @"r", self);
 
-  }
+  [targetMenu addItem:NSMenuItem.separatorItem];
   
-  // add reset
-  NSMenuItem *refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reset " action:@selector(reset) keyEquivalent:@"r"];
-  [refreshMenuItem setTarget:self];
-  [targetMenu addItem:refreshMenuItem];
+  // add edit action, aka prefsMenuItem
+  ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);
   
-  [targetMenu addItem:[NSMenuItem separatorItem]];
-  
-  // add edit action
-  NSMenuItem *prefsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Change Plugin Folder…" action:@selector(changePluginDirectory) keyEquivalent:@""];
-  [prefsMenuItem setTarget:self];
-  [targetMenu addItem:prefsMenuItem];
-  
-  // add edit action
-  NSMenuItem *openPluginFolderMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Plugin Folder…" action:@selector(openPluginFolder) keyEquivalent:@""];
-  [openPluginFolderMenuItem setTarget:self];
-  [targetMenu addItem:openPluginFolderMenuItem];
+  // add edit action, aka openPluginFolderMenuItem
+  ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
 
-  // add browser item
-  NSMenuItem *openPluginBrowserMenuItem = [[NSMenuItem alloc] initWithTitle:@"Find More Plugins…" action:@selector(openPluginsBrowser) keyEquivalent:@""];
-  [openPluginBrowserMenuItem setTarget:self];
-  [targetMenu addItem:openPluginBrowserMenuItem];
+  // add browser item, aka openPluginBrowserMenuItem
+  ADD_MENU(@"Find More Plugins…", openPluginsBrowser, nil, self);
 
-  [targetMenu addItem:[NSMenuItem separatorItem]];
+  [targetMenu addItem:NSMenuItem.separatorItem];
   
-  // open at login
-  LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
-  NSMenuItem *openAtLoginMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open at Login" action:@selector(toggleOpenAtLogin:) keyEquivalent:@""];
-  [openAtLoginMenuItem setTarget:self];
-  [openAtLoginMenuItem setState:lc.launchAtLogin];
-  [targetMenu addItem:openAtLoginMenuItem];
+  // open at login, aka openAtLoginMenuItem
+  LaunchAtLoginController *lc = LaunchAtLoginController.new;
+
+  [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
   
-  [targetMenu addItem:[NSMenuItem separatorItem]];
+  [targetMenu addItem:NSMenuItem.separatorItem];
   
-  NSString *versionString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleVersion"];
   
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
   [targetMenu addItem:versionMenuitem];
+
+  // add troubleshooting item
+  ADD_MENU(@"User Guide…", openTroubleshootingPage,@"g",self);
   
   // add troubleshooting item
-  NSMenuItem *openHelpMenuItem = [[NSMenuItem alloc] initWithTitle:@"User Guide…" action:@selector(openTroubleshootingPage) keyEquivalent:@"g"];
-  [openHelpMenuItem setTarget:self];
-  [targetMenu addItem:openHelpMenuItem];
-  
-  // add troubleshooting item
-  NSMenuItem *reportIssueMenuItem = [[NSMenuItem alloc] initWithTitle:@"Report an Issue…" action:@selector(openReportIssuesPage) keyEquivalent:@"i"];
-  [reportIssueMenuItem setTarget:self];
-  [targetMenu addItem:reportIssueMenuItem];
+  ADD_MENU(@"Report an Issue…",openReportIssuesPage,@"i",self);
   
   // quit menu
-  NSMenuItem *quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(quit) keyEquivalent:@"q"];
-  [quitMenuItem setTarget:self];
-  [targetMenu addItem:quitMenuItem];
-  
+  ADD_MENU(@"Quit",quit, @"q",self);
 }
 
 - (void) quit {
   [NSApp terminate:[NSApplication sharedApplication]];
 }
+#define WSPACE NSWorkspace.sharedWorkspace
 
 - (void) openReportIssuesPage {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/issues"]];
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/issues"]];
 }
 
 - (void) openPluginsBrowser {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/tree/master/Plugins"]];
+    [WSPACE openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/tree/master/Plugins"]];
 }
 
 - (void) openTroubleshootingPage {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/wiki/User-Guide"]];
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/wiki/User-Guide"]];
 }
 
 - (void) openPluginFolder {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:self.path]];
+  [WSPACE openURL:[NSURL fileURLWithPath:self.path]];
 }
 
 - (void) toggleOpenAtLogin:(id)sender {
   
-  LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
+  LaunchAtLoginController *lc = LaunchAtLoginController.new;
   [lc setLaunchAtLogin:!lc.launchAtLogin];
-  
-  NSMenuItem *menuItem = (NSMenuItem*)sender;
-  [menuItem setState:lc.launchAtLogin];
+
+  [(NSMenuItem*)sender setState:lc.launchAtLogin];
   
 }
 
 - (NSArray *) pluginFilesWithAsking:(BOOL)shouldAsk {
   
-  BOOL dirIsOK = YES;
-  
-  if (self.path == nil) {
-    dirIsOK = NO;
-  }
+  BOOL dirIsOK = !!self.path;
   
   if (dirIsOK) {
     
@@ -190,16 +171,7 @@
     }
   }
   
-  if (!dirIsOK && shouldAsk) {
-    
-    if ([self beginSelectingPluginsDir] == YES) {
-      return [self pluginFilesWithAsking:NO];;
-    }
-    
-  }
-  
-  return nil;
-  
+  return (!dirIsOK && shouldAsk) && self.beginSelectingPluginsDir ? [self pluginFilesWithAsking:NO] : nil;
 }
 
 - (BOOL) beginSelectingPluginsDir {
@@ -257,16 +229,16 @@
   if (_plugins == nil) {
     
     NSArray *pluginFiles = [self pluginFilesWithAsking:YES];
-    NSMutableArray *plugins = [[NSMutableArray alloc] initWithCapacity:[pluginFiles count]];
+    NSMutableArray *plugins = [NSMutableArray.alloc initWithCapacity:[pluginFiles count]];
     NSString *file;
     for (file in pluginFiles) {
      
       // setup this plugin
       Plugin *plugin;
       if ([@[@"html",@"htm"] containsObject:[[file pathExtension] lowercaseString]]) {
-        plugin = [[HTMLPlugin alloc] initWithManager:self];
+        plugin = [HTMLPlugin.alloc initWithManager:self];
       } else {
-        plugin = [[ExecutablePlugin alloc] initWithManager:self];
+        plugin = [ExecutablePlugin.alloc initWithManager:self];
       }
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
@@ -290,7 +262,7 @@
   if (_environment == nil) {
     
     NSDictionary *currentEnv = [[NSProcessInfo processInfo] environment];
-    NSMutableDictionary *env = [[NSMutableDictionary alloc] initWithCapacity:[currentEnv count]+1];
+    NSMutableDictionary *env = [NSMutableDictionary.alloc initWithCapacity:[currentEnv count]+1];
     for (NSString *key in currentEnv.allKeys) {
       [env setObject:[currentEnv objectForKey:key] forKey:key];
     }

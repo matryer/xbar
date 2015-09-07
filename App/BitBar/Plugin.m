@@ -57,7 +57,7 @@
   if ([params objectForKey:@"bash"] != nil) {
       sel = @selector(performMenuItemOpenTerminalAction:);
   }
-  NSMenuItem * item = [[NSMenuItem alloc] initWithTitle:title action:sel keyEquivalent:@""];
+  NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
   if (sel != nil) {
     item.representedObject = params;
     [item setTarget:self];
@@ -71,7 +71,7 @@
 - (NSAttributedString *) attributedTitleWithParams:(NSDictionary *)params {
   NSString * title = [params objectForKey:@"title"];
   NSFont * font = [NSFont menuFontOfSize:14.0];
-  NSMutableAttributedString * attributedTitle = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: font}];
+  NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font}];
   if ([params objectForKey:@"color"] != nil) {
     NSColor * fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]];
     if (fgColor != nil) {
@@ -93,7 +93,7 @@
   }
   NSString * title = [[line substringToIndex:found.location]
                       stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-  NSMutableDictionary * params = [[NSMutableDictionary alloc] init];
+  NSMutableDictionary * params = NSMutableDictionary.new;
   [params setObject:title forKey:@"title"];
   NSString * paramsStr = [line substringFromIndex:found.location + found.length];
   NSArray * paramsArr = [[paramsStr
@@ -134,7 +134,7 @@
     //NSLog(@"%@", terminal);
     
     if([terminal  isEqual: @"false"]){
-        NSTask *task = [[NSTask alloc] init];
+        NSTask *task = NSTask.new;
         [task setLaunchPath:bash];
         [task setArguments:@[ param1, param2, param3 ]];
         [task launch];
@@ -147,7 +147,7 @@
                    end if \n\
                    do script \"%@\" in front window activate \n\
                    end tell", full_link];
-        NSAppleScript *as = [[NSAppleScript alloc] initWithSource: s];
+        NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
         [as executeAndReturnError:nil];
     }
 }
@@ -155,7 +155,7 @@
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   
   // build the menu
-  NSMenu *menu = [[NSMenu alloc] init];
+  NSMenu *menu = NSMenu.new;
   [menu setDelegate:self];
   
   if (self.isMultiline) {
@@ -195,7 +195,7 @@
   
   if (self.lastUpdated != nil) {
     
-    self.lastUpdatedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
+    self.lastUpdatedMenuItem = [NSMenuItem.alloc initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
     
     [menu addItem:[NSMenuItem separatorItem]];
@@ -340,7 +340,7 @@
     
     NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
-    NSMutableArray *cleanLines = [[NSMutableArray alloc] initWithCapacity:lines.count];
+    NSMutableArray *cleanLines = [NSMutableArray.alloc initWithCapacity:lines.count];
     NSString *line;
     for (line in lines) {
       
@@ -382,7 +382,7 @@
   if (_allContentLinesAfterBreak == nil) {
     
     NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSMutableArray *cleanLines = [[NSMutableArray alloc] initWithCapacity:lines.count];
+    NSMutableArray *cleanLines = [NSMutableArray.alloc initWithCapacity:lines.count];
     NSString *line;
     BOOL storing = NO;
 
