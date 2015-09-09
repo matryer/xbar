@@ -12,7 +12,7 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-@property (nonatomic) BitBarController* controller;
+@property BitBarController* controller;
 
 @end
 
@@ -22,15 +22,9 @@
 {
   // enable usage of Safari's WebInspector to debug HTML Plugins
   [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
-  
-  self.controller = BitBarController.new;
-  [self.controller startApp];
-  
+  [_controller = BitBarController.new startApp];
 }
 
 @end
 
-int main(int argc, const char * argv[])
-{
-  return NSApplicationMain(argc, argv);
-}
+int main(int argc, const char * argv[]) { return NSApplicationMain(argc, argv); }

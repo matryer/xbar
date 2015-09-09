@@ -21,8 +21,8 @@
 
 - (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk;
 
-- (void) setupAllPlugins;
 - (void) reset;
+- (void) setupAllPlugins;
 - (void) clearPathAndReset;
 - (void) showSystemStatusItemWithMessage:(NSString*)message;
 - (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu;

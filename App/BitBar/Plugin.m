@@ -8,22 +8,17 @@
 
 #import "Plugin.h"
 #import "PluginManager.h"
-#import "NSDate+TimeAgo.h"
+#import "STPrivilegedTask.h"
+#import "NSDate+DateTools.h"
 #import "NSColor+Hex.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS ((double)60.)
 
 @implementation Plugin
 
-- init {
+- init { return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
 
-  return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil;
-}
-
-- initWithManager:(PluginManager*)manager {
-
-  return self = self.init ? _manager = manager, self : nil;
-}
+- initWithManager:(PluginManager*)manager { return self = self.init ? _manager = manager, self : nil; }
 
 - (NSStatusItem *)statusItem { return _statusItem = _statusItem ?: ({
     
@@ -31,11 +26,7 @@
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
     
     // build the menu
-    [self rebuildMenuForStatusItem:_statusItem];
-
-    _statusItem;
-
-  });
+    [self rebuildMenuForStatusItem:_statusItem]; _statusItem; });
   
 }
 
@@ -59,38 +50,40 @@
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
   NSString * title = params[@"title"];
-  NSFont * font = [NSFont menuFontOfSize:params[@"size"] ? [params[@"size"] floatValue] : 14];
+  CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
+  NSFont    * font = params[@"font"] ? [NSFont fontWithName:params[@"font"] size:size]
+                                     : [NSFont menuFontOfSize:size]
+                                    ?: [NSFont menuFontOfSize:size];
+  NSColor * fgColor;
   NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font}];
-  if (params[@"color"]) {
-    NSColor * fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]];
-    if (fgColor)
-      [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
-  }
-
+  if (!params[@"color"]) return attributedTitle;
+  if ((fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]]))
+    [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
   return attributedTitle;
 }
 
-- (NSMenuItem*) buildMenuItemForLine:(NSString *)line {
-
-  return [self buildMenuItemWithParams:[self dictionaryForLine:line]];
-}
+- (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
 
 - (NSDictionary*) dictionaryForLine:(NSString *)line {
 
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) return @{ @"title": line };
 
-  NSString * title = [[line substringToIndex:found.location]
-             stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+  NSString * title = [[line substringToIndex:found.location] stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   NSMutableDictionary * params = @{@"title":title}.mutableCopy;
   NSString * paramsStr = [line substringFromIndex:found.location + found.length];
-  NSArray * paramsArr = [[paramsStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet]
-                               componentsSeparatedByCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
-  for (NSString * paramStr in paramsArr) {
+  for (NSString * paramStr in [[paramsStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet]
+                                     componentsSeparatedByCharactersInSet:NSCharacterSet.whitespaceCharacterSet]) {
     NSRange found = [paramStr rangeOfString:@"="];
     if (found.location != NSNotFound) {
       NSString * key = [paramStr substringToIndex:found.location].lowercaseString;
-      NSString * value = [paramStr substringFromIndex:found.location + found.length];
+
+      id value;
+      if ([key isEqualToString:@"args"]) {
+        value = [[paramStr substringFromIndex:found.location + found.length] componentsSeparatedByString:@"__"];
+       } else {
+        value = [paramStr substringFromIndex:found.location + found.length];
+      }
       params[key] = value;
     }
   }
@@ -102,38 +95,50 @@
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:menuItem.representedObject[@"href"]]];
 }
 
+
 - (void) performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
+
     NSMutableDictionary * params = menuItem.representedObject;
-    NSString *bash = [params objectForKey:@"bash"];
-    NSString *param1 = [params objectForKey:@"param1"];
-    NSString *param2 = [params objectForKey:@"param2"];
-    NSString *param3 = [params objectForKey:@"param3"];
-    NSString *terminal = [params objectForKey:@"terminal"];
-    if(param1 == nil) { param1 = @""; }
-    if(param2 == nil) { param2 = @""; }
-    if(param3 == nil) { param3 = @""; }
-    if(terminal == nil) {
-        terminal = [NSString stringWithFormat:@"%s", "true"];
-    }
+    NSString *bash = [params[@"bash"] stringByStandardizingPath].stringByResolvingSymlinksInPath,
+           *param1 = params[@"param1"] ?: @"",
+           *param2 = params[@"param2"] ?: @"",
+           *param3 = params[@"param3"] ?: @"",
+           *param4 = params[@"param4"] ?: @"",
+           *param5 = params[@"param5"] ?: @"",
+         *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"];
+    NSArray *args = params[@"args"] ?: ({
+
+      NSMutableArray *argArray = @[].mutableCopy;
+      for (int i = 1; i < 6; i ++) {
+        id x = params[[NSString stringWithFormat:@"param%i", i]];
+        if (x) [argArray addObject:x];
+      }
+      argArray.copy;
+
+    });
     
-    //NSLog(@"%@", terminal);
-    
-    if([terminal  isEqual: @"false"]){
-        NSTask *task = NSTask.new;
-        [task setLaunchPath:bash];
-        [task setArguments:@[ param1, param2, param3 ]];
-        [task launch];
-    }else{
-        NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@", bash, param1, param2, param3];
-        NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
-                   activate \n\
-                   if length of (get every window) is 0 then \n\
-                   tell application \"System Events\" to tell process \"Terminal\" to click menu item \"New Window\" of menu \"File\" of menu bar 1 \n\
-                   end if \n\
-                   do script \"%@\" in front window activate \n\
-                   end tell", full_link];
-        NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
-        [as executeAndReturnError:nil];
+    if([terminal isEqual: @"false"]){
+
+      NSLog(@"Args: %@", args);
+
+      id task = [params[@"root"] isEqualToString:@"true"] ? STPrivilegedTask.new : NSTask.new;
+
+      [(NSTask*)task setLaunchPath:bash];
+      [(NSTask*)task setArguments:args];
+      [(NSTask*)task launch];
+
+    } else {
+
+      NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
+      NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
+                 activate \n\
+                 if length of (get every window) is 0 then \n\
+                 tell application \"System Events\" to tell process \"Terminal\" to click menu item \"New Window\" of menu \"File\" of menu bar 1 \n\
+                 end if \n\
+                 do script \"%@\" in front window activate \n\
+                 end tell", full_link];
+      NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
+      [as executeAndReturnError:nil];
     }
 }
 
@@ -202,13 +207,12 @@
   
 }
 
-- (void) addAdditionalMenuItems:(NSMenu *)menu {
-}
+- (void) addAdditionalMenuItems:(NSMenu *)menu { }
 
 - (void) changePluginsDirectorySelected:_ {
   
-  self.manager.path = nil;
-  [self.manager reset];
+  _manager.path = nil;
+  [_manager reset];
 }
 
 - (NSNumber*) refreshIntervalSeconds {
@@ -217,39 +221,29 @@
     
     NSArray *segments = [self.name componentsSeparatedByString:@"."];
     
-    if ([segments count] < 3) {
-      _refreshIntervalSeconds = [NSNumber numberWithDouble:DEFAULT_TIME_INTERVAL_SECONDS];
-      return _refreshIntervalSeconds;
-    }
+    if (segments.count < 3)
+      return _refreshIntervalSeconds = @(DEFAULT_TIME_INTERVAL_SECONDS);
     
-    NSString *timeStr = [[segments objectAtIndex:1] lowercaseString];
+    NSString *timeStr = [segments[1] lowercaseString];
     
     if ([timeStr length] < 2) {
-      _refreshIntervalSeconds = [NSNumber numberWithDouble:DEFAULT_TIME_INTERVAL_SECONDS];
+      _refreshIntervalSeconds = @(DEFAULT_TIME_INTERVAL_SECONDS);
       return _refreshIntervalSeconds;
     }
     
     NSString *numberPart = [timeStr substringToIndex:[timeStr length]-1];
-    double numericalValue = [numberPart doubleValue];
-    
-    if (numericalValue == 0) {
-      numericalValue = DEFAULT_TIME_INTERVAL_SECONDS;
-    }
+    double numericalValue = numberPart.doubleValue ?: DEFAULT_TIME_INTERVAL_SECONDS;
     
     if ([timeStr hasSuffix:@"s"]) {
       // this is ok - but nothing to do
-    } else if ([timeStr hasSuffix:@"m"]) {
-      numericalValue *= 60;
-    } else if ([timeStr hasSuffix:@"h"]) {
-      numericalValue *= 60*60;
-    } else if ([timeStr hasSuffix:@"d"]) {
-      numericalValue *= 60*60*24;
-    } else {
-      _refreshIntervalSeconds = [NSNumber numberWithDouble:DEFAULT_TIME_INTERVAL_SECONDS];
-      return _refreshIntervalSeconds;
-    }
+    } else if ([timeStr hasSuffix:@"m"]) numericalValue *= 60;
+      else if ([timeStr hasSuffix:@"h"]) numericalValue *= 60*60;
+      else if ([timeStr hasSuffix:@"d"]) numericalValue *= 60*60*24;
+      else
+      return _refreshIntervalSeconds = @(DEFAULT_TIME_INTERVAL_SECONDS);
+
     
-    _refreshIntervalSeconds = [NSNumber numberWithDouble:numericalValue];
+    _refreshIntervalSeconds = @(numericalValue);
     
   }
   
@@ -261,9 +255,7 @@
   return YES;
 }
 
-- (NSString*) lastUpdatedString {
-  return [[self.lastUpdated timeAgo] lowercaseString];
-}
+- (NSString*) lastUpdatedString { return [self.lastUpdated timeAgoSinceNow].lowercaseString; }
 
 - (void) cycleLines {
   
@@ -281,7 +273,6 @@
   if (self.allContentLines.count > 0) {
     NSDictionary * params = [self dictionaryForLine:self.allContentLines[self.currentLine]];
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
-    
     self.pluginIsVisible = YES;
   } else {
     self.statusItem = nil;
@@ -308,59 +299,44 @@
 
 - (NSString *)allContent {
 
-  if (_allContent == nil) {
-    
-    if ([self.errorContent length] > 0) {
-      _allContent = [self.content stringByAppendingString:self.errorContent];
-    } else {
-      _allContent = self.content;
-    }
-    
-  }
-  return _allContent;
+  return _allContent = _allContent ?: [self.errorContent length] > 0 ? [self.content stringByAppendingString:self.errorContent]
+                                                                     : self.content;
 }
 
 - (NSArray *)allContentLines {
   
-  if (_allContentLines == nil) {
+  return _allContentLines = _allContentLines ?: ({
+
+    NSMutableArray *cleanLines = @[].mutableCopy;
     
-    NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
-    NSMutableArray *cleanLines = [NSMutableArray.alloc initWithCapacity:lines.count];
-    NSString *line;
-    for (line in lines) {
+    for (NSString *lineEval in [self.allContent componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet]) {
+
+
+
       
       // strip whitespace
-      line = [self cleanLine:line];
+      NSString *line = [self cleanLine:lineEval];
 
       // add the line if we have something in it
-      if (line.length > 0) {
+      if (line.length) {
       
-        if ([line isEqualToString:@"---"]) {
-          break;
-        }
+        if ([line isEqualToString:@"---"]) break;
         
         [cleanLines addObject:line];
       
       }
       
     }
-    
-    _allContentLines = [NSArray arrayWithArray:cleanLines];
-    
-  }
-  return _allContentLines;
+    cleanLines.copy;
+  });
   
 }
 
 - (NSString*) cleanLine:(NSString*)line {
   
   NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
-  line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  
-  line = [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, [line length]) withTemplate:@" "];
-  
-  return line;
+  line = [line stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+  return [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, line.length) withTemplate:@" "];
 }
 
 - (NSArray*) allContentLinesAfterBreak {

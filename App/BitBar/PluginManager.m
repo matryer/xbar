@@ -139,21 +139,17 @@
   if (dirIsOK) {
     
     BOOL isDir;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:self.path isDirectory:&isDir]) {
+    if (![NSFileManager.defaultManager fileExistsAtPath:self.path isDirectory:&isDir])
       dirIsOK = NO;
-    }
     
-    if (!isDir) {
-      dirIsOK = NO;
-    }
-    
+    if (!isDir) dirIsOK = NO;
   }
   
   if (dirIsOK) {
     
     // get the listing
     NSError *error;
-    NSArray *dirFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:&error];
+    NSArray *dirFiles = [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.path error:&error];
     
     // handle error if there is one
     if (error != nil) {
@@ -185,17 +181,13 @@
   [openDlg setPrompt:@"Use as Plugins Directory"];
   [openDlg setTitle:@"Select BitBar Plugins Directory"];
   
-  if ([openDlg runModal] == NSOKButton) {
+  if (openDlg.runModal == NSOKButton) {
     
     self.path = [openDlg.directoryURL path];
     [Settings setPluginsDirectory:self.path];
     return YES;
     
-  } else {
-    
-    self.path = [Settings pluginsDirectory];
-    
-  }
+  } else self.path = [Settings pluginsDirectory];
   
   return NO;
   
@@ -205,9 +197,7 @@
   
   // remove all status items
   Plugin *plugin;
-  for (plugin in _plugins) {
-    [self.statusBar removeStatusItem:plugin.statusItem];
-  }
+  for (plugin in _plugins) [self.statusBar removeStatusItem:plugin.statusItem];
   
   _plugins = nil;
   [self.statusBar removeStatusItem:self.defaultStatusItem];
@@ -228,7 +218,7 @@
 
 - (NSArray *)plugins {
   
-  if (_plugins == nil) {
+  return _plugins = _plugins ?: ({
     
     NSArray *pluginFiles = [self pluginFilesWithAsking:YES];
     NSMutableArray *plugins = [NSMutableArray.alloc initWithCapacity:[pluginFiles count]];
@@ -237,7 +227,7 @@
      
       // setup this plugin
       Plugin *plugin;
-      if ([@[@"html",@"htm"] containsObject:[[file pathExtension] lowercaseString]]) {
+      if ([@[@"html",@"htm"] containsObject:file.pathExtension.lowercaseString]) {
         plugin = [HTMLPlugin.alloc initWithManager:self];
       } else {
         plugin = [ExecutablePlugin.alloc initWithManager:self];
@@ -251,12 +241,9 @@
       
     }
     
-    _plugins = [NSArray arrayWithArray:plugins];
-  
-  }
-  
-  return _plugins;
-  
+    plugins.copy;
+
+  });
 }
 
 - (NSDictionary *)environment {
@@ -291,30 +278,21 @@
   
 }
 
-- (NSStatusBar *)statusBar {
-  
-  if (_statusBar == nil) {
-    _statusBar = [NSStatusBar systemStatusBar];
-  }
-  
-  return _statusBar;
-  
-}
+- (NSStatusBar *)statusBar { return _statusBar = _statusBar ?: NSStatusBar.systemStatusBar; }
+
 
 - (void) setupAllPlugins {
   
-  Plugin *plugin;
+
   NSArray *plugins = self.plugins;
   
-  if ([plugins count] == 0) {
-    [self checkForNoPlugins];
-  } else {
+  if (!plugins.count)  [self checkForNoPlugins];
+
+  else {
     
-    for (plugin in plugins) {
-      [plugin refresh];
-    }
-    
-    [self.timerForLastUpdated invalidate];
+    for (Plugin *plugin in plugins) [plugin refresh];
+
+    [_timerForLastUpdated invalidate];
     self.timerForLastUpdated = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updatePluginLastUpdatedValues) userInfo:nil repeats:YES];
     
   }

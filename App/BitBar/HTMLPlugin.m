@@ -55,9 +55,9 @@
 
   self.webView = webview;
   
-  webview.frameLoadDelegate = self;
-  webview.resourceLoadDelegate = self;
-  webview.UIDelegate = self;
+  webview.frameLoadDelegate = (id)self;
+  webview.resourceLoadDelegate = (id)self;
+  webview.UIDelegate = (id)self;
   webview.drawsBackground = NO;
   webview.mainFrame.frameView.allowsScrolling = NO;
   webview.shouldUpdateWhileOffscreen = YES;
