@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Plugin.h"
+#import "ExecutablePlugin.h"
 #import "PluginManager.h"
 
 @interface PluginTest : XCTestCase
@@ -16,22 +16,11 @@
 
 @implementation PluginTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
 
 - (void)testInitWithManager {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
 
   XCTAssertEqual(p.manager, manager);
   XCTAssertEqual((NSInteger)-1, p.currentLine);
@@ -41,8 +30,8 @@
 
 - (void)testStatusItem {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
   NSStatusItem *item = p.statusItem;
   XCTAssertNotNil(item, @"item nil?");
   XCTAssertEqual((CGFloat)NSVariableStatusItemLength, item.length, @"length == NSVariableStatusItemLength");
@@ -55,8 +44,8 @@
 - (void)testExample
 {
 
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
   
   p.name = @"name.10s.sh";
   p.refreshIntervalSeconds = nil;
@@ -108,8 +97,8 @@
 
 - (void)testRefreshContentByExecutingCommandSuccess {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
   
   p.name = @"one.10s.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
@@ -134,8 +123,8 @@
 
 - (void)testRefreshContentByExecutingCommandError {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
   
   p.name = @"two.5m.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
@@ -159,8 +148,8 @@
 
 - (void)testContentLines {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
   
   p.content = @"Hello\nWorld\nOf\nBitBar";
   
@@ -214,8 +203,8 @@
 
 - (void)testIsMultiline {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
   
   p.content = @"Hello\nWorld\nOf\nBitBar";
   XCTAssertEqual(YES, p.isMultiline);
@@ -228,8 +217,8 @@
 
 - (void)testRefresh {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
   
   p.name = @"three.7d.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
@@ -243,8 +232,8 @@
 
 - (void)testCycleLinesAndCurrentLine {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
 
   p.name = @"three.7d.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];
@@ -279,8 +268,8 @@
 
 - (void)testRebuildMenuForStatusItem {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
   
   p.name = @"three.7d.sh";
   p.path = [[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:p.name];

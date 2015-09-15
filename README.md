@@ -1,20 +1,20 @@
 # BitBar
 
-![BitBar](https://github.com/stretchr/bitbar/raw/master/BitBar-small.png)
+![BitBar](https://github.com/stretchr/bitbar/raw/master/Docs/BitBar-small.png)
 
 BitBar lets you put the output from any script/program in your Mac OS X Menu Bar.
 
 Example showing the latest Buy and Sell figures for BitCoins:
 
-![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Bitcoins.png)
+![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Bitcoins.png)
 
 Click to see the full output, and more options:
 
-![BitBar Example showing menu open](https://raw.github.com/matryer/bitbar/master/BitBar-Example-Menu.png)
+![BitBar Example showing menu open](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Menu.png)
 
 Example showing your internal and external IP addresses:
 
-![BitBar Example showing IP Addresses](https://raw.github.com/matryer/bitbar/master/BitBar-Example-IPs.png)
+![BitBar Example showing IP Addresses](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-IPs.png)
 
 ## Get started
 
@@ -65,6 +65,8 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
   * Your lines might contain `|` to separate the title from other parameters, such as...
     * `href=..` to make the dropdown items clickable
     * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
+    * `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
+    * `size=..` to change their text size. eg. `size=12`
     * `bash=..` to make the dropdown items open terminal with your script e.g. `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh`
     * `param1=..` if sh script need params
     * `param2=..` if sh script need params

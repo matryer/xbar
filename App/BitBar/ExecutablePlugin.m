@@ -17,7 +17,7 @@
     return NO;
   }
   
-  NSTask *task = [[NSTask alloc] init];
+  NSTask *task = NSTask.new;
   
   [task setEnvironment:self.manager.environment];
   [task setLaunchPath:self.path];
@@ -39,8 +39,8 @@
   
   [task waitUntilExit];
   
-  self.content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
-  self.errorContent = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
+  self.content = [NSString.alloc initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  self.errorContent = [NSString.alloc initWithData:stderrData encoding:NSUTF8StringEncoding];
   
   // failure
   if ([task terminationStatus] != 0) {
@@ -65,7 +65,7 @@
     [self refreshContentByExecutingCommand];
     dispatch_sync(dispatch_get_main_queue(), ^{
       
-      self.lastUpdated = [[NSDate alloc] init];
+      self.lastUpdated = NSDate.new;
       
       [self rebuildMenuForStatusItem:self.statusItem];
       
@@ -122,14 +122,14 @@
   
   NSString *s = [NSString stringWithFormat:
                  script, self.path];
-  NSAppleScript *as = [[NSAppleScript alloc] initWithSource:s];
+  NSAppleScript *as = [NSAppleScript.alloc initWithSource:s];
   [as executeAndReturnError:nil];
   
 }
 
 - (void) addAdditionalMenuItems:(NSMenu *)menu {
     
-  NSMenuItem *runItem = [[NSMenuItem alloc] initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
+  NSMenuItem *runItem = [NSMenuItem.alloc initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
   [runItem setTarget:self];
   [menu addItem:runItem];
   

@@ -10,7 +10,7 @@
 
 @interface NSColor (Hex)
 
-+ (NSColor *)colorWithWebColorString:(NSString *)color;
-+ (NSColor *)colorWithHexColorString:(NSString *)hex;
++ (NSColor*) colorWithWebColorString:(NSString*)color;
++ (NSColor*) colorWithHexColorString:(NSString*)hex;
 
 @end

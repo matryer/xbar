@@ -51,20 +51,20 @@
 }
 
 -(void)rebuildMenuForStatusItem:(NSStatusItem *)statusItem {
-  WebView * webview = [[WebView alloc] initWithFrame:NSMakeRect(0, 0, 15, 15)];
+  WebView * webview = [WebView.alloc initWithFrame:NSMakeRect(0, 0, 15, 15)];
 
   self.webView = webview;
   
-  webview.frameLoadDelegate = self;
-  webview.resourceLoadDelegate = self;
-  webview.UIDelegate = self;
+  webview.frameLoadDelegate = (id)self;
+  webview.resourceLoadDelegate = (id)self;
+  webview.UIDelegate = (id)self;
   webview.drawsBackground = NO;
   webview.mainFrame.frameView.allowsScrolling = NO;
   webview.shouldUpdateWhileOffscreen = YES;
   webview.autoresizingMask = NSViewWidthSizable;
 
   NSURL * url = [NSURL fileURLWithPath:self.path];
-  NSURLRequest * req = [[NSURLRequest alloc] initWithURL:url];
+  NSURLRequest * req = [NSURLRequest.alloc initWithURL:url];
   [webview.mainFrame loadRequest:req];
   statusItem.view = webview;
 
@@ -164,15 +164,15 @@
 
 #pragma mark - WebScriptObject Utils
 
-- (NSArray *) arrayOfKeysFromWebScriptObject:(WebScriptObject *)obj {
+- (NSArray*) arrayOfKeysFromWebScriptObject:(WebScriptObject *)obj {
   WebScriptObject* bridge = [obj evaluateWebScript:@"Object"];
   WebScriptObject* keysObj = [bridge callWebScriptMethod:@"keys" withArguments:@[obj]];
   return [self arrayFromWebScriptObject:keysObj];
 }
 
-- (NSDictionary *) dictionaryFromWebScriptObject:(WebScriptObject *)obj {
+- (NSDictionary*) dictionaryFromWebScriptObject:(WebScriptObject *)obj {
   NSArray * keys = [self arrayOfKeysFromWebScriptObject:obj];
-  NSMutableDictionary * dict = [[NSMutableDictionary alloc] initWithCapacity:keys.count];
+  NSMutableDictionary * dict = [NSMutableDictionary.alloc initWithCapacity:keys.count];
   for (NSString * key in keys) {
     NSObject * value = [obj valueForKey:key];
     if ([[value class] isSubclassOfClass:[NSString class]] || [[value class] isSubclassOfClass:[NSNumber class]]) {
@@ -188,8 +188,8 @@
   return [result boolValue];
 }
 
-- (NSArray *) arrayFromWebScriptObject:(WebScriptObject *)obj {
-  NSMutableArray * values = [[NSMutableArray alloc] init];
+- (NSArray*) arrayFromWebScriptObject:(WebScriptObject *)obj {
+  NSMutableArray * values = NSMutableArray.new;
   id elem = nil;
   int i = 0;
   WebUndefined *undefined = [WebUndefined undefined];
@@ -202,7 +202,7 @@
 
 #pragma mark - Called from JavaScript
 
--(void)log:(NSString *) str {
+-(void)log:(NSString*) str {
   NSLog(@"JAVASCRIPT LOG: %@", str);
 }
 
@@ -226,7 +226,7 @@
 
 - (void) resetMenu {
   NSLog(@"resetMenu");
-  _menu = [[NSMenu alloc] init];
+  _menu = NSMenu.new;
 }
 
 - (void) addMenuItem:(NSObject*)titleOrParamsDict {
@@ -254,7 +254,7 @@
     params = (NSDictionary *)titleOrParamsDict;
   }
   else if ([[titleOrParamsDict class] isSubclassOfClass:[WebScriptObject class]]) {
-    WebScriptObject * obj = (WebScriptObject *) titleOrParamsDict;
+    WebScriptObject * obj = (WebScriptObject*) titleOrParamsDict;
     if ([self isWebScriptObjectInstanceOfArray:obj]) {
       [self addMenuItems:[self arrayFromWebScriptObject:obj]];
       return;
@@ -287,7 +287,7 @@
 }
 
 - (void) showWebInspector {
-  WebView * webview = (WebView *) self.statusItem.view;
+  WebView * webview = (WebView*) self.statusItem.view;
   WebInspector * inspector = [WebInspector.alloc initWithWebView:webview];
   // [inspector detach:sender];
   [inspector showConsole:webview];

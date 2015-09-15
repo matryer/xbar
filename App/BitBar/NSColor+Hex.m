@@ -20,12 +20,9 @@ static NSDictionary *cssDictionary = nil;
 
 + (NSColor*)colorWithWebColorString:(NSString*)colorString
 {
-  NSString * hexString;
-  if ([colorString hasPrefix:@"#"]) {
-    hexString = [colorString substringWithRange:NSMakeRange(1, [colorString length] - 1)];
-  } else {
-    hexString = [[self cssColors] objectForKey:[colorString lowercaseString]];
-  }
+  NSString * hexString = [colorString hasPrefix:@"#"]
+                       ? [colorString substringWithRange:NSMakeRange(1,colorString.length - 1)]
+                       : self.cssColors[colorString.lowercaseString];
   return [self colorWithHexColorString:hexString];
 }
 

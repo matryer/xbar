@@ -6,19 +6,25 @@
 //  Copyright (c) 2013 Bit Bar. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import "BitBarController.h"
+
+@interface AppDelegate : NSObject <NSApplicationDelegate>
+
+@property (assign) IBOutlet NSWindow *window;
+
+@property BitBarController* controller;
+
+@end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
   // enable usage of Safari's WebInspector to debug HTML Plugins
-  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitDeveloperExtras"];
-  
-  self.controller = [[BitBarController alloc] init];
-  [self.controller startApp];
-  
+  [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
+  [_controller = BitBarController.new startApp];
 }
 
 @end
+
+int main(int argc, const char * argv[]) { return NSApplicationMain(argc, argv); }

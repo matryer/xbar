@@ -16,40 +16,28 @@
 
 @implementation PluginManagerTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 - (void)testInit
 {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
   XCTAssert([manager.path isEqualToString:[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath]]);
   
 }
 
 - (void)testPluginFiles {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
   
-  NSArray *pluginFiles = [manager pluginFiles];
+  NSArray *pluginFiles = manager.plugins;
   XCTAssertEqual((NSUInteger)3, [pluginFiles count], @"pluginFiles count");
   
 }
 
 - (void)testPlugins {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
 
-  NSArray *plugins = [manager plugins];
+  NSArray *plugins = manager.plugins;
   
   XCTAssertEqual((NSUInteger)3, [plugins count], @"plugins count");
   Plugin *one = [plugins objectAtIndex:0];
@@ -63,14 +51,14 @@
 
 - (void)testStatusBar {
   
-  PluginManager *manager = [[PluginManager alloc] initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
 
   NSStatusBar *statusBar = manager.statusBar;
   XCTAssertNotNil(statusBar, @"statusBar");
   XCTAssertEqual([NSStatusBar systemStatusBar], statusBar, @"statusBar should default to system one");
  
   // set on explicitly
-  NSStatusBar *newBar = [[NSStatusBar alloc] init];
+  NSStatusBar *newBar = NSStatusBar.new;
   manager.statusBar = newBar;
   XCTAssertEqual(newBar, manager.statusBar);
   

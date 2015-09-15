@@ -15,18 +15,14 @@
 
 - (void) startApp {
   
-  if ([Settings isFirstTimeAppRun]) {
-    LaunchAtLoginController *launcher = [[LaunchAtLoginController alloc] init];
-    if (!launcher.launchAtLogin) {
-      [launcher setLaunchAtLogin:YES];
-    }
+  if (Settings.isFirstTimeAppRun) {
+    LaunchAtLoginController *launcher = LaunchAtLoginController.new;
+    if (!launcher.launchAtLogin) [launcher setLaunchAtLogin:YES];
   }
   
   // make a plugin manager
-  self.pluginManager = [[PluginManager alloc] initWithPluginPath:[Settings pluginsDirectory]];
-  
-  [self.pluginManager setupAllPlugins];
-  
+  [_pluginManager = [PluginManager.alloc initWithPluginPath:Settings.pluginsDirectory]
+                                                                      setupAllPlugins];
 }
 
 @end
