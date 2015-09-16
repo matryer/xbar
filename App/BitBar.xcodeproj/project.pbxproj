@@ -55,7 +55,6 @@
 		0599719718333DB300EA6D8D /* PluginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DADFF0183323DD00409786 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DADFFB183323DD00409786 /* BitBar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBar-Info.plist"; sourceTree = "<group>"; };
-		05DAE001183323DD00409786 /* BitBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BitBar-Prefix.pch"; sourceTree = "<group>"; };
 		05DAE006183323DD00409786 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BitBar/AppDelegate.m; sourceTree = "<group>"; };
 		05DAE011183323DD00409786 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DAE019183323DD00409786 /* BitBarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBarTests-Info.plist"; sourceTree = "<group>"; };
@@ -161,7 +160,6 @@
 			children = (
 				0531DCE018440F93007F0A96 /* bitbar-icons.icns */,
 				05DADFFB183323DD00409786 /* BitBar-Info.plist */,
-				05DAE001183323DD00409786 /* BitBar-Prefix.pch */,
 				0531DCD81844070A007F0A96 /* App.xib */,
 			);
 			name = "Supporting Files";
@@ -455,8 +453,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BitBar/BitBar-Prefix.pch";
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -469,8 +465,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BitBar/BitBar-Prefix.pch";
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
