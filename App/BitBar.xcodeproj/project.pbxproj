@@ -62,6 +62,7 @@
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
+		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Vendor/STPrivilegedTask/STPrivilegedTask.h; sourceTree = SOURCE_ROOT; };
 		7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Vendor/STPrivilegedTask/STPrivilegedTask.m; sourceTree = SOURCE_ROOT; };
 		7B9A21551B9F0F10002539F7 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 		05DADFFA183323DD00409786 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B5D08F91BA8EF6300400886 /* README.md */,
 				0531DCE018440F93007F0A96 /* bitbar-icons.icns */,
 				05DADFFB183323DD00409786 /* BitBar-Info.plist */,
 				0531DCD81844070A007F0A96 /* App.xib */,
