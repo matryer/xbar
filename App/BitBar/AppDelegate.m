@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Bit Bar. All rights reserved.
 //
 
-#import "PluginManager.h"
-#import "Settings.h"
+#import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
+#import "PluginManager.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -20,22 +20,9 @@
 
 @implementation AppDelegate
 
-
-- (void) startApp {
-  
-  if (DEFS.isFirstTimeAppRun) {
-    LaunchAtLoginController *launcher = LaunchAtLoginController.new;
-    if (!launcher.launchAtLogin) [launcher setLaunchAtLogin:YES];
-  }
-  
-  // make a plugin manager
-  [_pluginManager = [PluginManager.alloc initWithPluginPath:DEFS.pluginsDirectory]
-                                                                  setupAllPlugins];
-}
-
 - (NSArray*) otherCopies { return [NSRunningApplication runningApplicationsWithBundleIdentifier:NSBundle.mainBundle.bundleIdentifier]; }
 
-- (void) deduplicateRunningInstances {
+- (void)applicationWillFinishLaunching:(NSNotification *)n {
 
   if (self.otherCopies.count <= 1) return;
   NSModalResponse runm = [[NSAlert alertWithMessageText:[NSString stringWithFormat:@"Another copy of %@ is already running.", NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleNameKey]]
@@ -50,18 +37,19 @@
   });
 }
 
-
-- (void)applicationWillFinishLaunching:(NSNotification *)n {
-
-  [self deduplicateRunningInstances];
-
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)n {
+- (void) applicationDidFinishLaunching:(NSNotification*)n {
 
   // enable usage of Safari's WebInspector to debug HTML Plugins
   [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
-  [self startApp];
+
+  if (DEFS.isFirstTimeAppRun) {
+    LaunchAtLoginController *launcher = LaunchAtLoginController.new;
+    if (!launcher.launchAtLogin) [launcher setLaunchAtLogin:YES];
+  }
+  
+  // make a plugin manager
+  [_pluginManager = [PluginManager.alloc initWithPluginPath:DEFS.pluginsDirectory]
+                                                                  setupAllPlugins];
 }
 
 @end

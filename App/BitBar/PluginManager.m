@@ -10,7 +10,7 @@
 #import "Plugin.h"
 #import "ExecutablePlugin.h"
 #import "HTMLPlugin.h"
-#import "Settings.h"
+#import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
 
 @implementation PluginManager

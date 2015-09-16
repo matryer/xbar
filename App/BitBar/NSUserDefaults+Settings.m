@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Bit Bar. All rights reserved.
 //
 
-#import "Settings.h"
+#import "NSUserDefaults+Settings.h"
 
 @implementation NSUserDefaults (Settings)
 
@@ -14,6 +14,7 @@
   return [self stringForKey:@"pluginsDirectory"];
 }
 - (void) setPluginsDirectory:(NSString*)value {
+
   [self setObject:value forKey:@"pluginsDirectory"];
 }
 
