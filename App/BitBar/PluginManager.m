@@ -15,13 +15,9 @@
 
 @implementation PluginManager
 
-- (id) initWithPluginPath:(NSString *)path {
+- initWithPluginPath:(NSString*)path {
 
-  if (!(self = super.init)) return nil;
-    
-  _path = [path stringByStandardizingPath];
-
-  return self;
+  return self = super.init ? _path = path.stringByStandardizingPath, self : nil;
 }
 
 - (void) showSystemStatusItemWithMessage:(NSString*)message {
@@ -184,10 +180,10 @@
   if (openDlg.runModal == NSOKButton) {
     
     self.path = [openDlg.directoryURL path];
-    [Settings setPluginsDirectory:self.path];
+    [DEFS setPluginsDirectory:self.path];
     return YES;
     
-  } else self.path = [Settings pluginsDirectory];
+  } else self.path = DEFS.pluginsDirectory;
   
   return NO;
   
@@ -270,19 +266,14 @@
       visiblePlugins++;
   }
   
-  if (visiblePlugins == 0) {
-    [self showSystemStatusItemWithMessage:@"No plugins found"];
-  } else {
-    [self.statusBar removeStatusItem:self.defaultStatusItem];
-  }
-  
+  visiblePlugins != 0 ? [self.statusBar removeStatusItem:self.defaultStatusItem]
+                      : [self showSystemStatusItemWithMessage:@"No plugins found"];
 }
 
 - (NSStatusBar *)statusBar { return _statusBar = _statusBar ?: NSStatusBar.systemStatusBar; }
 
 
 - (void) setupAllPlugins {
-  
 
   NSArray *plugins = self.plugins;
   
@@ -296,20 +287,13 @@
     self.timerForLastUpdated = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updatePluginLastUpdatedValues) userInfo:nil repeats:YES];
     
   }
-  
 }
 
 - (void)updatePluginLastUpdatedValues {
-  
-  Plugin *plugin;
-  for (plugin in self.plugins) {
-    if (plugin.lastUpdated != nil) {
-      [plugin.lastUpdatedMenuItem setTitle:[NSString stringWithFormat:@"Updated %@", plugin.lastUpdatedString]];
-    } else {
-      [plugin.lastUpdatedMenuItem setTitle:@"Refreshing…"];
-    }
-  }
-  
+
+  for (Plugin *plugin in self.plugins)
+    plugin.lastUpdated  ? [plugin.lastUpdatedMenuItem setTitle:[NSString stringWithFormat:@"Updated %@", plugin.lastUpdatedString]]
+                        : [plugin.lastUpdatedMenuItem setTitle:@"Refreshing…"];
 }
 
 #pragma mark - NSMenuDelegate

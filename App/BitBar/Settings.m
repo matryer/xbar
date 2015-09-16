@@ -8,23 +8,20 @@
 
 #import "Settings.h"
 
-#define DEFS NSUserDefaults.standardUserDefaults
+@implementation NSUserDefaults (Settings)
 
-@implementation Settings
-
-+ (NSString *)pluginsDirectory {
-  return [DEFS stringForKey:@"pluginsDirectory"];
+- (NSString *)pluginsDirectory {
+  return [self stringForKey:@"pluginsDirectory"];
 }
-+ (void)setPluginsDirectory:(NSString*)value {
-  [DEFS setObject:value forKey:@"pluginsDirectory"];
+- (void) setPluginsDirectory:(NSString*)value {
+  [self setObject:value forKey:@"pluginsDirectory"];
 }
 
-+ (BOOL)isFirstTimeAppRun {
-  return ![DEFS boolForKey:@"appHasRun"];
-}
+- (BOOL) isFirstTimeAppRun { return ![self boolForKey:@"appHasRun"]; }
 
-+ (void)setNotFirstTimeAppRun {
-  [DEFS setBool:YES forKey:@"appHasRun"];
+- (void) setIsFirstTimeAppRun:(BOOL)firstTime {
+  [self setBool:firstTime forKey:@"appHasRun"];
 }
 
 @end
+

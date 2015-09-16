@@ -6,14 +6,13 @@
 //  Copyright (c) 2013 Bit Bar. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface Settings : NSObject
+@interface NSUserDefaults (Settings)
 
-+ (NSString *)pluginsDirectory;
-+ (void)setPluginsDirectory:(NSString*)value;
-
-+ (BOOL)isFirstTimeAppRun;
-+ (void)setNotFirstTimeAppRun;
+@property NSString* pluginsDirectory;
+@property BOOL isFirstTimeAppRun;
 
 @end
+
+#define DEFS NSUserDefaults.standardUserDefaults
