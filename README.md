@@ -120,7 +120,7 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
 
 #### Multi-line plugin with fonts and COlors
 
-![BitBar Example showing colored fonts](https://raw.github.com/matryer/bitbar/master/Docs/Docs/BitBar-Example-Menu-Colors-Fonts.png)
+![BitBar Example showing colored fonts](https://raw.github.com/matryer/bitbar/master/Docs/Docs/Docs/BitBar-Example-Menu-Colors-Fonts.png)
 
     #!/bin/zsh
     FONT=( 'size=14' 'font=UbuntuMono' )
