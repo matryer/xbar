@@ -118,6 +118,16 @@ Ensure the plugin is executable by running `chmod +x plugin.sh`.
     echo "Show Graphs | color=#123def href=http://example.com/graph?foo=bar"
     echo "Show KPI Report | color=purple href=http://example.com/report"
 
+#### Multi-line plugin with fonts and colors
+
+![BitBar Example showing colored fonts](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Menu-Colors-Fonts.png)
+
+    #!/bin/zsh
+    FONT=( 'size=14' 'font=UbuntuMono' )
+    if ((0)); then echo "DO | $FONT color=orange"
+    else           echo "DO | $FONT color=cadetblue"
+    echo "---" 
+    ...
 
 ### Written something good?
 

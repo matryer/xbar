@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "300A25E6089E8365F1B9BCC0BF644BF304850FDB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : 0,
+    "4FA437A61B0C4384CD084682AFD40F7D2624731D" : 0,
+    "300A25E6089E8365F1B9BCC0BF644BF304850FDB" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B2EB30C0-666C-46EA-85F2-0586829722B1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : "bitbar\/App\/Vendor\/DateTools\/",
+    "4FA437A61B0C4384CD084682AFD40F7D2624731D" : "bitbar\/App\/Vendor\/LaunchAtLoginController\/",
+    "300A25E6089E8365F1B9BCC0BF644BF304850FDB" : "bitbar"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BitBar",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "App\/BitBar.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kamenevn\/bitbar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "300A25E6089E8365F1B9BCC0BF644BF304850FDB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/biocross\/LaunchAtLoginController--with-ARC-.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4FA437A61B0C4384CD084682AFD40F7D2624731D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MatthewYork\/DateTools.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F8622BA04EBD09F8BA8DC9C0C199149407552BFA"
+    }
+  ]
+}
