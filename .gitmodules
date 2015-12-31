@@ -1,9 +1,9 @@
-[submodule "Vendor/STPrivilegedTask"]
-	path = Vendor/STPrivilegedTask
+[submodule "App/Vendor/STPrivilegedTask"]
+	path = App/Vendor/STPrivilegedTask
 	url = https://github.com/sveinbjornt/STPrivilegedTask.git
-[submodule "Vendor/DateTools"]
-	path = Vendor/DateTools
+[submodule "App/Vendor/DateTools"]
+	path = App/Vendor/DateTools
 	url = https://github.com/MatthewYork/DateTools.git
-[submodule "Vendor/LaunchAtLoginController"]
-	path = Vendor/LaunchAtLoginController
+[submodule "App/Vendor/LaunchAtLoginController"]
+	path = App/Vendor/LaunchAtLoginController
 	url = https://github.com/biocross/LaunchAtLoginController--with-ARC-.git
