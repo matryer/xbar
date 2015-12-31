@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		0531DCD91844070A007F0A96 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
 		0531DCE118440F93007F0A96 /* bitbar-icons.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCE018440F93007F0A96 /* bitbar-icons.icns */; };
-		05322A441833F7F2004D9AFE /* BitBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A431833F7F2004D9AFE /* BitBarController.m */; };
-		05322A49183406E2004D9AFE /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* Settings.m */; };
+		05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
 		055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
 		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		0599719818333DB300EA6D8D /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
@@ -45,10 +44,8 @@
 /* Begin PBXFileReference section */
 		0531DCD81844070A007F0A96 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = App.xib; sourceTree = "<group>"; };
 		0531DCE018440F93007F0A96 /* bitbar-icons.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "bitbar-icons.icns"; path = "../Icons/bitbar-icons.icns"; sourceTree = "<group>"; };
-		05322A421833F7F2004D9AFE /* BitBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitBarController.h; sourceTree = "<group>"; };
-		05322A431833F7F2004D9AFE /* BitBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BitBarController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		05322A47183406E2004D9AFE /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		05322A48183406E2004D9AFE /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		05322A47183406E2004D9AFE /* NSUserDefaults+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Settings.h"; sourceTree = "<group>"; };
+		05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Settings.m"; sourceTree = "<group>"; };
 		055819761834172E00B44B00 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		055819771834172E00B44B00 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		05997192183335BF00EA6D8D /* two.5m.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = two.5m.sh; sourceTree = "<group>"; };
@@ -58,7 +55,6 @@
 		0599719718333DB300EA6D8D /* PluginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DADFF0183323DD00409786 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DADFFB183323DD00409786 /* BitBar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBar-Info.plist"; sourceTree = "<group>"; };
-		05DAE001183323DD00409786 /* BitBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BitBar-Prefix.pch"; sourceTree = "<group>"; };
 		05DAE006183323DD00409786 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BitBar/AppDelegate.m; sourceTree = "<group>"; };
 		05DAE011183323DD00409786 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DAE019183323DD00409786 /* BitBarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBarTests-Info.plist"; sourceTree = "<group>"; };
@@ -66,6 +62,7 @@
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
+		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Vendor/STPrivilegedTask/STPrivilegedTask.h; sourceTree = SOURCE_ROOT; };
 		7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Vendor/STPrivilegedTask/STPrivilegedTask.m; sourceTree = SOURCE_ROOT; };
 		7B9A21551B9F0F10002539F7 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
@@ -103,21 +100,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05322A411833F7E4004D9AFE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				05322A421833F7F2004D9AFE /* BitBarController.h */,
-				05322A431833F7F2004D9AFE /* BitBarController.m */,
-			);
-			name = Controller;
-			path = BitBar;
-			sourceTree = "<group>";
-		};
 		05322A46183406D7004D9AFE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				05322A47183406E2004D9AFE /* Settings.h */,
-				05322A48183406E2004D9AFE /* Settings.m */,
+				05322A47183406E2004D9AFE /* NSUserDefaults+Settings.h */,
+				05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */,
 			);
 			name = Settings;
 			path = BitBar;
@@ -151,9 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				05DAE006183323DD00409786 /* AppDelegate.m */,
-				05322A46183406D7004D9AFE /* Settings */,
-				05322A411833F7E4004D9AFE /* Controller */,
 				05DAE0271833241D00409786 /* Plugins */,
+				05322A46183406D7004D9AFE /* Settings */,
 				055EB10C183472C400FF83A6 /* Vendor */,
 				05DADFFA183323DD00409786 /* Supporting Files */,
 				05DAE017183323DD00409786 /* BitBarTests */,
@@ -173,9 +159,9 @@
 		05DADFFA183323DD00409786 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B5D08F91BA8EF6300400886 /* README.md */,
 				0531DCE018440F93007F0A96 /* bitbar-icons.icns */,
 				05DADFFB183323DD00409786 /* BitBar-Info.plist */,
-				05DAE001183323DD00409786 /* BitBar-Prefix.pch */,
 				0531DCD81844070A007F0A96 /* App.xib */,
 			);
 			name = "Supporting Files";
@@ -362,10 +348,9 @@
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
 				7B9A21671B9F0F10002539F7 /* DTError.m in Sources */,
 				7B9A216A1B9F0F10002539F7 /* DTTimePeriodCollection.m in Sources */,
-				05322A49183406E2004D9AFE /* Settings.m in Sources */,
+				05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */,
 				7B9A216C1B9F0F10002539F7 /* NSDate+DateTools.m in Sources */,
 				A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */,
-				05322A441833F7F2004D9AFE /* BitBarController.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				7B9A21691B9F0F10002539F7 /* DTTimePeriodChain.m in Sources */,
 				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
@@ -470,8 +455,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BitBar/BitBar-Prefix.pch";
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,8 +467,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BitBar/BitBar-Prefix.pch";
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

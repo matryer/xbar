@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Bit Bar. All rights reserved.
 //
 
+@import AppKit;
 @class PluginManager;
 
 @interface Plugin : NSObject <NSMenuDelegate>
