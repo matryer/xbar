@@ -41,9 +41,27 @@
     item.representedObject = params;
     [item setTarget:self];
   }
-  if (params[@"size"] || params[@"color"])
-    item.attributedTitle = [self attributedTitleWithParams:params];
+    if (params[@"size"] || params[@"color"]) {
+        item.attributedTitle = [self attributedTitleWithParams:params];
+    }
 
+    
+    if (params[@"submenu"]) {
+        NSMenu *submenu = [[NSMenu alloc] init];
+        [item setSubmenu:submenu];
+        
+        NSArray * menuItems = [params objectForKey:@"submenu"];
+    
+        
+        if ([menuItems isKindOfClass:[NSArray class]]) {
+        
+            for (NSDictionary* dictMenuItem in menuItems) {
+                [submenu addItem:[self buildMenuItemWithParams:dictMenuItem]];
+            }
+        }
+    }
+    
+    
   return item;
 }
 
@@ -62,7 +80,9 @@
   return attributedTitle;
 }
 
-- (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
+- (NSMenuItem*) buildMenuItemForLine:(NSString *)line {
+    return [self buildMenuItemWithParams:[self dictionaryForLine:line]];
+}
 
 
 - (NSDictionary*) jsonDictionaryForLine:(NSString *)line {
