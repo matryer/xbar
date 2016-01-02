@@ -64,8 +64,27 @@
 
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
 
+
+- (NSDictionary*) jsonDictionaryForLine:(NSString *)line {
+    NSError* error;
+    NSDictionary* params = [NSJSONSerialization
+                            JSONObjectWithData:[line dataUsingEncoding:NSUTF8StringEncoding]
+                            options:kNilOptions
+                            error:&error];
+    
+    
+    return params;
+}
+
+
 - (NSDictionary*) dictionaryForLine:(NSString *)line {
 
+    NSDictionary* jsonParams = [self jsonDictionaryForLine:line];
+    
+    if (jsonParams && jsonParams[@"title"]) {
+        return jsonParams;
+    }
+    
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) return @{ @"title": line };
 
