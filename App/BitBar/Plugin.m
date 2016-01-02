@@ -64,7 +64,12 @@
         if ([menuItems isKindOfClass:[NSArray class]]) {
         
             for (NSDictionary* dictMenuItem in menuItems) {
-                [submenu addItem:[self buildMenuItemWithParams:dictMenuItem]];
+                
+                if (dictMenuItem && dictMenuItem[@"title"]) {
+                    [submenu addItem:[self buildMenuItemWithParams:dictMenuItem]];
+                } else {
+                    [submenu addItem:[NSMenuItem separatorItem]];
+                }
             }
         }
     }
