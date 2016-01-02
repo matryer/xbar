@@ -46,6 +46,14 @@
     }
 
     
+    if (params[@"image"]) {
+        NSURL * imageUrl = [NSURL URLWithString:[params objectForKey:@"image"]];
+                 
+        NSImage * image = [[NSImage alloc] initWithContentsOfURL:imageUrl];
+        
+        item.image = image;
+    }
+    
     if (params[@"submenu"]) {
         NSMenu *submenu = [[NSMenu alloc] init];
         [item setSubmenu:submenu];
@@ -91,7 +99,6 @@
                             JSONObjectWithData:[line dataUsingEncoding:NSUTF8StringEncoding]
                             options:kNilOptions
                             error:&error];
-    
     
     return params;
 }
