@@ -144,7 +144,8 @@
            *param3 = params[@"param3"] ?: @"",
            *param4 = params[@"param4"] ?: @"",
            *param5 = params[@"param5"] ?: @"",
-         *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"];
+         *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"],
+             *removeOnSuccess = params[@"removeOnSuccess"] ?: [NSString stringWithFormat:@"%s", "false"];
     NSArray *args = params[@"args"] ?: ({
 
       NSMutableArray *argArray = @[].mutableCopy;
@@ -161,11 +162,21 @@
       NSLog(@"Args: %@", args);
 
       id task = [params[@"root"] isEqualToString:@"true"] ? STPrivilegedTask.new : NSTask.new;
+       NSTask* tTask = (NSTask*) task;
+      [tTask setLaunchPath:bash];
+      [tTask setArguments:args];
 
-      [(NSTask*)task setLaunchPath:bash];
-      [(NSTask*)task setArguments:args];
-      [(NSTask*)task launch];
-
+        [tTask setTerminationHandler:^(NSTask *aTask){
+            if ([aTask terminationStatus] == 0) {
+                if ([removeOnSuccess isEqual: @"true"]) {
+                    [[menuItem menu] removeItem:menuItem];
+                }
+            } else {
+                [menuItem setImage:[NSImage imageNamed:NSImageNameCaution]];
+            }
+        }];
+        
+        [tTask launch];
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
