@@ -20,6 +20,8 @@
 @property (nonatomic)       NSNumber *refreshIntervalSeconds;
 @property (nonatomic)     NSMenuItem *lastUpdatedMenuItem;
 @property (nonatomic)         NSDate *lastUpdated;
+@property (nonatomic)         NSMutableDictionary *imageCache;
+
 @property (readonly)   PluginManager *manager;
 
 // UI

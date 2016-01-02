@@ -16,9 +16,16 @@
 
 @implementation Plugin
 
-- init { return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
+- init {
+    
+    self.imageCache = [[NSMutableDictionary alloc] init];
+    
+    return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil;
+}
 
-- initWithManager:(PluginManager*)manager { return self = self.init ? _manager = manager, self : nil; }
+- initWithManager:(PluginManager*)manager {
+    return self = self.init ? _manager = manager, self : nil;
+}
 
 - (NSStatusItem *)statusItem { return _statusItem = _statusItem ?: ({
     
@@ -47,11 +54,7 @@
 
     
     if (params[@"image"]) {
-        NSURL * imageUrl = [NSURL URLWithString:[params objectForKey:@"image"]];
-                 
-        NSImage * image = [[NSImage alloc] initWithContentsOfURL:imageUrl];
-        
-        item.image = image;
+        item.image = [self getImageForUrl:[params objectForKey:@"image"]];
     }
     
     
@@ -81,6 +84,21 @@
     
     
   return item;
+}
+
+- (NSImage *) getImageForUrl:(NSString * ) imageUrl {
+    
+    if (!self.imageCache[imageUrl]) {
+        NSURL * url = [NSURL URLWithString:imageUrl];
+        
+        NSImage * image = [[NSImage alloc] initWithContentsOfURL:url];
+        
+        self.imageCache[imageUrl] = image;
+
+    }
+
+    return [self.imageCache objectForKey:imageUrl];
+
 }
 
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
