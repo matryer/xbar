@@ -54,6 +54,11 @@
         item.image = image;
     }
     
+    
+    if (params[@"tooltip"]) {
+        [item setToolTip:[params objectForKey:@"tooltip"]];
+    }
+    
     if (params[@"submenu"]) {
         NSMenu *submenu = [[NSMenu alloc] init];
         [item setSubmenu:submenu];
