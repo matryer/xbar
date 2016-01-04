@@ -98,6 +98,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `size=..` to change their text size. eg. `size=12`
     * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh --verbose"`
     * `terminal=..` if need to start bash script without open Terminal may be true or false
+    * `refresh=..` to make the dropdown items refresh the plugin it belongs to
   * If you're writing scripts, ensure it has a shebang at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
 
