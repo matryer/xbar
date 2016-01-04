@@ -34,7 +34,9 @@
 
   NSString * title = [params objectForKey:@"title"];
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
-          : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:) : nil;
+          : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
+          : params[@"refresh"] ? @selector(performRefreshNow:):
+    nil;
 
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
   if (sel) {
@@ -98,6 +100,10 @@
     }
   }
   return params;
+}
+
+-(void)performRefreshNow:(NSMenuItem*)menuItem {
+    NSLog(@"Nothing to refresh in this plugin");
 }
 
 - (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
