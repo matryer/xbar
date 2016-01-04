@@ -65,38 +65,41 @@
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
 
 - (NSDictionary*) dictionaryForLine:(NSString *)line {
-
+  // Find the title
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) return @{ @"title": line };
-
   NSString * title = [[line substringToIndex:found.location] stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   NSMutableDictionary * params = @{@"title":title}.mutableCopy;
-  NSString * paramsStr = [line substringFromIndex:found.location + found.length];
-    
-  NSString  * prevKey;
-  for (NSString * paramStr in [[paramsStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet]
-                                     componentsSeparatedByCharactersInSet:NSCharacterSet.whitespaceCharacterSet]) {
-    NSRange found = [paramStr rangeOfString:@"="];
-    if (found.location != NSNotFound) {
-      NSString * key = [paramStr substringToIndex:found.location].lowercaseString;
+  
+  // Find the parameters
+  NSString * paramStr = [line substringFromIndex:found.location + found.length];
 
-      id value;
-      if ([key isEqualToString:@"args"]) {
-        value = [[paramStr substringFromIndex:found.location + found.length] componentsSeparatedByString:@"__"];
-       } else {
-        value = [paramStr substringFromIndex:found.location + found.length];
-      }
-      params[key] = value;
-      prevKey = key;
+  NSScanner* scanner = [NSScanner scannerWithString:paramStr];
+  NSMutableCharacterSet* keyValueSeparator = [NSMutableCharacterSet characterSetWithCharactersInString:@"=:"];
+  NSMutableCharacterSet* quoteSeparator = [NSMutableCharacterSet characterSetWithCharactersInString:@"\"'"];
+  
+  while (![scanner isAtEnd]) {
+    NSString *key = @""; NSString* value = @"";
+    [scanner scanUpToCharactersFromSet:keyValueSeparator intoString:&key];
+    [scanner scanCharactersFromSet:keyValueSeparator intoString:NULL];
+    
+    if ([scanner scanCharactersFromSet:quoteSeparator intoString:NULL]) {
+      [scanner scanUpToCharactersFromSet:quoteSeparator intoString:&value];
+      [scanner scanCharactersFromSet:quoteSeparator intoString:NULL];
+    } else {
+      [scanner scanUpToString:@" " intoString:&value];
     }
-    else {    //no = in the string, concat it onto previous one (if there was a previous one)
-        if (prevKey != nil && [params objectForKey:prevKey]) {
-            params[prevKey] = [NSString stringWithFormat:@"%@ %@", params[prevKey], paramStr];
-        } else {
-            NSLog(@"Unexpected gobbleygook in variable assignment: %@", paramStr);
-        }
+    
+    // Remove extraneous spaces from key and value
+    key = [key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    params[key] = value;
+    
+    if([key isEqualToString:@"args"]){
+      params[key] = [value componentsSeparatedByString:@"__"];
     }
   }
+  
   return params;
 }
 
@@ -343,9 +346,8 @@
 }
 
 - (NSString*) cleanLine:(NSString*)line {
-  
+    return line;
   NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
-  line = [line stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
   return [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, line.length) withTemplate:@" "];
 }
 
