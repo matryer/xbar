@@ -37,7 +37,7 @@
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
           : params[@"refresh"] ? @selector(performRefreshNow:):
     nil;
-
+  
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
   if (sel) {
     item.representedObject = params;
@@ -145,16 +145,13 @@
       [(NSTask*)task setLaunchPath:bash];
       [(NSTask*)task setArguments:args];
       [(NSTask*)task launch];
-
+      
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
       NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
+                do script \"%@\"\n\
                  activate \n\
-                 if length of (get every window) is 0 then \n\
-                 tell application \"System Events\" to tell process \"Terminal\" to click menu item \"New Window\" of menu \"File\" of menu bar 1 \n\
-                 end if \n\
-                 do script \"%@\" in front window activate \n\
                  end tell", full_link];
       NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
       [as executeAndReturnError:nil];
