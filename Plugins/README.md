@@ -19,6 +19,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ####Developer
 - Homebrew available updates
+- TravisCI check
 
 ####Finance
 - Stock tracker
