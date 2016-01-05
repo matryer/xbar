@@ -36,6 +36,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 ####System
 - Clipboard History
 - Real CPU Usage
+- Real CPU Usage Chart
 - Unix time
 - Uptime
 
@@ -56,6 +57,7 @@ Special thanks to everyone who has contributed:
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
+- Marian Schubert - [https://github.com/maio](https://github.com/maio)
 
 ## Write your own
 
