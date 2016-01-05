@@ -18,11 +18,11 @@ Example showing your internal and external IP addresses:
 
 ## Get started
 
-  * [Get the latest version of BitBar](https://github.com/matryer/bitbar/releases) for FREE, or pick a [different release](https://github.com/matryer/bitbar/releases)
-  * Copy it to your Applications folder and run it - it will ask you to (create and) elect a plugins folder, do so
-  * Help yourself by [Browsing our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [write your own](#writing-a-plugin)
-  * [Ensure they can be executed](#ensure-you-have-execution-rights)
-  * Enjoy
+[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases) for FREE, or pick a [different release](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) elect a plugins folder, do so.
+
+Homebrew Cask users can, alternatively, install BitBar by running `brew cask install bitbar`.
+
+[Browse our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [write your own](#writing-a-plugin)
 
 ## It's free, so please donate
 
@@ -37,7 +37,7 @@ Just download the plugin of your choice into your BitBar plugins directory and c
 The refresh time is in the filename of the plugin, following this format:
 
     {name}.{time}.{ext}
-    
+
   * `name` - The name of the file
   * `time` - The refresh rate (see below)
   * `ext` - The file extension
@@ -132,7 +132,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
     FONT=( 'size=14' 'font=UbuntuMono' )
     if ((0)); then echo "DO | $FONT color=orange"
     else           echo "DO | $FONT color=cadetblue"
-    echo "---" 
+    echo "---"
     ...
 
 ### Written something good?
