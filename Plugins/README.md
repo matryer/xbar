@@ -30,6 +30,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Ping
 
 ####System
+- Clipboard History
 - Real CPU Usage
 - Unix time
 - Uptime
