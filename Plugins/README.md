@@ -39,7 +39,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - SAP version
 - StackOverflow
 
-### Write your own
+## Write your own
 
 We're always looking for new plugins, so please send us pull requests if you write anything cool or useful.
 
@@ -50,7 +50,7 @@ If you've got ideas, or want to report a bug, nip over to our [issues page](http
 ###Contributors
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
 
-## Writing a plugin
+### Plugin API
 
   * To write a plugin, just write some form of executable script that outputs to the standard output.
   * Multiple lines will be cycled through over and over.
