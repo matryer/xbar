@@ -16,9 +16,16 @@
 
 @implementation Plugin
 
-- init { return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
+- init {
+    
+    self.imageCache = [[NSMutableDictionary alloc] init];
+    
+    return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil;
+}
 
-- initWithManager:(PluginManager*)manager { return self = self.init ? _manager = manager, self : nil; }
+- initWithManager:(PluginManager*)manager {
+    return self = self.init ? _manager = manager, self : nil;
+}
 
 - (NSStatusItem *)statusItem { return _statusItem = _statusItem ?: ({
     
@@ -41,10 +48,57 @@
     item.representedObject = params;
     [item setTarget:self];
   }
-  if (params[@"size"] || params[@"color"])
-    item.attributedTitle = [self attributedTitleWithParams:params];
+    if (params[@"size"] || params[@"color"]) {
+        item.attributedTitle = [self attributedTitleWithParams:params];
+    }
 
+    
+    if (params[@"image"]) {
+        item.image = [self getImageForUrl:[params objectForKey:@"image"]];
+    }
+    
+    
+    if (params[@"tooltip"]) {
+        [item setToolTip:[params objectForKey:@"tooltip"]];
+    }
+    
+    if (params[@"submenu"]) {
+        NSMenu *submenu = [[NSMenu alloc] init];
+        [item setSubmenu:submenu];
+        
+        NSArray * menuItems = [params objectForKey:@"submenu"];
+    
+        
+        if ([menuItems isKindOfClass:[NSArray class]]) {
+        
+            for (NSDictionary* dictMenuItem in menuItems) {
+                
+                if (dictMenuItem && dictMenuItem[@"title"]) {
+                    [submenu addItem:[self buildMenuItemWithParams:dictMenuItem]];
+                } else {
+                    [submenu addItem:[NSMenuItem separatorItem]];
+                }
+            }
+        }
+    }
+    
+    
   return item;
+}
+
+- (NSImage *) getImageForUrl:(NSString * ) imageUrl {
+    
+    if (!self.imageCache[imageUrl]) {
+        NSURL * url = [NSURL URLWithString:imageUrl];
+        
+        NSImage * image = [[NSImage alloc] initWithContentsOfURL:url];
+        
+        self.imageCache[imageUrl] = image;
+
+    }
+
+    return [self.imageCache objectForKey:imageUrl];
+
 }
 
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
@@ -62,10 +116,30 @@
   return attributedTitle;
 }
 
-- (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
+- (NSMenuItem*) buildMenuItemForLine:(NSString *)line {
+    return [self buildMenuItemWithParams:[self dictionaryForLine:line]];
+}
+
+
+- (NSDictionary*) jsonDictionaryForLine:(NSString *)line {
+    NSError* error;
+    NSDictionary* params = [NSJSONSerialization
+                            JSONObjectWithData:[line dataUsingEncoding:NSUTF8StringEncoding]
+                            options:kNilOptions
+                            error:&error];
+    
+    return params;
+}
+
 
 - (NSDictionary*) dictionaryForLine:(NSString *)line {
 
+    NSDictionary* jsonParams = [self jsonDictionaryForLine:line];
+    
+    if (jsonParams && jsonParams[@"title"]) {
+        return jsonParams;
+    }
+    
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) return @{ @"title": line };
 
@@ -115,7 +189,8 @@
            *param3 = params[@"param3"] ?: @"",
            *param4 = params[@"param4"] ?: @"",
            *param5 = params[@"param5"] ?: @"",
-         *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"];
+         *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"],
+             *removeOnSuccess = params[@"removeOnSuccess"] ?: [NSString stringWithFormat:@"%s", "false"];
     NSArray *args = params[@"args"] ?: ({
 
       NSMutableArray *argArray = @[].mutableCopy;
@@ -132,11 +207,21 @@
       NSLog(@"Args: %@", args);
 
       id task = [params[@"root"] isEqualToString:@"true"] ? STPrivilegedTask.new : NSTask.new;
+       NSTask* tTask = (NSTask*) task;
+      [tTask setLaunchPath:bash];
+      [tTask setArguments:args];
 
-      [(NSTask*)task setLaunchPath:bash];
-      [(NSTask*)task setArguments:args];
-      [(NSTask*)task launch];
-
+        [tTask setTerminationHandler:^(NSTask *aTask){
+            if ([aTask terminationStatus] == 0) {
+                if ([removeOnSuccess isEqual: @"true"]) {
+                    [[menuItem menu] removeItem:menuItem];
+                }
+            } else {
+                [menuItem setImage:[NSImage imageNamed:NSImageNameCaution]];
+            }
+        }];
+        
+        [tTask launch];
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
