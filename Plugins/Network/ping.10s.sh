@@ -7,11 +7,37 @@
 #
 # Author: trungdq88@gmail.com
 
-ping_google=$(ping -c 1 google.com | awk -F '/' 'END {printf "%d\n", $5}')
-ping_facebook=$(ping -c 1 facebook.com | awk -F '/' 'END {printf "%d\n", $5}')
-ping_github=$(ping -c 1 github.com | awk -F '/' 'END {printf "%d\n", $5}')
-ping_stackoverflow=$(ping -c 1 stackoverflow.com | awk -F '/' 'END {printf "%d\n", $5}')
-ping_dota2=$(ping -c 1 sgp-1.valve.net | awk -F '/' 'END {printf "%d\n", $5}')
+exec 2>/dev/null
+
+if ping_result=`ping -c 1 google.com`; then
+    ping_google=$(echo $ping_result | awk -F '/' 'END {printf "%d\n", $5}')
+else
+    ping_google=-1
+fi
+
+if ping_result=`ping -c 1 facebook.com`; then
+    ping_facebook=$(echo $ping_result | awk -F '/' 'END {printf "%d\n", $5}')
+else
+    ping_facebook=-1
+fi
+
+if ping_result=`ping -c 1 github.com`; then
+    ping_github=$(echo $ping_result  | awk -F '/' 'END {printf "%d\n", $5}')
+else
+    ping_github=-1
+fi
+
+if ping_result=`ping -c 1 stackoverflow.com`; then
+    ping_stackoverflow=$(echo $ping_result  | awk -F '/' 'END {printf "%d\n", $5}')
+else
+    ping_stackoverflow=-1
+fi
+
+if ping_result=`ping -c 1 sgp-1.valve.net`; then
+    ping_dota2=$(echo $ping_result  | awk -F '/' 'END {printf "%d\n", $5}')
+else
+    ping_dota2=-1
+fi
 
 avg=$(( ($ping_google + $ping_facebook + $ping_github + $ping_stackoverflow + $ping_dota2)/5 ))
 
@@ -39,6 +65,10 @@ fi
 
 if (( $avg == 0 )) ; then
     color="#acacac"
+fi
+
+if (( $avg < 0 )); then
+    color="#ff0000"
 fi
 
 echo "$avg ms | color=$color size=12"
