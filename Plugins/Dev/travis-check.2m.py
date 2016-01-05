@@ -65,7 +65,7 @@ def update_statuses(repos):
                                                                                  branch_name=branch_name,
                                                                                  status=branch.state)
 
-            if branch.color == "red":
+            if branch.color in ["red", "yellow"]:
                 output[0] = output_msg
 
             href = "https://travis-ci.org/{}/builds/{}".format(repo["name"], int(branch.job_ids[0]) - 1)
