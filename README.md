@@ -57,6 +57,12 @@ Most plugins will come with a default, but you can change it to anything you lik
 
 Ensure the plugin is executable by running `chmod +x plugin.sh`.
 
+#### Resetting Plugin Directory
+
+In case you made the mistake of choosing a directory with thousands of files as the plugin directory and BitBar getting stuck forever, do this from terminal to reset it:
+
+`defaults delete com.matryer.BitBar`
+
 ## Writing a plugin
 
   * To write a plugin, just write some form of executable script that outputs to the standard output.
