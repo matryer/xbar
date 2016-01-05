@@ -68,5 +68,6 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 ## Thanks
 
+  * Special thanks to [@muhqu](https://github.com/muhqu) and [@tylerb](https://github.com/tylerb) for all their help (see commit history for details)
   * Thanks to [@mazondo](https://twitter.com/mazondo) for the BitBar logo
   * Thanks for all our [plugin contributors](https://github.com/matryer/bitbar/tree/master/Plugins) who have come up with some pretty genius things
