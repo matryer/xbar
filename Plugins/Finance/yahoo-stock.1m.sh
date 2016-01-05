@@ -5,6 +5,12 @@
 # by http://srinivas.gs
 
 
-echo -n "GOOG:"; curl -s 'http://download.finance.yahoo.com/d/quotes.csv?s=goog&f=l1'
-echo -n "AAPL:"; curl -s 'http://download.finance.yahoo.com/d/quotes.csv?s=aapl&f=l1'
+stock[1]="GOOG"
+stock[2]="AAPL"
+stock[3]="AMZN"
 
+s='http://download.finance.yahoo.com/d/quotes.csv?s=stock_symbol&f=l1'
+for (( c=1; c<=${#stock[@]}; c++ ))
+do
+	echo -n ${stock[$c]}; echo -n ":"; curl -s echo ${s/stock_symbol/${stock[$c]}}
+done
