@@ -66,4 +66,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 `defaults delete com.matryer.BitBar`
 
+## Thanks
+
   * Thanks to [@mazondo](https://twitter.com/mazondo) for the BitBar logo
+  * Thanks for all our [plugin contributors](https://github.com/matryer/bitbar/tree/master/Plugins) who have come up with some pretty genius things
