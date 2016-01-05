@@ -48,6 +48,7 @@ Special thanks to everyone who has contributed:
 
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
 - Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
+- Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
 
 ## Write your own
 
