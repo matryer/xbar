@@ -12,7 +12,7 @@ import urllib2
 from random import randint
 
 location = '40.7027,-73.9867' # Lat,long only. Find at forecast.io
-api_key = '' # get yours at api.forecast.io // ac2ca0d3783bb686c40c9144fd647a05
+api_key = '' # get yours at https://developer.forecast.io
 units = '' # change to si for metric
 
 def get_wx():
