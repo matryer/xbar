@@ -25,7 +25,7 @@ Example showing your internal and external IP addresses:
 
 Homebrew Cask users can, alternatively, install BitBar by running `brew cask install bitbar`.
 
-[Browse our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [write your own](#writing-a-plugin)
+[Browse our plugins](https://github.com/matryer/bitbar/tree/master/Plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar/tree/master/Plugins#write-your-own)
 
 ## It's free, so please donate
 
@@ -33,7 +33,7 @@ If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5
 
 ## Installing plugins
 
-Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus.
+Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus. 
 
 ### Configure the refresh time
 
