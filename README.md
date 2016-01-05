@@ -138,3 +138,5 @@ In case you made the mistake of choosing a directory with thousands of files as 
 ### Written something good?
 
 Please send us a pull request and we'll add it to our repos.
+
+  * Thanks to [@mazondo](https://twitter.com/mazondo) for the BitBar logo
