@@ -13,8 +13,9 @@ if [ "$1" = 'launch' ]; then
 fi
 
 if [ $(osascript -e 'application "Spotify" is running') = "false" ]; then
-  echo "Spotify Not Running"
+  echo "♫"
   echo "---"
+  echo "Spotify is not running"
   echo "Launch Spotify | bash=$0 param1=launch terminal=false"
   exit
 fi
