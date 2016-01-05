@@ -49,6 +49,7 @@ If you've got ideas, or want to report a bug, nip over to our [issues page](http
 
 ###Contributors
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
+- Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 
 ### Plugin API
 
