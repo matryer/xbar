@@ -47,6 +47,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 Special thanks to everyone who has contributed:
 
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
+- Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 
 ## Write your own
 
