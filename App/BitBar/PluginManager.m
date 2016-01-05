@@ -229,6 +229,10 @@
         plugin = [ExecutablePlugin.alloc initWithManager:self];
       }
       
+      if ([[file substringToIndex:4] isEqualToString:@"off."]) {
+        continue;
+      }
+      
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
       [plugin.statusItem setTitle:@"…"];

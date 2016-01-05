@@ -34,8 +34,10 @@
 
   NSString * title = [params objectForKey:@"title"];
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
-          : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:) : nil;
-
+          : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
+          : params[@"refresh"] ? @selector(performRefreshNow:):
+    nil;
+  
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
   if (sel) {
     item.representedObject = params;
@@ -65,39 +67,46 @@
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
 
 - (NSDictionary*) dictionaryForLine:(NSString *)line {
-
+  // Find the title
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) return @{ @"title": line };
-
   NSString * title = [[line substringToIndex:found.location] stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   NSMutableDictionary * params = @{@"title":title}.mutableCopy;
-  NSString * paramsStr = [line substringFromIndex:found.location + found.length];
-    
-  NSString  * prevKey;
-  for (NSString * paramStr in [[paramsStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet]
-                                     componentsSeparatedByCharactersInSet:NSCharacterSet.whitespaceCharacterSet]) {
-    NSRange found = [paramStr rangeOfString:@"="];
-    if (found.location != NSNotFound) {
-      NSString * key = [paramStr substringToIndex:found.location].lowercaseString;
+  
+  // Find the parameters
+  NSString * paramStr = [line substringFromIndex:found.location + found.length];
 
-      id value;
-      if ([key isEqualToString:@"args"]) {
-        value = [[paramStr substringFromIndex:found.location + found.length] componentsSeparatedByString:@"__"];
-       } else {
-        value = [paramStr substringFromIndex:found.location + found.length];
-      }
-      params[key] = value;
-      prevKey = key;
+  NSScanner* scanner = [NSScanner scannerWithString:paramStr];
+  NSMutableCharacterSet* keyValueSeparator = [NSMutableCharacterSet characterSetWithCharactersInString:@"=:"];
+  NSMutableCharacterSet* quoteSeparator = [NSMutableCharacterSet characterSetWithCharactersInString:@"\"'"];
+  
+  while (![scanner isAtEnd]) {
+    NSString *key = @""; NSString* value = @"";
+    [scanner scanUpToCharactersFromSet:keyValueSeparator intoString:&key];
+    [scanner scanCharactersFromSet:keyValueSeparator intoString:NULL];
+    
+    if ([scanner scanCharactersFromSet:quoteSeparator intoString:NULL]) {
+      [scanner scanUpToCharactersFromSet:quoteSeparator intoString:&value];
+      [scanner scanCharactersFromSet:quoteSeparator intoString:NULL];
+    } else {
+      [scanner scanUpToString:@" " intoString:&value];
     }
-    else {    //no = in the string, concat it onto previous one (if there was a previous one)
-        if (prevKey != nil && [params objectForKey:prevKey]) {
-            params[prevKey] = [NSString stringWithFormat:@"%@ %@", params[prevKey], paramStr];
-        } else {
-            NSLog(@"Unexpected gobbleygook in variable assignment: %@", paramStr);
-        }
+    
+    // Remove extraneous spaces from key and value
+    key = [key stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    params[key] = value;
+    
+    if([key isEqualToString:@"args"]){
+      params[key] = [value componentsSeparatedByString:@"__"];
     }
   }
+  
   return params;
+}
+
+-(void)performRefreshNow:(NSMenuItem*)menuItem {
+    NSLog(@"Nothing to refresh in this plugin");
 }
 
 - (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
@@ -136,16 +145,13 @@
       [(NSTask*)task setLaunchPath:bash];
       [(NSTask*)task setArguments:args];
       [(NSTask*)task launch];
-
+      
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
       NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
+                do script \"%@\"\n\
                  activate \n\
-                 if length of (get every window) is 0 then \n\
-                 tell application \"System Events\" to tell process \"Terminal\" to click menu item \"New Window\" of menu \"File\" of menu bar 1 \n\
-                 end if \n\
-                 do script \"%@\" in front window activate \n\
                  end tell", full_link];
       NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
       [as executeAndReturnError:nil];
@@ -308,9 +314,15 @@
 }
 
 - (NSString *)allContent {
-
-  return _allContent = _allContent ?: [self.errorContent length] > 0 ? [self.content stringByAppendingString:self.errorContent]
-                                                                     : self.content;
+  if (!_allContent) {
+    _allContent = self.content;
+    if (self.errorContent.length > 0) {
+      _allContent = [@"⚠️" stringByAppendingString:_allContent];
+      _allContent = [_allContent stringByAppendingString:@"\n---\n"];
+      _allContent = [_allContent stringByAppendingString:self.errorContent];
+    }
+  }
+  return _allContent;
 }
 
 - (NSArray *)allContentLines {
@@ -343,9 +355,8 @@
 }
 
 - (NSString*) cleanLine:(NSString*)line {
-  
+    return line;
   NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
-  line = [line stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
   return [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, line.length) withTemplate:@" "];
 }
 

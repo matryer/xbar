@@ -51,14 +51,21 @@
   // success
   self.lastCommandWasError = NO;
   return YES;
-  
+}
+
+-(void)performRefreshNow:(NSMenuItem*)menuItem{
+  [self refresh];
 }
 
 -(BOOL)refresh {
-  
-  
   [self.lineCycleTimer invalidate];
   self.lineCycleTimer = nil;
+  [self.refreshTimer invalidate];
+  self.refreshTimer = nil;
+  
+  self.content = @"Updating ...";
+  self.errorContent = @"";
+  [self rebuildMenuForStatusItem:self.statusItem];
   
   // execute command
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
@@ -87,7 +94,7 @@
       [self.manager pluginDidUdpdateItself:self];
       
       // schedule next refresh
-      [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
+      _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
       
     });
   });
