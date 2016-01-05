@@ -119,6 +119,10 @@ If you've got ideas, or want to report a bug, nip over to our [issues page](http
     echo "---"
     ...
 
-### Written something good?
+## Want to contribute?
 
 Please send us a pull request and we'll add it to our repos.
+
+  * Ensure the plugin is executable
+  * Include an update to the list of plugins on https://github.com/matryer/bitbar/blob/master/Plugins
+  * Please add your name and a link to the Contributors list on https://github.com/matryer/bitbar/blob/master/Plugins/README.md.
