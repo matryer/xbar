@@ -43,6 +43,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - StackOverflow
 
 ####Weather
+- forecast.io
 - Open Weather Map
 
 ##Contributors
