@@ -72,6 +72,8 @@
   NSString * title = [[line substringToIndex:found.location] stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   NSMutableDictionary * params = @{@"title":title}.mutableCopy;
   NSString * paramsStr = [line substringFromIndex:found.location + found.length];
+    
+  NSString  * prevKey;
   for (NSString * paramStr in [[paramsStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet]
                                      componentsSeparatedByCharactersInSet:NSCharacterSet.whitespaceCharacterSet]) {
     NSRange found = [paramStr rangeOfString:@"="];
@@ -85,6 +87,14 @@
         value = [paramStr substringFromIndex:found.location + found.length];
       }
       params[key] = value;
+      prevKey = key;
+    }
+    else {    //no = in the string, concat it onto previous one (if there was a previous one)
+        if (prevKey != nil && [params objectForKey:prevKey]) {
+            params[prevKey] = [NSString stringWithFormat:@"%@ %@", params[prevKey], paramStr];
+        } else {
+            NSLog(@"Unexpected gobbleygook in variable assignment: %@", paramStr);
+        }
     }
   }
   return params;
