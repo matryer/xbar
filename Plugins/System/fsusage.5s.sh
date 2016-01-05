@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# unixtime
+# Fs_usage
 # BitBar plugin
 #
 # by Gautam Krishna R
