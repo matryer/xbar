@@ -68,6 +68,7 @@ Special thanks to everyone who has contributed:
 - Marian Schubert - [https://github.com/maio](https://github.com/maio)
 - Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
 - Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
+- Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
 
 ## Write your own
 
