@@ -32,6 +32,9 @@
     [task launch];
   } @catch (NSException *e) {
     NSLog(@"Error when running %@: %@", self.name, e);
+    self.lastCommandWasError = YES;
+    self.content = @"";
+    self.errorContent = e.reason;
     return NO;
   }
   NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
