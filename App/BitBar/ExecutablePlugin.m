@@ -61,12 +61,14 @@
 }
 
 -(BOOL)refresh {
-  
-  
   [self.lineCycleTimer invalidate];
   self.lineCycleTimer = nil;
   [self.refreshTimer invalidate];
   self.refreshTimer = nil;
+  
+  self.content = @"Updating ...";
+  self.errorContent = @"";
+  [self rebuildMenuForStatusItem:self.statusItem];
   
   // execute command
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
