@@ -24,7 +24,8 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Stock tracker
 
 ####Music
-- Spotify (Shows current track information from spotify)
+- iTunes (shows current track information from iTunes)
+- Spotify (Shows current track information from Spotify)
 
 ####Network
 - Bandwidth Usage
@@ -54,6 +55,7 @@ Special thanks to everyone who has contributed:
 - Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
+- Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
 
 ## Write your own
 
