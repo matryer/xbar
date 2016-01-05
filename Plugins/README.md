@@ -40,6 +40,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Real CPU Usage Chart
 - Unix time
 - Uptime
+- USB Device Info
 - Screen Lock
 
 #####Battery
@@ -66,6 +67,7 @@ Special thanks to everyone who has contributed:
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
 - Marian Schubert - [https://github.com/maio](https://github.com/maio)
 - Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
+- Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
 
 ## Write your own
 
