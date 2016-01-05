@@ -1,4 +1,10 @@
-# For memusage.5s.sh
+# memusage
+# BitBar plugin
+#
+# by Gautam krishna R
+#
+# Shows the current system memmory usage
+# Use memusage.py python script to fetch data
 import subprocess
 import re
 
