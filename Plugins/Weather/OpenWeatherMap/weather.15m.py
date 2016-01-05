@@ -17,6 +17,10 @@ api_key = '2de143494c0b295cca9337e1e96b00e0'
 units = 'imperial' # kelvin, metric, imperial
 
 def get_wx():
+
+  if api_key == "":
+    return False
+
   wx = json.load(urllib2.urlopen('http://api.openweathermap.org/data/2.5/weather?id=' + location + '&units=' + units + '&appid=' + api_key + "&v=" + str(randint(0,100))))
 
   if units == 'metric':
@@ -34,7 +38,7 @@ def get_wx():
       'unit': '°' + unit
     }
   except KeyError:
-    weather_data = False
+    return False
 
   return weather_data
 

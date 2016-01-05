@@ -16,6 +16,10 @@ api_key = '' # get yours at https://developer.forecast.io
 units = '' # change to si for metric
 
 def get_wx():
+
+  if api_key == "":
+    return False
+
   wx = json.load(urllib2.urlopen('https://api.forecast.io/forecast/' + api_key + '/' + location + '?units=' + units + "&v=" + str(randint(0,100))))
 
 
@@ -31,7 +35,7 @@ def get_wx():
       'unit': '°' + unit
     }
   except KeyError:
-    weather_data = False
+    return False
 
   return weather_data
 
