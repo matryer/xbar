@@ -6,5 +6,6 @@
 # by Gautam krishna R
 #
 # Shows the current system memmory usage
+# Use memusage.py python script to fetch data
 
-memusage.py
+python memusage.py
