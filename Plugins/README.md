@@ -42,6 +42,9 @@ This repo contains scripts, programs and command-line tools that add functionali
 - SAP version
 - StackOverflow
 
+####Weather
+- Open Weather Map
+
 ##Contributors
 
 Special thanks to everyone who has contributed:
@@ -49,6 +52,7 @@ Special thanks to everyone who has contributed:
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
 - Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
+- Daniel Seripap - [https://github.com/seripap](https://github.com/seripap)
 
 ## Write your own
 
