@@ -19,6 +19,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ####Developer
 - Homebrew available updates
+- TravisCI check
 
 ####Finance
 - Stock tracker
@@ -39,7 +40,6 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Real CPU Usage Chart
 - Unix time
 - Uptime
-- Computer Lock
 
 #####Battery
 - Battery percentage for bluetooth Mouse
