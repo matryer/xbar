@@ -59,6 +59,7 @@ Special thanks to everyone who has contributed:
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
 - Marian Schubert - [https://github.com/maio](https://github.com/maio)
+- Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
 
 ## Write your own
 
