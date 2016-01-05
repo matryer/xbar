@@ -26,7 +26,7 @@ Homebrew Cask users can, alternatively, install BitBar by running `brew cask ins
 
 ## It's free, so please donate
 
-If you use this, please donate BitCoin to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR`.
+If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR` or [send something useful (Amazon Wishlist)](http://amzn.to/1Pd9yOt).
 
 ## Installing plugins
 
