@@ -38,6 +38,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Real CPU Usage
 - Unix time
 - Uptime
+- Computer Lock
 
 #####Battery
 - Battery percentage for bluetooth Mouse
@@ -56,6 +57,7 @@ Special thanks to everyone who has contributed:
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
+- Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
 
 ## Write your own
 
