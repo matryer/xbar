@@ -49,3 +49,76 @@ If you've got ideas, or want to report a bug, nip over to our [issues page](http
 
 ###Contributors
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
+
+## Writing a plugin
+
+  * To write a plugin, just write some form of executable script that outputs to the standard output.
+  * Multiple lines will be cycled through over and over.
+  * If your output contians a line consisting only of `---`, the lines below it will appear in the dropdown for that plugin, but won't appear in the menu bar itself.
+  * Your lines might contain `|` to separate the title from other parameters, such as...
+    * `href=..` to make the dropdown items clickable
+    * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
+    * `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
+    * `size=..` to change their text size. eg. `size=12`
+    * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh --verbose"`
+    * `terminal=..` if need to start bash script without open Terminal may be true or false
+  * If you're writing scripts, ensure it has a shebang at the top.
+
+### Examples
+
+#### One line plugin
+
+    #!/bin/bash
+    date
+
+#### Multi-line plugin
+
+    #!/bin/bash
+
+    # the current date and time
+    date
+
+    # the current username
+    echo $USER
+
+    # the current user id
+    id -u
+
+#### Multi-line plugin with extra data
+
+    #!/bin/bash
+    echo "One"
+    echo "Two"
+    echo "Three"
+    echo "---"
+    echo "Four"
+    echo "Five"
+    echo "Six"
+
+  * Only One, Two and Three will appear in the top bar
+  * Clicking the plugin menu item will show all lines
+
+
+#### Multi-line plugin with links and colors
+
+    #!/bin/bash
+    curl -m 1 http://example.com -I >/dev/null 2>&1
+    [ $? -gt 0 ] && echo "FAIL | color=red" || echo "OK | color=green"
+    echo "---"
+    echo "Show Graphs | color=#123def href=http://example.com/graph?foo=bar"
+    echo "Show KPI Report | color=purple href=http://example.com/report"
+
+#### Multi-line plugin with fonts and colors
+
+![BitBar Example showing colored fonts](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Menu-Colors-Fonts.png)
+
+    #!/bin/zsh
+    FONT=( 'size=14' 'font=UbuntuMono' )
+    if ((0)); then echo "DO | $FONT color=orange"
+    else           echo "DO | $FONT color=cadetblue"
+    echo "---"
+    ...
+
+### Written something good?
+
+Please send us a pull request and we'll add it to our repos.
