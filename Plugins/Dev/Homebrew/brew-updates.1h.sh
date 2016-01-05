@@ -13,7 +13,7 @@ exit_with_error() {
 
 UPDATES=`/usr/local/bin/brew outdated --verbose`;
 
-UPDATE_COUNT=`echo "$UPDATES" | wc -l | sed -e 's/^[[:space:]]*//'`;
+UPDATE_COUNT=`echo "$UPDATES" | grep -v ^$ | wc -l | sed -e 's/^[[:space:]]*//'`;
 
 echo "↑$UPDATE_COUNT"
 echo "---";
