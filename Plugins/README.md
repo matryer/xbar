@@ -40,6 +40,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Real CPU Usage Chart
 - Unix time
 - Uptime
+- Screen Lock
 
 #####Battery
 - Battery percentage for bluetooth Mouse
