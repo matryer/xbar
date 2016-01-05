@@ -5,76 +5,71 @@
 # It shows current ping to some servers at the top Menubar
 # This helps me to know my current connection speed
 #
-# Author: trungdq88@gmail.com
+# Authors: (Trung Đinh Quang) trungdq88@gmail.com and (Grant Sherrick) https://github.com/thealmightygrant 
 
-exec 2>/dev/null
+MAX_PING=10000
+SITES=(google.com youtube.com wikipedia.org github.com imgur.com)
 
-if ping_result=`ping -c 1 google.com`; then
-    ping_google=$(echo $ping_result | awk -F '/' 'END {printf "%d\n", $5}')
+#grab ping times for all sites
+SITE_INDEX=0
+PING_TIMES=
+
+while [ $SITE_INDEX -lt ${#SITES[@]} ]; do
+    NEXT_SITE="${SITES[$SITE_INDEX]}"
+    NEXT_PING_TIME=$(ping -c 2 -n -q "$NEXT_SITE" 2>/dev/null | awk -F '/' 'END {printf "%d\n", $5}')
+    if [ "$NEXT_PING_TIME" -eq 0 ]; then
+        NEXT_PING_TIME=$MAX_PING
+    fi
+    if [ -z "$PING_TIMES" ]; then
+        PING_TIMES=($NEXT_PING_TIME)
+    else
+        PING_TIMES=(${PING_TIMES[@]} $NEXT_PING_TIME)
+    fi
+    SITE_INDEX=$(( $SITE_INDEX + 1 ))
+done
+
+# Calculate the average ping
+SITE_INDEX=0
+AVG=0
+while [ $SITE_INDEX -lt ${#SITES[@]} ]; do
+    AVG=$(( ($AVG + ${PING_TIMES[$SITE_INDEX]}) ))
+    SITE_INDEX=$(( $SITE_INDEX + 1 ))
+done
+AVG=$(( $AVG / ${#SITES[@]} ))
+
+# Calculate STD dev
+SITE_INDEX=0
+AVG_DEVS=0
+while [ $SITE_INDEX -lt ${#SITES[@]} ]; do
+    AVG_DEVS=$(( $AVG_DEVS + (${PING_TIMES[$SITE_INDEX]} - $AVG)**2 ))
+    SITE_INDEX=$(( $SITE_INDEX + 1 ))
+done
+AVG_DEVS=$(( $AVG_DEVS / ${#SITES[@]} ))
+SD=$(echo "sqrt ( $AVG_DEVS )" | bc -l | awk '{printf "%d\n", $1}')
+
+# Define color
+COLOR="#cc3b3b"
+MSG="$AVG"'±'"$SD"'⚡'
+
+if [ $AVG -ge 1000 ]; then
+    COLOR="#acacac"
+    MSG=" ☠ "
+elif [ $AVG -ge 600 ] && [ $AVG -lt 1000 ]; then
+    COLOR="#cc673b"
+elif [ $AVG -ge 300 ] && [ $AVG -lt 600 ]; then
+    COLOR="#ce8458"
+elif [ $AVG -ge 100 ] && [ $AVG -lt 300 ]; then
+    COLOR="#6bbb15"
+elif [ $AVG -ge 50 ] && [ $AVG -lt 100 ]; then
+    COLOR="#0ed812"
 else
-    ping_google=-1
+    COLOR="#e506ff"
 fi
 
-if ping_result=`ping -c 1 facebook.com`; then
-    ping_facebook=$(echo $ping_result | awk -F '/' 'END {printf "%d\n", $5}')
-else
-    ping_facebook=-1
-fi
-
-if ping_result=`ping -c 1 github.com`; then
-    ping_github=$(echo $ping_result  | awk -F '/' 'END {printf "%d\n", $5}')
-else
-    ping_github=-1
-fi
-
-if ping_result=`ping -c 1 stackoverflow.com`; then
-    ping_stackoverflow=$(echo $ping_result  | awk -F '/' 'END {printf "%d\n", $5}')
-else
-    ping_stackoverflow=-1
-fi
-
-if ping_result=`ping -c 1 sgp-1.valve.net`; then
-    ping_dota2=$(echo $ping_result  | awk -F '/' 'END {printf "%d\n", $5}')
-else
-    ping_dota2=-1
-fi
-
-avg=$(( ($ping_google + $ping_facebook + $ping_github + $ping_stackoverflow + $ping_dota2)/5 ))
-
-color="#cc3b3b"
-
-if (( $avg < 1000 )) ; then
-    color="#cc673b"
-fi
-
-if (( $avg < 600 )) ; then
-    color="#ce8458"
-fi
-
-if (( $avg < 300 )) ; then
-    color="#bbbc55"
-fi
-
-if (( $avg < 100 )) ; then
-    color="#59b86d"
-fi
-
-if (( $avg < 50 )) ; then
-    color="#e506ff"
-fi
-
-if (( $avg == 0 )) ; then
-    color="#acacac"
-fi
-
-if (( $avg < 0 )); then
-    color="#ff0000"
-fi
-
-echo "$avg ms | color=$color size=12"
+echo "$MSG | font=UbuntuMono-Bold color=$COLOR size=10"
 echo "---"
-echo "Google: $ping_google ms"
-echo "Facebook: $ping_facebook ms"
-echo "GitHub: $ping_github ms"
-echo "Stack Overflow: $ping_stackoverflow ms"
-echo "DotA 2: $ping_dota2 ms"
+SITE_INDEX=0
+while [ $SITE_INDEX -lt ${#SITES[@]} ]; do
+    echo "${SITES[$SITE_INDEX]}: ${PING_TIMES[$SITE_INDEX]} ms"
+    SITE_INDEX=$(( $SITE_INDEX + 1 ))
+done
