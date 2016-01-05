@@ -70,7 +70,7 @@ content="$(pbpaste | head -c 36)"
 if (( $(pbpaste | wc -c) > 36 )); then
   content="$content..."
 fi
-echo $content | sed "s/|/ /"
+echo $content | sed "s/|/ /g"
 
 # Show history section if historical files exist
 if [[ -e "$tmp_dir/item-1.pb" ]]; then
@@ -87,7 +87,7 @@ if [[ -e "$tmp_dir/item-1.pb" ]]; then
       if (( $(cat "$tmp_dir/item-$i.pb" | wc -c) > 36 )); then
         content="$content..."
       fi
-      echo $(echo $content | sed "s/|/ /") "|bash=$0 param1=copy param2=$i terminal=false"
+      echo $(echo $content | sed "s/|/ /g") "|bash=$0 param1=copy param2=$i terminal=false"
     fi
   done
 
