@@ -4,7 +4,7 @@
 # much simpler than stock plugin, no API key required
 # by http://srinivas.gs
 
-
+# specify which stocks you want to monitor here
 stock[0]="GOOG"
 stock[1]="AAPL"
 stock[2]="AMZN"
