@@ -13,10 +13,6 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ###Available Plugins
 
-####Battery
-- Battery percentage for bluetooth Mouse
-- Battery percentage for bluetooth Keyboard
-
 ####Bitcoin
 - Bitstamp last BTC Price
 - Coinbase.com BTC Index
@@ -41,6 +37,10 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Real CPU Usage
 - Unix time
 - Uptime
+
+#####Battery
+- Battery percentage for bluetooth Mouse
+- Battery percentage for bluetooth Keyboard
 
 ####Web
 - SAP version
