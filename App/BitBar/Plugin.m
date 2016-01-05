@@ -314,9 +314,15 @@
 }
 
 - (NSString *)allContent {
-
-  return _allContent = _allContent ?: [self.errorContent length] > 0 ? [self.content stringByAppendingString:self.errorContent]
-                                                                     : self.content;
+  if (!_allContent) {
+    _allContent = self.content;
+    if (self.errorContent.length > 0) {
+      _allContent = [@"⚠️" stringByAppendingString:_allContent];
+      _allContent = [_allContent stringByAppendingString:@"\n---\n"];
+      _allContent = [_allContent stringByAppendingString:self.errorContent];
+    }
+  }
+  return _allContent;
 }
 
 - (NSArray *)allContentLines {
