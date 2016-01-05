@@ -24,6 +24,9 @@ This repo contains scripts, programs and command-line tools that add functionali
 ####Finance
 - Stock tracker
 
+####Lifestyle
+- Sleeping Time Cycles
+
 ####Music
 - iTunes (shows current track information from iTunes)
 - Spotify (Shows current track information from Spotify)
@@ -69,6 +72,7 @@ Special thanks to everyone who has contributed:
 - Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
 - Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
 - Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
+- Nicolas Lassaux - [https://github.com/nico401](https://github.com/nico401)
 
 ## Write your own
 
