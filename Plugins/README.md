@@ -2,6 +2,9 @@
 
 This repo contains scripts, programs and command-line tools that add functionality to [BitBar](https://github.com/stretchr/bitbar#get-started).
 
+* [Available Plugins](#available-plugins)
+* [Contributing plugins](#write-your-own)
+
 ### How to use them
 
   * Just drop the plugin into your BitBar plugins folder
@@ -21,7 +24,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Stock tracker
 
 ####Music
-- Spotify
+- Spotify (Shows current track information from spotify)
 
 ####Network
 - Bandwidth Usage
@@ -39,6 +42,12 @@ This repo contains scripts, programs and command-line tools that add functionali
 - SAP version
 - StackOverflow
 
+##Contributors
+
+Special thanks to everyone who has contributed:
+
+- Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
+
 ## Write your own
 
 We're always looking for new plugins, so please send us pull requests if you write anything cool or useful.
@@ -47,10 +56,13 @@ We're always looking for new plugins, so please send us pull requests if you wri
 
 If you've got ideas, or want to report a bug, nip over to our [issues page](https://github.com/stretchr/bitbar/issues) and let us know.
 
-###Contributors
-- Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
+If you want to contribute, please send us a pull request and we'll add it to our repos.
 
-### Plugin API
+  * Ensure the plugin is executable
+  * Include an update to the list of plugins on https://github.com/matryer/bitbar/blob/master/Plugins
+  * Please add your name and a link to the Contributors list on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
+
+## Plugin API
 
   * To write a plugin, just write some form of executable script that outputs to the standard output.
   * Multiple lines will be cycled through over and over.
@@ -118,11 +130,3 @@ If you've got ideas, or want to report a bug, nip over to our [issues page](http
     else           echo "DO | $FONT color=cadetblue"
     echo "---"
     ...
-
-## Want to contribute?
-
-Please send us a pull request and we'll add it to our repos.
-
-  * Ensure the plugin is executable
-  * Include an update to the list of plugins on https://github.com/matryer/bitbar/blob/master/Plugins
-  * Please add your name and a link to the Contributors list on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
