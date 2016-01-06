@@ -48,6 +48,9 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Battery percentage for bluetooth Mouse
 - Battery percentage for bluetooth Keyboard
 
+####Time
+- Fuzzy clock
+
 ####Web
 - SAP version
 - StackOverflow
@@ -63,6 +66,7 @@ Special thanks to everyone who has contributed:
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
 - Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
+- Dylan Evans - [https://github.com/whonut](https://github.com/whonut))
 - Daniel Seripap - [https://github.com/seripap](https://github.com/seripap)
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
