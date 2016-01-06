@@ -60,6 +60,22 @@ Most plugins will come with a default, but you can change it to anything you lik
 
 Ensure the plugin is executable by running `chmod +x plugin.sh`.
 
+### Using symlinks
+
+Because Git will ignore everything in `Plugins/Enabled`, you can use it to maintain your own plugins directory while still benefitting from tracking (upstream) changes.
+
+#### Example
+
+	cd Plugins/Enabled
+	
+	# Enable spotify plugin
+	ln -s ../Music/spotify.10s.sh
+	
+	# Enable uptime plugin and change update interval to 30 seconds
+	ln -s ../System/uptime.1m.sh uptime.30s.sh
+	
+Then select the `Enabled` folder in your BitBar preferences.
+
 #### Resetting Plugin Directory
 
 In case you made the mistake of choosing a directory with thousands of files as the plugin directory and BitBar getting stuck forever, do this from terminal to reset it:
