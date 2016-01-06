@@ -36,7 +36,13 @@
     return nil;
   }
   
-  NSString * title = [params objectForKey:@"title"];
+  NSString * fullTitle = params[@"title"];
+
+  CGFloat lineLength = params[@"length"] ? [params[@"length"] floatValue] : 20;
+  CGFloat truncLength = [fullTitle length] < lineLength ? [fullTitle length] : lineLength;
+
+  NSString * title = lineLength < 0 ? fullTitle : [fullTitle substringToIndex:truncLength];
+  
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
           : params[@"refresh"] ? @selector(performRefreshNow:):
@@ -55,7 +61,13 @@
 
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
-  NSString * title = params[@"title"];
+  NSString * fullTitle = params[@"title"];
+
+  CGFloat lineLength = params[@"length"] ? [params[@"length"] floatValue] : 20;
+  CGFloat truncLength = [fullTitle length] < lineLength ? [fullTitle length] : lineLength;
+
+  NSString * title = lineLength < 0 ? fullTitle : [fullTitle substringToIndex:truncLength];
+
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
   NSFont    * font = params[@"font"] ? [NSFont fontWithName:params[@"font"] size:size]
                                      : [NSFont menuFontOfSize:size]
