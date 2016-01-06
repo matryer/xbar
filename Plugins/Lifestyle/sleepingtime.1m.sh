@@ -18,8 +18,8 @@ date6=`date -v+9H -v+"$falling_asleep"M +"$format"`
 echo "Sleeptime"
 echo '---'
 echo "1 cycle: ${date1%:*}"
-echo "2 cycle: ${date2%:*}|color=#ad0028"
-echo "3 cycle: ${date3%:*}|color=#fe5000"
-echo "4 cycle: ${date4%:*}|color=#609a94"
-echo "5 cycle: ${date5%:*}|color=#00ab84"
-echo "6 cycle: ${date6%:*}|color=#00a478"
+echo "2 cycles: ${date2%:*}|color=#ad0028"
+echo "3 cycles: ${date3%:*}|color=#fe5000"
+echo "4 cycles: ${date4%:*}|color=#609a94"
+echo "5 cycles: ${date5%:*}|color=#00ab84"
+echo "6 cycles: ${date6%:*}|color=#00a478"
