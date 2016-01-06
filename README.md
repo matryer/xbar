@@ -1,6 +1,4 @@
-# BitBar
-
-![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-128.png)
+# ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-64.png) BitBar
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
@@ -85,5 +83,5 @@ In case you made the mistake of choosing a directory with thousands of files as 
 ## Thanks
 
   * Special thanks to [@muhqu](https://github.com/muhqu) and [@tylerb](https://github.com/tylerb) for all their help (see commit history for details)
-  * Thanks to [@mazondo](https://twitter.com/mazondo) for the BitBar logo
+  * Thanks to [@mazondo](https://twitter.com/mazondo) for the original BitBar logo
   * Thanks for all our [plugin contributors](https://github.com/matryer/bitbar/tree/master/Plugins) who have come up with some pretty genius things
