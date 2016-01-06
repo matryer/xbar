@@ -83,7 +83,7 @@
   
   [targetMenu addItem:NSMenuItem.separatorItem];
   
-  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleVersion"];
+  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
   [targetMenu addItem:versionMenuitem];
@@ -104,15 +104,15 @@
 #define WSPACE NSWorkspace.sharedWorkspace
 
 - (void) openReportIssuesPage {
-  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/issues"]];
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/issues"]];
 }
 
 - (void) openPluginsBrowser {
-    [WSPACE openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/tree/master/Plugins"]];
+    [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins"]];
 }
 
 - (void) openTroubleshootingPage {
-  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/stretchr/bitbar/wiki/User-Guide"]];
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/wiki/User-Guide"]];
 }
 
 - (void) openPluginFolder {
@@ -177,11 +177,26 @@
   [openDlg setPrompt:@"Use as Plugins Directory"];
   [openDlg setTitle:@"Select BitBar Plugins Directory"];
   
+  
   if (openDlg.runModal == NSOKButton) {
     
-    self.path = [openDlg.directoryURL path];
-    [DEFS setPluginsDirectory:self.path];
-    return YES;
+    if (!openDlg.URL.isFileURL) {
+      // TODO: error popup
+      return NO;
+    }
+    
+    BOOL isDir = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath: openDlg.URL.path isDirectory: &isDir]
+        && isDir) {
+      
+      self.path = [openDlg.URL path];
+      [DEFS setPluginsDirectory:self.path];
+      return YES;
+      
+    }
+
+    // TODO: error popup
+    return NO;
     
   } else self.path = DEFS.pluginsDirectory;
   

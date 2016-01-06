@@ -54,15 +54,24 @@
   // success
   self.lastCommandWasError = NO;
   return YES;
-  
+}
+
+-(void)performRefreshNow:(NSMenuItem*)menuItem{
+  self.content = @"Updating ...";
+  self.errorContent = @"";
+  [self rebuildMenuForStatusItem:self.statusItem];
+  self.currentLine = -1;
+  [self cycleLines];
+  [self.manager pluginDidUdpdateItself:self];
+  [self refresh];
 }
 
 -(BOOL)refresh {
-  
-  
   [self.lineCycleTimer invalidate];
   self.lineCycleTimer = nil;
-  
+  [self.refreshTimer invalidate];
+  self.refreshTimer = nil;
+    
   // execute command
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
     [self refreshContentByExecutingCommand];
@@ -90,7 +99,7 @@
       [self.manager pluginDidUdpdateItself:self];
       
       // schedule next refresh
-      [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
+      _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
       
     });
   });
