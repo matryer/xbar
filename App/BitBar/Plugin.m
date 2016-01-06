@@ -178,7 +178,10 @@
     if ([self.titleLines count] > 1) {
       for (line in self.titleLines) {
         NSMenuItem * item = [self buildMenuItemForLine:line];
-        [menu addItem:item];
+        if (item) {
+          [menu addItem:item];
+        }
+        
       }
       // add the seperator
       [menu addItem:[NSMenuItem separatorItem]];
