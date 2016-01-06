@@ -29,6 +29,9 @@
 		A22AF32A189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
 		A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 		A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		F89653AA1C3D904900062980 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F89653A51C3D904900062980 /* AHProxy.m */; };
+		F89653AB1C3D904900062980 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F89653A71C3D904900062980 /* AHProxySettings.m */; };
+		F89653AC1C3D904900062980 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F89653A91C3D904900062980 /* NSTask+useSystemProxies.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,12 @@
 		A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ExecutablePlugin.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A281BDB61890670800C380A4 /* HTMLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPlugin.h; sourceTree = "<group>"; };
 		A281BDB71890670800C380A4 /* HTMLPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HTMLPlugin.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F89653A41C3D904900062980 /* AHProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHProxy.h; sourceTree = "<group>"; };
+		F89653A51C3D904900062980 /* AHProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHProxy.m; sourceTree = "<group>"; };
+		F89653A61C3D904900062980 /* AHProxySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHProxySettings.h; sourceTree = "<group>"; };
+		F89653A71C3D904900062980 /* AHProxySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHProxySettings.m; sourceTree = "<group>"; };
+		F89653A81C3D904900062980 /* NSTask+useSystemProxies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+useSystemProxies.h"; sourceTree = "<group>"; };
+		F89653A91C3D904900062980 /* NSTask+useSystemProxies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+useSystemProxies.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +132,7 @@
 		055EB10C183472C400FF83A6 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F89653A31C3D904900062980 /* AHProxySettings */,
 				7B9A21541B9F0F10002539F7 /* DateTools */,
 				7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */,
 				7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */,
@@ -237,6 +247,20 @@
 			path = Vendor/DateTools/DateTools;
 			sourceTree = SOURCE_ROOT;
 		};
+		F89653A31C3D904900062980 /* AHProxySettings */ = {
+			isa = PBXGroup;
+			children = (
+				F89653A41C3D904900062980 /* AHProxy.h */,
+				F89653A51C3D904900062980 /* AHProxy.m */,
+				F89653A61C3D904900062980 /* AHProxySettings.h */,
+				F89653A71C3D904900062980 /* AHProxySettings.m */,
+				F89653A81C3D904900062980 /* NSTask+useSystemProxies.h */,
+				F89653A91C3D904900062980 /* NSTask+useSystemProxies.m */,
+			);
+			name = AHProxySettings;
+			path = Vendor/AHProxySettings/AHProxySettings;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -339,12 +363,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F89653AA1C3D904900062980 /* AHProxy.m in Sources */,
 				05DAE007183323DD00409786 /* AppDelegate.m in Sources */,
 				7B9A21661B9F0F10002539F7 /* DTConstants.m in Sources */,
 				A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */,
 				7B9A21531B9F0BE6002539F7 /* STPrivilegedTask.m in Sources */,
 				A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */,
 				7B9A216B1B9F0F10002539F7 /* DTTimePeriodGroup.m in Sources */,
+				F89653AC1C3D904900062980 /* NSTask+useSystemProxies.m in Sources */,
 				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
 				7B9A21671B9F0F10002539F7 /* DTError.m in Sources */,
 				7B9A216A1B9F0F10002539F7 /* DTTimePeriodCollection.m in Sources */,
@@ -354,6 +380,7 @@
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				7B9A21691B9F0F10002539F7 /* DTTimePeriodChain.m in Sources */,
 				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
+				F89653AB1C3D904900062980 /* AHProxySettings.m in Sources */,
 				7B9A21681B9F0F10002539F7 /* DTTimePeriod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

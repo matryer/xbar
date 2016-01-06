@@ -7,3 +7,6 @@
 [submodule "App/Vendor/LaunchAtLoginController"]
 	path = App/Vendor/LaunchAtLoginController
 	url = https://github.com/mralexgray/LaunchAtLoginController--with-ARC-.git
+[submodule "App/Vendor/AHProxySettings"]
+	path = App/Vendor/AHProxySettings
+	url = https://github.com/eahrold/AHProxySettings.git
