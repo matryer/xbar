@@ -19,12 +19,14 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ####Developer
 - Homebrew available updates
+- TravisCI check
 
 ####Finance
 - Stock tracker
 
 ####Music
-- Spotify (Shows current track information from spotify)
+- iTunes (shows current track information from iTunes)
+- Spotify (Shows current track information from Spotify)
 
 ####Network
 - Bandwidth Usage
@@ -35,8 +37,15 @@ This repo contains scripts, programs and command-line tools that add functionali
 ####System
 - Clipboard History
 - Real CPU Usage
+- Real CPU Usage Chart
 - Unix time
 - Uptime
+- USB Device Info
+- Screen Lock
+
+#####Battery
+- Battery percentage for bluetooth Mouse
+- Battery percentage for bluetooth Keyboard
 
 ####Time
 - Fuzzy clock
@@ -44,6 +53,10 @@ This repo contains scripts, programs and command-line tools that add functionali
 ####Web
 - SAP version
 - StackOverflow
+
+####Weather
+- forecast.io
+- Open Weather Map
 
 ##Contributors
 
@@ -53,6 +66,13 @@ Special thanks to everyone who has contributed:
 - Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
 - Dylan Evans - [https://github.com/whonut](https://github.com/whonut))
+- Daniel Seripap - [https://github.com/seripap](https://github.com/seripap)
+- Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
+- Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
+- Marian Schubert - [https://github.com/maio](https://github.com/maio)
+- Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
+- Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
+- Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
 
 ## Write your own
 
@@ -81,6 +101,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh --verbose"`
     * `terminal=..` if need to start bash script without open Terminal may be true or false
   * If you're writing scripts, ensure it has a shebang at the top.
+  * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
 
 ### Examples
 
