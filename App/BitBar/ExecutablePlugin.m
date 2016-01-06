@@ -8,6 +8,7 @@
 
 #import "ExecutablePlugin.h"
 #import "PluginManager.h"
+#import "NSTask+useSystemProxies.h"
 
 @implementation ExecutablePlugin
 
@@ -21,6 +22,7 @@
   
   [task setEnvironment:self.manager.environment];
   [task setLaunchPath:self.path];
+  [task useSystemProxies];
   
   NSPipe *stdoutPipe = [NSPipe pipe];
   [task setStandardOutput:stdoutPipe];
