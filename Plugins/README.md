@@ -22,7 +22,11 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ####Developer
 - Homebrew available updates
+<<<<<<< HEAD
+- Jenkins build status
+=======
 - TravisCI check
+>>>>>>> master
 
 ####Finance
 - Stock tracker
@@ -77,6 +81,7 @@ Special thanks to everyone who has contributed:
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
 - Marian Schubert - [https://github.com/maio](https://github.com/maio)
+- Stratos Xakoustos - [https://github.com/Stratouklos](https://github.com/Stratouklos)
 - Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
 - Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
 - Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
