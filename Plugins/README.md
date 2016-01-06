@@ -119,6 +119,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `refresh=..` to make the dropdown items refresh the plugin it belongs to
   * If you're writing scripts, ensure it has a shebang at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
+  * You can use emoji in the output (find an example in the Music/vox Plugin).
 
 ### Examples
 
