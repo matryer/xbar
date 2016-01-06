@@ -32,6 +32,10 @@
 
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params {
 
+  if ([[params[@"dropdown"] lowercaseString] isEqualToString:@"false"]) {
+    return nil;
+  }
+  
   NSString * title = [params objectForKey:@"title"];
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
@@ -173,7 +177,9 @@
     NSString *line;
     for (line in self.allContentLines) {
       NSMenuItem * item = [self buildMenuItemForLine:line];
-      [menu addItem:item];
+      if(item){
+        [menu addItem:item];
+      }
     }
     
     // add the seperator
@@ -190,7 +196,8 @@
           [menu addItem:[NSMenuItem separatorItem]];
         } else {
           NSMenuItem * item = [self buildMenuItemForLine:line];
-          [menu addItem:item];
+          if(item)
+            [menu addItem:item];
         }
         
       }

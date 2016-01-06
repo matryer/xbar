@@ -84,7 +84,7 @@ Special thanks to everyone who has contributed:
 - Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
 - Nicolas Lassaux - [https://github.com/nico401](https://github.com/nico401)
 - Pierre-Louis Dubouilh - [https://github.com/pldubouilh](https://github.com/pldubouilh)
-- Jonathan Keith - [http://jonkeith.com](http://jonkeith.com) 
+- Jonathan Keith - [http://jonkeith.com](http://jonkeith.com)
 - Jean Caillé - [http://jcaille.github.io](http://jcaille.github.io)
 
 ## Write your own
@@ -101,6 +101,54 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * Include an update to the list of plugins on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
   * Please add your name and a link to the Contributors list on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
 
+## Supported Languages
+
+*More languages will be added to this list as they are tested.*
+
+1. Ruby
+  1. Status: Working
+  1. Caveats: None
+  1. Output: `puts "your string here"`
+  1. Notes: None
+1. Python2
+  1. Status: Working
+  1. Caveats: None
+  1. Output: `print "your string here"`
+  1. Notes: None
+1. Python3
+  1. Status: Working
+  1. Caveats: None
+  1. Output: `print("your string here")`
+  1. Notes: None
+1. JavaScript (`node`)
+  1. Status: Working
+  1. Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
+  1. Output: `console.log("your string here")`
+  1. Notes:
+    1. `process.stdout.write` doesn't output desired text.
+    1. There may be a better way to run JavaScript files.
+1. CoffeeScript (`coffee`)
+  1. Status: Working
+  1. Caveats:
+    1. Shebang has to be in the format `#!/usr/bin/env /path/to/the/coffee/executable`
+    1. `coffee` shebang also had to be modified.
+      1. `#!/usr/bin/env /path/to/the/node/executable`
+  1. Output: `console.log "your string here"`
+  1. Notes:
+    1. `process.stdout.write` doesn't output desired text.
+    1. There may be a better way to run CoffeeScript files.
+1. Swift (Interpreted)
+  1. Status: Working
+  1. Caveats: None
+  1. Output: `print("your string here")`
+  1. Notes: None
+1. Swift (Compiled)
+  1. Status: Working
+  1. Caveats: You still need a file extension (`file.cswift`)
+  1. Output: `print("your string here")`
+  1. Notes:
+    1. To compile a swift file, use: `xcrun -sdk macosx swiftc -o file.1s.cswift file.1s.swift`
+
 ## Plugin API
 
   * To write a plugin, just write some form of executable script that outputs to the standard output.
@@ -114,6 +162,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh --verbose"`
     * `terminal=..` if need to start bash script without open Terminal may be true or false
     * `refresh=..` to make the dropdown items refresh the plugin it belongs to
+    * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
   * If you're writing scripts, ensure it has a shebang at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
   * You can use emoji in the output (find an example in the Music/vox Plugin).
