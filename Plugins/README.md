@@ -50,6 +50,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Uptime
 - USB Device Info
 - Screen Lock
+- Mounted Disk Capacity
 
 #####Battery
 - Battery percentage for bluetooth Mouse
@@ -86,6 +87,7 @@ Special thanks to everyone who has contributed:
 - Pierre-Louis Dubouilh - [https://github.com/pldubouilh](https://github.com/pldubouilh)
 - Jonathan Keith - [http://jonkeith.com](http://jonkeith.com)
 - Jean Caillé - [http://jcaille.github.io](http://jcaille.github.io)
+- Carlson Orozco - [https://github.com/carlsonorozco](https://github.com/carlsonorozco)
 
 ## Write your own
 
