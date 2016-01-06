@@ -36,6 +36,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - External IP
 - Internal IP
 - Ping
+- VPN connection checker
 
 ####System
 - Clipboard History
@@ -72,6 +73,7 @@ Special thanks to everyone who has contributed:
 - Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
 - Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
 - Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
+- Pierre-Louis Dubouilh - [https://github.com/pldubouilh](https://github.com/pldubouilh)
 - Jonathan Keith - [http://jonkeith.com](http://jonkeith.com) 
 
 ## Write your own
