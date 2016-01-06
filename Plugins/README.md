@@ -101,25 +101,19 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * Include an update to the list of plugins on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
   * Please add your name and a link to the Contributors list on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
 
-## Supported Languages
+## Tested languages
 
-*More languages will be added to this list as they are tested.*
+Anything that can write to standard out is supported, but here is a list that have been explicitally tested.
 
 1. Ruby
   1. Status: Working
-  1. Caveats: None
   1. Output: `puts "your string here"`
-  1. Notes: None
 1. Python2
   1. Status: Working
-  1. Caveats: None
   1. Output: `print "your string here"`
-  1. Notes: None
 1. Python3
   1. Status: Working
-  1. Caveats: None
   1. Output: `print("your string here")`
-  1. Notes: None
 1. JavaScript (`node`)
   1. Status: Working
   1. Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
@@ -139,9 +133,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     1. There may be a better way to run CoffeeScript files.
 1. Swift (Interpreted)
   1. Status: Working
-  1. Caveats: None
   1. Output: `print("your string here")`
-  1. Notes: None
 1. Swift (Compiled)
   1. Status: Working
   1. Caveats: You still need a file extension (`file.cswift`)
