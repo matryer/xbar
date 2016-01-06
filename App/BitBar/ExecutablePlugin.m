@@ -57,6 +57,12 @@
 }
 
 -(void)performRefreshNow:(NSMenuItem*)menuItem{
+  self.content = @"Updating ...";
+  self.errorContent = @"";
+  [self rebuildMenuForStatusItem:self.statusItem];
+  self.currentLine = -1;
+  [self cycleLines];
+  [self.manager pluginDidUdpdateItself:self];
   [self refresh];
 }
 
@@ -65,11 +71,7 @@
   self.lineCycleTimer = nil;
   [self.refreshTimer invalidate];
   self.refreshTimer = nil;
-  
-  self.content = @"Updating ...";
-  self.errorContent = @"";
-  [self rebuildMenuForStatusItem:self.statusItem];
-  
+    
   // execute command
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
     [self refreshContentByExecutingCommand];
