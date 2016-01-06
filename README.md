@@ -82,6 +82,20 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 `defaults delete com.matryer.BitBar`
 
+## Contributing
+
+  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins#write-your-own) and submit a pull request
+
+### BitBar app
+
+To work on the BitBar app, fork, then clone this repo.
+
+In terminal, navigate to the project directory and run:
+
+```
+git submodule init && git submodule update
+```
+
 ## Thanks
 
   * Special thanks to [@muhqu](https://github.com/muhqu) and [@tylerb](https://github.com/tylerb) for all their help (see commit history for details)
