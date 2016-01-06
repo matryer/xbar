@@ -71,6 +71,7 @@ Special thanks to everyone who has contributed:
 - Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
 - Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
 - Pierre-Louis Dubouilh - [https://github.com/pldubouilh](https://github.com/pldubouilh)
+- Jean Caillé - [http://jcaille.github.io](http://jcaille.github.io)
 
 ## Write your own
 
