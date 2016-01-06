@@ -65,6 +65,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 ####Weather
 - forecast.io
 - Open Weather Map
+- Weather at Current GeoIP
 
 ##Contributors
 
@@ -86,6 +87,7 @@ Special thanks to everyone who has contributed:
 - Pierre-Louis Dubouilh - [https://github.com/pldubouilh](https://github.com/pldubouilh)
 - Jonathan Keith - [http://jonkeith.com](http://jonkeith.com)
 - Jean Caillé - [http://jcaille.github.io](http://jcaille.github.io)
+- Taylor Zane Glaeser - [https://www.taylorzane.com](https://www.taylorzane.com)
 
 ## Write your own
 
