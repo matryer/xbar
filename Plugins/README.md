@@ -14,7 +14,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 ###Available Plugins
 
 ####AWS
-- ELB % in service instances (dropdown with total in/out)
+- ELB (shows percentage of in service instances with total in/out in dropdown)
 
 ####Bitcoin
 - Bitstamp last BTC Price
