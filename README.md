@@ -2,8 +2,10 @@
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
-  * [View plugins](https://github.com/matryer/bitbar-plugins)
+  * [Download](https://github.com/matryer/bitbar/releases)
   * [Get started](#get-started)
+  * [View plugins](https://github.com/matryer/bitbar-plugins)
+  * [Thanks](#thanks)
 
 Example showing the latest Buy and Sell figures for BitCoins:
 
@@ -25,7 +27,7 @@ Homebrew Cask users can, alternatively, install BitBar by running `brew cask ins
 
 [Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar-plugins#write-your-own)
 
-## It's free, so please donate
+### It's free, so please donate
 
 If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR` or [send something useful (Amazon Wishlist)](http://amzn.to/1Pd9yOt).
 
