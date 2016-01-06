@@ -57,7 +57,7 @@
 
   NSString * title = params[@"title"];
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
-  NSFont    * font = params[@"font"] ? [NSFont fontWithName:params[@"font"] size:size]
+  NSFont    * font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
                                      : [NSFont menuFontOfSize:size]
                                     ?: [NSFont menuFontOfSize:size];
   NSColor * fgColor;
@@ -312,6 +312,17 @@
   _allContent = nil;
   _titleLines = nil;
   _allContentLines = nil;
+}
+
+- (BOOL) isFontValid:(NSString *)fontName {
+  if (fontName == nil) {
+    return NO;
+  }
+  
+  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute:fontName}];
+  NSArray *matches = [fontDescriptor matchingFontDescriptorsWithMandatoryKeys: nil];
+  
+  return ([matches count] > 0);
 }
 
 - (void) setContent:(NSString *)content {
