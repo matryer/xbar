@@ -19,7 +19,11 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ####Developer
 - Homebrew available updates
+<<<<<<< HEAD
 - Jenkins build status
+=======
+- TravisCI check
+>>>>>>> master
 
 ####Finance
 - Stock tracker
@@ -33,6 +37,7 @@ This repo contains scripts, programs and command-line tools that add functionali
 - External IP
 - Internal IP
 - Ping
+- VPN connection checker
 
 ####System
 - Clipboard History
@@ -40,14 +45,23 @@ This repo contains scripts, programs and command-line tools that add functionali
 - Real CPU Usage Chart
 - Unix time
 - Uptime
+- USB Device Info
+- Screen Lock
 
 #####Battery
 - Battery percentage for bluetooth Mouse
 - Battery percentage for bluetooth Keyboard
 
+####Time
+- Fuzzy clock
+
 ####Web
 - SAP version
 - StackOverflow
+
+####Weather
+- forecast.io
+- Open Weather Map
 
 ##Contributors
 
@@ -56,10 +70,17 @@ Special thanks to everyone who has contributed:
 - Bhagya Silva - [http://about.me/bhagyas](http://about.me/bhagyas)
 - Jason Tokoph - [http://jasontokoph.com](http://jasontokoph.com)
 - Trung Đinh Quang - [https://github.com/trungdq88](https://github.com/trungdq88)
+- Dylan Evans - [https://github.com/whonut](https://github.com/whonut))
+- Daniel Seripap - [https://github.com/seripap](https://github.com/seripap)
 - Alexandre Espinosa Menor - [https://github.com/alexandregz](https://github.com/alexandregz)
 - Dan Turkel - [https://danturkel.com/](https://danturkel.com/)
 - Marian Schubert - [https://github.com/maio](https://github.com/maio)
 - Stratos Xakoustos - [https://github.com/Stratouklos](https://github.com/Stratouklos)
+- Chris Tomkins-Tinch - [https://github.com/tomkinsc](https://github.com/tomkinsc)
+- Raemond Bergstrom-Wood - [https://github.com/RaemondBW](https://github.com/RaemondBW)
+- Ant Cosentino - [https://github.com/skibz](https://github.com/skibz)
+- Pierre-Louis Dubouilh - [https://github.com/pldubouilh](https://github.com/pldubouilh)
+- Jean Caillé - [http://jcaille.github.io](http://jcaille.github.io)
 
 ## Write your own
 
