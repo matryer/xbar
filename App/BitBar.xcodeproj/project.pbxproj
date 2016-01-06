@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0531DCD91844070A007F0A96 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
-		0531DCE118440F93007F0A96 /* bitbar-icons.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCE018440F93007F0A96 /* bitbar-icons.icns */; };
 		05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
 		055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
 		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
@@ -16,6 +15,7 @@
 		05DAE007183323DD00409786 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
 		05DAE02D1833274100409786 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
+		05DB995C1C3D4B80008B5159 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB995B1C3D4B80008B5159 /* Images.xcassets */; };
 		7B9A21531B9F0BE6002539F7 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
 		7B9A21651B9F0F10002539F7 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A21551B9F0F10002539F7 /* DateTools.bundle */; };
 		7B9A21661B9F0F10002539F7 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
@@ -43,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		0531DCD81844070A007F0A96 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = App.xib; sourceTree = "<group>"; };
-		0531DCE018440F93007F0A96 /* bitbar-icons.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "bitbar-icons.icns"; path = "../Icons/bitbar-icons.icns"; sourceTree = "<group>"; };
 		05322A47183406E2004D9AFE /* NSUserDefaults+Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Settings.h"; sourceTree = "<group>"; };
 		05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Settings.m"; sourceTree = "<group>"; };
 		055819761834172E00B44B00 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
+		05DB995B1C3D4B80008B5159 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Vendor/STPrivilegedTask/STPrivilegedTask.h; sourceTree = SOURCE_ROOT; };
 		7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Vendor/STPrivilegedTask/STPrivilegedTask.m; sourceTree = SOURCE_ROOT; };
@@ -159,8 +159,8 @@
 		05DADFFA183323DD00409786 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05DB995B1C3D4B80008B5159 /* Images.xcassets */,
 				7B5D08F91BA8EF6300400886 /* README.md */,
-				0531DCE018440F93007F0A96 /* bitbar-icons.icns */,
 				05DADFFB183323DD00409786 /* BitBar-Info.plist */,
 				0531DCD81844070A007F0A96 /* App.xib */,
 			);
@@ -320,7 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0531DCD91844070A007F0A96 /* App.xib in Resources */,
-				0531DCE118440F93007F0A96 /* bitbar-icons.icns in Resources */,
+				05DB995C1C3D4B80008B5159 /* Images.xcassets in Resources */,
 				7B9A21651B9F0F10002539F7 /* DateTools.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +453,7 @@
 		05DAE022183323DD00409786 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
@@ -465,6 +466,7 @@
 		05DAE023183323DD00409786 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";

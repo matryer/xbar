@@ -1,6 +1,6 @@
 # BitBar
 
-![BitBar](https://github.com/stretchr/bitbar/raw/master/Docs/BitBar-small.png)
+![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/BitBar-small.png)
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
