@@ -22,11 +22,8 @@ This repo contains scripts, programs and command-line tools that add functionali
 
 ####Developer
 - Homebrew available updates
-<<<<<<< HEAD
 - Jenkins build status
-=======
 - TravisCI check
->>>>>>> master
 
 ####Finance
 - Stock tracker
