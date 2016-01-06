@@ -101,6 +101,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `terminal=..` if need to start bash script without open Terminal may be true or false
   * If you're writing scripts, ensure it has a shebang at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
+  * You can use emoji in the output (find an example in the Music/vox Plugin).
 
 ### Examples
 
