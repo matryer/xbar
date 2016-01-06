@@ -83,7 +83,7 @@
   
   [targetMenu addItem:NSMenuItem.separatorItem];
   
-  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleVersion"];
+  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
   [targetMenu addItem:versionMenuitem];
