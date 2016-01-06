@@ -177,11 +177,26 @@
   [openDlg setPrompt:@"Use as Plugins Directory"];
   [openDlg setTitle:@"Select BitBar Plugins Directory"];
   
+  
   if (openDlg.runModal == NSOKButton) {
     
-    self.path = [openDlg.directoryURL path];
-    [DEFS setPluginsDirectory:self.path];
-    return YES;
+    if (!openDlg.URL.isFileURL) {
+      // TODO: error popup
+      return NO;
+    }
+    
+    BOOL isDir = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath: openDlg.URL.path isDirectory: &isDir]
+        && isDir) {
+      
+      self.path = [openDlg.URL path];
+      [DEFS setPluginsDirectory:self.path];
+      return YES;
+      
+    }
+
+    // TODO: error popup
+    return NO;
     
   } else self.path = DEFS.pluginsDirectory;
   
