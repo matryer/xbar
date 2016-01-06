@@ -6,6 +6,8 @@
 # by Zack Katz (zack@katz.co)
 #
 # Fetch EDD sales for the day. Change your API domain, key, token, and currency as necessary.
+# See http://docs.easydigitaldownloads.com/article/1135-edd-rest-api---stats for the API used
+# See http://docs.easydigitaldownloads.com/article/1131-edd-rest-api-introduction for general REST API info
 
 import json
 import urllib2
