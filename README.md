@@ -7,6 +7,7 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
   * [Installing plugins](#installing-plugins)
   * [Contributing](#contributing)
   * [Thanks](#thanks)
+  * [Guide to writing plugins](#writing-plugins)
 
 Example showing the latest Buy and Sell figures for BitCoins:
 
