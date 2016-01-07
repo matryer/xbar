@@ -35,7 +35,7 @@ If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5
 
 ## Installing plugins
 
-Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus. 
+Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus.
 
 ### Configure the refresh time
 
@@ -69,13 +69,13 @@ Because Git will ignore everything in `Plugins/Enabled`, you can use it to maint
 #### Example
 
 	cd Plugins/Enabled
-	
+
 	# Enable spotify plugin
 	ln -s ../Music/spotify.10s.sh
-	
+
 	# Enable uptime plugin and change update interval to 30 seconds
 	ln -s ../System/uptime.1m.sh uptime.30s.sh
-	
+
 Then select the `Enabled` folder in your BitBar preferences.
 
 #### Resetting Plugin Directory
@@ -195,7 +195,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
 
 ### Tested languages
 
-Anything that can write to standard out is supported, but here is a list that have been explicitally tested.
+Anything that can write to standard out is supported, but here is a list that have been explicitly tested.
 
 1. Ruby
   1. Status: Working
