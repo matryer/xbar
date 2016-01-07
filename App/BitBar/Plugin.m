@@ -148,8 +148,17 @@
 
       [(NSTask*)task setLaunchPath:bash];
       [(NSTask*)task setArguments:args];
-      [(NSTask*)task launch];
 
+      if (params[@"refresh"]) {
+          ((NSTask*)task).terminationHandler = ^(NSTask *task) {
+              [self performRefreshNow:NULL];
+          };
+          [(NSTask*)task launch];
+          [(NSTask*)task waitUntilExit];
+      }
+      else {
+        [(NSTask*)task launch];
+      }
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
