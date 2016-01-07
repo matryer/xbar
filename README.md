@@ -23,7 +23,7 @@ Example showing your internal and external IP addresses:
 
 ## Get started
 
-[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) elect a plugins folder, do so.
+[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
 
 Homebrew Cask users can, alternatively, install BitBar by running `brew cask install bitbar`.
 
