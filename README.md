@@ -7,7 +7,7 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
   * [Installing plugins](#installing-plugins)
   * [Contributing](#contributing)
   * [Thanks](#thanks)
-  * [Guide to writing plugins](#writing-plugins)
+  * [Guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins)
 
 Example showing the latest Buy and Sell figures for BitCoins:
 
@@ -27,7 +27,7 @@ Example showing your internal and external IP addresses:
 
 Homebrew Cask users can, alternatively, install BitBar by running `brew cask install bitbar`.
 
-[Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](#writing-plugins)
+[Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
 
 ### It's free, so please donate
 
@@ -86,7 +86,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 ## Contributing
 
-  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](#writing-plugins) below.
+  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins) below.
 
 ### BitBar app
 
