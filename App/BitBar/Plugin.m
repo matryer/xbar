@@ -75,7 +75,7 @@
   NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
 
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
-  NSFont    * font = params[@"font"] ? [NSFont fontWithName:params[@"font"] size:size]
+  NSFont    * font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
                                      : [NSFont menuFontOfSize:size]
                                     ?: [NSFont menuFontOfSize:size];
   NSColor * fgColor;
@@ -166,8 +166,17 @@
 
       [(NSTask*)task setLaunchPath:bash];
       [(NSTask*)task setArguments:args];
-      [(NSTask*)task launch];
 
+      if (params[@"refresh"]) {
+          ((NSTask*)task).terminationHandler = ^(NSTask *task) {
+              [self performRefreshNow:NULL];
+          };
+          [(NSTask*)task launch];
+          [(NSTask*)task waitUntilExit];
+      }
+      else {
+        [(NSTask*)task launch];
+      }
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
@@ -330,6 +339,17 @@
   _allContent = nil;
   _titleLines = nil;
   _allContentLines = nil;
+}
+
+- (BOOL) isFontValid:(NSString *)fontName {
+  if (fontName == nil) {
+    return NO;
+  }
+  
+  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute:fontName}];
+  NSArray *matches = [fontDescriptor matchingFontDescriptorsWithMandatoryKeys: nil];
+  
+  return ([matches count] > 0);
 }
 
 - (void) setContent:(NSString *)content {
