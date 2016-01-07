@@ -36,13 +36,24 @@
     return nil;
   }
   
-  NSString * title = [params objectForKey:@"title"];
+  NSString * fullTitle = params[@"title"];
+
+  CGFloat titleLength = [fullTitle length];
+  CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
+  CGFloat truncLength = lengthParam >= titleLength ? titleLength : lengthParam;
+
+  NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
+
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
           : params[@"refresh"] ? @selector(performRefreshNow:):
     nil;
 
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
+
+  if (truncLength < titleLength)
+    [item setToolTip:fullTitle];
+
   if (sel) {
     item.representedObject = params;
     [item setTarget:self];
@@ -55,7 +66,14 @@
 
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
-  NSString * title = params[@"title"];
+  NSString * fullTitle = params[@"title"];
+
+  CGFloat titleLength = [fullTitle length];
+  CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
+  CGFloat truncLength = lengthParam >= titleLength ? titleLength : lengthParam;
+
+  NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
+
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
   NSFont    * font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
                                      : [NSFont menuFontOfSize:size]
@@ -190,7 +208,7 @@
         if (item) {
           [menu addItem:item];
         }
-        
+
       }
       // add the seperator
       [menu addItem:[NSMenuItem separatorItem]];
