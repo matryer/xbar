@@ -38,17 +38,22 @@
   
   NSString * fullTitle = params[@"title"];
 
-  CGFloat lineLength = params[@"length"] ? [params[@"length"] floatValue] : 20;
-  CGFloat truncLength = [fullTitle length] < lineLength ? [fullTitle length] : lineLength;
+  CGFloat titleLength = [fullTitle length];
+  CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
+  CGFloat truncLength = lengthParam >= titleLength ? titleLength : lengthParam;
 
-  NSString * title = lineLength < 0 ? fullTitle : [fullTitle substringToIndex:truncLength];
-  
+  NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
+
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
           : params[@"refresh"] ? @selector(performRefreshNow:):
     nil;
 
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
+
+  if (truncLength < titleLength)
+    [item setToolTip:fullTitle];
+
   if (sel) {
     item.representedObject = params;
     [item setTarget:self];
@@ -63,10 +68,11 @@
 
   NSString * fullTitle = params[@"title"];
 
-  CGFloat lineLength = params[@"length"] ? [params[@"length"] floatValue] : 20;
-  CGFloat truncLength = [fullTitle length] < lineLength ? [fullTitle length] : lineLength;
+  CGFloat titleLength = [fullTitle length];
+  CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
+  CGFloat truncLength = lengthParam >= titleLength ? titleLength : lengthParam;
 
-  NSString * title = lineLength < 0 ? fullTitle : [fullTitle substringToIndex:truncLength];
+  NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
 
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
   NSFont    * font = params[@"font"] ? [NSFont fontWithName:params[@"font"] size:size]
@@ -193,7 +199,7 @@
         if (item) {
           [menu addItem:item];
         }
-        
+
       }
       // add the seperator
       [menu addItem:[NSMenuItem separatorItem]];
