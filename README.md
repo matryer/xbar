@@ -86,7 +86,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 ## Contributing
 
-  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins#write-your-own) and submit a pull request
+  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](#writing-plugins) below.
 
 ### BitBar app
 
