@@ -1,6 +1,6 @@
 # BitBar Changes
 
-## v1.4-beta
+## v1.4-beta-2
 
 Features:
 
