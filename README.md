@@ -103,60 +103,19 @@ git submodule init && git submodule update
   * Thanks to [Chris Ryer](http://www.chrisryer.co.uk/) for the app logo - and to [@mazondo](https://twitter.com/mazondo) for the original
   * Thanks for all our [plugin contributors](https://github.com/matryer/bitbar-plugins) who have come up with some pretty genius things
 
-
 # Writing plugins
 
 We're always looking for new plugins, so please send us pull requests if you write anything cool or useful.
 
 ### Got ideas?
 
-If you've got ideas, or want to report a bug, nip over to our [issues page](https://github.com/matryer/bitbar/issues) and let us know.
+If you've got ideas, or want to report a bug, nip over to our [issues page](https://github.com/matryer/bitbar-plugin/issues) and let us know.
 
 If you want to contribute, please send us a pull request and we'll add it to our repos.
 
   * Ensure the plugin is executable
-  * Include an update to the list of plugins on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
-  * Please add your name and a link to the Contributors list on https://github.com/matryer/bitbar/blob/master/Plugins/README.md
-
-## Tested languages
-
-Anything that can write to standard out is supported, but here is a list that have been explicitally tested.
-
-1. Ruby
-  1. Status: Working
-  1. Output: `puts "your string here"`
-1. Python2
-  1. Status: Working
-  1. Output: `print "your string here"`
-1. Python3
-  1. Status: Working
-  1. Output: `print("your string here")`
-1. JavaScript (`node`)
-  1. Status: Working
-  1. Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
-  1. Output: `console.log("your string here")`
-  1. Notes:
-    1. `process.stdout.write` doesn't output desired text.
-    1. There may be a better way to run JavaScript files.
-1. CoffeeScript (`coffee`)
-  1. Status: Working
-  1. Caveats:
-    1. Shebang has to be in the format `#!/usr/bin/env /path/to/the/coffee/executable`
-    1. `coffee` shebang also had to be modified.
-      1. `#!/usr/bin/env /path/to/the/node/executable`
-  1. Output: `console.log "your string here"`
-  1. Notes:
-    1. `process.stdout.write` doesn't output desired text.
-    1. There may be a better way to run CoffeeScript files.
-1. Swift (Interpreted)
-  1. Status: Working
-  1. Output: `print("your string here")`
-1. Swift (Compiled)
-  1. Status: Working
-  1. Caveats: You still need a file extension (`file.cswift`)
-  1. Output: `print("your string here")`
-  1. Notes:
-    1. To compile a swift file, use: `xcrun -sdk macosx swiftc -o file.1s.cswift file.1s.swift`
+  * Include an update to the list of plugins
+  * Please add your name and a link to the Contributors list
 
 ## Plugin API
 
@@ -230,3 +189,44 @@ Anything that can write to standard out is supported, but here is a list that ha
     else           echo "DO | $FONT color=cadetblue"
     echo "---"
     ...
+
+
+### Tested languages
+
+Anything that can write to standard out is supported, but here is a list that have been explicitally tested.
+
+1. Ruby
+  1. Status: Working
+  1. Output: `puts "your string here"`
+1. Python2
+  1. Status: Working
+  1. Output: `print "your string here"`
+1. Python3
+  1. Status: Working
+  1. Output: `print("your string here")`
+1. JavaScript (`node`)
+  1. Status: Working
+  1. Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
+  1. Output: `console.log("your string here")`
+  1. Notes:
+    1. `process.stdout.write` doesn't output desired text.
+    1. There may be a better way to run JavaScript files.
+1. CoffeeScript (`coffee`)
+  1. Status: Working
+  1. Caveats:
+    1. Shebang has to be in the format `#!/usr/bin/env /path/to/the/coffee/executable`
+    1. `coffee` shebang also had to be modified.
+      1. `#!/usr/bin/env /path/to/the/node/executable`
+  1. Output: `console.log "your string here"`
+  1. Notes:
+    1. `process.stdout.write` doesn't output desired text.
+    1. There may be a better way to run CoffeeScript files.
+1. Swift (Interpreted)
+  1. Status: Working
+  1. Output: `print("your string here")`
+1. Swift (Compiled)
+  1. Status: Working
+  1. Caveats: You still need a file extension (`file.cswift`)
+  1. Output: `print("your string here")`
+  1. Notes:
+    1. To compile a swift file, use: `xcrun -sdk macosx swiftc -o file.1s.cswift file.1s.swift`
