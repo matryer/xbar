@@ -10,7 +10,6 @@
 		0531DCD91844070A007F0A96 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
 		05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
 		055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
-		05590ACF1C3E74C100352E77 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 05590ACE1C3E74C100352E77 /* CHANGELOG.md */; };
 		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		0599719818333DB300EA6D8D /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
 		05DAE007183323DD00409786 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
@@ -381,7 +380,6 @@
 				7B9A216C1B9F0F10002539F7 /* NSDate+DateTools.m in Sources */,
 				A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
-				05590ACF1C3E74C100352E77 /* CHANGELOG.md in Sources */,
 				7B9A21691B9F0F10002539F7 /* DTTimePeriodChain.m in Sources */,
 				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
 				F8D03BB81C3D95E600A64968 /* AHProxySettings.m in Sources */,
