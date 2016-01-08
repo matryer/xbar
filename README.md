@@ -133,10 +133,13 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `refresh=..` to make the dropdown items refresh the plugin it belongs to
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
+
+### Useful tips
+
   * If you're writing scripts, ensure it has a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
   * You can use emoji in the output (find an example in the Music/vox Plugin).
-  * If your bash script call to external program that returns text in other language, like spanish, you should put after shebang something like `export LANG="es_ES.UTF-8"` to show text in correct format.
+  * If your bash script generates text in another language, set the `LANG` variable with: `export LANG="es_ES.UTF-8"` (for Spanish) to show the text in correct format.
 
 ### Examples
 
