@@ -263,6 +263,13 @@
 
     NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
     env[@"BitBar"] = @YES;
+    if ([env objectForKey:@"LC_ALL"] == nil) {
+      NSLocale * currentLocale = [NSLocale currentLocale];
+      NSString * localeString = [NSString stringWithFormat:@"%@_%@.UTF-8", (NSString*)[currentLocale objectForKey:NSLocaleLanguageCode], (NSString*)[currentLocale objectForKey:NSLocaleCountryCode]];
+
+      env[@"LC_ALL"] = localeString;
+    }
+
     env;
   });
   
