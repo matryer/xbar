@@ -232,7 +232,23 @@ Anything that can write to standard out is supported, but here is a list that ha
   1. Output: `print("your string here")`
 1. Swift (Compiled)
   1. Status: Working
-  1. Caveats: You still need a file extension (`file.cswift`)
+  1. Caveats: You still need a file extension (`file.1s.cswift`)
   1. Output: `print("your string here")`
   1. Notes:
     1. To compile a swift file, use: `xcrun -sdk macosx swiftc -o file.1s.cswift file.1s.swift`
+1. Go (Interpreted)
+  1. Status: Working
+  1. Caveats:
+    1. Your script's shebang must be: `//usr/env/bin go run $0 $@; exit`
+    1. `go` must be in your `PATH`
+  1. Output: `Println("your string here")`
+1. Go (Compiled)
+  1. Status: Working
+  1. Caveats: You still need a file extension (`file.1s.cgo`)
+  1. Output: `Println("your string here")`
+  1. Notes
+    1. To compile a Go file, use: `go build file.1s.go`
+1. Lisp
+  1. Status: Working
+  1. Caveats: `lisp`/`clisp` must be in your `PATH`
+  1. Output: `(format t "your string here")`
