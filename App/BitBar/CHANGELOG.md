@@ -1,6 +1,6 @@
 # BitBar Changes
 
-## v1.4-beta
+## v1.4-beta-2
 
 Features:
 
@@ -12,6 +12,7 @@ Features:
 Other:
 
   * Started tracking changes
+  * Removed unnecessary separators from BitBar menu - https://github.com/matryer/bitbar/issues/143
   * General bug fixes and improvements
   * Support spaces in paths
   * Fonts will be checked, and a default will be used if they're not available

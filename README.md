@@ -23,7 +23,7 @@ Example showing your internal and external IP addresses:
 
 ## Get started
 
-[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) elect a plugins folder, do so.
+[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
 
 Homebrew Cask users can, alternatively, install BitBar by running `brew cask install bitbar`.
 
@@ -35,7 +35,7 @@ If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5
 
 ## Installing plugins
 
-Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus. 
+Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus.
 
 ### Configure the refresh time
 
@@ -69,13 +69,13 @@ Because Git will ignore everything in `Plugins/Enabled`, you can use it to maint
 #### Example
 
 	cd Plugins/Enabled
-	
+
 	# Enable spotify plugin
 	ln -s ../Music/spotify.10s.sh
-	
+
 	# Enable uptime plugin and change update interval to 30 seconds
 	ln -s ../System/uptime.1m.sh uptime.30s.sh
-	
+
 Then select the `Enabled` folder in your BitBar preferences.
 
 #### Resetting Plugin Directory
@@ -110,7 +110,7 @@ We're always looking for new plugins, so please send us pull requests if you wri
 
 ### Got ideas?
 
-If you've got ideas, or want to report a bug, nip over to our [issues page](https://github.com/matryer/bitbar-plugin/issues) and let us know.
+If you've got ideas, or want to report a bug, nip over to our [issues page](=https://github.com/matryer/bitbar-plugins/issues) and let us know.
 
 If you want to contribute, please send us a pull request and we'll add it to our repos.
 
@@ -132,9 +132,14 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `terminal=..` if need to start bash script without open Terminal may be true or false
     * `refresh=..` to make the dropdown items refresh the plugin it belongs to
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
-  * If you're writing scripts, ensure it has a shebang at the top.
+    * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
+
+### Useful tips
+
+  * If you're writing scripts, ensure it has a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
   * You can use emoji in the output (find an example in the Music/vox Plugin).
+  * If your bash script generates text in another language, set the `LANG` variable with: `export LANG="es_ES.UTF-8"` (for Spanish) to show the text in correct format.
 
 ### Examples
 
@@ -194,7 +199,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
 
 ### Tested languages
 
-Anything that can write to standard out is supported, but here is a list that have been explicitally tested.
+Anything that can write to standard out is supported, but here is a list that have been explicitly tested.
 
 1. Ruby
   1. Status: Working
