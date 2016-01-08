@@ -136,6 +136,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * If you're writing scripts, ensure it has a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
   * You can use emoji in the output (find an example in the Music/vox Plugin).
+  * If your bash script call to external program that returns text in other language, like spanish, you should put after shebang something like `export LANG="es_ES.UTF-8"` to show text in correct format.
 
 ### Examples
 
