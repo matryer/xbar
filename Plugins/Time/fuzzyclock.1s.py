@@ -50,14 +50,14 @@ def fuzzy_time(struct_time):
         return "{min} past {hr}".format(min=num_word[rounded_min],
                                         hr=num_word[hour])
     elif rounded_min == 30:
-        return "Half past {hr}".format(hr=num_word[hour])
+        return "half past {hr}".format(hr=num_word[hour])
     elif rounded_min == 45:
-        return "quarter to {hr}".format(hr=num_word[hour+1])
+        return "quarter to {hr}".format(hr=num_word[(hour + 1) % 12])
     elif rounded_min < 60 and rounded_min != 45:
         return "{min} to {hr}".format(min=num_word[60-rounded_min],
-                                      hr=num_word[hour+1])
+                                      hr=num_word[(hour + 1) % 12])
     else:
-        return "{hr} o'clock".format(hr=num_word[hour+1])
+        return "{hr} o'clock".format(hr=num_word[(hour + 1) % 12])
 
 if __name__ == '__main__':
     print(fuzzy_time(localtime()))
