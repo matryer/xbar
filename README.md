@@ -8,6 +8,7 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
   * [Get started](#get-started)
   * [Installing plugins](#installing-plugins)
   * [Contributing](#contributing)
+  * [Writing plugins (Plugin API)](https://github.com/matryer/bitbar/blob/master/README.md#writing-plugins)
   * [Thanks](#thanks)
   * [Guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins)
 
