@@ -2,6 +2,8 @@
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
+
+  * [Visit the app homepage at https://getbitbar.com](https://getbitbar.com)
   * [Download](https://github.com/matryer/bitbar/releases) and [View plugin repository](https://github.com/matryer/bitbar-plugins)
   * [Get started](#get-started)
   * [Installing plugins](#installing-plugins)
