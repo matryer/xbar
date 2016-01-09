@@ -86,7 +86,7 @@
                                        ?: [NSFont menuFontOfSize:size];
   }
   NSColor * fgColor;
-  NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font}];
+  NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1}];
   if (!params[@"color"]) return attributedTitle;
   if ((fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]]))
     [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
