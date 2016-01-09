@@ -148,14 +148,17 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
 # <bitbar.author.github>your-github-username</bitbar.author.github>
 # <bitbar.desc>Short description of what your plugin does.</bitbar.desc>
 # <bitbar.image>http://www.hosted-somewhere/pluginimage</bitbar.image>
+# <bitbar.dependencies>python,ruby,node</bitbar.dependencies>
 ```
 
+  * The comments can be anything
   * `bitbar.title` - The title of the plugin
   * `bitbar.version` - The version of the plugin (start with `v1.0`)
   * `bitbar.author` - Your name
   * `bitbar.author.github` - Your github username (without `@`)
   * `bitbar.desc` - A short description of what your plugin does
   * `bitbar.image` - A hosted image showing a preview of your plugin (ideally open)
+  * `bitbar.dependencies` - Comma separated list of dependencies
 
 For a real example, see the [Cycle text and detail plugin source code](https://github.com/matryer/bitbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh).
 
