@@ -134,6 +134,28 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
 
+### Metadata
+
+Add the following metadata to your source code (usually in comments somewhere):
+
+```
+# <bitbar.title>Title goes here</bitbar.title>
+# <bitbar.version>v1.0</bitbar.version>
+# <bitbar.author>Your Name</bitbar.author>
+# <bitbar.author.github>your-github-username</bitbar.author.github>
+# <bitbar.desc>Short description of what your plugin does.</bitbar.desc>
+# <bitbar.image>http://www.hosted-somewhere/pluginimage</bitbar.image>
+```
+
+  * `bitbar.title` - The title of the plugin
+  * `bitbar.version` - The version of the plugin (start with `v1.0`)
+  * `bitbar.author` - Your name
+  * `bitbar.author.github` - Your github username (without `@`)
+  * `bitbar.desc` - A short description of what your plugin does
+  * `bitbar.image` - A hosted image showing a preview of your plugin (ideally open)
+
+For a real example, see the [Cycle text and detail plugin source code](https://github.com/matryer/bitbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh).
+
 ### Useful tips
 
   * If you're writing scripts, ensure it has a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) at the top.
