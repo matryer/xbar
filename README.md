@@ -138,7 +138,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
 
 ### Metadata
 
-Add the following metadata to your source code (usually in comments somewhere):
+To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the following metadata to your source code (usually in comments somewhere):
 
 ```
 # <bitbar.title>Title goes here</bitbar.title>
