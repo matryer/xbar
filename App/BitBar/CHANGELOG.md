@@ -16,7 +16,6 @@ Other:
   * Started tracking changes
   * Fixed vertical alignment - https://github.com/matryer/bitbar/pull/153
   * Numbers are now monospace - https://github.com/matryer/bitbar/pull/148
-  * 
   * Removed unnecessary separators from BitBar menu - https://github.com/matryer/bitbar/issues/143
   * General bug fixes and improvements
   * Support spaces in paths
