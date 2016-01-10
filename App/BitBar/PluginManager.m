@@ -72,7 +72,7 @@
   ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
 
   // add browser item, aka openPluginBrowserMenuItem
-  ADD_MENU(@"Find More Plugins…", openPluginsBrowser, nil, self);
+  ADD_MENU(@"Browse Plugins…", openPluginsBrowser, nil, self);
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   

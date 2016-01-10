@@ -1,5 +1,9 @@
 # BitBar Changes
 
+## v1.4.1
+
+  * Updated "Browse plugins..." link to getbitbar.com
+
 ## v1.4
 
 Features:
