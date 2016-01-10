@@ -38,7 +38,7 @@ If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5
 
 ## Installing plugins
 
-Just download the plugin of your choice into your BitBar plugins directory and choose 'Reset' from one of the BitBar menus.
+Just download the plugin of your choice into your BitBar plugins directory and choose `Refresh` from one of the BitBar menus.
 
 ### Configure the refresh time
 
