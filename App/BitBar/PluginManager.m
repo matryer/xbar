@@ -108,7 +108,7 @@
 }
 
 - (void) openPluginsBrowser {
-    [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins"]];
+    [WSPACE openURL:[NSURL URLWithString:@"https://getbitbar.com/"]];
 }
 
 - (void) openTroubleshootingPage {
