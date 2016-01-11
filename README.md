@@ -118,8 +118,7 @@ If you've got ideas, or want to report a bug, nip over to our [issues page](=htt
 If you want to contribute, please send us a pull request and we'll add it to our repos.
 
   * Ensure the plugin is executable
-  * Include an update to the list of plugins
-  * Please add your name and a link to the Contributors list
+  * Be sure to include [appropriate Metadata](#metadata) to enhance the plugin's entry on getbitbar.com
 
 ## Plugin API
 
