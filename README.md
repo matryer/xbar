@@ -132,7 +132,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
     * `size=..` to change their text size. eg. `size=12`
     * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh --verbose"`
-    * `terminal=..` if need to start bash script without open Terminal may be true or false
+    * `terminal=..` start bash script without opening Terminal. `true` or `false`
     * `refresh=..` to make the dropdown items refresh the plugin it belongs to
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
