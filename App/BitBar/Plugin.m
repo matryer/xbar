@@ -36,13 +36,24 @@
     return nil;
   }
   
-  NSString * title = [params objectForKey:@"title"];
+  NSString * fullTitle = params[@"title"];
+
+  CGFloat titleLength = [fullTitle length];
+  CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
+  CGFloat truncLength = lengthParam >= titleLength ? titleLength : lengthParam;
+
+  NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
+
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
           : params[@"refresh"] ? @selector(performRefreshNow:):
     nil;
 
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
+
+  if (truncLength < titleLength)
+    [item setToolTip:fullTitle];
+
   if (sel) {
     item.representedObject = params;
     [item setTarget:self];
@@ -55,13 +66,27 @@
 
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
-  NSString * title = params[@"title"];
+  NSString * fullTitle = params[@"title"];
+
+  CGFloat titleLength = [fullTitle length];
+  CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
+  CGFloat truncLength = lengthParam >= titleLength ? titleLength : lengthParam;
+
+  NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
+
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
-  NSFont    * font = params[@"font"] ? [NSFont fontWithName:params[@"font"] size:size]
-                                     : [NSFont menuFontOfSize:size]
-                                    ?: [NSFont menuFontOfSize:size];
+  NSFont    * font;
+  if ([NSFont respondsToSelector:@selector(monospacedDigitSystemFontOfSize:weight:)]) {
+    font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
+                                       : [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular]
+                                      ?: [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular];
+  } else {
+    font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
+                                       : [NSFont menuFontOfSize:size]
+                                       ?: [NSFont menuFontOfSize:size];
+  }
   NSColor * fgColor;
-  NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font}];
+  NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1}];
   if (!params[@"color"]) return attributedTitle;
   if ((fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]]))
     [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
@@ -148,8 +173,17 @@
 
       [(NSTask*)task setLaunchPath:bash];
       [(NSTask*)task setArguments:args];
-      [(NSTask*)task launch];
 
+      if (params[@"refresh"]) {
+          ((NSTask*)task).terminationHandler = ^(NSTask *task) {
+              [self performRefreshNow:NULL];
+          };
+          [(NSTask*)task launch];
+          [(NSTask*)task waitUntilExit];
+      }
+      else {
+        [(NSTask*)task launch];
+      }
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
@@ -175,23 +209,24 @@
     
     // put all content as an item
     NSString *line;
-    for (line in self.allContentLines) {
-      NSMenuItem * item = [self buildMenuItemForLine:line];
-      if(item){
-        [menu addItem:item];
+    if ([self.titleLines count] > 1) {
+      for (line in self.titleLines) {
+        NSMenuItem * item = [self buildMenuItemForLine:line];
+        if (item) {
+          [menu addItem:item];
+        }
+
       }
+      // add the seperator
+      [menu addItem:[NSMenuItem separatorItem]];
     }
     
-    // add the seperator
-    [menu addItem:[NSMenuItem separatorItem]];
-    
-    // are there any allContentLinesAfterBreak?
-    if (self.allContentLinesAfterBreak.count > 0) {
+    // are there any allContentLines?
+    if (self.allContentLines.count > 0) {
       
       // put all content as an item
       NSString *line;
-      for (line in self.allContentLinesAfterBreak) {
-        
+      for (line in self.allContentLines) {
         if ([line isEqualToString:@"---"]) {
           [menu addItem:[NSMenuItem separatorItem]];
         } else {
@@ -213,8 +248,6 @@
     
     self.lastUpdatedMenuItem = [NSMenuItem.alloc initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
-    
-    [menu addItem:[NSMenuItem separatorItem]];
   }
   
   [self addAdditionalMenuItems:menu];
@@ -226,9 +259,6 @@
 }
 
 - (void) addDefaultMenuItems:(NSMenu *)menu {
-  if (menu.itemArray.count>0) {
-    [menu addItem:[NSMenuItem separatorItem]];
-  }
   [self.manager addHelperItemsToMenu:menu asSubMenu:(menu.itemArray.count>0)];
   
 }
@@ -292,12 +322,12 @@
   self.currentLine++;
   
   // if we've gone too far - wrap around
-  if ((NSUInteger)self.currentLine >= self.allContentLines.count) {
+  if ((NSUInteger)self.currentLine >= self.titleLines.count) {
     self.currentLine = 0;
   }
   
-  if (self.allContentLines.count > 0) {
-    NSDictionary * params = [self dictionaryForLine:self.allContentLines[self.currentLine]];
+  if (self.titleLines.count > 0) {
+    NSDictionary * params = [self dictionaryForLine:self.titleLines[self.currentLine]];
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     self.pluginIsVisible = YES;
   } else {
@@ -309,8 +339,19 @@
 
 - (void) contentHasChanged {
   _allContent = nil;
+  _titleLines = nil;
   _allContentLines = nil;
-  _allContentLinesAfterBreak = nil;
+}
+
+- (BOOL) isFontValid:(NSString *)fontName {
+  if (fontName == nil) {
+    return NO;
+  }
+  
+  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute:fontName}];
+  NSArray *matches = [fontDescriptor matchingFontDescriptorsWithMandatoryKeys: nil];
+  
+  return ([matches count] > 0);
 }
 
 - (void) setContent:(NSString *)content {
@@ -335,17 +376,13 @@
   return _allContent;
 }
 
-- (NSArray *)allContentLines {
+- (NSArray *)titleLines {
   
-  return _allContentLines = _allContentLines ?: ({
+  return _titleLines = _titleLines ?: ({
 
     NSMutableArray *cleanLines = @[].mutableCopy;
     
     for (NSString *lineEval in [self.allContent componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet]) {
-
-
-
-      
       // strip whitespace
       NSString *line = [self cleanLine:lineEval];
 
@@ -365,19 +402,21 @@
 }
 
 - (NSString*) cleanLine:(NSString*)line {
-    return line;
-  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"  +" options:NSRegularExpressionCaseInsensitive error:nil];
-  return [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, line.length) withTemplate:@" "];
+  NSArray *splitLine = [line componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  if ([[splitLine componentsJoinedByString:@""] isEqualToString:@""])
+    return @"";
+  return line; //[splitLine componentsJoinedByString:@" "];
+  //return [regex stringByReplacingMatchesInString:line options:0 range:NSMakeRange(0, line.length) withTemplate:@" "];
 }
 
-- (NSArray*) allContentLinesAfterBreak {
+- (NSArray*) allContentLines {
   
-  if (_allContentLinesAfterBreak == nil) {
+  if (_allContentLines == nil) {
     
     NSArray *lines = [self.allContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     NSMutableArray *cleanLines = [NSMutableArray.alloc initWithCapacity:lines.count];
     NSString *line;
-    BOOL storing = NO;
+    BOOL firstBreakFound = NO;
 
     for (line in lines) {
       
@@ -389,13 +428,13 @@
         
         if ([line isEqualToString:@"---"]) {
           
-          if (storing) {
+          if (firstBreakFound) {
             [cleanLines addObject:line];
           }
-          
-          storing = YES;
+
+          firstBreakFound = YES;
         } else {
-          if (storing == YES) {
+          if (firstBreakFound) {
             [cleanLines addObject:line];
           }
         }
@@ -404,16 +443,16 @@
       
     }
     
-    _allContentLinesAfterBreak = [NSArray arrayWithArray:cleanLines];
+    _allContentLines = [NSArray arrayWithArray:cleanLines];
     
   }
   
-  return _allContentLinesAfterBreak;
+  return _allContentLines;
   
 }
 
 - (BOOL) isMultiline {
-  return [self.allContentLines count] > 1 || [self.allContentLinesAfterBreak count]>0;
+  return [self.titleLines count] > 1 || [self.allContentLines count]>0;
 }
 
 #pragma mark - NSMenuDelegate

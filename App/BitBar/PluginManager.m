@@ -72,7 +72,7 @@
   ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
 
   // add browser item, aka openPluginBrowserMenuItem
-  ADD_MENU(@"Find More Plugins…", openPluginsBrowser, nil, self);
+  ADD_MENU(@"Browse Plugins…", openPluginsBrowser, nil, self);
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
@@ -108,7 +108,7 @@
 }
 
 - (void) openPluginsBrowser {
-    [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar-plugins"]];
+    [WSPACE openURL:[NSURL URLWithString:@"https://getbitbar.com/"]];
 }
 
 - (void) openTroubleshootingPage {
@@ -263,6 +263,13 @@
 
     NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
     env[@"BitBar"] = @YES;
+      
+    // Determine if Mac is in Dark Mode
+    NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
+    if ([osxMode isEqualToString:@"Dark"]) {
+        env[@"BitBarDarkMode"] = @YES;
+    }
+      
     env;
   });
   

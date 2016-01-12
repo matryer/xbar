@@ -4,6 +4,7 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C0AF55779579B522417152BFAB32AD2A49AFBDFE" : 0,
     "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : 0,
     "4FA437A61B0C4384CD084682AFD40F7D2624731D" : 0,
     "5A18CC4105103F3DCAAD74EC93EFD3FF8BB5508A" : 0,
@@ -11,6 +12,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B2EB30C0-666C-46EA-85F2-0586829722B1",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C0AF55779579B522417152BFAB32AD2A49AFBDFE" : "bitbar\/App\/Vendor\/AHProxySettings\/",
     "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : "bitbar\/App\/Vendor\/DateTools\/",
     "4FA437A61B0C4384CD084682AFD40F7D2624731D" : "bitbar\/App\/Vendor\/LaunchAtLoginController\/",
     "5A18CC4105103F3DCAAD74EC93EFD3FF8BB5508A" : "bitbar\/App\/Vendor\/STPrivilegedTask\/",
@@ -34,6 +36,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sveinbjornt\/STPrivilegedTask.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5A18CC4105103F3DCAAD74EC93EFD3FF8BB5508A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eahrold\/AHProxySettings.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C0AF55779579B522417152BFAB32AD2A49AFBDFE"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MatthewYork\/DateTools.git",

@@ -16,7 +16,8 @@
 @property (readonly)            BOOL isMultiline;
 @property (readonly)        NSString *lastUpdatedString;
 @property (nonatomic, copy) NSString *path, *name, *content, *allContent, *errorContent;
-@property (nonatomic)        NSArray *allContentLines, *allContentLinesAfterBreak;
+@property (nonatomic)        NSArray *allContentLines;
+@property (nonatomic)        NSArray *titleLines;
 @property (nonatomic)       NSNumber *refreshIntervalSeconds;
 @property (nonatomic)     NSMenuItem *lastUpdatedMenuItem;
 @property (nonatomic)         NSDate *lastUpdated;
@@ -36,6 +37,7 @@
 - (BOOL) refresh;
 - (void) cycleLines;
 - (void) contentHasChanged;
+- (BOOL) isFontValid:(NSString *)fontName;
 
 // actions
 - (void)changePluginsDirectorySelected:(id)sender;
