@@ -21,7 +21,7 @@
 - (BOOL) isFirstTimeAppRun { return ![self boolForKey:@"appHasRun"]; }
 
 - (void) setIsFirstTimeAppRun:(BOOL)firstTime {
-  [self setBool:firstTime forKey:@"appHasRun"];
+  [self setBool:!firstTime forKey:@"appHasRun"];
 }
 
 @end
