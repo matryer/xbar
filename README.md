@@ -4,9 +4,10 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
 
 
   * [Visit the app homepage at https://getbitbar.com](https://getbitbar.com)
-  * [Download](https://github.com/matryer/bitbar/releases) and [View plugin repository](https://github.com/matryer/bitbar-plugins)
+  * [Download latest BitBar release](https://github.com/matryer/bitbar/releases) and [View plugin repository](https://github.com/matryer/bitbar-plugins)
   * [Get started](#get-started)
   * [Installing plugins](#installing-plugins)
+  * [Read the story about how BitBar unexpectedly got going](https://medium.com/@matryer/what-happens-when-your-old-open-source-project-unexpectedly-gets-to-the-top-of-hacker-news-31114c6c6efb#.fznvtgskb)
   * [Contributing](#contributing)
   * [Writing plugins (Plugin API)](https://github.com/matryer/bitbar/blob/master/README.md#writing-plugins)
   * [Thanks](#thanks)
