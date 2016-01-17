@@ -45,6 +45,7 @@
   if (DEFS.isFirstTimeAppRun) {
     LaunchAtLoginController *launcher = LaunchAtLoginController.new;
     if (!launcher.launchAtLogin) [launcher setLaunchAtLogin:YES];
+    DEFS.isFirstTimeAppRun = NO;
   }
   
   // make a plugin manager
