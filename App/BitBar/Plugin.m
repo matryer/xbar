@@ -154,7 +154,7 @@
            *param4 = params[@"param4"] ?: @"",
            *param5 = params[@"param5"] ?: @"",
          *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"],
-         *iterm = params[@"iterm"] ?: [NSString stringWithFormat:@"%s", "true"];
+         *iterm = params[@"iterm"] ?: [NSString stringWithFormat:@"%s", "false"];
     NSArray *args = params[@"args"] ?: ({
 
       NSMutableArray *argArray = @[].mutableCopy;
