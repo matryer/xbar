@@ -153,7 +153,6 @@
            *param3 = params[@"param3"] ?: @"",
            *param4 = params[@"param4"] ?: @"",
            *param5 = params[@"param5"] ?: @"",
-         *background = params[@"background"] ?: [NSString stringWithFormat:@"%s", "true"],
          *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"],
          *iterm = params[@"iterm"] ?: [NSString stringWithFormat:@"%s", "true"];
     NSArray *args = params[@"args"] ?: ({
@@ -167,7 +166,7 @@
 
     });
 
-    if([background isEqual: @"false"]){
+    if([terminal isEqual: @"false"]){
 
       NSLog(@"Args: %@", args);
 
@@ -212,7 +211,7 @@
 
           [as executeAndReturnError:nil];
 
-      } else if([terminal isEqual: @"true"]){
+      } else {
           NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
                          activate \n\
                          if length of (get every window) is 0 then \n\
