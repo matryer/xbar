@@ -37,6 +37,9 @@
   }
   
   NSString * fullTitle = params[@"title"];
+  if (![[params[@"trim"] lowercaseString] isEqualToString:@"false"]) {
+      fullTitle = [fullTitle stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+  }
 
   CGFloat titleLength = [fullTitle length];
   CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
@@ -67,6 +70,9 @@
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
   NSString * fullTitle = params[@"title"];
+  if (![[params[@"trim"] lowercaseString] isEqualToString:@"false"]) {
+    fullTitle = [fullTitle stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+  }
 
   CGFloat titleLength = [fullTitle length];
   CGFloat lengthParam = params[@"length"] ? [params[@"length"] floatValue] : titleLength;
@@ -99,7 +105,7 @@
   // Find the title
   NSRange found = [line rangeOfString:@"|"];
   if (found.location == NSNotFound) return @{ @"title": line };
-  NSString * title = [[line substringToIndex:found.location] stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
+  NSString * title = [line substringToIndex:found.location];
   NSMutableDictionary * params = @{@"title":title}.mutableCopy;
   
   // Find the parameters
