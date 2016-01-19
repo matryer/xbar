@@ -10,6 +10,7 @@
 
 @implementation NSUserDefaults (Settings)
 
+
 - (NSString *)pluginsDirectory {
   return [self stringForKey:@"pluginsDirectory"];
 }
@@ -23,6 +24,9 @@
 - (void) setIsFirstTimeAppRun:(BOOL)firstTime {
   [self setBool:firstTime forKey:@"appHasRun"];
 }
+- (BOOL) useiTerm { return [self boolForKey:@"useiTerm"]; }
+
+
 
 @end
 

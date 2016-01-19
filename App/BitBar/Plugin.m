@@ -11,6 +11,7 @@
 #import "STPrivilegedTask.h"
 #import "NSDate+DateTools.h"
 #import "NSColor+Hex.h"
+#import "NSUserDefaults+Settings.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS ((double)60.)
 
@@ -153,8 +154,7 @@
            *param3 = params[@"param3"] ?: @"",
            *param4 = params[@"param4"] ?: @"",
            *param5 = params[@"param5"] ?: @"",
-         *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"],
-         *iterm = params[@"iterm"] ?: [NSString stringWithFormat:@"%s", "false"];
+    *terminal = params[@"terminal"] ?: [NSString stringWithFormat:@"%s", "true"];
     NSArray *args = params[@"args"] ?: ({
 
       NSMutableArray *argArray = @[].mutableCopy;
@@ -190,7 +190,7 @@
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
       NSString *full_link_no_end_space = [full_link stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 
-      if([iterm isEqual: @"true"]){
+      if(DEFS.useiTerm){
           NSString *sIterm = [NSString stringWithFormat:@"tell application \"iTerm\" \n\
                         activate \n\
                         set myterm to (make new terminal) \n\
