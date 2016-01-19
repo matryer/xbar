@@ -41,6 +41,9 @@
 
   // enable usage of Safari's WebInspector to debug HTML Plugins
   [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
+  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                         selector: @selector(receiveWakeNote:)
+                                                             name: NSWorkspaceDidWakeNotification object: NULL];
 
   if (DEFS.isFirstTimeAppRun) {
     LaunchAtLoginController *launcher = LaunchAtLoginController.new;
@@ -51,6 +54,11 @@
   // make a plugin manager
   [_pluginManager = [PluginManager.alloc initWithPluginPath:DEFS.pluginsDirectory]
                                                                   setupAllPlugins];
+}
+
+- (void) receiveWakeNote: (NSNotification*) note
+{
+  [[self pluginManager] reset];
 }
 
 @end
