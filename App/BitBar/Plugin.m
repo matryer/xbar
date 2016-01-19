@@ -149,6 +149,20 @@
   [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:menuItem.representedObject[@"href"]]];
 }
 
+- (void) startTask:(NSMutableDictionary*)params {
+    id task = [params[@"root"] isEqualToString:@"true"] ? STPrivilegedTask.new : NSTask.new;
+    
+    [(NSTask*)task setLaunchPath:params[@"bash"]];
+    [(NSTask*)task setArguments:params[@"args"]];
+    
+    ((NSTask*)task).terminationHandler = ^(NSTask *task) {
+      if (params[@"refresh"]) {
+        [self performSelectorOnMainThread:@selector(performRefreshNow:) withObject:NULL waitUntilDone:false];
+      }
+    };
+    [(NSTask*)task launch];
+    [(NSTask*)task waitUntilExit];
+}
 
 - (void) performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
 
@@ -172,24 +186,10 @@
     });
     
     if([terminal isEqual: @"false"]){
-
       NSLog(@"Args: %@", args);
-
-      id task = [params[@"root"] isEqualToString:@"true"] ? STPrivilegedTask.new : NSTask.new;
-
-      [(NSTask*)task setLaunchPath:bash];
-      [(NSTask*)task setArguments:args];
-
-      if (params[@"refresh"]) {
-          ((NSTask*)task).terminationHandler = ^(NSTask *task) {
-              [self performRefreshNow:NULL];
-          };
-          [(NSTask*)task launch];
-          [(NSTask*)task waitUntilExit];
-      }
-      else {
-        [(NSTask*)task launch];
-      }
+      [params setObject:bash forKey:@"bash"];
+      [params setObject:args forKey:@"args"];
+      [self performSelectorInBackground:@selector(startTask:) withObject:params];
     } else {
 
       NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
