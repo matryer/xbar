@@ -1,8 +1,17 @@
 # BitBar Changes
 
-## v1.4.1
+## v1.5 beta 1
+
+Features:
+
+  * Added `trim=false` option to give plugin authors control of whitespace - #182
+  * Tasks now run in background (preventing menu bar items from locking) - #181
+  * Plugins will reset on wake from sleep - #184
+
+Other:
 
   * Updated "Browse plugins..." link to getbitbar.com
+  * "Open at login" was getting reset every time - now it's remembered - #169
 
 ## v1.4
 
