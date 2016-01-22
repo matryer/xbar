@@ -160,7 +160,11 @@
         [self performSelectorOnMainThread:@selector(performRefreshNow:) withObject:NULL waitUntilDone:false];
       }
     };
-    [(NSTask*)task launch];
+    @try {
+      [(NSTask*)task launch];
+    } @catch (NSException *e) {
+      NSLog(@"Error launching command for %@:\n\tCMD: %@\n\tARGS: %@\n%@", self.name, params[@"bash"], params[@"args"], e);
+    }
     [(NSTask*)task waitUntilExit];
 }
 
