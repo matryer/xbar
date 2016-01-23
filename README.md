@@ -285,3 +285,6 @@ Anything that can write to standard out is supported, but here is a list that ha
   1. Status: Working
   1. Caveats: `lisp`/`clisp` must be in your `PATH`
   1. Output: `(format t "your string here")`
+1. Perl5
+  1. Status: Working
+  1. Output: `print "your string here"`
