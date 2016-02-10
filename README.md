@@ -295,5 +295,7 @@ Anything that can write to standard out is supported, but here is a list that ha
   1. Output: `echo 'your string here'`
   1. Notes
     1. Add shebang `#!/usr/bin/php` 
+  1. Utilities:
+    1. BitBar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>
   
 
