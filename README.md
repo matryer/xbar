@@ -133,7 +133,9 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
     * `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
     * `size=..` to change their text size. eg. `size=12`
-    * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh --verbose"`
+    * `bash=..` to make the dropdown run a given script terminal with your script e.g. 		  `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh` spaces in directory names will need to be escaped
+    * `param1=` to specify arguments to the script. additional params like this `param2=foo param3=bar` full example  `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh param1=--verbose` assuming that nginx.restart.sh is executable.
+    * or `bash=/usr/bin/ruby param1=/Users/user/rubyscript.rb param2=arg1 param3=arg2` if script is not executable
     * `terminal=..` start bash script without opening Terminal. `true` or `false`
     * `refresh=..` to make the dropdown items refresh the plugin it belongs to
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
