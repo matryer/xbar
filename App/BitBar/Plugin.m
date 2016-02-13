@@ -63,6 +63,11 @@
   }
   if (params[@"size"] || params[@"color"])
     item.attributedTitle = [self attributedTitleWithParams:params];
+  
+  if (params[@"alternate"]) {
+    item.alternate = YES;
+    item.keyEquivalentModifierMask = NSAlternateKeyMask;
+  }
 
   return item;
 }
@@ -338,6 +343,13 @@
   
   if (self.titleLines.count > 0) {
     NSDictionary * params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+    
+    // skip alternate line
+    if (params[@"alternate"]) {
+      [self cycleLines];
+      return;
+    }
+    
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     self.pluginIsVisible = YES;
   } else {
