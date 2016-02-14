@@ -20,6 +20,7 @@
 // plugin download
 @property NSURLDownload *download;
 @property NSString *destinationPath;
+@property NSString *suggestedDestinationPath;
 
 @end
 
@@ -107,6 +108,7 @@
   
   [self.download cancel];
   self.destinationPath = nil;
+  self.suggestedDestinationPath = nil;
   
   // NSURLSession is not available below 10.9 :(
   self.download = [[NSURLDownload alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLString]] delegate:self];
@@ -115,7 +117,8 @@
 #pragma mark - NSURLDownload delegate
 
 - (void)download:(NSURLDownload *)download decideDestinationWithSuggestedFilename:(NSString *)filename {
-  [download setDestination:[DEFS.pluginsDirectory stringByAppendingPathComponent:filename] allowOverwrite:YES];
+  self.suggestedDestinationPath = [DEFS.pluginsDirectory stringByAppendingPathComponent:filename];
+  [download setDestination:self.suggestedDestinationPath allowOverwrite:NO];
 }
 
 - (void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path {
@@ -123,18 +126,30 @@
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)download {
-  if (!self.destinationPath)
-    return;
-  
-  // ensure plugin is executable
-  
-  // `chmod +x plugin.sh`
-  struct stat st;
-  stat(self.destinationPath.UTF8String, &st);
-  chmod(self.destinationPath.UTF8String, (st.st_mode & ALLPERMS) | S_IXUSR | S_IXGRP | S_IXOTH);
+  if (self.destinationPath) {
+    if (self.suggestedDestinationPath && ![self.suggestedDestinationPath isEqualToString:self.destinationPath]) {
+      // overwrite file at suggested destination path
+      
+      [[NSFileManager defaultManager] removeItemAtPath:self.suggestedDestinationPath error:nil];
+      
+      if ([[NSFileManager defaultManager] moveItemAtPath:self.destinationPath toPath:self.suggestedDestinationPath error:nil])
+        self.destinationPath = self.suggestedDestinationPath;
+    }
+    
+    // ensure plugin is executable
+    
+    // `chmod +x plugin.sh`
+    struct stat st;
+    stat(self.destinationPath.UTF8String, &st);
+    chmod(self.destinationPath.UTF8String, (st.st_mode & ALLPERMS) | S_IXUSR | S_IXGRP | S_IXOTH);
+  }
   
   // refresh
   [self.pluginManager reset];
+
+  self.download = nil;
+  self.destinationPath = nil;
+  self.suggestedDestinationPath = nil;
 }
 
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error {
@@ -143,6 +158,10 @@
   alert.messageText = @"Download failed";
   alert.informativeText = error.localizedDescription;
   [alert runModal];
+  
+  self.download = nil;
+  self.destinationPath = nil;
+  self.suggestedDestinationPath = nil;
 }
 
 @end
