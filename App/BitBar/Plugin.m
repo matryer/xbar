@@ -469,12 +469,43 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
   self.menuIsOpen = YES;
+  
+  if (!self.manager.environment[@"BitBarDarkMode"]) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
+    [params removeObjectForKey:@"color"];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  }
+  
   [self.statusItem setHighlightMode:YES];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
   self.menuIsOpen = NO;
   [self.statusItem setHighlightMode:NO];
+  
+  if (!self.manager.environment[@"BitBarDarkMode"]) {
+    NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  }
+}
+
+- (void)menu:(NSMenu *)menu willHighlightItem:(NSMenuItem *)item {
+  // don't set item color in dark mode
+  if (self.manager.environment[@"BitBarDarkMode"])
+    return;
+  
+  // restore about to be unhighlighted item
+  if (menu.highlightedItem.representedObject) {
+    NSDictionary *params = menu.highlightedItem.representedObject;
+    menu.highlightedItem.attributedTitle = [self attributedTitleWithParams:params];
+  }
+  
+  // remove about to be highlighted item color
+  if (item.representedObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:item.representedObject];
+    [params removeObjectForKey:@"color"];
+    item.attributedTitle = [self attributedTitleWithParams:params];
+  }
 }
 
 @end
