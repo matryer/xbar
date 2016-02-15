@@ -81,7 +81,7 @@
   // extract the url from the event and handle it
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
-  NSString *prefix = @"bitbar://openPlugin/";
+  NSString *prefix = @"bitbar://openPlugin?src=";
   
   // skip urls that don't begin with our prefix
   if (![URLString hasPrefix:prefix])
