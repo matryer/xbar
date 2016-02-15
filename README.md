@@ -141,7 +141,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
     * `trim=..` whether to trim leading/trailing whitespace from the title.  `true` or `false` (defaults to `true`)
-    * `alternate=..` to mark a line as an alternate to the previous one for when the Option key is pressed in the dropdown
+    * `alternate=true` to mark a line as an alternate to the previous one for when the Option key is pressed in the dropdown
 
 ### Metadata
 
