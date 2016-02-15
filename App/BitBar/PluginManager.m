@@ -22,7 +22,7 @@
 
 - (void) showSystemStatusItemWithMessage:(NSString*)message {
   
-  [self.statusBar removeStatusItem:self.defaultStatusItem];
+  [self.defaultStatusItem.statusBar removeStatusItem:self.defaultStatusItem];
   
   // make default menu item
   self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
@@ -208,10 +208,16 @@
   
   // remove all status items
   Plugin *plugin;
-  for (plugin in _plugins) [self.statusBar removeStatusItem:plugin.statusItem];
+  for (plugin in _plugins) {
+    [plugin.statusItem.statusBar removeStatusItem:plugin.statusItem];
+    plugin.statusItem = nil;
+  }
   
   _plugins = nil;
-  [self.statusBar removeStatusItem:self.defaultStatusItem];
+  
+  [self.defaultStatusItem.statusBar removeStatusItem:self.defaultStatusItem];
+  self.defaultStatusItem = nil;
+  
   [self setupAllPlugins];
   
 }
@@ -288,8 +294,11 @@
       visiblePlugins++;
   }
   
-  visiblePlugins != 0 ? [self.statusBar removeStatusItem:self.defaultStatusItem]
-                      : [self showSystemStatusItemWithMessage:@"No plugins found"];
+  if (visiblePlugins != 0) {
+    [self.defaultStatusItem.statusBar removeStatusItem:self.defaultStatusItem];
+    self.defaultStatusItem = nil;
+  } else
+    [self showSystemStatusItemWithMessage:@"No plugins found"];
 }
 
 - (NSStatusBar *)statusBar { return _statusBar = _statusBar ?: NSStatusBar.systemStatusBar; }
