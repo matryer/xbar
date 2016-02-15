@@ -253,6 +253,8 @@ Anything that can write to standard out is supported, but here is a list that ha
   1. Notes:
     1. `process.stdout.write` doesn't output desired text.
     1. There may be a better way to run JavaScript files.
+  1. Tips:
+    1. Use the Node.js [`bitbar` module](https://github.com/sindresorhus/bitbar) to simplify plugin creation.
 1. CoffeeScript (`coffee`)
   1. Status: Working
   1. Caveats:
