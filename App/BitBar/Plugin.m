@@ -16,9 +16,9 @@
 
 @implementation Plugin
 
-- init { return self = super.init ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
+- init { return (self = super.init) ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
 
-- initWithManager:(PluginManager*)manager { return self = self.init ? _manager = manager, self : nil; }
+- initWithManager:(PluginManager*)manager { return (self = self.init) ? _manager = manager, self : nil; }
 
 - (NSStatusItem *)statusItem { return _statusItem = _statusItem ?: ({
     

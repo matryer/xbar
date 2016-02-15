@@ -17,7 +17,7 @@
 
 - initWithPluginPath:(NSString*)path {
 
-  return self = super.init ? _path = path.stringByStandardizingPath, self : nil;
+  return (self = super.init) ? _path = path.stringByStandardizingPath, self : nil;
 }
 
 - (void) showSystemStatusItemWithMessage:(NSString*)message {
