@@ -353,6 +353,7 @@
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     self.pluginIsVisible = YES;
   } else {
+    [self.statusItem.statusBar removeStatusItem:self.statusItem];
     self.statusItem = nil;
     self.pluginIsVisible = NO;
   }
