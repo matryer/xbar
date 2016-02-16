@@ -469,12 +469,35 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
   self.menuIsOpen = YES;
+  
+  NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
+  [params removeObjectForKey:@"color"];
+  self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  
   [self.statusItem setHighlightMode:YES];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
   self.menuIsOpen = NO;
   [self.statusItem setHighlightMode:NO];
+  
+  NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+  self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+}
+
+- (void)menu:(NSMenu *)menu willHighlightItem:(NSMenuItem *)item {
+  // restore about to be unhighlighted item
+  if (menu.highlightedItem.representedObject) {
+    NSDictionary *params = menu.highlightedItem.representedObject;
+    menu.highlightedItem.attributedTitle = [self attributedTitleWithParams:params];
+  }
+  
+  // remove about to be highlighted item color
+  if (item.representedObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:item.representedObject];
+    [params removeObjectForKey:@"color"];
+    item.attributedTitle = [self attributedTitleWithParams:params];
+  }
 }
 
 @end
