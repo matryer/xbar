@@ -121,7 +121,7 @@
   NSAlert *alert = [[NSAlert alloc] init];
   [alert addButtonWithTitle:@"Install"];
   [alert addButtonWithTitle:@"Cancel"];
-  alert.messageText = [NSString stringWithFormat:@"Download and install the plugin %@?", trusted ? (title ?: URLString.lastPathComponent) : [NSString stringWithFormat:@"at %@", URLString]];
+  alert.messageText = [NSString stringWithFormat:@"Download and install the plugin %@?", trusted ? (title.length > 0 ? title : URLString.lastPathComponent) : [NSString stringWithFormat:@"at %@", URLString]];
 
     if (trusted) {
         alert.informativeText = @"Only install plugins from trusted sources.";
