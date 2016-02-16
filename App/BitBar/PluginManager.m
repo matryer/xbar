@@ -61,7 +61,7 @@
   } else targetMenu = menu;
   
   // add reset, aka refreshMenuItem
-  ADD_MENU(@"Refresh ", reset, @"r", self);
+  ADD_MENU(@"Refresh all", reset, @"r", self);
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
