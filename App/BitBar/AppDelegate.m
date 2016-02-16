@@ -90,17 +90,25 @@
   URLString = [URLString substringFromIndex:prefix.length];
   
   NSString *plugin = nil;
+  BOOL trusted = NO;
   
   // if the plugin is at our repository, only display the filename
-  if ([URLString hasPrefix:@"https://github.com/matryer/bitbar-plugins/raw/master/"])
+  if ([URLString hasPrefix:@"https://github.com/matryer/bitbar-plugins/raw/master/"]) {
     plugin = URLString.lastPathComponent;
+    trusted = YES;
+  }
   
   NSAlert *alert = [[NSAlert alloc] init];
   [alert addButtonWithTitle:@"Install"];
   [alert addButtonWithTitle:@"Cancel"];
   alert.messageText = [NSString stringWithFormat:@"Download and install the plugin %@?", plugin ?: [NSString stringWithFormat:@"at %@", URLString]];
-  alert.informativeText = @"Only install plugins from trusted sources.";
-  
+
+    if (trusted) {
+        alert.informativeText = @"Only install plugins from trusted sources.";
+    } else {
+        alert.informativeText = @"CAUTION: This plugin is not from the official BitBar repository. We recommend that you only install plugins from trusted sources.";
+    }
+
   if ([alert runModal] != NSAlertFirstButtonReturn) {
     // cancel clicked
     return;
