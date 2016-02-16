@@ -81,26 +81,54 @@
   // extract the url from the event and handle it
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
-  NSString *prefix = @"bitbar://openPlugin?src=";
+  URLString = [URLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *prefix = @"bitbar://openPlugin?";
   
   // skip urls that don't begin with our prefix
   if (![URLString hasPrefix:prefix])
     return;
   
   URLString = [URLString substringFromIndex:prefix.length];
+  prefix = @"title=";
   
-  NSString *plugin = nil;
+  NSString *title = nil;
+  
+  if ([URLString hasPrefix:prefix]) {
+    URLString = [URLString substringFromIndex:prefix.length];
+    NSArray *components = [URLString componentsSeparatedByString:@"&"];
+    
+    if (components.count < 2)
+      return;
+      
+    title = components.firstObject;
+    URLString = [[components subarrayWithRange:NSMakeRange(1, components.count - 1)] componentsJoinedByString:@"&"];
+  }
+  
+  prefix = @"src=";
+  
+  if (![URLString hasPrefix:prefix])
+    return;
+  
+  URLString = [URLString substringFromIndex:prefix.length];
+  
+  BOOL trusted = NO;
   
   // if the plugin is at our repository, only display the filename
-  if ([URLString hasPrefix:@"https://github.com/matryer/bitbar-plugins/raw/master/"])
-    plugin = URLString.lastPathComponent;
+  if ([URLString hasPrefix:@"https://github.com/matryer/bitbar-plugins/raw/master/"]) {
+    trusted = YES;
+  }
   
   NSAlert *alert = [[NSAlert alloc] init];
-  [alert addButtonWithTitle:@"OK"];
+  [alert addButtonWithTitle:@"Install"];
   [alert addButtonWithTitle:@"Cancel"];
-  alert.messageText = [NSString stringWithFormat:@"Download and install the plugin %@?", plugin ?: [NSString stringWithFormat:@"at %@", URLString]];
-  alert.informativeText = @"Only install plugins from trusted sources.";
-  
+  alert.messageText = [NSString stringWithFormat:@"Download and install the plugin %@?", trusted ? (title.length > 0 ? title : URLString.lastPathComponent) : [NSString stringWithFormat:@"at %@", URLString]];
+
+    if (trusted) {
+        alert.informativeText = @"Only install plugins from trusted sources.";
+    } else {
+        alert.informativeText = @"CAUTION: This plugin is not from the official BitBar repository. We recommend that you only install plugins from trusted sources.";
+    }
+
   if ([alert runModal] != NSAlertFirstButtonReturn) {
     // cancel clicked
     return;
