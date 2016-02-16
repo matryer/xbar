@@ -22,7 +22,7 @@
 
 - (void) showSystemStatusItemWithMessage:(NSString*)message {
   
-  [self.defaultStatusItem.statusBar removeStatusItem:self.defaultStatusItem];
+  [self.statusBar removeStatusItem:self.defaultStatusItem];
   
   // make default menu item
   self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
@@ -61,7 +61,7 @@
   } else targetMenu = menu;
   
   // add reset, aka refreshMenuItem
-  ADD_MENU(@"Refresh ", reset, @"r", self);
+  ADD_MENU(@"Refresh all", reset, @"r", self);
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
@@ -208,16 +208,10 @@
   
   // remove all status items
   Plugin *plugin;
-  for (plugin in _plugins) {
-    [plugin.statusItem.statusBar removeStatusItem:plugin.statusItem];
-    plugin.statusItem = nil;
-  }
+  for (plugin in _plugins) [self.statusBar removeStatusItem:plugin.statusItem];
   
   _plugins = nil;
-  
-  [self.defaultStatusItem.statusBar removeStatusItem:self.defaultStatusItem];
-  self.defaultStatusItem = nil;
-  
+  [self.statusBar removeStatusItem:self.defaultStatusItem];
   [self setupAllPlugins];
   
 }
@@ -294,11 +288,8 @@
       visiblePlugins++;
   }
   
-  if (visiblePlugins != 0) {
-    [self.defaultStatusItem.statusBar removeStatusItem:self.defaultStatusItem];
-    self.defaultStatusItem = nil;
-  } else
-    [self showSystemStatusItemWithMessage:@"No plugins found"];
+  visiblePlugins != 0 ? [self.statusBar removeStatusItem:self.defaultStatusItem]
+                      : [self showSystemStatusItemWithMessage:@"No plugins found"];
 }
 
 - (NSStatusBar *)statusBar { return _statusBar = _statusBar ?: NSStatusBar.systemStatusBar; }
