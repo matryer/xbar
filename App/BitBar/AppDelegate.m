@@ -96,7 +96,7 @@
     plugin = URLString.lastPathComponent;
   
   NSAlert *alert = [[NSAlert alloc] init];
-  [alert addButtonWithTitle:@"OK"];
+  [alert addButtonWithTitle:@"Install"];
   [alert addButtonWithTitle:@"Cancel"];
   alert.messageText = [NSString stringWithFormat:@"Download and install the plugin %@?", plugin ?: [NSString stringWithFormat:@"at %@", URLString]];
   alert.informativeText = @"Only install plugins from trusted sources.";
