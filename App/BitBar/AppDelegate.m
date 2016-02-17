@@ -9,7 +9,7 @@
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
 #import "PluginManager.h"
-#import <sys/stat.h>
+//#import <sys/stat.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSURLDownloadDelegate>
 
