@@ -6,6 +6,4 @@ xcode_sdk: macosx10.11
 before_install:
   - brew update
   - brew outdated xctool || brew upgrade xctool
-script:
-  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze; exit; fi
-  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
+script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze; else xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
