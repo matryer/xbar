@@ -86,8 +86,16 @@
   NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
+
   [targetMenu addItem:versionMenuitem];
 
+//
+//  // add troubleshooting item
+//  ADD_MENU(@"User Guide…", openTroubleshootingPage,@"g",self);
+//
+//  // add troubleshooting item
+//  ADD_MENU(@"Report an Issue…",openHomepage,@"i",self);
+//  
   // quit menu
   ADD_MENU(@"Quit",quit, @"q",self);
 }
@@ -105,8 +113,8 @@
     [WSPACE openURL:[NSURL URLWithString:@"https://getbitbar.com/"]];
 }
 
-- (void) openTroubleshootingPage {
-  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/wiki/User-Guide"]];
+- (void) openHomepage {
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar"]];
 }
 
 - (void) openPluginFolder {
