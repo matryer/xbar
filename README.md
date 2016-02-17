@@ -164,7 +164,7 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
 # <bitbar.abouturl>http://url-to-about.com/</bitbar.abouturl>
 ```
 
-  * The comments can be anything
+  * The comment characters can be anything - use what is suitable for your language
   * `bitbar.title` - The title of the plugin
   * `bitbar.version` - The version of the plugin (start with `v1.0`)
   * `bitbar.author` - Your name
