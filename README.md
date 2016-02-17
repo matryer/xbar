@@ -2,9 +2,12 @@
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
+  * [Download latest BitBar release](https://github.com/matryer/bitbar/releases/latest) - requires Mac OS X Snow Leopard or newer (>= 10.6)
+  * [Visit the app homepage at https://getbitbar.com](https://getbitbar.com) to install plugins
 
-  * [Visit the app homepage at https://getbitbar.com](https://getbitbar.com)
-  * [Download latest BitBar release](https://github.com/matryer/bitbar/releases/latest) and [View plugin repository](https://github.com/matryer/bitbar-plugins)
+Digging deeper:
+
+  * [Browse plugin repository](https://github.com/matryer/bitbar-plugins)
   * [Get started](#get-started)
   * [Installing plugins](#installing-plugins)
   * [Read the story about how BitBar unexpectedly got going](https://medium.com/@matryer/what-happens-when-your-old-open-source-project-unexpectedly-gets-to-the-top-of-hacker-news-31114c6c6efb#.fznvtgskb)
@@ -12,6 +15,8 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
   * [Writing plugins (Plugin API)](https://github.com/matryer/bitbar/blob/master/README.md#writing-plugins)
   * [Thanks](#thanks)
   * [Guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins)
+
+## Examples
 
 Example showing the latest Buy and Sell figures for BitCoins:
 
