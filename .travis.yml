@@ -7,3 +7,16 @@ before_install:
   - brew update
   - brew outdated xctool || brew upgrade xctool
 script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze; else xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
+before_deploy:
+  - OUTPUTDIR="$PWD/build/Release"
+  - cd $OUTPUTDIR
+  - zip -r "BitBar-$TRAVIS_TAG.zip" "BitBar.app"
+deploy:
+  provider: releases
+  api_key:
+    secure: pofY2EG4QF3B66LnAfGenTAe9MXuGVLEQbYVTmNf6NvR1xZGE53WzkP/NHcgn3UKvsU5hhp4MAQg5S65SyCdC3ghukUMwR8JlYBW2C4sSuXCif+NxWxNiotEAJfaIw9xn6b/UxCyL9MzoeSz4ub9SOF2E2Wyb3sDj8sYDz81mKGWP/hqMs58zfeujp2nvdfvu/2qyAp3+KLknNJY6+g0+1cn1rg0eTTUge/8A16YfFDQhPDsnGIvaARbAan9ue3495ZyKBuOCIgVU/ANeCA24DENr+ybgogNBdm49joXofGpq02mthaPf5sMMFgiyzTVJUcKPhiRmUp11+2IKWhojMhMiKoQrOJ2xN5irJLMkCuuxW5KpRbFmLV5uL4bV/IckifELuA+JU13WcCxMr3cLfcfsCcrLv9xRDxwzJAtokIwGMxS+TSi18Msz4C7DZ74w6rX9vgcj+dnmxEs54EiV7JOpQkHNEQ1Mee02Ps1S+EzndhDDKEnkDXvwi71kO3OwVu3r6HYBbP8/XpfCdA0pjJII7UgAfPuBe8AJ08O4ud329t+dRp6EA0wLOJbMWfBMaJwoKsBglRgViG3dVz1SrSjYnGuJ4nKNAnpRM6ENXAlWI167v5TpsQRUta6y1VP20mnW+QHTXjs/UqKg2l1/ou1Wh+arwXjp9c8Q9RYvnc=
+  file: "$OUTPUTDIR/BitBar-$TRAVIS_TAG.zip"
+  skip_cleanup: true
+  on:
+    repo: iosdeveloper/bitbar
+    tags: true
