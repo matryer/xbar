@@ -88,12 +88,6 @@
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
   [targetMenu addItem:versionMenuitem];
 
-  // add troubleshooting item
-  ADD_MENU(@"User Guide…", openTroubleshootingPage,@"g",self);
-  
-  // add troubleshooting item
-  ADD_MENU(@"Report an Issue…",openReportIssuesPage,@"i",self);
-  
   // quit menu
   ADD_MENU(@"Quit",quit, @"q",self);
 }
