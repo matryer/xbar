@@ -78,7 +78,6 @@
   
   // open at login, aka openAtLoginMenuItem
   LaunchAtLoginController *lc = LaunchAtLoginController.new;
-
   [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
   
   [targetMenu addItem:NSMenuItem.separatorItem];
