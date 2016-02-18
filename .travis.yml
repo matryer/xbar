@@ -7,3 +7,16 @@ before_install:
   - brew update
   - brew outdated xctool || brew upgrade xctool
 script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze; else xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
+before_deploy:
+  - OUTPUTDIR="$PWD/build/Release"
+  - cd $OUTPUTDIR
+  - zip -r "BitBar-$TRAVIS_TAG.zip" "BitBar.app"
+deploy:
+  provider: releases
+  api_key:
+    secure: VB7wqPRAmwRxX1ugTss4lWdcCjMO4+9yYuvkSKIhRz5PcKFTdgIE5Ol29wssYSlEnk1D5ZqeCJBe3t2qowrxOKHWKJRxH5r4fbgYAYnbk9/nWsMLgWDn1mo4nYa0sD4GyMUDY9JqqmtBY3nZ2pYcJ0L1LmxUU+EHViwcBQz6G4Y=
+  file: "$OUTPUTDIR/BitBar-$TRAVIS_TAG.zip"
+  skip_cleanup: true
+  on:
+    repo: matryer/bitbar
+    tags: true
