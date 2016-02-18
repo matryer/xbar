@@ -11,7 +11,11 @@
 @implementation NSUserDefaults (Settings)
 
 - (NSString *)pluginsDirectory {
+#ifdef DISTRO
+  return [self stringForKey:@"pluginsDirectory"] ?: [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
+#else
   return [self stringForKey:@"pluginsDirectory"];
+#endif
 }
 - (void) setPluginsDirectory:(NSString*)value {
 
@@ -25,7 +29,12 @@
 }
 
 - (BOOL)userConfigDisabled {
+#ifdef DISTRO
+  id disabled = [self objectForKey:@"userConfigDisabled"];
+  return disabled ? [disabled boolValue] : YES;
+#else
   return [self boolForKey:@"userConfigDisabled"];
+#endif
 }
 
 - (void)setUserConfigDisabled:(BOOL)disabled {

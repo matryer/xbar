@@ -162,7 +162,12 @@
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id name, NSDictionary *bindings) {
         BOOL isDir;
         NSString * path = [self.path stringByAppendingPathComponent:name];
+#ifdef DISTRO
+        // filter application executable
+        return ![path isEqualToString:[NSBundle mainBundle].executablePath] && [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
+#else
         return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
+#endif
       }]];
       return dirFiles;
     }
