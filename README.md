@@ -1,4 +1,4 @@
-# ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar
+# ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar [![Build Status](https://travis-ci.org/matryer/bitbar.svg?branch=master)](https://travis-ci.org/matryer/bitbar) [![Slack Status](https://getbitbar.herokuapp.com/badge.svg)](https://getbitbar.herokuapp.com/)
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
@@ -12,9 +12,8 @@ Digging deeper:
   * [Installing plugins](#installing-plugins)
   * [Read the story about how BitBar unexpectedly got going](https://medium.com/@matryer/what-happens-when-your-old-open-source-project-unexpectedly-gets-to-the-top-of-hacker-news-31114c6c6efb#.fznvtgskb)
   * [Contributing](#contributing)
-  * [Writing plugins (Plugin API)](https://github.com/matryer/bitbar/blob/master/README.md#writing-plugins)
   * [Thanks](#thanks)
-  * [Guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins)
+  * [Guide to writing plugins](#writing-plugins)
 
 ## Examples
 
@@ -118,6 +117,8 @@ git submodule init && git submodule update
 # Writing plugins
 
 We're always looking for new plugins, so please send us pull requests if you write anything cool or useful.
+
+[Join the conversation with plugin authors and BitBar maintainers on Slack](https://getbitbar.herokuapp.com/).
 
 ### Got ideas?
 
