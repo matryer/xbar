@@ -24,5 +24,13 @@
   [self setBool:!firstTime forKey:@"appHasRun"];
 }
 
+- (BOOL)userConfigDisabled {
+  return [self boolForKey:@"userConfigDisabled"];
+}
+
+- (void)setUserConfigDisabled:(BOOL)disabled {
+  [self setBool:disabled forKey:@"userConfigDisabled"];
+}
+
 @end
 

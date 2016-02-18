@@ -65,22 +65,24 @@
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
-  // add edit action, aka prefsMenuItem
-  ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);
-  
-  // add edit action, aka openPluginFolderMenuItem
-  ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
-
-  // add browser item, aka openPluginBrowserMenuItem
-  ADD_MENU(@"Browse Plugins…", openPluginsBrowser, nil, self);
-
-  [targetMenu addItem:NSMenuItem.separatorItem];
-  
-  // open at login, aka openAtLoginMenuItem
-  LaunchAtLoginController *lc = LaunchAtLoginController.new;
-  [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
-  
-  [targetMenu addItem:NSMenuItem.separatorItem];
+  if (!DEFS.userConfigDisabled) {
+    // add edit action, aka prefsMenuItem
+    ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);
+    
+    // add edit action, aka openPluginFolderMenuItem
+    ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
+    
+    // add browser item, aka openPluginBrowserMenuItem
+    ADD_MENU(@"Browse Plugins…", openPluginsBrowser, nil, self);
+    
+    [targetMenu addItem:NSMenuItem.separatorItem];
+    
+    // open at login, aka openAtLoginMenuItem
+    LaunchAtLoginController *lc = LaunchAtLoginController.new;
+    [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
+    
+    [targetMenu addItem:NSMenuItem.separatorItem];
+  }
   
   NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
