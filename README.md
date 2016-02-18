@@ -1,4 +1,4 @@
-# ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar [![Build Status](https://travis-ci.org/matryer/bitbar.svg?branch=master)](https://travis-ci.org/matryer/bitbar)
+# ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar [![Build Status](https://travis-ci.org/matryer/bitbar.svg?branch=master)](https://travis-ci.org/matryer/bitbar) [![Slack Status](https://getbitbar.herokuapp.com/badge.svg)](https://getbitbar.herokuapp.com/)
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
