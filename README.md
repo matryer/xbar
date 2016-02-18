@@ -118,7 +118,7 @@ git submodule init && git submodule update
 
 We're always looking for new plugins, so please send us pull requests if you write anything cool or useful.
 
-  * Join the conversation with plugin authors and BitBar maintainers on Slack: [![Slack Status](https://getbitbar.herokuapp.com/badge.svg)](https://getbitbar.herokuapp.com/)
+[Join the conversation with plugin authors and BitBar maintainers on Slack](https://getbitbar.herokuapp.com/).
 
 ### Got ideas?
 
