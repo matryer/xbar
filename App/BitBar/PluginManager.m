@@ -158,16 +158,12 @@
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
       // filter markdown files
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self ENDSWITH '.md'"]];
+      // filter application executable
       // filter subdirectories
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id name, NSDictionary *bindings) {
         BOOL isDir;
         NSString * path = [self.path stringByAppendingPathComponent:name];
-#ifdef DISTRO
-        // filter application executable
         return ![path isEqualToString:[NSBundle mainBundle].executablePath] && [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
-#else
-        return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
-#endif
       }]];
       return dirFiles;
     }
