@@ -2,8 +2,8 @@
 
 The BitBar app registers the custom URL scheme `bitbar://`. The following paths are currently implemented:
 
-- [`openPlugin`](#openPlugin) to download and install plugins
-- [`refreshPlugin`](#refreshPlugin) to refresh plugins
+- [`openPlugin`](#openplugin) to download and install plugins
+- [`refreshPlugin`](#refreshplugin) to refresh plugins
 
 ## openPlugin
 
