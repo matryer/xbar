@@ -9,7 +9,7 @@ The BitBar app registers the custom URL scheme `bitbar://`. The following paths 
 
 Query parameters:
 
-- `src` source URL
+- `src` Source URL
 
 Examples: see [test page](App/BitBar/incoming-url-tests.html)
 
@@ -17,7 +17,7 @@ Examples: see [test page](App/BitBar/incoming-url-tests.html)
 
 Query parameters:
 
-- `name` filename, allowing wildcards. `?` matches one character and `*` matches zero or more characters
+- `name` Filename, allowing wildcards. `?` matches one character and `*` matches zero or more characters
 
 This allows for refreshing from the command line using `open`, passing the URL.
 For example by chaining it with a semicolon after a command when `terminal=false` can't be used.
