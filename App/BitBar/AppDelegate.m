@@ -87,13 +87,8 @@
   
   if ([URLString hasPrefix:prefix]) {
       URLString = [URLString substringFromIndex:prefix.length];
-      
-      for (Plugin *plugin in self.pluginManager.plugins)
-          if ([plugin.name isEqualToString:URLString]) {
-              [plugin performRefreshNow:nil];
-              return;
-          }
-      
+      NSArray *plugins = [self.pluginManager.plugins filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", URLString]];
+      [plugins makeObjectsPerformSelector:@selector(performRefreshNow:) withObject:nil];
       return;
   }
   
