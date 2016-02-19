@@ -29,6 +29,11 @@
 - (NSArray*) otherCopies { return [NSRunningApplication runningApplicationsWithBundleIdentifier:NSBundle.mainBundle.bundleIdentifier]; }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)n {
+  // register custom url scheme handler
+  [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                     andSelector:@selector(handleGetURLEvent:withReplyEvent:)
+                                                   forEventClass:kInternetEventClass
+                                                      andEventID:kAEGetURL];
 
   if (self.otherCopies.count <= 1) return;
   NSModalResponse runm = [[NSAlert alertWithMessageText:[NSString stringWithFormat:@"Another copy of %@ is already running.", NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleNameKey]]
@@ -60,12 +65,6 @@
   // make a plugin manager
   [_pluginManager = [PluginManager.alloc initWithPluginPath:DEFS.pluginsDirectory]
                                                                   setupAllPlugins];
-  
-  // register custom url scheme handler
-  [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
-                                                     andSelector:@selector(handleGetURLEvent:withReplyEvent:)
-                                                   forEventClass:kInternetEventClass
-                                                      andEventID:kAEGetURL];
 }
 
 - (void) receiveWakeNote: (NSNotification*) note
