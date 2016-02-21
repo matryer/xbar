@@ -192,6 +192,13 @@
     BOOL isDir = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath: openDlg.URL.path isDirectory: &isDir]
         && isDir) {
+      // symlink bundled plugins in selected directory
+      self.path = [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
+      NSArray *pluginFiles = [self pluginFilesWithAsking:NO];
+      for (NSString *file in pluginFiles)
+        [[NSFileManager defaultManager] createSymbolicLinkAtPath:[openDlg.URL.path stringByAppendingPathComponent:file]
+                                             withDestinationPath:[self.path stringByAppendingPathComponent:file]
+                                                           error:nil];
       
       self.path = [openDlg.URL path];
       [DEFS setPluginsDirectory:self.path];
