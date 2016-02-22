@@ -1,5 +1,16 @@
 # BitBar Changes
 
+## v1.6
+
+* Added [distributable BitBar](https://github.com/matryer/bitbar/blob/master/Docs/DistributingBitBar.md) to allow you to bundle a BitBar app with plugins, and distribute a tamper free version.
+* Added ability to refresh plugins remotely via the [URL scheme](https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md) - #149 and #216
+* Integration with Slack - please join us: [![Slack Status](https://getbitbar.herokuapp.com/badge.svg)](https://getbitbar.herokuapp.com/)
+* Added ability to [hide Preferences menu](https://github.com/matryer/bitbar/blob/master/Docs/DistributingBitBar.md#settings).
+* Small UI improvements based on feedback from lovely users just like you
+* Updated dependencies to fix crash and memory leak
+
+* See a [complete list of all changes in this release](https://github.com/matryer/bitbar/compare/v1.5.1...master)
+
 ## v1.5
 
 Features:
