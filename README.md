@@ -4,16 +4,19 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
 
   * [Download latest BitBar release](https://github.com/matryer/bitbar/releases/latest) - requires Mac OS X Snow Leopard or newer (>= 10.6)
   * [Visit the app homepage at https://getbitbar.com](https://getbitbar.com) to install plugins
+  * [Get started](#get-started) and [installing plugins](#installing-plugins)
 
 Digging deeper:
 
   * [Browse plugin repository](https://github.com/matryer/bitbar-plugins)
-  * [Get started](#get-started)
-  * [Installing plugins](#installing-plugins)
+  * [Guide to writing your own plugins](#writing-plugins)
+  * [Distributing pre-configured BitBar](https://github.com/matryer/bitbar/blob/master/Docs/DistributingBitBar.md)
+  * [Learn about integrating with bitbar via the bitbar:// URL scheme](https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md)
+
+And finally...
+
   * [Read the story about how BitBar unexpectedly got going](https://medium.com/@matryer/what-happens-when-your-old-open-source-project-unexpectedly-gets-to-the-top-of-hacker-news-31114c6c6efb#.fznvtgskb)
-  * [Contributing](#contributing)
-  * [Thanks](#thanks)
-  * [Guide to writing plugins](#writing-plugins)
+  * [Contributing](#contributing) and [special thanks](#thanks)
 
 ## Examples
 
