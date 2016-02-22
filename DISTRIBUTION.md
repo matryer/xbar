@@ -1,7 +1,7 @@
 # Distribution
 
 You can currently choose between two versions of the BitBar app: **BitBar** and **BitBarDistro**.  
-**Both** can be [bundled with plugins](#bundlingplugins). **BitBarDistro** disables user configuration by default.  
+**Both** can be [bundled with plugins](#bundling-plugins). **BitBarDistro** disables user configuration by default.  
 We provide builds of each version with the [latest release](https://github.com/matryer/bitbar/releases/latest).
 
 ## Bundling plugins
