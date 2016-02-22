@@ -1,13 +1,10 @@
 # Distribution
 
-You can currently choose between two versions of the BitBar app: **BitBar** and **BitBarDistro**.  
-**Both** can be [bundled with plugins](#bundling-plugins). **BitBarDistro** disables user configuration by default.  
-We provide builds of each version with the [latest release](https://github.com/matryer/bitbar/releases/latest).
+You can currently choose between two versions of the BitBar app: **BitBar** and **BitBarDistro**. **Both** can be [bundled with plugins](#bundling-plugins). **BitBarDistro** disables user configuration by default. We provide builds of each version with the [latest release](https://github.com/matryer/bitbar/releases/latest).
 
 ## Bundling plugins
 
-We recommend using our [bundler script](https://github.com/matryer/bitbar/blob/master/Scripts/bitbar-bundler) for convenience.
-It takes a version of the BitBar app and the plugins to bundle, copies the plugins into the app bundle and ensures they are executable.
+We recommend using our [bundler script](https://github.com/matryer/bitbar/blob/master/Scripts/bitbar-bundler) for convenience. It takes a version of the BitBar app and the plugins to bundle, copies the plugins into the app bundle and ensures they are executable.
 
 Usage:
 
