@@ -10,3 +10,6 @@
 [submodule "App/Vendor/AHProxySettings"]
 	path = App/Vendor/AHProxySettings
 	url = https://github.com/eahrold/AHProxySettings.git
+[submodule "App/Vendor/create-dmg"]
+	path = App/Vendor/create-dmg
+	url = https://github.com/andreyvit/create-dmg.git
