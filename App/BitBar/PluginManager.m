@@ -65,22 +65,24 @@
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
-  // add edit action, aka prefsMenuItem
-  ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);
-  
-  // add edit action, aka openPluginFolderMenuItem
-  ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
-
-  // add browser item, aka openPluginBrowserMenuItem
-  ADD_MENU(@"Browse Plugins…", openPluginsBrowser, nil, self);
-
-  [targetMenu addItem:NSMenuItem.separatorItem];
-  
-  // open at login, aka openAtLoginMenuItem
-  LaunchAtLoginController *lc = LaunchAtLoginController.new;
-  [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
-  
-  [targetMenu addItem:NSMenuItem.separatorItem];
+  if (!DEFS.userConfigDisabled) {
+    // add edit action, aka prefsMenuItem
+    ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);
+    
+    // add edit action, aka openPluginFolderMenuItem
+    ADD_MENU(@"Open Plugin Folder…",openPluginFolder, nil, self);
+    
+    // add browser item, aka openPluginBrowserMenuItem
+    ADD_MENU(@"Browse Plugins…", openPluginsBrowser, nil, self);
+    
+    [targetMenu addItem:NSMenuItem.separatorItem];
+    
+    // open at login, aka openAtLoginMenuItem
+    LaunchAtLoginController *lc = LaunchAtLoginController.new;
+    [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
+    
+    [targetMenu addItem:NSMenuItem.separatorItem];
+  }
   
   NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
@@ -156,11 +158,12 @@
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self BEGINSWITH '.'"]];
       // filter markdown files
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT self ENDSWITH '.md'"]];
+      // filter application executable
       // filter subdirectories
       dirFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id name, NSDictionary *bindings) {
         BOOL isDir;
         NSString * path = [self.path stringByAppendingPathComponent:name];
-        return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
+        return ![path isEqualToString:[NSBundle mainBundle].executablePath] && [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir;
       }]];
       return dirFiles;
     }
@@ -189,6 +192,13 @@
     BOOL isDir = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath: openDlg.URL.path isDirectory: &isDir]
         && isDir) {
+      // symlink bundled plugins in selected directory
+      self.path = [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
+      NSArray *pluginFiles = [self pluginFilesWithAsking:NO];
+      for (NSString *file in pluginFiles)
+        [[NSFileManager defaultManager] createSymbolicLinkAtPath:[openDlg.URL.path stringByAppendingPathComponent:file]
+                                             withDestinationPath:[self.path stringByAppendingPathComponent:file]
+                                                           error:nil];
       
       self.path = [openDlg.URL path];
       [DEFS setPluginsDirectory:self.path];

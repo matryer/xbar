@@ -9,6 +9,7 @@
 #import "ExecutablePlugin.h"
 #import "PluginManager.h"
 #import "NSTask+useSystemProxies.h"
+#import "NSUserDefaults+Settings.h"
 
 @implementation ExecutablePlugin
 
@@ -143,9 +144,11 @@
 
 - (void) addAdditionalMenuItems:(NSMenu *)menu {
     
-  NSMenuItem *runItem = [NSMenuItem.alloc initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
-  [runItem setTarget:self];
-  [menu addItem:runItem];
+  if (!DEFS.userConfigDisabled) {
+    NSMenuItem *runItem = [NSMenuItem.alloc initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
+    [runItem setTarget:self];
+    [menu addItem:runItem];
+  }
   
 }
 

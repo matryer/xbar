@@ -16,6 +16,28 @@
 		05DAE02D1833274100409786 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
 		05DB995C1C3D4B80008B5159 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB995B1C3D4B80008B5159 /* Images.xcassets */; };
+		36DCD8BE1C76027C004DE286 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
+		36DCD8BF1C76027C004DE286 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
+		36DCD8C01C76027C004DE286 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
+		36DCD8C11C76027C004DE286 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		36DCD8C21C76027C004DE286 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
+		36DCD8C31C76027C004DE286 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
+		36DCD8C41C76027C004DE286 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21621B9F0F10002539F7 /* DTTimePeriodGroup.m */; };
+		36DCD8C51C76027C004DE286 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
+		36DCD8C61C76027C004DE286 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		36DCD8C71C76027C004DE286 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215A1B9F0F10002539F7 /* DTError.m */; };
+		36DCD8C81C76027C004DE286 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21601B9F0F10002539F7 /* DTTimePeriodCollection.m */; };
+		36DCD8C91C76027C004DE286 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
+		36DCD8CA1C76027C004DE286 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21641B9F0F10002539F7 /* NSDate+DateTools.m */; };
+		36DCD8CB1C76027C004DE286 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
+		36DCD8CC1C76027C004DE286 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
+		36DCD8CD1C76027C004DE286 /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215E1B9F0F10002539F7 /* DTTimePeriodChain.m */; };
+		36DCD8CE1C76027C004DE286 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
+		36DCD8CF1C76027C004DE286 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
+		36DCD8D01C76027C004DE286 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215C1B9F0F10002539F7 /* DTTimePeriod.m */; };
+		36DCD8D21C76027C004DE286 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
+		36DCD8D31C76027C004DE286 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB995B1C3D4B80008B5159 /* Images.xcassets */; };
+		36DCD8D41C76027C004DE286 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A21551B9F0F10002539F7 /* DateTools.bundle */; };
 		7B9A21531B9F0BE6002539F7 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
 		7B9A21651B9F0F10002539F7 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A21551B9F0F10002539F7 /* DateTools.bundle */; };
 		7B9A21661B9F0F10002539F7 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
@@ -66,6 +88,7 @@
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE031183329C500409786 /* one.10s.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one.10s.sh; sourceTree = "<group>"; };
 		05DB995B1C3D4B80008B5159 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		36DCD8D81C76027C004DE286 /* BitBarDistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarDistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Vendor/STPrivilegedTask/STPrivilegedTask.h; sourceTree = SOURCE_ROOT; };
 		7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Vendor/STPrivilegedTask/STPrivilegedTask.m; sourceTree = SOURCE_ROOT; };
@@ -163,6 +186,7 @@
 			children = (
 				05DADFF0183323DD00409786 /* BitBar.app */,
 				05DAE011183323DD00409786 /* BitBarTests.xctest */,
+				36DCD8D81C76027C004DE286 /* BitBarDistro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -300,6 +324,22 @@
 			productReference = 05DAE011183323DD00409786 /* BitBarTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		36DCD8BC1C76027C004DE286 /* BitBarDistro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36DCD8D51C76027C004DE286 /* Build configuration list for PBXNativeTarget "BitBarDistro" */;
+			buildPhases = (
+				36DCD8BD1C76027C004DE286 /* Sources */,
+				36DCD8D11C76027C004DE286 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BitBarDistro;
+			productName = BitBar;
+			productReference = 36DCD8D81C76027C004DE286 /* BitBarDistro.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -336,6 +376,7 @@
 			targets = (
 				05DADFEF183323DD00409786 /* BitBar */,
 				05DAE010183323DD00409786 /* BitBarTests */,
+				36DCD8BC1C76027C004DE286 /* BitBarDistro */,
 			);
 		};
 /* End PBXProject section */
@@ -355,6 +396,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36DCD8D11C76027C004DE286 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36DCD8D21C76027C004DE286 /* App.xib in Resources */,
+				36DCD8D31C76027C004DE286 /* Images.xcassets in Resources */,
+				36DCD8D41C76027C004DE286 /* DateTools.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +445,32 @@
 				0599719818333DB300EA6D8D /* PluginTest.m in Sources */,
 				A22AF32A189F823E0011DFCD /* NSColor+Hex.m in Sources */,
 				05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36DCD8BD1C76027C004DE286 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36DCD8BE1C76027C004DE286 /* AHProxy.m in Sources */,
+				36DCD8BF1C76027C004DE286 /* AppDelegate.m in Sources */,
+				36DCD8C01C76027C004DE286 /* DTConstants.m in Sources */,
+				36DCD8C11C76027C004DE286 /* HTMLPlugin.m in Sources */,
+				36DCD8C21C76027C004DE286 /* STPrivilegedTask.m in Sources */,
+				36DCD8C31C76027C004DE286 /* ExecutablePlugin.m in Sources */,
+				36DCD8C41C76027C004DE286 /* DTTimePeriodGroup.m in Sources */,
+				36DCD8C51C76027C004DE286 /* NSTask+useSystemProxies.m in Sources */,
+				36DCD8C61C76027C004DE286 /* PluginManager.m in Sources */,
+				36DCD8C71C76027C004DE286 /* DTError.m in Sources */,
+				36DCD8C81C76027C004DE286 /* DTTimePeriodCollection.m in Sources */,
+				36DCD8C91C76027C004DE286 /* NSUserDefaults+Settings.m in Sources */,
+				36DCD8CA1C76027C004DE286 /* NSDate+DateTools.m in Sources */,
+				36DCD8CB1C76027C004DE286 /* NSColor+Hex.m in Sources */,
+				36DCD8CC1C76027C004DE286 /* Plugin.m in Sources */,
+				36DCD8CD1C76027C004DE286 /* DTTimePeriodChain.m in Sources */,
+				36DCD8CE1C76027C004DE286 /* LaunchAtLoginController.m in Sources */,
+				36DCD8CF1C76027C004DE286 /* AHProxySettings.m in Sources */,
+				36DCD8D01C76027C004DE286 /* DTTimePeriod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +624,39 @@
 			};
 			name = Release;
 		};
+		36DCD8D61C76027C004DE286 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					DISTRO,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/BitBar/BitBar-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		36DCD8D71C76027C004DE286 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
+				INFOPLIST_FILE = "$(SRCROOT)/BitBar/BitBar-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -573,6 +683,15 @@
 			buildConfigurations = (
 				05DAE025183323DD00409786 /* Debug */,
 				05DAE026183323DD00409786 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36DCD8D51C76027C004DE286 /* Build configuration list for PBXNativeTarget "BitBarDistro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36DCD8D61C76027C004DE286 /* Debug */,
+				36DCD8D71C76027C004DE286 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

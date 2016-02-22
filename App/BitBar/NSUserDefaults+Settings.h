@@ -12,6 +12,7 @@
 
 @property NSString* pluginsDirectory;
 @property BOOL isFirstTimeAppRun;
+@property BOOL userConfigDisabled;
 
 @end
 

@@ -78,6 +78,10 @@
   if (!DEFS.pluginsDirectory)
     return;
   
+  // don't open plugins if user configuration is disabled
+  if (DEFS.userConfigDisabled)
+    return;
+  
   // extract the url from the event and handle it
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
