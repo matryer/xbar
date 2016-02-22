@@ -9,6 +9,7 @@
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
 #import "PluginManager.h"
+#import "Plugin.h"
 #import <sys/stat.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSURLDownloadDelegate>
@@ -29,6 +30,11 @@
 - (NSArray*) otherCopies { return [NSRunningApplication runningApplicationsWithBundleIdentifier:NSBundle.mainBundle.bundleIdentifier]; }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)n {
+  // register custom url scheme handler
+  [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                     andSelector:@selector(handleGetURLEvent:withReplyEvent:)
+                                                   forEventClass:kInternetEventClass
+                                                      andEventID:kAEGetURL];
 
   if (self.otherCopies.count <= 1) return;
   NSModalResponse runm = [[NSAlert alertWithMessageText:[NSString stringWithFormat:@"Another copy of %@ is already running.", NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleNameKey]]
@@ -60,12 +66,6 @@
   // make a plugin manager
   [_pluginManager = [PluginManager.alloc initWithPluginPath:DEFS.pluginsDirectory]
                                                                   setupAllPlugins];
-  
-  // register custom url scheme handler
-  [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
-                                                     andSelector:@selector(handleGetURLEvent:withReplyEvent:)
-                                                   forEventClass:kInternetEventClass
-                                                      andEventID:kAEGetURL];
 }
 
 - (void) receiveWakeNote: (NSNotification*) note
@@ -82,7 +82,16 @@
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
   URLString = [URLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-  NSString *prefix = @"bitbar://openPlugin?";
+  NSString *prefix = @"bitbar://refreshPlugin?name=";
+  
+  if ([URLString hasPrefix:prefix]) {
+      URLString = [URLString substringFromIndex:prefix.length];
+      NSArray *plugins = [self.pluginManager.plugins filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", URLString]];
+      [plugins makeObjectsPerformSelector:@selector(performRefreshNow:) withObject:nil];
+      return;
+  }
+  
+  prefix = @"bitbar://openPlugin?";
   
   // skip urls that don't begin with our prefix
   if (![URLString hasPrefix:prefix])
