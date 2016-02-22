@@ -15,7 +15,7 @@ Usage:
 bitbar-bundler /path/to/BitBar.app /path/to/first-plugin /path/to/second-plugin ...
 ```
 
-  If user configuration is enabled, symbolic links to the bundled plugins are created in the plugin folder selected by the user.
+If user configuration is enabled, symbolic links to the bundled plugins are created in the plugin folder selected by the user.
 
 ## Settings
 
