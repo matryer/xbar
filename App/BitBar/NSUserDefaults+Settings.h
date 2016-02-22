@@ -12,9 +12,6 @@
 
 @property NSString* pluginsDirectory;
 @property BOOL isFirstTimeAppRun;
-
-// disables opening plugins, hides advanced menu items. for global setting use
-// `defaults write /Library/Preferences/com.matryer.BitBar userConfigDisabled -bool true`
 @property BOOL userConfigDisabled;
 
 @end
