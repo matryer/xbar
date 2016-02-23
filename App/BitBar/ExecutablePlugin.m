@@ -136,7 +136,7 @@
   end tell";
   
   NSString *s = [NSString stringWithFormat:
-                 script, self.path];
+                 script, [self.path stringByReplacingOccurrencesOfString:@" " withString:@"\\\\ "]];
   NSAppleScript *as = [NSAppleScript.alloc initWithSource:s];
   [as executeAndReturnError:nil];
   
