@@ -68,6 +68,11 @@
     item.alternate = YES;
     item.keyEquivalentModifierMask = NSAlternateKeyMask;
   }
+  if (params[@"image"]) {
+    NSData * imageData = [[NSData alloc] initWithBase64EncodedString:params[@"image"] options:0];
+    NSImage * image = [[NSImage alloc] initWithData:imageData];
+    item.image = image;
+  }
 
   return item;
 }
@@ -345,6 +350,13 @@
     if (params[@"alternate"]) {
       [self cycleLines];
       return;
+    }
+    
+    // Add image if present
+    if (params[@"image"]) {
+      NSData * imageData = [[NSData alloc] initWithBase64EncodedString:params[@"image"] options:0];
+      NSImage * image = [[NSImage alloc] initWithData:imageData];
+      self.statusItem.image = image;
     }
     
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
