@@ -503,6 +503,8 @@
   self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
   
   [self.statusItem setHighlightMode:YES];
+
+  [self.lastUpdatedMenuItem setTitle:self.lastUpdated ? [NSString stringWithFormat:@"Updated %@", self.lastUpdatedString] : @"Refreshing…"];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
