@@ -30,6 +30,17 @@
   
 }
 
+- (NSImage*) createImageFromBase64:(NSString*)string {
+  NSData * imageData;
+  if ([NSData instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]) {
+    imageData = [[NSData alloc] initWithBase64EncodedString:string options:0];
+  }else {
+    imageData = [[NSData alloc] initWithBase64Encoding:string];
+  }
+  NSImage * image = [[NSImage alloc] initWithData:imageData];
+  return image;
+}
+
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params {
 
   if ([[params[@"dropdown"] lowercaseString] isEqualToString:@"false"]) {
@@ -69,11 +80,7 @@
     item.keyEquivalentModifierMask = NSAlternateKeyMask;
   }
   if (params[@"image"]) {
-    if ([NSData instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]) {
-      NSData * imageData = [[NSData alloc] initWithBase64EncodedString:params[@"image"] options:0];
-      NSImage * image = [[NSImage alloc] initWithData:imageData];
-      item.image = image;
-    }
+    item.image = [self createImageFromBase64:params[@"image"]];
   }
 
   return item;
@@ -356,11 +363,7 @@
     
     // Add image if present
     if (params[@"image"]) {
-      if ([NSData instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]) {
-        NSData * imageData = [[NSData alloc] initWithBase64EncodedString:params[@"image"] options:0];
-        NSImage * image = [[NSImage alloc] initWithData:imageData];
-        self.statusItem.image = image;
-      }
+      self.statusItem.image = [self createImageFromBase64:params[@"image"]];
     }
     
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
