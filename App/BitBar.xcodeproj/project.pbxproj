@@ -179,7 +179,9 @@
 				05DAE017183323DD00409786 /* BitBarTests */,
 				05DADFF1183323DD00409786 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		05DADFF1183323DD00409786 /* Products */ = {
 			isa = PBXGroup;
