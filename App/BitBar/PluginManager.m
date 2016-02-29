@@ -316,17 +316,7 @@
     
     for (Plugin *plugin in plugins) [plugin refresh];
 
-    [_timerForLastUpdated invalidate];
-    self.timerForLastUpdated = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updatePluginLastUpdatedValues) userInfo:nil repeats:YES];
-    
   }
-}
-
-- (void)updatePluginLastUpdatedValues {
-
-  for (Plugin *plugin in self.plugins)
-    plugin.lastUpdated  ? [plugin.lastUpdatedMenuItem setTitle:[NSString stringWithFormat:@"Updated %@", plugin.lastUpdatedString]]
-                        : [plugin.lastUpdatedMenuItem setTitle:@"Refreshing…"];
 }
 
 #pragma mark - NSMenuDelegate

@@ -15,7 +15,6 @@
 @property (nonatomic)        NSArray *plugins;
 @property (nonatomic)    NSStatusBar *statusBar;
 @property (nonatomic)   NSStatusItem *defaultStatusItem;
-@property (nonatomic)        NSTimer *timerForLastUpdated;
 @property (nonatomic)   NSDictionary *environment;
 
 - initWithPluginPath:(NSString *)path;
