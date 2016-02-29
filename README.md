@@ -152,7 +152,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
     * `trim=..` whether to trim leading/trailing whitespace from the title.  `true` or `false` (defaults to `true`)
     * `alternate=true` to mark a line as an alternate to the previous one for when the Option key is pressed in the dropdown
-    * `templateImage=..` set an image for this item. The image data must be passed as base64 encoded string and should consist of only black and clear colors. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. The imageformat can be any of the formats supported by Mac OS X
+    * `templateImage=..` set an image for this item. The image data must be passed as base64 encoded string and should consist of only black and clear pixels. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. The imageformat can be any of the formats supported by Mac OS X
     * `image=..` set an image for this item. The image data must be passed as base64 encoded string. The imageformat can be any of the formats supported by Mac OS X
 
 ### Metadata
