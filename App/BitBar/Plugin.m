@@ -30,7 +30,7 @@
   
 }
 
-- (NSImage*) createImageFromBase64:(NSString*)string {
+- (NSImage*) createImageFromBase64:(NSString*)string isTemplate:(BOOL)template{
   NSData * imageData;
   if ([NSData instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]) {
     imageData = [[NSData alloc] initWithBase64EncodedString:string options:0];
@@ -38,6 +38,9 @@
     imageData = [[NSData alloc] initWithBase64Encoding:string];
   }
   NSImage * image = [[NSImage alloc] initWithData:imageData];
+  if (template) {
+    [image setTemplate:true];
+  }
   return image;
 }
 
@@ -79,8 +82,10 @@
     item.alternate = YES;
     item.keyEquivalentModifierMask = NSAlternateKeyMask;
   }
-  if (params[@"image"]) {
-    item.image = [self createImageFromBase64:params[@"image"]];
+  if (params[@"templateImage"]) {
+    item.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
+  }else if (params[@"image"]) {
+    item.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
   }
 
   return item;
@@ -362,9 +367,12 @@
     }
     
     // Add image if present
-    if (params[@"image"]) {
-      self.statusItem.image = [self createImageFromBase64:params[@"image"]];
+    if (params[@"templateImage"]) {
+      self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
+    }else if (params[@"image"]) {
+      self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
     }
+    
     
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     self.pluginIsVisible = YES;
