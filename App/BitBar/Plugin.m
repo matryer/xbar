@@ -11,6 +11,7 @@
 #import "STPrivilegedTask.h"
 #import "NSDate+DateTools.h"
 #import "NSColor+Hex.h"
+#import "NSString+Emojize.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS ((double)60.)
 
@@ -51,6 +52,9 @@
   }
   
   NSString * fullTitle = params[@"title"];
+  if ([[params[@"emojize"] lowercaseString] isEqualToString:@"true"]) {
+    fullTitle = [fullTitle emojizedString];
+  }
   if (![[params[@"trim"] lowercaseString] isEqualToString:@"false"]) {
       fullTitle = [fullTitle stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   }
@@ -94,6 +98,9 @@
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
   NSString * fullTitle = params[@"title"];
+  if ([[params[@"emojize"] lowercaseString] isEqualToString:@"true"]) {
+    fullTitle = [fullTitle emojizedString];
+  }
   if (![[params[@"trim"] lowercaseString] isEqualToString:@"false"]) {
     fullTitle = [fullTitle stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
   }
