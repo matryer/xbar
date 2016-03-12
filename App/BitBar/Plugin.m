@@ -52,7 +52,7 @@
   }
   
   NSString * fullTitle = params[@"title"];
-  if ([[params[@"emojize"] lowercaseString] isEqualToString:@"true"]) {
+  if (![[params[@"emojize"] lowercaseString] isEqualToString:@"false"]) {
     fullTitle = [fullTitle emojizedString];
   }
   if (![[params[@"trim"] lowercaseString] isEqualToString:@"false"]) {
@@ -98,7 +98,7 @@
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
   NSString * fullTitle = params[@"title"];
-  if ([[params[@"emojize"] lowercaseString] isEqualToString:@"true"]) {
+  if (![[params[@"emojize"] lowercaseString] isEqualToString:@"false"]) {
     fullTitle = [fullTitle emojizedString];
   }
   if (![[params[@"trim"] lowercaseString] isEqualToString:@"false"]) {
