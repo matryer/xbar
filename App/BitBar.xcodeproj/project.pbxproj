@@ -76,6 +76,13 @@
 			remoteGlobalIDString = 05DADFEF183323DD00409786;
 			remoteInfo = BitBar;
 		};
+		36372D821C941D8F0005EB32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05DADFE8183323DD00409786 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36DCD8BC1C76027C004DE286;
+			remoteInfo = BitBarDistro;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -324,6 +331,7 @@
 			);
 			dependencies = (
 				05DAE016183323DD00409786 /* PBXTargetDependency */,
+				36372D831C941D8F0005EB32 /* PBXTargetDependency */,
 			);
 			name = BitBarTests;
 			productName = BitBarTests;
@@ -496,6 +504,11 @@
 			isa = PBXTargetDependency;
 			target = 05DADFEF183323DD00409786 /* BitBar */;
 			targetProxy = 05DAE015183323DD00409786 /* PBXContainerItemProxy */;
+		};
+		36372D831C941D8F0005EB32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36DCD8BC1C76027C004DE286 /* BitBarDistro */;
+			targetProxy = 36372D821C941D8F0005EB32 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
