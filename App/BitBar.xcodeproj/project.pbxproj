@@ -16,6 +16,21 @@
 		05DAE02D1833274100409786 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
 		05DB995C1C3D4B80008B5159 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB995B1C3D4B80008B5159 /* Images.xcassets */; };
+		36372DC21C9424DB0005EB32 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
+		36372DC31C9424DB0005EB32 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
+		36372DC41C9424DB0005EB32 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
+		36372DC51C9424DB0005EB32 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
+		36372DC61C9424DB0005EB32 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
+		36372DC71C9424DB0005EB32 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
+		36372DC81C9424DB0005EB32 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		36372DC91C9424DB0005EB32 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
+		36372DCA1C9424DB0005EB32 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
+		36372DCB1C9424DB0005EB32 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		36372DCC1C9424DB0005EB32 /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
+		36372DCD1C9424DB0005EB32 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
+		36372DCE1C9424DB0005EB32 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
+		36372DCF1C9424DB0005EB32 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
+		36372DD21C9424DB0005EB32 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
 		36DCD8BE1C76027C004DE286 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
 		36DCD8BF1C76027C004DE286 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
 		36DCD8C01C76027C004DE286 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
@@ -76,7 +91,7 @@
 			remoteGlobalIDString = 05DADFEF183323DD00409786;
 			remoteInfo = BitBar;
 		};
-		36372D821C941D8F0005EB32 /* PBXContainerItemProxy */ = {
+		36372DC01C9424DB0005EB32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05DADFE8183323DD00409786 /* Project object */;
 			proxyType = 1;
@@ -104,6 +119,7 @@
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DB995B1C3D4B80008B5159 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarDistroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36DCD8D81C76027C004DE286 /* BitBarDistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarDistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Vendor/STPrivilegedTask/STPrivilegedTask.h; sourceTree = SOURCE_ROOT; };
@@ -143,6 +159,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		05DAE00E183323DD00409786 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36372DD01C9424DB0005EB32 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,6 +231,7 @@
 				05DADFF0183323DD00409786 /* BitBar.app */,
 				05DAE011183323DD00409786 /* BitBarTests.xctest */,
 				36DCD8D81C76027C004DE286 /* BitBarDistro.app */,
+				36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,11 +355,28 @@
 			);
 			dependencies = (
 				05DAE016183323DD00409786 /* PBXTargetDependency */,
-				36372D831C941D8F0005EB32 /* PBXTargetDependency */,
 			);
 			name = BitBarTests;
 			productName = BitBarTests;
 			productReference = 05DAE011183323DD00409786 /* BitBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		36372DBC1C9424DB0005EB32 /* BitBarDistroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36372DD31C9424DB0005EB32 /* Build configuration list for PBXNativeTarget "BitBarDistroTests" */;
+			buildPhases = (
+				36372DC11C9424DB0005EB32 /* Sources */,
+				36372DD01C9424DB0005EB32 /* Frameworks */,
+				36372DD11C9424DB0005EB32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36372DBF1C9424DB0005EB32 /* PBXTargetDependency */,
+			);
+			name = BitBarDistroTests;
+			productName = BitBarTests;
+			productReference = 36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		36DCD8BC1C76027C004DE286 /* BitBarDistro */ = {
@@ -388,6 +429,7 @@
 				05DADFEF183323DD00409786 /* BitBar */,
 				05DAE010183323DD00409786 /* BitBarTests */,
 				36DCD8BC1C76027C004DE286 /* BitBarDistro */,
+				36372DBC1C9424DB0005EB32 /* BitBarDistroTests */,
 			);
 		};
 /* End PBXProject section */
@@ -408,6 +450,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE7303DD1C93721600AF5499 /* TestPlugins in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36372DD11C9424DB0005EB32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36372DD21C9424DB0005EB32 /* TestPlugins in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +521,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		36372DC11C9424DB0005EB32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36372DC21C9424DB0005EB32 /* NSUserDefaults+Settings.m in Sources */,
+				36372DC31C9424DB0005EB32 /* AHProxy.m in Sources */,
+				36372DC41C9424DB0005EB32 /* AHProxySettings.m in Sources */,
+				36372DC51C9424DB0005EB32 /* NSTask+useSystemProxies.m in Sources */,
+				36372DC61C9424DB0005EB32 /* STPrivilegedTask.m in Sources */,
+				36372DC71C9424DB0005EB32 /* LaunchAtLoginController.m in Sources */,
+				36372DC81C9424DB0005EB32 /* PluginManager.m in Sources */,
+				36372DC91C9424DB0005EB32 /* Plugin.m in Sources */,
+				36372DCA1C9424DB0005EB32 /* ExecutablePlugin.m in Sources */,
+				36372DCB1C9424DB0005EB32 /* HTMLPlugin.m in Sources */,
+				36372DCC1C9424DB0005EB32 /* PluginTest.m in Sources */,
+				36372DCD1C9424DB0005EB32 /* NSColor+Hex.m in Sources */,
+				36372DCE1C9424DB0005EB32 /* PluginManagerTest.m in Sources */,
+				36372DCF1C9424DB0005EB32 /* PluginManager+Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		36DCD8BD1C76027C004DE286 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,10 +576,10 @@
 			target = 05DADFEF183323DD00409786 /* BitBar */;
 			targetProxy = 05DAE015183323DD00409786 /* PBXContainerItemProxy */;
 		};
-		36372D831C941D8F0005EB32 /* PBXTargetDependency */ = {
+		36372DBF1C9424DB0005EB32 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 36DCD8BC1C76027C004DE286 /* BitBarDistro */;
-			targetProxy = 36372D821C941D8F0005EB32 /* PBXContainerItemProxy */;
+			targetProxy = 36372DC01C9424DB0005EB32 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -648,6 +719,44 @@
 			};
 			name = Release;
 		};
+		36372DD41C9424DB0005EB32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					DISTRO,
+				);
+				INFOPLIST_FILE = "BitBarTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		36372DD51C9424DB0005EB32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
+				INFOPLIST_FILE = "BitBarTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		36DCD8D61C76027C004DE286 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -707,6 +816,15 @@
 			buildConfigurations = (
 				05DAE025183323DD00409786 /* Debug */,
 				05DAE026183323DD00409786 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36372DD31C9424DB0005EB32 /* Build configuration list for PBXNativeTarget "BitBarDistroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36372DD41C9424DB0005EB32 /* Debug */,
+				36372DD51C9424DB0005EB32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

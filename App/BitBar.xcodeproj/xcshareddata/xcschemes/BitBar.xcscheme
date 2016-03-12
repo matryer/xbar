@@ -52,6 +52,16 @@
                ReferencedContainer = "container:BitBar.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "36372DBC1C9424DB0005EB32"
+               BuildableName = "BitBarDistroTests.xctest"
+               BlueprintName = "BitBarDistroTests"
+               ReferencedContainer = "container:BitBar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
