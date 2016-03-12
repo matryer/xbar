@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PluginManager.h"
+#import "PluginManager+Test.h"
 #import "Plugin.h"
 
 @interface PluginManagerTest : XCTestCase
@@ -19,15 +19,15 @@
 - (void)testInit
 {
   
-  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  XCTAssert([manager.path isEqualToString:[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath]]);
-  
+  PluginManager *manager = [PluginManager testManager];
+  XCTAssert([manager.path isEqualToString:[PluginManager pluginPath]]);
+  XCTAssertNotNil(manager.path);
 }
 
 - (void)testPluginFiles {
   
-  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
-  
+  PluginManager *manager = [PluginManager testManager];
+
   NSArray *pluginFiles = manager.plugins;
   XCTAssertEqual((NSUInteger)3, [pluginFiles count], @"pluginFiles count");
   
@@ -35,7 +35,7 @@
 
 - (void)testPlugins {
   
-  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager testManager];
 
   NSArray *plugins = manager.plugins;
   
@@ -45,13 +45,13 @@
   XCTAssertNotNil(one, @"one shouldn't be nil");
   XCTAssertEqual(manager, one.manager, @"manager");
   XCTAssert([one.name isEqualToString:@"one.10s.sh"], @"name");
-  XCTAssert([one.path isEqualToString:[[@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins" stringByStandardizingPath] stringByAppendingPathComponent:@"one.10s.sh"]], @"path");
+  XCTAssert([one.path isEqualToString:[[PluginManager pluginPath] stringByAppendingPathComponent:@"one.10s.sh"]], @"path");
   
 }
 
 - (void)testStatusBar {
   
-  PluginManager *manager = [PluginManager.alloc initWithPluginPath:@"~/Work/bitbar/BitBar/BitBarTests/TestPlugins"];
+  PluginManager *manager = [PluginManager testManager];
 
   NSStatusBar *statusBar = manager.statusBar;
   XCTAssertNotNil(statusBar, @"statusBar");
