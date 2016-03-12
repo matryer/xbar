@@ -287,7 +287,25 @@
   itemCount += 3;
 #endif  
   XCTAssertEqual(itemCount, [[p.statusItem.menu itemArray] count]);
-  
+}
+
+- (void)testParameterANSI {
+  PluginManager *manager = [PluginManager testManager];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
+
+  NSString* helloWorld = @"\033[1;31mH\033[0mello \033[32mW\033[0morld";
+
+  p.content = helloWorld;
+  XCTAssert([p.titleLines[0] isEqualToString:helloWorld]); // unchanged
+
+  NSMenuItem* item = [p buildMenuItemForLine:[NSString stringWithFormat:@"%@ | ansi=true", helloWorld]];
+  XCTAssertEqual(item.title.length, 11);
+  NSDictionary *hAttr, *wAttr, *nAttr;
+  hAttr = [item.attributedTitle attributesAtIndex:0 effectiveRange:nil]; // H
+  nAttr = [item.attributedTitle attributesAtIndex:1 effectiveRange:nil]; // space
+  wAttr = [item.attributedTitle attributesAtIndex:6 effectiveRange:nil]; // W
+  XCTAssertNotEqual(hAttr[NSForegroundColorAttributeName], wAttr[NSForegroundColorAttributeName]); // different colors
+  XCTAssertNil(nAttr[NSForegroundColorAttributeName]); // no color
 }
 
 - (void)testEmoji {

@@ -18,10 +18,6 @@
 
   NSArray* codeArray = [codes componentsSeparatedByString:@";"];
 
-  if ([codes isEqualToString:@"0"] || [codes isEqualToString:@""]) {
-    return [NSMutableDictionary.alloc init];
-  }
-
   for (NSString* codeString in codeArray) {
     int code = codeString.intValue;
     switch (code) {

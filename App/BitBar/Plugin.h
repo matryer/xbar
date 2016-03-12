@@ -29,7 +29,7 @@
 - initWithManager:(PluginManager*)manager;
 - (void) close;
 
-
+- (NSMenuItem*) buildMenuItemForLine:(NSString *)line;
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params;
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
 - (void) addAdditionalMenuItems:(NSMenu *)menu;
@@ -43,5 +43,6 @@
 
 // actions
 - (void)changePluginsDirectorySelected:(id)sender;
+
 
 @end

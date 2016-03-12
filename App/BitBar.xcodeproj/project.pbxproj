@@ -69,6 +69,7 @@
 		AE3C16791C93F716009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE3C167A1C93F71B009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE7303DB1C935BDE00AF5499 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
+		AE3C16781C93F1F9009AF7CA /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
 		AE7303DD1C93721600AF5499 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
 		AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
 		AE7303E11C9386CE00AF5499 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
@@ -540,6 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE3C16791C93F716009AF7CA /* NSString+Emojize.m in Sources */,
+				AE3C16781C93F1F9009AF7CA /* NSString+ANSI.m in Sources */,
 				AE7303EA1C9387F300AF5499 /* NSUserDefaults+Settings.m in Sources */,
 				AE7303E51C93871200AF5499 /* AHProxy.m in Sources */,
 				AE7303E61C93871200AF5499 /* AHProxySettings.m in Sources */,
