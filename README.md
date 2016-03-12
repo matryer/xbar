@@ -156,6 +156,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `templateImage=..` set an image for this item. The image data must be passed as base64 encoded string and should consist of only black and clear pixels. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. The imageformat can be any of the formats supported by Mac OS X
     * `image=..` set an image for this item. The image data must be passed as base64 encoded string. The imageformat can be any of the formats supported by Mac OS X
     * `emojize=false` will disable parsing of github style `:mushroom:` into :mushroom:
+    * `ansi=true` to parse ansi color codes in the text.
 
 ### Metadata
 
