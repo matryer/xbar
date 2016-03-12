@@ -2,7 +2,7 @@
 
 ## v1.7
 
-* Added `image` and `imageTemplate` parameters (Base64 encoded images)
+* Added `image` and `templateImage` parameters (Base64 encoded images)
 * Memory leak fixes and bug fixes
 
 ## v1.6
