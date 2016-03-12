@@ -733,7 +733,7 @@
 					"$(inherited)",
 					DISTRO,
 				);
-				INFOPLIST_FILE = "BitBarTests-Info.plist";
+				INFOPLIST_FILE = "BitBarTests/BitBarTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -750,7 +750,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
-				INFOPLIST_FILE = "BitBarTests-Info.plist";
+				INFOPLIST_FILE = "BitBarTests/BitBarTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
