@@ -1,5 +1,10 @@
 # BitBar Changes
 
+## v1.7
+
+* Added `image` and `imageTemplate` parameters (Base64 encoded images)
+* Memory leak fixes and bug fixes
+
 ## v1.6
 
 * Added [distributable BitBar](https://github.com/matryer/bitbar/blob/master/Docs/DistributingBitBar.md) to allow you to bundle a BitBar app with plugins, and distribute a tamper free version.
