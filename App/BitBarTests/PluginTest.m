@@ -280,7 +280,13 @@
   
   [p rebuildMenuForStatusItem:p.statusItem];
 
-  XCTAssertEqual((NSUInteger)3+3, [[p.statusItem.menu itemArray] count]);
+  NSUInteger itemCount = 3;
+#ifdef DISTRO
+  itemCount += 2;
+#else
+  itemCount += 3;
+#endif  
+  XCTAssertEqual(itemCount, [[p.statusItem.menu itemArray] count]);
   
 }
 
