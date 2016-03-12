@@ -10,7 +10,7 @@ script: if [ -n "$TRAVIS_TAG" ]; then xctool -project $TRAVIS_XCODE_PROJECT
   -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
   SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze; else xctool -project $TRAVIS_XCODE_PROJECT
   -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
-  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
+  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings test; fi
 before_deploy:
 - OUTPUTDIR="$PWD/build/Release"
 - cd $OUTPUTDIR
