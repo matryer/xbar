@@ -13,11 +13,19 @@
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
 
+@interface PluginManager () {
+  LaunchAtLoginController *_launchAtLoginController;
+}
+@end
+
 @implementation PluginManager
 
 - initWithPluginPath:(NSString*)path {
-
-  return (self = super.init) ? _path = path.stringByStandardizingPath, self : nil;
+  if (self = [super init]) {
+    _path = [path stringByStandardizingPath];
+    _launchAtLoginController = [[LaunchAtLoginController alloc] init];
+  }
+  return self;
 }
 
 - (void) showSystemStatusItemWithMessage:(NSString*)message {
@@ -78,8 +86,7 @@
     [targetMenu addItem:NSMenuItem.separatorItem];
     
     // open at login, aka openAtLoginMenuItem
-    LaunchAtLoginController *lc = LaunchAtLoginController.new;
-    [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:lc.launchAtLogin];
+    [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
     
     [targetMenu addItem:NSMenuItem.separatorItem];
   }
@@ -123,12 +130,7 @@
 }
 
 - (void) toggleOpenAtLogin:(id)sender {
-  
-  LaunchAtLoginController *lc = LaunchAtLoginController.new;
-  [lc setLaunchAtLogin:!lc.launchAtLogin];
-
-  [(NSMenuItem*)sender setState:lc.launchAtLogin];
-  
+  [_launchAtLoginController setLaunchAtLogin:!_launchAtLoginController.launchAtLogin];
 }
 
 - (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk {
