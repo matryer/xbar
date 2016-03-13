@@ -304,7 +304,6 @@
   NSArray<NSMenuItem *> *items = p.statusItem.menu.itemArray;
   
   XCTAssertEqualObjects(items[0].title, item);
-  XCTAssertNotNil(items[0].submenu);
   
   items = items[0].submenu.itemArray;
   
@@ -312,7 +311,6 @@
   XCTAssertEqualObjects(items[0].title, subItem);
   XCTAssertNil(items[0].submenu);
   XCTAssertEqualObjects(items[1].title, subItem2);
-  XCTAssertNotNil(items[1].submenu);
   XCTAssertEqual(items[1].submenu.itemArray.count, 1);
   XCTAssertEqualObjects(items[1].submenu.itemArray[0].title, subItem2Sub);
 }
