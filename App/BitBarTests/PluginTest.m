@@ -292,13 +292,16 @@
 - (void)testParameterANSI {
   PluginManager *manager = [PluginManager testManager];
   Plugin *p = [Plugin.alloc initWithManager:manager];
+  NSMenuItem* item;
 
   NSString* helloWorld = @"\033[1;31mH\033[0mello \033[32mW\033[0morld";
 
-  p.content = helloWorld;
-  XCTAssert([p.titleLines[0] isEqualToString:helloWorld]); // unchanged
+  // test disabling ansi parsing
+  item = [p buildMenuItemForLine:[NSString stringWithFormat:@"%@ | ansi=false", helloWorld]];
+  XCTAssert([item.title isEqualToString:helloWorld]); // unchanged
 
-  NSMenuItem* item = [p buildMenuItemForLine:[NSString stringWithFormat:@"%@ | ansi=true", helloWorld]];
+  // test foreground and resetting
+  item = [p buildMenuItemForLine:[NSString stringWithFormat:@"%@", helloWorld]];
   XCTAssertEqual(item.title.length, 11);
   NSDictionary *hAttr, *wAttr, *nAttr;
   hAttr = [item.attributedTitle attributesAtIndex:0 effectiveRange:nil]; // H
@@ -306,6 +309,19 @@
   wAttr = [item.attributedTitle attributesAtIndex:6 effectiveRange:nil]; // W
   XCTAssertNotEqual(hAttr[NSForegroundColorAttributeName], wAttr[NSForegroundColorAttributeName]); // different colors
   XCTAssertNil(nAttr[NSForegroundColorAttributeName]); // no color
+
+  // test background, resetting and that font isn't touched
+  item = [p buildMenuItemForLine:@"a\033[40mb\033[0mc | font=courier"];
+  NSDictionary *attr;
+  attr = [item.attributedTitle attributesAtIndex:0 effectiveRange:nil]; // a, no background, font courier
+  XCTAssertNil(attr[NSBackgroundColorAttributeName]);
+  XCTAssert([[(NSFont*)attr[NSFontAttributeName] fontName] isEqualToString:@"Courier"]);
+  attr = [item.attributedTitle attributesAtIndex:1 effectiveRange:nil]; // b, has background, font courier
+  XCTAssertNotNil(attr[NSBackgroundColorAttributeName]);
+  XCTAssert([[(NSFont*)attr[NSFontAttributeName] fontName] isEqualToString:@"Courier"]);
+  attr = [item.attributedTitle attributesAtIndex:2 effectiveRange:nil]; // c, no background, font courier
+  XCTAssertNil(attr[NSBackgroundColorAttributeName]);
+  XCTAssert([[(NSFont*)attr[NSFontAttributeName] fontName] isEqualToString:@"Courier"]);
 }
 
 - (void)testEmoji {

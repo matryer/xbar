@@ -80,7 +80,8 @@
     item.representedObject = params;
     [item setTarget:self];
   }
-  if (params[@"font"] || params[@"size"] || params[@"color"] || params[@"ansi"])
+  BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
+  if (params[@"font"] || params[@"size"] || params[@"color"] || parseANSI)
     item.attributedTitle = [self attributedTitleWithParams:params];
   
   if (params[@"alternate"]) {
@@ -125,7 +126,8 @@
   }
 
   NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1};
-  if ([[params[@"ansi"] lowercaseString] isEqualToString:@"true"]) {
+  BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
+  if (parseANSI) {
     NSMutableAttributedString * attributedTitle = [title attributedStringParsingANSICodes];
     [attributedTitle addAttributes:attributes range:NSMakeRange(0, attributedTitle.length)];
     return attributedTitle;

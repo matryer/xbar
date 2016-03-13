@@ -10,6 +10,7 @@
 
 @interface NSString (ANSI)
 
+- (BOOL)containsANSICodes;
 - (NSMutableAttributedString*)attributedStringParsingANSICodes;
 
 @end
