@@ -70,6 +70,7 @@
 }
 
 -(BOOL)refresh {
+  [self.statusItem setTitle:@"…"];
   [self.lineCycleTimer invalidate];
   self.lineCycleTimer = nil;
   [self.refreshTimer invalidate];

@@ -218,15 +218,8 @@
 }
 
 - (void) reset {
-  
-  // remove all status items
   Plugin *plugin;
-  for (plugin in _plugins) [self.statusBar removeStatusItem:plugin.statusItem];
-  
-  _plugins = nil;
-  [self.statusBar removeStatusItem:self.defaultStatusItem];
-  [self setupAllPlugins];
-  
+  for (plugin in _plugins) [plugin refresh];
 }
 
 - (void) clearPathAndReset {
@@ -259,7 +252,6 @@
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
-      [plugin.statusItem setTitle:@"…"];
       
       [plugins addObject:plugin];
       
