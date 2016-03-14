@@ -220,8 +220,10 @@
 - (void) reset {
   
   // remove all status items
-  Plugin *plugin;
-  for (plugin in _plugins) [self.statusBar removeStatusItem:plugin.statusItem];
+  for (Plugin *plugin in _plugins) {
+   [self.statusBar removeStatusItem:plugin.statusItem];
+   [plugin close];
+  }
   
   _plugins = nil;
   [self.statusBar removeStatusItem:self.defaultStatusItem];

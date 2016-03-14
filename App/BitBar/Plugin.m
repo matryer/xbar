@@ -342,6 +342,9 @@
   return YES;
 }
 
+- (void) close {
+}
+
 - (NSString*) lastUpdatedString { return [self.lastUpdated timeAgoSinceNow].lowercaseString; }
 
 - (void) cycleLines {
