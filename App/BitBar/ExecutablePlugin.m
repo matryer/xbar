@@ -80,35 +80,45 @@
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
     [weakSelf refreshContentByExecutingCommand];
     dispatch_sync(dispatch_get_main_queue(), ^{
-
-      weakSelf.lastUpdated = NSDate.new;
-
-      [weakSelf rebuildMenuForStatusItem:weakSelf.statusItem];
-
-      // reset the current line
-      weakSelf.currentLine = -1;
-
-      // update the status item
-      [weakSelf cycleLines];
-
-      // sort out multi-line cycler
-      if (weakSelf.isMultiline) {
-
-        // start the timer to keep cycling lines
-        weakSelf.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:weakSelf.cycleLinesIntervalSeconds target:weakSelf selector:@selector(cycleLines) userInfo:nil repeats:YES];
-
+      if (weakSelf) {
+        __strong ExecutablePlugin* strongSelf = weakSelf;
+        
+        strongSelf.lastUpdated = NSDate.new;
+        
+        [strongSelf rebuildMenuForStatusItem:strongSelf.statusItem];
+        
+        // reset the current line
+        strongSelf.currentLine = -1;
+        
+        // update the status item
+        [strongSelf cycleLines];
+        
+        // sort out multi-line cycler
+        if (strongSelf.isMultiline) {
+          
+          // start the timer to keep cycling lines
+          strongSelf.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:strongSelf.cycleLinesIntervalSeconds target:strongSelf selector:@selector(cycleLines) userInfo:nil repeats:YES];
+          
+        }
+        
+        // tell the manager this plugin has updated
+        [strongSelf.manager pluginDidUdpdateItself:strongSelf];
+        
+        // strongSelf next refresh
+        strongSelf.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[strongSelf.refreshIntervalSeconds doubleValue] target:strongSelf selector:@selector(refresh) userInfo:nil repeats:NO];
       }
-
-      // tell the manager this plugin has updated
-      [weakSelf.manager pluginDidUdpdateItself:weakSelf];
-
-      // schedule next refresh
-      _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[weakSelf.refreshIntervalSeconds doubleValue] target:weakSelf selector:@selector(refresh) userInfo:nil repeats:NO];
 
     });
   });
 
   return YES;
+}
+
+- (void) close {
+  [self.lineCycleTimer invalidate];
+  self.lineCycleTimer = nil;
+  [self.refreshTimer invalidate];
+  self.refreshTimer = nil;
 }
 
 

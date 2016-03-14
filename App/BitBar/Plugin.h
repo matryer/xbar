@@ -21,12 +21,13 @@
 @property (nonatomic)       NSNumber *refreshIntervalSeconds;
 @property (nonatomic)     NSMenuItem *lastUpdatedMenuItem;
 @property (nonatomic)         NSDate *lastUpdated;
-@property (readonly)   PluginManager *manager;
+@property (unsafe_unretained, readonly)   PluginManager *manager;
 
 // UI
 @property (nonatomic) NSStatusItem *statusItem;
 
 - initWithManager:(PluginManager*)manager;
+- (void) close;
 
 
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params;
