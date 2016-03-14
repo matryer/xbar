@@ -217,6 +217,7 @@
   
   PluginManager *manager = [PluginManager testManager];
   ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
+  [manager setPlugins:@[p]];
 
   p.name = @"three.7d.sh";
   p.path = [[PluginManager pluginPath] stringByAppendingPathComponent:p.name];
@@ -234,6 +235,7 @@
   
   PluginManager *manager = [PluginManager testManager];
   ExecutablePlugin *p = [ExecutablePlugin.alloc initWithManager:manager];
+  [manager setPlugins:@[p]];
 
   p.name = @"three.7d.sh";
   p.path = [[PluginManager pluginPath] stringByAppendingPathComponent:p.name];
