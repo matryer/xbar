@@ -14,23 +14,23 @@
 @implementation ExecutablePlugin
 
 - (BOOL) refreshContentByExecutingCommand {
-  
+
   if (![[NSFileManager defaultManager] fileExistsAtPath:self.path]) {
     return NO;
   }
-  
+
   NSTask *task = NSTask.new;
-  
+
   [task setEnvironment:self.manager.environment];
   [task setLaunchPath:self.path];
   [task useSystemProxies];
-  
+
   NSPipe *stdoutPipe = [NSPipe pipe];
   [task setStandardOutput:stdoutPipe];
-  
+
   NSPipe *stderrPipe = [NSPipe pipe];
   [task setStandardError:stderrPipe];
-  
+
   @try {
     [task launch];
   } @catch (NSException *e) {
@@ -42,18 +42,18 @@
   }
   NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
   NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
-  
+
   [task waitUntilExit];
-  
+
   self.content = [NSString.alloc initWithData:stdoutData encoding:NSUTF8StringEncoding];
   self.errorContent = [NSString.alloc initWithData:stderrData encoding:NSUTF8StringEncoding];
-  
+
   // failure
   if ([task terminationStatus] != 0) {
     self.lastCommandWasError = YES;
     return NO;
   }
-  
+
   // success
   self.lastCommandWasError = NO;
   return YES;
@@ -70,86 +70,87 @@
 }
 
 -(BOOL)refresh {
+  __unsafe_unretained ExecutablePlugin *weakSelf = self;
   [self.lineCycleTimer invalidate];
   self.lineCycleTimer = nil;
   [self.refreshTimer invalidate];
   self.refreshTimer = nil;
-    
+
   // execute command
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
-    [self refreshContentByExecutingCommand];
+    [weakSelf refreshContentByExecutingCommand];
     dispatch_sync(dispatch_get_main_queue(), ^{
-      
-      self.lastUpdated = NSDate.new;
-      
-      [self rebuildMenuForStatusItem:self.statusItem];
-      
+
+      weakSelf.lastUpdated = NSDate.new;
+
+      [weakSelf rebuildMenuForStatusItem:weakSelf.statusItem];
+
       // reset the current line
-      self.currentLine = -1;
-      
+      weakSelf.currentLine = -1;
+
       // update the status item
-      [self cycleLines];
-      
+      [weakSelf cycleLines];
+
       // sort out multi-line cycler
-      if (self.isMultiline) {
-        
+      if (weakSelf.isMultiline) {
+
         // start the timer to keep cycling lines
-        self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
-        
+        weakSelf.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:weakSelf.cycleLinesIntervalSeconds target:weakSelf selector:@selector(cycleLines) userInfo:nil repeats:YES];
+
       }
-      
+
       // tell the manager this plugin has updated
-      [self.manager pluginDidUdpdateItself:self];
-      
+      [weakSelf.manager pluginDidUdpdateItself:weakSelf];
+
       // schedule next refresh
-      _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
-      
+      _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[weakSelf.refreshIntervalSeconds doubleValue] target:weakSelf selector:@selector(refresh) userInfo:nil repeats:NO];
+
     });
   });
-  
+
   return YES;
 }
 
 
 - (void) copyOutput {
-  
+
   NSString *valueToCopy = [self.allContentLines objectAtIndex:self.currentLine];
   NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
   [pasteboard clearContents];
   [pasteboard writeObjects:[NSArray arrayWithObject:valueToCopy]];
-  
+
 }
 
 - (void) copyAllOutput {
-  
+
   NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
   [pasteboard clearContents];
   [pasteboard writeObjects:[NSArray arrayWithObject:self.allContent]];
-  
+
 }
 
 - (void) runPluginExternally {
-  
+
   NSString* script = @"tell application \"Terminal\" \n\
   do script \"%@\" \n\
   activate \n\
   end tell";
-  
+
   NSString *s = [NSString stringWithFormat:
                  script, [self.path stringByReplacingOccurrencesOfString:@" " withString:@"\\\\ "]];
   NSAppleScript *as = [NSAppleScript.alloc initWithSource:s];
   [as executeAndReturnError:nil];
-  
+
 }
 
 - (void) addAdditionalMenuItems:(NSMenu *)menu {
-    
+
   if (!DEFS.userConfigDisabled) {
     NSMenuItem *runItem = [NSMenuItem.alloc initWithTitle:@"Run in Terminal…" action:@selector(runPluginExternally) keyEquivalent:@"o"];
     [runItem setTarget:self];
     [menu addItem:runItem];
   }
-  
+
 }
 
 @end
