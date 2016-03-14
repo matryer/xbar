@@ -77,6 +77,11 @@
     
   // execute command
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),  ^{
+    // don't scheudle any further runs if this plugin isn't in the list of known plugins
+    if(![[self.manager plugins] containsObject:self]){
+      return;
+    }
+
     [self refreshContentByExecutingCommand];
     dispatch_sync(dispatch_get_main_queue(), ^{
       
