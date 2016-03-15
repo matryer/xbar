@@ -4,6 +4,7 @@
 
 * Added `emojize` parameter
 * Added sub menus
+* Added ANSI color code support and `ansi=false` option to turn it off
 * Significan bug fixes and performance enhancements
 
 ## v1.7
