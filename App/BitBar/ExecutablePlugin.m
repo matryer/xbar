@@ -22,6 +22,7 @@
   NSTask *task = NSTask.new;
 
   [task setEnvironment:self.manager.environment];
+  [task setCurrentDirectoryPath:[self.path stringByDeletingLastPathComponent]];
   [task setLaunchPath:self.path];
   [task useSystemProxies];
 
