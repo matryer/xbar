@@ -346,7 +346,7 @@
   NSString *subItem2    = @"Sub menu item two";
   NSString *subItem2Sub = @"Sub, sub, menu item";
   
-  p.content = [NSString stringWithFormat:@"---\n%@\n--%@\n--%@\n----%@", item, subItem, subItem2, subItem2Sub];
+  p.content = [NSString stringWithFormat:@"---\n%@\n--%@\n-----\n--%@\n----%@", item, subItem, subItem2, subItem2Sub];
   [p rebuildMenuForStatusItem:p.statusItem];
   NSArray<NSMenuItem *> *items = p.statusItem.menu.itemArray;
   
@@ -354,12 +354,13 @@
   
   items = items[0].submenu.itemArray;
   
-  XCTAssertEqual(items.count, 2);
+  XCTAssertEqual(items.count, 3);
   XCTAssertEqualObjects(items[0].title, subItem);
   XCTAssertNil(items[0].submenu);
-  XCTAssertEqualObjects(items[1].title, subItem2);
-  XCTAssertEqual(items[1].submenu.itemArray.count, 1);
-  XCTAssertEqualObjects(items[1].submenu.itemArray[0].title, subItem2Sub);
+  XCTAssertTrue(items[1].separatorItem);
+  XCTAssertEqualObjects(items[2].title, subItem2);
+  XCTAssertEqual(items[2].submenu.itemArray.count, 1);
+  XCTAssertEqualObjects(items[2].submenu.itemArray[0].title, subItem2Sub);
 
 }
 

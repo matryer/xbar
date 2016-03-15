@@ -293,11 +293,19 @@
             }
             
             submenu = lastItem.submenu;
+            
+            if ([line isEqualToString:@"---"]) {
+              break;
+            }
           }
           
-          NSMenuItem * item = [self buildMenuItemForLine:line];
-          if(item)
-            [submenu addItem:item];
+          if ([line isEqualToString:@"---"]) {
+            [submenu addItem:[NSMenuItem separatorItem]];
+          } else {
+            NSMenuItem * item = [self buildMenuItemForLine:line];
+            if(item)
+              [submenu addItem:item];
+          }
         }
         
       }
