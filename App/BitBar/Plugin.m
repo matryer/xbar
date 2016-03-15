@@ -12,6 +12,7 @@
 #import "NSDate+DateTools.h"
 #import "NSColor+Hex.h"
 #import "NSString+Emojize.h"
+#import "NSString+ANSI.h"
 
 #define DEFAULT_TIME_INTERVAL_SECONDS ((double)60.)
 
@@ -79,7 +80,8 @@
     item.representedObject = params;
     [item setTarget:self];
   }
-  if (params[@"size"] || params[@"color"])
+  BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
+  if (params[@"font"] || params[@"size"] || params[@"color"] || parseANSI)
     item.attributedTitle = [self attributedTitleWithParams:params];
   
   if (params[@"alternate"]) {
@@ -122,12 +124,21 @@
                                        : [NSFont menuFontOfSize:size]
                                        ?: [NSFont menuFontOfSize:size];
   }
-  NSColor * fgColor;
-  NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:@{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1}];
-  if (!params[@"color"]) return attributedTitle;
-  if ((fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]]))
-    [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
-  return attributedTitle;
+
+  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1};
+  BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
+  if (parseANSI) {
+    NSMutableAttributedString * attributedTitle = [title attributedStringParsingANSICodes];
+    [attributedTitle addAttributes:attributes range:NSMakeRange(0, attributedTitle.length)];
+    return attributedTitle;
+  } else {
+    NSColor * fgColor;
+    NSMutableAttributedString * attributedTitle = [NSMutableAttributedString.alloc initWithString:title attributes:attributes];
+    if (!params[@"color"]) return attributedTitle;
+    if ((fgColor = [NSColor colorWithWebColorString:[params objectForKey:@"color"]]))
+      [attributedTitle addAttribute:NSForegroundColorAttributeName value:fgColor range:NSMakeRange(0, title.length)];
+    return attributedTitle;
+  }
 }
 
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
