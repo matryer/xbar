@@ -261,9 +261,25 @@
         if ([line isEqualToString:@"---"]) {
           [menu addItem:[NSMenuItem separatorItem]];
         } else {
+          NSMenu *submenu = menu;
+          
+          // traverse submenus up to the menu to add the item to
+          while ([line hasPrefix:@"--"]) {
+            line = [line substringFromIndex:2];
+            
+            NSMenuItem *lastItem = submenu.itemArray.lastObject;
+            
+            if (!lastItem.submenu) {
+              lastItem.submenu = [[NSMenu alloc] init];
+              lastItem.submenu.delegate = self;
+            }
+            
+            submenu = lastItem.submenu;
+          }
+          
           NSMenuItem * item = [self buildMenuItemForLine:line];
           if(item)
-            [menu addItem:item];
+            [submenu addItem:item];
         }
         
       }
@@ -507,6 +523,10 @@
 #pragma mark - NSMenuDelegate
 
 - (void)menuWillOpen:(NSMenu *)menu {
+  if (menu.supermenu) {
+    return;
+  }
+  
   self.menuIsOpen = YES;
   
   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
@@ -519,6 +539,10 @@
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
+  if (menu.supermenu) {
+    return;
+  }
+  
   self.menuIsOpen = NO;
   [self.statusItem setHighlightMode:NO];
   

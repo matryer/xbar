@@ -137,6 +137,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * To write a plugin, just write some form of executable script that outputs to the standard output.
   * Multiple lines will be cycled through over and over.
   * If your output contains a line consisting only of `---`, the lines below it will appear in the dropdown for that plugin, but won't appear in the menu bar itself.
+  * Lines beginning with `--` will appear in submenus.
   * Your lines might contain `|` to separate the title from other parameters, such as...
     * `href=..` to make the dropdown items clickable
     * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
