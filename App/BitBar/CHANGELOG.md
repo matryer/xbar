@@ -1,8 +1,9 @@
 # BitBar Changes
 
-## v1.7.1
+## v1.8
 
 * Added `emojize` parameter
+* Added sub menus
 * Significan bug fixes and performance enhancements
 
 ## v1.7
