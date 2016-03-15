@@ -303,4 +303,30 @@
   XCTAssertEqual(((NSMenuItem*)items[2]).title.length, 9); // should not
 }
 
+- (void)testSubmenus {
+  PluginManager *manager = [PluginManager testManager];
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  
+  NSString *item        = @"Main menu";
+  NSString *subItem     = @"Sub menu";
+  NSString *subItem2    = @"Sub menu item two";
+  NSString *subItem2Sub = @"Sub, sub, menu item";
+  
+  p.content = [NSString stringWithFormat:@"---\n%@\n--%@\n--%@\n----%@", item, subItem, subItem2, subItem2Sub];
+  [p rebuildMenuForStatusItem:p.statusItem];
+  NSArray<NSMenuItem *> *items = p.statusItem.menu.itemArray;
+  
+  XCTAssertEqualObjects(items[0].title, item);
+  
+  items = items[0].submenu.itemArray;
+  
+  XCTAssertEqual(items.count, 2);
+  XCTAssertEqualObjects(items[0].title, subItem);
+  XCTAssertNil(items[0].submenu);
+  XCTAssertEqualObjects(items[1].title, subItem2);
+  XCTAssertEqual(items[1].submenu.itemArray.count, 1);
+  XCTAssertEqualObjects(items[1].submenu.itemArray[0].title, subItem2Sub);
+
+}
+
 @end
