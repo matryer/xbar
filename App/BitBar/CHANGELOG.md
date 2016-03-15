@@ -1,5 +1,10 @@
 # BitBar Changes
 
+## v1.7.1
+
+* Added `emojize` parameter
+* Significan bug fixes and performance enhancements
+
 ## v1.7
 
 * Added `image` and `templateImage` parameters (Base64 encoded images)

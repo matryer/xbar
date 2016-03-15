@@ -66,10 +66,10 @@
 		A22AF32A189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
 		A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 		A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		AE3C16781C93F1F9009AF7CA /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
 		AE3C16791C93F716009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE3C167A1C93F71B009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE7303DB1C935BDE00AF5499 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
-		AE3C16781C93F1F9009AF7CA /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
 		AE7303DD1C93721600AF5499 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
 		AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
 		AE7303E11C9386CE00AF5499 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
@@ -82,8 +82,8 @@
 		AE7303E81C93871200AF5499 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
 		AE7303E91C93871200AF5499 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
 		AE7303EA1C9387F300AF5499 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
-		AE8833781C95433B00D5A191 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE7303ED1C93984C00AF5499 /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
+		AE8833781C95433B00D5A191 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE8833791C9544F200D5A191 /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
 		F8D03BB71C3D95E600A64968 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
 		F8D03BB81C3D95E600A64968 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
@@ -324,6 +324,16 @@
 			path = Vendor/DateTools/DateTools;
 			sourceTree = SOURCE_ROOT;
 		};
+		AE3C16771C93B135009AF7CA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AE7303EB1C93984C00AF5499 /* NSString+ANSI.h */,
+				AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */,
+			);
+			name = Extensions;
+			path = BitBar;
+			sourceTree = "<group>";
+		};
 		AE7303D51C935BDE00AF5499 /* NSStringEmojize */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,16 +344,6 @@
 			name = NSStringEmojize;
 			path = Vendor/NSStringEmojize/NSStringEmojize;
 			sourceTree = SOURCE_ROOT;
-		};
-		AE3C16771C93B135009AF7CA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				AE7303EB1C93984C00AF5499 /* NSString+ANSI.h */,
-				AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */,
-			);
-			name = Extensions;
-			path = BitBar;
-			sourceTree = "<group>";
 		};
 		F8D03BB01C3D95E600A64968 /* AHProxySettings */ = {
 			isa = PBXGroup;
