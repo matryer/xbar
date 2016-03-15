@@ -290,6 +290,19 @@
   
 }
 
+- (void)testEmoji {
+  PluginManager *manager = [PluginManager testManager];
+  Plugin *p = [Plugin.alloc initWithManager:manager];
+
+  p.content = @":dog:\n:dog: | emojize=false\n:made_up:\n";
+  [p rebuildMenuForStatusItem:p.statusItem];
+  NSArray* items = p.statusItem.menu.itemArray;
+
+  XCTAssertEqual(((NSMenuItem*)items[0]).title.length, 2); // should parse (dog is 2 UTF-16 characters)
+  XCTAssertEqual(((NSMenuItem*)items[1]).title.length, 5); // should not
+  XCTAssertEqual(((NSMenuItem*)items[2]).title.length, 9); // should not
+}
+
 - (void)testSubmenus {
   PluginManager *manager = [PluginManager testManager];
   Plugin *p = [[Plugin alloc] initWithManager:manager];
@@ -313,6 +326,7 @@
   XCTAssertEqualObjects(items[1].title, subItem2);
   XCTAssertEqual(items[1].submenu.itemArray.count, 1);
   XCTAssertEqualObjects(items[1].submenu.itemArray[0].title, subItem2Sub);
+
 }
 
 @end

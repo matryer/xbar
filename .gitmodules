@@ -10,3 +10,6 @@
 [submodule "App/Vendor/AHProxySettings"]
 	path = App/Vendor/AHProxySettings
 	url = https://github.com/eahrold/AHProxySettings.git
+[submodule "App/Vendor/NSStringEmojize"]
+	path = App/Vendor/NSStringEmojize
+	url = https://github.com/diy/NSStringEmojize.git
