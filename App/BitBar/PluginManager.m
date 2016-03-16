@@ -102,7 +102,9 @@
   } else {
     NSString *title = [NSString stringWithFormat:@"⚠️Download latest (v%@)", self.latestVersion];
     ADD_MENU(title, openLatestRelease, nil, self);
-    moreItem.title = [@"⚠️" stringByAppendingString:moreItem.title];
+    if (moreItem) {
+      moreItem.title = [@"⚠️" stringByAppendingString:moreItem.title];
+    }
   }
 
 //
@@ -340,10 +342,12 @@
   Class cls = NSClassFromString(@"NSJSONSerialization");
   if (cls) {
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
-    NSDictionary *latest = [cls JSONObjectWithData:data options:0 error:nil];
-    self.latestVersion = latest[@"tag_name"];
-    if ([self.latestVersion hasPrefix:@"v"]) {
-      self.latestVersion = [self.latestVersion substringFromIndex:1];
+    if (data) {
+      NSDictionary *latest = [cls JSONObjectWithData:data options:0 error:nil];
+      self.latestVersion = latest[@"tag_name"];
+      if ([self.latestVersion hasPrefix:@"v"]) {
+        self.latestVersion = [self.latestVersion substringFromIndex:1];
+      }
     }
   }
 }
