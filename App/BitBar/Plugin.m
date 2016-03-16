@@ -555,9 +555,11 @@
   
   self.menuIsOpen = YES;
   
-  NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
-  [params removeObjectForKey:@"color"];
-  self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  if (self.titleLines.count > 0) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
+    [params removeObjectForKey:@"color"];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  }
   
   [self.statusItem setHighlightMode:YES];
 
@@ -572,8 +574,10 @@
   self.menuIsOpen = NO;
   [self.statusItem setHighlightMode:NO];
   
-  NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
-  self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  if (self.titleLines.count > 0) {
+    NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  }
 }
 
 - (void)menu:(NSMenu *)menu willHighlightItem:(NSMenuItem *)item {
