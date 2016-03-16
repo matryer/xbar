@@ -16,6 +16,7 @@
 @property (nonatomic)    NSStatusBar *statusBar;
 @property (nonatomic)   NSStatusItem *defaultStatusItem;
 @property (nonatomic)   NSDictionary *environment;
+@property (nonatomic)       NSString *latestVersion;
 
 - initWithPluginPath:(NSString *)path;
 

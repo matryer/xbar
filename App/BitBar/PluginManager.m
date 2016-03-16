@@ -24,6 +24,7 @@
   if (self = [super init]) {
     _path = [path stringByStandardizingPath];
     _launchAtLoginController = [[LaunchAtLoginController alloc] init];
+    [self performSelectorInBackground:@selector(getLatestVersion) withObject:nil];
   }
   return self;
 }
@@ -56,12 +57,13 @@
 - (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu {
   
   NSMenu *targetMenu;
+  NSMenuItem *moreItem = nil;
   
   if (submenu) {
     
     NSMenu *moreMenu = [NSMenu.alloc initWithTitle:@"Preferences"];
 
-    NSMenuItem *moreItem = [NSMenuItem.alloc initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
+    moreItem = [NSMenuItem.alloc initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
@@ -91,11 +93,17 @@
     [targetMenu addItem:NSMenuItem.separatorItem];
   }
   
-  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-  
-  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
-
-  [targetMenu addItem:versionMenuitem];
+  if (!self.latestVersion || [self.latestVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]]) {
+    NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
+    
+    [targetMenu addItem:versionMenuitem];
+  } else {
+    NSString *title = [NSString stringWithFormat:@"⚠️Download latest (v%@)", self.latestVersion];
+    ADD_MENU(title, openLatestRelease, nil, self);
+    moreItem.title = [@"⚠️" stringByAppendingString:moreItem.title];
+  }
 
 //
 //  // add troubleshooting item
@@ -131,6 +139,10 @@
 
 - (void) toggleOpenAtLogin:(id)sender {
   [_launchAtLoginController setLaunchAtLogin:!_launchAtLoginController.launchAtLogin];
+}
+
+- (void)openLatestRelease {
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/releases/latest"]];
 }
 
 - (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk {
@@ -320,6 +332,19 @@
     
     for (Plugin *plugin in plugins) [plugin refresh];
 
+  }
+}
+
+- (void)getLatestVersion {
+  // NSJSONSerialization is not available below 10.7!
+  Class cls = NSClassFromString(@"NSJSONSerialization");
+  if (cls) {
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
+    NSDictionary *latest = [cls JSONObjectWithData:data options:0 error:nil];
+    self.latestVersion = latest[@"tag_name"];
+    if ([self.latestVersion hasPrefix:@"v"]) {
+      self.latestVersion = [self.latestVersion substringFromIndex:1];
+    }
   }
 }
 
