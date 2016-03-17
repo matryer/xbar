@@ -191,6 +191,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
   * You can use emoji in the output (find an example in the Music/vox Plugin).
   * If your bash script generates text in another language, set the `LANG` variable with: `export LANG="es_ES.UTF-8"` (for Spanish) to show the text in correct format.
+  * If you want to call the plugin script for action, you can use `bash=$0`
 
 ### Examples
 
