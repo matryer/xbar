@@ -100,11 +100,17 @@
     
     [targetMenu addItem:versionMenuitem];
   } else {
-    NSString *title = [NSString stringWithFormat:@"⚠️Download latest (v%@)", self.latestVersion];
-    ADD_MENU(title, openLatestRelease, nil, self);
-    if (moreItem) {
-      moreItem.title = [@"⚠️" stringByAppendingString:moreItem.title];
-    }
+    NSImage *cautionImage = [NSImage imageNamed:NSImageNameCaution];
+    cautionImage.size = CGSizeMake(16, 16);
+    
+    NSMenuItem *versionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Download latest (v%@)", self.latestVersion]
+                                                             action:@selector(openLatestRelease)
+                                                      keyEquivalent:@""];
+    versionMenuItem.target = self;
+    versionMenuItem.offStateImage = cautionImage;
+    [targetMenu addItem:versionMenuItem];
+    
+    moreItem.offStateImage = cautionImage;
   }
 
 //
@@ -338,6 +344,10 @@
 }
 
 - (void)getLatestVersion {
+  if (DEFS.userConfigDisabled) {
+    return;
+  }
+  
   // NSJSONSerialization is not available below 10.7!
   Class cls = NSClassFromString(@"NSJSONSerialization");
   if (cls) {
