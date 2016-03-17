@@ -69,6 +69,7 @@
 		AE3C16781C93F1F9009AF7CA /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
 		AE3C16791C93F716009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE3C167A1C93F71B009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
+		AE4B1E391C9B2B0F009540AD /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
 		AE7303DB1C935BDE00AF5499 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE7303DD1C93721600AF5499 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
 		AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
@@ -600,6 +601,7 @@
 				36DCD8C81C76027C004DE286 /* DTTimePeriodCollection.m in Sources */,
 				36DCD8C91C76027C004DE286 /* NSUserDefaults+Settings.m in Sources */,
 				36DCD8CA1C76027C004DE286 /* NSDate+DateTools.m in Sources */,
+				AE4B1E391C9B2B0F009540AD /* NSString+ANSI.m in Sources */,
 				36DCD8CB1C76027C004DE286 /* NSColor+Hex.m in Sources */,
 				36DCD8CC1C76027C004DE286 /* Plugin.m in Sources */,
 				36DCD8CD1C76027C004DE286 /* DTTimePeriodChain.m in Sources */,
