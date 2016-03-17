@@ -323,6 +323,14 @@
   }
 }
 
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+  if ([menuItem action] == @selector(toggleOpenAtLogin:)) {
+    [menuItem setState:_launchAtLoginController.launchAtLogin ? NSOnState : NSOffState];
+  }
+
+  return YES;
+}
+
 #pragma mark - NSMenuDelegate
 
 - (void)menuWillOpen:(NSMenu *)menu {
