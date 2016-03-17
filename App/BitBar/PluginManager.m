@@ -239,6 +239,8 @@
 
 - (void) reset {
   
+  [self performSelectorInBackground:@selector(getLatestVersion) withObject:nil];
+  
   // remove all status items
   for (Plugin *plugin in _plugins) {
    [self.statusBar removeStatusItem:plugin.statusItem];
@@ -348,15 +350,23 @@
     return;
   }
   
+  // only refresh hourly
+  if (self.lastVersionUpdate && self.lastVersionUpdate.timeIntervalSinceNow > -60 * 60) {
+    return;
+  }
+  
   // NSJSONSerialization is not available below 10.7!
   Class cls = NSClassFromString(@"NSJSONSerialization");
   if (cls) {
+    self.lastVersionUpdate = [NSDate date];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
     if (data) {
       NSDictionary *latest = [cls JSONObjectWithData:data options:0 error:nil];
-      self.latestVersion = latest[@"tag_name"];
-      if ([self.latestVersion hasPrefix:@"v"]) {
-        self.latestVersion = [self.latestVersion substringFromIndex:1];
+      if (latest[@"tag_name"]) {
+        self.latestVersion = latest[@"tag_name"];
+        if ([self.latestVersion hasPrefix:@"v"]) {
+          self.latestVersion = [self.latestVersion substringFromIndex:1];
+        }
       }
     }
   }
