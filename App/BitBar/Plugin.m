@@ -238,11 +238,12 @@
       [self performSelectorInBackground:@selector(startTask:) withObject:params];
     } else {
 
-      NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
+      NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", param1, param2, param3, param4, param5];
       NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
-                 do script \"%@\" \n\
+                 set scriptPath to \"%@\"\n\
+                 do script quoted form of scriptPath & \" %@\" \n\
                  activate \n\
-                 end tell", full_link];
+                 end tell", bash, full_link];
       NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
       [as executeAndReturnError:nil];
     }
