@@ -354,19 +354,15 @@
   if (self.lastVersionUpdate && self.lastVersionUpdate.timeIntervalSinceNow > -60 * 60) {
     return;
   }
+  self.lastVersionUpdate = [NSDate date];
   
-  // NSJSONSerialization is not available below 10.7!
-  Class cls = NSClassFromString(@"NSJSONSerialization");
-  if (cls) {
-    self.lastVersionUpdate = [NSDate date];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
-    if (data) {
-      NSDictionary *latest = [cls JSONObjectWithData:data options:0 error:nil];
-      if (latest[@"tag_name"]) {
-        self.latestVersion = latest[@"tag_name"];
-        if ([self.latestVersion hasPrefix:@"v"]) {
-          self.latestVersion = [self.latestVersion substringFromIndex:1];
-        }
+  NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
+  if (data) {
+    NSDictionary *latest = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if (latest[@"tag_name"]) {
+      self.latestVersion = latest[@"tag_name"];
+      if ([self.latestVersion hasPrefix:@"v"]) {
+        self.latestVersion = [self.latestVersion substringFromIndex:1];
       }
     }
   }
