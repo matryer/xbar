@@ -8,15 +8,25 @@
 
 #import "PluginManager+Test.h"
 
-@implementation PluginManager (Test)
-
+// This class is just here so that we can get the path to the test bundle
+@interface BBTestClass : NSObject
++ (NSString*)pluginPath;
+@end
+@implementation BBTestClass
 + (NSString*)pluginPath {
   return [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:@"TestPlugins"];
 }
+@end
+
+@implementation PluginManager (Test)
+
++ (NSString*)pluginPath {
+  return [BBTestClass pluginPath];
+}
 
 + (PluginManager*)testManager {
-  NSString* testPluginsPath = [PluginManager pluginPath];
-  return [PluginManager.alloc initWithPluginPath:testPluginsPath];
+  id delegate = [NSApplication sharedApplication].delegate;
+  return [delegate valueForKey:@"pluginManager"];
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "PluginManager.h"
 
 @interface PluginManager (Test)
+
 + (NSString*)pluginPath;
 + (PluginManager*)testManager;
 
