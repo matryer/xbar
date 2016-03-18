@@ -56,6 +56,46 @@
 		A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
 		AE3C167A1C93F71B009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE4B1E391C9B2B0F009540AD /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
+		AE4B1E4D1C9C631B009540AD /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		AE4B1E4E1C9C631B009540AD /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
+		AE4B1E4F1C9C631B009540AD /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
+		AE4B1E501C9C632A009540AD /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		AE4B1E511C9C632A009540AD /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
+		AE4B1E521C9C632A009540AD /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
+		AE4B1E531C9C6351009540AD /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		AE4B1E541C9C6351009540AD /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
+		AE4B1E551C9C6351009540AD /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
+		AE4B1E561C9C6351009540AD /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
+		AE4B1E571C9C6351009540AD /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
+		AE4B1E581C9C6351009540AD /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
+		AE4B1E591C9C6351009540AD /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
+		AE4B1E5A1C9C6351009540AD /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
+		AE4B1E5B1C9C6351009540AD /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215A1B9F0F10002539F7 /* DTError.m */; };
+		AE4B1E5C1C9C6351009540AD /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215C1B9F0F10002539F7 /* DTTimePeriod.m */; };
+		AE4B1E5D1C9C6351009540AD /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215E1B9F0F10002539F7 /* DTTimePeriodChain.m */; };
+		AE4B1E5E1C9C6351009540AD /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21601B9F0F10002539F7 /* DTTimePeriodCollection.m */; };
+		AE4B1E5F1C9C6351009540AD /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21621B9F0F10002539F7 /* DTTimePeriodGroup.m */; };
+		AE4B1E601C9C6351009540AD /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21641B9F0F10002539F7 /* NSDate+DateTools.m */; };
+		AE4B1E611C9C6351009540AD /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
+		AE4B1E621C9C6351009540AD /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
+		AE4B1E631C9C6351009540AD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
+		AE4B1E641C9C636A009540AD /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		AE4B1E651C9C636A009540AD /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
+		AE4B1E661C9C636A009540AD /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
+		AE4B1E671C9C636A009540AD /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
+		AE4B1E681C9C636A009540AD /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
+		AE4B1E691C9C636A009540AD /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
+		AE4B1E6A1C9C636A009540AD /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
+		AE4B1E6B1C9C636A009540AD /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
+		AE4B1E6C1C9C636A009540AD /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215A1B9F0F10002539F7 /* DTError.m */; };
+		AE4B1E6D1C9C636A009540AD /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215C1B9F0F10002539F7 /* DTTimePeriod.m */; };
+		AE4B1E6E1C9C636A009540AD /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215E1B9F0F10002539F7 /* DTTimePeriodChain.m */; };
+		AE4B1E6F1C9C636A009540AD /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21601B9F0F10002539F7 /* DTTimePeriodCollection.m */; };
+		AE4B1E701C9C636A009540AD /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21621B9F0F10002539F7 /* DTTimePeriodGroup.m */; };
+		AE4B1E711C9C636A009540AD /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21641B9F0F10002539F7 /* NSDate+DateTools.m */; };
+		AE4B1E721C9C636A009540AD /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
+		AE4B1E731C9C636A009540AD /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
+		AE4B1E741C9C636A009540AD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
 		AE7303DB1C935BDE00AF5499 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE7303DD1C93721600AF5499 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
 		AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
@@ -530,6 +570,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE4B1E531C9C6351009540AD /* HTMLPlugin.m in Sources */,
+				AE4B1E541C9C6351009540AD /* NSUserDefaults+Settings.m in Sources */,
+				AE4B1E551C9C6351009540AD /* NSString+ANSI.m in Sources */,
+				AE4B1E561C9C6351009540AD /* NSString+Emojize.m in Sources */,
+				AE4B1E571C9C6351009540AD /* AHProxy.m in Sources */,
+				AE4B1E581C9C6351009540AD /* AHProxySettings.m in Sources */,
+				AE4B1E591C9C6351009540AD /* NSTask+useSystemProxies.m in Sources */,
+				AE4B1E5A1C9C6351009540AD /* DTConstants.m in Sources */,
+				AE4B1E5B1C9C6351009540AD /* DTError.m in Sources */,
+				AE4B1E5C1C9C6351009540AD /* DTTimePeriod.m in Sources */,
+				AE4B1E5D1C9C6351009540AD /* DTTimePeriodChain.m in Sources */,
+				AE4B1E5E1C9C6351009540AD /* DTTimePeriodCollection.m in Sources */,
+				AE4B1E5F1C9C6351009540AD /* DTTimePeriodGroup.m in Sources */,
+				AE4B1E601C9C6351009540AD /* NSDate+DateTools.m in Sources */,
+				AE4B1E611C9C6351009540AD /* STPrivilegedTask.m in Sources */,
+				AE4B1E621C9C6351009540AD /* LaunchAtLoginController.m in Sources */,
+				AE4B1E631C9C6351009540AD /* NSColor+Hex.m in Sources */,
+				AE4B1E4D1C9C631B009540AD /* PluginManager.m in Sources */,
+				AE4B1E4E1C9C631B009540AD /* Plugin.m in Sources */,
+				AE4B1E4F1C9C631B009540AD /* ExecutablePlugin.m in Sources */,
 				0599719818333DB300EA6D8D /* PluginTest.m in Sources */,
 				05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */,
 				AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */,
@@ -540,6 +600,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE4B1E641C9C636A009540AD /* HTMLPlugin.m in Sources */,
+				AE4B1E651C9C636A009540AD /* NSUserDefaults+Settings.m in Sources */,
+				AE4B1E661C9C636A009540AD /* NSString+ANSI.m in Sources */,
+				AE4B1E671C9C636A009540AD /* NSString+Emojize.m in Sources */,
+				AE4B1E681C9C636A009540AD /* AHProxy.m in Sources */,
+				AE4B1E691C9C636A009540AD /* AHProxySettings.m in Sources */,
+				AE4B1E6A1C9C636A009540AD /* NSTask+useSystemProxies.m in Sources */,
+				AE4B1E6B1C9C636A009540AD /* DTConstants.m in Sources */,
+				AE4B1E6C1C9C636A009540AD /* DTError.m in Sources */,
+				AE4B1E6D1C9C636A009540AD /* DTTimePeriod.m in Sources */,
+				AE4B1E6E1C9C636A009540AD /* DTTimePeriodChain.m in Sources */,
+				AE4B1E6F1C9C636A009540AD /* DTTimePeriodCollection.m in Sources */,
+				AE4B1E701C9C636A009540AD /* DTTimePeriodGroup.m in Sources */,
+				AE4B1E711C9C636A009540AD /* NSDate+DateTools.m in Sources */,
+				AE4B1E721C9C636A009540AD /* STPrivilegedTask.m in Sources */,
+				AE4B1E731C9C636A009540AD /* LaunchAtLoginController.m in Sources */,
+				AE4B1E741C9C636A009540AD /* NSColor+Hex.m in Sources */,
+				AE4B1E501C9C632A009540AD /* PluginManager.m in Sources */,
+				AE4B1E511C9C632A009540AD /* Plugin.m in Sources */,
+				AE4B1E521C9C632A009540AD /* ExecutablePlugin.m in Sources */,
 				36372DCC1C9424DB0005EB32 /* PluginTest.m in Sources */,
 				36372DCE1C9424DB0005EB32 /* PluginManagerTest.m in Sources */,
 				36372DCF1C9424DB0005EB32 /* PluginManager+Test.m in Sources */,
