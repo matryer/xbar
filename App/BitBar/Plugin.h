@@ -21,7 +21,7 @@
 @property (nonatomic)       NSNumber *refreshIntervalSeconds;
 @property (nonatomic)     NSMenuItem *lastUpdatedMenuItem;
 @property (nonatomic)         NSDate *lastUpdated;
-@property (unsafe_unretained, readonly)   PluginManager *manager;
+@property (weak, readonly)   PluginManager *manager;
 
 // UI
 @property (nonatomic) NSStatusItem *statusItem;
