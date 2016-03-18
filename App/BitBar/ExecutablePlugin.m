@@ -70,7 +70,7 @@
 }
 
 -(BOOL)refresh {
-  __unsafe_unretained ExecutablePlugin *weakSelf = self;
+  __weak ExecutablePlugin *weakSelf = self;
   [self.lineCycleTimer invalidate];
   self.lineCycleTimer = nil;
   [self.refreshTimer invalidate];
