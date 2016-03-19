@@ -379,7 +379,7 @@
     
     if (currentLine == 0) {
       XCTAssertNotNil(p.statusItem.menu);
-      XCTAssertTrue(p.statusItem.action == NULL);
+      XCTAssertEqual(p.statusItem.action, NULL);
       XCTAssertNil(p.statusItem.target);
     } else {
       XCTAssertNil(p.statusItem.menu);
