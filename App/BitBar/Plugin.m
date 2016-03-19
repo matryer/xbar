@@ -68,7 +68,7 @@
 
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
-          : params[@"refresh"] ? @selector(performRefreshNow:):
+          : params[@"refresh"] ? @selector(performRefreshNow):
     nil;
 
   NSMenuItem * item = [NSMenuItem.alloc initWithTitle:title action:sel keyEquivalent:@""];
@@ -182,13 +182,17 @@
   return params;
 }
 
--(void)performRefreshNow:(NSMenuItem*)menuItem {
+- (void)performRefreshNow {
     NSLog(@"Nothing to refresh in this plugin");
+}
+
+- (void)performHREFAction:(NSDictionary *)params {
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:params[@"href"]]];
 }
 
 - (void) performMenuItemHREFAction:(NSMenuItem *)menuItem {
 
-  [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:menuItem.representedObject[@"href"]]];
+  [self performHREFAction:menuItem.representedObject];
 }
 
 - (void) startTask:(NSMutableDictionary*)params {
@@ -199,7 +203,7 @@
     
     ((NSTask*)task).terminationHandler = ^(NSTask *task) {
       if (params[@"refresh"]) {
-        [self performSelectorOnMainThread:@selector(performRefreshNow:) withObject:NULL waitUntilDone:false];
+        [self performSelectorOnMainThread:@selector(performRefreshNow) withObject:NULL waitUntilDone:false];
       }
     };
     @try {
@@ -210,9 +214,8 @@
     [(NSTask*)task waitUntilExit];
 }
 
-- (void) performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
+- (void)performOpenTerminalAction:(NSMutableDictionary *)params {
 
-    NSMutableDictionary * params = menuItem.representedObject;
     NSString *bash = [params[@"bash"] stringByStandardizingPath].stringByResolvingSymlinksInPath,
            *param1 = params[@"param1"] ?: @"",
            *param2 = params[@"param2"] ?: @"",
@@ -247,6 +250,10 @@
       NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
       [as executeAndReturnError:nil];
     }
+}
+
+- (void)performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
+  [self performOpenTerminalAction:menuItem.representedObject];
 }
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
@@ -412,6 +419,16 @@
       return;
     }
     
+    if (params[@"href"] || params[@"bash"] || params[@"refresh"]) {
+      self.statusItem.menu = nil;
+      self.statusItem.action = @selector(statusItemClicked);
+      self.statusItem.target = self;
+    } else if (!self.statusItem.menu) {
+      self.statusItem.action = NULL;
+      self.statusItem.target = nil;
+      [self rebuildMenuForStatusItem:self.statusItem];
+    }
+    
     // Add image if present
     if (params[@"templateImage"]) {
       self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
@@ -545,6 +562,17 @@
 
 - (BOOL) isMultiline {
   return [self.titleLines count] > 1 || [self.allContentLines count]>0;
+}
+
+- (void)statusItemClicked {
+  NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+  if (params[@"href"]) {
+    [self performHREFAction:params];
+  } else if (params[@"bash"]) {
+    [self performOpenTerminalAction:[NSMutableDictionary dictionaryWithDictionary:params]];
+  } else if (params[@"refresh"]) {
+    [self performRefreshNow];
+  }
 }
 
 #pragma mark - NSMenuDelegate

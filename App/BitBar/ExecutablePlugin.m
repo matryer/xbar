@@ -59,7 +59,7 @@
   return YES;
 }
 
--(void)performRefreshNow:(NSMenuItem*)menuItem{
+- (void)performRefreshNow {
   self.content = @"Updating ...";
   self.errorContent = @"";
   [self rebuildMenuForStatusItem:self.statusItem];

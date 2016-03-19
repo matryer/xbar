@@ -87,7 +87,7 @@
   if ([URLString hasPrefix:prefix]) {
       URLString = [URLString substringFromIndex:prefix.length];
       NSArray *plugins = [self.pluginManager.plugins filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name LIKE %@", URLString]];
-      [plugins makeObjectsPerformSelector:@selector(performRefreshNow:) withObject:nil];
+      [plugins makeObjectsPerformSelector:@selector(performRefreshNow) withObject:nil];
       return;
   }
   
