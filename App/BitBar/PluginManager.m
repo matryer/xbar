@@ -113,6 +113,7 @@
     moreItem.offStateImage = cautionImage;
     
     versionMenuitem.alternate = YES;
+    versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
     [targetMenu addItem:versionMenuitem];
   }
 
