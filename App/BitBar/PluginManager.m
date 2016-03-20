@@ -93,24 +93,27 @@
     [targetMenu addItem:NSMenuItem.separatorItem];
   }
   
+  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+  
+  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
+  
   if (!self.latestVersion || [self.latestVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]]) {
-    NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    
-    NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
-    
     [targetMenu addItem:versionMenuitem];
   } else {
     NSImage *cautionImage = [NSImage imageNamed:NSImageNameCaution];
     cautionImage.size = CGSizeMake(16, 16);
     
-    NSMenuItem *versionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Download latest (v%@)", self.latestVersion]
-                                                             action:@selector(openLatestRelease)
-                                                      keyEquivalent:@""];
-    versionMenuItem.target = self;
-    versionMenuItem.offStateImage = cautionImage;
-    [targetMenu addItem:versionMenuItem];
+    NSMenuItem *latestVersionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Download latest (v%@)", self.latestVersion]
+                                                                   action:@selector(openLatestRelease)
+                                                            keyEquivalent:@""];
+    latestVersionMenuItem.target = self;
+    latestVersionMenuItem.offStateImage = cautionImage;
+    [targetMenu addItem:latestVersionMenuItem];
     
     moreItem.offStateImage = cautionImage;
+    
+    versionMenuitem.alternate = YES;
+    [targetMenu addItem:versionMenuitem];
   }
 
 //
