@@ -1,11 +1,20 @@
 # BitBar Changes
 
+## v1.9
+
+* Restored distributable BitBar
+* BitBar now requires OS X 10.7 to fix a crash on refresh and wake from sleep
+* Added support for single click action from the status bar (`href`, `bash` and `refresh`)
+* Added support for separators in sub menus
+* Added update check
+* Various other bug fixes
+
 ## v1.8
 
 * Added `emojize` parameter
 * Added sub menus
 * Added ANSI color code support and `ansi=false` option to turn it off
-* Significan bug fixes and performance enhancements
+* Significant bug fixes and performance enhancements
 
 ## v1.7
 
