@@ -24,6 +24,7 @@
   if (self = [super init]) {
     _path = [path stringByStandardizingPath];
     _launchAtLoginController = [[LaunchAtLoginController alloc] init];
+    [self performSelectorInBackground:@selector(getLatestVersion) withObject:nil];
   }
   return self;
 }
@@ -56,12 +57,13 @@
 - (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu {
   
   NSMenu *targetMenu;
+  NSMenuItem *moreItem = nil;
   
   if (submenu) {
     
     NSMenu *moreMenu = [NSMenu.alloc initWithTitle:@"Preferences"];
 
-    NSMenuItem *moreItem = [NSMenuItem.alloc initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
+    moreItem = [NSMenuItem.alloc initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
@@ -91,11 +93,25 @@
     [targetMenu addItem:NSMenuItem.separatorItem];
   }
   
-  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-  
-  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
-
-  [targetMenu addItem:versionMenuitem];
+  if (!self.latestVersion || [self.latestVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]]) {
+    NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
+    
+    [targetMenu addItem:versionMenuitem];
+  } else {
+    NSImage *cautionImage = [NSImage imageNamed:NSImageNameCaution];
+    cautionImage.size = CGSizeMake(16, 16);
+    
+    NSMenuItem *versionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Download latest (v%@)", self.latestVersion]
+                                                             action:@selector(openLatestRelease)
+                                                      keyEquivalent:@""];
+    versionMenuItem.target = self;
+    versionMenuItem.offStateImage = cautionImage;
+    [targetMenu addItem:versionMenuItem];
+    
+    moreItem.offStateImage = cautionImage;
+  }
 
 //
 //  // add troubleshooting item
@@ -131,6 +147,10 @@
 
 - (void) toggleOpenAtLogin:(id)sender {
   [_launchAtLoginController setLaunchAtLogin:!_launchAtLoginController.launchAtLogin];
+}
+
+- (void)openLatestRelease {
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/releases/latest"]];
 }
 
 - (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk {
@@ -218,6 +238,8 @@
 }
 
 - (void) reset {
+  
+  [self performSelectorInBackground:@selector(getLatestVersion) withObject:nil];
   
   // remove all status items
   for (Plugin *plugin in _plugins) {
@@ -320,6 +342,29 @@
     
     for (Plugin *plugin in plugins) [plugin refresh];
 
+  }
+}
+
+- (void)getLatestVersion {
+  if (DEFS.userConfigDisabled) {
+    return;
+  }
+  
+  // only refresh hourly
+  if (self.lastVersionUpdate && self.lastVersionUpdate.timeIntervalSinceNow > -60 * 60) {
+    return;
+  }
+  self.lastVersionUpdate = [NSDate date];
+  
+  NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
+  if (data) {
+    NSDictionary *latest = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if (latest[@"tag_name"]) {
+      self.latestVersion = latest[@"tag_name"];
+      if ([self.latestVersion hasPrefix:@"v"]) {
+        self.latestVersion = [self.latestVersion substringFromIndex:1];
+      }
+    }
   }
 }
 
