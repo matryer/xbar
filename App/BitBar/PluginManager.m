@@ -112,6 +112,7 @@
     
     moreItem.offStateImage = cautionImage;
     
+    versionMenuitem.title = [@"Current: " stringByAppendingString:versionMenuitem.title];
     versionMenuitem.alternate = YES;
     versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
     [targetMenu addItem:versionMenuitem];
