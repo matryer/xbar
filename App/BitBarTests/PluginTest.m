@@ -364,4 +364,39 @@
 
 }
 
+- (void)testStatusItemAction {
+  PluginManager *manager = [PluginManager testManager];
+  
+  Plugin *p = [[Plugin alloc] initWithManager:manager];
+  p.content = @"No action\n|href=\n|bash=\n|refresh=";
+  
+  for (NSUInteger i = 0; i < p.titleLines.count + 1; i++) {
+    [p cycleLines];
+    
+    NSUInteger currentLine = i % p.titleLines.count;
+    
+    XCTAssertEqual(p.currentLine, currentLine);
+    
+    if (currentLine == 0) {
+      XCTAssertNotNil(p.statusItem.menu);
+      XCTAssertEqual(p.statusItem.action, NULL);
+      XCTAssertNil(p.statusItem.target);
+    } else {
+      XCTAssertNil(p.statusItem.menu);
+      XCTAssertEqual(p.statusItem.action, NSSelectorFromString(@"statusItemClicked"));
+      XCTAssertEqual(p.statusItem.target, p);
+      
+      NSDictionary *params = [p dictionaryForLine:p.titleLines[currentLine]];
+      
+      if (currentLine == 1) {
+        XCTAssertNotNil(params[@"href"]);
+      } else if (currentLine == 2) {
+        XCTAssertNotNil(params[@"bash"]);
+      } else if (currentLine == 3) {
+        XCTAssertNotNil(params[@"refresh"]);
+      }
+    }
+  }
+}
+
 @end

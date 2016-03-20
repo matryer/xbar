@@ -139,14 +139,14 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * If your output contains a line consisting only of `---`, the lines below it will appear in the dropdown for that plugin, but won't appear in the menu bar itself.
   * Lines beginning with `--` will appear in submenus.
   * Your lines might contain `|` to separate the title from other parameters, such as...
-    * `href=..` to make the dropdown items clickable
+    * `href=..` to make the item clickable
     * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
     * `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
     * `size=..` to change their text size. eg. `size=12`
-    * `bash=..` to make the dropdown run a given script terminal with your script e.g. `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh` if there are spaces in the file path you will need quotes e.g. `bash="/Users/user/BitBar Plugins/scripts/nginx.restart.sh"`
+    * `bash=..` to make the item run a given script terminal with your script e.g. `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh` if there are spaces in the file path you will need quotes e.g. `bash="/Users/user/BitBar Plugins/scripts/nginx.restart.sh"`
     * `param1=` to specify arguments to the script. additional params like this `param2=foo param3=bar` full example  `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh" param1=--verbose` assuming that nginx.restart.sh is executable or `bash=/usr/bin/ruby param1=/Users/user/rubyscript.rb param2=arg1 param3=arg2` if script is not executable
     * `terminal=..` start bash script without opening Terminal. `true` or `false`
-    * `refresh=..` to make the dropdown items refresh the plugin it belongs to
+    * `refresh=..` to make the item refresh the plugin it belongs to
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
     * `trim=..` whether to trim leading/trailing whitespace from the title.  `true` or `false` (defaults to `true`)

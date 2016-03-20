@@ -31,11 +31,12 @@
 
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line;
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params;
+- (NSDictionary *)dictionaryForLine:(NSString *)line;
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem;
 - (void) addAdditionalMenuItems:(NSMenu *)menu;
 - (void) addDefaultMenuItems:(NSMenu *)menu;
 
-- (void)performRefreshNow:(NSMenuItem *)menuItem;
+- (void)performRefreshNow;
 - (BOOL) refresh;
 - (void) cycleLines;
 - (void) contentHasChanged;
