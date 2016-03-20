@@ -62,9 +62,17 @@
     if (!launcher.launchAtLogin) [launcher setLaunchAtLogin:YES];
     DEFS.isFirstTimeAppRun = NO;
   }
+
+  NSString* pluginsDirectory = DEFS.pluginsDirectory;
+
+  // Test if we are running unit tests!
+  NSString* testBundlePath = [NSProcessInfo processInfo].environment[@"XCInjectBundle"];
+  if (testBundlePath && [testBundlePath hasSuffix:@".xctest"]) {
+    pluginsDirectory = [[[NSBundle bundleWithPath:testBundlePath] resourcePath] stringByAppendingPathComponent:@"TestPlugins"];
+  }
   
   // make a plugin manager
-  [_pluginManager = [PluginManager.alloc initWithPluginPath:DEFS.pluginsDirectory]
+  [_pluginManager = [PluginManager.alloc initWithPluginPath:pluginsDirectory]
                                                                   setupAllPlugins];
 }
 
