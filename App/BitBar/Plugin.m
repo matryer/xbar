@@ -76,8 +76,8 @@
   if (truncLength < titleLength)
     [item setToolTip:fullTitle];
 
+  item.representedObject = params;  
   if (sel) {
-    item.representedObject = params;
     [item setTarget:self];
   }
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
