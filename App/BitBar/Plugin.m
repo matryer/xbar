@@ -610,16 +610,20 @@
 
 - (void)menu:(NSMenu *)menu willHighlightItem:(NSMenuItem *)item {
   // restore about to be unhighlighted item
-  if (menu.highlightedItem.representedObject) {
+  if (menu.highlightedItem.representedObject && menu.highlightedItem.attributedTitle) {
     NSDictionary *params = menu.highlightedItem.representedObject;
-    menu.highlightedItem.attributedTitle = [self attributedTitleWithParams:params];
+    if (params[@"color"]) {
+      menu.highlightedItem.attributedTitle = [self attributedTitleWithParams:params];
+    }
   }
   
   // remove about to be highlighted item color
-  if (item.representedObject) {
+  if (item.representedObject && item.attributedTitle) {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:item.representedObject];
-    [params removeObjectForKey:@"color"];
-    item.attributedTitle = [self attributedTitleWithParams:params];
+    if (params[@"color"]) {
+      [params removeObjectForKey:@"color"];
+      item.attributedTitle = [self attributedTitleWithParams:params];
+    }
   }
 }
 
