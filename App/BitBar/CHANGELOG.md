@@ -1,5 +1,9 @@
 # BitBar Changes
 
+## v1.9.1
+
+* Bug fixes and performance enhancements
+
 ## v1.9
 
 * Restored distributable BitBar
