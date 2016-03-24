@@ -433,6 +433,8 @@
       self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
     }else if (params[@"image"]) {
       self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
+    } else {
+      self.statusItem.image = nil;
     }
     
     
