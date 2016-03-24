@@ -583,7 +583,7 @@
   
   self.menuIsOpen = YES;
   
-  if (self.currentLine < self.titleLines.count) {
+  if (self.currentLine >= 0 && self.currentLine < self.titleLines.count) {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
     if (params[@"color"]) {
       [params removeObjectForKey:@"color"];
@@ -604,7 +604,7 @@
   self.menuIsOpen = NO;
   [self.statusItem setHighlightMode:NO];
   
-  if (self.currentLine < self.titleLines.count) {
+  if (self.currentLine >= 0 && self.currentLine < self.titleLines.count) {
     NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
     if (params[@"color"]) {
       self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
