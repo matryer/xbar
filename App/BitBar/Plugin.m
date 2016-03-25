@@ -624,7 +624,7 @@
 }
 
 - (void)statusItemClicked {
-  NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+  NSDictionary *params = [self dictionaryForCurrentLine];
   if (params[@"href"]) {
     [self performHREFAction:params];
   } else if (params[@"bash"]) {
