@@ -99,6 +99,8 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 ## Contributing
 
+  * [See if there are any bugs you can solve](https://github.com/matryer/bitbar/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+  * [See if you can help build new features](https://github.com/matryer/bitbar/issues?q=is%3Aopen+is%3Aissue+label%3A%22♡+todo%22)
   * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins) below.
 
 ### BitBar app
