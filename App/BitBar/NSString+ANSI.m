@@ -108,7 +108,7 @@
 @implementation NSString (ANSI)
 
 - (BOOL)containsANSICodes {
-  return [self containsString:@"\033["];
+  return [self rangeOfString:@"\033["].location != NSNotFound;
 }
 
 - (NSMutableAttributedString*)attributedStringParsingANSICodes {
