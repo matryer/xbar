@@ -18,7 +18,25 @@
 
 @implementation Plugin
 
-- init { return (self = super.init) ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
+- init {
+  if (self = [super init]) {
+    _currentLine = -1, _cycleLinesIntervalSeconds = 5;
+    _eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:NSFlagsChangedMask handler:^(NSEvent *event) {
+      if (_menuIsOpen) { return; }
+      
+      NSDictionary *params = [self alternateForCurrentLine];
+      if (params) {
+        BOOL altKeyDown = (event.modifierFlags & NSAlternateKeyMask) != 0;
+        if (!altKeyDown) {
+          params = [self dictionaryForLine:_titleLines[_currentLine]];
+        }
+        [self setStatusItemProperties:params];
+      }
+    }];
+  }
+  
+  return self;
+}
 
 - initWithManager:(PluginManager*)manager { return (self = self.init) ? _manager = manager, self : nil; }
 
@@ -176,6 +194,35 @@
     
     if([key isEqualToString:@"args"]){
       params[key] = [value componentsSeparatedByString:@"__"];
+    }
+  }
+  
+  return params;
+}
+
+- (NSDictionary *)alternateForCurrentLine {
+  if (self.currentLine >= 0 && self.currentLine + 1 < self.titleLines.count) {
+    NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine + 1]];
+    if (params[@"alternate"]) {
+      return params;
+    }
+  }
+  
+  return nil;
+}
+
+- (NSDictionary *)dictionaryForCurrentLine {
+  NSDictionary *params = nil;
+  
+  BOOL altKeyDown = ([NSEvent modifierFlags] & NSAlternateKeyMask) != 0;
+  if (altKeyDown) {
+    params = [self alternateForCurrentLine];
+  }
+  
+  if (!params && self.currentLine >= 0 && self.currentLine < self.titleLines.count) {
+    params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+    if (params[@"alternate"]) {
+      params = nil;
     }
   }
   
@@ -394,6 +441,13 @@
 - (void) close {
 }
 
+- (void)dealloc {
+  if (_eventMonitor) {
+    [NSEvent removeMonitor:_eventMonitor];
+    _eventMonitor = nil;
+  }
+}
+
 - (NSString*) lastUpdatedString { return [self.lastUpdated timeAgoSinceNow].lowercaseString; }
 
 - (void) cycleLines {
@@ -410,41 +464,45 @@
   }
   
   if (self.titleLines.count > 0) {
-    NSDictionary * params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+    NSDictionary *params = [self dictionaryForCurrentLine];
     
     // skip alternate line
-    if (params[@"alternate"]) {
+    if (!params) {
       [self cycleLines];
       return;
     }
     
-    if (params[@"href"] || params[@"bash"] || params[@"refresh"]) {
-      self.statusItem.menu = nil;
-      self.statusItem.action = @selector(statusItemClicked);
-      self.statusItem.target = self;
-    } else if (!self.statusItem.menu) {
-      self.statusItem.action = NULL;
-      self.statusItem.target = nil;
-      [self rebuildMenuForStatusItem:self.statusItem];
-    }
+    [self setStatusItemProperties:params];
     
-    // Add image if present
-    if (params[@"templateImage"]) {
-      self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
-    }else if (params[@"image"]) {
-      self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
-    } else {
-      self.statusItem.image = nil;
-    }
-    
-    
-    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
     self.pluginIsVisible = YES;
   } else {
     self.statusItem = nil;
     self.pluginIsVisible = NO;
   }
   
+}
+
+- (void)setStatusItemProperties:(NSDictionary *)params {
+  self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+  
+  // Add image if present
+  if (params[@"templateImage"]) {
+    self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
+  } else if (params[@"image"]) {
+    self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
+  } else {
+    self.statusItem.image = nil;
+  }
+  
+  if (params[@"href"] || params[@"bash"] || params[@"refresh"]) {
+    self.statusItem.menu = nil;
+    self.statusItem.action = @selector(statusItemClicked);
+    self.statusItem.target = self;
+  } else if (!self.statusItem.menu) {
+    self.statusItem.action = NULL;
+    self.statusItem.target = nil;
+    [self rebuildMenuForStatusItem:self.statusItem];
+  }
 }
 
 - (void) contentHasChanged {
@@ -585,12 +643,11 @@
   
   self.menuIsOpen = YES;
   
-  if (self.currentLine >= 0 && self.currentLine < self.titleLines.count) {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];
-    if (params[@"color"]) {
-      [params removeObjectForKey:@"color"];
-      self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
-    }
+  NSDictionary *params = [self dictionaryForCurrentLine];
+  if (params[@"color"]) {
+    NSMutableDictionary *mutableParams = [NSMutableDictionary dictionaryWithDictionary:params];
+    [mutableParams removeObjectForKey:@"color"];
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:mutableParams];
   }
   
   [self.statusItem setHighlightMode:YES];
@@ -606,11 +663,9 @@
   self.menuIsOpen = NO;
   [self.statusItem setHighlightMode:NO];
   
-  if (self.currentLine >= 0 && self.currentLine < self.titleLines.count) {
-    NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
-    if (params[@"color"]) {
-      self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
-    }
+  NSDictionary *params = [self dictionaryForCurrentLine];
+  if (params[@"color"]) {
+    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
   }
 }
 
