@@ -566,6 +566,18 @@
 }
 
 - (void)statusItemClicked {
+  BOOL altKeyDown = ([NSEvent modifierFlags] & NSAlternateKeyMask) != 0;
+  if (altKeyDown) {
+    [self rebuildMenuForStatusItem:self.statusItem];
+    
+    NSMenu *menu = self.statusItem.menu;
+    
+    self.statusItem.menu = nil;
+    [self.statusItem popUpStatusItemMenu:menu];
+    
+    return;
+  }
+  
   NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
   if (params[@"href"]) {
     [self performHREFAction:params];
