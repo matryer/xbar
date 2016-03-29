@@ -4,7 +4,7 @@ You can currently choose between two versions of the BitBar app: **BitBar** and 
 
 ## Bundling plugins
 
-We recommend using our [bundler script](https://github.com/matryer/bitbar/blob/master/Scripts/bitbar-bundler) for convenience. It takes a version of the BitBar app and the plugins to bundle, copies the plugins into the app bundle and ensures they are executable.
+We recommend using our [bundler script](https://github.com/matryer/bitbar/blob/master/Scripts/bitbar-bundler) for convenience. It takes a version of the BitBar app and the plugins to bundle, removes the code signature from the app, copies the plugins into the app bundle and ensures they are executable. If needed, please re-sign the app with your own certificate via the [Apple Developer Program](https://developer.apple.com/programs/).
 
 Usage:
 
