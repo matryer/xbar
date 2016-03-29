@@ -21,7 +21,7 @@ before_deploy:
 - security default-keychain -s $KEYCHAIN
 - security unlock-keychain -p travis $KEYCHAIN
 - security import $CERT_P12 -k $KEYCHAIN -P "$CERT_PW" -T /usr/bin/codesign
-- IDENTITY="Developer ID Application: Code and That Ltd (B3T8QSC4HG)"
+- 'IDENTITY="Developer ID Application: Code and That Ltd (B3T8QSC4HG)"'
 - codesign --deep --force --verbose --sign "$IDENTITY" BitBar.app
 - codesign --deep --force --verbose --sign "$IDENTITY" BitBarDistro.app
 - security delete-keychain $KEYCHAIN
