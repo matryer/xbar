@@ -27,25 +27,32 @@
 
   NSPipe *stdoutPipe = [NSPipe pipe];
   [task setStandardOutput:stdoutPipe];
+  [stdoutPipe.fileHandleForReading waitForDataInBackgroundAndNotify];
 
   NSPipe *stderrPipe = [NSPipe pipe];
   [task setStandardError:stderrPipe];
 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fileHandleDataAvailable:) name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
+  
   @try {
     [task launch];
   } @catch (NSException *e) {
     NSLog(@"Error when running %@: %@", self.name, e);
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
     self.lastCommandWasError = YES;
     self.content = @"";
     self.errorContent = e.reason;
     return NO;
   }
-  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
-  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
 
   [task waitUntilExit];
 
-  self.content = [NSString.alloc initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  //NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
+  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
+  
+  //self.content = [NSString.alloc initWithData:stdoutData encoding:NSUTF8StringEncoding];
   self.errorContent = [NSString.alloc initWithData:stderrData encoding:NSUTF8StringEncoding];
 
   // failure
@@ -57,6 +64,54 @@
   // success
   self.lastCommandWasError = NO;
   return YES;
+}
+
+- (void)fileHandleDataAvailable:(NSNotification *)notification {
+  NSFileHandle *fileHandle = notification.object;
+  NSString *content = [[NSString alloc] initWithData:fileHandle.availableData encoding:NSUTF8StringEncoding];
+  
+  if (self.content) {
+    content = [self.content stringByAppendingString:content];
+  }
+  
+  NSArray *components = [content componentsSeparatedByString:@"~~~"];
+  
+  if (components.count > 1 && [components[components.count - 2] length] > 0) {
+    self.content = [NSString stringWithFormat:@"%@~~~%@", components[components.count - 2], components[components.count - 1]];
+    
+    [self.lineCycleTimer invalidate];
+    self.lineCycleTimer = nil;
+    [self.refreshTimer invalidate];
+    self.refreshTimer = nil;
+    
+    self.lastUpdated = NSDate.new;
+    
+    [self rebuildMenuForStatusItem:self.statusItem];
+    
+    // reset the current line
+    self.currentLine = -1;
+    
+    // update the status item
+    [self cycleLines];
+    
+    // sort out multi-line cycler
+    if (self.isMultiline) {
+      
+      // start the timer to keep cycling lines
+      self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
+      
+    }
+    
+    // tell the manager this plugin has updated
+    [self.manager pluginDidUdpdateItself:self];
+    
+    // schedule next refresh
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
+  } else {
+    self.content = content;
+  }
+  
+  [fileHandle waitForDataInBackgroundAndNotify];
 }
 
 - (void)performRefreshNow {
