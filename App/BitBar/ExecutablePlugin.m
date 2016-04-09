@@ -81,8 +81,6 @@
     
     [self.lineCycleTimer invalidate];
     self.lineCycleTimer = nil;
-    [self.refreshTimer invalidate];
-    self.refreshTimer = nil;
     
     self.lastUpdated = NSDate.new;
     
@@ -104,9 +102,6 @@
     
     // tell the manager this plugin has updated
     [self.manager pluginDidUdpdateItself:self];
-    
-    // schedule next refresh
-    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:[self.refreshIntervalSeconds doubleValue] target:self selector:@selector(refresh) userInfo:nil repeats:NO];
   } else {
     self.content = content;
   }
@@ -137,6 +132,9 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
       if (weakSelf) {
         __strong ExecutablePlugin* strongSelf = weakSelf;
+        
+        [strongSelf.lineCycleTimer invalidate];
+        strongSelf.lineCycleTimer = nil;
         
         strongSelf.lastUpdated = NSDate.new;
         
