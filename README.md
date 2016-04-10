@@ -139,6 +139,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * Multiple lines will be cycled through over and over.
   * If your output contains a line consisting only of `---`, the lines below it will appear in the dropdown for that plugin, but won't appear in the menu bar itself.
   * Lines beginning with `--` will appear in submenus.
+  * Output `~~~` from long running scripts to render everything above it and since the last `~~~` ([example](Docs/LongRunningPlugins.md#streaming-through-stdout)).
   * Your lines might contain `|` to separate the title from other parameters, such as...
     * `href=..` to make the item clickable
     * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
