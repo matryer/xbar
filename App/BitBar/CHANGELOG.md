@@ -1,5 +1,9 @@
 # BitBar Changes
 
+## v2
+
+* Added [drop to plugin](README.md#metadata) (OS X 10.10 and later)
+
 ## v1.9.1
 
 * Bug fixes and performance enhancements

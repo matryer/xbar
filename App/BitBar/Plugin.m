@@ -26,6 +26,18 @@
     
     // make the status item
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
+  
+    if ([_statusItem respondsToSelector:@selector(button)] && self.metadata[@"droptypes"]) {
+      NSMutableArray *types = [NSMutableArray arrayWithArray:[self.metadata[@"droptypes"] componentsSeparatedByString:@","]];
+      
+      if ([types containsObject:@"filenames"]) {
+        [types removeObject:@"filenames"];
+        [types addObject:NSFilenamesPboardType];
+      }
+      
+      [_statusItem.button.window registerForDraggedTypes:types];
+      _statusItem.button.window.delegate = self;
+    }
     
     // build the menu
     [self rebuildMenuForStatusItem:_statusItem]; _statusItem; });
@@ -576,6 +588,28 @@
   }
 }
 
+- (NSDictionary *)metadata {
+  if (!_metadata) {
+    NSArray *tags = @[@"droptypes"];
+    
+    NSString *string = [NSString stringWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:NULL];
+    NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithCapacity:tags.count];
+    
+    for (NSString *tag in tags) {
+      NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"<bitbar\\.%@>(.*?)<\\/bitbar\\.%@>", tag, tag] options:0 error:NULL];
+      NSTextCheckingResult *match = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+      
+      if (match) {
+        [metadata setObject:[string substringWithRange:[match rangeAtIndex:1]] forKey:tag];
+      }
+    }
+    
+    _metadata = metadata;
+  }
+  
+  return _metadata;
+}
+
 #pragma mark - NSMenuDelegate
 
 - (void)menuWillOpen:(NSMenu *)menu {
@@ -631,6 +665,48 @@
       item.attributedTitle = [self attributedTitleWithParams:params];
     }
   }
+}
+
+#pragma mark - NSWindowDelegate
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+  return NSDragOperationCopy;
+}
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+  NSArray *types = [self.metadata[@"droptypes"] componentsSeparatedByString:@","];
+  NSPasteboard *pboard = [sender draggingPasteboard];
+  NSMutableArray *args = [NSMutableArray array];
+  
+  for (NSString *type in types) {
+    if ([type isEqualToString:@"filenames"]) {
+      if (![pboard.types containsObject:NSFilenamesPboardType]) {
+        continue;
+      }
+      
+      NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+      
+      [args addObject:@"-filenames"];
+      [args addObjectsFromArray:files];
+      
+      break;
+    }
+    
+    if ([pboard.types containsObject:type]) {
+      NSString *string = [pboard stringForType:type];
+      
+      if (string) {
+        [args addObject:[@"-" stringByAppendingString:type]];
+        [args addObject:string];
+      }
+    }
+  }
+  
+  if (args.count) {
+    [self performSelectorInBackground:@selector(startTask:) withObject:@{@"bash" : self.path, @"args" : args, @"refresh" : @""}];
+  }
+  
+  return YES;
 }
 
 @end

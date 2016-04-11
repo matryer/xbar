@@ -9,7 +9,7 @@
 @import AppKit;
 @class PluginManager;
 
-@interface Plugin : NSObject <NSMenuDelegate>
+@interface Plugin : NSObject <NSMenuDelegate, NSWindowDelegate>
 
 @property (nonatomic)      NSInteger currentLine, cycleLinesIntervalSeconds;
 @property (nonatomic)           BOOL lastCommandWasError, pluginIsVisible, menuIsOpen;
@@ -21,6 +21,7 @@
 @property (nonatomic)       NSNumber *refreshIntervalSeconds;
 @property (nonatomic)     NSMenuItem *lastUpdatedMenuItem;
 @property (nonatomic)         NSDate *lastUpdated;
+@property (nonatomic)   NSDictionary *metadata;
 @property (weak, readonly)   PluginManager *manager;
 
 // UI
