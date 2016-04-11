@@ -171,6 +171,7 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
 # <bitbar.image>http://www.hosted-somewhere/pluginimage</bitbar.image>
 # <bitbar.dependencies>python,ruby,node</bitbar.dependencies>
 # <bitbar.abouturl>http://url-to-about.com/</bitbar.abouturl>
+# <bitbar.droptypes>filenames,public.url</bitbar.droptypes>
 ```
 
   * The comment characters can be anything - use what is suitable for your language
@@ -182,6 +183,8 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
   * `bitbar.image` - A hosted image showing a preview of your plugin (ideally open)
   * `bitbar.dependencies` - Comma separated list of dependencies
   * `bitbar.abouturl` - Absolute URL to about information
+  * `bitbar.droptypes` - [Uniform type identifiers](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html) or `filenames`, comma separated.  
+Plugin is executed with arguments `-type` and the dropped item(s) ([example](Docs/DropToPlugin.md#example))
 
 For a real example, see the [Cycle text and detail plugin source code](https://github.com/matryer/bitbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh).
 
