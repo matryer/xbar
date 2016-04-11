@@ -1,9 +1,11 @@
 # BitBar Changes
 
-## v2
+## v2 beta 1
 
 * Added [streaming through stdout](Docs/LongRunningPlugins.md#streaming-through-stdout)
 * Added [drop to plugin](README.md#metadata) (OS X 10.10 and later)
+* For one click status bar action, the menu shows when pressing the alt key
+* Fixed a crash when setting `root=true`
 
 ## v1.9.1
 

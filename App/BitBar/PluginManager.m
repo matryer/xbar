@@ -155,7 +155,7 @@
 }
 
 - (void)openLatestRelease {
-  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/releases/latest"]];
+  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/releases"]];
 }
 
 - (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk {
@@ -361,9 +361,18 @@
   }
   self.lastVersionUpdate = [NSDate date];
   
-  NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
+  NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases"]];
   if (data) {
-    NSDictionary *latest = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSArray *releases = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *latest = nil;
+    
+    for (NSDictionary *release in releases) {
+      if ([release[@"prerelease"] isEqual:@YES]) {
+        latest = release;
+        break;
+      }
+    }
+    
     if (latest[@"tag_name"]) {
       self.latestVersion = latest[@"tag_name"];
       if ([self.latestVersion hasPrefix:@"v"]) {
