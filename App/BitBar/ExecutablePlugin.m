@@ -32,6 +32,8 @@
   NSPipe *stderrPipe = [NSPipe pipe];
   [task setStandardError:stderrPipe];
 
+  self.content = @"";
+  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fileHandleDataAvailable:) name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
   
   @try {
@@ -68,12 +70,7 @@
 
 - (void)fileHandleDataAvailable:(NSNotification *)notification {
   NSFileHandle *fileHandle = notification.object;
-  NSString *content = [[NSString alloc] initWithData:fileHandle.availableData encoding:NSUTF8StringEncoding];
-  
-  if (self.content) {
-    content = [self.content stringByAppendingString:content];
-  }
-  
+  NSString *content = [self.content stringByAppendingString:[[NSString alloc] initWithData:fileHandle.availableData encoding:NSUTF8StringEncoding]];
   NSArray *components = [content componentsSeparatedByString:@"~~~"];
   
   if (components.count > 1 && [components[components.count - 2] length] > 0) {
