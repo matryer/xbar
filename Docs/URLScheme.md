@@ -4,6 +4,7 @@ The BitBar app registers the custom URL scheme `bitbar://`. The following paths 
 
 - [`openPlugin`](#openplugin) to download and install plugins
 - [`refreshPlugin`](#refreshplugin) to refresh plugins
+- [`screenshot`](#screenshot) to save plugin screenshots
 
 ## openPlugin
 
@@ -29,3 +30,9 @@ bitbar://refreshPlugin?name=brew-updates.*?.sh
 ```
 
 Here `*?` was used to omit the time.
+
+## screenshot
+
+- `pluginPath` Plugin path
+- `dst` Destination path, `png` extension
+- `margin` Optional spacing in pixels

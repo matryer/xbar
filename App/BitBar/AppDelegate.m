@@ -82,15 +82,40 @@
 }
 
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-  // check if plugins directory is set
-  if (!DEFS.pluginsDirectory)
-    return;
-  
   // extract the url from the event and handle it
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
   URLString = [URLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-  NSString *prefix = @"bitbar://refreshPlugin?name=";
+  NSString *prefix = @"bitbar://screenshot?";
+  
+  if ([URLString hasPrefix:prefix]) {
+    URLString = [URLString substringFromIndex:prefix.length];
+    NSArray *components = [URLString componentsSeparatedByString:@"&"];
+    
+    NSString *pluginPath = nil;
+    NSString *dst = nil;
+    NSString *margin = nil;
+    
+    for (NSString *component in components)
+      if (!pluginPath && (prefix = @"pluginPath=") && [component hasPrefix:prefix])
+        pluginPath = [component substringFromIndex:prefix.length];
+      else if (!dst && (prefix = @"dst=") && [component hasPrefix:prefix])
+        dst = [component substringFromIndex:prefix.length];
+      else if (!margin && (prefix = @"margin=") && [component hasPrefix:prefix])
+        margin = [component substringFromIndex:prefix.length];
+    
+    if (!pluginPath || !dst)
+      return;
+    
+    [self.pluginManager saveScreenshot:pluginPath destination:dst margin:margin.floatValue];
+    return;
+  }
+  
+  // check if plugins directory is set
+  if (!DEFS.pluginsDirectory)
+    return;
+  
+  prefix = @"bitbar://refreshPlugin?name=";
   
   if ([URLString hasPrefix:prefix]) {
       URLString = [URLString substringFromIndex:prefix.length];
