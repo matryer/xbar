@@ -399,12 +399,10 @@
   
   _plugins = @[plugin];
   
-  // TODO: execute plugin in demo mode with arguments: <bitbar.demo>--demo</bitbar.demo>
-  
-  if ([plugin respondsToSelector:@selector(refreshContentByExecutingCommand)]) {
-    [(ExecutablePlugin *)plugin refreshContentByExecutingCommand];
+  if ([plugin respondsToSelector:@selector(refreshContentByExecutingCommand:)]) {
+    [(ExecutablePlugin *)plugin refreshContentByExecutingCommand:[plugin.metadata[@"demo"] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     
-    plugin.lastUpdated = NSDate.new;
+    plugin.lastUpdated = [NSDate date];
     
     [plugin rebuildMenuForStatusItem:plugin.statusItem];
     

@@ -576,6 +576,28 @@
   }
 }
 
+- (NSDictionary *)metadata {
+  if (!_metadata) {
+    NSArray *tags = @[@"droptypes", @"demo"];
+    
+    NSString *string = [NSString stringWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:NULL];
+    NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithCapacity:tags.count];
+    
+    for (NSString *tag in tags) {
+      NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"<bitbar\\.%@>(.*?)<\\/bitbar\\.%@>", tag, tag] options:0 error:NULL];
+      NSTextCheckingResult *match = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+      
+      if (match) {
+        [metadata setObject:[string substringWithRange:[match rangeAtIndex:1]] forKey:tag];
+      }
+    }
+    
+    _metadata = metadata;
+  }
+  
+  return _metadata;
+}
+
 #pragma mark - NSMenuDelegate
 
 - (void)menuWillOpen:(NSMenu *)menu {
