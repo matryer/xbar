@@ -602,7 +602,7 @@
 
 - (NSDictionary *)metadata {
   if (!_metadata) {
-    NSArray *tags = @[@"droptypes"];
+    NSArray *tags = @[@"droptypes", @"demo"];
     
     NSString *string = [NSString stringWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:NULL];
     NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithCapacity:tags.count];

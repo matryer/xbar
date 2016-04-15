@@ -14,6 +14,10 @@
 @implementation ExecutablePlugin
 
 - (BOOL) refreshContentByExecutingCommand {
+  return [self refreshContentByExecutingCommand:nil];
+}
+
+- (BOOL)refreshContentByExecutingCommand:(NSArray<NSString *> *)args {
 
   if (![[NSFileManager defaultManager] fileExistsAtPath:self.path]) {
     return NO;
@@ -24,6 +28,10 @@
   [task setEnvironment:self.manager.environment];
   [task setLaunchPath:self.path];
   [task useSystemProxies];
+  
+  if (args) {
+    task.arguments = args;
+  }
 
   NSPipe *stdoutPipe = [NSPipe pipe];
   [task setStandardOutput:stdoutPipe];

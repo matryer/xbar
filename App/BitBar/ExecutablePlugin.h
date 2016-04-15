@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSTimer *refreshTimer;
 
 - (BOOL) refreshContentByExecutingCommand;
+- (BOOL)refreshContentByExecutingCommand:(NSArray<NSString *> *)args;
 
 @end
