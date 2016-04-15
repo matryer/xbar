@@ -422,16 +422,19 @@
     
     // update the status item
     [plugin cycleLines];
-    
-    // tell the manager this plugin has updated
-    [self pluginDidUdpdateItself:plugin];
   }
+  
+  // tell the manager this plugin has updated
+  [self pluginDidUdpdateItself:plugin];
   
   dispatch_async(dispatch_get_main_queue(), ^{
     NSRect screenFrame = [plugin.statusItem.button.window convertRectToScreen:plugin.statusItem.button.frame];
     screenFrame.origin.y = 0;
     screenFrame.size.width = MAX(plugin.statusItem.menu.size.width, screenFrame.size.width);
     screenFrame.size.height += plugin.statusItem.menu.size.height;
+    
+    if (NSMaxX(screenFrame) > CGDisplayPixelsWide(kCGDirectMainDisplay))
+      screenFrame.origin.x -= screenFrame.size.width - plugin.statusItem.button.frame.size.width;
     
     if (margin)
       screenFrame = NSInsetRect(screenFrame, -margin, -margin);
@@ -442,7 +445,7 @@
     [pngData writeToFile:dst atomically:YES];
     
     if (image)
-      CFRelease(image);
+      CGImageRelease(image);
     
     [plugin.statusItem.menu cancelTrackingWithoutAnimation];
     [self reset];
