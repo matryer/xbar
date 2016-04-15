@@ -413,10 +413,10 @@
     
     // update the status item
     [plugin cycleLines];
+    
+    // tell the manager this plugin has updated
+    [self pluginDidUdpdateItself:plugin];
   }
-  
-  // tell the manager this plugin has updated
-  [self pluginDidUdpdateItself:plugin];
   
   dispatch_async(dispatch_get_main_queue(), ^{
     NSRect screenFrame = [plugin.statusItem.button.window convertRectToScreen:plugin.statusItem.button.frame];
