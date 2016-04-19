@@ -81,7 +81,8 @@
     [item setTarget:self];
   }
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
-  if (params[@"font"] || params[@"size"] || params[@"color"] || parseANSI)
+  BOOL multiline = [fullTitle rangeOfString:@"\\n"].location != NSNotFound;
+  if (params[@"font"] || params[@"size"] || params[@"color"] || parseANSI || multiline)
     item.attributedTitle = [self attributedTitleWithParams:params];
   
   if (params[@"alternate"]) {
@@ -100,6 +101,7 @@
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
   NSString * fullTitle = params[@"title"];
+  fullTitle = [fullTitle stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
   if (![[params[@"emojize"] lowercaseString] isEqualToString:@"false"]) {
     fullTitle = [fullTitle emojizedString];
   }
