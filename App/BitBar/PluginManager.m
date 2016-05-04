@@ -305,7 +305,17 @@
 
     NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
     env[@"BitBar"] = @YES;
+    
+    // Read a config file from disk and add it to our environment
+    NSString *configPath = [NSString stringWithFormat:@"%@/config.json", self.path];
+    env[@"CONFIG_PATH"] = configPath;
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:configPath]) {
+      NSData *data = [[NSFileManager defaultManager] contentsAtPath:configPath];
+      [env addEntriesFromDictionary:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]];
       
+    }
+    
     // Determine if Mac is in Dark Mode
     NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
     if ([osxMode isEqualToString:@"Dark"]) {
