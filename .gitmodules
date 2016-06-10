@@ -13,3 +13,6 @@
 [submodule "App/Vendor/NSStringEmojize"]
 	path = App/Vendor/NSStringEmojize
 	url = https://github.com/diy/NSStringEmojize.git
+[submodule "App/Vendor/Sparkle"]
+	path = App/Vendor/Sparkle
+	url = https://github.com/sparkle-project/Sparkle.git

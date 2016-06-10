@@ -5,19 +5,21 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "C0AF55779579B522417152BFAB32AD2A49AFBDFE" : 0,
-    "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : 0,
-    "EFCDA5DAAD3299C621AB4AD8A1985311413BE697" : 0,
+    "EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402" : 0,
     "4FA437A61B0C4384CD084682AFD40F7D2624731D" : 0,
+    "EFCDA5DAAD3299C621AB4AD8A1985311413BE697" : 0,
     "5A18CC4105103F3DCAAD74EC93EFD3FF8BB5508A" : 0,
+    "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : 0,
     "300A25E6089E8365F1B9BCC0BF644BF304850FDB" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B2EB30C0-666C-46EA-85F2-0586829722B1",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "C0AF55779579B522417152BFAB32AD2A49AFBDFE" : "bitbar\/App\/Vendor\/AHProxySettings\/",
-    "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : "bitbar\/App\/Vendor\/DateTools\/",
-    "EFCDA5DAAD3299C621AB4AD8A1985311413BE697" : "bitbar\/App\/Vendor\/NSStringEmojize\/",
+    "EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402" : "bitbar\/App\/Vendor\/Sparkle\/",
     "4FA437A61B0C4384CD084682AFD40F7D2624731D" : "bitbar\/App\/Vendor\/LaunchAtLoginController\/",
+    "EFCDA5DAAD3299C621AB4AD8A1985311413BE697" : "bitbar\/App\/Vendor\/NSStringEmojize\/",
     "5A18CC4105103F3DCAAD74EC93EFD3FF8BB5508A" : "bitbar\/App\/Vendor\/STPrivilegedTask\/",
+    "F8622BA04EBD09F8BA8DC9C0C199149407552BFA" : "bitbar\/App\/Vendor\/DateTools\/",
     "300A25E6089E8365F1B9BCC0BF644BF304850FDB" : "bitbar"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "BitBar",
@@ -43,6 +45,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eahrold\/AHProxySettings.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C0AF55779579B522417152BFAB32AD2A49AFBDFE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sparkle-project\/Sparkle.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/diy\/NSStringEmojize.git",
