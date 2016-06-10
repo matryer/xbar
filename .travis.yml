@@ -47,8 +47,9 @@ after_deploy:
 # Update the Sparkle feed cache
 - brew install jq
 - PRERELEASE=$(curl -s -H "Authorization:token $GH_TOKEN" "https://api.github.com/repos/matryer/bitbar/releases/tags/$TRAVIS_TAG" | jq .prerelease)
-- if [ "$PRERELEASE" = true ]; then FEED=beta; else FEED=bitbar; fi
-- curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/$FEED/reload"
+- if [ "$PRERELEASE" = true ]; then FEED=(beta distro-beta); else FEED=(bitbar distro); fi
+- curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/${FEED[0]}/reload"
+- curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/${FEED[1]}/reload"
 notifications:
   slack:
     secure: TpJVJf/NWxDvHxPjaQJnVg4vlW6JeLQ7eWadzFo7sUNSdB7Tui703AvYjG8tZTlk2lJ/4bV4jKgz8+rSElkeGsfPLTgDU33IDmG3V9o6MrAeV/ZQL37793bj+zJFxNuOkoIBaBQt1aNDTuIDUB97MNv02Vklb1M7Yd44NRVXdHk=
