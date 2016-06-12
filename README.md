@@ -153,8 +153,8 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
     * `trim=..` whether to trim leading/trailing whitespace from the title.  `true` or `false` (defaults to `true`)
     * `alternate=true` to mark a line as an alternate to the previous one for when the Option key is pressed in the dropdown
-    * `templateImage=..` set an image for this item. The image data must be passed as base64 encoded string and should consist of only black and clear pixels. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. The imageformat can be any of the formats supported by Mac OS X
-    * `image=..` set an image for this item. The image data must be passed as base64 encoded string. The imageformat can be any of the formats supported by Mac OS X
+    * `templateImage=..` set an image for this item. The image data must be passed as base64 encoded string and should consist of only black and clear pixels. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. Use a 144 DPI resolution to support Retina displays. The imageformat can be any of the formats supported by Mac OS X
+    * `image=..` set an image for this item. The image data must be passed as base64 encoded string. Use a 144 DPI resolution to support Retina displays. The imageformat can be any of the formats supported by Mac OS X
     * `emojize=false` will disable parsing of github style `:mushroom:` into :mushroom:
     * `ansi=false` turns off parsing of ANSI codes.
     * `checked=true` for a checkmark
@@ -198,6 +198,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
   * You can use emoji in the output (find an example in the Music/vox Plugin).
   * If your bash script generates text in another language, set the `LANG` variable with: `export LANG="es_ES.UTF-8"` (for Spanish) to show the text in correct format.
   * If you want to call the plugin script for action, you can use `bash=$0`
+  * If your plugin should support Retina displays, export your icon at 36x36 with a resolution of 144 DPI (see [this issue](https://github.com/matryer/bitbar/issues/314) for a more thorough explanation).
 
 ### Examples
 
