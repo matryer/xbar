@@ -115,12 +115,10 @@
 }
 
 - (void)performRefreshNow {
-  self.content = @"Updating ...";
-  self.errorContent = @"";
-  [self rebuildMenuForStatusItem:self.statusItem];
-  self.currentLine = -1;
-  [self cycleLines];
-  [self.manager pluginDidUdpdateItself:self];
+  if (self.pluginIsVisible) {
+    self.statusItem.enabled = NO;
+  }
+  
   [self refresh];
 }
 
