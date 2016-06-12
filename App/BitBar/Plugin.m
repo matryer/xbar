@@ -439,6 +439,8 @@
     
     
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+    self.statusItem.enabled = YES;
+    
     self.pluginIsVisible = YES;
   } else {
     self.statusItem = nil;
