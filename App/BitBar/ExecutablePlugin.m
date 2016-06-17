@@ -78,7 +78,8 @@
 
 - (void)fileHandleDataAvailable:(NSNotification *)notification {
   NSFileHandle *fileHandle = notification.object;
-  NSString *content = [self.content stringByAppendingString:[[NSString alloc] initWithData:fileHandle.availableData encoding:NSUTF8StringEncoding]];
+  NSString *string = [[NSString alloc] initWithData:fileHandle.availableData encoding:NSUTF8StringEncoding];
+  NSString *content = string ? [self.content stringByAppendingString:string] : self.content;
   NSArray *components = [content componentsSeparatedByString:@"~~~"];
   
   if (components.count > 1 && [components[components.count - 2] length] > 0) {
