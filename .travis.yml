@@ -6,7 +6,7 @@ xcode_sdk: macosx10.11
 #before_install:
 #- brew update
 #- brew outdated xctool || brew upgrade xctool
-script:
+before_script:
 - CERT_P12=Certificate.p12
 - echo "$CERT_BASE64" | base64 --decode > $CERT_P12
 - KEYCHAIN=build.keychain
@@ -16,12 +16,12 @@ script:
 - security set-keychain-settings -t 3600 -u $KEYCHAIN
 - security import $CERT_P12 -k $KEYCHAIN -P "$CERT_PW" -T /usr/bin/codesign
 - 'IDENTITY="Developer ID Application: Code and That Ltd (B3T8QSC4HG)"'
-- if [ -n "$TRAVIS_TAG" ]; then xctool -project $TRAVIS_XCODE_PROJECT
+script: if [ -n "$TRAVIS_TAG" ]; then xctool -project $TRAVIS_XCODE_PROJECT
   -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
   SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="$IDENTITY" build analyze; else xctool -project $TRAVIS_XCODE_PROJECT
   -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
-  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
-- security delete-keychain $KEYCHAIN
+  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="$IDENTITY" build analyze -failOnWarnings; fi
+after_script: security delete-keychain $KEYCHAIN
 before_deploy:
 - OUTPUTDIR="$PWD/build/Release"
 - cd $OUTPUTDIR
