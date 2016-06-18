@@ -43,12 +43,13 @@ after_deploy:
 - git clone "https://$GH_TOKEN@github.com/matryer/bitbar.git" --branch gh-pages --single-branch gh-pages
 - cd gh-pages
 - git commit -m "rebuild pages for $TRAVIS_COMMIT" --allow-empty
-- git tag "$TRAVIS_TAG"
-- git push -q --follow-tags
+- git push -q
 # Update the Sparkle feed cache
 - brew install jq
 - PRERELEASE=$(curl -s -H "Authorization:token $GH_TOKEN" "https://api.github.com/repos/matryer/bitbar/releases/tags/$TRAVIS_TAG" | jq .prerelease)
+- echo "$PRERELEASE"
 - if [ "$PRERELEASE" = true ]; then FEED=(beta distro-beta); else FEED=(bitbar distro); fi
+- while :; do STATUS=$(curl -s -H "Authorization:token $GH_TOKEN" https://api.github.com/repos/matryer/bitbar/pages | jq .status); if [ "$STATUS" != null ] && [ "$STATUS" != '"building"' ]; then echo "$STATUS"; break; fi; sleep 1; done
 - curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/${FEED[0]}/reload"
 - curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/${FEED[1]}/reload"
 notifications:
