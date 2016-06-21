@@ -147,7 +147,7 @@ If you want to contribute, please send us a pull request and we'll add it to our
     * `bash=..` to make the item run a given script terminal with your script e.g. `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh` if there are spaces in the file path you will need quotes e.g. `bash="/Users/user/BitBar Plugins/scripts/nginx.restart.sh"`
     * `param1=` to specify arguments to the script. additional params like this `param2=foo param3=bar` full example  `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh" param1=--verbose` assuming that nginx.restart.sh is executable or `bash=/usr/bin/ruby param1=/Users/user/rubyscript.rb param2=arg1 param3=arg2` if script is not executable
     * `terminal=..` start bash script without opening Terminal. `true` or `false`
-    * `refresh=..` to make the item refresh the plugin it belongs to
+    * `refresh=..` to make the item refresh the plugin it belongs to. If the item runs a script, refresh is performed after the script finishes. eg. `refresh=true`
     * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
     * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
     * `trim=..` whether to trim leading/trailing whitespace from the title.  `true` or `false` (defaults to `true`)
