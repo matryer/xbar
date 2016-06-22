@@ -56,13 +56,18 @@
   }
 
   [task waitUntilExit];
-
-  //NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
-  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
   
   [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
   
-  //self.content = [NSString.alloc initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
+  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
+  
+  NSString *content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  
+  if (content) {
+    self.content = [self.content stringByAppendingString:content];
+  }
+  
   self.errorContent = [NSString.alloc initWithData:stderrData encoding:NSUTF8StringEncoding];
 
   // failure
