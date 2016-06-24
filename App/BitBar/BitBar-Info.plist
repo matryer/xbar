@@ -43,7 +43,5 @@
 	<string>App</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUPublicDSAKey</key>
-	<string></string>
 </dict>
 </plist>
