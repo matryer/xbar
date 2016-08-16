@@ -4,6 +4,7 @@
 
 * Added [streaming through stdout](Docs/LongRunningPlugins.md#streaming-through-stdout)
 * Added [drop to plugin](README.md#metadata) (OS X 10.10 and later)
+* Added support for passing URLs to the `image` parameters
 * Added support for multi-line titles thanks to @ganeshv - #324
 * Added [checkmark parameter](README.md#plugin-api)
 * Added Sparkle updater

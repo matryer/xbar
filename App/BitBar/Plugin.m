@@ -58,6 +58,32 @@
   return image;
 }
 
+- (void)loadImageForParams:(NSDictionary *)params completionHandler:(void (^)(NSImage *image))handler {
+  NSString *imageParam = params[@"templateImage"] ?: params[@"image"];
+  
+  if (imageParam) {
+    NSURL *url = [NSURL URLWithString:imageParam];
+    
+    if (url) {
+      [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
+                                         queue:[NSOperationQueue mainQueue]
+                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if (data) {
+                                 NSImage *image = [[NSImage alloc] initWithData:data];
+                                 
+                                 if (params[@"templateImage"]) {
+                                   image.template = YES;
+                                 }
+                                 
+                                 handler(image);
+                               }
+                             }];
+    } else {
+      handler([self createImageFromBase64:imageParam isTemplate:!!params[@"templateImage"]]);
+    }
+  }
+}
+
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params {
 
   if ([[params[@"dropdown"] lowercaseString] isEqualToString:@"false"]) {
@@ -101,11 +127,10 @@
     item.alternate = YES;
     item.keyEquivalentModifierMask = NSAlternateKeyMask;
   }
-  if (params[@"templateImage"]) {
-    item.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
-  }else if (params[@"image"]) {
-    item.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
-  }
+  
+  [self loadImageForParams:params completionHandler:^(NSImage *image) {
+    item.image = image;
+  }];
   
   if (params[@"checked"]) {
     item.state = NSOnState;
@@ -447,13 +472,10 @@
     }
     
     // Add image if present
-    if (params[@"templateImage"]) {
-      self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
-    }else if (params[@"image"]) {
-      self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
-    } else {
-      self.statusItem.image = nil;
-    }
+    self.statusItem.image = nil;
+    [self loadImageForParams:params completionHandler:^(NSImage *image) {
+      _statusItem.image = image;
+    }];
     
     
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
