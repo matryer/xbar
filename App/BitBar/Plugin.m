@@ -62,24 +62,28 @@
   NSString *imageParam = params[@"templateImage"] ?: params[@"image"];
   
   if (imageParam) {
-    NSURL *url = [NSURL URLWithString:imageParam];
+    NSImage *image = [self createImageFromBase64:imageParam isTemplate:!!params[@"templateImage"]];
     
-    if (url) {
-      [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
-                                         queue:[NSOperationQueue mainQueue]
-                             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if (data) {
-                                 NSImage *image = [[NSImage alloc] initWithData:data];
-                                 
-                                 if (params[@"templateImage"]) {
-                                   image.template = YES;
-                                 }
-                                 
-                                 handler(image);
-                               }
-                             }];
+    if (image) {
+      handler(image);
     } else {
-      handler([self createImageFromBase64:imageParam isTemplate:!!params[@"templateImage"]]);
+      NSURL *url = [NSURL URLWithString:imageParam];
+      
+      if (url) {
+        [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                 if (data) {
+                                   NSImage *image = [[NSImage alloc] initWithData:data];
+                                   
+                                   if (params[@"templateImage"]) {
+                                     image.template = YES;
+                                   }
+                                   
+                                   handler(image);
+                                 }
+                               }];
+      }
     }
   }
 }
