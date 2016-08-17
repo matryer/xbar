@@ -1,6 +1,6 @@
 # BitBar Changes
 
-## v2 beta 8
+## v2 beta 9
 
 * Added [streaming through stdout](Docs/LongRunningPlugins.md#streaming-through-stdout)
 * Added [drop to plugin](README.md#metadata) (OS X 10.10 and later)
