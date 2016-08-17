@@ -7,6 +7,7 @@
 * Added support for passing URLs to the `image` parameters
 * Added support for multi-line titles thanks to @ganeshv - #324
 * Added [checkmark parameter](README.md#plugin-api)
+* Added environment variable `BitBarVersion`
 * Added Sparkle updater
 * Save plugin screenshots via the [URL scheme](Docs/URLScheme.md#screenshot)
 * Added [demo mode](README.md#metadata)

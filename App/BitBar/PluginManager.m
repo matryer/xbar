@@ -285,6 +285,7 @@
 
     NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
     env[@"BitBar"] = @YES;
+    env[@"BitBarVersion"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
       
     // Determine if Mac is in Dark Mode
     NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
