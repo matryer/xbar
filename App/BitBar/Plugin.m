@@ -161,16 +161,11 @@
   NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
 
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
-  NSFont    * font;
-  if ([NSFont respondsToSelector:@selector(monospacedDigitSystemFontOfSize:weight:)]) {
-    font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
-                                       : [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular]
-                                      ?: [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular];
-  } else {
-    font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
-                                       : [NSFont menuFontOfSize:size]
-                                       ?: [NSFont menuFontOfSize:size];
-  }
+  NSFont    * font = ([self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
+                                       : nil)
+                                      ?: [NSFont respondsToSelector:@selector(monospacedDigitSystemFontOfSize:weight:)]
+                                       ? [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular]
+                                       : [NSFont menuFontOfSize:size];
 
   NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1};
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
