@@ -114,8 +114,7 @@
   NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
 
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
-  NSFont    * font = ([self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
-                                       : nil)
+  NSFont    * font = [self validFont:params[@"font"] size:size]
                                       ?: [NSFont respondsToSelector:@selector(monospacedDigitSystemFontOfSize:weight:)]
                                        ? [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular]
                                        : [NSFont menuFontOfSize:size];
@@ -448,15 +447,13 @@
   _allContentLines = nil;
 }
 
-- (BOOL) isFontValid:(NSString *)fontName {
-  if (fontName == nil) {
-    return NO;
-  }
+- (NSFont *)validFont:(NSString *)fontName size:(CGFloat)size {
+  if (!fontName) return nil;
   
-  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute:fontName}];
-  NSArray *matches = [fontDescriptor matchingFontDescriptorsWithMandatoryKeys: nil];
+  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute : fontName}];
+  NSFontDescriptor *match = [fontDescriptor matchingFontDescriptorWithMandatoryKeys:nil];
   
-  return ([matches count] > 0);
+  return match ? [NSFont fontWithDescriptor:match size:size] : nil;
 }
 
 - (void) setContent:(NSString *)content {

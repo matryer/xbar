@@ -40,7 +40,6 @@
 - (BOOL) refresh;
 - (void) cycleLines;
 - (void) contentHasChanged;
-- (BOOL) isFontValid:(NSString *)fontName;
 
 // actions
 - (void)changePluginsDirectorySelected:(id)sender;
