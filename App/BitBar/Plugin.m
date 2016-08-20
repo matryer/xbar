@@ -73,16 +73,20 @@
         [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                 NSImage *image = nil;
+                                 
                                  if (data) {
-                                   NSImage *image = [[NSImage alloc] initWithData:data];
+                                   image = [[NSImage alloc] initWithData:data];
                                    
                                    if (params[@"templateImage"]) {
                                      image.template = YES;
                                    }
-                                   
-                                   handler(image);
                                  }
+                                 
+                                 handler(image);
                                }];
+      } else {
+        handler(nil);
       }
     }
   }
@@ -470,7 +474,6 @@
     }
     
     // Add image if present
-    self.statusItem.image = nil;
     [self loadImageForParams:params completionHandler:^(NSImage *image) {
       _statusItem.image = image;
     }];
