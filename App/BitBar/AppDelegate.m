@@ -10,9 +10,10 @@
 #import "LaunchAtLoginController.h"
 #import "PluginManager.h"
 #import "Plugin.h"
+#import <Sparkle/Sparkle.h>
 #import <sys/stat.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSURLDownloadDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSURLDownloadDelegate, SUUpdaterDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 
@@ -30,6 +31,19 @@
 - (NSArray*) otherCopies { return [NSRunningApplication runningApplicationsWithBundleIdentifier:NSBundle.mainBundle.bundleIdentifier]; }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)n {
+  NSString *feedURLString;
+#ifdef DISTRO
+  feedURLString = @"https://bitbarapp.com/feeds/distro";
+#else
+  feedURLString = @"https://bitbarapp.com/feeds/bitbar";
+#endif
+  
+  SUUpdater *updater = [SUUpdater sharedUpdater];
+  updater.delegate = self;
+  updater.automaticallyChecksForUpdates = YES;
+  updater.feedURL = [NSURL URLWithString:feedURLString];
+  updater.sendsSystemProfile = YES;
+  
   // register custom url scheme handler
   [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
                                                      andSelector:@selector(handleGetURLEvent:withReplyEvent:)
@@ -211,6 +225,39 @@
   self.download = nil;
   self.destinationPath = nil;
   self.suggestedDestinationPath = nil;
+}
+
+#pragma mark - SUUpdater delegate
+
+// hack to disable the update prompt if user configuration is disabled
+- (SUAppcastItem *)bestValidUpdateInAppcast:(SUAppcast *)appcast forUpdater:(SUUpdater *)updater {
+  id driver;
+  
+  if (DEFS.userConfigDisabled || ((driver = [updater valueForKey:@"driver"]) && !driver)) return nil;
+  
+  SEL sel = NSSelectorFromString(@"bestItemFromAppcastItems:getDeltaItem:withHostVersion:comparator:");
+  NSArray *items = appcast.items;
+  void *deltaUpdateItem = nil;
+  id version = [[driver valueForKey:@"host"] valueForKey:@"version"];
+  id comparator = [driver valueForKey:@"versionComparator"];
+  void *item = nil;
+  
+  NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[[driver class] methodSignatureForSelector:sel]];
+  inv.selector = sel;
+  inv.target = [driver class];
+  if (items) [inv setArgument:&items atIndex:2];
+  [inv setArgument:&deltaUpdateItem atIndex:3];
+  if (version) [inv setArgument:&version atIndex:4];
+  if (comparator) [inv setArgument:&comparator atIndex:5];
+  [inv invoke];
+  
+  if (deltaUpdateItem) {
+    item = deltaUpdateItem;
+  } else {
+    [inv getReturnValue:&item];
+  }
+  
+  return (__bridge SUAppcastItem *)item;
 }
 
 @end

@@ -36,10 +36,6 @@ Example showing your internal and external IP addresses:
 
 [Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
 
-Homebrew Cask users can, alternatively, install BitBar by running `brew cask install bitbar`.
-
-Note: Make sure you have updated your Homebrew Cask. Run `brew uninstall --force brew-cask; brew update` as mentioned in [Homebrew-Cask README](https://github.com/caskroom/homebrew-cask/blob/6c1af93c7f02778f77e5800b8914c0a1595a62e0/README.md)
-
 [Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
 
 ### It's free, so please donate
