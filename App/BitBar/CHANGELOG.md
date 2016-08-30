@@ -4,6 +4,10 @@
 
 * Added [streaming through stdout](Docs/LongRunningPlugins.md#streaming-through-stdout)
 
+## v1.9.2
+
+* Added Sparkle updater
+
 ## v1.9.1
 
 * Bug fixes and performance enhancements

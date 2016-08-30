@@ -12,6 +12,7 @@
 #import "HTMLPlugin.h"
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
+#import <Sparkle/SUUpdater.h>
 
 @interface PluginManager () {
   LaunchAtLoginController *_launchAtLoginController;
@@ -24,7 +25,6 @@
   if (self = [super init]) {
     _path = [path stringByStandardizingPath];
     _launchAtLoginController = [[LaunchAtLoginController alloc] init];
-    [self performSelectorInBackground:@selector(getLatestVersion) withObject:nil];
   }
   return self;
 }
@@ -75,7 +75,14 @@
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
+  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+  
+  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
+  
   if (!DEFS.userConfigDisabled) {
+    versionMenuitem.alternate = YES;
+    versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
+    
     // add edit action, aka prefsMenuItem
     ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);
     
@@ -91,32 +98,11 @@
     [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
     
     [targetMenu addItem:NSMenuItem.separatorItem];
+    
+    ADD_MENU(@"Check for Updates…", checkForUpdates:, nil, [SUUpdater sharedUpdater]);
   }
   
-  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-  
-  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
-  
-  if (!self.latestVersion || [self.latestVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]]) {
-    [targetMenu addItem:versionMenuitem];
-  } else {
-    NSImage *cautionImage = [NSImage imageNamed:NSImageNameCaution];
-    cautionImage.size = CGSizeMake(16, 16);
-    
-    NSMenuItem *latestVersionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Download latest (v%@)", self.latestVersion]
-                                                                   action:@selector(openLatestRelease)
-                                                            keyEquivalent:@""];
-    latestVersionMenuItem.target = self;
-    latestVersionMenuItem.offStateImage = cautionImage;
-    [targetMenu addItem:latestVersionMenuItem];
-    
-    moreItem.offStateImage = cautionImage;
-    
-    versionMenuitem.title = [@"Current: " stringByAppendingString:versionMenuitem.title];
-    versionMenuitem.alternate = YES;
-    versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
-    [targetMenu addItem:versionMenuitem];
-  }
+  [targetMenu addItem:versionMenuitem];
 
 //
 //  // add troubleshooting item
@@ -152,10 +138,6 @@
 
 - (void) toggleOpenAtLogin:(id)sender {
   [_launchAtLoginController setLaunchAtLogin:!_launchAtLoginController.launchAtLogin];
-}
-
-- (void)openLatestRelease {
-  [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/releases/latest"]];
 }
 
 - (NSArray*) pluginFilesWithAsking:(BOOL)shouldAsk {
@@ -243,8 +225,6 @@
 }
 
 - (void) reset {
-  
-  [self performSelectorInBackground:@selector(getLatestVersion) withObject:nil];
   
   // remove all status items
   for (Plugin *plugin in _plugins) {
@@ -347,29 +327,6 @@
     
     for (Plugin *plugin in plugins) [plugin refresh];
 
-  }
-}
-
-- (void)getLatestVersion {
-  if (DEFS.userConfigDisabled) {
-    return;
-  }
-  
-  // only refresh hourly
-  if (self.lastVersionUpdate && self.lastVersionUpdate.timeIntervalSinceNow > -60 * 60) {
-    return;
-  }
-  self.lastVersionUpdate = [NSDate date];
-  
-  NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://api.github.com/repos/matryer/bitbar/releases/latest"]];
-  if (data) {
-    NSDictionary *latest = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    if (latest[@"tag_name"]) {
-      self.latestVersion = latest[@"tag_name"];
-      if ([self.latestVersion hasPrefix:@"v"]) {
-        self.latestVersion = [self.latestVersion substringFromIndex:1];
-      }
-    }
   }
 }
 

@@ -6,27 +6,27 @@ xcode_sdk: macosx10.11
 #before_install:
 #- brew update
 #- brew outdated xctool || brew upgrade xctool
-script: if [ -n "$TRAVIS_TAG" ]; then xctool -project $TRAVIS_XCODE_PROJECT
-  -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
-  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze; else xctool -project $TRAVIS_XCODE_PROJECT
-  -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
-  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings test; fi
-before_deploy:
-- OUTPUTDIR="$PWD/build/Release"
-- cd $OUTPUTDIR
+script:
 - CERT_P12=Certificate.p12
 - echo "$CERT_BASE64" | base64 --decode > $CERT_P12
 - KEYCHAIN=build.keychain
 - security create-keychain -p travis $KEYCHAIN
 - security default-keychain -s $KEYCHAIN
 - security unlock-keychain -p travis $KEYCHAIN
+- security set-keychain-settings -t 3600 -u $KEYCHAIN
 - security import $CERT_P12 -k $KEYCHAIN -P "$CERT_PW" -T /usr/bin/codesign
 - 'IDENTITY="Developer ID Application: Code and That Ltd (B3T8QSC4HG)"'
-- codesign --deep --force --verbose --sign "$IDENTITY" BitBar.app
-- codesign --deep --force --verbose --sign "$IDENTITY" BitBarDistro.app
+- if [ -n "$TRAVIS_TAG" ]; then xctool -project $TRAVIS_XCODE_PROJECT
+  -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
+  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="$IDENTITY" build analyze; else xctool -project $TRAVIS_XCODE_PROJECT
+  -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK -configuration Release OBJROOT=$PWD/build
+  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO build analyze -failOnWarnings; fi
 - security delete-keychain $KEYCHAIN
-- zip -r "BitBar-$TRAVIS_TAG.zip" "BitBar.app"
-- zip -r "BitBarDistro-$TRAVIS_TAG.zip" "BitBarDistro.app"
+before_deploy:
+- OUTPUTDIR="$PWD/build/Release"
+- cd $OUTPUTDIR
+- ditto -c -k --sequesterRsrc --keepParent "BitBar.app" "BitBar-$TRAVIS_TAG.zip"
+- ditto -c -k --sequesterRsrc --keepParent "BitBarDistro.app" "BitBarDistro-$TRAVIS_TAG.zip"
 deploy:
   provider: releases
   api_key:
@@ -38,6 +38,17 @@ deploy:
   on:
     repo: matryer/bitbar
     tags: true
+after_deploy:
+# Rebuild the Sparkle feed
+- curl -s -X POST -H "Authorization:token $GH_TOKEN" -H Accept:application/vnd.github.mister-fantastic-preview https://api.github.com/repos/matryer/bitbar/pages/builds
+# Update the Sparkle feed cache
+- brew install jq
+- PRERELEASE=$(curl -s -H "Authorization:token $GH_TOKEN" "https://api.github.com/repos/matryer/bitbar/releases/tags/$TRAVIS_TAG" | jq .prerelease)
+- echo "$PRERELEASE"
+- if [ "$PRERELEASE" = true ]; then FEED=(beta distro-beta); else FEED=(bitbar distro); fi
+- while :; do STATUS=$(curl -s -H "Authorization:token $GH_TOKEN" https://api.github.com/repos/matryer/bitbar/pages | jq .status); if [ "$STATUS" != '"queued"' ] && [ "$STATUS" != '"building"' ]; then echo "$STATUS"; break; fi; sleep 1; done
+- curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/${FEED[0]}/reload"
+- curl -s -H "X-RELOAD-KEY:$SPARKLE_UPDATE_KEY" -D - -o /dev/null "https://bitbarapp.com/feeds/${FEED[1]}/reload"
 notifications:
   slack:
     secure: TpJVJf/NWxDvHxPjaQJnVg4vlW6JeLQ7eWadzFo7sUNSdB7Tui703AvYjG8tZTlk2lJ/4bV4jKgz8+rSElkeGsfPLTgDU33IDmG3V9o6MrAeV/ZQL37793bj+zJFxNuOkoIBaBQt1aNDTuIDUB97MNv02Vklb1M7Yd44NRVXdHk=
