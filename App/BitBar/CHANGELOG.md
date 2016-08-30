@@ -4,6 +4,10 @@
 
 * Added [drop to plugin](README.md#metadata) (OS X 10.10 and later)
 
+## v1.9.2
+
+* Added Sparkle updater
+
 ## v1.9.1
 
 * Bug fixes and performance enhancements
