@@ -1,5 +1,9 @@
 # BitBar Changes
 
+## v1.9.2
+
+* Added Sparkle updater
+
 ## v1.9.1
 
 * Bug fixes and performance enhancements
