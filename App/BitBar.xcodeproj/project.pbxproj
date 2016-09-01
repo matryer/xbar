@@ -20,6 +20,10 @@
 		36372DCE1C9424DB0005EB32 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
 		36372DCF1C9424DB0005EB32 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
 		36372DD21C9424DB0005EB32 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
+		367671EF1D78BBAD002A9BAE /* NSColor+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = 367671EE1D78BBAD002A9BAE /* NSColor+ANSI.m */; };
+		367671F01D78BBAD002A9BAE /* NSColor+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = 367671EE1D78BBAD002A9BAE /* NSColor+ANSI.m */; };
+		367671FD1D78D5BB002A9BAE /* NSColor+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = 367671EE1D78BBAD002A9BAE /* NSColor+ANSI.m */; };
+		367672071D78D5BF002A9BAE /* NSColor+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = 367671EE1D78BBAD002A9BAE /* NSColor+ANSI.m */; };
 		36D0CE0A1D0AF012001AFB77 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; };
 		36D0CE0B1D0AF012001AFB77 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		36D0CE101D0AF018001AFB77 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; };
@@ -227,6 +231,8 @@
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DB995B1C3D4B80008B5159 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarDistroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		367671ED1D78BBAD002A9BAE /* NSColor+ANSI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+ANSI.h"; sourceTree = "<group>"; };
+		367671EE1D78BBAD002A9BAE /* NSColor+ANSI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ANSI.m"; sourceTree = "<group>"; };
 		36D0CDF21D0AF009001AFB77 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Vendor/Sparkle/Sparkle.xcodeproj; sourceTree = SOURCE_ROOT; };
 		36DCD8D81C76027C004DE286 /* BitBarDistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarDistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
@@ -459,6 +465,8 @@
 			children = (
 				AE7303EB1C93984C00AF5499 /* NSString+ANSI.h */,
 				AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */,
+				367671ED1D78BBAD002A9BAE /* NSColor+ANSI.h */,
+				367671EE1D78BBAD002A9BAE /* NSColor+ANSI.m */,
 			);
 			name = Extensions;
 			path = BitBar;
@@ -729,6 +737,7 @@
 				7B9A216A1B9F0F10002539F7 /* DTTimePeriodCollection.m in Sources */,
 				05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */,
 				7B9A216C1B9F0F10002539F7 /* NSDate+DateTools.m in Sources */,
+				367671EF1D78BBAD002A9BAE /* NSColor+ANSI.m in Sources */,
 				A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */,
 				059971961833394500EA6D8D /* Plugin.m in Sources */,
 				7B9A21691B9F0F10002539F7 /* DTTimePeriodChain.m in Sources */,
@@ -759,6 +768,7 @@
 				AE4B1E601C9C6351009540AD /* NSDate+DateTools.m in Sources */,
 				AE4B1E611C9C6351009540AD /* STPrivilegedTask.m in Sources */,
 				AE4B1E621C9C6351009540AD /* LaunchAtLoginController.m in Sources */,
+				367671FD1D78D5BB002A9BAE /* NSColor+ANSI.m in Sources */,
 				AE4B1E631C9C6351009540AD /* NSColor+Hex.m in Sources */,
 				AE4B1E4D1C9C631B009540AD /* PluginManager.m in Sources */,
 				AE4B1E4E1C9C631B009540AD /* Plugin.m in Sources */,
@@ -789,6 +799,7 @@
 				AE4B1E711C9C636A009540AD /* NSDate+DateTools.m in Sources */,
 				AE4B1E721C9C636A009540AD /* STPrivilegedTask.m in Sources */,
 				AE4B1E731C9C636A009540AD /* LaunchAtLoginController.m in Sources */,
+				367672071D78D5BF002A9BAE /* NSColor+ANSI.m in Sources */,
 				AE4B1E741C9C636A009540AD /* NSColor+Hex.m in Sources */,
 				AE4B1E501C9C632A009540AD /* PluginManager.m in Sources */,
 				AE4B1E511C9C632A009540AD /* Plugin.m in Sources */,
@@ -817,6 +828,7 @@
 				36DCD8C91C76027C004DE286 /* NSUserDefaults+Settings.m in Sources */,
 				36DCD8CA1C76027C004DE286 /* NSDate+DateTools.m in Sources */,
 				AE4B1E391C9B2B0F009540AD /* NSString+ANSI.m in Sources */,
+				367671F01D78BBAD002A9BAE /* NSColor+ANSI.m in Sources */,
 				36DCD8CB1C76027C004DE286 /* NSColor+Hex.m in Sources */,
 				36DCD8CC1C76027C004DE286 /* Plugin.m in Sources */,
 				36DCD8CD1C76027C004DE286 /* DTTimePeriodChain.m in Sources */,

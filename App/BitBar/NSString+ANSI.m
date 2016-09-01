@@ -8,18 +8,44 @@
 
 #import "Cocoa/Cocoa.h"
 #import "NSString+ANSI.h"
+#import "NSColor+ANSI.h"
 #import "NSColor+Hex.h"
 
 @implementation NSMutableDictionary (ANSI)
 
 - (NSMutableDictionary*)modifyAttributesForANSICodes:(NSString*)codes {
-  BOOL bold = NO;
+  BOOL bold = NO, color256 = NO;
+  NSNumber *foreground = nil;
   NSFont* font = self[NSFontAttributeName];
 
   NSArray* codeArray = [codes componentsSeparatedByString:@";"];
 
   for (NSString* codeString in codeArray) {
     int code = codeString.intValue;
+    
+    if (foreground) {
+      if (color256) {
+        color256 = NO;
+        
+        NSColor *color = [NSColor colorForAnsi256ColorIndex:code];
+        if (color) {
+          self[foreground.boolValue ? NSForegroundColorAttributeName : NSBackgroundColorAttributeName] = color;
+          foreground = nil;
+          continue;
+        }
+        
+        // support the first 16 colors here
+        bold = code >= 8 && code < 16;
+        if (bold) code -= 8;
+        code += foreground.boolValue ? 30 : 40;
+      } else if (code == 5) {
+        color256 = YES;
+        continue;
+      }
+      
+      foreground = nil;
+    }
+    
     switch (code) {
       case 0:
         [self removeAllObjects];
@@ -61,6 +87,10 @@
       case 37:
         self[NSForegroundColorAttributeName] = [NSColor colorWithHexColorString:bold ? @"e5e5e5" : @"ffffff"];
         break;
+      
+      case 38:
+        foreground = @YES;
+        break;
 
       case 39:
         [self removeObjectForKey:NSForegroundColorAttributeName];
@@ -89,6 +119,10 @@
         break;
       case 47:
         self[NSBackgroundColorAttributeName] = [NSColor colorWithHexColorString:@"e5e5e5"];
+        break;
+      
+      case 48:
+        foreground = @NO;
         break;
 
       case 49:
