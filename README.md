@@ -1,6 +1,6 @@
 # ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar [![Build Status](https://travis-ci.org/matryer/bitbar.svg?branch=master)](https://travis-ci.org/matryer/bitbar) [![Slack Status](https://getbitbar.herokuapp.com/badge.svg)](https://getbitbar.herokuapp.com/)
 
-BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
+BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your macOS/Mac OS X Menu Bar.
 
   * [Download latest BitBar release](https://github.com/matryer/bitbar/releases/latest) - requires Mac OS X Lion or newer (>= 10.7)
   * [Visit the app homepage at https://getbitbar.com](https://getbitbar.com) to install plugins
