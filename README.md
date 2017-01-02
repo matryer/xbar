@@ -56,9 +56,12 @@ The refresh time is in the filename of the plugin, following this format:
   * `time` - The refresh rate (see below)
   * `ext` - The file extension
 
+If you'd like to keep a plugin, but prefer not to show it in BitBar, you can prefix the plugin name with `off.`.
+
 For example:
 
   * `date.1m.sh` would refresh every minute.
+  * `off.network.1m.sh` will not be shown in bitbar
 
 Most plugins will come with a default, but you can change it to anything you like:
 
