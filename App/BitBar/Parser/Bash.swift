@@ -1,9 +1,6 @@
 import Cocoa
 
 final class Bash: StringVal, ScriptDelegate {
-  // TODO: Use a set, not array
-  var scripts = [Script]()
-
   override func applyTo(menu: MenuDelegate) {
     menu.onDidClick {
       if menu.openTerminal() {

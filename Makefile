@@ -1,6 +1,6 @@
 APP := App
 PROJECT_NAME ?= BitBar
-BUILD_ATTR := xcodebuild -workspace $(APP)/$(PROJECT_NAME).xcworkspace -configuration Debug -scheme
+BUILD_ATTR := xcodebuild -workspace $(APP)/$(PROJECT_NAME).xcworkspace -scheme
 CONFIG := Debug
 BUILD := $(BUILD_ATTR) $(PROJECT_NAME)
 TEST := $(BUILD_ATTR) BitBarTests test
