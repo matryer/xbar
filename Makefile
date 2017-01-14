@@ -1,14 +1,59 @@
-
+APP := App
 PROJECT_NAME ?= BitBar
-PROJECT = $(shell find . -name '*.xcodeproj')
+BUILD_ATTR := xcodebuild -workspace $(APP)/$(PROJECT_NAME).xcworkspace -configuration Debug -scheme
+CONFIG := Debug
+BUILD := $(BUILD_ATTR) $(PROJECT_NAME)
+TEST := $(BUILD_ATTR) BitBarTests test
+BUNDLE := $(PROJECT_NAME).app
 
-all: build
-
-clean:
-	rm -r ./**/build
+default: clean
 
 build:
-	xcodebuild -project $(PROJECT)
-	ps aux | grep $(PROJECT_NAME) | grep -v grep >/dev/null 2>&1 && killall $(PROJECT_NAME)
-	open $(PROJECT)/../build/Release/$(PROJECT_NAME).app
-
+	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
+	@$(BUILD) | xcpretty
+clean:
+	@echo "[Task] Cleaning up..."
+	@$(BUILD) clean | xcpretty
+deps:
+	@echo "[Task] Installing dependencies..."
+	@pod install --project-directory=$(APP) --repo-update
+kill:
+	@echo "[Task] Killing all running instances of $(PROJECT_NAME)..."
+	@killall $(PROJECT_NAME) || :
+open:
+	@echo "[Task] Opening $(BUNDLE) build from $(CONFIG)..."
+	@open $(APP)/.build/$(PROJECT_NAME)/Build/Products/$(CONFIG)/$(BUNDLE)
+release: deps clean build kill open
+	@echo "[Task] Completed building $(BUNDLE)"
+test:
+	@echo "[Task] Running test suite..."
+	$(TEST) | xcpretty -tc
+ci:
+	set -o pipefail && $(TEST) | xcpretty -c
+watch:
+	@echo "[Task] Watching for file changes..."
+	@find . -name "*.swift" | entr -r make test
+setup:
+	@echo "[Task] Installing deps..."
+	@gem install cocoapods
+	@gem install xcpretty
+	@brew install swiftlint
+	@brew install entr
+	@pod install
+lint:
+	@echo "[Task] Linting swift files..."
+	@swiftlint
+fix:
+	@echo "[Task] Fixing linting errors..."
+	@swiftlint autocorrect
+doc:
+	echo "[Task] Generating documentation..."
+	@jazzy \
+		--clean \
+		--author BitBar \
+		--author_url https://getbitbar.com/ \
+		--github_url https://github.com/matryer/bitbar \
+		--xcodebuild-arguments -workspace,App/BitBar.xcworkspace,-scheme,BitBar \
+		--module BitBar \
+		--output Docs \
+		--min-acl private

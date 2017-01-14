@@ -1,0 +1,2 @@
+final class TemplateImage: StringVal {
+}

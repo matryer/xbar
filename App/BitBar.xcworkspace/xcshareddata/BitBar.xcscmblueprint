@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "300A25E6089E8365F1B9BCC0BF644BF304850FDB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C261B8F0741BDE2A7680B95F7DDCDE635ECD9662" : 9223372036854775807,
+    "300A25E6089E8365F1B9BCC0BF644BF304850FDB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0AE75FA9-ACC6-4F7D-91C1-40B8875F287D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C261B8F0741BDE2A7680B95F7DDCDE635ECD9662" : "FootlessParser\/",
+    "300A25E6089E8365F1B9BCC0BF644BF304850FDB" : "bitbar\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BitBar",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "App\/BitBar.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:oleander\/bitbar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "300A25E6089E8365F1B9BCC0BF644BF304850FDB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kareman\/FootlessParser.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C261B8F0741BDE2A7680B95F7DDCDE635ECD9662"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
-# xcode noise
+# Xcode
+## Build generated
+App/.build/
 
-build/*
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -9,11 +11,28 @@ build/*
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
-profile
-*.moved-aside
+xcuserdata/
 
-# osx noise
+## Other
+*.moved-aside
+*.xcuserstate
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## Swift Package Manager
+Pods/
+
+## OSX
 .DS_Store
 profile
+
+Docs
 build

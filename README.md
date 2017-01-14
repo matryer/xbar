@@ -98,15 +98,14 @@ In case you made the mistake of choosing a directory with thousands of files as 
   * Help us [solve bugs](https://github.com/matryer/bitbar/issues?q=is%3Aopen+is%3Aissue+label%3Abug) or [build new features](https://github.com/matryer/bitbar/issues?q=is%3Aopen+is%3Aissue+label%3A%22♡+todo%22).
   * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins) below.
 
-### BitBar app
+### Development
 
-To work on the BitBar app, fork, then clone this repo.
+1. Clone the project `git clone https://github.com/matryer/bitbar.git`
+2. Ensure you've `pod` installed on your system using `sudo gem install pod`
+3. Install dependencies `make deps` within the root of the project
+4. Open in XCode `open App/BitBar.xcworkspace`
 
-In terminal, navigate to the project directory and run:
-
-```
-git submodule init && git submodule update
-```
+TODO: Explain `Makefile`
 
 ## Thanks
 
@@ -181,7 +180,7 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
   * `bitbar.image` - A hosted image showing a preview of your plugin (ideally open)
   * `bitbar.dependencies` - Comma separated list of dependencies
   * `bitbar.abouturl` - Absolute URL to about information
-  * `bitbar.droptypes` - [Uniform type identifiers](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html) or `filenames`, comma separated.  
+  * `bitbar.droptypes` - [Uniform type identifiers](https://developer.apple.com/library/mac/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html) or `filenames`, comma separated.
 Plugin is executed with arguments `-type` and the dropped item(s) ([example](Docs/DropToPlugin.md#example))
   * `bitbar.demo` - Whitespace separated arguments to execute plugin with in demo mode (i.e. when [saving a screenshot](Docs/URLScheme.md#screenshot))
 
@@ -318,8 +317,8 @@ Anything that can write to standard out is supported, but here is a list that ha
   1. Status: Working
   1. Output: `echo 'your string here'`
   1. Notes
-    1. Add shebang `#!/usr/bin/php` 
+    1. Add shebang `#!/usr/bin/php`
   1. Utilities:
     1. BitBar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>
-  
+
 

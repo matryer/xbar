@@ -1,0 +1,2 @@
+final class Terminal: BoolVal {
+}
