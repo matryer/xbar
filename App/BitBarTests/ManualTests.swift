@@ -332,7 +332,6 @@ class ManualTests: Helper {
       describe("attributes") {
         describe("href") {
           it("handles base case") {
-            // TODO: Handle quotes
             self.match(Pro.getHref(), "href=http://google.com") {
               expect($0.getValue()).to(equal("http://google.com"))
             }
