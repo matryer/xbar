@@ -15,7 +15,7 @@ let hexValue = Gen<Int>.choose((1, 6)).flatMap {
   return toString(upperAF, loweraf, numeric, size: $0)
 }
 let special: Gen<Character> = Gen<Character>.fromElements(of:
-    ["!", "#", "$", "%", "&", "'", "*", "+", "-", "/",
+    ["!", "#", "$", "%", "&", "*", "+", "-", "/",
       "=", "?", "^", "_", "`", "{", "}", "~", "."
 ])
 let char: Gen<Character> = Gen<Character>.one(of: [

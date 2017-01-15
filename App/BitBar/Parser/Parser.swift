@@ -312,8 +312,11 @@ class Pro {
     return quoteOr(word())
   }
 
+  /**
+    Match everything between ' or " or the entire @parser
+  */
   private static func quoteOr(_ parser: P<String>) -> P<String> {
-    return quote() <|> parser
+    return count(1, oneOf("\"'")) >>- { til([$0]) <* string($0) } <|> parser
   }
 
   // @example: "10" (as a string)

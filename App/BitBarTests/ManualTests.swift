@@ -337,12 +337,82 @@ class ManualTests: Helper {
               expect($0.getValue()).to(equal("http://google.com"))
             }
           }
+
+          it("handles double quotes") {
+            let href = "\"http://google.com\""
+            self.match(Pro.getHref(), "href=" + href) {
+              expect($0.getValue()).to(equal("http://google.com"))
+            }
+          }
+
+          it("should be able to contain single quotes if double are used") {
+            let href = "\"http://google'''\""
+            self.match(Pro.getHref(), "href=" + href) {
+              expect($0.getValue()).to(equal("http://google'''"))
+            }
+          }
+
+          it("should be able to contain double quotes if single are used") {
+            let href = "'http://google\"\"\"'"
+            self.match(Pro.getHref(), "href=" + href) {
+              expect($0.getValue()).to(equal("http://google\"\"\""))
+            }
+          }
+
+          it("handles single quotes") {
+            let href = "'http://google.com'"
+            self.match(Pro.getHref(), "href=" + href) {
+              expect($0.getValue()).to(equal("http://google.com"))
+            }
+          }
+
+          it("handles double quotes with no content") {
+            let href = "\"\""
+            self.match(Pro.getHref(), "href=" + href) {
+              expect($0.getValue()).to(equal(""))
+            }
+          }
+
+          it("handles double quotes with no content") {
+            let href = "''"
+            self.match(Pro.getHref(), "href=" + href) {
+              expect($0.getValue()).to(equal(""))
+            }
+          }
         }
 
         describe("font") {
           it("handles base case") {
             self.match(Pro.getFont(), "font=UbuntuMono-Bold") {
               expect($0.getValue()).to(equal("UbuntuMono-Bold"))
+            }
+          }
+
+          it("handles double quotes") {
+            let font = "\"A B C\""
+            self.match(Pro.getFont(), "font=" + font) {
+              expect($0.getValue()).to(equal("A B C"))
+            }
+          }
+
+          it("handles single quotes") {
+            let font = "'A B C'"
+            self.match(Pro.getFont(), "font=" + font) {
+              expect($0.getValue()).to(equal("A B C"))
+            }
+          }
+
+          it("handles double quotes with no content") {
+            let font = "\"\""
+            self.match(Pro.getFont(), "font=" + font) {
+              expect($0.getValue()).to(equal(""))
+            }
+          }
+
+          it("handles double quotes with no content") {
+            let font = "''"
+            self.match(Pro.getFont(), "font=" + font) {
+              expect($0.getValue()).to(equal(""))
             }
           }
         }
@@ -364,15 +434,29 @@ class ManualTests: Helper {
           }
 
           context("quotes") {
-            it("handles quotes with space") {
+            it("handles double quotes") {
               let bash = "\"A B C\""
               self.match(Pro.getBash(), "bash=" + bash) {
                 expect($0.getValue()).to(equal("A B C"))
               }
             }
 
-            it("handles quotes with no content") {
+            it("handles single quotes") {
+              let bash = "'A B C'"
+              self.match(Pro.getBash(), "bash=" + bash) {
+                expect($0.getValue()).to(equal("A B C"))
+              }
+            }
+
+            it("handles double quotes with no content") {
               let bash = "\"\""
+              self.match(Pro.getBash(), "bash=" + bash) {
+                expect($0.getValue()).to(equal(""))
+              }
+            }
+
+            it("handles double quotes with no content") {
+              let bash = "''"
               self.match(Pro.getBash(), "bash=" + bash) {
                 expect($0.getValue()).to(equal(""))
               }
