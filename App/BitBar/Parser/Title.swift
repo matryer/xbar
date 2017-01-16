@@ -119,7 +119,7 @@ final class Title: NSMenu, MenuDelegate {
 
   func applyTo(tray: Tray) {
     self.tray = tray
-    tray.item.menu = self
+    tray.setMenu(self)
     update(title: title)
     for param in params {
       param.applyTo(menu: self)

@@ -1,3 +1,5 @@
-// Is this really needed?
-protocol TrayDelegate: class, PreferenceMenuDelegate {
+protocol TrayDelegate: class {
+  func preferenceDidRefreshAll()
+  func preferenceDidQuit()
+  func preferenceDidChangePluginFolder()
 }

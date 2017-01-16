@@ -24,8 +24,6 @@
 		2067066C1E15F6DB000DAADE /* ExecutablePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706561E15F6DB000DAADE /* ExecutablePlugin.swift */; };
 		2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706571E15F6DB000DAADE /* Plugin.swift */; };
 		2067066E1E15F6DB000DAADE /* PluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706581E15F6DB000DAADE /* PluginManager.swift */; };
-		2067066F1E15F6DB000DAADE /* PreferenceMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067065A1E15F6DB000DAADE /* PreferenceMenu.swift */; };
-		206706701E15F6DB000DAADE /* PreferenceMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067065B1E15F6DB000DAADE /* PreferenceMenuDelegate.swift */; };
 		206706731E15F6DB000DAADE /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706601E15F6DB000DAADE /* Script.swift */; };
 		206706741E15F6DB000DAADE /* ScriptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706611E15F6DB000DAADE /* ScriptDelegate.swift */; };
 		206706751E15F6DB000DAADE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706621E15F6DB000DAADE /* String.swift */; };
@@ -120,8 +118,6 @@
 		206706561E15F6DB000DAADE /* ExecutablePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePlugin.swift; sourceTree = "<group>"; };
 		206706571E15F6DB000DAADE /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		206706581E15F6DB000DAADE /* PluginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginManager.swift; sourceTree = "<group>"; };
-		2067065A1E15F6DB000DAADE /* PreferenceMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceMenu.swift; sourceTree = "<group>"; };
-		2067065B1E15F6DB000DAADE /* PreferenceMenuDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceMenuDelegate.swift; sourceTree = "<group>"; };
 		206706601E15F6DB000DAADE /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		206706611E15F6DB000DAADE /* ScriptDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptDelegate.swift; sourceTree = "<group>"; };
 		206706621E15F6DB000DAADE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -298,7 +294,6 @@
 				206706501E15F6DB000DAADE /* Base.swift */,
 				206706551E15F6DB000DAADE /* Plugin */,
 				206706581E15F6DB000DAADE /* PluginManager.swift */,
-				206706591E15F6DB000DAADE /* PreferenceMenu */,
 				2067065F1E15F6DB000DAADE /* Script */,
 				206706621E15F6DB000DAADE /* String.swift */,
 				206706631E15F6DB000DAADE /* Tray */,
@@ -313,15 +308,6 @@
 				206706571E15F6DB000DAADE /* Plugin.swift */,
 			);
 			path = Plugin;
-			sourceTree = "<group>";
-		};
-		206706591E15F6DB000DAADE /* PreferenceMenu */ = {
-			isa = PBXGroup;
-			children = (
-				2067065A1E15F6DB000DAADE /* PreferenceMenu.swift */,
-				2067065B1E15F6DB000DAADE /* PreferenceMenuDelegate.swift */,
-			);
-			path = PreferenceMenu;
 			sourceTree = "<group>";
 		};
 		2067065F1E15F6DB000DAADE /* Script */ = {
@@ -644,7 +630,6 @@
 				207BD87A1E2379EA007AA0C7 /* Bash.swift in Sources */,
 				206706681E15F6DB000DAADE /* Base.swift in Sources */,
 				2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */,
-				206706701E15F6DB000DAADE /* PreferenceMenuDelegate.swift in Sources */,
 				207BD87C1E2379EA007AA0C7 /* Dropdown.swift in Sources */,
 				207BD87B1E2379EA007AA0C7 /* Color.swift in Sources */,
 				207BD8831E2379EA007AA0C7 /* NamedParam.swift in Sources */,
@@ -663,7 +648,6 @@
 				207BD87F1E2379EA007AA0C7 /* Href.swift in Sources */,
 				207BD88D1E2379EA007AA0C7 /* Trim.swift in Sources */,
 				20DEE6031E237BA200AF22D2 /* StringVal.swift in Sources */,
-				2067066F1E15F6DB000DAADE /* PreferenceMenu.swift in Sources */,
 				207BD8791E2379EA007AA0C7 /* Ansi.swift in Sources */,
 				206706751E15F6DB000DAADE /* String.swift in Sources */,
 				206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */,
