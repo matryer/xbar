@@ -2,6 +2,7 @@ import Cocoa
 import AppKit
 import EmitterKit
 
+// Inherit from Item class
 final class Menu: NSMenuItem, MenuDelegate {
   var level: Int = 0
   var params: [Param] = []
@@ -57,13 +58,6 @@ final class Menu: NSMenuItem, MenuDelegate {
         _params.append(param)
       }
     }
-
-    let size: CGFloat = NSFont.labelFontSize()
-    font = NSFont.menuFont(ofSize: size)
-    self.attributedTitle = NSAttributedString(
-      string: title,
-      attributes: [NSFontAttributeName: font!]
-    )
   }
 
   func useAsAlternate() {

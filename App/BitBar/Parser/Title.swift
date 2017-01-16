@@ -12,13 +12,6 @@ final class Title: NSMenu, MenuDelegate {
 
   init(_ title: String, params: [Param], menus: [Menu]) {
     super.init(title: title)
-    if let font = defaultFont {
-      attr = NSMutableAttributedString(
-        string: title,
-        attributes: [NSFontAttributeName: font]
-      )
-    }
-
     self.params = params
     self.menus = menus
     for menu in menus {
@@ -68,33 +61,11 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func update(fontName: String) {
-    guard let size = defaultFont?.pointSize else {
-      return print("No default font size found")
-    }
-
-    guard let name = defaultFont?.fontName else {
-      return print("No font name found")
-    }
-
-    guard let font = NSFont(name: name, size: size) else {
-      return print("Could not apply font ", fontName)
-    }
-
-    self.defaultFont = font
-    update(key: NSFontAttributeName, value: font)
+    // TODO
   }
 
   func update(size: Int) {
-    guard let name = defaultFont?.fontName else {
-      return print("No font name found")
-    }
-
-    guard let font = NSFont(name: name, size: CGFloat(size)) else {
-      return print("Can't use size: \(size) with font \(defaultFont?.fontName)")
-    }
-
-    self.defaultFont = font
-    update(key: NSFontAttributeName, value: font)
+    // TODO
   }
 
   func update(color: NSColor) {
