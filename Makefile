@@ -27,9 +27,9 @@ release: deps clean build kill open
 	@echo "[Task] Completed building $(BUNDLE)"
 test:
 	@echo "[Task] Running test suite..."
-	$(TEST) | xcpretty -tc
+	@$(TEST) | xcpretty -tc
 ci:
-	set -o pipefail && $(TEST) | xcpretty -c
+	@set -o pipefail && $(TEST) | xcpretty -c
 watch:
 	@echo "[Task] Watching for file changes..."
 	@find . -name "*.swift" | entr -r make test
