@@ -1,13 +1,14 @@
 import AppKit
 import EmitterKit
 import DateTools
+import SwiftyUserDefaults
 
 // TODO: Move this to its own file
-final class Item: NSMenuItem {
+class Item: NSMenuItem {
   var listeners = [Listener]()
   let clickEvent = Event<()>()
 
-  init(_ title: String, key: String = "", block: @escaping () -> ()) {
+  init(_ title: String, key: String = "", block: @escaping () -> Void) {
     super.init(title: title, action: #selector(didClick), keyEquivalent: key)
     target = self
     isEnabled = true
@@ -23,16 +24,24 @@ final class Item: NSMenuItem {
   }
 }
 
-class Tray: Base, NSMenuDelegate {
+// https://developer.apple.com/reference/appkit/nsopensavepaneldelegate
+// https://developer.apple.com/reference/appkit/nssavepanel
+// https://developer.apple.com/reference/appkit/nsopenpanel
+// https://github.com/radex/SwiftyUserDefaults
+
+class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   let item: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
   weak var delegate: TrayDelegate?
   var updatedAt = NSDate()
+  var listeners = [Listener]()
+  let openEvent = Event<()>()
+  let closeEvent = Event<()>()
 
   init(title: String, isVisible: Bool? = false) {
     item.title = title
     super.init()
     if isVisible! { show() }
-    setPrefs()
+    setMenu(NSMenu())
   }
 
   internal func show() {
@@ -46,6 +55,7 @@ class Tray: Base, NSMenuDelegate {
 
   func setMenu(_ menu: NSMenu) {
     item.menu = menu
+    menu.delegate = self
     setPrefs()
   }
 
@@ -56,13 +66,28 @@ class Tray: Base, NSMenuDelegate {
   private func setPrefs() {
     separator()
     item.menu?.addItem(Item("Refresh All", key: "r") {
-      print("Refresh All")
+      self.delegate?.preferenceDidRefreshAll()
     })
 
     separator()
 
     item.menu?.addItem(Item("Change Plugin Folder…") {
-      print("Change Plugin Folder…")
+      let openPanel = NSOpenPanel()
+      openPanel.allowsMultipleSelection = false
+      openPanel.prompt = "Use as Plugins Directory"
+      if let pluginPath = Defaults[.pluginPath] {
+        if let url = NSURL(string: pluginPath) {
+          openPanel.directoryURL = url as URL
+        }
+      }
+      openPanel.canChooseDirectories = true
+      openPanel.canCreateDirectories = false
+      openPanel.canChooseFiles = false
+      if openPanel.runModal() == NSModalResponseOK {
+        if let path = openPanel.url?.path {
+          Defaults[.pluginPath] = path
+        }
+      }
     })
 
     item.menu?.addItem(Item("Open Plugin Folder…") {
@@ -86,7 +111,7 @@ class Tray: Base, NSMenuDelegate {
     })
 
     item.menu?.addItem(Item("Quit", key: "q") {
-      print("Quit")
+      self.delegate?.preferenceDidQuit()
     })
   }
 
@@ -108,12 +133,16 @@ class Tray: Base, NSMenuDelegate {
     log("onDidClickMenu", "Clicked menu button")
   }
 
-  internal func menuWillOpen(_ menu: NSMenu) {
-    // TODO
-  }
-
   // TODO: Use
   private func getUpdatedWhen() -> String {
     return "Updated " + updatedAt.timeAgoSinceNow()
+  }
+
+  internal func menuWillOpen(_ menu: NSMenu) {
+    openEvent.emit()
+  }
+
+  internal func menuDidClose(_ menu: NSMenu) {
+    closeEvent.emit()
   }
 }

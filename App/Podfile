@@ -10,6 +10,7 @@ target 'BitBar' do
   pod "Hue"
   pod "SwiftyJSON"
   pod 'FootlessParser', git: 'https://github.com/oleander/FootlessParser.git', branch: "swift3.0"
+  pod 'SwiftyUserDefaults'
 
   target 'BitBarTests' do
     inherit! :search_paths

@@ -22,7 +22,7 @@ final class Image: StringVal {
       // TODO: Better error handling
       return print("Could not load image")
     }
-    
+
     guard let image = NSImage(data: unpacked) else {
       return print("Could not create image")
     }

@@ -44,7 +44,7 @@ final class Title: NSMenu, MenuDelegate {
     tray?.item.attributedTitle = attr
   }
 
-  func onDidClick(block: @escaping () -> ()) {
+  func onDidClick(block: @escaping () -> Void) {
     // TODO
   }
 

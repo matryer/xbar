@@ -12,6 +12,7 @@ PODS:
   - SwiftCheck (0.7.1)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
+  - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - SwiftCheck (from `https://github.com/typelift/SwiftCheck.git`)
   - SwiftyJSON
   - SwiftyTimer
+  - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
   FootlessParser:
@@ -54,7 +56,8 @@ SPEC CHECKSUMS:
   SwiftCheck: f7836e0af0bbd1dfeb04a7f1d0bdbfd619d01d44
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 91282c8c195917b256983f05c5008076a79354a3
+PODFILE CHECKSUM: 00fbeca7e8dd3e2e2c815f82b2ec33fe15d833c9
 
 COCOAPODS: 1.2.0.rc.1

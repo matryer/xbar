@@ -73,6 +73,7 @@
 		20A39F6D1E26CA0B001BAB72 /* Checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A39F6C1E26CA0B001BAB72 /* Checked.swift */; };
 		20AB0A681E1DAE11000DFFFD /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A661E1DAE11000DFFFD /* Title.swift */; };
 		20AB0A701E1DD194000DFFFD /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A6E1E1DD194000DFFFD /* Terminal.swift */; };
+		20B19E321E2F56A9007D9778 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */; };
 		20B489BC1E1E7A300089E874 /* Bash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B489BA1E1E7A300089E874 /* Bash.swift */; };
 		20B489BD1E1E7A300089E874 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B489BB1E1E7A300089E874 /* Size.swift */; };
 		20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1F87B1E23F521007E0D93 /* Menu.swift */; };
@@ -169,6 +170,7 @@
 		20A39F6C1E26CA0B001BAB72 /* Checked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Checked.swift; path = BitBar/Parser/Checked.swift; sourceTree = "<group>"; };
 		20AB0A661E1DAE11000DFFFD /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = Arbitrary/Title.swift; sourceTree = "<group>"; };
 		20AB0A6E1E1DD194000DFFFD /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Terminal.swift; path = Arbitrary/Terminal.swift; sourceTree = "<group>"; };
+		20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		20B489BA1E1E7A300089E874 /* Bash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bash.swift; path = Arbitrary/Bash.swift; sourceTree = "<group>"; };
 		20B489BB1E1E7A300089E874 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Size.swift; path = Arbitrary/Size.swift; sourceTree = "<group>"; };
 		20C1F87B1E23F521007E0D93 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = BitBar/Parser/Menu.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 		2067064D1E15F6DB000DAADE /* BitBar */ = {
 			isa = PBXGroup;
 			children = (
+				20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */,
 				20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */,
 				2067064E1E15F6DB000DAADE /* AppDelegate.swift */,
 				206706501E15F6DB000DAADE /* Base.swift */,
@@ -622,6 +625,7 @@
 				20DEE6051E237BA200AF22D2 /* IntVal.swift in Sources */,
 				207BD8811E2379EA007AA0C7 /* Length.swift in Sources */,
 				206706741E15F6DB000DAADE /* ScriptDelegate.swift in Sources */,
+				20B19E321E2F56A9007D9778 /* DefaultsKeys.swift in Sources */,
 				20A39F6D1E26CA0B001BAB72 /* Checked.swift in Sources */,
 				207BD8781E2379EA007AA0C7 /* Alternate.swift in Sources */,
 				20DEE6021E237BA200AF22D2 /* Result.swift in Sources */,

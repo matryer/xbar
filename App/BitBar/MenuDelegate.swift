@@ -3,7 +3,7 @@ import Cocoa
 protocol MenuDelegate {
   var title: String { get }
   func getTitle() -> String
-  func onDidClick(block: @escaping () -> ())
+  func onDidClick(block: @escaping () -> Void)
   func useAsAlternate()
   func refresh()
   func getArgs() -> [String]

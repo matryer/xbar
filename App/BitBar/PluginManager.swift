@@ -13,14 +13,14 @@ class PluginManager: Base, TrayDelegate {
     didSet { delegate?.managerDidChangePlugins(plugins) }
   }
 
-  init(path: String) {
+  init(path: String, delegate: AppDelegate?) {
+    self.delegate = delegate
     self.path = path
     super.init()
     for file in getPluginFiles() {
       if file.hasPrefix(".") { continue }
       // TODO: join using something designed for paths
-      // addPlugin(file, path: [path, file].joined(separator: "/"))
-      addPlugin("sub.1m.sh", path: file)
+      addPlugin(file, path: [path, file].joined(separator: "/"))
     }
   }
 
@@ -76,14 +76,13 @@ class PluginManager: Base, TrayDelegate {
   }
 
   fileprivate func getPluginFiles() -> [String] {
-    return [examplePlugin]
-    // TODO: Better error handling
-    // let fileManager = FileManager.default
-    // do {
-    //   return try fileManager.contentsOfDirectory(atPath: path)
-    // } catch(_) {
-    //   return []
-    // }
+    print("Load plugins from", path)
+    let fileManager = FileManager.default
+    do {
+      return try fileManager.contentsOfDirectory(atPath: path)
+    } catch(_) {
+      return []
+    }
   }
 
   /* TODO */

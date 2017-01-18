@@ -92,7 +92,6 @@ class Pro {
   */
   internal static func getMenu() -> P<Menu> {
     let menu = string(menuDelimiter) *> endOfMenu
-    // TODO: Rename getParams
     let main: P<Menu> = curry(merge) <^> menu <*> (getParams() <* ws)
     return main >>- {
       return curry(merge) <^> pure($0) <*> zeroOrMore(getSubMenu2(pure($0), 1))

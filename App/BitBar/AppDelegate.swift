@@ -1,4 +1,5 @@
 import Cocoa
+import SwiftyUserDefaults
 
 private let currentPath = Bundle.main.resourcePath!
 public let examplePlugin = currentPath + "/" + "sub.1m.sh"
@@ -6,15 +7,17 @@ public let jsonEmojize = currentPath + "/" + "emoji.json"
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
-  // TODO: Replace /a/... with a proper path
-  let manager = PluginManager(path: "/a/plugin-folder")
+  var manager: PluginManager?
   let tray = Tray(title: "BitBar", isVisible: true)
   let center = NSWorkspace.shared().notificationCenter
   let name = Notification.Name.NSWorkspaceDidWake
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
+    if let pluginPath = Defaults[.pluginPath] {
+      manager = PluginManager(path: pluginPath, delegate: self)
+    }
+
     tray.delegate = self
-    manager.delegate = self
     center.addObserver(
       self,
       selector: #selector(AppDelegate.applicationDidWakeup),
@@ -38,22 +41,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
 
   func applicationWillTerminate(_ aNotification: Notification) {
     log("applicationWillTerminate", "Application is terminating, telling manager")
-    manager.quit()
+    manager?.quit()
   }
 
   func applicationDidWakeup() {
     log("receiveWakeNote", "Application woke up from sleep, refresh manager")
-    manager.refresh()
+    manager?.refresh()
   }
 
   func preferenceDidRefreshAll() {
     log("preferenceDidRefreshAll", "User choose 'refresh' in preference menu")
-    manager.refresh()
+    manager?.refresh()
   }
 
   func preferenceDidQuit() {
     log("preferenceDidQuit", "User choose 'quit' in preference menu")
-    manager.quit()
+    manager?.quit()
   }
 
   func preferenceDidChangePluginFolder() {
