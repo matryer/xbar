@@ -45,13 +45,13 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   private func setPrefs() {
     separator()
-    item.menu?.addItem(ItemBase("Refresh All", key: "r") {
+    sub("Refresh All", key: "r") {
       self.delegate?.preferenceDidRefreshAll()
-    })
+    }
 
     separator()
 
-    item.menu?.addItem(ItemBase("Change Plugin Folder…") {
+    sub("Change Plugin Folder…") {
       let openPanel = NSOpenPanel()
       openPanel.allowsMultipleSelection = false
       openPanel.prompt = "Use as Plugins Directory"
@@ -69,23 +69,23 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
           self.delegate?.preferenceDidChangePluginFolder()
         }
       }
-    })
+    }
 
-    item.menu?.addItem(ItemBase("Open Plugin Folder…") {
+    sub("Open Plugin Folder…") {
       if let path = Defaults[.pluginPath] {
         NSWorkspace.shared().selectFile(nil, inFileViewerRootedAtPath: path)
       }
-    })
+    }
 
-    item.menu?.addItem(ItemBase("Get Plugins…") {
+    sub("Get Plugins…") {
       if let url = URL(string: "https://getbitbar.com/") {
         NSWorkspace.shared().open(url)
       }
-    })
+    }
 
     separator()
 
-    let login = ItemBase("Open at Login") { (menu: ItemBase) in
+    sub("Open at Login", checked: startAtLogin()) { (menu: ItemBase) in
       let current = Bundle.main
 
       guard let id = current.bundleIdentifier else {
@@ -96,24 +96,34 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
       Defaults[.startAtLogin] = menu.state == NSOnState
     }
 
-    item.menu?.addItem(login)
-    if let isLog = Defaults[.startAtLogin] {
-      if isLog {
-        login.state = NSOnState
-      }
-    }
-
     separator()
 
-    item.menu?.addItem(ItemBase("Check for Updates…") {
+    sub("Check for Updates…") {
       print("Check for Updates…")
-    })
+    }
 
-    item.menu?.addItem(ItemBase("Quit", key: "q") {
+    sub("Quit", key: "q") {
       self.delegate?.preferenceDidQuit()
-    })
+    }
   }
 
+  private func startAtLogin() -> Bool {
+    return Defaults[.startAtLogin] ?? false
+  }
+
+  private func sub(_ name: String, checked: Bool = false, key: String = "", block: @escaping () -> Void) {
+    sub(name, checked: checked, key: key) { (_:ItemBase) in block() }
+  }
+
+  private func sub(_ name: String, checked: Bool = false, key: String = "", block: @escaping (ItemBase) -> Void) {
+    let menu = ItemBase(name, key: key) { item in block(item) }
+    menu.state = checked ? NSOnState : NSOffState
+    item.menu?.addItem(menu)
+  }
+
+  /**
+   Hides item from menu bar
+  */
   internal func hide() {
     if #available(OSX 10.12, *) {
       item.isVisible = false
@@ -125,10 +135,6 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   internal func clear(title: String) {
     item.menu?.removeAllItems()
     item.title = title
-  }
-
-  @objc internal func onDidClickMenu() {
-    log("onDidClickMenu", "Clicked menu button")
   }
 
   // TODO: Use
