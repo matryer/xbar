@@ -79,6 +79,10 @@ class ItemBase: NSMenuItem {
     addSub(NSMenuItem.separator())
   }
 
+  func set(title: String) {
+    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
+  }
+
   @objc private func didClick(_ sender: NSMenu) {
     clickEvent.emit(self)
   }

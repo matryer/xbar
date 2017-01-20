@@ -1,6 +1,5 @@
 import AppKit
 import EmitterKit
-import DateTools
 import Cocoa
 import SwiftyUserDefaults
 
@@ -8,18 +7,21 @@ import SwiftyUserDefaults
 class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   let item: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
   weak var delegate: TrayDelegate?
-  var updatedAt = NSDate()
   var listeners = [Listener]()
   let openEvent = Event<()>()
   let closeEvent = Event<()>()
   var isOpen = false
+  var updatedAgoItem: UpdatedAgoItem?
 
   init(title: String, isVisible: Bool? = false) {
     item.title = title
     super.init()
     if isVisible! { show() }
     setMenu(NSMenu())
-    onDidOpen { self.isOpen = true }
+    onDidOpen {
+      self.updatedAgoItem?.touch()
+      self.isOpen = true
+    }
     onDidClose { self.isOpen = false }
   }
 
@@ -28,20 +30,6 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     menu.autoenablesItems = false
     menu.delegate = self
     setPrefs()
-  }
-
-  private func separator() {
-    item.menu?.addItem(NSMenuItem.separator())
-  }
-
-  private func setPrefs() {
-    separator()
-    let value = ItemBase("Updated X seconds ago")
-    item.menu?.addItem(value)
-    item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
-      self.delegate?.preferenceDidOpenInTerminal()
-    })
-    item.menu?.addItem(PrefItem(delegate: delegate))
   }
 
   /**
@@ -71,11 +59,6 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     item.title = title
   }
 
-  // TODO: Use
-  private func getUpdatedWhen() -> String {
-    return "Updated " + updatedAt.timeAgoSinceNow()
-  }
-
   internal func menuWillOpen(_ menu: NSMenu) {
     openEvent.emit()
   }
@@ -90,5 +73,19 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   internal func onDidClose(block: @escaping () -> Void) {
     listeners.append(closeEvent.on(block))
+  }
+
+  private func separator() {
+    item.menu?.addItem(NSMenuItem.separator())
+  }
+
+  private func setPrefs() {
+    separator()
+    updatedAgoItem = UpdatedAgoItem()
+    item.menu?.addItem(updatedAgoItem!)
+    item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
+      self.delegate?.preferenceDidOpenInTerminal()
+    })
+    item.menu?.addItem(PrefItem(delegate: delegate))
   }
 }
