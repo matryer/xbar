@@ -13,16 +13,18 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   var isOpen = false
   var updatedAgoItem: UpdatedAgoItem?
 
-  init(title: String, isVisible: Bool? = false) {
-    item.title = title
+  init(title: String, isVisible: Bool = false) {
     super.init()
-    if isVisible! { show() }
+    item.title = title
     setMenu(NSMenu())
     onDidOpen {
       self.updatedAgoItem?.touch()
       self.isOpen = true
     }
     onDidClose { self.isOpen = false }
+    if isVisible {
+      show()
+    }
   }
 
   /**
