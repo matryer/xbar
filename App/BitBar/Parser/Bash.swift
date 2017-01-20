@@ -1,28 +1,21 @@
 import Cocoa
 
-final class Bash: StringVal, ScriptDelegate {
+// TODO: Use the delegate pattern for the
+// Param protocol instead of #applyTo
+// I.e bash.delegate = menu
+// then in bash; delegate?.shouldRefresh()
+final class Bash: StringVal {
   override func applyTo(menu: MenuDelegate) {
-    menu.onDidClick {_ in
+    menu.onDidClick {
+      // TODO: Rename to shouldOpenInTerminal (or something simular)
       if menu.openTerminal() {
-        self.openTerminal()
-      } else {
-        Script(path: self.getValue(), args: menu.getArgs(), delegate: self) {
-          if menu.shouldRefresh() { menu.refresh() }
-        }.start()
+        return Bash.open(script: self.getValue())
       }
+
+      Script(path: self.getValue(), args: menu.getArgs()) {
+        if menu.shouldRefresh() { menu.refresh() }
+      }.start()
     }
-  }
-
-  internal func scriptDidReceiveOutput(_ output: String) {
-    print("Received output \(output) from script \(getValue())")
-  }
-
-  internal func scriptDidReceiveError(_ error: String, _ code: Int32) {
-    print("Got error \(error) with exit code \(code) when running \(getValue())")
-  }
-
-  private func openTerminal() {
-    Bash.open(script: getValue())
   }
 
   /**

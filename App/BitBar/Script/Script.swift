@@ -5,21 +5,24 @@ import Foundation
 import EmitterKit
 import Async
 
+// TODO: Use everywhere
+typealias Block<T> = () -> T
+
 class Script: Base {
   let path: String
   let args: [String]
   var events = [Listener]()
-  let finishEvent = Event<()>()
+  let finishEvent = Event<Void>()
   var process: Async?
   weak var delegate: ScriptDelegate?
 
-  init(path: String, args: [String] = [], delegate: ScriptDelegate) {
+  init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil) {
     self.delegate = delegate
     self.path = path
     self.args = args
   }
 
-  convenience init(path: String, args: [String] = [], delegate: ScriptDelegate, block: @escaping () -> Void) {
+  convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, block: @escaping Block<Void>) {
     self.init(path: path, args: args, delegate: delegate)
     events.append(finishEvent.on(block))
   }
