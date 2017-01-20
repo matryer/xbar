@@ -2,8 +2,7 @@ import Cocoa
 import AppKit
 import EmitterKit
 
-// Inherit from Item class
-final class Menu: NSMenuItem, MenuDelegate {
+final class Menu: ItemBase, MenuDelegate {
   var level: Int = 0
   var params: [Param] = []
   var menus: [Menu] = []
@@ -11,16 +10,8 @@ final class Menu: NSMenuItem, MenuDelegate {
   var count: Int = 0
   var font: NSFont?
   var myParent: Menu?
-  let clickEvent = Event<()>()
   var events = [Listener]()
   let refreshEvent = Event<()>()
-
-  init(_ title: String) {
-    super.init(title: title, action: #selector(didClick), keyEquivalent: "")
-    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
-    target = self
-    isEnabled = true
-  }
 
   convenience init(_ title: String, menus: [Menu]) {
     self.init(title)
@@ -28,11 +19,6 @@ final class Menu: NSMenuItem, MenuDelegate {
     if !menus.isEmpty {
       submenu = NSMenu()
     }
-  }
-
-  // TODO: Should this be implemented?
-  required init(coder decoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
 
   // For testing
@@ -59,7 +45,7 @@ final class Menu: NSMenuItem, MenuDelegate {
   convenience init(_ title: String, params: [Param], level: Int, menus: [Menu]) {
     self.init(title, level: level, menus: menus)
     // TODO: Prioritize params better then this
-    let _paramsSort = params.sorted { p1,_ in
+    let _paramsSort = params.sorted { p1, _ in
       return p1 is Ansi
     }
 
@@ -178,10 +164,6 @@ final class Menu: NSMenuItem, MenuDelegate {
     refreshEvent.emit()
   }
 
-  internal func onDidClick(block: @escaping () -> Void) {
-    events.append(clickEvent.on(block))
-  }
-
   internal func onDidRefresh(block: @escaping () -> Void) {
     events.append(refreshEvent.on(block))
   }
@@ -221,10 +203,6 @@ final class Menu: NSMenuItem, MenuDelegate {
 
   private func set(title: NSMutableAttributedString) {
     attributedTitle = title
-  }
-
-  @objc func didClick(_ sender: NSMenu) {
-    clickEvent.emit()
   }
 
   private func update(key: String, value: Any) {

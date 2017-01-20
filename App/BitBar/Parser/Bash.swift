@@ -2,7 +2,7 @@ import Cocoa
 
 final class Bash: StringVal, ScriptDelegate {
   override func applyTo(menu: MenuDelegate) {
-    menu.onDidClick {
+    menu.onDidClick {_ in
       if menu.openTerminal() {
         self.openTerminal()
       } else {

@@ -5,28 +5,6 @@ import Cocoa
 import SwiftyUserDefaults
 import ServiceManagement
 
-// TODO: Move this to its own file
-class Item: NSMenuItem {
-  var listeners = [Listener]()
-  let clickEvent = Event<Item>()
-
-  init(_ title: String, key: String = "", block: @escaping (Item) -> Void) {
-    super.init(title: title, action: #selector(didClick), keyEquivalent: key)
-    target = self
-    isEnabled = true
-    listeners.append(clickEvent.on(block))
-    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
-  }
-
-  required init(coder decoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-  @objc func didClick(_ sender: NSMenu) {
-    clickEvent.emit(self)
-  }
-}
-
 // TODO: Use NSOpenSavePanelDelegate
 class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   let item: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -64,13 +42,13 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   private func setPrefs() {
     separator()
-    item.menu?.addItem(Item("Refresh All", key: "r") {_ in
+    item.menu?.addItem(ItemBase("Refresh All", key: "r") {
       self.delegate?.preferenceDidRefreshAll()
     })
 
     separator()
 
-    item.menu?.addItem(Item("Change Plugin Folder…") {_ in
+    item.menu?.addItem(ItemBase("Change Plugin Folder…") {
       let openPanel = NSOpenPanel()
       openPanel.allowsMultipleSelection = false
       openPanel.prompt = "Use as Plugins Directory"
@@ -90,17 +68,17 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
       }
     })
 
-    item.menu?.addItem(Item("Open Plugin Folder…") {_ in
+    item.menu?.addItem(ItemBase("Open Plugin Folder…") {
       print("Open Plugin Folder…")
     })
 
-    item.menu?.addItem(Item("Get Plugins…") {_ in
+    item.menu?.addItem(ItemBase("Get Plugins…") {
       print("Get Plugins…")
     })
 
     separator()
 
-    let login = Item("Open at Login") { menu in
+    let login = ItemBase("Open at Login") { (menu: ItemBase) in
       let current = Bundle.main
 
       guard let id = current.bundleIdentifier else {
@@ -120,11 +98,11 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
     separator()
 
-    item.menu?.addItem(Item("Check for Updates…") {_ in
+    item.menu?.addItem(ItemBase("Check for Updates…") {
       print("Check for Updates…")
     })
 
-    item.menu?.addItem(Item("Quit", key: "q") {_ in
+    item.menu?.addItem(ItemBase("Quit", key: "q") {
       self.delegate?.preferenceDidQuit()
     })
   }

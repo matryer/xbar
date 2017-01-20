@@ -6,7 +6,7 @@ final class Href: StringVal {
       return print("Could not parse URL \(getValue())")
     }
 
-    menu.onDidClick {
+    menu.onDidClick {_ in
       NSWorkspace.shared().open(url)
     }
   }

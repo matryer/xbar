@@ -26,7 +26,8 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   convenience init(errors: [String]) {
-    self.init(":warning:", params: [Emojize(true) as Param], menus: errors.map(Menu.init))
+    let menus = errors.map { Menu($0, params: [], menus: []) }
+    self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
   }
 
   convenience init(error: String) {
@@ -82,14 +83,6 @@ final class Title: NSMenu, MenuDelegate {
     tray?.item.attributedTitle = title
   }
 
-  private func currentTitle() -> NSMutableAttributedString {
-    if let title = tray?.item.attributedTitle {
-      return title.mutable()
-    }
-
-    return NSMutableAttributedString(string: self.title)
-  }
-
   func update(size: Float) {
     set(title: currentTitle().update(fontSize: size))
   }
@@ -137,5 +130,13 @@ final class Title: NSMenu, MenuDelegate {
 
   func refresh() {
     // Not supported by menu item
+  }
+
+  private func currentTitle() -> NSMutableAttributedString {
+    if let title = tray?.item.attributedTitle {
+      return title.mutable()
+    }
+
+    return NSMutableAttributedString(string: self.title)
   }
 }

@@ -14,6 +14,7 @@
 		2031E99F1E325AE2004A33E5 /* NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99B1E325AE2004A33E5 /* NSFont.swift */; };
 		2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */; };
 		2031E9A11E325AE2004A33E5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99D1E325AE2004A33E5 /* String.swift */; };
+		2031E9A31E327F31004A33E5 /* ItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A21E327F31004A33E5 /* ItemBase.swift */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
 		204F73011E2A0BDD00D56243 /* AnsiParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */; };
 		205C41101E1EA32800DAFE22 /* Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205C410F1E1EA32800DAFE22 /* Length.swift */; };
@@ -113,6 +114,7 @@
 		2031E99B1E325AE2004A33E5 /* NSFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSFont.swift; path = BitBar/Extensions/NSFont.swift; sourceTree = "<group>"; };
 		2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSMutableAttributedString.swift; path = BitBar/Extensions/NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		2031E99D1E325AE2004A33E5 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = BitBar/Extensions/String.swift; sourceTree = "<group>"; };
+		2031E9A21E327F31004A33E5 /* ItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemBase.swift; path = BitBar/ItemBase.swift; sourceTree = "<group>"; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
 		204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiParserTests.swift; sourceTree = "<group>"; };
 		205C410F1E1EA32800DAFE22 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Length.swift; path = Arbitrary/Length.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				2031E9A21E327F31004A33E5 /* ItemBase.swift */,
 				2031E9991E325AC1004A33E5 /* Extensions */,
 				2058A75F1E2A391500D09A21 /* Scripts */,
 				2045FB231E161BC0007D8EF7 /* Parser */,
@@ -640,6 +643,7 @@
 				2031E9A11E325AE2004A33E5 /* String.swift in Sources */,
 				206706731E15F6DB000DAADE /* Script.swift in Sources */,
 				207BD87E1E2379EA007AA0C7 /* Font.swift in Sources */,
+				2031E9A31E327F31004A33E5 /* ItemBase.swift in Sources */,
 				20DEE6051E237BA200AF22D2 /* IntVal.swift in Sources */,
 				207BD8811E2379EA007AA0C7 /* Length.swift in Sources */,
 				206706741E15F6DB000DAADE /* ScriptDelegate.swift in Sources */,
