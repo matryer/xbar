@@ -1,12 +1,10 @@
 import Swift
 import Cent
-// TODO Handle this error: http://stackoverflow.com/questions/25559608/running-shell-script-with-nstask-causes-posix-spawn-error
 import Foundation
 import EmitterKit
 import Async
 
-// TODO: Use everywhere
-typealias Block<T> = () -> T
+// TODO Handle this error: http://stackoverflow.com/questions/25559608/running-shell-script-with-nstask-causes-posix-spawn-error
 
 class Script: Base {
   let path: String
@@ -16,32 +14,47 @@ class Script: Base {
   var process: Async?
   weak var delegate: ScriptDelegate?
 
+  /**
+    @path Full path to script to be executed
+    @args Argument to be passed to @path
+    @delegate Called when finished executing script
+  */
   init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil) {
     self.delegate = delegate
     self.path = path
     self.args = args
   }
 
+  /**
+    Takes an extra block that's invoked when the script finishes
+  */
   convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, block: @escaping Block<Void>) {
     self.init(path: path, args: args, delegate: delegate)
     events.append(finishEvent.on(block))
   }
 
-  init(path: String, args: [String] = []) {
-    self.path = path
-    self.args = args
-    super.init()
-  }
-
+  /**
+    Stop all running tasks started by this instance
+  */
   func stop() {
     process?.cancel()
   }
 
+  /**
+    Restart script. Does not wait until running script finishes
+  */
   func restart() {
     stop()
     start()
   }
 
+  /**
+    Start script
+
+    1. Stops all current running scripts started by the instance
+    2. Execute @path with @args in a background thread
+    3. When done, notify listeners that the script terminated
+  */
   func start() {
     stop()
     process = Async.background {

@@ -1,6 +1,9 @@
 import Cocoa
 import SwiftyUserDefaults
 
+// TODO: Use everywhere
+typealias Block<T> = () -> T
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
   var manager: PluginManager?
