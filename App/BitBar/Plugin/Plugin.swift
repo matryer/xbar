@@ -5,13 +5,11 @@ class Plugin: Base {
   let file: File
   let path: String
   let tray: Tray = Tray(title: "…")
-  let manager: PluginManager
 
-  init(path: String, file: File, manager: PluginManager) {
+  init(path: String, file: File, delegate: TrayDelegate?) {
     self.file = file
     self.path = path
-    self.manager = manager
-    tray.delegate = manager
+    tray.delegate = delegate
     super.init()
   }
 
@@ -19,16 +17,22 @@ class Plugin: Base {
     return Double(file.interval)
   }
 
+  func terminate() {
+    tray.hide()
+    hide()
+  }
+
   func getName() -> String {
     return file.name
   }
 
   func didReceivedOutput(_ data: String) {
-    log("didReceivedOutput", "'" + data + "'")
+    // log("didReceivedOutput", "'" + data + "'")
     switch Pro.parse(Pro.getOutput(), data) {
     case let Result.success(output, _):
       output.title.onDidRefresh { self.refresh() }
       output.title.applyTo(tray: tray)
+      tray.show()
     case let Result.failure(error):
       didReceiveError(String(describing: error))
     }

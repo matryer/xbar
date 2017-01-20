@@ -18,4 +18,15 @@ extension String {
   func remove(_ what: String) -> String {
     return replace(what, "")
   }
+
+  func dropLast() -> String {
+    if isEmpty { return self }
+    return self[0..<characters.count - 1]
+  }
 }
+
+// extension Array where Element: String {
+//   func join(_ separator: String = "") -> String {
+//     return joined(separator: separator)
+//   }
+// }

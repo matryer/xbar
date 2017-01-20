@@ -10,6 +10,10 @@
 		2008E6F01E23DD6B007FC1D6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6EF1E23DD6B007FC1D6 /* File.swift */; };
 		2008E6F21E23DD74007FC1D6 /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */; };
 		2015BEAB1E1DD408007AEC6B /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2015BEAA1E1DD408007AEC6B /* Image.swift */; };
+		2031E99E1E325AE2004A33E5 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99A1E325AE2004A33E5 /* NSAttributedString.swift */; };
+		2031E99F1E325AE2004A33E5 /* NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99B1E325AE2004A33E5 /* NSFont.swift */; };
+		2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */; };
+		2031E9A11E325AE2004A33E5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99D1E325AE2004A33E5 /* String.swift */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
 		204F73011E2A0BDD00D56243 /* AnsiParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */; };
 		205C41101E1EA32800DAFE22 /* Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205C410F1E1EA32800DAFE22 /* Length.swift */; };
@@ -26,7 +30,6 @@
 		2067066E1E15F6DB000DAADE /* PluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706581E15F6DB000DAADE /* PluginManager.swift */; };
 		206706731E15F6DB000DAADE /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706601E15F6DB000DAADE /* Script.swift */; };
 		206706741E15F6DB000DAADE /* ScriptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706611E15F6DB000DAADE /* ScriptDelegate.swift */; };
-		206706751E15F6DB000DAADE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706621E15F6DB000DAADE /* String.swift */; };
 		206706761E15F6DB000DAADE /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706641E15F6DB000DAADE /* Tray.swift */; };
 		206706771E15F6DB000DAADE /* TrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706651E15F6DB000DAADE /* TrayDelegate.swift */; };
 		2072774A1E239D8B00496F25 /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207277491E239D8B00496F25 /* PropertyTests.swift */; };
@@ -106,6 +109,10 @@
 		2008E6EF1E23DD6B007FC1D6 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = BitBar/Parser/File.swift; sourceTree = "<group>"; };
 		2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
 		2015BEAA1E1DD408007AEC6B /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Arbitrary/Image.swift; sourceTree = "<group>"; };
+		2031E99A1E325AE2004A33E5 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSAttributedString.swift; path = BitBar/Extensions/NSAttributedString.swift; sourceTree = "<group>"; };
+		2031E99B1E325AE2004A33E5 /* NSFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSFont.swift; path = BitBar/Extensions/NSFont.swift; sourceTree = "<group>"; };
+		2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSMutableAttributedString.swift; path = BitBar/Extensions/NSMutableAttributedString.swift; sourceTree = "<group>"; };
+		2031E99D1E325AE2004A33E5 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = BitBar/Extensions/String.swift; sourceTree = "<group>"; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
 		204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiParserTests.swift; sourceTree = "<group>"; };
 		205C410F1E1EA32800DAFE22 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Length.swift; path = Arbitrary/Length.swift; sourceTree = "<group>"; };
@@ -121,7 +128,6 @@
 		206706581E15F6DB000DAADE /* PluginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginManager.swift; sourceTree = "<group>"; };
 		206706601E15F6DB000DAADE /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		206706611E15F6DB000DAADE /* ScriptDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptDelegate.swift; sourceTree = "<group>"; };
-		206706621E15F6DB000DAADE /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		206706641E15F6DB000DAADE /* Tray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tray.swift; sourceTree = "<group>"; };
 		206706651E15F6DB000DAADE /* TrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayDelegate.swift; sourceTree = "<group>"; };
 		207277491E239D8B00496F25 /* PropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
@@ -220,6 +226,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2031E9991E325AC1004A33E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2031E99A1E325AE2004A33E5 /* NSAttributedString.swift */,
+				2031E99B1E325AE2004A33E5 /* NSFont.swift */,
+				2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */,
+				2031E99D1E325AE2004A33E5 /* String.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		2045FB231E161BC0007D8EF7 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +315,6 @@
 				206706551E15F6DB000DAADE /* Plugin */,
 				206706581E15F6DB000DAADE /* PluginManager.swift */,
 				2067065F1E15F6DB000DAADE /* Script */,
-				206706621E15F6DB000DAADE /* String.swift */,
 				206706631E15F6DB000DAADE /* Tray */,
 			);
 			path = BitBar;
@@ -359,6 +375,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				2031E9991E325AC1004A33E5 /* Extensions */,
 				2058A75F1E2A391500D09A21 /* Scripts */,
 				2045FB231E161BC0007D8EF7 /* Parser */,
 				2067064D1E15F6DB000DAADE /* BitBar */,
@@ -620,6 +637,7 @@
 			files = (
 				2067066E1E15F6DB000DAADE /* PluginManager.swift in Sources */,
 				206706771E15F6DB000DAADE /* TrayDelegate.swift in Sources */,
+				2031E9A11E325AE2004A33E5 /* String.swift in Sources */,
 				206706731E15F6DB000DAADE /* Script.swift in Sources */,
 				207BD87E1E2379EA007AA0C7 /* Font.swift in Sources */,
 				20DEE6051E237BA200AF22D2 /* IntVal.swift in Sources */,
@@ -632,6 +650,7 @@
 				2067066C1E15F6DB000DAADE /* ExecutablePlugin.swift in Sources */,
 				206706761E15F6DB000DAADE /* Tray.swift in Sources */,
 				207BD87A1E2379EA007AA0C7 /* Bash.swift in Sources */,
+				2031E99F1E325AE2004A33E5 /* NSFont.swift in Sources */,
 				206706681E15F6DB000DAADE /* Base.swift in Sources */,
 				2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */,
 				207BD87C1E2379EA007AA0C7 /* Dropdown.swift in Sources */,
@@ -645,15 +664,16 @@
 				20DEE6041E237BA200AF22D2 /* BoolVal.swift in Sources */,
 				207BD8841E2379EA007AA0C7 /* Output.swift in Sources */,
 				207BD8871E2379EA007AA0C7 /* Refresh.swift in Sources */,
+				2031E99E1E325AE2004A33E5 /* NSAttributedString.swift in Sources */,
 				20C8B98E1E237D76005DBC9D /* Parser.swift in Sources */,
 				207BD88C1E2379EA007AA0C7 /* Title.swift in Sources */,
 				20642E7F1E2A758B004D9A28 /* MenuDelegate.swift in Sources */,
+				2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */,
 				20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */,
 				207BD87F1E2379EA007AA0C7 /* Href.swift in Sources */,
 				207BD88D1E2379EA007AA0C7 /* Trim.swift in Sources */,
 				20DEE6031E237BA200AF22D2 /* StringVal.swift in Sources */,
 				207BD8791E2379EA007AA0C7 /* Ansi.swift in Sources */,
-				206706751E15F6DB000DAADE /* String.swift in Sources */,
 				206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */,
 				207BD88B1E2379EA007AA0C7 /* Terminal.swift in Sources */,
 				207BD8801E2379EA007AA0C7 /* Image.swift in Sources */,
@@ -751,6 +771,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -795,6 +816,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
@@ -810,6 +832,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "BitBar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -827,6 +850,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "BitBar-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

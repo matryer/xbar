@@ -3,6 +3,7 @@ import Cocoa
 protocol MenuDelegate {
   var title: String { get }
   func getTitle() -> String
+  func getAttrs() -> NSMutableAttributedString
   func onDidClick(block: @escaping () -> Void)
   func useAsAlternate()
   func refresh()
@@ -13,7 +14,7 @@ protocol MenuDelegate {
   func update(state: Int)
   func update(color: NSColor)
   func update(fontName: String)
-  func update(size: Int)
+  func update(size: Float)
   func update(image: NSImage, isTemplate: Bool)
   func update(title: String)
 }

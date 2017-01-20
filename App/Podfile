@@ -5,17 +5,18 @@ target 'BitBar' do
   pod 'EmitterKit'
   pod 'SwiftyTimer'
   pod 'DateTools'
-  pod "Cent"
-  pod "AsyncSwift"
-  pod "Hue"
-  pod "SwiftyJSON"
-  pod 'FootlessParser', git: 'https://github.com/oleander/FootlessParser.git', branch: "swift3.0"
+  pod 'Cent'
+  pod 'AsyncSwift'
+  pod 'Files'
+  pod 'Hue'
+  pod 'SwiftyJSON'
+  pod 'FootlessParser', git: 'https://github.com/oleander/FootlessParser.git', branch: 'swift3.0'
   pod 'SwiftyUserDefaults'
 
   target 'BitBarTests' do
     inherit! :search_paths
     pod 'Quick'
     pod 'Nimble'
-    pod 'SwiftCheck', git: "https://github.com/typelift/SwiftCheck.git"
+    pod 'SwiftCheck', git: 'https://github.com/typelift/SwiftCheck.git'
   end
 end

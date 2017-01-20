@@ -1,50 +1,72 @@
 import SwiftyJSON
+import Files
 
 final class Emojize: BoolVal {
-  static var json = toJSON()
+  private static let jsonEmojize = File.from(resource: "emoji.json")
+  private static let emojis = getEmojis()
+  private static let parser = Pro.replaceEmojize(replace: forChar)
 
   override func applyTo(menu: MenuDelegate) {
     guard getValue() else {
-      return print("Emojize has been turned off")
+      return print("[INFO] Emojize has been turned off")
     }
 
-    let parser = Pro.replaceEmojize {
-      guard let hex = Emojize.json[$0] else {
-        return nil
-      }
-
-      guard let int = Int(hex, radix: 16) else {
-        return nil
-      }
-
-      guard let unicode = UnicodeScalar(int) else {
-        return nil
-      }
-
-      return String(describing: unicode)
-    }
-
-    switch Pro.parse(parser, menu.title) {
+    switch Pro.parse(Emojize.parser, menu.getTitle()) {
     case let Result.success(title, _):
       menu.update(title: title)
-    case let Result.failure(error):
-      print("Could not parse emojize")
-      print(error.joined(separator: "\n"))
+    case Result.failure(_): break
+      // TODO: Use this
+//      menu.update(
+//        error: "Could not parse emojize",
+//        trace: error.joined(separator: "\n")
+//      )
     }
   }
 
-  private static func toJSON() -> [String: String] {
-    guard let data = NSData(contentsOfFile: jsonEmojize) else {
+  private static func forChar(_ char: String) -> String? {
+    guard let hex = emojis[char] else {
+      return nil
+    }
+
+    guard let int = Int(hex, radix: 16) else {
+      return nil
+    }
+
+    guard let unicode = UnicodeScalar(int) else {
+      return nil
+    }
+
+    return String(describing: unicode)
+  }
+
+  private static func readEmojisFile() -> Data? {
+    do {
+      return try Files.File(path: jsonEmojize).read()
+    } catch {
+      return nil
+    }
+  }
+
+  private static func getEmojis() -> [String: String] {
+    guard let data = readEmojisFile() else {
       return [:]
     }
 
-    let json = JSON(data: data as Data)
-    var result = [String: String]()
-    for emojize in json.arrayValue {
+    let emojis = JSON(data: data)
+    var replacements = [String: String]()
+    for emojize in emojis.arrayValue {
       for name in emojize["short_names"].arrayValue {
-          result[name.string!] = emojize["unified"].string!
+        guard let char = emojize["unified"].string else {
+          continue
+        }
+
+        guard let key = name.string else {
+          continue
+        }
+
+        replacements[key] = char
       }
     }
-    return result
+    return replacements
   }
 }

@@ -1,4 +1,5 @@
 import Swift
+import Cent
 // TODO Handle this error: http://stackoverflow.com/questions/25559608/running-shell-script-with-nstask-causes-posix-spawn-error
 import Foundation
 import EmitterKit
@@ -67,7 +68,7 @@ class Script: Base {
     task.waitUntilExit()
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
     let output = String(data: data, encoding: .utf8)
-    return (output, task.terminationStatus)
+    return (output?.dropLast(), task.terminationStatus)
   }
 
   deinit { stop() }

@@ -1,18 +1,21 @@
 import AppKit
 import EmitterKit
 import DateTools
+import Cocoa
 import SwiftyUserDefaults
+import ServiceManagement
 
 // TODO: Move this to its own file
 class Item: NSMenuItem {
   var listeners = [Listener]()
-  let clickEvent = Event<()>()
+  let clickEvent = Event<Item>()
 
-  init(_ title: String, key: String = "", block: @escaping () -> Void) {
+  init(_ title: String, key: String = "", block: @escaping (Item) -> Void) {
     super.init(title: title, action: #selector(didClick), keyEquivalent: key)
     target = self
     isEnabled = true
     listeners.append(clickEvent.on(block))
+    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
   }
 
   required init(coder decoder: NSCoder) {
@@ -20,15 +23,11 @@ class Item: NSMenuItem {
   }
 
   @objc func didClick(_ sender: NSMenu) {
-    clickEvent.emit()
+    clickEvent.emit(self)
   }
 }
 
-// https://developer.apple.com/reference/appkit/nsopensavepaneldelegate
-// https://developer.apple.com/reference/appkit/nssavepanel
-// https://developer.apple.com/reference/appkit/nsopenpanel
-// https://github.com/radex/SwiftyUserDefaults
-
+// TODO: Use NSOpenSavePanelDelegate
 class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   let item: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
   weak var delegate: TrayDelegate?
@@ -65,13 +64,13 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   private func setPrefs() {
     separator()
-    item.menu?.addItem(Item("Refresh All", key: "r") {
+    item.menu?.addItem(Item("Refresh All", key: "r") {_ in
       self.delegate?.preferenceDidRefreshAll()
     })
 
     separator()
 
-    item.menu?.addItem(Item("Change Plugin Folder…") {
+    item.menu?.addItem(Item("Change Plugin Folder…") {_ in
       let openPanel = NSOpenPanel()
       openPanel.allowsMultipleSelection = false
       openPanel.prompt = "Use as Plugins Directory"
@@ -86,31 +85,46 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
       if openPanel.runModal() == NSModalResponseOK {
         if let path = openPanel.url?.path {
           Defaults[.pluginPath] = path
+          self.delegate?.preferenceDidChangePluginFolder()
         }
       }
     })
 
-    item.menu?.addItem(Item("Open Plugin Folder…") {
+    item.menu?.addItem(Item("Open Plugin Folder…") {_ in
       print("Open Plugin Folder…")
     })
 
-    item.menu?.addItem(Item("Get Plugins…") {
+    item.menu?.addItem(Item("Get Plugins…") {_ in
       print("Get Plugins…")
     })
 
     separator()
 
-    item.menu?.addItem(Item("Open at Login") {
-      print("Open at Login")
-    })
+    let login = Item("Open at Login") { menu in
+      let current = Bundle.main
+
+      guard let id = current.bundleIdentifier else {
+        return print("No id found")
+      }
+
+      SMLoginItemSetEnabled(id as CFString, menu.state == NSOnState)
+      Defaults[.startAtLogin] = menu.state == NSOnState
+    }
+
+    item.menu?.addItem(login)
+    if let isLog = Defaults[.startAtLogin] {
+      if isLog {
+        login.state = NSOnState
+      }
+    }
 
     separator()
 
-    item.menu?.addItem(Item("Check for Updates…") {
+    item.menu?.addItem(Item("Check for Updates…") {_ in
       print("Check for Updates…")
     })
 
-    item.menu?.addItem(Item("Quit", key: "q") {
+    item.menu?.addItem(Item("Quit", key: "q") {_ in
       self.delegate?.preferenceDidQuit()
     })
   }

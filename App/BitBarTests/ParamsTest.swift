@@ -3,6 +3,9 @@ import Quick
 import Nimble
 @testable import BitBar
 
+private let currentPath = Bundle.main.resourcePath!
+private let examplePlugin = currentPath + "/" + "sub.1m.sh"
+
 class ParamsTests: QuickSpec {
   override func spec() {
     context("length") {

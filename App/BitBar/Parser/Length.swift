@@ -2,7 +2,8 @@ import Cocoa
 
 final class Length: IntValue {
   override func applyTo(menu: MenuDelegate) {
-    guard menu.getTitle().characters.count > getValue() else {
+    let attr = menu.getAttrs()
+    guard attr.count > getValue() else {
       return print("Title is short enough")
     }
 
@@ -10,6 +11,6 @@ final class Length: IntValue {
       return print("Length is to small")
     }
 
-    menu.update(title: menu.getTitle()[0...getValue() - 1] + "…")
+    menu.update(attr: attr.truncate(getValue()))
   }
 }

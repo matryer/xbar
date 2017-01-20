@@ -17,6 +17,7 @@ final class Menu: NSMenuItem, MenuDelegate {
 
   init(_ title: String) {
     super.init(title: title, action: #selector(didClick), keyEquivalent: "")
+    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
     target = self
     isEnabled = true
   }
@@ -27,6 +28,11 @@ final class Menu: NSMenuItem, MenuDelegate {
     if !menus.isEmpty {
       submenu = NSMenu()
     }
+  }
+
+  // TODO: Should this be implemented?
+  required init(coder decoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   // For testing
@@ -46,93 +52,70 @@ final class Menu: NSMenuItem, MenuDelegate {
     self.level = parent.level + 1
   }
 
-  // TODO: Rename 'pp'
-  convenience init(_ title: String, params pp: [Param], level: Int, menus: [Menu]) {
-    self.init(title, level: level, menus: menus)
+  convenience init(_ title: String, params: [Param], menus: [Menu]) {
+    self.init(title, params: params, level: 0, menus: menus)
+  }
 
-    for param in pp {
+  convenience init(_ title: String, params: [Param], level: Int, menus: [Menu]) {
+    self.init(title, level: level, menus: menus)
+    // TODO: Prioritize params better then this
+    let _paramsSort = params.sorted { p1,_ in
+      return p1 is Ansi
+    }
+
+    for param in _paramsSort {
       switch param {
       case is NamedParam:
-        params.append(param)
+        self.params.append(param)
       default:
         _params.append(param)
       }
     }
   }
 
-  func useAsAlternate() {
+  internal func useAsAlternate() {
     isAlternate = true
     keyEquivalentModifierMask = NSAlternateKeyMask
   }
 
-  func update(attr: NSMutableAttributedString) {
-    attributedTitle = attr
+  internal func update(attr: NSMutableAttributedString) {
+    set(title: currentTitle().merge(attr))
   }
 
-  convenience init(_ title: String, params: [Param], menus: [Menu]) {
-    self.init(title, params: params, level: 0, menus: menus)
+  internal func update(color: NSColor) {
+    set(title: currentTitle().update(attr: [NSForegroundColorAttributeName: color]))
   }
 
-  private func getAttr() -> [String: Any] {
-    guard let attr = attributedTitle else {
-      return [:]
-    }
-
-    if attr.length == 0 {
-      return [:]
-    }
-
-    return attr.fontAttributes(in: NSMakeRange(0, attr.length))
-  }
-
-  func update(key: String, value: Any) {
-    var attr = getAttr()
-    attr[key] = value
-    attributedTitle = NSAttributedString(string: title, attributes: attr)
-  }
-
-  func update(color: NSColor) {
-    update(key: NSForegroundColorAttributeName, value: color)
-  }
-
-  func update(title: String) {
+  internal func update(title: String) {
     update(attr: NSMutableAttributedString(string: title))
   }
 
-  func update(state: Int) {
+  internal func update(state: Int) {
     self.state = state
   }
 
-  func update(fontName: String) {
-    // TODO: Impleemnt
+  internal func update(fontName: String) {
+    set(title: currentTitle().update(fontName: fontName))
   }
 
-  func update(image: NSImage, isTemplate: Bool = false) {
+  internal func update(image: NSImage, isTemplate: Bool = false) {
     self.image = image
     self.image?.isTemplate = isTemplate
   }
 
-  func update(size: Int) {
-    // TODO: Implement
+  internal func update(size: Float) {
+    set(title: currentTitle().update(fontSize: size))
   }
 
-  private func getTag() -> String {
-    return "Menu." + String(level)
-  }
-
-  required init(coder decoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-  func getValue() -> String {
+  internal func getValue() -> String {
     return title
   }
 
-  func toString() -> String {
+  internal func toString() -> String {
     return getValue()
   }
 
-  func apply() {
+  internal func apply() {
     guard hasDropdown() else {
       return print("Dropdown is disabled")
     }
@@ -161,7 +144,7 @@ final class Menu: NSMenuItem, MenuDelegate {
     }
   }
 
-  func shouldRefresh() -> Bool {
+  internal func shouldRefresh() -> Bool {
     return _params.reduce(false) {
       if let refresh = $1 as? Refresh {
         return $0 || refresh.getValue()
@@ -171,7 +154,7 @@ final class Menu: NSMenuItem, MenuDelegate {
     }
   }
 
-  func hasDropdown() -> Bool {
+  internal func hasDropdown() -> Bool {
     for param in _params {
       if let dropdown = param as? Dropdown {
         return dropdown.getValue()
@@ -181,11 +164,7 @@ final class Menu: NSMenuItem, MenuDelegate {
     return true
   }
 
-  func isSeparator() -> Bool {
-    return title.strip() == "-"
-  }
-
-  func openTerminal() -> Bool {
+  internal func openTerminal() -> Bool {
     return _params.reduce(false) {
       if let terminal = $1 as? Terminal {
         return $0 || terminal.getValue()
@@ -195,23 +174,23 @@ final class Menu: NSMenuItem, MenuDelegate {
     }
   }
 
-  func refresh() {
+  internal func refresh() {
     refreshEvent.emit()
   }
 
-  @objc func didClick(_ sender: NSMenu) {
-    clickEvent.emit()
-  }
-
-  func onDidClick(block: @escaping () -> Void) {
+  internal func onDidClick(block: @escaping () -> Void) {
     events.append(clickEvent.on(block))
   }
 
-  func onDidRefresh(block: @escaping () -> Void) {
+  internal func onDidRefresh(block: @escaping () -> Void) {
     events.append(refreshEvent.on(block))
   }
 
-  func getArgs() -> [String] {
+  internal func getAttrs() -> NSMutableAttributedString {
+    return currentTitle()
+  }
+
+  internal func getArgs() -> [String] {
     // TODO: Check that the indexes are consecutive
     return params.sorted {
       guard let param1 = $0 as? NamedParam else {
@@ -232,7 +211,31 @@ final class Menu: NSMenuItem, MenuDelegate {
     }
   }
 
-  func getTitle() -> String {
+  internal func getTitle() -> String {
     return title
+  }
+
+  internal func isSeparator() -> Bool {
+    return title.strip() == "-"
+  }
+
+  private func set(title: NSMutableAttributedString) {
+    attributedTitle = title
+  }
+
+  @objc func didClick(_ sender: NSMenu) {
+    clickEvent.emit()
+  }
+
+  private func update(key: String, value: Any) {
+    set(title: currentTitle().update(attr: [key: value]))
+  }
+
+  private func currentTitle() -> NSMutableAttributedString {
+    guard let title = attributedTitle else {
+      return NSMutableAttributedString(withDefaultFont: "")
+    }
+
+    return title.mutable()
   }
 }

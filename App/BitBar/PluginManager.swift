@@ -1,88 +1,77 @@
 import AppKit
 import Swift
 import Foundation
+import Files
 
-class PluginManager: Base, TrayDelegate {
+class PluginManager: Base {
+  weak var delegate: AppDelegate?
   let path: String
   let workspace = NSWorkspace.shared
-  var delegate: AppDelegate?
-  var errors: [Tray] = []
-
-  var isTerminated = false
-  var plugins: [Plugin] = [] {
-    didSet { delegate?.managerDidChangePlugins(plugins) }
-  }
+  let tray = Tray(title: "BitBar")
+  var errors = [Tray]()
+  var plugins = [Plugin]()
 
   init(path: String, delegate: AppDelegate?) {
     self.delegate = delegate
+    tray.delegate = delegate
     self.path = path
     super.init()
-    for file in getPluginFiles() {
-      if file.hasPrefix(".") { continue }
-      // TODO: join using something designed for paths
-      addPlugin(file, path: [path, file].joined(separator: "/"))
+    setPlugins()
+  }
+
+  private func setPlugins() {
+    plugins = []
+
+    do {
+      for file in try Folder(path: path).files {
+        if !file.name.hasPrefix(".") {
+          addPlugin(file.name, path: file.path)
+        }
+      }
+    } catch (let error) {
+      show(error: String(describing: error))
+    }
+
+    if plugins.isEmpty {
+      tray.show()
+    } else {
+      tray.hide()
     }
   }
 
-  func refresh() {
-    for error in errors { error.hide() }
-    for plugin in plugins { plugin.refresh() }
-    errors = []
+  private func show(error: String) {
+    Title(errors: [error]).applyTo(tray: tray)
   }
 
-  func quit() {
-    if isTerminated { return }
-    for plugin in plugins { plugin.hide() }
-    isTerminated = true
-    delegate?.managerDidQuit()
-  }
-
-  /* Events */
-  func pluginDidInvokeQuit(_ plugin: Plugin) {
-    log("pluginDidInvokeQuit", "User clicked 'quit', terminating all plugins")
-    quit()
-  }
-
-  func pluginDidInvokeRefreshAll(_ plugin: Plugin) {
-    log("pluginDidInvokeRefresh", "User clicked 'refresh all', reloading all plugins")
-    refresh()
-  }
-
-  func preferenceDidRefreshAll() {
-    log("preferenceDidRefreshAll", "User clicked 'reload all' in pref menu")
-    refresh()
-  }
-
-  func preferenceDidChangePluginFolder() {
-    log("preferenceDidChangePluginFolder", "TODO")
-  }
-
-  func preferenceDidQuit() {
-    log("preferenceDidQuit", "Plugin delegated 'quit' from pref menu")
-    quit()
+  /**
+    Quit any current running background tasks and removes all menu bars
+  */
+  public func quit() {
+    for plugin in plugins {
+      plugin.terminate()
+    }
+    tray.hide()
   }
 
   private func addPlugin(_ name: String, path: String) {
     switch fileFor(name: name) {
     case let Result.success(file, _):
-      plugins.append(ExecutablePlugin(path: path, file: file, manager: self))
-    case let Result.failure(error):
-      errors.append(Tray(title: "ERROR: " + String(describing: error), isVisible: true))
+      plugins.append(ExecutablePlugin(path: path, file: file, delegate: delegate))
+    case let Result.failure(lines):
+      let tray = Tray(title: "Loading...")
+      let li = [
+        "Invalid file name '\(path)'",
+        "Should be on the form {name}.{number}{unit}.{ext}",
+        "Eg. 'aFile.10d.sh'",
+      ] + lines
+      let title = Title(errors: li)
+      title.applyTo(tray: tray)
+      errors.append(tray)
     }
   }
 
   private func fileFor(name: String) -> Result<File> {
     return Pro.parse(Pro.getFile(), name)
-  }
-
-  fileprivate func getPluginFiles() -> [String] {
-    print("Load plugins from", path)
-    let fileManager = FileManager.default
-    do {
-      return try fileManager.contentsOfDirectory(atPath: path)
-    } catch(_) {
-      return []
-    }
   }
 
   /* TODO */

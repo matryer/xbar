@@ -1,5 +1,6 @@
 // swiftlint:disable type_name
 // swiftlint:disable line_length
+// swiftlint:disable type_body_length
 
 import FootlessParser
 public typealias P<T> = Parser<Character, T>
