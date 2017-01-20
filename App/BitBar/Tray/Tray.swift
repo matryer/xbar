@@ -78,7 +78,9 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     })
 
     item.menu?.addItem(ItemBase("Get Plugins…") {
-      print("Get Plugins…")
+      if let url = URL(string: "https://getbitbar.com/") {
+        NSWorkspace.shared().open(url)
+      }
     })
 
     separator()
