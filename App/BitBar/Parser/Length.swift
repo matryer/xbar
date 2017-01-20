@@ -4,11 +4,11 @@ final class Length: IntValue {
   override func applyTo(menu: MenuDelegate) {
     let attr = menu.getAttrs()
     guard attr.count > getValue() else {
-      return print("Title is short enough")
+      return
     }
 
     guard getValue() > 0 else {
-      return print("Length is to small")
+      return
     }
 
     menu.update(attr: attr.truncate(getValue()))
