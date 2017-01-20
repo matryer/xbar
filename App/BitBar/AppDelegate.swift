@@ -47,6 +47,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
     loadPluginManager()
   }
 
+  /**
+    User clicked 'Open in Terminal' in preference menu
+  */
+  internal func preferenceDidOpenInTerminal() {
+  }
+
   private func loadPluginManager() {
     manager?.quit()
     if let pluginPath = Defaults[.pluginPath] {

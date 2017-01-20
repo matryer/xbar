@@ -22,9 +22,18 @@ final class Bash: StringVal, ScriptDelegate {
   }
 
   private func openTerminal() {
+    Bash.open(script: getValue())
+  }
+
+  /**
+    Open @script in the Terminal app
+    @script is an absolute path to script
+  */
+  static func open(script: String) {
+    // TODO: What happens if @script contains spaces?
     let tell =
       "tell application \"Terminal\" \n" +
-      "do script \"\(getValue())\" \n" +
+      "do script \"\(script)\" \n" +
       "activate \n" +
       "end tell"
     guard let script = NSAppleScript(source: tell) else {

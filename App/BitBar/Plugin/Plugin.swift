@@ -1,16 +1,18 @@
 import AppKit
 import Swift
 
-class Plugin: Base {
+class Plugin: Base, TrayDelegate {
   let file: File
   let path: String
   let tray: Tray = Tray(title: "…")
+  weak var delegate: TrayDelegate?
 
   init(path: String, file: File, delegate: TrayDelegate?) {
     self.file = file
     self.path = path
-    tray.delegate = delegate
+    self.delegate = delegate
     super.init()
+    tray.delegate = self
   }
 
   func getTime() -> Double {
@@ -57,5 +59,21 @@ class Plugin: Base {
 
   func destroy() {
     hide()
+  }
+
+  func preferenceDidOpenInTerminal() {
+    Bash.open(script: path)
+  }
+
+  func preferenceDidRefreshAll() {
+    delegate?.preferenceDidRefreshAll()
+  }
+
+  func preferenceDidQuit() {
+    delegate?.preferenceDidQuit()
+  }
+
+  func preferenceDidChangePluginFolder() {
+    delegate?.preferenceDidChangePluginFolder()
   }
 }
