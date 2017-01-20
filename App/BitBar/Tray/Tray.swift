@@ -72,7 +72,9 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     })
 
     item.menu?.addItem(ItemBase("Open Plugin Folder…") {
-      print("Open Plugin Folder…")
+      if let path = Defaults[.pluginPath] {
+        NSWorkspace.shared().selectFile(nil, inFileViewerRootedAtPath: path)
+      }
     })
 
     item.menu?.addItem(ItemBase("Get Plugins…") {
