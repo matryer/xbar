@@ -13,7 +13,6 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   let openEvent = Event<()>()
   let closeEvent = Event<()>()
   var isOpen = false
-//  let prefItem = PrefItem()
 
   init(title: String, isVisible: Bool? = false) {
     item.title = title
@@ -26,6 +25,7 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   func setMenu(_ menu: NSMenu) {
     item.menu = menu
+    menu.autoenablesItems = false
     menu.delegate = self
     setPrefs()
   }
@@ -36,7 +36,8 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   private func setPrefs() {
     separator()
-    item.menu?.addItem(ItemBase("Updated X seconds ago"))
+    let value = ItemBase("Updated X seconds ago")
+    item.menu?.addItem(value)
     item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
       self.delegate?.preferenceDidOpenInTerminal()
     })

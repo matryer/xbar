@@ -9,17 +9,16 @@ final class PrefItem: ItemBase {
 
   convenience init(delegate: TrayDelegate?) {
     self.init("Preferences")
-    self.submenu = NSMenu()
     self.delegate = delegate
 
     separator()
-    sub("Refresh All", key: "r") {
+    addSub("Refresh All", key: "r") {
       self.delegate?.preferenceDidRefreshAll()
     }
 
     separator()
 
-    sub("Change Plugin Folder…") {
+    addSub("Change Plugin Folder…") {
       let openPanel = NSOpenPanel()
       openPanel.allowsMultipleSelection = false
       openPanel.prompt = "Use as Plugins Directory"
@@ -39,13 +38,13 @@ final class PrefItem: ItemBase {
       }
     }
 
-    sub("Open Plugin Folder…") {
+    addSub("Open Plugin Folder…") {
       if let path = Defaults[.pluginPath] {
         NSWorkspace.shared().selectFile(nil, inFileViewerRootedAtPath: path)
       }
     }
 
-    sub("Get Plugins…") {
+    addSub("Get Plugins…") {
       if let url = URL(string: "https://getbitbar.com/") {
         NSWorkspace.shared().open(url)
       }
@@ -53,7 +52,7 @@ final class PrefItem: ItemBase {
 
     separator()
 
-    sub("Open at Login", checked: startAtLogin()) { (menu: ItemBase) in
+    addSub("Open at Login", checked: startAtLogin()) { (menu: ItemBase) in
       let current = Bundle.main
 
       guard let id = current.bundleIdentifier else {
@@ -66,30 +65,16 @@ final class PrefItem: ItemBase {
 
     separator()
 
-    sub("Check for Updates…") {
+    addSub("Check for Updates…") {
       print("Check for Updates…")
     }
 
-    sub("Quit", key: "q") {
+    addSub("Quit", key: "q") {
       self.delegate?.preferenceDidQuit()
     }
   }
 
   private func startAtLogin() -> Bool {
     return Defaults[.startAtLogin] ?? false
-  }
-
-  private func sub(_ name: String, checked: Bool = false, key: String = "", block: @escaping () -> Void) {
-    sub(name, checked: checked, key: key) { (_:ItemBase) in block() }
-  }
-
-  private func sub(_ name: String, checked: Bool = false, key: String = "", block: @escaping (ItemBase) -> Void) {
-    let menu = ItemBase(name, key: key) { item in block(item) }
-    menu.state = checked ? NSOnState : NSOffState
-    submenu?.addItem(menu)
-  }
-
-  private func separator() {
-    submenu?.addItem(NSMenuItem.separator())
   }
 }

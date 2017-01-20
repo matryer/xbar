@@ -2,7 +2,7 @@ import Cocoa
 import SwiftyUserDefaults
 
 // TODO: Use everywhere
-typealias Block<T> = () -> T
+typealias Block<T> = (T) -> Void
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {

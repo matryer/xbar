@@ -9,16 +9,12 @@ final class Menu: ItemBase, MenuDelegate {
   var _params: [Param] = []
   var count: Int = 0
   var font: NSFont?
-  var myParent: Menu?
   var events = [Listener]()
   let refreshEvent = Event<()>()
 
   convenience init(_ title: String, menus: [Menu]) {
     self.init(title)
     self.menus = menus
-    if !menus.isEmpty {
-      submenu = NSMenu()
-    }
   }
 
   // For testing
@@ -33,8 +29,7 @@ final class Menu: ItemBase, MenuDelegate {
 
   convenience init(_ title: String, parent: Menu, params: [Param]) {
     self.init(title, params: params, menus: [])
-    self.myParent = parent
-    parent.submenu?.addItem(self)
+    // self.myParent = parent
     self.level = parent.level + 1
   }
 
@@ -115,18 +110,12 @@ final class Menu: ItemBase, MenuDelegate {
       menu.apply()
     }
 
-    if menus.isEmpty {
-      submenu = nil
-    }
-
-    if myParent?.submenu == nil {
-      myParent?.submenu = NSMenu()
-    }
-
-    if isSeparator() {
-      myParent?.submenu?.addItem(NSMenuItem.separator())
-    } else {
-      myParent?.submenu?.addItem(self)
+    for menu in menus {
+      if menu.isSeparator() {
+        addSub(NSMenuItem.separator())
+      } else {
+        addSub(menu)
+      }
     }
   }
 
@@ -197,6 +186,9 @@ final class Menu: ItemBase, MenuDelegate {
     return title
   }
 
+  /**
+    Menus starting with a dash "-" are considered separators
+  */
   internal func isSeparator() -> Bool {
     return title.strip() == "-"
   }
