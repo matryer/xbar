@@ -38,7 +38,7 @@ final class Title: NSMenu, MenuDelegate {
     fatalError("init(coder:) has not been implemented")
   }
 
-  internal func getAttrs() -> NSMutableAttributedString {
+  func getAttrs() -> NSMutableAttributedString {
     return currentTitle()
   }
 

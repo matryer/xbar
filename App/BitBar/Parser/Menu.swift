@@ -54,49 +54,49 @@ final class Menu: ItemBase, MenuDelegate {
     }
   }
 
-  internal func useAsAlternate() {
+  func useAsAlternate() {
     isAlternate = true
     keyEquivalentModifierMask = NSAlternateKeyMask
   }
 
-  internal func update(attr: NSMutableAttributedString) {
+  func update(attr: NSMutableAttributedString) {
     set(title: currentTitle().merge(attr))
   }
 
-  internal func update(color: NSColor) {
+  func update(color: NSColor) {
     set(title: currentTitle().update(attr: [NSForegroundColorAttributeName: color]))
   }
 
-  internal func update(title: String) {
+  func update(title: String) {
     update(attr: NSMutableAttributedString(string: title))
   }
 
-  internal func update(state: Int) {
+  func update(state: Int) {
     self.state = state
   }
 
-  internal func update(fontName: String) {
+  func update(fontName: String) {
     set(title: currentTitle().update(fontName: fontName))
   }
 
-  internal func update(image: NSImage, isTemplate: Bool = false) {
+  func update(image: NSImage, isTemplate: Bool = false) {
     self.image = image
     self.image?.isTemplate = isTemplate
   }
 
-  internal func update(size: Float) {
+  func update(size: Float) {
     set(title: currentTitle().update(fontSize: size))
   }
 
-  internal func getValue() -> String {
+  func getValue() -> String {
     return title
   }
 
-  internal func toString() -> String {
+  func toString() -> String {
     return getValue()
   }
 
-  internal func apply() {
+  func apply() {
     guard hasDropdown() else {
       return
     }
@@ -119,7 +119,7 @@ final class Menu: ItemBase, MenuDelegate {
     }
   }
 
-  internal func shouldRefresh() -> Bool {
+  func shouldRefresh() -> Bool {
     return _params.reduce(false) {
       if let refresh = $1 as? Refresh {
         return $0 || refresh.getValue()
@@ -129,7 +129,7 @@ final class Menu: ItemBase, MenuDelegate {
     }
   }
 
-  internal func hasDropdown() -> Bool {
+  func hasDropdown() -> Bool {
     for param in _params {
       if let dropdown = param as? Dropdown {
         return dropdown.getValue()
@@ -139,7 +139,7 @@ final class Menu: ItemBase, MenuDelegate {
     return true
   }
 
-  internal func openTerminal() -> Bool {
+  func openTerminal() -> Bool {
     return _params.reduce(false) {
       if let terminal = $1 as? Terminal {
         return $0 || terminal.getValue()
@@ -149,19 +149,19 @@ final class Menu: ItemBase, MenuDelegate {
     }
   }
 
-  internal func refresh() {
+  func refresh() {
     refreshEvent.emit()
   }
 
-  internal func onDidRefresh(block: @escaping () -> Void) {
+  func onDidRefresh(block: @escaping () -> Void) {
     events.append(refreshEvent.on(block))
   }
 
-  internal func getAttrs() -> NSMutableAttributedString {
+  func getAttrs() -> NSMutableAttributedString {
     return currentTitle()
   }
 
-  internal func getArgs() -> [String] {
+  func getArgs() -> [String] {
     // TODO: Check that the indexes are consecutive
     return params.sorted {
       guard let param1 = $0 as? NamedParam else {
@@ -182,14 +182,14 @@ final class Menu: ItemBase, MenuDelegate {
     }
   }
 
-  internal func getTitle() -> String {
+  func getTitle() -> String {
     return title
   }
 
   /**
     Menus starting with a dash "-" are considered separators
   */
-  internal func isSeparator() -> Bool {
+  func isSeparator() -> Bool {
     return title.strip() == "-"
   }
 

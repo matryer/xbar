@@ -27,15 +27,15 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     script?.restart()
   }
 
-  internal func scriptDidReceiveOutput(_ output: String) {
+  func scriptDidReceiveOutput(_ output: String) {
     didReceivedOutput(output)
   }
 
-  internal func scriptDidReceiveError(_ error: String, _ code: Int32) {
+  func scriptDidReceiveError(_ error: String, _ code: Int32) {
     didReceiveError(error)
   }
 
-  internal func scheduleDidTick() {
+  func scheduleDidTick() {
     script?.start()
   }
 }

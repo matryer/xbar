@@ -32,28 +32,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
     User choose 'Refresh All' in the menu bar
     Creating a new manager
   */
-  internal func preferenceDidRefreshAll() {
+  func preferenceDidRefreshAll() {
     loadPluginManager()
   }
 
   /**
     User selected 'Quit' in the menu bar
   */
-  internal func preferenceDidQuit() {
+  func preferenceDidQuit() {
     NSApp.terminate(self)
   }
 
   /**
     Use changed plugin folder
   */
-  internal func preferenceDidChangePluginFolder() {
+  func preferenceDidChangePluginFolder() {
     loadPluginManager()
   }
 
   /**
     User clicked 'Open in Terminal' in preference menu
   */
-  internal func preferenceDidOpenInTerminal() {
+  func preferenceDidOpenInTerminal() {
   }
 
   private func loadPluginManager() {

@@ -25,17 +25,10 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     onDidClose { self.isOpen = false }
   }
 
-  func setMenu(_ menu: NSMenu) {
-    item.menu = menu
-    menu.autoenablesItems = false
-    menu.delegate = self
-    setPrefs()
-  }
-
   /**
    Hides item from menu bar
   */
-  internal func hide() {
+  func hide() {
     if #available(OSX 10.12, *) {
       item.isVisible = false
     } else {
@@ -46,7 +39,7 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   /**
     Display item in menu bar
   */
-  internal func show() {
+  func show() {
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {
@@ -54,25 +47,32 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     }
   }
 
-  internal func clear(title: String) {
+  func clear(title: String) {
     item.menu?.removeAllItems()
     item.title = title
   }
 
-  internal func menuWillOpen(_ menu: NSMenu) {
+  func menuWillOpen(_ menu: NSMenu) {
     openEvent.emit()
   }
 
-  internal func menuDidClose(_ menu: NSMenu) {
+  func menuDidClose(_ menu: NSMenu) {
     closeEvent.emit()
   }
 
-  internal func onDidOpen(block: @escaping () -> Void) {
+  func onDidOpen(block: @escaping () -> Void) {
     listeners.append(openEvent.on(block))
   }
 
-  internal func onDidClose(block: @escaping () -> Void) {
+  func onDidClose(block: @escaping () -> Void) {
     listeners.append(closeEvent.on(block))
+  }
+
+  func setMenu(_ menu: NSMenu) {
+    item.menu = menu
+    menu.autoenablesItems = false
+    menu.delegate = self
+    setPrefs()
   }
 
   private func separator() {
