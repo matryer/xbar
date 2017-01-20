@@ -2,21 +2,9 @@ import AppKit
 import EmitterKit
 
 class ItemBase: NSMenuItem {
-  let clickEvent = Event<ItemBase>()
-  var listeners = [Listener]() {
+  private let clickEvent = Event<ItemBase>()
+  private var listeners = [Listener]() {
     didSet { activate() }
-  }
-
-  init(_ title: String, key: String = "", block: @escaping Block<ItemBase>) {
-    super.init(title: title, action: #selector(didClick), keyEquivalent: key)
-    target = self
-    listeners.append(clickEvent.on(block))
-    activate()
-    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
-  }
-
-  convenience init(_ title: String, key: String = "", voidBlock: @escaping Block<Void>) {
-    self.init(title, key: key) { (_: ItemBase) in voidBlock() }
   }
 
   /**
@@ -24,13 +12,25 @@ class ItemBase: NSMenuItem {
     @key A keyboard shortcut to simulate @self being clicked
   */
   init(_ title: String, key: String = "") {
-    super.init(title: title, action: nil, keyEquivalent: key)
-    if key.isEmpty { deactivate() }
-    else { activate() }
+    super.init(title: title, action: #selector(didClick), keyEquivalent: key)
+    target = self
+    if key.isEmpty { deactivate() } else { activate() }
+    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
   }
 
-  required init(coder decoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+  /**
+    @block Called when the @key shortcut is invoked or @title is clicked
+  */
+  convenience init(_ title: String, key: String = "", block: @escaping Block<ItemBase>) {
+    self.init(title, key: key)
+    listeners.append(clickEvent.on(block))
+  }
+
+  /**
+    @block Called when the @key shortcut is invoked or @title is clicked
+  */
+  convenience init(_ title: String, key: String = "", voidBlock: @escaping Block<Void>) {
+    self.init(title, key: key) { (_: ItemBase) in voidBlock() }
   }
 
   /**
@@ -50,14 +50,16 @@ class ItemBase: NSMenuItem {
     @key An optional shortcut, i.e "x" which can be invoked with cmd+x
     @block to be called when title is clicked or invoked with @key
   */
-  func addSub(_ name: String, checked: Bool = false, key: String = "", block: @escaping Block<Void>) {
+  func addSub(_ name: String, checked: Bool = false,
+      key: String = "", block: @escaping Block<Void>) {
     addSub(name, checked: checked, key: key) { (_:ItemBase) in block() }
   }
 
   /**
     Same as above, but passes the invoked item as an argument to @block
   */
-  func addSub(_ name: String, checked: Bool = false, key: String = "", b: @escaping Block<ItemBase>) {
+  func addSub(_ name: String, checked: Bool = false,
+      key: String = "", b: @escaping Block<ItemBase>) {
     let menu = ItemBase(name, key: key, block: b)
     addSub(menu)
     menu.state = checked ? NSOnState : NSOffState
@@ -77,8 +79,7 @@ class ItemBase: NSMenuItem {
     addSub(NSMenuItem.separator())
   }
 
-  // Private
-  @objc func didClick(_ sender: NSMenu) {
+  @objc private func didClick(_ sender: NSMenu) {
     clickEvent.emit(self)
   }
 
@@ -88,5 +89,10 @@ class ItemBase: NSMenuItem {
 
   private func deactivate() {
     isEnabled = false
+  }
+
+  // FIXME
+  required init(coder decoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 }
