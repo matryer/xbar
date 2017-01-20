@@ -15,6 +15,7 @@
 		2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */; };
 		2031E9A11E325AE2004A33E5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99D1E325AE2004A33E5 /* String.swift */; };
 		2031E9A31E327F31004A33E5 /* ItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A21E327F31004A33E5 /* ItemBase.swift */; };
+		2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2031E9A41E328C66004A33E5 /* sub.10s.sh */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
 		204F73011E2A0BDD00D56243 /* AnsiParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */; };
 		205C41101E1EA32800DAFE22 /* Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205C410F1E1EA32800DAFE22 /* Length.swift */; };
@@ -62,8 +63,6 @@
 		2084CCEA1E2A3E7100DE01F6 /* missing-sh-bin.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE21E2A3E7100DE01F6 /* missing-sh-bin.sh */; };
 		2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE31E2A3E7100DE01F6 /* nonexec.sh */; };
 		2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE41E2A3E7100DE01F6 /* sleep.sh */; };
-		2084CCF41E2A449F00DE01F6 /* sub.1m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCF31E2A449F00DE01F6 /* sub.1m.sh */; };
-		2084CCF51E2A449F00DE01F6 /* sub.1m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCF31E2A449F00DE01F6 /* sub.1m.sh */; };
 		209632EF1E20A264003BC47E /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209632EE1E20A264003BC47E /* NamedParam.swift */; };
 		2097884F1E2420E300A91F4D /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097884E1E2420E300A91F4D /* ScriptTests.swift */; };
 		2099FAB21E1E300900F758AF /* Alternate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099FAAC1E1E300900F758AF /* Alternate.swift */; };
@@ -115,6 +114,7 @@
 		2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSMutableAttributedString.swift; path = BitBar/Extensions/NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		2031E99D1E325AE2004A33E5 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = BitBar/Extensions/String.swift; sourceTree = "<group>"; };
 		2031E9A21E327F31004A33E5 /* ItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemBase.swift; path = BitBar/ItemBase.swift; sourceTree = "<group>"; };
+		2031E9A41E328C66004A33E5 /* sub.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.10s.sh; path = Scripts/sub.10s.sh; sourceTree = "<group>"; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
 		204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiParserTests.swift; sourceTree = "<group>"; };
 		205C410F1E1EA32800DAFE22 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Length.swift; path = Arbitrary/Length.swift; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 		2084CCE21E2A3E7100DE01F6 /* missing-sh-bin.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "missing-sh-bin.sh"; sourceTree = "<group>"; };
 		2084CCE31E2A3E7100DE01F6 /* nonexec.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = nonexec.sh; sourceTree = "<group>"; };
 		2084CCE41E2A3E7100DE01F6 /* sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sleep.sh; sourceTree = "<group>"; };
-		2084CCF31E2A449F00DE01F6 /* sub.1m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.1m.sh; path = Scripts/sub.1m.sh; sourceTree = "<group>"; };
 		209632EE1E20A264003BC47E /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedParam.swift; path = Arbitrary/NamedParam.swift; sourceTree = "<group>"; };
 		2097884E1E2420E300A91F4D /* ScriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
 		2099FAAC1E1E300900F758AF /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alternate.swift; path = Arbitrary/Alternate.swift; sourceTree = "<group>"; };
@@ -276,7 +275,7 @@
 		2058A75F1E2A391500D09A21 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				2084CCF31E2A449F00DE01F6 /* sub.1m.sh */,
+				2031E9A41E328C66004A33E5 /* sub.10s.sh */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -516,8 +515,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				204A9D751E160B3A0005E44F /* App.xib in Resources */,
+				2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */,
 				20642E7C1E2A4E4C004D9A28 /* emoji.json in Resources */,
-				2084CCF41E2A449F00DE01F6 /* sub.1m.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +527,6 @@
 				2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */,
 				2084CCEA1E2A3E7100DE01F6 /* missing-sh-bin.sh in Resources */,
 				2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */,
-				2084CCF51E2A449F00DE01F6 /* sub.1m.sh in Resources */,
 				20642E7D1E2A4E4C004D9A28 /* emoji.json in Resources */,
 				2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */,
 				2084CCE51E2A3E7100DE01F6 /* args.sh in Resources */,

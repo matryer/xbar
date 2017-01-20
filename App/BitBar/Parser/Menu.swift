@@ -103,7 +103,7 @@ final class Menu: ItemBase, MenuDelegate {
 
   internal func apply() {
     guard hasDropdown() else {
-      return print("Dropdown is disabled")
+      return
     }
 
     events = []

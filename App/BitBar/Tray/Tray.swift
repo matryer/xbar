@@ -13,16 +13,19 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   var listeners = [Listener]()
   let openEvent = Event<()>()
   let closeEvent = Event<()>()
+  var isOpen = false
 
   init(title: String, isVisible: Bool? = false) {
     item.title = title
+    item.highlightMode = true
     super.init()
     if isVisible! { show() }
     setMenu(NSMenu())
+    onDidOpen { self.isOpen = true }
+    onDidClose { self.isOpen = false }
   }
 
   internal func show() {
-    log("show", "Tray is being shown")
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {
@@ -108,7 +111,6 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
   }
 
   internal func hide() {
-    log("hide", "Tray is hiding")
     if #available(OSX 10.12, *) {
       item.isVisible = false
     } else {
@@ -136,5 +138,13 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
 
   internal func menuDidClose(_ menu: NSMenu) {
     closeEvent.emit()
+  }
+
+  internal func onDidOpen(block: @escaping () -> Void) {
+    listeners.append(openEvent.on(block))
+  }
+
+  internal func onDidClose(block: @escaping () -> Void) {
+    listeners.append(closeEvent.on(block))
   }
 }
