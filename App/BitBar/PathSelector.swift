@@ -2,10 +2,17 @@ import Cocoa
 import AppKit
 import EmitterKit
 
+/**
+  File selector used to ask the user about which plugin folder to use
+*/
 class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
+  /* Text on button */
   private static let title = "Use as Plugins Directory"
   private let event = Event<URL>()
 
+  /**
+    @url First folder being displayed in the file selector
+  */
   convenience init(withURL url: URL? = nil) {
     self.init()
 

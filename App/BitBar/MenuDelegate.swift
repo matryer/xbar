@@ -1,5 +1,6 @@
 import Cocoa
 
+/* TODO: Explain */
 protocol MenuDelegate: class {
   var title: String { get }
   func getTitle() -> String

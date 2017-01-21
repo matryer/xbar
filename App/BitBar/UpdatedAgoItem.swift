@@ -1,7 +1,7 @@
 import DateTools
 
 class UpdatedAgoItem: ItemBase {
-  var updatedAt = NSDate()
+  private var updatedAt = NSDate()
 
   init() {
     super.init("Never updated…")

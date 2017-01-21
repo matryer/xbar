@@ -3,6 +3,11 @@ import EmitterKit
 import Cocoa
 import SwiftyUserDefaults
 
+/**
+  Represents an item in the menu bar
+  TODO: Remove @item from NSStatusBar.system()
+    instead of using isVisible = false or hide()
+*/
 class Tray: Base, NSMenuDelegate {
   private var listeners = [Listener]()
   private let openEvent = Event<Void>()
@@ -15,6 +20,10 @@ class Tray: Base, NSMenuDelegate {
     .statusItem(withLength: NSVariableStatusItemLength)
   internal var delegate: TrayDelegate?
 
+  /**
+    @title A title to be displayed in the menu bar
+    @isVisible Makes it possible to hide item on start up
+  */
   init(title: String, isVisible: Bool = false) {
     super.init()
     item.title = title
@@ -58,23 +67,25 @@ class Tray: Base, NSMenuDelegate {
     }
   }
 
+  /**
+    TODO: Replace with set(error: String)
+    Currently being used by Plugin
+  */
   func clear(title: String) {
     item.menu?.removeAllItems()
     item.title = title
   }
 
-  func menuWillOpen(_ menu: NSMenu) {
-    openEvent.emit()
-  }
-
-  func menuDidClose(_ menu: NSMenu) {
-    closeEvent.emit()
-  }
-
+  /**
+    @block is called every time the drop down menu bar is shown
+  */
   func onDidOpen(block: @escaping () -> Void) {
     listeners.append(openEvent.on(block))
   }
 
+  /**
+    @block is called every time the drop down menu bar is hidden
+  */
   func onDidClose(block: @escaping () -> Void) {
     listeners.append(closeEvent.on(block))
   }
@@ -98,5 +109,16 @@ class Tray: Base, NSMenuDelegate {
       self.delegate?.preferenceDidOpenInTerminal()
     })
     item.menu?.addItem(PrefItem(delegate: delegate))
+  }
+
+  // Private, not to be called
+  // Marked with 'internal' as NSMenuDelegate
+  // doesn't allow for 'private' 
+  internal func menuWillOpen(_ menu: NSMenu) {
+    openEvent.emit()
+  }
+
+  internal func menuDidClose(_ menu: NSMenu) {
+    closeEvent.emit()
   }
 }

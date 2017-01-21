@@ -1,8 +1,22 @@
 import EmitterKit
 
 /**
- Used in AppDelegate
+ Used in AppDelegate to observe notifications
 */
+
+
+class Listen {
+  private var units = [EventUnit]()
+  private let center: NotificationCenter
+
+  init(_ center: NotificationCenter) {
+    self.center = center
+  }
+
+  func on(_ name: Notification.Name, block: @escaping Block<Void>) {
+    units.append(EventUnit(center, name: name, block: block))
+  }
+}
 
 private class EventUnit {
   var listeners = [Listener]()
@@ -21,18 +35,5 @@ private class EventUnit {
 
   @objc private func didCallNotification() {
     event.emit()
-  }
-}
-
-class Listen {
-  private var units = [EventUnit]()
-  private let center: NotificationCenter
-
-  init(_ center: NotificationCenter) {
-    self.center = center
-  }
-
-  func on(_ name: Notification.Name, block: @escaping Block<Void>) {
-    units.append(EventUnit(center, name: name, block: block))
   }
 }

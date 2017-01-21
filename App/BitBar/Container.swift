@@ -1,9 +1,12 @@
+/**
+  Represents zero or more params for a title or menu
+*/
 class Container {
-  var store = [String: [Param]]()
-  var delegate: MenuDelegate?
+  private var store = [String: [Param]]()
+  internal var delegate: MenuDelegate?
 
   init() {
-    /* ... */
+    /* TODO: Remove this. Not sure why it's needed */
   }
 
   func append(params: [Param]) {
@@ -35,26 +38,13 @@ class Container {
     }
   }
 
-  private func get(type: String) -> [Param] {
-    return store[type] ?? []
-  }
-
-  private func each(type: String, backup: Bool, block: (Param) -> Bool?) -> Bool {
-    for param in get(type: type) {
-      guard let bool = block(param) else {
-        continue
-      }
-
-      return bool
+  func apply() {
+    guard let menu = delegate else {
+      return
     }
 
-    return backup
-  }
-
-  private var params: [Param] {
-    return store.reduce([]) { acc, value in
-      if value.0 == "NamedParam" { return acc }
-      return acc + value.1
+    for param in params {
+      param.applyTo(menu: menu)
     }
   }
 
@@ -78,13 +68,26 @@ class Container {
     }
   }
 
-  func apply() {
-    guard let menu = delegate else {
-      return
+  private func get(type: String) -> [Param] {
+    return store[type] ?? []
+  }
+
+  private func each(type: String, backup: Bool, block: (Param) -> Bool?) -> Bool {
+    for param in get(type: type) {
+      guard let bool = block(param) else {
+        continue
+      }
+
+      return bool
     }
 
-    for param in params {
-      param.applyTo(menu: menu)
+    return backup
+  }
+
+  private var params: [Param] {
+    return store.reduce([]) { acc, value in
+      if value.0 == "NamedParam" { return acc }
+      return acc + value.1
     }
   }
 }

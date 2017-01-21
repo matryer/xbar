@@ -4,38 +4,19 @@ import Foundation
 import Files
 
 class PluginManager: Base {
-  let path: String
-  let tray = Tray(title: "BitBar")
-  var errors = [Tray]()
-  var plugins = [Plugin]()
+  private let path: String
+  private let tray = Tray(title: "BitBar")
+  private var errors = [Tray]()
+  private var plugins = [Plugin]()
 
+  /**
+    Reads plugins from @path and send notifications back to @delegate
+  */
   init(path: String, delegate: AppDelegate?) {
     tray.delegate = delegate
     self.path = path
     super.init()
     setPlugins()
-  }
-
-  private func setPlugins() {
-    do {
-      for file in try Folder(path: path).files {
-        if !file.name.hasPrefix(".") {
-          addPlugin(file.name, path: file.path)
-        }
-      }
-    } catch (let error) {
-      show(error: String(describing: error))
-    }
-
-    if plugins.isEmpty {
-      tray.show()
-    } else {
-      tray.hide()
-    }
-  }
-
-  private func show(error: String) {
-    Title(errors: [error]).applyTo(tray: tray)
   }
 
   /**
@@ -69,5 +50,27 @@ class PluginManager: Base {
 
   private func fileFor(name: String) -> Result<File> {
     return Pro.parse(Pro.getFile(), name)
+  }
+
+  private func setPlugins() {
+    do {
+      for file in try Folder(path: path).files {
+        if !file.name.hasPrefix(".") {
+          addPlugin(file.name, path: file.path)
+        }
+      }
+    } catch (let error) {
+      show(error: String(describing: error))
+    }
+
+    if plugins.isEmpty {
+      tray.show()
+    } else {
+      tray.hide()
+    }
+  }
+
+  private func show(error: String) {
+    Title(errors: [error]).applyTo(tray: tray)
   }
 }
