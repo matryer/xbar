@@ -15,10 +15,10 @@ import Files
     4. Notifying the TrayDelegate if a plugin closes
 */
 class PluginManager {
-  private let tray: Tray
   private let path: String
+  private let tray = Tray(title: "BitBar")
   private weak var delegate: TrayDelegate?
-  private var errors = [Tray]() {
+  private var errors = [Title]() {
     didSet { verifyBar() }
   }
   private var plugins = [Plugin]() {
@@ -29,20 +29,20 @@ class PluginManager {
     Reads plugins from @path and send notifications back to @delegate
   */
   init(path: String, delegate: TrayDelegate?) {
-    self.tray = Tray(title: "BitBar", delegate: delegate)
+    self.tray.delegate = delegate
     self.delegate = delegate
     self.path = path
-    setPlugins()
-    verifyBar()
+    self.setPlugins()
+    self.verifyBar()
   }
 
   /**
     Quit any current running background tasks and removes all menu items
   */
-  public func quit() {
-    plugins.forEach { $0.terminate() }
-    errors.forEach { $0.hide() }
-    tray.hide()
+  public func destroy() {
+    tray.destroy()
+    plugins.forEach { $0.destroy() }
+    errors.forEach { $0.destroy() }
     plugins = []
     errors = []
   }
@@ -53,15 +53,15 @@ class PluginManager {
     case let Result.success(file, _):
       plugins.append(ExecutablePlugin(path: path, file: file, delegate: delegate))
     case let Result.failure(lines):
-      let tray = Tray(title: "Loading...", delegate: delegate)
+      // let tray = Tray(title: "E", delegate: delegate)
       let li = [
         "Invalid file name '\(path)'",
         "Should be on the form {name}.{number}{unit}.{ext}",
         "Eg. 'aFile.10d.sh'"
       ] + lines
-      let title = Title(errors: li)
-      title.applyTo(tray: tray)
-      errors.append(tray)
+      // let title = Title(errors: li)
+      // title.applyTo(tray: tray)
+      errors.append(Title(errors: li, delegate: delegate))
     }
   }
 
@@ -87,15 +87,9 @@ class PluginManager {
     } catch (let error) {
       show(error: String(describing: error))
     }
-
-    if plugins.isEmpty {
-      tray.show()
-    } else {
-      tray.hide()
-    }
   }
 
   private func show(error: String) {
-    Title(errors: [error]).applyTo(tray: tray)
+//    Title(errors: [error]).applyTo(tray: tray)
   }
 }

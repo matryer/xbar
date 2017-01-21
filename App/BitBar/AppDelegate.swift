@@ -5,7 +5,7 @@ typealias Block<T> = (T) -> Void
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
-  private var manager: PluginManager?
+  private weak var manager: PluginManager?
   private let listen = Listen(NSWorkspace.shared().notificationCenter)
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -46,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
   }
 
   private func loadPluginManager() {
-    manager?.quit()
+    manager?.destroy()
     if let path = App.pluginPath {
       manager = PluginManager(path: path, delegate: self)
     } else {

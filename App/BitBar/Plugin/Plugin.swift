@@ -33,14 +33,6 @@ class Plugin: TrayDelegate {
   }
 
   /**
-    Terminate plugin and remove tray from menu bar
-  */
-  func terminate() {
-    tray.hide()
-    hide()
-  }
-
-  /**
     Script ran successfully in super class
     Will parse data and populate the menu bar
   */
@@ -48,8 +40,8 @@ class Plugin: TrayDelegate {
     switch Pro.parse(Pro.getOutput(), data) {
     case let Result.success(output, _):
       output.title.onDidRefresh { self.refresh() }
-      output.title.applyTo(tray: tray)
-      tray.show()
+//      output.title.applyTo(tray: tray)
+//      tray.show()
     case let Result.failure(error):
       didReceiveError(String(describing: error))
     }
@@ -81,10 +73,12 @@ class Plugin: TrayDelegate {
   }
 
   /**
-    Just an alias as 'hide' felt 'weak'
+    Completely removes plugin from menu bar
   */
   func destroy() {
     hide()
+    tray.hide()
+    tray.destroy()
   }
 
   /**

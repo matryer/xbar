@@ -2,14 +2,16 @@ import AppKit
 import EmitterKit
 
 final class Title: NSMenu, MenuDelegate {
-  var events = [Listener]()
-  var menus = [Menu]()
-  var params = [Param]()
-  let refreshEvent = Event<()>()
-  var tray: Tray?
+  private var events = [Listener]()
+  private var menus = [Menu]()
+  private var params = [Param]()
+  private let refreshEvent = Event<()>()
+  private let tray: Tray
 
   init(_ title: String, params: [Param], menus: [Menu]) {
+    self.tray = Tray(title: title)
     super.init(title: title)
+
     self.params = params
     self.menus = menus
     for menu in menus {
@@ -24,13 +26,14 @@ final class Title: NSMenu, MenuDelegate {
     }
   }
 
-  convenience init(errors: [String]) {
+  convenience init(errors: [String], delegate: TrayDelegate?) {
     let menus = errors.map { Menu($0, params: [], menus: []) }
     self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
+    self.tray.delegate = delegate
   }
 
   convenience init(error: String) {
-    self.init(errors: [error])
+    self.init(errors: [error], delegate: nil)
   }
 
   required init(coder decoder: NSCoder) {
@@ -67,7 +70,7 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func update(image: NSImage, isTemplate: Bool = false) {
-    tray?.item.image = image
+    // tray?.item.image = image
   }
 
   func update(key: String, value: Any) {
@@ -79,7 +82,11 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func set(title: NSMutableAttributedString) {
-    tray?.item.attributedTitle = title
+    // tray?.item.attributedTitle = title
+  }
+
+  func destroy() {
+    tray.destroy()
   }
 
   func update(size: Float) {
@@ -91,7 +98,8 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func getTitle() -> String {
-    return tray?.item.attributedTitle?.string ?? ""
+    return "XXX"
+//    return tray?.item.attributedTitle?.string ?? ""
   }
 
   func getArgs() -> [String] {
@@ -106,14 +114,14 @@ final class Title: NSMenu, MenuDelegate {
     // Can't set state for title
   }
 
-  func applyTo(tray: Tray) {
-    self.tray = tray
-    tray.setMenu(self)
-    update(title: title)
-    for param in params {
-      param.applyTo(menu: self)
-    }
-  }
+  // func applyTo(tray: Tray) {
+  //   self.tray = tray
+  //   tray.setMenu(self)
+  //   update(title: title)
+  //   for param in params {
+  //     param.applyTo(menu: self)
+  //   }
+  // }
 
   func useAsAlternate() {
     // Not supported by title
@@ -132,9 +140,9 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   private func currentTitle() -> NSMutableAttributedString {
-    if let title = tray?.item.attributedTitle {
-      return title.mutable()
-    }
+//    if let title = tray?.item.attributedTitle {
+//      return title.mutable()
+//    }
 
     return NSMutableAttributedString(string: self.title)
   }

@@ -14,9 +14,7 @@ class Tray: NSObject, NSMenuDelegate {
   private let closeEvent = Event<Void>()
   private var isOpen = false
   private var updatedAgoItem: UpdatedAgoItem?
-
-  // FIXME: Should not be internal, should be private
-  internal let item: NSStatusItem = NSStatusBar.system()
+  private let item: NSStatusItem = NSStatusBar.system()
     .statusItem(withLength: NSVariableStatusItemLength)
   internal weak var delegate: TrayDelegate?
 
@@ -67,6 +65,17 @@ class Tray: NSObject, NSMenuDelegate {
     } else {
       // TODO: Fallback on earlier versions
     }
+  }
+
+  /*
+    Completely removes item from menu bar
+  */
+  func destroy() {
+    guard !isOpen else {
+      return onDidClose { self.destroy() }
+    }
+
+    NSStatusBar.system().removeStatusItem(item)
   }
 
   /**
