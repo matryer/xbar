@@ -3,8 +3,7 @@ import Quick
 import Nimble
 @testable import BitBar
 
-private let currentPath = Bundle.main.resourcePath!
-private let examplePlugin = currentPath + "/" + "sub.1m.sh"
+private let examplePlugin = App.path(forResource: "sub.10s.sh")
 
 class ParamsTests: QuickSpec {
   override func spec() {
@@ -19,16 +18,16 @@ class ParamsTests: QuickSpec {
 
     context("bash") {
       it("handles base case") {
-        // let menu = Menu("hello")
-        // let bash = Bash(examplePlugin)
-        // menu._params.append(Refresh(true))
-        // bash.applyTo(menu: menu)
-        // var this = 0
-        // menu.onDidRefresh {
-        //   this = 1
-        // }
-        // menu.clickEvent.emit()
-        // expect(this).toEventually(equal(1), timeout: 10)
+        let menu = Menu("hello")
+        let bash = Bash(examplePlugin)
+        menu._params.append(Refresh(true))
+        bash.applyTo(menu: menu)
+        var this = 0
+        menu.onDidRefresh {
+          this = 1
+        }
+        menu.trigger()
+        expect(this).toEventually(equal(1), timeout: 10)
       }
     }
 

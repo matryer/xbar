@@ -9,7 +9,7 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   override init(path: String, file: File, delegate: TrayDelegate?) {
     super.init(path: path, file: file, delegate: delegate)
     script = Script(path: path, delegate: self)
-    timer = Timer.every(getTime().seconds, scheduleDidTick)
+    timer = Timer.every(interval.seconds, scheduleDidTick)
     self.show()
   }
 

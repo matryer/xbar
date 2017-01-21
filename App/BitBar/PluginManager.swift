@@ -73,25 +73,4 @@ class PluginManager: Base {
   private func fileFor(name: String) -> Result<File> {
     return Pro.parse(Pro.getFile(), name)
   }
-
-  /* TODO */
-  func openReportIssuesPage() {
-    // workspace.open(URL(string: "https://github.com/matryer/bitbar/issues")!)
-  }
-
-  func openPluginsBrowser() {
-    // workspace.open(URL(string: "https://getbitbar.com/")!)
-  }
-
-  func openHomepage() {
-    // workspace.open(URL(string: "https://github.com/matryer/bitbar")!)
-  }
-
-  func openPluginFolder() {
-    // workspace.open(URL(fileURLWithPath: self.path))
-  }
-
-  func toggleOpen() {
-    // launchAtLoginController.launchAtLogin = !launchAtLoginController.launchAtLogin
-  }
 }

@@ -10,7 +10,7 @@ final class Menu: ItemBase, MenuDelegate {
   var count: Int = 0
   var font: NSFont?
   var events = [Listener]()
-  let refreshEvent = Event<()>()
+  let refreshEvent = Event<Void>()
 
   convenience init(_ title: String, menus: [Menu]) {
     self.init(title)

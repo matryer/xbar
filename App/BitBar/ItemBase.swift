@@ -99,4 +99,9 @@ class ItemBase: NSMenuItem {
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  // For testing
+  internal func trigger() {
+    clickEvent.emit(self)
+  }
 }

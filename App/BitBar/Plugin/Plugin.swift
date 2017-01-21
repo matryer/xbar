@@ -1,35 +1,50 @@
 import AppKit
 import Swift
 
-class Plugin: Base, TrayDelegate {
+/**
+  Base plugin responsible for delegating data to
+  - the status bar
+  - app delegate
+  - plugin manager
+*/
+class Plugin: TrayDelegate {
   let file: File
   let path: String
   let tray: Tray = Tray(title: "…")
   weak var delegate: TrayDelegate?
 
+  /**
+    @path An absolute path to the script
+    @file A file object containing {name}.{time}.{ext}
+    @delegate Someone that can handle tray events, i.e 'Reload All'
+  */
   init(path: String, file: File, delegate: TrayDelegate?) {
     self.file = file
     self.path = path
     self.delegate = delegate
-    super.init()
     tray.delegate = self
   }
 
-  func getTime() -> Double {
+  /**
+    How often the plugin should in seconds
+  */
+  var interval: Double {
     return Double(file.interval)
   }
 
+  /**
+    Terminate plugin and remove tray from menu bar
+  */
   func terminate() {
     tray.hide()
     hide()
   }
 
-  func getName() -> String {
-    return file.name
-  }
-
+  /**
+    Script ran successfully in super class
+    Will parse data and populate the menu bar
+  */
   func didReceivedOutput(_ data: String) {
-    // log("didReceivedOutput", "'" + data + "'")
     switch Pro.parse(Pro.getOutput(), data) {
     case let Result.success(output, _):
       output.title.onDidRefresh { self.refresh() }
@@ -40,11 +55,18 @@ class Plugin: Base, TrayDelegate {
     }
   }
 
+  /**
+    Either the script failed in Script or the parser failed
+    in didReceivedOutput. The output is parsed and displayed for the user
+  */
   func didReceiveError(_ data: String) {
-    log("didReceiveError", "'" + data + "'")
     tray.clear(title: "Error...")
   }
 
+  /**
+    To be implemented by the super class
+    Maybe there's a better to do this?
+  */
   func refresh() {
     preconditionFailure("This method must be overridden")
   }
@@ -57,22 +79,39 @@ class Plugin: Base, TrayDelegate {
     preconditionFailure("This method must be overridden")
   }
 
+  /**
+    Just an alias as 'hide' felt 'weak'
+  */
   func destroy() {
     hide()
   }
 
+  /**
+    User clicked 'Open in Terminal'
+    Opening @path in Terminal App
+    // TODO: Move logic from Bash to Terminal
+  */
   func preferenceDidOpenInTerminal() {
     Bash.open(script: path)
   }
 
+  /**
+    User clicked 'Refresh All'
+  */
   func preferenceDidRefreshAll() {
     delegate?.preferenceDidRefreshAll()
   }
 
+  /**
+    User clicked 'Quit'
+  */
   func preferenceDidQuit() {
     delegate?.preferenceDidQuit()
   }
 
+  /**
+    User changed plugin folder
+  */
   func preferenceDidChangePluginFolder() {
     delegate?.preferenceDidChangePluginFolder()
   }
