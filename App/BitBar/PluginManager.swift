@@ -3,24 +3,36 @@ import Swift
 import Foundation
 import Files
 
-class PluginManager: Base {
+/**
+  The PluginManager is responsible for
+    1. Reading all files from @path as plugins
+    2. Displaying a default message in the menu bar if no plugins were found
+    3. Parsing the file name for each potential plugin to determine
+      if it contains the correct meta data, i.e aFile.10d.sh
+        1. File name
+        2. Update sequence
+        3. File ending
+    4. Notifying the TrayDelegate if a plugin closes
+*/
+class PluginManager {
   private let path: String
   private let tray = Tray(title: "BitBar")
   private var errors = [Tray]()
   private var plugins = [Plugin]()
+  private var delegate: TrayDelegate?
 
   /**
     Reads plugins from @path and send notifications back to @delegate
   */
-  init(path: String, delegate: AppDelegate?) {
-    tray.delegate = delegate
+  init(path: String, delegate: TrayDelegate?) {
+    self.delegate = delegate
     self.path = path
-    super.init()
+    tray.delegate = delegate
     setPlugins()
   }
 
   /**
-    Quit any current running background tasks and removes all menu bars
+    Quit any current running background tasks and removes all menu items
   */
   public func quit() {
     plugins.forEach { $0.terminate() }
@@ -31,9 +43,10 @@ class PluginManager: Base {
   }
 
   private func addPlugin(_ name: String, path: String) {
+    // TODO: Clean up this mess :)
     switch fileFor(name: name) {
     case let Result.success(file, _):
-      plugins.append(ExecutablePlugin(path: path, file: file, delegate: tray.delegate))
+      plugins.append(ExecutablePlugin(path: path, file: file, delegate: delegate))
     case let Result.failure(lines):
       let tray = Tray(title: "Loading...")
       let li = [
@@ -42,7 +55,7 @@ class PluginManager: Base {
         "Eg. 'aFile.10d.sh'",
       ] + lines
       let title = Title(errors: li)
-      tray.delegate = self.tray.delegate
+      tray.delegate = delegate
       title.applyTo(tray: tray)
       errors.append(tray)
     }

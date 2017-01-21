@@ -8,10 +8,10 @@ import Swift
   - plugin manager
 */
 class Plugin: TrayDelegate {
-  let file: File
-  let path: String
-  let tray: Tray = Tray(title: "…")
-  var delegate: TrayDelegate?
+  private let file: File
+  private let path: String
+  private let tray: Tray = Tray(title: "…")
+  private var delegate: TrayDelegate?
 
   /**
     @path An absolute path to the script
@@ -60,6 +60,7 @@ class Plugin: TrayDelegate {
     in didReceivedOutput. The output is parsed and displayed for the user
   */
   func didReceiveError(_ data: String) {
+    // TODO: Implement a proper tray.set(error: ...) function
     tray.clear(title: "Error...")
   }
 
