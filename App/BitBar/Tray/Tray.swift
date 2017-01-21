@@ -3,15 +3,17 @@ import EmitterKit
 import Cocoa
 import SwiftyUserDefaults
 
-// TODO: Use NSOpenSavePanelDelegate
-class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
-  let item: NSStatusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-  weak var delegate: TrayDelegate?
-  var listeners = [Listener]()
-  let openEvent = Event<()>()
-  let closeEvent = Event<()>()
-  var isOpen = false
-  var updatedAgoItem: UpdatedAgoItem?
+class Tray: Base, NSMenuDelegate {
+  private var listeners = [Listener]()
+  private let openEvent = Event<Void>()
+  private let closeEvent = Event<Void>()
+  private var isOpen = false
+  private var updatedAgoItem: UpdatedAgoItem?
+
+  // FIXME: Should not be internal, should be private
+  internal let item: NSStatusItem = NSStatusBar.system()
+    .statusItem(withLength: NSVariableStatusItemLength)
+  internal var delegate: TrayDelegate?
 
   init(title: String, isVisible: Bool = false) {
     super.init()

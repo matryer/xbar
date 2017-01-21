@@ -42,7 +42,7 @@ class PluginManager: Base {
     Quit any current running background tasks and removes all menu bars
   */
   public func quit() {
-    plugins.forEach { $0.hide() }
+    plugins.forEach { $0.terminate() }
     errors.forEach { $0.hide() }
     tray.hide()
     plugins = []
@@ -61,7 +61,7 @@ class PluginManager: Base {
         "Eg. 'aFile.10d.sh'",
       ] + lines
       let title = Title(errors: li)
-      tray.delegate = self.tray.delegate 
+      tray.delegate = self.tray.delegate
       title.applyTo(tray: tray)
       errors.append(tray)
     }

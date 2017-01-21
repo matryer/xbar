@@ -11,7 +11,7 @@ class Plugin: TrayDelegate {
   let file: File
   let path: String
   let tray: Tray = Tray(title: "…")
-  weak var delegate: TrayDelegate?
+  var delegate: TrayDelegate?
 
   /**
     @path An absolute path to the script

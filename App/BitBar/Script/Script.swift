@@ -12,7 +12,7 @@ class Script: Base {
   var events = [Listener]()
   let finishEvent = Event<Void>()
   var process: Async?
-  weak var delegate: ScriptDelegate?
+  var delegate: ScriptDelegate?
 
   /**
     @path Full path to script to be executed

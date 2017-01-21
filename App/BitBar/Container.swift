@@ -1,6 +1,6 @@
 class Container {
   var store = [String: [Param]]()
-  weak var delegate: MenuDelegate?
+  var delegate: MenuDelegate?
 
   init() {
     /* ... */
