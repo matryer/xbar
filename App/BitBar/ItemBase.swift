@@ -1,6 +1,7 @@
 import AppKit
 import EmitterKit
 
+/* TODO: Rename */
 class ItemBase: NSMenuItem {
   private let clickEvent = Event<ItemBase>()
   private var listeners = [Listener]() {
@@ -37,7 +38,11 @@ class ItemBase: NSMenuItem {
     Add @menu as a submenu to @self
   */
   func addSub(_ menu: NSMenuItem) {
-    if submenu == nil { submenu = NSMenu() }
+    if submenu == nil {
+      submenu = NSMenu()
+      submenu?.autoenablesItems = false
+    }
+    
     submenu?.addItem(menu)
     activate()
   }
@@ -81,6 +86,10 @@ class ItemBase: NSMenuItem {
 
   func set(title: String) {
     attributedTitle = NSMutableAttributedString(withDefaultFont: title)
+  }
+
+  func removeAllSubMenus() {
+    submenu?.removeAllItems()
   }
 
   @objc private func didClick(_ sender: NSMenu) {

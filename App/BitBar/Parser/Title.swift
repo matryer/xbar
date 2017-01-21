@@ -17,7 +17,6 @@ final class Title: NSMenu, MenuDelegate {
         addItem(NSMenuItem.separator())
       } else {
         addItem(menu)
-        menu.apply()
         menu.onDidRefresh {
           self.refreshEvent.emit()
         }

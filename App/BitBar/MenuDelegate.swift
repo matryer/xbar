@@ -1,6 +1,6 @@
 import Cocoa
 
-protocol MenuDelegate {
+protocol MenuDelegate: class {
   var title: String { get }
   func getTitle() -> String
   func getAttrs() -> NSMutableAttributedString
