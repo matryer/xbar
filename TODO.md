@@ -1,0 +1,1 @@
+- Display plugin path selector when no default path has been choosen
