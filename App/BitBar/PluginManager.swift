@@ -4,15 +4,12 @@ import Foundation
 import Files
 
 class PluginManager: Base {
-  weak var delegate: AppDelegate?
   let path: String
-  let workspace = NSWorkspace.shared
   let tray = Tray(title: "BitBar")
   var errors = [Tray]()
   var plugins = [Plugin]()
 
   init(path: String, delegate: AppDelegate?) {
-    self.delegate = delegate
     tray.delegate = delegate
     self.path = path
     super.init()
@@ -20,8 +17,6 @@ class PluginManager: Base {
   }
 
   private func setPlugins() {
-    plugins = []
-
     do {
       for file in try Folder(path: path).files {
         if !file.name.hasPrefix(".") {
@@ -47,16 +42,17 @@ class PluginManager: Base {
     Quit any current running background tasks and removes all menu bars
   */
   public func quit() {
-    for plugin in plugins {
-      plugin.terminate()
-    }
+    plugins.forEach { $0.hide() }
+    errors.forEach { $0.hide() }
     tray.hide()
+    plugins = []
+    errors = []
   }
 
   private func addPlugin(_ name: String, path: String) {
     switch fileFor(name: name) {
     case let Result.success(file, _):
-      plugins.append(ExecutablePlugin(path: path, file: file, delegate: delegate))
+      plugins.append(ExecutablePlugin(path: path, file: file, delegate: tray.delegate))
     case let Result.failure(lines):
       let tray = Tray(title: "Loading...")
       let li = [
@@ -65,6 +61,7 @@ class PluginManager: Base {
         "Eg. 'aFile.10d.sh'",
       ] + lines
       let title = Title(errors: li)
+      tray.delegate = self.tray.delegate 
       title.applyTo(tray: tray)
       errors.append(tray)
     }

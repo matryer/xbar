@@ -17,12 +17,7 @@ final class PrefItem: ItemBase {
     separator()
 
     addSub("Change Plugin Folder…") {
-      if let url = App.pluginURL {
-        PathSelector(withURL: url).ask { url in
-          App.update(pluginPath: url.path)
-          self.delegate?.preferenceDidChangePluginFolder()
-        }
-      }
+      self.delegate?.preferenceDidChangePluginFolder()
     }
 
     addSub("Open Plugin Folder…") {

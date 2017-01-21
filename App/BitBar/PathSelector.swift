@@ -6,9 +6,12 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
   private static let title = "Use as Plugins Directory"
   private let event = Event<URL>()
 
-  convenience init(withURL url: URL) {
+  convenience init(withURL url: URL? = nil) {
     self.init()
-    directoryURL = url
+
+    if let aURL = url {
+      directoryURL = aURL
+    }
     prompt = PathSelector.title
     allowsMultipleSelection = false
     canChooseDirectories = true

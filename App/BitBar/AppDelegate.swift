@@ -35,7 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
     Use changed plugin folder
   */
   func preferenceDidChangePluginFolder() {
-    loadPluginManager()
+    PathSelector(withURL: App.pluginURL).ask {
+      App.update(pluginPath: $0.path)
+      self.loadPluginManager()
+    }
   }
 
   /**
