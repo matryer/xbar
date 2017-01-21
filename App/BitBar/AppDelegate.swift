@@ -1,31 +1,19 @@
 import Cocoa
 import SwiftyUserDefaults
 
-// TODO: Use everywhere
 typealias Block<T> = (T) -> Void
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
-  var manager: PluginManager?
-  let center = NSWorkspace.shared().notificationCenter
-  let name = Notification.Name.NSWorkspaceDidWake
+  private var manager: PluginManager?
+  private let listen = Listen(NSWorkspace.shared().notificationCenter)
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     loadPluginManager()
-    center.addObserver(
-      self,
-      selector: #selector(AppDelegate.applicationDidWakeup),
-      name: name,
-      object: nil
-    )
-  }
 
-  /**
-    Application woke up from sleep
-    Creating a new manager
-  */
-  public func applicationDidWakeup() {
-    loadPluginManager()
+    listen.on(.NSWorkspaceDidWake) {
+      self.loadPluginManager()
+    }
   }
 
   /**
@@ -62,9 +50,5 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
     if let pluginPath = Defaults[.pluginPath] {
       manager = PluginManager(path: pluginPath, delegate: self)
     }
-  }
-
-  private func log(_ org: String, _ message: String) {
-    print("[LOG]", org, message)
   }
 }

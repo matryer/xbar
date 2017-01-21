@@ -67,6 +67,7 @@ final class Menu: ItemBase, MenuDelegate {
     set(title: currentTitle().update(attr: [NSForegroundColorAttributeName: color]))
   }
 
+  // TODO: Replace with set(title: String)
   func update(title: String) {
     update(attr: NSMutableAttributedString(string: title))
   }

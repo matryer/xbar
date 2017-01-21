@@ -75,6 +75,7 @@
 		2099FAB71E1E300900F758AF /* Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099FAB11E1E300900F758AF /* Trim.swift */; };
 		209CE1951E1E5CE1000A2980 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CE1931E1E5CE1000A2980 /* Color.swift */; };
 		209CE1961E1E5CE1000A2980 /* TemplateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CE1941E1E5CE1000A2980 /* TemplateImage.swift */; };
+		209F70811E32E298005365B2 /* Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70801E32E298005365B2 /* Listen.swift */; };
 		20A39F6D1E26CA0B001BAB72 /* Checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A39F6C1E26CA0B001BAB72 /* Checked.swift */; };
 		20AB0A681E1DAE11000DFFFD /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A661E1DAE11000DFFFD /* Title.swift */; };
 		20AB0A701E1DD194000DFFFD /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A6E1E1DD194000DFFFD /* Terminal.swift */; };
@@ -175,6 +176,7 @@
 		2099FAB11E1E300900F758AF /* Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trim.swift; path = Arbitrary/Trim.swift; sourceTree = "<group>"; };
 		209CE1931E1E5CE1000A2980 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Arbitrary/Color.swift; sourceTree = "<group>"; };
 		209CE1941E1E5CE1000A2980 /* TemplateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateImage.swift; path = Arbitrary/TemplateImage.swift; sourceTree = "<group>"; };
+		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Listen.swift; path = BitBar/Listen.swift; sourceTree = "<group>"; };
 		20A115BF1E15E43E00A68722 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115CE1E15E43F00A68722 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115D41E15E43F00A68722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				209F70801E32E298005365B2 /* Listen.swift */,
 				2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */,
 				2031E9A61E32A061004A33E5 /* PrefItem.swift */,
 				2031E9A21E327F31004A33E5 /* ItemBase.swift */,
@@ -666,6 +669,7 @@
 				207BD87B1E2379EA007AA0C7 /* Color.swift in Sources */,
 				207BD8831E2379EA007AA0C7 /* NamedParam.swift in Sources */,
 				20DEE6081E237BA200AF22D2 /* Param.swift in Sources */,
+				209F70811E32E298005365B2 /* Listen.swift in Sources */,
 				207BD88A1E2379EA007AA0C7 /* TemplateImage.swift in Sources */,
 				207BD87D1E2379EA007AA0C7 /* Emojize.swift in Sources */,
 				2008E6F01E23DD6B007FC1D6 /* File.swift in Sources */,
