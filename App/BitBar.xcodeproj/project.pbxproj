@@ -77,6 +77,7 @@
 		209CE1961E1E5CE1000A2980 /* TemplateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CE1941E1E5CE1000A2980 /* TemplateImage.swift */; };
 		209F70811E32E298005365B2 /* Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70801E32E298005365B2 /* Listen.swift */; };
 		209F70831E32EA9E005365B2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70821E32EA9E005365B2 /* App.swift */; };
+		209F70851E3316C4005365B2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70841E3316C4005365B2 /* Container.swift */; };
 		20A39F6D1E26CA0B001BAB72 /* Checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A39F6C1E26CA0B001BAB72 /* Checked.swift */; };
 		20AB0A681E1DAE11000DFFFD /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A661E1DAE11000DFFFD /* Title.swift */; };
 		20AB0A701E1DD194000DFFFD /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A6E1E1DD194000DFFFD /* Terminal.swift */; };
@@ -179,6 +180,7 @@
 		209CE1941E1E5CE1000A2980 /* TemplateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemplateImage.swift; path = Arbitrary/TemplateImage.swift; sourceTree = "<group>"; };
 		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Listen.swift; path = BitBar/Listen.swift; sourceTree = "<group>"; };
 		209F70821E32EA9E005365B2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = BitBar/App.swift; sourceTree = "<group>"; };
+		209F70841E3316C4005365B2 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Container.swift; path = BitBar/Container.swift; sourceTree = "<group>"; };
 		20A115BF1E15E43E00A68722 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115CE1E15E43F00A68722 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115D41E15E43F00A68722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				209F70841E3316C4005365B2 /* Container.swift */,
 				209F70821E32EA9E005365B2 /* App.swift */,
 				209F70801E32E298005365B2 /* Listen.swift */,
 				2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */,
@@ -661,6 +664,7 @@
 				20A39F6D1E26CA0B001BAB72 /* Checked.swift in Sources */,
 				207BD8781E2379EA007AA0C7 /* Alternate.swift in Sources */,
 				20DEE6021E237BA200AF22D2 /* Result.swift in Sources */,
+				209F70851E3316C4005365B2 /* Container.swift in Sources */,
 				2067066C1E15F6DB000DAADE /* ExecutablePlugin.swift in Sources */,
 				206706761E15F6DB000DAADE /* Tray.swift in Sources */,
 				207BD87A1E2379EA007AA0C7 /* Bash.swift in Sources */,

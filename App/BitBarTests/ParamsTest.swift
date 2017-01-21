@@ -20,7 +20,7 @@ class ParamsTests: QuickSpec {
       it("handles base case") {
         let menu = Menu("hello")
         let bash = Bash(examplePlugin)
-        menu._params.append(Refresh(true))
+        menu.params.append(Refresh(true))
         bash.applyTo(menu: menu)
         var this = 0
         menu.onDidRefresh {

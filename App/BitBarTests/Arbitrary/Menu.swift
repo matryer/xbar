@@ -100,18 +100,8 @@ extension Menu: Base {
       return puts(false, "params.count")
     }
 
-    if other._params.count != _params.count {
-      return puts(false, "_params.count")
-    }
-
     for (index, param) in params.enumerated() {
       if param.toString() != other.params[index].toString() {
-        return puts(false, "param.toString()")
-      }
-    }
-
-    for (index, param) in _params.enumerated() {
-      if param.toString() != other._params[index].toString() {
         return puts(false, "param.toString()")
       }
     }
@@ -121,7 +111,6 @@ extension Menu: Base {
 
   private func getBody() -> String {
     var out = ""
-    out += _params.reduce("") { $0 + " " + $1.getInput() }
     out += params.reduce("") { $0 + " " + $1.getInput() }
     out = out.noMore()
 

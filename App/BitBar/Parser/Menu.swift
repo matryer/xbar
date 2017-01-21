@@ -2,99 +2,8 @@ import Cocoa
 import AppKit
 import EmitterKit
 
-class Container {
-  var store = [String: [Param]]()
-  weak var delegate: MenuDelegate?
-
-  init() {
-    /* ... */
-  }
-
-  func append(params: [Param]) {
-    for param in params {
-      let key = String(describing: type(of: param))
-      if let curr = store[key] {
-        store[key] = curr + [param]
-      } else {
-        store[key] = [param]
-      }
-    }
-  }
-
-  func shouldRefresh() -> Bool {
-    return each(type: "Refresh", backup: false) {
-      ($0 as? Refresh)?.getValue()
-    }
-  }
-
-  func hasDropdown() -> Bool {
-    return each(type: "Dropdown", backup: true) {
-      ($0 as? Dropdown)?.getValue()
-    }
-  }
-
-  func openTerminal() -> Bool {
-    return each(type: "Terminal", backup: false) {
-      ($0 as? Terminal)?.getValue()
-    }
-  }
-
-  private func get(type: String) -> [Param] {
-    return store[type] ?? []
-  }
-
-  private func each(type: String, backup: Bool, block: (Param) -> Bool?) -> Bool {
-    for param in get(type: type) {
-      guard let bool = block(param) else {
-        continue
-      }
-
-      return bool
-    }
-
-    return backup
-  }
-
-  private var params: [Param] {
-    return store.reduce([]) { acc, value in
-      if value.0 == "NamedParam" { return acc }
-      return acc + value.1
-    }
-  }
-
-  var args: [String] {
-    return get(type: "NamedParam").sorted {
-      guard let param1 = $0 as? NamedParam else {
-        return false
-      }
-
-      guard let param2 = $1 as? NamedParam else {
-        return false
-      }
-
-      return param1.getIndex() < param2.getIndex()
-    }.reduce([]) {
-      if let param = $1 as? NamedParam {
-        return $0 + [param.getValue()]
-      }
-
-      return $0
-    }
-  }
-
-  func apply() {
-    guard let menu = delegate else {
-      return
-    }
-
-    for param in params {
-      param.applyTo(menu: menu)
-    }
-  }
-}
-
 final class Menu: ItemBase, MenuDelegate {
-  private var level: Int = 0
+  var level: Int = 0
   private var events = [Listener]()
   private let refreshEvent = Event<Void>()
   private var container = Container()
@@ -110,8 +19,12 @@ final class Menu: ItemBase, MenuDelegate {
     }
   }
 
-  init(_ title: String, menus: [Menu]) {
+  init(_ title: String) {
     super.init(title)
+  }
+
+  convenience init(_ title: String, menus: [Menu]) {
+    self.init(title)
     self.menus = menus
     self.container.delegate = self
   }
