@@ -17,7 +17,7 @@ import Files
 class PluginManager {
   private let tray: Tray
   private let path: String
-  private var delegate: TrayDelegate
+  private weak var delegate: TrayDelegate?
   private var errors = [Tray]() {
     didSet { verifyBar() }
   }
@@ -28,7 +28,7 @@ class PluginManager {
   /**
     Reads plugins from @path and send notifications back to @delegate
   */
-  init(path: String, delegate: TrayDelegate) {
+  init(path: String, delegate: TrayDelegate?) {
     self.tray = Tray(title: "BitBar", delegate: delegate)
     self.delegate = delegate
     self.path = path

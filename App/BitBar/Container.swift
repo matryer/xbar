@@ -3,7 +3,7 @@
 */
 class Container {
   private var store = [String: [Param]]()
-  internal var delegate: MenuDelegate?
+  internal weak var delegate: MenuDelegate?
 
   init() {
     /* TODO: Remove this. Not sure why it's needed */

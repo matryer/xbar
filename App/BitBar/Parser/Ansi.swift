@@ -1,6 +1,7 @@
 import Hue
 typealias Stringish = NSMutableAttributedString
 
+/* TODO: Use Extensions/NSMutableAttributedString.swift */
 final class Ansi: BoolVal {
   override func applyTo(menu: MenuDelegate) {
     guard getValue() else {
@@ -81,7 +82,7 @@ class Action {
     stringish.addAttribute(
       NSForegroundColorAttributeName,
       value: color,
-      range: NSMakeRange(0, stringish.length)
+      range: NSRange(location: 0, length: stringish.length)
     )
   }
 

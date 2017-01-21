@@ -3,7 +3,7 @@ import AppKit
 import EmitterKit
 
 final class PrefItem: ItemBase {
-  private var delegate: TrayDelegate?
+  private weak var delegate: TrayDelegate?
 
   convenience init(delegate: TrayDelegate?) {
     self.init("Preferences")

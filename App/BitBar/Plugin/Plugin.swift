@@ -11,14 +11,14 @@ class Plugin: TrayDelegate {
   private let file: File
   private let path: String
   private let tray = Tray(title: "…")
-  private var delegate: TrayDelegate
+  private weak var delegate: TrayDelegate?
 
   /**
     @path An absolute path to the script
     @file A file object containing {name}.{time}.{ext}
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
-  init(path: String, file: File, delegate: TrayDelegate) {
+  init(path: String, file: File, delegate: TrayDelegate?) {
     self.file = file
     self.path = path
     self.delegate = delegate
@@ -100,20 +100,20 @@ class Plugin: TrayDelegate {
     User clicked 'Refresh All'
   */
   func preferenceDidRefreshAll() {
-    delegate.preferenceDidRefreshAll()
+    delegate?.preferenceDidRefreshAll()
   }
 
   /**
     User clicked 'Quit'
   */
   func preferenceDidQuit() {
-    delegate.preferenceDidQuit()
+    delegate?.preferenceDidQuit()
   }
 
   /**
     User changed plugin folder
   */
   func preferenceDidChangePluginFolder() {
-    delegate.preferenceDidChangePluginFolder()
+    delegate?.preferenceDidChangePluginFolder()
   }
 }

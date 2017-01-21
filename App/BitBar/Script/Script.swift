@@ -5,14 +5,13 @@ import EmitterKit
 import Async
 
 // TODO Handle this error: http://stackoverflow.com/questions/25559608/running-shell-script-with-nstask-causes-posix-spawn-error
-
 class Script: Base {
-  let path: String
-  let args: [String]
-  var events = [Listener]()
-  let finishEvent = Event<Void>()
-  var process: Async?
-  var delegate: ScriptDelegate?
+  private let path: String
+  private let args: [String]
+  private var events = [Listener]()
+  private let finishEvent = Event<Void>()
+  private var process: Async?
+  private weak var delegate: ScriptDelegate?
 
   /**
     @path Full path to script to be executed
