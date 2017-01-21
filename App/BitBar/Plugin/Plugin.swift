@@ -10,7 +10,7 @@ import Swift
 class Plugin: TrayDelegate {
   private let file: File
   private let path: String
-  private let tray: Tray
+  private let tray = Tray(title: "…")
   private var delegate: TrayDelegate
 
   /**
@@ -19,10 +19,10 @@ class Plugin: TrayDelegate {
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
   init(path: String, file: File, delegate: TrayDelegate) {
-    self.tray = Tray(title: "…", delegate: delegate)
     self.file = file
     self.path = path
     self.delegate = delegate
+    self.tray.delegate = self
   }
 
   /**

@@ -18,13 +18,13 @@ class Tray: NSObject, NSMenuDelegate {
   // FIXME: Should not be internal, should be private
   internal let item: NSStatusItem = NSStatusBar.system()
     .statusItem(withLength: NSVariableStatusItemLength)
-  private let delegate: TrayDelegate
+  internal weak var delegate: TrayDelegate?
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible: Bool = false, delegate: TrayDelegate) {
+  init(title: String, isVisible: Bool = false, delegate: TrayDelegate? = nil) {
     self.delegate = delegate
     super.init()
 
@@ -108,7 +108,7 @@ class Tray: NSObject, NSMenuDelegate {
     updatedAgoItem = UpdatedAgoItem()
     item.menu?.addItem(updatedAgoItem!)
     item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
-      self.delegate.preferenceDidOpenInTerminal()
+      self.delegate?.preferenceDidOpenInTerminal()
     })
     item.menu?.addItem(PrefItem(delegate: delegate))
   }
