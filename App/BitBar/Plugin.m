@@ -259,8 +259,14 @@
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   // build the menu
-  NSMenu *menu = NSMenu.new;
-  [menu setDelegate:self];
+  NSMenu * menu = statusItem.menu;
+  if (menu == nil) {
+    menu = NSMenu.new;
+    statusItem.menu = menu;
+    menu.delegate = self;
+  }
+  
+  [menu removeAllItems];
   
   if (self.isMultiline) {
     
@@ -315,14 +321,11 @@
               [submenu addItem:item];
           }
         }
-        
       }
       
       // add the seperator
       [menu addItem:[NSMenuItem separatorItem]];
-      
     }
-    
   }
   
   if (self.lastUpdated != nil) {
@@ -333,10 +336,6 @@
   
   [self addAdditionalMenuItems:menu];
   [self addDefaultMenuItems:menu];
-  
-  // set the menu
-  statusItem.menu = menu;
-  
 }
 
 - (void) addDefaultMenuItems:(NSMenu *)menu {
