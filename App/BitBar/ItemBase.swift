@@ -25,6 +25,7 @@ class ItemBase: NSMenuItem {
   convenience init(_ title: String, key: String = "", block: @escaping Block<ItemBase>) {
     self.init(title, key: key)
     listeners.append(clickEvent.on(block))
+    activate()
   }
 
   /**
