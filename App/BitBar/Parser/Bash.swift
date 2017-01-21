@@ -40,7 +40,7 @@ final class Bash: StringVal {
       guard errors.numberOfItems == 0 else {
         return "Received errors when running script \(errors)"
       }
-      
+
       return nil
     }.main { (error: String?) in
       print("Errors: \(error)")

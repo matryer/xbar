@@ -42,7 +42,7 @@ class ItemBase: NSMenuItem {
       submenu = NSMenu()
       submenu?.autoenablesItems = false
     }
-    
+
     submenu?.addItem(menu)
     activate()
   }
