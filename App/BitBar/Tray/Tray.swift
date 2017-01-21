@@ -8,7 +8,7 @@ import SwiftyUserDefaults
   TODO: Remove @item from NSStatusBar.system()
     instead of using isVisible = false or hide()
 */
-class Tray: Base, NSMenuDelegate {
+class Tray: NSObject, NSMenuDelegate {
   private var listeners = [Listener]()
   private let openEvent = Event<Void>()
   private let closeEvent = Event<Void>()
@@ -18,14 +18,16 @@ class Tray: Base, NSMenuDelegate {
   // FIXME: Should not be internal, should be private
   internal let item: NSStatusItem = NSStatusBar.system()
     .statusItem(withLength: NSVariableStatusItemLength)
-  internal var delegate: TrayDelegate?
+  private let delegate: TrayDelegate
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible: Bool = false) {
+  init(title: String, isVisible: Bool = false, delegate: TrayDelegate) {
+    self.delegate = delegate
     super.init()
+
     item.title = title
     setMenu(NSMenu())
 
@@ -106,14 +108,14 @@ class Tray: Base, NSMenuDelegate {
     updatedAgoItem = UpdatedAgoItem()
     item.menu?.addItem(updatedAgoItem!)
     item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
-      self.delegate?.preferenceDidOpenInTerminal()
+      self.delegate.preferenceDidOpenInTerminal()
     })
     item.menu?.addItem(PrefItem(delegate: delegate))
   }
 
   // Private, not to be called
   // Marked with 'internal' as NSMenuDelegate
-  // doesn't allow for 'private' 
+  // doesn't allow for 'private'
   internal func menuWillOpen(_ menu: NSMenu) {
     openEvent.emit()
   }

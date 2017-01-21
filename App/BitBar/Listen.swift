@@ -4,7 +4,6 @@ import EmitterKit
  Used in AppDelegate to observe notifications
 */
 
-
 class Listen {
   private var units = [EventUnit]()
   private let center: NotificationCenter

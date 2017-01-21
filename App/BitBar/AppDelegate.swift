@@ -35,10 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
     Use changed plugin folder
   */
   func preferenceDidChangePluginFolder() {
-    PathSelector(withURL: App.pluginURL).ask {
-      App.update(pluginPath: $0.path)
-      self.loadPluginManager()
-    }
+    App.askAboutPluginPath { self.loadPluginManager() }
   }
 
   /**
@@ -50,8 +47,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, TrayDelegate {
 
   private func loadPluginManager() {
     manager?.quit()
-    if let pluginPath = Defaults[.pluginPath] {
-      manager = PluginManager(path: pluginPath, delegate: self)
+    if let path = App.pluginPath {
+      manager = PluginManager(path: path, delegate: self)
+    } else {
+      App.askAboutPluginPath { self.loadPluginManager() }
     }
   }
 }

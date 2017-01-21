@@ -15,19 +15,19 @@ import Files
     4. Notifying the TrayDelegate if a plugin closes
 */
 class PluginManager {
+  private let tray: Tray
   private let path: String
-  private let tray = Tray(title: "BitBar")
   private var errors = [Tray]()
   private var plugins = [Plugin]()
-  private var delegate: TrayDelegate?
+  private var delegate: TrayDelegate
 
   /**
     Reads plugins from @path and send notifications back to @delegate
   */
-  init(path: String, delegate: TrayDelegate?) {
+  init(path: String, delegate: TrayDelegate) {
+    self.tray = Tray(title: "BitBar", delegate: delegate)
     self.delegate = delegate
     self.path = path
-    tray.delegate = delegate
     setPlugins()
   }
 
@@ -48,14 +48,13 @@ class PluginManager {
     case let Result.success(file, _):
       plugins.append(ExecutablePlugin(path: path, file: file, delegate: delegate))
     case let Result.failure(lines):
-      let tray = Tray(title: "Loading...")
+      let tray = Tray(title: "Loading...", delegate: delegate)
       let li = [
         "Invalid file name '\(path)'",
         "Should be on the form {name}.{number}{unit}.{ext}",
         "Eg. 'aFile.10d.sh'",
       ] + lines
       let title = Title(errors: li)
-      tray.delegate = delegate
       title.applyTo(tray: tray)
       errors.append(tray)
     }

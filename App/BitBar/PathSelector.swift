@@ -9,6 +9,7 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
   /* Text on button */
   private static let title = "Use as Plugins Directory"
   private let event = Event<URL>()
+  private var listeners = [Listener]()
 
   /**
     @url First folder being displayed in the file selector
@@ -28,7 +29,7 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
   }
 
   func ask(block: @escaping Block<URL>) {
-    event.once { url in block(url) }
+    listeners.append(event.on { url in block(url) })
     runModal()
   }
 
