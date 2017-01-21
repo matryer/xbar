@@ -78,6 +78,7 @@
 		209F70811E32E298005365B2 /* Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70801E32E298005365B2 /* Listen.swift */; };
 		209F70831E32EA9E005365B2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70821E32EA9E005365B2 /* App.swift */; };
 		209F70851E3316C4005365B2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70841E3316C4005365B2 /* Container.swift */; };
+		209F70871E331AF4005365B2 /* PathSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70861E331AF4005365B2 /* PathSelector.swift */; };
 		20A39F6D1E26CA0B001BAB72 /* Checked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A39F6C1E26CA0B001BAB72 /* Checked.swift */; };
 		20AB0A681E1DAE11000DFFFD /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A661E1DAE11000DFFFD /* Title.swift */; };
 		20AB0A701E1DD194000DFFFD /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB0A6E1E1DD194000DFFFD /* Terminal.swift */; };
@@ -181,6 +182,7 @@
 		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Listen.swift; path = BitBar/Listen.swift; sourceTree = "<group>"; };
 		209F70821E32EA9E005365B2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = BitBar/App.swift; sourceTree = "<group>"; };
 		209F70841E3316C4005365B2 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Container.swift; path = BitBar/Container.swift; sourceTree = "<group>"; };
+		209F70861E331AF4005365B2 /* PathSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathSelector.swift; path = BitBar/PathSelector.swift; sourceTree = "<group>"; };
 		20A115BF1E15E43E00A68722 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115CE1E15E43F00A68722 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115D41E15E43F00A68722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				209F70861E331AF4005365B2 /* PathSelector.swift */,
 				209F70841E3316C4005365B2 /* Container.swift */,
 				209F70821E32EA9E005365B2 /* App.swift */,
 				209F70801E32E298005365B2 /* Listen.swift */,
@@ -687,6 +690,7 @@
 				207BD8871E2379EA007AA0C7 /* Refresh.swift in Sources */,
 				2031E99E1E325AE2004A33E5 /* NSAttributedString.swift in Sources */,
 				20C8B98E1E237D76005DBC9D /* Parser.swift in Sources */,
+				209F70871E331AF4005365B2 /* PathSelector.swift in Sources */,
 				207BD88C1E2379EA007AA0C7 /* Title.swift in Sources */,
 				20642E7F1E2A758B004D9A28 /* MenuDelegate.swift in Sources */,
 				2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */,

@@ -17,21 +17,11 @@ final class PrefItem: ItemBase {
     separator()
 
     addSub("Change Plugin Folder…") {
-      // TODO: Move this logic into its own class
-      let openPanel = NSOpenPanel()
-      openPanel.allowsMultipleSelection = false
-      openPanel.prompt = "Use as Plugins Directory"
-
       if let url = App.pluginURL {
-        openPanel.directoryURL = url
-      }
-
-      openPanel.canChooseDirectories = true
-      openPanel.canCreateDirectories = false
-      openPanel.canChooseFiles = false
-      if openPanel.runModal() == NSModalResponseOK {
-        App.update(pluginPath: openPanel.url?.path)
-        self.delegate?.preferenceDidChangePluginFolder()
+        PathSelector(withURL: url).ask { url in
+          App.update(pluginPath: url.path)
+          self.delegate?.preferenceDidChangePluginFolder()
+        }
       }
     }
 

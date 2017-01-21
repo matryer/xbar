@@ -17,11 +17,18 @@ class Tray: Base, NSMenuDelegate, NSOpenSavePanelDelegate {
     super.init()
     item.title = title
     setMenu(NSMenu())
+
     onDidOpen {
       self.updatedAgoItem?.touch()
       self.isOpen = true
+      self.item.highlightMode = true
     }
-    onDidClose { self.isOpen = false }
+
+    onDidClose {
+      self.isOpen = false
+      self.item.highlightMode = false
+    }
+
     if isVisible {
       show()
     }
