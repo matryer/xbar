@@ -1,4 +1,5 @@
 import Cocoa
+import Async
 
 // TODO: Use the delegate pattern for the
 // Param protocol instead of #applyTo
@@ -29,13 +30,20 @@ final class Bash: StringVal {
       "do script \"\(script)\" \n" +
       "activate \n" +
       "end tell"
-    guard let script = NSAppleScript(source: tell) else {
-      return print("Could not parse script: \(tell)")
-    }
 
-    let errors = script.executeAndReturnError(nil)
-    guard errors.numberOfItems == 0 else {
-      return print("Received errors when running script \(errors)")
+    Async.background {
+      guard let script = NSAppleScript(source: tell) else {
+        return "Could not parse script: \(tell)"
+      }
+
+      let errors = script.executeAndReturnError(nil)
+      guard errors.numberOfItems == 0 else {
+        return "Received errors when running script \(errors)"
+      }
+      
+      return nil
+    }.main { (error: String?) in
+      print("Errors: \(error)")
     }
   }
 }
