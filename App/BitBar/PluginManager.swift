@@ -17,9 +17,13 @@ import Files
 class PluginManager {
   private let tray: Tray
   private let path: String
-  private var errors = [Tray]()
-  private var plugins = [Plugin]()
   private var delegate: TrayDelegate
+  private var errors = [Tray]() {
+    didSet { verifyBar() }
+  }
+  private var plugins = [Plugin]() {
+    didSet { verifyBar() }
+  }
 
   /**
     Reads plugins from @path and send notifications back to @delegate
@@ -29,6 +33,7 @@ class PluginManager {
     self.delegate = delegate
     self.path = path
     setPlugins()
+    verifyBar()
   }
 
   /**
@@ -52,7 +57,7 @@ class PluginManager {
       let li = [
         "Invalid file name '\(path)'",
         "Should be on the form {name}.{number}{unit}.{ext}",
-        "Eg. 'aFile.10d.sh'",
+        "Eg. 'aFile.10d.sh'"
       ] + lines
       let title = Title(errors: li)
       title.applyTo(tray: tray)
@@ -62,6 +67,14 @@ class PluginManager {
 
   private func fileFor(name: String) -> Result<File> {
     return Pro.parse(Pro.getFile(), name)
+  }
+
+  private func verifyBar() {
+    if errors.isEmpty && plugins.isEmpty {
+      tray.show()
+    } else {
+      tray.hide()
+    }
   }
 
   private func setPlugins() {

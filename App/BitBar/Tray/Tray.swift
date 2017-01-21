@@ -24,7 +24,7 @@ class Tray: NSObject, NSMenuDelegate {
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible: Bool = false, delegate: TrayDelegate? = nil) {
+  init(title: String, isVisible: Bool = true, delegate: TrayDelegate? = nil) {
     self.delegate = delegate
     super.init()
 
