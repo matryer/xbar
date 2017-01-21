@@ -16,7 +16,7 @@ final class PrefItem: ItemBase {
 
     separator()
 
-    addSub("Change Plugin Folder…") {
+    addSub("Change Plugin Folder…", key: ",") {
       self.delegate?.preferenceDidChangePluginFolder()
     }
 
