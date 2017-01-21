@@ -16,7 +16,9 @@
 
 #define DEFAULT_TIME_INTERVAL_SECONDS ((double)60.)
 
-@implementation Plugin
+@implementation Plugin {
+  NSMutableDictionary * cycleCache;
+}
 
 - init { return (self = super.init) ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
 
@@ -47,10 +49,10 @@
 }
 
 - (NSMenuItem*) buildMenuItemWithParams:(NSDictionary *)params {
-
   if ([[params[@"dropdown"] lowercaseString] isEqualToString:@"false"]) {
     return nil;
   }
+  
   
   NSString * fullTitle = params[@"title"];
   if (![[params[@"emojize"] lowercaseString] isEqualToString:@"false"]) {
@@ -93,7 +95,7 @@
   }else if (params[@"image"]) {
     item.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
   }
-
+  
   return item;
 }
 
@@ -256,7 +258,6 @@
 }
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
-  
   // build the menu
   NSMenu *menu = NSMenu.new;
   [menu setDelegate:self];
@@ -397,9 +398,12 @@
 - (NSString*) lastUpdatedString { return [self.lastUpdated timeAgoSinceNow].lowercaseString; }
 
 - (void) cycleLines {
-  
   // do nothing if the menu is open
   if (self.menuIsOpen) { return; };
+  
+  if (cycleCache == nil) {
+    cycleCache = [NSMutableDictionary new];
+  }
   
   // update the status item
   self.currentLine++;
@@ -410,7 +414,9 @@
   }
   
   if (self.titleLines.count > 0) {
-    NSDictionary * params = [self dictionaryForLine:self.titleLines[self.currentLine]];
+    NSString * titleLine = self.titleLines[self.currentLine];
+    
+    NSDictionary * params = [self dictionaryForLine:titleLine];
     
     // skip alternate line
     if (params[@"alternate"]) {
@@ -434,11 +440,20 @@
     }else if (params[@"image"]) {
       self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
     } else {
-      self.statusItem.image = nil;
+      if (self.statusItem.image != nil) {
+        self.statusItem.image = nil;
+      }
     }
     
+    NSAttributedString * cached = cycleCache[titleLine];
+    if (!cached) {
+      cached = [self attributedTitleWithParams:params];
+      cycleCache[titleLine] = cached;
+    }
     
-    self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+    if (![cached isEqualToAttributedString:self.statusItem.attributedTitle]) {
+      self.statusItem.attributedTitle = cached;
+    }
     self.pluginIsVisible = YES;
   } else {
     self.statusItem = nil;
@@ -584,6 +599,8 @@
   }
   
   self.menuIsOpen = YES;
+  
+  [self rebuildMenuForStatusItem:self.statusItem];
   
   if (self.currentLine >= 0 && self.currentLine < self.titleLines.count) {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForLine:self.titleLines[self.currentLine]]];

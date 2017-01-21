@@ -85,8 +85,6 @@
         
         strongSelf.lastUpdated = NSDate.new;
         
-        [strongSelf rebuildMenuForStatusItem:strongSelf.statusItem];
-        
         // reset the current line
         strongSelf.currentLine = -1;
         
