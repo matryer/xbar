@@ -10,7 +10,7 @@ import Swift
 class Plugin {
   private let file: File
   private let path: String
-  // private let tray = Tray(title: "…")
+  private var title: Title?
   private var output: Output?
 
   /**
@@ -40,8 +40,9 @@ class Plugin {
       result.title.onDidRefresh { self.refresh() }
       output?.destroy()
       output = result
-    case let Result.failure(error):
-      didReceiveError(String(describing: error))
+      title = nil
+    case let Result.failure(lines):
+      title = Title(errors: lines)
     }
   }
 
@@ -49,9 +50,8 @@ class Plugin {
     Either the script failed in Script or the parser failed
     in didReceivedOutput. The output is parsed and displayed for the user
   */
-  func didReceiveError(_ data: String) {
-    // TODO: Implement a proper tray.set(error: ...) function
-    // tray.clear(title: "Error...")
+  func didReceiveError(_ message: String) {
+    title = Title(error: message)
   }
 
   /**
@@ -74,7 +74,8 @@ class Plugin {
     Completely removes plugin from menu bar
   */
   func destroy() {
-    hide()
+    title?.destroy()
     output?.destroy()
   }
+  deinit { destroy() }
 }

@@ -90,15 +90,6 @@ class Tray: NSObject, NSMenuDelegate {
   }
 
   /**
-    TODO: Replace with set(error: String)
-    Currently being used by Plugin
-  */
-  func clear(title: String) {
-    item.menu?.removeAllItems()
-    item.title = title
-  }
-
-  /**
     @block is called every time the drop down menu bar is shown
   */
   func onDidOpen(block: @escaping () -> Void) {
