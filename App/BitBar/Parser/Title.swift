@@ -1,11 +1,66 @@
 import AppKit
 import EmitterKit
 
-final class Title: NSMenu, MenuDelegate {
+protocol Menuable: MenuDelegate {
+  var aTitle: NSMutableAttributedString { get set }
+  var image: NSImage? { get set }
+}
+
+extension Menuable {
+  func set(title: NSMutableAttributedString) {
+    aTitle = title
+  }
+
+  func update(title: String) {
+    update(attr: NSMutableAttributedString(string: title))
+  }
+
+  // TODO: Rename to set
+  func update(attr: NSMutableAttributedString) {
+    set(title: aTitle.merge(attr))
+  }
+
+  func update(attrs: [String: Any]) {
+    set(title: aTitle.update(attr: attrs))
+  }
+
+  func update(image anImage: NSImage, isTemplate: Bool = false) {
+    image = anImage
+    image?.isTemplate = isTemplate
+  }
+
+  func update(size: Float) {
+    set(title: aTitle.update(fontSize: size))
+  }
+
+  func update(color: NSColor) {
+    update(key: NSForegroundColorAttributeName, value: color)
+  }
+
+  func update(key: String, value: Any) {
+    update(attrs: [key: value])
+  }
+
+  func getAttrs() -> NSMutableAttributedString {
+    return aTitle
+  }
+
+  func update(fontName: String) {
+    set(title: aTitle.update(fontName: fontName))
+  }
+}
+
+
+final class Title: NSMenu, Menuable {
   var menus = [Menu]() {
     willSet(menus) {
       apply(menus: menus)
     }
+  }
+
+  var image: NSImage? {
+    get { return tray.image }
+    set { tray.image = newValue }
   }
 
   var params: [Param] {
@@ -29,9 +84,10 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   private func apply(menus: [Menu]) {
-//    guard hasDropdown() else {
-//      return removeAllSubMenus()
-//    }
+   guard container.hasDropdown() else {
+    return
+//     return removeAllSubMenus()
+   }
 
     for menu in menus {
       if menu.isSeparator() {
@@ -55,10 +111,6 @@ final class Title: NSMenu, MenuDelegate {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func getAttrs() -> NSMutableAttributedString {
-    return currentTitle()
-  }
-
   func onDidRefresh(block: @escaping () -> Void) {
     events.append(refreshEvent.on(block))
   }
@@ -67,37 +119,42 @@ final class Title: NSMenu, MenuDelegate {
     return false
   }
 
-  func update(title: String) {
-    update(attr: NSMutableAttributedString(string: title))
-  }
+  // func update(title: String) {
+  //   update(attr: NSMutableAttributedString(string: title))
+  // }
 
-  // TODO: Rename to set
-  func update(attr: NSMutableAttributedString) {
-    set(title: currentTitle().merge(attr))
-  }
-
-  func update(attrs: [String: Any]) {
-    set(title: currentTitle().update(attr: attrs))
-  }
+  // // TODO: Rename to set
+  // func update(attr: NSMutableAttributedString) {
+  //   set(title: currentTitle().merge(attr))
+  // }
+  //
+  // func update(attrs: [String: Any]) {
+  //   set(title: currentTitle().update(attr: attrs))
+  // }
 
   func onDidClick(block: @escaping () -> Void) {
     // TODO
   }
 
-  func update(image: NSImage, isTemplate: Bool = false) {
-    tray.image = image
-  }
+  // func update(image: NSImage, isTemplate: Bool = false) {
+  //   tray.image = image
+  // }
+  //
+  // func update(key: String, value: Any) {
+  //   update(attrs: [key: value])
+  // }
+  //
+  // func update(fontName: String) {
+  //   set(title: currentTitle().update(fontName: fontName))
+  // }
+  //
+  // func set(title: NSMutableAttributedString) {
+  //   tray.attributedTitle = title
+  // }
 
-  func update(key: String, value: Any) {
-    update(attrs: [key: value])
-  }
-
-  func update(fontName: String) {
-    set(title: currentTitle().update(fontName: fontName))
-  }
-
-  func set(title: NSMutableAttributedString) {
-    tray.attributedTitle = title
+  var aTitle: NSMutableAttributedString {
+    get { return tray.attributedTitle }
+    set { tray.attributedTitle = newValue }
   }
 
   deinit { destroy() }
@@ -105,13 +162,13 @@ final class Title: NSMenu, MenuDelegate {
     tray.destroy()
   }
 
-  func update(size: Float) {
-    set(title: currentTitle().update(fontSize: size))
-  }
-
-  func update(color: NSColor) {
-    update(key: NSForegroundColorAttributeName, value: color)
-  }
+  // func update(size: Float) {
+  //   set(title: currentTitle().update(fontSize: size))
+  // }
+  //
+  // func update(color: NSColor) {
+  //   update(key: NSForegroundColorAttributeName, value: color)
+  // }
 
   func getTitle() -> String {
     return tray.attributedTitle.string
@@ -154,7 +211,7 @@ final class Title: NSMenu, MenuDelegate {
     // Not supported by menu item
   }
 
-  private func currentTitle() -> NSMutableAttributedString {
-    return tray.attributedTitle
-  }
+  // private func currentTitle() -> NSMutableAttributedString {
+  //   return tray.attributedTitle
+  // }
 }

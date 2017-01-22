@@ -2,11 +2,16 @@ import Cocoa
 import AppKit
 import EmitterKit
 
-final class Menu: ItemBase, MenuDelegate {
+final class Menu: ItemBase, Menuable {
   var level: Int = 0
   private var events = [Listener]()
   private let refreshEvent = Event<Void>()
   private var container = Container()
+
+  var aTitle: NSMutableAttributedString {
+    get { return currentTitle() }
+    set { attributedTitle = newValue }
+  }
 
   var params = [Param]() {
     willSet(params) {
@@ -63,25 +68,25 @@ final class Menu: ItemBase, MenuDelegate {
     keyEquivalentModifierMask = NSAlternateKeyMask
   }
 
-  /**
-    Replace current title with @attr
-    // TODO: Remove. Should be called update, not set
-  */
-  func update(attr: NSMutableAttributedString) {
-    set(title: currentTitle().merge(attr))
-  }
+  // /**
+  //   Replace current title with @attr
+  //   // TODO: Remove. Should be called update, not set
+  // */
+  // func update(attr: NSMutableAttributedString) {
+  //   set(title: currentTitle().merge(attr))
+  // }
 
-  /**
-    Use @color for the enture title
-  */
-  func update(color: NSColor) {
-    set(title: currentTitle().update(attr: [NSForegroundColorAttributeName: color]))
-  }
-
-  // TODO: Replace with set(title: String)
-  func update(title: String) {
-    update(attr: NSMutableAttributedString(string: title))
-  }
+  // /**
+  //   Use @color for the enture title
+  // */
+  // func update(color: NSColor) {
+  //   set(title: currentTitle().update(attr: [NSForegroundColorAttributeName: color]))
+  // }
+  //
+  // // TODO: Replace with set(title: String)
+  // func update(title: String) {
+  //   update(attr: NSMutableAttributedString(string: title))
+  // }
 
   /**
     @state Used to turn the checkbox marker on/off
@@ -90,27 +95,27 @@ final class Menu: ItemBase, MenuDelegate {
     self.state = state
   }
 
-  /**
-    Use @fontName, i.e Times-Roman
-  */
-  func update(fontName: String) {
-    set(title: currentTitle().update(fontName: fontName))
-  }
+  // /**
+  //   Use @fontName, i.e Times-Roman
+  // */
+  // func update(fontName: String) {
+  //   set(title: currentTitle().update(fontName: fontName))
+  // }
 
-  /**
-    Display an @image instead of text
-  */
-  func update(image: NSImage, isTemplate: Bool = false) {
-    self.image = image
-    self.image?.isTemplate = isTemplate
-  }
+  // /**
+  //   Display an @image instead of text
+  // */
+  // func update(image: NSImage, isTemplate: Bool = false) {
+  //   self.image = image
+  //   self.image?.isTemplate = isTemplate
+  // }
 
-  /**
-    Set the font size to @size
-  */
-  func update(size: Float) {
-    set(title: currentTitle().update(fontSize: size))
-  }
+  // /**
+  //   Set the font size to @size
+  // */
+  // func update(size: Float) {
+  //   set(title: currentTitle().update(fontSize: size))
+  // }
 
   /* TODO: Remove */
   func getValue() -> String {
@@ -182,11 +187,11 @@ final class Menu: ItemBase, MenuDelegate {
   func isSeparator() -> Bool {
     return title.strip() == "-"
   }
-
-  private func set(title: NSMutableAttributedString) {
-    attributedTitle = title
-  }
-
+  //
+  // private func set(title: NSMutableAttributedString) {
+  //   attributedTitle = title
+  // }
+  //
   private func currentTitle() -> NSMutableAttributedString {
     guard let title = attributedTitle else {
       return NSMutableAttributedString(withDefaultFont: "")

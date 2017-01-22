@@ -1,7 +1,7 @@
 import AppKit
 typealias Mutable = NSMutableAttributedString
 
-internal extension Mutable {
+extension Mutable {
   convenience init(withDefaultFont string: String) {
     let aFont = NSFont.menuBarFont(ofSize: NSFont.systemFontSize())
     self.init(string: string, attributes: [NSFontAttributeName: aFont])
