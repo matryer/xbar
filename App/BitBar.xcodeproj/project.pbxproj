@@ -28,7 +28,6 @@
 		20642E7F1E2A758B004D9A28 /* MenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */; };
 		20642E801E2A758B004D9A28 /* MenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */; };
 		206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067064E1E15F6DB000DAADE /* AppDelegate.swift */; };
-		206706681E15F6DB000DAADE /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706501E15F6DB000DAADE /* Base.swift */; };
 		2067066C1E15F6DB000DAADE /* ExecutablePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706561E15F6DB000DAADE /* ExecutablePlugin.swift */; };
 		2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706571E15F6DB000DAADE /* Plugin.swift */; };
 		2067066E1E15F6DB000DAADE /* PluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706581E15F6DB000DAADE /* PluginManager.swift */; };
@@ -131,7 +130,6 @@
 		20642E7B1E2A4E4C004D9A28 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = emoji.json; path = BitBar/Resources/emoji.json; sourceTree = "<group>"; };
 		20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDelegate.swift; sourceTree = "<group>"; };
 		2067064E1E15F6DB000DAADE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		206706501E15F6DB000DAADE /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		206706511E15F6DB000DAADE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BitBar/Info.plist; sourceTree = "<group>"; };
 		206706561E15F6DB000DAADE /* ExecutablePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePlugin.swift; sourceTree = "<group>"; };
 		206706571E15F6DB000DAADE /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
@@ -324,7 +322,6 @@
 				20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */,
 				20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */,
 				2067064E1E15F6DB000DAADE /* AppDelegate.swift */,
-				206706501E15F6DB000DAADE /* Base.swift */,
 				206706551E15F6DB000DAADE /* Plugin */,
 				206706581E15F6DB000DAADE /* PluginManager.swift */,
 				2067065F1E15F6DB000DAADE /* Script */,
@@ -672,7 +669,6 @@
 				206706761E15F6DB000DAADE /* Tray.swift in Sources */,
 				207BD87A1E2379EA007AA0C7 /* Bash.swift in Sources */,
 				2031E99F1E325AE2004A33E5 /* NSFont.swift in Sources */,
-				206706681E15F6DB000DAADE /* Base.swift in Sources */,
 				2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */,
 				207BD87C1E2379EA007AA0C7 /* Dropdown.swift in Sources */,
 				2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */,
