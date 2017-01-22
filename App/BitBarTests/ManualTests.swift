@@ -3,6 +3,47 @@ import Nimble
 @testable import BitBar
 
 class ManualTests: Helper {
+  func verifyBase64(_ parser: P<Image>, _ name: String) {
+    describe(name) {
+      it("handles valid string") {
+        self.match(parser, name + "=dGVzdGluZw==") {
+          expect($0.getValue()).to(equal("dGVzdGluZw=="))
+          expect($1).to(equal(""))
+        }
+      }
+
+      context("whitespace") {
+        let image = "dGVzdGluZw=="
+        it("strips pre whitespace") {
+          self.match(parser, name + "=    " + image) {
+            expect($0.getValue()).to(equal(image))
+            expect($1).to(equal(""))
+          }
+        }
+
+        it("strips post whitespace") {
+          self.match(parser, name + "=" + image + "  ") {
+            expect($0.getValue()).to(equal(image))
+            expect($1).to(equal(""))
+          }
+        }
+
+        it("strips whitespace") {
+          self.match(parser, name + "=  " + image + "  ") {
+            expect($0.getValue()).to(equal(image))
+            expect($1).to(equal(""))
+          }
+        }
+      }
+
+      context("fails") {
+        it("fails on empty string") {
+          self.failure(parser, name + "=")
+        }
+      }
+    }
+  }
+
   override func spec() {
     describe("parser") {
       describe("output") {
@@ -484,64 +525,41 @@ class ManualTests: Helper {
         }
 
         describe("length") {
+          let parser = Pro.getLength()
+
           it("handles positive value") {
-            self.match(Pro.getLength(), "length=10") {
+            self.match(parser, "length=10") {
               expect($0.getValue()).to(equal(10))
             }
           }
 
-          it("it fails on invalid value") {
-            // TODO
+          it("handles leading zeros") {
+            self.match(parser, "length=05") {
+              expect($0.getValue()).to(equal(5))
+            }
           }
-        }
 
-        func testBase64(_ parser: P<Image>, _ name: String) {
-          describe(name) {
-            it("handles valid string") {
-              self.match(parser, name + "=dGVzdGluZw==") {
-                expect($0.getValue()).to(equal("dGVzdGluZw=="))
-                expect($1).to(equal(""))
-              }
+          context("invalid values") {
+            it("fails on negative values") {
+              self.failure(parser, "length=-2")
             }
 
-            context("whitespace") {
-              let image = "dGVzdGluZw=="
-              it("strips pre whitespace") {
-                self.match(parser, name + "=    " + image) {
-                  expect($0.getValue()).to(equal(image))
-                  expect($1).to(equal(""))
-                }
-              }
-
-              it("strips post whitespace") {
-                self.match(parser, name + "=" + image + "  ") {
-                  expect($0.getValue()).to(equal(image))
-                  expect($1).to(equal(""))
-                }
-              }
-
-              it("strips whitespace") {
-                self.match(parser, name + "=  " + image + "  ") {
-                  expect($0.getValue()).to(equal(image))
-                  expect($1).to(equal(""))
-                }
-              }
+            it("fails on no value") {
+              self.failure(parser, "length=")
             }
 
-            context("fails") {
-              it("fails on empty string") {
-                self.failure(parser, name + "=")
-              }
+            it("fails on floats") {
+              self.failure(parser, "length=10.0")
             }
           }
         }
 
         describe("image") {
-          testBase64(Pro.getImage(), "image")
+          verifyBase64(Pro.getImage(), "image")
         }
 
         describe("templateImage") {
-          testBase64(Pro.getTemplateImage(), "templateImage")
+          verifyBase64(Pro.getTemplateImage(), "templateImage")
         }
 
         describe("color") {
