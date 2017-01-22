@@ -17,7 +17,7 @@ class StringVal: Param {
     return this.value == that.value
   }
 
-  func applyTo(menu: MenuDelegate) {
+  func applyTo(menu: Menuable) {
     // TODO: Remove
   }
 }

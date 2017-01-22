@@ -3,57 +3,44 @@ import AppKit
 import EmitterKit
 
 final class Menu: ItemBase, Menuable {
-  var level: Int = 0
-  private var events = [Listener]()
-  private let refreshEvent = Event<Void>()
-  private var container = Container()
+  internal var level: Int = 0
+  internal var events = [Listener]()
+  internal var refreshEvent = Event<Void>()
+  internal var container = Container()
+  internal var menus = [Menu]()
 
   var aTitle: NSMutableAttributedString {
     get { return currentTitle() }
     set { attributedTitle = newValue }
   }
 
-  var params = [Param]() {
-    willSet(params) {
-      apply(params: params)
-    }
-  }
-  var menus = [Menu]() {
-    willSet(menus) {
-      apply(menus: menus)
-    }
-  }
-
-  init(_ title: String, menus: [Menu] = []) {
+  /**
+    @title A title to be displayed as an item in a menu bar
+    @params Parameters read and parsed from stdin, i.e terminal=false
+    @menus Sub menus for this item
+    @level The number of levels down from the tray
+  */
+  init(_ title: String, params: [Param] = [], menus: [Menu] = [], level: Int = 0) {
     super.init(title)
-    self.menus = menus
-    self.container.delegate = self
-  }
-
-  // For testing
-  convenience init(_ title: String, level: Int, menus: [Menu]) {
-    self.init(title, menus: menus)
     self.level = level
+    add(menus: menus)
+    add(params: params)
   }
 
-  convenience init(_ title: String, params: [Param]) {
-    self.init(title, params: params, menus: [])
+  /**
+    Same as above, but derives the @level from a @parent
+  */
+  convenience init(_ title: String, params: [Param] = [], menus: [Menu] = [], parent: Menu) {
+    self.init(title, params: params, menus: menus, level: parent.level + 1)
   }
 
-  convenience init(_ title: String, parent: Menu, params: [Param]) {
-    self.init(title, params: params, menus: [])
-    // self.myParent = parent
-    self.level = parent.level + 1
-  }
-
-  convenience init(_ title: String, params: [Param], level: Int, menus: [Menu]) {
-    self.init(title, level: level, menus: menus)
-    self.params = params
-    apply(params: params)
-  }
-
-  convenience init(_ title: String, params: [Param], menus: [Menu]) {
-    self.init(title, params: params, level: 0, menus: menus)
+  /**
+    Add @menu to sub menu
+  */
+  func add(menu: NSMenuItem) {
+    if hasDropdown() {
+      addSub(menu)
+    }
   }
 
   /**
@@ -69,16 +56,6 @@ final class Menu: ItemBase, Menuable {
   */
   func update(state: Int) {
     self.state = state
-  }
-
-  /* TODO: Remove */
-  func getValue() -> String {
-    return title
-  }
-
-  /* TODO: Remove */
-  func toString() -> String {
-    return getValue()
   }
 
   /**
@@ -113,29 +90,6 @@ final class Menu: ItemBase, Menuable {
   }
 
   /**
-    @block is invoked when refresh=true and child
-    menu item has finished loading
-  */
-  func onDidRefresh(block: @escaping () -> Void) {
-    events.append(refreshEvent.on(block))
-  }
-
-  /* TODO: Rename */
-  func getAttrs() -> NSMutableAttributedString {
-    return aTitle
-  }
-
-  /* TODO: Rename */
-  func getArgs() -> [String] {
-    return container.args
-  }
-
-  /* TODO: Remove */
-  func getTitle() -> String {
-    return aTitle.string
-  }
-
-  /**
     Menus starting with a dash "-" are considered separators
   */
   func isSeparator() -> Bool {
@@ -152,24 +106,5 @@ final class Menu: ItemBase, Menuable {
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  private func apply(menus: [Menu]) {
-    // guard hasDropdown() else {
-    //   return removeAllSubMenus()
-    // }
-
-    for menu in menus {
-      if menu.isSeparator() {
-        addSub(NSMenuItem.separator())
-      } else {
-        addSub(menu)
-      }
-    }
-  }
-
-  private func apply(params: [Param]) {
-    container.append(params: params)
-    container.apply()
   }
 }

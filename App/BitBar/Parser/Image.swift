@@ -17,7 +17,7 @@ final class Image: StringVal {
     self.isTemplate = isTemplate
   }
 
-  override func applyTo(menu: MenuDelegate) {
+  override func applyTo(menu: Menuable) {
     guard let unpacked = data else {
       // TODO: Better error handling
       return print("Could not load image")

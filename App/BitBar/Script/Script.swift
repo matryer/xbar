@@ -10,7 +10,7 @@ class Script {
   private let args: [String]
   private var events = [Listener]()
   private let finishEvent = Event<Void>()
-  private var process: Async?
+  private var process: AsyncBlock<(String?, Int32), Void>?
   private weak var delegate: ScriptDelegate?
 
   /**
@@ -38,6 +38,7 @@ class Script {
   func stop() {
     process?.cancel()
   }
+  deinit { stop() }
 
   /**
     Restart script. Does not wait until running script finishes
@@ -56,8 +57,11 @@ class Script {
   */
   func start() {
     stop()
+
     process = Async.background {
-      switch self.shell(self.path, self.args) {
+      return self.execute()
+    }.main {
+      switch $0 {
       case let (.some(output), 0):
         self.delegate?.scriptDidReceiveOutput(output)
       case let (.none, code):
@@ -65,17 +69,16 @@ class Script {
       case let (.some(output), code):
         self.delegate?.scriptDidReceiveError(output, code)
       }
-    }.main {
       self.finishEvent.emit()
     }
   }
 
-  private func shell(_ launchPath: String, _ arguments: [String] = []) -> (String?, Int32) {
+  private func execute() -> (String?, Int32) {
     let task = Process()
     let pipe = Pipe()
 
-    task.launchPath = launchPath
-    task.arguments = arguments
+    task.launchPath = path
+    task.arguments = args
 
     task.standardOutput = pipe
     task.standardError = pipe
@@ -85,6 +88,4 @@ class Script {
     let output = String(data: data, encoding: .utf8)
     return (output?.dropLast(), task.terminationStatus)
   }
-
-  deinit { stop() }
 }

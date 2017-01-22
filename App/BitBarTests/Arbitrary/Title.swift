@@ -60,7 +60,7 @@ extension Title: Base {
     }
 
     if !params.isEmpty {
-      for (index, param1) in params.enumerated() {
+      for param1 in params {
         if !title.params.reduce(false) { acc, param2 in
           acc || (param1.toString() == param2.toString())
         } {

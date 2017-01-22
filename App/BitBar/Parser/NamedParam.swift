@@ -19,15 +19,11 @@ final class NamedParam: Param {
     return "param" + key + "=" + value
   }
 
-  func add(_ menu: Menu) {
-    menu.params.append(self)
-  }
-
   static func == (_ this: NamedParam, _ that: NamedParam) -> Bool {
     return this.key == that.key && this.value == that.value
   }
 
-  func applyTo(menu: MenuDelegate) {
+  func applyTo(menu: Menuable) {
     // TODO: Remove
   }
 

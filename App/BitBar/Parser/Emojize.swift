@@ -6,7 +6,7 @@ final class Emojize: BoolVal {
   private static let emojis = getEmojis()
   private static let parser = Pro.replaceEmojize(replace: forChar)
 
-  override func applyTo(menu: MenuDelegate) {
+  override func applyTo(menu: Menuable) {
     guard getValue() else {
       return print("[INFO] Emojize has been turned off")
     }

@@ -53,8 +53,8 @@ extension Menu: Base {
     return Gen.compose { gen in
       return Menu(
         gen.generate(using: aSentence()),
-        level: level,
-        menus: gen.generate(using: subMenusFrom(level: level))
+        menus: gen.generate(using: subMenusFrom(level: level)),
+        level: level
       )
     }
   }
@@ -82,8 +82,8 @@ extension Menu: Base {
 
   // TODO: Impl. as static func ==
   private func eq(_ other: Menu) -> Bool {
-    if other.title != title {
-      return puts(false, "title")
+    if other.toString() != toString() {
+      return puts(false, "title => (other)" + other.toString() + " vs (gen)" + toString())
     }
 
     if other.menus.count != menus.count {
@@ -96,13 +96,17 @@ extension Menu: Base {
       }
     }
 
-    if other.params.count != params.count {
-      return puts(false, "params.count")
+    if params.count != other.params.count {
+      return puts(false, "menus.params")
     }
 
-    for (index, param) in params.enumerated() {
-      if param.toString() != other.params[index].toString() {
-        return puts(false, "param.toString()")
+    if !params.isEmpty {
+      for param1 in params {
+        if !other.params.reduce(false) { acc, param2 in
+          acc || (param1.toString() == param2.toString())
+        } {
+          return puts(false, "param1 != param2")
+        }
       }
     }
 

@@ -5,6 +5,7 @@ import EmitterKit
 class ItemBase: NSMenuItem {
   private let clickEvent = Event<ItemBase>()
   private var listeners = [Listener]() {
+    // Make item clickable when click observers are added
     didSet { activate() }
   }
 

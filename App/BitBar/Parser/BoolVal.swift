@@ -13,7 +13,7 @@ class BoolVal: Param {
     return value
   }
 
-  func applyTo(menu: MenuDelegate) {
+  func applyTo(menu: Menuable) {
     // TODO:
   }
 }

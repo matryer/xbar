@@ -1,5 +1,5 @@
 final class Trim: BoolVal {
-  override func applyTo(menu: MenuDelegate) {
+  override func applyTo(menu: Menuable) {
     guard getValue() else {
       return print("Trim is set to false")
     }

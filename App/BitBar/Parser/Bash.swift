@@ -6,7 +6,7 @@ import Async
 // I.e bash.delegate = menu
 // then in bash; delegate?.shouldRefresh()
 final class Bash: StringVal {
-  override func applyTo(menu: MenuDelegate) {
+  override func applyTo(menu: Menuable) {
     menu.onDidClick {
       // TODO: Rename to shouldOpenInTerminal (or something simular)
       if menu.openTerminal() {
@@ -24,6 +24,8 @@ final class Bash: StringVal {
     @script is an absolute path to script
   */
   static func open(script: String) {
+    if App.isInTestMode() { return }
+
     // TODO: What happens if @script contains spaces?
     let tell =
       "tell application \"Terminal\" \n" +

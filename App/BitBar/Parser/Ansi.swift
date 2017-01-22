@@ -3,7 +3,7 @@ typealias Stringish = NSMutableAttributedString
 
 /* TODO: Use Extensions/NSMutableAttributedString.swift */
 final class Ansi: BoolVal {
-  override func applyTo(menu: MenuDelegate) {
+  override func applyTo(menu: Menuable) {
     guard getValue() else {
       return print("Ansi is turned off")
     }

@@ -393,20 +393,20 @@ class Pro {
     }
   }
 
-  private static func merge(_ title: String, level: Int, _ prm: [Param], _ menus: [Menu]) -> Menu {
-    return Menu(title, params: prm, level: level, menus: menus)
+  private static func merge(_ title: String, level: Int, _ params: [Param], _ menus: [Menu]) -> Menu {
+    return Menu(title, params: params, menus: menus, level: level)
   }
 
   private static func mergeTitle(_ title: String, _ params: [Param], _ menus: [Menu]) -> Title {
     return Title(title, params: params, menus: menus)
   }
 
-  private static func merge(_ title: String, _ parent: Menu, _ prm: [Param]) -> Menu {
-    return Menu(title, parent: parent, params: prm)
+  private static func merge(_ title: String, _ parent: Menu, _ params: [Param]) -> Menu {
+    return Menu(title, params: params, parent: parent)
   }
 
-  private static func merge(_ menu: Menu, _ subs: [Menu]) -> Menu {
-    menu.menus = subs
+  private static func merge(_ menu: Menu, _ menus: [Menu]) -> Menu {
+    menu.add(menus: menus)
     return menu
   }
 

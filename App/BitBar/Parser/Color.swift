@@ -18,7 +18,7 @@ final class Color: StringVal {
     super.init(name)
   }
 
-  override func applyTo(menu: MenuDelegate) {
+  override func applyTo(menu: Menuable) {
     guard let color = self.color else {
       return print("No color found for value \(getValue())")
     }

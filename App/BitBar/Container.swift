@@ -3,12 +3,26 @@
 */
 class Container {
   private var store = [String: [Param]]()
-  internal weak var delegate: MenuDelegate?
+  internal weak var delegate: Menuable?
 
-  init() {
-    /* TODO: Remove this. Not sure why it's needed */
+  var filterParams: [Param] {
+    return params.reduce([]) { acc, param in
+      if param is NamedParam { return acc }
+      return acc + [param]
+    }
   }
 
+  var params: [Param] {
+    return store.reduce([]) { acc, value in
+      return acc + value.1
+    }
+  }
+
+  init() { /* TODO: Remove this. Not sure why it's needed */ }
+
+  /**
+    Add @params to the collection
+  */
   func append(params: [Param]) {
     for param in params {
       // TODO: Move String... to the param protocol
@@ -21,18 +35,27 @@ class Container {
     }
   }
 
+  /**
+    Represents the refresh param, i.e refresh=false
+  */
   func shouldRefresh() -> Bool {
     return each(type: "Refresh", backup: false) {
       ($0 as? Refresh)?.getValue()
     }
   }
 
+  /**
+    Represents the dropdown param, i.e dropdown=false
+  */
   func hasDropdown() -> Bool {
     return each(type: "Dropdown", backup: true) {
       ($0 as? Dropdown)?.getValue()
     }
   }
 
+  /**
+    Represents the terminal param, i.e terminal=false
+  */
   func openTerminal() -> Bool {
     return each(type: "Terminal", backup: false) {
       ($0 as? Terminal)?.getValue()
@@ -40,21 +63,25 @@ class Container {
   }
 
   func apply() {
-    guard let menu = delegate else {
-      return
-    }
-
-    for param in params {
-      param.applyTo(menu: menu)
+    if let menu = delegate {
+      for param in params {
+        param.applyTo(menu: menu)
+      }
     }
   }
 
+  /**
+    Params to be passed as argument to a bash script
+  */
   var args: [String] {
     return namedParams.sorted {
       return $0.getIndex() < $1.getIndex()
     }.map { $0.getValue() }
   }
 
+  /**
+    Represents the a list of the param-param, i.e param1=<value>
+  */
   var namedParams: [NamedParam] {
     return get(type: "NamedParam").reduce([]) {
       if let param = $1 as? NamedParam {
@@ -81,16 +108,4 @@ class Container {
     return backup
   }
 
-  var filterParams: [Param] {
-    return params.reduce([]) { acc, param in
-      if param is NamedParam { return acc }
-      return acc + [param]
-    }
-  }
-
-  var params: [Param] {
-    return store.reduce([]) { acc, value in
-      return acc + value.1
-    }
-  }
 }
