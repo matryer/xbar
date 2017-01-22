@@ -59,9 +59,13 @@ extension Title: Base {
       return false <?> "params.count"
     }
 
-    for (index, param) in params.enumerated() {
-      if param.toString() != title.params[index].toString() {
-        return false <?> "param1 != param2"
+    if !params.isEmpty {
+      for (index, param1) in params.enumerated() {
+        if !title.params.reduce(false) { acc, param2 in
+          acc || (param1.toString() == param2.toString())
+        } {
+          return false <?> "param1 != param2"
+        }
       }
     }
 
