@@ -8,7 +8,6 @@ final class Ansi: BoolVal {
       return print("Ansi is turned off")
     }
 
-    print("LKDLFKFDLKFLKDF", menu.getTitle())
     switch Pro.parse(Pro.getANSIs(), menu.getTitle()) {
     case let Result.success(result, _):
       menu.update(attr: apply(result))
