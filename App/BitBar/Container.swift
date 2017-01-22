@@ -84,7 +84,7 @@ class Container {
     return backup
   }
 
-  private var params: [Param] {
+  var params: [Param] {
     return store.reduce([]) { acc, value in
       if value.0 == "NamedParam" { return acc }
       return acc + value.1

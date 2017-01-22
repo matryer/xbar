@@ -7,6 +7,12 @@ final class Title: NSMenu, MenuDelegate {
       apply(menus: menus)
     }
   }
+
+  var params: [Param] {
+    get { return container.params }
+    set { container.append(params: newValue) }
+  }
+
   private var events = [Listener]()
   private let refreshEvent = Event<()>()
   private let tray: Tray
