@@ -1,6 +1,7 @@
 import AppKit
 import Swift
 import Foundation
+import Async
 import Files
 
 /**
@@ -17,7 +18,6 @@ import Files
 class PluginManager {
   private let path: String
   private let tray = Tray(title: "BitBar")
-  private weak var delegate: TrayDelegate?
   private var errors = [Title]() {
     didSet { verifyBar() }
   }
@@ -28,9 +28,7 @@ class PluginManager {
   /**
     Reads plugins from @path and send notifications back to @delegate
   */
-  init(path: String, delegate: TrayDelegate?) {
-    self.tray.delegate = delegate
-    self.delegate = delegate
+  init(path: String) {
     self.path = path
     self.setPlugins()
     self.verifyBar()
@@ -39,19 +37,18 @@ class PluginManager {
   /**
     Quit any current running background tasks and removes all menu items
   */
-  public func destroy() {
+  deinit { destroy() }
+  func destroy() {
     tray.destroy()
-    plugins.forEach { $0.destroy() }
-    errors.forEach { $0.destroy() }
-    plugins = []
-    errors = []
+    plugins.forEach { plugin in plugin.destroy() }
+    errors.forEach { tray in tray.destroy() }
   }
 
   private func addPlugin(_ name: String, path: String) {
     // TODO: Clean up this mess :)
     switch fileFor(name: name) {
     case let Result.success(file, _):
-      plugins.append(ExecutablePlugin(path: path, file: file, delegate: delegate))
+      plugins.append(ExecutablePlugin(path: path, file: file))
     case let Result.failure(lines):
       // let tray = Tray(title: "E", delegate: delegate)
       let li = [
@@ -61,7 +58,7 @@ class PluginManager {
       ] + lines
       // let title = Title(errors: li)
       // title.applyTo(tray: tray)
-      errors.append(Title(errors: li, delegate: delegate))
+      errors.append(Title(errors: li))
     }
   }
 

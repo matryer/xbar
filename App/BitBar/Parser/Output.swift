@@ -6,4 +6,10 @@ final public class Output {
     self.title = title
     self.isStream = isStream
   }
+
+  func destroy() {
+    title.destroy()
+  }
+
+  deinit { destroy() }
 }

@@ -12,6 +12,7 @@ target 'BitBar' do
   pod 'Hue'
   pod 'SwiftyJSON'
   pod 'SwiftyUserDefaults'
+  pod 'Sparkle'
 
   target 'BitBarTests' do
     inherit! :search_paths

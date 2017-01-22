@@ -1,6 +1,6 @@
-protocol TrayDelegate: class {
-  func preferenceDidRefreshAll()
-  func preferenceDidQuit()
-  func preferenceDidChangePluginFolder()
-  func preferenceDidOpenInTerminal()
-}
+// protocol TrayDelegate: class {
+//   func preferenceDidRefreshAll()
+//   func preferenceDidQuit()
+//   func preferenceDidChangePluginFolder()
+//   func preferenceDidOpenInTerminal()
+// }

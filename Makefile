@@ -27,7 +27,7 @@ release: deps clean build kill open
 	@echo "[Task] Completed building $(BUNDLE)"
 test:
 	@echo "[Task] Running test suite..."
-	@$(TEST) | xcpretty -tc
+	@$(TEST) | xcpretty -c
 ci:
 	@set -o pipefail && $(TEST) | xcpretty -c
 watch:

@@ -3,21 +3,18 @@ import AppKit
 import EmitterKit
 
 final class PrefItem: ItemBase {
-  private weak var delegate: TrayDelegate?
-
-  convenience init(delegate: TrayDelegate?) {
+  convenience init() {
     self.init("Preferences")
-    self.delegate = delegate
 
     separator()
     addSub("Refresh All", key: "r") {
-      self.delegate?.preferenceDidRefreshAll()
+      App.didClickRefresh()
     }
 
     separator()
 
     addSub("Change Plugin Folder…", key: ",") {
-      self.delegate?.preferenceDidChangePluginFolder()
+      App.didClickChangePluginPath()
     }
 
     addSub("Open Plugin Folder…") {
@@ -43,7 +40,7 @@ final class PrefItem: ItemBase {
     }
 
     addSub("Quit", key: "q") {
-      self.delegate?.preferenceDidQuit()
+      App.didClickQuit()
     }
   }
 }

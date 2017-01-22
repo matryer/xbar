@@ -16,30 +16,15 @@ class Tray: NSObject, NSMenuDelegate {
   private var updatedAgoItem: UpdatedAgoItem?
   private let item: NSStatusItem = NSStatusBar.system()
     .statusItem(withLength: NSVariableStatusItemLength)
-  internal weak var delegate: TrayDelegate?
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible: Bool = true, delegate: TrayDelegate? = nil) {
-    self.delegate = delegate
+  init(title: String, isVisible: Bool = true) {
     super.init()
-
     item.title = title
     setMenu(NSMenu())
-
-    onDidOpen {
-      self.updatedAgoItem?.touch()
-      self.isOpen = true
-      self.item.highlightMode = true
-    }
-
-    onDidClose {
-      self.isOpen = false
-      self.item.highlightMode = false
-    }
-
     if isVisible {
       show()
     }
@@ -70,11 +55,8 @@ class Tray: NSObject, NSMenuDelegate {
   /*
     Completely removes item from menu bar
   */
+  deinit { destroy() }
   func destroy() {
-    guard !isOpen else {
-      return onDidClose { self.destroy() }
-    }
-
     NSStatusBar.system().removeStatusItem(item)
   }
 
@@ -117,19 +99,24 @@ class Tray: NSObject, NSMenuDelegate {
     updatedAgoItem = UpdatedAgoItem()
     item.menu?.addItem(updatedAgoItem!)
     item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
-      self.delegate?.preferenceDidOpenInTerminal()
+//      self.delegate?.preferenceDidOpenInTerminal()
     })
-    item.menu?.addItem(PrefItem(delegate: delegate))
+    item.menu?.addItem(PrefItem())
   }
 
   // Private, not to be called
   // Marked with 'internal' as NSMenuDelegate
   // doesn't allow for 'private'
   internal func menuWillOpen(_ menu: NSMenu) {
+    updatedAgoItem?.touch()
+    isOpen = true
+    item.highlightMode = true
     openEvent.emit()
   }
 
   internal func menuDidClose(_ menu: NSMenu) {
+    isOpen = false
+    item.highlightMode = false
     closeEvent.emit()
   }
 }

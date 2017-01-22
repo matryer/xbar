@@ -1,12 +1,46 @@
 import SwiftyUserDefaults
 import ServiceManagement
 import Foundation
+import EmitterKit
+typealias Block<T> = (T) -> Void
 
 /**
   Global values and helpers
 */
 class App {
-  private static let currentBundle = Bundle.main
+  /**
+    Event listeners
+  */
+  static func onDidClickQuit(block: @escaping Block<Void>) {
+    listeners.append(quitEvent.on(block))
+  }
+
+  static func onDidClickChangePluginPath(block: @escaping Block<Void>) {
+    listeners.append(changePathEvent.on(block))
+  }
+
+  static func onDidClickRefresh(block: @escaping Block<Void>) {
+    listeners.append(refreshEvent.on(block))
+  }
+
+  static func onDidWake(block: @escaping Block<Void>) {
+    listen.on(.NSWorkspaceDidWake, block: block)
+  }
+
+  /**
+    Event triggers
+  */
+  static func didClickQuit() {
+    quitEvent.emit()
+  }
+
+  static func didClickChangePluginPath() {
+    changePathEvent.emit()
+  }
+
+  static func didClickRefresh() {
+    refreshEvent.emit()
+  }
 
   /**
     Bundle id for current application, i.e com.getbitbar.OSX
@@ -110,4 +144,11 @@ class App {
       block()
     }
   }
+
+  private static let currentBundle = Bundle.main
+  private static let quitEvent = Event<Void>()
+  private static let changePathEvent = Event<Void>()
+  private static let refreshEvent = Event<Void>()
+  private static var listeners = [Listener]()
+  private static let listen = Listen(NSWorkspace.shared().notificationCenter)
 }

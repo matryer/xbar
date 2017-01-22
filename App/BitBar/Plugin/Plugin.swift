@@ -7,22 +7,20 @@ import Swift
   - app delegate
   - plugin manager
 */
-class Plugin: TrayDelegate {
+class Plugin {
   private let file: File
   private let path: String
   private let tray = Tray(title: "…")
-  private weak var delegate: TrayDelegate?
+  private var output: Output?
 
   /**
     @path An absolute path to the script
     @file A file object containing {name}.{time}.{ext}
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
-  init(path: String, file: File, delegate: TrayDelegate?) {
+  init(path: String, file: File) {
     self.file = file
     self.path = path
-    self.delegate = delegate
-    self.tray.delegate = self
   }
 
   /**
@@ -38,8 +36,10 @@ class Plugin: TrayDelegate {
   */
   func didReceivedOutput(_ data: String) {
     switch Pro.parse(Pro.getOutput(), data) {
-    case let Result.success(output, _):
-      output.title.onDidRefresh { self.refresh() }
+    case let Result.success(result, _):
+      result.title.onDidRefresh { self.refresh() }
+      output?.destroy()
+      output = result
 //      output.title.applyTo(tray: tray)
 //      tray.show()
     case let Result.failure(error):
@@ -77,37 +77,38 @@ class Plugin: TrayDelegate {
   */
   func destroy() {
     hide()
-    tray.hide()
+    // tray.hide()
     tray.destroy()
+    output?.destroy()
   }
-
-  /**
-    User clicked 'Open in Terminal'
-    Opening @path in Terminal App
-    // TODO: Move logic from Bash to Terminal
-  */
-  func preferenceDidOpenInTerminal() {
-    Bash.open(script: path)
-  }
-
-  /**
-    User clicked 'Refresh All'
-  */
-  func preferenceDidRefreshAll() {
-    delegate?.preferenceDidRefreshAll()
-  }
-
-  /**
-    User clicked 'Quit'
-  */
-  func preferenceDidQuit() {
-    delegate?.preferenceDidQuit()
-  }
-
-  /**
-    User changed plugin folder
-  */
-  func preferenceDidChangePluginFolder() {
-    delegate?.preferenceDidChangePluginFolder()
-  }
+//
+//  /**
+//    User clicked 'Open in Terminal'
+//    Opening @path in Terminal App
+//    // TODO: Move logic from Bash to Terminal
+//  */
+//  func preferenceDidOpenInTerminal() {
+//    Bash.open(script: path)
+//  }
+//
+//  /**
+//    User clicked 'Refresh All'
+//  */
+//  func preferenceDidRefreshAll() {
+//    delegate?.preferenceDidRefreshAll()
+//  }
+//
+//  /**
+//    User clicked 'Quit'
+//  */
+//  func preferenceDidQuit() {
+//    delegate?.preferenceDidQuit()
+//  }
+//
+//  /**
+//    User changed plugin folder
+//  */
+//  func preferenceDidChangePluginFolder() {
+//    delegate?.preferenceDidChangePluginFolder()
+//  }
 }

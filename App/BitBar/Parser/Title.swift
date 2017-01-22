@@ -1,10 +1,11 @@
 import AppKit
 import EmitterKit
 
+var i = 0
 final class Title: NSMenu, MenuDelegate {
   private var events = [Listener]()
-  private var menus = [Menu]()
-  private var params = [Param]()
+  var menus = [Menu]()
+  var params = [Param]()
   private let refreshEvent = Event<()>()
   private let tray: Tray
 
@@ -26,14 +27,15 @@ final class Title: NSMenu, MenuDelegate {
     }
   }
 
-  convenience init(errors: [String], delegate: TrayDelegate?) {
+  convenience init(errors: [String]) {
     let menus = errors.map { Menu($0, params: [], menus: []) }
-    self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
-    self.tray.delegate = delegate
+    // self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
+    i += 1
+    self.init("A:\(i)", params: [Emojize(true) as Param], menus: menus)
   }
 
   convenience init(error: String) {
-    self.init(errors: [error], delegate: nil)
+    self.init(errors: [error])
   }
 
   required init(coder decoder: NSCoder) {
@@ -85,6 +87,7 @@ final class Title: NSMenu, MenuDelegate {
     // tray?.item.attributedTitle = title
   }
 
+  deinit { destroy() }
   func destroy() {
     tray.destroy()
   }

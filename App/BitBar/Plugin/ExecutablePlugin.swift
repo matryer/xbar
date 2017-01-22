@@ -6,8 +6,8 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   private var script: Script?
   private var timer: Timer?
 
-  override init(path: String, file: File, delegate: TrayDelegate?) {
-    super.init(path: path, file: file, delegate: delegate)
+  override init(path: String, file: File) {
+    super.init(path: path, file: file)
     script = Script(path: path, delegate: self)
     timer = Timer.every(interval.seconds, scheduleDidTick)
     self.show()
