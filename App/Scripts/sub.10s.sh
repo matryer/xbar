@@ -20,6 +20,8 @@ echo "Alternate | alternate=true"
 echo "---"
 echo "A template Image | templateImage=$(echo $IMG)"
 echo "---"
+echo "An error | image=XXX"
+echo "---"
 echo "A normal image | image=$(echo $IMG)"
 echo "---"
 echo "-| terminal=true" # Dash

@@ -66,7 +66,6 @@ class Script {
     stop()
 
     let process = Process()
-    var listeners = [Listener]()
     let pipe = Pipe()
     let buffer = Buffer()
     let handler = pipe.fileHandleForReading

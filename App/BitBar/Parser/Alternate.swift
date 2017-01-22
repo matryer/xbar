@@ -1,11 +1,6 @@
-import Cocoa
-
 final class Alternate: BoolVal {
   override func applyTo(menu: Menuable) {
-    guard getValue() else {
-      return print("alternate is set to false")
-    }
-
+    guard getValue() else { return }
     menu.useAsAlternate()
   }
 }

@@ -73,6 +73,13 @@ class ItemBase: NSMenuItem {
   }
 
   /**
+    Same as above, but passes the invoked item as an argument to @block
+  */
+  func addSub(name: String) {
+    addSub(name) { /* FIXME */ }
+  }
+
+  /**
     Call @block when item is clicked
   */
   func onDidClick(block: @escaping () -> Void) {

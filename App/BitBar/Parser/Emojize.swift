@@ -7,19 +7,14 @@ final class Emojize: BoolVal {
   private static let parser = Pro.replaceEmojize(replace: forChar)
 
   override func applyTo(menu: Menuable) {
-    guard getValue() else {
-      return print("[INFO] Emojize has been turned off")
-    }
-
+    guard getValue() else { return }
     switch Pro.parse(Emojize.parser, menu.getTitle()) {
     case let Result.success(title, _):
       menu.update(title: title)
-    case Result.failure(_): break
-      // TODO: Use this
-//      menu.update(
-//        error: "Could not parse emojize",
-//        trace: error.joined(separator: "\n")
-//      )
+    case let Result.failure(lines):
+      for error in lines {
+        menu.add(error: error)
+      }
     }
   }
 

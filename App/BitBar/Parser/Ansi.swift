@@ -4,15 +4,15 @@ typealias Stringish = NSMutableAttributedString
 /* TODO: Use Extensions/NSMutableAttributedString.swift */
 final class Ansi: BoolVal {
   override func applyTo(menu: Menuable) {
-    guard getValue() else {
-      return print("Ansi is turned off")
-    }
+    guard getValue() else { return }
 
     switch Pro.parse(Pro.getANSIs(), menu.getTitle()) {
     case let Result.success(result, _):
       menu.update(attr: apply(result))
-    case Result.failure(_):
-      print("Failed to parse: \(menu.title)")
+    case let Result.failure(lines):
+      for error in lines {
+        menu.add(error: error)
+      }
     }
   }
 

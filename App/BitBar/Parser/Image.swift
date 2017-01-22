@@ -19,12 +19,11 @@ final class Image: StringVal {
 
   override func applyTo(menu: Menuable) {
     guard let unpacked = data else {
-      // TODO: Better error handling
-      return print("Could not load image")
+      return menu.add(error: "Could not unpack base64 image")
     }
 
     guard let image = NSImage(data: unpacked) else {
-      return print("Could not create image")
+      return menu.add(error: "Could not create image from base64 string")
     }
 
     menu.update(image: image, isTemplate: isTemplate)

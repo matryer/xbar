@@ -10,7 +10,9 @@ final class Bash: StringVal {
     menu.onDidClick {
       // TODO: Rename to shouldOpenInTerminal (or something simular)
       if menu.openTerminal() {
-        return Bash.open(script: self.getValue())
+        return Bash.open(script: self.getValue()) {
+          menu.add(error: $0)
+        }
       }
 
       Script(path: self.getValue(), args: menu.getArgs()) {
@@ -23,13 +25,13 @@ final class Bash: StringVal {
     Open @script in the Terminal app
     @script is an absolute path to script
   */
-  static func open(script: String) {
+  static func open(script path: String, block: @escaping Block<String>) {
     if App.isInTestMode() { return }
 
     // TODO: What happens if @script contains spaces?
     let tell =
       "tell application \"Terminal\" \n" +
-      "do script \"\(script)\" \n" +
+      "do script \"\(path)\" \n" +
       "activate \n" +
       "end tell"
 
@@ -45,7 +47,9 @@ final class Bash: StringVal {
 
       return nil
     }.main { (error: String?) in
-      print("Errors: \(error)")
+      if let message = error {
+        block(message)
+      }
     }
   }
 }

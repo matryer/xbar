@@ -20,7 +20,7 @@ final class Color: StringVal {
 
   override func applyTo(menu: Menuable) {
     guard let color = self.color else {
-      return print("No color found for value \(getValue())")
+      return menu.add(error: "No color found with value \(getValue())")
     }
 
     menu.update(color: color)

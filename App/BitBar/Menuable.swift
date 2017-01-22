@@ -28,6 +28,7 @@ protocol Menuable: class {
   func update(title: String)
   func add(menu: NSMenuItem)
   func add(params: [Param])
+  func add(error: String)
 
   /* Legacy */
   func getValue() -> String

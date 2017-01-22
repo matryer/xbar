@@ -52,6 +52,10 @@ final class Title: NSMenu, Menuable {
     tray.add(item: menu)
   }
 
+  func add(error: String) {
+    print("Got error in title", error)
+  }
+
   /**
     Removes tray from menu bar
   */
