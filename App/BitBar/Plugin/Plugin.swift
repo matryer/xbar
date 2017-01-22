@@ -10,7 +10,7 @@ import Swift
 class Plugin {
   private let file: File
   private let path: String
-  private let tray = Tray(title: "…")
+  // private let tray = Tray(title: "…")
   private var output: Output?
 
   /**
@@ -40,8 +40,6 @@ class Plugin {
       result.title.onDidRefresh { self.refresh() }
       output?.destroy()
       output = result
-//      output.title.applyTo(tray: tray)
-//      tray.show()
     case let Result.failure(error):
       didReceiveError(String(describing: error))
     }
@@ -53,7 +51,7 @@ class Plugin {
   */
   func didReceiveError(_ data: String) {
     // TODO: Implement a proper tray.set(error: ...) function
-    tray.clear(title: "Error...")
+    // tray.clear(title: "Error...")
   }
 
   /**
@@ -77,38 +75,6 @@ class Plugin {
   */
   func destroy() {
     hide()
-    // tray.hide()
-    tray.destroy()
     output?.destroy()
   }
-//
-//  /**
-//    User clicked 'Open in Terminal'
-//    Opening @path in Terminal App
-//    // TODO: Move logic from Bash to Terminal
-//  */
-//  func preferenceDidOpenInTerminal() {
-//    Bash.open(script: path)
-//  }
-//
-//  /**
-//    User clicked 'Refresh All'
-//  */
-//  func preferenceDidRefreshAll() {
-//    delegate?.preferenceDidRefreshAll()
-//  }
-//
-//  /**
-//    User clicked 'Quit'
-//  */
-//  func preferenceDidQuit() {
-//    delegate?.preferenceDidQuit()
-//  }
-//
-//  /**
-//    User changed plugin folder
-//  */
-//  func preferenceDidChangePluginFolder() {
-//    delegate?.preferenceDidChangePluginFolder()
-//  }
 }
