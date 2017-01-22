@@ -36,7 +36,7 @@ class Tray: NSObject, NSMenuDelegate {
   }
 
   func add(item: NSMenuItem) {
-    let index = min(0, menu.items.count - defaultCount)
+    let index = max(0, menu.items.count - defaultCount)
     menu.insertItem(item, at: index)
   }
 
