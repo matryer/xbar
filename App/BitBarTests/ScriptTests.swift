@@ -41,9 +41,9 @@ class ScriptTests: QuickSpec {
   override func spec() {
     describe("stdout") {
       it("handles base case") {
-        // let del = self.testScript("hello.sh")
-        // expect(del.result.code).toEventually(equal(0))
-        // expect(del.result.out).toEventually(equal("Hello"))
+        let del = self.testScript("hello.sh")
+        expect(del.result.code).toEventually(equal(0), timeout: 2)
+        expect(del.result.out).toEventually(equal("Hello"), timeout: 2)
       }
 
       it("handles sleep") {
@@ -54,22 +54,22 @@ class ScriptTests: QuickSpec {
 
       it("handles args") {
         let del = self.testScript("args.sh", args: ["1", "2", "3"])
-        expect(del.result.code).toEventually(equal(0))
-        expect(del.result.out).toEventually(equal("1 2 3"))
+        expect(del.result.code).toEventually(equal(0), timeout: 2)
+        expect(del.result.out).toEventually(equal("1 2 3"), timeout: 2)
       }
     }
 
     describe("stderr") {
       it("exit code 1, no output") {
         let del = self.testScript("exit1-no-output.sh")
-        expect(del.result.code).toEventually(equal(1))
-        expect(del.result.out).toEventually(equal(""))
+        expect(del.result.code).toEventually(equal(1), timeout: 2)
+        expect(del.result.out).toEventually(equal(""), timeout: 2)
       }
 
       it("exit code 1, with output") {
         let del = self.testScript("exit1-output.sh")
-        expect(del.result.code).toEventually(equal(1))
-        expect(del.result.out).toEventually(equal("Exit 1"))
+        expect(del.result.code).toEventually(equal(1), timeout: 2)
+        expect(del.result.out).toEventually(equal("Exit 1"), timeout: 2)
       }
 
       // TODO:
