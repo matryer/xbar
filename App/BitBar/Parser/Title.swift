@@ -34,11 +34,6 @@ final class Title: NSMenu, Menuable {
   }
 
   private func apply(menus: [Menu]) {
-   guard container.hasDropdown() else {
-    return
-//     return removeAllSubMenus()
-   }
-
     for menu in menus {
       if menu.isSeparator() {
         tray.add(item: NSMenuItem.separator())

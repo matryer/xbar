@@ -74,8 +74,6 @@ class Tray: NSObject, NSMenuDelegate {
     Display item in menu bar
   */
   func show() {
-    if App.isInTestMode() { return }
-    
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {

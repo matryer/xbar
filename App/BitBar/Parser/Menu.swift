@@ -24,12 +24,8 @@ final class Menu: ItemBase, Menuable {
     }
   }
 
-  init(_ title: String) {
+  init(_ title: String, menus: [Menu]) {
     super.init(title)
-  }
-
-  convenience init(_ title: String, menus: [Menu]) {
-    self.init(title)
     self.menus = menus
     self.container.delegate = self
   }
@@ -126,7 +122,7 @@ final class Menu: ItemBase, Menuable {
 
   /* TODO: Rename */
   func getAttrs() -> NSMutableAttributedString {
-    return currentTitle()
+    return aTitle
   }
 
   /* TODO: Rename */
@@ -136,7 +132,7 @@ final class Menu: ItemBase, Menuable {
 
   /* TODO: Remove */
   func getTitle() -> String {
-    return title
+    return aTitle.string
   }
 
   /**
@@ -148,7 +144,7 @@ final class Menu: ItemBase, Menuable {
 
   private func currentTitle() -> NSMutableAttributedString {
     guard let title = attributedTitle else {
-      return NSMutableAttributedString(withDefaultFont: "")
+      return NSMutableAttributedString(withDefaultFont: self.title)
     }
 
     return title.mutable()
@@ -159,9 +155,9 @@ final class Menu: ItemBase, Menuable {
   }
 
   private func apply(menus: [Menu]) {
-    guard hasDropdown() else {
-      return removeAllSubMenus()
-    }
+    // guard hasDropdown() else {
+    //   return removeAllSubMenus()
+    // }
 
     for menu in menus {
       if menu.isSeparator() {

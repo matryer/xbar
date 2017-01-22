@@ -10,7 +10,7 @@ class Container {
   }
 
   func append(params: [Param]) {
-    for param in filterParams {
+    for param in params {
       // TODO: Move String... to the param protocol
       let key = String(describing: type(of: param))
       if let curr = store[key] {
