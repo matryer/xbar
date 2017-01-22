@@ -33,7 +33,6 @@ final class Title: NSMenu, MenuDelegate {
 //      return removeAllSubMenus()
 //    }
 
-
     for menu in menus {
       if menu.isSeparator() {
         tray.add(item: NSMenuItem.separator())

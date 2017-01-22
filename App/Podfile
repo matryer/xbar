@@ -12,6 +12,7 @@ target 'BitBar' do
   pod 'Hue'
   pod 'SwiftyJSON'
   pod 'SwiftyUserDefaults'
+  # TODO: Re-implement https://github.com/matryer/bitbar/pull/338/commits/12ceb090bf080232a6415f0f0a69c669e6001f39
   pod 'Sparkle'
 
   target 'BitBarTests' do

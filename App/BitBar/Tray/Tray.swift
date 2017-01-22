@@ -31,12 +31,8 @@ class Tray: NSObject, NSMenuDelegate {
     menu.delegate = self
     setPrefs()
     defaultCount = menu.items.count
-hide()
-    if App.isInTestMode() {
-      hide()
-    } else if display {
-//      show()
-    }
+
+    if display { show() }
   }
 
   func add(item: NSMenuItem) {
@@ -79,6 +75,7 @@ hide()
   */
   func show() {
     if App.isInTestMode() { return }
+    
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {

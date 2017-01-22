@@ -59,11 +59,11 @@ extension Title: Base {
       return false <?> "params.count"
     }
 
-    // for (index, param) in params.enumerated() {
-    //   if param.toString() != title.params[index].toString() {
-    //     return false <?> "param1 != param2"
-    //   }
-    // }
+    for (index, param) in params.enumerated() {
+      if param.toString() != title.params[index].toString() {
+        return false <?> "param1 != param2"
+      }
+    }
 
     return title.getValue() ==== self.getValue()
       ^&&^ menus.reduce(true) { $0 ^&&^ $1.test(title) }

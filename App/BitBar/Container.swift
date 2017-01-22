@@ -10,7 +10,8 @@ class Container {
   }
 
   func append(params: [Param]) {
-    for param in params {
+    for param in filterParams {
+      // TODO: Move String... to the param protocol
       let key = String(describing: type(of: param))
       if let curr = store[key] {
         store[key] = curr + [param]
@@ -49,19 +50,15 @@ class Container {
   }
 
   var args: [String] {
-    return get(type: "NamedParam").sorted {
-      guard let param1 = $0 as? NamedParam else {
-        return false
-      }
+    return namedParams.sorted {
+      return $0.getIndex() < $1.getIndex()
+    }.map { $0.getValue() }
+  }
 
-      guard let param2 = $1 as? NamedParam else {
-        return false
-      }
-
-      return param1.getIndex() < param2.getIndex()
-    }.reduce([]) {
+  var namedParams: [NamedParam] {
+    return get(type: "NamedParam").reduce([]) {
       if let param = $1 as? NamedParam {
-        return $0 + [param.getValue()]
+        return $0 + [param]
       }
 
       return $0
@@ -84,9 +81,15 @@ class Container {
     return backup
   }
 
+  var filterParams: [Param] {
+    return params.reduce([]) { acc, param in
+      if param is NamedParam { return acc }
+      return acc + [param]
+    }
+  }
+
   var params: [Param] {
     return store.reduce([]) { acc, value in
-      if value.0 == "NamedParam" { return acc }
       return acc + value.1
     }
   }
