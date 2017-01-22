@@ -50,15 +50,12 @@ class PluginManager {
     case let Result.success(file, _):
       plugins.append(ExecutablePlugin(path: path, file: file))
     case let Result.failure(lines):
-      // let tray = Tray(title: "E", delegate: delegate)
-      let li = [
+      let messages = [
         "Invalid file name '\(path)'",
         "Should be on the form {name}.{number}{unit}.{ext}",
         "Eg. 'aFile.10d.sh'"
       ] + lines
-      // let title = Title(errors: li)
-      // title.applyTo(tray: tray)
-      errors.append(Title(errors: li))
+      errors.append(Title(errors: messages))
     }
   }
 

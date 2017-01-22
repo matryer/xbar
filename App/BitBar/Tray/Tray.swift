@@ -14,6 +14,8 @@ class Tray: NSObject, NSMenuDelegate {
   private let closeEvent = Event<Void>()
   private var isOpen = false
   private var updatedAgoItem: UpdatedAgoItem?
+  private let menu = NSMenu()
+  private var defaultCount = 0
   private let item: NSStatusItem = NSStatusBar.system()
     .statusItem(withLength: NSVariableStatusItemLength)
 
@@ -24,10 +26,38 @@ class Tray: NSObject, NSMenuDelegate {
   init(title: String, isVisible: Bool = true) {
     super.init()
     item.title = title
-    setMenu(NSMenu())
+    item.menu = menu
+    menu.autoenablesItems = false
+    menu.delegate = self
+    setPrefs()
+    defaultCount = menu.items.count
     if isVisible {
       show()
     }
+  }
+
+  func add(item: NSMenuItem) {
+    let index = min(0, menu.items.count - defaultCount)
+    menu.insertItem(item, at: index)
+  }
+
+  var attributedTitle: NSMutableAttributedString {
+    set { item.attributedTitle = newValue }
+    get {
+      if let title = item.attributedTitle {
+        return title.mutable()
+      }
+
+      // FIXME: Don't use "title!"
+      let title = NSMutableAttributedString(string: item.title!)
+      item.attributedTitle = title
+      return title
+    }
+  }
+
+  var image: NSImage? {
+    set { item.image = newValue }
+    get { return item.image }
   }
 
   /**
@@ -83,13 +113,6 @@ class Tray: NSObject, NSMenuDelegate {
     listeners.append(closeEvent.on(block))
   }
 
-  func setMenu(_ menu: NSMenu) {
-    item.menu = menu
-    menu.autoenablesItems = false
-    menu.delegate = self
-    setPrefs()
-  }
-
   private func separator() {
     item.menu?.addItem(NSMenuItem.separator())
   }
@@ -99,7 +122,8 @@ class Tray: NSObject, NSMenuDelegate {
     updatedAgoItem = UpdatedAgoItem()
     item.menu?.addItem(updatedAgoItem!)
     item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
-//      self.delegate?.preferenceDidOpenInTerminal()
+      // TODO: Re-add
+      // self.delegate?.preferenceDidOpenInTerminal()
     })
     item.menu?.addItem(PrefItem())
   }

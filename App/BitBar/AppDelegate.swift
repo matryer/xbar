@@ -1,7 +1,6 @@
 import Cocoa
 import SwiftyUserDefaults
 
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   private var manager: PluginManager?

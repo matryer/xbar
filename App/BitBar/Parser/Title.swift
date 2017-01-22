@@ -1,37 +1,45 @@
 import AppKit
 import EmitterKit
 
-var i = 0
 final class Title: NSMenu, MenuDelegate {
+  var menus = [Menu]() {
+    willSet(menus) {
+      apply(menus: menus)
+    }
+  }
   private var events = [Listener]()
-  var menus = [Menu]()
-  var params = [Param]()
   private let refreshEvent = Event<()>()
   private let tray: Tray
+  private let container = Container()
 
   init(_ title: String, params: [Param], menus: [Menu]) {
     self.tray = Tray(title: title)
     super.init(title: title)
-
-    self.params = params
+    container.delegate = self
+    container.append(params: params)
+    container.apply()
     self.menus = menus
+    apply(menus: menus)
+  }
+
+  private func apply(menus: [Menu]) {
+//    guard hasDropdown() else {
+//      return removeAllSubMenus()
+//    }
+
+
     for menu in menus {
       if menu.isSeparator() {
-        addItem(NSMenuItem.separator())
+        tray.add(item: NSMenuItem.separator())
       } else {
-        addItem(menu)
-        menu.onDidRefresh {
-          self.refreshEvent.emit()
-        }
+        tray.add(item: menu)
       }
     }
   }
 
   convenience init(errors: [String]) {
     let menus = errors.map { Menu($0, params: [], menus: []) }
-    // self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
-    i += 1
-    self.init("A:\(i)", params: [Emojize(true) as Param], menus: menus)
+    self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
   }
 
   convenience init(error: String) {
@@ -72,7 +80,7 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func update(image: NSImage, isTemplate: Bool = false) {
-    // tray?.item.image = image
+    tray.image = image
   }
 
   func update(key: String, value: Any) {
@@ -84,7 +92,7 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func set(title: NSMutableAttributedString) {
-    // tray?.item.attributedTitle = title
+    tray.attributedTitle = title
   }
 
   deinit { destroy() }
@@ -101,8 +109,7 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   func getTitle() -> String {
-    return "XXX"
-//    return tray?.item.attributedTitle?.string ?? ""
+    return tray.attributedTitle.string
   }
 
   func getArgs() -> [String] {
@@ -143,10 +150,6 @@ final class Title: NSMenu, MenuDelegate {
   }
 
   private func currentTitle() -> NSMutableAttributedString {
-//    if let title = tray?.item.attributedTitle {
-//      return title.mutable()
-//    }
-
-    return NSMutableAttributedString(string: self.title)
+    return tray.attributedTitle
   }
 }
