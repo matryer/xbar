@@ -1,56 +1,6 @@
 import AppKit
 import EmitterKit
 
-protocol Menuable: MenuDelegate {
-  var aTitle: NSMutableAttributedString { get set }
-  var image: NSImage? { get set }
-}
-
-extension Menuable {
-  func set(title: NSMutableAttributedString) {
-    aTitle = title
-  }
-
-  func update(title: String) {
-    update(attr: NSMutableAttributedString(string: title))
-  }
-
-  // TODO: Rename to set
-  func update(attr: NSMutableAttributedString) {
-    set(title: aTitle.merge(attr))
-  }
-
-  func update(attrs: [String: Any]) {
-    set(title: aTitle.update(attr: attrs))
-  }
-
-  func update(image anImage: NSImage, isTemplate: Bool = false) {
-    image = anImage
-    image?.isTemplate = isTemplate
-  }
-
-  func update(size: Float) {
-    set(title: aTitle.update(fontSize: size))
-  }
-
-  func update(color: NSColor) {
-    update(key: NSForegroundColorAttributeName, value: color)
-  }
-
-  func update(key: String, value: Any) {
-    update(attrs: [key: value])
-  }
-
-  func getAttrs() -> NSMutableAttributedString {
-    return aTitle
-  }
-
-  func update(fontName: String) {
-    set(title: aTitle.update(fontName: fontName))
-  }
-}
-
-
 final class Title: NSMenu, Menuable {
   var menus = [Menu]() {
     willSet(menus) {
@@ -119,38 +69,9 @@ final class Title: NSMenu, Menuable {
     return false
   }
 
-  // func update(title: String) {
-  //   update(attr: NSMutableAttributedString(string: title))
-  // }
-
-  // // TODO: Rename to set
-  // func update(attr: NSMutableAttributedString) {
-  //   set(title: currentTitle().merge(attr))
-  // }
-  //
-  // func update(attrs: [String: Any]) {
-  //   set(title: currentTitle().update(attr: attrs))
-  // }
-
   func onDidClick(block: @escaping () -> Void) {
     // TODO
   }
-
-  // func update(image: NSImage, isTemplate: Bool = false) {
-  //   tray.image = image
-  // }
-  //
-  // func update(key: String, value: Any) {
-  //   update(attrs: [key: value])
-  // }
-  //
-  // func update(fontName: String) {
-  //   set(title: currentTitle().update(fontName: fontName))
-  // }
-  //
-  // func set(title: NSMutableAttributedString) {
-  //   tray.attributedTitle = title
-  // }
 
   var aTitle: NSMutableAttributedString {
     get { return tray.attributedTitle }
@@ -161,14 +82,6 @@ final class Title: NSMenu, Menuable {
   func destroy() {
     tray.destroy()
   }
-
-  // func update(size: Float) {
-  //   set(title: currentTitle().update(fontSize: size))
-  // }
-  //
-  // func update(color: NSColor) {
-  //   update(key: NSForegroundColorAttributeName, value: color)
-  // }
 
   func getTitle() -> String {
     return tray.attributedTitle.string
@@ -210,8 +123,4 @@ final class Title: NSMenu, Menuable {
   func refresh() {
     // Not supported by menu item
   }
-
-  // private func currentTitle() -> NSMutableAttributedString {
-  //   return tray.attributedTitle
-  // }
 }
