@@ -10,8 +10,20 @@ import Swift
 class Plugin {
   private let file: File
   private let path: String
-  private var title: Title?
-  private var output: Output?
+  private var error: Title? {
+    didSet {
+      if output != nil {
+        output = nil
+      }
+    }
+  }
+  private var output: Output? {
+    didSet {
+      if error != nil {
+        error = nil
+      }
+    }
+  }
 
   /**
     @path An absolute path to the script
@@ -37,12 +49,11 @@ class Plugin {
   func didReceivedOutput(_ data: String) {
     switch Pro.parse(Pro.getOutput(), data) {
     case let Result.success(result, _):
+      // TODO: Move event to Output class
       result.title.onDidRefresh { self.refresh() }
-      output?.destroy()
       output = result
-      title = nil
     case let Result.failure(lines):
-      title = Title(errors: lines)
+      error = Title(errors: lines)
     }
   }
 
@@ -51,7 +62,7 @@ class Plugin {
     in didReceivedOutput. The output is parsed and displayed for the user
   */
   func didReceiveError(_ message: String) {
-    title = Title(error: message)
+    error = Title(error: message)
   }
 
   /**
@@ -70,11 +81,16 @@ class Plugin {
     preconditionFailure("This method must be overridden")
   }
 
+  func terminate() {
+    preconditionFailure("This method must be overridden")
+  }
+
   /**
     Completely removes plugin from menu bar
   */
   func destroy() {
-    title?.destroy()
+    terminate()
+    error?.destroy()
     output?.destroy()
   }
   deinit { destroy() }

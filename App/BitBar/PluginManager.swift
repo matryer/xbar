@@ -15,8 +15,8 @@ import Files
     4. Notifying the TrayDelegate if a plugin closes
 */
 class PluginManager {
+  private let tray = Tray(title: "BitBar", isVisible: false)
   private let path: String
-  private let tray = Tray(title: "BitBar")
   private var errors = [Title]() {
     didSet { verifyBar() }
   }
@@ -25,43 +25,50 @@ class PluginManager {
   }
 
   /**
-    Reads plugins from @path and send notifications back to @delegate
+    Read plugins from @path
   */
   init(path: String) {
     self.path = path
-    self.setPlugins()
+    self.loadPlugins()
     self.verifyBar()
   }
 
   /**
-    Quit any current running background tasks and removes all menu items
+    Clean menu bar from error messages and plugins
   */
-  deinit { destroy() }
   func destroy() {
     tray.destroy()
     plugins.forEach { plugin in plugin.destroy() }
     errors.forEach { tray in tray.destroy() }
+    plugins = []
+    errors = []
   }
+  deinit { destroy() }
 
+  // Add plugin @name with @path to the list of plugins
+  // Will fail with an error message if @name can't be parsed
   private func addPlugin(_ name: String, path: String) {
-    // TODO: Clean up this mess :)
     switch fileFor(name: name) {
     case let Result.success(file, _):
       plugins.append(ExecutablePlugin(path: path, file: file))
     case let Result.failure(lines):
-      let messages = [
-        "Invalid file name '\(path)'",
-        "Should be on the form {name}.{number}{unit}.{ext}",
-        "Eg. 'aFile.10d.sh'"
-      ] + lines
-      errors.append(Title(errors: messages))
+      errors.append(Title(errors: [
+        "An error occurred while reading file \(name) from \(path)",
+        "\n",
+        "Should be on the form {name}.{number}{unit}.{ext}, i.e 'aFile.10d.sh'",
+        "Read the official documentation for more information",
+        "Error message:\n"
+      ] + lines))
     }
   }
 
+  // Parse @name on form {name}.{number}{unit}.{ext}
+  // I.e aFile.10d.sh
   private func fileFor(name: String) -> Result<File> {
     return Pro.parse(Pro.getFile(), name)
   }
 
+  // Ensure atleast one icon is vissble in the menu bar
   private func verifyBar() {
     if errors.isEmpty && plugins.isEmpty {
       tray.show()
@@ -70,7 +77,7 @@ class PluginManager {
     }
   }
 
-  private func setPlugins() {
+  private func loadPlugins() {
     do {
       for file in try Folder(path: path).files {
         if !file.name.hasPrefix(".") {
@@ -78,11 +85,7 @@ class PluginManager {
         }
       }
     } catch (let error) {
-      show(error: String(describing: error))
+      errors.append(Title(error: String(describing: error)))
     }
-  }
-
-  private func show(error: String) {
-//    Title(errors: [error]).applyTo(tray: tray)
   }
 }

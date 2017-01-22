@@ -169,7 +169,7 @@ class App {
   */
   static func askAboutPluginPath(block: @escaping Block<Void>) {
     PathSelector(withURL: App.pluginURL).ask {
-      App.update(pluginPath: $0.path)
+      App.update(pluginPath: $0?.path)
       block()
     }
   }

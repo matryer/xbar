@@ -8,7 +8,7 @@ import EmitterKit
 class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
   /* Text on button */
   private static let title = "Use as Plugins Directory"
-  private let event = Event<URL>()
+  private let event = Event<URL?>()
   private var listeners = [Listener]()
 
   /**
@@ -28,9 +28,10 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
     delegate = self
   }
 
-  func ask(block: @escaping Block<URL>) {
+  func ask(block: @escaping Block<URL?>) {
     listeners.append(event.on { url in block(url) })
     runModal()
+    event.emit(url)
   }
 
   // TODO: Ignore .dotfiles using
@@ -38,6 +39,5 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
   // optional func panel(_ sender: Any,
   //        shouldEnable url: URL) -> Bool
   func panel(_ sender: Any, validate url: URL) throws {
-    event.emit(url)
   }
 }

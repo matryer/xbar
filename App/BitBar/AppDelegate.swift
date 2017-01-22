@@ -28,9 +28,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   private func loadPluginManager() {
     if let path = App.pluginPath {
-      manager = PluginManager(path: path)
+      loadManager(fromPath: path)
     } else {
-      App.askAboutPluginPath { self.loadPluginManager() }
+      App.askAboutPluginPath {
+        self.loadPluginManager()
+      }
     }
+  }
+
+  private func loadManager(fromPath path: String) {
+    manager = PluginManager(path: path)
   }
 }
