@@ -12,6 +12,7 @@ PODS:
   - Quick (1.0.0)
   - Sparkle (1.15.1)
   - SwiftCheck (0.7.1)
+  - SwiftTryCatch (1.0.4)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
   - SwiftyUserDefaults (3.0.0)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - Quick
   - Sparkle
   - SwiftCheck (from `https://github.com/typelift/SwiftCheck.git`)
+  - SwiftTryCatch (from `https://github.com/oleander/SwiftTryCatch.git`)
   - SwiftyJSON
   - SwiftyTimer
   - SwiftyUserDefaults
@@ -40,6 +42,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/FootlessParser.git
   SwiftCheck:
     :git: https://github.com/typelift/SwiftCheck.git
+  SwiftTryCatch:
+    :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
   EmitterKit:
@@ -51,6 +55,9 @@ CHECKOUT OPTIONS:
   SwiftCheck:
     :commit: 0e2d31cbf718cc31bb2f80a65760439ecc3ee7fc
     :git: https://github.com/typelift/SwiftCheck.git
+  SwiftTryCatch:
+    :commit: efa6265680abd06b17fd0574a3f8d804ca3f86e7
+    :git: https://github.com/oleander/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
@@ -65,10 +72,11 @@ SPEC CHECKSUMS:
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Sparkle: 618fd2d2867fa06a5572a8c4a4c6a721f04da2d2
   SwiftCheck: f7836e0af0bbd1dfeb04a7f1d0bdbfd619d01d44
+  SwiftTryCatch: 4f998604394cbe3f37241488b28bd5fdfe72387d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 252bb98778f52995e63875be838cd750b9acc098
+PODFILE CHECKSUM: ee387e97e1925b26849c6ab909299fd6a9b6d39e
 
 COCOAPODS: 1.2.0.rc.1

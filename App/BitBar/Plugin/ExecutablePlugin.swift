@@ -9,7 +9,7 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   override init(path: String, file: File) {
     super.init(path: path, file: file)
     script = Script(path: path, delegate: self)
-    timer = Timer.every(interval.seconds, scheduleDidTick)
+    timer = Timer.every(interval.seconds + 1.hour, scheduleDidTick)
     script.start()
   }
 
@@ -47,7 +47,7 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Succeeded running @path
     Sending data to parent plugin class
   */
-  func scriptDidReceiveOutput(_ output: String) {
+  func scriptDidReceiveOutput(_ output: String, _ code: Int32) {
     didReceivedOutput(output)
   }
 

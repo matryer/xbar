@@ -15,10 +15,10 @@ class Out {
 }
 
 class AScript: ScriptDelegate {
-  var result: Out = Out("", Int32(10))
+  var result: Out = Out("", Int32(-10))
 
-  func scriptDidReceiveOutput(_ output: String) {
-    result = Out(output.noMore(), Int32(0))
+  func scriptDidReceiveOutput(_ output: String, _ code: Int32) {
+    result = Out(output.noMore(), code)
   }
 
   func scriptDidReceiveError(_ error: String, _ code: Int32) {
@@ -42,34 +42,34 @@ class ScriptTests: QuickSpec {
     describe("stdout") {
       it("handles base case") {
         let del = self.testScript("hello.sh")
-        expect(del.result.code).toEventually(equal(0), timeout: 2)
-        expect(del.result.out).toEventually(equal("Hello"), timeout: 2)
+        expect(del.result.code).toEventually(equal(0), timeout: 5)
+        expect(del.result.out).toEventually(equal("Hello"), timeout: 5)
       }
 
       it("handles sleep") {
         let del = self.testScript("sleep.sh")
-        expect(del.result.code).toEventually(equal(0), timeout: 2)
-        expect(del.result.out).toEventually(equal("sleep"), timeout: 2)
+        expect(del.result.code).toEventually(equal(0), timeout: 5)
+        expect(del.result.out).toEventually(equal("sleep"), timeout: 5)
       }
 
       it("handles args") {
         let del = self.testScript("args.sh", args: ["1", "2", "3"])
-        expect(del.result.code).toEventually(equal(0), timeout: 2)
-        expect(del.result.out).toEventually(equal("1 2 3"), timeout: 2)
+        expect(del.result.code).toEventually(equal(0), timeout: 5)
+        expect(del.result.out).toEventually(equal("1 2 3"), timeout: 5)
       }
     }
 
     describe("stderr") {
       it("exit code 1, no output") {
         let del = self.testScript("exit1-no-output.sh")
-        expect(del.result.code).toEventually(equal(1), timeout: 2)
-        expect(del.result.out).toEventually(equal(""), timeout: 2)
+        expect(del.result.code).toEventually(equal(1), timeout: 5)
+        expect(del.result.out).toEventually(equal(""), timeout: 5)
       }
 
       it("exit code 1, with output") {
         let del = self.testScript("exit1-output.sh")
-        expect(del.result.code).toEventually(equal(1), timeout: 2)
-        expect(del.result.out).toEventually(equal("Exit 1"), timeout: 2)
+        expect(del.result.code).toEventually(equal(1), timeout: 5)
+        expect(del.result.out).toEventually(equal("Exit 1"), timeout: 5)
       }
 
       // TODO:

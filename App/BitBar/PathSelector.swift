@@ -5,6 +5,10 @@ import EmitterKit
 /**
   File selector used to ask the user about which plugin folder to use
 */
+// TODO: Ignore .dotfiles using
+// More info: https://developer.apple.com/reference/appkit/nsopensavepaneldelegate/1535200-panel
+// optional func panel(_ sender: Any,
+//        shouldEnable url: URL) -> Bool
 class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
   /* Text on button */
   private static let title = "Use as Plugins Directory"
@@ -32,12 +36,5 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
     listeners.append(event.on { url in block(url) })
     runModal()
     event.emit(url)
-  }
-
-  // TODO: Ignore .dotfiles using
-  // More info: https://developer.apple.com/reference/appkit/nsopensavepaneldelegate/1535200-panel
-  // optional func panel(_ sender: Any,
-  //        shouldEnable url: URL) -> Bool
-  func panel(_ sender: Any, validate url: URL) throws {
   }
 }

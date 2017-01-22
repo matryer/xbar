@@ -23,6 +23,10 @@ extension String {
     if isEmpty { return self }
     return self[0..<characters.count - 1]
   }
+
+  func contains(_ aString: String) -> Bool {
+    return range(of: aString) != nil
+  }
 }
 
 // extension Array where Element: String {

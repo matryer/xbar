@@ -20,6 +20,8 @@
 		2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
 		204F73011E2A0BDD00D56243 /* AnsiParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */; };
+		2058204F1E35588D0032BEEF /* missing-sh-bin.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */; };
+		205820511E355D7B0032BEEF /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205820501E355D7B0032BEEF /* Buffer.swift */; };
 		205C41101E1EA32800DAFE22 /* Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205C410F1E1EA32800DAFE22 /* Length.swift */; };
 		206277891E1E7EFA0032AD69 /* Href.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206277871E1E7EFA0032AD69 /* Href.swift */; };
 		2062778A1E1E7EFA0032AD69 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206277881E1E7EFA0032AD69 /* Font.swift */; };
@@ -60,7 +62,6 @@
 		2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */; };
 		2084CCE81E2A3E7100DE01F6 /* fails.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE01E2A3E7100DE01F6 /* fails.sh */; };
 		2084CCE91E2A3E7100DE01F6 /* hello.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE11E2A3E7100DE01F6 /* hello.sh */; };
-		2084CCEA1E2A3E7100DE01F6 /* missing-sh-bin.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE21E2A3E7100DE01F6 /* missing-sh-bin.sh */; };
 		2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE31E2A3E7100DE01F6 /* nonexec.sh */; };
 		2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE41E2A3E7100DE01F6 /* sleep.sh */; };
 		209632EF1E20A264003BC47E /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209632EE1E20A264003BC47E /* NamedParam.swift */; };
@@ -87,6 +88,7 @@
 		20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1F87B1E23F521007E0D93 /* Menu.swift */; };
 		20C1F87E1E23F529007E0D93 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1F87D1E23F529007E0D93 /* Menu.swift */; };
 		20C8B98E1E237D76005DBC9D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8B98D1E237D76005DBC9D /* Parser.swift */; };
+		20D9BC561E352D5E00BBD399 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9BC551E352D5E00BBD399 /* example.swift */; };
 		20DEE6021E237BA200AF22D2 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE5FB1E237BA200AF22D2 /* Result.swift */; };
 		20DEE6031E237BA200AF22D2 /* StringVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE5FC1E237BA200AF22D2 /* StringVal.swift */; };
 		20DEE6041E237BA200AF22D2 /* BoolVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE5FD1E237BA200AF22D2 /* BoolVal.swift */; };
@@ -124,6 +126,8 @@
 		2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatedAgoItem.swift; path = BitBar/UpdatedAgoItem.swift; sourceTree = "<group>"; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
 		204F73001E2A0BDD00D56243 /* AnsiParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiParserTests.swift; sourceTree = "<group>"; };
+		2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "missing-sh-bin.10m.sh"; path = "BitBarTests/scripts/missing-sh-bin.10m.sh"; sourceTree = SOURCE_ROOT; };
+		205820501E355D7B0032BEEF /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		205C410F1E1EA32800DAFE22 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Length.swift; path = Arbitrary/Length.swift; sourceTree = "<group>"; };
 		206277871E1E7EFA0032AD69 /* Href.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Href.swift; path = Arbitrary/Href.swift; sourceTree = "<group>"; };
 		206277881E1E7EFA0032AD69 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Font.swift; path = Arbitrary/Font.swift; sourceTree = "<group>"; };
@@ -163,7 +167,6 @@
 		2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-output.sh"; sourceTree = "<group>"; };
 		2084CCE01E2A3E7100DE01F6 /* fails.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fails.sh; sourceTree = "<group>"; };
 		2084CCE11E2A3E7100DE01F6 /* hello.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = hello.sh; sourceTree = "<group>"; };
-		2084CCE21E2A3E7100DE01F6 /* missing-sh-bin.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "missing-sh-bin.sh"; sourceTree = "<group>"; };
 		2084CCE31E2A3E7100DE01F6 /* nonexec.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = nonexec.sh; sourceTree = "<group>"; };
 		2084CCE41E2A3E7100DE01F6 /* sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sleep.sh; sourceTree = "<group>"; };
 		209632EE1E20A264003BC47E /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedParam.swift; path = Arbitrary/NamedParam.swift; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 		20C1F87B1E23F521007E0D93 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = BitBar/Parser/Menu.swift; sourceTree = "<group>"; };
 		20C1F87D1E23F529007E0D93 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Arbitrary/Menu.swift; sourceTree = "<group>"; };
 		20C8B98D1E237D76005DBC9D /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = BitBar/Parser/Parser.swift; sourceTree = "<group>"; };
+		20D9BC551E352D5E00BBD399 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 		20DEE5FB1E237BA200AF22D2 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = BitBar/Parser/Result.swift; sourceTree = "<group>"; };
 		20DEE5FC1E237BA200AF22D2 /* StringVal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringVal.swift; path = BitBar/Parser/StringVal.swift; sourceTree = "<group>"; };
 		20DEE5FD1E237BA200AF22D2 /* BoolVal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoolVal.swift; path = BitBar/Parser/BoolVal.swift; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 		2067065F1E15F6DB000DAADE /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				205820501E355D7B0032BEEF /* Buffer.swift */,
 				206706601E15F6DB000DAADE /* Script.swift */,
 				206706611E15F6DB000DAADE /* ScriptDelegate.swift */,
 			);
@@ -369,12 +374,12 @@
 		2084CCDC1E2A3E7100DE01F6 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */,
 				2084CCDD1E2A3E7100DE01F6 /* args.sh */,
 				2084CCDE1E2A3E7100DE01F6 /* exit1-no-output.sh */,
 				2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */,
 				2084CCE01E2A3E7100DE01F6 /* fails.sh */,
 				2084CCE11E2A3E7100DE01F6 /* hello.sh */,
-				2084CCE21E2A3E7100DE01F6 /* missing-sh-bin.sh */,
 				2084CCE31E2A3E7100DE01F6 /* nonexec.sh */,
 				2084CCE41E2A3E7100DE01F6 /* sleep.sh */,
 			);
@@ -384,6 +389,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				20D9BC551E352D5E00BBD399 /* example.swift */,
 				20A8FCAD1E34C2A50080E142 /* Menuable.swift */,
 				209F70861E331AF4005365B2 /* PathSelector.swift */,
 				209F70841E3316C4005365B2 /* Container.swift */,
@@ -540,8 +546,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */,
-				2084CCEA1E2A3E7100DE01F6 /* missing-sh-bin.sh in Resources */,
 				2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */,
+				2058204F1E35588D0032BEEF /* missing-sh-bin.10m.sh in Resources */,
 				20642E7D1E2A4E4C004D9A28 /* emoji.json in Resources */,
 				2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */,
 				2084CCE51E2A3E7100DE01F6 /* args.sh in Resources */,
@@ -654,6 +660,7 @@
 				2067066E1E15F6DB000DAADE /* PluginManager.swift in Sources */,
 				2031E9A11E325AE2004A33E5 /* String.swift in Sources */,
 				206706731E15F6DB000DAADE /* Script.swift in Sources */,
+				205820511E355D7B0032BEEF /* Buffer.swift in Sources */,
 				207BD87E1E2379EA007AA0C7 /* Font.swift in Sources */,
 				2031E9A31E327F31004A33E5 /* ItemBase.swift in Sources */,
 				20DEE6051E237BA200AF22D2 /* IntVal.swift in Sources */,
@@ -693,6 +700,7 @@
 				20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */,
 				207BD87F1E2379EA007AA0C7 /* Href.swift in Sources */,
 				207BD88D1E2379EA007AA0C7 /* Trim.swift in Sources */,
+				20D9BC561E352D5E00BBD399 /* example.swift in Sources */,
 				20DEE6031E237BA200AF22D2 /* StringVal.swift in Sources */,
 				207BD8791E2379EA007AA0C7 /* Ansi.swift in Sources */,
 				206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */,

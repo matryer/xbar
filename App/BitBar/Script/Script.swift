@@ -1,16 +1,17 @@
 import Swift
-import Cent
-import Foundation
 import EmitterKit
 import Async
+import SwiftTryCatch
+import Foundation
 
-// TODO Handle this error: http://stackoverflow.com/questions/25559608/running-shell-script-with-nstask-causes-posix-spawn-error
+// TODO: Use Process.environment
 class Script {
   private let path: String
   private let args: [String]
+  private var process: Process?
   private var events = [Listener]()
+  private let listen = Listen(NotificationCenter.default)
   private let finishEvent = Event<Void>()
-  private var process: AsyncBlock<(String?, Int32), Void>?
   private weak var delegate: ScriptDelegate?
 
   /**
@@ -22,6 +23,8 @@ class Script {
     self.delegate = delegate
     self.path = path
     self.args = args
+
+    onDidFinish { self.listen.reset() }
   }
 
   /**
@@ -29,14 +32,14 @@ class Script {
   */
   convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, block: @escaping Block<Void>) {
     self.init(path: path, args: args, delegate: delegate)
-    events.append(finishEvent.on(block))
+    onDidFinish(block)
   }
 
   /**
     Stop all running tasks started by this instance
   */
   func stop() {
-    process?.cancel()
+    process?.terminate()
   }
   deinit { stop() }
 
@@ -58,34 +61,85 @@ class Script {
   func start() {
     stop()
 
-    process = Async.background {
-      return self.execute()
-    }.main {
-      switch $0 {
-      case let (.some(output), 0):
-        self.delegate?.scriptDidReceiveOutput(output)
-      case let (.none, code):
-        self.delegate?.scriptDidReceiveError("", code)
-      case let (.some(output), code):
-        self.delegate?.scriptDidReceiveError(output, code)
+    let process = Process()
+    let pipe = Pipe()
+    let buffer = Buffer()
+    let handler = pipe.fileHandleForReading
+
+    process.launchPath = path
+    process.arguments = args
+
+    process.standardOutput = pipe
+    process.standardError = pipe
+
+    listen.on(.NSFileHandleDataAvailable, for: handler) {
+      buffer.append(data: handler.availableData)
+
+      if buffer.isFinish() {
+        self.succeeded(buffer.reset(), status: 0)
+      } else if process.isRunning {
+        handler.waitForDataInBackgroundAndNotify()
+      } else {
+        let code = process.terminationStatus
+        let output = buffer.toString()
+        switch process.terminationReason {
+        case .exit:
+          self.succeeded(output, status: code)
+        case .uncaughtSignal:
+          self.failed(output, status: code)
+        }
+
+        // Ensures no one else can write to it
+        buffer.close()
       }
+    }
+
+    handler.waitForDataInBackgroundAndNotify()
+    self.process = process
+
+    SwiftTryCatch.tryRun({
+      process.launch()
+    }, catchRun: {
+      if let message = $0?.reason {
+        self.failed(message, status: -1)
+      } else {
+        self.failed(String(describing: $0), status: -1)
+      }
+    }, finallyRun: {
+      /* NOP */
+    })
+  }
+
+  /**
+    @once Only listen for one event
+    @block Block to be called when process finishes
+  */
+  func onDidFinish(once: Bool = false, _ block: @escaping Block<Void>) {
+    if once {
+      finishEvent.once(handler: block)
+    } else {
+      events.append(finishEvent.on(block))
+    }
+  }
+
+  /**
+    Is the script running?
+  */
+  func isRunning() -> Bool {
+    return process?.isRunning ?? false
+  }
+
+  private func succeeded(_ result: String, status: Int32) {
+    Async.main {
+      self.delegate?.scriptDidReceiveOutput(result, status)
       self.finishEvent.emit()
     }
   }
 
-  private func execute() -> (String?, Int32) {
-    let task = Process()
-    let pipe = Pipe()
-
-    task.launchPath = path
-    task.arguments = args
-
-    task.standardOutput = pipe
-    task.standardError = pipe
-    task.launch()
-    task.waitUntilExit()
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    let output = String(data: data, encoding: .utf8)
-    return (output?.dropLast(), task.terminationStatus)
+  private func failed(_ result: String, status: Int32) {
+    Async.main {
+      self.delegate?.scriptDidReceiveError(result, status)
+      self.finishEvent.emit()
+    }
   }
 }

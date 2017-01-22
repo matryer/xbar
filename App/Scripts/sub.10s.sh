@@ -36,3 +36,7 @@ echo "---"
 echo "Has sub menus"
 echo "--One level"
 echo "----Two levels"
+
+echo "---- PAUSE 5 SEC ----"
+sleep 5
+echo "---- HERE COMES MORE ----"

@@ -12,8 +12,16 @@ class Listen {
     self.center = center
   }
 
-  func on(_ name: Notification.Name, block: @escaping Block<Void>) {
-    units.append(EventUnit(center, name: name, block: block))
+  func on(_ name: Notification.Name, for object: AnyObject? = nil, block: @escaping Block<Void>) {
+    units.append(EventUnit(center, name: name, object: object, block: block))
+  }
+
+  func reset() {
+    for unit in units {
+      center.removeObserver(unit)
+    }
+
+    units = []
   }
 }
 
@@ -21,12 +29,12 @@ private class EventUnit {
   var listeners = [Listener]()
   let event = Event<Void>()
 
-  init(_ center: NotificationCenter, name: Notification.Name, block: @escaping Block<Void>) {
+  init(_ center: NotificationCenter, name: Notification.Name, object: AnyObject?, block: @escaping Block<Void>) {
     center.addObserver(
       self,
       selector: #selector(didCallNotification),
       name: name,
-      object: nil
+      object: object
     )
 
     listeners.append(event.on(block))
