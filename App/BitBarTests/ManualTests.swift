@@ -529,15 +529,19 @@ class ManualTests: Helper {
             }
 
             context("fails") {
-              it("fails on invalid in base64") {
-                self.failure(parser, "image=XYZ")
-              }
-
               it("fails on empty string") {
-                self.failure(parser, "image=")
+                self.failure(parser, name + "=")
               }
             }
           }
+        }
+
+        describe("image") {
+          testBase64(Pro.getImage(), "image")
+        }
+
+        describe("templateImage") {
+          testBase64(Pro.getTemplateImage(), "templateImage")
         }
 
         describe("color") {

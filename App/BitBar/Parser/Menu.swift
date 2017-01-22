@@ -3,7 +3,7 @@ import AppKit
 import EmitterKit
 
 final class Menu: ItemBase, Menuable {
-  internal var level: Int = 0
+  internal let level: Int
   internal var events = [Listener]()
   internal var refreshEvent = Event<Void>()
   internal var container = Container()
@@ -21,8 +21,8 @@ final class Menu: ItemBase, Menuable {
     @level The number of levels down from the tray
   */
   init(_ title: String, params: [Param] = [], menus: [Menu] = [], level: Int = 0) {
-    super.init(title)
     self.level = level
+    super.init(title)
     add(menus: menus)
     add(params: params)
   }

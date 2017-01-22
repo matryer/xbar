@@ -59,29 +59,31 @@ extension Menu: Base {
     }
   }
 
-  func test(_ title: Title) -> Property {
+  private func test(_ title: Title) -> Property {
+    let levelTest = testLevel()
+    if menus.isEmpty { return levelTest }
     return title.menus.reduce(false <?> "test title.menus") {
       return ($0 ^||^ test($1)) ^&&^ $1.testLevel()
-    } ^&&^ testLevel()
+    } ^&&^ levelTest
   }
 
   func test(_ menu: Menu) -> Property {
     return eq(menu) ^&&^ menu.level ==== level ^&&^ testLevel()
   }
 
-  func testLevel() -> Property {
+  private func testLevel() -> Property {
     return menus.reduce(true <?> "level") {
       $1.level - 1 ==== level ^&&^ $1.testLevel()
     }
   }
 
-  func puts(_ bool: Bool, _: String) -> Bool {
+  private func puts(_ bool: Bool, _: String) -> Bool {
     // print("error: menu.", message)
     return bool
   }
 
   // TODO: Impl. as static func ==
-  private func eq(_ other: Menu) -> Bool {
+  func eq(_ other: Menu) -> Bool {
     if other.toString() != toString() {
       return puts(false, "title => (other)" + other.toString() + " vs (gen)" + toString())
     }

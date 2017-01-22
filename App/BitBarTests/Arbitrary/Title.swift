@@ -69,7 +69,16 @@ extension Title: Base {
       }
     }
 
-    return title.getValue() ==== self.getValue()
-      ^&&^ menus.reduce(true) { $0 ^&&^ $1.test(title) }
+    if title.getValue() != self.getValue() {
+      return false <?> "title"
+    }
+
+    for (index, menu) in menus.enumerated() {
+      if !menu.eq(title.menus[index]) {
+        return false <?> "menu.index.\(index)"
+      }
+    }
+
+    return true <?> "title"
   }
 }
