@@ -5,14 +5,12 @@ class Buffer {
   internal var isClosed = false
 
   func append(data: Data) {
-    // TODO: Handle error in a better way
-    if isClosed {
-      preconditionFailure("[BUG] Buffer is closed")
-    }
+    orFail()
     store.append(data)
   }
 
   func isFinish() -> Bool {
+    orFail()
     return toString().contains("~~~")
   }
 
@@ -26,8 +24,16 @@ class Buffer {
   }
 
   func reset() -> String {
+    orFail()
     let output = toString()
     store.setData(NSData() as Data)
     return output
+  }
+
+  private func orFail() {
+    // TODO: Handle error in a better way
+    if isClosed {
+      preconditionFailure("[BUG] Buffer is closed")
+    }
   }
 }

@@ -9,10 +9,12 @@ class Script {
   private let path: String
   private let args: [String]
   private var process: Process?
-  private var events = [Listener]()
+  private var listeners = [Listener]()
   private let listen = Listen(NotificationCenter.default)
   private let finishEvent = Event<Void>()
   private weak var delegate: ScriptDelegate?
+  private let event = Event<Void>()
+  private var listener: Listener?
 
   /**
     @path Full path to script to be executed
@@ -39,7 +41,9 @@ class Script {
     Stop all running tasks started by this instance
   */
   func stop() {
-    process?.terminate()
+    if isRunning() {
+      process?.terminate()
+    }
   }
   deinit { stop() }
 
@@ -62,6 +66,7 @@ class Script {
     stop()
 
     let process = Process()
+    var listeners = [Listener]()
     let pipe = Pipe()
     let buffer = Buffer()
     let handler = pipe.fileHandleForReading
@@ -72,25 +77,36 @@ class Script {
     process.standardOutput = pipe
     process.standardError = pipe
 
-    listen.on(.NSFileHandleDataAvailable, for: handler) {
-      buffer.append(data: handler.availableData)
+    self.listener = until(times: 2) {
+      let code = process.terminationStatus
+      let output = buffer.toString()
+      switch process.terminationReason {
+      case .exit:
+        self.succeeded(output, status: code)
+      case .uncaughtSignal:
+        self.failed(output, status: code)
+      }
 
-      if buffer.isFinish() {
+      buffer.close()
+    }
+
+    process.terminationHandler = { _ in
+      self.event.emit()
+    }
+
+    listen.on(.NSFileHandleDataAvailable, for: handler) {
+      let data = handler.availableData
+      buffer.append(data: data)
+
+      // Check for EOF
+      if data.count == 0 {
+        self.event.emit()
+      } else if buffer.isFinish() {
         self.succeeded(buffer.reset(), status: 0)
       } else if process.isRunning {
         handler.waitForDataInBackgroundAndNotify()
       } else {
-        let code = process.terminationStatus
-        let output = buffer.toString()
-        switch process.terminationReason {
-        case .exit:
-          self.succeeded(output, status: code)
-        case .uncaughtSignal:
-          self.failed(output, status: code)
-        }
-
-        // Ensures no one else can write to it
-        buffer.close()
+        self.event.emit()
       }
     }
 
@@ -118,7 +134,7 @@ class Script {
     if once {
       finishEvent.once(handler: block)
     } else {
-      events.append(finishEvent.on(block))
+      listeners.append(finishEvent.on(block))
     }
   }
 
@@ -140,6 +156,16 @@ class Script {
     Async.main {
       self.delegate?.scriptDidReceiveError(result, status)
       self.finishEvent.emit()
+    }
+  }
+
+  private func until(times: Int, block: @escaping Block<Void>) -> Listener {
+    var i = times
+    return event.on {
+      i -= 1
+      if i == 0 {
+        block()
+      }
     }
   }
 }

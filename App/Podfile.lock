@@ -21,7 +21,7 @@ DEPENDENCIES:
   - AsyncSwift
   - Cent
   - DateTools
-  - EmitterKit (from `https://github.com/aleclarson/emitter-kit.git`)
+  - EmitterKit
   - Files
   - FootlessParser (from `https://github.com/oleander/FootlessParser.git`, branch `swift3.0`)
   - Hue
@@ -35,8 +35,6 @@ DEPENDENCIES:
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
-  EmitterKit:
-    :git: https://github.com/aleclarson/emitter-kit.git
   FootlessParser:
     :branch: swift3.0
     :git: https://github.com/oleander/FootlessParser.git
@@ -46,9 +44,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
-  EmitterKit:
-    :commit: e62d4751991627fc0d972ee25b5644d670694237
-    :git: https://github.com/aleclarson/emitter-kit.git
   FootlessParser:
     :commit: 4f92146f4f93e0f9abfa8f5c473973aea994d057
     :git: https://github.com/oleander/FootlessParser.git
@@ -77,6 +72,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: ee387e97e1925b26849c6ab909299fd6a9b6d39e
+PODFILE CHECKSUM: e0eb8a834f184cc5830f7a0d1dfb0671836fcb3d
 
 COCOAPODS: 1.2.0.rc.1

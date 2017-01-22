@@ -2,7 +2,7 @@ target 'BitBar' do
   platform :osx, '10.10'
   use_frameworks!
 
-  pod 'EmitterKit', git: 'https://github.com/aleclarson/emitter-kit.git'
+  pod 'EmitterKit'
   pod 'FootlessParser', git: 'https://github.com/oleander/FootlessParser.git', branch: 'swift3.0'
   pod 'SwiftyTimer'
   pod 'DateTools'
