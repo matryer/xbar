@@ -23,7 +23,7 @@ class Tray: NSObject, NSMenuDelegate {
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible: Bool = true) {
+  init(title: String, isVisible display: Bool = true) {
     super.init()
     item.title = title
     item.menu = menu
@@ -31,8 +31,11 @@ class Tray: NSObject, NSMenuDelegate {
     menu.delegate = self
     setPrefs()
     defaultCount = menu.items.count
-    if isVisible {
-      show()
+hide()
+    if App.isInTestMode() {
+      hide()
+    } else if display {
+//      show()
     }
   }
 
@@ -75,6 +78,7 @@ class Tray: NSObject, NSMenuDelegate {
     Display item in menu bar
   */
   func show() {
+    if App.isInTestMode() { return }
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {

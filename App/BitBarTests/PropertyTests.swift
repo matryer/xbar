@@ -3,6 +3,11 @@ import XCTest
 @testable import BitBar
 
 class PropertyTests: XCTestCase {
+  // TODO: Use this in all test
+  override func setUp() {
+    App.startedTesting()
+  }
+
   func testMenu() {
     verify(name: "menu", parser: Pro.getMenu(), gen: Menu.arbitrary)
   }

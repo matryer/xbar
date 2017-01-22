@@ -11,18 +11,34 @@ class App {
   /**
     Event listeners
   */
+
+  /**
+    @block is invoked when the user clicks "Quit" in
+    the preference menu or uses the defined shortcut
+  */
   static func onDidClickQuit(block: @escaping Block<Void>) {
     listeners.append(quitEvent.on(block))
   }
 
+  /**
+    @block is invoked when the user clicks "Change plugin path" in
+    the preference menu or uses the defined shortcut
+  */
   static func onDidClickChangePluginPath(block: @escaping Block<Void>) {
     listeners.append(changePathEvent.on(block))
   }
 
+  /**
+    @block is invoked when the user clicks "Refresh All" in
+    the preference menu or uses the defined shortcut
+  */
   static func onDidClickRefresh(block: @escaping Block<Void>) {
     listeners.append(refreshEvent.on(block))
   }
 
+  /**
+    @block is invoked when the system wakes up from sleep
+  */
   static func onDidWake(block: @escaping Block<Void>) {
     listen.on(.NSWorkspaceDidWake, block: block)
   }
@@ -30,20 +46,33 @@ class App {
   /**
     Event triggers
   */
+
+  /**
+    Triggers the onDidClickQuit event
+    Used by the Tray to signal events back the AppDelegate
+  */
   static func didClickQuit() {
     quitEvent.emit()
   }
 
+  /**
+    Triggers the onDidClickChangePluginPath event
+    Used by the Tray to signal events back the AppDelegate
+  */
   static func didClickChangePluginPath() {
     changePathEvent.emit()
   }
 
+  /**
+    Triggers the onDidClickRefresh event
+    Used by the Tray to signal events back the AppDelegate
+  */
   static func didClickRefresh() {
     refreshEvent.emit()
   }
 
   /**
-    Bundle id for current application, i.e com.getbitbar.OSX
+    Bundle id for current application, i.e com.getbitbar
   */
   static var id: CFString {
     return currentBundle.bundleIdentifier! as CFString
@@ -145,10 +174,23 @@ class App {
     }
   }
 
+  /**
+    Is this a test? Used by the Tray class to
+    prevent the menu bar from flickering during testing
+  */
+  static func isInTestMode() -> Bool {
+    return isTesting
+  }
+
+  static func startedTesting() {
+    isTesting = true
+  }
+
   private static let currentBundle = Bundle.main
   private static let quitEvent = Event<Void>()
   private static let changePathEvent = Event<Void>()
   private static let refreshEvent = Event<Void>()
   private static var listeners = [Listener]()
   private static let listen = Listen(NSWorkspace.shared().notificationCenter)
+  private static var isTesting = false
 }
