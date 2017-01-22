@@ -34,7 +34,6 @@
 		206706731E15F6DB000DAADE /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706601E15F6DB000DAADE /* Script.swift */; };
 		206706741E15F6DB000DAADE /* ScriptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706611E15F6DB000DAADE /* ScriptDelegate.swift */; };
 		206706761E15F6DB000DAADE /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706641E15F6DB000DAADE /* Tray.swift */; };
-		206706771E15F6DB000DAADE /* TrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706651E15F6DB000DAADE /* TrayDelegate.swift */; };
 		2072774A1E239D8B00496F25 /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207277491E239D8B00496F25 /* PropertyTests.swift */; };
 		2072774C1E239D9100496F25 /* ManualTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072774B1E239D9100496F25 /* ManualTests.swift */; };
 		207BD8781E2379EA007AA0C7 /* Alternate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD8611E2379EA007AA0C7 /* Alternate.swift */; };
@@ -138,7 +137,6 @@
 		206706601E15F6DB000DAADE /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		206706611E15F6DB000DAADE /* ScriptDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptDelegate.swift; sourceTree = "<group>"; };
 		206706641E15F6DB000DAADE /* Tray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tray.swift; sourceTree = "<group>"; };
-		206706651E15F6DB000DAADE /* TrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayDelegate.swift; sourceTree = "<group>"; };
 		207277491E239D8B00496F25 /* PropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
 		2072774B1E239D9100496F25 /* ManualTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualTests.swift; sourceTree = "<group>"; };
 		207BD8611E2379EA007AA0C7 /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alternate.swift; path = BitBar/Parser/Alternate.swift; sourceTree = "<group>"; };
@@ -354,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				206706641E15F6DB000DAADE /* Tray.swift */,
-				206706651E15F6DB000DAADE /* TrayDelegate.swift */,
 			);
 			path = Tray;
 			sourceTree = "<group>";
@@ -655,7 +652,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2067066E1E15F6DB000DAADE /* PluginManager.swift in Sources */,
-				206706771E15F6DB000DAADE /* TrayDelegate.swift in Sources */,
 				2031E9A11E325AE2004A33E5 /* String.swift in Sources */,
 				206706731E15F6DB000DAADE /* Script.swift in Sources */,
 				207BD87E1E2379EA007AA0C7 /* Font.swift in Sources */,
