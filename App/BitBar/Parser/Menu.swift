@@ -24,7 +24,7 @@ final class Menu: ItemBase, Menuable {
     }
   }
 
-  init(_ title: String, menus: [Menu]) {
+  init(_ title: String, menus: [Menu] = []) {
     super.init(title)
     self.menus = menus
     self.container.delegate = self
