@@ -52,8 +52,9 @@ final class Title: NSMenu, Menuable {
     tray.add(item: menu)
   }
 
+  // TODO: Implement
   func add(error: String) {
-    print("Got error in title", error)
+    // print("Got error in title", error)
   }
 
   /**

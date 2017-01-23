@@ -1,5 +1,5 @@
 // TODO: Rename to IntVal
-class IntValue: Param {
+class IntValue {
   var value: Int
 
   init(_ value: Int) {
@@ -18,7 +18,11 @@ class IntValue: Param {
     return value
   }
 
-  func applyTo(menu: Menuable) {
-    // TODO
+  func equals(_ aValue: Any) -> Bool {
+    guard let unpacked = aValue as? Int else {
+      return false
+    }
+
+    return value == unpacked
   }
 }

@@ -1,7 +1,7 @@
 import Cocoa
 
-final class Href: StringVal {
-  override func applyTo(menu: Menuable) {
+final class Href: StringVal, Param {
+  func applyTo(menu: Menuable) {
     guard let url = URL(string: self.getValue()) else {
       return menu.add(error: "Could not parse URL with value \(getValue())")
     }

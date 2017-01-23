@@ -1,3 +1,5 @@
+import Cent
+
 /**
   Represents zero or more params for a title or menu
 */
@@ -5,6 +7,9 @@ class Container {
   private var store = [String: [Param]]()
   internal weak var delegate: Menuable?
 
+  /**
+    A non-sorted list of non named params, i.e terminal=false
+  */
   var filterParams: [Param] {
     return params.reduce([]) { acc, param in
       if param is NamedParam { return acc }
@@ -12,84 +17,20 @@ class Container {
     }
   }
 
+  /**
+    A non sorted list of all params
+    I.e terminal=false, param7=2
+  */
   var params: [Param] {
     return store.reduce([]) { acc, value in
       return acc + value.1
     }
   }
 
-  init() { /* TODO: Remove this. Not sure why it's needed */ }
-
-  /**
-    Add @params to the collection
-  */
-  func append(params: [Param]) {
-    var hasEmo = false
-    var hasTrim = false
-    for param in params {
-      hasEmo = hasEmo || param is Emojize
-      hasTrim = hasTrim || param is Trim
-      // TODO: Move String... to the param protocol
-      let key = String(describing: type(of: param))
-      if let curr = store[key] {
-        store[key] = curr + [param]
-      } else {
-        store[key] = [param]
-      }
-    }
-
-    var moreParams = [Param]()
-
-    if !hasEmo {
-      moreParams.append(Emojize(true))
-    }
-
-    if !hasTrim {
-      moreParams.append(Trim(true))
-    }
-
-    if !moreParams.isEmpty {
-      append(params: moreParams)
-    }
-  }
-
-  /**
-    Represents the refresh param, i.e refresh=false
-  */
-  func shouldRefresh() -> Bool {
-    return each(type: "Refresh", backup: false) {
-      ($0 as? Refresh)?.getValue()
-    }
-  }
-
-  /**
-    Represents the dropdown param, i.e dropdown=false
-  */
-  func hasDropdown() -> Bool {
-    return each(type: "Dropdown", backup: true) {
-      ($0 as? Dropdown)?.getValue()
-    }
-  }
-
-  /**
-    Represents the terminal param, i.e terminal=false
-  */
-  func openTerminal() -> Bool {
-    return each(type: "Terminal", backup: false) {
-      ($0 as? Terminal)?.getValue()
-    }
-  }
-
-  func apply() {
-    if let menu = delegate {
-      for param in params {
-        param.applyTo(menu: menu)
-      }
-    }
-  }
-
   /**
     Params to be passed as argument to a bash script
+    Sorted. I.e param2="A", param1="B"
+    Becomes ["B", "A"]
   */
   var args: [String] {
     return namedParams.sorted {
@@ -98,7 +39,7 @@ class Container {
   }
 
   /**
-    Represents the a list of the param-param, i.e param1=<value>
+    Represents the a list named params, i.e param1="B"
   */
   var namedParams: [NamedParam] {
     return get(type: "NamedParam").reduce([]) {
@@ -110,20 +51,109 @@ class Container {
     }
   }
 
+  init() {
+    add(param: Emojize(true))
+    add(param: Trim(true))
+  }
+
+  /**
+    Add @params to the collection
+  */
+  func append(params: [Param]) {
+    for param in params {
+      add(param: param)
+    }
+  }
+
+  func add(param: Param) {
+    add(type: param.key, value: param)
+  }
+
+  /**
+    Represents the refresh param, i.e refresh=false
+  */
+  func shouldRefresh() -> Bool {
+    return last(type: "Refresh")?.equals(true) ?? false
+  }
+
+  /**
+    Represents the dropdown param, i.e dropdown=false
+  */
+  func hasDropdown() -> Bool {
+    return last(type: "Dropdown")?.equals(true) ?? true
+  }
+
+  /**
+    Represents the terminal param, i.e terminal=false
+  */
+  func openTerminal() -> Bool {
+    return last(type: "Terminal")?.equals(true) ?? true
+  }
+
+  func apply() {
+    if let menu = delegate {
+      for param in params {
+        param.applyTo(menu: menu)
+      }
+    }
+  }
+
   private func get(type: String) -> [Param] {
     return store[type] ?? []
   }
 
-  private func each(type: String, backup: Bool, block: (Param) -> Bool?) -> Bool {
-    for param in get(type: type) {
-      guard let bool = block(param) else {
-        continue
-      }
-
-      return bool
-    }
-
-    return backup
+  private func has(type: String) -> Bool {
+    return !get(type: type).isEmpty
   }
 
+  private func add(type: String, value: Param) {
+    if value is NamedParam {
+      // Append
+      if let current = store[type] {
+        store[type] = current + [value]
+      } else {
+        store[type] = [value]
+      }
+    } else {
+      // Override existing value
+      store[type] = [value]
+    }
+  }
+
+  // Selectors first item of @type
+  func last(type: String) -> Param? {
+    return get(type: type).last()
+  }
+
+  static func == (_ lhs: Container, _ rhs: Container) -> Bool {
+    if lhs.filterParams.count != rhs.filterParams.count {
+      return false
+    }
+
+    if lhs.args.count != rhs.args.count {
+      return false
+    }
+
+    if lhs.params.count != rhs.params.count {
+      return false
+    }
+
+    for param1 in lhs.filterParams {
+      if let param2 = rhs.last(type: param1.key) {
+        if param1.toString() != param2.toString() {
+          return false
+        }
+      } else {
+        return false
+      }
+    }
+
+    for (index, arg1) in lhs.args.enumerated() {
+      if rhs.args[index] != arg1 {
+        return false
+      }
+    }
+
+    return true
+  }
 }

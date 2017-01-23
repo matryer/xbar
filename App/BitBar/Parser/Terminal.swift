@@ -1,2 +1,5 @@
-final class Terminal: BoolVal {
+final class Terminal: BoolVal, Param {
+  func applyTo(menu: Menuable) {
+    /* NOP */
+  }
 }

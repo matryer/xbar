@@ -26,7 +26,7 @@ class AScript: ScriptDelegate {
   }
 }
 
-class ScriptTests: QuickSpec {
+class ScriptTests: Helper {
   func testScript(_ path: String) -> AScript {
     return testScript(path, args: [])
   }

@@ -1,37 +1,11 @@
-import Foundation
 import Quick
 import Nimble
 @testable import BitBar
 
-private let examplePlugin = App.path(forResource: "sub.10s.sh")
-
-class ParamsTests: QuickSpec {
+class AnsiTests: QuickSpec {
   override func spec() {
-    context("length") {
-      it("handels base case") {
-        let menu = Menu("hello")
-        let length = Length(1)
-        length.applyTo(menu: menu)
-        expect(menu.title).to(equal("h…"))
-      }
-    }
-
-    context("bash") {
-      it("handles base case") {
-        let menu = Menu("hello")
-        let bash = Bash(examplePlugin)
-        menu.add(params: [Refresh(true)])
-        bash.applyTo(menu: menu)
-        var this = 0
-        menu.onDidRefresh {
-          this = 1
-        }
-        menu.trigger()
-        expect(this).toEventually(equal(1), timeout: 10)
-      }
-    }
-
-    context("ansi") {
+    App.startedTesting()
+    describe("ansi") {
       it("handles base case") {
         let input = "ABC\\e[3;4;33mDEF\\e[0mGHI"
         switch Pro.parse(Pro.getANSIs(), input) {

@@ -84,7 +84,7 @@ class Pro {
       (til([":"]) <* string(":")) <*>
       til([":"])
     let parser: P<[String]> = zeroOrMore(emojize)
-    return { result in result.joined(separator: "") } <^> parser
+    return curry(self.merge) <^> parser <*> zeroOrMore(any())
   }
 
   /**
@@ -231,7 +231,6 @@ class Pro {
       (tc <^> getLength()) <|>
       (tc <^> getAlternate()) <|>
       (tc <^> getChecked()) <|>
-      (tc <^> getEmojize()) <|>
       (tc <^> getAnsi()) <|>
       (tc <^> getBash()) <|>
       (tc <^> getDropdown()) <|>
@@ -425,5 +424,9 @@ class Pro {
         row += 1
     }
     return (head, row, string.distance(from: head.lowerBound, to: index) + 1)
+  }
+  
+  private static func merge(emojis: [String], remaining: String) -> String {
+    return emojis.joined(separator: "") + remaining
   }
 }

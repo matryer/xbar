@@ -1,4 +1,4 @@
-class BoolVal: Param {
+class BoolVal {
   var value: Bool
 
   init(_ value: Bool) {
@@ -13,7 +13,11 @@ class BoolVal: Param {
     return value
   }
 
-  func applyTo(menu: Menuable) {
-    // TODO:
+  func equals(_ aValue: Any) -> Bool {
+    guard let unpacked = aValue as? Bool else {
+      return false
+    }
+
+    return value == unpacked
   }
 }

@@ -29,8 +29,13 @@ extension String {
   }
 }
 
-// extension Array where Element: String {
-//   func join(_ separator: String = "") -> String {
-//     return joined(separator: separator)
-//   }
-// }
+extension Array {
+  // func join(_ separator: String = "") -> String {
+  //   return joined(separator: separator)
+  // }
+
+  // func last() -> Element? {
+  //   if isEmpty { return nil }
+  //   return self[count - 1]
+  // }
+}

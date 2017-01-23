@@ -1,17 +1,18 @@
 import SwiftyJSON
 import Files
 
-final class Emojize: BoolVal {
+final class Emojize: BoolVal, Param {
   private static let jsonEmojize = File.from(resource: "emoji.json")
   private static let emojis = getEmojis()
   private static let parser = Pro.replaceEmojize(replace: forChar)
 
-  override func applyTo(menu: Menuable) {
+  func applyTo(menu: Menuable) {
     guard getValue() else { return }
     switch Pro.parse(Emojize.parser, menu.getTitle()) {
     case let Result.success(title, _):
       menu.update(title: title)
     case let Result.failure(lines):
+      menu.add(error: "Failed to parse emojis")
       for error in lines {
         menu.add(error: error)
       }
@@ -55,11 +56,9 @@ final class Emojize: BoolVal {
           continue
         }
 
-        guard let key = name.string else {
-          continue
+        if let key = name.string {
+          replacements[key] = char
         }
-
-        replacements[key] = char
       }
     }
     return replacements

@@ -1,4 +1,4 @@
-class StringVal: Param {
+class StringVal {
   var value: String
 
   init(_ value: String) {
@@ -17,7 +17,11 @@ class StringVal: Param {
     return this.value == that.value
   }
 
-  func applyTo(menu: Menuable) {
-    // TODO: Remove
+  func equals(_ aValue: Any) -> Bool {
+    guard let unpacked = aValue as? String else {
+      return false
+    }
+
+    return value == unpacked
   }
 }

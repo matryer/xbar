@@ -2,8 +2,8 @@ import Hue
 typealias Stringish = NSMutableAttributedString
 
 /* TODO: Use Extensions/NSMutableAttributedString.swift */
-final class Ansi: BoolVal {
-  override func applyTo(menu: Menuable) {
+final class Ansi: BoolVal, Param {
+  func applyTo(menu: Menuable) {
     guard getValue() else { return }
 
     switch Pro.parse(Pro.getANSIs(), menu.getTitle()) {

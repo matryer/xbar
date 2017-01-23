@@ -1,6 +1,6 @@
 import Cocoa
 
-final class Image: StringVal {
+final class Image: StringVal, Param {
   let data: Data?
   var isTemplate = false
 
@@ -17,7 +17,7 @@ final class Image: StringVal {
     self.isTemplate = isTemplate
   }
 
-  override func applyTo(menu: Menuable) {
+  func applyTo(menu: Menuable) {
     guard let unpacked = data else {
       return menu.add(error: "Could not unpack base64 image")
     }

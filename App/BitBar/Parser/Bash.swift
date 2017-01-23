@@ -5,18 +5,20 @@ import Async
 // Param protocol instead of #applyTo
 // I.e bash.delegate = menu
 // then in bash; delegate?.shouldRefresh()
-final class Bash: StringVal {
-  override func applyTo(menu: Menuable) {
+final class Bash: StringVal, Param {
+  func applyTo(menu: Menuable) {
     menu.onDidClick {
-      // TODO: Rename to shouldOpenInTerminal (or something simular)
+      // TODO: Rename to shouldOpenInTerminal (or something similar)
       if menu.openTerminal() {
-        return Bash.open(script: self.getValue()) {
+        Bash.open(script: self.getValue()) {
           menu.add(error: $0)
         }
       }
 
       Script(path: self.getValue(), args: menu.getArgs()) {
-        if menu.shouldRefresh() { menu.refresh() }
+        if menu.shouldRefresh() {
+          menu.refresh()
+        }
       }.start()
     }
   }

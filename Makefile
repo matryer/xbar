@@ -7,7 +7,8 @@ TEST := $(BUILD_ATTR) BitBarTests test
 BUNDLE := $(PROJECT_NAME).app
 
 default: clean
-
+# Test a specific file
+# http://stackoverflow.com/questions/19335504/is-it-possible-to-run-individual-test-cases-test-classes-on-the-command-line-wit/41366648#41366648
 build:
 	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
 	@$(BUILD) | xcpretty

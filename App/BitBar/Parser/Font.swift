@@ -1,7 +1,7 @@
 import Cocoa
 
-final class Font: StringVal {
-  override func applyTo(menu: Menuable) {
+final class Font: StringVal, Param  {
+  func applyTo(menu: Menuable) {
     menu.update(fontName: getValue())
   }
 }

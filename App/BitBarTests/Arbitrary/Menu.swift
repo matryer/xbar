@@ -28,7 +28,8 @@ extension Menu: Base {
       params.append((gen.generate(using: Length.arbitrary)) as Param)
       params.append((gen.generate(using: Refresh.arbitrary)) as Param)
       params.append((gen.generate(using: Size.arbitrary)) as Param)
-      params.append((gen.generate(using: TemplateImage.arbitrary)) as Param)
+      // TODO: Re-add
+      // params.append((gen.generate(using: TemplateImage.arbitrary)) as Param)
       params.append((gen.generate(using: Terminal.arbitrary)) as Param)
       params.append((gen.generate(using: Trim.arbitrary)) as Param)
 
@@ -77,15 +78,15 @@ extension Menu: Base {
     }
   }
 
-  private func puts(_ bool: Bool, _: String) -> Bool {
-    // print("error: menu.", message)
+  private func puts(_ bool: Bool, _ message: String) -> Bool {
+    print("error: menu.", message)
     return bool
   }
 
   // TODO: Impl. as static func ==
   func eq(_ other: Menu) -> Bool {
-    if other.toString() != toString() {
-      return puts(false, "title => (other)" + other.toString() + " vs (gen)" + toString())
+    if other.getTitle() != getTitle() {
+      return puts(false, "title")
     }
 
     if other.menus.count != menus.count {
@@ -98,21 +99,7 @@ extension Menu: Base {
       }
     }
 
-    if params.count != other.params.count {
-      return puts(false, "menus.params")
-    }
-
-    if !params.isEmpty {
-      for param1 in params {
-        if !other.params.reduce(false) { acc, param2 in
-          acc || (param1.toString() == param2.toString())
-        } {
-          return puts(false, "param1 != param2")
-        }
-      }
-    }
-
-    return true
+    return container == other.container
   }
 
   private func getBody() -> String {

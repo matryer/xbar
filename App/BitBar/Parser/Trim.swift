@@ -1,6 +1,8 @@
-final class Trim: BoolVal {
-  override func applyTo(menu: Menuable) {
-    guard getValue() else { return }
-    menu.update(title: menu.getTitle().noMore())
+final class Trim: BoolVal, Param {
+  func applyTo(menu: Menuable) {
+    if getValue() {
+      /* FIXME: This replaces title. Use getAttrs instead */
+      menu.update(title: menu.getTitle().noMore())
+    }
   }
 }

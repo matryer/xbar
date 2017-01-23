@@ -33,7 +33,8 @@ extension Title: Base {
       params.append((gen.generate(using: Length.arbitrary)) as Param)
       params.append((gen.generate(using: Refresh.arbitrary)) as Param)
       params.append((gen.generate(using: Size.arbitrary)) as Param)
-      params.append((gen.generate(using: TemplateImage.arbitrary)) as Param)
+      // TODO: Re-add
+      // params.append((gen.generate(using: TemplateImage.arbitrary)) as Param)
       params.append((gen.generate(using: Terminal.arbitrary)) as Param)
       params.append((gen.generate(using: Trim.arbitrary)) as Param)
 
@@ -55,21 +56,7 @@ extension Title: Base {
       return false <?> "Missing menus. Got \(title.menus.count), expected: \(menus.count)"
     }
 
-    if params.count != title.params.count {
-      return false <?> "params.count"
-    }
-
-    if !params.isEmpty {
-      for param1 in params {
-        if !title.params.reduce(false) { acc, param2 in
-          acc || (param1.toString() == param2.toString())
-        } {
-          return false <?> "param1 != param2"
-        }
-      }
-    }
-
-    if title.getValue() != self.getValue() {
+    if title.getTitle() != getTitle() {
       return false <?> "title"
     }
 
@@ -79,6 +66,6 @@ extension Title: Base {
       }
     }
 
-    return true <?> "title"
+    return (title.container == container) <?> "title.container"
   }
 }
