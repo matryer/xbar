@@ -4,6 +4,9 @@ class Buffer {
   private let store: NSMutableData = NSMutableData(length: 0)!
   internal var isClosed = false
 
+  init() {
+    store.setData(NSData() as Data)
+  }
   func append(data: Data) {
     orFail()
     store.append(data)

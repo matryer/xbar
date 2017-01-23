@@ -26,7 +26,9 @@ class Script {
     self.path = path
     self.args = args
 
-    onDidFinish { self.listen.reset() }
+    onDidFinish {
+      self.listen.reset()
+    }
   }
 
   /**
@@ -69,6 +71,12 @@ class Script {
     let pipe = Pipe()
     let buffer = Buffer()
     let handler = pipe.fileHandleForReading
+    var listeners = [Listener]()
+    let eofEvent = Event<Void>()
+    let terminateEvent = Event<Void>()
+    var isEOFEvent = false
+    var isTerminateEvent = false
+    let isDone = { isEOFEvent && isTerminateEvent }
 
     process.launchPath = path
     process.arguments = args
@@ -76,7 +84,8 @@ class Script {
     process.standardOutput = pipe
     process.standardError = pipe
 
-    self.listener = until(times: 2) {
+    let tryDone = {
+      if !isDone() { return }
       let code = process.terminationStatus
       let output = buffer.toString()
       switch process.terminationReason {
@@ -87,25 +96,36 @@ class Script {
       }
 
       buffer.close()
+      listeners = []
     }
 
+    listeners.append(eofEvent.on {
+      isEOFEvent = true
+      tryDone()
+    })
+
+    listeners.append(terminateEvent.on {
+      isTerminateEvent = true
+      tryDone()
+    })
+
     process.terminationHandler = { _ in
-      self.event.emit()
+      terminateEvent.emit()
     }
 
     listen.on(.NSFileHandleDataAvailable, for: handler) {
       let data = handler.availableData
       buffer.append(data: data)
 
-      // Check for EOF
-      if data.count == 0 {
-        self.event.emit()
-      } else if buffer.isFinish() {
+      if buffer.isFinish() {
         self.succeeded(buffer.reset(), status: 0)
-      } else if process.isRunning {
-        handler.waitForDataInBackgroundAndNotify()
+      }
+
+      // 0 == EOF
+      if data.count == 0 {
+        eofEvent.emit()
       } else {
-        self.event.emit()
+        handler.waitForDataInBackgroundAndNotify()
       }
     }
 
@@ -155,16 +175,6 @@ class Script {
     Async.main {
       self.delegate?.scriptDidReceiveError(result, status)
       self.finishEvent.emit()
-    }
-  }
-
-  private func until(times: Int, block: @escaping Block<Void>) -> Listener {
-    var i = times
-    return event.on {
-      i -= 1
-      if i == 0 {
-        block()
-      }
     }
   }
 }
