@@ -24,7 +24,9 @@ class Container {
     Add @params to the collection
   */
   func append(params: [Param]) {
+    var hasEmo = false
     for param in params {
+      hasEmo = hasEmo || param is Emojize
       // TODO: Move String... to the param protocol
       let key = String(describing: type(of: param))
       if let curr = store[key] {
@@ -32,6 +34,10 @@ class Container {
       } else {
         store[key] = [param]
       }
+    }
+
+    if !hasEmo {
+      append(params: [Emojize(true)])
     }
   }
 

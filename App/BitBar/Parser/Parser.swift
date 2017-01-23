@@ -61,7 +61,7 @@ class Pro {
   }
 
   internal static func getOutput() -> P<Output> {
-    return curry(Output.init) <^> getTitle() <*> hasStream()
+    return curry(Output.init) <^> getTitle() <*> (hasStream() <* wsOrNl)
   }
 
   /**
