@@ -91,8 +91,13 @@ class Container {
   }
 
   func apply() {
+    // FIXME: Don't sort 'ondemand'
+    let sortedParams = self.filterParams.sorted { (p1, p2) in
+      return p1.priority > p2.priority
+    }
+
     if let menu = delegate {
-      for param in params {
+      for param in sortedParams {
         param.applyTo(menu: menu)
       }
     }

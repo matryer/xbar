@@ -2,6 +2,8 @@ import SwiftyJSON
 import Files
 
 final class Emojize: BoolVal, Param {
+  var priority: Int { return 9 }
+
   private static let jsonEmojize = File.from(resource: "emoji.json")
   private static let emojis = getEmojis()
   private static let parser = Pro.replaceEmojize(replace: forChar)

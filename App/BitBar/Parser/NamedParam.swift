@@ -1,4 +1,5 @@
 final class NamedParam: Param {
+  var priority: Int { return 0 }
   let key: String
   let value: String
 

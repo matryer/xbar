@@ -3,6 +3,7 @@ import Cocoa
 final class Image: StringVal, Param {
   let data: Data?
   var isTemplate = false
+  var priority: Int { return 0 }
 
   override init(_ base64: String) {
     self.data = Data(

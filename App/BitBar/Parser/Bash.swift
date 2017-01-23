@@ -6,6 +6,8 @@ import Async
 // I.e bash.delegate = menu
 // then in bash; delegate?.shouldRefresh()
 final class Bash: StringVal, Param {
+  var priority: Int { return 0 }
+  
   func applyTo(menu: Menuable) {
     menu.onDidClick {
       // TODO: Rename to shouldOpenInTerminal (or something similar)

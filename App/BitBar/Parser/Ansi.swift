@@ -3,6 +3,8 @@ typealias Stringish = NSMutableAttributedString
 
 /* TODO: Use Extensions/NSMutableAttributedString.swift */
 final class Ansi: BoolVal, Param {
+  var priority: Int { return 5 }
+
   func applyTo(menu: Menuable) {
     guard getValue() else { return }
 
