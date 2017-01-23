@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2007AD981E3616DE001D50D2 /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2007AD971E3616DE001D50D2 /* BufferTests.swift */; };
 		2008E6F01E23DD6B007FC1D6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6EF1E23DD6B007FC1D6 /* File.swift */; };
 		2008E6F21E23DD74007FC1D6 /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */; };
 		200FDA421E35C57C003F4B6B /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FDA381E35C57C003F4B6B /* ColorTests.swift */; };
@@ -99,7 +100,6 @@
 		20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1F87B1E23F521007E0D93 /* Menu.swift */; };
 		20C1F87E1E23F529007E0D93 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1F87D1E23F529007E0D93 /* Menu.swift */; };
 		20C8B98E1E237D76005DBC9D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8B98D1E237D76005DBC9D /* Parser.swift */; };
-		20D9BC561E352D5E00BBD399 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9BC551E352D5E00BBD399 /* example.swift */; };
 		20DEE6021E237BA200AF22D2 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE5FB1E237BA200AF22D2 /* Result.swift */; };
 		20DEE6031E237BA200AF22D2 /* StringVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE5FC1E237BA200AF22D2 /* StringVal.swift */; };
 		20DEE6041E237BA200AF22D2 /* BoolVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE5FD1E237BA200AF22D2 /* BoolVal.swift */; };
@@ -124,6 +124,7 @@
 /* Begin PBXFileReference section */
 		00CDDAB0A8E092EC11C6CAAC /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
 		1D7668DC35F332B9361C63E1 /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2007AD971E3616DE001D50D2 /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2008E6EF1E23DD6B007FC1D6 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = BitBar/Parser/File.swift; sourceTree = "<group>"; };
 		2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
 		200FDA381E35C57C003F4B6B /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 		20C1F87B1E23F521007E0D93 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = BitBar/Parser/Menu.swift; sourceTree = "<group>"; };
 		20C1F87D1E23F529007E0D93 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Arbitrary/Menu.swift; sourceTree = "<group>"; };
 		20C8B98D1E237D76005DBC9D /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = BitBar/Parser/Parser.swift; sourceTree = "<group>"; };
-		20D9BC551E352D5E00BBD399 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 		20DEE5FB1E237BA200AF22D2 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = BitBar/Parser/Result.swift; sourceTree = "<group>"; };
 		20DEE5FC1E237BA200AF22D2 /* StringVal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringVal.swift; path = BitBar/Parser/StringVal.swift; sourceTree = "<group>"; };
 		20DEE5FD1E237BA200AF22D2 /* BoolVal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoolVal.swift; path = BitBar/Parser/BoolVal.swift; sourceTree = "<group>"; };
@@ -411,7 +411,6 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
-				20D9BC551E352D5E00BBD399 /* example.swift */,
 				20A8FCAD1E34C2A50080E142 /* Menuable.swift */,
 				209F70861E331AF4005365B2 /* PathSelector.swift */,
 				209F70841E3316C4005365B2 /* Container.swift */,
@@ -465,6 +464,7 @@
 				20E660621E2399A300B530B1 /* Helper.swift */,
 				205A863C1E1DA94900E2C38C /* Arbitrary */,
 				20A115D41E15E43F00A68722 /* Info.plist */,
+				2007AD971E3616DE001D50D2 /* BufferTests.swift */,
 			);
 			path = BitBarTests;
 			sourceTree = "<group>";
@@ -733,7 +733,6 @@
 				20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */,
 				207BD87F1E2379EA007AA0C7 /* Href.swift in Sources */,
 				207BD88D1E2379EA007AA0C7 /* Trim.swift in Sources */,
-				20D9BC561E352D5E00BBD399 /* example.swift in Sources */,
 				20DEE6031E237BA200AF22D2 /* StringVal.swift in Sources */,
 				207BD8791E2379EA007AA0C7 /* Ansi.swift in Sources */,
 				206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */,
@@ -767,6 +766,7 @@
 				20642E801E2A758B004D9A28 /* MenuDelegate.swift in Sources */,
 				2099FAB21E1E300900F758AF /* Alternate.swift in Sources */,
 				2099FAB51E1E300900F758AF /* Emojize.swift in Sources */,
+				2007AD981E3616DE001D50D2 /* BufferTests.swift in Sources */,
 				20B489BC1E1E7A300089E874 /* Bash.swift in Sources */,
 				200FDA491E35C57C003F4B6B /* SizeTests.swift in Sources */,
 				2062778A1E1E7EFA0032AD69 /* Font.swift in Sources */,

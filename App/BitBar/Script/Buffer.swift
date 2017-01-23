@@ -1,15 +1,21 @@
 import Foundation
 
 class Buffer {
-  private let store: NSMutableData = NSMutableData(length: 0)!
+  private var store: NSMutableData = NSMutableData(length: 0)!
   internal var isClosed = false
 
   init() {
     store.setData(NSData() as Data)
   }
+  
   func append(data: Data) {
     orFail()
     store.append(data)
+  }
+  
+  func append(string: String) {
+    orFail()
+    store.append(string.data(using: .utf8)!)
   }
 
   func isFinish() -> Bool {
@@ -29,7 +35,7 @@ class Buffer {
   func reset() -> String {
     orFail()
     let output = toString()
-    store.setData(NSData() as Data)
+    store = NSMutableData(length: 0)!
     return output
   }
 

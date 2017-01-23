@@ -27,7 +27,7 @@ class Script {
     self.args = args
 
     onDidFinish {
-      self.listen.reset()
+//      self.listen.reset()
     }
   }
 
@@ -119,6 +119,8 @@ class Script {
 
       if buffer.isFinish() {
         self.succeeded(buffer.reset(), status: 0)
+        handler.waitForDataInBackgroundAndNotify()
+        return
       }
 
       // 0 == EOF
