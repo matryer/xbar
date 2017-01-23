@@ -24,7 +24,7 @@ final class Title: NSMenu, Menuable {
     @menus Sub menus to be displayed when when the item is clicked
   */
   init(_ title: String, params: [Param], menus: [Menu]) {
-    tray = Tray(title: title)
+    tray = Tray(title: title, isVisible: true)
     super.init(title: title)
     add(menus: menus)
     add(params: params)
