@@ -17,7 +17,7 @@ final class Bash: StringVal, Param {
         }
       }
 
-      Script(path: self.getValue(), args: menu.getArgs()) {
+      Script(path: self.getValue(), args: menu.getArgs()) { _ in
         if menu.shouldRefresh() {
           menu.refresh()
         }

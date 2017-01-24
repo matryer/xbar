@@ -1,83 +1,112 @@
 import Quick
+import Cent
 import Nimble
 @testable import BitBar
 
-let toFile = { file in Bundle(for: ScriptTests.self).resourcePath! + "/" + file }
-
-class Out {
-  let out: String
-  let code: Int32
-
-  init(_ out: String, _ code: Int32) {
-    self.out = out
-    self.code = code
-  }
-}
-
-class AScript: ScriptDelegate {
-  var result: Out = Out("", Int32(-10))
-
-  func scriptDidReceiveOutput(_ output: String, _ code: Int32) {
-    result = Out(output.noMore(), code)
-  }
-
-  func scriptDidReceiveError(_ error: String, _ code: Int32) {
-    result = Out(error.noMore(), code)
-  }
-}
-
 class ScriptTests: Helper {
-  func testScript(_ path: String) -> AScript {
-    return testScript(path, args: [])
+  let timeout = 10.0
+
+  func toFile(_ path: String) -> String {
+    return Bundle(for: ScriptTests.self).resourcePath! + "/" + path
   }
 
-  func testScript(_ path: String, args: [String]) -> AScript {
-    let del = AScript()
-    let script = Script(path: toFile(path), args: args, delegate: del)
-    script.start()
-    return del
+  func testSucc(_ path: String, args: [String] = [], assumed: String) {
+    waitUntil(timeout: timeout) { done in
+      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
+        switch result {
+          case let .success(stdout, status):
+            expect(stdout).to(equal(assumed))
+            expect(status).to(equal(0))
+          default:
+            fail("Expected success but got \(result)")
+        }
+        done()
+      }
+    }
+  }
+
+  func testFail(_ path: String, args: [String] = [], assumed: String) {
+    waitUntil(timeout: timeout) { done in
+      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
+        switch result {
+          case let .failure(.exit(stderr, status)):
+            expect(stderr).to(equal(assumed))
+            expect(status).toNot(equal(0))
+          default:
+            fail("Expected failure but got \(result)")
+        }
+        done()
+      }
+    }
+  }
+
+  func testCrash(_ path: String, args: [String] = [], assumed: String) {
+    waitUntil(timeout: timeout) { done in
+      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
+        switch result {
+          case let .failure(.crash(message)):
+            expect(message).to(equal(assumed))
+          default:
+            fail("Expected success but got \(result)")
+        }
+        done()
+      }
+    }
+  }
+
+  func testMisuse(_ path: String, args: [String] = [], assumed: String) {
+    waitUntil(timeout: timeout) { done in
+      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
+        switch result {
+          case let .failure(.misuse(message)):
+            expect(message).to(contain(assumed))
+          default:
+            fail("Expected misuse but got \(result)")
+        }
+        done()
+      }
+    }
   }
 
   override func spec() {
     describe("stdout") {
       it("handles base case") {
-        let del = self.testScript("hello.sh")
-        expect(del.result.code).toEventually(equal(0), timeout: 5)
-        expect(del.result.out).toEventually(equal("Hello"), timeout: 5)
+        self.testSucc("basic.sh", assumed: "Hello")
       }
 
       it("handles sleep") {
-        let del = self.testScript("sleep.sh")
-        expect(del.result.code).toEventually(equal(0), timeout: 5)
-        expect(del.result.out).toEventually(equal("sleep"), timeout: 5)
+        self.testSucc("sleep.sh", assumed: "sleep")
       }
 
       it("handles args") {
-        let del = self.testScript("args.sh", args: ["1", "2", "3"])
-        expect(del.result.code).toEventually(equal(0), timeout: 5)
-        expect(del.result.out).toEventually(equal("1 2 3"), timeout: 5)
+        self.testSucc("args.sh", args: ["1", "2", "3"], assumed: "1 2 3")
       }
     }
 
     describe("stderr") {
       it("exit code 1, no output") {
-        let del = self.testScript("exit1-no-output.sh")
-        expect(del.result.code).toEventually(equal(1), timeout: 5)
-        expect(del.result.out).toEventually(equal(""), timeout: 5)
+        self.testFail("exit1-no-output.sh", assumed: "")
       }
 
       it("exit code 1, with output") {
-        let del = self.testScript("exit1-output.sh")
-        expect(del.result.code).toEventually(equal(1), timeout: 5)
-        expect(del.result.out).toEventually(equal("Exit 1"), timeout: 5)
+        self.testFail("exit1-output.sh", assumed: "Exit 1")
+      }
+    }
+
+    describe("crash") {
+      it("is missing shebang") {
+        self.testCrash("missing-sh-bin.sh", assumed: "launch path not accessible")
       }
 
-      // TODO:
-      // it("missing shebang") {
-      //   let del = self.testScript("missing-sh-bin.sh")
-      //   expect(del.result.code).toEventually(equal(1))
-      //   expect(del.result.out).toEventually(equal("Exit 1"))
-      // }
+      it("handles non-executable script") {
+        self.testCrash("nonexec.sh", assumed: "launch path not accessible")
+      }
+    }
+
+    describe("misuse") {
+      it("handles invalid syntax") {
+        self.testMisuse("invalid-syntax.sh", assumed: "syntax error: unexpected end of file")
+      }
     }
   }
 }

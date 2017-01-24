@@ -30,6 +30,8 @@
 		2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2031E9A41E328C66004A33E5 /* sub.10s.sh */; };
 		2031E9A71E32A061004A33E5 /* PrefItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A61E32A061004A33E5 /* PrefItem.swift */; };
 		2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */; };
+		20444FF01E378E5200CB21D2 /* basic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEE1E378E5200CB21D2 /* basic.sh */; };
+		20444FF11E378E5200CB21D2 /* invalid-syntax.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
 		2058204F1E35588D0032BEEF /* missing-sh-bin.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */; };
 		205820511E355D7B0032BEEF /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205820501E355D7B0032BEEF /* Buffer.swift */; };
@@ -69,8 +71,6 @@
 		2084CCE51E2A3E7100DE01F6 /* args.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDD1E2A3E7100DE01F6 /* args.sh */; };
 		2084CCE61E2A3E7100DE01F6 /* exit1-no-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDE1E2A3E7100DE01F6 /* exit1-no-output.sh */; };
 		2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */; };
-		2084CCE81E2A3E7100DE01F6 /* fails.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE01E2A3E7100DE01F6 /* fails.sh */; };
-		2084CCE91E2A3E7100DE01F6 /* hello.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE11E2A3E7100DE01F6 /* hello.sh */; };
 		2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE31E2A3E7100DE01F6 /* nonexec.sh */; };
 		2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE41E2A3E7100DE01F6 /* sleep.sh */; };
 		209632EF1E20A264003BC47E /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209632EE1E20A264003BC47E /* NamedParam.swift */; };
@@ -147,6 +147,8 @@
 		2031E9A41E328C66004A33E5 /* sub.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.10s.sh; path = Scripts/sub.10s.sh; sourceTree = "<group>"; };
 		2031E9A61E32A061004A33E5 /* PrefItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefItem.swift; path = BitBar/PrefItem.swift; sourceTree = "<group>"; };
 		2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatedAgoItem.swift; path = BitBar/UpdatedAgoItem.swift; sourceTree = "<group>"; };
+		20444FEE1E378E5200CB21D2 /* basic.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = basic.sh; path = BitBarTests/scripts/basic.sh; sourceTree = SOURCE_ROOT; };
+		20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "invalid-syntax.sh"; path = "BitBarTests/scripts/invalid-syntax.sh"; sourceTree = SOURCE_ROOT; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
 		2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "missing-sh-bin.10m.sh"; path = "BitBarTests/scripts/missing-sh-bin.10m.sh"; sourceTree = SOURCE_ROOT; };
 		205820501E355D7B0032BEEF /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
@@ -185,8 +187,6 @@
 		2084CCDD1E2A3E7100DE01F6 /* args.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = args.sh; sourceTree = "<group>"; };
 		2084CCDE1E2A3E7100DE01F6 /* exit1-no-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-no-output.sh"; sourceTree = "<group>"; };
 		2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-output.sh"; sourceTree = "<group>"; };
-		2084CCE01E2A3E7100DE01F6 /* fails.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fails.sh; sourceTree = "<group>"; };
-		2084CCE11E2A3E7100DE01F6 /* hello.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = hello.sh; sourceTree = "<group>"; };
 		2084CCE31E2A3E7100DE01F6 /* nonexec.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = nonexec.sh; sourceTree = "<group>"; };
 		2084CCE41E2A3E7100DE01F6 /* sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sleep.sh; sourceTree = "<group>"; };
 		209632EE1E20A264003BC47E /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedParam.swift; path = Arbitrary/NamedParam.swift; sourceTree = "<group>"; };
@@ -396,12 +396,12 @@
 		2084CCDC1E2A3E7100DE01F6 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				20444FEE1E378E5200CB21D2 /* basic.sh */,
+				20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */,
 				2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */,
 				2084CCDD1E2A3E7100DE01F6 /* args.sh */,
 				2084CCDE1E2A3E7100DE01F6 /* exit1-no-output.sh */,
 				2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */,
-				2084CCE01E2A3E7100DE01F6 /* fails.sh */,
-				2084CCE11E2A3E7100DE01F6 /* hello.sh */,
 				2084CCE31E2A3E7100DE01F6 /* nonexec.sh */,
 				2084CCE41E2A3E7100DE01F6 /* sleep.sh */,
 			);
@@ -581,12 +581,12 @@
 				2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */,
 				2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */,
 				2058204F1E35588D0032BEEF /* missing-sh-bin.10m.sh in Resources */,
+				20444FF01E378E5200CB21D2 /* basic.sh in Resources */,
+				20444FF11E378E5200CB21D2 /* invalid-syntax.sh in Resources */,
 				20642E7D1E2A4E4C004D9A28 /* emoji.json in Resources */,
 				2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */,
 				2084CCE51E2A3E7100DE01F6 /* args.sh in Resources */,
 				2084CCE61E2A3E7100DE01F6 /* exit1-no-output.sh in Resources */,
-				2084CCE81E2A3E7100DE01F6 /* fails.sh in Resources */,
-				2084CCE91E2A3E7100DE01F6 /* hello.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

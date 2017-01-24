@@ -4,6 +4,13 @@ import Async
 import SwiftTryCatch
 import Foundation
 
+private extension Data {
+  func isEOF() -> Bool {
+    return count == 0
+  }
+}
+
+
 // TODO: Use Process.environment
 class Script {
   private let path: String
@@ -11,32 +18,58 @@ class Script {
   private var process: Process?
   private var listeners = [Listener]()
   private let listen = Listen(NotificationCenter.default)
-  private let finishEvent = Event<Void>()
+  private let finishEvent = Event<Result>()
   private weak var delegate: ScriptDelegate?
   private let event = Event<Void>()
   private var listener: Listener?
+
+  enum Failure {
+    case crash(String)
+    case exit(String, Int)
+    case misuse(String)
+  }
+
+  enum Result {
+    case success(String, Int)
+    case failure(Failure)
+  }
 
   /**
     @path Full path to script to be executed
     @args Argument to be passed to @path
     @delegate Called when finished executing script
   */
-  init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil) {
+  init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, autostart: Bool = false) {
     self.delegate = delegate
     self.path = path
     self.args = args
 
-    onDidFinish {
-//      self.listen.reset()
-    }
+    if autostart { start() }
+//     onDidFinish {
+// //      self.listen.reset()
+//     }
   }
 
   /**
     Takes an extra block that's invoked when the script finishes
   */
-  convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, block: @escaping Block<Void>) {
-    self.init(path: path, args: args, delegate: delegate)
+  convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, autostart: Bool = false, block: @escaping Block<Result>) {
+    self.init(path: path, args: args, delegate: delegate, autostart: autostart)
     onDidFinish(block)
+  }
+
+  static func isExecutable(path: String, block: @escaping Block<Bool>) {
+    var script: Script!
+    script = Script(path: "test", args: ["-x", path], autostart: true) { result in
+      switch result {
+        case .success(_):
+          block(true)
+        case .failure(_):
+          // TODO: Check status code == 1
+          block(false)
+        script.stop()
+      }
+    }
   }
 
   /**
@@ -86,13 +119,17 @@ class Script {
 
     let tryDone = {
       if !isDone() { return }
-      let code = process.terminationStatus
-      let output = buffer.toString()
-      switch process.terminationReason {
-      case .exit:
-        self.succeeded(output, status: code)
-      case .uncaughtSignal:
-        self.failed(output, status: code)
+      let output = buffer.toString().dropLast()
+      switch (process.terminationReason, process.terminationStatus) {
+      case (.exit, 0):
+        self.succeeded(output, status: 0)
+      case (.exit, 2):
+        self.failed(.misuse(output))
+      case let (.exit, code):
+        self.failed(.exit(output, Int(code)))
+
+      case let (.uncaughtSignal, code):
+        self.failed(.exit(output, Int(code)))
       }
 
       buffer.close()
@@ -125,8 +162,7 @@ class Script {
         return
       }
 
-      // 0 == EOF
-      if data.count == 0 {
+      if data.isEOF() {
         eofEvent.emit()
       } else {
         handler.waitForDataInBackgroundAndNotify()
@@ -140,20 +176,29 @@ class Script {
       process.launch()
     }, catchRun: {
       if let message = $0?.reason {
-        self.failed(message, status: -1)
+        self.handleCrash(message)
       } else {
-        self.failed(String(describing: $0), status: -1)
+        self.handleCrash(String(describing: $0))
       }
     }, finallyRun: {
       /* NOP */
     })
   }
 
+  private func handleCrash(_ message: String) {
+    self.failed(.crash(message))
+    // FIXME: Check if path is executable
+    // Script.isExecutable(path: path) { isExec in
+    //   if isExec { self.failed(.crash("file is not executable")) }
+    //   else { self.failed(.crash(message)) }
+    // }
+  }
+
   /**
     @once Only listen for one event
     @block Block to be called when process finishes
   */
-  func onDidFinish(once: Bool = false, _ block: @escaping Block<Void>) {
+  func onDidFinish(once: Bool = false, _ block: @escaping Block<Result>) {
     if once {
       finishEvent.once(handler: block)
     } else {
@@ -171,14 +216,15 @@ class Script {
   private func succeeded(_ result: String, status: Int32) {
     Async.main {
       self.delegate?.scriptDidReceiveOutput(result, status)
-      self.finishEvent.emit()
+      self.finishEvent.emit(.success(result, Int(status)))
     }
   }
 
-  private func failed(_ result: String, status: Int32) {
+  private func failed(_ message: Failure) {
     Async.main {
-      self.delegate?.scriptDidReceiveError(result, status)
-      self.finishEvent.emit()
+      // TODO: Fix this
+      self.delegate?.scriptDidReceiveError("X", -1)
+      self.finishEvent.emit(.failure(message))
     }
   }
 }
