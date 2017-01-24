@@ -45,7 +45,6 @@ class ImageTests: Helper {
   }
 
   override func spec() {
-    App.startedTesting()
     describe("parser") {
       describe("image") {
         verifyBase64(Pro.getImage(), "image")

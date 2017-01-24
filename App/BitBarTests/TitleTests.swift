@@ -4,8 +4,6 @@ import Nimble
 
 class TitleTests: Helper {
   override func spec() {
-    App.startedTesting()
-
     describe("title") {
       it("menu") {
         let input = "S0 YM 2DR \n---\nL\n--i\n---\nC"

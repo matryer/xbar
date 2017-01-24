@@ -4,7 +4,6 @@ import Nimble
 
 class MenuTests: Helper {
   override func spec() {
-    App.startedTesting()
     describe("menu") {
       let addPrefix = { "\n---\n" + $0 }
       context("params") {

@@ -107,6 +107,9 @@ class App {
     Absolute path to plugins folder
   */
   static var pluginPath: String? {
+    // TODO: This is only temp.
+    // Prevent test suit to load test path
+    if isInTestMode() { return nil }
     return Defaults[.pluginPath]
   }
 
@@ -168,6 +171,7 @@ class App {
     TODO: @block should always be called
   */
   static func askAboutPluginPath(block: @escaping Block<Void>) {
+    if App.isInTestMode() { return }
     PathSelector(withURL: App.pluginURL).ask {
       App.update(pluginPath: $0?.path)
       block()
@@ -179,11 +183,7 @@ class App {
     prevent the menu bar from flickering during testing
   */
   static func isInTestMode() -> Bool {
-    return isTesting
-  }
-
-  static func startedTesting() {
-    isTesting = true
+    return ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
   }
 
   private static let currentBundle = Bundle.main

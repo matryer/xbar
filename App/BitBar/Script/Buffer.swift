@@ -15,6 +15,7 @@ extension CountableClosedRange where  Bound : Integer {
   }
 }
 
+// TODO: Make private
 private enum NotFound: Error {
   case noLocation
 }
@@ -62,10 +63,11 @@ private extension String {
 }
 
 class Buffer {
-  private static let defaultDelimiter = "~~~".toData()
+  private static let defaultDelimiter = "\n~~~\n".toData()
 
   private let delimiter: Data
   private let store: NSMutableData = NSMutableData(length: 0)!
+  internal var hasData = false
   internal var isClosed = false
 
   init() {
@@ -78,12 +80,12 @@ class Buffer {
 
   func append(data: Data) {
     orFail()
+    hasData = true
     store.append(data)
   }
 
   func append(string: String) {
-    orFail()
-    store.append(string.toData())
+    append(data: string.toData())
   }
 
   func isFinish() -> Bool {
@@ -110,6 +112,12 @@ class Buffer {
 
   func reset() -> [String] {
     orFail()
+
+    if store.length > 0 {
+      hasData = true
+    } else {
+      hasData = false
+    }
 
     var range: CRange!
 

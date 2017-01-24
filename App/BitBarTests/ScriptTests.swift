@@ -5,9 +5,12 @@ import Nimble
 
 class ScriptTests: Helper {
   let timeout = 10.0
-
   func toFile(_ path: String) -> String {
     return Bundle(for: ScriptTests.self).resourcePath! + "/" + path
+  }
+
+  func toStream(_ items: String...) -> [String] {
+    return items.map { item in item + "\n~~~\n" }
   }
 
   func testSucc(_ path: String, args: [String] = [], assumed: String) {
@@ -21,6 +24,53 @@ class ScriptTests: Helper {
             fail("Expected success but got \(result)")
         }
         done()
+      }
+    }
+  }
+
+  func testStream(_ path: String, args: [String] = [], assumed: [String]) {
+    if assumed.isEmpty { fail("Assumed can't be empty'") }
+    waitUntil(timeout: timeout) { done in
+      let exexPath = self.toFile(path)
+      let a = assumed
+      var index2 = -1090
+      var index = 0
+      var script: Script!
+      script = Script(path: exexPath, args: args, autostart: true) { result in
+        if index == -1 {
+          fail("To many calls. Index: \(index2), \(exexPath) result: \(result), \(a)")
+          return
+        }
+        if !assumed.indices.contains(index) {
+          fail("Script was called to many times. Index: \(index), result: \(result), \(assumed)")
+          index2 = index
+          index = -1
+          done()
+          return
+        }
+
+        let cAssumed = assumed[index]
+        switch result {
+          case let .success(stdout, status):
+            expect(stdout).to(equal(cAssumed))
+            expect(status).to(equal(0))
+          default:
+            fail("Expected '\(cAssumed.replace("\n", "[nl]"))' index \(index) for \(exexPath) but got \(result)")
+            done()
+                      index2 = index
+
+            index = -1
+            return
+        }
+
+        index += 1
+        if assumed.count == index {
+          done()
+          script.stop()
+                    index2 = index
+
+          index = -1
+        }
       }
     }
   }
@@ -106,6 +156,24 @@ class ScriptTests: Helper {
     describe("misuse") {
       it("handles invalid syntax") {
         self.testMisuse("invalid-syntax.sh", assumed: "syntax error: unexpected end of file")
+      }
+    }
+
+    describe("stream") {
+      it("handles one output") {
+        self.testStream("stream-nomore.sh", assumed: ["A\n~~~"])
+      }
+
+      it("handles more then one") {
+        self.testStream("stream-more.sh", assumed: ["A\n~~~", "B"])
+      }
+
+      it("handles empty stream") {
+        self.testStream("stream-nothing.sh", assumed: ["~~~"])
+      }
+
+      it("handles sleep") {
+        self.testStream("stream-sleep.sh", assumed: ["A\n~~~", "B"])
       }
     }
   }

@@ -4,8 +4,6 @@ import Nimble
 
 class ColorTests: Helper {
   override func spec() {
-    App.startedTesting()
-
     describe("parser") {
       describe("english") {
         it("handels base case") {

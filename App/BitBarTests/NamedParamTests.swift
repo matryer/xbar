@@ -4,8 +4,6 @@ import Nimble
 
 class NamedParamTests: Helper {
   override func spec() {
-    App.startedTesting()
-
     it("handles base case") {
       self.match(Pro.getParam(), "param1=a-value") {
         expect($0.getValue()).to(equal("a-value"))

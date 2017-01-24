@@ -5,7 +5,6 @@ import Nimble
 class ContainerTests: Helper {
   override func spec() {
     var container: Container!
-    App.startedTesting()
     beforeEach {
       container = Container()
     }

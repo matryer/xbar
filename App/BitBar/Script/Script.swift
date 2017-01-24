@@ -10,8 +10,7 @@ private extension Data {
   }
 }
 
-
-// TODO: Use Process.environment
+// TODO: Implement Process.environment
 class Script {
   private let path: String
   private let args: [String]
@@ -45,9 +44,6 @@ class Script {
     self.args = args
 
     if autostart { start() }
-//     onDidFinish {
-// //      self.listen.reset()
-//     }
   }
 
   /**
@@ -56,20 +52,6 @@ class Script {
   convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, autostart: Bool = false, block: @escaping Block<Result>) {
     self.init(path: path, args: args, delegate: delegate, autostart: autostart)
     onDidFinish(block)
-  }
-
-  static func isExecutable(path: String, block: @escaping Block<Bool>) {
-    var script: Script!
-    script = Script(path: "test", args: ["-x", path], autostart: true) { result in
-      switch result {
-        case .success(_):
-          block(true)
-        case .failure(_):
-          // TODO: Check status code == 1
-          block(false)
-        script.stop()
-      }
-    }
   }
 
   /**
@@ -99,7 +81,6 @@ class Script {
   */
   func start() {
     stop()
-
     let process = Process()
     let pipe = Pipe()
     let buffer = Buffer()
@@ -109,7 +90,8 @@ class Script {
     let terminateEvent = Event<Void>()
     var isEOFEvent = false
     var isTerminateEvent = false
-    let isDone = { isEOFEvent && isTerminateEvent }
+    var isStream = false
+    let isDone = { isEOFEvent && isTerminateEvent && !isStream }
 
     process.launchPath = path
     process.arguments = args
@@ -127,7 +109,6 @@ class Script {
         self.failed(.misuse(output))
       case let (.exit, code):
         self.failed(.exit(output, Int(code)))
-
       case let (.uncaughtSignal, code):
         self.failed(.exit(output, Int(code)))
       }
@@ -152,17 +133,21 @@ class Script {
 
     listen.on(.NSFileHandleDataAvailable, for: handler) {
       let data = handler.availableData
-      buffer.append(data: data)
 
-      if buffer.isFinish() {
-        for result in buffer.reset() {
-          self.succeeded(result, status: 0)
-        }
-        handler.waitForDataInBackgroundAndNotify()
-        return
+      if !data.isEOF() {
+        buffer.append(data: data)
       }
 
-      if data.isEOF() {
+      if buffer.isFinish() {
+        isStream = true
+        for result in buffer.reset() {
+          self.succeeded(result.dropLast(), status: 0)
+        }
+      }
+
+      if data.isEOF() && isStream && buffer.hasData {
+        self.succeeded(buffer.toString().dropLast(), status: 0)
+      } else if data.isEOF() {
         eofEvent.emit()
       } else {
         handler.waitForDataInBackgroundAndNotify()
@@ -187,7 +172,7 @@ class Script {
 
   private func handleCrash(_ message: String) {
     self.failed(.crash(message))
-    // FIXME: Check if path is executable
+    // TODO: Check if path is executable
     // Script.isExecutable(path: path) { isExec in
     //   if isExec { self.failed(.crash("file is not executable")) }
     //   else { self.failed(.crash(message)) }
@@ -222,9 +207,25 @@ class Script {
 
   private func failed(_ message: Failure) {
     Async.main {
-      // TODO: Fix this
-      self.delegate?.scriptDidReceiveError("X", -1)
+      // TODO: Do not use String.desc
+      self.delegate?.scriptDidReceiveError(String(describing: message), 1)
       self.finishEvent.emit(.failure(message))
     }
   }
+
+  // TODO: Currently not in use
+  static func isExecutable(path: String, block: @escaping Block<Bool>) {
+    var script: Script!
+    script = Script(path: "test", args: ["-x", path], autostart: true) { result in
+      switch result {
+        case .success(_):
+          block(true)
+        case .failure(_):
+          // TODO: Check status code == 1
+          block(false)
+        script.stop()
+      }
+    }
+  }
+
 }

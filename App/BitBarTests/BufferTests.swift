@@ -4,8 +4,6 @@ import Nimble
 
 class BufferTests: Helper {
   override func spec() {
-    App.startedTesting()
-
     it("defaults to not finished") {
       expect(Buffer().isFinish()).to(beFalse())
     }

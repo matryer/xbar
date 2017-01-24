@@ -4,7 +4,6 @@ import Nimble
 
 class SubMenuTests: Helper {
   override func spec() {
-    App.startedTesting()
     describe("sub menu") {
       context("only submenu") {
         it("handles base case") {

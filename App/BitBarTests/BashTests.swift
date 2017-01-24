@@ -6,8 +6,6 @@ private let examplePlugin = App.path(forResource: "sub.10s.sh")
 
 class BashTests: Helper {
   override func spec() {
-    App.startedTesting()
-
     context("base case") {
       it("handles base case") {
         let menu = Menu("hello")

@@ -4,7 +4,6 @@ import Nimble
 
 class AnsiTests: QuickSpec {
   override func spec() {
-    App.startedTesting()
     describe("ansi") {
       it("handles base case") {
         let input = "ABC\\e[3;4;33mDEF\\e[0mGHI"

@@ -4,8 +4,6 @@ import Nimble
 
 class LengthTests: Helper {
   override func spec() {
-    App.startedTesting()
-
     context("base case") {
       it("handels base case") {
         let menu = Menu("hello")
