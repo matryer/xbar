@@ -19,11 +19,11 @@ class File {
     } as String
   }
 
-  static public var resourcesPath: String {
+  static var resourcesPath: String {
     return Bundle.main.resourcePath!
   }
 
-  static public func from(resource file: String) -> String {
+  static func from(resource file: String) -> String {
     return join(resourcesPath, file)
   }
 }

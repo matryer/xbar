@@ -118,7 +118,9 @@ class Script {
       buffer.append(data: data)
 
       if buffer.isFinish() {
-        self.succeeded(buffer.reset(), status: 0)
+        for result in buffer.reset() {
+          self.succeeded(result, status: 0)
+        }
         handler.waitForDataInBackgroundAndNotify()
         return
       }

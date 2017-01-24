@@ -7,8 +7,6 @@ TEST := $(BUILD_ATTR) BitBarTests test
 BUNDLE := $(PROJECT_NAME).app
 
 default: clean
-# Test a specific file
-# http://stackoverflow.com/questions/19335504/is-it-possible-to-run-individual-test-cases-test-classes-on-the-command-line-wit/41366648#41366648
 build:
 	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
 	@$(BUILD) | xcpretty
@@ -33,7 +31,7 @@ ci:
 	@set -o pipefail && $(TEST) | xcpretty -c
 watch:
 	@echo "[Task] Watching for file changes..."
-	@find . -name "*.swift" | entr -r make test
+	@find . -name "*.swift" | entr -rp make test
 setup:
 	@echo "[Task] Installing deps..."
 	@gem install cocoapods
