@@ -1,9 +1,13 @@
 APP := App
 PROJECT_NAME ?= BitBar
+ifdef class
+	# 'make test class=BufferTests' lets you test a specific class
+	ARGS="-only-testing:BitBarTests/$(class)"
+endif
 BUILD_ATTR := xcodebuild -workspace $(APP)/$(PROJECT_NAME).xcworkspace -scheme
 CONFIG := Debug
 BUILD := $(BUILD_ATTR) $(PROJECT_NAME)
-TEST := $(BUILD_ATTR) BitBarTests test
+TEST := $(BUILD_ATTR) BitBarTests $(ARGS) test
 BUNDLE := $(PROJECT_NAME).app
 
 default: clean
