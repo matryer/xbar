@@ -425,7 +425,7 @@ class Pro {
     }
     return (head, row, string.distance(from: head.lowerBound, to: index) + 1)
   }
-  
+
   private static func merge(emojis: [String], remaining: String) -> String {
     return emojis.joined(separator: "") + remaining
   }

@@ -7,12 +7,12 @@ class Buffer {
   init() {
     store.setData(NSData() as Data)
   }
-  
+
   func append(data: Data) {
     orFail()
     store.append(data)
   }
-  
+
   func append(string: String) {
     orFail()
     store.append(string.data(using: .utf8)!)
