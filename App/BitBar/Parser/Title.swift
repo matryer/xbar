@@ -79,6 +79,10 @@ final class Title: NSMenu, Menuable {
     listeners.append(triggerRefreshEvent.on(block))
   }
 
+  func onDidClick(block: @escaping Block<Void>) -> Listener {
+    return openInTerminalClickEvent.on(block)
+  }
+
   /**
     Removes tray from menu bar
   */

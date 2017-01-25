@@ -108,7 +108,7 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     listeners.append(openInTerminalClickEvent.on(block))
   }
 
-  internal func item(didClick: ItemBase) {
+  func item(didClick: ItemBase) {
     openInTerminalClickEvent.emit()
   }
 

@@ -1,4 +1,5 @@
 import Cocoa
+import EmitterKit
 import Async
 
 // TODO: Use the delegate pattern for the
@@ -7,9 +8,10 @@ import Async
 // then in bash; delegate?.shouldRefresh()
 final class Bash: StringVal, Param {
   var priority: Int { return 0 }
-
+  var listener: Listener?
+  
   func applyTo(menu: Menuable) {
-    menu.onDidClick {
+    listener = menu.onDidClick {
       // TODO: Rename to shouldOpenInTerminal (or something similar)
       if menu.openTerminal() {
         Bash.open(script: self.getValue()) {

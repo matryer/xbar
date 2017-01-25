@@ -3,43 +3,32 @@ import EmitterKit
 
 /* TODO: Rename */
 class ItemBase: NSMenuItem {
-  private let clickEvent = Event<ItemBase>()
-  private weak var delegate: ItemBaseDelegate?
+  private let event = Event<ItemBase>()
+  private weak var delegate: ItemBaseDelegate? {
+    didSet { checkActive() }
+  }
   private var listeners = [Listener]() {
-    // Make item clickable when click observers are added
-    didSet { activate() }
+    didSet { checkActive() }
+  }
+
+  private func checkActive() {
+    isEnabled = !keyEquivalent.isEmpty || !listeners.isEmpty || delegate != nil
   }
 
   /**
     @title A title to be displayed
     @key A keyboard shortcut to simulate @self being clicked
   */
-  init(_ title: String, key: String = "") {
+  init(_ title: String, checked: Bool = false, key: String = "", delegate: ItemBaseDelegate? = nil) {
     super.init(title: title, action: #selector(didClick), keyEquivalent: key)
-    target = self
-    if key.isEmpty { deactivate() } else { activate() }
-    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
-  }
-
-  /**
-    @block Called when the @key shortcut is invoked or @title is clicked
-  */
-  convenience init(_ title: String, key: String = "", block: @escaping Block<ItemBase>) {
-    self.init(title, key: key)
-    listeners.append(clickEvent.on(block))
-    activate()
-  }
-
-  convenience init(_ title: String, key: String = "", delegate: ItemBaseDelegate? = nil) {
-    self.init(title, key: key)
+    self.target = self
+    self.attributedTitle = NSMutableAttributedString(withDefaultFont: title)
     self.delegate = delegate
-  }
+    if checked {
+      self.state = NSOnState
+    }
 
-  /**
-    @block Called when the @key shortcut is invoked or @title is clicked
-  */
-  convenience init(_ title: String, key: String = "", voidBlock: @escaping Block<Void>) {
-    self.init(title, key: key) { (_: ItemBase) in voidBlock() }
+    checkActive()
   }
 
   /**
@@ -55,41 +44,20 @@ class ItemBase: NSMenuItem {
     activate()
   }
 
-  /**
-    Add menu as submenu to @self
-
-    @title A title to be displayed
-    if @check, then prefix @title with a checkbox
-    @key An optional shortcut, i.e "x" which can be invoked with cmd+x
-    @block to be called when title is clicked or invoked with @key
-  */
-  func addSub(_ name: String, checked: Bool = false,
-      key: String = "", block: @escaping Block<Void>) {
-    addSub(name, checked: checked, key: key) { (_:ItemBase) in block() }
+  func addSub(_ title: String, key: String = "", blockWO: @escaping Block<Void>) {
+    let item = ItemBase(title, key: key)
+    listeners.append(item.onDidClick(block: blockWO))
+    addSub(item)
   }
 
-  /**
-    Same as above, but passes the invoked item as an argument to @block
-  */
-  func addSub(_ name: String, checked: Bool = false,
-      key: String = "", b: @escaping Block<ItemBase>) {
-    let menu = ItemBase(name, key: key, block: b)
-    addSub(menu)
-    menu.state = checked ? NSOnState : NSOffState
+  func addSub(_ title: String, checked: Bool, key: String = "", block: @escaping Block<ItemBase>) {
+    let item = ItemBase(title, checked: checked, key: key)
+    listeners.append(item.onDidClick(block: block))
+    addSub(item)
   }
 
-  /**
-    Same as above, but passes the invoked item as an argument to @block
-  */
-  func addSub(name: String) {
-    addSub(name) { /* FIXME */ }
-  }
-
-  /**
-    Call @block when item is clicked
-  */
-  func onDidClick(block: @escaping () -> Void) {
-    listeners.append(clickEvent.on { _ in block() })
+  func addSub(_ title: String, key: String = "") {
+    addSub(ItemBase(title, key: key))
   }
 
   /**
@@ -107,9 +75,18 @@ class ItemBase: NSMenuItem {
     submenu?.removeAllItems()
   }
 
+  func onDidClick(block: @escaping Block<ItemBase>) -> Listener {
+    isEnabled = true
+    return event.on(block)
+  }
+
+  func onDidClick(block: @escaping Block<Void>) -> Listener {
+    return onDidClick { (_:ItemBase) in block() }
+  }
+
   @objc private func didClick(_ sender: NSMenu) {
     delegate?.item(didClick: self)
-    clickEvent.emit(self)
+    event.emit(self)
   }
 
   private func activate() {
@@ -120,13 +97,12 @@ class ItemBase: NSMenuItem {
     isEnabled = false
   }
 
-  // FIXME
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
   // For testing
   internal func trigger() {
-    clickEvent.emit(self)
+    delegate?.item(didClick: self)
   }
 }

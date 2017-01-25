@@ -12,7 +12,7 @@ protocol Menuable: class {
 
   func getTitle() -> String
   func getAttrs() -> NSMutableAttributedString
-  func onDidClick(block: @escaping () -> Void)
+  func onDidClick(block: @escaping Block<Void>) -> Listener
   func useAsAlternate()
   func refresh()
   func getArgs() -> [String]
@@ -161,10 +161,6 @@ extension Menuable {
 
   func openTerminal() -> Bool {
     return false
-  }
-
-  func onDidClick(block: @escaping () -> Void) {
-    /* NOP */
   }
 
   func useAsAlternate() {

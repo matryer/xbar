@@ -54,7 +54,7 @@ final class Menu: ItemBase, Menuable {
   func add(error: String) {
     // TODO: Add an icon
     set(title: "Received an error")
-    addSub(name: error)
+    addSub(error)
   }
 
   /**
