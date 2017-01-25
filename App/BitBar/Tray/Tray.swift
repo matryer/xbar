@@ -8,10 +8,11 @@ import SwiftyUserDefaults
   TODO: Remove @item from NSStatusBar.system()
     instead of using isVisible = false or hide()
 */
-class Tray: NSObject, NSMenuDelegate {
+class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   private var listeners = [Listener]()
   private let openEvent = Event<Void>()
   private let closeEvent = Event<Void>()
+  private let openInTerminalClickEvent = Event<Void>()
   private var isOpen = false
   private var updatedAgoItem: UpdatedAgoItem?
   private let menu = NSMenu()
@@ -103,6 +104,14 @@ class Tray: NSObject, NSMenuDelegate {
     listeners.append(closeEvent.on(block))
   }
 
+  func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
+    listeners.append(openInTerminalClickEvent.on(block))
+  }
+
+  internal func item(didClick: ItemBase) {
+    openInTerminalClickEvent.emit()
+  }
+
   private func separator() {
     item.menu?.addItem(NSMenuItem.separator())
   }
@@ -111,10 +120,7 @@ class Tray: NSObject, NSMenuDelegate {
     separator()
     updatedAgoItem = UpdatedAgoItem()
     item.menu?.addItem(updatedAgoItem!)
-    item.menu?.addItem(ItemBase("Run in Terminal…", key: "o") {
-      // TODO: Re-add
-      // self.delegate?.preferenceDidOpenInTerminal()
-    })
+    item.menu?.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
     item.menu?.addItem(PrefItem())
   }
 

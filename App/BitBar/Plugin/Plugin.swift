@@ -22,6 +22,16 @@ class Plugin {
       if error != nil {
         error = nil
       }
+
+      output?.onDidClickOpenInTerminal {
+        Bash.open(script: self.path) { error in
+          self.didReceiveError(error)
+        }
+      }
+
+      output?.onDidTriggerRefresh {
+        self.refresh()
+      }
     }
   }
 
@@ -48,12 +58,10 @@ class Plugin {
   */
   func didReceivedOutput(_ data: String) {
     switch Pro.parse(Pro.getOutput(), data) {
-    case let Result.success(result, _):
-      // TODO: Move event to Output class
-      result.title.onDidRefresh { self.refresh() }
-      output = result
+    case let Result.success(output, _):
+      self.output = output
     case let Result.failure(lines):
-      error = Title(errors: lines)
+      self.error = Title(errors: lines)
     }
   }
 

@@ -1,13 +1,21 @@
 import Cocoa
 import AppKit
 import EmitterKit
-
+// OK
 final class Menu: ItemBase, Menuable {
   internal let level: Int
-  internal var events = [Listener]()
+  internal var listeners = [Listener]()
   internal var refreshEvent = Event<Void>()
   internal var container = Container()
-  internal var menus = [Menu]()
+  internal var menus = [Menu]() {
+    didSet {
+      for menu in menus {
+        menu.onDidTriggerRefresh {
+          self.refresh()
+        }
+      }
+    }
+  }
 
   var aTitle: NSMutableAttributedString {
     get { return currentTitle() }
@@ -86,13 +94,6 @@ final class Menu: ItemBase, Menuable {
   */
   func openTerminal() -> Bool {
     return container.openTerminal()
-  }
-
-  /**
-    Trigger callbacks registered via onDidRefresh
-  */
-  func refresh() {
-    refreshEvent.emit()
   }
 
   /**

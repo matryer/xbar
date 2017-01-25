@@ -20,10 +20,19 @@ private extension String {
 extension Script.Result: CustomStringConvertible {
   public var description: String {
     switch self {
-      case let .success(message, status):
-        return "Succeeded (\(status)): \(message.inspecting())"
-      case let .failure(result):
-        return String(describing: result)
+    case let .success(message, status):
+      return "Succeeded (\(status)): \(message.inspecting())"
+    case let .failure(result):
+      return String(describing: result)
+    }
+  }
+
+  func toString() -> String {
+    switch self {
+    case let .success(message, _):
+      return message
+    case let .failure(result):
+      return String(describing: result)
     }
   }
 }
@@ -31,14 +40,14 @@ extension Script.Result: CustomStringConvertible {
 extension Script.Failure: CustomStringConvertible {
   public var description: String {
     switch self {
-      case let .crash(message):
-        return "Crashed: \(message)"
-      case let .exit(message, status):
-        return "Failed (\(status)): \(message.inspecting())"
-      case let .misuse(message):
-        return "Misused (2): \(message.inspecting())"
-      case let .terminated(message):
-        return "Terminated (15): Manual termination using Script#stop"
+    case let .crash(message):
+      return "Crashed: \(message)"
+    case let .exit(message, status):
+      return "Failed (\(status)): \(message.inspecting())"
+    case let .misuse(message):
+      return "Misused (2): \(message.inspecting())"
+    case .terminated():
+      return "Terminated (15): Manual termination using Script#stop"
     }
   }
 }
@@ -249,20 +258,4 @@ class Script {
       self.finishEvent.emit(error)
     }
   }
-
-  // TODO: Currently not in use
-  static func isExecutable(path: String, block: @escaping Block<Bool>) {
-    var script: Script!
-    script = Script(path: "test", args: ["-x", path], autostart: true) { result in
-      switch result {
-        case .success(_):
-          block(true)
-        case .failure(_):
-          // TODO: Check status code == 1
-          block(false)
-        script.stop()
-      }
-    }
-  }
-
 }

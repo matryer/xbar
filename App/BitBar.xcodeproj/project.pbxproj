@@ -31,6 +31,7 @@
 		2031E9A71E32A061004A33E5 /* PrefItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A61E32A061004A33E5 /* PrefItem.swift */; };
 		2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */; };
 		204129061E38345B0028DA49 /* space script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 204129051E38345B0028DA49 /* space script.sh */; };
+		204129081E3857AE0028DA49 /* ItemBaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */; };
 		20444FF01E378E5200CB21D2 /* basic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEE1E378E5200CB21D2 /* basic.sh */; };
 		20444FF11E378E5200CB21D2 /* invalid-syntax.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
@@ -153,6 +154,7 @@
 		2031E9A61E32A061004A33E5 /* PrefItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefItem.swift; path = BitBar/PrefItem.swift; sourceTree = "<group>"; };
 		2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatedAgoItem.swift; path = BitBar/UpdatedAgoItem.swift; sourceTree = "<group>"; };
 		204129051E38345B0028DA49 /* space script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "space script.sh"; path = "BitBarTests/scripts/space script.sh"; sourceTree = SOURCE_ROOT; };
+		204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemBaseDelegate.swift; sourceTree = "<group>"; };
 		20444FEE1E378E5200CB21D2 /* basic.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = basic.sh; path = BitBarTests/scripts/basic.sh; sourceTree = SOURCE_ROOT; };
 		20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "invalid-syntax.sh"; path = "BitBarTests/scripts/invalid-syntax.sh"; sourceTree = SOURCE_ROOT; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
+				204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */,
 				20A8FCAD1E34C2A50080E142 /* Menuable.swift */,
 				209F70861E331AF4005365B2 /* PathSelector.swift */,
 				209F70841E3316C4005365B2 /* Container.swift */,
@@ -744,6 +747,7 @@
 				20DEE6041E237BA200AF22D2 /* BoolVal.swift in Sources */,
 				207BD8841E2379EA007AA0C7 /* Output.swift in Sources */,
 				207BD8871E2379EA007AA0C7 /* Refresh.swift in Sources */,
+				204129081E3857AE0028DA49 /* ItemBaseDelegate.swift in Sources */,
 				2031E99E1E325AE2004A33E5 /* NSAttributedString.swift in Sources */,
 				20C8B98E1E237D76005DBC9D /* Parser.swift in Sources */,
 				209F70871E331AF4005365B2 /* PathSelector.swift in Sources */,

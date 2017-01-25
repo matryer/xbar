@@ -4,6 +4,7 @@ import EmitterKit
 /* TODO: Rename */
 class ItemBase: NSMenuItem {
   private let clickEvent = Event<ItemBase>()
+  private weak var delegate: ItemBaseDelegate?
   private var listeners = [Listener]() {
     // Make item clickable when click observers are added
     didSet { activate() }
@@ -27,6 +28,11 @@ class ItemBase: NSMenuItem {
     self.init(title, key: key)
     listeners.append(clickEvent.on(block))
     activate()
+  }
+
+  convenience init(_ title: String, key: String = "", delegate: ItemBaseDelegate? = nil) {
+    self.init(title, key: key)
+    self.delegate = delegate
   }
 
   /**
@@ -102,6 +108,7 @@ class ItemBase: NSMenuItem {
   }
 
   @objc private func didClick(_ sender: NSMenu) {
+    delegate?.item(didClick: self)
     clickEvent.emit(self)
   }
 

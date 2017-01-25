@@ -2,10 +2,20 @@ import AppKit
 import EmitterKit
 
 final class Title: NSMenu, Menuable {
-  internal var events = [Listener]()
-  internal var refreshEvent = Event<()>()
+  internal var refreshEvent = Event<Void>()
+  internal var listeners = [Listener]()
+  internal var openInTerminalClickEvent = Event<Void>()
+  internal var triggerRefreshEvent = Event<Void>()
   internal let container = Container()
-  internal var menus = [Menu]()
+  internal var menus = [Menu]() {
+    didSet {
+      for menu in menus {
+        menu.onDidTriggerRefresh {
+          self.refresh()
+        }
+      }
+    }
+  }
   private let tray: Tray
 
   var image: NSImage? {
@@ -28,6 +38,10 @@ final class Title: NSMenu, Menuable {
     super.init(title: title)
     add(menus: menus)
     add(params: params)
+
+    tray.onDidClickOpenInTerminal {
+      self.openInTerminalClickEvent.emit()
+    }
   }
 
   /**
@@ -55,6 +69,14 @@ final class Title: NSMenu, Menuable {
   // TODO: Implement
   func add(error: String) {
     // print("Got error in title", error)
+  }
+
+  func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
+    listeners.append(openInTerminalClickEvent.on(block))
+  }
+
+  func onDidTriggerRefresh(block: @escaping Block<Void>) {
+    listeners.append(triggerRefreshEvent.on(block))
   }
 
   /**

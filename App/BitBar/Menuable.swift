@@ -6,7 +6,7 @@ protocol Menuable: class {
   var image: NSImage? { get set }
   var container: Container { get }
   var title: String { get }
-  var events: [Listener] { get set }
+  var listeners: [Listener] { get set }
   var refreshEvent: Event<Void> { get set }
   var menus: [Menu] { get set }
 
@@ -18,7 +18,7 @@ protocol Menuable: class {
   func getArgs() -> [String]
   func openTerminal() -> Bool
   func shouldRefresh() -> Bool
-  func onDidRefresh(block: @escaping () -> Void)
+  func onDidTriggerRefresh(block: @escaping Block<Void>)
   func update(attr: NSMutableAttributedString)
   func update(state: Int)
   func update(color: NSColor)
@@ -66,7 +66,7 @@ extension Menuable {
     menu item has finished loading
   */
   func onDidRefresh(block: @escaping () -> Void) {
-    events.append(refreshEvent.on(block))
+    listeners.append(refreshEvent.on(block))
   }
 
   /**
@@ -142,6 +142,17 @@ extension Menuable {
   }
 
   /**
+    Trigger callbacks registered via onDidRefresh
+  */
+  func refresh() {
+    refreshEvent.emit()
+  }
+
+  func onDidTriggerRefresh(block: @escaping Block<Void>) {
+    listeners.append(refreshEvent.on(block))
+  }
+
+  /**
     The below functions are optional
   */
   func shouldRefresh() -> Bool {
@@ -150,10 +161,6 @@ extension Menuable {
 
   func openTerminal() -> Bool {
     return false
-  }
-
-  func refresh() {
-    /* NOP */
   }
 
   func onDidClick(block: @escaping () -> Void) {

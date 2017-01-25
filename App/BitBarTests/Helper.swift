@@ -67,13 +67,13 @@ public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
     }
 
     switch (result, exp) {
-      case (.success(_, 0), .none):
-        return true
-      case let (.success(stdout, 0), .some(exp)) where stdout == exp:
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
+    case (.success(_, 0), .none):
+      return true
+    case let (.success(stdout, 0), .some(exp)) where stdout == exp:
+      return true
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
     }
   }
 }
@@ -86,11 +86,11 @@ public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
     }
 
     switch result {
-      case let .failure(.exit(stderr, status)) where stderr == exp && status != 0:
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
+    case let .failure(.exit(stderr, status)) where stderr == exp && status != 0:
+      return true
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
     }
   }
 }
@@ -104,11 +104,11 @@ public func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
     }
 
     switch result {
-      case let .failure(.crash(message)) where message.contains(exp):
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
+    case let .failure(.crash(message)) where message.contains(exp):
+      return true
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
     }
   }
 }
@@ -125,11 +125,11 @@ public func beTerminated() -> MatcherFunc<Script.Result> {
     }
 
     switch result {
-      case .failure(.terminated()):
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
+    case .failure(.terminated()):
+      return true
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
     }
   }
 }
@@ -142,11 +142,11 @@ public func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
     }
 
     switch result {
-      case let .failure(.misuse(message)) where message.contains(exp):
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
+    case let .failure(.misuse(message)) where message.contains(exp):
+      return true
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
     }
   }
 }
