@@ -2,14 +2,13 @@ import Cocoa
 import EmitterKit
 
 protocol Menuable: class {
+  var level: Int { get set }
   var aTitle: NSMutableAttributedString { get set }
   var image: NSImage? { get set }
   var container: Container { get }
   var title: String { get }
-  var listeners: [Listener] { get set }
-  var refreshEvent: Event<Void> { get set }
   var menus: [Menu] { get set }
-
+  var event: Event<Void> { get set }
   func getTitle() -> String
   func getAttrs() -> NSMutableAttributedString
   func onDidClick(block: @escaping Block<Void>) -> Listener
@@ -18,7 +17,6 @@ protocol Menuable: class {
   func getArgs() -> [String]
   func openTerminal() -> Bool
   func shouldRefresh() -> Bool
-  func onDidTriggerRefresh(block: @escaping Block<Void>)
   func update(attr: NSMutableAttributedString)
   func update(state: Int)
   func update(color: NSColor)
@@ -29,6 +27,8 @@ protocol Menuable: class {
   func add(menu: NSMenuItem)
   func add(params: [Param])
   func add(error: String)
+
+  func submenu(didTriggerRefresh: Menuable)
 
   /* Legacy */
   func getValue() -> String
@@ -52,21 +52,15 @@ extension Menuable {
 
   func add(menus: [Menu]) {
     for menu in menus {
+      menu.parentable = self
       if menu.isSeparator() {
         add(menu: NSMenuItem.separator())
       } else {
         add(menu: menu)
       }
     }
-    self.menus = menus
-  }
 
-  /**
-    @block is invoked when refresh=true and child
-    menu item has finished loading
-  */
-  func onDidRefresh(block: @escaping () -> Void) {
-    listeners.append(refreshEvent.on(block))
+    self.menus = menus
   }
 
   /**
@@ -139,17 +133,6 @@ extension Menuable {
   */
   func update(fontName: String) {
     set(title: aTitle.update(fontName: fontName))
-  }
-
-  /**
-    Trigger callbacks registered via onDidRefresh
-  */
-  func refresh() {
-    refreshEvent.emit()
-  }
-
-  func onDidTriggerRefresh(block: @escaping Block<Void>) {
-    listeners.append(refreshEvent.on(block))
   }
 
   /**

@@ -19,13 +19,15 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   private var defaultCount = 0
   private let item: NSStatusItem = NSStatusBar.system()
     .statusItem(withLength: NSVariableStatusItemLength)
+  internal weak var delegate: TrayDelegate?
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible display: Bool = false) {
+  init(title: String, isVisible display: Bool = false, delegate: TrayDelegate? = nil) {
     super.init()
+    self.delegate = delegate
     item.title = title
     item.menu = menu
     menu.autoenablesItems = false
@@ -104,12 +106,12 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     listeners.append(closeEvent.on(block))
   }
 
-  func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
-    listeners.append(openInTerminalClickEvent.on(block))
-  }
+  // func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
+  //   listeners.append(openInTerminalClickEvent.on(block))
+  // }
 
   func item(didClick: ItemBase) {
-    openInTerminalClickEvent.emit()
+     delegate?.bar(didClickOpenInTerminal: self)
   }
 
   private func separator() {

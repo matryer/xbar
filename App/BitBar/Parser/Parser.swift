@@ -61,7 +61,7 @@ class Pro {
   }
 
   internal static func getOutput() -> P<Output> {
-    return curry(Output.init) <^> getTitle() <*> (hasStream() <* wsOrNl)
+    return curry(merge) <^> getTitle() <*> (hasStream() <* wsOrNl)
   }
 
   /**
@@ -414,6 +414,10 @@ class Pro {
 
   private static func merge(_ title: String, _ params: [Param]) -> Menu {
     return Menu(title, params: params)
+  }
+  
+  private static func merge(title: Title, isStream: Bool) -> Output {
+    return Output(title, isStream)
   }
 
   private static func position(of index: String.CharacterView.Index, in string: String) -> (line: Range<String.CharacterView.Index>, row: Int, pos: Int) {

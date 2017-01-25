@@ -1,35 +1,29 @@
-import EmitterKit
+protocol OutputDelegate: class {
+  func output(didClickOpenInTerminal: Output)
+  func output(didTriggerRefresh: Output)
+}
 
-final public class Output {
+final public class Output: TitleDelegate {
   internal let title: Title
   internal let isStream: Bool
-  private var listeners = [Listener]()
-  private var openInTerminalClickEvent = Event<Void>()
-  private var triggerRefreshEvent = Event<Void>()
+  internal weak var delegate: OutputDelegate?
 
   init(_ title: Title, _ isStream: Bool) {
     self.title = title
     self.isStream = isStream
+    self.title.titlable = self
+  }
 
-    title.onDidClickOpenInTerminal {
-      self.openInTerminalClickEvent.emit()
-    }
+  internal func name(didClickOpenInTerminal: Title) {
+    delegate?.output(didClickOpenInTerminal: self)
+  }
 
-    title.onDidTriggerRefresh {
-      self.triggerRefreshEvent.emit()
-    }
+  internal func name(didTriggerRefresh: Title) {
+    delegate?.output(didTriggerRefresh: self)
   }
 
   func destroy() {
     title.destroy()
-  }
-
-  func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
-    listeners.append(openInTerminalClickEvent.on(block))
-  }
-
-  func onDidTriggerRefresh(block: @escaping Block<Void>) {
-    listeners.append(triggerRefreshEvent.on(block))
   }
 
   deinit { destroy() }

@@ -40,7 +40,7 @@ class App {
     @block is invoked when the system wakes up from sleep
   */
   static func onDidWake(block: @escaping Block<Void>) {
-    listen.on(.NSWorkspaceDidWake, block: block)
+    gListeners.append(listen.on(.NSWorkspaceDidWake, block: block))
   }
 
   /**
@@ -191,6 +191,6 @@ class App {
   private static let changePathEvent = Event<Void>()
   private static let refreshEvent = Event<Void>()
   private static var listeners = [Listener]()
+  private static var gListeners = [GEvent]()
   private static let listen = Listen(NSWorkspace.shared().notificationCenter)
-  private static var isTesting = false
 }

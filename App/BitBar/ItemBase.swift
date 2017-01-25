@@ -44,16 +44,14 @@ class ItemBase: NSMenuItem {
     activate()
   }
 
-  func addSub(_ title: String, key: String = "", blockWO: @escaping Block<Void>) {
-    let item = ItemBase(title, key: key)
-    listeners.append(item.onDidClick(block: blockWO))
-    addSub(item)
-  }
-
   func addSub(_ title: String, checked: Bool, key: String = "", block: @escaping Block<ItemBase>) {
     let item = ItemBase(title, checked: checked, key: key)
     listeners.append(item.onDidClick(block: block))
     addSub(item)
+  }
+
+  func addSub(_ title: String, key: String = "", blockWO: @escaping Block<Void>) {
+    addSub(title, checked: false, key: key, block: { (_:ItemBase) in blockWO() })
   }
 
   func addSub(_ title: String, key: String = "") {
@@ -76,7 +74,7 @@ class ItemBase: NSMenuItem {
   }
 
   func onDidClick(block: @escaping Block<ItemBase>) -> Listener {
-    isEnabled = true
+    activate()
     return event.on(block)
   }
 
@@ -85,8 +83,7 @@ class ItemBase: NSMenuItem {
   }
 
   @objc private func didClick(_ sender: NSMenu) {
-    delegate?.item(didClick: self)
-    event.emit(self)
+    trigger()
   }
 
   private func activate() {
@@ -104,5 +101,6 @@ class ItemBase: NSMenuItem {
   // For testing
   internal func trigger() {
     delegate?.item(didClick: self)
+    event.emit(self)
   }
 }

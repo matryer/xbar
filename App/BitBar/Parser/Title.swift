@@ -1,22 +1,24 @@
 import AppKit
 import EmitterKit
 
-final class Title: NSMenu, Menuable {
-  internal var refreshEvent = Event<Void>()
-  internal var listeners = [Listener]()
-  internal var openInTerminalClickEvent = Event<Void>()
-  internal var triggerRefreshEvent = Event<Void>()
+protocol TitleDelegate: class {
+  func name(didClickOpenInTerminal: Title)
+  func name(didTriggerRefresh: Title)
+}
+
+protocol TrayDelegate: class {
+  func bar(didClickOpenInTerminal: Tray)
+  func bar(didTriggerRefresh: Tray)
+}
+
+final class Title: NSMenu, Menuable, TrayDelegate {
   internal let container = Container()
-  internal var menus = [Menu]() {
-    didSet {
-      for menu in menus {
-        menu.onDidTriggerRefresh {
-          self.refresh()
-        }
-      }
-    }
-  }
-  private let tray: Tray
+  internal var menus = [Menu]()
+  internal weak var titlable: TitleDelegate?
+  internal var event = Event<Void>()
+
+  var level: Int = 0
+  private var tray: Tray!
 
   var image: NSImage? {
     get { return tray.image }
@@ -28,20 +30,20 @@ final class Title: NSMenu, Menuable {
     set { tray.attributedTitle = newValue }
   }
 
+  func onDidClick(block: @escaping Block<Void>) -> Listener {
+    return event.on(block)
+  }
+
   /**
     @title A title to be displayed in the tray
     @params Parameters read and parsed from stdin, i.e terminal=false
     @menus Sub menus to be displayed when when the item is clicked
   */
   init(_ title: String, params: [Param], menus: [Menu]) {
-    tray = Tray(title: title, isVisible: true)
     super.init(title: title)
+    tray = Tray(title: title, isVisible: true, delegate: self)
     add(menus: menus)
     add(params: params)
-
-    tray.onDidClickOpenInTerminal {
-      self.openInTerminalClickEvent.emit()
-    }
   }
 
   /**
@@ -50,6 +52,14 @@ final class Title: NSMenu, Menuable {
   convenience init(errors: [String]) {
     let menus = errors.map { Menu($0, params: [], menus: []) }
     self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
+  }
+
+  func bar(didClickOpenInTerminal: Tray) {
+    self.titlable?.name(didClickOpenInTerminal: self)
+  }
+
+  func bar(didTriggerRefresh: Tray) {
+    self.titlable?.name(didTriggerRefresh: self)
   }
 
   /**
@@ -71,16 +81,12 @@ final class Title: NSMenu, Menuable {
     // print("Got error in title", error)
   }
 
-  func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
-    listeners.append(openInTerminalClickEvent.on(block))
+  func submenu(didTriggerRefresh menu: Menuable) {
+    self.refresh()
   }
 
-  func onDidTriggerRefresh(block: @escaping Block<Void>) {
-    listeners.append(triggerRefreshEvent.on(block))
-  }
-
-  func onDidClick(block: @escaping Block<Void>) -> Listener {
-    return openInTerminalClickEvent.on(block)
+  func refresh() {
+    self.titlable?.name(didTriggerRefresh: self)
   }
 
   /**

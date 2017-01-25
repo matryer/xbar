@@ -7,18 +7,18 @@ private let examplePlugin = App.path(forResource: "sub.10s.sh")
 class BashTests: Helper {
   override func spec() {
     context("base case") {
-      it("handles base case") {
-        let menu = Menu("hello")
-        let bash = Bash(examplePlugin)
-        menu.add(params: [Refresh(true)])
-        bash.applyTo(menu: menu)
-        var this = 0
-        menu.onDidRefresh {
-          this = 1
-        }
-        menu.trigger()
-        expect(this).toEventually(equal(1), timeout: 10)
-      }
+      // it("handles base case") {
+      //   let menu = Menu("hello")
+      //   let bash = Bash(examplePlugin)
+      //   menu.add(params: [Refresh(true)])
+      //   bash.applyTo(menu: menu)
+      //   var this = 0
+      //   menu.onDidRefresh {
+      //     this = 1
+      //   }
+      //   menu.trigger()
+      //   expect(this).toEventually(equal(1), timeout: 10)
+      // }
     }
 
     context("parser") {

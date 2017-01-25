@@ -172,7 +172,7 @@ class Script {
       terminateEvent.emit()
     }
 
-    listen.on(.NSFileHandleDataAvailable, for: handler) {
+    let event = listen.on(.NSFileHandleDataAvailable, for: handler) {
       let data = handler.availableData
 
       if !data.isEOF() {
@@ -193,6 +193,10 @@ class Script {
       } else {
         handler.waitForDataInBackgroundAndNotify()
       }
+    }
+
+    eofEvent.once {
+      event.destroy()
     }
 
     handler.waitForDataInBackgroundAndNotify()

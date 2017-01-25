@@ -9,7 +9,7 @@ import Async
 final class Bash: StringVal, Param {
   var priority: Int { return 0 }
   var listener: Listener?
-  
+
   func applyTo(menu: Menuable) {
     listener = menu.onDidClick {
       // TODO: Rename to shouldOpenInTerminal (or something similar)
@@ -19,9 +19,14 @@ final class Bash: StringVal, Param {
         }
       }
 
-      Script(path: self.getValue(), args: menu.getArgs()) { _ in
-        if menu.shouldRefresh() {
-          menu.refresh()
+      Script(path: self.getValue(), args: menu.getArgs()) { result in
+        switch result {
+        case let .failure(error):
+          return menu.add(error: String(describing: error))
+        case .success(_):
+          if menu.shouldRefresh() {
+            menu.refresh()
+          }
         }
       }.start()
     }

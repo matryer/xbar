@@ -7,7 +7,7 @@ import Swift
   - app delegate
   - plugin manager
 */
-class Plugin {
+class Plugin: OutputDelegate {
   private let file: File
   private let path: String
   private var error: Title? {
@@ -23,17 +23,22 @@ class Plugin {
         error = nil
       }
 
-      output?.onDidClickOpenInTerminal {
-        Bash.open(script: self.path) { error in
-          self.didReceiveError(error)
-        }
-      }
-
-      output?.onDidTriggerRefresh {
-        self.refresh()
-      }
+      output?.delegate = self
     }
   }
+
+  func output(didClickOpenInTerminal: Output) {
+    Bash.open(script: self.path) { error in
+      self.didReceiveError(error)
+    }
+  }
+  
+  
+  func output(didTriggerRefresh: Output) {
+    print("didTriggerRefresh in plugin")
+    refresh()
+  }
+
 
   /**
     @path An absolute path to the script

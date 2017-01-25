@@ -1,10 +1,9 @@
 import Cocoa
-import SwiftyUserDefaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   private var manager: PluginManager?
-  func applicationDidFinishLaunching(_ aNotification: Notification) {
+  func applicationDidFinishLaunching(_: Notification) {
     loadPluginManager()
 
     App.onDidWake {
@@ -28,11 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   private func loadPluginManager() {
     if let path = App.pluginPath {
-      loadManager(fromPath: path)
-    } else {
-      App.askAboutPluginPath {
-        self.loadPluginManager()
-      }
+      return loadManager(fromPath: path)
+    }
+
+    App.askAboutPluginPath {
+      self.loadPluginManager()
     }
   }
 

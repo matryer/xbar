@@ -1,21 +1,13 @@
 import Cocoa
 import AppKit
 import EmitterKit
-// OK
+
 final class Menu: ItemBase, Menuable {
-  internal let level: Int
-  internal var listeners = [Listener]()
-  internal var refreshEvent = Event<Void>()
+  internal var level: Int = 0
   internal var container = Container()
-  internal var menus = [Menu]() {
-    didSet {
-      for menu in menus {
-        menu.onDidTriggerRefresh {
-          self.refresh()
-        }
-      }
-    }
-  }
+  internal weak var parentable: Menuable?
+  internal var menus = [Menu]()
+  internal var event = Event<Void>()
 
   var aTitle: NSMutableAttributedString {
     get { return currentTitle() }
@@ -35,10 +27,18 @@ final class Menu: ItemBase, Menuable {
     add(params: params)
   }
 
+  func submenu(didTriggerRefresh menu: Menuable) {
+    parentable?.submenu(didTriggerRefresh: menu)
+  }
+
+  func refresh() {
+    parentable?.submenu(didTriggerRefresh: self)
+  }
+
   /**
     Same as above, but derives the @level from a @parent
   */
-  convenience init(_ title: String, params: [Param] = [], menus: [Menu] = [], parent: Menu) {
+  convenience init(_ title: String, params: [Param] = [], menus: [Menu] = [], parent: Menuable) {
     self.init(title, params: params, menus: menus, level: parent.level + 1)
   }
 
