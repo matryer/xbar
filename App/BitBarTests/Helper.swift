@@ -59,6 +59,98 @@ func aSentence() -> Gen<String> {
   }
 }
 
+public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "exit with status 0 and output '\(exp)'"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch (result, exp) {
+      case (.success(_, 0), .none):
+        return true
+      case let (.success(stdout, 0), .some(exp)) where stdout == exp:
+        return true
+      default:
+        failureMessage.postfixActual = String(describing: result)
+        return false
+    }
+  }
+}
+
+public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "exit with status != 0 and output '\(exp)'"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch result {
+      case let .failure(.exit(stderr, status)) where stderr == exp && status != 0:
+        return true
+      default:
+        failureMessage.postfixActual = String(describing: result)
+        return false
+    }
+  }
+}
+
+
+public func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "crash with partial output '\(exp)'"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch result {
+      case let .failure(.crash(message)) where message.contains(exp):
+        return true
+      default:
+        failureMessage.postfixActual = String(describing: result)
+        return false
+    }
+  }
+}
+
+func toFile(_ path: String) -> String {
+  return Bundle(for: ScriptTests.self).resourcePath! + "/" + path
+}
+
+public func beTerminated() -> MatcherFunc<Script.Result> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "terminated"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch result {
+      case .failure(.terminated()):
+        return true
+      default:
+        failureMessage.postfixActual = String(describing: result)
+        return false
+    }
+  }
+}
+
+public func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "misuse with partial output '\(exp)'"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch result {
+      case let .failure(.misuse(message)) where message.contains(exp):
+        return true
+      default:
+        failureMessage.postfixActual = String(describing: result)
+        return false
+    }
+  }
+}
+
 protocol Base: Arbitrary {
   func getInput() -> String
   func test(_ me: Self) -> Property

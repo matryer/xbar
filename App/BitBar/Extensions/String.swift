@@ -24,9 +24,9 @@ extension String {
     return self[0..<characters.count - 1]
   }
 
-  func contains(_ aString: String) -> Bool {
-    return range(of: aString) != nil
-  }
+  // func contains(_ aString: String) -> Bool {
+  //   return range(of: aString) != nil
+  // }
 }
 
 extension Array {

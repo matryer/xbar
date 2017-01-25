@@ -3,77 +3,13 @@ import Cent
 import Nimble
 @testable import BitBar
 
-public func beASuccess() -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "exit with status 0"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
-    switch result {
-      case Script.Result.success(_, 0):
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
-    }
-  }
-}
-
-public func beASuccess(with exp: String) -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "exit with status 0 and output '\(exp)'"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
-    switch result {
-      case let Script.Result.success(actual, 0) where actual == exp:
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
-    }
-  }
-}
-
-public func beTerminated() -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "terminated"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
-    switch result {
-      case Script.Result.failure(.terminated()):
-        return true
-      default:
-        failureMessage.postfixActual = String(describing: result)
-        return false
-    }
-  }
-}
-
 class ScriptTests: Helper {
   let timeout = 10.0
-  func toFile(_ path: String) -> String {
-    return Bundle(for: ScriptTests.self).resourcePath! + "/" + path
-  }
-
-  func toStream(_ items: String...) -> [String] {
-    return items.map { item in item + "\n~~~\n" }
-  }
 
   func testSucc(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
-        switch result {
-          case let .success(stdout, status):
-            expect(stdout).to(equal(assumed))
-            expect(status).to(equal(0))
-          default:
-            fail("Expected success but got \(result)")
-        }
+      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+        expect(result).to(beASuccess(with: assumed))
         done()
       }
     }
@@ -81,10 +17,9 @@ class ScriptTests: Helper {
 
   func testStream(_ path: String, args: [String] = [], assumed: [String]) {
     if assumed.isEmpty { fail("Assumed can't be empty'") }
+    var index = 0
     waitUntil(timeout: timeout) { done in
-      var index = 0
-      var script: Script!
-      script = Script(path: self.toFile(path), args: args, autostart: true) { result in
+      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
         let description = String(describing: result)
         if index == -1 {
           return fail("To many calls. Max is \(assumed.count) \(path): \(description)")
@@ -101,7 +36,6 @@ class ScriptTests: Helper {
         index += 1
         if assumed.count == index {
           done()
-          script.stop()
           index = -1
         }
       }
@@ -110,14 +44,8 @@ class ScriptTests: Helper {
 
   func testFail(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
-        switch result {
-          case let .failure(.exit(stderr, status)):
-            expect(stderr).to(equal(assumed))
-            expect(status).toNot(equal(0))
-          default:
-            fail("Expected failure but got \(result)")
-        }
+      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+        expect(result).to(beAFailure(with: assumed))
         done()
       }
     }
@@ -125,13 +53,8 @@ class ScriptTests: Helper {
 
   func testCrash(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
-        switch result {
-          case let .failure(.crash(message)):
-            expect(message).to(equal(assumed))
-          default:
-            fail("Expected success but got \(result)")
-        }
+      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+        expect(result).to(beACrash(with: assumed))
         done()
       }
     }
@@ -139,13 +62,8 @@ class ScriptTests: Helper {
 
   func testMisuse(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: self.toFile(path), args: args, autostart: true) { result in
-        switch result {
-          case let .failure(.misuse(message)):
-            expect(message).to(contain(assumed))
-          default:
-            fail("Expected misuse but got \(result)")
-        }
+      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+        expect(result).to(beAMisuse(with: assumed))
         done()
       }
     }
@@ -219,7 +137,7 @@ class ScriptTests: Helper {
     }
 
     describe("start/stop") {
-      let path = self.toFile("sleep.sh")
+      let path = toFile("sleep.sh")
       it("doesn't auto start'") {
         var index = 0
         let _ = Script(path: path) { output in
