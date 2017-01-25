@@ -7,7 +7,7 @@ extension Title: Base {
   }
 
   func getInput() -> String {
-    let out = params.reduce("") { $0 + " " + $1.getInput() }.noMore()
+    let out = params.reduce("") { $0 + " " + $1.getInput() }.trim()
     let mOut = menus.map { $0.getInput() }.joined(separator: "")
     if !out.isEmpty {
       return title + "|" + out + mOut

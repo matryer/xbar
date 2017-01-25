@@ -105,7 +105,7 @@ extension Menu: Base {
   private func getBody() -> String {
     var out = ""
     out += params.reduce("") { $0 + " " + $1.getInput() }
-    out = out.noMore()
+    out = out.trim()
 
     let mOut = menus.reduce("") { $0 + $1.getInput() }
     if !out.isEmpty {
