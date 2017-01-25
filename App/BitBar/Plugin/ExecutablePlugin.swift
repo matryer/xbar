@@ -47,16 +47,16 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Succeeded running @path
     Sending data to parent plugin class
   */
-  func scriptDidReceiveOutput(_ output: String, _ code: Int32) {
-    didReceivedOutput(output)
+  func scriptDidReceive(success: Script.Result) {
+    didReceivedOutput(String(describing: success))
   }
 
   /**
     Failed running @path
     Sending error to parent plugin class
   */
-  func scriptDidReceiveError(_ error: String, _ code: Int32) {
-    didReceiveError(error)
+  func scriptDidReceive(error: Script.Result) {
+    didReceiveError(String(describing: error))
   }
 
   /**

@@ -30,6 +30,7 @@
 		2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2031E9A41E328C66004A33E5 /* sub.10s.sh */; };
 		2031E9A71E32A061004A33E5 /* PrefItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A61E32A061004A33E5 /* PrefItem.swift */; };
 		2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */; };
+		204129061E38345B0028DA49 /* space script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 204129051E38345B0028DA49 /* space script.sh */; };
 		20444FF01E378E5200CB21D2 /* basic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEE1E378E5200CB21D2 /* basic.sh */; };
 		20444FF11E378E5200CB21D2 /* invalid-syntax.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
@@ -151,6 +152,7 @@
 		2031E9A41E328C66004A33E5 /* sub.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.10s.sh; path = Scripts/sub.10s.sh; sourceTree = "<group>"; };
 		2031E9A61E32A061004A33E5 /* PrefItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefItem.swift; path = BitBar/PrefItem.swift; sourceTree = "<group>"; };
 		2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatedAgoItem.swift; path = BitBar/UpdatedAgoItem.swift; sourceTree = "<group>"; };
+		204129051E38345B0028DA49 /* space script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "space script.sh"; path = "BitBarTests/scripts/space script.sh"; sourceTree = SOURCE_ROOT; };
 		20444FEE1E378E5200CB21D2 /* basic.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = basic.sh; path = BitBarTests/scripts/basic.sh; sourceTree = SOURCE_ROOT; };
 		20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "invalid-syntax.sh"; path = "BitBarTests/scripts/invalid-syntax.sh"; sourceTree = SOURCE_ROOT; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 		2084CCDC1E2A3E7100DE01F6 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				204129051E38345B0028DA49 /* space script.sh */,
 				209D37531E37B06100468B10 /* stream-sleep.sh */,
 				209D374F1E37967A00468B10 /* stream-more.sh */,
 				209D37501E37967A00468B10 /* stream-nothing.sh */,
@@ -597,6 +600,7 @@
 				20444FF11E378E5200CB21D2 /* invalid-syntax.sh in Resources */,
 				20642E7D1E2A4E4C004D9A28 /* emoji.json in Resources */,
 				209D37521E37967A00468B10 /* stream-nothing.sh in Resources */,
+				204129061E38345B0028DA49 /* space script.sh in Resources */,
 				209D374E1E37940B00468B10 /* stream-nomore.sh in Resources */,
 				209D37541E37B06100468B10 /* stream-sleep.sh in Resources */,
 				2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */,

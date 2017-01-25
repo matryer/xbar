@@ -10,6 +10,39 @@ private extension Data {
   }
 }
 
+private extension String {
+  func inspecting() -> String {
+    if isEmpty { return "NOP" }
+    return "'" + replace("\n", "\\n").replace("'", "\\'") + "'"
+  }
+}
+
+extension Script.Result: CustomStringConvertible {
+  public var description: String {
+    switch self {
+      case let .success(message, status):
+        return "Succeeded (\(status)): \(message.inspecting())"
+      case let .failure(result):
+        return String(describing: result)
+    }
+  }
+}
+
+extension Script.Failure: CustomStringConvertible {
+  public var description: String {
+    switch self {
+      case let .crash(message):
+        return "Crashed: \(message)"
+      case let .exit(message, status):
+        return "Failed (\(status)): \(message.inspecting())"
+      case let .misuse(message):
+        return "Misused (2): \(message.inspecting())"
+      case let .terminated(message):
+        return "Terminated (15): Manual termination using Script#stop"
+    }
+  }
+}
+
 // TODO: Implement Process.environment
 class Script {
   private let path: String
@@ -26,6 +59,7 @@ class Script {
     case crash(String)
     case exit(String, Int)
     case misuse(String)
+    case terminated()
   }
 
   enum Result {
@@ -109,6 +143,8 @@ class Script {
         self.failed(.misuse(output))
       case let (.exit, code):
         self.failed(.exit(output, Int(code)))
+      case (.uncaughtSignal, 15):
+        self.failed(.terminated())
       case let (.uncaughtSignal, code):
         self.failed(.exit(output, Int(code)))
       }
@@ -199,17 +235,18 @@ class Script {
   }
 
   private func succeeded(_ result: String, status: Int32) {
+    let stdout: Result = .success(result, Int(status))
     Async.main {
-      self.delegate?.scriptDidReceiveOutput(result, status)
-      self.finishEvent.emit(.success(result, Int(status)))
+      self.delegate?.scriptDidReceive(success: stdout)
+      self.finishEvent.emit(stdout)
     }
   }
 
   private func failed(_ message: Failure) {
+    let error: Result = .failure(message)
     Async.main {
-      // TODO: Do not use String.desc
-      self.delegate?.scriptDidReceiveError(String(describing: message), 1)
-      self.finishEvent.emit(.failure(message))
+      self.delegate?.scriptDidReceive(error: error)
+      self.finishEvent.emit(error)
     }
   }
 
