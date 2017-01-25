@@ -1,6 +1,5 @@
 import Cocoa
 import AppKit
-import EmitterKit
 
 /**
   File selector used to ask the user about which plugin folder to use
@@ -10,10 +9,7 @@ import EmitterKit
 // optional func panel(_ sender: Any,
 //        shouldEnable url: URL) -> Bool
 class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
-  /* Text on button */
   private static let title = "Use as Plugins Directory"
-  private let event = Event<URL?>()
-  private var listeners = [Listener]()
 
   /**
     @url First folder being displayed in the file selector
@@ -32,9 +28,8 @@ class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
     delegate = self
   }
 
-  func ask(block: @escaping Block<URL?>) {
-    listeners.append(event.on { url in block(url) })
+  func ask(block: Block<URL?>) {
     runModal()
-    event.emit(url)
+    block(url)
   }
 }

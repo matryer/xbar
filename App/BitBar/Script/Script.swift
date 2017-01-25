@@ -61,8 +61,6 @@ class Script {
   private let listen = Listen(NotificationCenter.default)
   private let finishEvent = Event<Result>()
   private weak var delegate: ScriptDelegate?
-  private let event = Event<Void>()
-  private var listener: Listener?
 
   enum Failure {
     case crash(String)
@@ -128,7 +126,6 @@ class Script {
     let pipe = Pipe()
     let buffer = Buffer()
     let handler = pipe.fileHandleForReading
-    var listeners = [Listener]()
     let eofEvent = Event<Void>()
     let terminateEvent = Event<Void>()
     var isEOFEvent = false
@@ -142,7 +139,7 @@ class Script {
     process.standardOutput = pipe
     process.standardError = pipe
 
-    let tryDone = {
+    let processIfDone = {
       if !isDone() { return }
       let output = buffer.toString().dropLast()
       switch (process.terminationReason, process.terminationStatus) {
@@ -159,18 +156,17 @@ class Script {
       }
 
       buffer.close()
-      listeners = []
     }
 
-    listeners.append(eofEvent.on {
+    eofEvent.once {
       isEOFEvent = true
-      tryDone()
-    })
+      processIfDone()
+    }
 
-    listeners.append(terminateEvent.on {
+    terminateEvent.once {
       isTerminateEvent = true
-      tryDone()
-    })
+      processIfDone()
+    }
 
     process.terminationHandler = { _ in
       terminateEvent.emit()
@@ -217,11 +213,6 @@ class Script {
 
   private func handleCrash(_ message: String) {
     self.failed(.crash(message))
-    // TODO: Check if path is executable
-    // Script.isExecutable(path: path) { isExec in
-    //   if isExec { self.failed(.crash("file is not executable")) }
-    //   else { self.failed(.crash(message)) }
-    // }
   }
 
   /**
