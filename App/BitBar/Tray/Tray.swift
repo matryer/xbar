@@ -1,7 +1,6 @@
 import AppKit
 import EmitterKit
 import Cocoa
-import SwiftyUserDefaults
 
 /**
   Represents an item in the menu bar
@@ -9,16 +8,18 @@ import SwiftyUserDefaults
     instead of using isVisible = false or hide()
 */
 class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
+  private static let center = NSStatusBar.system()
+  private static let length = NSVariableStatusItemLength
+
+  private var updatedAgoItem: UpdatedAgoItem?
   private var listeners = [Listener]()
   private let openEvent = Event<Void>()
   private let closeEvent = Event<Void>()
   private let openInTerminalClickEvent = Event<Void>()
   private var isOpen = false
-  private var updatedAgoItem: UpdatedAgoItem?
   private let menu = NSMenu()
   private var defaultCount = 0
-  private let item: NSStatusItem = NSStatusBar.system()
-    .statusItem(withLength: NSVariableStatusItemLength)
+  private let item = Tray.center.statusItem(withLength: Tray.length)
   internal weak var delegate: TrayDelegate?
 
   /**
@@ -39,23 +40,21 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
 
   func add(item: NSMenuItem) {
-    let index = max(0, menu.items.count - defaultCount)
-    menu.insertItem(item, at: index)
+    menu.insertItem(item, at: max(0, menu.items.count - defaultCount))
   }
 
-  var attributedTitle: NSMutableAttributedString {
+  var attributedTitle: Mutable {
     set { item.attributedTitle = newValue }
     get {
       if let title = item.attributedTitle {
         return title.mutable()
       }
 
-      var title = NSMutableAttributedString(string: "")
-      if let aTitle = item.title {
-        title = NSMutableAttributedString(string: aTitle)
+      if let title = item.title {
+        return Mutable(string: title)
       }
-      item.attributedTitle = title
-      return title
+
+      return Mutable(string: "")
     }
   }
 
@@ -89,10 +88,10 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   /*
     Completely removes item from menu bar
   */
-  deinit { destroy() }
   func destroy() {
-    NSStatusBar.system().removeStatusItem(item)
+    Tray.center.removeStatusItem(item)
   }
+  deinit { destroy() }
 
   /**
     @block is called every time the drop down menu bar is shown
@@ -108,24 +107,21 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     listeners.append(closeEvent.on(block))
   }
 
-  // func onDidClickOpenInTerminal(block: @escaping Block<Void>) {
-  //   listeners.append(openInTerminalClickEvent.on(block))
-  // }
-
   func item(didClick: ItemBase) {
      delegate?.bar(didClickOpenInTerminal: self)
   }
 
   private func separator() {
-    item.menu?.addItem(NSMenuItem.separator())
+    menu.addItem(NSMenuItem.separator())
   }
 
   private func setPrefs() {
+    // TODO: These should be static
     separator()
     updatedAgoItem = UpdatedAgoItem()
-    item.menu?.addItem(updatedAgoItem!)
-    item.menu?.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
-    item.menu?.addItem(PrefItem())
+    menu.addItem(updatedAgoItem!)
+    menu.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
+    menu.addItem(PrefItem())
   }
 
   // Private, not to be called
