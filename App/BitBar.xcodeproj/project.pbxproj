@@ -10,6 +10,7 @@
 		2007AD981E3616DE001D50D2 /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2007AD971E3616DE001D50D2 /* BufferTests.swift */; };
 		2008E6F01E23DD6B007FC1D6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6EF1E23DD6B007FC1D6 /* File.swift */; };
 		2008E6F21E23DD74007FC1D6 /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */; };
+		200B0CAE1E3A70B40061964A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200B0CAD1E3A70B40061964A /* Images.xcassets */; };
 		200FDA421E35C57C003F4B6B /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FDA381E35C57C003F4B6B /* ColorTests.swift */; };
 		200FDA431E35C57C003F4B6B /* FontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FDA391E35C57C003F4B6B /* FontTests.swift */; };
 		200FDA441E35C57C003F4B6B /* HrefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FDA3A1E35C57C003F4B6B /* HrefTests.swift */; };
@@ -132,6 +133,7 @@
 		2007AD971E3616DE001D50D2 /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2008E6EF1E23DD6B007FC1D6 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = BitBar/Parser/File.swift; sourceTree = "<group>"; };
 		2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
+		200B0CAD1E3A70B40061964A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BitBar/Images.xcassets; sourceTree = "<group>"; };
 		200FDA381E35C57C003F4B6B /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		200FDA391E35C57C003F4B6B /* FontTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTests.swift; sourceTree = "<group>"; };
 		200FDA3A1E35C57C003F4B6B /* HrefTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HrefTests.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 			children = (
 				20642E7B1E2A4E4C004D9A28 /* emoji.json */,
 				204A9D741E160B3A0005E44F /* App.xib */,
+				200B0CAD1E3A70B40061964A /* Images.xcassets */,
 				206706511E15F6DB000DAADE /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -584,6 +587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				204A9D751E160B3A0005E44F /* App.xib in Resources */,
+				200B0CAE1E3A70B40061964A /* Images.xcassets in Resources */,
 				2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */,
 				20642E7C1E2A4E4C004D9A28 /* emoji.json in Resources */,
 			);
@@ -919,6 +923,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83610C5C17651A29374F4221 /* Pods-BitBar.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = BitBar/Info.plist;
@@ -937,6 +942,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00CDDAB0A8E092EC11C6CAAC /* Pods-BitBar.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = BitBar/Info.plist;
