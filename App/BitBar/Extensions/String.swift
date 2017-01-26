@@ -31,6 +31,11 @@ extension String {
     if isEmpty { return self }
     return self[0..<characters.count - 1]
   }
+
+  func inspecting() -> String {
+    if isEmpty { return "NOP" }
+    return "'" + replace("\n", "\\n").replace("'", "\\'") + "'"
+  }
 }
 
 extension Array {

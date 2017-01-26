@@ -42,8 +42,4 @@ extension Param {
   func menu(didClick: Menuable) {
     /* Default */
   }
-
-//  public static func <(lhs: Param, rhs: Param) -> Bool {
-//    return lhs.priority > rhs.priority
-//  }
 }

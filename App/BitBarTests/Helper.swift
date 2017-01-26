@@ -187,28 +187,20 @@ extension Gen {
   }
 }
 
-// TODO: This needs a clean up
 func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
   property(name) <- forAll(gen) { item in
     switch Pro.parse(parser, item.getInput()) {
     case let Result.success(result, _):
       return item.test(result).whenFail {
-        print("error: ", "[2] ------------------------------------")
-        print("error:", String(describing: result))
-        // print("error: input ", inspect(item.getInput()))
-        // print("error: ", "in: ", name)
-        // print("error: result", result)
+        print("error: ------------------------------------")
+        print("error: Failed verifying \(name)")
+        print("error: ", String(describing: result))
       }
     case let Result.failure(lines):
-      return (false <?> "X").whenFail {
-        // print("error: ", "START ------------------------------------")
-        // print("error: input ", inspect(item.getInput()))
-        print("error:", String(describing: lines))
-        // print("error: ", "in: ", name)
-        for line in lines {
-          print("error: ", inspect(line))
-        }
-        print("error: ", "------------------------------------ END")
+      return (false <?> "Parser failed").whenFail {
+        print("error: ------------------------------------")
+        print("error: Failed parsing \(name)")
+        print("error: ", lines)
       }
     }
   }

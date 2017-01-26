@@ -2,25 +2,8 @@ import Quick
 import Nimble
 @testable import BitBar
 
-// public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
-//   return MatcherFunc { actualExpression, failureMessage in
-//     failureMessage.postfixMessage = "exit with status 0 and output '\(exp)'"
-//     guard let result = try actualExpression.evaluate() else {
-//       return false
-//     }
-
-//     switch (result, exp) {
-//     case (.success(_, 0), .none):
-//       return true
-//     case let (.success(stdout, 0), .some(exp)) where stdout == exp:
-//       return true
-//     default:
-//       failureMessage.postfixActual = String(describing: result)
-//       return false
-//     }
-//   }
-// }
-
+// TODO: Replace getInput with input
+// TODO: Move to class
 extension Image {
   func getValue() -> String {
     return raw

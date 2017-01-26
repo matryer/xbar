@@ -10,13 +10,6 @@ private extension Data {
   }
 }
 
-extension String {
-  func inspecting() -> String {
-    if isEmpty { return "NOP" }
-    return "'" + replace("\n", "\\n").replace("'", "\\'") + "'"
-  }
-}
-
 extension Script.Result: CustomStringConvertible {
   public var description: String {
     switch self {
