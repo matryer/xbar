@@ -2,8 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension Emojize: Paramable {
-  public var attribute: String { return "emojize" }
-
   public static var arbitrary: Gen<Emojize> {
     return Gen.compose { c in
       Emojize(c.generate())
@@ -11,6 +9,10 @@ extension Emojize: Paramable {
   }
 
   func test(_ emojize: Emojize) -> Property {
-    return emojize.getValue() ==== self.getValue()
+    return emojize ==== self
+  }
+
+  public static func == (lhs: Emojize, rhs: Emojize) -> Bool {
+    return lhs.equals(rhs)
   }
 }

@@ -4,7 +4,7 @@ import EmitterKit
 
 final class Menu: ItemBase, Menuable {
   internal var level: Int = 0
-  internal var container = Container()
+  internal var container: Container
   internal weak var parentable: Menuable?
   internal var menus = [Menu]()
   internal var event = Event<Void>()
@@ -20,11 +20,19 @@ final class Menu: ItemBase, Menuable {
     @menus Sub menus for this item
     @level The number of levels down from the tray
   */
-  init(_ title: String, params: [Param] = [], menus: [Menu] = [], level: Int = 0) {
+  init(_ title: String, container: Container = Container(), menus: [Menu] = [], level: Int = 0) {
+    self.container = container
     self.level = level
     super.init(title)
+    container.delegate = self
     add(menus: menus)
-    add(params: params)
+  }
+
+  /**
+    Same as above, but derives the @level from a @parent
+  */
+  convenience init(_ title: String, container: Container, menus: [Menu] = [], parent: Menuable) {
+    self.init(title, container: container, menus: menus, level: parent.level + 1)
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
@@ -33,13 +41,6 @@ final class Menu: ItemBase, Menuable {
 
   func refresh() {
     parentable?.submenu(didTriggerRefresh: self)
-  }
-
-  /**
-    Same as above, but derives the @level from a @parent
-  */
-  convenience init(_ title: String, params: [Param] = [], menus: [Menu] = [], parent: Menuable) {
-    self.init(title, params: params, menus: menus, level: parent.level + 1)
   }
 
   /**
@@ -53,8 +54,8 @@ final class Menu: ItemBase, Menuable {
 
   func add(error: String) {
     // TODO: Add an icon
-    set(title: "Received an error")
-    addSub(error)
+    // set(title: "Received an error")
+    // addSub(error)
   }
 
   /**

@@ -2,8 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension Href: Paramable {
-  public var attribute: String { return "href" }
-
   public static var arbitrary: Gen<Href> {
     return Gen.compose { c in
       Href(c.generate(using: aWord()))
@@ -11,6 +9,10 @@ extension Href: Paramable {
   }
 
   func test(_ href: Href) -> Property {
-    return href.getValue() ==== self.getValue()
+    return href ==== self
+  }
+
+  public static func == (lhs: Href, rhs: Href) -> Bool {
+    return lhs.equals(rhs)
   }
 }

@@ -1,8 +1,9 @@
 final class Trim: BoolVal, Param {
-  var priority: Int { return 11 }
+  var priority = 11
+  var active: Bool { return bool }
 
-  func applyTo(menu: Menuable) {
-    if getValue() {
+  func menu(didLoad menu: Menuable) {
+    if active {
       /* FIXME: This replaces title. Use getAttrs instead */
       menu.update(title: menu.getTitle().trim())
     }

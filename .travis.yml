@@ -7,3 +7,5 @@ install:
   - make deps
 script:
   - make ci
+env:
+  - TRAVIS=1

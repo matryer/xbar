@@ -2,8 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension Bash: Paramable {
-  public var attribute: String { return "bash" }
-
   public static var arbitrary: Gen<Bash> {
     return Gen.compose { c in
       Bash(c.generate(using: aWord()))
@@ -11,6 +9,10 @@ extension Bash: Paramable {
   }
 
   func test(_ bash: Bash) -> Property {
-    return bash.getValue() ==== self.getValue()
+    return bash ==== self
+  }
+
+  public static func == (lhs: Bash, rhs: Bash) -> Bool {
+    return lhs.equals(rhs)
   }
 }

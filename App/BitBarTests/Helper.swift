@@ -95,7 +95,6 @@ public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
-
 public func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "crash with partial output '\(exp)'"
@@ -157,26 +156,28 @@ protocol Base: Arbitrary {
 }
 
 extension Base {
-  public var description: String {
-    return "<\(type(of: self))>"
-  }
 }
 
-protocol Paramable: Param, Base {
+protocol Paramable: Param, Equatable, Base {
+  var value: String { get }
   var attribute: String { get }
-  func toString() -> String
+  var key: String { get }
 }
 
 extension Param {
-  public var description: String {
-    return "<\(type(of: self))>"
+  var attribute: String {
+    return key.camelCase
+  }
+
+  var input: String {
+    if self is NamedParam {
+      return (self as! NamedParam).string
+    }
+    return attribute + "=" + value
   }
 
   func getInput() -> String {
-    if self is NamedParam {
-      return toString()
-    }
-    return "\(type(of: self))".camelCase + "=" + toString()
+    return input
   }
 }
 
@@ -193,15 +194,17 @@ func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
     case let Result.success(result, _):
       return item.test(result).whenFail {
         print("error: ", "[2] ------------------------------------")
-        print("error: input ", inspect(item.getInput()))
-        print("error: ", "in: ", name)
-        print("error: result", result)
+        print("error:", String(describing: result))
+        // print("error: input ", inspect(item.getInput()))
+        // print("error: ", "in: ", name)
+        // print("error: result", result)
       }
     case let Result.failure(lines):
       return (false <?> "X").whenFail {
-        print("error: ", "START ------------------------------------")
-        print("error: input ", inspect(item.getInput()))
-        print("error: ", "in: ", name)
+        // print("error: ", "START ------------------------------------")
+        // print("error: input ", inspect(item.getInput()))
+        print("error:", String(describing: lines))
+        // print("error: ", "in: ", name)
         for line in lines {
           print("error: ", inspect(line))
         }

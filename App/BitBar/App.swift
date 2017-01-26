@@ -186,6 +186,10 @@ class App {
     return ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
   }
 
+  static func isTravis() -> Bool {
+    return ProcessInfo.processInfo.environment["TRAVIS"] != nil
+  }
+
   private static let currentBundle = Bundle.main
   private static let quitEvent = Event<Void>()
   private static let changePathEvent = Event<Void>()
@@ -193,4 +197,8 @@ class App {
   private static var listeners = [Listener]()
   private static var gListeners = [GEvent]()
   private static let listen = Listen(NSWorkspace.shared().notificationCenter)
+}
+
+func puts(_ args: Any...) {
+  print("error: [LOG] ", args.map { String(describing: $0) }.joined(separator: " "))
 }

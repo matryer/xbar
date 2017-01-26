@@ -2,8 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension TemplateImage: Paramable {
-  public var attribute: String { return "templateImage" }
-
   public static var arbitrary: Gen<TemplateImage> {
     return Gen.compose { c in
       TemplateImage(c.generate(using: base64))
@@ -11,6 +9,10 @@ extension TemplateImage: Paramable {
   }
 
   func test(_ templateImage: TemplateImage) -> Property {
-    return templateImage.getValue() ==== self.getValue()
+    return templateImage ==== self
+  }
+
+  public static func == (lhs: TemplateImage, rhs: TemplateImage) -> Bool {
+    return lhs.equals(rhs)
   }
 }

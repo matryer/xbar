@@ -25,7 +25,6 @@ protocol Menuable: class {
   func update(image: NSImage, isTemplate: Bool)
   func update(title: String)
   func add(menu: NSMenuItem)
-  func add(params: [Param])
   func add(error: String)
 
   func submenu(didTriggerRefresh: Menuable)
@@ -42,12 +41,6 @@ extension Menuable {
 
   func set(title: NSMutableAttributedString) {
     aTitle = title
-  }
-
-  func add(params: [Param]) {
-    container.delegate = self
-    container.append(params: params)
-    container.apply()
   }
 
   func add(menus: [Menu]) {

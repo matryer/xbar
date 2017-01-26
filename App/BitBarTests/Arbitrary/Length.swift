@@ -2,7 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension Length: Paramable {
-  var attribute: String { return "length" }
   static let number: Gen<Int> = Gen<Int>.fromElements(in: 1000...10000)
 
   public static var arbitrary: Gen<Length> {
@@ -12,6 +11,10 @@ extension Length: Paramable {
   }
 
   func test(_ length: Length) -> Property {
-    return length.getValue() ==== self.getValue()
+    return length ==== self
+  }
+
+  public static func == (lhs: Length, rhs: Length) -> Bool {
+    return lhs.equals(rhs)
   }
 }

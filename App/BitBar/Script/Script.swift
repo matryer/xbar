@@ -10,7 +10,7 @@ private extension Data {
   }
 }
 
-private extension String {
+extension String {
   func inspecting() -> String {
     if isEmpty { return "NOP" }
     return "'" + replace("\n", "\\n").replace("'", "\\'") + "'"

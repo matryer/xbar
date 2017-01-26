@@ -50,8 +50,10 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
         return title.mutable()
       }
 
-      // FIXME: Don't use "title!"
-      let title = NSMutableAttributedString(string: item.title!)
+      var title = NSMutableAttributedString(string: "")
+      if let aTitle = item.title {
+        title = NSMutableAttributedString(string: aTitle)
+      }
       item.attributedTitle = title
       return title
     }

@@ -1,10 +1,8 @@
-import Cocoa
+final class Size: FloatVal, Param {
+  var priority = 0
 
-final class Size: IntValue, Param {
-  var priority: Int { return 0 }
-
-  func applyTo(menu: Menuable) {
+  func menu(didLoad menu: Menuable) {
     // TODO: Size should parse a float, not int
-    menu.update(size: Float(getValue()))
+    menu.update(size: float)
   }
 }

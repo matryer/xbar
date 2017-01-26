@@ -392,15 +392,15 @@ class Pro {
   }
 
   private static func merge(_ title: String, level: Int, _ params: [Param], _ menus: [Menu]) -> Menu {
-    return Menu(title, params: params, menus: menus, level: level)
+    return Menu(title, container: Container(params: params), menus: menus, level: level)
   }
 
   private static func mergeTitle(_ title: String, _ params: [Param], _ menus: [Menu]) -> Title {
-    return Title(title, params: params, menus: menus)
+    return Title(title, container: Container(params: params), menus: menus)
   }
 
   private static func merge(_ title: String, _ parent: Menu, _ params: [Param]) -> Menu {
-    return Menu(title, params: params, parent: parent)
+    return Menu(title, container: Container(params: params), parent: parent)
   }
 
   private static func merge(_ menu: Menu, _ menus: [Menu]) -> Menu {
@@ -409,13 +409,13 @@ class Pro {
   }
 
   private static func merge(_ title: String, _ params: [Param], _ menus: [Menu]) -> Menu {
-    return Menu(title, params: params, menus: menus)
+    return Menu(title, container: Container(params: params), menus: menus)
   }
 
   private static func merge(_ title: String, _ params: [Param]) -> Menu {
-    return Menu(title, params: params)
+    return Menu(title, container: Container(params: params))
   }
-  
+
   private static func merge(title: Title, isStream: Bool) -> Output {
     return Output(title, isStream)
   }

@@ -12,7 +12,7 @@ protocol TrayDelegate: class {
 }
 
 final class Title: NSMenu, Menuable, TrayDelegate {
-  internal let container = Container()
+  internal var container: Container
   internal var menus = [Menu]()
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
@@ -39,19 +39,19 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     @params Parameters read and parsed from stdin, i.e terminal=false
     @menus Sub menus to be displayed when when the item is clicked
   */
-  init(_ title: String, params: [Param], menus: [Menu]) {
+  init(_ title: String, container: Container = Container(), menus: [Menu] = []) {
+    self.container = container
     super.init(title: title)
     tray = Tray(title: title, isVisible: true, delegate: self)
     add(menus: menus)
-    add(params: params)
+    container.delegate = self
   }
 
   /**
     @errors A list of errors to be displayed in the sub menu
   */
   convenience init(errors: [String]) {
-    let menus = errors.map { Menu($0, params: [], menus: []) }
-    self.init(":warning:", params: [Emojize(true) as Param], menus: menus)
+    self.init(":warning:", container: Container(), menus: errors.map { Menu($0) })
   }
 
   func bar(didClickOpenInTerminal: Tray) {

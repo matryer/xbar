@@ -32,13 +32,11 @@ class Plugin: OutputDelegate {
       self.didReceiveError(error)
     }
   }
-  
-  
+
   func output(didTriggerRefresh: Output) {
     print("didTriggerRefresh in plugin")
     refresh()
   }
-
 
   /**
     @path An absolute path to the script

@@ -1,7 +1,11 @@
 import SwiftCheck
 @testable import BitBar
 
-extension Output: Base {
+extension Output: Base, Val {
+  public var values: [String: Any] {
+    return ["title": title, "isStream": isStream]
+  }
+
   public func getInput() -> String {
     return title.getInput() + (isStream ? "\n~~~" : "")
   }

@@ -1,20 +1,20 @@
-import Cent
+import EmitterKit
 
 /**
   Represents zero or more params for a title or menu
 */
-class Container {
-  private var store = [String: [Param]]()
-  internal weak var delegate: Menuable?
-
-  /**
-    A non-sorted list of non named params, i.e terminal=false
-  */
-  var filterParams: [Param] {
-    return params.reduce([]) { acc, param in
-      if param is NamedParam { return acc }
-      return acc + [param]
-    }
+final class Container: Equatable {
+  private var listener: Listener?
+  private var namedStore = [Int: NamedParam]()
+  private var filterStore = [String: Param]()
+  internal var namedParams: [NamedParam] {
+    return Array(namedStore.values)
+  }
+  internal var filterParams: [Param] {
+    return Array(filterStore.values)
+  }
+  internal weak var delegate: Menuable? {
+    didSet { self.handleDelegate() }
   }
 
   /**
@@ -22,9 +22,7 @@ class Container {
     I.e terminal=false, param7=2
   */
   var params: [Param] {
-    return store.reduce([]) { acc, value in
-      return acc + value.1
-    }
+    return namedParams + filterParams
   }
 
   /**
@@ -34,26 +32,27 @@ class Container {
   */
   var args: [String] {
     return namedParams.sorted {
-      return $0.getIndex() < $1.getIndex()
-    }.map { $0.getValue() }
+      return $0.index < $1.index
+    }.map { $0.value }
+  }
+
+  init(params: [Param] = []) {
+    /* Defaults */
+    add(param: Emojize(true))
+    add(param: Trim(true))
+    add(param: Dropdown(true))
+    add(param: Refresh(false))
+    add(param: Terminal(true))
+
+    /* User defined */
+    append(params: params)
   }
 
   /**
-    Represents the a list named params, i.e param1="B"
+    Does the container contain @param?
   */
-  var namedParams: [NamedParam] {
-    return get(type: "NamedParam").reduce([]) {
-      if let param = $1 as? NamedParam {
-        return $0 + [param]
-      }
-
-      return $0
-    }
-  }
-
-  init() {
-    add(param: Emojize(true))
-    add(param: Trim(true))
+  func has(_ param: Param) -> Bool {
+    return params.reduce(false) { $0 || $1.equals(param) }
   }
 
   /**
@@ -65,73 +64,62 @@ class Container {
     }
   }
 
+  /**
+    Add @param to internal storage
+    Used to generate the args list to a bash script
+  */
+  func add(param: NamedParam) {
+    namedStore[param.index] = param
+  }
+
+  /**
+    Add @param to internal storage
+    The param is later applied to @delegate
+  */
   func add(param: Param) {
-    add(type: param.key, value: param)
+    switch param {
+    case is NamedParam:
+      return add(param: param as! NamedParam)
+    default:
+      filterStore[param.key] = param
+    }
   }
 
   /**
     Represents the refresh param, i.e refresh=false
   */
   func shouldRefresh() -> Bool {
-    return last(type: "Refresh")?.equals(true) ?? false
+    // TODO: Make static
+    return has(Refresh(true))
   }
 
   /**
     Represents the dropdown param, i.e dropdown=false
   */
   func hasDropdown() -> Bool {
-    return last(type: "Dropdown")?.equals(true) ?? true
+    return has(Dropdown(true))
   }
 
   /**
     Represents the terminal param, i.e terminal=false
   */
   func openTerminal() -> Bool {
-    return last(type: "Terminal")?.equals(true) ?? true
+    return has(Terminal(true))
   }
 
-  func apply() {
-    // FIXME: Don't sort 'ondemand'
-    let sortedParams = self.filterParams.sorted { (p1, p2) in
-      return p1.priority > p2.priority
-    }
-
-    if let menu = delegate {
-      for param in sortedParams {
-        param.applyTo(menu: menu)
-      }
-    }
-  }
-
-  private func get(type: String) -> [Param] {
-    return store[type] ?? []
-  }
-
-  private func has(type: String) -> Bool {
-    return !get(type: type).isEmpty
-  }
-
-  private func add(type: String, value: Param) {
-    if value is NamedParam {
-      // Append
-      if let current = store[type] {
-        store[type] = current + [value]
-      } else {
-        store[type] = [value]
-      }
-    } else {
-      // Override existing value
-      store[type] = [value]
-    }
-  }
-
-  // Selectors first item of @type
-  func last(type: String) -> Param? {
-    return get(type: type).last()
-  }
-
+  // Implements Equatable
   static func == (_ lhs: Container, _ rhs: Container) -> Bool {
-    if lhs.filterParams.count != rhs.filterParams.count {
+    if lhs.params.count != rhs.params.count {
+      return false
+    }
+
+    for param in lhs.params {
+      if !rhs.has(param) {
+        return false
+      }
+    }
+
+    if lhs.args != rhs.args {
       return false
     }
 
@@ -139,26 +127,33 @@ class Container {
       return false
     }
 
-    if lhs.params.count != rhs.params.count {
+    switch (lhs.delegate, rhs.delegate) {
+    case (.some(_), .some(_)):
+      break /* TODO: compare the two */
+    case (.none, .none):
+      break /* OK */
+    default:
       return false
     }
 
-    for param1 in lhs.filterParams {
-      if let param2 = rhs.last(type: param1.key) {
-        if param1.toString() != param2.toString() {
-          return false
-        }
-      } else {
-        return false
-      }
-    }
-
-    for (index, arg1) in lhs.args.enumerated() {
-      if rhs.args[index] != arg1 {
-        return false
-      }
-    }
-
     return true
+  }
+
+  // Bind events to newly set delegate
+  // Removes listener, if delegate is nil
+  private func handleDelegate() {
+    if let menu = delegate {
+      for param in self.filterParams {
+        param.menu(didLoad: menu)
+      }
+
+      listener = menu.onDidClick {
+        for param in self.filterParams {
+          param.menu(didClick: menu)
+        }
+      }
+    } else {
+      listener = nil
+    }
   }
 }

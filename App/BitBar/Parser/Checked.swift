@@ -1,10 +1,13 @@
-import Cocoa
+import AppKit
 
-final class Checked: BoolVal, Param {
-  var priority: Int { return 0 }
+final class Checked: IntVal, Param {
+  var priority = 0
 
-  func applyTo(menu: Menuable) {
-    guard getValue() else { return }
-    menu.update(state: NSOnState)
+  convenience init(_ isChecked: Bool) {
+    self.init(isChecked ? NSOnState : NSOffState)
+  }
+
+  func menu(didLoad menu: Menuable) {
+    menu.update(state: int)
   }
 }

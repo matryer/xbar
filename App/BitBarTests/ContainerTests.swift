@@ -23,78 +23,129 @@ class ContainerTests: Helper {
           expect(container.openTerminal()).to(beTrue())
         }
 
-        it("has default emojize") {
-          let param = container.last(type: "Emojize")!
-          expect(param is Emojize).to(beTrue())
-          expect(param.equals(true)).to(beTrue())
-        }
-
         it("has default trim") {
-          let param = container.last(type: "Trim")!
-          expect(param is Trim).to(beTrue())
-          expect(param.equals(true)).to(beTrue())
+          expect(container.has(Trim(true))).to(beTrue())
         }
 
-        context("override (does not pre-existing)") {
-          var b1: Int!
-          var b2: Int!
-          var b3: Int!
+        it("has default emojize") {
+          expect(container.has(Emojize(true))).to(beTrue())
+        }
 
-          beforeEach {
-            b1 = container.filterParams.count
-            b2 = container.args.count
-            b3 = container.params.count
-          }
+        describe("add()") {
+          context("override (does not pre-existing)") {
+            it("overrides dropdown") {
+              container.add(param: Dropdown(false))
+              expect(container.hasDropdown()).to(beFalse())
+            }
 
-          afterEach {
-            expect(container.filterParams).to(haveCount(b1 + 1))
-            expect(container.args).to(haveCount(b2))
-            expect(container.params).to(haveCount(b3 + 1))
-          }
+            it("overrides terminal") {
+              container.add(param: Terminal(false))
+              expect(container.openTerminal()).to(beFalse())
+            }
 
-          it("overrides dropdown") {
-            container.add(param: Dropdown(false))
-            expect(container.shouldRefresh()).to(beFalse())
-          }
+            it("overrides refresh") {
+              container.add(param: Refresh(true))
+              expect(container.shouldRefresh()).to(beTrue())
+            }
 
-          it("overrides terminal") {
-            container.add(param: Terminal(false))
-            expect(container.shouldRefresh()).to(beFalse())
-          }
-
-          it("overrides refresh") {
-            container.add(param: Refresh(true))
-            expect(container.shouldRefresh()).to(beTrue())
+            it("overrides refresh") {
+              let named = NamedParam(key: "1", value: "X")
+              container.add(param: named)
+              expect(container.has(named)).to(beTrue())
+            }
           }
         }
 
-        context("override (does pre-existing)") {
-          var b1: Int!
-          var b2: Int!
-          var b3: Int!
+        describe("append()") {
+          context("override (does not pre-existing)") {
+            it("overrides dropdown") {
+              container.append(params: [Dropdown(false)])
+              expect(container.hasDropdown()).to(beFalse())
+            }
 
-          beforeEach {
-            b1 = container.filterParams.count
-            b2 = container.args.count
-            b3 = container.params.count
+            it("overrides terminal") {
+              container.append(params: [Terminal(false)])
+              expect(container.openTerminal()).to(beFalse())
+            }
+
+            it("overrides refresh") {
+              container.append(params: [Refresh(true)])
+              expect(container.shouldRefresh()).to(beTrue())
+            }
           }
 
-          afterEach {
-            expect(container.filterParams).to(haveCount(b1))
-            expect(container.args).to(haveCount(b2))
-            expect(container.params).to(haveCount(b3))
-          }
+          context("filterParams & namedParams") {
+            it("overrides trim") {
+              // TODO: Move these
+              var b1 = BoolVal(false)
+              var b2 = BoolVal(false)
+              expect(b1.bool == b2.bool).to(beTrue())
 
-          it("overrides emojize") {
-            container.add(param: Emojize(false))
-            let param = container.last(type: "Emojize")!
-            expect(param.equals(false)).to(beTrue())
-          }
+              b1 = BoolVal(true)
+              b2 = BoolVal(true)
+              expect(b1.bool == b2.bool).to(beTrue())
 
-          it("overrides trim") {
-            container.add(param: Trim(false))
-            let param = container.last(type: "Trim")!
-            expect(param.equals(false)).to(beTrue())
+              b1 = BoolVal(false)
+              b2 = BoolVal(true)
+              expect(b1.bool == b2.bool).to(beFalse())
+
+              b1 = BoolVal(true)
+              b2 = BoolVal(false)
+              expect(b1.bool == b2.bool).to(beFalse())
+
+              let trim1 = Trim(true)
+              container.append(params: [trim1])
+              expect(container.has(trim1)).to(beTrue())
+
+              let trim2 = Trim(false)
+              container.append(params: [trim2])
+              expect(container.has(trim2)).to(beTrue())
+              expect(container.has(trim1)).to(beFalse())
+            }
+
+            it("overrides size") {
+              let size1 = Size(5)
+              container.append(params: [size1])
+              expect(container.has(size1)).to(beTrue())
+
+              let size2 = Size(2)
+              container.append(params: [size2])
+              expect(container.has(size2)).to(beTrue())
+              expect(container.has(size1)).to(beFalse())
+            }
+
+            it("overrides font") {
+              let font1 = Font("ABC")
+              container.append(params: [font1])
+              expect(container.has(font1)).to(beTrue())
+
+              let font2 = Font("DEF")
+              container.append(params: [font2])
+              expect(container.has(font2)).to(beTrue())
+              expect(container.has(font1)).to(beFalse())
+            }
+
+            it("overrides length") {
+              let length1 = Length(5)
+              container.append(params: [length1])
+              expect(container.has(length1)).to(beTrue())
+
+              let length2 = Length(10)
+              container.append(params: [length2])
+              expect(container.has(length2)).to(beTrue())
+              expect(container.has(length1)).to(beFalse())
+            }
+
+            it("overrides equal names") {
+              let named1 = NamedParam(key: "1", value: "Y")
+              container.append(params: [named1])
+              expect(container.has(named1)).to(beTrue())
+
+              let named2 = NamedParam(key: "1", value: "Y")
+              container.append(params: [named2])
+              expect(container.has(named2)).to(beTrue())
+              expect(container.has(named1)).to(beTrue())
+            }
           }
         }
       }

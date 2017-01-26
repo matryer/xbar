@@ -2,8 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension Refresh: Paramable {
-  public var attribute: String { return "refresh" }
-
   public static var arbitrary: Gen<Refresh> {
     return Gen.compose { c in
       Refresh(c.generate())
@@ -11,6 +9,10 @@ extension Refresh: Paramable {
   }
 
   func test(_ refresh: Refresh) -> Property {
-    return refresh.getValue() ==== self.getValue()
+    return refresh ==== self
+  }
+
+  public static func == (lhs: Refresh, rhs: Refresh) -> Bool {
+    return lhs.equals(rhs)
   }
 }

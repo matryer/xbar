@@ -8,7 +8,7 @@ class LengthTests: Helper {
       it("handels base case") {
         let menu = Menu("hello")
         let length = Length(1)
-        length.applyTo(menu: menu)
+        length.menu(didLoad: menu)
         expect(menu.title).to(equal("h…"))
       }
     }

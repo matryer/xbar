@@ -1,12 +1,13 @@
-import Cocoa
+import Foundation
 
-final class Length: IntValue, Param {
-  var priority: Int { return 0 }
+final class Length: IntVal, Param {
+  var priority = 0
+  var length: Int { return int }
 
-  func applyTo(menu: Menuable) {
+  func menu(didLoad menu: Menuable) {
     let attr = menu.getAttrs()
-    guard attr.count > getValue() else { return }
-    guard getValue() > 0 else { return }
-    menu.update(attr: attr.truncate(getValue()))
+    guard attr.count > length else { return }
+    guard length > 0 else { return }
+    menu.update(attr: attr.truncate(length))
   }
 }

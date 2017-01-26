@@ -2,8 +2,6 @@ import SwiftCheck
 @testable import BitBar
 
 extension Font: Paramable {
-  public var attribute: String { return "font" }
-
   public static var arbitrary: Gen<Font> {
     return Gen.compose { c in
       Font(c.generate(using: aWord()))
@@ -11,6 +9,10 @@ extension Font: Paramable {
   }
 
   func test(_ font: Font) -> Property {
-    return font.getValue() ==== self.getValue()
+    return font ==== self
+  }
+
+  public static func == (lhs: Font, rhs: Font) -> Bool {
+    return lhs.equals(rhs)
   }
 }

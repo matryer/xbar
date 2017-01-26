@@ -2,14 +2,15 @@ import SwiftyJSON
 import Files
 
 final class Emojize: BoolVal, Param {
-  var priority: Int { return 9 }
-
   private static let jsonEmojize = File.from(resource: "emoji.json")
   private static let emojis = getEmojis()
   private static let parser = Pro.replaceEmojize(replace: forChar)
 
-  func applyTo(menu: Menuable) {
-    guard getValue() else { return }
+  var priority = 9
+  var active: Bool { return bool }
+
+  func menu(didLoad menu: Menuable) {
+    guard active else { return }
     switch Pro.parse(Emojize.parser, menu.getTitle()) {
     case let Result.success(title, _):
       menu.update(title: title)

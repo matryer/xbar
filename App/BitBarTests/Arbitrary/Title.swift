@@ -1,52 +1,31 @@
 import SwiftCheck
 @testable import BitBar
 
-extension Title: Base {
+extension Title: Base, Val {
+  public var values: [String: Any] {
+    return ["title": title, "menus": menus, "container": container]
+  }
+
   override public var description: String {
-    return "<\(type(of: self))>"
+    var res = ""
+    for (key, value) in values {
+      res += key + "=" + String(describing: value) + " "
+    }
+
+    return "<\(key): \(res)>"
   }
 
   func getInput() -> String {
-    let out = params.reduce("") { $0 + " " + $1.getInput() }.trim()
-    let mOut = menus.map { $0.getInput() }.joined(separator: "")
-    if !out.isEmpty {
-      return title + "|" + out + mOut
-    } else {
-      return title + mOut
-    }
+    return title + container.getInput() +
+      menus.map { $0.getInput() }.joined(separator: "")
   }
 
-  // TODO: Merge with Menu
   public static var arbitrary: Gen<Title> {
-    let menus = Menu.arbitrary.proliferateRange(0, 2)
     return Gen.compose { gen in
-      var params: [Param] = []
-      params.append((gen.generate(using: Alternate.arbitrary)) as Param)
-      params.append((gen.generate(using: Ansi.arbitrary)) as Param)
-      params.append((gen.generate(using: Bash.arbitrary)) as Param)
-      params.append((gen.generate(using: Color.arbitrary)) as Param)
-      params.append((gen.generate(using: Dropdown.arbitrary)) as Param)
-      params.append((gen.generate(using: Emojize.arbitrary)) as Param)
-      params.append((gen.generate(using: Font.arbitrary)) as Param)
-      params.append((gen.generate(using: Href.arbitrary)) as Param)
-      params.append((gen.generate(using: Image.arbitrary)) as Param)
-      params.append((gen.generate(using: Length.arbitrary)) as Param)
-      params.append((gen.generate(using: Refresh.arbitrary)) as Param)
-      params.append((gen.generate(using: Size.arbitrary)) as Param)
-      // TODO: Re-add
-      // params.append((gen.generate(using: TemplateImage.arbitrary)) as Param)
-      params.append((gen.generate(using: Terminal.arbitrary)) as Param)
-      params.append((gen.generate(using: Trim.arbitrary)) as Param)
-
-      // TODO: Change to 0
-      for named in gen.generate(using: NamedParam.arbitrary.proliferateRange(1, 10)) {
-        params.append(named as Param)
-      }
-
       return Title(
         gen.generate(using: aSentence()),
-        params: gen.generate(using: Gen<[Param]>.fromShufflingElements(of: params)),
-        menus: gen.generate(using: menus)
+        container: gen.generate(),
+        menus: gen.generate(using: Menu.arbitrary.proliferateRange(0, 2))
       )
     }
   }
@@ -61,11 +40,11 @@ extension Title: Base {
     }
 
     for (index, menu) in menus.enumerated() {
-      if !menu.eq(title.menus[index]) {
+      if !menu.equals(title.menus[index]) {
         return false <?> "menu.index.\(index)"
       }
     }
 
-    return (title.container == container) <?> "title.container"
+    return title.container ==== container
   }
 }

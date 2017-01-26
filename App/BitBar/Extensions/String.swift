@@ -1,5 +1,6 @@
 import Foundation
 import Cent
+import GameKit
 
 extension String {
   /**
@@ -29,5 +30,15 @@ extension String {
   func dropLast() -> String {
     if isEmpty { return self }
     return self[0..<characters.count - 1]
+  }
+}
+
+extension Array {
+  func shuffle() -> [Any] {
+    if #available(OSX 10.11, *) {
+      return GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self)
+    } else {
+      return self // TODO: Implement
+    }
   }
 }

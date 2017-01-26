@@ -1,75 +1,100 @@
 import SwiftCheck
 @testable import BitBar
 
-extension Menu: Base {
-  static let which: Gen<Int> = Gen<Int>.fromElements(in: 0...2)
+extension Menu: Base, Val {
+  private static let which: Gen<Int> = Gen<Int>.fromElements(in: 0...2)
+  public var values: [String: Any] {
+    return ["title": title, "submenus": menus, "container": container]
+  }
+  override public var description: String {
+    // TODO: Clean up
+    var res = ""
+    for (key, value) in values {
+      res += key + "=" + String(describing: value) + " "
+    }
+
+    return "<\(key): \(res)>"
+  }
 
   func getInput() -> String {
     switch level {
     case 0:
-       return "\n---\n" + getBody()
+       return "\n---\n" + body
     default:
-      return "\n" + times(level, "--") + getBody()
+      return "\n" + times(level, "--") + body
     }
+  }
+
+  func test(_ menu: Menu) -> Property {
+    return equals(menu) ^&&^ testLevel()
+  }
+
+  func equals(_ other: Menu) -> Bool {
+    if other.getTitle() != getTitle() {
+      return fail("Titles arnt matching", other.getTitle(), getTitle())
+    }
+
+    if other.menus.count != menus.count {
+      return fail("Sub menu count differs")
+    }
+
+    for (index, menu) in menus.enumerated() {
+      if !menu.equals(other.menus[index]) {
+        return fail("Menus are not equal")
+      }
+    }
+
+    if other.level != level {
+      return fail("Incorrect level", other.level, level)
+    }
+
+    return container == other.container
   }
 
   public static var arbitrary: Gen<Menu> {
     return Gen.compose { gen in
-      var params: [Param] = []
-      params.append((gen.generate(using: Alternate.arbitrary)) as Param)
-      params.append((gen.generate(using: Ansi.arbitrary)) as Param)
-      params.append((gen.generate(using: Bash.arbitrary)) as Param)
-      params.append((gen.generate(using: Color.arbitrary)) as Param)
-      params.append((gen.generate(using: Dropdown.arbitrary)) as Param)
-      params.append((gen.generate(using: Emojize.arbitrary)) as Param)
-      params.append((gen.generate(using: Font.arbitrary)) as Param)
-      params.append((gen.generate(using: Href.arbitrary)) as Param)
-      params.append((gen.generate(using: Image.arbitrary)) as Param)
-      params.append((gen.generate(using: Length.arbitrary)) as Param)
-      params.append((gen.generate(using: Refresh.arbitrary)) as Param)
-      params.append((gen.generate(using: Size.arbitrary)) as Param)
-      // TODO: Re-add
-      // params.append((gen.generate(using: TemplateImage.arbitrary)) as Param)
-      params.append((gen.generate(using: Terminal.arbitrary)) as Param)
-      params.append((gen.generate(using: Trim.arbitrary)) as Param)
-
-      // TODO: Change to 0
-      for named in gen.generate(using: NamedParam.arbitrary.proliferateRange(1, 10)) {
-        params.append(named as Param)
-      }
-
       return Menu(
         gen.generate(using: aSentence()),
-        params: gen.generate(using: Gen<[Param]>.fromShufflingElements(of: params)),
-        menus: gen.generate(using: Menu.submenu.proliferateRange(0, 2))
+        container: gen.generate(),
+        menus: gen.generate(using: submenu.proliferateRange(0, 2))
       )
     }
   }
 
-  public static var submenu: Gen<Menu> {
+  internal static var submenu: Gen<Menu> {
     return getSubMenu(1)
   }
 
-  public static func getSubMenu(_ level: Int) -> Gen<Menu> {
+  internal static func getSubMenu(_ level: Int) -> Gen<Menu> {
     return Gen.compose { gen in
       return Menu(
         gen.generate(using: aSentence()),
+        container: gen.generate(),
         menus: gen.generate(using: subMenusFrom(level: level)),
         level: level
       )
     }
   }
 
-  private func test(_ title: Title) -> Property {
-    let levelTest = testLevel()
-    if menus.isEmpty { return levelTest }
-    return title.menus.reduce(false <?> "test title.menus") {
-      return ($0 ^||^ test($1)) ^&&^ $1.testLevel()
-    } ^&&^ levelTest
+  private var body: String {
+    return title + container.getInput() +
+      menus.map { $0.getInput() }.joined(separator: "")
   }
 
-  func test(_ menu: Menu) -> Property {
-    return eq(menu) ^&&^ menu.level ==== level ^&&^ testLevel()
+  // Repeat @string @number times
+  // I.e times(3, "Y") => YYY
+  private func times(_ number: Int, _ string: String) -> String {
+    return (0..<number).reduce("") { (acc: String, _) in acc + string }
+  }
+
+  // Generate submenu for a particular level
+  private static func subMenusFrom(level: Int) -> Gen<[Menu]> {
+    let collection = getSubMenu(level + 1)
+    if level == 2 {
+      return collection.proliferateRange(0, 0)
+    }
+
+    return collection.proliferateRange(0, 2)
   }
 
   private func testLevel() -> Property {
@@ -78,53 +103,8 @@ extension Menu: Base {
     }
   }
 
-  private func puts(_ bool: Bool, _ message: String) -> Bool {
-    print("error: menu.", message)
-    return bool
-  }
-
-  // TODO: Impl. as static func ==
-  func eq(_ other: Menu) -> Bool {
-    if other.getTitle() != getTitle() {
-      return puts(false, "title")
-    }
-
-    if other.menus.count != menus.count {
-      return puts(false, "menus.count")
-    }
-
-    for (index, menu) in menus.enumerated() {
-      if !menu.eq(other.menus[index]) {
-        return puts(false, "menus.eq(other)")
-      }
-    }
-
-    return container == other.container
-  }
-
-  private func getBody() -> String {
-    var out = ""
-    out += params.reduce("") { $0 + " " + $1.getInput() }
-    out = out.trim()
-
-    let mOut = menus.reduce("") { $0 + $1.getInput() }
-    if !out.isEmpty {
-      return toString() + "|" + out + mOut
-    } else {
-      return toString() + mOut
-    }
-  }
-
-  private func times(_ number: Int, _ string: String) -> String {
-    return (0..<number).reduce("") { (acc: String, _) in acc + string }
-  }
-
-  private static func subMenusFrom(level: Int) -> Gen<[Menu]> {
-    let collection = getSubMenu(level + 1)
-    if level == 2 {
-      return collection.proliferateRange(0, 0)
-    }
-
-    return collection.proliferateRange(0, 2)
+  private func fail(_ any: Any...) -> Bool {
+    puts(any)
+    return false
   }
 }

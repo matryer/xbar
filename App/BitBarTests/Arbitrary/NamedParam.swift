@@ -1,7 +1,7 @@
 import SwiftCheck
 @testable import BitBar
 
-extension NamedParam: Base {
+extension NamedParam: Base, Equatable {
   static let head: Gen<String> = Gen<Int>.fromElements(in: 0...10000).map { String($0) }
 
   public static var arbitrary: Gen<NamedParam> {
@@ -15,6 +15,10 @@ extension NamedParam: Base {
   }
 
   func test(_ param: NamedParam) -> Property {
-    return param.key ==== self.key ^&&^ param.value ==== value
+    return param ==== self
+  }
+
+  public static func == (lhs: NamedParam, rhs: NamedParam) -> Bool {
+    return lhs.equals(rhs)
   }
 }

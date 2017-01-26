@@ -1,4 +1,4 @@
-import Cocoa
+import Foundation
 import EmitterKit
 import Async
 
@@ -7,29 +7,26 @@ import Async
 // I.e bash.delegate = menu
 // then in bash; delegate?.shouldRefresh()
 final class Bash: StringVal, Param {
-  var priority: Int { return 0 }
-  var listener: Listener?
+  var priority = 0
+  var path: String { return value }
 
-  func applyTo(menu: Menuable) {
-    listener = menu.onDidClick {
-      // TODO: Rename to shouldOpenInTerminal (or something similar)
-      if menu.openTerminal() {
-        Bash.open(script: self.getValue()) {
-          menu.add(error: $0)
+  func menu(didClick menu: Menuable) {
+    if menu.openTerminal() {
+      Bash.open(script: path) {
+        menu.add(error: $0)
+      }
+    }
+
+    Script(path: path, args: menu.getArgs()) { result in
+      switch result {
+      case let .failure(error):
+        return menu.add(error: String(describing: error))
+      case .success(_):
+        if menu.shouldRefresh() {
+          menu.refresh()
         }
       }
-
-      Script(path: self.getValue(), args: menu.getArgs()) { result in
-        switch result {
-        case let .failure(error):
-          return menu.add(error: String(describing: error))
-        case .success(_):
-          if menu.shouldRefresh() {
-            menu.refresh()
-          }
-        }
-      }.start()
-    }
+    }.start()
   }
 
   /**

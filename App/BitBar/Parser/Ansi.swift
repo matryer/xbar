@@ -3,10 +3,11 @@ typealias Stringish = NSMutableAttributedString
 
 /* TODO: Use Extensions/NSMutableAttributedString.swift */
 final class Ansi: BoolVal, Param {
-  var priority: Int { return 5 }
+  var priority = 5
+  var active: Bool { return bool }
 
-  func applyTo(menu: Menuable) {
-    guard getValue() else { return }
+  func menu(didLoad menu: Menuable) {
+    guard active else { return }
 
     switch Pro.parse(Pro.getANSIs(), menu.getTitle()) {
     case let Result.success(result, _):

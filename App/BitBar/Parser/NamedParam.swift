@@ -1,38 +1,27 @@
 final class NamedParam: Param {
-  var priority: Int { return 0 }
-  let key: String
+  var priority = 0
   let value: String
+  let index: Int
+  var values: [String: Any] {
+    return ["value": value, "index": index]
+  }
 
   init(key: String, value: String) {
-    self.key = key
+    self.index = Int(key)!
     self.value = value
   }
 
-  func getValue() -> String {
-    return value
+  var string: String {
+    return "param" + String(index) + "=" + value
   }
 
-  func getKey() -> String {
-    return key
-  }
-
-  func toString() -> String {
-    return "param" + key + "=" + value
-  }
-
-  static func == (_ this: NamedParam, _ that: NamedParam) -> Bool {
-    return this.key == that.key && this.value == that.value
-  }
-
-  func applyTo(menu: Menuable) {
-    // TODO: Remove
-  }
-
-  func getIndex() -> Int {
-    if let index = Int(key) {
-      return index
+  func equals(_ param: Param) -> Bool {
+    if let named = param as? NamedParam {
+      if named.index != index { return false }
+      if named.value != value { return false }
+      return true
     }
 
-    return -1
+    return false
   }
 }
