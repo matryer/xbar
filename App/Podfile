@@ -3,7 +3,7 @@ target 'BitBar' do
   use_frameworks!
 
   pod 'EmitterKit'
-  pod 'FootlessParser', git: 'https://github.com/oleander/FootlessParser.git', branch: 'swift3.0'
+  pod "FootlessParser", git: "https://github.com/kareman/FootlessParser.git", branch: "swift3.0"
   pod 'SwiftyTimer'
   pod 'DateTools'
   pod 'Cent'

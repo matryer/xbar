@@ -23,7 +23,7 @@ DEPENDENCIES:
   - DateTools
   - EmitterKit
   - Files
-  - FootlessParser (from `https://github.com/oleander/FootlessParser.git`, branch `swift3.0`)
+  - FootlessParser (from `https://github.com/kareman/FootlessParser.git`, branch `swift3.0`)
   - Hue
   - Nimble
   - Quick
@@ -37,7 +37,7 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   FootlessParser:
     :branch: swift3.0
-    :git: https://github.com/oleander/FootlessParser.git
+    :git: https://github.com/kareman/FootlessParser.git
   SwiftCheck:
     :git: https://github.com/typelift/SwiftCheck.git
   SwiftTryCatch:
@@ -45,8 +45,8 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FootlessParser:
-    :commit: 4f92146f4f93e0f9abfa8f5c473973aea994d057
-    :git: https://github.com/oleander/FootlessParser.git
+    :commit: 7572c5063d2ef8a113a9c4c4b5767b219f64360b
+    :git: https://github.com/kareman/FootlessParser.git
   SwiftCheck:
     :commit: 0e2d31cbf718cc31bb2f80a65760439ecc3ee7fc
     :git: https://github.com/typelift/SwiftCheck.git
@@ -61,7 +61,7 @@ SPEC CHECKSUMS:
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   EmitterKit: 0057b2086840f20987cb8d4445b4490b96c0bfd8
   Files: b0c64f41a9f2b53d09148cf2b972b7b6f71b952b
-  FootlessParser: aa2dc348cb5ba84873c12e7448d99b339c0aa164
+  FootlessParser: c7610613da5865dd16ab7141ef1b067e7ed25dd6
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: e0eb8a834f184cc5830f7a0d1dfb0671836fcb3d
+PODFILE CHECKSUM: ddccbd427fcf3b339ef68b18bc9a7d1d95733fbc
 
 COCOAPODS: 1.2.0.rc.1
