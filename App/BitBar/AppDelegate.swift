@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       self.loadPluginManager()
     }
 
-    App.checkForUppdates()
+    // App.checkForUppdates()
   }
 
   private func loadPluginManager() {

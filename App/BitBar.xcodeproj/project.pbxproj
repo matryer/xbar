@@ -46,8 +46,6 @@
 		2062778A1E1E7EFA0032AD69 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206277881E1E7EFA0032AD69 /* Font.swift */; };
 		20642E7C1E2A4E4C004D9A28 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = 20642E7B1E2A4E4C004D9A28 /* emoji.json */; };
 		20642E7D1E2A4E4C004D9A28 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = 20642E7B1E2A4E4C004D9A28 /* emoji.json */; };
-		20642E7F1E2A758B004D9A28 /* MenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */; };
-		20642E801E2A758B004D9A28 /* MenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */; };
 		206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067064E1E15F6DB000DAADE /* AppDelegate.swift */; };
 		2067066C1E15F6DB000DAADE /* ExecutablePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706561E15F6DB000DAADE /* ExecutablePlugin.swift */; };
 		2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206706571E15F6DB000DAADE /* Plugin.swift */; };
@@ -189,7 +187,6 @@
 		206277871E1E7EFA0032AD69 /* Href.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Href.swift; path = Arbitrary/Href.swift; sourceTree = "<group>"; };
 		206277881E1E7EFA0032AD69 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Font.swift; path = Arbitrary/Font.swift; sourceTree = "<group>"; };
 		20642E7B1E2A4E4C004D9A28 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = emoji.json; path = BitBar/Resources/emoji.json; sourceTree = "<group>"; };
-		20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDelegate.swift; sourceTree = "<group>"; };
 		2067064E1E15F6DB000DAADE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		206706511E15F6DB000DAADE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BitBar/Info.plist; sourceTree = "<group>"; };
 		206706561E15F6DB000DAADE /* ExecutablePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePlugin.swift; sourceTree = "<group>"; };
@@ -433,7 +430,6 @@
 		2067064D1E15F6DB000DAADE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				209E68061E3B45890010FE2D /* Updater.swift */,
 				2031E9991E325AC1004A33E5 /* Extensions */,
 				2058A75F1E2A391500D09A21 /* Scripts */,
 				2045FB231E161BC0007D8EF7 /* Parser */,
@@ -445,12 +441,12 @@
 				20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */,
 				2031E9A61E32A061004A33E5 /* PrefItem.swift */,
 				20A8FCAD1E34C2A50080E142 /* Menuable.swift */,
+				209E68061E3B45890010FE2D /* Updater.swift */,
 				209F70861E331AF4005365B2 /* PathSelector.swift */,
 				209F70821E32EA9E005365B2 /* App.swift */,
 				2031E9A21E327F31004A33E5 /* ItemBase.swift */,
 				209F70801E32E298005365B2 /* Listen.swift */,
 				209F70841E3316C4005365B2 /* Container.swift */,
-				20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */,
 				2067064E1E15F6DB000DAADE /* AppDelegate.swift */,
 				206706581E15F6DB000DAADE /* PluginManager.swift */,
 				2041B1281E3AE1BD005D2899 /* Autostart.swift */,
@@ -833,7 +829,6 @@
 				20C8B98E1E237D76005DBC9D /* Parser.swift in Sources */,
 				209F70871E331AF4005365B2 /* PathSelector.swift in Sources */,
 				207BD88C1E2379EA007AA0C7 /* Title.swift in Sources */,
-				20642E7F1E2A758B004D9A28 /* MenuDelegate.swift in Sources */,
 				2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */,
 				20C1F87C1E23F521007E0D93 /* Menu.swift in Sources */,
 				207BD87F1E2379EA007AA0C7 /* Href.swift in Sources */,
@@ -868,7 +863,6 @@
 				200FDA4B1E35C57C003F4B6B /* TitleTests.swift in Sources */,
 				200FDA461E35C57C003F4B6B /* MenuTests.swift in Sources */,
 				209632EF1E20A264003BC47E /* NamedParam.swift in Sources */,
-				20642E801E2A758B004D9A28 /* MenuDelegate.swift in Sources */,
 				2099FAB21E1E300900F758AF /* Alternate.swift in Sources */,
 				2099FAB51E1E300900F758AF /* Emojize.swift in Sources */,
 				2007AD981E3616DE001D50D2 /* BufferTests.swift in Sources */,
