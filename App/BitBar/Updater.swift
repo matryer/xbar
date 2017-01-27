@@ -26,8 +26,4 @@ class Updater: NSObject, SUUpdaterDelegate {
   func enable() {
     isEnabled = true
   }
-
-  public func userDidCancelDownload(_ updater: SUUpdater!) {
-    print("[LOG] User did cancel download")
-  }
 }

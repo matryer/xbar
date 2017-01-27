@@ -116,7 +116,7 @@
 		20E660631E2399A300B530B1 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E660621E2399A300B530B1 /* Helper.swift */; };
 		20F54DF81E1E994E000416C6 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F54DF71E1E994E000416C6 /* Output.swift */; };
 		20FF91961E3AD2E60010B70A /* sub.2m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FF91951E3AD2E60010B70A /* sub.2m.sh */; };
-		658C2C9035596307BBDD578D /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */; };
+		754C114F5DB5FB5C814FE8D2 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */; };
 		B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FD803BD86A42F69A80929A /* Pods_BitBarTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,15 +139,6 @@
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		201C02781E3A819C00DA2202 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LoginItems;
-			dstSubfolderSpec = 1;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -293,7 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */,
-				658C2C9035596307BBDD578D /* Pods_BitBarTests.framework in Frameworks */,
+				754C114F5DB5FB5C814FE8D2 /* Pods_BitBarTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +584,6 @@
 				B2E6D5F10CEFA91FCD9F4B63 /* [CP] Embed Pods Frameworks */,
 				D0E651DBA90807AABA499287 /* [CP] Copy Pods Resources */,
 				201C02641E3A805400DA2202 /* Embed Frameworks */,
-				201C02781E3A819C00DA2202 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1029,10 +1019,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/.build/BitBar/Build/Products/Debug/NSBundle+LoginItem",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BitBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1055,10 +1042,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/.build/BitBar/Build/Products/Debug/NSBundle+LoginItem",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = BitBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
