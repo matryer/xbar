@@ -1,7 +1,5 @@
 language: objective-c
 osx_image: xcode8.2
-xcode_sdk:
-  - macosx
 before_install:
   - gem install cocoapods xcpretty --no-ri --no-rdoc
 install:
