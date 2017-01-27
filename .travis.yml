@@ -1,5 +1,8 @@
 language: objective-c
-osx_image: xcode8
+matrix:
+  include:
+    - osx_image: xcode8.2
+    - osx_image: xcode8.1
 before_install:
   - gem install cocoapods --no-ri --no-rdoc
   - gem install xcpretty  --no-ri --no-rdoc
