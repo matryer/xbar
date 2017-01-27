@@ -11,7 +11,9 @@ final class Container: Equatable {
     return Array(namedStore.values)
   }
   internal var filterParams: [Param] {
-    return Array(filterStore.values)
+    return Array(filterStore.values).sorted {
+      return $0.priority > $1.priority
+    }
   }
   internal weak var delegate: Menuable? {
     didSet { self.handleDelegate() }
