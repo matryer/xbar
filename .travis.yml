@@ -1,4 +1,5 @@
 language: objective-c
+xcode_sdk: macosx10.12
 matrix:
   include:
     - osx_image: xcode8.2
