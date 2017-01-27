@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BD7A497A60E8F6D66A78E38 /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E719A42D4CEBC21BDCBBDB7 /* Pods_BitBar.framework */; };
 		2007AD981E3616DE001D50D2 /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2007AD971E3616DE001D50D2 /* BufferTests.swift */; };
 		2008E6F01E23DD6B007FC1D6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6EF1E23DD6B007FC1D6 /* File.swift */; };
 		2008E6F21E23DD74007FC1D6 /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */; };
@@ -30,11 +31,11 @@
 		2031E9A01E325AE2004A33E5 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */; };
 		2031E9A11E325AE2004A33E5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E99D1E325AE2004A33E5 /* String.swift */; };
 		2031E9A31E327F31004A33E5 /* ItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A21E327F31004A33E5 /* ItemBase.swift */; };
-		2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2031E9A41E328C66004A33E5 /* sub.10s.sh */; };
 		2031E9A71E32A061004A33E5 /* PrefItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A61E32A061004A33E5 /* PrefItem.swift */; };
 		2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */; };
 		204129061E38345B0028DA49 /* space script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 204129051E38345B0028DA49 /* space script.sh */; };
 		204129081E3857AE0028DA49 /* ItemBaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */; };
+		2041B1291E3AE1BD005D2899 /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B1281E3AE1BD005D2899 /* Autostart.swift */; };
 		20444FF01E378E5200CB21D2 /* basic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEE1E378E5200CB21D2 /* basic.sh */; };
 		20444FF11E378E5200CB21D2 /* invalid-syntax.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */; };
 		204A9D751E160B3A0005E44F /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204A9D741E160B3A0005E44F /* App.xib */; };
@@ -113,7 +114,8 @@
 		20DEE6081E237BA200AF22D2 /* Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE6011E237BA200AF22D2 /* Param.swift */; };
 		20E660631E2399A300B530B1 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E660621E2399A300B530B1 /* Helper.swift */; };
 		20F54DF81E1E994E000416C6 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F54DF71E1E994E000416C6 /* Output.swift */; };
-		7B1C7F93DADBBA20B8A5067D /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D7668DC35F332B9361C63E1 /* Pods_BitBar.framework */; };
+		20FF91961E3AD2E60010B70A /* sub.2m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FF91951E3AD2E60010B70A /* sub.2m.sh */; };
+		658C2C9035596307BBDD578D /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */; };
 		B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FD803BD86A42F69A80929A /* Pods_BitBarTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -127,8 +129,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		201C02641E3A805400DA2202 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		201C02781E3A819C00DA2202 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		00CDDAB0A8E092EC11C6CAAC /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
+		1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D7668DC35F332B9361C63E1 /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2007AD971E3616DE001D50D2 /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2008E6EF1E23DD6B007FC1D6 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = BitBar/Parser/File.swift; sourceTree = "<group>"; };
@@ -147,20 +172,25 @@
 		2015BEAA1E1DD408007AEC6B /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Arbitrary/Image.swift; sourceTree = "<group>"; };
 		201AC12F1E38E3CF00C5A751 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		201AC1311E38EF4900C5A751 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Container.swift; path = Arbitrary/Container.swift; sourceTree = "<group>"; };
+		201C027A1E3A823C00DA2202 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		202B068F1E35C0020014A3D6 /* ContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
 		2031E99A1E325AE2004A33E5 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSAttributedString.swift; path = BitBar/Extensions/NSAttributedString.swift; sourceTree = "<group>"; };
 		2031E99B1E325AE2004A33E5 /* NSFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSFont.swift; path = BitBar/Extensions/NSFont.swift; sourceTree = "<group>"; };
 		2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSMutableAttributedString.swift; path = BitBar/Extensions/NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		2031E99D1E325AE2004A33E5 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = BitBar/Extensions/String.swift; sourceTree = "<group>"; };
-		2031E9A21E327F31004A33E5 /* ItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemBase.swift; path = BitBar/ItemBase.swift; sourceTree = "<group>"; };
-		2031E9A41E328C66004A33E5 /* sub.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.10s.sh; path = Scripts/sub.10s.sh; sourceTree = "<group>"; };
-		2031E9A61E32A061004A33E5 /* PrefItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefItem.swift; path = BitBar/PrefItem.swift; sourceTree = "<group>"; };
-		2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatedAgoItem.swift; path = BitBar/UpdatedAgoItem.swift; sourceTree = "<group>"; };
+		2031E9A21E327F31004A33E5 /* ItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemBase.swift; sourceTree = "<group>"; };
+		2031E9A61E32A061004A33E5 /* PrefItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefItem.swift; sourceTree = "<group>"; };
+		2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatedAgoItem.swift; sourceTree = "<group>"; };
 		204129051E38345B0028DA49 /* space script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "space script.sh"; path = "BitBarTests/scripts/space script.sh"; sourceTree = SOURCE_ROOT; };
-		204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemBaseDelegate.swift; sourceTree = "<group>"; };
+		204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemBaseDelegate.swift; path = ../ItemBaseDelegate.swift; sourceTree = "<group>"; };
+		2041B1281E3AE1BD005D2899 /* Autostart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autostart.swift; sourceTree = "<group>"; };
 		20444FEE1E378E5200CB21D2 /* basic.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = basic.sh; path = BitBarTests/scripts/basic.sh; sourceTree = SOURCE_ROOT; };
 		20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "invalid-syntax.sh"; path = "BitBarTests/scripts/invalid-syntax.sh"; sourceTree = SOURCE_ROOT; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
+		2054B15C1E3A97F1007B74C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2054B15E1E3A97F1007B74C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2054B1611E3A97F1007B74C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2054B1631E3A97F1007B74C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "missing-sh-bin.10m.sh"; path = "BitBarTests/scripts/missing-sh-bin.10m.sh"; sourceTree = SOURCE_ROOT; };
 		205820501E355D7B0032BEEF /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		205C410F1E1EA32800DAFE22 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Length.swift; path = Arbitrary/Length.swift; sourceTree = "<group>"; };
@@ -214,15 +244,15 @@
 		209D374F1E37967A00468B10 /* stream-more.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-more.sh"; path = "BitBarTests/scripts/stream-more.sh"; sourceTree = SOURCE_ROOT; };
 		209D37501E37967A00468B10 /* stream-nothing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-nothing.sh"; path = "BitBarTests/scripts/stream-nothing.sh"; sourceTree = SOURCE_ROOT; };
 		209D37531E37B06100468B10 /* stream-sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-sleep.sh"; path = "BitBarTests/scripts/stream-sleep.sh"; sourceTree = SOURCE_ROOT; };
-		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Listen.swift; path = BitBar/Listen.swift; sourceTree = "<group>"; };
-		209F70821E32EA9E005365B2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = BitBar/App.swift; sourceTree = "<group>"; };
-		209F70841E3316C4005365B2 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Container.swift; path = BitBar/Container.swift; sourceTree = "<group>"; };
-		209F70861E331AF4005365B2 /* PathSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathSelector.swift; path = BitBar/PathSelector.swift; sourceTree = "<group>"; };
+		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listen.swift; sourceTree = "<group>"; };
+		209F70821E32EA9E005365B2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		209F70841E3316C4005365B2 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		209F70861E331AF4005365B2 /* PathSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSelector.swift; sourceTree = "<group>"; };
 		20A115BF1E15E43E00A68722 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115CE1E15E43F00A68722 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A115D41E15E43F00A68722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20A39F6C1E26CA0B001BAB72 /* Checked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Checked.swift; path = BitBar/Parser/Checked.swift; sourceTree = "<group>"; };
-		20A8FCAD1E34C2A50080E142 /* Menuable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menuable.swift; path = BitBar/Menuable.swift; sourceTree = "<group>"; };
+		20A8FCAD1E34C2A50080E142 /* Menuable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menuable.swift; sourceTree = "<group>"; };
 		20AB0A661E1DAE11000DFFFD /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = Arbitrary/Title.swift; sourceTree = "<group>"; };
 		20AB0A6E1E1DD194000DFFFD /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Terminal.swift; path = Arbitrary/Terminal.swift; sourceTree = "<group>"; };
 		20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
@@ -238,8 +268,11 @@
 		20DEE6011E237BA200AF22D2 /* Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Param.swift; path = BitBar/Parser/Param.swift; sourceTree = "<group>"; };
 		20E660621E2399A300B530B1 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		20F54DF71E1E994E000416C6 /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Output.swift; path = Arbitrary/Output.swift; sourceTree = "<group>"; };
+		20FF91951E3AD2E60010B70A /* sub.2m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.2m.sh; path = Scripts/sub.2m.sh; sourceTree = "<group>"; };
+		2E719A42D4CEBC21BDCBBDB7 /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		829CB0E03DE7D2CA303532BC /* Pods-BitBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.release.xcconfig"; sourceTree = "<group>"; };
 		83610C5C17651A29374F4221 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
+		AE17D7E298BCAF2BD67DC3F7 /* Pods_LauncherApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LauncherApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6632475461BB557F6BF9B5E /* Pods-BitBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9FD803BD86A42F69A80929A /* Pods_BitBarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -249,7 +282,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B1C7F93DADBBA20B8A5067D /* Pods_BitBar.framework in Frameworks */,
+				1BD7A497A60E8F6D66A78E38 /* Pods_BitBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */,
+				658C2C9035596307BBDD578D /* Pods_BitBarTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +309,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		202EB1971E3B2143006766D8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2084CCDC1E2A3E7100DE01F6 /* Scripts */,
+				205A863C1E1DA94900E2C38C /* Arbitrary */,
+				200FDA3A1E35C57C003F4B6B /* HrefTests.swift */,
+				200FDA3B1E35C57C003F4B6B /* ImageTests.swift */,
+				200FDA3C1E35C57C003F4B6B /* MenuTests.swift */,
+				200FDA381E35C57C003F4B6B /* ColorTests.swift */,
+				200FDA3D1E35C57C003F4B6B /* NamedParamTests.swift */,
+				200FDA3E1E35C57C003F4B6B /* OutputTests.swift */,
+				200FDA3F1E35C57C003F4B6B /* SizeTests.swift */,
+				200FDA401E35C57C003F4B6B /* SubMenuTests.swift */,
+				200FDA411E35C57C003F4B6B /* TitleTests.swift */,
+				20B597781E35C15A0072F179 /* AnsiTests.swift */,
+				20B597791E35C15A0072F179 /* BashTests.swift */,
+				2007AD971E3616DE001D50D2 /* BufferTests.swift */,
+				20B5977A1E35C15A0072F179 /* LengthTests.swift */,
+				202B068F1E35C0020014A3D6 /* ContainerTests.swift */,
+				2097884E1E2420E300A91F4D /* ScriptTests.swift */,
+				2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */,
+				207277491E239D8B00496F25 /* PropertyTests.swift */,
+				20E660621E2399A300B530B1 /* Helper.swift */,
+				200FDA391E35C57C003F4B6B /* FontTests.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		202EB1981E3B2149006766D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20A115D41E15E43F00A68722 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2031E9991E325AC1004A33E5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +354,7 @@
 				2031E99D1E325AE2004A33E5 /* String.swift */,
 			);
 			name = Extensions;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2045FB231E161BC0007D8EF7 /* Parser */ = {
@@ -316,14 +387,27 @@
 				201AC12F1E38E3CF00C5A751 /* Base.swift */,
 			);
 			name = Parser;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		2054B15B1E3A97F1007B74C5 /* LauncherApplication */ = {
+			isa = PBXGroup;
+			children = (
+				2054B15C1E3A97F1007B74C5 /* AppDelegate.swift */,
+				2054B15E1E3A97F1007B74C5 /* Assets.xcassets */,
+				2054B1601E3A97F1007B74C5 /* MainMenu.xib */,
+				2054B1631E3A97F1007B74C5 /* Info.plist */,
+			);
+			path = LauncherApplication;
 			sourceTree = "<group>";
 		};
 		2058A75F1E2A391500D09A21 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				2031E9A41E328C66004A33E5 /* sub.10s.sh */,
+				20FF91951E3AD2E60010B70A /* sub.2m.sh */,
 			);
 			name = Scripts;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		205A863C1E1DA94900E2C38C /* Arbitrary */ = {
@@ -353,17 +437,31 @@
 			name = Arbitrary;
 			sourceTree = "<group>";
 		};
-		2067064D1E15F6DB000DAADE /* BitBar */ = {
+		2067064D1E15F6DB000DAADE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */,
-				20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */,
-				2067064E1E15F6DB000DAADE /* AppDelegate.swift */,
+				2031E9991E325AC1004A33E5 /* Extensions */,
+				2058A75F1E2A391500D09A21 /* Scripts */,
+				2045FB231E161BC0007D8EF7 /* Parser */,
 				206706551E15F6DB000DAADE /* Plugin */,
-				206706581E15F6DB000DAADE /* PluginManager.swift */,
 				2067065F1E15F6DB000DAADE /* Script */,
 				206706631E15F6DB000DAADE /* Tray */,
+				204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */,
+				2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */,
+				20B19E311E2F56A9007D9778 /* DefaultsKeys.swift */,
+				2031E9A61E32A061004A33E5 /* PrefItem.swift */,
+				20A8FCAD1E34C2A50080E142 /* Menuable.swift */,
+				209F70861E331AF4005365B2 /* PathSelector.swift */,
+				209F70821E32EA9E005365B2 /* App.swift */,
+				2031E9A21E327F31004A33E5 /* ItemBase.swift */,
+				209F70801E32E298005365B2 /* Listen.swift */,
+				209F70841E3316C4005365B2 /* Container.swift */,
+				20642E7E1E2A758B004D9A28 /* MenuDelegate.swift */,
+				2067064E1E15F6DB000DAADE /* AppDelegate.swift */,
+				206706581E15F6DB000DAADE /* PluginManager.swift */,
+				2041B1281E3AE1BD005D2899 /* Autostart.swift */,
 			);
+			name = Source;
 			path = BitBar;
 			sourceTree = "<group>";
 		};
@@ -394,15 +492,18 @@
 			path = Tray;
 			sourceTree = "<group>";
 		};
-		2077E7721E15F88E00669E25 /* Supporting Files */ = {
+		2077E7721E15F88E00669E25 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				20642E7B1E2A4E4C004D9A28 /* emoji.json */,
-				204A9D741E160B3A0005E44F /* App.xib */,
-				200B0CAD1E3A70B40061964A /* Images.xcassets */,
+				58ADBBFF60D17429320223FE /* Frameworks */,
+				2054B15B1E3A97F1007B74C5 /* LauncherApplication */,
+				20A115C01E15E43E00A68722 /* Products */,
 				206706511E15F6DB000DAADE /* Info.plist */,
+				204A9D741E160B3A0005E44F /* App.xib */,
+				20642E7B1E2A4E4C004D9A28 /* emoji.json */,
+				200B0CAD1E3A70B40061964A /* Images.xcassets */,
 			);
-			name = "Supporting Files";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		2084CCDC1E2A3E7100DE01F6 /* Scripts */ = {
@@ -428,24 +529,11 @@
 		20A115B61E15E43E00A68722 = {
 			isa = PBXGroup;
 			children = (
-				204129071E3857AE0028DA49 /* ItemBaseDelegate.swift */,
-				20A8FCAD1E34C2A50080E142 /* Menuable.swift */,
-				209F70861E331AF4005365B2 /* PathSelector.swift */,
-				209F70841E3316C4005365B2 /* Container.swift */,
-				209F70821E32EA9E005365B2 /* App.swift */,
-				209F70801E32E298005365B2 /* Listen.swift */,
-				2031E9A81E32C86B004A33E5 /* UpdatedAgoItem.swift */,
-				2031E9A61E32A061004A33E5 /* PrefItem.swift */,
-				2031E9A21E327F31004A33E5 /* ItemBase.swift */,
-				2031E9991E325AC1004A33E5 /* Extensions */,
-				2058A75F1E2A391500D09A21 /* Scripts */,
-				2045FB231E161BC0007D8EF7 /* Parser */,
-				2067064D1E15F6DB000DAADE /* BitBar */,
-				20A115D11E15E43F00A68722 /* BitBarTests */,
-				20A115C01E15E43E00A68722 /* Products */,
 				0D476355E64BBA91357E7B61 /* Pods */,
-				58ADBBFF60D17429320223FE /* Frameworks */,
-				2077E7721E15F88E00669E25 /* Supporting Files */,
+				2067064D1E15F6DB000DAADE /* Source */,
+				20A115D11E15E43F00A68722 /* Tests */,
+				2077E7721E15F88E00669E25 /* Resources */,
+				317DEF7883B73B4CB1AEAEF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -458,40 +546,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		20A115D11E15E43F00A68722 /* BitBarTests */ = {
+		20A115D11E15E43F00A68722 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				200FDA381E35C57C003F4B6B /* ColorTests.swift */,
-				200FDA391E35C57C003F4B6B /* FontTests.swift */,
-				200FDA3A1E35C57C003F4B6B /* HrefTests.swift */,
-				200FDA3B1E35C57C003F4B6B /* ImageTests.swift */,
-				200FDA3C1E35C57C003F4B6B /* MenuTests.swift */,
-				200FDA3D1E35C57C003F4B6B /* NamedParamTests.swift */,
-				200FDA3E1E35C57C003F4B6B /* OutputTests.swift */,
-				200FDA3F1E35C57C003F4B6B /* SizeTests.swift */,
-				200FDA401E35C57C003F4B6B /* SubMenuTests.swift */,
-				200FDA411E35C57C003F4B6B /* TitleTests.swift */,
-				20B597781E35C15A0072F179 /* AnsiTests.swift */,
-				20B597791E35C15A0072F179 /* BashTests.swift */,
-				20B5977A1E35C15A0072F179 /* LengthTests.swift */,
-				202B068F1E35C0020014A3D6 /* ContainerTests.swift */,
-				2084CCDC1E2A3E7100DE01F6 /* Scripts */,
-				2097884E1E2420E300A91F4D /* ScriptTests.swift */,
-				2008E6F11E23DD74007FC1D6 /* FileNameTests.swift */,
-				207277491E239D8B00496F25 /* PropertyTests.swift */,
-				20E660621E2399A300B530B1 /* Helper.swift */,
-				205A863C1E1DA94900E2C38C /* Arbitrary */,
-				20A115D41E15E43F00A68722 /* Info.plist */,
-				2007AD971E3616DE001D50D2 /* BufferTests.swift */,
+				202EB1981E3B2149006766D8 /* Resources */,
+				202EB1971E3B2143006766D8 /* Source */,
 			);
+			name = Tests;
 			path = BitBarTests;
+			sourceTree = "<group>";
+		};
+		317DEF7883B73B4CB1AEAEF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E719A42D4CEBC21BDCBBDB7 /* Pods_BitBar.framework */,
+				1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		58ADBBFF60D17429320223FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				201C027A1E3A823C00DA2202 /* ServiceManagement.framework */,
 				1D7668DC35F332B9361C63E1 /* Pods_BitBar.framework */,
 				F9FD803BD86A42F69A80929A /* Pods_BitBarTests.framework */,
+				AE17D7E298BCAF2BD67DC3F7 /* Pods_LauncherApplication.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -509,6 +589,8 @@
 				20A115BD1E15E43E00A68722 /* Resources */,
 				B2E6D5F10CEFA91FCD9F4B63 /* [CP] Embed Pods Frameworks */,
 				D0E651DBA90807AABA499287 /* [CP] Copy Pods Resources */,
+				201C02641E3A805400DA2202 /* Embed Frameworks */,
+				201C02781E3A819C00DA2202 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -547,16 +629,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = BitBar;
 				TargetAttributes = {
 					20A115BE1E15E43E00A68722 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = K6FNT9HXR3;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					20A115CD1E15E43F00A68722 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = K6FNT9HXR3;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 20A115BE1E15E43E00A68722;
 					};
@@ -588,7 +677,7 @@
 			files = (
 				204A9D751E160B3A0005E44F /* App.xib in Resources */,
 				200B0CAE1E3A70B40061964A /* Images.xcassets in Resources */,
-				2031E9A51E328C66004A33E5 /* sub.10s.sh in Resources */,
+				20FF91961E3AD2E60010B70A /* sub.2m.sh in Resources */,
 				20642E7C1E2A4E4C004D9A28 /* emoji.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +850,7 @@
 				206706661E15F6DB000DAADE /* AppDelegate.swift in Sources */,
 				2031E9A71E32A061004A33E5 /* PrefItem.swift in Sources */,
 				207BD88B1E2379EA007AA0C7 /* Terminal.swift in Sources */,
+				2041B1291E3AE1BD005D2899 /* Autostart.swift in Sources */,
 				207BD8801E2379EA007AA0C7 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,6 +912,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		2054B1601E3A97F1007B74C5 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2054B1611E3A97F1007B74C5 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		20A115E01E15E43F00A68722 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -844,7 +945,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -896,7 +996,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -925,12 +1024,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = K6FNT9HXR3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/.build/BitBar/Build/Products/Debug/NSBundle+LoginItem",
+				);
 				INFOPLIST_FILE = BitBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "BitBar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -944,12 +1050,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = K6FNT9HXR3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/.build/BitBar/Build/Products/Debug/NSBundle+LoginItem",
+				);
 				INFOPLIST_FILE = BitBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "BitBar-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -962,12 +1075,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				INFOPLIST_FILE = BitBarTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBar.app/Contents/MacOS/BitBar";
 			};
@@ -979,12 +1095,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				INFOPLIST_FILE = BitBarTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBar.app/Contents/MacOS/BitBar";
 			};

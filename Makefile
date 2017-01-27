@@ -14,6 +14,10 @@ default: clean
 build:
 	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
 	@$(BUILD) | xcpretty
+archive:
+	@mkdir -p Dist
+	@$(BUILD_ATTR) BitBar -archivePath Dist/BitBar archive | xcpretty
+	@echo "[Task] Completed building"
 clean:
 	@echo "[Task] Cleaning up..."
 	@$(BUILD) clean | xcpretty

@@ -27,17 +27,6 @@ class Plugin: OutputDelegate {
     }
   }
 
-  func output(didClickOpenInTerminal: Output) {
-    Bash.open(script: self.path) { error in
-      self.didReceiveError(error)
-    }
-  }
-
-  func output(didTriggerRefresh: Output) {
-    print("didTriggerRefresh in plugin")
-    refresh()
-  }
-
   /**
     @path An absolute path to the script
     @file A file object containing {name}.{time}.{ext}
@@ -94,6 +83,22 @@ class Plugin: OutputDelegate {
 
   func terminate() {
     preconditionFailure("This method must be overridden")
+  }
+
+  /**
+    Triggered when user clicked 'open in terminal'
+  */
+  func output(didClickOpenInTerminal: Output) {
+    Bash.open(script: path) { error in
+      self.didReceiveError(error)
+    }
+  }
+
+  /**
+    Triggered when refresh was called from a menu
+  */
+  func output(didTriggerRefresh: Output) {
+    refresh()
   }
 
   /**

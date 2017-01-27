@@ -101,7 +101,7 @@ final class Menu: ItemBase, Menuable {
     Menus starting with a dash "-" are considered separators
   */
   func isSeparator() -> Bool {
-    return title.strip() == "-"
+    return title.trim() == "-"
   }
 
   private func currentTitle() -> NSMutableAttributedString {

@@ -1,5 +1,4 @@
 import SwiftyUserDefaults
-import ServiceManagement
 import Foundation
 import EmitterKit
 typealias Block<T> = (T) -> Void
@@ -97,7 +96,7 @@ class App {
   */
   static var pluginURL: URL? {
     if let path = pluginPath {
-      return NSURL(string: path) as? URL
+      return NSURL(string: path) as URL?
     }
 
     return nil
@@ -149,11 +148,9 @@ class App {
     Update wherever the application should start at login or not
   */
   static func update(autostart: Bool) {
-    // FIXME: Doesn't work right now
-    // Use logic from old application
-    // launchAtLoginController.launchAtLogin = !launchAtLoginController.launchAtLogin
-    SMLoginItemSetEnabled(App.id, autostart)
     Defaults[.startAtLogin] = autostart
+    if autostart { AutoLogin.on() }
+    else { AutoLogin.off() }
   }
 
   /**
@@ -190,6 +187,7 @@ class App {
     return ProcessInfo.processInfo.environment["TRAVIS"] != nil
   }
 
+  private static let bundleLoginId = "com.getbitbar.LauncherApplication"
   private static let currentBundle = Bundle.main
   private static let quitEvent = Event<Void>()
   private static let changePathEvent = Event<Void>()

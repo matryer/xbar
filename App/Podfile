@@ -2,19 +2,21 @@ target 'BitBar' do
   platform :osx, '10.10'
   use_frameworks!
 
-  pod 'EmitterKit'
-  pod "FootlessParser", git: "https://github.com/kareman/FootlessParser.git", branch: "swift3.0"
-  pod 'SwiftyTimer'
-  pod 'DateTools'
-  pod 'Cent'
-  pod 'AsyncSwift'
   pod 'Files'
   pod 'Hue'
+  pod 'DateTools'
   pod 'SwiftyJSON'
+  pod 'AsyncSwift'
+  pod 'Sparkle'
+  pod 'EmitterKit'
+  pod 'SwiftyTimer'
   pod 'SwiftyUserDefaults'
+  pod 'FootlessParser', git: 'https://github.com/kareman/FootlessParser.git', branch: 'swift3.0'
+  pod 'Cent', git: 'https://github.com/ankurp/Cent.git'
+  pod 'Dollar', git: 'https://github.com/oleander/Dollar.git'
+  pod 'String+Extensions', git: 'https://github.com/iamjono/SwiftString.git'
   pod 'SwiftTryCatch', git: 'https://github.com/oleander/SwiftTryCatch.git'
   # TODO: Re-implement https://github.com/matryer/bitbar/pull/338/commits/12ceb090bf080232a6415f0f0a69c669e6001f39
-  pod 'Sparkle'
 
   target 'BitBarTests' do
     inherit! :search_paths

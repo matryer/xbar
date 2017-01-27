@@ -1,15 +1,16 @@
 import SwiftCheck
 import Quick
-import Cent
+import Swift
+ import Cent
 import Nimble
 @testable import BitBar
 
 let failed = false <?> "Parser failed"
-let upper: Gen<Character>= Gen<Character>.fromElements(in: "A"..."Z")
+let upper: Gen<Character> = Gen<Character>.fromElements(in: "A"..."Z")
 let lower: Gen<Character> = Gen<Character>.fromElements(in: "a"..."z")
 let natrual = Int.arbitrary.suchThat { $0 >= 0 }
 let numeric: Gen<Character> = Gen<Character>.fromElements(in: "0"..."9")
-let upperAF: Gen<Character>= Gen<Character>.fromElements(in: "A"..."F")
+let upperAF: Gen<Character> = Gen<Character>.fromElements(in: "A"..."F")
 let loweraf: Gen<Character> = Gen<Character>.fromElements(in: "a"..."f")
 let hexValue = Gen<Int>.choose((1, 6)).flatMap {
   return toString(upperAF, loweraf, numeric, size: $0)
@@ -61,7 +62,7 @@ func aSentence() -> Gen<String> {
 
 public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "exit with status 0 and output '\(exp)'"
+    failureMessage.postfixMessage = "exit with status 0 and output '\(exp ?? "")'"
     guard let result = try actualExpression.evaluate() else {
       return false
     }

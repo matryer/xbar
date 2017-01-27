@@ -2,6 +2,28 @@ import AppKit
 import EmitterKit
 import Cocoa
 
+// protocol Barable {
+//   var title: String? { get set }
+//   var menu: NSMenu? { get set }
+//   var autoenablesItems: Bool { get set }
+//   var image: NSImage? { get set }
+//   var attributedTitle: Mutable? { get set }
+//   var delegate: NSMenuDelegate? { get set }
+//   var isVisible: Bool { get set }
+//   var highlightMode: Bool { get set }
+// }
+//
+// class Fake: Barable {
+//   var title: String?
+//   var menu: NSMenu?
+//   var image: NSImage?
+//   var attributedTitle: Mutable?
+//   var delegate: NSMenuDelegate?
+//   var autoenablesItems = true
+//   var isVisible = false
+//   var highlightMode = false
+// }
+
 /**
   Represents an item in the menu bar
   TODO: Remove @item from NSStatusBar.system()
@@ -26,7 +48,7 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible display: Bool = false, delegate: TrayDelegate? = nil) {
+  init(title: String, isVisible displayed: Bool = false, delegate: TrayDelegate? = nil) {
     super.init()
     self.delegate = delegate
     item.title = title
@@ -36,11 +58,8 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     setPrefs()
     defaultCount = menu.items.count
 
-    if display { show() }
-  }
-
-  func add(item: NSMenuItem) {
-    menu.insertItem(item, at: max(0, menu.items.count - defaultCount))
+    if displayed { show() }
+    else { hide() }
   }
 
   var attributedTitle: Mutable {
@@ -64,6 +83,13 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
 
   /**
+    Add @item above pref menu
+  */
+  func add(item: NSMenuItem) {
+    menu.insertItem(item, at: max(0, menu.items.count - defaultCount))
+  }
+
+  /**
    Hides item from menu bar
   */
   func hide() {
@@ -78,6 +104,7 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     Display item in menu bar
   */
   func show() {
+    if App.isInTestMode() { return }
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {

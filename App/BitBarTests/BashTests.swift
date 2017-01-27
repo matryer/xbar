@@ -2,7 +2,7 @@ import Quick
 import Nimble
 @testable import BitBar
 
-private let examplePlugin = App.path(forResource: "sub.10s.sh")
+private let examplePlugin = App.path(forResource: "sub.2m.sh")
 
 class BashTests: Helper {
   override func spec() {

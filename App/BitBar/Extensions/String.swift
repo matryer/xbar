@@ -1,6 +1,7 @@
 import Foundation
-import Cent
+// import Cent
 import GameKit
+import Swift
 
 extension String {
   /**
@@ -29,7 +30,8 @@ extension String {
   */
   func dropLast() -> String {
     if isEmpty { return self }
-    return self[0..<characters.count - 1]
+    let stop = index(startIndex, offsetBy: characters.count - 1)
+    return substring(to: stop)
   }
 
   func inspecting() -> String {

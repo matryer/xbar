@@ -4,6 +4,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
   private var manager: PluginManager?
   func applicationDidFinishLaunching(_: Notification) {
+    AutoLogin.on()
     loadPluginManager()
 
     App.onDidWake {
@@ -39,3 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     manager = PluginManager(path: path)
   }
 }
+
+
+

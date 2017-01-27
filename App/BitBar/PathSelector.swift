@@ -8,28 +8,28 @@ import AppKit
 // More info: https://developer.apple.com/reference/appkit/nsopensavepaneldelegate/1535200-panel
 // optional func panel(_ sender: Any,
 //        shouldEnable url: URL) -> Bool
-class PathSelector: NSOpenPanel, NSOpenSavePanelDelegate {
-  private static let title = "Use as Plugins Directory"
+class PathSelector: NSObject, NSOpenSavePanelDelegate {
 
+  private static let title = "Use as Plugins Directory"
+  private let panel = NSOpenPanel()
   /**
     @url First folder being displayed in the file selector
   */
   convenience init(withURL url: URL? = nil) {
     self.init()
-
     if let aURL = url {
-      directoryURL = aURL
+      panel.directoryURL = aURL
     }
-    prompt = PathSelector.title
-    allowsMultipleSelection = false
-    canChooseDirectories = true
-    canCreateDirectories = true
-    canChooseFiles = false
-    delegate = self
+    panel.prompt = PathSelector.title
+    panel.allowsMultipleSelection = false
+    panel.canChooseDirectories = true
+    panel.canCreateDirectories = true
+    panel.canChooseFiles = false
+    panel.delegate = self
   }
 
   func ask(block: Block<URL?>) {
-    runModal()
-    block(url)
+    panel.runModal()
+    block(panel.url)
   }
 }

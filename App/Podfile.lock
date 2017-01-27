@@ -11,6 +11,7 @@ PODS:
   - Nimble (5.1.1)
   - Quick (1.0.0)
   - Sparkle (1.15.1)
+  - String+Extensions (1.1.0)
   - SwiftCheck (0.7.1)
   - SwiftTryCatch (1.0.4)
   - SwiftyJSON (3.1.4)
@@ -19,8 +20,9 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
-  - Cent
+  - Cent (from `https://github.com/ankurp/Cent.git`)
   - DateTools
+  - Dollar (from `https://github.com/oleander/Dollar.git`)
   - EmitterKit
   - Files
   - FootlessParser (from `https://github.com/kareman/FootlessParser.git`, branch `swift3.0`)
@@ -28,6 +30,7 @@ DEPENDENCIES:
   - Nimble
   - Quick
   - Sparkle
+  - String+Extensions (from `https://github.com/iamjono/SwiftString.git`)
   - SwiftCheck (from `https://github.com/typelift/SwiftCheck.git`)
   - SwiftTryCatch (from `https://github.com/oleander/SwiftTryCatch.git`)
   - SwiftyJSON
@@ -35,18 +38,33 @@ DEPENDENCIES:
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
+  Cent:
+    :git: https://github.com/ankurp/Cent.git
+  Dollar:
+    :git: https://github.com/oleander/Dollar.git
   FootlessParser:
     :branch: swift3.0
     :git: https://github.com/kareman/FootlessParser.git
+  String+Extensions:
+    :git: https://github.com/iamjono/SwiftString.git
   SwiftCheck:
     :git: https://github.com/typelift/SwiftCheck.git
   SwiftTryCatch:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
+  Cent:
+    :commit: d6d1079aa8a0f3135a2865ef9496d9fcc3812c35
+    :git: https://github.com/ankurp/Cent.git
+  Dollar:
+    :commit: 428fed52241ba7bfbcb543fd5f3770ae6819b50a
+    :git: https://github.com/oleander/Dollar.git
   FootlessParser:
     :commit: 7572c5063d2ef8a113a9c4c4b5767b219f64360b
     :git: https://github.com/kareman/FootlessParser.git
+  String+Extensions:
+    :commit: 61cb8d5e758453357c21d55b7b355472d7eb4d0c
+    :git: https://github.com/iamjono/SwiftString.git
   SwiftCheck:
     :commit: 0e2d31cbf718cc31bb2f80a65760439ecc3ee7fc
     :git: https://github.com/typelift/SwiftCheck.git
@@ -58,7 +76,7 @@ SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
+  Dollar: 30a71333854a267c2e4996b63a62d81b6198899b
   EmitterKit: 0057b2086840f20987cb8d4445b4490b96c0bfd8
   Files: b0c64f41a9f2b53d09148cf2b972b7b6f71b952b
   FootlessParser: c7610613da5865dd16ab7141ef1b067e7ed25dd6
@@ -66,12 +84,13 @@ SPEC CHECKSUMS:
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Sparkle: 618fd2d2867fa06a5572a8c4a4c6a721f04da2d2
+  String+Extensions: 889a14dd587604a05dc28ef34315f3b5299695aa
   SwiftCheck: f7836e0af0bbd1dfeb04a7f1d0bdbfd619d01d44
   SwiftTryCatch: 4f998604394cbe3f37241488b28bd5fdfe72387d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: ddccbd427fcf3b339ef68b18bc9a7d1d95733fbc
+PODFILE CHECKSUM: f9d626f0047d8bab7c6505e75275b2a2a2f1f4bb
 
 COCOAPODS: 1.2.0.rc.1
