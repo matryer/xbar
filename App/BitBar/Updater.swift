@@ -15,6 +15,7 @@ class Updater: NSObject, SUUpdaterDelegate {
 
   func check() {
     guard isEnabled else { return }
+    guard !App.isInTestMode() else { return }
     updater?.checkForUpdatesInBackground()
   }
 

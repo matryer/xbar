@@ -637,9 +637,8 @@
 				TargetAttributes = {
 					20A115BE1E15E43E00A68722 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = K6FNT9HXR3;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -1027,9 +1026,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/.build/BitBar/Build/Products/Debug/NSBundle+LoginItem",
@@ -1053,9 +1052,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/.build/BitBar/Build/Products/Debug/NSBundle+LoginItem",
