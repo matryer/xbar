@@ -2,28 +2,6 @@ import AppKit
 import EmitterKit
 import Cocoa
 
-// protocol Barable {
-//   var title: String? { get set }
-//   var menu: NSMenu? { get set }
-//   var autoenablesItems: Bool { get set }
-//   var image: NSImage? { get set }
-//   var attributedTitle: Mutable? { get set }
-//   var delegate: NSMenuDelegate? { get set }
-//   var isVisible: Bool { get set }
-//   var highlightMode: Bool { get set }
-// }
-//
-// class Fake: Barable {
-//   var title: String?
-//   var menu: NSMenu?
-//   var image: NSImage?
-//   var attributedTitle: Mutable?
-//   var delegate: NSMenuDelegate?
-//   var autoenablesItems = true
-//   var isVisible = false
-//   var highlightMode = false
-// }
-
 /**
   Represents an item in the menu bar
   TODO: Remove @item from NSStatusBar.system()
@@ -147,8 +125,10 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     separator()
     updatedAgoItem = UpdatedAgoItem()
     menu.addItem(updatedAgoItem!)
-    menu.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
-    menu.addItem(PrefItem())
+    if !App.isConfigDisabled() {
+      menu.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
+      menu.addItem(PrefItem())
+    }
   }
 
   // Private, not to be called

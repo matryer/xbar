@@ -3,6 +3,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   private var manager: PluginManager?
+
   func applicationDidFinishLaunching(_: Notification) {
     loadPluginManager()
 
@@ -23,6 +24,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     App.onDidClickRefresh {
       self.loadPluginManager()
     }
+
+    App.checkForUppdates()
   }
 
   private func loadPluginManager() {
@@ -39,6 +42,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     manager = PluginManager(path: path)
   }
 }
-
-
 

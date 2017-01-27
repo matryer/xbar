@@ -93,6 +93,7 @@
 		209D37511E37967A00468B10 /* stream-more.sh in Resources */ = {isa = PBXBuildFile; fileRef = 209D374F1E37967A00468B10 /* stream-more.sh */; };
 		209D37521E37967A00468B10 /* stream-nothing.sh in Resources */ = {isa = PBXBuildFile; fileRef = 209D37501E37967A00468B10 /* stream-nothing.sh */; };
 		209D37541E37B06100468B10 /* stream-sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 209D37531E37B06100468B10 /* stream-sleep.sh */; };
+		209E68071E3B45890010FE2D /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E68061E3B45890010FE2D /* Updater.swift */; };
 		209F70811E32E298005365B2 /* Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70801E32E298005365B2 /* Listen.swift */; };
 		209F70831E32EA9E005365B2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70821E32EA9E005365B2 /* App.swift */; };
 		209F70851E3316C4005365B2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70841E3316C4005365B2 /* Container.swift */; };
@@ -244,6 +245,7 @@
 		209D374F1E37967A00468B10 /* stream-more.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-more.sh"; path = "BitBarTests/scripts/stream-more.sh"; sourceTree = SOURCE_ROOT; };
 		209D37501E37967A00468B10 /* stream-nothing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-nothing.sh"; path = "BitBarTests/scripts/stream-nothing.sh"; sourceTree = SOURCE_ROOT; };
 		209D37531E37B06100468B10 /* stream-sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-sleep.sh"; path = "BitBarTests/scripts/stream-sleep.sh"; sourceTree = SOURCE_ROOT; };
+		209E68061E3B45890010FE2D /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listen.swift; sourceTree = "<group>"; };
 		209F70821E32EA9E005365B2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		209F70841E3316C4005365B2 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 		2067064D1E15F6DB000DAADE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				209E68061E3B45890010FE2D /* Updater.swift */,
 				2031E9991E325AC1004A33E5 /* Extensions */,
 				2058A75F1E2A391500D09A21 /* Scripts */,
 				2045FB231E161BC0007D8EF7 /* Parser */,
@@ -831,6 +834,7 @@
 				207BD88A1E2379EA007AA0C7 /* TemplateImage.swift in Sources */,
 				207BD87D1E2379EA007AA0C7 /* Emojize.swift in Sources */,
 				2008E6F01E23DD6B007FC1D6 /* File.swift in Sources */,
+				209E68071E3B45890010FE2D /* Updater.swift in Sources */,
 				209F70831E32EA9E005365B2 /* App.swift in Sources */,
 				207BD8881E2379EA007AA0C7 /* Size.swift in Sources */,
 				207BD8841E2379EA007AA0C7 /* Output.swift in Sources */,

@@ -6,4 +6,5 @@ extension DefaultsKeys {
 
   /* Should the application start on login? */
   static let startAtLogin = DefaultsKey<Bool?>("startAtLogin")
+  static let disabled = DefaultsKey<Bool?>("userConfigDisabled")
 }

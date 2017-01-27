@@ -1,5 +1,6 @@
 import Cocoa
 import AppKit
+import Sparkle
 import EmitterKit
 
 final class PrefItem: ItemBase {
@@ -42,7 +43,7 @@ final class PrefItem: ItemBase {
     separator()
 
     addSub("Check for Updates…") {
-      // TODO: Implement this
+      App.checkForUppdates()
     }
 
     addSub("Quit", key: "q") {

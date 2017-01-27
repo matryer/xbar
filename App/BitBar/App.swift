@@ -42,6 +42,11 @@ class App {
     gListeners.append(listen.on(.NSWorkspaceDidWake, block: block))
   }
 
+  static var updatePath: URL {
+    // TODO: "https://bitbarapp.com/feeds/bitbar"
+    return URL(string: "https://bitbarapp.com/feeds/bitbar")!
+  }
+
   /**
     Event triggers
   */
@@ -153,12 +158,20 @@ class App {
     else { AutoLogin.off() }
   }
 
+  static func checkForUppdates() {
+    updater.check()
+  }
+
   /**
     Retrieve the absolute path for a resource
     I.e App.path(forResource: "sub.1m.sh")
   */
   static func path(forResource path: String) -> String {
     return NSString.path(withComponents: [resourcePath, path])
+  }
+
+  static func isConfigDisabled() -> Bool {
+    return Defaults[.disabled] ?? false
   }
 
   /**
@@ -195,6 +208,7 @@ class App {
   private static var listeners = [Listener]()
   private static var gListeners = [GEvent]()
   private static let listen = Listen(NSWorkspace.shared().notificationCenter)
+  private static let updater = Updater()
 }
 
 func puts(_ args: Any...) {
