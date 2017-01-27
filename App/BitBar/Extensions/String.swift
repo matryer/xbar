@@ -38,6 +38,10 @@ extension String {
     if isEmpty { return "NOP" }
     return "'" + replace("\n", "\\n").replace("'", "\\'") + "'"
   }
+
+  func mutable() -> NSMutableAttributedString {
+    return NSMutableAttributedString(withDefaultFont: self)
+  }
 }
 
 extension Array {

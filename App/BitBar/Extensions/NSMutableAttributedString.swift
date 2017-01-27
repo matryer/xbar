@@ -31,6 +31,10 @@ extension Mutable {
     return self
   }
 
+  func set(key: String, value: Any) -> Mutable {
+    return update(attr: [key: value])
+  }
+
   func merge(_ attr: Mutable) -> Mutable {
     return attr.update(attr: [NSFontAttributeName: currentFont()])
   }

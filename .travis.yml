@@ -1,5 +1,14 @@
 language: objective-c
 osx_image: xcode8.2
+matrix:
+  include:
+    env:
+      - SDK=macosx10.12
+      - SDK=macosx10.11
+      - SDK=macosx10.10
+      - SDK=macosx10.09
+      - SDK=macosx10.08
+      - SDK=macosx10.07
 before_install:
   - gem install cocoapods xcpretty --no-ri --no-rdoc
 install:

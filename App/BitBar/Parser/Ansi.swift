@@ -1,7 +1,33 @@
 import Hue
-typealias Stringish = NSMutableAttributedString
 
-/* TODO: Use Extensions/NSMutableAttributedString.swift */
+
+func toColor(int: Int) -> NSColor? {
+  switch int {
+  case 32:
+    return NSColor(hex: "#00ff00")
+  case 33:
+    return NSColor(hex: "#ffff00")
+  case 34:
+    return NSColor(hex: "#5c5cff")
+  case 31:
+    return NSColor(hex: "#ff0000")
+  case 0:
+    return nil
+  default:
+    return nil
+  }
+}
+
+extension Mutable {
+  func set(style: Int) -> Mutable {
+    guard let color = toColor(int: style) else {
+      return self
+    }
+
+    return set(key: NSForegroundColorAttributeName, value: color)
+  }
+}
+
 final class Ansi: BoolVal, Param {
   var priority = 5
   var active: Bool { return bool }
@@ -19,90 +45,37 @@ final class Ansi: BoolVal, Param {
     }
   }
 
-  func new(string: String) -> Stringish {
-    return Stringish(string: string, attributes: [:])
-  }
-
-  func empty() -> Stringish {
-    return new(string: "")
-  }
-
-  func merge(_ attrs: [Stringish]) -> Stringish {
-    let base = empty()
-
-    for attr in attrs {
-      base.append(attr)
+  func apply(_ string: String, _ colors: [Int]) -> Mutable {
+    return colors.reduce(string.mutable()) {
+      return $0.set(style: $1)
     }
-
-    return base
   }
 
-  // TODO: Simplify algorithm
-  func apply(_ ansis: [Any]) -> Stringish {
-    var actions = [Action]()
-    var values = [Stringish]()
-    for ansi in ansis {
-      switch ansi {
-      case is [Int]:
-        if let ids = ansi as? [Int] {
-          for id in ids {
-            if id == 0 {
-              actions = []
-            } else {
-              actions.append(Action(id))
-            }
-          }
-        }
+  func contains(_ values: [Int], _ item: Int) -> Bool {
+    return values.reduce(false) { $0 || $1 == item }
+  }
+
+
+  // ["ABC", [1,2], [1,2], "X"]
+  func apply(_ ansis: [Any]) -> Mutable {
+    let empty = "".mutable()
+    let colors = [Int]()
+    let result = ansis.reduce((empty, colors)) { input, value in
+      let acc = input.0
+      let colors = input.1
+      switch value {
       case is String:
-        if let string = ansi as? String {
-          values.append(apply(new(string: string), actions))
-        }
+        acc.append(apply(value as! String, colors))
+        return (acc, colors)
+      case is [Int] where contains(value as! [Int], 0):
+        return (acc, [])
+      case is [Int]:
+        return (acc, colors + (value as! [Int]))
       default:
-        print("error: BUG!")
+        preconditionFailure("Could not match against colors=\(colors) acc=\(acc), value=\(value)")
       }
     }
 
-    return merge(values)
-  }
-
-  func apply(_ stringish: Stringish, _ actions: [Action]) -> Stringish {
-    for action in actions { action.perform(stringish) }
-    return stringish
-  }
-}
-
-class Action {
-  let idd: Int
-  init(_ id: Int) {
-    self.idd = id
-  }
-
-  func perform(_ stringish: Stringish) {
-    guard let color = getColor() else {
-      return
-    }
-
-    stringish.addAttribute(
-      NSForegroundColorAttributeName,
-      value: color,
-      range: NSRange(location: 0, length: stringish.length)
-    )
-  }
-
-  private func getColor() -> NSColor? {
-    switch idd {
-    case 32:
-      return NSColor(hex: "#00ff00")
-    case 33:
-      return NSColor(hex: "#ffff00")
-    case 34:
-      return NSColor(hex: "#5c5cff")
-    case 31:
-      return NSColor(hex: "#ff0000")
-    case 0:
-      return nil
-    default:
-      return nil
-    }
+    return result.0
   }
 }
