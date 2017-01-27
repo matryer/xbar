@@ -13,6 +13,7 @@ protocol Menuable: class {
   func getAttrs() -> NSMutableAttributedString
   func onDidClick(block: @escaping Block<Void>) -> Listener
   func useAsAlternate()
+  func activate()
   func refresh()
   func getArgs() -> [String]
   func openTerminal() -> Bool
@@ -41,6 +42,10 @@ extension Menuable {
 
   func set(title: NSMutableAttributedString) {
     aTitle = title
+  }
+
+  func activate() {
+    /* NOP */
   }
 
   func add(menus: [Menu]) {

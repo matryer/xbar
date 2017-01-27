@@ -14,6 +14,12 @@ final class Href: Param {
     self.raw = url
   }
 
+  func menu(didLoad menu: Menuable) {
+    if url != nil {
+      menu.activate()
+    }
+  }
+
   func menu(didClick menu: Menuable) {
     guard let aUrl = url else {
       return menu.add(error: "Could not parse URL with value \(raw)")

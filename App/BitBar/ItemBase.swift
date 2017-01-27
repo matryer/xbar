@@ -74,7 +74,6 @@ class ItemBase: NSMenuItem {
   }
 
   func onDidClick(block: @escaping Block<ItemBase>) -> Listener {
-    activate()
     return event.on(block)
   }
 
@@ -86,11 +85,11 @@ class ItemBase: NSMenuItem {
     trigger()
   }
 
-  private func activate() {
+  func activate() {
     isEnabled = true
   }
 
-  private func deactivate() {
+  func deactivate() {
     isEnabled = false
   }
 

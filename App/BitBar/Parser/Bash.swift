@@ -9,6 +9,11 @@ import Async
 final class Bash: StringVal, Param {
   var priority = 0
   var path: String { return value }
+  func menu(didLoad menu: Menuable) {
+    if menu.openTerminal() {
+      menu.activate()
+    }
+  }
 
   func menu(didClick menu: Menuable) {
     if menu.openTerminal() {

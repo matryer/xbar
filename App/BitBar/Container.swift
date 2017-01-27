@@ -144,13 +144,14 @@ final class Container: Equatable {
   // Bind events to newly set delegate
   // Removes listener, if delegate is nil
   private func handleDelegate() {
+    let params = self.filterParams
     if let menu = delegate {
-      for param in self.filterParams {
+      for param in params {
         param.menu(didLoad: menu)
       }
 
       listener = menu.onDidClick {
-        for param in self.filterParams {
+        for param in params {
           param.menu(didClick: menu)
         }
       }
