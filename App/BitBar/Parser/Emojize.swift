@@ -3,8 +3,8 @@ import Files
 
 final class Emojize: BoolVal, Param {
   private static let jsonEmojize = File.from(resource: "emoji.json")
-  private static let emojis = getEmojis()
   private static let parser = Pro.replaceEmojize(replace: forChar)
+  private static let emojis = readEmojis()
 
   var priority = 9
   var active: Bool { return bool }
@@ -38,7 +38,7 @@ final class Emojize: BoolVal, Param {
     return String(describing: unicode)
   }
 
-  private static func readEmojisFile() -> Data? {
+  private static func read() -> Data? {
     do {
       return try Files.File(path: jsonEmojize).read()
     } catch {
@@ -46,13 +46,14 @@ final class Emojize: BoolVal, Param {
     }
   }
 
-  private static func getEmojis() -> [String: String] {
-    guard let data = readEmojisFile() else {
+  private static func readEmojis() -> [String: String] {
+    guard let data = read() else {
       return [:]
     }
 
     let emojis = JSON(data: data)
     var replacements = [String: String]()
+    
     for emojize in emojis.arrayValue {
       for name in emojize["short_names"].arrayValue {
         guard let char = emojize["unified"].string else {
