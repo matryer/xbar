@@ -4,7 +4,7 @@ import Files
 final class Emojize: BoolVal, Param {
   private static let jsonEmojize = File.from(resource: "emoji.json")
   private static let parser = Pro.replaceEmojize(replace: forChar)
-  private static let emojis = readEmojis()
+  private static let emojis = readEmojize()
 
   var priority = 9
   var active: Bool { return bool }
@@ -46,7 +46,7 @@ final class Emojize: BoolVal, Param {
     }
   }
 
-  private static func readEmojis() -> [String: String] {
+  private static func readEmojize() -> [String: String] {
     guard let data = read() else {
       return [:]
     }

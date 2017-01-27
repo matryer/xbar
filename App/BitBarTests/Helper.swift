@@ -51,7 +51,7 @@ func aWord() -> Gen<String> {
 }
 
 func aSentence() -> Gen<String> {
-  let whitespace = anyOf("", "\t")
+  let whitespace = anyOf(" ", "\t")
   return Gen<(String, String, String)>
     .zip(whitespace, aWord(), whitespace)
     .map { $0 + $1 + $2 }
