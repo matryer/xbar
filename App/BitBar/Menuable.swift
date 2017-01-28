@@ -5,8 +5,8 @@ protocol Menuable: class {
   var level: Int { get set }
   var aTitle: NSMutableAttributedString { get set }
   var image: NSImage? { get set }
-  var container: Container { get }
-  var title: String { get }
+  var container: Container { get set }
+  var title: String { get set }
   var menus: [Menu] { get set }
   var event: Event<Void> { get set }
   func getTitle() -> String
@@ -26,6 +26,7 @@ protocol Menuable: class {
   func update(image: NSImage, isTemplate: Bool)
   func update(title: String)
   func add(menu: NSMenuItem)
+  func remove(menu: NSMenuItem)
   func add(error: String)
 
   func submenu(didTriggerRefresh: Menuable)
@@ -40,7 +41,7 @@ extension Menuable {
     get { return container.params }
   }
 
-  func set(title: NSMutableAttributedString) {
+  func set(title: Mutable) {
     aTitle = title
   }
 
@@ -61,16 +62,43 @@ extension Menuable {
     self.menus = menus
   }
 
+  func merge(with menu: Menuable) {
+    title = menu.title
+    container = menu.container
+    container.delegate = self
+    aTitle = menu.getAttrs()
+    image = menu.image
+    event = menu.event
+    level = menu.level
+    // TODO
+    //  if menu is Menu {
+    //    parentable = menu.parentable
+    //  }
+
+    for pack in menus.zip(with: menu.menus) {
+      switch pack {
+      case let (.some(sub1), .none): /* There are less menus in the new object */
+        remove(menu: sub1)
+      case let (.none, .some(sub2)): /* A new menu */
+        add(menu: sub2)
+      case let (.some(sub1), .some(sub2)): /* Recursive merge with menu at index */
+        sub1.merge(with: sub2)
+      case (.none, .none):
+        halt("Both can't be nil menus=\(menus), menu.menus=\(menu.menus)")
+      }
+    }
+  }
+
   /**
     Replace current title with @attr
-    // TODO: Remove. Should be called update, not set
+    TODO: Remove. Should be called update, not set
   */
   func update(title: String) {
-    update(attr: NSMutableAttributedString(string: title))
+    update(attr: Mutable(string: title))
   }
 
   // TODO: Rename to set
-  func update(attr: NSMutableAttributedString) {
+  func update(attr: Mutable) {
     set(title: aTitle.merge(attr))
   }
 
@@ -79,7 +107,7 @@ extension Menuable {
   }
 
   /* TODO: Rename */
-  func getAttrs() -> NSMutableAttributedString {
+  func getAttrs() -> Mutable {
     return aTitle
   }
 

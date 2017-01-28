@@ -1,6 +1,4 @@
 import Foundation
-// import Cent
-import GameKit
 import Swift
 
 extension String {
@@ -41,15 +39,5 @@ extension String {
 
   func mutable() -> NSMutableAttributedString {
     return NSMutableAttributedString(withDefaultFont: self)
-  }
-}
-
-extension Array {
-  func shuffle() -> [Any] {
-    if #available(OSX 10.11, *) {
-      return GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self)
-    } else {
-      return self // TODO: Implement
-    }
   }
 }

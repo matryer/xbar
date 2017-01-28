@@ -52,7 +52,7 @@ struct AutoLogin {
   }
 
   private init() {
-    list = create(nil, session.takeRetainedValue() ,nil).takeRetainedValue()
+    list = create(nil, session.takeRetainedValue(), nil).takeRetainedValue()
     items = snapshot(list, nil).takeRetainedValue() as! [Item]
   }
 

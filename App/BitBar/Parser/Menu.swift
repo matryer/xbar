@@ -74,6 +74,18 @@ final class Menu: ItemBase, Menuable {
   }
 
   /**
+    Removes item from sub menu
+    TODO: Optimize
+  */
+  func remove(menu item: NSMenuItem) {
+    for (index, menu) in menus.enumerated() {
+      if menu == item {
+        menus.remove(at: index)
+      }
+    }
+  }
+
+  /**
     Should refresh events cascade to its parent?
     Set by the refresh=bool attribute
   */
@@ -114,5 +126,27 @@ final class Menu: ItemBase, Menuable {
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  static func == (lhs: Menu, rhs: Menu) -> Bool {
+    if lhs.getTitle() != rhs.getTitle() {
+      return false
+    }
+
+    if lhs.menus.count != rhs.menus.count {
+      return false
+    }
+
+    for (index, menu) in lhs.menus.enumerated() {
+      if menu != rhs.menus[index] {
+        return false
+      }
+    }
+
+    if lhs.level != rhs.level {
+      return false
+    }
+
+    return lhs.container == rhs.container
   }
 }

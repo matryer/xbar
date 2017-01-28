@@ -6,6 +6,7 @@ extension Title: Base, Val {
     return ["title": title, "menus": menus, "container": container]
   }
 
+  // TODO: Clean up
   override public var description: String {
     var res = ""
     for (key, value) in values {
@@ -31,20 +32,28 @@ extension Title: Base, Val {
   }
 
   func test(_ title: Title) -> Property {
+    return equals(title) <?> "title"
+  }
+
+  func equals(_ title: Title) -> Bool {
     if title.menus.count != menus.count {
-      return false <?> "Missing menus. Got \(title.menus.count), expected: \(menus.count)"
+      return false
     }
 
     if title.getTitle() != getTitle() {
-      return false <?> "title"
+      return false
+    }
+
+    if title.getAttrs() != getAttrs() {
+      return false
     }
 
     for (index, menu) in menus.enumerated() {
       if !menu.equals(title.menus[index]) {
-        return false <?> "menu.index.\(index)"
+        return false
       }
     }
 
-    return title.container ==== container
+    return title.container == container
   }
 }

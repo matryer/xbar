@@ -12,23 +12,16 @@ protocol TrayDelegate: class {
 }
 
 final class Title: NSMenu, Menuable, TrayDelegate {
+  var aTitle: NSMutableAttributedString
+
   internal var container: Container
   internal var menus = [Menu]()
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
-
-  var level: Int = 0
-  private var tray: Tray!
-
-  var image: NSImage? {
-    get { return tray.image }
-    set { tray.image = newValue }
-  }
-
-  var aTitle: NSMutableAttributedString {
-    get { return tray.attributedTitle }
-    set { tray.attributedTitle = newValue }
-  }
+  internal var image: NSImage?
+  internal var level: Int = 0
+  internal var toBeRemoved = [NSMenuItem]()
+  internal var toBeAdded = [NSMenuItem]()
 
   func onDidClick(block: @escaping Block<Void>) -> Listener {
     return event.on(block)
@@ -40,9 +33,9 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     @menus Sub menus to be displayed when when the item is clicked
   */
   init(_ title: String, container: Container = Container(), menus: [Menu] = []) {
+    self.aTitle = title.mutable()
     self.container = container
     super.init(title: title)
-    tray = Tray(title: title, isVisible: true, delegate: self)
     add(menus: menus)
     container.delegate = self
   }
@@ -62,6 +55,10 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     self.titlable?.name(didTriggerRefresh: self)
   }
 
+  func remove(menu: NSMenuItem) {
+    toBeRemoved.append(menu)
+  }
+
   /**
     @error One error to be displayed in the sub menu
   */
@@ -70,15 +67,17 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   /**
-    Append @menu to the list of sub menus for @self
+    Adds a warning icon before error message passed
   */
-  func add(menu: NSMenuItem) {
-    tray.add(item: menu)
+  func add(error: String) {
+    /* TODO: Implement */
   }
 
-  // TODO: Implement
-  func add(error: String) {
-    // print("Got error in title", error)
+  /**
+    Add menu to the list of sub menus
+  */
+  func add(menu: NSMenuItem) {
+    toBeAdded.append(menu)
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
@@ -90,12 +89,24 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   /**
-    Removes tray from menu bar
+    Update @tray with the latest data
   */
-  func destroy() {
-    tray.destroy()
+  func apply(to tray: Tray) {
+    tray.attributedTitle = aTitle
+    tray.image = image
+    tray.delegate = self
+
+    for menu in toBeAdded {
+      tray.add(item: menu)
+    }
+
+    for menu in toBeRemoved {
+      tray.remove(menu: menu)
+    }
+
+    toBeRemoved = []
+    toBeAdded = []
   }
-  deinit { destroy() }
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")

@@ -4,8 +4,6 @@ import Cocoa
 
 /**
   Represents an item in the menu bar
-  TODO: Remove @item from NSStatusBar.system()
-    instead of using isVisible = false or hide()
 */
 class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   private static let center = NSStatusBar.system()
@@ -15,11 +13,10 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   private var listeners = [Listener]()
   private let openEvent = Event<Void>()
   private let closeEvent = Event<Void>()
-  private let openInTerminalClickEvent = Event<Void>()
   private var isOpen = false
   private let menu = NSMenu()
   private var defaultCount = 0
-  private let item = Tray.center.statusItem(withLength: Tray.length)
+  private var item = Tray.center.statusItem(withLength: Tray.length)
   internal weak var delegate: TrayDelegate?
 
   /**
@@ -29,15 +26,13 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   init(title: String, isVisible displayed: Bool = false, delegate: TrayDelegate? = nil) {
     super.init()
     self.delegate = delegate
-    item.title = title
     item.menu = menu
     menu.autoenablesItems = false
     menu.delegate = self
+    item.attributedTitle = title.mutable()
     setPrefs()
     defaultCount = menu.items.count
-
-    if displayed { show() }
-    else { hide() }
+    if displayed { show() } else { hide() }
   }
 
   var attributedTitle: Mutable {
@@ -68,13 +63,20 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
 
   /**
+    Remove item from dropdown menu
+  */
+  func remove(menu item: NSMenuItem) {
+    menu.removeItem(item)
+  }
+
+  /**
    Hides item from menu bar
   */
   func hide() {
     if #available(OSX 10.12, *) {
       item.isVisible = false
     } else {
-      // TODO: Fallback on earlier versions
+      // Fallback on earlier versions
     }
   }
 
@@ -82,7 +84,6 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     Display item in menu bar
   */
   func show() {
-    if App.isInTestMode() { return }
     if #available(OSX 10.12, *) {
       item.isVisible = true
     } else {
@@ -121,7 +122,7 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
 
   private func setPrefs() {
-    // TODO: These should be static
+    // TODO: separator() should be static
     separator()
     updatedAgoItem = UpdatedAgoItem()
     menu.addItem(updatedAgoItem!)

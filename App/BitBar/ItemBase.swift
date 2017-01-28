@@ -7,6 +7,7 @@ class ItemBase: NSMenuItem {
   private weak var delegate: ItemBaseDelegate? {
     didSet { checkActive() }
   }
+  // TODO: Remove listeners to reduce the risk the memory leaks
   private var listeners = [Listener]() {
     didSet { checkActive() }
   }
@@ -44,14 +45,18 @@ class ItemBase: NSMenuItem {
     activate()
   }
 
-  func addSub(_ title: String, checked: Bool, key: String = "", block: @escaping Block<ItemBase>) {
+  func addSub(_ title: String, checked: Bool, key: String = "", clickable: Bool, block: @escaping Block<ItemBase>) {
     let item = ItemBase(title, checked: checked, key: key)
     listeners.append(item.onDidClick(block: block))
     addSub(item)
+
+    if clickable {
+      item.activate()
+    }
   }
 
-  func addSub(_ title: String, key: String = "", blockWO: @escaping Block<Void>) {
-    addSub(title, checked: false, key: key, block: { (_:ItemBase) in blockWO() })
+  func addSub(_ title: String, key: String = "", clickable: Bool, blockWO: @escaping Block<Void>) {
+    addSub(title, checked: false, key: key, clickable: clickable,block: { (_:ItemBase) in blockWO() })
   }
 
   func addSub(_ title: String, key: String = "") {

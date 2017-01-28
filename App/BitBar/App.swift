@@ -154,8 +154,7 @@ class App {
   */
   static func update(autostart: Bool) {
     Defaults[.startAtLogin] = autostart
-    if autostart { AutoLogin.on() }
-    else { AutoLogin.off() }
+    if autostart { AutoLogin.on() } else { AutoLogin.off() }
   }
 
   static func checkForUppdates() {
@@ -213,4 +212,8 @@ class App {
 
 func puts(_ args: Any...) {
   print("error: [LOG] ", args.map { String(describing: $0) }.joined(separator: " "))
+}
+
+func halt(_ message: String) {
+  preconditionFailure(message)
 }

@@ -39,7 +39,7 @@ class PluginManager {
   func destroy() {
     tray.destroy()
     plugins.forEach { plugin in plugin.destroy() }
-    errors.forEach { tray in tray.destroy() }
+//    errors.forEach { tray in tray.destroy() }
     plugins = []
     errors = []
   }

@@ -8,6 +8,7 @@ import Swift
   - plugin manager
 */
 class Plugin: OutputDelegate {
+  private let tray = Tray(title: "…", isVisible: true)
   private let file: File
   private let path: String
   private var error: Title? {
@@ -50,8 +51,14 @@ class Plugin: OutputDelegate {
   */
   func didReceivedOutput(_ data: String) {
     switch Pro.parse(Pro.getOutput(), data) {
-    case let Result.success(output, _):
-      self.output = output
+    case let Result.success(result, _):
+      if let _ = output {
+        output!.title.merge(with: result.title)
+      } else {
+        self.output = result
+      }
+
+      output!.title.apply(to: tray)
     case let Result.failure(lines):
       self.error = Title(errors: lines)
     }
@@ -106,8 +113,6 @@ class Plugin: OutputDelegate {
   */
   func destroy() {
     terminate()
-    error?.destroy()
-    output?.destroy()
   }
   deinit { destroy() }
 }

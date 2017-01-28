@@ -6,6 +6,8 @@ echo "\033[34mA\033[32mN\033[31mS\033[33mI\033[0m in the menu | ansi=true"
 echo "---"
 echo "Red menu | color=red"
 echo "---"
+date
+echo "---"
 echo "Clickable link | href=http://google.com"
 echo "---"
 echo "On click, open in terminal | terminal=true bash=$(echo $SCRIPT)"

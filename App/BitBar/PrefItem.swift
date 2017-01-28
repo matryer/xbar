@@ -8,29 +8,29 @@ final class PrefItem: ItemBase {
     self.init("Preferences")
 
     separator()
-    addSub("Refresh All", key: "r") {
+    addSub("Refresh All", key: "r", clickable: true) {
       App.didClickRefresh()
     }
 
     separator()
 
-    addSub("Change Plugin Folder…", key: ",") {
+    addSub("Change Plugin Folder…", key: ",", clickable: true) {
       App.didClickChangePluginPath()
     }
 
-    addSub("Open Plugin Folder…") {
+    addSub("Open Plugin Folder…", clickable: true) {
       if let path = App.pluginPath {
         App.open(path: path)
       }
     }
 
-    addSub("Get Plugins…") {
+    addSub("Get Plugins…", clickable: true) {
       App.open(url: App.website)
     }
 
     separator()
 
-    addSub("Open at Login", checked: App.autostart) { (menu: ItemBase) in
+    addSub("Open at Login", checked: App.autostart, clickable: true) { (menu: ItemBase) in
       if menu.state == NSOnState {
         App.update(autostart: false)
         menu.state = NSOffState
@@ -42,11 +42,11 @@ final class PrefItem: ItemBase {
 
     separator()
 
-    addSub("Check for Updates…") {
+    addSub("Check for Updates…", clickable: true) {
       App.checkForUppdates()
     }
 
-    addSub("Quit", key: "q") {
+    addSub("Quit", key: "q", clickable: true) {
       App.didClickQuit()
     }
   }

@@ -53,7 +53,7 @@ final class Emojize: BoolVal, Param {
 
     let emojis = JSON(data: data)
     var replacements = [String: String]()
-    
+
     for emojize in emojis.arrayValue {
       for name in emojize["short_names"].arrayValue {
         guard let char = emojize["unified"].string else {

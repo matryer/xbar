@@ -5,7 +5,7 @@ protocol OutputDelegate: class {
 
 final public class Output: TitleDelegate {
   internal let title: Title
-  internal let isStream: Bool
+  internal var isStream: Bool
   internal weak var delegate: OutputDelegate?
 
   init(_ title: Title, _ isStream: Bool) {
@@ -22,9 +22,9 @@ final public class Output: TitleDelegate {
     delegate?.output(didTriggerRefresh: self)
   }
 
-  func destroy() {
-    title.destroy()
+  func merge(with output: Output) {
+    isStream = output.isStream
+    delegate = output.delegate
+    title.merge(with: output.title)
   }
-
-  deinit { destroy() }
 }

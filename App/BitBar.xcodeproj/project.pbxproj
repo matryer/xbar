@@ -113,7 +113,8 @@
 		20DEE6081E237BA200AF22D2 /* Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEE6011E237BA200AF22D2 /* Param.swift */; };
 		20E660631E2399A300B530B1 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E660621E2399A300B530B1 /* Helper.swift */; };
 		20F54DF81E1E994E000416C6 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F54DF71E1E994E000416C6 /* Output.swift */; };
-		20FF91961E3AD2E60010B70A /* sub.2m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FF91951E3AD2E60010B70A /* sub.2m.sh */; };
+		20F61F191E3D33120003AB55 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F61F181E3D33120003AB55 /* Array.swift */; };
+		20FB30001E3CEDB7002EF458 /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FB2FFF1E3CEDB7002EF458 /* sub.10s.sh */; };
 		754C114F5DB5FB5C814FE8D2 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */; };
 		B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FD803BD86A42F69A80929A /* Pods_BitBarTests.framework */; };
 /* End PBXBuildFile section */
@@ -258,7 +259,8 @@
 		20DEE6011E237BA200AF22D2 /* Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Param.swift; path = BitBar/Parser/Param.swift; sourceTree = "<group>"; };
 		20E660621E2399A300B530B1 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		20F54DF71E1E994E000416C6 /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Output.swift; path = Arbitrary/Output.swift; sourceTree = "<group>"; };
-		20FF91951E3AD2E60010B70A /* sub.2m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.2m.sh; path = Scripts/sub.2m.sh; sourceTree = "<group>"; };
+		20F61F181E3D33120003AB55 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = BitBar/Extensions/Array.swift; sourceTree = "<group>"; };
+		20FB2FFF1E3CEDB7002EF458 /* sub.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub.10s.sh; path = Scripts/sub.10s.sh; sourceTree = "<group>"; };
 		2E719A42D4CEBC21BDCBBDB7 /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		829CB0E03DE7D2CA303532BC /* Pods-BitBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.release.xcconfig"; sourceTree = "<group>"; };
 		83610C5C17651A29374F4221 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		2031E9991E325AC1004A33E5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				20F61F181E3D33120003AB55 /* Array.swift */,
 				2031E99A1E325AE2004A33E5 /* NSAttributedString.swift */,
 				2031E99B1E325AE2004A33E5 /* NSFont.swift */,
 				2031E99C1E325AE2004A33E5 /* NSMutableAttributedString.swift */,
@@ -394,7 +397,7 @@
 		2058A75F1E2A391500D09A21 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				20FF91951E3AD2E60010B70A /* sub.2m.sh */,
+				20FB2FFF1E3CEDB7002EF458 /* sub.10s.sh */,
 			);
 			name = Scripts;
 			path = ..;
@@ -664,7 +667,7 @@
 			files = (
 				204A9D751E160B3A0005E44F /* App.xib in Resources */,
 				200B0CAE1E3A70B40061964A /* Images.xcassets in Resources */,
-				20FF91961E3AD2E60010B70A /* sub.2m.sh in Resources */,
+				20FB30001E3CEDB7002EF458 /* sub.10s.sh in Resources */,
 				20642E7C1E2A4E4C004D9A28 /* emoji.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -811,6 +814,7 @@
 				2067066D1E15F6DB000DAADE /* Plugin.swift in Sources */,
 				207BD87C1E2379EA007AA0C7 /* Dropdown.swift in Sources */,
 				2031E9A91E32C86B004A33E5 /* UpdatedAgoItem.swift in Sources */,
+				20F61F191E3D33120003AB55 /* Array.swift in Sources */,
 				207BD87B1E2379EA007AA0C7 /* Color.swift in Sources */,
 				207BD8831E2379EA007AA0C7 /* NamedParam.swift in Sources */,
 				20DEE6081E237BA200AF22D2 /* Param.swift in Sources */,
