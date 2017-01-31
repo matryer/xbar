@@ -106,7 +106,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 1. Clone the project `git clone https://github.com/matryer/bitbar.git`
 2. Ensure you've `pod` installed on your system using `sudo gem install pod`
-3. Install dependencies `make deps` within the root of the project
+3. Install dependencies `make init` within the root of the project
 4. Open in XCode `open App/BitBar.xcworkspace`
 
 #### Tests
@@ -121,6 +121,10 @@ Make sure you've all dependencies installed on your system by running `make setu
 
 - `make lint` will display all linting errors
 - `make fix` will fix linting errors
+
+#### Release
+
+- Release: `make release`
 
 ## Thanks
 

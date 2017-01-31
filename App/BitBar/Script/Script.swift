@@ -134,7 +134,7 @@ class Script {
 
     let processIfDone = {
       if !isDone() { return }
-      let output = buffer.toString().dropLast()
+      let output = buffer.toString()
       switch (process.terminationReason, process.terminationStatus) {
       case (.exit, 0):
         self.succeeded(output, status: 0)
@@ -175,12 +175,12 @@ class Script {
       if buffer.isFinish() {
         isStream = true
         for result in buffer.reset() {
-          self.succeeded(result.dropLast(), status: 0)
+          self.succeeded(result, status: 0)
         }
       }
 
       if data.isEOF() && isStream && buffer.hasData {
-        self.succeeded(buffer.toString().dropLast(), status: 0)
+        self.succeeded(buffer.toString(), status: 0)
       } else if data.isEOF() {
         eofEvent.emit()
       } else {

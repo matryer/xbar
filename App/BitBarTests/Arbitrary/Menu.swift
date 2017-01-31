@@ -19,9 +19,9 @@ extension Menu: Base, Val {
   func getInput() -> String {
     switch level {
     case 0:
-       return "\n---\n" + body
+       return body
     default:
-      return "\n" + times(level, "--") + body
+      return times(level, "--") + body
     }
   }
 
@@ -78,7 +78,7 @@ extension Menu: Base, Val {
 
   private var body: String {
     return title + container.getInput() +
-      menus.map { $0.getInput() }.joined(separator: "")
+      menus.map { $0.getInput() }.joined(separator: "") + "\n"
   }
 
   // Repeat @string @number times

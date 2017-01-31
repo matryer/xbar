@@ -4,19 +4,24 @@ import Nimble
 
 class MenuTests: Helper {
   override func spec() {
-    let addPrefix = { "\n---\n" + $0 }
+    let addSuffix = { return $0 + "\n" }
     context("params") {
       it("handles params") {
-        self.match(Pro.getMenu(), addPrefix("My Menu|")) {
-          expect($0.getValue()).to(equal("My Menu"))
-          expect($1).to(equal(""))
-        }
+        self.failure(Pro.menu, addSuffix("My Menu|"))
+      }
+    }
+
+    it("handles no input") {
+      self.match(Pro.getMenu(), addSuffix("")) {
+        expect($0.getValue()).to(equal(""))
+        expect($0.menus).to(haveCount(0))
+        expect($1).to(beEmpty())
       }
     }
 
     context("sub menu") {
       it("has one sub") {
-        self.match(Pro.getMenu(), addPrefix("My Menu\n--A")) {
+        self.match(Pro.getMenu(), addSuffix("My Menu\n--A")) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($0.menus).to(haveCount(1))
           expect($0.menus[0].getValue()).to(equal("A"))
@@ -25,7 +30,7 @@ class MenuTests: Helper {
       }
 
       it("has +1 subs") {
-        self.match(Pro.getMenu(), addPrefix("My Menu\n--A\n--B")) {
+        self.match(Pro.getMenu(), addSuffix("My Menu\n--A\n--B")) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
           expect($0.menus[0].getValue()).to(equal("A"))
@@ -35,7 +40,7 @@ class MenuTests: Helper {
       }
 
       it("has menu with params and +1 subs") {
-        self.match(Pro.getMenu(), addPrefix("My Menu| size=10\n--A\n--B")) {
+        self.match(Pro.getMenu(), addSuffix("My Menu| size=10\n--A\n--B")) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
           expect($0.menus[0].getValue()).to(equal("A"))
@@ -45,7 +50,7 @@ class MenuTests: Helper {
       }
 
       it("has subs with params") {
-        self.match(Pro.getMenu(), addPrefix("My Menu\n--A| font=X \n--B")) {
+        self.match(Pro.getMenu(), addSuffix("My Menu\n--A| font=X \n--B")) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
           let sub = $0.menus[0]
@@ -58,14 +63,14 @@ class MenuTests: Helper {
 
     context("no sub menu") {
       it("handles base case") {
-        self.match(Pro.getMenu(), addPrefix("My Menu")) {
+        self.match(Pro.getMenu(), addSuffix("My Menu")) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($1).to(beEmpty())
         }
       }
 
       it("handles no input") {
-        self.match(Pro.getMenu(), addPrefix("")) {
+        self.match(Pro.getMenu(), addSuffix("")) {
           expect($0.getValue()).to(equal(""))
           expect($1).to(beEmpty())
         }
@@ -74,7 +79,7 @@ class MenuTests: Helper {
 
     context("params") {
       it("consumes spaces") {
-        let arg = addPrefix("My Menu| terminal=true ")
+        let arg = addSuffix("My Menu| terminal=true ")
         self.match(Pro.getMenu(), arg) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($1).to(beEmpty())
@@ -82,7 +87,7 @@ class MenuTests: Helper {
       }
 
       it("handles stream") {
-        let arg = addPrefix("My Menu| terminal=true")
+        let arg = addSuffix("My Menu| terminal=true")
         self.match(Pro.getMenu(), arg) {
           expect($0.getValue()).to(equal("My Menu"))
         }
@@ -90,7 +95,7 @@ class MenuTests: Helper {
 
       context("terminal") {
         it("it handles true") {
-          let arg = addPrefix("My Menu|terminal=true")
+          let arg = addSuffix("My Menu|terminal=true")
           self.match(Pro.getMenu(), arg) {
             expect($0.getValue()).to(equal("My Menu"))
             expect($1).to(beEmpty())
@@ -98,7 +103,7 @@ class MenuTests: Helper {
         }
 
         it("it handles false") {
-          let arg = addPrefix("My Menu|terminal=false")
+          let arg = addSuffix("My Menu|terminal=false")
           self.match(Pro.getMenu(), arg) {
             expect($0.getValue()).to(equal("My Menu"))
             expect($1).to(beEmpty())
@@ -106,7 +111,7 @@ class MenuTests: Helper {
         }
 
         it("it handles space between menu and param") {
-          let arg = addPrefix("My Menu | terminal=false")
+          let arg = addSuffix("My Menu | terminal=false")
           self.match(Pro.getMenu(), arg) {
             expect($0.getValue()).to(equal("My Menu"))
             expect($1).to(beEmpty())
@@ -116,7 +121,7 @@ class MenuTests: Helper {
 
       context("trim") {
         it("it handles true") {
-          let arg = addPrefix("My Menu|terminal=true trim=true")
+          let arg = addSuffix("My Menu|terminal=true trim=true")
           self.match(Pro.getMenu(), arg) {
             expect($0.getValue()).to(equal("My Menu"))
             expect($1).to(beEmpty())
@@ -124,7 +129,7 @@ class MenuTests: Helper {
         }
 
         it("it handles false") {
-          let arg = addPrefix("My Menu |terminal=false trim=false")
+          let arg = addSuffix("My Menu |terminal=false trim=false")
           self.match(Pro.getMenu(), arg) {
             expect($0.getValue()).to(equal("My Menu "))
             expect($1).to(beEmpty())
@@ -132,7 +137,7 @@ class MenuTests: Helper {
         }
 
         it("it handles space between menu and param") {
-          let arg = addPrefix("My Menu | terminal=false trim=false")
+          let arg = addSuffix("My Menu | terminal=false trim=false")
           self.match(Pro.getMenu(), arg) {
             expect($0.getValue()).to(equal("My Menu "))
             expect($1).to(beEmpty())

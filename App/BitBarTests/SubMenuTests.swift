@@ -7,22 +7,28 @@ class SubMenuTests: Helper {
     describe("sub menu") {
       context("only submenu") {
         it("handles base case") {
-          self.match(Pro.getSubMenu(), "\n--My Sub Menu") {
+          self.match(Pro.getSubMenu(), "--My Sub Menu\n") {
             expect($0.getValue()).to(equal("My Sub Menu"))
           }
         }
 
-        it("handles no input") {
-          self.match(Pro.getSubMenu(), "\n--") {
+        it("handles only new line") {
+          self.match(Pro.getSubMenu(), "--\n") {
+            expect($0.getValue()).to(equal(""))
+          }
+        }
+
+        it("handles just --") {
+          self.match(Pro.getSubMenu(), "--\n") {
             expect($0.getValue()).to(equal(""))
           }
         }
       }
 
       context("sub menus") {
-        let addPrefix = { "\n--" + $0 }
+        let addPrefix = { "--" + $0 }
         it("has one sub") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A")) {
+          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A\n")) {
             expect($0.getValue()).to(equal("Sub"))
             expect($0.menus).to(haveCount(1))
             expect($0.menus[0].getValue()).to(equal("A"))
@@ -31,7 +37,7 @@ class SubMenuTests: Helper {
         }
 
         it("has +1 subs") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A\n----B")) {
+          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A\n----B\n")) {
             expect($0.getValue()).to(equal("Sub"))
             expect($0.menus).to(haveCount(2))
             expect($0.menus[0].getValue()).to(equal("A"))
@@ -41,7 +47,7 @@ class SubMenuTests: Helper {
         }
 
         it("has menu with params and +1 subs") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A | size=2 \n----B")) {
+          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A | size=2 \n----B\n")) {
             expect($0.getValue()).to(equal("Sub"))
             expect($0.menus).to(haveCount(2))
             let sub = $0.menus[0]
@@ -52,7 +58,7 @@ class SubMenuTests: Helper {
         }
 
         it("has menu with one dash") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n-----")) {
+          self.match(Pro.getSubMenu(), addPrefix("Sub\n-----\n")) {
             expect($0.getValue()).to(equal("Sub"))
             expect($0.menus).to(haveCount(1))
             let sub = $0.menus[0]
@@ -62,7 +68,7 @@ class SubMenuTests: Helper {
         }
 
         it("has menu with no content") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n----")) {
+          self.match(Pro.getSubMenu(), addPrefix("Sub\n----\n")) {
             expect($0.getValue()).to(equal("Sub"))
             expect($0.menus).to(haveCount(1))
             let sub = $0.menus[0]
@@ -72,7 +78,7 @@ class SubMenuTests: Helper {
         }
 
         it("handles nested menus") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A\n------B\n----C")) {
+          self.match(Pro.getSubMenu(), addPrefix("Sub\n----A\n------B\n----C\n")) {
             expect($0.getValue()).to(equal("Sub"))
             expect($0.menus).to(haveCount(2))
             let sub = $0.menus[0]

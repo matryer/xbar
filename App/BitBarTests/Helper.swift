@@ -188,20 +188,27 @@ extension Gen {
   }
 }
 
+// TODO: Rename String.inspecting()
+
 func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
   property(name) <- forAll(gen) { item in
-    switch Pro.parse(parser, item.getInput()) {
+    let input = item.getInput()
+    switch Pro.parse(parser, input) {
     case let Result.success(result, _):
       return item.test(result).whenFail {
-        print("error: ------------------------------------")
-        print("error: Failed verifying \(name)")
-        print("error: ", String(describing: result))
+        print("warning: ------------------------------------")
+        print("warning: Could not parse: ", input.inspecting())
+        print("warning: Failed verifying \(name)")
+        print("warning: ", String(describing: result))
       }
     case let Result.failure(lines):
       return (false <?> "Parser failed").whenFail {
-        print("error: ------------------------------------")
-        print("error: Failed parsing \(name)")
-        print("error: ", lines)
+        print("warning: ------------------------------------")
+        print("warning: Could not parse: ", input.inspecting())
+        print("warning: Failed parsing \(name)")
+        for error in lines {
+          print("warning:", error.inspecting())
+        }
       }
     }
   }
@@ -212,8 +219,13 @@ class Helper: QuickSpec {
     switch Pro.parse(parser, input) {
     case let Result.success(result, remain):
       block(result, remain)
-    case let Result.failure(error):
-      fail("Could not parse: '\(input.replace("\n", "\\n"))', got error: \(error)")
+    case let Result.failure(lines):
+      print("warning: Failed parsing")
+      print("warning: Could not parse: ", input.inspecting())
+      for error in lines {
+        print("warning:", error.inspecting())
+      }
+      fail("Could not parse")
     }
   }
 

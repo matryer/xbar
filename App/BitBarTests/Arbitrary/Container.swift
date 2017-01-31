@@ -10,7 +10,7 @@ extension Container: Base, Val {
   func getInput() -> String {
     if params.isEmpty { return "" }
     return "|" + params.map { $0.getInput() }
-      .joined(separator: " ").trim()
+      .joined(separator: " ").trim() + "\n"
   }
 
   public static var arbitrary: Gen<Container> {

@@ -7,7 +7,7 @@ extension Output: Base, Val {
   }
 
   public func getInput() -> String {
-    return title.getInput() + (isStream ? "\n~~~" : "")
+    return title.getInput() + (isStream ? "\n~~~\n" : "\n")
   }
 
   func toString() -> String {

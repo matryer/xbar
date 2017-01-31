@@ -1,18 +1,21 @@
 // swiftlint:disable type_name
 // swiftlint:disable line_length
 // swiftlint:disable type_body_length
-
+typealias X = (String, [Param], Int)
+typealias U = P<X>
 import FootlessParser
 public typealias P<T> = Parser<Character, T>
+
+indirect enum Source {
+  case item((String, [Param]), Int, [Source])
+}
 
 // TODO: Rename Pro to something like Parser
 // Parser is currently taken by FootlessParser
 class Pro {
   private static let ws = zeroOrMore(whitespace)
   private static let wsOrNl = zeroOrMore(whitespacesOrNewline)
-  private static let endOfStream = "\n~~~"
-  private static let menuDelimiter = "\n---\n"
-  private static let endOfMenu = til(["|", endOfStream, "\n--", menuDelimiter])
+  private static let endOfStream = "~~~"
   private static let everything = zeroOrMore(any())
 
   /**
@@ -55,13 +58,73 @@ class Pro {
     return Bash.init <^> attribute("bash") { quoteOrWord() }
   }
 
+  internal static var title: P<Title> {
+    return curry({ handle(head: toValue(with: -1, for: $0), menus: $1) }) <^> heading <*> menus
+  }
+
+  internal static func toValue(with: Int, for xs: X) -> Source {
+    return .item((xs.0, xs.1), with, [Source]())
+  }
+
+  static func merge(head: Source, menus: [Source]) -> Source {
+    return menus.reduce(head) { parent, menu in
+      switch (parent, menu) {
+      case let (.item(v1, l1, xs), .item(_, l2, _)) where (l1 + 1) == l2:
+        return .item(v1, l1, xs + [menu])
+      case let (.item(v1, l1, xs), .item(_, l2, _)) where l1 < l2:
+        if xs.isEmpty { return .item(v1, l1, [menu]) }
+        if xs.count == 1 { return .item(v1, l1, [merge(head: xs[0], menus: [menu])]) }
+        return .item(v1, l1, ini(xs) + [merge(head: xs.last!, menus: [menu])])
+      default:
+        preconditionFailure("Invalid state")
+      }
+    }
+  }
+
+  static func handle(head: Source, menus: [Source]) -> Title {
+    return toTitle(merge(head: head, menus: menus))
+  }
+
+  static func toMenu(head: Source, menus: [Source]) -> Menu {
+    return toMenu(merge(head: head, menus: menus))
+  }
+
+  static func ini(_ sources: [Source]) -> [Source] {
+    return (0..<(sources.count - 1)).map { sources[$0] }
+  }
+
+  static func toTitle(_ source: Source) -> Title {
+    switch source {
+    case let .item((title, params), _, menus):
+      return Title(title, container: Container(params: params), menus: menus.map { toMenu($0) })
+    }
+  }
+
+  static func toMenu(_ menu: Source) -> Menu {
+    switch menu {
+    case let .item((title, params), level, menus):
+      return Menu(title, container: Container(params: params), menus: menus.map { toMenu($0) }, level: level)
+    }
+  }
+
+  internal static var menus: P<[Source]> {
+    let empty = [X]()
+    func forEach(_ menus: [X]) -> [Source] {
+      return menus.map { return toValue($0) }
+    }
+    return forEach <^> optional(string("---\n") *> headings, otherwise: empty)
+  }
+
+  static func toValue(_ head: X) -> Source {
+    return .item((head.0, head.1), head.2, [Source]())
+  }
+
   internal static func getTitle() -> P<Title> {
-    let title = til([menuDelimiter, endOfStream, "|"])
-    return curry(mergeTitle) <^> title <*> getParams() <*> zeroOrMore(getMenu())
+    return title
   }
 
   internal static func getOutput() -> P<Output> {
-    return curry(merge) <^> getTitle() <*> (hasStream() <* wsOrNl)
+    return curry(merge) <^> getTitle() <*> (wsOrNl *> hasStream() <* wsOrNl)
   }
 
   /**
@@ -92,11 +155,7 @@ class Pro {
     I.e \n---\nMenu | terminal=true \n--A Sub Menu
   */
   internal static func getMenu() -> P<Menu> {
-    let menu = string(menuDelimiter) *> endOfMenu
-    let main: P<Menu> = curry(merge) <^> menu <*> (getParams() <* ws)
-    return main >>- {
-      return curry(merge) <^> pure($0) <*> zeroOrMore(getSubMenu2(pure($0), 1))
-    }
+    return menu
   }
 
   /**
@@ -225,7 +284,6 @@ class Pro {
     Menu params, i.e | terminal=false length=10
   */
   internal static func getOneParam() -> P<[Param]> {
-    let bar = ws *> string("|") <* ws
     let tc = { $0 as Param }
     let item =
       (tc <^> getLength()) <|>
@@ -245,7 +303,7 @@ class Pro {
       (tc <^> getTerminal()) <|>
       (tc <^> getParam()) <|>
       (tc <^> getTrim())
-    return bar *> zeroOrMore(item) <* ws
+    return ws *> string("|") *> ws *> oneOrMore(item) <* ws
   }
 
   /**
@@ -255,16 +313,48 @@ class Pro {
     return ws *> string("color=") *> (hexColor() <|> regularColor())
   }
 
-  /**
-    Sub menu who´s depth is defined by @nextLevel, i.e \n----Sub Menu | terminal=true font=10
-  */
-  internal static func getSubMenu2(_ parent: P<Menu>, _ nextLevel: Int = 1) -> P<Menu> {
-    let dashes = count(nextLevel * 2, char("-"))
-    let notMenu: P<String> = count(1, noneOf([menuDelimiter]))
-    let title = ws *> notMenu *> dashes *> endOfMenu
-    let main: P<Menu> = curry(merge) <^> title <*> parent <*> getParams()
-    return main >>- {
-      return curry(merge) <^> pure($0) <*> zeroOrMore(lazy(getSubMenu2(pure($0), nextLevel + 1)))
+  static var flat: P<(String, [Param])> {
+    let until = zeroOrMore(noneOf(["|", "\n", "~~~"]))
+    return curry(merge3) <^> until <*> (params <* nl)
+  }
+
+  static var nl: P<String> {
+    return { $0.joined(separator: "") } <^> oneOrMore(string("\n"))
+  }
+
+  static func merge3(title: String, params: [Param]) -> (String, [Param]) {
+    return (title, params)
+  }
+
+  static func headingFor(level: Int) -> U {
+    return zeroOrMore(string("--")) >>- { levels in
+      guard levels.count == level else { return stop("Invalid level: \(level)") }
+      return { thing in (thing.0, thing.1, levels.count) } <^> flat
+    }
+  }
+
+  static func add(result1: [X], result2: [X]) -> [X] {
+    return result1 + result2
+  }
+
+  static var headings: P<[X]> {
+    return headingsFor(level: 0)
+  }
+
+  static var heading: P<X> {
+    return headingFor(level: 0)
+  }
+
+  static func headingsFor(level: Int) -> P<[X]> {
+    return zeroOrMore(headingFor(level: level)) >>- { xs in
+      switch (xs.count, level) {
+      case (0, 0):
+        return pure(xs)
+      case (0, _):
+        return headingsFor(level: level - 1)
+      default:
+        return { xs + $0 } <^> headingsFor(level: level + 1)
+      }
     }
   }
 
@@ -272,17 +362,27 @@ class Pro {
     Sub menu who´s depth is defined by @nextLevel, i.e \n----Sub Menu | terminal=true font=10
   */
   internal static func getSubMenu(_ nextLevel: Int = 1) -> P<Menu> {
-    let dashes = count(nextLevel * 2, char("-"))
-    let notMenu: P<String> = count(1, noneOf([menuDelimiter]))
-    return curry(merge) <^>
-      (ws *> notMenu *> dashes *> endOfMenu) <*>
-      pure(nextLevel) <*>
-      getParams() <*>
-      zeroOrMore(lazy(getSubMenu(nextLevel + 1)))
+    return submenu
+  }
+
+  internal static var menu: P<Menu> {
+    return curry(toMenu) <^> heading <*> headingsFor(level: 1)
+  }
+
+  internal static var submenu: P<Menu> {
+    return curry(toMenu) <^> headingFor(level: 1) <*> headingsFor(level: 2)
+  }
+
+  static func toMenu(head: X, tails: [X]) -> Menu {
+    return toMenu(head: toValue(head), menus: tails.map { toValue($0) })
   }
 
   private static func getParams() -> P<[Param]> {
-    return optional(getOneParam() <* ws, otherwise: [])
+    return optional(getOneParam(), otherwise: [])
+  }
+
+  private static var params: P<[Param]> {
+    return getParams()
   }
 
   // @example: true
@@ -301,8 +401,9 @@ class Pro {
   }
 
   // @example: "A B C"
-  private static func quote() -> P<String> {
+  internal static func quote() -> P<String> {
     let quote = string("\"")
+    // return quote *> zeroOrMore((count(1, char("\\"))) <*> count(1, any())<|> not("\"")) <* quote
     return quote *> zeroOrMore(not("\"")) <* quote
   }
 
@@ -354,7 +455,7 @@ class Pro {
   private static func til(_ values: [String], empty: Bool = true) -> P<String> {
     let parser = noneOf(values)
     if empty {
-      return zeroOrMore(parser)
+      return (eof() *> pure("")) <|> zeroOrMore(parser)
     }
 
     return oneOrMore(parser)
@@ -362,7 +463,7 @@ class Pro {
 
   // @example: "\n~~~" yields true
   private static func hasStream() -> P<Bool> {
-    return wsOrNl *> ((string("~~~") *> pure(true)) <|> pure(false))
+    return ws *> ((string("~~~\n") *> pure(true)) <|> pure(false))
   }
 
   // @example: #ff0011
@@ -386,34 +487,8 @@ class Pro {
     case "d":
       return toTime(value * 24, "h")
     default:
-      // TODO: Fail if not the above
-      return 100
+      preconditionFailure("Invalid unit: \(unit)")
     }
-  }
-
-  private static func merge(_ title: String, level: Int, _ params: [Param], _ menus: [Menu]) -> Menu {
-    return Menu(title, container: Container(params: params), menus: menus, level: level)
-  }
-
-  private static func mergeTitle(_ title: String, _ params: [Param], _ menus: [Menu]) -> Title {
-    return Title(title, container: Container(params: params), menus: menus)
-  }
-
-  private static func merge(_ title: String, _ parent: Menu, _ params: [Param]) -> Menu {
-    return Menu(title, container: Container(params: params), parent: parent)
-  }
-
-  private static func merge(_ menu: Menu, _ menus: [Menu]) -> Menu {
-    menu.add(menus: menus)
-    return menu
-  }
-
-  private static func merge(_ title: String, _ params: [Param], _ menus: [Menu]) -> Menu {
-    return Menu(title, container: Container(params: params), menus: menus)
-  }
-
-  private static func merge(_ title: String, _ params: [Param]) -> Menu {
-    return Menu(title, container: Container(params: params))
   }
 
   private static func merge(title: Title, isStream: Bool) -> Output {
@@ -427,7 +502,7 @@ class Pro {
         head = string.lineRange(for: head.upperBound..<head.upperBound)
         row += 1
     }
-    return (head, row, string.distance(from: head.lowerBound, to: index) + 1)
+    return (head, row, string.distance(from: head.lowerBound, to: index))
   }
 
   private static func merge(emojis: [String], remaining: String) -> String {

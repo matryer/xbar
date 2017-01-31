@@ -17,8 +17,12 @@ extension Title: Base, Val {
   }
 
   func getInput() -> String {
-    return title + container.getInput() +
-      menus.map { $0.getInput() }.joined(separator: "")
+    return title + container.getInput() + getBody()
+  }
+
+  func getBody() -> String {
+    if menus.isEmpty { return "\n" }
+    return "\n---\n" + menus.map { $0.getInput() }.joined(separator: "") + "\n"
   }
 
   public static var arbitrary: Gen<Title> {

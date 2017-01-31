@@ -2,6 +2,51 @@ import Foundation
 import EmitterKit
 import Async
 
+import FootlessParser
+
+// public func oneOrMoreX <T,A> (_ p: Parser<T,A>) -> Parser<T,[A]> {
+//   return Parser { input in
+//     var (first, remainder) = try p.parse(input)
+//     var result = [first]
+//     while true {
+//       do {
+//         let next = try p.parse(remainder)
+//         result.append(next.output)
+//         remainder = next.remainder
+//       } catch {
+//         return (result, remainder)
+//       }
+//     }
+//   }
+// }
+//
+// public func eofx <T> () -> Parser<T,()> {
+//   return Parser { input in
+//     if let next = input.first {
+//       throw ParseError.Mismatch(input, "EOF", String(describing:next))
+//     }
+//     return ((), input)
+//   }
+// }
+//
+// public func satisfy2<A, B>
+//   (expect: @autoclosure @escaping () -> String, condition: @escaping ([A]) -> Bool) -> Parser<A, B> {
+//   return Parser { input in
+//     if condition(input) {
+//       return (next, input)
+//     } else {
+//         throw ParseError.Mismatch(input, expect(), String(describing:next))
+//     }
+//   }
+// }
+//
+public func stop <A, B>(_ message: String) -> Parser<A, B> {
+  return Parser { parsedtokens in
+    throw ParseError.Mismatch(parsedtokens, message, "done")
+//    return fail(.Mismatch(AnyCollection(parsedtokens), message, "done"))
+  }
+}
+
 // TODO: Use the delegate pattern for the
 // Param protocol instead of #applyTo
 // I.e bash.delegate = menu

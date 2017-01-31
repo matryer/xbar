@@ -199,7 +199,6 @@ class App {
     return ProcessInfo.processInfo.environment["TRAVIS"] != nil
   }
 
-  private static let bundleLoginId = "com.getbitbar.LauncherApplication"
   private static let currentBundle = Bundle.main
   private static let quitEvent = Event<Void>()
   private static let changePathEvent = Event<Void>()

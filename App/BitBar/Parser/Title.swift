@@ -70,6 +70,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     Adds a warning icon before error message passed
   */
   func add(error: String) {
+    print("[Title] error", error)
     /* TODO: Implement */
   }
 

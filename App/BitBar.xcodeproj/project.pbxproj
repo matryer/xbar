@@ -91,6 +91,8 @@
 		209D37511E37967A00468B10 /* stream-more.sh in Resources */ = {isa = PBXBuildFile; fileRef = 209D374F1E37967A00468B10 /* stream-more.sh */; };
 		209D37521E37967A00468B10 /* stream-nothing.sh in Resources */ = {isa = PBXBuildFile; fileRef = 209D37501E37967A00468B10 /* stream-nothing.sh */; };
 		209D37541E37B06100468B10 /* stream-sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 209D37531E37B06100468B10 /* stream-sleep.sh */; };
+		209DAE2B1E3E6F1500C628B4 /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DAE271E3E6EE400C628B4 /* ExecutablePluginTests.swift */; };
+		209DAE2C1E3E6F1A00C628B4 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DAE291E3E6EEB00C628B4 /* ParserTests.swift */; };
 		209E68071E3B45890010FE2D /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E68061E3B45890010FE2D /* Updater.swift */; };
 		209F70811E32E298005365B2 /* Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70801E32E298005365B2 /* Listen.swift */; };
 		209F70831E32EA9E005365B2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F70821E32EA9E005365B2 /* App.swift */; };
@@ -178,10 +180,6 @@
 		20444FEE1E378E5200CB21D2 /* basic.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = basic.sh; path = BitBarTests/scripts/basic.sh; sourceTree = SOURCE_ROOT; };
 		20444FEF1E378E5200CB21D2 /* invalid-syntax.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "invalid-syntax.sh"; path = "BitBarTests/scripts/invalid-syntax.sh"; sourceTree = SOURCE_ROOT; };
 		204A9D741E160B3A0005E44F /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = BitBar/App.xib; sourceTree = "<group>"; };
-		2054B15C1E3A97F1007B74C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2054B15E1E3A97F1007B74C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2054B1611E3A97F1007B74C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2054B1631E3A97F1007B74C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2058204E1E35588D0032BEEF /* missing-sh-bin.10m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "missing-sh-bin.10m.sh"; path = "BitBarTests/scripts/missing-sh-bin.10m.sh"; sourceTree = SOURCE_ROOT; };
 		205820501E355D7B0032BEEF /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		205C410F1E1EA32800DAFE22 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Length.swift; path = Arbitrary/Length.swift; sourceTree = "<group>"; };
@@ -234,6 +232,8 @@
 		209D374F1E37967A00468B10 /* stream-more.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-more.sh"; path = "BitBarTests/scripts/stream-more.sh"; sourceTree = SOURCE_ROOT; };
 		209D37501E37967A00468B10 /* stream-nothing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-nothing.sh"; path = "BitBarTests/scripts/stream-nothing.sh"; sourceTree = SOURCE_ROOT; };
 		209D37531E37B06100468B10 /* stream-sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "stream-sleep.sh"; path = "BitBarTests/scripts/stream-sleep.sh"; sourceTree = SOURCE_ROOT; };
+		209DAE271E3E6EE400C628B4 /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
+		209DAE291E3E6EEB00C628B4 /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		209E68061E3B45890010FE2D /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		209F70801E32E298005365B2 /* Listen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listen.swift; sourceTree = "<group>"; };
 		209F70821E32EA9E005365B2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -308,6 +308,8 @@
 				205A863C1E1DA94900E2C38C /* Arbitrary */,
 				200FDA3A1E35C57C003F4B6B /* HrefTests.swift */,
 				200FDA3B1E35C57C003F4B6B /* ImageTests.swift */,
+				209DAE291E3E6EEB00C628B4 /* ParserTests.swift */,
+				209DAE271E3E6EE400C628B4 /* ExecutablePluginTests.swift */,
 				200FDA3C1E35C57C003F4B6B /* MenuTests.swift */,
 				200FDA381E35C57C003F4B6B /* ColorTests.swift */,
 				200FDA3D1E35C57C003F4B6B /* NamedParamTests.swift */,
@@ -381,17 +383,6 @@
 			);
 			name = Parser;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		2054B15B1E3A97F1007B74C5 /* LauncherApplication */ = {
-			isa = PBXGroup;
-			children = (
-				2054B15C1E3A97F1007B74C5 /* AppDelegate.swift */,
-				2054B15E1E3A97F1007B74C5 /* Assets.xcassets */,
-				2054B1601E3A97F1007B74C5 /* MainMenu.xib */,
-				2054B1631E3A97F1007B74C5 /* Info.plist */,
-			);
-			path = LauncherApplication;
 			sourceTree = "<group>";
 		};
 		2058A75F1E2A391500D09A21 /* Scripts */ = {
@@ -489,7 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				58ADBBFF60D17429320223FE /* Frameworks */,
-				2054B15B1E3A97F1007B74C5 /* LauncherApplication */,
 				20A115C01E15E43E00A68722 /* Products */,
 				206706511E15F6DB000DAADE /* Info.plist */,
 				204A9D741E160B3A0005E44F /* App.xib */,
@@ -868,10 +858,12 @@
 				200FDA461E35C57C003F4B6B /* MenuTests.swift in Sources */,
 				209632EF1E20A264003BC47E /* NamedParam.swift in Sources */,
 				2099FAB21E1E300900F758AF /* Alternate.swift in Sources */,
+				209DAE2B1E3E6F1500C628B4 /* ExecutablePluginTests.swift in Sources */,
 				2099FAB51E1E300900F758AF /* Emojize.swift in Sources */,
 				2007AD981E3616DE001D50D2 /* BufferTests.swift in Sources */,
 				20B489BC1E1E7A300089E874 /* Bash.swift in Sources */,
 				200FDA491E35C57C003F4B6B /* SizeTests.swift in Sources */,
+				209DAE2C1E3E6F1A00C628B4 /* ParserTests.swift in Sources */,
 				2062778A1E1E7EFA0032AD69 /* Font.swift in Sources */,
 				20F54DF81E1E994E000416C6 /* Output.swift in Sources */,
 				20AB0A701E1DD194000DFFFD /* Terminal.swift in Sources */,
@@ -901,17 +893,6 @@
 			targetProxy = 20A115CF1E15E43F00A68722 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2054B1601E3A97F1007B74C5 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2054B1611E3A97F1007B74C5 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		20A115E01E15E43F00A68722 /* Debug */ = {
@@ -955,7 +936,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1000,7 +981,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = NO;

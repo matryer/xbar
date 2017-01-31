@@ -2,6 +2,7 @@ import AppKit
 import Swift
 import Foundation
 import Files
+import Cent
 
 /**
   The PluginManager is responsible for
@@ -80,9 +81,15 @@ class PluginManager {
   private func loadPlugins() {
     do {
       for file in try Folder(path: path).files {
-        if !file.name.hasPrefix(".") {
-          addPlugin(file.name, path: file.path)
+        guard !file.name.hasPrefix(".") else {
+          continue
         }
+
+        guard file.name.contains("ansi") else {
+          continue
+        }
+
+        addPlugin(file.name, path: file.path)
       }
     } catch (let error) {
       errors.append(Title(error: String(describing: error)))

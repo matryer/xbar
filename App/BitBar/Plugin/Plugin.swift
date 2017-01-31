@@ -61,6 +61,7 @@ class Plugin: OutputDelegate {
       output!.title.apply(to: tray)
     case let Result.failure(lines):
       self.error = Title(errors: lines)
+      self.error?.apply(to: tray)
     }
   }
 

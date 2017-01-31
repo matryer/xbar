@@ -39,3 +39,6 @@ build
 .vscode
 
 Dist/
+*.zip
+key.p12
+developer/
