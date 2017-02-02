@@ -53,7 +53,7 @@ final class Menu: ItemBase, Menuable {
   }
 
   func add(error: String) {
-    print("[Menu] error", error)
+    // print("[Menu] error", error)
     // TODO: Add an icon
     // set(title: "Received an error")
     // addSub(error)

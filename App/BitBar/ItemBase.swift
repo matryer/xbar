@@ -56,7 +56,7 @@ class ItemBase: NSMenuItem {
   }
 
   func addSub(_ title: String, key: String = "", clickable: Bool, blockWO: @escaping Block<Void>) {
-    addSub(title, checked: false, key: key, clickable: clickable,block: { (_:ItemBase) in blockWO() })
+    addSub(title, checked: false, key: key, clickable: clickable, block: { (_:ItemBase) in blockWO() })
   }
 
   func addSub(_ title: String, key: String = "") {

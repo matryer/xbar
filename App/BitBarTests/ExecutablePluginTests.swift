@@ -5,7 +5,7 @@ import EmitterKit
 @testable import BitBar
 class ExecutablePluginTests: Helper {
   override func spec() {
-    let path = toFile("complex.sh")
+    // let path = toFile("complex.sh")
 
     it("should load plugin") {
       // let plugin = ExecutablePlugin(path: path, file: File("complex", 5000, "sh"))

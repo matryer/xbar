@@ -169,25 +169,25 @@ class TitleTests: Helper {
 
         context("moreOver") {
           it("handles basic example") {
-            self.match(Pro.headings, "\n--|terminal=true\n") { (data: [X], rem: String) in
+            self.match(Pro.headings, "\n--|terminal=true\n") { (data: [X], _) in
               expect(data).to(haveCount(2))
             }
           }
 
           it("handles more then one") {
-            self.match(Pro.headings, "\n--|terminal=true\n--|terminal=false\n") { (data: [X], rem: String) in
+            self.match(Pro.headings, "\n--|terminal=true\n--|terminal=false\n") { (data: [X], _) in
               expect(data).to(haveCount(3))
             }
           }
 
           it("empty string") {
-            self.match(Pro.headings, "\n") { (data: [X], rem: String) in
+            self.match(Pro.headings, "\n") { (data: [X], _) in
               expect(data).to(haveCount(1))
             }
           }
 
           it("handles just newlines") {
-            self.match(Pro.headings, "\n\n\n") { (data: [X], rem: String) in
+            self.match(Pro.headings, "\n\n\n") { (data: [X], _) in
               expect(data.count).to(equal(1))
             }
           }
@@ -199,7 +199,7 @@ class TitleTests: Helper {
             basic += "\n--D|size=0"
             basic += "\n--E|size=19"
             basic += "\nF|size=1\n"
-            self.match(Pro.headings, basic) { (data: [X], rem: String) in
+            self.match(Pro.headings, basic) { (data: [X], _) in
               expect(data.count).to(equal(6))
 //              let empty = [Param]()
               let matching = [("A", 0, 10), ("B", 1, 20), ("C", 2, 5), ("D", 1, 0), ("E", 1, 19), ("F", 0, 1)]

@@ -210,7 +210,7 @@ class App {
 }
 
 func puts(_ args: Any...) {
-  print("error: [LOG] ", args.map { String(describing: $0) }.joined(separator: " "))
+  print("warning: [LOG] ", args.map { String(describing: $0) }.joined(separator: " "))
 }
 
 func halt(_ message: String) {

@@ -77,6 +77,7 @@
 		2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */; };
 		2084CCEB1E2A3E7100DE01F6 /* nonexec.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE31E2A3E7100DE01F6 /* nonexec.sh */; };
 		2084CCEC1E2A3E7100DE01F6 /* sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCE41E2A3E7100DE01F6 /* sleep.sh */; };
+		20906D931E429BE20091BD8F /* MutableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20906D911E429BC20091BD8F /* MutableTests.swift */; };
 		209632EF1E20A264003BC47E /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209632EE1E20A264003BC47E /* NamedParam.swift */; };
 		2097884F1E2420E300A91F4D /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097884E1E2420E300A91F4D /* ScriptTests.swift */; };
 		2099FAB21E1E300900F758AF /* Alternate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099FAAC1E1E300900F758AF /* Alternate.swift */; };
@@ -117,8 +118,8 @@
 		20F54DF81E1E994E000416C6 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F54DF71E1E994E000416C6 /* Output.swift */; };
 		20F61F191E3D33120003AB55 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F61F181E3D33120003AB55 /* Array.swift */; };
 		20FB30001E3CEDB7002EF458 /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FB2FFF1E3CEDB7002EF458 /* sub.10s.sh */; };
-		754C114F5DB5FB5C814FE8D2 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */; };
 		B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FD803BD86A42F69A80929A /* Pods_BitBarTests.framework */; };
+		DBDD44F61F3BF01632E8ED40 /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1944B1AD14E3A586D3F737C5 /* Pods_BitBarTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +219,7 @@
 		2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-output.sh"; sourceTree = "<group>"; };
 		2084CCE31E2A3E7100DE01F6 /* nonexec.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = nonexec.sh; sourceTree = "<group>"; };
 		2084CCE41E2A3E7100DE01F6 /* sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sleep.sh; sourceTree = "<group>"; };
+		20906D911E429BC20091BD8F /* MutableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableTests.swift; sourceTree = "<group>"; };
 		209632EE1E20A264003BC47E /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedParam.swift; path = Arbitrary/NamedParam.swift; sourceTree = "<group>"; };
 		2097884E1E2420E300A91F4D /* ScriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
 		2099FAAC1E1E300900F758AF /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alternate.swift; path = Arbitrary/Alternate.swift; sourceTree = "<group>"; };
@@ -283,7 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1291609E14C904D52228822 /* Pods_BitBarTests.framework in Frameworks */,
-				754C114F5DB5FB5C814FE8D2 /* Pods_BitBarTests.framework in Frameworks */,
+				DBDD44F61F3BF01632E8ED40 /* Pods_BitBarTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +314,7 @@
 				209DAE271E3E6EE400C628B4 /* ExecutablePluginTests.swift */,
 				200FDA3C1E35C57C003F4B6B /* MenuTests.swift */,
 				200FDA381E35C57C003F4B6B /* ColorTests.swift */,
+				20906D911E429BC20091BD8F /* MutableTests.swift */,
 				200FDA3D1E35C57C003F4B6B /* NamedParamTests.swift */,
 				200FDA3E1E35C57C003F4B6B /* OutputTests.swift */,
 				200FDA3F1E35C57C003F4B6B /* SizeTests.swift */,
@@ -854,6 +857,7 @@
 				200FDA471E35C57C003F4B6B /* NamedParamTests.swift in Sources */,
 				209CE1951E1E5CE1000A2980 /* Color.swift in Sources */,
 				2099FAB41E1E300900F758AF /* Dropdown.swift in Sources */,
+				20906D931E429BE20091BD8F /* MutableTests.swift in Sources */,
 				200FDA4B1E35C57C003F4B6B /* TitleTests.swift in Sources */,
 				200FDA461E35C57C003F4B6B /* MenuTests.swift in Sources */,
 				209632EF1E20A264003BC47E /* NamedParam.swift in Sources */,

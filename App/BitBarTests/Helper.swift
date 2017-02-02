@@ -237,6 +237,10 @@ class Helper: QuickSpec {
     verify(parser, value) { result, _ in block(result) }
   }
 
+  public func test<T>(_ parser: P<T>, _ value: String, _ block: @escaping (_: T) -> Void) {
+    verify(parser, value) { result, _ in block(result) }
+  }
+
   public func failure<T>(_ parser: P<T>, _ input: String) {
     switch Pro.parse(parser, input) {
     case let Result.success(result, remain):

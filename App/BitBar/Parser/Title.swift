@@ -33,7 +33,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     @menus Sub menus to be displayed when when the item is clicked
   */
   init(_ title: String, container: Container = Container(), menus: [Menu] = []) {
-    self.aTitle = title.mutable()
+    self.aTitle = title.mutable() // Mutable(withDefaultFont: title)
     self.container = container
     super.init(title: title)
     add(menus: menus)

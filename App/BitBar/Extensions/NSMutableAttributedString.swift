@@ -1,26 +1,135 @@
 import AppKit
 typealias Mutable = NSMutableAttributedString
+private let manager = NSFontManager.shared()
 
 extension Mutable {
-  convenience init(withDefaultFont string: String) {
-    let aFont = NSFont.menuBarFont(ofSize: NSFont.systemFontSize())
-    self.init(string: string, attributes: [NSFontAttributeName: aFont])
+  private static let defaultFont = NSFont.menuBarFont(ofSize: 0)
+  enum Style {
+    case strikethrough
+    case bold
+    case italic
+    case underline
+    case background(NSColor)
+    case foreground(NSColor)
   }
 
-  func update(font: NSFont) -> Mutable {
-    let newFont = currentFont().merge(font)
+  enum Ground {
+    case foreground
+    case background
+  }
+
+  convenience init(withDefaultFont string: String) {
+    self.init(string: string, attributes: [NSFontAttributeName: Mutable.defaultFont])
+  }
+
+  var isBold: Bool {
+    return traitSet.contains(.boldFontMask)
+  }
+
+  var isItalic: Bool {
+    return traitSet.contains(.italicFontMask)
+  }
+
+  var fontSize: Int {
+    return Int(font.pointSize)
+  }
+
+  var fontName: String {
+    return font.fontName
+  }
+
+  var hasUnderline: Bool {
+    return has(key: NSUnderlineStyleAttributeName)
+  }
+
+  var isStrikeThrough: Bool {
+    return has(key: NSStrikethroughStyleAttributeName)
+  }
+
+  var count: Int {
+    return length
+  }
+
+  func update(font aFont: NSFont) -> Mutable {
     if let range = toRange() {
-      addAttribute(NSFontAttributeName, value: newFont, range: range)
+      addAttribute(NSFontAttributeName, value: font.merge(aFont), range: range)
     }
     return self
   }
 
+  func has(foreground color: NSColor) -> Bool {
+    guard let maybe = get(key: NSForegroundColorAttributeName) else {
+      return false
+    }
+
+    if let aColor = maybe as? NSColor {
+      return color == aColor
+    }
+
+    return false
+  }
+
+  /**
+    Does @self contain a background with color?
+  */
+  func has(background color: NSColor) -> Bool {
+    guard let maybe = get(key: NSBackgroundColorAttributeName) else {
+      return false
+    }
+
+    if let aColor = maybe as? NSColor {
+      return color == aColor
+    }
+
+    return false
+  }
+
+  /**
+    Does @self contain a background / foreground?
+  */
+  func has(_ ground: Ground) -> Bool {
+    switch ground {
+    case .foreground:
+      return has(key: NSForegroundColorAttributeName)
+    case .background:
+      return has(key: NSBackgroundColorAttributeName)
+    }
+  }
+
+  /**
+    Set style for @self. Overrides existing values for the same style
+  */
+  func style(with style: Style) -> Mutable {
+    switch style {
+    case .bold:
+      return applyFontTraits(NSFontTraitMask.boldFontMask)
+    case .italic:
+      return applyFontTraits(NSFontTraitMask.italicFontMask)
+    case .strikethrough:
+      return update(attr: [
+        NSStrikethroughStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+      ])
+    case .underline:
+      return update(attr: [
+        NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+      ])
+    case let .background(color):
+      return update(attr: [NSBackgroundColorAttributeName: color])
+    case let .foreground(color):
+      return update(attr: [NSForegroundColorAttributeName: color])
+    }
+  }
+
   func update(fontName: String) -> Mutable {
-    return update(font: currentFont().update(name: fontName))
+    guard let aFont = manager.convert(font, toFace: fontName) else {
+      return self
+    }
+
+    return update(attr: [NSFontAttributeName: aFont])
   }
 
   func update(fontSize: Float) -> Mutable {
-    return update(font: currentFont().update(size: fontSize))
+    return update(attr: [NSFontAttributeName: manager.convert(font, toSize: CGFloat(fontSize))])
   }
 
   func update(attr: [String: Any]) -> Mutable {
@@ -36,29 +145,56 @@ extension Mutable {
   }
 
   func merge(_ attr: Mutable) -> Mutable {
-    return attr.update(attr: [NSFontAttributeName: currentFont()])
+    if attr.has(key: NSFontAttributeName) {
+      return attr
+    }
+
+    return attr.update(attr: [NSFontAttributeName: font])
   }
 
+  /**
+    Shorten @self to the length passed. Prepends @suffix, if @self is truncated
+  */
   func truncate(_ maxLength: Int, suffix: String = "…") -> Mutable {
     guard let range = toRange(startIndex: maxLength) else {
       return self
     }
 
-    return delete(inRange: range).append(suffix)
+    return delete(inRange: range).appended(string: suffix)
   }
 
-  func append(_ suffix: String) -> Mutable {
-    append(Mutable(withDefaultFont: suffix))
+  func appended(_ suffix: Mutable) -> Mutable {
+    append(suffix)
     return self
   }
 
-  func delete(inRange range: NSRange) -> Mutable {
-    deleteCharacters(in: range)
+  func appended(string: String) -> Mutable {
+    return appended(Mutable(withDefaultFont: string))
+  }
+
+  func trimmed() -> Mutable {
+    let charSet = NSCharacterSet.whitespacesAndNewlines
+    var range = (string as NSString).rangeOfCharacter(from: charSet)
+
+    // Trim leading characters from character set.
+    while range.length != 0 && range.location == 0 {
+      deleteCharacters(in: range)
+      range = (string as NSString).rangeOfCharacter(from: charSet)
+    }
+
+    // Trim trailing characters from character set.
+    range = (string as NSString).rangeOfCharacter(from: charSet, options: .backwards)
+    while range.length != 0 && NSMaxRange(range) == length {
+      deleteCharacters(in: range)
+      range = (string as NSString).rangeOfCharacter(from: charSet, options: .backwards)
+    }
+
     return self
   }
 
-  var count: Int {
-    return length
+  private func delete(inRange range: NSRange) -> Mutable {
+      deleteCharacters(in: range)
+    return self
   }
 
   func toRange(startIndex index: Int = 0) -> NSRange? {
@@ -66,24 +202,52 @@ extension Mutable {
     guard offset > 0  else {
       return nil
     }
+
     return NSRange(location: index, length: offset)
   }
 
-  private func currentFont() -> NSFont {
-    let defaultFont = NSFont.menuBarFont(ofSize: NSFont.systemFontSize())
+  var font: NSFont {
     guard let range = toRange() else {
-      return defaultFont
+      return Mutable.defaultFont
     }
 
     let attr = fontAttributes(in: range)
     guard let maybeFont = attr[NSFontAttributeName] else {
-      return defaultFont
+      return NSMutableAttributedString.defaultFont
     }
 
     guard let font = maybeFont as? NSFont else {
-      return defaultFont
+      return NSMutableAttributedString.defaultFont
     }
 
     return font
+  }
+
+  private var traitSet: NSFontTraitMask {
+    let descriptor = font.fontDescriptor
+    let symTraits = descriptor.symbolicTraits
+    return NSFontTraitMask(rawValue: UInt(symTraits))
+  }
+
+  private func applyFontTraits(_ mask: NSFontTraitMask) -> Mutable {
+    let newFont = manager.convert(font, toHaveTrait: mask)
+    if let range = toRange() {
+      addAttribute(NSFontAttributeName, value: newFont, range: range)
+    }
+
+    return self
+  }
+
+  private func get(key: String) -> Any? {
+    if string.isEmpty { return nil }
+    return attributes(at: 0, effectiveRange: nil)[key]
+  }
+
+  private func has(key: String) -> Bool {
+    guard let _ = get(key: key) else {
+      return false
+    }
+
+    return true
   }
 }

@@ -72,19 +72,19 @@ class ScriptTests: Helper {
   override func spec() {
     describe("stdout") {
       it("handles base case") {
-        self.testSucc("basic.sh", assumed: "Hello")
+        self.testSucc("basic.sh", assumed: "Hello\n")
       }
 
       it("handles sleep") {
-        self.testSucc("sleep.sh", assumed: "sleep")
+        self.testSucc("sleep.sh", assumed: "sleep\n")
       }
 
       it("handles args") {
-        self.testSucc("args.sh", args: ["1", "2", "3"], assumed: "1 2 3")
+        self.testSucc("args.sh", args: ["1", "2", "3"], assumed: "1 2 3\n")
       }
 
       it("handles file with space in name") {
-        self.testSucc("space script.sh", assumed: "Hello")
+        self.testSucc("space script.sh", assumed: "Hello\n")
       }
     }
 
@@ -94,7 +94,7 @@ class ScriptTests: Helper {
       }
 
       it("exit code 1, with output") {
-        self.testFail("exit1-output.sh", assumed: "Exit 1")
+        self.testFail("exit1-output.sh", assumed: "Exit 1\n")
       }
     }
 
@@ -120,19 +120,19 @@ class ScriptTests: Helper {
 
     describe("stream") {
       it("handles one output") {
-        self.testStream("stream-nomore.sh", assumed: ["A\n~~~"])
+        self.testStream("stream-nomore.sh", assumed: ["A\n~~~\n"])
       }
 
       it("handles more then one") {
-        self.testStream("stream-more.sh", assumed: ["A\n~~~", "B"])
+        self.testStream("stream-more.sh", assumed: ["A\n~~~\n", "B\n"])
       }
 
       it("handles empty stream") {
-        self.testStream("stream-nothing.sh", assumed: ["~~~"])
+        self.testStream("stream-nothing.sh", assumed: ["~~~\n"])
       }
 
       it("handles sleep") {
-        self.testStream("stream-sleep.sh", assumed: ["A\n~~~", "B"])
+        self.testStream("stream-sleep.sh", assumed: ["A\n~~~\n", "B\n"])
       }
     }
 
