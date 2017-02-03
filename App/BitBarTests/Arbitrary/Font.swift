@@ -4,7 +4,7 @@ import SwiftCheck
 extension Font: Paramable {
   public static var arbitrary: Gen<Font> {
     return Gen.compose { c in
-      Font(c.generate(using: aWord()))
+      Font(c.generate())
     }
   }
 

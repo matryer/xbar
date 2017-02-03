@@ -91,14 +91,9 @@ extension Menuable {
 
   /**
     Replace current title with @attr
-    TODO: Remove. Should be called update, not set
   */
   func update(title: String) {
-    if let range = aTitle.toRange() {
-      return aTitle.replaceCharacters(in: range, with: title)
-    }
-
-    update(attr: Mutable(string: title))
+    set(title: Mutable(string: title))
   }
 
   // TODO: Rename to set

@@ -17,7 +17,7 @@ extension Title: Base, Val {
   }
 
   func getInput() -> String {
-    return title + container.getInput() + getBody()
+    return escape(title: title) + container.getInput() + getBody()
   }
 
   func getBody() -> String {
@@ -28,7 +28,7 @@ extension Title: Base, Val {
   public static var arbitrary: Gen<Title> {
     return Gen.compose { gen in
       return Title(
-        gen.generate(using: aSentence()),
+        gen.generate(),
         container: gen.generate(),
         menus: gen.generate(using: Menu.arbitrary.proliferateRange(0, 2))
       )
@@ -48,9 +48,9 @@ extension Title: Base, Val {
       return false
     }
 
-    if title.getAttrs() != getAttrs() {
-      return false
-    }
+    // if title.getAttrs() !=  getAttrs() {
+    //   return false
+    // }
 
     for (index, menu) in menus.enumerated() {
       if !menu.equals(title.menus[index]) {

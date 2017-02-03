@@ -1,5 +1,4 @@
 import Quick
-// import Cent
 import Nimble
 @testable import BitBar
 

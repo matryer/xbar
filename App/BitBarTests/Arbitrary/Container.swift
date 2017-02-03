@@ -8,7 +8,7 @@ extension Container: Base, Val {
   }
 
   func getInput() -> String {
-    if params.isEmpty { return "" }
+    if params.isEmpty { return "\n" }
     return "|" + params.map { $0.getInput() }
       .joined(separator: " ").trim() + "\n"
   }

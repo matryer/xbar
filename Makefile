@@ -1,6 +1,6 @@
 APP := App
 DIST := "$(PWD)/Dist/BitBar.xcarchive/Products/Applications"
-CERT := App/BitBar/Resources/bitbar.p12
+CERT := bitbar.p12
 KEYCHAIN := build.chain
 PLIST_BUDDY := /usr/libexec/PlistBuddy
 APP_PLIST := App/BitBar/Info.plist
@@ -18,7 +18,7 @@ BUNDLE := $(PROJECT_NAME).app
 default: clean
 build:
 	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
-	@$(BUILD) | xcpretty
+	@$(BUILD) # | xcpretty
 release:
 	git tag $(BUNDLE_VERSION)
 	git push origin $(BUNDLE_VERSION)

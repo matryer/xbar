@@ -1,5 +1,27 @@
 import SwiftCheck
 @testable import BitBar
+let slash = "\\"
+
+// -- dex
+func escape(char: String) -> String {
+  let count = char.characters.count
+  guard count == 1 else {
+    preconditionFailure("Char length must be one, not \(count)")
+  }
+  // FIXME: Can we do this better?
+  return char.replace(char, slash + char)
+}
+
+func escape(title: String, what: [String]) -> String {
+  return ([slash] + what).reduce(title) { title, what in
+    return title.replace(what, escape(char: what))
+  }
+}
+
+func escape(title: String) -> String {
+  return escape(title: title, what: ["|", "\n"])
+  // return title.replace(slash, escape(char: slash)).replace("\n", escape(char: "\n")).replace("|", escape(char: "|"))
+}
 
 extension Menu: Base, Val {
   private static let which: Gen<Int> = Gen<Int>.fromElements(in: 0...2)
@@ -17,12 +39,7 @@ extension Menu: Base, Val {
   }
 
   func getInput() -> String {
-    switch level {
-    case 0:
-       return body
-    default:
-      return times(level, "--") + body
-    }
+    return times(level, "--") + body
   }
 
   func test(_ menu: Menu) -> Property {
@@ -77,7 +94,7 @@ extension Menu: Base, Val {
   }
 
   private var body: String {
-    return title + container.getInput() +
+    return escape(title: title) + container.getInput() +
       menus.map { $0.getInput() }.joined(separator: "") + "\n"
   }
 
@@ -89,12 +106,8 @@ extension Menu: Base, Val {
 
   // Generate submenu for a particular level
   private static func subMenusFrom(level: Int) -> Gen<[Menu]> {
-    let collection = getSubMenu(level + 1)
-    if level == 2 {
-      return collection.proliferateRange(0, 0)
-    }
-
-    return collection.proliferateRange(0, 2)
+    if level >= 2 { return Gen.pure([Menu]()) }
+    return getSubMenu(level + 1).proliferateRange(0, 1)
   }
 
   private func testLevel() -> Property {

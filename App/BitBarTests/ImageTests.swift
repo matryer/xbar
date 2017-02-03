@@ -36,7 +36,7 @@ extension Terminal {
 
 extension Bash {
   func getValue() -> String {
-    return value
+    return path
   }
 }
 
@@ -72,7 +72,7 @@ extension Trim {
 
 extension TemplateImage {
   func getValue() -> String {
-    return value
+    return data
   }
 }
 

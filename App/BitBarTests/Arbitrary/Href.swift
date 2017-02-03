@@ -4,7 +4,7 @@ import SwiftCheck
 extension Href: Paramable {
   public static var arbitrary: Gen<Href> {
     return Gen.compose { c in
-      Href(c.generate(using: aWord()))
+      Href(c.generate())
     }
   }
 

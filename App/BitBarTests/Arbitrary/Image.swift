@@ -4,7 +4,7 @@ import SwiftCheck
 extension Image: Paramable {
   public static var arbitrary: Gen<Image> {
     return Gen.compose { c in
-      Image(c.generate(using: base64) as String)
+      Image(c.generate())
     }
   }
 

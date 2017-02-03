@@ -2,7 +2,6 @@ import AppKit
 import Swift
 import Foundation
 import Files
-import Cent
 
 /**
   The PluginManager is responsible for

@@ -1,7 +1,7 @@
 import Cocoa
 
 final class Image: Param {
-  var value: String { return raw }
+  var value: String { return escape(raw) }
   var attribute: String {
     if isTemplate { return "templateImage" }
     return "image"

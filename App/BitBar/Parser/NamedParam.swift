@@ -1,3 +1,7 @@
+func escape(_ value: String, quote: String = "\"") -> String {
+  return quote + value.replace("\\", "\\\\").replace(quote, "\\" + quote) + quote
+}
+
 final class NamedParam: Param {
   var priority = 0
   let value: String
@@ -12,7 +16,7 @@ final class NamedParam: Param {
   }
 
   var string: String {
-    return "param" + String(index) + "=" + value
+    return "param" + String(index) + "=" + escape(value)
   }
 
   func equals(_ param: Param) -> Bool {

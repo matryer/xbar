@@ -1,25 +1,27 @@
 import SwiftyJSON
 import Files
 
+extension String {
+  var emojis: String {
+    switch Pro.parse(Emojize.parser, self) {
+    case let Result.success(title, _):
+      return title
+    case let Result.failure(lines):
+      preconditionFailure("Error: \(lines)")
+    }
+  }
+}
+
 final class Emojize: BoolVal, Param {
   private static let jsonEmojize = File.from(resource: "emoji.json")
-  private static let parser = Pro.replaceEmojize(replace: forChar)
+  static let parser = Pro.replaceEmojize(replace: forChar)
   private static let emojis = readEmojize()
 
-  var priority = 9
+  var priority = 15
   var active: Bool { return bool }
 
   func menu(didLoad menu: Menuable) {
-    guard active else { return }
-    switch Pro.parse(Emojize.parser, menu.getTitle()) {
-    case let Result.success(title, _):
-      menu.update(title: title)
-    case let Result.failure(lines):
-      menu.add(error: "Failed to parse emojis")
-      for error in lines {
-        menu.add(error: error)
-      }
-    }
+    menu.update(title: menu.getTitle().emojis)
   }
 
   private static func forChar(_ char: String) -> String? {

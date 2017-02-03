@@ -1,12 +1,9 @@
 PODS:
   - AsyncSwift (2.0.1)
-  - Cent (6.0.3):
-    - Dollar (~> 6.1.0)
   - DateTools (1.7.0)
-  - Dollar (6.1.0)
   - EmitterKit (5.0.0)
   - Files (1.1.0)
-  - FootlessParser (1.0)
+  - FootlessParser (0.3)
   - Hue (2.0.1)
   - Nimble (6.0.0)
   - Quick (1.0.0)
@@ -19,12 +16,10 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
-  - Cent (from `https://github.com/ankurp/Cent.git`)
   - DateTools
-  - Dollar (from `https://github.com/oleander/Dollar.git`)
   - EmitterKit
   - Files
-  - FootlessParser (from `https://github.com/kareman/FootlessParser.git`, branch `swift3.0`)
+  - FootlessParser (from `https://github.com/kareman/FootlessParser.git`)
   - Hue
   - Nimble
   - Quick
@@ -36,12 +31,7 @@ DEPENDENCIES:
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
-  Cent:
-    :git: https://github.com/ankurp/Cent.git
-  Dollar:
-    :git: https://github.com/oleander/Dollar.git
   FootlessParser:
-    :branch: swift3.0
     :git: https://github.com/kareman/FootlessParser.git
   SwiftCheck:
     :git: https://github.com/typelift/SwiftCheck.git
@@ -49,14 +39,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
-  Cent:
-    :commit: d6d1079aa8a0f3135a2865ef9496d9fcc3812c35
-    :git: https://github.com/ankurp/Cent.git
-  Dollar:
-    :commit: 428fed52241ba7bfbcb543fd5f3770ae6819b50a
-    :git: https://github.com/oleander/Dollar.git
   FootlessParser:
-    :commit: 7572c5063d2ef8a113a9c4c4b5767b219f64360b
+    :commit: be89d2f448e51ab131cfb78d79e5e850b16b3079
     :git: https://github.com/kareman/FootlessParser.git
   SwiftCheck:
     :commit: 7175b6ba7769a4067e19057345ac87e99baeefdc
@@ -67,12 +51,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
-  Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Dollar: 30a71333854a267c2e4996b63a62d81b6198899b
   EmitterKit: 0057b2086840f20987cb8d4445b4490b96c0bfd8
   Files: 43c070cd6d6a6126efbf4671fa6b8e5e3ca39830
-  FootlessParser: c7610613da5865dd16ab7141ef1b067e7ed25dd6
+  FootlessParser: 0ff693834488299c53216ab78f53bc2eaaad2582
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Nimble: 8fb9b4b34c535b2f32f52c6b9852d6f02d48610b
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
@@ -83,6 +65,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: aa24c97a6e4809f2965f95692126e5ec75d760f4
+PODFILE CHECKSUM: ba4d8794f771672e090a2d3af1c73f1196ad75f9
 
 COCOAPODS: 1.2.0

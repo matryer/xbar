@@ -2,7 +2,9 @@ import Foundation
 
 final class Href: Param {
   var priority = 0
-  var value: String { return raw }
+  var value: String {
+    return escape(raw)
+  }
   var url: URL?
   var raw: String
   var values: [String: Any] {

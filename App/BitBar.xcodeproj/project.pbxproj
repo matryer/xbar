@@ -72,6 +72,7 @@
 		207BD88B1E2379EA007AA0C7 /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD8741E2379EA007AA0C7 /* Terminal.swift */; };
 		207BD88C1E2379EA007AA0C7 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD8751E2379EA007AA0C7 /* Title.swift */; };
 		207BD88D1E2379EA007AA0C7 /* Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD8761E2379EA007AA0C7 /* Trim.swift */; };
+		2082766B1E42DCDB007AB67B /* EmojizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2082766A1E42DCDB007AB67B /* EmojizeTests.swift */; };
 		2084CCE51E2A3E7100DE01F6 /* args.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDD1E2A3E7100DE01F6 /* args.sh */; };
 		2084CCE61E2A3E7100DE01F6 /* exit1-no-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDE1E2A3E7100DE01F6 /* exit1-no-output.sh */; };
 		2084CCE71E2A3E7100DE01F6 /* exit1-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */; };
@@ -214,6 +215,7 @@
 		207BD8741E2379EA007AA0C7 /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Terminal.swift; path = BitBar/Parser/Terminal.swift; sourceTree = "<group>"; };
 		207BD8751E2379EA007AA0C7 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = BitBar/Parser/Title.swift; sourceTree = "<group>"; };
 		207BD8761E2379EA007AA0C7 /* Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trim.swift; path = BitBar/Parser/Trim.swift; sourceTree = "<group>"; };
+		2082766A1E42DCDB007AB67B /* EmojizeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojizeTests.swift; sourceTree = "<group>"; };
 		2084CCDD1E2A3E7100DE01F6 /* args.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = args.sh; sourceTree = "<group>"; };
 		2084CCDE1E2A3E7100DE01F6 /* exit1-no-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-no-output.sh"; sourceTree = "<group>"; };
 		2084CCDF1E2A3E7100DE01F6 /* exit1-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-output.sh"; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				207277491E239D8B00496F25 /* PropertyTests.swift */,
 				20E660621E2399A300B530B1 /* Helper.swift */,
 				200FDA391E35C57C003F4B6B /* FontTests.swift */,
+				2082766A1E42DCDB007AB67B /* EmojizeTests.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				20C1F87E1E23F529007E0D93 /* Menu.swift in Sources */,
 				20B5977C1E35C15A0072F179 /* BashTests.swift in Sources */,
 				200FDA481E35C57C003F4B6B /* OutputTests.swift in Sources */,
+				2082766B1E42DCDB007AB67B /* EmojizeTests.swift in Sources */,
 				2097884F1E2420E300A91F4D /* ScriptTests.swift in Sources */,
 				20B489BD1E1E7A300089E874 /* Size.swift in Sources */,
 				2099FAB61E1E300900F758AF /* Refresh.swift in Sources */,
@@ -938,6 +942,8 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -983,6 +989,8 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1003,6 +1011,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = BitBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1026,6 +1036,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = BitBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

@@ -6,7 +6,7 @@ class MenuTests: Helper {
   override func spec() {
     let addSuffix = { return $0 + "\n" }
     context("params") {
-      it("handles params") {
+      it("fails on | but no params") {
         self.failure(Pro.menu, addSuffix("My Menu|"))
       }
     }
@@ -14,6 +14,14 @@ class MenuTests: Helper {
     it("handles no input") {
       self.match(Pro.getMenu(), addSuffix("")) {
         expect($0.getValue()).to(equal(""))
+        expect($0.menus).to(haveCount(0))
+        expect($1).to(beEmpty())
+      }
+    }
+
+    it("handles escaped input") {
+      self.match(Pro.getMenu(), addSuffix("A B C\\|")) {
+        expect($0.getValue()).to(equal("A B C|"))
         expect($0.menus).to(haveCount(0))
         expect($1).to(beEmpty())
       }

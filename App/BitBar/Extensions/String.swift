@@ -23,21 +23,40 @@ extension String {
     return replace(what, "")
   }
 
-  /**
-    Remove the last character, unless string is empty
-  */
-  func dropLast() -> String {
-    if isEmpty { return self }
-    let stop = index(startIndex, offsetBy: characters.count - 1)
-    return substring(to: stop)
-  }
-
-  func inspecting() -> String {
-    if isEmpty { return "NOP" }
-    return "'" + replace("\n", "\\n").replace("'", "\\'") + "'"
+  func inspected() -> String {
+    return "\"" + replace("\n", "↵") + "\""
   }
 
   func mutable() -> NSMutableAttributedString {
     return NSMutableAttributedString(withDefaultFont: self)
   }
+
+  var camelCase: String {
+    if isEmpty { return self }
+    return substring(to: 1).lowercased() + substring(from: 1)
+  }
+
+  func index(from: Int) -> Index {
+    return self.index(startIndex, offsetBy: from)
+  }
+
+  func substring(from: Int) -> String {
+    let fromIndex = index(from: from)
+    return substring(from: fromIndex)
+  }
+
+  func substring(to: Int) -> String {
+    let toIndex = index(from: to)
+    return substring(to: toIndex)
+  }
+
+  func substring(with r: Range<Int>) -> String {
+    let startIndex = index(from: r.lowerBound)
+    let endIndex = index(from: r.upperBound)
+    return substring(with: startIndex..<endIndex)
+  }
+}
+
+enum Source {
+  indirect case item((String, [Param]), Int, [Source])
 }

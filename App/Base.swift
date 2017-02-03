@@ -21,25 +21,27 @@ class BoolVal: Val {
 }
 
 class StringVal: Val {
+  let data: String
   var values: [String: Any] {
-    return ["value": value]
+    return ["value": data]
   }
 
-  let value: String
+  var value: String {
+    return escape(data)
+  }
 
-  init(_ value: String) {
-    self.value = value
+  init(_ data: String) {
+    self.data = data
   }
 
   func equals(_ param: Param) -> Bool {
     if let value = param as? StringVal {
       if value.key != key { return false }
-      return value.value == self.value
+      return value.data == self.data
     }
 
     return false
   }
-
 }
 
 class FloatVal: Val {

@@ -1,14 +1,12 @@
-// swiftlint:disable type_name
+  // swiftlint:disable type_name
 // swiftlint:disable line_length
 // swiftlint:disable type_body_length
-typealias X = (String, [Param], Int)
-typealias U = P<X>
+import Hue
 import FootlessParser
-public typealias P<T> = Parser<Character, T>
 
-indirect enum Source {
-  case item((String, [Param]), Int, [Source])
-}
+typealias X = (String, [Param], Int)
+public typealias P<T> = Parser<Character, T>
+typealias U = P<X>
 
 // TODO: Rename Pro to something like Parser
 // Parser is currently taken by FootlessParser
@@ -58,7 +56,11 @@ class Pro {
   }
 
   internal static var title: P<Title> {
-    return curry({ handle(head: toValue(with: -1, for: $0), menus: $1) }) <^> heading <*> menus
+    return curry({
+      handle(head:
+        toValue(with: -1, for: $0), menus: $1)
+      }
+    ) <^> heading <*> menus
   }
 
   internal static func toValue(with: Int, for xs: X) -> Source {
@@ -216,7 +218,7 @@ class Pro {
 
   // Anything but \e[...m
   private static var notAnsi: P<Attributed> {
-    return { .string($0) } <^> til(terminals, empty: false)
+  return { .string($0) } <^> til(terminals, empty: false)
   }
 
   // Input: 5;123, output: Color.index(123)
@@ -264,7 +266,7 @@ class Pro {
   }
 
   private static func anyOf(_ these: [String]) -> P<String> {
-    if these.isEmpty { halt("Min 1 arg") }
+    if these.isEmpty { preconditionFailure("Min 1 arg") }
     if these.count == 1 { return string(these[0]) }
     return these[1..<these.count].reduce(string(these[0])) { acc, str in
       return acc <|> string(str)
@@ -375,22 +377,23 @@ class Pro {
   }
 
   static var flat: P<(String, [Param])> {
-    let until = zeroOrMore(noneOf(["|", "\n", "~~~"]))
-    return curry(merge3) <^> until <*> (params <* nl)
+    let terminals = ["\n", "|", "~~~"]
+    let until2 = until(terminals, consume: false)
+    // let until = zeroOrMore(noneOf(["|", "\n", "~~~"]))
+    return curry(merge3) <^> until2 <*> (params <* oneOrMore(string("\n")))
   }
 
-  static var nl: P<String> {
-    return { $0.joined(separator: "") } <^> oneOrMore(string("\n"))
-  }
+  // static var nl: P<String> {
+  //   return { $0.joined(separator: "") } <^> oneOrMore(string("\n"))
+  // }
 
   static func merge3(title: String, params: [Param]) -> (String, [Param]) {
     return (title, params)
   }
 
   static func headingFor(level: Int) -> U {
-    return zeroOrMore(string("--")) >>- { levels in
-      guard levels.count == level else { return stop("Invalid level: \(level)") }
-      return { thing in (thing.0, thing.1, levels.count) } <^> flat
+    return zeroOrMore(string("--")) >>- { indent in
+      return { thing in (thing.0, thing.1, indent.count) } <^> flat
     }
   }
 
@@ -407,16 +410,11 @@ class Pro {
   }
 
   static func headingsFor(level: Int) -> P<[X]> {
-    return zeroOrMore(headingFor(level: level)) >>- { xs in
-      switch (xs.count, level) {
-      case (0, 0):
-        return pure(xs)
-      case (0, _):
-        return headingsFor(level: level - 1)
-      default:
-        return { xs + $0 } <^> headingsFor(level: level + 1)
-      }
-    }
+    return zeroOrMore(headingFor(level: level))
+  }
+
+  static func merge(a: [X], b: [X], c: [X]) -> [X] {
+    return a + b + c
   }
 
   /**
@@ -463,9 +461,34 @@ class Pro {
 
   // @example: "A B C"
   internal static func quote() -> P<String> {
-    let quote = string("\"")
-    // return quote *> zeroOrMore((count(1, char("\\"))) <*> count(1, any())<|> not("\"")) <* quote
-    return quote *> zeroOrMore(not("\"")) <* quote
+    return oneOf("\"\'") >>- { (char: Character) in until(String(char)) }
+  }
+
+  // what = "
+  // value AB\"C
+  // outpu: AB"C
+  // internal static func unescape(_ what: String, _ value: String) -> String {
+  //   return value.replace("\\" + what, what)
+  // }
+
+  internal static func until(_ oops: String, consume: Bool = true) -> P<String> {
+    return until([oops], consume: consume)
+  }
+
+  internal static func until(_ oops: [String], consume: Bool = true) -> P<String> {
+    let one = count(1, any())
+    let escaped = string("\\")
+    let terminator = count(1, noneOf(oops))
+    let block: P<String> = (escaped *> one) <|> terminator
+    let blocks = { (values: [String]) in values.joined() } <^> zeroOrMore(block)
+
+    // Should we consume the last char we just matched against?
+    // This is being used by the menu parser which needs the delimiter to deter. where the params list begins and ends.
+    guard consume else {
+      return blocks
+    }
+
+    return blocks <* anyOf(oops)
   }
 
   // @example: "hello" or hello
@@ -476,7 +499,7 @@ class Pro {
   // Match everything between ' or " or the entire @parser
   // TODO: Handle escaped quotes
   private static func quoteOr(_ parser: P<String>) -> P<String> {
-    return count(1, oneOf("\"'")) >>- { til([$0]) <* string($0) } <|> parser
+    return (quote() <|> parser)
   }
 
   // @example: "10" (as a string)

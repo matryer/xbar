@@ -1,7 +1,7 @@
 language: objective-c
-osx_image: xcode8
-xcode_sdk: macosx10.11
 install: make setup
+osx_image: xcode8.2
+xcode_sdk: macosx10.11
 script: make ci
 before_deploy: make release version=Beta
 # before_deploy: make release version=$TRAVIS_TAG

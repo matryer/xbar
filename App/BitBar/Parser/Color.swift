@@ -5,7 +5,7 @@ final class Color: Param {
 
   var priority = 5
   var color: NSColor?
-  var value: String { return raw }
+  var value: String { return escape(raw) }
   let raw: String
   var values: [String: Any] {
     return ["raw": raw, "color": color ?? "A color"]

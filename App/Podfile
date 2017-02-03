@@ -11,9 +11,7 @@ target 'BitBar' do
   pod 'EmitterKit'
   pod 'SwiftyTimer'
   pod 'SwiftyUserDefaults'
-  pod 'FootlessParser', git: 'https://github.com/kareman/FootlessParser.git', branch: 'swift3.0'
-  pod 'Cent', git: 'https://github.com/ankurp/Cent.git'
-  pod 'Dollar', git: 'https://github.com/oleander/Dollar.git'
+  pod 'FootlessParser', git: 'https://github.com/kareman/FootlessParser.git'
   pod 'SwiftTryCatch', git: 'https://github.com/oleander/SwiftTryCatch.git'
 
   target 'BitBarTests' do

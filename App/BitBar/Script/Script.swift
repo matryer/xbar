@@ -14,7 +14,7 @@ extension Script.Result: CustomStringConvertible {
   public var description: String {
     switch self {
     case let .success(message, status):
-      return "Succeeded (\(status)): \(message.inspecting())"
+      return "Succeeded (\(status)): \(message.inspected())"
     case let .failure(result):
       return String(describing: result)
     }
@@ -36,9 +36,9 @@ extension Script.Failure: CustomStringConvertible {
     case let .crash(message):
       return "Crashed: \(message)"
     case let .exit(message, status):
-      return "Failed (\(status)): \(message.inspecting())"
+      return "Failed (\(status)): \(message.inspected())"
     case let .misuse(message):
-      return "Misused (2): \(message.inspecting())"
+      return "Misused (2): \(message.inspected())"
     case .terminated():
       return "Terminated (15): Manual termination using Script#stop"
     }

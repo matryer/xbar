@@ -28,4 +28,12 @@ extension Array {
       return self // TODO: Implement
     }
   }
+
+}
+
+extension Array where Iterator.Element == String {
+  // To lazy to type {separator}
+  func joined(_ sep: String = "") -> String {
+    return joined(separator: sep)
+  }
 }

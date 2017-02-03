@@ -6,7 +6,7 @@ extension NamedParam: Base, Equatable {
 
   public static var arbitrary: Gen<NamedParam> {
     return Gen.compose { c in
-      NamedParam(key: c.generate(using: head), value: c.generate(using: aWord()))
+      NamedParam(key: c.generate(using: head), value: c.generate())
     }
   }
 

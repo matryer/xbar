@@ -1,7 +1,6 @@
 import SwiftCheck
 import Quick
 import Swift
- import Cent
 import Nimble
 @testable import BitBar
 
@@ -45,9 +44,8 @@ func inspect(_ value: String) -> String {
 }
 
 func aWord() -> Gen<String> {
-  return char.proliferateRange(1, 10).map { String.init($0) }
-  // TODO: Use
-  // return Character.arbitrary.proliferateNonEmpty.map { String.init($0) }.suchThat { $0.noMore() != "" }
+  return Character.arbitrary.proliferateRange(1, 2).map { String.init($0) }
+  // return Character.arbitrary.proliferateNonEmpty.map { String.init($0) }
 }
 
 func aSentence() -> Gen<String> {
@@ -188,7 +186,7 @@ extension Gen {
   }
 }
 
-// TODO: Rename String.inspecting()
+// TODO: Rename String.inspected()
 
 func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
   property(name) <- forAll(gen) { item in
@@ -197,17 +195,16 @@ func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
     case let Result.success(result, _):
       return item.test(result).whenFail {
         print("warning: ------------------------------------")
-        print("warning: Could not parse: ", input.inspecting())
         print("warning: Failed verifying \(name)")
         print("warning: ", String(describing: result))
       }
     case let Result.failure(lines):
       return (false <?> "Parser failed").whenFail {
         print("warning: ------------------------------------")
-        print("warning: Could not parse: ", input.inspecting())
+        print("warning: Could not parse: ", input.inspected())
         print("warning: Failed parsing \(name)")
         for error in lines {
-          print("warning:", error.inspecting())
+          print("warning:", error.inspected())
         }
       }
     }
@@ -221,9 +218,9 @@ class Helper: QuickSpec {
       block(result, remain)
     case let Result.failure(lines):
       print("warning: Failed parsing")
-      print("warning: Could not parse: ", input.inspecting())
+      print("warning: Could not parse: ", input.inspected())
       for error in lines {
-        print("warning:", error.inspecting())
+        print("warning:", error.inspected())
       }
       fail("Could not parse")
     }

@@ -4,7 +4,7 @@ import SwiftCheck
 extension Bash: Paramable {
   public static var arbitrary: Gen<Bash> {
     return Gen.compose { c in
-      Bash(c.generate(using: aWord()))
+      Bash(c.generate())
     }
   }
 

@@ -121,11 +121,7 @@ extension Mutable {
   }
 
   func update(fontName: String) -> Mutable {
-    guard let aFont = manager.convert(font, toFace: fontName) else {
-      return self
-    }
-
-    return update(attr: [NSFontAttributeName: aFont])
+    return update(attr: [NSFontAttributeName: manager.convert(font, toFamily: fontName)])
   }
 
   func update(fontSize: Float) -> Mutable {
