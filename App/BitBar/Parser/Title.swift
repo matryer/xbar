@@ -12,7 +12,7 @@ protocol TrayDelegate: class {
 }
 
 final class Title: NSMenu, Menuable, TrayDelegate {
-  var aTitle: NSMutableAttributedString
+  var aTitle: Mutable
 
   internal var container: Container
   internal var menus = [Menu]()
@@ -44,7 +44,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     @errors A list of errors to be displayed in the sub menu
   */
   convenience init(errors: [String]) {
-    self.init(":warning: ".emojis , container: Container(), menus: errors.map { Menu($0) })
+    self.init(":warning: ".emojis, container: Container(), menus: errors.map { Menu($0) })
   }
 
   func bar(didClickOpenInTerminal: Tray) {

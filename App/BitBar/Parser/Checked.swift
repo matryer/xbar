@@ -8,6 +8,6 @@ final class Checked: IntVal, Param {
   }
 
   func menu(didLoad menu: Menuable) {
-    menu.update(state: int)
+    menu.set(state: int)
   }
 }

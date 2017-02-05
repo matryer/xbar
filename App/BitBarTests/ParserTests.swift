@@ -12,9 +12,10 @@ func escape(_ what: String, _ toEscape: String) -> String {
   return what.replace(toEscape, "\\" + toEscape)
 }
 
-func unescape(_ what: String, _ toEscape: String) -> String {
-  return what.replace("\\" + toEscape, toEscape)
-}
+// TODO: Use global unescape/escape
+// func unescape2(_ what: String, _ toEscape: String) -> String {
+//   return what.replace("\\" + toEscape, toEscape)
+// }
 
 let quotes =  ["\"", "'"]
 class ParserTests: Helper {
@@ -149,10 +150,20 @@ class ParserTests: Helper {
         }
       }
 
+      context("unescape") {
+        it("should be able to unescape an empty string ") {
+          expect(unescape("", what: [String]())).to(equal(""))
+        }
 
-      // it("should escape a single char") {
-      //   expect(escape(title: "A", what: "A")).to(equal("\\A"))
-      // }
+        it("should only unescape the values passed as 'what'") {
+          expect(unescape("\\e \\b", what: ["b"])).to(equal("\\e b"))
+        }
+
+        it("should ignore non match chars") {
+          expect(unescape("\\e \\b", what: ["z"])).to(equal("\\e \\b"))
+          expect(unescape("\\e \\b \n", what: ["z"])).to(equal("\\e \\b \n"))
+        }
+      }
     }
   }
 }

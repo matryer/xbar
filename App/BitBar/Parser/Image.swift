@@ -37,7 +37,7 @@ final class Image: Param {
       return menu.add(error: "Could not create image from \(unpacked)")
     }
 
-    menu.update(image: image, isTemplate: isTemplate)
+    menu.set(image: image, isTemplate: isTemplate)
   }
 
   func equals(_ param: Param) -> Bool {

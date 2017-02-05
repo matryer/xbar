@@ -19,9 +19,6 @@ default: clean
 build:
 	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
 	@$(BUILD) | xcpretty
-release:
-	git tag $(BUNDLE_VERSION)
-	git push origin $(BUNDLE_VERSION)
 archive:
 	@echo "[Task] Building app for deployment..."
 	@mkdir -p Dist

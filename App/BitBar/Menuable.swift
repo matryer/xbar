@@ -10,21 +10,21 @@ protocol Menuable: class {
   var menus: [Menu] { get set }
   var event: Event<Void> { get set }
   func getTitle() -> String
-  func getAttrs() -> NSMutableAttributedString
+  func getAttrs() -> Mutable
   func onDidClick(block: @escaping Block<Void>) -> Listener
   func useAsAlternate()
   func activate()
+  func set(title: String)
+  func set(title: Mutable)
   func refresh()
   func getArgs() -> [String]
   func openTerminal() -> Bool
   func shouldRefresh() -> Bool
-  func update(attr: NSMutableAttributedString)
-  func update(state: Int)
-  func update(color: NSColor)
-  func update(fontName: String)
-  func update(size: Float)
-  func update(image: NSImage, isTemplate: Bool)
-  func update(title: String)
+  func set(state: Int)
+  func set(color: NSColor)
+  func set(fontName: String)
+  func set(size: Float)
+  func set(image: NSImage, isTemplate: Bool)
   func add(menu: NSMenuItem)
   func remove(menu: NSMenuItem)
   func add(error: String)
@@ -43,6 +43,10 @@ extension Menuable {
 
   func set(title: Mutable) {
     aTitle = title
+  }
+
+  func set(title: String) {
+    aTitle = title.mutable()
   }
 
   func activate() {
@@ -70,7 +74,7 @@ extension Menuable {
     image = menu.image
     event = menu.event
     level = menu.level
-    // TODO
+    // TODO: [IMP]
     //  if menu is Menu {
     //    parentable = menu.parentable
     //  }
@@ -87,22 +91,6 @@ extension Menuable {
         halt("Both can't be nil menus=\(menus), menu.menus=\(menu.menus)")
       }
     }
-  }
-
-  /**
-    Replace current title with @attr
-  */
-  func update(title: String) {
-    set(title: Mutable(string: title))
-  }
-
-  // TODO: Rename to set
-  func update(attr: Mutable) {
-    set(title: aTitle.merge(attr))
-  }
-
-  func update(attrs: [String: Any]) {
-    set(title: aTitle.update(attr: attrs))
   }
 
   /* TODO: Rename */
@@ -122,7 +110,7 @@ extension Menuable {
   /**
     Display an @image instead of text
   */
-  func update(image anImage: NSImage, isTemplate: Bool = false) {
+  func set(image anImage: NSImage, isTemplate: Bool = false) {
     image = anImage
     image?.isTemplate = isTemplate
   }
@@ -130,19 +118,15 @@ extension Menuable {
   /**
     Set the font size to @size
   */
-  func update(size: Float) {
+  func set(size: Float) {
     set(title: aTitle.update(fontSize: size))
   }
 
   /**
     Use @color for the enture title
   */
-  func update(color: NSColor) {
-    update(key: NSForegroundColorAttributeName, value: color)
-  }
-
-  func update(key: String, value: Any) {
-    update(attrs: [key: value])
+  func set(color: NSColor) {
+    set(title: aTitle.style(with: .foreground(color)))
   }
 
   func getValue() -> String {
@@ -156,7 +140,7 @@ extension Menuable {
   /**
     Use @fontName, i.e Times-Roman
   */
-  func update(fontName: String) {
+  func set(fontName: String) {
     set(title: aTitle.update(fontName: fontName))
   }
 
@@ -175,7 +159,7 @@ extension Menuable {
     /* NOP */
   }
 
-  func update(state: Int) {
+  func set(state: Int) {
     /* NOP */
   }
 }

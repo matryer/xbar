@@ -71,7 +71,7 @@ extension Menu: Base, Val {
   public static var arbitrary: Gen<Menu> {
     return Gen.compose { gen in
       return Menu(
-        gen.generate(using: aSentence()),
+        gen.generate(),
         container: gen.generate(),
         menus: gen.generate(using: submenu.proliferateRange(0, 2))
       )
@@ -85,7 +85,7 @@ extension Menu: Base, Val {
   internal static func getSubMenu(_ level: Int) -> Gen<Menu> {
     return Gen.compose { gen in
       return Menu(
-        gen.generate(using: aSentence()),
+        gen.generate(),
         container: gen.generate(),
         menus: gen.generate(using: subMenusFrom(level: level)),
         level: level

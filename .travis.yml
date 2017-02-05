@@ -1,19 +1,16 @@
 language: objective-c
 install: make setup
 osx_image: xcode8.2
-xcode_sdk: macosx10.11
 script: make ci
-before_deploy: make release version=Beta
-# before_deploy: make release version=$TRAVIS_TAG
+before_deploy: make release version=$TRAVIS_BRANCH
+before_install: openssl aes-256-cbc -K $encrypted_34de277e100a_key -iv $encrypted_34de277e100a_iv
+  -in App/BitBar/Resources/bitbar.p12.enc -out bitbar.p12 -d
 deploy:
   skip_cleanup: true
   provider: releases
-  api_key:
-    secure: KCNPnK5PG6+QUN/tgilUNeKAHUg8ZXfLivS48fFu0v6iynjKzfmFALQn3dJVbI5m8DtVAqyrT1opjQGdXxNU2fiHKVNOEzgxue7psWMtYfXpCXi0EAprtf1m8V02sp/mA2WkwMf0PZ2VySlMCZn1Hh/W261b0WAm56KDvrtC/IcJ5Eebad3GbSroRRmfZ78K+SNixRf45AczbiMs+gvIzFYNYMyeewbwDUAU5FxaEk6X4YVsP8yxRulQuEiYkZmgH5pkxPH6eBG4HvAJb2p47TzHlDwaTpE+QGalwiUq74ExIaVcB7Ym4oWxwxudxxGGUdfmVRY4W4xUHtwN4zbIKg/rmIjCQZK4odm7/t1DJt/zC+rFhYpQm5P5M4hyGoxktgqB8NSDUypD4KOlbwJgmmVx9pSDBo8KW3911vyck26eSwitfX4Ni0JZ9NfWhBTnkusvtA0nHiHeGG4nM5nQ7ApPxIDzv2fQjLbyfxGB8HRUp2EBD6nlgCr7JNRFpUbpKHZmW7mAYmjEBGEeyIcBtftfgU1dMC560dtczhWne105H1X5w57gLShTa0Y7SuhidmAXaYq7kwfyqo5PQ9hpw3k0VLsl0Vs2mjrxitj5prJ0fONRVa4ihg//CSOUTo1F8IVjh09qXqkWd10iyqjZRFf7InTcik9oEo6xwfiB5/M=
-  # file: BitBar-$TRAVIS_TAG.zip
-  file: BitBar-Beta.zip
+  api_key: $API_KEY
+  file: BitBar-$TRAVIS_BRANCH.zip
   on:
-    repo: oleander/bitbar
-    # tags: true
-before_install:
-  openssl aes-256-cbc -K $encrypted_34de277e100a_key -iv $encrypted_34de277e100a_iv -in App/BitBar/Resources/bitbar.p12.enc -out bitbar.p12 -d
+    tags: false
+    all_branches: true
+    public_repo: oleander/bitbar

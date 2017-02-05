@@ -3,7 +3,6 @@ import AppKit
 
 typealias Value = (String, [Code])
 
-//  Converted with Swiftify v1.0.6239 - https://objectivec2swift.com/
 final class Ansi: BoolVal, Param {
   var priority = 5
   var active: Bool { return bool }
@@ -12,7 +11,7 @@ final class Ansi: BoolVal, Param {
     guard active else { return }
     switch Pro.parse(Pro.getANSIs(), menu.getTitle()) {
     case let Result.success(result, _):
-      menu.update(attr: apply(result))
+      menu.set(title: apply(result))
     case let Result.failure(lines):
       for error in lines {
         menu.add(error: error)

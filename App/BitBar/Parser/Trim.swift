@@ -4,7 +4,7 @@ final class Trim: BoolVal, Param {
 
   func menu(didLoad menu: Menuable) {
     if active {
-      menu.update(attr: menu.getAttrs().trimmed())
+      menu.set(title: menu.getAttrs().trimmed())
     }
   }
 }

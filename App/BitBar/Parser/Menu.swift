@@ -67,7 +67,7 @@ final class Menu: ItemBase, Menuable {
   /**
     @state Used to turn the checkbox marker on/off
   */
-  func update(state: Int) {
+  func set(state: Int) {
     self.state = state
   }
 

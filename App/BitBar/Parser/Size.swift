@@ -3,6 +3,6 @@ final class Size: FloatVal, Param {
 
   func menu(didLoad menu: Menuable) {
     // TODO: Size should parse a float, not int
-    menu.update(size: float)
+    menu.set(size: float)
   }
 }

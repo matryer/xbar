@@ -71,7 +71,7 @@ class ItemBase: NSMenuItem {
   }
 
   func set(title: String) {
-    attributedTitle = NSMutableAttributedString(withDefaultFont: title)
+    attributedTitle = Mutable(withDefaultFont: title)
   }
 
   func removeAllSubMenus() {

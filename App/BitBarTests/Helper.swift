@@ -43,21 +43,6 @@ func inspect(_ value: String) -> String {
   return "'" + value.replace("\n", "\\n").replace("'", "\\'") + "'"
 }
 
-func aWord() -> Gen<String> {
-  return Character.arbitrary.proliferateRange(1, 2).map { String.init($0) }
-  // return Character.arbitrary.proliferateNonEmpty.map { String.init($0) }
-}
-
-func aSentence() -> Gen<String> {
-  let whitespace = anyOf(" ", "\t")
-  return Gen<(String, String, String)>
-    .zip(whitespace, aWord(), whitespace)
-    .map { $0 + $1 + $2 }
-    .proliferate
-    .map { $0.joined(separator: "")
-  }
-}
-
 public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "exit with status 0 and output '\(exp ?? "")'"
@@ -196,7 +181,9 @@ func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
       return item.test(result).whenFail {
         print("warning: ------------------------------------")
         print("warning: Failed verifying \(name)")
-        print("warning: ", String(describing: result))
+        print("warning: From input: ", String(describing: result))
+        print("warning: Got: ", String(describing: item))
+
       }
     case let Result.failure(lines):
       return (false <?> "Parser failed").whenFail {

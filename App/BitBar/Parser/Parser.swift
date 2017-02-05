@@ -1,4 +1,4 @@
-  // swiftlint:disable type_name
+// swiftlint:disable type_name
 // swiftlint:disable line_length
 // swiftlint:disable type_body_length
 import Hue
@@ -7,6 +7,13 @@ import FootlessParser
 typealias X = (String, [Param], Int)
 public typealias P<T> = Parser<Character, T>
 typealias U = P<X>
+
+let slash = "\\"
+public func unescape(_ value: String, what: [String]) -> String {
+return ([slash] + what).reduce(value) {
+    return $0.replace(slash + $1, $1)
+  }
+}
 
 // TODO: Rename Pro to something like Parser
 // Parser is currently taken by FootlessParser
@@ -476,10 +483,10 @@ class Pro {
   }
 
   internal static func until(_ oops: [String], consume: Bool = true) -> P<String> {
-    let one = count(1, any())
-    let escaped = string("\\")
-    let terminator = count(1, noneOf(oops))
-    let block: P<String> = (escaped *> one) <|> terminator
+    let one: P<String> = count(1, any())
+    let escaped: P<String> = string("\\")
+    let terminator: P<String> = count(1, noneOf(oops))
+    let block: P<String> = (curry({ (a: String, b: String) in unescape(a + b, what: oops) }) <^> escaped <*> one) <|> terminator
     let blocks = { (values: [String]) in values.joined() } <^> zeroOrMore(block)
 
     // Should we consume the last char we just matched against?

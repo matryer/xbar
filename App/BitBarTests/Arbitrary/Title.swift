@@ -48,9 +48,9 @@ extension Title: Base, Val {
       return false
     }
 
-    // if title.getAttrs() !=  getAttrs() {
-    //   return false
-    // }
+    if title.getAttrs() != getAttrs() {
+      return false
+    }
 
     for (index, menu) in menus.enumerated() {
       if !menu.equals(title.menus[index]) {

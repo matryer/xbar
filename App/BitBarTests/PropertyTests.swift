@@ -54,12 +54,12 @@ class PropertyTests: XCTestCase {
   func testColor() {
     verify(name: "color", parser: Pro.getColor(), gen: BitBar.Color.arbitrary)
   }
-  //
-  // // TODO: 'templateImage' is currenty not being tested, only 'image'
-  // // func testTemplateImage() {
-  // // verify(name: "color", parser: Pro.getColor(), gen: BitBar.Color.arbitrary)
-  // // }
-  //
+
+  // TODO: 'templateImage' is currenty not being tested, only 'image'
+  // func testTemplateImage() {
+  // verify(name: "color", parser: Pro.getColor(), gen: BitBar.Color.arbitrary)
+  // }
+
   func testSize() {
     verify(name: "size", parser: Pro.getSize(), gen: Size.arbitrary)
   }

@@ -8,6 +8,6 @@ final class Length: IntVal, Param {
     let attr = menu.getAttrs()
     guard attr.count > length else { return }
     guard length > 0 else { return }
-    menu.update(attr: attr.truncate(length))
+    menu.set(title: attr.truncate(length))
   }
 }

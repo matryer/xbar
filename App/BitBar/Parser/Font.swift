@@ -3,6 +3,6 @@ final class Font: StringVal, Param {
   var name: String { return data }
 
   func menu(didLoad menu: Menuable) {
-    menu.update(fontName: name)
+    menu.set(fontName: name)
   }
 }
