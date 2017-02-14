@@ -2,7 +2,7 @@ import Quick
 import Nimble
 @testable import BitBar
 
-private extension String {
+extension String {
   func blink(_ speed: Speed) -> String {
     switch speed {
     case .slow:
@@ -53,8 +53,37 @@ private extension String {
     return toAnsi(using: 37)
   }
 
+  func background(color: CColor) -> String {
+    switch color {
+    case .red:
+      return toAnsi(using: 41)
+    case .green:
+      return toAnsi(using: 42)
+    case .yellow:
+      return toAnsi(using: 43)
+    case .blue:
+      return toAnsi(using: 44)
+    case .magenta:
+      return toAnsi(using: 45)
+    case .cyan:
+      return toAnsi(using: 46)
+    case .white:
+      return toAnsi(using: 47)
+    case let .rgb(red, green, blue):
+      return toAnsi(using: [red, green, blue])
+    case let .index(color):
+      return toAnsi(using: color)
+    default:
+      preconditionFailure("failed on default")
+    }
+  }
+
   func toAnsi(using code: Int, reset: Bool = true) -> String {
-    let code = "\033[\(code)m\(self)"
+    return toAnsi(using: [code], reset: reset)
+  }
+
+  func toAnsi(using codes: [Int], reset: Bool = true) -> String {
+    let code = "\033[\(codes.map(String.init).joined(separator: ";"))m\(self)"
     if reset { return code + "\033[0m" }
     return code
   }

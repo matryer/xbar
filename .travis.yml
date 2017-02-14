@@ -13,3 +13,4 @@ deploy:
   on:
     tags: true
     repo: oleander/bitbar
+    condition: -z $encrypted_34de277e100a_key

@@ -71,6 +71,8 @@ extension Mutable {
 
   /**
     Does @self contain a background with color?
+    TODO:; Why is this not tested?
+    FIXME: This should return a static enum, not Bool
   */
   func has(background color: NSColor) -> Bool {
     guard let maybe = get(key: NSBackgroundColorAttributeName) else {

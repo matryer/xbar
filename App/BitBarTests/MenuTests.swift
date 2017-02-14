@@ -2,8 +2,134 @@ import Quick
 import Nimble
 @testable import BitBar
 
+enum W<T> {
+  case success(T)
+  case failure
+}
+
+func the(_ menu: Menuable, at index: Int) -> W<Menuable> {
+  return the(menu, at: [index])
+}
+
+func the(_ menu: Menuable, at indexes: [Int] = []) -> W<Menuable> {
+  if indexes.isEmpty { return .success(menu) }
+  if menu.menus.count <= indexes[0] { return .failure }
+  return the(menu.menus[indexes[0]], at: Array(indexes[1..<indexes.count]))
+}
+
+func have(foreground color: CColor) -> MatcherFunc<W<Menuable>> {
+  return tester("have a foreground") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.has(foreground: color.toNSColor())
+    case .failure:
+      return "expected a color much like \(color)"
+    }
+  }
+}
+
+func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
+  return tester("have a background") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.has(background: color.toNSColor())
+    case .failure:
+      return "expected a color much like \(color)"
+    }
+  }
+}
+
+func beBold() -> MatcherFunc<W<Menuable>> {
+  return tester("bold") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.isBold
+    case .failure:
+      return "failed with a failure"
+    }
+  }
+}
+
+func beItalic() -> MatcherFunc<W<Menuable>> {
+  return tester("italic") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.isItalic
+    case .failure:
+      return "failed with a failure"
+    }
+  }
+}
+
 class MenuTests: Helper {
   override func spec() {
+    let setup = { (_ input: String, block: @escaping (Menuable) -> Void) in
+      self.match(Pro.menu, input) { (menu, _) in
+        block(menu)
+      }
+    }
+
+    context("ansi") {
+      let title = "This is a title"
+      it("should bold text") {
+        setup(title.bold  + "|ansi=true\n") { menu in
+          expect(the(menu)).to(beBold())
+        }
+      }
+
+      it("should italic text") {
+        setup(title.italic  + "|ansi=true\n") { menu in
+          expect(the(menu)).to(beItalic())
+        }
+      }
+
+      it("should not bold text") {
+        setup(title.bold  + "|ansi=false\n") { menu in
+          expect(the(menu)).notTo(beBold())
+        }
+      }
+
+      context("foreground") {
+        it("should have the color red") {
+          setup(title + "|color=red\n") { menu in
+            expect(the(menu)).to(have(foreground: .red))
+          }
+        }
+
+        it("should have the color blue") {
+          setup(title + "|color=blue\n") { menu in
+            expect(the(menu)).to(have(foreground: .blue))
+          }
+        }
+
+        it("should have no color") {
+          setup(title  + "|color=xxx\n") { menu in
+            expect(the(menu)).notTo(have(foreground: .blue))
+          }
+        }
+      }
+
+      context("background") {
+        it("should have the color red") {
+          setup(title.background(color: .red)  + "|ansi=true\n") { menu in
+            expect(the(menu)).to(have(background: .red))
+          }
+        }
+
+        it("should have the color blue") {
+          setup(title.background(color: .blue)  + "|ansi=true\n") { menu in
+            expect(the(menu)).to(have(background: .blue))
+          }
+        }
+
+        it("should have no background") {
+          setup(title.background(color: .blue)  + "|ansi=false\n") { menu in
+            expect(the(menu)).notTo(have(background: .blue))
+          }
+        }
+      }
+    }
+
     let addSuffix = { return $0 + "\n" }
     context("params") {
       it("fails on | but no params") {
