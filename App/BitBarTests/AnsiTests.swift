@@ -54,21 +54,31 @@ extension String {
   }
 
   func background(color: CColor) -> String {
+    return toColor(color: color, offset: 40)
+  }
+
+  func foreground(color: CColor) -> String {
+    return toColor(color: color, offset: 30)
+  }
+
+  private func toColor(color: CColor, offset: Int) -> String {
     switch color {
+    case .black:
+      return toAnsi(using: 0 + offset)
     case .red:
-      return toAnsi(using: 41)
+      return toAnsi(using: 1 + offset)
     case .green:
-      return toAnsi(using: 42)
+      return toAnsi(using: 2 + offset)
     case .yellow:
-      return toAnsi(using: 43)
+      return toAnsi(using: 3 + offset)
     case .blue:
-      return toAnsi(using: 44)
+      return toAnsi(using: 4 + offset)
     case .magenta:
-      return toAnsi(using: 45)
+      return toAnsi(using: 5 + offset)
     case .cyan:
-      return toAnsi(using: 46)
+      return toAnsi(using: 6 + offset)
     case .white:
-      return toAnsi(using: 47)
+      return toAnsi(using: 7 + offset)
     case let .rgb(red, green, blue):
       return toAnsi(using: [red, green, blue])
     case let .index(color):
@@ -400,6 +410,14 @@ class AnsiTests: Helper {
 
           expect(result[2]).toNot(be(.black))
           expect(result[2]).toNot(have(background: .black))
+        }
+      }
+
+      it("handles two resets in a row") {
+        let reset = "\033[0m"
+        check("A" + reset + reset) { result in
+          expect(result).to(haveCount(1))
+          expect(result[0]).to(equal("A"))
         }
       }
     }

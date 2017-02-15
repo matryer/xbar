@@ -3,6 +3,7 @@
 // swiftlint:disable type_body_length
 import Hue
 import FootlessParser
+import AppKit
 
 typealias X = (String, [Param], Int)
 public typealias P<T> = Parser<Character, T>
@@ -20,6 +21,7 @@ return ([slash] + what).reduce(value) {
 class Pro {
   private static let ws = zeroOrMore(whitespace)
   private static let wsOrNl = zeroOrMore(whitespacesOrNewline)
+  private static let manager = NSFontManager.shared()
   private static let terminals = ["\u{1B}", "\\033", "\033", "\\e", "\\x1b"]
 
   /**
@@ -45,14 +47,25 @@ class Pro {
     Quote / unquoted font attribute, i.e font="Monaco"
   */
   internal static func getFont() -> P<Font> {
-    return Font.init <^> attribute("font") { quoteOrWord() }
+    return attribute("font") { quoteOrWord() } >>- { font in
+      let has = manager.availableFontFamilies.some {
+        return $0.lowercased() == font.lowercased()
+      }
+
+      if has { return pure(Font(font)) }
+
+      return stop("Can't find font \(font) in the list of fonts")
+    }
   }
 
   /**
     Unquoted size attribute as a positive int, i.e size=10
   */
   internal static func getSize() -> P<Size> {
-    return Size.init <^> attribute("size") { digits() }
+    return attribute("size") { digits() } >>- { size in
+      if size == 0 { return stop("Invalid size 0") }
+      return pure(Size(size))
+    }
   }
 
   /**
@@ -220,12 +233,12 @@ class Pro {
     Reads ANSI codes, i.e "\e[10mHello\e[0;2m" => [[10], "Hello", [0, 2]]
   */
   internal static func getANSIs() -> P<[Value]> {
-    return Ansi.toAttr <^> zeroOrMore(ansi <|> notAnsi)
+    return Ansi.toAttr <^> zeroOrMore(notAnsi <|> ansi)
   }
 
   // Anything but \e[...m
   private static var notAnsi: P<Attributed> {
-  return { .string($0) } <^> til(terminals, empty: false)
+    return { .string($0) } <^> til(terminals, empty: false)
   }
 
   // Input: 5;123, output: Color.index(123)
@@ -545,10 +558,7 @@ class Pro {
 
   private static func til(_ values: [String], empty: Bool = true) -> P<String> {
     let parser = noneOf(values)
-    if empty {
-      return (eof() *> pure("")) <|> zeroOrMore(parser)
-    }
-
+    if empty { return zeroOrMore(parser) }
     return oneOrMore(parser)
   }
 

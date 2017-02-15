@@ -196,13 +196,13 @@ class TitleTests: Helper {
             var basic = "A|size=10"
             basic += "\n--B|size=20"
             basic += "\n----C|size=5"
-            basic += "\n--D|size=0"
+            basic += "\n--D|size=10"
             basic += "\n--E|size=19"
             basic += "\nF|size=1\n"
             self.match(Pro.headings, basic) { (data: [X], _) in
               expect(data.count).to(equal(6))
 //              let empty = [Param]()
-              let matching = [("A", 0, 10), ("B", 1, 20), ("C", 2, 5), ("D", 1, 0), ("E", 1, 19), ("F", 0, 1)]
+              let matching = [("A", 0, 10), ("B", 1, 20), ("C", 2, 5), ("D", 1, 10), ("E", 1, 19), ("F", 0, 1)]
 
               for (index, item) in matching.enumerated() {
                 expect(item.0).to(equal(data[index].0))

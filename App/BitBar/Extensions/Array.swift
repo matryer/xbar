@@ -29,11 +29,16 @@ extension Array {
     }
   }
 
-}
+  func some(block: (Element) -> Bool) -> Bool {
+    return reduce(false) { acc, el in
+      return acc || block(el)
+    }
+  }
 
-// extension Sequence where Iterator.Element == String {
-//   // To lazy to type {separator}
-//   func joined(_ sep: String = "") -> String {
-//     return joined(separator: sep)
-//   }
-// }
+  func all(block: (Element) -> Bool) -> Bool {
+    if isEmpty { return true }
+    return reduce(true) { acc, el in
+      return acc && block(el)
+    }
+  }
+}

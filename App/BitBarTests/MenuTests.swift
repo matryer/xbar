@@ -28,6 +28,39 @@ func have(foreground color: CColor) -> MatcherFunc<W<Menuable>> {
   }
 }
 
+func have(title: String) -> MatcherFunc<W<Menuable>> {
+  return tester("have a title") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.string == title
+    case .failure:
+      return "to have a title"
+    }
+  }
+}
+
+func have(title: Mutable) -> MatcherFunc<W<Menuable>> {
+  return tester("have a title") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle == title
+    case .failure:
+      return "to have a title"
+    }
+  }
+}
+
+func have(font: String) -> MatcherFunc<W<Menuable>> {
+  return tester("to have have font") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.fontName == font
+    case .failure:
+      return "expected font \(font)"
+    }
+  }
+}
+
 func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
   return tester("have a background") { (result: W<Menuable>) in
     switch result {
@@ -38,6 +71,28 @@ func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
     }
   }
 }
+
+func have(size: Int) -> MatcherFunc<W<Menuable>> {
+  return tester("to have size") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.fontSize == size
+    case .failure:
+      return "expected a menu"
+    }
+  }
+}
+
+// func respond(toScript script: String) -> MatcherFunc<W<Menuable>> {
+//   return tester("to script") { (result: W<Menuable>) in
+//     switch result {
+//     case let .success(menu):
+//       return menu.aTitle.has(background: color.toNSColor())
+//     case .failure:
+//       return "expected a color much like \(color)"
+//     }
+//   }
+// }
 
 func beBold() -> MatcherFunc<W<Menuable>> {
   return tester("bold") { (result: W<Menuable>) in
@@ -61,10 +116,21 @@ func beItalic() -> MatcherFunc<W<Menuable>> {
   }
 }
 
+func beTrimmed() -> MatcherFunc<W<Menuable>> {
+  return tester("trimmed") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+    return menu.aTitle == menu.aTitle.trimmed()
+    case .failure:
+      return "to be trimmed"
+    }
+  }
+}
+
 class MenuTests: Helper {
   override func spec() {
-    let setup = { (_ input: String, block: @escaping (Menuable) -> Void) in
-      self.match(Pro.menu, input) { (menu, _) in
+    let setup = { (_ input: String..., block: @escaping (Menuable) -> Void) in
+      self.match(Pro.menu, input.joined() + "\n") { (menu, _) in
         block(menu)
       }
     }
@@ -89,6 +155,38 @@ class MenuTests: Helper {
         }
       }
 
+      context("foreground & background") {
+        it("handles words consisting of both") {
+          setup(title.background(color: .red).foreground(color: .blue) + "|ansi=true\n") { menu in
+            expect(the(menu)).to(have(background: .red))
+            expect(the(menu)).to(have(foreground: .blue))
+          }
+        }
+
+        it("handles concatenated words") {
+          let w1 = "A"
+          let w2 = "B"
+          let input = w1.background(color: .red) + w2.foreground(color: .blue)
+          let output = w1.mutable().background(color: .red)
+            + w2.mutable().foreground(color: .blue)
+          setup(input + "|ansi=true\n") { menu in
+            expect(the(menu)).to(have(title: output))
+          }
+        }
+
+        it("handles concatenated words and mixed") {
+          let w1 = "A"
+          let w2 = "B"
+          let input = w1.background(color: .red).foreground(color: .yellow) + w2.foreground(color: .blue)
+          print("warning:", input.replace("\0", "X"))
+          let output = w1.mutable().background(color: .red).foreground(color: .yellow)
+            + w2.mutable().foreground(color: .blue)
+          setup(input + "|ansi=true\n") { menu in
+            expect(the(menu)).to(have(title: output))
+          }
+        }
+      }
+
       context("foreground") {
         it("should have the color red") {
           setup(title + "|color=red\n") { menu in
@@ -105,6 +203,85 @@ class MenuTests: Helper {
         it("should have no color") {
           setup(title  + "|color=xxx\n") { menu in
             expect(the(menu)).notTo(have(foreground: .blue))
+          }
+        }
+      }
+
+      // context("bash") {
+      //   it("should be clickable") {
+      //     setup(title, "|bash=\"/bin/sh\"") { menu in
+      //       expect(the(menu)).to(respond(toScript: "/bin/sh"))
+      //     }
+      //   }
+      // }
+
+      context("size") {
+        it("handles size > 0") {
+          setup(title + "|size=10") { menu in
+            expect(the(menu)).to(have(size: 10))
+          }
+        }
+      }
+
+      context("font") {
+        it("handles font without space") {
+          setup(title + "|font=Monaco") { menu in
+            expect(the(menu)).to(have(font: "Monaco"))
+          }
+        }
+
+        it("handles quotes font without space") {
+          setup(title + "|font=\"Monaco\"") { menu in
+            expect(the(menu)).to(have(font: "Monaco"))
+          }
+        }
+      }
+
+      context("emojize") {
+        it("handles emojize (true)") {
+          setup(":mushroom:|emojize=true") { menu in
+            expect(the(menu)).to(have(title: "🍄"))
+          }
+        }
+
+        it("handles emojize (false)") {
+          setup(":mushroom:|emojize=false") { menu in
+            expect(the(menu)).to(have(title: ":mushroom:"))
+          }
+        }
+
+        it("handles invalid emojize") {
+          setup(":mush:|emojize=true") { menu in
+            expect(the(menu)).to(have(title: ":mush:"))
+          }
+        }
+      }
+
+      context("length") {
+        it("handles length less then text") {
+          setup("ABC|length=1") { menu in
+            expect(the(menu)).to(have(title: "A…"))
+          }
+        }
+
+        it("handles length greater then text") {
+          setup("ABC|length=100") { menu in
+            expect(the(menu)).to(have(title: "ABC"))
+          }
+        }
+      }
+
+      context("trim") {
+        let title = "  A  "
+        it("handles true base case") {
+          setup(title + "|trim=true") { menu in
+            expect(the(menu)).to(beTrimmed())
+          }
+        }
+
+        it("handles false base case") {
+          setup(title + "|trim=false") { menu in
+            expect(the(menu)).notTo(beTrimmed())
           }
         }
       }
@@ -184,7 +361,7 @@ class MenuTests: Helper {
       }
 
       it("has subs with params") {
-        self.match(Pro.getMenu(), addSuffix("My Menu\n--A| font=X \n--B")) {
+        self.match(Pro.getMenu(), addSuffix("My Menu\n--A| font=Monaco \n--B")) {
           expect($0.getValue()).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
           let sub = $0.menus[0]

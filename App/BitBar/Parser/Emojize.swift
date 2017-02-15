@@ -21,8 +21,9 @@ final class Emojize: BoolVal, Param {
   var active: Bool { return bool }
 
   func menu(didLoad menu: Menuable) {
-    // FIXME: This overrides title!
-    menu.set(title: menu.getTitle().emojis)
+    if active {
+      menu.set(title: menu.getTitle().emojis)
+    }
   }
 
   private static func forChar(_ char: String) -> String? {

@@ -40,7 +40,7 @@ test:
 	@echo "[Task] Running test suite..."
 	@$(TEST) | xcpretty -c
 ci:
-	@set -o pipefail && $(TEST) | xcpretty -c
+	@set -o pipefail && $(TEST)
 watch:
 	@echo "[Task] Watching for file changes..."
 	@find . -name "*.swift" | entr -r make test

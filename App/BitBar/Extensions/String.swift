@@ -24,7 +24,7 @@ extension String {
   }
 
   func inspected() -> String {
-    return "\"" + replace("\n", "↵") + "\""
+    return "\"" + replace("\n", "↵").replace("\0", "0") + "\""
   }
 
   func mutable() -> NSMutableAttributedString {

@@ -7,7 +7,7 @@ import Nimble
 let failed = false <?> "Parser failed"
 let upper: Gen<Character> = Gen<Character>.fromElements(in: "A"..."Z")
 let lower: Gen<Character> = Gen<Character>.fromElements(in: "a"..."z")
-let natrual = Int.arbitrary.suchThat { $0 >= 0 }
+let natrual = Int.arbitrary.suchThat { $0 > 0 }
 let numeric: Gen<Character> = Gen<Character>.fromElements(in: "0"..."9")
 let upperAF: Gen<Character> = Gen<Character>.fromElements(in: "A"..."F")
 let loweraf: Gen<Character> = Gen<Character>.fromElements(in: "a"..."f")

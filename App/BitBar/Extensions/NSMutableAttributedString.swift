@@ -22,6 +22,10 @@ extension Mutable {
     self.init(string: string, attributes: [NSFontAttributeName: Mutable.defaultFont])
   }
 
+  static func + (left: Mutable, right: Mutable) -> Mutable {
+    return left.appended(right)
+  }
+
   var isBold: Bool {
     return traitSet.contains(.boldFontMask)
   }
@@ -120,6 +124,14 @@ extension Mutable {
     case let .foreground(color):
       return update(attr: [NSForegroundColorAttributeName: color])
     }
+  }
+
+  func background(color: CColor) -> Mutable {
+    return style(with: .background(color.toNSColor()))
+  }
+
+  func foreground(color: CColor) -> Mutable {
+    return style(with: .foreground(color.toNSColor()))
   }
 
   func update(fontName: String) -> Mutable {

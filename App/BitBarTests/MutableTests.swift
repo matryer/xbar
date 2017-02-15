@@ -353,6 +353,12 @@ class MutableTests: Helper {
       }
     }
 
+    context("plus") {
+      it("concatenates using +") {
+        expect("A".mutable() + "B".mutable()).to(equal("AB".mutable()))
+      }
+    }
+
     context("combine") {
       var color: NSColor!
 
