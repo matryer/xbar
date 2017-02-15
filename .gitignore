@@ -42,3 +42,4 @@ Dist/
 *.zip
 key.p12
 developer/
+.travis.yml.back

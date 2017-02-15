@@ -2,15 +2,3 @@ language: objective-c
 install: make setup
 osx_image: xcode8.2
 script: make ci
-before_deploy: make release version=$TRAVIS_TAG
-before_install: openssl aes-256-cbc -K $encrypted_34de277e100a_key -iv $encrypted_34de277e100a_iv
-  -in App/BitBar/Resources/bitbar.p12.enc -out bitbar.p12 -d
-deploy:
-  skip_cleanup: true
-  provider: releases
-  api_key: $API_KEY
-  file: BitBar-$TRAVIS_TAG.zip
-  on:
-    tags: true
-    repo: oleander/bitbar
-    condition: -z "$encrypted_34de277e100a_key"

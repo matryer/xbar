@@ -114,9 +114,9 @@ final class Menu: ItemBase, Menuable {
     return title.trim() == "-"
   }
 
-  private func currentTitle() -> NSMutableAttributedString {
+  private func currentTitle() -> Mutable {
     guard let title = attributedTitle else {
-      return NSMutableAttributedString(withDefaultFont: self.title)
+      return Mutable(withDefaultFont: self.title)
     }
 
     return title.mutable()

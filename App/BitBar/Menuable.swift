@@ -111,8 +111,8 @@ extension Menuable {
     Display an @image instead of text
   */
   func set(image anImage: NSImage, isTemplate: Bool = false) {
+    anImage.isTemplate = isTemplate
     image = anImage
-    image?.isTemplate = isTemplate
   }
 
   /**

@@ -37,6 +37,11 @@ final class Image: Param {
       return menu.add(error: "Could not create image from \(unpacked)")
     }
 
+    guard image.isValid else {
+      print("warning: xxx")
+      return menu.add(error: "Image is not valid")
+    }
+
     menu.set(image: image, isTemplate: isTemplate)
   }
 
