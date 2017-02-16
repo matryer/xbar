@@ -310,7 +310,7 @@ enum Code: Equatable {
 enum Where: Equatable {
   case background
   case foreground
-  case all
+  case all // TODO: Rename to both
 
   static func == (lhs: Where, rhs: Where) -> Bool {
     return String(describing: lhs) == String(describing: rhs)
