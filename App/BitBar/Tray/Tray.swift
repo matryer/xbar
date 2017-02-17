@@ -147,4 +147,8 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     item.highlightMode = false
     closeEvent.emit()
   }
+
+  internal func refresh() {
+    updatedAgoItem?.refresh()
+  }
 }

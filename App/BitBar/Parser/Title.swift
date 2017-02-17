@@ -107,9 +107,27 @@ final class Title: NSMenu, Menuable, TrayDelegate {
 
     toBeRemoved = []
     toBeAdded = []
+
+    tray.refresh()
   }
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  var isAltAlternate: Bool {
+    return false
+  }
+
+  var isChecked: Bool {
+    return false
+  }
+
+  var hasDropdown: Bool {
+    return true
+  }
+
+  var isEnabled: Bool {
+    return true
   }
 }

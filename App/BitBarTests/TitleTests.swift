@@ -5,6 +5,11 @@ import Nimble
 typealias R = (String, [Param])
 class TitleTests: Helper {
   override func spec() {
+    let setup = { (_ input: String..., block: @escaping (Menuable) -> Void) in
+      self.match(Pro.title, input.joined() + "\n") { (menu, _) in
+        block(menu)
+      }
+    }
 
     context("matching") {
       context("no params") {
@@ -38,6 +43,98 @@ class TitleTests: Helper {
             expect(data.1).to(haveCount(0))
             expect(rem).to(beEmpty())
           }
+        }
+      }
+
+      context("sub menu") {
+        it("is active if it has sub menus") {
+          setup("A\n---\nB\n") { menu in
+            expect(the(menu)).to(beClickable())
+            expect(the(menu, at: [0])).notTo(beClickable())
+          }
+        }
+
+        it("is active if it has sub sub menus") {
+          setup("A\n---\nB\n--C\n") { menu in
+            expect(the(menu)).to(beClickable())
+            expect(the(menu, at: [0])).to(beClickable())
+            expect(the(menu, at: [0, 0])).notTo(beClickable())
+          }
+        }
+      }
+
+      context("ansi") {
+        let title = "This is a title"
+        it("should bold text") {
+          setup(title.bold  + "|ansi=true\n") { menu in
+            expect(the(menu)).to(beBold())
+          }
+        }
+
+        it("should italic text") {
+          setup(title.italic  + "|ansi=true\n") { menu in
+            expect(the(menu)).to(beItalic())
+          }
+        }
+
+        it("should not bold text") {
+          setup(title.bold  + "|ansi=false\n") { menu in
+            expect(the(menu)).notTo(beBold())
+          }
+        }
+
+        context("foreground & background") {
+          it("handles words consisting of both") {
+            setup(title.background(color: .red).foreground(color: .blue) + "|ansi=true\n") { menu in
+              expect(the(menu)).to(have(background: .red))
+              expect(the(menu)).to(have(foreground: .blue))
+            }
+          }
+
+          it("handles concatenated words") {
+            let w1 = "A"
+            let w2 = "B"
+            let input = w1.background(color: .red) + w2.foreground(color: .blue)
+            let output = w1.mutable().background(color: .red)
+              + w2.mutable().foreground(color: .blue)
+            setup(input + "|ansi=true\n") { menu in
+              expect(the(menu)).to(have(title: output))
+            }
+          }
+
+          it("handles concatenated words and mixed") {
+            let w1 = "A"
+            let w2 = "B"
+            let input = w1.background(color: .red).foreground(color: .yellow) + w2.foreground(color: .blue)
+            let output = w1.mutable().background(color: .red).foreground(color: .yellow)
+              + w2.mutable().foreground(color: .blue)
+            setup(input + "|ansi=true\n") { menu in
+              expect(the(menu)).to(have(title: output))
+            }
+          }
+        }
+
+        context("foreground") {
+          it("should have the color red") {
+            setup(title + "|color=red\n") { menu in
+              expect(the(menu)).to(have(foreground: .red))
+            }
+          }
+
+          it("should have the color blue") {
+            setup(title + "|color=blue\n") { menu in
+              expect(the(menu)).to(have(foreground: .blue))
+            }
+          }
+
+          it("should have no color") {
+            setup(title  + "|color=xxx\n") { menu in
+              expect(the(menu)).notTo(have(foreground: .blue))
+            }
+          }
+
+          pending("displays error message if color doesnt exist") {}
+          pending("handles mixed lower and uppercase") {}
         }
       }
 
@@ -267,7 +364,7 @@ class TitleTests: Helper {
 
       it("handles nested menus") {
         let arg = "My Title\n---\nA\n--B\n----C\n"
-        self.match(Pro.getTitle(), arg) { (title: Title, _) in
+        self.match(Pro.title, arg) { (title: Title, _) in
           expect(title.getValue()).to(equal("My Title"))
           expect(title.menus).to(haveCount(1))
           expect(title.menus[0].getValue()).to(equal("A"))

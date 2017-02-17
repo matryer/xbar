@@ -43,13 +43,15 @@ final class Menu: ItemBase, Menuable {
     parentable?.submenu(didTriggerRefresh: self)
   }
 
+  var isChecked: Bool {
+    return state == NSOnState
+  }
+
   /**
     Add @menu to sub menu
   */
   func add(menu: NSMenuItem) {
-    if hasDropdown() {
-      addSub(menu)
-    }
+    addSub(menu)
   }
 
   func add(error: String) {
@@ -62,6 +64,10 @@ final class Menu: ItemBase, Menuable {
   func useAsAlternate() {
     isAlternate = true
     keyEquivalentModifierMask = NSAlternateKeyMask
+  }
+
+  var isAltAlternate: Bool {
+    return isAlternate && keyEquivalentModifierMask == NSAlternateKeyMask
   }
 
   /**
@@ -95,7 +101,7 @@ final class Menu: ItemBase, Menuable {
     Should sub menus be disabled?
     Set by the dropdown=bool attribute
   */
-  func hasDropdown() -> Bool {
+  var hasDropdown: Bool {
     return container.hasDropdown()
   }
 

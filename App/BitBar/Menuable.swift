@@ -6,7 +6,11 @@ protocol Menuable: class {
   var aTitle: NSMutableAttributedString { get set }
   var image: NSImage? { get set }
   var container: Container { get set }
+  var isEnabled: Bool { get }
   var title: String { get set }
+  var hasDropdown: Bool { get }
+  var isAltAlternate: Bool { get }
+  var isChecked: Bool { get }
   var menus: [Menu] { get set }
   var event: Event<Void> { get set }
   func getTitle() -> String
@@ -54,6 +58,7 @@ extension Menuable {
   }
 
   func add(menus: [Menu]) {
+    guard hasDropdown else { return }
     for menu in menus {
       menu.parentable = self
       if menu.isSeparator() {

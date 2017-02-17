@@ -38,7 +38,6 @@ final class Image: Param {
     }
 
     guard image.isValid else {
-      print("warning: xxx")
       return menu.add(error: "Image is not valid")
     }
 
