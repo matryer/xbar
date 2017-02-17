@@ -65,7 +65,6 @@ class PluginManager {
   // Parse @name on form {name}.{number}{unit}.{ext}
   // I.e aFile.10d.sh
   private func fileFor(name: String) -> Result<File> {
-    print("loading", name)
     return Pro.parse(Pro.getFile(), name)
   }
 
@@ -79,7 +78,6 @@ class PluginManager {
   }
 
   private func loadPlugins() {
-    print("loadPlugins")
     do {
       for file in try Folder(path: path).files {
         if !file.name.hasPrefix(".") {

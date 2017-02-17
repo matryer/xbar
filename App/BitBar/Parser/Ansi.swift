@@ -37,10 +37,8 @@ final class Ansi: BoolVal, Param {
         case let .color(.foreground, color):
           return mutable.style(with: .foreground(color.toNSColor()))
         default:
-          print("Ignore \(code) for \(mutable)")
+          return mutable
         }
-
-        return mutable
       })
     }
   }
