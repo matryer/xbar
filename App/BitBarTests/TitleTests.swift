@@ -267,7 +267,7 @@ class TitleTests: Helper {
 
       it("handles nested menus") {
         let arg = "My Title\n---\nA\n--B\n----C\n"
-        self.match(Pro.getTitle(), arg) { (title: Title, _) in
+        self.match(Pro.title, arg) { (title: Title, _) in
           expect(title.getValue()).to(equal("My Title"))
           expect(title.menus).to(haveCount(1))
           expect(title.menus[0].getValue()).to(equal("A"))

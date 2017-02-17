@@ -6,6 +6,7 @@ protocol Menuable: class {
   var aTitle: NSMutableAttributedString { get set }
   var image: NSImage? { get set }
   var container: Container { get set }
+  var isEnabled: Bool { get }
   var title: String { get set }
   var hasDropdown: Bool { get }
   var isAltAlternate: Bool { get }

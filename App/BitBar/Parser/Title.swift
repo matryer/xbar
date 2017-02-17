@@ -122,6 +122,10 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   var hasDropdown: Bool {
-    return false
+    return true
+  }
+
+  var isEnabled: Bool {
+    return true
   }
 }
