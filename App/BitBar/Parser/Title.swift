@@ -107,6 +107,8 @@ final class Title: NSMenu, Menuable, TrayDelegate {
 
     toBeRemoved = []
     toBeAdded = []
+
+    tray.refresh()
   }
 
   required init(coder decoder: NSCoder) {

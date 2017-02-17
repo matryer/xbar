@@ -15,6 +15,11 @@ class UpdatedAgoItem: ItemBase {
     set(title: getTitle())
   }
 
+  func refresh() {
+    updatedAt = NSDate()
+    touch()
+  }
+
   private func getTitle() -> String {
     return "Updated " + updatedAt.timeAgoSinceNow().lowercased()
   }
