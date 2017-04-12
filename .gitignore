@@ -43,3 +43,5 @@ Dist/
 key.p12
 developer/
 .travis.yml.back
+.build
+BitBar.xcodeproj

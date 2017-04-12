@@ -1,0 +1,80 @@
+PODS:
+  - AsyncSwift (2.0.1)
+  - DateToolsSwift (2.0.3)
+  - EmitterKit (5.0.1)
+  - Emojize (6.0.5):
+    - Files
+    - FootlessParser
+    - SwiftyJSON
+  - Files (1.6.2)
+  - FootlessParser (2.0.6)
+  - Hue (2.0.1)
+  - Nimble (6.1.0)
+  - Quick (1.1.0)
+  - Sparkle (1.17.0)
+  - SwiftCheck (0.8.0)
+  - SwiftTryCatch (1.0.4)
+  - SwiftyJSON (3.1.4)
+  - SwiftyTimer (2.0.0)
+  - SwiftyUserDefaults (3.0.0)
+
+DEPENDENCIES:
+  - AsyncSwift
+  - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
+  - EmitterKit
+  - Emojize (from `https://github.com/oleander/Emojize.git`)
+  - Files (from `https://github.com/JohnSundell/Files.git`)
+  - FootlessParser
+  - Hue
+  - Nimble
+  - Quick
+  - Sparkle
+  - SwiftCheck
+  - SwiftTryCatch (from `https://github.com/oleander/SwiftTryCatch.git`)
+  - SwiftyTimer
+  - SwiftyUserDefaults
+
+EXTERNAL SOURCES:
+  DateToolsSwift:
+    :git: https://github.com/MatthewYork/DateTools.git
+  Emojize:
+    :git: https://github.com/oleander/Emojize.git
+  Files:
+    :git: https://github.com/JohnSundell/Files.git
+  SwiftTryCatch:
+    :git: https://github.com/oleander/SwiftTryCatch.git
+
+CHECKOUT OPTIONS:
+  DateToolsSwift:
+    :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
+    :git: https://github.com/MatthewYork/DateTools.git
+  Emojize:
+    :commit: 5b61ecc4f6a339591a512433381aee73a4680703
+    :git: https://github.com/oleander/Emojize.git
+  Files:
+    :commit: e342da619507419503a815cd70c57505a841bcdd
+    :git: https://github.com/JohnSundell/Files.git
+  SwiftTryCatch:
+    :commit: efa6265680abd06b17fd0574a3f8d804ca3f86e7
+    :git: https://github.com/oleander/SwiftTryCatch.git
+
+SPEC CHECKSUMS:
+  AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
+  DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
+  EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
+  Emojize: c117c21420051d1f12493b7e12363861b044df48
+  Files: aa5984c1b97c8ddc65680e77f28f11680a900869
+  FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
+  Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
+  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
+  SwiftCheck: b9e20cd4088a534907fedb2d11d095f9d5fef1dc
+  SwiftTryCatch: 4f998604394cbe3f37241488b28bd5fdfe72387d
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+
+PODFILE CHECKSUM: cd2b65ff318188127a8373330d57f4d5d2d3df0b
+
+COCOAPODS: 1.2.1.rc.1

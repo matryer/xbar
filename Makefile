@@ -1,24 +1,19 @@
 APP := App
 DIST := "$(PWD)/Dist/BitBar.xcarchive/Products/Applications"
 CERT := bitbar.p12
+APP2="BitBar"
 KEYCHAIN := build.chain
-PLIST_BUDDY := /usr/libexec/PlistBuddy
-APP_PLIST := App/BitBar/Info.plist
-BUNDLE_VERSION := "$(shell $(PLIST_BUDDY) -c "Print CFBundleShortVersionString" $(APP_PLIST))"
 PROJECT_NAME ?= BitBar
 ifdef class
-	ARGS="-only-testing:BitBarTests/$(class)"
+	ARGS=-only-testing:BitBarTests/$(class)
 endif
 BUILD_ATTR := xcodebuild -workspace $(APP)/$(PROJECT_NAME).xcworkspace -scheme
 CONFIG := Debug
 BUILD := $(BUILD_ATTR) $(PROJECT_NAME)
-TEST := $(BUILD_ATTR) BitBarTests $(ARGS) test
 BUNDLE := $(PROJECT_NAME).app
+CONSTRUCT=xcodebuild -workspace BitBar.xcworkspace -scheme BitBar clean
 
 default: clean
-build:
-	@echo "[Task] Building $(PROJECT_NAME), this might take a while..."
-	@$(BUILD) | xcpretty
 archive:
 	@echo "[Task] Building app for deployment..."
 	@mkdir -p Dist
@@ -36,11 +31,6 @@ kill:
 open:
 	@echo "[Task] Opening $(BUNDLE) build from $(CONFIG)..."
 	@open $(APP)/.build/$(PROJECT_NAME)/Build/Products/$(CONFIG)/$(BUNDLE)
-test:
-	@echo "[Task] Running test suite..."
-	@$(TEST) | xcpretty -c
-ci:
-	@set -o pipefail && $(TEST)
 watch:
 	@echo "[Task] Watching for file changes..."
 	@find . -name "*.swift" | entr -r make test
@@ -64,3 +54,9 @@ compress:
 	@ditto -c -k --sequesterRsrc --keepParent "$(DIST)/BitBar.app" "BitBar-$(version).zip"
 	@echo "[Task] File has been compressed to BitBar-$(version).zip"
 release: archive compress
+install_deps:
+	pod install --repo-update
+test: install_deps
+	$(CONSTRUCT) $(ARGS) clean test
+build: install_deps
+	$(CONSTRUCT) clean build
