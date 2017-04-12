@@ -62,4 +62,4 @@ pipefail:
 	set -o pipefail
 ci: pipefail test
 build: install_deps
-	$(CONSTRUCT) clean build
+	$(CONSTRUCT) build
