@@ -24,7 +24,7 @@ clean:
 	@$(BUILD) clean | xcpretty
 install:
 	@echo "[Task] Installing dependencies..."
-	@pod install --project-directory=$(APP) --repo-update
+	@pod install --repo-update
 kill:
 	@echo "[Task] Killing all running instances of $(PROJECT_NAME)..."
 	@killall $(PROJECT_NAME) || :
