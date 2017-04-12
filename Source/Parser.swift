@@ -149,29 +149,6 @@ class Pro {
   }
 
   /**
-    Replaces emojis with it whatever @replace returns
-    I.e "Hello :mushroom:" => "Hello replace("mushroom")"
-  */
-  internal static func replaceEmojize(replace: @escaping (String) -> String?) -> P<String> {
-    // TODO: What happens then there is no closing :?
-    func merge(pre: String, item: String, post: String) -> String {
-      guard let result = replace(item) else {
-        return pre + ":" + item + ":" + post
-      }
-
-      return pre + result + post
-    }
-
-    let emojize =
-      curry(merge) <^>
-      (til([":"]) <* string(":")) <*>
-      (til([":"]) <* string(":")) <*>
-      til([":"])
-    let parser: P<[String]> = zeroOrMore(emojize)
-    return curry(self.merge) <^> parser <*> zeroOrMore(any())
-  }
-
-  /**
     A menu with zero or more parameters and zero or more sub menus
     I.e \n---\nMenu | terminal=true \n--A Sub Menu
   */
