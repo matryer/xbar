@@ -1,4 +1,4 @@
 language: objective-c
 install: make init install
 osx_image: xcode8.3
-script: make test
+script: make ci

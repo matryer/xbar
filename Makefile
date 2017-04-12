@@ -58,5 +58,8 @@ install_deps:
 	pod install --repo-update
 test: install_deps
 	$(CONSTRUCT) $(ARGS) clean test
+pipefail:
+	set -o pipefail
+ci: pipefail test
 build: install_deps
 	$(CONSTRUCT) clean build
