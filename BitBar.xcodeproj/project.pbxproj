@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0452258C2F09F2652359BB22 /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
+		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		2079AB6B1E9EC258005B92AD /* Alternate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB411E9EC258005B92AD /* Alternate.swift */; };
 		2079AB6C1E9EC258005B92AD /* Ansi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB421E9EC258005B92AD /* Ansi.swift */; };
 		2079AB6D1E9EC258005B92AD /* AnsiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB431E9EC258005B92AD /* AnsiTests.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "version-env.sh"; path = "Scripts/version-env.sh"; sourceTree = "<group>"; };
 		2079AB411E9EC258005B92AD /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alternate.swift; sourceTree = "<group>"; };
 		2079AB421E9EC258005B92AD /* Ansi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ansi.swift; sourceTree = "<group>"; };
 		2079AB431E9EC258005B92AD /* AnsiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiTests.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		2079AB961E9EC28A005B92AD /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				2055F3221E9ECF4100701EE5 /* version-env.sh */,
 				2079AB971E9EC2B0005B92AD /* ansi.10m.sh */,
 				2079AB981E9EC2B0005B92AD /* args.sh */,
 				2079AB991E9EC2B0005B92AD /* basic.sh */,
@@ -577,6 +580,7 @@
 				2079ABBA1E9EC2B0005B92AD /* sub3.10s.sh in Resources */,
 				2079ABB31E9EC2B0005B92AD /* space script.sh in Resources */,
 				2079ABB41E9EC2B0005B92AD /* stream-more.sh in Resources */,
+				2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */,
 				2079ABB21E9EC2B0005B92AD /* sleep.sh in Resources */,
 				2079ABAB1E9EC2B0005B92AD /* basic.sh in Resources */,
 				2079ABAF1E9EC2B0005B92AD /* invalid-syntax.sh in Resources */,

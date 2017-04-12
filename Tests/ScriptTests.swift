@@ -50,6 +50,15 @@ class ScriptTests: Helper {
     }
   }
 
+  func testEnv(path: String, env: String, value: String) {
+    waitUntil(timeout: timeout) { done in
+      let _ = Script(path: toFile(path), args: [], autostart: true) { result in
+        expect(result).to(have(environment: env, setTo: value))
+        done()
+      }
+    }
+  }
+
   func testCrash(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
       let _ = Script(path: toFile(path), args: args, autostart: true) { result in
@@ -94,6 +103,12 @@ class ScriptTests: Helper {
 
       it("exit code 1, with output") {
         self.testFail("exit1-output.sh", assumed: "Exit 1\n")
+      }
+    }
+
+    describe("env") {
+      it("has BitBarVersion set") {
+        self.testEnv(path: "version-env.sh", env: "BitBarVersion", value: "1")
       }
     }
 

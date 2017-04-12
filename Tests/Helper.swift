@@ -96,12 +96,29 @@ public func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
+public func have(environment: String, setTo value: String) -> MatcherFunc<Script.Result> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "environment \(environment) set to \(value)"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch result {
+    case let .success(stdout, 0):
+      return stdout == value + "\n"
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
+    }
+  }
+}
+
 func toFile(_ path: String) -> String {
   let res = path.components(separatedBy: ".")
   if let out = Bundle(for: Helper.self).path(forResource: res[0], ofType: res[1]) {
     return out
   }
-  
+
   // FIXME
   return ""
 }

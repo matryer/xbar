@@ -132,6 +132,8 @@ class Script {
     process.standardOutput = pipe
     process.standardError = pipe
 
+    setEnv(process)
+
     let processIfDone = {
       if !isDone() { return }
       let output = buffer.toString()
@@ -210,6 +212,17 @@ class Script {
 
   private func handleCrash(_ message: String) {
     self.failed(.crash(message))
+  }
+
+  private func setEnv(_ process: Process) {
+    guard let key = kCFBundleVersionKey else { return }
+    guard let version = Bundle.main.object(forInfoDictionaryKey: key as String) else { return }
+    guard let versionStr = version as? String else { return }
+    if process.environment == nil {
+      process.environment = [:]
+    }
+
+    process.environment!["BitBarVersion"] = versionStr
   }
 
   /**
