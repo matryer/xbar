@@ -39,8 +39,8 @@ class FontTests: Helper {
       }
     }
 
-    it("handles lowecased font") {
-      self.match(Pro.getFont(), "font=Monaco") {
+    it("handles lowercased font") {
+      self.match(Pro.getFont(), "font=monaco") {
         expect($0.getValue()).to(equal("Monaco"))
       }
     }
