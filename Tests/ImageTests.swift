@@ -82,6 +82,20 @@ extension Href {
   }
 }
 
+func verifyUrl(url: String) {
+  let image = Image(url)
+  let menu = Menu.arbitrary.sample[0]
+  image.menu(didLoad: menu)
+  expect(menu.image).toEventuallyNot(beNil())
+}
+
+func verifyInvalidUrl(url: String) {
+  let image = Image(url)
+  let menu = Menu.arbitrary.sample[0]
+  image.menu(didLoad: menu)
+  expect(menu.image).toEventually(beNil(), timeout: 5)
+}
+
 class ImageTests: Helper {
   func verifyBase64(_ parser: P<Image>, _ name: String) {
     describe(name) {
@@ -132,6 +146,24 @@ class ImageTests: Helper {
 
       describe("templateImage") {
         verifyBase64(Pro.getTemplateImage(), "templateImage")
+      }
+    }
+
+    describe("url") {
+      context("exist") {
+        it("handles valid image url") {
+          verifyUrl(url: "https://i.imgur.com/WVeH43e.png")
+        }
+
+        it("handles invalid image url") {
+          verifyInvalidUrl(url: "https://google.com")
+        }
+      }
+
+      context("does not exist") {
+        it("handles non existent url") {
+          verifyInvalidUrl(url: "https://i.imgur.com/WVeH43e.xxx")
+        }
       }
     }
   }

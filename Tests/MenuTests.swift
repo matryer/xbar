@@ -44,7 +44,7 @@ func have(image: String, isTemplate: Bool) -> MatcherFunc<W<Menuable>> {
     switch result {
     case let .success(menu):
       guard let image1 = menu.image else {
-        return "failed to parse image in menu"
+        return "menu could not parse image"
       }
 
       guard let image2 = toImage(string: image) else {
