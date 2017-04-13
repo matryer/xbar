@@ -4,20 +4,22 @@ CERT := bitbar.p12
 APP2="BitBar"
 KEYCHAIN := build.chain
 PROJECT_NAME ?= BitBar
+version ?= beta
 ifdef class
 	ARGS=-only-testing:BitBarTests/$(class)
 endif
-BUILD_ATTR := xcodebuild -workspace $(APP)/$(PROJECT_NAME).xcworkspace -scheme
+BUILD_ATTR := xcodebuild -workspace $(PROJECT_NAME).xcworkspace -scheme
 CONFIG := Debug
 BUILD := $(BUILD_ATTR) $(PROJECT_NAME)
 BUNDLE := $(PROJECT_NAME).app
 CONSTRUCT=xcodebuild -workspace BitBar.xcworkspace -scheme BitBar clean
 
 default: clean
-archive:
+release: archive compress
+archive: install_deps
 	@echo "[Task] Building app for deployment..."
 	@mkdir -p Dist
-	@$(BUILD) -archivePath Dist/BitBar clean archive | xcpretty
+	@$(BUILD) -archivePath Dist/BitBar clean archive
 	@echo "[Task] Completed building"
 clean:
 	@echo "[Task] Cleaning up..."
@@ -28,21 +30,19 @@ install:
 kill:
 	@echo "[Task] Killing all running instances of $(PROJECT_NAME)..."
 	@killall $(PROJECT_NAME) || :
-open:
-	@echo "[Task] Opening $(BUNDLE) build from $(CONFIG)..."
-	@open $(APP)/.build/$(PROJECT_NAME)/Build/Products/$(CONFIG)/$(BUNDLE)
 watch:
 	@echo "[Task] Watching for file changes..."
 	@find . -name "*.swift" | entr -r make test
 init:
 	@echo "[Task] Installing dependencies..."
 	@gem install cocoapods xcpretty --no-ri --no-rdoc
-setup: init install
+import_cert: unpack_p12
 	@security create-keychain -p travis $(KEYCHAIN)
 	@security default-keychain -s $(KEYCHAIN)
 	@security unlock-keychain -p travis $(KEYCHAIN)
 	@security set-keychain-settings -t 3600 -u $(KEYCHAIN)
 	@security import $(CERT) -k $(KEYCHAIN) -P "$(CERTPWD)" -T /usr/bin/codesign
+setup: init install import_cert
 lint:
 	@echo "[Task] Linting swift files..."
 	@swiftlint
@@ -57,9 +57,12 @@ release: archive compress
 install_deps:
 	pod install --repo-update
 test: install_deps
-	$(CONSTRUCT) $(ARGS) clean test
+	$(CONSTRUCT) $(ARGS) test
 pipefail:
 	set -o pipefail
 ci: pipefail test
 build: install_deps
 	$(CONSTRUCT) build
+# Decrypt certificate stored in repo used by the keychain
+unpack_p12:
+	travis encrypt-file --decrypt Resources/bitbar.p12.enc bitbar.p12 --iv $(encrypted_34de277e100a_iv) --key $(encrypted_34de277e100a_key)
