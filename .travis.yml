@@ -11,3 +11,4 @@ deploy:
   file: BitBar.zip
   on:
     tags: true
+    repo: oleander/bitbar
