@@ -1,12 +1,13 @@
 language: objective-c
 install: make setup
 osx_image: xcode8.3
-script: make ci
-before_deploy: make release
+script: make test
+before_deploy: make package
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: $API_KEY
-  file: BitBar-beta.zip
+  file: BitBar.zip
   on:
     tags: true

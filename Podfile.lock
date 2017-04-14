@@ -13,7 +13,7 @@ PODS:
   - Quick (1.1.0)
   - Sparkle (1.17.0)
   - SwiftCheck (0.8.0)
-  - SwiftTryCatch (1.0.4)
+  - SwiftTryCatch (2.0.2)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
   - SwiftyUserDefaults (3.0.0)
@@ -55,7 +55,7 @@ CHECKOUT OPTIONS:
     :commit: e342da619507419503a815cd70c57505a841bcdd
     :git: https://github.com/JohnSundell/Files.git
   SwiftTryCatch:
-    :commit: efa6265680abd06b17fd0574a3f8d804ca3f86e7
+    :commit: b3984b754b00572b84d658e278940836fb04a2b9
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
@@ -70,11 +70,11 @@ SPEC CHECKSUMS:
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   SwiftCheck: b9e20cd4088a534907fedb2d11d095f9d5fef1dc
-  SwiftTryCatch: 4f998604394cbe3f37241488b28bd5fdfe72387d
+  SwiftTryCatch: b9581e03fff404eecdb7a8f7ee8e1079e1728ea2
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: cd2b65ff318188127a8373330d57f4d5d2d3df0b
+PODFILE CHECKSUM: a01ffeb9cea70687627ca185cf1b463880d89862
 
-COCOAPODS: 1.2.1.rc.1
+COCOAPODS: 1.2.0

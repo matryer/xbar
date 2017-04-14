@@ -82,12 +82,12 @@ struct AutoLogin {
 
   // Insert item into startup database
   private func insert(_ item: Item) {
-    let _ = insert(list, item, nil, nil, appURL as CFURL, nil, nil)
+    _ = insert(list, item, nil, nil, appURL as CFURL, nil, nil)
   }
 
   // Remove item from start up database
   private func remove(_ item: Item) {
-    let _ = remove(list, item)
+    _ = remove(list, item)
   }
 
   // Is this application currently set to auto login?

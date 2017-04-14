@@ -7,7 +7,7 @@ class ScriptTests: Helper {
 
   func testSucc(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+      _ = Script(path: toFile(path), args: args, autostart: true) { result in
         expect(result).to(beASuccess(with: assumed))
         done()
       }
@@ -18,7 +18,7 @@ class ScriptTests: Helper {
     if assumed.isEmpty { fail("Assumed can't be empty'") }
     var index = 0
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+      _ = Script(path: toFile(path), args: args, autostart: true) { result in
         let description = String(describing: result)
         if index == -1 {
           return fail("To many calls. Max is \(assumed.count) \(path): \(description)")
@@ -43,7 +43,7 @@ class ScriptTests: Helper {
 
   func testFail(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+      _ = Script(path: toFile(path), args: args, autostart: true) { result in
         expect(result).to(beAFailure(with: assumed))
         done()
       }
@@ -52,7 +52,7 @@ class ScriptTests: Helper {
 
   func testEnv(path: String, env: String, value: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: toFile(path), args: [], autostart: true) { result in
+      _ = Script(path: toFile(path), args: [], autostart: true) { result in
         expect(result).to(have(environment: env, setTo: value))
         done()
       }
@@ -61,7 +61,7 @@ class ScriptTests: Helper {
 
   func testCrash(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+      _ = Script(path: toFile(path), args: args, autostart: true) { result in
         expect(result).to(beACrash(with: assumed))
         done()
       }
@@ -70,7 +70,7 @@ class ScriptTests: Helper {
 
   func testMisuse(_ path: String, args: [String] = [], assumed: String) {
     waitUntil(timeout: timeout) { done in
-      let _ = Script(path: toFile(path), args: args, autostart: true) { result in
+      _ = Script(path: toFile(path), args: args, autostart: true) { result in
         expect(result).to(beAMisuse(with: assumed))
         done()
       }
@@ -108,7 +108,7 @@ class ScriptTests: Helper {
 
     describe("env") {
       it("has BitBarVersion set") {
-        self.testEnv(path: "version-env.sh", env: "BitBarVersion", value: "1")
+        self.testEnv(path: "version-env.sh", env: "BitBarVersion", value: "3.0.0")
       }
     }
 
@@ -154,7 +154,7 @@ class ScriptTests: Helper {
       let path = toFile("sleep.sh")
       it("doesn't auto start'") {
         var index = 0
-        let _ = Script(path: path) { output in
+        _ = Script(path: path) { output in
           expect(output).to(beASuccess())
           index += 1
         }
@@ -164,7 +164,7 @@ class ScriptTests: Helper {
 
       it("should autostart") {
         var index = 0
-        let _ = Script(path: path, autostart: true) { output in
+        _ = Script(path: path, autostart: true) { output in
           expect(output).to(beASuccess())
           index += 1
         }

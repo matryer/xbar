@@ -1,5 +1,5 @@
 excluded:
-  - App/Pods
+  - Pods
 disabled_rules:
   - todo
   - file_length

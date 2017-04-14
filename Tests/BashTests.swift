@@ -66,5 +66,37 @@ class BashTests: Helper {
         }
       }
     }
+
+    context("clickable") {
+      let setup = { (_ input: String..., block: @escaping (Menuable) -> Void) in
+        self.match(Pro.menu, input.joined() + "\n") { (menu, _) in
+          block(menu)
+        }
+      }
+
+      it("is clickable when terminal=true") {
+        setup("A | terminal=true bash='/a/b/c'") { menu in
+          expect(the(menu)).to(beClickable())
+        }
+      }
+
+      it("is clickable when terminal=false") {
+        setup("A | terminal=false bash='/a/b/c'") { menu in
+          expect(the(menu)).to(beClickable())
+        }
+      }
+
+      it("is not clickable only using terminal=false") {
+        setup("A | terminal=false") { menu in
+          expect(the(menu)).toNot(beClickable())
+        }
+      }
+
+      it("is not clickable only using terminal=true") {
+        setup("A | terminal=true") { menu in
+          expect(the(menu)).toNot(beClickable())
+        }
+      }
+    }
   }
 }

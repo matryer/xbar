@@ -13,9 +13,7 @@ final class Bash: StringVal, Param {
   var priority = 0
   var path: String { return data }
   func menu(didLoad menu: Menuable) {
-    if menu.openTerminal() {
-      menu.activate()
-    }
+    menu.activate()
   }
 
   func menu(didClick menu: Menuable) {

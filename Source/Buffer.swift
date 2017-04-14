@@ -91,7 +91,7 @@ class Buffer {
   func isFinish() -> Bool {
     orFail()
     do {
-      let _ = try store.range(of: delimiter)
+      _ = try store.range(of: delimiter)
     } catch NotFound.noLocation {
       return false
     } catch (_) {

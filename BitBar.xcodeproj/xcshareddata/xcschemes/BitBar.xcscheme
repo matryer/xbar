@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20596B5A1E9EAA0600D70BFE"
+               BlueprintIdentifier = "20946B281E9EBF6800F7926D"
                BuildableName = "BitBar.app"
                BlueprintName = "BitBar"
                ReferencedContainer = "container:BitBar.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20596B6A1E9EAA0600D70BFE"
+               BlueprintIdentifier = "20946B391E9EBF6800F7926D"
                BuildableName = "BitBarTests.xctest"
                BlueprintName = "BitBarTests"
                ReferencedContainer = "container:BitBar.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20596B5A1E9EAA0600D70BFE"
+            BlueprintIdentifier = "20946B281E9EBF6800F7926D"
             BuildableName = "BitBar.app"
             BlueprintName = "BitBar"
             ReferencedContainer = "container:BitBar.xcodeproj">
@@ -65,7 +65,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20596B5A1E9EAA0600D70BFE"
+            BlueprintIdentifier = "20946B281E9EBF6800F7926D"
             BuildableName = "BitBar.app"
             BlueprintName = "BitBar"
             ReferencedContainer = "container:BitBar.xcodeproj">
@@ -84,7 +84,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20596B5A1E9EAA0600D70BFE"
+            BlueprintIdentifier = "20946B281E9EBF6800F7926D"
             BuildableName = "BitBar.app"
             BlueprintName = "BitBar"
             ReferencedContainer = "container:BitBar.xcodeproj">
