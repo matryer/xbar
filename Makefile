@@ -1,6 +1,5 @@
 setup:
 	@bundle install
-	@fastlane import_keys
 test:
 	@fastlane test
 package:
