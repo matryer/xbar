@@ -49,3 +49,4 @@ test_output/
 report.xml
 Resources/bitbar.p12-back.p12
 BitBar.app
+.fastlane/README.md

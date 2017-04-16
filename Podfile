@@ -14,16 +14,12 @@ target 'BitBar' do
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
   pod 'Emojize', git: 'https://github.com/oleander/Emojize.git'
 
-  target 'BitBarTests' do
+  target 'Tests' do
     inherit! :search_paths
     pod 'Nimble'
     pod 'Quick'
     pod 'SwiftCheck'
   end
-
-  # target 'BitBarPullRequest' do
-  #   inherit! :search_paths
-  # end
 end
 
 post_install do |installer|

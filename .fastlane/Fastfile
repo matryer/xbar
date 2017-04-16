@@ -1,17 +1,79 @@
-fastlane_version "2.26.1"
-default_platform :mac
-# clear_derived_data
-skip_docs
-
-chain = "travis.keychain"
-key = ENV["encrypted_34de277e100a_key"]
-iv = ENV["encrypted_34de277e100a_iv"]
-pwd = ENV["CERTPWD"]
-gh_token = ENV["GH_TOKEN"]
-sparkle_token = ENV["SPARKLE_UPDATE_KEY"]
 codesign = "/usr/bin/codesign"
 env_cert = "Resources/bitbar.p12.enc"
 cert = "Resources/bitbar.cer"
+
+default_platform :mac
+xcversion version: "~> 8.3"
+clear_derived_data
+
+# before_all do
+#   cocoapods
+# end
+
+desc "Build BitBar.app to the current directory"
+lane :build do;
+  clean_build_artifacts
+  gym
+end
+
+desc "Lint swift files in project"
+lane :lint do; swiftlint mode: :lint; end
+
+desc "Fix lint lint errors in project"
+lane :fix do; swiftlint mode: :autocorrect; end
+
+desc "Runs test suit"
+lane :test do; scan; end
+
+desc "Build and zip application"
+lane :package do
+  build
+  zip path: "BitBar.app", output_path: "BitBar.zip"
+end
+
+desc "Generates a new version tag in git and XCode"
+lane :tag do
+  ensure_git_branch branch: "master"
+  ensure_git_status_clean
+  increment_version_number
+  version = get_version_number()
+  increment_build_number build_number: version
+  commit_version_bump message: "Bump version to #{version}", force: true
+  add_git_tag tag: "v#{version}"
+  push_to_git_remote remote: "origin", force: false, tags: true
+end
+
+desc "Task to setup the project"
+lane :setup do
+  bundle_install
+  update_fastlane
+  cocoapods repo_update: true
+end
+
+desc "Import keys used for signing"
+lane :import_keys do
+  unless is_ci?
+    next unless prompt boolean: true, text: "Are you sure you want to alter you local keychain?"
+  end
+
+  Dir.chdir ".." do
+    openssl "aes-256-cbc -K $encrypted_34de277e100a_key -iv $encrypted_34de277e100a_iv",
+      "-in", env_cert, "-out bitbar.p12 -d"
+    security "create-keychain -p travis travis.keychain"
+    security "default-keychain -s travis.keychain"
+    security "unlock-keychain -p travis travis.keychain"
+    security "set-keychain-settings -t 3600 -u travis.keychain "
+    security "import bitbar.p12 -A -P $CERTPWD -k travis.keychain -T", codesign
+    security "import", cert, "-A -k travis.keychain -T", codesign
+    security "set-key-partition-list -S apple-tool:,apple: -s -k travis travis.keychain"
+  end
+end
+
+desc "Create a signed .app bundle for Github Releases"
+lane :deploy do
+  import_keys
+  package
+end
 
 def security(*args)
   sh "security " + args.join(" ")
@@ -19,80 +81,4 @@ end
 
 def openssl(*args)
   sh "openssl " + args.join(" ")
-end
-
-lane :lint do
-  swiftlint mode: :lint
-end
-
-lane :fix do
-  swiftlint mode: :autocorrect
-end
-
-platform :mac do
-  before_all do
-    cocoapods repo_update: true
-    update_project_codesigning(
-      path: "BitBar.xcodeproj",
-      use_automatic_signing: true
-    )
-  end
-
-  desc "Runs all the tests"
-  lane :test do
-    scan
-  end
-
-  desc "Import keys used for signing"
-  lane :import_keys do
-    next unless is_ci?
-    Dir.chdir ".." do
-      openssl "aes-256-cbc -K", key, "-iv", iv, "-in", env_cert, "-out bitbar.p12 -d"
-      security "create-keychain -p travis", chain
-      security "default-keychain -s", chain
-      security "unlock-keychain -p travis", chain
-      security "set-keychain-settings -t 3600 -u", chain
-      security "import bitbar.p12 -A -P", pwd, "-k", chain, "-T", codesign
-      security "import", cert, "-A -k", chain, "-T", codesign
-      security "set-key-partition-list -S apple-tool:,apple: -s -k travis", chain
-    end
-  end
-
-  desc "Build and zip application"
-  lane :package do
-    build
-    zip path: "BitBar.app", output_path: "BitBar.zip"
-  end
-
-  lane :build do
-    gym
-  end
-
-  lane :tag do
-    ensure_git_branch branch: "master"
-    ensure_git_status_clean
-    increment_version_number
-    version = get_version_number()
-    increment_build_number build_number: version
-    commit_version_bump message: "Bump version to #{version}", force: true
-    add_git_tag tag: "v#{version}"
-    push_to_git_remote remote: "origin", force: false, tags: true
-  end
-
-  lane :release do
-    test
-    tag
-  end
-
-  # after_all do |lane|
-  # slack(
-  #   message: "Successfully deployed new App Update."
-  # )
-  # end
-  # lane :rebuild_sparkle_feed do
-  #   sh "curl -s -X POST -H 'Authorization:token #{gh_token}' -H Accept:application/vnd.github.mister-fantastic-preview https://api.github.com/repos/matryer/bitbar/pages/builds"
-  #   ["beta", "distro-beta"].each do |type|
-  #     sh "curl -s -H 'X-RELOAD-KEY:#{sparkle_token}' -D - -o /dev/null   https://bitbarapp.com/feeds/#{type}/reload"
-  #   end
-  # end
 end

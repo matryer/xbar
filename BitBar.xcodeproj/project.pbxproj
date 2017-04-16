@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0452258C2F09F2652359BB22 /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
-		0B2B4B4D9053FA8A6D48378E /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
+		079AC371DDB2513DAFBDC92E /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
+		20457F061EA35EA500072CC8 /* BitBar.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20457F051EA35EA500072CC8 /* BitBar.plist */; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		2079AB6B1E9EC258005B92AD /* Alternate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB411E9EC258005B92AD /* Alternate.swift */; };
 		2079AB6C1E9EC258005B92AD /* Ansi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB421E9EC258005B92AD /* Ansi.swift */; };
@@ -123,7 +123,8 @@
 		20A462E31E9EC03F00321D42 /* Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462AC1E9EC03F00321D42 /* Trim.swift */; };
 		20A462E41E9EC03F00321D42 /* UpdatedAgoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462AD1E9EC03F00321D42 /* UpdatedAgoItem.swift */; };
 		20A462E51E9EC03F00321D42 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462AE1E9EC03F00321D42 /* Updater.swift */; };
-		D2261401D69B287034A5037E /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA582B6C5BA528B97CFEB27B /* Pods_BitBarTests.framework */; };
+		20AA559F1EA35303008D23FF /* Tests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20AA559E1EA35303008D23FF /* Tests.plist */; };
+		54AE4CA2D02C8B671515A6FF /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7684E5A6D1A58ABB0E376F6D /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +138,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02C15665F39567DE78C746B7 /* Pods-Travis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travis.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travis/Pods-Travis.release.xcconfig"; sourceTree = "<group>"; };
 		0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
+		201B5EE71EA355EA0059950E /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
+		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
+		20463D791EA3575B0064277D /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "version-env.sh"; path = "Scripts/version-env.sh"; sourceTree = "<group>"; };
 		2079AB411E9EC258005B92AD /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alternate.swift; sourceTree = "<group>"; };
 		2079AB421E9EC258005B92AD /* Ansi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ansi.swift; sourceTree = "<group>"; };
@@ -202,11 +207,9 @@
 		2079ABBB1E9EC503005B92AD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2079ABBC1E9EC503005B92AD /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = App.xib; sourceTree = "<group>"; };
 		2079ABBD1E9EC503005B92AD /* bitbar-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bitbar-2048.png"; sourceTree = "<group>"; };
-		2079ABBF1E9EC503005B92AD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20946B291E9EBF6800F7926D /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20946B2C1E9EBF6800F7926D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20946B3A1E9EBF6800F7926D /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		20946B401E9EBF6800F7926D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20946B3A1E9EBF6800F7926D /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A4627C1E9EC03E00321D42 /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alternate.swift; sourceTree = "<group>"; };
 		20A4627D1E9EC03E00321D42 /* Ansi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ansi.swift; sourceTree = "<group>"; };
 		20A4627E1E9EC03E00321D42 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -256,14 +259,28 @@
 		20A462AC1E9EC03F00321D42 /* Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trim.swift; sourceTree = "<group>"; };
 		20A462AD1E9EC03F00321D42 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatedAgoItem.swift; sourceTree = "<group>"; };
 		20A462AE1E9EC03F00321D42 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		20AA559A1EA352B8008D23FF /* Travis.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Travis.plist; sourceTree = "<group>"; };
+		20AA559E1EA35303008D23FF /* Tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tests.plist; sourceTree = "<group>"; };
+		20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro_Travis.framework; path = Pods/../build/Debug/Pods_Distro_Travis.framework; sourceTree = "<group>"; };
+		3D04080A1FF16E3A510FF0D1 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Distro_Travis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		518E2808BBCA24C3E9269EF0 /* Pods-BitBarPullRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarPullRequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarPullRequest/Pods-BitBarPullRequest.release.xcconfig"; sourceTree = "<group>"; };
 		54DD3B9E154E0F1A1AEE514C /* Pods-BitBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.release.xcconfig"; sourceTree = "<group>"; };
 		60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E8A22043733C08A532FC33 /* Pods-Distro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Distro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Distro/Pods-Distro.debug.xcconfig"; sourceTree = "<group>"; };
+		7684E5A6D1A58ABB0E376F6D /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FBF957D89BF1CF2231F8016 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
 		8EF088504E134F313320EB70 /* Pods-BitBarPullRequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarPullRequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarPullRequest/Pods-BitBarPullRequest.debug.xcconfig"; sourceTree = "<group>"; };
+		A31B36C9C76949E46DC5968D /* Pods-Distro-Travis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Distro-Travis.release.xcconfig"; path = "Pods/Target Support Files/Pods-Distro-Travis/Pods-Distro-Travis.release.xcconfig"; sourceTree = "<group>"; };
 		AC9DB4FB66580AAF1E1C5076 /* Pods_BitBarPullRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarPullRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA582B6C5BA528B97CFEB27B /* Pods_BitBarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9FBB6D887294DDB3C63391 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		BDF4ABD18F40D1B81DBB214F /* Pods-Distro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Distro.release.xcconfig"; path = "Pods/Target Support Files/Pods-Distro/Pods-Distro.release.xcconfig"; sourceTree = "<group>"; };
+		C5BF6F98B962C72E51EFF40E /* Pods_Travis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67678BA12963D30F3C31043 /* Pods-Travis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Travis/Pods-Travis.debug.xcconfig"; sourceTree = "<group>"; };
+		D1ADE943E478936DBF8DB0F1 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E28B363B4FE475E7AC739658 /* Pods-BitBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E331A98190543BA21F3A5AA5 /* Pods_Distro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Distro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF53523A57B26FFE6A33D044 /* Pods-Distro-Travis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Distro-Travis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Distro-Travis/Pods-Distro-Travis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,8 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0452258C2F09F2652359BB22 /* Pods_BitBar.framework in Frameworks */,
-				0B2B4B4D9053FA8A6D48378E /* Pods_BitBar.framework in Frameworks */,
+				079AC371DDB2513DAFBDC92E /* Pods_BitBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2261401D69B287034A5037E /* Pods_BitBarTests.framework in Frameworks */,
+				54AE4CA2D02C8B671515A6FF /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,10 +306,12 @@
 		2079AB401E9EC1F9005B92AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				20457F051EA35EA500072CC8 /* BitBar.plist */,
+				20AA559A1EA352B8008D23FF /* Travis.plist */,
 				2079ABBB1E9EC503005B92AD /* Images.xcassets */,
 				2079ABBC1E9EC503005B92AD /* App.xib */,
+				20AA559E1EA35303008D23FF /* Tests.plist */,
 				2079ABBD1E9EC503005B92AD /* bitbar-2048.png */,
-				2079ABBF1E9EC503005B92AD /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -341,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				20946B291E9EBF6800F7926D /* BitBar.app */,
-				20946B3A1E9EBF6800F7926D /* BitBarTests.xctest */,
+				20946B3A1E9EBF6800F7926D /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -448,7 +466,6 @@
 				2079AB681E9EC258005B92AD /* Title.swift */,
 				2079AB691E9EC258005B92AD /* TitleTests.swift */,
 				2079AB6A1E9EC258005B92AD /* Trim.swift */,
-				20946B401E9EBF6800F7926D /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
@@ -456,9 +473,16 @@
 		3BC1D15DB434576749952AE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */,
+				20463D791EA3575B0064277D /* Pods_Distro.framework */,
+				201B5EE71EA355EA0059950E /* Pods_Distro.framework */,
 				60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */,
 				BA582B6C5BA528B97CFEB27B /* Pods_BitBarTests.framework */,
 				AC9DB4FB66580AAF1E1C5076 /* Pods_BitBarPullRequest.framework */,
+				E331A98190543BA21F3A5AA5 /* Pods_Distro.framework */,
+				7684E5A6D1A58ABB0E376F6D /* Pods_Tests.framework */,
+				C5BF6F98B962C72E51EFF40E /* Pods_Travis.framework */,
+				3D04080A1FF16E3A510FF0D1 /* Pods_Distro_Travis.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -472,6 +496,14 @@
 				0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */,
 				8EF088504E134F313320EB70 /* Pods-BitBarPullRequest.debug.xcconfig */,
 				518E2808BBCA24C3E9269EF0 /* Pods-BitBarPullRequest.release.xcconfig */,
+				68E8A22043733C08A532FC33 /* Pods-Distro.debug.xcconfig */,
+				BDF4ABD18F40D1B81DBB214F /* Pods-Distro.release.xcconfig */,
+				BD9FBB6D887294DDB3C63391 /* Pods-Tests.debug.xcconfig */,
+				D1ADE943E478936DBF8DB0F1 /* Pods-Tests.release.xcconfig */,
+				C67678BA12963D30F3C31043 /* Pods-Travis.debug.xcconfig */,
+				02C15665F39567DE78C746B7 /* Pods-Travis.release.xcconfig */,
+				FF53523A57B26FFE6A33D044 /* Pods-Distro-Travis.debug.xcconfig */,
+				A31B36C9C76949E46DC5968D /* Pods-Distro-Travis.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -499,9 +531,9 @@
 			productReference = 20946B291E9EBF6800F7926D /* BitBar.app */;
 			productType = "com.apple.product-type.application";
 		};
-		20946B391E9EBF6800F7926D /* BitBarTests */ = {
+		20946B391E9EBF6800F7926D /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20946B461E9EBF6800F7926D /* Build configuration list for PBXNativeTarget "BitBarTests" */;
+			buildConfigurationList = 20946B461E9EBF6800F7926D /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				F6DF52FB055A0DAB217270DE /* [CP] Check Pods Manifest.lock */,
 				20946B361E9EBF6800F7926D /* Sources */,
@@ -515,9 +547,9 @@
 			dependencies = (
 				20946B3C1E9EBF6800F7926D /* PBXTargetDependency */,
 			);
-			name = BitBarTests;
+			name = Tests;
 			productName = BitBarTests;
-			productReference = 20946B3A1E9EBF6800F7926D /* BitBarTests.xctest */;
+			productReference = 20946B3A1E9EBF6800F7926D /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -531,8 +563,7 @@
 				TargetAttributes = {
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = K6FNT9HXR3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					20946B391E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
@@ -557,7 +588,7 @@
 			projectRoot = "";
 			targets = (
 				20946B281E9EBF6800F7926D /* BitBar */,
-				20946B391E9EBF6800F7926D /* BitBarTests */,
+				20946B391E9EBF6800F7926D /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -569,6 +600,7 @@
 			files = (
 				2079ABC01E9EC503005B92AD /* Images.xcassets in Resources */,
 				2079ABC11E9EC503005B92AD /* App.xib in Resources */,
+				20457F061EA35EA500072CC8 /* BitBar.plist in Resources */,
 				2079ABC21E9EC503005B92AD /* bitbar-2048.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,6 +625,7 @@
 				2079ABB21E9EC2B0005B92AD /* sleep.sh in Resources */,
 				2079ABAB1E9EC2B0005B92AD /* basic.sh in Resources */,
 				2079ABAF1E9EC2B0005B92AD /* invalid-syntax.sh in Resources */,
+				20AA559F1EA35303008D23FF /* Tests.plist in Resources */,
 				2079ABB91E9EC2B0005B92AD /* sub2.10s.sh in Resources */,
 				2079ABAC1E9EC2B0005B92AD /* complex.sh in Resources */,
 				2079ABB81E9EC2B0005B92AD /* sub.10s.sh in Resources */,
@@ -614,7 +647,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		2FD7C20DDF6C4B7ADAA276B8 /* [CP] Copy Pods Resources */ = {
@@ -629,7 +662,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6B9E068782976194D19BE073 /* [CP] Copy Pods Resources */ = {
@@ -674,7 +707,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6DF52FB055A0DAB217270DE /* [CP] Check Pods Manifest.lock */ = {
@@ -689,7 +722,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -885,7 +918,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -910,12 +943,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.0.5;
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				CURRENT_PROJECT_VERSION = 3.0.21;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -927,12 +966,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.0.5;
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				CURRENT_PROJECT_VERSION = 3.0.21;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -940,12 +985,12 @@
 		};
 		20946B471E9EBF6800F7926D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E28B363B4FE475E7AC739658 /* Pods-BitBarTests.debug.xcconfig */;
+			baseConfigurationReference = BD9FBB6D887294DDB3C63391 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Resources/Tests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -957,12 +1002,12 @@
 		};
 		20946B481E9EBF6800F7926D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54DD3B9E154E0F1A1AEE514C /* Pods-BitBarTests.release.xcconfig */;
+			baseConfigurationReference = D1ADE943E478936DBF8DB0F1 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Resources/Tests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -992,7 +1037,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		20946B461E9EBF6800F7926D /* Build configuration list for PBXNativeTarget "BitBarTests" */ = {
+		20946B461E9EBF6800F7926D /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20946B471E9EBF6800F7926D /* Debug */,

@@ -14,9 +14,12 @@ Other Entries
 ----entry 6 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
 --Last Subentry
 ----entry 7 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
--
+---
 entry 8 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
 entry 9 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
--
+---
 entry 10 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
+ABV
+--D
+------E
 heredoc
