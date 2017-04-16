@@ -2,3 +2,6 @@ scheme "BitBar"
 sdk "macosx"
 output_directory "./"
 clean true
+output_name "BitBar"
+codesigning_identity "Mac Developer: linus@oleander.nu (8Z44P9V4VF)"
+export_method "ad-hoc"

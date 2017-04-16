@@ -2,9 +2,7 @@ language: objective-c
 install: make setup
 osx_image: xcode8.3
 script: fastlane test
-before_deploy:
-  - fastlane import_keys
-  - fastlane package
+before_deploy: fastlane deploy
 deploy:
   provider: releases
   skip_cleanup: true
