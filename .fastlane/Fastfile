@@ -77,9 +77,9 @@ lane :release do
 end
 
 def security(*args)
-  sh "security " + args.join(" ")
+  sh command: "security " + args.join(" "), log: false
 end
 
 def openssl(*args)
-  sh "openssl " + args.join(" ")
+  sh command: "openssl " + args.join(" "), log: false
 end
