@@ -1,15 +1,9 @@
-fastlane_version "2.26.1"
+fastlane_version "2.27.0"
 default_platform :mac
 xcversion version: "~> 8.3"
 clear_derived_data
 skip_docs
 
-chain = "travis.keychain"
-key = ENV["encrypted_34de277e100a_key"]
-iv = ENV["encrypted_34de277e100a_iv"]
-pwd = ENV["CERTPWD"]
-gh_token = ENV["GH_TOKEN"]
-sparkle_token = ENV["SPARKLE_UPDATE_KEY"]
 codesign = "/usr/bin/codesign"
 env_cert = "Resources/bitbar.p12.enc"
 cert = "Resources/bitbar.cer"
@@ -21,7 +15,7 @@ end
 desc "Runs all the tests"
 lane :test do; scan; end
 
-desc "Build a BitBar.app to the current directory"
+desc "Build BitBar.app to the current directory"
 lane :build do;
   clean_build_artifacts
   gym
@@ -53,16 +47,20 @@ end
 
 desc "Import keys used for signing"
 lane :import_keys do
-  next unless is_ci?
+  unless is_ci?
+    next unless prompt boolean: true, text: "Are you sure you want to alter you local keychain?"
+  end
+
   Dir.chdir ".." do
-    openssl "aes-256-cbc -K", key, "-iv", iv, "-in", env_cert, "-out bitbar.p12 -d"
-    security "create-keychain -p travis", chain
-    security "default-keychain -s", chain
-    security "unlock-keychain -p travis", chain
-    security "set-keychain-settings -t 3600 -u", chain
-    security "import bitbar.p12 -A -P", pwd, "-k", chain, "-T", codesign
-    security "import", cert, "-A -k", chain, "-T", codesign
-    security "set-key-partition-list -S apple-tool:,apple: -s -k travis", chain
+    openssl "aes-256-cbc -K $(encrypted_34de277e100a_key) -iv $(encrypted_34de277e100a_iv)",
+      "-in", env_cert, "-out bitbar.p12 -d"
+    security "create-keychain -p travis travis.keychain"
+    security "default-keychain -s travis.keychain"
+    security "unlock-keychain -p travis travis.keychain"
+    security "set-keychain-settings -t 3600 -u travis.keychain "
+    security "import bitbar.p12 -A -P $(CERTPWD) -k travis.keychain -T", codesign
+    security "import", cert, "-A -k travis.keychain -T", codesign
+    security "set-key-partition-list -S apple-tool:,apple: -s -k travis travis.keychain"
   end
 end
 
@@ -71,15 +69,10 @@ lane :deploy do
   package
 end
 
-lane :release do
-  test
-  tag
-end
-
 def security(*args)
-  sh command: "security " + args.join(" "), log: false
+  sh "security " + args.join(" ")
 end
 
 def openssl(*args)
-  sh command: "openssl " + args.join(" "), log: false
+  sh "openssl " + args.join(" ")
 end
