@@ -21,6 +21,9 @@ target 'BitBar' do
     pod 'SwiftCheck'
   end
 
+  # target 'BitBarPullRequest' do
+  #   inherit! :search_paths
+  # end
 end
 
 post_install do |installer|

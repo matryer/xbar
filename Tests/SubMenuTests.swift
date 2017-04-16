@@ -57,16 +57,6 @@ class SubMenuTests: Helper {
           }
         }
 
-        it("has menu with one dash") {
-          self.match(Pro.getSubMenu(), addPrefix("Sub\n-----\n")) {
-            expect($0.getValue()).to(equal("Sub"))
-            expect($0.menus).to(haveCount(1))
-            let sub = $0.menus[0]
-            expect(sub.getValue()).to(equal("-"))
-            expect($1).to(beEmpty())
-          }
-        }
-
         it("has menu with no content") {
           self.match(Pro.getSubMenu(), addPrefix("Sub\n----\n")) {
             expect($0.getValue()).to(equal("Sub"))

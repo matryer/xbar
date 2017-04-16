@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0452258C2F09F2652359BB22 /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
+		0B2B4B4D9053FA8A6D48378E /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		2079AB6B1E9EC258005B92AD /* Alternate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB411E9EC258005B92AD /* Alternate.swift */; };
 		2079AB6C1E9EC258005B92AD /* Ansi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB421E9EC258005B92AD /* Ansi.swift */; };
@@ -136,6 +137,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "version-env.sh"; path = "Scripts/version-env.sh"; sourceTree = "<group>"; };
 		2079AB411E9EC258005B92AD /* Alternate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alternate.swift; sourceTree = "<group>"; };
 		2079AB421E9EC258005B92AD /* Ansi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ansi.swift; sourceTree = "<group>"; };
@@ -254,12 +256,14 @@
 		20A462AC1E9EC03F00321D42 /* Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trim.swift; sourceTree = "<group>"; };
 		20A462AD1E9EC03F00321D42 /* UpdatedAgoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatedAgoItem.swift; sourceTree = "<group>"; };
 		20A462AE1E9EC03F00321D42 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		518E2808BBCA24C3E9269EF0 /* Pods-BitBarPullRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarPullRequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarPullRequest/Pods-BitBarPullRequest.release.xcconfig"; sourceTree = "<group>"; };
 		54DD3B9E154E0F1A1AEE514C /* Pods-BitBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.release.xcconfig"; sourceTree = "<group>"; };
-		5C579006E6E453E4A2667D5A /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
 		60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FBF957D89BF1CF2231F8016 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
+		8EF088504E134F313320EB70 /* Pods-BitBarPullRequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarPullRequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarPullRequest/Pods-BitBarPullRequest.debug.xcconfig"; sourceTree = "<group>"; };
+		AC9DB4FB66580AAF1E1C5076 /* Pods_BitBarPullRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarPullRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA582B6C5BA528B97CFEB27B /* Pods_BitBarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28B363B4FE475E7AC739658 /* Pods-BitBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E684A5B402D61A225206CEB4 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0452258C2F09F2652359BB22 /* Pods_BitBar.framework in Frameworks */,
+				0B2B4B4D9053FA8A6D48378E /* Pods_BitBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +458,7 @@
 			children = (
 				60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */,
 				BA582B6C5BA528B97CFEB27B /* Pods_BitBarTests.framework */,
+				AC9DB4FB66580AAF1E1C5076 /* Pods_BitBarPullRequest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -460,10 +466,12 @@
 		532EEA53A052ACD788DE84CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E684A5B402D61A225206CEB4 /* Pods-BitBar.debug.xcconfig */,
-				5C579006E6E453E4A2667D5A /* Pods-BitBar.release.xcconfig */,
 				E28B363B4FE475E7AC739658 /* Pods-BitBarTests.debug.xcconfig */,
 				54DD3B9E154E0F1A1AEE514C /* Pods-BitBarTests.release.xcconfig */,
+				7FBF957D89BF1CF2231F8016 /* Pods-BitBar.debug.xcconfig */,
+				0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */,
+				8EF088504E134F313320EB70 /* Pods-BitBarPullRequest.debug.xcconfig */,
+				518E2808BBCA24C3E9269EF0 /* Pods-BitBarPullRequest.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -523,12 +531,12 @@
 				TargetAttributes = {
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 8Z44P9V4VF;
+						DevelopmentTeam = K6FNT9HXR3;
 						ProvisioningStyle = Automatic;
 					};
 					20946B391E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 8Z44P9V4VF;
+						DevelopmentTeam = K6FNT9HXR3;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 20946B281E9EBF6800F7926D;
@@ -826,10 +834,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -878,10 +884,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -902,19 +906,16 @@
 		};
 		20946B441E9EBF6800F7926D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E684A5B402D61A225206CEB4 /* Pods-BitBar.debug.xcconfig */;
+			baseConfigurationReference = 7FBF957D89BF1CF2231F8016 /* Pods-BitBar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3.0.5;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -922,19 +923,16 @@
 		};
 		20946B451E9EBF6800F7926D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C579006E6E453E4A2667D5A /* Pods-BitBar.release.xcconfig */;
+			baseConfigurationReference = 0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3.0.5;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -946,14 +944,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBar.app/Contents/MacOS/BitBar";
@@ -966,14 +961,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBar.app/Contents/MacOS/BitBar";
 			};

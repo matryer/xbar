@@ -1,7 +1,7 @@
 import Cocoa
 import EmitterKit
 
-protocol Menuable: class {
+protocol Menuable: class  {
   var level: Int { get set }
   var aTitle: NSMutableAttributedString { get set }
   var image: NSImage? { get set }
@@ -13,6 +13,7 @@ protocol Menuable: class {
   var isChecked: Bool { get }
   var menus: [Menu] { get set }
   var event: Event<Void> { get set }
+  func isSeparator() -> Bool
   func getTitle() -> String
   func getAttrs() -> Mutable
   func onDidClick(block: @escaping Block<Void>) -> Listener

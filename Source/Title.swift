@@ -131,4 +131,8 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   var isEnabled: Bool {
     return true
   }
+  
+  func isSeparator() -> Bool {
+    return false
+  }
 }

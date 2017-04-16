@@ -1,6 +1,6 @@
 fastlane_version "2.26.1"
 default_platform :mac
-clear_derived_data
+# clear_derived_data
 skip_docs
 
 chain = "travis.keychain"
@@ -40,7 +40,7 @@ platform :mac do
 
   desc "Runs all the tests"
   lane :test do
-    scan scheme: "BitBar", clean: true
+    scan
   end
 
   desc "Import keys used for signing"

@@ -236,15 +236,6 @@ class TitleTests: Helper {
           }
         }
 
-        it("handles uneven --") {
-          self.match(Pro.headingFor(level: 1), "---\n") { (data: X, rem: String) in
-            expect(data.0).to(equal("-"))
-            expect(data.2).to(equal(1))
-            expect(data.1).to(haveCount(0))
-            expect(rem).to(beEmpty())
-          }
-        }
-
         it("with newline") {
           self.match(Pro.headingFor(level: 1), "--\n") { (data: X, rem: String) in
             expect(data.0).to(equal(""))

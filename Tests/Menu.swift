@@ -20,7 +20,6 @@ func escape(title: String, what: [String]) -> String {
 
 func escape(title: String) -> String {
   return escape(title: title, what: ["|", "\n"])
-  // return title.replace(slash, escape(char: slash)).replace("\n", escape(char: "\n")).replace("|", escape(char: "|"))
 }
 
 extension Menu: Base, Val {

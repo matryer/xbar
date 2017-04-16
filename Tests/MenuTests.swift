@@ -1,7 +1,27 @@
-import Quick
+  import Quick
 import Nimble
 // import Emojize
 @testable import BitBar
+
+extension Int {
+  func times<T>(block: (Int) -> T) -> [T] {
+    guard self >= 0 else {
+      preconditionFailure("Int can't be equal or less then zero")
+    }
+
+    return (0..<self).map { index in
+      return block(index)
+    }
+  }
+}
+
+func p(_ menu: Menuable) -> String {
+  let dash = menu.level.times { _ in "--" }.joined()
+  return "\nwarning: " + dash + menu.aTitle.string + menu.menus.map { menu in
+    return p(menu)
+    // "warning: " + menu.level.times { _ in "--" }.joined() + p(menu)
+  }.joined()
+}
 
 enum W<T> {
   case success(T)
@@ -78,6 +98,17 @@ func have(title: String) -> MatcherFunc<W<Menuable>> {
   }
 }
 
+func contain(title: String) -> MatcherFunc<W<Menuable>> {
+  return tester("have a title") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.aTitle.string.contains(title)
+    case .failure:
+      return "to have a title"
+    }
+  }
+}
+
 func have(title: Mutable) -> MatcherFunc<W<Menuable>> {
   return tester("have a title") { (result: W<Menuable>) in
     switch result {
@@ -144,11 +175,17 @@ func beClickable() -> MatcherFunc<W<Menuable>> {
   }
 }
 
+// TODO: Replace with below
 func haveSubMenuCount(_ count: Int) -> MatcherFunc<W<Menuable>> {
-  return tester("have sub menus") { (result: W<Menuable>) in
+  return have(subMenuCount: count)
+}
+
+func have(subMenuCount count: Int) -> MatcherFunc<W<Menuable>> {
+  return tester("have sub menu count of \(count)") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.menus.count == count
+      if menu.menus.count == count { return true }
+      return "sub menu count of \(menu.menus.count)"
     case .failure:
       return "failed to get menu"
     }
@@ -165,6 +202,19 @@ func beAnAlternate() -> MatcherFunc<W<Menuable>> {
     }
   }
 }
+
+func beASeparator() -> MatcherFunc<W<Menuable>> {
+  return tester("separator") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      return menu.isSeparator()
+    case .failure:
+      return "failed with a failure"
+    }
+  }
+}
+
+
 
 func beChecked() -> MatcherFunc<W<Menuable>> {
   return tester("alternate") { (result: W<Menuable>) in
@@ -282,6 +332,80 @@ class MenuTests: Helper {
             + w2.mutable().foreground(color: .blue)
           setup(input + "|ansi=true\n") { menu in
             expect(the(menu)).to(have(title: output))
+          }
+        }
+      }
+
+      context("separator") {
+        let sep = "---"
+        it("should have no separators") {
+          setup("A\n--B\n") { menu in
+            expect(the(menu)).toNot(beASeparator())
+
+            expect(the(menu)).to(haveSubMenuCount(1))
+            expect(the(menu, at: [0])).to(have(title: "B"))
+            expect(the(menu, at: [0])).toNot(beASeparator())
+          }
+        }
+
+        it("should have separator") {
+          setup("A\n--B\n-----\n") { menu in
+            expect(the(menu)).toNot(beASeparator())
+
+            expect(the(menu)).to(haveSubMenuCount(2))
+            expect(the(menu, at: [0])).to(have(title: "B"))
+            expect(the(menu, at: [0])).to(haveSubMenuCount(0))
+
+            expect(the(menu, at: [1])).to(have(title: "-"))
+            expect(the(menu, at: [1])).to(haveSubMenuCount(0))
+            expect(the(menu, at: [1])).to(beASeparator())
+          }
+        }
+
+        it("should ignore lines that has more then \n---\n") {
+          setup("A\n--B\n-----C\n") { menu in
+            expect(the(menu)).toNot(beASeparator())
+
+            expect(the(menu)).to(haveSubMenuCount(1))
+            expect(the(menu, at: [0])).to(have(title: "B"))
+            expect(the(menu, at: [0])).to(haveSubMenuCount(1))
+            expect(the(menu, at: [0])).toNot(beASeparator())
+
+            expect(the(menu, at: [0, 0])).to(have(title: "-C"))
+            expect(the(menu, at: [0, 0])).to(haveSubMenuCount(0))
+            expect(the(menu, at: [1])).toNot(beASeparator())
+          }
+        }
+
+        it("handles params") {
+          setup("A\n--" + sep + "|color=red\n") { menu in
+            expect(the(menu, at: [0])).to(beASeparator())
+          }
+        }
+
+        it("should handle deeply nested menus") {
+          setup("A\n--B\n--" + sep + "\n----" + sep + "\n--" + sep + "\n--C\n---X\n") { menu in
+            expect(the(menu)).toNot(beASeparator())
+
+            expect(the(menu)).to(have(subMenuCount: 5))
+            expect(the(menu, at: [0])).to(have(title: "B"))
+            expect(the(menu, at: [0])).to(have(subMenuCount: 0))
+
+            expect(the(menu, at: [1])).to(have(subMenuCount: 1))
+            expect(the(menu, at: [1])).to(have(title: "-"))
+            expect(the(menu, at: [1])).to(beASeparator())
+
+            expect(the(menu, at: [2])).to(have(subMenuCount: 0))
+            expect(the(menu, at: [2])).to(have(title: "-"))
+            expect(the(menu, at: [2])).to(beASeparator())
+
+            expect(the(menu, at: [3])).to(have(title: "C"))
+            expect(the(menu, at: [3])).to(have(subMenuCount: 0))
+            expect(the(menu, at: [3])).toNot(beASeparator())
+
+            expect(the(menu, at: [4])).to(have(title: "-X"))
+            expect(the(menu, at: [4])).to(have(subMenuCount: 0))
+            expect(the(menu, at: [4])).toNot(beASeparator())
           }
         }
       }
@@ -577,11 +701,11 @@ class MenuTests: Helper {
 
       it("has menu with params and +1 subs") {
         self.match(Pro.getMenu(), addSuffix("My Menu| size=10\n--A\n--B")) {
-          expect($0.getValue()).to(equal("My Menu"))
+          // expect($0.getValue()).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
-          expect($0.menus[0].getValue()).to(equal("A"))
-          expect($0.menus[1].getValue()).to(equal("B"))
-          expect($1).to(beEmpty())
+          // expect($0.menus[0].getValue()).to(equal("A"))
+          // expect($0.menus[1].getValue()).to(equal("B"))
+          // expect($1).to(beEmpty())
         }
       }
 
@@ -705,6 +829,16 @@ class MenuTests: Helper {
         expect(title2.menus).to(haveCount(1))
 
         expect(title1.menus[0].equals(title2.menus[0])).to(beTrue())
+      }
+    }
+
+    context("invalid input") {
+      it("handles parent being 2 levels lower then sub") {
+        setup("A\n----B\n--C\n") { menu in
+          expect(the(menu)).to(have(subMenuCount: 2))
+          expect(the(menu, at: [0])).to(contain(title: "[Failed]"))
+          expect(the(menu, at: [1])).to(have(title: "C"))
+        }
       }
     }
   }

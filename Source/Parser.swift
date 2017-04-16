@@ -83,35 +83,16 @@ class Pro {
     ) <^> heading <*> menus
   }
 
-  internal static func toValue(with: Int, for xs: X) -> Source {
+  static func toValue(with: Int, for xs: X) -> Source {
     return .item((xs.0, xs.1), with, [Source]())
   }
 
-  static func merge(head: Source, menus: [Source]) -> Source {
-    return menus.reduce(head) { parent, menu in
-      switch (parent, menu) {
-      case let (.item(v1, l1, xs), .item(_, l2, _)) where (l1 + 1) == l2:
-        return .item(v1, l1, xs + [menu])
-      case let (.item(v1, l1, xs), .item(_, l2, _)) where l1 < l2:
-        if xs.isEmpty { return .item(v1, l1, [menu]) }
-        if xs.count == 1 { return .item(v1, l1, [merge(head: xs[0], menus: [menu])]) }
-        return .item(v1, l1, ini(xs) + [merge(head: xs.last!, menus: [menu])])
-      default:
-        preconditionFailure("Invalid state")
-      }
-    }
-  }
-
   static func handle(head: Source, menus: [Source]) -> Title {
-    return toTitle(merge(head: head, menus: menus))
+    return toTitle(head.appended(menus))
   }
 
   static func toMenu(head: Source, menus: [Source]) -> Menu {
-    return toMenu(merge(head: head, menus: menus))
-  }
-
-  static func ini(_ sources: [Source]) -> [Source] {
-    return (0..<(sources.count - 1)).map { sources[$0] }
+    return toMenu(head.appended(menus))
   }
 
   static func toTitle(_ source: Source) -> Title {
@@ -129,17 +110,17 @@ class Pro {
   }
 
   internal static var menus: P<[Source]> {
-    let empty = [X]()
     func forEach(_ menus: [X]) -> [Source] {
       return menus.map { return toValue($0) }
     }
-    return forEach <^> optional(string("---\n") *> headings, otherwise: empty)
+    return forEach <^> optional(string("---\n") *> headings, otherwise: [X]())
   }
 
   static func toValue(_ head: X) -> Source {
     return .item((head.0, head.1), head.2, [Source]())
   }
 
+  // TODO: Use title instead of getTitle
   internal static func getTitle() -> P<Title> {
     return title
   }
@@ -376,21 +357,27 @@ class Pro {
   static var flat: P<(String, [Param])> {
     let terminals = ["\n", "|", "~~~"]
     let until2 = until(terminals, consume: false)
-    // let until = zeroOrMore(noneOf(["|", "\n", "~~~"]))
-    return curry(merge3) <^> until2 <*> (params <* oneOrMore(string("\n")))
+    return curry({ a, b in (a, b)}) <^> until2 <*> (params <* oneOrMore(string("\n")))
   }
 
-  // static var nl: P<String> {
-  //   return { $0.joined(separator: "") } <^> oneOrMore(string("\n"))
-  // }
-
-  static func merge3(title: String, params: [Param]) -> (String, [Param]) {
-    return (title, params)
-  }
-
+  // TODO: Remove level
   static func headingFor(level: Int) -> U {
     return zeroOrMore(string("--")) >>- { indent in
-      return { thing in (thing.0, thing.1, indent.count) } <^> flat
+      return { thing in
+        toThing(value: thing.0, params: thing.1, level: indent.count)
+      } <^> flat
+    }
+  }
+
+  // FIXME: Rename to something better
+  static private func toThing(value: String, params: [Param], level: Int) -> X {
+    switch (value, level) {
+    case ("-", 0): // Normal separator on level 0
+      return (value, params, level)
+    case ("-", _): // ---
+      return (value, params, level - 1)
+    case (_, _): // ---
+      return (value, params, level)
     }
   }
 
@@ -460,13 +447,6 @@ class Pro {
   internal static func quote() -> P<String> {
     return oneOf("\"\'") >>- { (char: Character) in until(String(char)) }
   }
-
-  // what = "
-  // value AB\"C
-  // outpu: AB"C
-  // internal static func unescape(_ what: String, _ value: String) -> String {
-  //   return value.replace("\\" + what, what)
-  // }
 
   internal static func until(_ oops: String, consume: Bool = true) -> P<String> {
     return until([oops], consume: consume)
@@ -581,9 +561,5 @@ class Pro {
         row += 1
     }
     return (head, row, string.distance(from: head.lowerBound, to: index))
-  }
-
-  private static func merge(emojis: [String], remaining: String) -> String {
-    return emojis.joined(separator: "") + remaining
   }
 }
