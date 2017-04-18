@@ -22,7 +22,13 @@ extension Title: Base, Val {
 
   func getBody() -> String {
     if menus.isEmpty { return "\n" }
-    return "\n---\n" + menus.map { $0.getInput() }.joined(separator: "") + "\n"
+    return "\n---\n" + menus.map { $0.getInput() }.joined(separator: "") + "\n" + tail
+  }
+  
+  /* Randomize stream ending */
+  private var tail: String {
+    if menus.count % 2 == 0 { return "~~~\n"}
+    return ""
   }
 
   public static var arbitrary: Gen<Title> {

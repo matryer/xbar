@@ -125,8 +125,13 @@ class Pro {
     return title
   }
 
-  internal static func getOutput() -> P<Output> {
-    return curry(merge) <^> getTitle() <*> (wsOrNl *> hasStream() <* wsOrNl)
+  // TODO: Use output var below
+  internal static func getOutput() -> P<Title> {
+    return output
+  }
+
+  static var output: P<Title> {
+    return title <* wsOrNl <* hasStream() <* wsOrNl
   }
 
   /**
@@ -547,10 +552,6 @@ class Pro {
     default:
       preconditionFailure("Invalid unit: \(unit)")
     }
-  }
-
-  private static func merge(title: Title, isStream: Bool) -> Output {
-    return Output(title, isStream)
   }
 
   private static func position(of index: String.CharacterView.Index, in string: String) -> (line: Range<String.CharacterView.Index>, row: Int, pos: Int) {

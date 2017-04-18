@@ -2,8 +2,8 @@ import AppKit
 import EmitterKit
 
 protocol TitleDelegate: class {
-  func name(didClickOpenInTerminal: Title)
-  func name(didTriggerRefresh: Title)
+  func title(didClickOpenInTerminal: Title)
+  func title(didTriggerRefresh: Title)
 }
 
 protocol TrayDelegate: class {
@@ -45,11 +45,11 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func bar(didClickOpenInTerminal: Tray) {
-    self.titlable?.name(didClickOpenInTerminal: self)
+    self.titlable?.title(didClickOpenInTerminal: self)
   }
 
   func bar(didTriggerRefresh: Tray) {
-    self.titlable?.name(didTriggerRefresh: self)
+    self.titlable?.title(didTriggerRefresh: self)
   }
 
   func remove(menu: Menu) {
@@ -83,7 +83,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func refresh() {
-    self.titlable?.name(didTriggerRefresh: self)
+    self.titlable?.title(didTriggerRefresh: self)
   }
 
   required init(coder decoder: NSCoder) {

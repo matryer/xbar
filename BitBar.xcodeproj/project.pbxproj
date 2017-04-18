@@ -36,8 +36,6 @@
 		2079AB831E9EC259005B92AD /* MenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB591E9EC258005B92AD /* MenuTests.swift */; };
 		2079AB851E9EC259005B92AD /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB5B1E9EC258005B92AD /* NamedParam.swift */; };
 		2079AB861E9EC259005B92AD /* NamedParamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB5C1E9EC258005B92AD /* NamedParamTests.swift */; };
-		2079AB871E9EC259005B92AD /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB5D1E9EC258005B92AD /* Output.swift */; };
-		2079AB881E9EC259005B92AD /* OutputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB5E1E9EC258005B92AD /* OutputTests.swift */; };
 		2079AB891E9EC259005B92AD /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB5F1E9EC258005B92AD /* ParserTests.swift */; };
 		2079AB8A1E9EC259005B92AD /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB601E9EC258005B92AD /* PropertyTests.swift */; };
 		2079AB8B1E9EC259005B92AD /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB611E9EC258005B92AD /* Refresh.swift */; };
@@ -100,7 +98,6 @@
 		20A462CD1E9EC03F00321D42 /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462961E9EC03F00321D42 /* NamedParam.swift */; };
 		20A462CE1E9EC03F00321D42 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462971E9EC03F00321D42 /* NSAttributedString.swift */; };
 		20A462D01E9EC03F00321D42 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462991E9EC03F00321D42 /* NSMutableAttributedString.swift */; };
-		20A462D11E9EC03F00321D42 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629A1E9EC03F00321D42 /* Output.swift */; };
 		20A462D21E9EC03F00321D42 /* Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629B1E9EC03F00321D42 /* Param.swift */; };
 		20A462D31E9EC03F00321D42 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629C1E9EC03F00321D42 /* Parser.swift */; };
 		20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629D1E9EC03F00321D42 /* PathSelector.swift */; };
@@ -167,8 +164,6 @@
 		2079AB591E9EC258005B92AD /* MenuTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTests.swift; sourceTree = "<group>"; };
 		2079AB5B1E9EC258005B92AD /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedParam.swift; sourceTree = "<group>"; };
 		2079AB5C1E9EC258005B92AD /* NamedParamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedParamTests.swift; sourceTree = "<group>"; };
-		2079AB5D1E9EC258005B92AD /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
-		2079AB5E1E9EC258005B92AD /* OutputTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputTests.swift; sourceTree = "<group>"; };
 		2079AB5F1E9EC258005B92AD /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		2079AB601E9EC258005B92AD /* PropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
 		2079AB611E9EC258005B92AD /* Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
@@ -233,7 +228,6 @@
 		20A462961E9EC03F00321D42 /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedParam.swift; sourceTree = "<group>"; };
 		20A462971E9EC03F00321D42 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		20A462991E9EC03F00321D42 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
-		20A4629A1E9EC03F00321D42 /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		20A4629B1E9EC03F00321D42 /* Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Param.swift; sourceTree = "<group>"; };
 		20A4629C1E9EC03F00321D42 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		20A4629D1E9EC03F00321D42 /* PathSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSelector.swift; sourceTree = "<group>"; };
@@ -408,7 +402,6 @@
 				20A462961E9EC03F00321D42 /* NamedParam.swift */,
 				20A462971E9EC03F00321D42 /* NSAttributedString.swift */,
 				20A462991E9EC03F00321D42 /* NSMutableAttributedString.swift */,
-				20A4629A1E9EC03F00321D42 /* Output.swift */,
 				20A4629B1E9EC03F00321D42 /* Param.swift */,
 				20A4629C1E9EC03F00321D42 /* Parser.swift */,
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
@@ -463,8 +456,6 @@
 				2079AB591E9EC258005B92AD /* MenuTests.swift */,
 				2079AB5B1E9EC258005B92AD /* NamedParam.swift */,
 				2079AB5C1E9EC258005B92AD /* NamedParamTests.swift */,
-				2079AB5D1E9EC258005B92AD /* Output.swift */,
-				2079AB5E1E9EC258005B92AD /* OutputTests.swift */,
 				2079AB5F1E9EC258005B92AD /* ParserTests.swift */,
 				2079AB601E9EC258005B92AD /* PropertyTests.swift */,
 				2079AB611E9EC258005B92AD /* Refresh.swift */,
@@ -789,7 +780,6 @@
 				20A462E31E9EC03F00321D42 /* Trim.swift in Sources */,
 				20A462C21E9EC03F00321D42 /* ExecutablePlugin.swift in Sources */,
 				20A462D61E9EC03F00321D42 /* PluginManager.swift in Sources */,
-				20A462D11E9EC03F00321D42 /* Output.swift in Sources */,
 				20A462DE1E9EC03F00321D42 /* String.swift in Sources */,
 				20A462CC1E9EC03F00321D42 /* Menuable.swift in Sources */,
 				20A462CE1E9EC03F00321D42 /* NSAttributedString.swift in Sources */,
@@ -825,7 +815,6 @@
 				2079AB751E9EC258005B92AD /* Dropdown.swift in Sources */,
 				2079AB901E9EC259005B92AD /* TemplateImage.swift in Sources */,
 				2079AB7E1E9EC259005B92AD /* Image.swift in Sources */,
-				2079AB881E9EC259005B92AD /* OutputTests.swift in Sources */,
 				2079AB7B1E9EC259005B92AD /* Helper.swift in Sources */,
 				2079AB861E9EC259005B92AD /* NamedParamTests.swift in Sources */,
 				2079AB941E9EC259005B92AD /* Trim.swift in Sources */,
@@ -840,7 +829,6 @@
 				2079AB931E9EC259005B92AD /* TitleTests.swift in Sources */,
 				2079AB851E9EC259005B92AD /* NamedParam.swift in Sources */,
 				2079AB721E9EC258005B92AD /* ColorTests.swift in Sources */,
-				2079AB871E9EC259005B92AD /* Output.swift in Sources */,
 				2079AB6F1E9EC258005B92AD /* BashTests.swift in Sources */,
 				2079AB821E9EC259005B92AD /* Menu.swift in Sources */,
 				2079AB811E9EC259005B92AD /* LengthTests.swift in Sources */,

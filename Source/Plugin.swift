@@ -7,7 +7,7 @@ import Swift
   - app delegate
   - plugin manager
 */
-class Plugin: OutputDelegate {
+class Plugin: TitleDelegate {
   private let tray = Tray(title: "…", isVisible: true)
   private let file: File
   private let path: String
@@ -35,12 +35,11 @@ class Plugin: OutputDelegate {
     Will parse data and populate the menu bar
   */
   func didReceivedOutput(_ data: String) {
-    switch Pro.parse(Pro.getOutput(), data) {
-    case let Result.success(result, _):
-      tray.set(title: result.title)
+    switch Pro.parse(Pro.output, data) {
+    case let Result.success(title, _):
+      tray.set(title: title)
     case let Result.failure(lines):
-      self.error = Title(errors: lines)
-      tray.set(title: self.error!)
+      tray.set(title: Title(errors: lines))
     }
   }
 
@@ -75,7 +74,7 @@ class Plugin: OutputDelegate {
   /**
     Triggered when user clicked 'open in terminal'
   */
-  func output(didClickOpenInTerminal: Output) {
+  func title(didClickOpenInTerminal: Title) {
     Bash.open(script: path) { error in
       self.didReceiveError(error)
     }
@@ -84,7 +83,7 @@ class Plugin: OutputDelegate {
   /**
     Triggered when refresh was called from a menu
   */
-  func output(didTriggerRefresh: Output) {
+  func title(didTriggerRefresh: Title) {
     refresh()
   }
 

@@ -4,15 +4,15 @@ import XCTest
 
 class PropertyTests: XCTestCase {
   func testMenu() {
-    verify(name: "menu", parser: Pro.getMenu(), gen: Menu.arbitrary)
+    verify(name: "menu", parser: Pro.menu, gen: Menu.arbitrary)
   }
 
   func testTitle() {
-    verify(name: "title", parser: Pro.getTitle(), gen: Title.arbitrary)
+    verify(name: "title", parser: Pro.output, gen: Title.arbitrary)
   }
 
   func testSubMenu() {
-    verify(name: "submenu", parser: Pro.getSubMenu(), gen: Menu.submenu)
+    verify(name: "submenu", parser: Pro.submenu, gen: Menu.submenu)
   }
 
   func testTerminal() {
@@ -74,10 +74,6 @@ class PropertyTests: XCTestCase {
 
   func testHref() {
     verify(name: "href", parser: Pro.getHref(), gen: Href.arbitrary)
-  }
-
-  func testOutput() {
-    verify(name: "output", parser: Pro.getOutput(), gen: Output.arbitrary)
   }
 
   func testLength() {
