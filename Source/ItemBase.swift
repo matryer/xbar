@@ -35,16 +35,20 @@ class ItemBase: NSMenuItem {
   /**
     Add @menu as a submenu to @self
   */
-  func addSub(_ menu: NSMenuItem) {
+  func addSub(_ menu: ItemBase) {
+    add(sub: menu as NSMenuItem)
+  }
+
+  func add(sub: NSMenuItem) {
     if submenu == nil {
       submenu = NSMenu()
       submenu?.autoenablesItems = false
     }
 
-    submenu?.addItem(menu)
+    submenu?.addItem(sub)
     activate()
   }
-
+  
   func addSub(_ title: String, checked: Bool, key: String = "", clickable: Bool, block: @escaping Block<ItemBase>) {
     let item = ItemBase(title, checked: checked, key: key)
     listeners.append(item.onDidClick(block: block))
@@ -65,9 +69,10 @@ class ItemBase: NSMenuItem {
 
   /**
     Append a separator to the submenu
+   TODO: Rename
   */
   func separator() {
-    addSub(NSMenuItem.separator())
+    add(sub: NSMenuItem.separator())
   }
 
   func set(title: String) {
@@ -76,6 +81,10 @@ class ItemBase: NSMenuItem {
 
   func removeAllSubMenus() {
     submenu?.removeAllItems()
+  }
+
+  func remove(submenu menu: Menu) {
+    submenu?.removeItem(menu)
   }
 
   func onDidClick(block: @escaping Block<ItemBase>) -> Listener {

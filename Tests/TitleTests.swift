@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+import Attr
 @testable import BitBar
 
 typealias R = (String, [Param])
@@ -362,31 +363,6 @@ class TitleTests: Helper {
           expect(title.menus[0].menus[0].getValue()).to(equal("B"))
           expect(title.menus[0].menus[0].menus[0].getValue()).to(equal("C"))
         }
-      }
-    }
-
-    context("merge") {
-      it("merges title") {
-        let title1 = Title("X")
-        let title2 = Title("Y")
-
-        title1.merge(with: title2)
-        expect(title1.equals(title2)).to(beTrue())
-        expect(title2.equals(title2)).to(beTrue())
-      }
-
-      it("merges menus") {
-        let menu1 = Menu("M1")
-        let menu2 = Menu("M2")
-        let title1 = Title("T1", menus: [menu1])
-        let title2 = Title("T2", menus: [menu2])
-
-        title1.merge(with: title2)
-
-        expect(title1.menus).to(haveCount(1))
-        expect(title2.menus).to(haveCount(1))
-
-        expect(title1.menus[0].equals(title2.menus[0])).to(beTrue())
       }
     }
 

@@ -9,9 +9,10 @@ protocol Menuable: class  {
   var isEnabled: Bool { get }
   var title: String { get set }
   var hasDropdown: Bool { get }
+  var items: [NSMenuItem] { get }
   var isAltAlternate: Bool { get }
   var isChecked: Bool { get }
-  var menus: [Menu] { get set }
+  var menus: [Menu] { get }
   var event: Event<Void> { get set }
   func isSeparator() -> Bool
   func getTitle() -> String
@@ -31,7 +32,7 @@ protocol Menuable: class  {
   func set(size: Float)
   func set(image: NSImage, isTemplate: Bool)
   func add(menu: NSMenuItem)
-  func remove(menu: NSMenuItem)
+  func remove(menu: Menu)
   func add(error: String)
 
   func submenu(didTriggerRefresh: Menuable)
@@ -44,6 +45,21 @@ protocol Menuable: class  {
 extension Menuable {
   var params: [Param] {
     get { return container.params }
+  }
+
+  internal var menus: [Menu] {
+    return items.reduce([Menu]()) { acc, menu in
+      switch menu {
+      case is Menu:
+        return acc + [menu as! Menu]
+      default:
+        if menu.isSeparatorItem {
+          return acc + [Menu(isSeparator: true)]
+        }
+
+        preconditionFailure("[Bug] Invalid class \(menu)")
+      }
+    }
   }
 
   func set(title: Mutable) {
@@ -66,35 +82,6 @@ extension Menuable {
         add(menu: NSMenuItem.separator())
       } else {
         add(menu: menu)
-      }
-    }
-
-    self.menus = menus
-  }
-
-  func merge(with menu: Menuable) {
-    title = menu.title
-    container = menu.container
-    container.delegate = self
-    aTitle = menu.getAttrs()
-    image = menu.image
-    event = menu.event
-    level = menu.level
-    // TODO: [IMP]
-    //  if menu is Menu {
-    //    parentable = menu.parentable
-    //  }
-
-    for pack in menus.zip(with: menu.menus) {
-      switch pack {
-      case let (.some(sub1), .none): /* There are less menus in the new object */
-        remove(menu: sub1)
-      case let (.none, .some(sub2)): /* A new menu */
-        add(menu: sub2)
-      case let (.some(sub1), .some(sub2)): /* Recursive merge with menu at index */
-        sub1.merge(with: sub2)
-      case (.none, .none):
-        halt("Both can't be nil menus=\(menus), menu.menus=\(menu.menus)")
       }
     }
   }

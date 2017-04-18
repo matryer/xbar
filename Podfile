@@ -13,6 +13,7 @@ target 'BitBar' do
   pod 'Files', git: 'https://github.com/JohnSundell/Files.git'
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
   pod 'Emojize', git: 'https://github.com/oleander/Emojize.git'
+  pod 'Attr', git: 'https://github.com/oleander/Attr.git'
 
   target 'Tests' do
     inherit! :search_paths

@@ -11,22 +11,7 @@ class Plugin: OutputDelegate {
   private let tray = Tray(title: "…", isVisible: true)
   private let file: File
   private let path: String
-  private var error: Title? {
-    didSet {
-      if output != nil {
-        output = nil
-      }
-    }
-  }
-  private var output: Output? {
-    didSet {
-      if error != nil {
-        error = nil
-      }
-
-      output?.delegate = self
-    }
-  }
+  private var error: Title?
 
   /**
     @path An absolute path to the script
@@ -52,16 +37,10 @@ class Plugin: OutputDelegate {
   func didReceivedOutput(_ data: String) {
     switch Pro.parse(Pro.getOutput(), data) {
     case let Result.success(result, _):
-      if let _ = output {
-        output!.title.merge(with: result.title)
-      } else {
-        self.output = result
-      }
-
-      output!.title.apply(to: tray)
+      tray.set(title: result.title)
     case let Result.failure(lines):
       self.error = Title(errors: lines)
-      self.error?.apply(to: tray)
+      tray.set(title: self.error!)
     }
   }
 

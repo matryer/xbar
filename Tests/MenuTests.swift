@@ -1,6 +1,6 @@
-  import Quick
+import Quick
 import Nimble
-// import Emojize
+import Attr
 @testable import BitBar
 
 extension Int {
@@ -384,7 +384,7 @@ class MenuTests: Helper {
         }
 
         it("should handle deeply nested menus") {
-          setup("A\n--B\n--" + sep + "\n----" + sep + "\n--" + sep + "\n--C\n---X\n") { menu in
+          setup("A\n--B\n--X\n----" + sep + "\n--" + sep + "\n--C\n---X\n") { menu in
             expect(the(menu)).toNot(beASeparator())
 
             expect(the(menu)).to(have(subMenuCount: 5))
@@ -392,8 +392,8 @@ class MenuTests: Helper {
             expect(the(menu, at: [0])).to(have(subMenuCount: 0))
 
             expect(the(menu, at: [1])).to(have(subMenuCount: 1))
-            expect(the(menu, at: [1])).to(have(title: "-"))
-            expect(the(menu, at: [1])).to(beASeparator())
+            expect(the(menu, at: [1])).to(have(title: "X"))
+            expect(the(menu, at: [1])).toNot(beASeparator())
 
             expect(the(menu, at: [2])).to(have(subMenuCount: 0))
             expect(the(menu, at: [2])).to(have(title: "-"))
@@ -803,32 +803,6 @@ class MenuTests: Helper {
             expect($1).to(beEmpty())
           }
         }
-      }
-    }
-
-    context("merge") {
-      it("merges title") {
-        let menu1 = Menu("X")
-        let menu2 = Menu("Y")
-
-        expect(menu1.equals(menu2)).to(beFalse())
-        menu1.merge(with: menu2)
-        expect(menu1.equals(menu2)).to(beTrue())
-        expect(menu2.equals(menu2)).to(beTrue())
-      }
-
-      it("merges sub menus") {
-        let menu1 = Menu("M1")
-        let menu2 = Menu("M2")
-        let title1 = Menu("T1", menus: [menu1])
-        let title2 = Menu("T2", menus: [menu2])
-
-        title1.merge(with: title2)
-
-        expect(title1.menus).to(haveCount(1))
-        expect(title2.menus).to(haveCount(1))
-
-        expect(title1.menus[0].equals(title2.menus[0])).to(beTrue())
       }
     }
 

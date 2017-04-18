@@ -6,7 +6,10 @@ final class Menu: ItemBase, Menuable {
   internal var level: Int = 0
   internal var container: Container
   internal weak var parentable: Menuable?
-  internal var menus = [Menu]()
+  internal var items: [NSMenuItem] {
+    return submenu?.items ?? [NSMenuItem]()
+  }
+
   internal var event = Event<Void>()
 
   var aTitle: NSMutableAttributedString {
@@ -26,6 +29,11 @@ final class Menu: ItemBase, Menuable {
     super.init(title)
     container.delegate = self
     add(menus: menus)
+  }
+
+  convenience init(isSeparator: Bool) {
+    self.init("-")
+    isHidden = true
   }
 
   /**
@@ -51,11 +59,11 @@ final class Menu: ItemBase, Menuable {
     Add @menu to sub menu
   */
   func add(menu: NSMenuItem) {
-    addSub(menu)
+    add(sub: menu)
   }
 
   func add(error: String) {
-    // set(title: ":warning: \(error)".emojis)
+    set(title: ":warning: \(error)".emojifyed())
   }
 
   /**
@@ -79,14 +87,9 @@ final class Menu: ItemBase, Menuable {
 
   /**
     Removes item from sub menu
-    TODO: Optimize
   */
-  func remove(menu item: NSMenuItem) {
-    for (index, menu) in menus.enumerated() {
-      if menu == item {
-        menus.remove(at: index)
-      }
-    }
+  func remove(menu item: Menu) {
+    remove(submenu: item)
   }
 
   /**

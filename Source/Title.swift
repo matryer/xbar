@@ -1,6 +1,5 @@
 import AppKit
 import EmitterKit
-// import Emojize
 
 protocol TitleDelegate: class {
   func name(didClickOpenInTerminal: Title)
@@ -16,13 +15,10 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   var aTitle: Mutable
 
   internal var container: Container
-  internal var menus = [Menu]()
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
   internal var image: NSImage?
   internal var level: Int = 0
-  internal var toBeRemoved = [NSMenuItem]()
-  internal var toBeAdded = [NSMenuItem]()
 
   func onDidClick(block: @escaping Block<Void>) -> Listener {
     return event.on(block)
@@ -56,8 +52,8 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     self.titlable?.name(didTriggerRefresh: self)
   }
 
-  func remove(menu: NSMenuItem) {
-    toBeRemoved.append(menu)
+  func remove(menu: Menu) {
+    /* TODO */
   }
 
   /**
@@ -79,7 +75,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     Add menu to the list of sub menus
   */
   func add(menu: NSMenuItem) {
-    toBeAdded.append(menu)
+    addItem(menu)
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
@@ -88,28 +84,6 @@ final class Title: NSMenu, Menuable, TrayDelegate {
 
   func refresh() {
     self.titlable?.name(didTriggerRefresh: self)
-  }
-
-  /**
-    Update @tray with the latest data
-  */
-  func apply(to tray: Tray) {
-    tray.attributedTitle = aTitle
-    tray.image = image
-    tray.delegate = self
-
-    for menu in toBeAdded {
-      tray.add(item: menu)
-    }
-
-    for menu in toBeRemoved {
-      tray.remove(menu: menu)
-    }
-
-    toBeRemoved = []
-    toBeAdded = []
-
-    tray.refresh()
   }
 
   required init(coder decoder: NSCoder) {
@@ -131,7 +105,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   var isEnabled: Bool {
     return true
   }
-  
+
   func isSeparator() -> Bool {
     return false
   }

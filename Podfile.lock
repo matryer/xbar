@@ -1,5 +1,6 @@
 PODS:
   - AsyncSwift (2.0.1)
+  - Attr (0.0.3)
   - DateToolsSwift (2.0.3)
   - EmitterKit (5.0.1)
   - Emojize (6.0.5):
@@ -20,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
+  - Attr (from `https://github.com/oleander/Attr.git`)
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
   - EmitterKit
   - Emojize (from `https://github.com/oleander/Emojize.git`)
@@ -35,6 +37,8 @@ DEPENDENCIES:
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
+  Attr:
+    :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
     :git: https://github.com/MatthewYork/DateTools.git
   Emojize:
@@ -45,6 +49,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
+  Attr:
+    :commit: d0607f98df0198f2b66bef1d10380bd380909a34
+    :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
@@ -60,6 +67,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
+  Attr: a96d189c83ac724c44a97a8bc2231b1b030da7fe
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
   Emojize: c117c21420051d1f12493b7e12363861b044df48
@@ -75,6 +83,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: aacdcea6401833a1eb5b2dc74ba8ed9d60086778
+PODFILE CHECKSUM: 5278219abd8866920d75df42fd9c39337ac4aa5b
 
 COCOAPODS: 1.2.1

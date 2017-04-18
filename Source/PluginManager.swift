@@ -77,6 +77,8 @@ class PluginManager {
     }
   }
 
+  // Find all potential plugin files in {path}
+  // and load them into BitBar
   private func loadPlugins() {
     do {
       for file in try Folder(path: path).files {

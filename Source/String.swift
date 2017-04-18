@@ -27,10 +27,6 @@ extension String {
     return "\"" + replace("\n", "↵").replace("\0", "0") + "\""
   }
 
-  func mutable() -> Mutable {
-    return Mutable(withDefaultFont: self)
-  }
-
   var camelCase: String {
     if isEmpty { return self }
     return substring(to: 1).lowercased() + substring(from: 1)

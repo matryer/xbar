@@ -21,10 +21,4 @@ final public class Output: TitleDelegate {
   internal func name(didTriggerRefresh: Title) {
     delegate?.output(didTriggerRefresh: self)
   }
-
-  func merge(with output: Output) {
-    isStream = output.isStream
-    delegate = output.delegate
-    title.merge(with: output.title)
-  }
 }

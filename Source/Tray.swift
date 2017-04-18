@@ -14,9 +14,9 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   private let openEvent = Event<Void>()
   private let closeEvent = Event<Void>()
   private var isOpen = false
-  private let menu = NSMenu()
+  private var menu = NSMenu()
   private var defaultCount = 0
-  private var item = Tray.center.statusItem(withLength: Tray.length)
+  var item = Tray.center.statusItem(withLength: Tray.length)
   internal weak var delegate: TrayDelegate?
 
   /**
@@ -25,14 +25,30 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   */
   init(title: String, isVisible displayed: Bool = false, delegate: TrayDelegate? = nil) {
     super.init()
+    set(menu: menu, delegate: delegate)
+    if displayed { show() } else { hide() }
+  }
+
+  func set(menu: NSMenu, delegate: TrayDelegate?) {
+    defaultCount = menu.items.count
+    self.menu = menu
     self.delegate = delegate
     item.menu = menu
     menu.autoenablesItems = false
     menu.delegate = self
-    item.attributedTitle = title.mutable()
     setPrefs()
-    defaultCount = menu.items.count
-    if displayed { show() } else { hide() }
+    refresh()
+  }
+
+  func set(title: Title) {
+    // TODO: How should be handle empty titles?
+    if title.aTitle.isEmpty {
+      item.attributedTitle = Mutable(string: "-")
+    } else {
+      item.attributedTitle = title.aTitle
+    }
+    item.image = title.image
+    set(menu: title, delegate: title)
   }
 
   var attributedTitle: Mutable {
@@ -65,7 +81,7 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   /**
     Remove item from dropdown menu
   */
-  func remove(menu item: NSMenuItem) {
+  func remove(menu item: Menu) {
     menu.removeItem(item)
   }
 
