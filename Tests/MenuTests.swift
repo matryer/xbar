@@ -19,7 +19,6 @@ func p(_ menu: Menuable) -> String {
   let dash = menu.level.times { _ in "--" }.joined()
   return "\nwarning: " + dash + menu.headline.string + menu.menus.map { menu in
     return p(menu)
-    // "warning: " + menu.level.times { _ in "--" }.joined() + p(menu)
   }.joined()
 }
 

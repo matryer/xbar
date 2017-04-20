@@ -2,6 +2,7 @@ import Cocoa
 import EmitterKit
 
 protocol Menuable: class  {
+  var args: [String] { get set }
   var listener: Listener? { get set }
   var level: Int { get set }
   var headline: NSMutableAttributedString { get set }
@@ -13,7 +14,6 @@ protocol Menuable: class  {
   var isChecked: Bool { get }
   var menus: [Menu] { get }
   var event: Event<Void> { get set }
-  var args: [String] { get }
   var params: [Paramable] { get set }
   var settings: [String: Bool] { get set }
   func isSeparator() -> Bool
@@ -29,6 +29,7 @@ protocol Menuable: class  {
   func set(color: NSColor)
   func set(fontName: String)
   func set(size: Float)
+  func add(arg: String)
   func set(image: NSImage, isTemplate: Bool)
   func set(headline: String)
   func set(headline: Mutable)
@@ -60,6 +61,10 @@ extension Menuable {
 
   func shouldTrim() -> Bool {
     return settings["trim"] ?? true
+  }
+
+  func add(arg: String) {
+    args.append(arg)
   }
 
   func load() {
@@ -115,12 +120,6 @@ extension Menuable {
         add(menu: menu)
       }
     }
-  }
-
-  var args: [String] {
-//    return container.args
-    // TODO
-    return ["X"]
   }
 
   /**

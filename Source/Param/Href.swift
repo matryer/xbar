@@ -6,10 +6,6 @@ final class Href: Param<URL> {
     return value.absoluteString
   }
 
-  // var original: String {
-  //   return escape(output)
-  // }
-
   override func menu(didLoad menu: Menuable) {
     menu.activate()
   }

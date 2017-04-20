@@ -1,4 +1,4 @@
-// TODO
+// TODO: Test this
 //import SwiftCheck
 //@testable import BitBar
 //

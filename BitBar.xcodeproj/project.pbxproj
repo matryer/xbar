@@ -55,8 +55,6 @@
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
 		2079AB711E9EC258005B92AD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB471E9EC258005B92AD /* Color.swift */; };
 		2079AB721E9EC258005B92AD /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB481E9EC258005B92AD /* ColorTests.swift */; };
-		2079AB731E9EC258005B92AD /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB491E9EC258005B92AD /* Container.swift */; };
-		2079AB741E9EC258005B92AD /* ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4A1E9EC258005B92AD /* ContainerTests.swift */; };
 		2079AB751E9EC258005B92AD /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4B1E9EC258005B92AD /* Dropdown.swift */; };
 		2079AB761E9EC258005B92AD /* Emojize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4C1E9EC258005B92AD /* Emojize.swift */; };
 		2079AB771E9EC258005B92AD /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4D1E9EC258005B92AD /* ExecutablePluginTests.swift */; };
@@ -189,8 +187,6 @@
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2079AB471E9EC258005B92AD /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2079AB481E9EC258005B92AD /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
-		2079AB491E9EC258005B92AD /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		2079AB4A1E9EC258005B92AD /* ContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
 		2079AB4B1E9EC258005B92AD /* Dropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		2079AB4C1E9EC258005B92AD /* Emojize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emojize.swift; sourceTree = "<group>"; };
 		2079AB4D1E9EC258005B92AD /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
@@ -510,8 +506,6 @@
 				2079AB461E9EC258005B92AD /* BufferTests.swift */,
 				2079AB471E9EC258005B92AD /* Color.swift */,
 				2079AB481E9EC258005B92AD /* ColorTests.swift */,
-				2079AB491E9EC258005B92AD /* Container.swift */,
-				2079AB4A1E9EC258005B92AD /* ContainerTests.swift */,
 				2079AB4B1E9EC258005B92AD /* Dropdown.swift */,
 				2079AB4C1E9EC258005B92AD /* Emojize.swift */,
 				2079AB4D1E9EC258005B92AD /* ExecutablePluginTests.swift */,
@@ -882,7 +876,6 @@
 				2079AB6C1E9EC258005B92AD /* Ansi.swift in Sources */,
 				2079AB8B1E9EC259005B92AD /* Refresh.swift in Sources */,
 				2079AB791E9EC259005B92AD /* Font.swift in Sources */,
-				2079AB741E9EC258005B92AD /* ContainerTests.swift in Sources */,
 				2079AB7D1E9EC259005B92AD /* HrefTests.swift in Sources */,
 				2079AB8A1E9EC259005B92AD /* PropertyTests.swift in Sources */,
 				2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */,
@@ -909,7 +902,6 @@
 				2079AB6F1E9EC258005B92AD /* BashTests.swift in Sources */,
 				2079AB821E9EC259005B92AD /* Menu.swift in Sources */,
 				2079AB811E9EC259005B92AD /* LengthTests.swift in Sources */,
-				2079AB731E9EC258005B92AD /* Container.swift in Sources */,
 				2079AB7F1E9EC259005B92AD /* ImageTests.swift in Sources */,
 				2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */,
 				2079AB8F1E9EC259005B92AD /* SubMenuTests.swift in Sources */,

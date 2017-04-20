@@ -6,9 +6,7 @@ import Nimble
 class SizeTests: Helper {
   override func spec() {
     it("handles base case") {
-//      self.match(Pro.getSize(), "size=12") {
-//        expect($0.headline.string as String).to(equal("12"))
-//      }
+      expect(input("size=12", with: Pro.getSize())).to(output("12"))
     }
 
     context("failures") {

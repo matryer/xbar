@@ -38,6 +38,6 @@ class LengthTests: Helper {
           self.failure(parser, "length=10.0")
         }
       }
-  }
+    }
   }
 }

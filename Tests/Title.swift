@@ -26,8 +26,4 @@ extension Title: Base {
       )
     }
   }
-
-  func test(_ title: Title) -> Property {
-    return equals(title) <?> "title"
-  }
 }

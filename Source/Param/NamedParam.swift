@@ -13,16 +13,7 @@ final class NamedParam: Param<String> {
     self.index = key
   }
 
-//  required init(_ value: Value) {
-//    fatalError("init has not been implemented")
-//  }
-
-  func equals(_ param: Paramable) -> Bool {
-    // TODO:s
-    guard let object = param as? NamedParam else {
-      return false
-    }
-
-    return object.index == index && object.value == value
+  override func menu(didLoad menu: Menuable) {
+    menu.add(arg: value)
   }
 }

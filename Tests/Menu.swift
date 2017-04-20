@@ -32,7 +32,7 @@ extension Menu: Base {
     params.append((gen.generate(using: Dropdown.arbitrary)) as Paramable)
     params.append((gen.generate(using: Emojize.arbitrary)) as Paramable)
     params.append((gen.generate(using: Font.arbitrary)) as Paramable)
-//    params.append((gen.generate(using: Href.arbitrary)) as Paramable)
+   params.append((gen.generate(using: Href.arbitrary)) as Paramable)
 //    params.append((gen.generate(using: Image.arbitrary)) as Paramable)
     params.append((gen.generate(using: Length.arbitrary)) as Paramable)
     params.append((gen.generate(using: Refresh.arbitrary)) as Paramable)

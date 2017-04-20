@@ -2,8 +2,6 @@ import Quick
 import Nimble
 @testable import BitBar
 
-// let quote: String = "\""
-
 func toQuote(_ value: String, quote: String) -> String {
   return quote + escape(value, quote) + quote
 }
@@ -11,11 +9,6 @@ func toQuote(_ value: String, quote: String) -> String {
 func escape(_ what: String, _ toEscape: String) -> String {
   return what.replace(toEscape, "\\" + toEscape)
 }
-
-// TODO: Use global unescape/escape
-// func unescape2(_ what: String, _ toEscape: String) -> String {
-//   return what.replace("\\" + toEscape, toEscape)
-// }
 
 let quotes =  ["\"", "'"]
 class ParserTests: Helper {

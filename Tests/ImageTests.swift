@@ -19,7 +19,7 @@ func verifyInvalidUrl(url: String) {
 }
 
 class ImageTests: Helper {
-  // TODO
+// TODO: Reimplement
 //  func verifyBase64(_ parser: P<Image>, _ name: String) {
 //    describe(name) {
 //      it("handles valid string") {
@@ -60,10 +60,12 @@ class ImageTests: Helper {
   override func spec() {
     describe("parser") {
       describe("image") {
+        // TODO: Reimplement
 //        verifyBase64(Pro.getImage(), "image")
       }
 
       describe("templateImage") {
+        // TODO: Reimplement
 //        verifyBase64(Pro.getTemplateImage(), "templateImage")
       }
     }

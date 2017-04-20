@@ -316,7 +316,6 @@ class TitleTests: Helper {
       it("handles new line") {
         self.match(Pro.title, "\n") {
           expect($0.headline.string).to(beEmpty())
-//          expect($1).to(beEmpty())
         }
       }
     }

@@ -343,42 +343,6 @@ public func the<T: Paramable>(_ parser: P<T> , with: String) -> W<String> {
   return input(with, with: parser)
 }
 
-//public func input<T>(_ input: String, with parser: P<T>) -> W<String> {
-//  return the(parser, with: input)
-//}
-
-// Just an alias for equal()
-// public func output(_ value: String) -> MatcherFunc<String> {
-//   return MatcherFunc { actual, failure in
-//     guard let result = try actual.evaluate() else {
-//       return false
-//     }
-//
-//     return result == value
-//   }
-// }
-
-// public func output(font name: String) -> MatcherFunc<W<Font>> {
-//   return MatcherFunc { actual, failure in
-//     failure.postfixMessage = "output font name \(name)"
-//     guard let result = try actual.evaluate() else {
-//       return false
-//     }
-//
-//     switch result {
-//     case let .success(font):
-//       return font.name == name
-//     case .failure:
-//       return false
-//     }
-//   }
-// }
-
-// input=font=Monaco
-// parser<Font>: font-parser
-// result=W<Font>
-//         expect(input("font=Monaco", with: parser)).to(output("Monaco"))
-
 func input<T: Paramable>(_ input: String, with parser: P<T>) -> W<String> {
   switch Pro.parse(parser, input) {
   case let Result.success(result, _):
@@ -423,21 +387,6 @@ func equal(_ name: String) -> MatcherFunc<Color> {
     return false
   }
 }
-
-// func output<T>(url: String) -> MatcherFunc<W<URL>> {
-//   return MatcherFunc { actual, failure in
-//     guard let result = try actual.evaluate() else {
-//       return false
-//     }
-//
-//     switch result {
-//     case let .success(url):
-//       return url.absoluteS
-//     default:
-//       return false
-//     }
-//   }
-// }
 
 public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
@@ -538,11 +487,7 @@ protocol Base: class, Arbitrary, Equatable {
   func getInput() -> String
 }
 
-protocol ParamBase: Base, Equatable, Paramable {
-}
-
-extension Paramable {
-}
+protocol ParamBase: Base, Equatable, Paramable {}
 
 extension File: Equatable {
   public static func == (_ a: File, _ b: File) -> Bool {
@@ -554,43 +499,13 @@ extension ParamBase {
   func getInput() -> String {
     return output
   }
-
-  // func test<T: ParamBase>(_ me: T) -> Property {
-  //   return (self == me) <?> "ok"
-  // }
 }
-
-
-// protocol Paramable: Param, Equatable, Base {
-//   var value: String { get }
-//   var attribute: String { get }
-//   var key: String { get }
-// }
-
-// extension Param {
-//   var attribute: String {
-//     return key.camelCase
-//   }
-//
-//   var input: String {
-//     if self is NamedParam {
-//       return (self as! NamedParam).string
-//     }
-//     return attribute + "=" + value
-//   }
-//
-//   func getInput() -> String {
-//     return input
-//   }
-// }
 
 extension Gen {
   public func proliferateRange(_ min: Int, _ max: Int) -> Gen<[A]> {
     return Gen.choose((min, max)).flatMap(self.proliferate(withSize:))
   }
 }
-
-// TODO: Rename String.inspected()
 
 extension Menuable {
   var body: String {
@@ -641,18 +556,7 @@ func verify<T: Menuable & Base>(name: String, parser: P<T>, gen: Gen<T>) {
     let input = item.getInput()
     switch Pro.parse(parser, input) {
     case let Result.success(result, _):
-      // print(input)
-      // print(result)
-      return (item.equals(result)) <?> "OK"
-      // return (true <?> "OK")
-      // TODO
-//      return item.test(result).whenFail {
-//        print("warning: ------------------------------------")
-//        print("warning: Failed verifying \(name)")
-//        print("warning: From input: ", String(describing: result))
-//        print("warning: Got: ", String(describing: item))
-//
-//      }
+      return (item.equals(result)) <?> "Menuable passed"
     case let Result.failure(lines):
       return (false <?> "Parser failed").whenFail {
         print("warning: ------------------------------------")
@@ -671,18 +575,7 @@ func verify<T: Paramable & Base>(name: String, parser: P<T>, gen: Gen<T>) {
     let input = item.getInput()
     switch Pro.parse(parser, input) {
     case let Result.success(result, _):
-      // print(input)
-      // print(result)
-      return (item == result) <?> "OK"
-      // return (true <?> "OK")
-      // TODO
-      //      return item.test(result).whenFail {
-      //        print("warning: ------------------------------------")
-      //        print("warning: Failed verifying \(name)")
-      //        print("warning: From input: ", String(describing: result))
-      //        print("warning: Got: ", String(describing: item))
-      //
-    //      }
+      return (item == result) <?> "Paramable passed"
     case let Result.failure(lines):
       return (false <?> "Parser failed").whenFail {
         print("warning: ------------------------------------")

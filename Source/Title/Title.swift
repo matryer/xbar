@@ -4,6 +4,7 @@ import EmitterKit
 final class Title: NSMenu, Menuable, TrayDelegate {
   var settings: [String : Bool] = [String: Bool]()
   var listener: Listener?
+  var args = [String]()
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
   internal var image: NSImage?

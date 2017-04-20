@@ -5,6 +5,7 @@ import EmitterKit
 final class Menu: ItemBase, Menuable {
   var settings: [String : Bool] = [String: Bool]()
   var listener: Listener?
+  var args = [String]()
   internal var level: Int = 0
   internal var params = [Paramable]()
   internal weak var parentable: Menuable?
