@@ -9,6 +9,12 @@ extension String {
     return self.trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
+  /* Just an alias */
+  func trimmed() -> String {
+    return trim()
+  }
+
+
   /**
     Replace @what with @with in @self
   */
@@ -58,7 +64,7 @@ func ini(_ sources: [Source]) -> [Source] {
 }
 
 enum Source {
-  indirect case item((String, [Param]), Int, [Source])
+  indirect case item((String, [Paramable]), Int, [Source])
 
   func appended(_ child: Source) -> Source {
     switch (child, self) {
@@ -89,7 +95,7 @@ enum Source {
   private func failed(_ message: String) -> Source {
     switch self {
     case let .item(_, level, _):
-      return .item(("[Failed] " + message, [Param]()), level, [Source]())
+      return .item(("[Failed] " + message, [Paramable]()), level, [Source]())
     }
   }
 

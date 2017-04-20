@@ -3,16 +3,16 @@ import AppKit
 import EmitterKit
 
 final class Menu: ItemBase, Menuable {
+  var settings: [String : Bool] = [String: Bool]()
+  var listener: Listener?
   internal var level: Int = 0
-  internal var container: Container
+  internal var params = [Paramable]()
   internal weak var parentable: Menuable?
+  internal var event = Event<Void>()
   internal var items: [NSMenuItem] {
     return submenu?.items ?? [NSMenuItem]()
   }
-
-  internal var event = Event<Void>()
-
-  var aTitle: NSMutableAttributedString {
+  var headline: Mutable {
     get { return currentTitle() }
     set { attributedTitle = newValue }
   }
@@ -23,11 +23,15 @@ final class Menu: ItemBase, Menuable {
     @menus Sub menus for this item
     @level The number of levels down from the tray
   */
-  init(_ title: String, container: Container = Container(), menus: [Menu] = [], level: Int = 0) {
-    self.container = container
+  init(_ title: String, params: [Paramable] = [Paramable](), menus: [Menu] = [], level: Int = 0) {
     self.level = level
+    self.params = params
     super.init(title)
-    container.delegate = self
+    load()
+
+    if shouldTrim() {
+      set(headline: headline.trimmed())
+    }
     add(menus: menus)
   }
 
@@ -39,8 +43,8 @@ final class Menu: ItemBase, Menuable {
   /**
     Same as above, but derives the @level from a @parent
   */
-  convenience init(_ title: String, container: Container, menus: [Menu] = [], parent: Menuable) {
-    self.init(title, container: container, menus: menus, level: parent.level + 1)
+  convenience init(_ title: String, params: [Paramable], menus: [Menu] = [], parent: Menuable) {
+    self.init(title, params: params, menus: menus, level: parent.level + 1)
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
@@ -53,17 +57,6 @@ final class Menu: ItemBase, Menuable {
 
   var isChecked: Bool {
     return state == NSOnState
-  }
-
-  /**
-    Add @menu to sub menu
-  */
-  func add(menu: NSMenuItem) {
-    add(sub: menu)
-  }
-
-  func add(error: String) {
-    set(title: ":warning: \(error)".emojifyed())
   }
 
   /**
@@ -86,18 +79,11 @@ final class Menu: ItemBase, Menuable {
   }
 
   /**
-    Removes item from sub menu
-  */
-  func remove(menu item: Menu) {
-    remove(submenu: item)
-  }
-
-  /**
     Should refresh events cascade to its parent?
     Set by the refresh=bool attribute
   */
   func shouldRefresh() -> Bool {
-    return container.shouldRefresh()
+    return settings["refresh"] ?? true
   }
 
   /**
@@ -105,7 +91,7 @@ final class Menu: ItemBase, Menuable {
     Set by the dropdown=bool attribute
   */
   var hasDropdown: Bool {
-    return container.hasDropdown()
+    return settings["dropdown"] ?? true
   }
 
   /**
@@ -113,7 +99,7 @@ final class Menu: ItemBase, Menuable {
     Set by the terminal=bool attribute
   */
   func openTerminal() -> Bool {
-    return container.openTerminal()
+    return settings["terminal"] ?? true
   }
 
   /**
@@ -123,6 +109,7 @@ final class Menu: ItemBase, Menuable {
     return title.trim() == "-"
   }
 
+  // TODO: Remove
   private func currentTitle() -> Mutable {
     guard let title = attributedTitle else {
       return Mutable(withDefaultFont: self.title)
@@ -133,27 +120,5 @@ final class Menu: ItemBase, Menuable {
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  static func == (lhs: Menu, rhs: Menu) -> Bool {
-    if lhs.getTitle() != rhs.getTitle() {
-      return false
-    }
-
-    if lhs.menus.count != rhs.menus.count {
-      return false
-    }
-
-    for (index, menu) in lhs.menus.enumerated() {
-      if menu != rhs.menus[index] {
-        return false
-      }
-    }
-
-    if lhs.level != rhs.level {
-      return false
-    }
-
-    return lhs.container == rhs.container
   }
 }

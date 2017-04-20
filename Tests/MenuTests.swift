@@ -17,15 +17,25 @@ extension Int {
 
 func p(_ menu: Menuable) -> String {
   let dash = menu.level.times { _ in "--" }.joined()
-  return "\nwarning: " + dash + menu.aTitle.string + menu.menus.map { menu in
+  return "\nwarning: " + dash + menu.headline.string + menu.menus.map { menu in
     return p(menu)
     // "warning: " + menu.level.times { _ in "--" }.joined() + p(menu)
   }.joined()
 }
 
-enum W<T> {
+public enum W<T>: CustomStringConvertible {
   case success(T)
   case failure
+
+  public var description: String {
+    switch self {
+    case let .success(output):
+      return String(describing: output)
+    default:
+      return "[Failed]"
+    }
+  }
+
 }
 
 func the(_ menu: Menuable, at index: Int) -> W<Menuable> {
@@ -42,7 +52,7 @@ func have(foreground color: CColor) -> MatcherFunc<W<Menuable>> {
   return tester("have a foreground") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.has(foreground: color.toNSColor())
+      return menu.headline.has(foreground: color.toNSColor())
     case .failure:
       return "expected a color much like \(color)"
     }
@@ -91,7 +101,7 @@ func have(title: String) -> MatcherFunc<W<Menuable>> {
   return tester("have a title") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.string == title
+      return menu.headline.string == title
     case .failure:
       return "to have a title"
     }
@@ -102,7 +112,7 @@ func contain(title: String) -> MatcherFunc<W<Menuable>> {
   return tester("have a title") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.string.contains(title)
+      return menu.headline.string.contains(title)
     case .failure:
       return "to have a title"
     }
@@ -113,7 +123,7 @@ func have(title: Mutable) -> MatcherFunc<W<Menuable>> {
   return tester("have a title") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle == title
+      return menu.headline == title
     case .failure:
       return "to have a title"
     }
@@ -124,7 +134,7 @@ func have(font: String) -> MatcherFunc<W<Menuable>> {
   return tester("to have have font") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.fontName == font
+      return menu.headline.fontName == font
     case .failure:
       return "expected font \(font)"
     }
@@ -135,7 +145,7 @@ func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
   return tester("have a background") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.has(background: color.toNSColor())
+      return menu.headline.has(background: color.toNSColor())
     case .failure:
       return "expected a color much like \(color)"
     }
@@ -146,7 +156,7 @@ func have(size: Int) -> MatcherFunc<W<Menuable>> {
   return tester("to have size") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.fontSize == size
+      return menu.headline.fontSize == size
     case .failure:
       return "expected a menu"
     }
@@ -157,7 +167,7 @@ func beBold() -> MatcherFunc<W<Menuable>> {
   return tester("bold") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.isBold
+      return menu.headline.isBold
     case .failure:
       return "failed with a failure"
     }
@@ -231,7 +241,7 @@ func beItalic() -> MatcherFunc<W<Menuable>> {
   return tester("italic") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.aTitle.isItalic
+      return menu.headline.isItalic
     case .failure:
       return "failed with a failure"
     }
@@ -242,7 +252,7 @@ func beTrimmed() -> MatcherFunc<W<Menuable>> {
   return tester("trimmed") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-    return menu.aTitle == menu.aTitle.trimmed()
+    return menu.headline == menu.headline.trimmed()
     case .failure:
       return "to be trimmed"
     }
@@ -253,7 +263,7 @@ func have(href: String) -> MatcherFunc<W<Menuable>> {
   return tester("href") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-    return menu.aTitle == menu.aTitle.trimmed()
+    return menu.headline == menu.headline.trimmed()
     case .failure:
       return "to be trimmed"
     }
@@ -263,9 +273,7 @@ func have(href: String) -> MatcherFunc<W<Menuable>> {
 class MenuTests: Helper {
   override func spec() {
     let setup = { (_ input: String..., block: @escaping (Menuable) -> Void) in
-      self.match(Pro.menu, input.joined() + "\n") { (menu, _) in
-        block(menu)
-      }
+      self.match(Pro.menu, input.joined() + "\n", block)
     }
 
     context("sub menu") {
@@ -424,12 +432,15 @@ class MenuTests: Helper {
         }
 
         it("should have no color") {
-          setup(title  + "|color=xxx\n") { menu in
+          setup(title  + "|color=red\n") { menu in
             expect(the(menu)).notTo(have(foreground: .blue))
           }
         }
 
-        pending("displays error message if color doesnt exist") {}
+        it("displays error message if color doesnt exist") {
+          self.failure(Pro.menu, "My Menu|color=xxx")
+        }
+
         pending("handles mixed lower and uppercase") {}
       }
 
@@ -665,58 +676,55 @@ class MenuTests: Helper {
 
     it("handles no input") {
       self.match(Pro.getMenu(), addSuffix("")) {
-        expect($0.getValue()).to(equal(""))
+        expect($0.headline.string).to(equal(""))
         expect($0.menus).to(haveCount(0))
-        expect($1).to(beEmpty())
       }
     }
 
     it("handles escaped input") {
       self.match(Pro.getMenu(), addSuffix("A B C\\|")) {
-        expect($0.getValue()).to(equal("A B C|"))
+        expect($0.headline.string).to(equal("A B C|"))
         expect($0.menus).to(haveCount(0))
-        expect($1).to(beEmpty())
       }
     }
 
     context("sub menu") {
       it("has one sub") {
         self.match(Pro.getMenu(), addSuffix("My Menu\n--A")) {
-          expect($0.getValue()).to(equal("My Menu"))
+          expect($0.headline.string).to(equal("My Menu"))
           expect($0.menus).to(haveCount(1))
-          expect($0.menus[0].getValue()).to(equal("A"))
-          expect($1).to(beEmpty())
+//          expect($0.menus[0].headline.string).to(equal("A"))
         }
       }
 
+//      let parser = Pro.getMenu()
       it("has +1 subs") {
         self.match(Pro.getMenu(), addSuffix("My Menu\n--A\n--B")) {
-          expect($0.getValue()).to(equal("My Menu"))
-          expect($0.menus).to(haveCount(2))
-          expect($0.menus[0].getValue()).to(equal("A"))
-          expect($0.menus[1].getValue()).to(equal("B"))
-          expect($1).to(beEmpty())
+          dump($0)
+          // expect($0.headline.string).to(equal("My Menu"))
+          // expect($0.menus).to(haveCount(2))
+          // expect($0.menus[0].headline.string).to(equal("A"))
+          // expect($0.menus[1].headline.string).to(equal("B"))
         }
       }
 
       it("has menu with params and +1 subs") {
         self.match(Pro.getMenu(), addSuffix("My Menu| size=10\n--A\n--B")) {
-          // expect($0.getValue()).to(equal("My Menu"))
+          // expect($0.headline.string).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
-          // expect($0.menus[0].getValue()).to(equal("A"))
-          // expect($0.menus[1].getValue()).to(equal("B"))
+          // expect($0.menus[0].headline.string).to(equal("A"))
+          // expect($0.menus[1].headline.string).to(equal("B"))
           // expect($1).to(beEmpty())
         }
       }
 
       it("has subs with params") {
         self.match(Pro.getMenu(), addSuffix("My Menu\n--A| font=Monaco \n--B")) {
-          expect($0.getValue()).to(equal("My Menu"))
+          expect($0.headline.string).to(equal("My Menu"))
           expect($0.menus).to(haveCount(2))
           let sub = $0.menus[0]
-          expect(sub.getValue()).to(equal("A"))
-          expect($0.menus[1].getValue()).to(equal("B"))
-          expect($1).to(beEmpty())
+          expect(sub.headline.string).to(equal("A"))
+          expect($0.menus[1].headline.string).to(equal("B"))
         }
       }
     }
@@ -724,15 +732,13 @@ class MenuTests: Helper {
     context("no sub menu") {
       it("handles base case") {
         self.match(Pro.getMenu(), addSuffix("My Menu")) {
-          expect($0.getValue()).to(equal("My Menu"))
-          expect($1).to(beEmpty())
+          expect($0.headline.string).to(equal("My Menu"))
         }
       }
 
       it("handles no input") {
         self.match(Pro.getMenu(), addSuffix("")) {
-          expect($0.getValue()).to(equal(""))
-          expect($1).to(beEmpty())
+          expect($0.headline.string).to(equal(""))
         }
       }
     }
@@ -741,15 +747,14 @@ class MenuTests: Helper {
       it("consumes spaces") {
         let arg = addSuffix("My Menu| terminal=true ")
         self.match(Pro.menu, arg) {
-          expect($0.getValue()).to(equal("My Menu"))
-          expect($1).to(beEmpty())
+          expect($0.headline.string).to(equal("My Menu"))
         }
       }
 
       it("handles stream") {
         let arg = addSuffix("My Menu| terminal=true")
         self.match(Pro.getMenu(), arg) {
-          expect($0.getValue()).to(equal("My Menu"))
+          expect($0.headline.string).to(equal("My Menu"))
         }
       }
 
@@ -757,24 +762,21 @@ class MenuTests: Helper {
         it("it handles true") {
           let arg = addSuffix("My Menu|terminal=true")
           self.match(Pro.getMenu(), arg) {
-            expect($0.getValue()).to(equal("My Menu"))
-            expect($1).to(beEmpty())
+            expect($0.headline.string).to(equal("My Menu"))
           }
         }
 
         it("it handles false") {
           let arg = addSuffix("My Menu|terminal=false")
           self.match(Pro.getMenu(), arg) {
-            expect($0.getValue()).to(equal("My Menu"))
-            expect($1).to(beEmpty())
+            expect($0.headline.string).to(equal("My Menu"))
           }
         }
 
         it("it handles space between menu and param") {
           let arg = addSuffix("My Menu | terminal=false")
           self.match(Pro.getMenu(), arg) {
-            expect($0.getValue()).to(equal("My Menu"))
-            expect($1).to(beEmpty())
+            expect($0.headline.string).to(equal("My Menu"))
           }
         }
       }
@@ -783,24 +785,21 @@ class MenuTests: Helper {
         it("it handles true") {
           let arg = addSuffix("My Menu|terminal=true trim=true")
           self.match(Pro.getMenu(), arg) {
-            expect($0.getValue()).to(equal("My Menu"))
-            expect($1).to(beEmpty())
+            expect($0.headline.string).to(equal("My Menu"))
           }
         }
 
         it("it handles false") {
           let arg = addSuffix("My Menu |terminal=false trim=false")
           self.match(Pro.getMenu(), arg) {
-            expect($0.getValue()).to(equal("My Menu "))
-            expect($1).to(beEmpty())
+            expect($0.headline.string).to(equal("My Menu "))
           }
         }
 
         it("it handles space between menu and param") {
           let arg = addSuffix("My Menu | terminal=false trim=false")
           self.match(Pro.getMenu(), arg) {
-            expect($0.getValue()).to(equal("My Menu "))
-            expect($1).to(beEmpty())
+            expect($0.headline.string).to(equal("My Menu "))
           }
         }
       }

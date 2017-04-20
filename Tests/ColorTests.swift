@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+import Attr
 @testable import BitBar
 
 class ColorTests: Helper {
@@ -8,7 +9,7 @@ class ColorTests: Helper {
       describe("english") {
         it("handels base case") {
           self.match(Pro.getColor(), "color=red") {
-            expect($0.getValue()).to(equal("red"))
+            expect($0).to(equal("red"))
           }
         }
       }
@@ -16,7 +17,7 @@ class ColorTests: Helper {
       describe("hex") {
         it("handels base case") {
           self.match(Pro.getColor(), "color=#00AA11") {
-            expect($0.getValue()).to(equal("#00AA11"))
+            expect($0).to(equal("#00AA11"))
           }
         }
       }

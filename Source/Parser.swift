@@ -5,14 +5,23 @@ import Hue
 import FootlessParser
 import AppKit
 
-typealias X = (String, [Param], Int)
+/* TODO: Give these aliases a better name */
+typealias X = (String, [Paramable], Int)
 public typealias P<T> = Parser<Character, T>
 typealias U = P<X>
 
 let slash = "\\"
+/* TODO: Move this code */
 public func unescape(_ value: String, what: [String]) -> String {
-return ([slash] + what).reduce(value) {
+  return ([slash] + what).reduce(value) {
     return $0.replace(slash + $1, $1)
+  }
+}
+
+/* TODO: Move this code */
+public func stop <A, B>(_ message: String) -> Parser<A, B> {
+  return Parser { parsedtokens in
+    throw ParseError.Mismatch(parsedtokens, message, "done")
   }
 }
 
@@ -40,7 +49,13 @@ class Pro {
     Quote / unquoted href attribute, i.e href="http://google.com"
   */
   internal static func getHref() -> P<Href> {
-    return Href.init <^> attribute("href") { quoteOrWord() }
+    return attribute("href") { quoteOrWord() } >>- { url in
+      if let url = URL(string: url) {
+        return pure(Href(url))
+      }
+
+      return stop("Could not read \(url) as an url")
+    }
   }
 
   /**
@@ -98,14 +113,14 @@ class Pro {
   static func toTitle(_ source: Source) -> Title {
     switch source {
     case let .item((title, params), _, menus):
-      return Title(title, container: Container(params: params), menus: menus.map { toMenu($0) })
+      return Title(title, params: params, menus: menus.map { toMenu($0) })
     }
   }
 
   static func toMenu(_ menu: Source) -> Menu {
     switch menu {
     case let .item((title, params), level, menus):
-      return Menu(title, container: Container(params: params), menus: menus.map { toMenu($0) }, level: level)
+      return Menu(title, params: params, menus: menus.map { toMenu($0) }, level: level)
     }
   }
 
@@ -159,15 +174,44 @@ class Pro {
   /**
     Quote / unquoted templateImage attribute, i.e templateImage="c2Rm=="
   */
-  internal static func getTemplateImage() -> P<Image> {
-    return curry(Image.init) <^> attribute("templateImage") { quoteOrWord() } <*> pure(true)
+  internal static func getTemplateImage() -> P<Paramable> {
+    return toImage(forKey: "templateImage", isTemplate: true)
   }
 
   /**
     Quote / unquoted image attribute, i.e image="c2Rm=="
   */
-  internal static func getImage() -> P<Image> {
-    return Image.init <^> attribute("image") { quoteOrWord() }
+  internal static func getImage() -> P<Paramable> {
+    return toImage(forKey: "image", isTemplate: false)
+  }
+
+  private static func toImage(forKey key: String, isTemplate: Bool) -> P<Paramable> {
+    return attribute(key) { quoteOrWord() } >>- { value in
+      return toImage(raw: value, isTemplate: isTemplate)
+    }
+  }
+
+  private static func toImage(raw: String, isTemplate: Bool) -> P<Paramable> {
+    if let image = toImage(base64: raw) {
+      return pure(Base64Image(image, isTemplate: isTemplate))
+    } else if let url = URL(string: raw) {
+      return pure(URLImage(url, isTemplate: isTemplate))
+    }
+
+    return stop("Could not read \(raw) as base64 or url")
+  }
+
+  private static func toImage(base64: String) -> NSImage? {
+    let options = Data.Base64DecodingOptions(rawValue: 0)
+    guard let data = Data(base64Encoded: base64, options: options) else {
+      return nil
+    }
+
+    guard let image = NSImage(data: data) else {
+      return nil
+    }
+
+    return image
   }
 
   /**
@@ -316,21 +360,38 @@ class Pro {
     let param: P<String> = string("param") *> digitsAsString()
     let key = ws *> param <* string("=")
     let value = quoteOrWord() <* ws
-    return curry(NamedParam.init) <^> key <*> value
+    return (curry({key, value in (key, value)}) <^> key <*> value) >>- { result in
+      guard let key = Int(result.0) else {
+        return stop("Could not read index from 'param\(result.0)'")
+      }
+
+      guard key >= 0 else {
+        return stop("Index \(key) in 'param\(result.0)' can't be < 0")
+      }
+
+      return pure(NamedParam(key, result.1))
+    }
   }
 
   /**
     Int length attribute, i.e length=11
   */
   internal static func getLength() -> P<Length> {
-    return Length.init <^> attribute("length") { digits() }
+    return { l in toLength(length: l) } <^> attribute("length") { digits() }
+  }
+
+  static func toLength(length: Int) -> Length {
+    return Length(length)
+  }
+
+  static func tc(value: Paramable) -> Paramable {
+    return value
   }
 
   /**
     Menu params, i.e | terminal=false length=10
   */
-  internal static func getOneParam() -> P<[Param]> {
-    let tc = { $0 as Param }
+  internal static func getOneParam() -> P<[Paramable]> {
     let item =
       (tc <^> getLength()) <|>
       (tc <^> getAlternate()) <|>
@@ -359,7 +420,7 @@ class Pro {
     return ws *> string("color=") *> (hexColor() <|> regularColor())
   }
 
-  static var flat: P<(String, [Param])> {
+  static var flat: P<(String, [Paramable])> {
     let terminals = ["\n", "|", "~~~"]
     let until2 = until(terminals, consume: false)
     return curry({ a, b in (a, b)}) <^> until2 <*> (params <* oneOrMore(string("\n")))
@@ -375,7 +436,7 @@ class Pro {
   }
 
   // FIXME: Rename to something better
-  static private func toThing(value: String, params: [Param], level: Int) -> X {
+  static private func toThing(value: String, params: [Paramable], level: Int) -> X {
     switch (value, level) {
     case ("-", 0): // Normal separator on level 0
       return (value, params, level)
@@ -425,17 +486,17 @@ class Pro {
     return toMenu(head: toValue(head), menus: tails.map { toValue($0) })
   }
 
-  private static func getParams() -> P<[Param]> {
+  private static func getParams() -> P<[Paramable]> {
     return optional(getOneParam(), otherwise: [])
   }
 
-  private static var params: P<[Param]> {
+  private static var params: P<[Paramable]> {
     return getParams()
   }
 
   // @example: true
   private static func truthy() -> P<Bool> {
-    return string("true") *> pure(true)
+    return quoteOr(string("true")) *> pure(true)
   }
 
   // @example: "FF00aa"
@@ -445,12 +506,20 @@ class Pro {
 
   // @example: false
   private static func falsy() -> P<Bool> {
-    return string("false") *> pure(false)
+    // FIXME: Check the value of bool within quotes. Same for truthy()
+    return quoteOr(string("false")) *> pure(false)
   }
 
   // @example: "A B C"
   internal static func quote() -> P<String> {
+    // TODO: Handle first char as escaped quote, i.e \"abc (same for quoteAnd)
     return oneOf("\"\'") >>- { (char: Character) in until(String(char)) }
+  }
+
+  internal static func quoteAnd<T>(_ parser: P<T>) -> P<T> {
+    return oneOf("\"\'") >>- { (char: Character) in
+      return parser <* string(String(char))
+    } <|> parser
   }
 
   internal static func until(_ oops: String, consume: Bool = true) -> P<String> {
@@ -514,8 +583,7 @@ class Pro {
 
   // @example: font=10
   private static func attribute<T>(_ name: P<String>, _ block: () -> P<T>) -> P<T> {
-    let equal = string("=")
-    return (ws *> (name *> ws *> equal *> ws) *> block() <* ws)
+    return (ws *> (name *> ws *> string("=") *> ws) *> block() <* ws)
   }
 
   private static func til(_ values: [String], empty: Bool = true) -> P<String> {
@@ -531,12 +599,26 @@ class Pro {
 
   // @example: #ff0011
   private static func hexColor() -> P<Color> {
-    return { Color.init(withHex: "#" + $0) } <^> (string("#") *> hex() <* ws)
+    let without: P<Color> = string("#") *> hex() <* ws >>- { hex in
+      if let color = Color(hex: "#" + hex) {
+        return pure(color)
+      }
+
+      return stop("Could not create a color from hex value \(hex)")
+    }
+
+    return quoteAnd(without)
   }
 
   // @example: red
   private static func regularColor() -> P<Color> {
-    return { Color.init(withName: $0) } <^> quoteOrWord() <* ws
+    return quoteOrWord() <* ws >>- { name in
+      if let color = Color(name: name) {
+        return pure(color)
+      }
+
+      return stop("Could not find color \(name)")
+    }
   }
 
   private static func toTime(_ value: Int, _ unit: String) -> Int {
@@ -563,4 +645,15 @@ class Pro {
     }
     return (head, row, string.distance(from: head.lowerBound, to: index))
   }
+
+//  private static var base64: P<String> {
+//    return oneOrMore(hex <|> oneOf("+/=")) >>- { base64 in
+//      let options = Data.Base64DecodingOptions(rawValue: 0)
+//      if let data = Data(base64Encoded: base64, options: options) {
+//        return data
+//      }
+//
+//      return stop("Could not read \(base64) as base64")
+//    }
+//  }
 }

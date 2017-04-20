@@ -10,7 +10,6 @@ class FileNameTests: Helper {
           expect($0.name).to(equal("aFile"))
           expect($0.interval).to(equal(10))
           expect($0.ext).to(equal("sh"))
-          expect($1).to(beEmpty())
         }
       }
     }
@@ -21,7 +20,6 @@ class FileNameTests: Helper {
           expect($0.name).to(equal("aFile"))
           expect($0.interval).to(equal(10 * 60))
           expect($0.ext).to(equal("sh"))
-          expect($1).to(beEmpty())
         }
       }
     }
@@ -32,7 +30,6 @@ class FileNameTests: Helper {
           expect($0.name).to(equal("aFile"))
           expect($0.interval).to(equal(10 * 60 * 60))
           expect($0.ext).to(equal("sh"))
-          expect($1).to(beEmpty())
         }
       }
     }
@@ -43,7 +40,6 @@ class FileNameTests: Helper {
           expect($0.name).to(equal("aFile"))
           expect($0.interval).to(equal(10 * 60 * 60 * 24))
           expect($0.ext).to(equal("sh"))
-          expect($1).to(beEmpty())
         }
       }
     }

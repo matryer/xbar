@@ -1,29 +1,23 @@
 import Foundation
-import EmitterKit
 import Async
-import FootlessParser
 
-public func stop <A, B>(_ message: String) -> Parser<A, B> {
-  return Parser { parsedtokens in
-    throw ParseError.Mismatch(parsedtokens, message, "done")
-  }
-}
-
-final class Bash: StringVal, Param {
+final class Bash: Param<String> {
   var priority = 0
-  var path: String { return data }
-  func menu(didLoad menu: Menuable) {
+  var path: String { return value }
+  override var original: String { return escape(raw) }
+
+  override func menu(didLoad menu: Menuable) {
     menu.activate()
   }
 
-  func menu(didClick menu: Menuable) {
+  override func menu(didClick menu: Menuable) {
     if menu.openTerminal() {
       Bash.open(script: path) {
         menu.add(error: $0)
       }
     }
 
-    Script(path: path, args: menu.getArgs()) { result in
+    Script(path: path, args: menu.args) { result in
       switch result {
       case let .failure(error):
         return menu.add(error: String(describing: error))

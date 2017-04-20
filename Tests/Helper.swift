@@ -4,6 +4,80 @@ import Swift
 import Nimble
 @testable import BitBar
 
+extension Array {
+  var any: Gen<Element> {
+    return Gen<Element>.fromElements(of: self)
+  }
+}
+
+extension CountableClosedRange where Iterator.Element: RandomType  {
+  var any: Gen<Element> {
+    return Gen<Element>.fromElements(in: first!...last!)
+  }
+}
+
+extension String {
+  static func any(min: Int, max: Int) -> Gen<String> {
+    return Character.arbitrary.proliferateRange(min, max).map { String($0) }
+  }
+
+  static func any(min: Int) -> Gen<String> {
+    return Character.arbitrary.map { String($0) }.suchThat { $0.characters.count >= min }
+  }
+
+  static func any(empty: Bool) -> Gen<String> {
+    if empty { return Character.arbitrary.map { String($0) } }
+    return Character.arbitrary.proliferateNonEmpty.map { String($0) }
+  }
+}
+
+
+
+
+let slash = "\\"
+
+// -- dex
+func escape(char: String) -> String {
+  let count = char.characters.count
+  guard count == 1 else {
+    preconditionFailure("Char length must be one, not \(count)")
+  }
+  // FIXME: Can we do this better?
+  return char.replace(char, slash + char)
+}
+
+func escape(title: String, what: [String]) -> String {
+  return ([slash] + what).reduce(title) { title, what in
+    return title.replace(what, escape(char: what))
+  }
+}
+
+func escape(title: String) -> String {
+  return escape(title: title, what: ["|", "\n"])
+}
+
+func equal(_ value: String) -> MatcherFunc<Value> {
+  return MatcherFunc { actual, failure in
+    guard let result = try actual.evaluate() else {
+      return false
+    }
+
+    switch result {
+    case let (other, _):
+      return other == value
+    }
+  }
+}
+
+func the<T: Menuable>(_ parser: P<T> , with input: String) -> W<String> {
+  switch Pro.parse(parser, input) {
+  case let Result.success(result, _):
+    return .success(result.headline.string)
+  case Result.failure(_):
+    return .failure
+  }
+}
+
 let failed = false <?> "Parser failed"
 let upper: Gen<Character> = Gen<Character>.fromElements(in: "A"..."Z")
 let lower: Gen<Character> = Gen<Character>.fromElements(in: "a"..."z")
@@ -26,6 +100,199 @@ let char: Gen<Character> = Gen<Character>.one(of: [
 ])
 let suffix = anyOf("=", "==", "")
 let base64 = glue([toString(upperAF, loweraf, numeric), suffix])
+
+
+extension String {
+  func blink(_ speed: Speed) -> String {
+    switch speed {
+    case .slow:
+      return toAnsi(using: 5)
+    case .rapid:
+      return toAnsi(using: 6)
+    case .none:
+      return toAnsi(using: 25)
+    }
+  }
+
+  var italic: String {
+    return toAnsi(using: 3)
+  }
+
+  var bold: String {
+    return toAnsi(using: 1)
+  }
+
+  var black: String {
+    return toAnsi(using: 30)
+  }
+
+  var red: String {
+    return toAnsi(using: 31)
+  }
+
+  var green: String {
+    return toAnsi(using: 32)
+  }
+
+  var yellow: String {
+    return toAnsi(using: 33)
+  }
+  var blue: String {
+    return toAnsi(using: 34)
+  }
+
+  var magenta: String {
+    return toAnsi(using: 35)
+  }
+
+  var cyan: String {
+    return toAnsi(using: 36)
+  }
+
+  var white: String {
+    return toAnsi(using: 37)
+  }
+
+  func background(color: CColor) -> String {
+    return toColor(color: color, offset: 40)
+  }
+
+  func foreground(color: CColor) -> String {
+    return toColor(color: color, offset: 30)
+  }
+
+  private func toColor(color: CColor, offset: Int) -> String {
+    switch color {
+    case .black:
+      return toAnsi(using: 0 + offset)
+    case .red:
+      return toAnsi(using: 1 + offset)
+    case .green:
+      return toAnsi(using: 2 + offset)
+    case .yellow:
+      return toAnsi(using: 3 + offset)
+    case .blue:
+      return toAnsi(using: 4 + offset)
+    case .magenta:
+      return toAnsi(using: 5 + offset)
+    case .cyan:
+      return toAnsi(using: 6 + offset)
+    case .white:
+      return toAnsi(using: 7 + offset)
+    case let .rgb(red, green, blue):
+      return toAnsi(using: [red, green, blue])
+    case let .index(color):
+      return toAnsi(using: color)
+    default:
+      preconditionFailure("failed on default")
+    }
+  }
+
+  func toAnsi(using code: Int, reset: Bool = true) -> String {
+    return toAnsi(using: [code], reset: reset)
+  }
+
+  func toAnsi(using codes: [Int], reset: Bool = true) -> String {
+    let code = "\033[\(codes.map(String.init).joined(separator: ";"))m\(self)"
+    if reset { return code + "\033[0m" }
+    return code
+  }
+}
+
+// Helper function
+public func tester<T>(_ post: String, block: @escaping (T) -> Any) -> MatcherFunc<T> {
+  return MatcherFunc { actual, failure in
+    failure.postfixMessage = post
+    guard let result = try actual.evaluate() else {
+      return false
+    }
+
+    let out = block(result)
+    switch out {
+    case is String:
+      failure.postfixActual = out as! String
+      return false
+    case is Bool:
+      return out as! Bool
+    default:
+      preconditionFailure("Invalid data, expected String or Bool got (type(of: out))")
+    }
+  }
+}
+
+// expect("ABC".bold).to(beItalic())
+public func beItalic() -> MatcherFunc<Value> {
+  return test(expect: .italic(true), label: "italic")
+}
+
+// expect("ABC".bold).to(beBold())
+public func beBold() -> MatcherFunc<Value> {
+  return test(expect: .bold(true), label: "bold")
+}
+
+// Helper function
+public func test(expect: Code, label: String) -> MatcherFunc<Value> {
+  return tester(label) { (_, codes) in
+    for actual in codes {
+      if actual == expect {
+        return true
+      }
+    }
+
+    return "not " + label
+  }
+}
+
+// expect("ABC").to(have(color: 10))
+public func have(color actual: Int) -> MatcherFunc<Value> {
+  return test(expect: .color(.foreground, .index(actual)), label: "256 color")
+}
+
+// expect("ABC").to(have(background: 10))
+public func have(background actual: Int) -> MatcherFunc<Value> {
+  return test(expect: .color(.background, .index(actual)), label: "256 background color")
+}
+
+// expect("ABC").to(have(background: [10, 20, 30]))
+public func have(background colors: [Int]) -> MatcherFunc<Value> {
+  if colors.count != 3 { preconditionFailure("Rgb must contain 3 ints") }
+  let expect: Code = .color(.background, .rgb(colors[0], colors[1], colors[2]))
+  return test(expect: expect, label: "RGB background color")
+}
+
+// expect("ABC").to(have(rgb: [10, 20, 30]))
+public func have(rgb colors: [Int]) -> MatcherFunc<Value> {
+  if colors.count != 3 { preconditionFailure("Rgb must contain 3 ints") }
+  let expect: Code = .color(.foreground, .rgb(colors[0], colors[1], colors[2]))
+  return test(expect: expect, label: "RGB foreground color")
+}
+
+// expect("ABC").to(haveNoStyle())
+public func haveNoStyle() -> MatcherFunc<Value> {
+  return tester("no style") { (_, codes) in
+    return codes.isEmpty
+  }
+}
+
+// expect("ABC".blink).to(blink())
+public func blink(_ speed: Speed) -> MatcherFunc<Value> {
+  return test(expect: .blink(speed), label: "blink")
+}
+
+// expect("ABC").to(haveUnderline())
+public func haveUnderline() -> MatcherFunc<Value> {
+  return test(expect: .underline(true), label: "underline")
+}
+
+// expect("ABC".red).to(be(.red))
+public func be(_ color: CColor) -> MatcherFunc<Value> {
+  return test(expect: .color(.foreground, color), label: "color")
+}
+
+// expect("ABC".background(color: .red)).to(have(background: .red))
+public func have(background color: CColor) -> MatcherFunc<Value> {
+  return test(expect: .color(.background, color), label: "color")
+}
 
 func toString(_ gens: Gen<Character>..., size: Int = 3) -> Gen<String> {
   return Gen<Character>.one(of: gens).proliferateRange(1, size).map { String.init($0) }
@@ -61,6 +328,116 @@ public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
     }
   }
 }
+
+
+public func the<T: Menuable>(_ parser: P<T> , with input: String) -> String {
+  switch Pro.parse(parser, input) {
+  case let Result.success(result, _):
+    return result.headline.string
+  case let Result.failure(lines):
+    return "[Failure] " + lines.joined(separator: "")
+  }
+}
+
+public func the<T: Paramable>(_ parser: P<T> , with: String) -> W<String> {
+  return input(with, with: parser)
+}
+
+//public func input<T>(_ input: String, with parser: P<T>) -> W<String> {
+//  return the(parser, with: input)
+//}
+
+// Just an alias for equal()
+// public func output(_ value: String) -> MatcherFunc<String> {
+//   return MatcherFunc { actual, failure in
+//     guard let result = try actual.evaluate() else {
+//       return false
+//     }
+//
+//     return result == value
+//   }
+// }
+
+// public func output(font name: String) -> MatcherFunc<W<Font>> {
+//   return MatcherFunc { actual, failure in
+//     failure.postfixMessage = "output font name \(name)"
+//     guard let result = try actual.evaluate() else {
+//       return false
+//     }
+//
+//     switch result {
+//     case let .success(font):
+//       return font.name == name
+//     case .failure:
+//       return false
+//     }
+//   }
+// }
+
+// input=font=Monaco
+// parser<Font>: font-parser
+// result=W<Font>
+//         expect(input("font=Monaco", with: parser)).to(output("Monaco"))
+
+func input<T: Paramable>(_ input: String, with parser: P<T>) -> W<String> {
+  switch Pro.parse(parser, input) {
+  case let Result.success(result, _):
+    return .success(result.raw)
+  case Result.failure(_):
+    return .failure
+  }
+}
+
+// Just an alias for equal()
+// cmp=Monaco
+// W(Param<String>)
+func output<T: Equatable>(_ cmp: T) -> MatcherFunc<W<T>> {
+  return MatcherFunc { actual, failure in
+    guard let result = try actual.evaluate() else {
+      return false
+    }
+
+    switch result {
+    case let .success(param):
+      return param == cmp
+    default:
+      return false
+    }
+  }
+}
+
+func equal(_ name: String) -> MatcherFunc<Color> {
+  return MatcherFunc { actual, failure in
+    guard let color = try actual.evaluate() else {
+      return false
+    }
+
+    if let other = Color(name: name) {
+      return other == color
+    }
+
+    if let other = Color(hex: name) {
+      return other == color
+    }
+
+    return false
+  }
+}
+
+// func output<T>(url: String) -> MatcherFunc<W<URL>> {
+//   return MatcherFunc { actual, failure in
+//     guard let result = try actual.evaluate() else {
+//       return false
+//     }
+//
+//     switch result {
+//     case let .success(url):
+//       return url.absoluteS
+//     default:
+//       return false
+//     }
+//   }
+// }
 
 public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
@@ -157,36 +534,55 @@ public func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
-protocol Base: Arbitrary {
+protocol Base: class, Arbitrary, Equatable {
   func getInput() -> String
-  func test(_ me: Self) -> Property
 }
 
-extension Base {
+protocol ParamBase: Base, Equatable, Paramable {
 }
 
-protocol Paramable: Param, Equatable, Base {
-  var value: String { get }
-  var attribute: String { get }
-  var key: String { get }
+extension Paramable {
 }
 
-extension Param {
-  var attribute: String {
-    return key.camelCase
+extension File: Equatable {
+  public static func == (_ a: File, _ b: File) -> Bool {
+    return a.name == b.name && a.interval == b.interval && a.ext == b.ext
   }
+}
 
-  var input: String {
-    if self is NamedParam {
-      return (self as! NamedParam).string
-    }
-    return attribute + "=" + value
-  }
-
+extension ParamBase {
   func getInput() -> String {
-    return input
+    return output
   }
+
+  // func test<T: ParamBase>(_ me: T) -> Property {
+  //   return (self == me) <?> "ok"
+  // }
 }
+
+
+// protocol Paramable: Param, Equatable, Base {
+//   var value: String { get }
+//   var attribute: String { get }
+//   var key: String { get }
+// }
+
+// extension Param {
+//   var attribute: String {
+//     return key.camelCase
+//   }
+//
+//   var input: String {
+//     if self is NamedParam {
+//       return (self as! NamedParam).string
+//     }
+//     return attribute + "=" + value
+//   }
+//
+//   func getInput() -> String {
+//     return input
+//   }
+// }
 
 extension Gen {
   public func proliferateRange(_ min: Int, _ max: Int) -> Gen<[A]> {
@@ -196,18 +592,97 @@ extension Gen {
 
 // TODO: Rename String.inspected()
 
-func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
+extension Menuable {
+  var body: String {
+    return escape(title: headline.string) + pstr + "\n" + menus.map { $0.getInput() }.joined() + "\n"
+  }
+
+  var pstr: String {
+    if params.isEmpty { return "" }
+    return "| " + params.map { param in param.output }.joined(separator: " ")
+  }
+
+  func equals(_ other: Menuable) -> Bool {
+    if other.headline != headline {
+      return fail("Titles arnt matching", other.headline.string, headline.string)
+    }
+
+    if other.menus.count != menus.count {
+      return fail("Sub menu count differs", other, self)
+    }
+
+    for (index, menu) in menus.enumerated() {
+      if !menu.equals(other.menus[index]) {
+        return fail("Menus are not equal")
+      }
+    }
+
+    if other.level != level {
+      return fail("Incorrect level", other.level, level)
+    }
+
+    for (index, param) in params.enumerated() {
+      if param.output != other.params[index].output {
+        return fail("Params are not equal", param, other.params[index])
+      }
+    }
+
+    return true
+  }
+
+  private func fail(_ any: Any...) -> Bool {
+    puts(any)
+    return false
+  }
+}
+
+func verify<T: Menuable & Base>(name: String, parser: P<T>, gen: Gen<T>) {
   property(name) <- forAll(gen) { item in
     let input = item.getInput()
     switch Pro.parse(parser, input) {
     case let Result.success(result, _):
-      return item.test(result).whenFail {
+      // print(input)
+      // print(result)
+      return (item.equals(result)) <?> "OK"
+      // return (true <?> "OK")
+      // TODO
+//      return item.test(result).whenFail {
+//        print("warning: ------------------------------------")
+//        print("warning: Failed verifying \(name)")
+//        print("warning: From input: ", String(describing: result))
+//        print("warning: Got: ", String(describing: item))
+//
+//      }
+    case let Result.failure(lines):
+      return (false <?> "Parser failed").whenFail {
         print("warning: ------------------------------------")
-        print("warning: Failed verifying \(name)")
-        print("warning: From input: ", String(describing: result))
-        print("warning: Got: ", String(describing: item))
-
+        print("warning: Could not parse: ", input.inspected())
+        print("warning: Failed parsing \(name)")
+        for error in lines {
+          print("warning:", error.inspected())
+        }
       }
+    }
+  }
+}
+
+func verify<T: Paramable & Base>(name: String, parser: P<T>, gen: Gen<T>) {
+  property(name) <- forAll(gen) { item in
+    let input = item.getInput()
+    switch Pro.parse(parser, input) {
+    case let Result.success(result, _):
+      // print(input)
+      // print(result)
+      return (item == result) <?> "OK"
+      // return (true <?> "OK")
+      // TODO
+      //      return item.test(result).whenFail {
+      //        print("warning: ------------------------------------")
+      //        print("warning: Failed verifying \(name)")
+      //        print("warning: From input: ", String(describing: result))
+      //        print("warning: Got: ", String(describing: item))
+      //
+    //      }
     case let Result.failure(lines):
       return (false <?> "Parser failed").whenFail {
         print("warning: ------------------------------------")
@@ -222,30 +697,26 @@ func verify<T: Base>(name: String, parser: P<T>, gen: Gen<T>) {
 }
 
 class Helper: QuickSpec {
-  public func verify<T>(_ parser: P<T>, _ input: String, _ block: (_: T, _: String) -> Void) {
-    switch Pro.parse(parser, input) {
-    case let Result.success(result, remain):
-      block(result, remain)
-    case let Result.failure(lines):
-      print("warning: Failed parsing")
-      print("warning: Could not parse: ", input.inspected())
-      for error in lines {
-        print("warning:", error.inspected())
-      }
-      fail("Could not parse")
-    }
+ public func verify<T>(_ parser: P<T>, _ input: String, block: (T) -> Void) {
+   switch Pro.parse(parser, input) {
+   case let Result.success(result, _):
+     block(result)
+   case let Result.failure(lines):
+     print("warning: Failed parsing")
+     print("warning: Could not parse: ", input.inspected())
+     for error in lines {
+       print("warning:", error.inspected())
+     }
+     fail("Could not parse: " + input)
+   }
+ }
+
+  public func match<T>(_ parser: P<T>, _ value: String, _ block: @escaping (T) -> Void) {
+    verify(parser, value, block: block)
   }
 
-  public func match<T>(_ parser: P<T>, _ value: String, _ block: (_: T, _: String) -> Void) {
-    verify(parser, value, block)
-  }
-
-  public func match<T>(_ parser: P<T>, _ value: String, _ block: @escaping (_: T) -> Void) {
-    verify(parser, value) { result, _ in block(result) }
-  }
-
-  public func test<T>(_ parser: P<T>, _ value: String, _ block: @escaping (_: T) -> Void) {
-    verify(parser, value) { result, _ in block(result) }
+  public func test<T>(_ parser: P<T>, _ value: String, _ block: @escaping (T) -> Void) {
+    verify(parser, value, block: block)
   }
 
   public func failure<T>(_ parser: P<T>, _ input: String) {

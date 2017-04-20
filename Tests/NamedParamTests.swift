@@ -4,15 +4,16 @@ import Nimble
 
 class NamedParamTests: Helper {
   override func spec() {
-    it("handles base case") {
-      self.match(Pro.getParam(), "param1=a-value") {
-        expect($0.getValue()).to(equal("a-value"))
-        expect($1).to(equal(""))
+    context("parser") {
+      let parser = Pro.getParam()
+      
+      it("handles base case") {
+        expect(input("param1=a-value", with: parser)).to(output("a-value"))
       }
-    }
-
-    it("must start with a number") {
-      self.failure(Pro.getParam(), "paramX=a-value")
+      
+      it("must start with a number") {
+        self.failure(parser, "paramX=a-value")
+      }
     }
   }
 }

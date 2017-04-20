@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+import Attr
 @testable import BitBar
 
 class LengthTests: Helper {
@@ -17,15 +18,11 @@ class LengthTests: Helper {
       let parser = Pro.getLength()
 
       it("handles positive value") {
-        self.match(parser, "length=10") {
-          expect($0.getValue()).to(equal(10))
-        }
+        expect(input("length=10", with: parser)).to(output("10"))
       }
 
       it("handles leading zeros") {
-        self.match(parser, "length=05") {
-          expect($0.getValue()).to(equal(5))
-        }
+        expect(input("length=05", with: parser)).to(output("5"))
       }
 
       context("invalid values") {

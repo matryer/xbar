@@ -1,5 +1,6 @@
 target 'BitBar' do
   use_frameworks!
+  inhibit_all_warnings!
   platform :osx, '10.10'
 
   pod 'Hue'
@@ -20,6 +21,7 @@ target 'BitBar' do
     pod 'Nimble'
     pod 'Quick'
     pod 'SwiftCheck'
+    pod 'Attr', git: 'https://github.com/oleander/Attr.git'
   end
 end
 

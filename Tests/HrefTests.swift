@@ -1,57 +1,40 @@
 import Quick
 import Nimble
+import Attr
 @testable import BitBar
 
 class HrefTests: Helper {
   override func spec() {
-    describe("href") {
+    describe("parser") {
+      let parser = Pro.getHref()
+      let domain = "http://google.com"
       it("handles base case") {
-        self.match(Pro.getHref(), "href=http://google.com") {
-          expect($0.getValue()).to(equal("http://google.com"))
-        }
+        expect(input("href=" + domain, with: parser)).to(output(domain))
       }
 
       it("handles double quotes") {
-        let href = "\"http://google.com\""
-        self.match(Pro.getHref(), "href=" + href) {
-          expect($0.getValue()).to(equal("http://google.com"))
-        }
+        let href = "\"\(domain)\""
+        expect(input("href=" + href, with: parser)).to(output(domain))
       }
 
       it("should be able to contain single quotes if double are used") {
-        let href = "\"http://google'''\""
-        self.match(Pro.getHref(), "href=" + href) {
-          expect($0.getValue()).to(equal("http://google'''"))
-        }
+        let href = "\"\(domain)'''\""
+        expect(input("href=" + href, with: parser)).to(output("\(domain)'''"))
       }
-
-      it("should be able to contain double quotes if single are used") {
-        let href = "'http://google\"\"\"'"
-        self.match(Pro.getHref(), "href=" + href) {
-          expect($0.getValue()).to(equal("http://google\"\"\""))
-        }
-      }
-
-      it("handles single quotes") {
-        let href = "'http://google.com'"
-        self.match(Pro.getHref(), "href=" + href) {
-          expect($0.getValue()).to(equal("http://google.com"))
-        }
-      }
-
-      it("handles double quotes with no content") {
-        let href = "\"\""
-        self.match(Pro.getHref(), "href=" + href) {
-          expect($0.getValue()).to(equal(""))
-        }
-      }
-
-      it("handles double quotes with no content") {
-        let href = "''"
-        self.match(Pro.getHref(), "href=" + href) {
-          expect($0.getValue()).to(equal(""))
-        }
-      }
+      
+      // TODO
+//      it("handles single quotes") {
+//        let href = "'\(domain)'"
+//        expect(input("href=" + href, with: parser)).to(beFailing)
+//      }
+//
+//      it("handles double quotes with no content") {
+//        expect(input("href=\"\"", with: parser)).to(beFailing)
+//      }
+//
+//      it("handles double quotes with no content") {
+//        expect(input("href=''", with: parser)).to(beFailing)
+//      }
     }
   }
 }

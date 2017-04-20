@@ -1,17 +1,18 @@
 import Hue
 import AppKit
 
+// TODO: Rename to something less generic
 typealias Value = (String, [Code])
 
-final class Ansi: BoolVal, Param {
+final class Ansi: Param<Bool> {
   var priority = 5
-  var active: Bool { return bool }
+  var active: Bool { return value }
 
-  func menu(didLoad menu: Menuable) {
+  override func menu(didLoad menu: Menuable) {
     guard active else { return }
-    switch Pro.parse(Pro.getANSIs(), menu.getTitle()) {
+    switch Pro.parse(Pro.getANSIs(), menu.headline.string) {
     case let Result.success(result, _):
-      menu.set(title: apply(result))
+      menu.set(headline: apply(result))
     case let Result.failure(lines):
       for error in lines {
         menu.add(error: error)

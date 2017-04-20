@@ -1,2 +1,2 @@
 scheme "BitBar"
-clean true
+# clean true

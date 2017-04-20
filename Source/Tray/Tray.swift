@@ -42,10 +42,10 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
 
   func set(title: Title) {
     // TODO: How should be handle empty titles?
-    if title.aTitle.isEmpty {
+    if title.headline.isEmpty {
       item.attributedTitle = Mutable(string: "-")
     } else {
-      item.attributedTitle = title.aTitle
+      item.attributedTitle = title.headline
     }
     item.image = title.image
     set(menu: title, delegate: title)
@@ -130,7 +130,7 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
 
   func item(didClick: ItemBase) {
-     delegate?.bar(didClickOpenInTerminal: self)
+     delegate?.tray(didClickOpenInTerminal: self)
   }
 
   private func separator() {

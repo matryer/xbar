@@ -1,59 +1,37 @@
 import AppKit
 import EmitterKit
 
-protocol TitleDelegate: class {
-  func title(didClickOpenInTerminal: Title)
-  func title(didTriggerRefresh: Title)
-}
-
-protocol TrayDelegate: class {
-  func bar(didClickOpenInTerminal: Tray)
-  func bar(didTriggerRefresh: Tray)
-}
-
 final class Title: NSMenu, Menuable, TrayDelegate {
-  var aTitle: Mutable
-
-  internal var container: Container
+  var settings: [String : Bool] = [String: Bool]()
+  var listener: Listener?
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
   internal var image: NSImage?
   internal var level: Int = 0
-
-  func onDidClick(block: @escaping Block<Void>) -> Listener {
-    return event.on(block)
-  }
+  internal var headline: Mutable
+  internal var params = [Paramable]()
 
   /**
     @title A title to be displayed in the tray
     @params Parameters read and parsed from stdin, i.e terminal=false
     @menus Sub menus to be displayed when when the item is clicked
   */
-  init(_ title: String, container: Container = Container(), menus: [Menu] = []) {
-    self.aTitle = title.mutable() // Mutable(withDefaultFont: title)
-    self.container = container
+  init(_ title: String, params: [Paramable], menus: [Menu] = []) {
+    self.params = params
+    self.headline = title.mutable()
     super.init(title: title)
+    load()
+    if shouldTrim() {
+      set(headline: headline.trimmed())
+    }
     add(menus: menus)
-    container.delegate = self
   }
 
   /**
     @errors A list of errors to be displayed in the sub menu
   */
   convenience init(errors: [String]) {
-    self.init(":warning: ", container: Container(), menus: errors.map { Menu($0) })
-  }
-
-  func bar(didClickOpenInTerminal: Tray) {
-    self.titlable?.title(didClickOpenInTerminal: self)
-  }
-
-  func bar(didTriggerRefresh: Tray) {
-    self.titlable?.title(didTriggerRefresh: self)
-  }
-
-  func remove(menu: Menu) {
-    /* TODO */
+    self.init(":warning: ", params: [Paramable](), menus: errors.map { Menu($0) })
   }
 
   /**
@@ -63,19 +41,16 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     self.init(errors: [error])
   }
 
-  /**
-    Adds a warning icon before error message passed
-  */
-  func add(error: String) {
-    print("[Title] error", error)
-    /* TODO: Implement */
+  func tray(didClickOpenInTerminal: Tray) {
+    self.titlable?.title(didClickOpenInTerminal: self)
   }
 
-  /**
-    Add menu to the list of sub menus
-  */
-  func add(menu: NSMenuItem) {
-    addItem(menu)
+  func tray(didTriggerRefresh: Tray) {
+    self.titlable?.title(didTriggerRefresh: self)
+  }
+
+  func onDidClick(block: @escaping Block<Void>) -> Listener {
+    return event.on(block)
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
@@ -108,5 +83,28 @@ final class Title: NSMenu, Menuable, TrayDelegate {
 
   func isSeparator() -> Bool {
     return false
+  }
+
+  /**
+    The below functions are optional
+  */
+  func shouldRefresh() -> Bool {
+    return false
+  }
+
+  func openTerminal() -> Bool {
+    return false
+  }
+
+  func add(menu: NSMenuItem) {
+    addItem(menu)
+  }
+
+  func useAsAlternate() {
+    /* NOP */
+  }
+
+  func set(state: Int) {
+    /* NOP */
   }
 }

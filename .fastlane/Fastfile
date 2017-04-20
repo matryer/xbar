@@ -4,7 +4,7 @@ cert = "Resources/bitbar.cer"
 
 default_platform :mac
 # xcversion version: "~> 8.3.1"
-clear_derived_data
+# clear_derived_data
 
 # before_all do
 #   cocoapods
