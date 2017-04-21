@@ -3,7 +3,7 @@ import Nimble
 @testable import BitBar
 
 func equal(_ value: String) -> MatcherFunc<Value> {
-  return MatcherFunc { actual, failure in
+  return MatcherFunc { actual, _ in
     guard let result = try actual.evaluate() else {
       return false
     }
@@ -15,7 +15,7 @@ func equal(_ value: String) -> MatcherFunc<Value> {
   }
 }
 
-func the<T: Menuable>(_ parser: P<T> , with input: String) -> W<String> {
+func the<T: Menuable>(_ parser: P<T>, with input: String) -> W<String> {
   switch Pro.parse(parser, input) {
   case let Result.success(result, _):
     return .success(result.headline.string)
@@ -108,7 +108,7 @@ public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
 // cmp=Monaco
 // W(Param<String>)
 func output<T: Equatable>(_ cmp: T) -> MatcherFunc<W<T>> {
-  return MatcherFunc { actual, failure in
+  return MatcherFunc { actual, _ in
     guard let result = try actual.evaluate() else {
       return false
     }
@@ -123,7 +123,7 @@ func output<T: Equatable>(_ cmp: T) -> MatcherFunc<W<T>> {
 }
 
 func equal(_ name: String) -> MatcherFunc<Color> {
-  return MatcherFunc { actual, failure in
+  return MatcherFunc { actual, _ in
     guard let color = try actual.evaluate() else {
       return false
     }
@@ -389,8 +389,6 @@ func beASeparator() -> MatcherFunc<W<Menuable>> {
     }
   }
 }
-
-
 
 func beChecked() -> MatcherFunc<W<Menuable>> {
   return tester("alternate") { (result: W<Menuable>) in

@@ -4,47 +4,6 @@ import Async
 import SwiftTryCatch
 import Foundation
 
-private extension Data {
-  func isEOF() -> Bool {
-    return count == 0
-  }
-}
-
-extension Script.Result: CustomStringConvertible {
-  public var description: String {
-    switch self {
-    case let .success(message, status):
-      return "Succeeded (\(status)): \(message.inspected())"
-    case let .failure(result):
-      return String(describing: result)
-    }
-  }
-
-  func toString() -> String {
-    switch self {
-    case let .success(message, _):
-      return message
-    case let .failure(result):
-      return String(describing: result)
-    }
-  }
-}
-
-extension Script.Failure: CustomStringConvertible {
-  public var description: String {
-    switch self {
-    case let .crash(message):
-      return "Crashed: \(message)"
-    case let .exit(message, status):
-      return "Failed (\(status)): \(message.inspected())"
-    case let .misuse(message):
-      return "Misused (2): \(message.inspected())"
-    case .terminated():
-      return "Terminated (15): Manual termination using Script#stop"
-    }
-  }
-}
-
 // TODO: Implement Process.environment
 class Script {
   private let path: String
@@ -62,9 +21,27 @@ class Script {
     case terminated()
   }
 
-  enum Result {
+  enum Result: CustomStringConvertible {
     case success(String, Int)
     case failure(Failure)
+
+    public var description: String {
+      switch self {
+      case let .success(message, status):
+        return "Succeeded (\(status)): \(message.inspected())"
+      case let .failure(result):
+        return String(describing: result)
+      }
+    }
+
+    func toString() -> String {
+      switch self {
+      case let .success(message, _):
+        return message
+      case let .failure(result):
+        return String(describing: result)
+      }
+    }
   }
 
   /**

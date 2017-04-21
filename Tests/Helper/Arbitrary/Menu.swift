@@ -2,7 +2,6 @@ import SwiftCheck
 import Attr
 @testable import BitBar
 
-
 extension Menu: Base {
   private static let which: Gen<Int> = (0...2).any
   func getInput() -> String {

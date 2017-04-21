@@ -1,70 +1,11 @@
 import Foundation
 
-extension NSRange {
-  var new: CountableClosedRange<Int> {
-    return location...(location + length)
-  }
-}
-
-typealias CRange = CountableClosedRange<Int>
-extension CountableClosedRange where  Bound : Integer {
-  var old: NSRange {
-    let upper = upperBound as! Int
-    let lower = lowerBound as! Int
-    return NSRange(location: lower, length: upper - lower)
-  }
-}
-
-// TODO: Make private
-private enum NotFound: Error {
-  case noLocation
-}
-
-private extension NSMutableData {
-  func range(of data: Data) throws -> CRange {
-    let foundRange = range(of: data, in: (0...length).old)
-
-    if foundRange.location == NSNotFound {
-      throw NotFound.noLocation
-    }
-
-    return foundRange.new
-  }
-
-  func subdata(with range: CRange) -> Data {
-    return subdata(with: range.old)
-  }
-
-  func reset() -> NSMutableData {
-    return replace(with: NSMutableData(length: 0)! as Data)
-  }
-
-  func replace(with data: Data) -> NSMutableData {
-    let current = self
-    setData(data)
-    return current
-  }
-
-  func toString() -> String {
-    return (self as Data).toString()
-  }
-}
-
-extension Data {
-  func toString() -> String {
-    return String(data: self, encoding: .utf8)!
-  }
-}
-
-private extension String {
-  func toData() -> Data {
-    return data(using: .utf8)!
-  }
-}
-
 class Buffer {
-  private static let defaultDelimiter = "\n~~~\n".toData()
+  enum NotFound: Error {
+    case noLocation
+  }
 
+  private static let defaultDelimiter = "\n~~~\n".toData()
   private let delimiter: Data
   private let store: NSMutableData = NSMutableData(length: 0)!
   internal var hasData = false

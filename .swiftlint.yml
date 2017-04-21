@@ -3,7 +3,7 @@ excluded:
 disabled_rules:
   - todo
   - file_length
-  - variable_name
+  - identifier_name
   - line_length
   - function_body_length
   - type_body_length

@@ -17,7 +17,7 @@ final class URLImage: Image<URL> {
       } catch(_) {
         return nil
       }
-    }.main { input -> () in
+    }.main { input -> Void in
       guard let data = input else {
         return menu.add(error: "Could not load image from url \(self.output)")
       }

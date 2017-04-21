@@ -40,7 +40,7 @@ public func test(expect: Code, label: String) -> MatcherFunc<Value> {
   }
 }
 
-public func the<T: Menuable>(_ parser: P<T> , with input: String) -> String {
+public func the<T: Menuable>(_ parser: P<T>, with input: String) -> String {
   switch Pro.parse(parser, input) {
   case let Result.success(result, _):
     return result.headline.string
@@ -49,7 +49,7 @@ public func the<T: Menuable>(_ parser: P<T> , with input: String) -> String {
   }
 }
 
-public func the<T: Paramable>(_ parser: P<T> , with: String) -> W<String> {
+public func the<T: Paramable>(_ parser: P<T>, with: String) -> W<String> {
   return input(with, with: parser)
 }
 

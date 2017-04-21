@@ -41,7 +41,7 @@ class ItemBase: NSMenuItem {
     submenu?.addItem(menu)
     activate()
   }
-  
+
   func addSub(_ title: String, checked: Bool, key: String = "", clickable: Bool, block: @escaping Block<ItemBase>) {
     let item = ItemBase(title, checked: checked, key: key)
     listeners.append(item.onDidClick(block: block))
