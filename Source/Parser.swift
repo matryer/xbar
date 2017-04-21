@@ -377,11 +377,7 @@ class Pro {
     Int length attribute, i.e length=11
   */
   internal static func getLength() -> P<Length> {
-    return { l in toLength(length: l) } <^> attribute("length") { digits() }
-  }
-
-  static func toLength(length: Int) -> Length {
-    return Length(length)
+    return Length.init <^> attribute("length") { digits() }
   }
 
   static func tc(value: Paramable) -> Paramable {
@@ -560,6 +556,7 @@ class Pro {
 
   // @example: 10
   private static func digits() -> P<Int> {
+    // TODO: Replace ! with stop(...)
     return { Int($0)! } <^> digitsAsString()
   }
 
@@ -645,15 +642,4 @@ class Pro {
     }
     return (head, row, string.distance(from: head.lowerBound, to: index))
   }
-
-//  private static var base64: P<String> {
-//    return oneOrMore(hex <|> oneOf("+/=")) >>- { base64 in
-//      let options = Data.Base64DecodingOptions(rawValue: 0)
-//      if let data = Data(base64Encoded: base64, options: options) {
-//        return data
-//      }
-//
-//      return stop("Could not read \(base64) as base64")
-//    }
-//  }
 }
