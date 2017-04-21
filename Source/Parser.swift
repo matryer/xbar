@@ -5,26 +5,6 @@ import Hue
 import FootlessParser
 import AppKit
 
-/* TODO: Give these aliases a better name */
-typealias X = (String, [Paramable], Int)
-public typealias P<T> = Parser<Character, T>
-typealias U = P<X>
-
-let slash = "\\"
-/* TODO: Move this code */
-public func unescape(_ value: String, what: [String]) -> String {
-  return ([slash] + what).reduce(value) {
-    return $0.replace(slash + $1, $1)
-  }
-}
-
-/* TODO: Move this code */
-public func stop <A, B>(_ message: String) -> Parser<A, B> {
-  return Parser { parsedtokens in
-    throw ParseError.Mismatch(parsedtokens, message, "done")
-  }
-}
-
 // TODO: Rename Pro to something like Parser
 // Parser is currently taken by FootlessParser
 class Pro {
@@ -32,6 +12,7 @@ class Pro {
   private static let wsOrNl = zeroOrMore(whitespacesOrNewline)
   private static let manager = NSFontManager.shared()
   private static let terminals = ["\u{1B}", "\\033", "\033", "\\e", "\\x1b"]
+  internal static let slash = "\\"
 
   /**
     A file name on the form {name}.{int}{unit}.{ext}
@@ -641,5 +622,17 @@ class Pro {
         row += 1
     }
     return (head, row, string.distance(from: head.lowerBound, to: index))
+  }
+
+  internal static func unescape(_ value: String, what: [String]) -> String {
+    return ([slash] + what).reduce(value) {
+      return $0.replace(slash + $1, $1)
+    }
+  }
+
+  private static func stop <A, B>(_ message: String) -> Parser<A, B> {
+    return Parser { parsedtokens in
+      throw ParseError.Mismatch(parsedtokens, message, "done")
+    }
   }
 }

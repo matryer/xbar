@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		079AC371DDB2513DAFBDC92E /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E0E367FADA37EBDD3A849D /* Pods_BitBar.framework */; };
 		20219AE21EA7F1FF005B79A4 /* Base64Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20219AE01EA7F1FF005B79A4 /* Base64Image.swift */; };
 		20219AE31EA7F1FF005B79A4 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20219AE11EA7F1FF005B79A4 /* URLImage.swift */; };
 		202EC6251EA628F8003E1F9B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6211EA628F8003E1F9B /* Array.swift */; };
@@ -141,9 +140,9 @@
 		20DA49C81EAAC4820070B4D9 /* ScriptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49C21EAAC4820070B4D9 /* ScriptDelegate.swift */; };
 		20DA49C91EAAC4820070B4D9 /* TitleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49C31EAAC4820070B4D9 /* TitleDelegate.swift */; };
 		20DA49CA1EAAC4820070B4D9 /* TrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49C41EAAC4820070B4D9 /* TrayDelegate.swift */; };
-		54AE4CA2D02C8B671515A6FF /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7684E5A6D1A58ABB0E376F6D /* Pods_Tests.framework */; };
-		800BFDE9B5E972C19A0EF8BA /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C460801E588526B1CBDDB /* Pods_BitBar.framework */; };
-		8BD58C7EDD64B524A28E55DB /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DD874A725348FA9602A297 /* Pods_Tests.framework */; };
+		20DA49CC1EAAC88E0070B4D9 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49CB1EAAC88E0070B4D9 /* Alias.swift */; };
+		B2A9464CD7E1311B14C764F3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DD874A725348FA9602A297 /* Pods_Tests.framework */; };
+		E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C460801E588526B1CBDDB /* Pods_BitBar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +297,7 @@
 		20DA49C21EAAC4820070B4D9 /* ScriptDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScriptDelegate.swift; path = Protocol/ScriptDelegate.swift; sourceTree = "<group>"; };
 		20DA49C31EAAC4820070B4D9 /* TitleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleDelegate.swift; path = Protocol/TitleDelegate.swift; sourceTree = "<group>"; };
 		20DA49C41EAAC4820070B4D9 /* TrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrayDelegate.swift; path = Protocol/TrayDelegate.swift; sourceTree = "<group>"; };
+		20DA49CB1EAAC88E0070B4D9 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 		2B55715E19F2DC9494FF6193 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
 		3D04080A1FF16E3A510FF0D1 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Distro_Travis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		518E2808BBCA24C3E9269EF0 /* Pods-BitBarPullRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarPullRequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarPullRequest/Pods-BitBarPullRequest.release.xcconfig"; sourceTree = "<group>"; };
@@ -330,8 +330,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079AC371DDB2513DAFBDC92E /* Pods_BitBar.framework in Frameworks */,
-				800BFDE9B5E972C19A0EF8BA /* Pods_BitBar.framework in Frameworks */,
+				E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,8 +338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54AE4CA2D02C8B671515A6FF /* Pods_Tests.framework in Frameworks */,
-				8BD58C7EDD64B524A28E55DB /* Pods_Tests.framework in Frameworks */,
+				B2A9464CD7E1311B14C764F3 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +559,7 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				20DA49CB1EAAC88E0070B4D9 /* Alias.swift */,
 				20DA49BE1EAAC4790070B4D9 /* Protocol */,
 				202EC6201EA628CB003E1F9B /* Extension */,
 				202EC6531EA6293C003E1F9B /* Menu */,
@@ -909,6 +908,7 @@
 				20DA49C91EAAC4820070B4D9 /* TitleDelegate.swift in Sources */,
 				20DA49BD1EAAC2CA0070B4D9 /* ParamExt.swift in Sources */,
 				202EC65A1EA62943003E1F9B /* ItemBase.swift in Sources */,
+				20DA49CC1EAAC88E0070B4D9 /* Alias.swift in Sources */,
 				20DA49AB1EAAC2C20070B4D9 /* Source.swift in Sources */,
 				202EC6421EA6292F003E1F9B /* Alternate.swift in Sources */,
 				202EC65E1EA62943003E1F9B /* PrefItem.swift in Sources */,

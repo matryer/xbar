@@ -4,6 +4,7 @@ import SwiftCheck
 @testable import BitBar
 
 let quotes =  ["\"", "'"]
+let slash = "\\"
 let timeout = 10.0
 // TODO: Rename to something more descriptive
 typealias R = (String, [Paramable])

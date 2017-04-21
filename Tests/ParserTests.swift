@@ -136,16 +136,16 @@ class ParserTests: Helper {
 
       context("unescape") {
         it("should be able to unescape an empty string ") {
-          expect(unescape("", what: [String]())).to(equal(""))
+          expect(Pro.unescape("", what: [String]())).to(equal(""))
         }
 
         it("should only unescape the values passed as 'what'") {
-          expect(unescape("\\e \\b", what: ["b"])).to(equal("\\e b"))
+          expect(Pro.unescape("\\e \\b", what: ["b"])).to(equal("\\e b"))
         }
 
         it("should ignore non match chars") {
-          expect(unescape("\\e \\b", what: ["z"])).to(equal("\\e \\b"))
-          expect(unescape("\\e \\b \n", what: ["z"])).to(equal("\\e \\b \n"))
+          expect(Pro.unescape("\\e \\b", what: ["z"])).to(equal("\\e \\b"))
+          expect(Pro.unescape("\\e \\b \n", what: ["z"])).to(equal("\\e \\b \n"))
         }
       }
     }
