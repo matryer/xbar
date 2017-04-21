@@ -1,3 +1,6 @@
+// swiftlint:disable force_cast
+// swiftlint:disable type_name
+
 import Quick
 import Nimble
 import SwiftCheck

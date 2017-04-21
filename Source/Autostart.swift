@@ -1,3 +1,5 @@
+// swiftlint:disable force_cast
+
 import Foundation
 
 /**
