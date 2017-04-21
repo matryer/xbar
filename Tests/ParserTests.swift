@@ -2,15 +2,6 @@ import Quick
 import Nimble
 @testable import BitBar
 
-func toQuote(_ value: String, quote: String) -> String {
-  return quote + escape(value, quote) + quote
-}
-
-func escape(_ what: String, _ toEscape: String) -> String {
-  return what.replace(toEscape, "\\" + toEscape)
-}
-
-let quotes =  ["\"", "'"]
 class ParserTests: Helper {
   override func spec() {
     let testQuote = { (input: String, quote: String) in

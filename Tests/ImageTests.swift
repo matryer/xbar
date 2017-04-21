@@ -4,20 +4,6 @@ import Attr
 import AppKit
 @testable import BitBar
 
-func verifyUrl(url: String) {
-  let image = URLImage(URL(string: url)!)
-  let menu = Menu.arbitrary.sample[0]
-  image.menu(didLoad: menu)
-  expect(menu.image).toEventuallyNot(beNil())
-}
-
-func verifyInvalidUrl(url: String) {
-  let image = Image(url)
-  let menu = Menu.arbitrary.sample[0]
-  image.menu(didLoad: menu)
-  expect(menu.image).toEventually(beNil(), timeout: 5)
-}
-
 class ImageTests: Helper {
 // TODO: Reimplement
 //  func verifyBase64(_ parser: P<Image>, _ name: String) {

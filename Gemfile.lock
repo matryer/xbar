@@ -11,6 +11,7 @@ GEM
     babosa (1.0.2)
     backports (3.7.0)
     claide (1.0.1)
+    clamp (0.6.5)
     cocoapods (1.2.1)
       activesupport (>= 4.0.2, < 5)
       claide (>= 1.0.1, < 2.0)
@@ -46,6 +47,7 @@ GEM
     cocoapods-try (1.1.0)
     colored (1.2)
     colored2 (3.1.2)
+    colorize (0.7.7)
     commander-fastlane (4.4.4)
       highline (~> 1.7.2)
     domain_name (0.5.20170404)
@@ -169,6 +171,10 @@ GEM
       jwt (~> 1.5)
       multi_json (~> 1.10)
     slack-notifier (1.5.1)
+    synx (0.2.1)
+      clamp (~> 0.6)
+      colorize (~> 0.7)
+      xcodeproj (~> 1.0)
     terminal-notifier (1.7.1)
     terminal-table (1.7.3)
       unicode-display_width (~> 1.1.1)
@@ -212,6 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods
+  synx
   travis
   xcode-install
   xcpretty

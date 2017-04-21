@@ -3,7 +3,6 @@ import Nimble
 import Attr
 @testable import BitBar
 
-typealias R = (String, [Paramable])
 class TitleTests: Helper {
   override func spec() {
     let setup = { (_ input: String..., block: @escaping (Menuable) -> Void) in
