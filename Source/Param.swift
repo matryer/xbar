@@ -1,30 +1,25 @@
 import Foundation
 
-class Param<T: Equatable>: Paramable, Equatable {
+class Param<T>: Paramable {
+  var value: T
+  var before: Filter { return [] }
+  var after: Filter { return [] }
   var original: String { return raw }
   var raw: String { return String(describing: value) }
   var key: String {
     return String(describing: type(of: self)).camelCase
   }
-  var value: T
 
   init(_ value: T) {
     self.value = value
   }
 
-  static func ==(lhs: Param<T>, rhs: Param<T>) -> Bool {
-    guard type(of: lhs.value) == type(of: rhs.value) else {
-      return false
-    }
+  func menu(didClick: Menuable) {}
+  func menu(didLoad: Menuable) {}
+  func menu(didClick menu: Menuable, done: @escaping (String?) -> Void) { done(nil) }
 
-    return lhs.value == rhs.value
+  func escape(_ value: String, quote: String = "\"") -> String {
+    return quote + value.replace("\\", "\\\\").replace(quote, "\\" + quote) + quote
   }
-
-   func menu(didLoad: Menuable) {
-     // preconditionFailure("didLoad not implement for \(key)")
-   }
-
-   func menu(didClick: Menuable) {
-     // preconditionFailure("didClick not implement for \(key)")
-   }
 }
+

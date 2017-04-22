@@ -1,8 +1,9 @@
 import AppKit
 
 class Image<T: Equatable>: Param<T> {
-  override var key: String { return isTemplate ? "templateImage" : "image" }
-  var priority = 0
+  override var key: String {
+    return isTemplate ? "templateImage" : "image"
+  }
   var isTemplate = false
 
   convenience init(_ value: T, isTemplate: Bool) {

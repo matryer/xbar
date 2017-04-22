@@ -1,2 +1,3 @@
 scheme "BitBar"
-# clean true
+open_report false
+code_coverage false

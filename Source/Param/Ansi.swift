@@ -1,15 +1,12 @@
 import Hue
 import AppKit
 
-// TODO: Rename to something less generic
-typealias Value = (String, [Code])
-
 final class Ansi: Param<Bool> {
-  var priority = 5
-  var active: Bool { return value }
+  override var after: Filter { return [Emojize.self] }
+  var shouldParseAnsi: Bool { return value }
 
   override func menu(didLoad menu: Menuable) {
-    guard active else { return }
+    guard shouldParseAnsi else { return }
     switch Pro.parse(Pro.getANSIs(), menu.headline.string) {
     case let Result.success(result, _):
       menu.set(headline: apply(result))

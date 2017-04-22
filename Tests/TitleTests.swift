@@ -348,8 +348,8 @@ class TitleTests: Helper {
           expect($0.menus).to(haveCount(2))
           expect($0.menus[0].headline.string).to(equal("B"))
           expect($0.menus[1].headline.string).to(equal("C"))
-          expect($0.menus[0].openTerminal()).to(beFalse())
-          expect($0.menus[1].openTerminal()).to(beFalse())
+          expect($0.menus[0].openInTerminal).to(beFalse())
+          expect($0.menus[1].openInTerminal).to(beFalse())
         }
       }
 
@@ -358,7 +358,7 @@ class TitleTests: Helper {
           expect($0.headline.string).to(equal("A"))
           expect($0.menus).to(haveCount(1))
           expect($0.menus[0].headline.string).to(equal("B"))
-          expect($0.menus[0].openTerminal()).to(beFalse())
+          expect($0.menus[0].openInTerminal).to(beFalse())
         }
       }
 

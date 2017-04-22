@@ -235,7 +235,7 @@ class MenuTests: Helper {
       context("dropdown") {
         it("should have no dropdown") {
           setup("A|dropdown=false\n--Sub menu\n") { menu in
-            expect(menu.menus).to(beEmpty())
+            expect(menu.items).to(beEmpty())
           }
         }
 

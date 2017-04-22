@@ -1,9 +1,12 @@
+ifdef test
+	_test=--only_testing=Tests/$(test)
+endif
 setup:
-	gem install bundler --pre
-	gem install fastlane -v 2.27.0
+	gem install bundler fastlane --pre
 	bundle install
-	bundle exec pod install --repo-update
 	fastlane setup
-wait:
-	find . -name "*.swift" | entr fastlane scan --only_testing=Tests/$(test)
+test:
+	@bundle exec fastlane scan $(_test) || :
+wait: test
+	@find . -name "*.swift" | entr -p make test
 

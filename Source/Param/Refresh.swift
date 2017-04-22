@@ -1,5 +1,4 @@
 final class Refresh: Param<Bool> {
-  var priority = 0
   var refreshable: Bool { return value }
 
   override func menu(didLoad menu: Menuable) {

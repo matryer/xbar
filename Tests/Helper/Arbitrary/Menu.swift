@@ -46,8 +46,7 @@ extension Menu: Base {
       params.append(named as Paramable)
     }
 
-    params += params.shuffle() as! [Paramable]
-    return params
+    return params.shuffle()
   }
 
   internal static func getSubMenu(_ level: Int) -> Gen<Menu> {

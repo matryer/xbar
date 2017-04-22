@@ -1,44 +1,33 @@
 import AppKit
 
 extension Menuable {
-  func setting(terminal: Bool) {
-    settings["terminal"] = terminal
+  init(coder decoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
-  func setting(refresh: Bool) {
-    settings["refresh"] = refresh
-  }
-
-  func setting(dropdown: Bool) {
-    settings["dropdown"] = dropdown
-  }
-
-  func setting(trim: Bool) {
-    settings["trim"] = trim
-  }
-
-  func shouldTrim() -> Bool {
-    return settings["trim"] ?? true
-  }
-
-  func add(arg: String) {
-    args.append(arg)
-  }
-
-  func load() {
-    let those = params.sorted { a, b in
-      return a.priority > b.priority
+  /* TODO: Move this code to Parser.swift */
+  /* TODO: Optimize, can be done in one iteration over params */
+  internal var sortedParams: [Paramable] {
+    var pParams = params
+    if (!params.some { type(of: $0) == Trim.self }) {
+      pParams.append(Trim(true))
     }
 
-    for param in those {
-      param.menu(didLoad: self)
+    let sorted = pParams.filter { param in
+      (!param.after.isEmpty || !param.before.isEmpty)
+      && !param.after.some { c in c == All.self }
+      && !param.before.some { c in c == All.self }
     }
+    .sorted { a, b in !a.after.some { c in type(of: b) == c } }
+    .sorted { a, b in a.before.some { c in type(of: b) == c } }
 
-   listener = onDidClick {
-     for param in those {
-       param.menu(didClick: self)
-     }
-   }
+    // Sort {nothing} to make the output consistent
+    let nothing = pParams.filter { ($0.after + $0.before).isEmpty }.sorted { a, b in
+      String(describing: type(of: a)).characters.count > String(describing: type(of: b)).characters.count /* Sort by anything */
+    }
+    let after = pParams.filter { $0.after.some { c in c == All.self } }
+    let before = pParams.filter { $0.before.some { c in c == All.self } }
+    return before + sorted + nothing + after
   }
 
   internal var menus: [Menu] {
@@ -68,8 +57,11 @@ extension Menuable {
     set(state: NSOnState)
   }
 
+  func add(arg: String) {
+    args.append(arg)
+  }
+
   func add(menus: [Menu]) {
-    guard hasDropdown else { return }
     for menu in menus {
       menu.parentable = self
       if menu.isSeparator() {
@@ -78,6 +70,7 @@ extension Menuable {
         add(menu: menu)
       }
     }
+    load()
   }
 
   /**
@@ -111,5 +104,27 @@ extension Menuable {
 
   func add(error: String) {
     set(headline: ":warning: \(error)".emojifyed())
+  }
+
+  private func load() {
+    for param in sortedParams {
+      param.menu(didLoad: self)
+    }
+
+    listener = onDidClick {
+      self.wait(params: self.sortedParams)
+    }
+  }
+
+  private func wait(params: [Paramable]) {
+    if params.isEmpty { return }
+    let param = params.get(at: 0)!
+    param.menu(didClick: self)
+    param.menu(didClick: self, done: { error in
+      if (error != nil) { self.add(error: error!) }
+      var p1 = params
+      p1.removeFirst()
+      self.wait(params: p1)
+    })
   }
 }

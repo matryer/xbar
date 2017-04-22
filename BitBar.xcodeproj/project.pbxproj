@@ -141,6 +141,9 @@
 		20DA49C91EAAC4820070B4D9 /* TitleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49C31EAAC4820070B4D9 /* TitleDelegate.swift */; };
 		20DA49CA1EAAC4820070B4D9 /* TrayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49C41EAAC4820070B4D9 /* TrayDelegate.swift */; };
 		20DA49CC1EAAC88E0070B4D9 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49CB1EAAC88E0070B4D9 /* Alias.swift */; };
+		20DC7F931EAB158400402782 /* FilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DC7F921EAB158400402782 /* FilterTests.swift */; };
+		20F83B681EABB70500F80FF5 /* All.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F83B671EABB70500F80FF5 /* All.swift */; };
+		20F83B6C1EABB92E00F80FF5 /* ParamExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F83B6B1EABB92E00F80FF5 /* ParamExt.swift */; };
 		B2A9464CD7E1311B14C764F3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DD874A725348FA9602A297 /* Pods_Tests.framework */; };
 		E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C460801E588526B1CBDDB /* Pods_BitBar.framework */; };
 /* End PBXBuildFile section */
@@ -298,6 +301,9 @@
 		20DA49C31EAAC4820070B4D9 /* TitleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleDelegate.swift; path = Protocol/TitleDelegate.swift; sourceTree = "<group>"; };
 		20DA49C41EAAC4820070B4D9 /* TrayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrayDelegate.swift; path = Protocol/TrayDelegate.swift; sourceTree = "<group>"; };
 		20DA49CB1EAAC88E0070B4D9 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		20DC7F921EAB158400402782 /* FilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTests.swift; sourceTree = "<group>"; };
+		20F83B671EABB70500F80FF5 /* All.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = All.swift; sourceTree = "<group>"; };
+		20F83B6B1EABB92E00F80FF5 /* ParamExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamExt.swift; sourceTree = "<group>"; };
 		2B55715E19F2DC9494FF6193 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
 		3D04080A1FF16E3A510FF0D1 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Distro_Travis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		518E2808BBCA24C3E9269EF0 /* Pods-BitBarPullRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarPullRequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarPullRequest/Pods-BitBarPullRequest.release.xcconfig"; sourceTree = "<group>"; };
@@ -359,6 +365,7 @@
 		202EC61F1EA627BB003E1F9B /* Param */ = {
 			isa = PBXGroup;
 			children = (
+				20F83B671EABB70500F80FF5 /* All.swift */,
 				202EC6311EA6292F003E1F9B /* Alternate.swift */,
 				202EC6321EA6292F003E1F9B /* Ansi.swift */,
 				20219AE01EA7F1FF005B79A4 /* Base64Image.swift */,
@@ -439,6 +446,7 @@
 		2037F3C31EAAB43F0024F529 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				20F83B6B1EABB92E00F80FF5 /* ParamExt.swift */,
 				205084DD1EAABB2900C76041 /* Int.swift */,
 				2037F3C91EAAB4770024F529 /* Array.swift */,
 				2037F3CA1EAAB4770024F529 /* CountableClosedRange.swift */,
@@ -588,6 +596,7 @@
 		20946B3D1E9EBF6800F7926D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				20DC7F921EAB158400402782 /* FilterTests.swift */,
 				2037F3C21EAAB4220024F529 /* Helper */,
 				2079AB431E9EC258005B92AD /* AnsiTests.swift */,
 				2079AB451E9EC258005B92AD /* BashTests.swift */,
@@ -951,6 +960,7 @@
 				20219AE21EA7F1FF005B79A4 /* Base64Image.swift in Sources */,
 				202EC6431EA6292F003E1F9B /* Ansi.swift in Sources */,
 				20DA49B61EAAC2CA0070B4D9 /* CountableClosedRange.swift in Sources */,
+				20F83B681EABB70500F80FF5 /* All.swift in Sources */,
 				20A462E51E9EC03F00321D42 /* Updater.swift in Sources */,
 				20DA49C81EAAC4820070B4D9 /* ScriptDelegate.swift in Sources */,
 			);
@@ -961,6 +971,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2037F42E1EAAB5340024F529 /* Method.swift in Sources */,
+				20DC7F931EAB158400402782 /* FilterTests.swift in Sources */,
 				2037F41D1EAAB4F60024F529 /* Font.swift in Sources */,
 				2071BC5A1EAAB6550089D18D /* Param.swift in Sources */,
 				2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */,
@@ -975,6 +986,7 @@
 				2079AB861E9EC259005B92AD /* NamedParamTests.swift in Sources */,
 				2037F41C1EAAB4F60024F529 /* Emojize.swift in Sources */,
 				2037F4241EAAB4F60024F529 /* TemplateImage.swift in Sources */,
+				20F83B6C1EABB92E00F80FF5 /* ParamExt.swift in Sources */,
 				2037F41A1EAAB4F60024F529 /* Color.swift in Sources */,
 				205084E01EAABBD800C76041 /* Container.swift in Sources */,
 				2079AB6D1E9EC258005B92AD /* AnsiTests.swift in Sources */,

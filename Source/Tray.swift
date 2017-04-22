@@ -29,7 +29,16 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     if displayed { show() } else { hide() }
   }
 
-  func set(menu: NSMenu, delegate: TrayDelegate?) {
+  convenience init(error: String) {
+    self.init(errors: [error])
+  }
+
+  convenience init(errors: [String]) {
+    self.init(title: "...", isVisible: true)
+    set(title: Title(errors: errors))
+  }
+
+  func set(menu: NSMenu, delegate: TrayDelegate? = nil) {
     defaultCount = menu.items.count
     self.menu = menu
     self.delegate = delegate

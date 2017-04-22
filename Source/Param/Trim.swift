@@ -1,7 +1,11 @@
 final class Trim: Param<Bool> {
-  var priority = 11
+  // static var default: Trim { return Trim(true) }
+  // override var before: Filter { return Everyone }
+  var isTrimmable: Bool { return value }
 
   override func menu(didLoad menu: Menuable) {
-    menu.setting(trim: value)
+    if isTrimmable {
+      menu.set(headline: menu.headline.trimmed())
+    }
   }
 }

@@ -6,6 +6,7 @@ final class Color: Param<NSColor> {
   var priority: Int { return 5 }
   var nameOrHex: String = ""
   override var original: String { return escape(nameOrHex) }
+  override var after: Filter { return [Ansi.self] }
 
   convenience init?(name: String) {
     guard let hex = Color.names[name.lowercased()] else {

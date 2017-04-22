@@ -1,7 +1,6 @@
 import Foundation
 
 final class Href: Param<URL> {
-  var priority = 0
   override var original: String {
     return value.absoluteString
   }

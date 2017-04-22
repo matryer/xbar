@@ -1,7 +1,7 @@
 import Emojize
 
 final class Emojize: Param<Bool> {
-  var priority = 15
+  override var before: Filter { return [All.self] }
 
   override func menu(didLoad menu: Menuable) {
     if value {

@@ -12,9 +12,9 @@ let timeout = 10.0
 // TODO: Rename to something more descriptive
 typealias R = (String, [Paramable])
 
-public func tester<T>(_ post: String, block: @escaping (T) -> Any) -> MatcherFunc<T> {
+public func tester<T>(_ post: String..., block: @escaping (T) -> Any) -> MatcherFunc<T> {
   return MatcherFunc { actual, failure in
-    failure.postfixMessage = post
+    failure.postfixMessage = post.joined(separator: " ")
     guard let result = try actual.evaluate() else {
       return false
     }
@@ -27,7 +27,7 @@ public func tester<T>(_ post: String, block: @escaping (T) -> Any) -> MatcherFun
     case is Bool:
       return out as! Bool
     default:
-      preconditionFailure("Invalid data, expected String or Bool got (type(of: out))")
+      preconditionFailure("Invalid data, expected String or Bool got \(type(of: out))")
     }
   }
 }
@@ -214,6 +214,7 @@ func testMisuse(_ path: String, args: [String] = [], assumed: String) {
   }
 }
 
+// TODO: Use Mockingjay to mock http request
 func verifyUrl(url: String) {
   let image = URLImage(URL(string: url)!)
   let menu = Menu.arbitrary.sample[0]
@@ -246,4 +247,18 @@ func the(_ menu: Menuable, at indexes: [Int] = []) -> W<Menuable> {
   if indexes.isEmpty { return .success(menu) }
   if menu.menus.count <= indexes[0] { return .failure }
   return the(menu.menus[indexes[0]], at: Array(indexes[1..<indexes.count]))
+}
+
+func equal<T: Equatable>(_ param: Param<T>) -> MatcherFunc<Paramable> {
+  return tester("equal", param.output) { result in
+    return param.output == result.output
+  }
+}
+
+func contain<T: Equatable>(_ p: Param<T>) -> MatcherFunc<[Paramable]> {
+  return tester("contain", p.output) { params in
+    return params.some { param in
+      return param.output == p.output
+    }
+  }
 }

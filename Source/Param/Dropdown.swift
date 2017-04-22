@@ -1,7 +1,7 @@
 final class Dropdown: Param<Bool> {
-  var priority = 0
+  var hasDropdown: Bool { return value }
 
   override func menu(didLoad menu: Menuable) {
-    menu.setting(dropdown: value)
+    if !hasDropdown { menu.hideDropdown() }
   }
 }

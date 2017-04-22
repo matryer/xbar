@@ -1,8 +1,11 @@
 final class Length: Param<Int> {
-  var priority = 0
+  override var after: Filter { return [All.self] }
 
   override func menu(didLoad menu: Menuable) {
-    // TODO: Check if {value} is > 0
+    guard value > 0 else {
+      return menu.add(error: "Length is less or equal to zero")
+    }
+
     menu.set(headline: menu.headline.truncate(value))
   }
 }

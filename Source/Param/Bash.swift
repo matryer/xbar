@@ -2,29 +2,36 @@ import Foundation
 import Async
 
 final class Bash: Param<String> {
-  var priority = 0
   var path: String { return value }
-  override var original: String { return escape(raw) }
+  override var original: String {
+    return escape(raw)
+  }
+
+  override var before: Filter {
+    return [Refresh.self, Terminal.self]
+  }
 
   override func menu(didLoad menu: Menuable) {
     menu.activate()
   }
 
   override func menu(didClick menu: Menuable) {
-    if menu.openTerminal() {
-      Bash.open(script: path) {
-        menu.add(error: $0)
-      }
+    guard menu.openInTerminal else { return }
+
+    Bash.open(script: path) { error in
+      // menu.add(error: error)
     }
+  }
+
+  override func menu(didClick menu: Menuable, done: @escaping (String?) -> Void) {
+    guard !menu.openInTerminal else { return }
 
     Script(path: path, args: menu.args) { result in
       switch result {
       case let .failure(error):
-        return menu.add(error: String(describing: error))
+        done(String(describing: error))
       case .success(_):
-        if menu.shouldRefresh() {
-          menu.refresh()
-        }
+        done(nil)
       }
     }.start()
   }

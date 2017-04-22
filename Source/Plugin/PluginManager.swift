@@ -17,7 +17,7 @@ import Files
 class PluginManager {
   private let tray = Tray(title: "BitBar", isVisible: false)
   private let path: String
-  private var errors = [Title]() {
+  private var errors = [Tray]() {
     didSet { verifyBar() }
   }
   private var plugins = [Plugin]() {
@@ -39,7 +39,7 @@ class PluginManager {
   func destroy() {
     tray.destroy()
     plugins.forEach { plugin in plugin.destroy() }
-//    errors.forEach { tray in tray.destroy() }
+    errors.forEach { title in title.hide() }
     plugins = []
     errors = []
   }
@@ -52,7 +52,7 @@ class PluginManager {
     case let Result.success(file, _):
       plugins.append(ExecutablePlugin(path: path, file: file))
     case let Result.failure(lines):
-      errors.append(Title(errors: [
+      errors.append(Tray(errors: [
         "An error occurred while reading file \(name) from \(path)",
         "\n",
         "Should be on the form {name}.{number}{unit}.{ext}, i.e 'aFile.10d.sh'",
@@ -87,7 +87,7 @@ class PluginManager {
         }
       }
     } catch (let error) {
-      errors.append(Title(error: String(describing: error)))
+      errors.append(Tray(error: String(describing: error)))
     }
   }
 }
