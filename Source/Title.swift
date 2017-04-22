@@ -59,7 +59,7 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func refresh() {
-    self.titlable?.title(didTriggerRefresh: self)
+    titlable?.title(didTriggerRefresh: self)
   }
 
   required init(coder decoder: NSCoder) {

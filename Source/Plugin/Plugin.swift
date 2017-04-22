@@ -37,9 +37,9 @@ class Plugin: TitleDelegate {
   func didReceivedOutput(_ data: String) {
     switch Pro.parse(Pro.output, data) {
     case let Result.success(title, _):
-      tray.set(title: title)
+      use(title: title)
     case let Result.failure(lines):
-      tray.set(title: Title(errors: lines))
+      use(title: Title(errors: lines))
     }
   }
 
@@ -93,5 +93,11 @@ class Plugin: TitleDelegate {
   func destroy() {
     terminate()
   }
+
+  private func use(title: Title) {
+    tray.set(title: title)
+    title.titlable = self
+  }
+
   deinit { destroy() }
 }
