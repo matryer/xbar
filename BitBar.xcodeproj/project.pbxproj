@@ -559,7 +559,6 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				20DA49CB1EAAC88E0070B4D9 /* Alias.swift */,
 				20DA49BE1EAAC4790070B4D9 /* Protocol */,
 				202EC6201EA628CB003E1F9B /* Extension */,
 				202EC6531EA6293C003E1F9B /* Menu */,
@@ -578,6 +577,7 @@
 				20A462931E9EC03F00321D42 /* Listen.swift */,
 				20A4629B1E9EC03F00321D42 /* Param.swift */,
 				20A4629C1E9EC03F00321D42 /* Parser.swift */,
+				20DA49CB1EAAC88E0070B4D9 /* Alias.swift */,
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
 				20A462A21E9EC03F00321D42 /* Result.swift */,
 				20A462AE1E9EC03F00321D42 /* Updater.swift */,
@@ -1123,7 +1123,7 @@
 		};
 		20946B441E9EBF6800F7926D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FBF957D89BF1CF2231F8016 /* Pods-BitBar.debug.xcconfig */;
+			baseConfigurationReference = 2B55715E19F2DC9494FF6193 /* Pods-BitBar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1144,7 +1144,7 @@
 		};
 		20946B451E9EBF6800F7926D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */;
+			baseConfigurationReference = 816D5F724DB52ED4AADBA8A1 /* Pods-BitBar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1165,7 +1165,7 @@
 		};
 		20946B471E9EBF6800F7926D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD9FBB6D887294DDB3C63391 /* Pods-Tests.debug.xcconfig */;
+			baseConfigurationReference = ECC8A32A0912A66C3AC92158 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -1183,7 +1183,7 @@
 		};
 		20946B481E9EBF6800F7926D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1ADE943E478936DBF8DB0F1 /* Pods-Tests.release.xcconfig */;
+			baseConfigurationReference = CD69F9CF0A99652293EA4CA1 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;

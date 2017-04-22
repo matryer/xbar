@@ -1,7 +1,6 @@
 import Foundation
 import SwiftyUserDefaults
 import EmitterKit
-typealias Block<T> = (T) -> Void
 
 /**
   Global values and helpers

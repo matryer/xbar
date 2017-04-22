@@ -3,12 +3,7 @@ env_cert = "Resources/bitbar.p12.enc"
 cert = "Resources/bitbar.cer"
 
 default_platform :mac
-# xcversion version: "~> 8.3.1"
-# clear_derived_data
-
-# before_all do
-#   cocoapods
-# end
+clear_derived_data
 
 desc "Build BitBar.app to the current directory"
 lane :build do;
@@ -46,7 +41,6 @@ end
 desc "Task to setup the project"
 lane :setup do
   bundle_install
-  update_fastlane
   cocoapods repo_update: true
 end
 

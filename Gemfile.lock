@@ -65,8 +65,7 @@ GEM
     faraday_middleware (0.11.0.1)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.0)
-    fastlane (2.28.3)
-      CFPropertyList (>= 2.3, < 3.0.0)
+    fastlane (2.27.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
       bundler (>= 1.12.0, < 2.0.0)
@@ -219,6 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods
+  fastlane (= 2.27.0)
   synx
   travis
   xcode-install

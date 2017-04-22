@@ -1,5 +1,6 @@
 setup:
-	gem install fastlane bundler --pre
+	gem install bundler --pre
+	gem install fastlane -v 2.27.0
 	bundle install
 	bundle exec pod install --repo-update
 	fastlane setup
