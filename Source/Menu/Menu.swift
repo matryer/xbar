@@ -79,6 +79,7 @@ final class Menu: ItemBase, Menuable {
   }
 
   func refresh() {
+    App.notify(.menuTriggeredRefresh)
     parentable?.submenu(didTriggerRefresh: self)
   }
 

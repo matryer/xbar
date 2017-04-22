@@ -46,10 +46,11 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
-    self.refresh()
+    refresh()
   }
 
   func refresh() {
+    App.notify(.titleTriggeredRefresh)
     titlable?.title(didTriggerRefresh: self)
   }
 

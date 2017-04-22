@@ -32,5 +32,6 @@ protocol Menuable: class {
   func set(headline: Mutable)
   func add(error: String)
   func add(menu: NSMenuItem)
+  func add(menus: [Menu])
   func submenu(didTriggerRefresh: Menuable)
 }
