@@ -131,35 +131,35 @@ class TitleTests: Helper {
         }
       }
 
-//      context("params") {
+      context("params") {
 //        let terminal = Terminal(true)
-//        it("handles simple string") {
-//          self.match(Pro.flat, "ABC|terminal=true\n") { (data: R) in
-//            expect(data.0).to(equal("ABC"))
-//            expect(data.1).to(haveCount(1))
+        it("handles simple string") {
+          self.match(Pro.flat, "ABC|terminal=true\n") { (data: R) in
+            expect(data.0).to(equal("ABC"))
+            expect(data.1).to(haveCount(1))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
-//
-//        it("handles string with newline") {
-//          self.match(Pro.flat, "ABC|terminal=true\n") { (data: R) in
-//            expect(data.0).to(equal("ABC"))
-//            expect(data.1).to(haveCount(1))
+          }
+        }
+
+        it("handles string with newline") {
+          self.match(Pro.flat, "ABC|terminal=true\n") { (data: R) in
+            expect(data.0).to(equal("ABC"))
+            expect(data.1).to(haveCount(1))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
-//
-//        it("handles empty string") {
-//          self.match(Pro.flat, "|terminal=true\n") { (data: R) in
-//            expect(data.0).to(equal(""))
-//            expect(data.1).to(haveCount(1))
+          }
+        }
+
+        it("handles empty string") {
+          self.match(Pro.flat, "|terminal=true\n") { (data: R) in
+            expect(data.0).to(equal(""))
+            expect(data.1).to(haveCount(1))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
-//      }
+          }
+        }
+      }
 
       context("withPrefix") {
-        let terminal = Terminal(true)
+//        let terminal = Terminal(true)
         it("handles no prefix") {
           self.match(Pro.headingFor(level: 0), "ABC\n") { (data: X) in
             expect(data.0).to(equal("ABC"))
@@ -168,14 +168,14 @@ class TitleTests: Helper {
           }
         }
 
-//        it("handles no prefix with param") {
-//          self.match(Pro.headingFor(level: 0), "ABC|terminal=true\n") { (data: X) in
-//            expect(data.0).to(equal("ABC"))
-//            expect(data.1).to(haveCount(1))
-//            expect(data.2).to(equal(0))
+        it("handles no prefix with param") {
+          self.match(Pro.headingFor(level: 0), "ABC|terminal=true\n") { (data: X) in
+            expect(data.0).to(equal("ABC"))
+            expect(data.1).to(haveCount(1))
+            expect(data.2).to(equal(0))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
+          }
+        }
 
         it("handles one level") {
           self.match(Pro.headingFor(level: 1), "--ABC\n") { (data: X) in
@@ -185,23 +185,23 @@ class TitleTests: Helper {
           }
         }
 
-//        it("handles no prefix with param") {
-//          self.match(Pro.headingFor(level: 1), "--ABC|terminal=true\n") { (data: X) in
-//            expect(data.0).to(equal("ABC"))
-//            expect(data.1).to(haveCount(1))
-//            expect(data.2).to(equal(1))
+        it("handles no prefix with param") {
+          self.match(Pro.headingFor(level: 1), "--ABC|terminal=true\n") { (data: X) in
+            expect(data.0).to(equal("ABC"))
+            expect(data.1).to(haveCount(1))
+            expect(data.2).to(equal(1))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
-//
-//        it("handles prefix with prefix inline") {
-//          self.match(Pro.headingFor(level: 1), "--ABC--|terminal=true\n") { (data: X) in
-//            expect(data.0).to(equal("ABC--"))
-//            expect(data.1).to(haveCount(1))
-//            expect(data.2).to(equal(1))
+          }
+        }
+
+        it("handles prefix with prefix inline") {
+          self.match(Pro.headingFor(level: 1), "--ABC--|terminal=true\n") { (data: X) in
+            expect(data.0).to(equal("ABC--"))
+            expect(data.1).to(haveCount(1))
+            expect(data.2).to(equal(1))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
+          }
+        }
 
         it("handles two levels") {
           self.match(Pro.headingFor(level: 2), "----ABC-X-Y\n") { (data: X) in
@@ -227,14 +227,14 @@ class TitleTests: Helper {
           }
         }
 
-//        it("with params") {
-//          self.match(Pro.headingFor(level: 1), "--|terminal=true\n") { (data: X) in
-//            expect(data.0).to(equal(""))
-//            expect(data.2).to(equal(1))
-//            expect(data.1).to(haveCount(1))
+        it("with params") {
+          self.match(Pro.headingFor(level: 1), "--|terminal=true\n") { (data: X) in
+            expect(data.0).to(equal(""))
+            expect(data.2).to(equal(1))
+            expect(data.1).to(haveCount(1))
 //            expect(data.1[0].equals(terminal)).to(beTrue())
-//          }
-//        }
+          }
+        }
 
         context("moreOver") {
           it("handles basic example") {
@@ -277,7 +277,7 @@ class TitleTests: Helper {
                 expect(item.0).to(equal(data[index].0))
                 expect(item.1).to(equal(data[index].2))
 
-                let params = data[index].1
+//                let params = data[index].1
 //                let size = params[0] as! Size
 //                expect(params).to(haveCount(1))
 //                expect((size).equals(Size(item.2))).to(beTrue())

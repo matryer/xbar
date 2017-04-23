@@ -5,7 +5,6 @@ import EmitterKit
 final class Menu: ItemBase, Menuable {
   var settings: [String : Bool] = [String: Bool]()
   var listener: Listener?
-  var args = [String]()
   internal var level: Int = 0
   internal var params = [Line]()
   internal weak var parentable: Menuable?
@@ -57,7 +56,6 @@ final class Menu: ItemBase, Menuable {
   convenience init(errors: [String]) {
     self.init(":warning: ".emojifyed(), menus: errors.map(Menu.init))
   }
-
 
   /**
     @title A title to be displayed as an item in a menu bar

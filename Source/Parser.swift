@@ -4,10 +4,6 @@
 import Hue
 import FootlessParser
 import AppKit
-enum Line {
-  case param(Paramable)
-  case argument(Argument)
-}
 
 // TODO: Rename Pro to something like Parser
 // Parser is currently taken by FootlessParser
@@ -376,7 +372,7 @@ class Pro {
     let p: P<Line> = {p in .param(p)} <^> param
     let a: P<Line> = {a in .argument(a)} <^> arg
     let item: P<Line> = p <|> a
-    return ws *> string("|") *> ws *> oneOrMore(item) <* ws
+    return optional(ws *> string("|") *> ws *> oneOrMore(item) <* ws, otherwise: [])
   }
 
   static var param: P<Paramable> {
@@ -397,7 +393,6 @@ class Pro {
       (tc <^> getTerminal()) <|>
       (tc <^> getTrim())
   }
-
   /**
     Color attribute with hex or color value, i.e color=red or color=#ff00AA
   */

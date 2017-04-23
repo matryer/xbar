@@ -2,14 +2,13 @@ import Quick
 import Nimble
 @testable import BitBar
 
-
 func toMenu(_ title: String, _ params: [Paramable]) -> Menu {
   return Menu(title, params: params.map { .param($0) })
 }
 
 class FilterTests: Helper {
   override func spec() {
-    for n in (0...1) {
+    for n in (0...20) {
       describe("test \(n)") {
         describe("before") {
           it("should place bash before terminal and refresh") {

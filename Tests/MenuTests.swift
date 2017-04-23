@@ -432,12 +432,11 @@ class MenuTests: Helper {
 
 //      let parser = Pro.getMenu()
       it("has +1 subs") {
-        self.match(Pro.getMenu(), addSuffix("My Menu\n--A\n--B")) {
-          dump($0)
-          // expect($0.headline.string).to(equal("My Menu"))
-          // expect($0.menus).to(haveCount(2))
-          // expect($0.menus[0].headline.string).to(equal("A"))
-          // expect($0.menus[1].headline.string).to(equal("B"))
+        self.match(Pro.menu, addSuffix("My Menu\n--A\n--B")) {
+           expect($0.headline.string).to(equal("My Menu"))
+           expect($0.menus).to(haveCount(2))
+           expect($0.menus[0].headline.string).to(equal("A"))
+           expect($0.menus[1].headline.string).to(equal("B"))
         }
       }
 

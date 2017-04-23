@@ -10,4 +10,3 @@ protocol Paramable: class, CustomStringConvertible {
   /* Anyc version of the above */
   func menu(didClick menu: Menuable, done: @escaping (String?) -> Void)
 }
-

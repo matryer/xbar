@@ -2,7 +2,7 @@ import Cocoa
 import EmitterKit
 
 protocol Menuable: class {
-  var args: [String] { get set }
+  var args: [String] { get }
   var listener: Listener? { get set }
   var sortedParams: [Paramable] { get }
   var level: Int { get set }

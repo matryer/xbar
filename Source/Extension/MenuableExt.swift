@@ -9,7 +9,7 @@ extension Menuable {
       default:
         return acc
       }
-    }.sorted { a, b in a.key > b.key }.map { arg in
+    }.sorted { a, b in a.key < b.key }.map { arg in
       return arg.value
     }
   }

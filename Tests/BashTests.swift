@@ -157,8 +157,8 @@ class BashTests: Helper {
 
               (menu as! Menu).trigger()
               expect(the(menu)).to(beClickable())
-              expect(actions).toEventually(equal([1,2]))
-              expect(actions).toNotEventually(equal([1,2,3]))
+              expect(actions).toEventually(equal([1, 2]))
+              expect(actions).toNotEventually(equal([1, 2, 3]))
             }
           }
         }
@@ -185,8 +185,8 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
-              expect(actions).toEventually(equal([1,2,3]))
-              expect(actions).toNotEventually(equal([1,2,3,4]))
+              expect(actions).toEventually(equal([1, 2, 3]))
+              expect(actions).toNotEventually(equal([1, 2, 3, 4]))
             }
           }
 
@@ -209,7 +209,7 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
-              expect(actions).toNotEventually(equal([1,2,3]))
+              expect(actions).toNotEventually(equal([1, 2, 3]))
             }
           }
 
@@ -232,7 +232,7 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
-              expect(actions).toEventually(equal([2,3]))
+              expect(actions).toEventually(equal([2, 3]))
             }
           }
 
@@ -281,7 +281,7 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
-              expect(actions).toEventually(contain([1,3,4]))
+              expect(actions).toEventually(contain([1, 3, 4]))
             }
           }
 
@@ -305,7 +305,7 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
-              expect(actions).toEventually(equal([2,3,4]))
+              expect(actions).toEventually(equal([2, 3, 4]))
             }
           }
 
@@ -333,7 +333,6 @@ class BashTests: Helper {
           }
         }
 
-
         context("args") {
           let path = toFile("args.sh")
           it("should handle base case") {
@@ -359,26 +358,25 @@ class BashTests: Helper {
               expect(actions).toEventually(contain([2]))
             }
           }
-          
-          // TODO: Fix
-//          it("should handle unsorted params") {
-//            up("A\n---\nB | bash=\(path) param2=ABC param1=DEF") { title in
-//              var actions = [Int]()
-//              listener = App.onMessage2 { message in
-//                switch message {
-//                case let .bashScriptFinished(output):
-//                  expect(output.toString()).to(contain("DEF ABC"))
-//                  actions.append(0)
-//                default: break
-//                }
-//              }
-//
-//              let menu = title.menus[0]
-//              menu.trigger()
-//              expect(the(menu)).to(beClickable())
-//              expect(actions).toEventually(equal([0]))
-//            }
-//          }
+
+          it("should handle unsorted params") {
+            up("A\n---\nB | bash=\(path) param2=ABC param1=DEF") { title in
+              var actions = [Int]()
+              listener = App.onMessage2 { message in
+                switch message {
+                case let .bashScriptFinished(output):
+                  expect(output.toString()).to(contain("DEF ABC"))
+                  actions.append(0)
+                default: break
+                }
+              }
+
+              let menu = title.menus[0]
+              menu.trigger()
+              expect(the(menu)).to(beClickable())
+              expect(actions).toEventually(equal([0]))
+            }
+          }
         }
 
         context("cascading click event") {
@@ -399,7 +397,7 @@ class BashTests: Helper {
               menu.trigger()
               expect(the(menu)).to(beClickable())
               expect(the(menu)).to(have(title: "F"))
-              expect(actions).toEventually(equal([1,2]))
+              expect(actions).toEventually(equal([1, 2]))
             }
           }
         }

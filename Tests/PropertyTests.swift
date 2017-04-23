@@ -32,8 +32,8 @@ class PropertyTests: XCTestCase {
     verify(name: "refresh", parser: Pro.getRefresh(), gen: Refresh.arbitrary)
   }
 
-  func testNamedParam() {
-//    verify(name: "namedParam", parser: Pro.getParam(), gen: NamedParam.arbitrary)
+  func testArgument() {
+    verify(name: "argument", parser: Pro.arg, gen: Argument.arbitrary)
   }
 
   func testEmojize() {

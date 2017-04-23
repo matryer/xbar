@@ -3,7 +3,6 @@ import EmitterKit
 
 final class Title: NSMenu, Menuable, TrayDelegate {
   var listener: Listener?
-  var args = [String]()
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
   internal var image: NSImage?
@@ -63,23 +62,23 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func useAsAlternate() {
-    preconditionFailure("Title can't be use as an alternativ menu")
+//    preconditionFailure("Title can't be use as an alternativ menu")
   }
 
   func set(state: Int) {
-    preconditionFailure("State can't be set on title")
+//    preconditionFailure("State can't be set on title")
   }
 
   func hideDropdown() {
-    preconditionFailure("[TODO] Not yet implemeted")
+//    preconditionFailure("[TODO] Not yet implemeted")
   }
 
   func hide() {
-    preconditionFailure("[TODO] Not yet implemented")
+//    preconditionFailure("[TODO] Not yet implemented")
   }
 
   var openInTerminal: Bool {
-    preconditionFailure("Title has no notion terminal")
+    preconditionFailure("Title has no notion of terminal")
   }
 
   var isAltAlternate: Bool {
