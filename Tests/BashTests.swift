@@ -185,8 +185,13 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
+<<<<<<< HEAD
               expect(actions).toEventually(equal([1, 2, 3]))
               expect(actions).toNotEventually(equal([1, 2, 3, 4]))
+=======
+              expect(actions).toEventually(equal([1,2,3]))
+              expect(actions).toNotEventually(equal([1,2,3,4]))
+>>>>>>> 73249cf9d6d78a72bd4ff7a9793c3925f5cf0361
             }
           }
 
@@ -232,7 +237,11 @@ class BashTests: Helper {
               let menu = title.menus[0]
               menu.trigger()
               expect(the(menu)).to(beClickable())
+<<<<<<< HEAD
               expect(actions).toEventually(equal([2, 3]))
+=======
+              expect(actions).toEventually(equal([2,3]))
+>>>>>>> 73249cf9d6d78a72bd4ff7a9793c3925f5cf0361
             }
           }
 
@@ -333,6 +342,10 @@ class BashTests: Helper {
           }
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73249cf9d6d78a72bd4ff7a9793c3925f5cf0361
         context("args") {
           let path = toFile("args.sh")
           it("should handle base case") {
