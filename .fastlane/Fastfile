@@ -3,7 +3,7 @@ env_cert = "Resources/bitbar.p12.enc"
 cert = "Resources/bitbar.cer"
 
 default_platform :mac
-# clear_derived_data
+clear_derived_data
 
 desc "Build BitBar.app to the current directory"
 lane :build do;

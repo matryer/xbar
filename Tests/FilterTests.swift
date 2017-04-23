@@ -18,6 +18,7 @@ class FilterTests: Helper {
             let trim = Trim(true)
             let menu = toMenu("M", [ref, term, bash, trim].shuffle())
             expect(menu.sortedParams[0]).to(equal(bash))
+            dump(menu.sortedParams)
             expect(menu.sortedParams).to(haveCount(4))
             expect(menu.sortedParams).to(contain(ref))
             expect(menu.sortedParams).to(contain(term))

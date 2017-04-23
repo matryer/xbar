@@ -344,8 +344,6 @@ class BashTests: Helper {
                   actions.append(1)
                 case let .bashScriptFinished(output):
                   actions.append(2)
-                  print("AAAA")
-                  print(output)
                   expect(output.toString()).to(contain("ABC"))
                 case .menuTriggeredRefresh:
                   actions.append(3)
