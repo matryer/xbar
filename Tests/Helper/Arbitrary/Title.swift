@@ -21,7 +21,7 @@ extension Title: Base {
     return Gen.compose { gen in
       return Title(
         gen.generate(),
-        params: [Paramable](),
+        params: [Line](), /* TODO */
         menus: gen.generate(using: Menu.arbitrary.proliferateRange(0, 2))
       )
     }

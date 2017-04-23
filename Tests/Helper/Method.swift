@@ -10,7 +10,7 @@ let quotes =  ["\"", "'"]
 let slash = "\\"
 let timeout = 10.0
 // TODO: Rename to something more descriptive
-typealias R = (String, [Paramable])
+typealias R = (String, [Line])
 
 public func tester<T>(_ post: String..., block: @escaping (T) -> Any) -> MatcherFunc<T> {
   return MatcherFunc { actual, failure in

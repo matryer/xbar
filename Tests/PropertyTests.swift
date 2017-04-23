@@ -33,7 +33,7 @@ class PropertyTests: XCTestCase {
   }
 
   func testNamedParam() {
-    verify(name: "namedParam", parser: Pro.getParam(), gen: NamedParam.arbitrary)
+//    verify(name: "namedParam", parser: Pro.getParam(), gen: NamedParam.arbitrary)
   }
 
   func testEmojize() {

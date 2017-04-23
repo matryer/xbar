@@ -15,6 +15,6 @@ final class NamedParam: Param<String> {
   }
 
   override func menu(didLoad menu: Menuable) {
-    menu.add(arg: value)
+//    menu.add(arg: value)
   }
 }

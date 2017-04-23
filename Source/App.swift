@@ -26,6 +26,20 @@ class App {
     listeners.append(changePathEvent.on(block))
   }
 
+  static func notify(_ message: Message) {
+    if isInTestMode() {
+      messageEvent.emit(message)
+    }
+  }
+
+  static func onMessage(block: @escaping Block<Message>) {
+    listeners.append(messageEvent.on(block))
+  }
+
+  static func onMessage2(block: @escaping Block<Message>) -> Listener {
+    return messageEvent.on(block)
+  }
+
   /**
     @block is invoked when the user clicks "Refresh All" in
     the preference menu or uses the defined shortcut
@@ -200,6 +214,7 @@ class App {
 
   private static let currentBundle = Bundle.main
   private static let quitEvent = Event<Void>()
+  private static let messageEvent = Event<Message>()
   private static let changePathEvent = Event<Void>()
   private static let refreshEvent = Event<Void>()
   private static var listeners = [Listener]()

@@ -6,8 +6,8 @@ extension Menuable {
   }
 
   var pstr: String {
-    if params.isEmpty { return "" }
-    return "| " + params.map { param in param.output }.joined(separator: " ")
+    if lines.isEmpty { return "" }
+    return "| " + lines.map { param in param.output }.joined(separator: " ")
   }
 
   func equals(_ other: Menuable) -> Bool {
@@ -29,8 +29,8 @@ extension Menuable {
       return fail("Incorrect level", other.level, level)
     }
 
-    for (index, param) in params.enumerated() {
-      if param.output != other.params[index].output {
+    for (index, param) in lines.enumerated() {
+      if param.output != other.lines[index].output {
         return fail("Params are not equal", param, other.params[index])
       }
     }

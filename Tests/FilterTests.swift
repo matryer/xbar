@@ -2,9 +2,14 @@ import Quick
 import Nimble
 @testable import BitBar
 
+
+func toMenu(_ title: String, _ params: [Paramable]) -> Menu {
+  return Menu(title, params: params.map { .param($0) })
+}
+
 class FilterTests: Helper {
   override func spec() {
-    for n in (0...50) {
+    for n in (0...1) {
       describe("test \(n)") {
         describe("before") {
           it("should place bash before terminal and refresh") {
@@ -12,8 +17,9 @@ class FilterTests: Helper {
             let term = Terminal(false)
             let ref = Refresh(false)
             let trim = Trim(true)
-            let menu = Menu("M", params: [ref, term, bash, trim].shuffle())
+            let menu = toMenu("M", [ref, term, bash, trim].shuffle())
             expect(menu.sortedParams[0]).to(equal(bash))
+            dump(menu.sortedParams)
             expect(menu.sortedParams).to(haveCount(4))
             expect(menu.sortedParams).to(contain(ref))
             expect(menu.sortedParams).to(contain(term))
@@ -22,9 +28,7 @@ class FilterTests: Helper {
           it("should always place 'before all' in the begining") {
             let emoji = Emojize(true) /* Before all */
             let trim = Trim(true) /* Nop */
-            let menu = Menu("M", params: [
-              emoji, trim
-            ].shuffle())
+            let menu = toMenu("M", [emoji, trim].shuffle())
             expect(menu.sortedParams[0]).to(equal(emoji))
             expect(menu.sortedParams[1]).to(equal(trim))
             expect(menu.sortedParams).to(haveCount(2))
@@ -36,7 +40,7 @@ class FilterTests: Helper {
             let trim = Trim(false)
             let emoji = Emojize(false)
             let ansi = Ansi(true)
-            let menu = Menu("M", params: [trim, ansi, emoji].shuffle())
+            let menu = toMenu("M", [trim, ansi, emoji].shuffle())
             expect(menu.sortedParams[0]).to(equal(emoji))
             expect(menu.sortedParams[1]).to(equal(ansi))
             expect(menu.sortedParams[2]).to(equal(trim))
@@ -46,9 +50,7 @@ class FilterTests: Helper {
           it("should always place 'after all' in the end") {
             let length = Length(20) /* After all */
             let trim = Trim(true) /* Nop */
-            let menu = Menu("M", params: [
-              length, trim
-            ].shuffle())
+            let menu = toMenu("M", [length, trim].shuffle())
             expect(menu.sortedParams[0]).to(equal(trim))
             expect(menu.sortedParams[1]).to(equal(length))
             expect(menu.sortedParams).to(haveCount(2))
@@ -60,7 +62,7 @@ class FilterTests: Helper {
             let trim = Trim(true) /* Nop */
             let term = Terminal(false) /* Nop */
             let ref = Refresh(false) /* Nop */
-            let menu = Menu("M", params: [
+            let menu = toMenu("M", [
               emoji, ansi, trim, term, ref
             ].shuffle())
             expect(menu.sortedParams[0]).to(equal(emoji))
@@ -75,7 +77,7 @@ class FilterTests: Helper {
             let length = Length(10)
             let term = Terminal(false)
             let trim = Trim(false)
-            let menu = Menu("M", params: [
+            let menu = toMenu("M", [
               length, term, trim
             ].shuffle())
             expect(menu.sortedParams[0]).to(equal(term))

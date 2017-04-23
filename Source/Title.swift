@@ -9,9 +9,9 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   internal var image: NSImage?
   internal var level: Int = 0
   internal var headline: Mutable
-  internal var params = [Paramable]()
+  internal var params = [Line]()
 
-  init(_ title: String, params: [Paramable] = [Paramable](), menus: [Menu] = []) {
+  init(_ title: String, params: [Line] = [Line](), menus: [Menu] = []) {
     self.params = params
     self.headline = title.mutable()
     super.init(title: title)
@@ -46,10 +46,11 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
-    self.refresh()
+    refresh()
   }
 
   func refresh() {
+    App.notify(.titleTriggeredRefresh)
     titlable?.title(didTriggerRefresh: self)
   }
 
