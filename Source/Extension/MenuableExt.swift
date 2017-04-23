@@ -1,6 +1,30 @@
 import AppKit
 
 extension Menuable {
+  var args: [String] {
+    return params.reduce([Argument]()) { acc, param in
+      switch param {
+      case let .argument(arg):
+        return acc + [arg]
+      default:
+        return acc
+      }
+    }.sorted { a, b in a.key < b.key }.map { arg in
+      return arg.value
+    }
+  }
+
+  var lines: [Paramable] {
+    return params.reduce([]) { acc, param in
+      switch param {
+      case let .param(par):
+        return acc + [par]
+      default:
+        return acc
+      }
+    }
+  }
+
   init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -8,8 +32,8 @@ extension Menuable {
   /* TODO: Move this code to Parser.swift */
   /* TODO: Optimize, can be done in one iteration over params */
   internal var sortedParams: [Paramable] {
-    var pParams = params
-    if (!params.some { type(of: $0) == Trim.self }) {
+    var pParams = lines
+    if (!lines.some { type(of: $0) == Trim.self }) {
       pParams.append(Trim(true))
     }
 
@@ -55,10 +79,6 @@ extension Menuable {
 
   func activate() {
     set(state: NSOnState)
-  }
-
-  func add(arg: String) {
-    args.append(arg)
   }
 
   func add(menus: [Menu]) {

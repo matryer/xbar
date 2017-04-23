@@ -22,4 +22,3 @@ class Param<T>: Paramable {
     return quote + value.replace("\\", "\\\\").replace(quote, "\\" + quote) + quote
   }
 }
-

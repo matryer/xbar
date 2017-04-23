@@ -6,4 +6,3 @@ extension Param: Equatable {
     return lhs.output == rhs.output
   }
 }
-

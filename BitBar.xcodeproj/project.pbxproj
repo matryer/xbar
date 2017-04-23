@@ -57,7 +57,6 @@
 		2037F41E1EAAB4F60024F529 /* Href.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F40E1EAAB4F50024F529 /* Href.swift */; };
 		2037F41F1EAAB4F60024F529 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F40F1EAAB4F60024F529 /* Image.swift */; };
 		2037F4201EAAB4F60024F529 /* Length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F4101EAAB4F60024F529 /* Length.swift */; };
-		2037F4211EAAB4F60024F529 /* NamedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F4111EAAB4F60024F529 /* NamedParam.swift */; };
 		2037F4221EAAB4F60024F529 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F4121EAAB4F60024F529 /* Refresh.swift */; };
 		2037F4231EAAB4F60024F529 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F4131EAAB4F60024F529 /* Size.swift */; };
 		2037F4241EAAB4F60024F529 /* TemplateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F4141EAAB4F60024F529 /* TemplateImage.swift */; };
@@ -67,6 +66,8 @@
 		2037F42C1EAAB5010024F529 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F4291EAAB5010024F529 /* Title.swift */; };
 		2037F42E1EAAB5340024F529 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42D1EAAB5340024F529 /* Method.swift */; };
 		2037F4301EAAB5D60024F529 /* Arbitrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42F1EAAB5D60024F529 /* Arbitrary.swift */; };
+		203916B61EAC2D220066485C /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203916B51EAC2D220066485C /* Argument.swift */; };
+		203916B91EAC31810066485C /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203916B71EAC31310066485C /* Line.swift */; };
 		205084DE1EAABB2900C76041 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205084DD1EAABB2900C76041 /* Int.swift */; };
 		205084E01EAABBD800C76041 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205084DF1EAABBD800C76041 /* Container.swift */; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
@@ -121,6 +122,8 @@
 		20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629D1E9EC03F00321D42 /* PathSelector.swift */; };
 		20A462D91E9EC03F00321D42 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462A21E9EC03F00321D42 /* Result.swift */; };
 		20A462E51E9EC03F00321D42 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462AE1E9EC03F00321D42 /* Updater.swift */; };
+		20CF04B11EABE3F80021D5FC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CF04B01EABE3F80021D5FC /* Message.swift */; };
+		20CF04B31EAC1EF10021D5FC /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CF04B21EAC1EF10021D5FC /* Argument.swift */; };
 		20DA49A91EAAC2C20070B4D9 /* GEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A41EAAC2C20070B4D9 /* GEvent.swift */; };
 		20DA49AA1EAAC2C20070B4D9 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A51EAAC2C20070B4D9 /* Script.swift */; };
 		20DA49AB1EAAC2C20070B4D9 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A61EAAC2C20070B4D9 /* Source.swift */; };
@@ -212,7 +215,6 @@
 		2037F40E1EAAB4F50024F529 /* Href.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Href.swift; sourceTree = "<group>"; };
 		2037F40F1EAAB4F60024F529 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		2037F4101EAAB4F60024F529 /* Length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Length.swift; sourceTree = "<group>"; };
-		2037F4111EAAB4F60024F529 /* NamedParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedParam.swift; sourceTree = "<group>"; };
 		2037F4121EAAB4F60024F529 /* Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
 		2037F4131EAAB4F60024F529 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		2037F4141EAAB4F60024F529 /* TemplateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateImage.swift; sourceTree = "<group>"; };
@@ -222,6 +224,8 @@
 		2037F4291EAAB5010024F529 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		2037F42D1EAAB5340024F529 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		2037F42F1EAAB5D60024F529 /* Arbitrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arbitrary.swift; sourceTree = "<group>"; };
+		203916B51EAC2D220066485C /* Argument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
+		203916B71EAC31310066485C /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
 		205084DD1EAABB2900C76041 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		205084DF1EAABBD800C76041 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 		20A462AE1E9EC03F00321D42 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		20AA559E1EA35303008D23FF /* Tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tests.plist; sourceTree = "<group>"; };
 		20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro_Travis.framework; path = Pods/../build/Debug/Pods_Distro_Travis.framework; sourceTree = "<group>"; };
+		20CF04B01EABE3F80021D5FC /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		20CF04B21EAC1EF10021D5FC /* Argument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
 		20DA49A41EAAC2C20070B4D9 /* GEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GEvent.swift; sourceTree = "<group>"; };
 		20DA49A51EAAC2C20070B4D9 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		20DA49A61EAAC2C20070B4D9 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
@@ -472,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				2037F4281EAAB5010024F529 /* Menu.swift */,
+				203916B51EAC2D220066485C /* Argument.swift */,
 				2037F42F1EAAB5D60024F529 /* Arbitrary.swift */,
 				2037F4291EAAB5010024F529 /* Title.swift */,
 				2037F3E61EAAB4B60024F529 /* Param */,
@@ -492,7 +499,6 @@
 				2037F40E1EAAB4F50024F529 /* Href.swift */,
 				2037F40F1EAAB4F60024F529 /* Image.swift */,
 				2037F4101EAAB4F60024F529 /* Length.swift */,
-				2037F4111EAAB4F60024F529 /* NamedParam.swift */,
 				2037F4121EAAB4F60024F529 /* Refresh.swift */,
 				2037F4131EAAB4F60024F529 /* Size.swift */,
 				2037F4141EAAB4F60024F529 /* TemplateImage.swift */,
@@ -567,6 +573,9 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				203916B71EAC31310066485C /* Line.swift */,
+				20CF04B21EAC1EF10021D5FC /* Argument.swift */,
+				20CF04B01EABE3F80021D5FC /* Message.swift */,
 				20DA49BE1EAAC4790070B4D9 /* Protocol */,
 				202EC6201EA628CB003E1F9B /* Extension */,
 				202EC6531EA6293C003E1F9B /* Menu */,
@@ -945,10 +954,12 @@
 				20A462B51E9EC03F00321D42 /* App.swift in Sources */,
 				202EC6651EA62958003E1F9B /* Plugin.swift in Sources */,
 				20A462D21E9EC03F00321D42 /* Param.swift in Sources */,
+				20CF04B31EAC1EF10021D5FC /* Argument.swift in Sources */,
 				20DA49AD1EAAC2C20070B4D9 /* Tray.swift in Sources */,
 				202EC64F1EA6292F003E1F9B /* Size.swift in Sources */,
 				20A462B71E9EC03F00321D42 /* Autostart.swift in Sources */,
 				202EC65F1EA62943003E1F9B /* UpdatedAgoItem.swift in Sources */,
+				20CF04B11EABE3F80021D5FC /* Message.swift in Sources */,
 				20DA49BC1EAAC2CA0070B4D9 /* NSRange.swift in Sources */,
 				202EC6471EA6292F003E1F9B /* Dropdown.swift in Sources */,
 				20A462D31E9EC03F00321D42 /* Parser.swift in Sources */,
@@ -958,6 +969,7 @@
 				20946B2D1E9EBF6800F7926D /* AppDelegate.swift in Sources */,
 				20DA49B81EAAC2CA0070B4D9 /* DefaultsKeys.swift in Sources */,
 				20219AE21EA7F1FF005B79A4 /* Base64Image.swift in Sources */,
+				203916B91EAC31810066485C /* Line.swift in Sources */,
 				202EC6431EA6292F003E1F9B /* Ansi.swift in Sources */,
 				20DA49B61EAAC2CA0070B4D9 /* CountableClosedRange.swift in Sources */,
 				20F83B681EABB70500F80FF5 /* All.swift in Sources */,
@@ -986,6 +998,7 @@
 				2079AB861E9EC259005B92AD /* NamedParamTests.swift in Sources */,
 				2037F41C1EAAB4F60024F529 /* Emojize.swift in Sources */,
 				2037F4241EAAB4F60024F529 /* TemplateImage.swift in Sources */,
+				203916B61EAC2D220066485C /* Argument.swift in Sources */,
 				20F83B6C1EABB92E00F80FF5 /* ParamExt.swift in Sources */,
 				2037F41A1EAAB4F60024F529 /* Color.swift in Sources */,
 				205084E01EAABBD800C76041 /* Container.swift in Sources */,
@@ -1014,7 +1027,6 @@
 				2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */,
 				2037F4171EAAB4F60024F529 /* Alternate.swift in Sources */,
 				2037F42C1EAAB5010024F529 /* Title.swift in Sources */,
-				2037F4211EAAB4F60024F529 /* NamedParam.swift in Sources */,
 				2037F4251EAAB4F60024F529 /* Terminal.swift in Sources */,
 				2037F3D51EAAB4770024F529 /* ParamBase.swift in Sources */,
 				2037F4181EAAB4F60024F529 /* Ansi.swift in Sources */,

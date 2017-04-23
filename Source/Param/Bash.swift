@@ -19,14 +19,16 @@ final class Bash: Param<String> {
     guard menu.openInTerminal else { return }
 
     Bash.open(script: path) { error in
-      // menu.add(error: error)
+      menu.add(error: error)
     }
   }
 
   override func menu(didClick menu: Menuable, done: @escaping (String?) -> Void) {
-    guard !menu.openInTerminal else { return }
+    guard !menu.openInTerminal else { return done(nil) }
 
     Script(path: path, args: menu.args) { result in
+      App.notify(.bashScriptFinished(result))
+
       switch result {
       case let .failure(error):
         done(String(describing: error))
@@ -41,8 +43,6 @@ final class Bash: Param<String> {
     @script is an absolute path to script
   */
   static func open(script path: String, block: @escaping Block<String>) {
-    if App.isInTestMode() { return }
-
     // TODO: What happens if @script contains spaces?
     let tell =
       "tell application \"Terminal\" \n" +
@@ -54,6 +54,9 @@ final class Bash: Param<String> {
       guard let script = NSAppleScript(source: tell) else {
         return "Could not parse script: \(tell)"
       }
+
+      App.notify(.bashScriptOpened(path))
+      if App.isInTestMode() { return nil }
 
       let errors = script.executeAndReturnError(nil)
       guard errors.numberOfItems == 0 else {

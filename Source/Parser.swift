@@ -337,7 +337,7 @@ class Pro {
   /**
     Named param with a quoted / unquoted value, i.e param12="A value"
   */
-  internal static func getParam() -> P<NamedParam> {
+  internal static var arg: P<Argument> {
     let param: P<String> = string("param") *> digitsAsString()
     let key = ws *> param <* string("=")
     let value = quoteOrWord() <* ws
@@ -350,7 +350,7 @@ class Pro {
         return stop("Index \(key) in 'param\(result.0)' can't be < 0")
       }
 
-      return pure(NamedParam(key, result.1))
+      return pure(Argument(key: key, value: result.1))
     }
   }
 
@@ -368,9 +368,15 @@ class Pro {
   /**
     Menu params, i.e | terminal=false length=10
   */
-  internal static func getOneParam() -> P<[Paramable]> {
-    let item =
-      (tc <^> getLength()) <|>
+  internal static var params: P<[Line]> {
+    let p: P<Line> = {p in .param(p)} <^> param
+    let a: P<Line> = {a in .argument(a)} <^> arg
+    let item: P<Line> = p <|> a
+    return optional(ws *> string("|") *> ws *> oneOrMore(item) <* ws, otherwise: [])
+  }
+
+  static var param: P<Paramable> {
+    return (tc <^> getLength()) <|>
       (tc <^> getAlternate()) <|>
       (tc <^> getChecked()) <|>
       (tc <^> getAnsi()) <|>
@@ -385,11 +391,8 @@ class Pro {
       (tc <^> getSize()) <|>
       (tc <^> getTemplateImage()) <|>
       (tc <^> getTerminal()) <|>
-      (tc <^> getParam()) <|>
       (tc <^> getTrim())
-    return ws *> string("|") *> ws *> oneOrMore(item) <* ws
   }
-
   /**
     Color attribute with hex or color value, i.e color=red or color=#ff00AA
   */
@@ -397,7 +400,7 @@ class Pro {
     return ws *> string("color=") *> (hexColor() <|> regularColor())
   }
 
-  static var flat: P<(String, [Paramable])> {
+  static var flat: P<(String, [Line])> {
     let terminals = ["\n", "|", "~~~"]
     let until2 = until(terminals, consume: false)
     return curry({ a, b in (a, b)}) <^> until2 <*> (params <* oneOrMore(string("\n")))
@@ -413,7 +416,7 @@ class Pro {
   }
 
   // FIXME: Rename to something better
-  static private func toThing(value: String, params: [Paramable], level: Int) -> X {
+  static private func toThing(value: String, params: [Line], level: Int) -> X {
     switch (value, level) {
     case ("-", 0): // Normal separator on level 0
       return (value, params, level)
@@ -461,14 +464,6 @@ class Pro {
 
   static func toMenu(head: X, tails: [X]) -> Menu {
     return toMenu(head: toValue(head), menus: tails.map { toValue($0) })
-  }
-
-  private static func getParams() -> P<[Paramable]> {
-    return optional(getOneParam(), otherwise: [])
-  }
-
-  private static var params: P<[Paramable]> {
-    return getParams()
   }
 
   // @example: true

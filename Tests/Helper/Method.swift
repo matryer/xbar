@@ -10,7 +10,7 @@ let quotes =  ["\"", "'"]
 let slash = "\\"
 let timeout = 10.0
 // TODO: Rename to something more descriptive
-typealias R = (String, [Paramable])
+typealias R = (String, [Line])
 
 public func tester<T>(_ post: String..., block: @escaping (T) -> Any) -> MatcherFunc<T> {
   return MatcherFunc { actual, failure in
@@ -87,6 +87,25 @@ func verify<T: Menuable & Base>(name: String, parser: P<T>, gen: Gen<T>) {
 }
 
 func verify<T: Paramable & Base>(name: String, parser: P<T>, gen: Gen<T>) {
+  property(name) <- forAll(gen) { item in
+    let input = item.getInput()
+    switch Pro.parse(parser, input) {
+    case let Result.success(result, _):
+      return (item == result) <?> "Paramable passed"
+    case let Result.failure(lines):
+      return (false <?> "Parser failed").whenFail {
+        print("warning: ------------------------------------")
+        print("warning: Could not parse: ", input.inspected())
+        print("warning: Failed parsing \(name)")
+        for error in lines {
+          print("warning:", error.inspected())
+        }
+      }
+    }
+  }
+}
+
+func verify(name: String, parser: P<Argument>, gen: Gen<Argument>) {
   property(name) <- forAll(gen) { item in
     let input = item.getInput()
     switch Pro.parse(parser, input) {

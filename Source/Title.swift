@@ -3,15 +3,14 @@ import EmitterKit
 
 final class Title: NSMenu, Menuable, TrayDelegate {
   var listener: Listener?
-  var args = [String]()
   internal weak var titlable: TitleDelegate?
   internal var event = Event<Void>()
   internal var image: NSImage?
   internal var level: Int = 0
   internal var headline: Mutable
-  internal var params = [Paramable]()
+  internal var params = [Line]()
 
-  init(_ title: String, params: [Paramable] = [Paramable](), menus: [Menu] = []) {
+  init(_ title: String, params: [Line] = [Line](), menus: [Menu] = []) {
     self.params = params
     self.headline = title.mutable()
     super.init(title: title)
@@ -46,10 +45,11 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func submenu(didTriggerRefresh menu: Menuable) {
-    self.refresh()
+    refresh()
   }
 
   func refresh() {
+    App.notify(.titleTriggeredRefresh)
     titlable?.title(didTriggerRefresh: self)
   }
 
@@ -62,23 +62,23 @@ final class Title: NSMenu, Menuable, TrayDelegate {
   }
 
   func useAsAlternate() {
-    preconditionFailure("Title can't be use as an alternativ menu")
+//    preconditionFailure("Title can't be use as an alternativ menu")
   }
 
   func set(state: Int) {
-    preconditionFailure("State can't be set on title")
+//    preconditionFailure("State can't be set on title")
   }
 
   func hideDropdown() {
-    preconditionFailure("[TODO] Not yet implemeted")
+//    preconditionFailure("[TODO] Not yet implemeted")
   }
 
   func hide() {
-    preconditionFailure("[TODO] Not yet implemented")
+//    preconditionFailure("[TODO] Not yet implemented")
   }
 
   var openInTerminal: Bool {
-    preconditionFailure("Title has no notion terminal")
+    preconditionFailure("Title has no notion of terminal")
   }
 
   var isAltAlternate: Bool {

@@ -5,9 +5,8 @@ import EmitterKit
 final class Menu: ItemBase, Menuable {
   var settings: [String : Bool] = [String: Bool]()
   var listener: Listener?
-  var args = [String]()
   internal var level: Int = 0
-  internal var params = [Paramable]()
+  internal var params = [Line]()
   internal weak var parentable: Menuable?
   internal var event = Event<Void>()
   internal var items: [NSMenuItem] {
@@ -22,7 +21,7 @@ final class Menu: ItemBase, Menuable {
     Set by the terminal=bool attribute
   */
   var openInTerminal: Bool {
-    guard let terminal = (params.first { $0 is Terminal }) else {
+    guard let terminal = (lines.first { $0 is Terminal }) else {
       return false
     }
 
@@ -37,7 +36,7 @@ final class Menu: ItemBase, Menuable {
     return isAlternate && keyEquivalentModifierMask == NSAlternateKeyMask
   }
 
-  init(_ title: String, params: [Paramable] = [Paramable](), menus: [Menu] = [], level: Int = 0) {
+  init(_ title: String, params: [Line] = [Line](), menus: [Menu] = [], level: Int = 0) {
     self.level = level
     self.params = params
     super.init(title)
@@ -57,7 +56,6 @@ final class Menu: ItemBase, Menuable {
   convenience init(errors: [String]) {
     self.init(":warning: ".emojifyed(), menus: errors.map(Menu.init))
   }
-
 
   /**
     @title A title to be displayed as an item in a menu bar
@@ -79,6 +77,7 @@ final class Menu: ItemBase, Menuable {
   }
 
   func refresh() {
+    App.notify(.menuTriggeredRefresh)
     parentable?.submenu(didTriggerRefresh: self)
   }
 

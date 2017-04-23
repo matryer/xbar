@@ -1,5 +1,5 @@
 enum Source {
-  indirect case item((String, [Paramable]), Int, [Source])
+  indirect case item((String, [Line]), Int, [Source])
 
   func appended(_ child: Source) -> Source {
     switch (child, self) {
@@ -30,7 +30,7 @@ enum Source {
   private func failed(_ message: String) -> Source {
     switch self {
     case let .item(_, level, _):
-      return .item(("[Failed] " + message, [Paramable]()), level, [Source]())
+      return .item(("[Failed] " + message, [Line]()), level, [Source]())
     }
   }
 
