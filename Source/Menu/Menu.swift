@@ -105,5 +105,6 @@ final class Menu: ItemBase, Menuable {
 
   func hideDropdown() {
     removeAllSubMenus()
+    deactivate()
   }
 }

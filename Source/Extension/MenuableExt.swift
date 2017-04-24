@@ -81,6 +81,10 @@ extension Menuable {
     set(state: NSOnState)
   }
 
+  func dectivate() {
+    set(state: NSOffState)
+  }
+
   func add(menus: [Menu]) {
     for menu in menus {
       menu.parentable = self
