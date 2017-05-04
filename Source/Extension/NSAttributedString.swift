@@ -1,4 +1,5 @@
 import AppKit
+import Attr
 
 internal extension NSAttributedString {
   /**

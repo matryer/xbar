@@ -39,7 +39,7 @@ extension Array {
   }
 
   // @example [1,2,3].all { $0 > 0 } // => true
-  func all(block: (Element) -> Bool) -> Bool {
+  public func all(block: (Element) -> Bool) -> Bool {
     if isEmpty { return true }
     return reduce(true) { acc, el in
       return acc && block(el)
@@ -53,10 +53,18 @@ extension Array {
   func appended(_ element: Element) -> [Element] {
     return self + [element]
   }
+
+  func initial() -> [Element] {
+    return (0..<(count - 1)).map { self[$0] }
+  }
 }
 
 extension Array where Element: Equatable {
   func includes(_ element: Element) -> Bool {
     return some { el in el == element }
+  }
+
+  func has(_ el: Element) -> Bool {
+    return includes(el)
   }
 }

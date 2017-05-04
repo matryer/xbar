@@ -144,6 +144,10 @@ class App {
     NSWorkspace.shared().open(url)
   }
 
+  static func open(url: String) {
+    open(url: URL(string: url)!)
+  }
+
   /**
     Open @path in Finder
   */

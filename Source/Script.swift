@@ -9,9 +9,7 @@ class Script {
   private let path: String
   private let args: [String]
   private var process: Process?
-  private var listeners = [Listener]()
   private let listen = Listen(NotificationCenter.default)
-  private let finishEvent = Event<Result>()
   private weak var delegate: ScriptDelegate?
 
   enum Failure {
@@ -55,14 +53,6 @@ class Script {
     self.args = args
 
     if autostart { start() }
-  }
-
-  /**
-    Takes an extra block that's invoked when the script finishes
-  */
-  convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, autostart: Bool = false, block: @escaping Block<Result>) {
-    self.init(path: path, args: args, delegate: delegate, autostart: autostart)
-    onDidFinish(block)
   }
 
   /**
@@ -203,18 +193,6 @@ class Script {
   }
 
   /**
-    @once Only listen for one event
-    @block Block to be called when process finishes
-  */
-  func onDidFinish(once: Bool = false, _ block: @escaping Block<Result>) {
-    if once {
-      finishEvent.once(handler: block)
-    } else {
-      listeners.append(finishEvent.on(block))
-    }
-  }
-
-  /**
     Is the script running?
   */
   func isRunning() -> Bool {
@@ -225,7 +203,6 @@ class Script {
     let stdout: Result = .success(result, Int(status))
     Async.main {
       self.delegate?.scriptDidReceive(success: stdout)
-      self.finishEvent.emit(stdout)
     }
   }
 
@@ -233,7 +210,6 @@ class Script {
     let error: Result = .failure(message)
     Async.main {
       self.delegate?.scriptDidReceive(error: error)
-      self.finishEvent.emit(error)
     }
   }
 }

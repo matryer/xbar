@@ -3,32 +3,20 @@ import EmitterKit
 
 /* TODO: Rename */
 class ItemBase: NSMenuItem {
-  private let event = Event<ItemBase>()
-  private weak var delegate: ItemBaseDelegate? {
-    didSet { checkActive() }
-  }
-  // TODO: Remove listeners to reduce the risk the memory leaks
-  private var listeners = [Listener]() {
-    didSet { checkActive() }
-  }
-
-  private func checkActive() {
-    isEnabled = !keyEquivalent.isEmpty || !listeners.isEmpty || delegate != nil
-  }
-
+  private let event = Event<Void>()
+  internal weak var parentable: Eventable?
   /**
     @title A title to be displayed
     @key A keyboard shortcut to simulate @self being clicked
   */
-  init(_ title: String, checked: Bool = false, key: String = "", delegate: ItemBaseDelegate? = nil) {
+  init(_ title: String, checked: Bool = false, key: String = "", parentable: Eventable? = nil) {
     super.init(title: title, action: #selector(didClick), keyEquivalent: key)
     self.target = self
     self.attributedTitle = NSMutableAttributedString(withDefaultFont: title)
-    self.delegate = delegate
+    self.parentable = parentable
     if checked {
       self.state = NSOnState
     }
-
     checkActive()
   }
 
@@ -42,18 +30,15 @@ class ItemBase: NSMenuItem {
     activate()
   }
 
-  func addSub(_ title: String, checked: Bool, key: String = "", clickable: Bool, block: @escaping Block<ItemBase>) {
+  func addSub(_ title: String, checked: Bool = false, key: String = "", clickable: Bool, block: @escaping Block<Void>) -> Listener {
     let item = ItemBase(title, checked: checked, key: key)
-    listeners.append(item.onDidClick(block: block))
     add(menu: item)
 
     if clickable {
       item.activate()
     }
-  }
 
-  func addSub(_ title: String, key: String = "", clickable: Bool, blockWO: @escaping Block<Void>) {
-    addSub(title, checked: false, key: key, clickable: clickable, block: { (_:ItemBase) in blockWO() })
+    return item.onDidClick(block: block)
   }
 
   func addSub(_ title: String, key: String = "") {
@@ -72,24 +57,12 @@ class ItemBase: NSMenuItem {
     attributedTitle = Mutable(withDefaultFont: title)
   }
 
-  func removeAllSubMenus() {
-    submenu?.removeAllItems()
-  }
-
-  func remove(submenu menu: Menu) {
-    submenu?.removeItem(menu)
-  }
-
-  func onDidClick(block: @escaping Block<ItemBase>) -> Listener {
+  func onDidClick(block: @escaping Block<Void>) -> Listener {
     return event.on(block)
   }
 
-  func onDidClick(block: @escaping Block<Void>) -> Listener {
-    return onDidClick { (_:ItemBase) in block() }
-  }
-
-  @objc private func didClick(_ sender: NSMenu) {
-    trigger()
+  @objc func didClick(_ sender: NSMenu) {
+    event.emit()
   }
 
   func activate() {
@@ -104,9 +77,7 @@ class ItemBase: NSMenuItem {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // For testing
-  internal func trigger() {
-    delegate?.item(didClick: self)
-    event.emit(self)
+  private func checkActive() {
+    isEnabled = !keyEquivalent.isEmpty || parentable != nil || hasSubmenu
   }
 }

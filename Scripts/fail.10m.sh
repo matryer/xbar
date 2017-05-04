@@ -21,5 +21,5 @@ entry 9 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=
 entry 10 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
 ABV
 --D
-------E
+----E
 heredoc

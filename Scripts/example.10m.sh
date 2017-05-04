@@ -3,7 +3,7 @@
 cat <<heredoc
 date
 ---
-entry 1 | terminal=false bash=/Users/oleander/Desktop/example.sh param1=param refresh=true
+entry 1 | terminal=false bash=/Users/oleander/Desktop/example.sh param1=param refresh=true color=red
 entry 2 | terminal=false bash=/Users/oleander/Desktop/example.sh param1=param refresh=true
 Other Entries
 --More Entries

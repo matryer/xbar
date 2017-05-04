@@ -1,24 +1,17 @@
 import Hue
 import AppKit
 
-final class Ansi: Param<Bool> {
-  override var after: Filter { return [Emojize.self] }
-  var shouldParseAnsi: Bool { return value }
-
-  override func menu(didLoad menu: Menuable) {
-    guard shouldParseAnsi else { return }
-    switch Pro.parse(Pro.getANSIs(), menu.headline.string) {
+final class Ansi {
+  static func app(_ string: String) -> Mutable {
+    switch Pro.parse(Pro.getANSIs(), string) {
     case let Result.success(result, _):
-      menu.set(headline: apply(result))
+      return apply(result)
     case let Result.failure(lines):
-      for error in lines {
-        menu.add(error: error)
-      }
+      preconditionFailure("failed with \(lines)")
     }
   }
-
   // Apply colors in @colors to @string
-  private func apply(_ attrs: [Value]) -> Mutable {
+  private static func apply(_ attrs: [Value]) -> Mutable {
     return attrs.reduce("".mutable()) { acc, attr in
       return acc.appended(attr.1.reduce(attr.0.mutable()) { mutable, code in
         switch code {

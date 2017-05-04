@@ -56,7 +56,12 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Sending error to parent plugin class
   */
   func scriptDidReceive(error message: Script.Result) {
-    didReceiveError(String(describing: message))
+    switch message {
+    case .failure(.terminated):
+      return print("Manual termination of \(path)") /* Ignore, manualy terminated */
+    default:
+      didReceiveError(String(describing: message))
+    }
   }
 
   /**

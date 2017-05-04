@@ -5,27 +5,23 @@ import Cocoa
 /**
   Represents an item in the menu bar
 */
-class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
+class Tray: NSObject, NSMenuDelegate, Eventable {
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
-
   private var updatedAgoItem: UpdatedAgoItem?
-  private var listeners = [Listener]()
-  private let openEvent = Event<Void>()
-  private let closeEvent = Event<Void>()
   private var isOpen = false
   private var menu = NSMenu()
   private var defaultCount = 0
   var item = Tray.center.statusItem(withLength: Tray.length)
-  internal weak var delegate: TrayDelegate?
+  internal weak var parentable: Eventable?
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible displayed: Bool = false, delegate: TrayDelegate? = nil) {
+  init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil) {
     super.init()
-    set(menu: menu, delegate: delegate)
+    set(menu: menu, parentable: parentable)
     if displayed { show() } else { hide() }
   }
 
@@ -35,13 +31,15 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
 
   convenience init(errors: [String]) {
     self.init(title: "...", isVisible: true)
-    set(title: Title(errors: errors))
+    /* TODO: Pass proper error message */
+    set(title: Title("errors"))
   }
 
-  func set(menu: NSMenu, delegate: TrayDelegate? = nil) {
+  private func set(menu: NSMenu, parentable: Eventable? = nil) {
     defaultCount = menu.items.count
     self.menu = menu
-    self.delegate = delegate
+    self.menu.delegate = self
+    self.parentable = parentable
     item.menu = menu
     menu.autoenablesItems = false
     menu.delegate = self
@@ -51,33 +49,12 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
 
   func set(title: Title) {
     // TODO: How should be handle empty titles?
-    if title.headline.isEmpty {
+    if (title.headline?.isEmpty)! {
       item.attributedTitle = Mutable(string: "-")
     } else {
       item.attributedTitle = title.headline
     }
-    item.image = title.image
-    set(menu: title, delegate: title)
-  }
-
-  var attributedTitle: Mutable {
-    set { item.attributedTitle = newValue }
-    get {
-      if let title = item.attributedTitle {
-        return title.mutable()
-      }
-
-      if let title = item.title {
-        return Mutable(string: title)
-      }
-
-      return Mutable(string: "")
-    }
-  }
-
-  var image: NSImage? {
-    set { item.image = newValue }
-    get { return item.image }
+    set(menu: title, parentable: title)
   }
 
   /**
@@ -124,24 +101,6 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
   deinit { destroy() }
 
-  /**
-    @block is called every time the drop down menu bar is shown
-  */
-  func onDidOpen(block: @escaping () -> Void) {
-    listeners.append(openEvent.on(block))
-  }
-
-  /**
-    @block is called every time the drop down menu bar is hidden
-  */
-  func onDidClose(block: @escaping () -> Void) {
-    listeners.append(closeEvent.on(block))
-  }
-
-  func item(didClick: ItemBase) {
-     delegate?.tray(didClickOpenInTerminal: self)
-  }
-
   private func separator() {
     menu.addItem(NSMenuItem.separator())
   }
@@ -152,7 +111,9 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     updatedAgoItem = UpdatedAgoItem()
     menu.addItem(updatedAgoItem!)
     if !App.isConfigDisabled() {
-      menu.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
+      let terminal = RunInTerminal()
+      terminal.parentable = self
+      menu.addItem(terminal)
       menu.addItem(PrefItem())
     }
   }
@@ -164,13 +125,19 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     updatedAgoItem?.touch()
     isOpen = true
     item.highlightMode = true
-    openEvent.emit()
   }
 
   internal func menuDidClose(_ menu: NSMenu) {
     isOpen = false
     item.highlightMode = false
-    closeEvent.emit()
+  }
+
+  func didClickOpenInTerminal() {
+    parentable?.didClickOpenInTerminal()
+  }
+
+  func didTriggerRefresh() {
+    parentable?.didTriggerRefresh()
   }
 
   internal func refresh() {

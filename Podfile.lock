@@ -3,7 +3,7 @@ PODS:
   - Attr (0.0.3)
   - DateToolsSwift (2.0.3)
   - EmitterKit (5.0.1)
-  - Emojize (6.0.5):
+  - Emojize (6.0.7):
     - Files
     - FootlessParser
     - SwiftyJSON
@@ -11,6 +11,8 @@ PODS:
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
   - Nimble (6.1.0)
+  - Parser (0.1.0):
+    - FootlessParser
   - Quick (1.1.0)
   - Sparkle (1.17.0)
   - SwiftCheck (0.8.0)
@@ -29,6 +31,7 @@ DEPENDENCIES:
   - FootlessParser
   - Hue
   - Nimble
+  - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
   - Sparkle
   - SwiftCheck
@@ -45,6 +48,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/Emojize.git
   Files:
     :git: https://github.com/JohnSundell/Files.git
+  Parser:
+    :git: https://github.com/oleander/BitBarParser.git
   SwiftTryCatch:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
@@ -56,11 +61,14 @@ CHECKOUT OPTIONS:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
   Emojize:
-    :commit: 5b61ecc4f6a339591a512433381aee73a4680703
+    :commit: a51b3d4e02d12c474f11376bf635a32992cac1c6
     :git: https://github.com/oleander/Emojize.git
   Files:
     :commit: e342da619507419503a815cd70c57505a841bcdd
     :git: https://github.com/JohnSundell/Files.git
+  Parser:
+    :commit: 2dfe433f595961778b41f7a91b03b2d4c1beddf5
+    :git: https://github.com/oleander/BitBarParser.git
   SwiftTryCatch:
     :commit: b3984b754b00572b84d658e278940836fb04a2b9
     :git: https://github.com/oleander/SwiftTryCatch.git
@@ -70,11 +78,12 @@ SPEC CHECKSUMS:
   Attr: a96d189c83ac724c44a97a8bc2231b1b030da7fe
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
-  Emojize: c117c21420051d1f12493b7e12363861b044df48
+  Emojize: 8937d486b6bfd556b6d23154c64038bce49057ce
   Files: aa5984c1b97c8ddc65680e77f28f11680a900869
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   SwiftCheck: b9e20cd4088a534907fedb2d11d095f9d5fef1dc
@@ -83,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: b0607314477b043a5e72a7f7c3634ef481e4f91a
+PODFILE CHECKSUM: 0b516d36be27256042e088f8299971eb8c28f64a
 
 COCOAPODS: 1.2.1
