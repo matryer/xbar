@@ -32,13 +32,6 @@
 		2037F42E1EAAB5340024F529 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42D1EAAB5340024F529 /* Method.swift */; };
 		205084DE1EAABB2900C76041 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205084DD1EAABB2900C76041 /* Int.swift */; };
 		205084E01EAABBD800C76041 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205084DF1EAABBD800C76041 /* Container.swift */; };
-		2052CD7E1EB2432D0024A80E /* TextParamArb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD7D1EB2432D0024A80E /* TextParamArb.swift */; };
-		2052CD801EB25DCD0024A80E /* RawTailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD7F1EB25DCD0024A80E /* RawTailTests.swift */; };
-		2052CD821EB2BE430024A80E /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD811EB2BE430024A80E /* ParserTests.swift */; };
-		2052CD841EB2CE810024A80E /* Arbable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD831EB2CE810024A80E /* Arbable.swift */; };
-		2052CD881EB2CFC20024A80E /* RawTailArb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD871EB2CFC20024A80E /* RawTailArb.swift */; };
-		2052CD8A1EB2DAA90024A80E /* ImageArb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD891EB2DAA90024A80E /* ImageArb.swift */; };
-		2052CD8C1EB2DD460024A80E /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052CD8B1EB2DD460024A80E /* ImageTests.swift */; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		2079AB6D1E9EC258005B92AD /* AnsiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB431E9EC258005B92AD /* AnsiTests.swift */; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
@@ -65,9 +58,6 @@
 		2079ABC01E9EC503005B92AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBB1E9EC503005B92AD /* Images.xcassets */; };
 		2079ABC11E9EC503005B92AD /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBC1E9EC503005B92AD /* App.xib */; };
 		2079ABC21E9EC503005B92AD /* bitbar-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBD1E9EC503005B92AD /* bitbar-2048.png */; };
-		2080758F1EAE5B7800B6939A /* BitBarParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208075861EAE5B7800B6939A /* BitBarParser.framework */; };
-		208075981EAE5B7800B6939A /* BitBarParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 208075881EAE5B7800B6939A /* BitBarParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2080759B1EAE5B7800B6939A /* BitBarParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208075861EAE5B7800B6939A /* BitBarParser.framework */; };
 		20946B2D1E9EBF6800F7926D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20946B2C1E9EBF6800F7926D /* AppDelegate.swift */; };
 		20A2C2E21EBAB2760085AE7B /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2C2E11EBAB2760085AE7B /* Eventable.swift */; };
 		20A2C2E51EBAB4DD0085AE7B /* RunInTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A2C2E41EBAB4DD0085AE7B /* RunInTerminal.swift */; };
@@ -102,20 +92,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		20003D591EAFF5AD00E9236B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20946B211E9EBF6800F7926D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 208075851EAE5B7800B6939A;
-			remoteInfo = BitBarParser;
-		};
-		208075991EAE5B7800B6939A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20946B211E9EBF6800F7926D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 208075851EAE5B7800B6939A;
-			remoteInfo = BitBarParser;
-		};
 		20946B3B1E9EBF6800F7926D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20946B211E9EBF6800F7926D /* Project object */;
@@ -141,33 +117,6 @@
 /* Begin PBXFileReference section */
 		02C15665F39567DE78C746B7 /* Pods-Travis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travis.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travis/Pods-Travis.release.xcconfig"; sourceTree = "<group>"; };
 		0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
-		20082C591EB0F90F004369B6 /* RawParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawParam.swift; path = BitBarParserTests/Extension/Raw/RawParam.swift; sourceTree = SOURCE_ROOT; };
-		20082C5A1EB0F90F004369B6 /* RawTail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawTail.swift; path = BitBarParserTests/Extension/Raw/RawTail.swift; sourceTree = SOURCE_ROOT; };
-		20082C5E1EB0F9A6004369B6 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Extension/Color.swift; sourceTree = "<group>"; };
-		20082C5F1EB0F9A6004369B6 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Extension/Image.swift; sourceTree = "<group>"; };
-		20082C631EB0F9DB004369B6 /* Fail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fail.swift; path = Helper/Fail.swift; sourceTree = "<group>"; };
-		20082C641EB0F9DB004369B6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = Helper/Helper.swift; sourceTree = "<group>"; };
-		20082C6D1EB0FE28004369B6 /* TextParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextParam.swift; path = Text/TextParam.swift; sourceTree = "<group>"; };
-		20082C6E1EB0FE28004369B6 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Text.swift; path = Text/Text.swift; sourceTree = "<group>"; };
-		20082C711EB0FE30004369B6 /* RawAcc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawAcc.swift; path = Raw/RawAcc.swift; sourceTree = "<group>"; };
-		20082C721EB0FE30004369B6 /* RawHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawHead.swift; path = Raw/RawHead.swift; sourceTree = "<group>"; };
-		20082C731EB0FE30004369B6 /* RawParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawParam.swift; path = Raw/RawParam.swift; sourceTree = "<group>"; };
-		20082C741EB0FE30004369B6 /* RawTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawTitle.swift; path = Raw/RawTitle.swift; sourceTree = "<group>"; };
-		20082C791EB0FE39004369B6 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = Menu/Action.swift; sourceTree = "<group>"; };
-		20082C7A1EB0FE39004369B6 /* Head.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Head.swift; path = Menu/Head.swift; sourceTree = "<group>"; };
-		20082C7B1EB0FE39004369B6 /* Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Param.swift; path = Menu/Param.swift; sourceTree = "<group>"; };
-		20082C7C1EB0FE39004369B6 /* Tail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tail.swift; path = Menu/Tail.swift; sourceTree = "<group>"; };
-		20082C811EB0FE43004369B6 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = Extension/Array.swift; sourceTree = "<group>"; };
-		20082C821EB0FE43004369B6 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extension/String.swift; sourceTree = "<group>"; };
-		20082C851EB0FE77004369B6 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		20082C861EB0FE77004369B6 /* Failure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
-		20082C871EB0FE77004369B6 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		20082C881EB0FE77004369B6 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		20082C891EB0FE77004369B6 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		20082C8A1EB0FE77004369B6 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		2013F2F81EB107F70002D26C /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = Extension/Array.swift; sourceTree = "<group>"; };
-		2013F2F91EB107F70002D26C /* Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gen.swift; path = Extension/Gen.swift; sourceTree = "<group>"; };
-		2013F2FA1EB107F70002D26C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extension/String.swift; sourceTree = "<group>"; };
 		201B5EE71EA355EA0059950E /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
 		20219AE11EA7F1FF005B79A4 /* URLImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		202EC6211EA628F8003E1F9B /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -195,13 +144,6 @@
 		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
 		205084DD1EAABB2900C76041 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		205084DF1EAABBD800C76041 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		2052CD7D1EB2432D0024A80E /* TextParamArb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextParamArb.swift; path = Arbitrary/TextParamArb.swift; sourceTree = "<group>"; };
-		2052CD7F1EB25DCD0024A80E /* RawTailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawTailTests.swift; sourceTree = "<group>"; };
-		2052CD811EB2BE430024A80E /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
-		2052CD831EB2CE810024A80E /* Arbable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Arbable.swift; path = Helper/Arbable.swift; sourceTree = "<group>"; };
-		2052CD871EB2CFC20024A80E /* RawTailArb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RawTailArb.swift; path = Arbitrary/RawTailArb.swift; sourceTree = "<group>"; };
-		2052CD891EB2DAA90024A80E /* ImageArb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageArb.swift; path = Arbitrary/ImageArb.swift; sourceTree = "<group>"; };
-		2052CD8B1EB2DD460024A80E /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-env.sh"; sourceTree = "<group>"; };
 		2079AB431E9EC258005B92AD /* AnsiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiTests.swift; sourceTree = "<group>"; };
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
@@ -228,11 +170,6 @@
 		2079ABBB1E9EC503005B92AD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2079ABBC1E9EC503005B92AD /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = App.xib; sourceTree = "<group>"; };
 		2079ABBD1E9EC503005B92AD /* bitbar-2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bitbar-2048.png"; sourceTree = "<group>"; };
-		208075861EAE5B7800B6939A /* BitBarParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitBarParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		208075881EAE5B7800B6939A /* BitBarParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitBarParser.h; sourceTree = "<group>"; };
-		208075891EAE5B7800B6939A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2080758E1EAE5B7800B6939A /* BitBarParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		208075971EAE5B7800B6939A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20946B291E9EBF6800F7926D /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20946B2C1E9EBF6800F7926D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20946B3A1E9EBF6800F7926D /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,27 +233,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		208075821EAE5B7800B6939A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2080758B1EAE5B7800B6939A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2080758F1EAE5B7800B6939A /* BitBarParser.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		20946B261E9EBF6800F7926D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */,
-				2080759B1EAE5B7800B6939A /* BitBarParser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,81 +261,6 @@
 				CD69F9CF0A99652293EA4CA1 /* Pods-Tests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		20082C5D1EB0F983004369B6 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				2013F2F81EB107F70002D26C /* Array.swift */,
-				2013F2F91EB107F70002D26C /* Gen.swift */,
-				2013F2FA1EB107F70002D26C /* String.swift */,
-				20082C5E1EB0F9A6004369B6 /* Color.swift */,
-				20082C5F1EB0F9A6004369B6 /* Image.swift */,
-				20DDA2211EB0F81800C16B3C /* Menu */,
-				20DDA2231EB0F82E00C16B3C /* Text */,
-				20DDA2221EB0F81F00C16B3C /* Raw */,
-			);
-			name = Extension;
-			sourceTree = "<group>";
-		};
-		20082C621EB0F9CF004369B6 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				2052CD831EB2CE810024A80E /* Arbable.swift */,
-				20082C631EB0F9DB004369B6 /* Fail.swift */,
-				20082C641EB0F9DB004369B6 /* Helper.swift */,
-			);
-			name = Helper;
-			sourceTree = "<group>";
-		};
-		20082C691EB0FDEA004369B6 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				20082C811EB0FE43004369B6 /* Array.swift */,
-				20082C821EB0FE43004369B6 /* String.swift */,
-			);
-			name = Extension;
-			sourceTree = "<group>";
-		};
-		20082C6A1EB0FE04004369B6 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				20082C791EB0FE39004369B6 /* Action.swift */,
-				20082C7A1EB0FE39004369B6 /* Head.swift */,
-				20082C7B1EB0FE39004369B6 /* Param.swift */,
-				20082C7C1EB0FE39004369B6 /* Tail.swift */,
-			);
-			name = Menu;
-			sourceTree = "<group>";
-		};
-		20082C6B1EB0FE11004369B6 /* Raw */ = {
-			isa = PBXGroup;
-			children = (
-				20082C711EB0FE30004369B6 /* RawAcc.swift */,
-				20082C721EB0FE30004369B6 /* RawHead.swift */,
-				20082C731EB0FE30004369B6 /* RawParam.swift */,
-				20082C741EB0FE30004369B6 /* RawTitle.swift */,
-			);
-			name = Raw;
-			sourceTree = "<group>";
-		};
-		20082C6C1EB0FE19004369B6 /* Text */ = {
-			isa = PBXGroup;
-			children = (
-				20082C6D1EB0FE28004369B6 /* TextParam.swift */,
-				20082C6E1EB0FE28004369B6 /* Text.swift */,
-			);
-			name = Text;
-			sourceTree = "<group>";
-		};
-		2013F2F51EB107DE0002D26C /* Arbitrary */ = {
-			isa = PBXGroup;
-			children = (
-				2052CD891EB2DAA90024A80E /* ImageArb.swift */,
-				2052CD871EB2CFC20024A80E /* RawTailArb.swift */,
-				2052CD7D1EB2432D0024A80E /* TextParamArb.swift */,
-			);
-			name = Arbitrary;
 			sourceTree = "<group>";
 		};
 		202EC61F1EA627BB003E1F9B /* Param */ = {
@@ -537,44 +383,9 @@
 			path = Scripts;
 			sourceTree = "<group>";
 		};
-		208075871EAE5B7800B6939A /* BitBarParser */ = {
-			isa = PBXGroup;
-			children = (
-				20082C6A1EB0FE04004369B6 /* Menu */,
-				20082C691EB0FDEA004369B6 /* Extension */,
-				20082C6B1EB0FE11004369B6 /* Raw */,
-				20082C6C1EB0FE19004369B6 /* Text */,
-				20082C851EB0FE77004369B6 /* Color.swift */,
-				20082C861EB0FE77004369B6 /* Failure.swift */,
-				20082C871EB0FE77004369B6 /* Global.swift */,
-				20082C881EB0FE77004369B6 /* Image.swift */,
-				20082C891EB0FE77004369B6 /* Result.swift */,
-				20082C8A1EB0FE77004369B6 /* State.swift */,
-				208075881EAE5B7800B6939A /* BitBarParser.h */,
-				208075891EAE5B7800B6939A /* Info.plist */,
-			);
-			path = BitBarParser;
-			sourceTree = "<group>";
-		};
-		208075941EAE5B7800B6939A /* BitBarParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				2052CD811EB2BE430024A80E /* ParserTests.swift */,
-				2052CD7F1EB25DCD0024A80E /* RawTailTests.swift */,
-				2013F2F51EB107DE0002D26C /* Arbitrary */,
-				20082C621EB0F9CF004369B6 /* Helper */,
-				20082C5D1EB0F983004369B6 /* Extension */,
-				208075971EAE5B7800B6939A /* Info.plist */,
-				2052CD8B1EB2DD460024A80E /* ImageTests.swift */,
-			);
-			path = BitBarParserTests;
-			sourceTree = "<group>";
-		};
 		20946B201E9EBF6800F7926D = {
 			isa = PBXGroup;
 			children = (
-				208075871EAE5B7800B6939A /* BitBarParser */,
-				208075941EAE5B7800B6939A /* BitBarParserTests */,
 				B3A1D5E8FDB3E45B7A2BE5A9 /* Frameworks */,
 				1297EBD0479AC7510F233FA6 /* Pods */,
 				2079AB401E9EC1F9005B92AD /* Resources */,
@@ -588,8 +399,6 @@
 			children = (
 				20946B291E9EBF6800F7926D /* BitBar.app */,
 				20946B3A1E9EBF6800F7926D /* Tests.xctest */,
-				208075861EAE5B7800B6939A /* BitBarParser.framework */,
-				2080758E1EAE5B7800B6939A /* BitBarParserTests.xctest */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -652,32 +461,6 @@
 			name = Protocol;
 			sourceTree = "<group>";
 		};
-		20DDA2211EB0F81800C16B3C /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Menu;
-			path = ../BitBarParser;
-			sourceTree = "<group>";
-		};
-		20DDA2221EB0F81F00C16B3C /* Raw */ = {
-			isa = PBXGroup;
-			children = (
-				20082C591EB0F90F004369B6 /* RawParam.swift */,
-				20082C5A1EB0F90F004369B6 /* RawTail.swift */,
-			);
-			name = Raw;
-			path = ../BitBarParser;
-			sourceTree = "<group>";
-		};
-		20DDA2231EB0F82E00C16B3C /* Text */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Text;
-			path = ../BitBarParser;
-			sourceTree = "<group>";
-		};
 		3BC1D15DB434576749952AE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,54 +511,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		208075831EAE5B7800B6939A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				208075981EAE5B7800B6939A /* BitBarParser.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		208075851EAE5B7800B6939A /* BitBarParser */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2080759D1EAE5B7800B6939A /* Build configuration list for PBXNativeTarget "BitBarParser" */;
-			buildPhases = (
-				208075811EAE5B7800B6939A /* Sources */,
-				208075821EAE5B7800B6939A /* Frameworks */,
-				208075831EAE5B7800B6939A /* Headers */,
-				208075841EAE5B7800B6939A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BitBarParser;
-			productName = BitBarParser;
-			productReference = 208075861EAE5B7800B6939A /* BitBarParser.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		2080758D1EAE5B7800B6939A /* BitBarParserTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 208075A11EAE5B7800B6939A /* Build configuration list for PBXNativeTarget "BitBarParserTests" */;
-			buildPhases = (
-				2080758A1EAE5B7800B6939A /* Sources */,
-				2080758B1EAE5B7800B6939A /* Frameworks */,
-				2080758C1EAE5B7800B6939A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				20003D5A1EAFF5AD00E9236B /* PBXTargetDependency */,
-			);
-			name = BitBarParserTests;
-			productName = BitBarParserTests;
-			productReference = 2080758E1EAE5B7800B6939A /* BitBarParserTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		20946B281E9EBF6800F7926D /* BitBar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20946B431E9EBF6800F7926D /* Build configuration list for PBXNativeTarget "BitBar" */;
@@ -791,7 +527,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2080759A1EAE5B7800B6939A /* PBXTargetDependency */,
 			);
 			name = BitBar;
 			productName = BitBar;
@@ -828,15 +563,6 @@
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				TargetAttributes = {
-					208075851EAE5B7800B6939A = {
-						CreatedOnToolsVersion = 8.3.1;
-						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
-					};
-					2080758D1EAE5B7800B6939A = {
-						CreatedOnToolsVersion = 8.3.1;
-						ProvisioningStyle = Automatic;
-					};
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
 						ProvisioningStyle = Manual;
@@ -865,27 +591,11 @@
 			targets = (
 				20946B281E9EBF6800F7926D /* BitBar */,
 				20946B391E9EBF6800F7926D /* Tests */,
-				208075851EAE5B7800B6939A /* BitBarParser */,
-				2080758D1EAE5B7800B6939A /* BitBarParserTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		208075841EAE5B7800B6939A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2080758C1EAE5B7800B6939A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		20946B271E9EBF6800F7926D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1018,27 +728,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		208075811EAE5B7800B6939A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2080758A1EAE5B7800B6939A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2052CD7E1EB2432D0024A80E /* TextParamArb.swift in Sources */,
-				2052CD841EB2CE810024A80E /* Arbable.swift in Sources */,
-				2052CD821EB2BE430024A80E /* ParserTests.swift in Sources */,
-				2052CD881EB2CFC20024A80E /* RawTailArb.swift in Sources */,
-				2052CD801EB25DCD0024A80E /* RawTailTests.swift in Sources */,
-				2052CD8C1EB2DD460024A80E /* ImageTests.swift in Sources */,
-				2052CD8A1EB2DAA90024A80E /* ImageArb.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		20946B251E9EBF6800F7926D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1114,16 +803,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		20003D5A1EAFF5AD00E9236B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 208075851EAE5B7800B6939A /* BitBarParser */;
-			targetProxy = 20003D591EAFF5AD00E9236B /* PBXContainerItemProxy */;
-		};
-		2080759A1EAE5B7800B6939A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 208075851EAE5B7800B6939A /* BitBarParser */;
-			targetProxy = 208075991EAE5B7800B6939A /* PBXContainerItemProxy */;
-		};
 		20946B3C1E9EBF6800F7926D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 20946B281E9EBF6800F7926D /* BitBar */;
@@ -1132,91 +811,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2080759E1EAE5B7800B6939A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = BitBarParser/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarParser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		2080759F1EAE5B7800B6939A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = BitBarParser/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarParser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		208075A21EAE5B7800B6939A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = BitBarParserTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarParserTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		208075A31EAE5B7800B6939A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = BitBarParserTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarParserTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		20946B411E9EBF6800F7926D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1397,24 +991,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2080759D1EAE5B7800B6939A /* Build configuration list for PBXNativeTarget "BitBarParser" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2080759E1EAE5B7800B6939A /* Debug */,
-				2080759F1EAE5B7800B6939A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		208075A11EAE5B7800B6939A /* Build configuration list for PBXNativeTarget "BitBarParserTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				208075A21EAE5B7800B6939A /* Debug */,
-				208075A31EAE5B7800B6939A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		20946B241E9EBF6800F7926D /* Build configuration list for PBXProject "BitBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
