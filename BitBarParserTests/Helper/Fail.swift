@@ -1,3 +1,0 @@
-enum Fail {
-  case mismatch
-}
