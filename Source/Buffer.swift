@@ -5,18 +5,22 @@ class Buffer {
     case noLocation
   }
 
-  private static let defaultDelimiter = "\n~~~\n".toData()
-  private let delimiter: Data
+  private static let defaultDelimiter = "~~~\n"
+  private let del: String
   private let store: NSMutableData = NSMutableData(length: 0)!
   internal var hasData = false
   internal var isClosed = false
 
-  init() {
-    self.delimiter = Buffer.defaultDelimiter
+  convenience init() {
+    self.init(withDelimiter: Buffer.defaultDelimiter)
   }
 
-  init(withDelimiter: String) {
-    self.delimiter = withDelimiter.toData()
+  init(withDelimiter del: String) {
+    self.del = del
+  }
+
+  private var delimiter: Data {
+    return del.toData()
   }
 
   func append(data: Data) {
@@ -44,7 +48,7 @@ class Buffer {
 
   func toString() -> String {
     // TODO: Handle error more gracefully
-    return store.toString()
+    return store.toString().remove(del)
   }
 
   func close() {
@@ -73,7 +77,7 @@ class Buffer {
     let result = store.subdata(with: 0...range.upperBound)
     let remaining = store.subdata(with: range.upperBound...store.length)
     store.setData(remaining)
-    return [result.toString()] + reset()
+    return [result.toString().remove(del)] + reset()
   }
 
   private func orFail() {

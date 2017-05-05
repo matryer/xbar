@@ -2,30 +2,62 @@ import AppKit
 import EmitterKit
 import Cocoa
 
+protocol Menubarable {
+  var menu: NSMenu? { get set }
+  var attributedTitle: NSAttributedString? { get set }
+  var highlightMode: Bool { get set }
+  func show()
+  func hide()
+}
+
+extension NSStatusItem: Menubarable {
+  func show() {
+    if #available(OSX 10.12, *) {
+      isVisible = true
+    }
+  }
+
+  func hide() {
+    if #available(OSX 10.12, *) {
+      isVisible = false
+    }
+  }
+}
+
+class TestBar: Menubarable {
+  var menu: NSMenu?
+  var attributedTitle: NSAttributedString?
+  var highlightMode: Bool = false
+  func show() {}
+  func hide() {}
+}
+
 /**
   Represents an item in the menu bar
 */
-class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
+class Tray: NSObject, NSMenuDelegate, Eventable {
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
-
   private var updatedAgoItem: UpdatedAgoItem?
-  private var listeners = [Listener]()
-  private let openEvent = Event<Void>()
-  private let closeEvent = Event<Void>()
   private var isOpen = false
   private var menu = NSMenu()
   private var defaultCount = 0
-  var item = Tray.center.statusItem(withLength: Tray.length)
-  internal weak var delegate: TrayDelegate?
+  var item: Menubarable
+  internal weak var parentable: Eventable?
+  static internal var item: Menubarable {
+    return Tray.center.statusItem(withLength: Tray.length)
+  }
+  var isError = false
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible displayed: Bool = false, delegate: TrayDelegate? = nil) {
+  init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil, item: Menubarable = Tray.item) {
+    self.item = item
     super.init()
-    set(menu: menu, delegate: delegate)
+    set(headline: title.mutable)
+    set(menu: menu, parentable: parentable)
     if displayed { show() } else { hide() }
   }
 
@@ -34,14 +66,15 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
   }
 
   convenience init(errors: [String]) {
-    self.init(title: "...", isVisible: true)
+    self.init(title: "…", isVisible: true)
     set(title: Title(errors: errors))
   }
 
-  func set(menu: NSMenu, delegate: TrayDelegate? = nil) {
+  private func set(menu: NSMenu, parentable: Eventable? = nil) {
     defaultCount = menu.items.count
     self.menu = menu
-    self.delegate = delegate
+    self.menu.delegate = self
+    self.parentable = parentable
     item.menu = menu
     menu.autoenablesItems = false
     menu.delegate = self
@@ -49,35 +82,14 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     refresh()
   }
 
+  func set(headline: NSAttributedString) {
+    isError = false
+    item.attributedTitle = headline
+  }
+
   func set(title: Title) {
-    // TODO: How should be handle empty titles?
-    if title.headline.isEmpty {
-      item.attributedTitle = Mutable(string: "-")
-    } else {
-      item.attributedTitle = title.headline
-    }
-    item.image = title.image
-    set(menu: title, delegate: title)
-  }
-
-  var attributedTitle: Mutable {
-    set { item.attributedTitle = newValue }
-    get {
-      if let title = item.attributedTitle {
-        return title.mutable()
-      }
-
-      if let title = item.title {
-        return Mutable(string: title)
-      }
-
-      return Mutable(string: "")
-    }
-  }
-
-  var image: NSImage? {
-    set { item.image = newValue }
-    get { return item.image }
+    set(headline: title.headline ?? "-".mutable)
+    set(menu: title, parentable: title)
   }
 
   /**
@@ -98,48 +110,14 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
    Hides item from menu bar
   */
   func hide() {
-    if #available(OSX 10.12, *) {
-      item.isVisible = false
-    } else {
-      // Fallback on earlier versions
-    }
+    item.hide()
   }
 
   /**
     Display item in menu bar
   */
   func show() {
-    if #available(OSX 10.12, *) {
-      item.isVisible = true
-    } else {
-      // TODO: Fallback on earlier versions
-    }
-  }
-
-  /*
-    Completely removes item from menu bar
-  */
-  func destroy() {
-    Tray.center.removeStatusItem(item)
-  }
-  deinit { destroy() }
-
-  /**
-    @block is called every time the drop down menu bar is shown
-  */
-  func onDidOpen(block: @escaping () -> Void) {
-    listeners.append(openEvent.on(block))
-  }
-
-  /**
-    @block is called every time the drop down menu bar is hidden
-  */
-  func onDidClose(block: @escaping () -> Void) {
-    listeners.append(closeEvent.on(block))
-  }
-
-  func item(didClick: ItemBase) {
-     delegate?.tray(didClickOpenInTerminal: self)
+    item.show()
   }
 
   private func separator() {
@@ -152,7 +130,9 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     updatedAgoItem = UpdatedAgoItem()
     menu.addItem(updatedAgoItem!)
     if !App.isConfigDisabled() {
-      menu.addItem(ItemBase("Run in Terminal…", key: "o", delegate: self))
+      let terminal = RunInTerminal()
+      terminal.parentable = self
+      menu.addItem(terminal)
       menu.addItem(PrefItem())
     }
   }
@@ -164,13 +144,32 @@ class Tray: NSObject, NSMenuDelegate, ItemBaseDelegate {
     updatedAgoItem?.touch()
     isOpen = true
     item.highlightMode = true
-    openEvent.emit()
   }
 
   internal func menuDidClose(_ menu: NSMenu) {
     isOpen = false
     item.highlightMode = false
-    closeEvent.emit()
+  }
+
+  func didClickOpenInTerminal() {
+    parentable?.didClickOpenInTerminal()
+  }
+
+  func didTriggerRefresh() {
+    parentable?.didTriggerRefresh()
+  }
+
+  func didSetError() {
+    if isError { return }
+    if let title = item.attributedTitle {
+      let newTitle = "(:warning:) ".emojified.mutable
+      newTitle.append(title)
+      set(headline: newTitle)
+    } else {
+      preconditionFailure("[Bug] Title not set, invalid state")
+    }
+
+    isError = true
   }
 
   internal func refresh() {

@@ -1,7 +1,6 @@
 // swiftlint:disable type_name
 // swiftlint:disable line_length
 // swiftlint:disable type_body_length
-import Hue
 import FootlessParser
 import AppKit
 
@@ -24,175 +23,6 @@ class Pro {
     let name = til(["."], empty: false) <* string(".")
     let ext = string(".") *> rest
     return curry(File.init) <^> name <*> time <*> ext
-  }
-
-  /**
-    Quote / unquoted href attribute, i.e href="http://google.com"
-  */
-  internal static func getHref() -> P<Href> {
-    return attribute("href") { quoteOrWord() } >>- { url in
-      if let url = URL(string: url) {
-        return pure(Href(url))
-      }
-
-      return stop("Could not read \(url) as an url")
-    }
-  }
-
-  /**
-    Quote / unquoted font attribute, i.e font="Monaco"
-  */
-  internal static func getFont() -> P<Font> {
-    return attribute("font") { quoteOrWord() } >>- { font in
-      let has = manager.availableFontFamilies.some {
-        return $0.lowercased() == font.lowercased()
-      }
-
-      if has { return pure(Font(font)) }
-
-      return stop("Can't find font \(font) in the list of fonts")
-    }
-  }
-
-  /**
-    Unquoted size attribute as a positive int, i.e size=10
-  */
-  internal static func getSize() -> P<Size> {
-    return attribute("size") { digits() } >>- { size in
-      if size == 0 { return stop("Invalid size 0") }
-      return pure(Size(size))
-    }
-  }
-
-  /**
-    Quote / unquoted bash attribute, i.e bash="/usr/local/bin space"
-  */
-  internal static func getBash() -> P<Bash> {
-    return Bash.init <^> attribute("bash") { quoteOrWord() }
-  }
-
-  internal static var title: P<Title> {
-    return curry({
-      handle(head:
-        toValue(with: -1, for: $0), menus: $1)
-      }
-    ) <^> heading <*> menus
-  }
-
-  static func toValue(with: Int, for xs: X) -> Source {
-    return .item((xs.0, xs.1), with, [Source]())
-  }
-
-  static func handle(head: Source, menus: [Source]) -> Title {
-    return toTitle(head.appended(menus))
-  }
-
-  static func toMenu(head: Source, menus: [Source]) -> Menu {
-    return toMenu(head.appended(menus))
-  }
-
-  static func toTitle(_ source: Source) -> Title {
-    switch source {
-    case let .item((title, params), _, menus):
-      return Title(title, params: params, menus: menus.map { toMenu($0) })
-    }
-  }
-
-  static func toMenu(_ menu: Source) -> Menu {
-    switch menu {
-    case let .item((title, params), level, menus):
-      return Menu(title, params: params, menus: menus.map { toMenu($0) }, level: level)
-    }
-  }
-
-  internal static var menus: P<[Source]> {
-    func forEach(_ menus: [X]) -> [Source] {
-      return menus.map { return toValue($0) }
-    }
-    return forEach <^> optional(string("---\n") *> headings, otherwise: [X]())
-  }
-
-  static func toValue(_ head: X) -> Source {
-    return .item((head.0, head.1), head.2, [Source]())
-  }
-
-  // TODO: Use title instead of getTitle
-  internal static func getTitle() -> P<Title> {
-    return title
-  }
-
-  // TODO: Use output var below
-  internal static func getOutput() -> P<Title> {
-    return output
-  }
-
-  static var output: P<Title> {
-    return title <* wsOrNl <* hasStream() <* wsOrNl
-  }
-
-  /**
-    A menu with zero or more parameters and zero or more sub menus
-    I.e \n---\nMenu | terminal=true \n--A Sub Menu
-  */
-  internal static func getMenu() -> P<Menu> {
-    return menu
-  }
-
-  /**
-    Boolean ansi attribute, i.e ansi=false
-  */
-  internal static func getAnsi() -> P<Ansi> {
-    return Ansi.init <^> attribute("ansi") { bool() }
-  }
-
-  /**
-    Boolean emojize attribute, i.e emojize=false
-  */
-  internal static func getEmojize() -> P<Emojize> {
-    return Emojize.init <^> attribute("emojize") { bool() }
-  }
-
-  /**
-    Quote / unquoted templateImage attribute, i.e templateImage="c2Rm=="
-  */
-  internal static func getTemplateImage() -> P<Paramable> {
-    return toImage(forKey: "templateImage", isTemplate: true)
-  }
-
-  /**
-    Quote / unquoted image attribute, i.e image="c2Rm=="
-  */
-  internal static func getImage() -> P<Paramable> {
-    return toImage(forKey: "image", isTemplate: false)
-  }
-
-  private static func toImage(forKey key: String, isTemplate: Bool) -> P<Paramable> {
-    return attribute(key) { quoteOrWord() } >>- { value in
-      return toImage(raw: value, isTemplate: isTemplate)
-    }
-  }
-
-  private static func toImage(raw: String, isTemplate: Bool) -> P<Paramable> {
-    if let image = toImage(base64: raw) {
-      return pure(Base64Image(image, isTemplate: isTemplate))
-    } else if let url = URL(string: raw) {
-      return pure(URLImage(url, isTemplate: isTemplate))
-    }
-
-    return stop("Could not read \(raw) as base64 or url")
-  }
-
-  private static func toImage(base64: String) -> NSImage? {
-    let options = Data.Base64DecodingOptions(rawValue: 0)
-    guard let data = Data(base64Encoded: base64, options: options) else {
-      return nil
-    }
-
-    guard let image = NSImage(data: data) else {
-      return nil
-    }
-
-    return image
   }
 
   /**
@@ -246,6 +76,17 @@ class Pro {
     return { .index($0) } <^> (string("5;") *> digits())
   }
 
+  // @example: "10" (as a string)
+  private static func digitsAsString() -> P<String> {
+    return oneOrMore(digit)
+  }
+
+  // @example: 10
+  private static func digits() -> P<Int> {
+    // TODO: Replace ! with stop(...)
+    return { Int($0)! } <^> digitsAsString()
+  }
+
   // Input: 2;10;20;30, output: Color.rgb(10, 20, 30)
   private static var rgb: P<CColor> {
     let codes = count(3, (string(";") *> digits()))
@@ -292,208 +133,6 @@ class Pro {
     }
   }
 
-  /**
-    Boolean alternate attribute, i.e alternate=false
-  */
-  internal static func getAlternate() -> P<Alternate> {
-    return Alternate.init <^> attribute("alternate") { bool() }
-  }
-
-  /**
-    Boolean checked attribute, i.e checked=true
-  */
-  internal static func getChecked() -> P<Checked> {
-    return Checked.init <^> attribute("checked") { bool() }
-  }
-
-  /**
-    Boolean trim attribute, i.e trim=false
-  */
-  internal static func getTrim() -> P<Trim> {
-    return Trim.init <^> attribute("trim") { bool() }
-  }
-
-  /**
-    Boolean dropdown attribute, i.e dropdown=false
-  */
-  internal static func getDropdown() -> P<Dropdown> {
-    return Dropdown.init <^> attribute("dropdown") { bool() }
-  }
-
-  /**
-    Boolean refresh attribute, i.e refresh=false
-  */
-  internal static func getRefresh() -> P<Refresh> {
-    return Refresh.init <^> attribute("refresh") { bool() }
-  }
-
-  /**
-    Boolean terminal attribute, i.e terminal=false
-  */
-  internal static func getTerminal() -> P<Terminal> {
-    return Terminal.init <^> attribute("terminal") { bool() }
-  }
-
-  /**
-    Named param with a quoted / unquoted value, i.e param12="A value"
-  */
-  internal static var arg: P<Argument> {
-    let param: P<String> = string("param") *> digitsAsString()
-    let key = ws *> param <* string("=")
-    let value = quoteOrWord() <* ws
-    return (curry({key, value in (key, value)}) <^> key <*> value) >>- { result in
-      guard let key = Int(result.0) else {
-        return stop("Could not read index from 'param\(result.0)'")
-      }
-
-      guard key >= 0 else {
-        return stop("Index \(key) in 'param\(result.0)' can't be < 0")
-      }
-
-      return pure(Argument(key: key, value: result.1))
-    }
-  }
-
-  /**
-    Int length attribute, i.e length=11
-  */
-  internal static func getLength() -> P<Length> {
-    return Length.init <^> attribute("length") { digits() }
-  }
-
-  static func tc(value: Paramable) -> Paramable {
-    return value
-  }
-
-  /**
-    Menu params, i.e | terminal=false length=10
-  */
-  internal static var params: P<[Line]> {
-    let p: P<Line> = {p in .param(p)} <^> param
-    let a: P<Line> = {a in .argument(a)} <^> arg
-    let item: P<Line> = p <|> a
-    return optional(ws *> string("|") *> ws *> oneOrMore(item) <* ws, otherwise: [])
-  }
-
-  static var param: P<Paramable> {
-    return (tc <^> getLength()) <|>
-      (tc <^> getAlternate()) <|>
-      (tc <^> getChecked()) <|>
-      (tc <^> getAnsi()) <|>
-      (tc <^> getBash()) <|>
-      (tc <^> getDropdown()) <|>
-      (tc <^> getEmojize()) <|>
-      (tc <^> getColor()) <|>
-      (tc <^> getFont()) <|>
-      (tc <^> getHref()) <|>
-      (tc <^> getImage()) <|>
-      (tc <^> getRefresh()) <|>
-      (tc <^> getSize()) <|>
-      (tc <^> getTemplateImage()) <|>
-      (tc <^> getTerminal()) <|>
-      (tc <^> getTrim())
-  }
-  /**
-    Color attribute with hex or color value, i.e color=red or color=#ff00AA
-  */
-  internal static func getColor() -> P<Color> {
-    return ws *> string("color=") *> (hexColor() <|> regularColor())
-  }
-
-  static var flat: P<(String, [Line])> {
-    let terminals = ["\n", "|", "~~~"]
-    let until2 = until(terminals, consume: false)
-    return curry({ a, b in (a, b)}) <^> until2 <*> (params <* oneOrMore(string("\n")))
-  }
-
-  // TODO: Remove level
-  static func headingFor(level: Int) -> U {
-    return zeroOrMore(string("--")) >>- { indent in
-      return { thing in
-        toThing(value: thing.0, params: thing.1, level: indent.count)
-      } <^> flat
-    }
-  }
-
-  // FIXME: Rename to something better
-  static private func toThing(value: String, params: [Line], level: Int) -> X {
-    switch (value, level) {
-    case ("-", 0): // Normal separator on level 0
-      return (value, params, level)
-    case ("-", _): // ---
-      return (value, params, level - 1)
-    case (_, _): // ---
-      return (value, params, level)
-    }
-  }
-
-  static func add(result1: [X], result2: [X]) -> [X] {
-    return result1 + result2
-  }
-
-  static var headings: P<[X]> {
-    return headingsFor(level: 0)
-  }
-
-  static var heading: P<X> {
-    return headingFor(level: 0)
-  }
-
-  static func headingsFor(level: Int) -> P<[X]> {
-    return zeroOrMore(headingFor(level: level))
-  }
-
-  static func merge(a: [X], b: [X], c: [X]) -> [X] {
-    return a + b + c
-  }
-
-  /**
-    Sub menu who´s depth is defined by @nextLevel, i.e \n----Sub Menu | terminal=true font=10
-  */
-  internal static func getSubMenu(_ nextLevel: Int = 1) -> P<Menu> {
-    return submenu
-  }
-
-  internal static var menu: P<Menu> {
-    return curry(toMenu) <^> heading <*> headingsFor(level: 1)
-  }
-
-  internal static var submenu: P<Menu> {
-    return curry(toMenu) <^> headingFor(level: 1) <*> headingsFor(level: 2)
-  }
-
-  static func toMenu(head: X, tails: [X]) -> Menu {
-    return toMenu(head: toValue(head), menus: tails.map { toValue($0) })
-  }
-
-  // @example: true
-  private static func truthy() -> P<Bool> {
-    return quoteOr(string("true")) *> pure(true)
-  }
-
-  // @example: "FF00aa"
-  private static func hex() -> P<String> {
-    return zeroOrMore(digit <|> oneOf("ABCDEFabcdef"))
-  }
-
-  // @example: false
-  private static func falsy() -> P<Bool> {
-    // FIXME: Check the value of bool within quotes. Same for truthy()
-    return quoteOr(string("false")) *> pure(false)
-  }
-
-  // @example: "A B C"
-  internal static func quote() -> P<String> {
-    // TODO: Handle first char as escaped quote, i.e \"abc (same for quoteAnd)
-    return oneOf("\"\'") >>- { (char: Character) in until(String(char)) }
-  }
-
-  internal static func quoteAnd<T>(_ parser: P<T>) -> P<T> {
-    return oneOf("\"\'") >>- { (char: Character) in
-      return parser <* string(String(char))
-    } <|> parser
-  }
-
   internal static func until(_ oops: String, consume: Bool = true) -> P<String> {
     return until([oops], consume: consume)
   }
@@ -514,84 +153,10 @@ class Pro {
     return blocks <* anyOf(oops)
   }
 
-  // @example: "hello" or hello
-  private static func quoteOrWord() -> P<String> {
-    return quoteOr(word())
-  }
-
-  // Match everything between ' or " or the entire @parser
-  // TODO: Handle escaped quotes
-  private static func quoteOr(_ parser: P<String>) -> P<String> {
-    return (quote() <|> parser)
-  }
-
-  // @example: "10" (as a string)
-  private static func digitsAsString() -> P<String> {
-    return oneOrMore(digit)
-  }
-
-  // @example: 10
-  private static func digits() -> P<Int> {
-    // TODO: Replace ! with stop(...)
-    return { Int($0)! } <^> digitsAsString()
-  }
-
-  // One or more characters without whitespace
-  // @example: Hello
-  private static func word() -> P<String> {
-    return oneOrMore(satisfy(expect: "word") { (char: Character) in
-      return String(char).rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) == nil
-    })
-  }
-
-  // @example: true
-  private static func bool() -> P<Bool> {
-    return (truthy() <|> falsy())
-  }
-
-  // @example: font=10
-  private static func attribute<T>(_ name: String, _ block: () -> P<T>) -> P<T> {
-    return attribute(string(name), block)
-  }
-
-  // @example: font=10
-  private static func attribute<T>(_ name: P<String>, _ block: () -> P<T>) -> P<T> {
-    return (ws *> (name *> ws *> string("=") *> ws) *> block() <* ws)
-  }
-
   private static func til(_ values: [String], empty: Bool = true) -> P<String> {
     let parser = noneOf(values)
     if empty { return zeroOrMore(parser) }
     return oneOrMore(parser)
-  }
-
-  // @example: "\n~~~" yields true
-  private static func hasStream() -> P<Bool> {
-    return ws *> ((string("~~~\n") *> pure(true)) <|> pure(false))
-  }
-
-  // @example: #ff0011
-  private static func hexColor() -> P<Color> {
-    let without: P<Color> = string("#") *> hex() <* ws >>- { hex in
-      if let color = Color(hex: "#" + hex) {
-        return pure(color)
-      }
-
-      return stop("Could not create a color from hex value \(hex)")
-    }
-
-    return quoteAnd(without)
-  }
-
-  // @example: red
-  private static func regularColor() -> P<Color> {
-    return quoteOrWord() <* ws >>- { name in
-      if let color = Color(name: name) {
-        return pure(color)
-      }
-
-      return stop("Could not find color \(name)")
-    }
   }
 
   private static func toTime(_ value: Int, _ unit: String) -> Int {

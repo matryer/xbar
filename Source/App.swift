@@ -1,4 +1,5 @@
 import Foundation
+import Async
 import SwiftyUserDefaults
 import EmitterKit
 
@@ -144,6 +145,10 @@ class App {
     NSWorkspace.shared().open(url)
   }
 
+  static func open(url: String) {
+    open(url: URL(string: url)!)
+  }
+
   /**
     Open @path in Finder
   */
@@ -210,6 +215,31 @@ class App {
 
   static func isTravis() -> Bool {
     return ProcessInfo.processInfo.environment["TRAVIS"] != nil
+  }
+
+  static func openScript(inTerminal path: String, block: @escaping (String?) -> Void) {
+    let tell = [
+      "tell application \"Terminal\" \n",
+      "do script \"\(path.replace(" ", "\\ "))\" \n",
+      "activate \n",
+      "end tell"
+    ].joined()
+
+    Async.background {
+      guard let script = NSAppleScript(source: tell) else {
+        return "Could not parse script: \(tell)"
+      }
+
+      // App.notify(.bashScriptOpened(path))
+      if App.isInTestMode() { return nil }
+
+      let errors = script.executeAndReturnError(nil)
+      guard errors.numberOfItems == 0 else {
+        return "Received errors when running script \(errors)"
+      }
+
+      return nil
+    }.main(block)
   }
 
   private static let currentBundle = Bundle.main

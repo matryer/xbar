@@ -1,5 +1,5 @@
-import AppKit
-import Swift
+import Parser
+import Async
 
 /**
   Base plugin responsible for delegating data to
@@ -7,10 +7,11 @@ import Swift
   - app delegate
   - plugin manager
 */
-class Plugin: TitleDelegate {
-  private let tray = Tray(title: "…", isVisible: true)
-  private let file: File
-  private let path: String
+class Plugin: Eventable {
+  internal let file: File
+  internal let path: String
+  internal var title: Title?
+  private let tray: Tray
   private var error: Title?
 
   /**
@@ -18,7 +19,8 @@ class Plugin: TitleDelegate {
     @file A file object containing {name}.{time}.{ext}
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
-  init(path: String, file: File) {
+  init(path: String, file: File, item: Menubarable = Tray.item) {
+    self.tray = Tray(title: "…", isVisible: true, item: item)
     self.file = file
     self.path = path
   }
@@ -35,11 +37,13 @@ class Plugin: TitleDelegate {
     Will parse data and populate the menu bar
   */
   func didReceivedOutput(_ data: String) {
-    switch Pro.parse(Pro.output, data) {
-    case let Result.success(title, _):
-      use(title: title)
-    case let Result.failure(lines):
-      use(title: Title(errors: lines))
+    print("didReceivedOutput", data)
+    Async.userInitiated {
+      return data
+    }.background { data in
+      return reduce(data)
+    }.main { head -> Void in
+      self.use(title: Title(head: head))
     }
   }
 
@@ -48,7 +52,15 @@ class Plugin: TitleDelegate {
     in didReceivedOutput. The output is parsed and displayed for the user
   */
   func didReceiveError(_ message: String) {
-    error = Title(error: message)
+    use(title: Title(error: message))
+  }
+
+  func didClickOpenInTerminal() {
+    App.openScript(inTerminal: path) { error in
+      if let anError = error {
+        print("[Error] Received error opening \(self.path): \(anError)")
+      }
+    }
   }
 
   /**
@@ -72,22 +84,6 @@ class Plugin: TitleDelegate {
   }
 
   /**
-    Triggered when user clicked 'open in terminal'
-  */
-  func title(didClickOpenInTerminal: Title) {
-    Bash.open(script: path) { error in
-      self.didReceiveError(error)
-    }
-  }
-
-  /**
-    Triggered when refresh was called from a menu
-  */
-  func title(didTriggerRefresh: Title) {
-    refresh()
-  }
-
-  /**
     Completely removes plugin from menu bar
   */
   func destroy() {
@@ -96,8 +92,17 @@ class Plugin: TitleDelegate {
 
   private func use(title: Title) {
     tray.set(title: title)
-    title.titlable = self
+    title.parentable = self
+    self.title = title
+  }
+
+  func didTriggerRefresh() {
+    refresh()
   }
 
   deinit { destroy() }
+
+  func didSetError() {
+    tray.didSetError()
+  }
 }

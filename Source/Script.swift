@@ -1,6 +1,5 @@
 import Swift
 import EmitterKit
-import Async
 import SwiftTryCatch
 import Foundation
 
@@ -9,40 +8,8 @@ class Script {
   private let path: String
   private let args: [String]
   private var process: Process?
-  private var listeners = [Listener]()
   private let listen = Listen(NotificationCenter.default)
-  private let finishEvent = Event<Result>()
   private weak var delegate: ScriptDelegate?
-
-  enum Failure {
-    case crash(String)
-    case exit(String, Int)
-    case misuse(String)
-    case terminated()
-  }
-
-  enum Result: CustomStringConvertible {
-    case success(String, Int)
-    case failure(Failure)
-
-    public var description: String {
-      switch self {
-      case let .success(message, status):
-        return "Succeeded (\(status)): \(message.inspected())"
-      case let .failure(result):
-        return String(describing: result)
-      }
-    }
-
-    func toString() -> String {
-      switch self {
-      case let .success(message, _):
-        return message
-      case let .failure(result):
-        return String(describing: result)
-      }
-    }
-  }
 
   /**
     @path Full path to script to be executed
@@ -58,11 +25,10 @@ class Script {
   }
 
   /**
-    Takes an extra block that's invoked when the script finishes
+    Is the script running?
   */
-  convenience init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, autostart: Bool = false, block: @escaping Block<Result>) {
-    self.init(path: path, args: args, delegate: delegate, autostart: autostart)
-    onDidFinish(block)
+  func isRunning() -> Bool {
+    return process?.isRunning ?? false
   }
 
   /**
@@ -90,6 +56,7 @@ class Script {
     2. Execute @path with @args in a background thread
     3. When done, notify listeners that the script terminated
   */
+
   func start() {
     stop()
     let process = Process()
@@ -122,11 +89,10 @@ class Script {
       case let (.exit, code):
         self.failed(.exit(output, Int(code)))
       case (.uncaughtSignal, 15):
-        self.failed(.terminated())
+        self.failed(.terminated)
       case let (.uncaughtSignal, code):
         self.failed(.exit(output, Int(code)))
       }
-
       buffer.close()
     }
 
@@ -202,38 +168,16 @@ class Script {
     process.environment!["BitBarVersion"] = versionStr
   }
 
-  /**
-    @once Only listen for one event
-    @block Block to be called when process finishes
-  */
-  func onDidFinish(once: Bool = false, _ block: @escaping Block<Result>) {
-    if once {
-      finishEvent.once(handler: block)
-    } else {
-      listeners.append(finishEvent.on(block))
-    }
-  }
-
-  /**
-    Is the script running?
-  */
-  func isRunning() -> Bool {
-    return process?.isRunning ?? false
-  }
-
   private func succeeded(_ result: String, status: Int32) {
-    let stdout: Result = .success(result, Int(status))
-    Async.main {
-      self.delegate?.scriptDidReceive(success: stdout)
-      self.finishEvent.emit(stdout)
-    }
+    delegate?.scriptDidReceive(
+      success: Success(
+        status: Int(status),
+        output: result
+      )
+    )
   }
 
   private func failed(_ message: Failure) {
-    let error: Result = .failure(message)
-    Async.main {
-      self.delegate?.scriptDidReceive(error: error)
-      self.finishEvent.emit(error)
-    }
+    delegate?.scriptDidReceive(failure: message)
   }
 }

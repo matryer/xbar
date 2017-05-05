@@ -37,7 +37,6 @@ class PluginManager {
     Clean menu bar from error messages and plugins
   */
   func destroy() {
-    tray.destroy()
     plugins.forEach { plugin in plugin.destroy() }
     errors.forEach { title in title.hide() }
     plugins = []
@@ -54,10 +53,9 @@ class PluginManager {
     case let Result.failure(lines):
       errors.append(Tray(errors: [
         "An error occurred while reading file \(name) from \(path)",
-        "\n",
         "Should be on the form {name}.{number}{unit}.{ext}, i.e 'aFile.10d.sh'",
         "Read the official documentation for more information",
-        "Error message:\n"
+        "Error message"
       ] + lines))
     }
   }

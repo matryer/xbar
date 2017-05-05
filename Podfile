@@ -15,13 +15,14 @@ target 'BitBar' do
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
   pod 'Emojize', git: 'https://github.com/oleander/Emojize.git'
   pod 'Attr', git: 'https://github.com/oleander/Attr.git'
+  pod 'Parser', git: 'https://github.com/oleander/BitBarParser.git'
+  pod 'Cent'
 
   target 'Tests' do
     inherit! :search_paths
     pod 'Nimble'
     pod 'Quick'
     pod 'SwiftCheck'
-    pod 'Attr', git: 'https://github.com/oleander/Attr.git'
   end
 end
 

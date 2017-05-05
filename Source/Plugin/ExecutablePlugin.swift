@@ -6,11 +6,10 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   private var script: Script!
   private var timer: Timer!
 
-  override init(path: String, file: File) {
-    super.init(path: path, file: file)
-    script = Script(path: path, delegate: self)
+  override init(path: String, file: File, item: Menubarable = Tray.item) {
+    super.init(path: path, file: file, item: item)
+    script = Script(path: path, delegate: self, autostart: true)
     timer = Timer.every(interval.seconds, scheduleDidTick)
-    script.start()
   }
 
   /**
@@ -47,16 +46,21 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Succeeded running @path
     Sending data to parent plugin class
   */
-  func scriptDidReceive(success result: Script.Result) {
-    didReceivedOutput(result.toString())
+  func scriptDidReceive (success result: Script.Success) {
+    didReceivedOutput(result.output)
   }
 
   /**
     Failed running @path
     Sending error to parent plugin class
   */
-  func scriptDidReceive(error message: Script.Result) {
-    didReceiveError(String(describing: message))
+  func scriptDidReceive(failure result: Script.Failure) {
+    switch result {
+    case .terminated:
+      print("[Log] Manual termination of \(file)")
+    default:
+      didReceiveError(String(describing: result))
+    }
   }
 
   /**

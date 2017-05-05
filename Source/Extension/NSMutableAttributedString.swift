@@ -1,5 +1,4 @@
-import Attr
-typealias Mutable = NSMutableAttributedString
+import Foundation
 
 extension Mutable {
   func background(color: CColor) -> Mutable {

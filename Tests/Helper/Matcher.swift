@@ -1,6 +1,110 @@
 import Quick
+import Cent
 import Nimble
+import Attr
+import Async
 @testable import BitBar
+
+protocol Menuable {
+  var isEnabled: Bool { get }
+  var banner: Mutable { get }
+  var menus: [Menuable] { get }
+  var image: NSImage? { get }
+  var isSeparator: Bool { get }
+  var isChecked: Bool { get }
+  var isAlternate: Bool { get }
+  var items: [NSMenuItem] { get }
+
+  func get(at: [Int], rem: [Int]) throws -> Menuable
+}
+
+enum NoMatch: Error {
+  case stop([Int])
+}
+
+extension Menuable {
+  var menus: [Menuable] {
+    return items.reduce([]) { acc, item in
+      switch item {
+      case is Menuable:
+        return acc + [item as! Menuable]
+      case _ where item.isSeparatorItem:
+        return acc + [Menu(isSeparator: true)]
+      default:
+        return acc
+      }
+    }
+  }
+
+  func get(at indexes: [Int], rem: [Int] = []) throws -> Menuable {
+    guard let index = indexes.first() else {
+      return self
+    }
+    if menus.isEmpty { throw NoMatch.stop(rem) }
+    return try menus[index].get(at: indexes.rest(), rem: rem + [index])
+  }
+}
+
+func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (W<Menuable>) -> Void) {
+  waitUntil(timeout: 10) { done in
+    Async.background {
+      repeat {
+        Thread.sleep(forTimeInterval: 0.3)
+      }  while plugin.title == nil
+    }.main {
+      block(menu(plugin.title!, at: indexes))
+      done()
+    }
+  }
+}
+
+func a(_ aMenu: W<Menuable>, at indexes: [Int] = [], block: @escaping (W<Menuable>) -> Void) {
+  switch aMenu {
+  case let .success(head):
+    block(menu(head, at: indexes))
+  case .failure:
+    block(.failure)
+  }
+}
+
+func menu(_ menu: Menuable, at indexes: [Int] = []) -> W<Menuable> {
+  do {
+    return .success(try menu.get(at: indexes))
+  } catch {
+    return .failure
+  }
+}
+
+extension Menu: Menuable {
+  var items: [NSMenuItem] { return submenu?.items ?? [] }
+  var banner: Mutable {
+    return headline
+  }
+
+  var isChecked: Bool { return state == NSOnState  }
+}
+
+extension Title: Menuable {
+  var isEnabled: Bool {
+    return true
+  }
+
+  var banner: Mutable {
+    return headline ?? Mutable(string: "")
+  }
+
+  var image: NSImage? { return nil }
+  var isSeparator: Bool { return false }
+  var isChecked: Bool { return false  }
+  var isAlternate: Bool { return false }
+}
+
+extension Script {
+  enum Result {
+    case success(Success)
+    case failure(Failure)
+  }
+}
 
 func equal(_ value: String) -> MatcherFunc<Value> {
   return MatcherFunc { actual, _ in
@@ -18,74 +122,74 @@ func equal(_ value: String) -> MatcherFunc<Value> {
 func the<T: Menuable>(_ parser: P<T>, with input: String) -> W<String> {
   switch Pro.parse(parser, input) {
   case let Result.success(result, _):
-    return .success(result.headline.string)
+    return .success(result.banner.string)
   case Result.failure(_):
     return .failure
   }
 }
 
 // expect("ABC".bold).to(beItalic())
-public func beItalic() -> MatcherFunc<Value> {
+func beItalic() -> MatcherFunc<Value> {
   return test(expect: .italic(true), label: "italic")
 }
 
 // expect("ABC".bold).to(beBold())
-public func beBold() -> MatcherFunc<Value> {
+func beBold() -> MatcherFunc<Value> {
   return test(expect: .bold(true), label: "bold")
 }
 
 // expect("ABC").to(have(color: 10))
-public func have(color actual: Int) -> MatcherFunc<Value> {
+func have(color actual: Int) -> MatcherFunc<Value> {
   return test(expect: .color(.foreground, .index(actual)), label: "256 color")
 }
 
 // expect("ABC").to(have(background: 10))
-public func have(background actual: Int) -> MatcherFunc<Value> {
+func have(background actual: Int) -> MatcherFunc<Value> {
   return test(expect: .color(.background, .index(actual)), label: "256 background color")
 }
 
 // expect("ABC").to(have(background: [10, 20, 30]))
-public func have(background colors: [Int]) -> MatcherFunc<Value> {
+func have(background colors: [Int]) -> MatcherFunc<Value> {
   if colors.count != 3 { preconditionFailure("Rgb must contain 3 ints") }
   let expect: Code = .color(.background, .rgb(colors[0], colors[1], colors[2]))
   return test(expect: expect, label: "RGB background color")
 }
 
 // expect("ABC").to(have(rgb: [10, 20, 30]))
-public func have(rgb colors: [Int]) -> MatcherFunc<Value> {
+func have(rgb colors: [Int]) -> MatcherFunc<Value> {
   if colors.count != 3 { preconditionFailure("Rgb must contain 3 ints") }
   let expect: Code = .color(.foreground, .rgb(colors[0], colors[1], colors[2]))
   return test(expect: expect, label: "RGB foreground color")
 }
 
 // expect("ABC").to(haveNoStyle())
-public func haveNoStyle() -> MatcherFunc<Value> {
+func haveNoStyle() -> MatcherFunc<Value> {
   return tester("no style") { (_, codes) in
     return codes.isEmpty
   }
 }
 
 // expect("ABC".blink).to(blink())
-public func blink(_ speed: Speed) -> MatcherFunc<Value> {
+func blink(_ speed: Speed) -> MatcherFunc<Value> {
   return test(expect: .blink(speed), label: "blink")
 }
 
 // expect("ABC").to(haveUnderline())
-public func haveUnderline() -> MatcherFunc<Value> {
+func haveUnderline() -> MatcherFunc<Value> {
   return test(expect: .underline(true), label: "underline")
 }
 
 // expect("ABC".red).to(be(.red))
-public func be(_ color: CColor) -> MatcherFunc<Value> {
+func be(_ color: CColor) -> MatcherFunc<Value> {
   return test(expect: .color(.foreground, color), label: "color")
 }
 
 // expect("ABC".background(color: .red)).to(have(background: .red))
-public func have(background color: CColor) -> MatcherFunc<Value> {
+func have(background color: CColor) -> MatcherFunc<Value> {
   return test(expect: .color(.background, color), label: "color")
 }
 
-public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
+func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "exit with status 0 and output '\(exp ?? "")'"
     guard let result = try actualExpression.evaluate() else {
@@ -93,9 +197,9 @@ public func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
     }
 
     switch (result, exp) {
-    case (.success(_, 0), .none):
+    case (.success, .none):
       return true
-    case let (.success(stdout, 0), .some(exp)) where stdout == exp:
+    case let (.success(success), .some(exp)) where success.output == exp:
       return true
     default:
       failureMessage.postfixActual = String(describing: result)
@@ -122,25 +226,7 @@ func output<T: Equatable>(_ cmp: T) -> MatcherFunc<W<T>> {
   }
 }
 
-func equal(_ name: String) -> MatcherFunc<Color> {
-  return MatcherFunc { actual, _ in
-    guard let color = try actual.evaluate() else {
-      return false
-    }
-
-    if let other = Color(name: name) {
-      return other == color
-    }
-
-    if let other = Color(hex: name) {
-      return other == color
-    }
-
-    return false
-  }
-}
-
-public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
+func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "exit with status != 0 and output '\(exp)'"
     guard let result = try actualExpression.evaluate() else {
@@ -157,7 +243,7 @@ public func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
-public func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
+func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "crash with partial output '\(exp)'"
     guard let result = try actualExpression.evaluate() else {
@@ -174,7 +260,7 @@ public func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
-public func have(environment: String, setTo value: String) -> MatcherFunc<Script.Result> {
+func have(environment: String, setTo value: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "environment \(environment) set to \(value)"
     guard let result = try actualExpression.evaluate() else {
@@ -182,8 +268,8 @@ public func have(environment: String, setTo value: String) -> MatcherFunc<Script
     }
 
     switch result {
-    case let .success(stdout, 0):
-      return stdout == value + "\n"
+    case let .success(success):
+      return success.output == value + "\n"
     default:
       failureMessage.postfixActual = String(describing: result)
       return false
@@ -191,7 +277,7 @@ public func have(environment: String, setTo value: String) -> MatcherFunc<Script
   }
 }
 
-public func beTerminated() -> MatcherFunc<Script.Result> { return MatcherFunc { actualExpression, failureMessage in
+func beTerminated() -> MatcherFunc<Script.Result> { return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "terminated"
     guard let result = try actualExpression.evaluate() else {
       return false
@@ -207,7 +293,7 @@ public func beTerminated() -> MatcherFunc<Script.Result> { return MatcherFunc { 
   }
 }
 
-public func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
+func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "misuse with partial output '\(exp)'"
     guard let result = try actualExpression.evaluate() else {
@@ -228,9 +314,56 @@ func have(foreground color: CColor) -> MatcherFunc<W<Menuable>> {
   return tester("have a foreground") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.headline.has(foreground: color.toNSColor())
+      return menu.banner.has(foreground: color.toNSColor())
     case .failure:
       return "expected a color much like \(color)"
+    }
+  }
+}
+
+func toImage(string: String, isTemplate: Bool) -> NSImage? {
+  guard let data = Data(base64Encoded: string) else {
+    return nil
+  }
+
+  return NSImage(data: data, isTemplate: isTemplate)
+}
+
+func have(imageUrl: String, isTemplate: Bool) -> MatcherFunc<W<Menuable>> {
+  return tester("have an image") { (result: W<Menuable>) in
+    switch result {
+    case let .success(menu):
+      guard let image1 = menu.image else {
+        return "menu could not parse image"
+      }
+
+      guard let url = URL(string: imageUrl) else {
+        return "could not get image url from \(imageUrl)"
+      }
+
+      var data: Data!
+      do {
+        data = try Data(contentsOf: url)
+      } catch(let error) {
+        return "could not download image url: \(error)"
+      }
+
+      guard let image2 = NSImage(data: data, isTemplate: isTemplate) else {
+        return "failed to parse image in menu"
+      }
+
+      // TODO: Compare content, not size
+      guard image1.size == image2.size else {
+        return false
+      }
+
+      if isTemplate {
+        return image1.isTemplate
+      }
+
+      return !image1.isTemplate
+    case .failure:
+      return "to have an image"
     }
   }
 }
@@ -243,7 +376,7 @@ func have(image: String, isTemplate: Bool) -> MatcherFunc<W<Menuable>> {
         return "menu could not parse image"
       }
 
-      guard let image2 = toImage(string: image) else {
+      guard let image2 = toImage(string: image, isTemplate: isTemplate) else {
         return "failed to parse image in menu"
       }
 
@@ -264,12 +397,12 @@ func have(image: String, isTemplate: Bool) -> MatcherFunc<W<Menuable>> {
 }
 
 func have(title: String) -> MatcherFunc<W<Menuable>> {
-  return tester("have a title") { (result: W<Menuable>) in
+  return t("title") { (result: W<Menuable>) -> Test<String> in
     switch result {
     case let .success(menu):
-      return menu.headline.string == title
+      return .comp(title, menu.banner.string)
     case .failure:
-      return "to have a title"
+      return .fail
     }
   }
 }
@@ -278,7 +411,7 @@ func contain(title: String) -> MatcherFunc<W<Menuable>> {
   return tester("have a title") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.headline.string.contains(title)
+      return menu.banner.string.contains(title)
     case .failure:
       return "to have a title"
     }
@@ -289,7 +422,7 @@ func have(title: Mutable) -> MatcherFunc<W<Menuable>> {
   return tester("have a title") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.headline == title
+      return menu.banner.string == title.string
     case .failure:
       return "to have a title"
     }
@@ -297,12 +430,12 @@ func have(title: Mutable) -> MatcherFunc<W<Menuable>> {
 }
 
 func have(font: String) -> MatcherFunc<W<Menuable>> {
-  return tester("to have have font") { (result: W<Menuable>) in
+  return t("font name") { result -> Test<String> in
     switch result {
     case let .success(menu):
-      return menu.headline.fontName == font
+      return .comp(font, menu.banner.fontName)
     case .failure:
-      return "expected font \(font)"
+      return .fail
     }
   }
 }
@@ -311,7 +444,7 @@ func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
   return tester("have a background") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.headline.has(background: color.toNSColor())
+      return menu.banner.has(background: color.toNSColor())
     case .failure:
       return "expected a color much like \(color)"
     }
@@ -319,12 +452,12 @@ func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
 }
 
 func have(size: Int) -> MatcherFunc<W<Menuable>> {
-  return tester("to have size") { (result: W<Menuable>) in
+  return t("font size") { result -> Test<Int> in
     switch result {
     case let .success(menu):
-      return menu.headline.fontSize == size
+      return .comp(size, menu.banner.fontSize)
     case .failure:
-      return "expected a menu"
+      return .fail
     }
   }
 }
@@ -333,7 +466,7 @@ func beBold() -> MatcherFunc<W<Menuable>> {
   return tester("bold") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.headline.isBold
+      return menu.banner.isBold
     case .failure:
       return "failed with a failure"
     }
@@ -341,19 +474,14 @@ func beBold() -> MatcherFunc<W<Menuable>> {
 }
 
 func beClickable() -> MatcherFunc<W<Menuable>> {
-  return tester("clickable") { (result: W<Menuable>) in
+  return t("clickable") { result -> Test<Bool> in
     switch result {
     case let .success(menu):
-      return menu.isEnabled
+      return .comp(true, menu.isEnabled)
     case .failure:
-      return "failed with a failure"
+      return .fail
     }
   }
-}
-
-// TODO: Replace with below
-func haveSubMenuCount(_ count: Int) -> MatcherFunc<W<Menuable>> {
-  return have(subMenuCount: count)
 }
 
 func have(subMenuCount count: Int) -> MatcherFunc<W<Menuable>> {
@@ -368,11 +496,11 @@ func have(subMenuCount count: Int) -> MatcherFunc<W<Menuable>> {
   }
 }
 
-func beAnAlternate() -> MatcherFunc<W<Menuable>> {
+func beAlternatable() -> MatcherFunc<W<Menuable>> {
   return tester("alternate") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.isAltAlternate
+      return menu.isAlternate
     case .failure:
       return "failed with a failure"
     }
@@ -383,7 +511,7 @@ func beASeparator() -> MatcherFunc<W<Menuable>> {
   return tester("separator") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.isSeparator()
+      return menu.isSeparator
     case .failure:
       return "failed with a failure"
     }
@@ -405,7 +533,7 @@ func beItalic() -> MatcherFunc<W<Menuable>> {
   return tester("italic") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-      return menu.headline.isItalic
+      return menu.banner.isItalic
     case .failure:
       return "failed with a failure"
     }
@@ -416,7 +544,7 @@ func beTrimmed() -> MatcherFunc<W<Menuable>> {
   return tester("trimmed") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-    return menu.headline == menu.headline.trimmed()
+    return menu.banner == menu.banner.trimmed()
     case .failure:
       return "to be trimmed"
     }
@@ -427,7 +555,7 @@ func have(href: String) -> MatcherFunc<W<Menuable>> {
   return tester("href") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
-    return menu.headline == menu.headline.trimmed()
+    return menu.banner == menu.banner.trimmed()
     case .failure:
       return "to be trimmed"
     }

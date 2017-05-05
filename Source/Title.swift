@@ -1,27 +1,34 @@
 import AppKit
+import Parser
 import EmitterKit
 
-final class Title: NSMenu, Menuable, TrayDelegate {
-  var listener: Listener?
-  internal weak var titlable: TitleDelegate?
-  internal var event = Event<Void>()
-  internal var image: NSImage?
-  internal var level: Int = 0
-  internal var headline: Mutable
-  internal var params = [Line]()
+final class Title: NSMenu, Eventable {
+  internal weak var parentable: Eventable?
+  internal var headline: Mutable?
 
-  init(_ title: String, params: [Line] = [Line](), menus: [Menu] = []) {
-    self.params = params
+  init(title: String = "", menus: [Menu] = []) {
     self.headline = title.mutable()
     super.init(title: title)
-    add(menus: menus)
+    handle(menus: menus)
   }
 
-  /**
-    @errors A list of errors to be displayed in the sub menu
-  */
+  init(_ text: Parser.Text, menus: [Menu]) {
+    super.init(title: "")
+    self.headline = text.colorize
+    handle(menus: menus)
+  }
+
+  convenience init(head: Parser.Menu.Head) {
+    switch head {
+    case let .text(text, tails):
+      self.init(text, menus: tails.map(Menu.init(tail:)))
+    case let .error(messages):
+      self.init(errors: messages)
+    }
+  }
+
   convenience init(errors: [String]) {
-    self.init(":warning: ".emojifyed(), menus: errors.map(Menu.init))
+    self.init(title: ":warning:".emojified, menus: errors.map(Menu.init(title:)))
   }
 
   convenience init(error: String) {
@@ -32,64 +39,31 @@ final class Title: NSMenu, Menuable, TrayDelegate {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func tray(didClickOpenInTerminal: Tray) {
-    self.titlable?.title(didClickOpenInTerminal: self)
-  }
-
-  func tray(didTriggerRefresh: Tray) {
-    self.titlable?.title(didTriggerRefresh: self)
-  }
-
-  func onDidClick(block: @escaping Block<Void>) -> Listener {
-    return event.on(block)
-  }
-
-  func submenu(didTriggerRefresh menu: Menuable) {
+  func didTriggerRefresh() {
     refresh()
   }
 
   func refresh() {
-    App.notify(.titleTriggeredRefresh)
-    titlable?.title(didTriggerRefresh: self)
+    parentable?.didTriggerRefresh()
   }
 
-  func isSeparator() -> Bool {
-    return false
+  func didClickOpenInTerminal() {
+    parentable?.didClickOpenInTerminal()
   }
 
-  func add(menu: NSMenuItem) {
-    addItem(menu)
+  /* TODO: Update us with :warning: */
+  func didSetError() {
+    parentable?.didSetError()
   }
 
-  func useAsAlternate() {
-//    preconditionFailure("Title can't be use as an alternativ menu")
-  }
-
-  func set(state: Int) {
-//    preconditionFailure("State can't be set on title")
-  }
-
-  func hideDropdown() {
-//    preconditionFailure("[TODO] Not yet implemeted")
-  }
-
-  func hide() {
-//    preconditionFailure("[TODO] Not yet implemented")
-  }
-
-  var openInTerminal: Bool {
-    preconditionFailure("Title has no notion of terminal")
-  }
-
-  var isAltAlternate: Bool {
-    return false
-  }
-
-  var isChecked: Bool {
-    return false
-  }
-
-  var isEnabled: Bool {
-    return true
+  private func handle(menus: [Menu]) {
+    for menu in menus {
+      if menu.isSeparator {
+        addItem(NSMenuItem.separator())
+      } else {
+        menu.parentable = self
+        addItem(menu)
+      }
+    }
   }
 }

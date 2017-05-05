@@ -36,7 +36,7 @@ class BufferTests: Helper {
         let buffer = Buffer(withDelimiter: "DEF")
         buffer.append(string: "DEF")
         expect(buffer.isFinish()).to(beTrue())
-        expect(buffer.reset()).to(equal(["DEF"]))
+        expect(buffer.reset()).to(equal([""]))
         expect(buffer.isFinish()).to(beFalse())
         expect(buffer.toString()).to(beEmpty())
       }
@@ -45,7 +45,7 @@ class BufferTests: Helper {
         let buffer = Buffer(withDelimiter: "DEF")
         buffer.append(string: "DEFXXX")
         expect(buffer.isFinish()).to(beTrue())
-        expect(buffer.reset()).to(equal(["DEF"]))
+        expect(buffer.reset()).to(equal([""]))
         expect(buffer.isFinish()).to(beFalse())
         expect(buffer.toString()).to(equal("XXX"))
       }
@@ -115,7 +115,7 @@ class BufferTests: Helper {
         buffer.append(string: "DEF")
         expect(buffer.isFinish()).to(beTrue())
         let res = buffer.reset()
-        expect(res).to(equal(["DEF", "XDEF"]))
+        expect(res).to(equal(["", "X"]))
         expect(buffer.isFinish()).to(beFalse())
         expect(buffer.toString()).to(beEmpty())
       }
@@ -125,7 +125,7 @@ class BufferTests: Helper {
         buffer.append(string: "DEFXXX")
         buffer.append(string: "DEFXXX")
         expect(buffer.isFinish()).to(beTrue())
-        expect(buffer.reset()).to(equal(["DEF", "XXXDEF"]))
+        expect(buffer.reset()).to(equal(["", "XXX"]))
         expect(buffer.isFinish()).to(beFalse())
         expect(buffer.toString()).to(equal("XXX"))
       }
@@ -134,7 +134,7 @@ class BufferTests: Helper {
         let buffer = Buffer(withDelimiter: "X")
         buffer.append(string: "XXX")
         expect(buffer.isFinish()).to(beTrue())
-        expect(buffer.reset()).to(equal(["X", "X", "X"]))
+        expect(buffer.reset()).to(equal(["", "", ""]))
         expect(buffer.isFinish()).to(beFalse())
         expect(buffer.toString()).to(beEmpty())
       }
@@ -143,10 +143,10 @@ class BufferTests: Helper {
         let buffer = Buffer(withDelimiter: "X")
         buffer.append(string: "XA")
         expect(buffer.isFinish()).to(beTrue())
-        expect(buffer.reset()).to(equal(["X"]))
+        expect(buffer.reset()).to(equal([""]))
         buffer.append(string: "X")
         expect(buffer.isFinish()).to(beTrue())
-        expect(buffer.reset()).to(equal(["AX"]))
+        expect(buffer.reset()).to(equal(["A"]))
       }
     }
   }
