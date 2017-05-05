@@ -1,19 +1,19 @@
 PODS:
   - AsyncSwift (2.0.1)
-  - Attr (0.0.3)
+  - Attr (1.0.1)
   - Cent (6.0.3):
     - Dollar (~> 6.1.0)
   - DateToolsSwift (2.0.3)
   - Dollar (6.1.0)
   - EmitterKit (5.0.1)
-  - Emojize (6.0.7):
+  - Emojize (6.0.8):
     - Files
     - FootlessParser
     - SwiftyJSON
-  - Files (1.6.2)
+  - Files (1.8.0)
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
-  - Nimble (6.1.0)
+  - Nimble (7.0.0)
   - Parser (0.1.0):
     - FootlessParser
   - Quick (1.1.0)
@@ -30,7 +30,7 @@ DEPENDENCIES:
   - Cent
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
   - EmitterKit
-  - Emojize (from `https://github.com/oleander/Emojize.git`)
+  - Emojize
   - Files (from `https://github.com/JohnSundell/Files.git`)
   - FootlessParser
   - Hue
@@ -48,8 +48,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
     :git: https://github.com/MatthewYork/DateTools.git
-  Emojize:
-    :git: https://github.com/oleander/Emojize.git
   Files:
     :git: https://github.com/JohnSundell/Files.git
   Parser:
@@ -59,16 +57,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Attr:
-    :commit: d0607f98df0198f2b66bef1d10380bd380909a34
+    :commit: b815ed693c37dd6cbc9c30439349858666e26bd4
     :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
-  Emojize:
-    :commit: a51b3d4e02d12c474f11376bf635a32992cac1c6
-    :git: https://github.com/oleander/Emojize.git
   Files:
-    :commit: e342da619507419503a815cd70c57505a841bcdd
+    :commit: ce3c0e16926dc4694054f8e5edd7609b079250ba
     :git: https://github.com/JohnSundell/Files.git
   Parser:
     :commit: 8dd457aa16f263a5ffe869f1605ccbeb21fd26ce
@@ -79,16 +74,16 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
-  Attr: a96d189c83ac724c44a97a8bc2231b1b030da7fe
+  Attr: 0145c20546093eff293a7ee457c14dfcf703d0cd
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
-  Emojize: 8937d486b6bfd556b6d23154c64038bce49057ce
-  Files: aa5984c1b97c8ddc65680e77f28f11680a900869
+  Emojize: 182b9ad9f7108a8b18ec28a642aea239e72db2b7
+  Files: 7833a7457be5e6482b563cb0e68075bc13735f22
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
-  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
@@ -98,6 +93,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: fcb3311e8d7c9a8b0dc14ed776f2bb6aa42b84e7
+PODFILE CHECKSUM: 27549cc686c3133d4c67301013305b859381a842
 
 COCOAPODS: 1.2.1

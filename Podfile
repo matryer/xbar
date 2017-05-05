@@ -10,13 +10,13 @@ target 'BitBar' do
   pod 'AsyncSwift'
   pod 'FootlessParser'
   pod 'SwiftyTimer'
+  pod 'Cent'
+  pod 'Emojize'
   pod 'SwiftTryCatch', git: 'https://github.com/oleander/SwiftTryCatch.git'
   pod 'Files', git: 'https://github.com/JohnSundell/Files.git'
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
-  pod 'Emojize', git: 'https://github.com/oleander/Emojize.git'
   pod 'Attr', git: 'https://github.com/oleander/Attr.git'
   pod 'Parser', git: 'https://github.com/oleander/BitBarParser.git'
-  pod 'Cent'
 
   target 'Tests' do
     inherit! :search_paths

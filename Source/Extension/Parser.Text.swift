@@ -27,7 +27,7 @@ extension Parser.Text {
         case let .size(value):
           return title.update(fontSize: value)
         case .emojize:
-          return NSMutableAttributedString(attributedString: title.emojified)
+          return title.emojified.mutable()
         case .ansi:
           return title
         case .trim:
