@@ -8,19 +8,19 @@ import Async
   - plugin manager
 */
 class Plugin: Eventable {
-  private let tray: Tray
   internal let file: File
   internal let path: String
+  internal var title: Title?
+  private let tray: Tray
   private var error: Title?
-  private var title: Title?
 
   /**
     @path An absolute path to the script
     @file A file object containing {name}.{time}.{ext}
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
-  init(path: String, file: File) {
-    self.tray = Tray(title: "…", isVisible: true)
+  init(path: String, file: File, item: Menubarable = Tray.item) {
+    self.tray = Tray(title: "…", isVisible: true, item: item)
     self.file = file
     self.path = path
   }
@@ -37,6 +37,7 @@ class Plugin: Eventable {
     Will parse data and populate the menu bar
   */
   func didReceivedOutput(_ data: String) {
+    print("didReceivedOutput", data)
     Async.userInitiated {
       return data
     }.background { data in

@@ -24,7 +24,7 @@ extension String {
   }
 
   func inspected() -> String {
-    return "\"" + replace("\n", "↵").replace("\0", "0") + "\""
+    return "\"" + replace("\n", "↵") + "\""
   }
 
   func toData() -> Data {

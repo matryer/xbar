@@ -58,7 +58,7 @@ final class Title: NSMenu, Eventable {
 
   private func handle(menus: [Menu]) {
     for menu in menus {
-      if menu.isSeparator() {
+      if menu.isSeparator {
         addItem(NSMenuItem.separator())
       } else {
         menu.parentable = self

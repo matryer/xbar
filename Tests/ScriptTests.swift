@@ -1,8 +1,8 @@
-//import Quick
-//import Nimble
-//@testable import BitBar
+// import Quick
+// import Nimble
+// @testable import BitBar
 //
-//class ScriptTests: Helper {
+// class ScriptTests: Helper {
 // override func spec() {
 //   describe("stdout") {
 //     it("handles base case") {
@@ -80,46 +80,47 @@
 //     let path = toFile("sleep.sh")
 //     it("doesn't auto start'") {
 //       var index = 0
-//       _ = Script(path: path) { output in
-//         expect(output).to(beASuccess())
+//       let del = ScriptDel() { result in
+//         expect(result).to(beASuccess())
 //         index += 1
 //       }
-//
+//       _ = Script(path: path, delegate: del)
 //       expect(index).toEventuallyNot(beGreaterThan(0))
 //     }
 //
 //     it("should autostart") {
 //       var index = 0
-//       _ = Script(path: path, autostart: true) { output in
-//         expect(output).to(beASuccess())
+//       let del = ScriptDel() { result in
+//         expect(result).to(beASuccess())
 //         index += 1
 //       }
 //
+//       _ = Script(path: path, delegate: del, autostart: true)
 //       expect(index).toEventually(equal(1), timeout: 10)
 //     }
 //
 //     it("stop running task") {
 //       var index = 0
-//       let script = Script(path: path) { output in
-//         expect(output).to(beTerminated())
+//       let del = ScriptDel() { result in
+//         expect(result).to(beTerminated())
 //         index += 1
 //       }
-//
+//       let script = Script(path: path, args: [], delegate: del, autostart: false)
 //       script.stop()
-//
 //       expect(index).toEventuallyNot(beGreaterThan(0))
 //     }
 //
 //     it("should cancel already running scripts") {
 //       var index = 0
-//       let script = Script(path: path, autostart: false) { output in
+//       let del = ScriptDel() { result in
 //         if index == 4 {
-//           expect(output).to(beASuccess())
+//           expect(result).to(beASuccess())
 //         } else {
-//           expect(output).to(beTerminated())
+//           expect(result).to(beTerminated())
 //         }
 //         index += 1
 //       }
+//       let script = Script(path: path, args: [], delegate: del, autostart: false)
 //
 //       for _ in 0..<5 {
 //         script.start()
@@ -130,30 +131,31 @@
 //
 //     it("should be able to restart script") {
 //       var index = 0
-//       let script = Script(path: path, autostart: true) { output in
+//       let del = ScriptDel() { result in
 //         if index == 1 {
-//           expect(output).to(beASuccess())
+//           expect(result).to(beASuccess())
 //         } else {
-//           expect(output).to(beTerminated())
+//           expect(result).to(beTerminated())
 //         }
 //         index += 1
 //       }
 //
+//       let script = Script(path: path, args: [], delegate: del, autostart: true)
 //       script.restart()
-//
 //       expect(index).toEventually(equal(2), timeout: timeout)
 //       expect(index).toEventuallyNot(beGreaterThan(2))
 //     }
 //
 //     it("should be able to stop a non running script") {
 //       var index = 0
-//       let script = Script(path: path, autostart: false) { _ in
+//       let del = ScriptDel() { result in
 //         index += 1
 //       }
+//       let script = Script(path: path, args: [], delegate: del, autostart: false)
 //
 //       script.stop()
 //       expect(index).toEventuallyNot(beGreaterThan(1))
 //     }
 //   }
 // }
-//}
+// }

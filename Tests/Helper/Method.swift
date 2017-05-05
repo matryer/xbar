@@ -31,26 +31,72 @@ public func tester<T>(_ post: String..., block: @escaping (T) -> Any) -> Matcher
  }
 }
 
-public func test(expect: Code, label: String) -> MatcherFunc<Value> {
- return tester(label) { (_, codes) in
-   for actual in codes {
-     if actual == expect {
-       return true
-     }
-   }
-
-   return "not " + label
- }
+enum Test<T: Equatable> {
+   case succ
+   case fail
+   /* Exp, Actual */
+   case comp(T, T)
+   case test(Bool)
 }
 
-func toFile(_ path: String) -> String {
- let res = path.components(separatedBy: ".")
- if let out = Bundle(for: Helper.self).path(forResource: res[0], ofType: res[1]) {
-   return out
+func t<T, A: Equatable>(_ title: String, block: @escaping (T) -> Test<A>) -> MatcherFunc<T> {
+  return MatcherFunc { actual, failure in
+    failure.expected = "expected \(title)"
+    guard let result = try actual.evaluate() else {
+      return false
+    }
+
+    let succ = {
+      failure.postfixMessage = "succeed"
+      failure.actualValue = "an unknown success"
+    }
+
+    let fail = {
+      failure.postfixMessage = "succeed"
+      failure.actualValue = "an unknown failure"
+    }
+
+    switch block(result) {
+    case .succ:
+      succ()
+      return true
+    case let .comp(expected, actual):
+      failure.postfixMessage = "equal \(String(describing: expected).inspected())"
+      failure.actualValue = String(describing: actual).inspected()
+      return actual == expected
+    case .fail:
+      fail()
+      return false
+    case .test(true):
+      succ()
+      return true
+    case .test(false):
+      fail()
+      return false
+    }
+  }
+}
+
+
+func test(expect: Code, label: String) -> MatcherFunc<Value> {
+   return tester(label) { (_, codes) in
+     for actual in codes {
+       if actual == expect {
+         return true
+       }
+     }
+
+     return "not " + label
+   }
  }
 
- // FIXME
- return ""
+func toFile(_ path: String) -> String {
+  let res = path.components(separatedBy: ".")
+  if let out = Bundle(for: Helper.self).path(forResource: res[0], ofType: res[1]) {
+    return out
+  }
+
+  preconditionFailure("Could not find file \(res.joined(separator: "."))")
 }
 
 // -- dex
@@ -81,74 +127,98 @@ func escape(_ what: String, _ toEscape: String) -> String {
  return what.replace(toEscape, "\\" + toEscape)
 }
 
+//class ScriptDel: ScriptDelegate {
+//  let result: (Script.Result) -> Void
+//  
+//  init(_ block: @escaping (Script.Result) -> Void) {
+//    result = block
+//  }
+//
+//  func scriptDidReceive(success: Script.Success) {
+//    result(.success(success))
+//  }
+//  func scriptDidReceive(failure: Script.Failure) {
+//    result(.failure(failure))
+//  }
+//}
+//
 //func testSucc(_ path: String, args: [String] = [], assumed: String) {
-// waitUntil(timeout: timeout) { done in
-//   _ = Script(path: toFile(path), args: args, autostart: true) { result in
-//     expect(result).to(beASuccess(with: assumed))
-//     done()
-//   }
-// }
+//  var result: Script.Result?
+//  var script: Script?
+//  let del = ScriptDel() {
+//    result = $0
+//    let _ = script
+//  }
+//  script = Script(path: toFile(path), args: args, delegate: del, autostart: true)
+//  expect(result).toEventually(beASuccess(with: assumed), timeout: 4000)
 //}
-
+//
 //func testStream(_ path: String, args: [String] = [], assumed: [String]) {
-// if assumed.isEmpty { fail("Assumed can't be empty'") }
-// var index = 0
-// waitUntil(timeout: timeout) { done in
-//   _ = Script(path: toFile(path), args: args, autostart: true) { result in
-//     let description = String(describing: result)
-//     if index == -1 {
-//       return fail("To many calls. Max is \(assumed.count) \(path): \(description)")
-//     }
-//
-//     if !assumed.indices.contains(index) {
-//       fail("Script was called to many times. \(description)")
-//       index = -1
-//       return done()
-//     }
-//
-//     expect(result).to(beASuccess(with: assumed[index]))
-//
-//     index += 1
-//     if assumed.count == index {
-//       done()
-//       index = -1
-//     }
-//   }
-// }
+////  if assumed.isEmpty { fail("Assumed can't be empty'") }
+////  var index = 0
+////  let del = ScriptDel() { result in
+////    let description = String(describing: result)
+////    if index == -1 {
+////      return fail("To many calls. Max is \(assumed.count) \(path): \(description)")
+////    }
+////    
+////    if !assumed.indices.contains(index) {
+////      fail("Script was called to many times. \(description)")
+////      index = -1
+////      return done()
+////    }
+////    
+////    expect(result).to(beASuccess(with: assumed[index]))
+////    
+////    index += 1
+////    if assumed.count == index {
+////      done()
+////      index = -1
+////    }
+////  }
+////  }
 //}
-
+//
 //func testFail(_ path: String, args: [String] = [], assumed: String) {
-// waitUntil(timeout: timeout) { done in
-//   _ = Script(path: toFile(path), args: args, autostart: true) { result in
-//     expect(result).to(beAFailure(with: assumed))
-//     done()
-//   }
-// }
+//  var output: Script.Result?
+//  var script: Script?
+//  let del = ScriptDel() {
+//    output = $0
+//    let _ = script
+//  }
+//  expect(output).toEventually(beAFailure(with: assumed), timeout: 4000)
+//  script = Script(path: toFile(path), args: args, delegate: del, autostart: true)
 //}
 //
 //func testEnv(path: String, env: String, value: String) {
-// waitUntil(timeout: timeout) { done in
-//   _ = Script(path: toFile(path), args: [], autostart: true) { result in
-//     expect(result).to(have(environment: env, setTo: value))
-//     done()
-//   }
-// }
+//  var output: Script.Result?
+//  var script: Script?
+//  let del = ScriptDel() {
+//    output = $0
+//    let _ = script
+//  }
+//  expect(output).toEventually(have(environment: env, setTo: value), timeout: 4000)
+//  script = Script(path: toFile(path), args: [], delegate: del, autostart: true)
 //}
 //
 //func testCrash(_ path: String, args: [String] = [], assumed: String) {
-// waitUntil(timeout: timeout) { done in
-//   _ = Script(path: toFile(path), args: args, autostart: true) { result in
-//     expect(result).to(beACrash(with: assumed))
-//     done()
-//   }
-// }
+//  var output: Script.Result?
+//  var script: Script?
+//  let del = ScriptDel() {
+//    output = $0
+//    let _ = script
+//  }
+//  expect(output).toEventually(beACrash(with: assumed), timeout: 4000)
+//  script = Script(path: toFile(path), args: args, delegate: del, autostart: true)
 //}
 //
 //func testMisuse(_ path: String, args: [String] = [], assumed: String) {
-// waitUntil(timeout: timeout) { done in
-//   _ = Script(path: toFile(path), args: args, autostart: true) { result in
-//     expect(result).to(beAMisuse(with: assumed))
-//     done()
-//   }
-// }
+//  var output: Script.Result?
+//  var script: Script?
+//  let del = ScriptDel() {
+//    output = $0
+//    let _ = script
+//  }
+//  expect(output).toEventually(beAMisuse(with: assumed), timeout: 3000)
+//  script = Script(path: toFile(path), args: args, delegate: del, autostart: true)
 //}

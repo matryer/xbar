@@ -23,7 +23,7 @@ extension Parser.Text {
         case let .font(name):
           return title.update(fontName: name)
         case let .length(value):
-          return title.truncate(value)
+          return title.truncate([value - 1, 0].max()!)
         case let .size(value):
           return title.update(fontSize: value)
         case .emojize:

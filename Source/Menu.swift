@@ -106,7 +106,7 @@ final class Menu: ItemBase, Eventable, ScriptDelegate {
   private func handle(menus: [Menu]) {
     for menu in menus {
       menu.parentable = self
-      if menu.isSeparator() {
+      if menu.isSeparator {
         add(menu: NSMenuItem.separator())
       } else {
         add(menu: menu)
@@ -254,7 +254,7 @@ final class Menu: ItemBase, Eventable, ScriptDelegate {
   /**
     Menus starting with a dash "-" are considered separators
   */
-  func isSeparator() -> Bool {
+  var isSeparator: Bool {
     return title.trimmed() == "-"
   }
 

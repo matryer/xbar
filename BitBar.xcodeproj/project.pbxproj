@@ -27,6 +27,8 @@
 		205084DE1EAABB2900C76041 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205084DD1EAABB2900C76041 /* Int.swift */; };
 		205084E01EAABBD800C76041 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205084DF1EAABBD800C76041 /* Container.swift */; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
+		205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */; };
+		206EC3E71EBCF9A600535712 /* all.sh in Resources */ = {isa = PBXBuildFile; fileRef = 206EC3E51EBCF89300535712 /* all.sh */; };
 		2079AB6D1E9EC258005B92AD /* AnsiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB431E9EC258005B92AD /* AnsiTests.swift */; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
 		2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4E1E9EC258005B92AD /* FileNameTests.swift */; };
@@ -46,7 +48,6 @@
 		2079ABB51E9EC2B0005B92AD /* stream-nomore.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA31E9EC2B0005B92AD /* stream-nomore.sh */; };
 		2079ABB61E9EC2B0005B92AD /* stream-nothing.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA41E9EC2B0005B92AD /* stream-nothing.sh */; };
 		2079ABB71E9EC2B0005B92AD /* stream-sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA51E9EC2B0005B92AD /* stream-sleep.sh */; };
-		2079ABB81E9EC2B0005B92AD /* sub.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA61E9EC2B0005B92AD /* sub.10s.sh */; };
 		2079ABB91E9EC2B0005B92AD /* sub2.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA71E9EC2B0005B92AD /* sub2.10s.sh */; };
 		2079ABBA1E9EC2B0005B92AD /* sub3.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA81E9EC2B0005B92AD /* sub3.10s.sh */; };
 		2079ABC01E9EC503005B92AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBB1E9EC503005B92AD /* Images.xcassets */; };
@@ -138,6 +139,8 @@
 		205084DD1EAABB2900C76041 /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		205084DF1EAABBD800C76041 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-env.sh"; sourceTree = "<group>"; };
+		205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
+		206EC3E51EBCF89300535712 /* all.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = all.sh; sourceTree = "<group>"; };
 		2079AB431E9EC258005B92AD /* AnsiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnsiTests.swift; sourceTree = "<group>"; };
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2079AB4E1E9EC258005B92AD /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
@@ -157,7 +160,6 @@
 		2079ABA31E9EC2B0005B92AD /* stream-nomore.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "stream-nomore.sh"; sourceTree = "<group>"; };
 		2079ABA41E9EC2B0005B92AD /* stream-nothing.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "stream-nothing.sh"; sourceTree = "<group>"; };
 		2079ABA51E9EC2B0005B92AD /* stream-sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "stream-sleep.sh"; sourceTree = "<group>"; };
-		2079ABA61E9EC2B0005B92AD /* sub.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sub.10s.sh; sourceTree = "<group>"; };
 		2079ABA71E9EC2B0005B92AD /* sub2.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sub2.10s.sh; sourceTree = "<group>"; };
 		2079ABA81E9EC2B0005B92AD /* sub3.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sub3.10s.sh; sourceTree = "<group>"; };
 		2079ABBB1E9EC503005B92AD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		2079AB961E9EC28A005B92AD /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				206EC3E51EBCF89300535712 /* all.sh */,
 				2079AB971E9EC2B0005B92AD /* ansi.10m.sh */,
 				2079AB981E9EC2B0005B92AD /* args.sh */,
 				2079AB991E9EC2B0005B92AD /* basic.sh */,
@@ -350,7 +353,6 @@
 				2079ABA31E9EC2B0005B92AD /* stream-nomore.sh */,
 				2079ABA41E9EC2B0005B92AD /* stream-nothing.sh */,
 				2079ABA51E9EC2B0005B92AD /* stream-sleep.sh */,
-				2079ABA61E9EC2B0005B92AD /* sub.10s.sh */,
 				2079ABA71E9EC2B0005B92AD /* sub2.10s.sh */,
 				2079ABA81E9EC2B0005B92AD /* sub3.10s.sh */,
 				2055F3221E9ECF4100701EE5 /* version-env.sh */,
@@ -426,6 +428,7 @@
 				2079AB431E9EC258005B92AD /* AnsiTests.swift */,
 				2079AB461E9EC258005B92AD /* BufferTests.swift */,
 				2079AB4E1E9EC258005B92AD /* FileNameTests.swift */,
+				205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */,
 				2079AB621E9EC258005B92AD /* ScriptTests.swift */,
 			);
 			path = Tests;
@@ -616,8 +619,8 @@
 				2079ABAB1E9EC2B0005B92AD /* basic.sh in Resources */,
 				2079ABAF1E9EC2B0005B92AD /* invalid-syntax.sh in Resources */,
 				2079ABB91E9EC2B0005B92AD /* sub2.10s.sh in Resources */,
+				206EC3E71EBCF9A600535712 /* all.sh in Resources */,
 				2079ABAC1E9EC2B0005B92AD /* complex.sh in Resources */,
-				2079ABB81E9EC2B0005B92AD /* sub.10s.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +782,7 @@
 				205084E01EAABBD800C76041 /* Container.swift in Sources */,
 				2079AB6D1E9EC258005B92AD /* AnsiTests.swift in Sources */,
 				2037F3D11EAAB4770024F529 /* CountableClosedRange.swift in Sources */,
+				205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */,
 				2037F3D01EAAB4770024F529 /* Array.swift in Sources */,
 				2037F3D31EAAB4770024F529 /* Gen.swift in Sources */,
 				2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */,

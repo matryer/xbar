@@ -37,7 +37,6 @@ class PluginManager {
     Clean menu bar from error messages and plugins
   */
   func destroy() {
-    tray.destroy()
     plugins.forEach { plugin in plugin.destroy() }
     errors.forEach { title in title.hide() }
     plugins = []

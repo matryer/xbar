@@ -2,6 +2,36 @@ import AppKit
 import EmitterKit
 import Cocoa
 
+protocol Menubarable {
+  var menu: NSMenu? { get set }
+  var attributedTitle: NSAttributedString? { get set }
+  var highlightMode: Bool { get set }
+  func show()
+  func hide()
+}
+
+extension NSStatusItem: Menubarable {
+  func show() {
+    if #available(OSX 10.12, *) {
+      isVisible = true
+    }
+  }
+
+  func hide() {
+    if #available(OSX 10.12, *) {
+      isVisible = false
+    }
+  }
+}
+
+class TestBar: Menubarable {
+  var menu: NSMenu?
+  var attributedTitle: NSAttributedString?
+  var highlightMode: Bool = false
+  func show() {}
+  func hide() {}
+}
+
 /**
   Represents an item in the menu bar
 */
@@ -12,15 +42,19 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
   private var isOpen = false
   private var menu = NSMenu()
   private var defaultCount = 0
-  var item = Tray.center.statusItem(withLength: Tray.length)
+  var item: Menubarable
   internal weak var parentable: Eventable?
+  static internal var item: Menubarable {
+    return Tray.center.statusItem(withLength: Tray.length)
+  }
   var isError = false
 
   /**
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil) {
+  init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil, item: Menubarable = Tray.item) {
+    self.item = item
     super.init()
     set(headline: title.mutable)
     set(menu: menu, parentable: parentable)
@@ -76,31 +110,15 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
    Hides item from menu bar
   */
   func hide() {
-    if #available(OSX 10.12, *) {
-      item.isVisible = false
-    } else {
-      // Fallback on earlier versions
-    }
+    item.hide()
   }
 
   /**
     Display item in menu bar
   */
   func show() {
-    if #available(OSX 10.12, *) {
-      item.isVisible = true
-    } else {
-      // TODO: Fallback on earlier versions
-    }
+    item.show()
   }
-
-  /*
-    Completely removes item from menu bar
-  */
-  func destroy() {
-    Tray.center.removeStatusItem(item)
-  }
-  deinit { destroy() }
 
   private func separator() {
     menu.addItem(NSMenuItem.separator())
