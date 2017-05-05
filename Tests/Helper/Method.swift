@@ -31,14 +31,6 @@ public func tester<T>(_ post: String..., block: @escaping (T) -> Any) -> Matcher
  }
 }
 
-enum Test<T: Equatable> {
-   case succ
-   case fail
-   /* Exp, Actual */
-   case comp(T, T)
-   case test(Bool)
-}
-
 func t<T, A: Equatable>(_ title: String, block: @escaping (T) -> Test<A>) -> MatcherFunc<T> {
   return MatcherFunc { actual, failure in
     failure.expected = "expected \(title)"
@@ -92,7 +84,7 @@ func test(expect: Code, label: String) -> MatcherFunc<Value> {
 
 func toFile(_ path: String) -> String {
   let res = path.components(separatedBy: ".")
-  if let out = Bundle(for: Helper.self).path(forResource: res[0], ofType: res[1]) {
+  if let out = Bundle(for: TestBar.self).path(forResource: res[0], ofType: res[1]) {
     return out
   }
 
@@ -129,7 +121,7 @@ func escape(_ what: String, _ toEscape: String) -> String {
 
 //class ScriptDel: ScriptDelegate {
 //  let result: (Script.Result) -> Void
-//  
+//
 //  init(_ block: @escaping (Script.Result) -> Void) {
 //    result = block
 //  }
@@ -161,15 +153,15 @@ func escape(_ what: String, _ toEscape: String) -> String {
 ////    if index == -1 {
 ////      return fail("To many calls. Max is \(assumed.count) \(path): \(description)")
 ////    }
-////    
+////
 ////    if !assumed.indices.contains(index) {
 ////      fail("Script was called to many times. \(description)")
 ////      index = -1
 ////      return done()
 ////    }
-////    
+////
 ////    expect(result).to(beASuccess(with: assumed[index]))
-////    
+////
 ////    index += 1
 ////    if assumed.count == index {
 ////      done()

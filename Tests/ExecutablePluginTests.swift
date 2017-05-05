@@ -9,8 +9,6 @@ class ExecutablePluginTests: Helper {
     context("manual script") {
       let file = File("test", 10000, "sh")
       let path = toFile("all.sh")
-      print("dslkfjsdlkfjsdlfjsdlfjsdlkjf")
-      print(path)
       let bar = TestBar()
       let plugin = ExecutablePlugin(path: path, file: file, item: bar)
       let defaultFont = ".AppleSystemUIFont"

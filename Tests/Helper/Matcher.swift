@@ -5,46 +5,6 @@ import Attr
 import Async
 @testable import BitBar
 
-protocol Menuable {
-  var isEnabled: Bool { get }
-  var banner: Mutable { get }
-  var menus: [Menuable] { get }
-  var image: NSImage? { get }
-  var isSeparator: Bool { get }
-  var isChecked: Bool { get }
-  var isAlternate: Bool { get }
-  var items: [NSMenuItem] { get }
-
-  func get(at: [Int], rem: [Int]) throws -> Menuable
-}
-
-enum NoMatch: Error {
-  case stop([Int])
-}
-
-extension Menuable {
-  var menus: [Menuable] {
-    return items.reduce([]) { acc, item in
-      switch item {
-      case is Menuable:
-        return acc + [item as! Menuable]
-      case _ where item.isSeparatorItem:
-        return acc + [Menu(isSeparator: true)]
-      default:
-        return acc
-      }
-    }
-  }
-
-  func get(at indexes: [Int], rem: [Int] = []) throws -> Menuable {
-    guard let index = indexes.first() else {
-      return self
-    }
-    if menus.isEmpty { throw NoMatch.stop(rem) }
-    return try menus[index].get(at: indexes.rest(), rem: rem + [index])
-  }
-}
-
 func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (W<Menuable>) -> Void) {
   waitUntil(timeout: 10) { done in
     Async.background {
@@ -72,37 +32,6 @@ func menu(_ menu: Menuable, at indexes: [Int] = []) -> W<Menuable> {
     return .success(try menu.get(at: indexes))
   } catch {
     return .failure
-  }
-}
-
-extension Menu: Menuable {
-  var items: [NSMenuItem] { return submenu?.items ?? [] }
-  var banner: Mutable {
-    return headline
-  }
-
-  var isChecked: Bool { return state == NSOnState  }
-}
-
-extension Title: Menuable {
-  var isEnabled: Bool {
-    return true
-  }
-
-  var banner: Mutable {
-    return headline ?? Mutable(string: "")
-  }
-
-  var image: NSImage? { return nil }
-  var isSeparator: Bool { return false }
-  var isChecked: Bool { return false  }
-  var isAlternate: Bool { return false }
-}
-
-extension Script {
-  enum Result {
-    case success(Success)
-    case failure(Failure)
   }
 }
 

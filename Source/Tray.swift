@@ -2,36 +2,6 @@ import AppKit
 import EmitterKit
 import Cocoa
 
-protocol Menubarable {
-  var menu: NSMenu? { get set }
-  var attributedTitle: NSAttributedString? { get set }
-  var highlightMode: Bool { get set }
-  func show()
-  func hide()
-}
-
-extension NSStatusItem: Menubarable {
-  func show() {
-    if #available(OSX 10.12, *) {
-      isVisible = true
-    }
-  }
-
-  func hide() {
-    if #available(OSX 10.12, *) {
-      isVisible = false
-    }
-  }
-}
-
-class TestBar: Menubarable {
-  var menu: NSMenu?
-  var attributedTitle: NSAttributedString?
-  var highlightMode: Bool = false
-  func show() {}
-  func hide() {}
-}
-
 /**
   Represents an item in the menu bar
 */
