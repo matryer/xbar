@@ -1,4 +1,10 @@
 PODS:
+  - Ansi (1.0.2):
+    - Attr
+    - Cent
+    - Dollar
+    - FootlessParser
+    - Hue
   - AsyncSwift (2.0.1)
   - Attr (1.0.1)
   - Cent (6.0.3):
@@ -13,18 +19,18 @@ PODS:
   - Files (1.8.0)
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
-  - Nimble (7.0.0)
+  - Nimble (6.1.0)
   - Parser (0.1.0):
     - FootlessParser
   - Quick (1.1.0)
   - Sparkle (1.17.0)
-  - SwiftCheck (0.8.0)
   - SwiftTryCatch (2.0.2)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
   - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
+  - Ansi (from `https://github.com/oleander/Ansi.git`)
   - AsyncSwift
   - Attr (from `https://github.com/oleander/Attr.git`)
   - Cent
@@ -34,16 +40,17 @@ DEPENDENCIES:
   - Files (from `https://github.com/JohnSundell/Files.git`)
   - FootlessParser
   - Hue
-  - Nimble
+  - Nimble (< 7.0.0)
   - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
   - Sparkle
-  - SwiftCheck
   - SwiftTryCatch (from `https://github.com/oleander/SwiftTryCatch.git`)
   - SwiftyTimer
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
+  Ansi:
+    :git: https://github.com/oleander/Ansi.git
   Attr:
     :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
@@ -56,6 +63,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
+  Ansi:
+    :commit: 10b705bcb4af36c9267157f9fa7d3175a000175a
+    :git: https://github.com/oleander/Ansi.git
   Attr:
     :commit: b815ed693c37dd6cbc9c30439349858666e26bd4
     :git: https://github.com/oleander/Attr.git
@@ -73,6 +83,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
+  Ansi: c1c223f9dcc9d0a6dee474a809e24c8dfa3e829b
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   Attr: 0145c20546093eff293a7ee457c14dfcf703d0cd
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
@@ -83,16 +94,15 @@ SPEC CHECKSUMS:
   Files: 7833a7457be5e6482b563cb0e68075bc13735f22
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
-  Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
+  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
-  SwiftCheck: b9e20cd4088a534907fedb2d11d095f9d5fef1dc
   SwiftTryCatch: b9581e03fff404eecdb7a8f7ee8e1079e1728ea2
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 27549cc686c3133d4c67301013305b859381a842
+PODFILE CHECKSUM: 7db6cdc9df716f9d0b3cbee76f6920065930996c
 
 COCOAPODS: 1.2.1

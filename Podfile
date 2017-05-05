@@ -13,6 +13,7 @@ target 'BitBar' do
   pod 'Cent'
   pod 'Emojize'
   pod 'SwiftTryCatch', git: 'https://github.com/oleander/SwiftTryCatch.git'
+  pod 'Ansi', git: 'https://github.com/oleander/Ansi.git'
   pod 'Files', git: 'https://github.com/JohnSundell/Files.git'
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
   pod 'Attr', git: 'https://github.com/oleander/Attr.git'
@@ -20,9 +21,8 @@ target 'BitBar' do
 
   target 'Tests' do
     inherit! :search_paths
-    pod 'Nimble'
+    pod 'Nimble', "< 7.0.0"
     pod 'Quick'
-    pod 'SwiftCheck'
   end
 end
 

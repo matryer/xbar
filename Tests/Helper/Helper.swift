@@ -1,4 +1,3 @@
-import SwiftCheck
 import Quick
 import Swift
 import Nimble

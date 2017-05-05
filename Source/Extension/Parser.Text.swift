@@ -1,4 +1,5 @@
 import Parser
+import Ansi
 import Emojize
 
 extension Parser.Text {
@@ -6,7 +7,7 @@ extension Parser.Text {
     switch self {
     case let .normal(title, params):
       if params.has(.ansi) {
-        return Ansi.app(title).mutable()
+        return title.colorized
       }
 
       return title.mutable()

@@ -24,6 +24,16 @@ class Pro {
     let ext = string(".") *> rest
     return curry(File.init) <^> name <*> time <*> ext
   }
+  
+  // @example: "10" (as a string)
+  private static func digitsAsString() -> P<String> {
+    return oneOrMore(digit)
+  }
+  
+  private static func digits() -> P<Int> {
+    // TODO: Replace ! with stop(...)
+    return { Int($0)! } <^> digitsAsString()
+  }
 
   /**
     Apply @parser to a @string
@@ -47,89 +57,11 @@ class Pro {
     }
   }
 
-  /**
-    Reads ANSI codes, i.e "\e[10mHello\e[0;2m" => [[10], "Hello", [0, 2]]
-  */
-  internal static func getANSIs() -> P<[Value]> {
-    return Ansi.toAttr <^> zeroOrMore(notAnsi <|> ansi)
-  }
-
-  // Anything but \e[...m
-  private static var notAnsi: P<Attributed> {
-    return { .string($0) } <^> til(terminals, empty: false)
-  }
-
-  // Input: 5;123, output: Color.index(123)
-  private static var ansi: P<Attributed> {
-    let delimiters: P<String> = anyOf(terminals)
-    return { .codes($0) } <^> (delimiters *> string("[") *> (colorWithArgs <|> codesWithDel) <* string("m"))
-  }
-
-  // Handles 256 true colors and rgb
-  private static var colorWithArgs: P<[Code]> {
-    let code = (string("48") <|> string("38")) <* string(";")
-    return curry({ [toCode($0, $1)] }) <^> code <*> (c256 <|> rgb)
-  }
-
-  // Input: 5;123, output: Color.index(123)
-  private static var c256: P<CColor> {
-    return { .index($0) } <^> (string("5;") *> digits())
-  }
-
-  // @example: "10" (as a string)
-  private static func digitsAsString() -> P<String> {
-    return oneOrMore(digit)
-  }
-
-  // @example: 10
-  private static func digits() -> P<Int> {
-    // TODO: Replace ! with stop(...)
-    return { Int($0)! } <^> digitsAsString()
-  }
-
-  // Input: 2;10;20;30, output: Color.rgb(10, 20, 30)
-  private static var rgb: P<CColor> {
-    let codes = count(3, (string(";") *> digits()))
-    return { .rgb($0[0], $0[1], $0[2]) } <^> (string("2") *> codes)
-  }
-
-  // Input: 10;, output: 10
-  private static var code: P<Int> {
-    return digits() <* optional(string(";"))
-  }
-
-  // Input: 10;20;30, output: [.color(10), .bold(20), .blink(false)]
-  private static var codesWithDel: P<[Code]> {
-    return zeroOrMore(code) >>- { (codes: [Int]) in
-      var nums = [Code]()
-      for code in codes {
-        if let found = Ansi.toCode(code) {
-          nums.append(found)
-        } else {
-          return stop("Invalid number \(code)")
-        }
-      }
-
-      return pure(nums)
-    }
-  }
-
   private static func anyOf(_ these: [String]) -> P<String> {
     if these.isEmpty { preconditionFailure("Min 1 arg") }
     if these.count == 1 { return string(these[0]) }
     return these[1..<these.count].reduce(string(these[0])) { acc, str in
       return acc <|> string(str)
-    }
-  }
-
-  private static func toCode(_ location: String, _ color: CColor) -> Code {
-    switch location {
-    case "38":
-      return .color(.foreground, color)
-    case "48":
-      return .color(.background, color)
-    default:
-      preconditionFailure("Invalid location \(location)")
     }
   }
 

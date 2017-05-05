@@ -2,6 +2,7 @@ import Quick
 import Cent
 import Nimble
 import Attr
+import Ansi
 import Async
 @testable import BitBar
 
@@ -35,19 +36,6 @@ func menu(_ menu: Menuable, at indexes: [Int] = []) -> W<Menuable> {
   }
 }
 
-func equal(_ value: String) -> MatcherFunc<Value> {
-  return MatcherFunc { actual, _ in
-    guard let result = try actual.evaluate() else {
-      return false
-    }
-
-    switch result {
-    case let (other, _):
-      return other == value
-    }
-  }
-}
-
 func the<T: Menuable>(_ parser: P<T>, with input: String) -> W<String> {
   switch Pro.parse(parser, input) {
   case let Result.success(result, _):
@@ -55,67 +43,6 @@ func the<T: Menuable>(_ parser: P<T>, with input: String) -> W<String> {
   case Result.failure(_):
     return .failure
   }
-}
-
-// expect("ABC".bold).to(beItalic())
-func beItalic() -> MatcherFunc<Value> {
-  return test(expect: .italic(true), label: "italic")
-}
-
-// expect("ABC".bold).to(beBold())
-func beBold() -> MatcherFunc<Value> {
-  return test(expect: .bold(true), label: "bold")
-}
-
-// expect("ABC").to(have(color: 10))
-func have(color actual: Int) -> MatcherFunc<Value> {
-  return test(expect: .color(.foreground, .index(actual)), label: "256 color")
-}
-
-// expect("ABC").to(have(background: 10))
-func have(background actual: Int) -> MatcherFunc<Value> {
-  return test(expect: .color(.background, .index(actual)), label: "256 background color")
-}
-
-// expect("ABC").to(have(background: [10, 20, 30]))
-func have(background colors: [Int]) -> MatcherFunc<Value> {
-  if colors.count != 3 { preconditionFailure("Rgb must contain 3 ints") }
-  let expect: Code = .color(.background, .rgb(colors[0], colors[1], colors[2]))
-  return test(expect: expect, label: "RGB background color")
-}
-
-// expect("ABC").to(have(rgb: [10, 20, 30]))
-func have(rgb colors: [Int]) -> MatcherFunc<Value> {
-  if colors.count != 3 { preconditionFailure("Rgb must contain 3 ints") }
-  let expect: Code = .color(.foreground, .rgb(colors[0], colors[1], colors[2]))
-  return test(expect: expect, label: "RGB foreground color")
-}
-
-// expect("ABC").to(haveNoStyle())
-func haveNoStyle() -> MatcherFunc<Value> {
-  return tester("no style") { (_, codes) in
-    return codes.isEmpty
-  }
-}
-
-// expect("ABC".blink).to(blink())
-func blink(_ speed: Speed) -> MatcherFunc<Value> {
-  return test(expect: .blink(speed), label: "blink")
-}
-
-// expect("ABC").to(haveUnderline())
-func haveUnderline() -> MatcherFunc<Value> {
-  return test(expect: .underline(true), label: "underline")
-}
-
-// expect("ABC".red).to(be(.red))
-func be(_ color: CColor) -> MatcherFunc<Value> {
-  return test(expect: .color(.foreground, color), label: "color")
-}
-
-// expect("ABC".background(color: .red)).to(have(background: .red))
-func have(background color: CColor) -> MatcherFunc<Value> {
-  return test(expect: .color(.background, color), label: "color")
 }
 
 func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
@@ -239,7 +166,7 @@ func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
-func have(foreground color: CColor) -> MatcherFunc<W<Menuable>> {
+func have(foreground color: Ansi.Color) -> MatcherFunc<W<Menuable>> {
   return tester("have a foreground") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):
@@ -369,7 +296,7 @@ func have(font: String) -> MatcherFunc<W<Menuable>> {
   }
 }
 
-func have(background color: CColor) -> MatcherFunc<W<Menuable>> {
+func have(background color: Ansi.Color) -> MatcherFunc<W<Menuable>> {
   return tester("have a background") { (result: W<Menuable>) in
     switch result {
     case let .success(menu):

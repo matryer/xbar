@@ -3,7 +3,6 @@
 
 import Quick
 import Nimble
-import SwiftCheck
 @testable import BitBar
 
 let quotes =  ["\"", "'"]
@@ -68,19 +67,6 @@ func t<T, A: Equatable>(_ title: String, block: @escaping (T) -> Test<A>) -> Mat
     }
   }
 }
-
-
-func test(expect: Code, label: String) -> MatcherFunc<Value> {
-   return tester(label) { (_, codes) in
-     for actual in codes {
-       if actual == expect {
-         return true
-       }
-     }
-
-     return "not " + label
-   }
- }
 
 func toFile(_ path: String) -> String {
   let res = path.components(separatedBy: ".")
