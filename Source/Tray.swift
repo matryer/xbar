@@ -14,6 +14,7 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
   private var defaultCount = 0
   var item = Tray.center.statusItem(withLength: Tray.length)
   internal weak var parentable: Eventable?
+  var isError = false
 
   /**
     @title A title to be displayed in the menu bar
@@ -21,6 +22,7 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
   */
   init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil) {
     super.init()
+    set(headline: Mutable(withDefaultFont: title))
     set(menu: menu, parentable: parentable)
     if displayed { show() } else { hide() }
   }
@@ -30,9 +32,8 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
   }
 
   convenience init(errors: [String]) {
-    self.init(title: "...", isVisible: true)
-    /* TODO: Pass proper error message */
-    set(title: Title("errors"))
+    self.init(title: "…", isVisible: true)
+    set(title: Title(errors: errors))
   }
 
   private func set(menu: NSMenu, parentable: Eventable? = nil) {
@@ -47,13 +48,13 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
     refresh()
   }
 
+  func set(headline: NSAttributedString) {
+    isError = false
+    item.attributedTitle = headline
+  }
+  
   func set(title: Title) {
-    // TODO: How should be handle empty titles?
-    if (title.headline?.isEmpty)! {
-      item.attributedTitle = Mutable(string: "-")
-    } else {
-      item.attributedTitle = title.headline
-    }
+    set(headline: title.headline ?? Mutable(withDefaultFont: "-"))
     set(menu: title, parentable: title)
   }
 
@@ -138,6 +139,19 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
 
   func didTriggerRefresh() {
     parentable?.didTriggerRefresh()
+  }
+
+  func didSetError() {
+    if isError { return }
+    if let title = item.attributedTitle {
+      let newTitle = Mutable(withDefaultFont: "(:warning:) ".emojified)
+      newTitle.append(title)
+      set(headline: newTitle)
+    } else {
+      preconditionFailure("[Bug] Title not set, invalid state")
+    }
+    
+    isError = true
   }
 
   internal func refresh() {

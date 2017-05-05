@@ -3,6 +3,7 @@
 cat <<heredoc
 test
 ---
+entry 0 | bash="klsjdlfkjdfklj"
 entry 1 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
 entry 2 | terminal=false bash=/Users/bhartvigsen/script.sh param1=param refresh=true
 Other Entries

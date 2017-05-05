@@ -13,7 +13,6 @@
 		202EC6271EA628F8003E1F9B /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6231EA628F8003E1F9B /* NSMutableAttributedString.swift */; };
 		202EC6281EA628F8003E1F9B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6241EA628F8003E1F9B /* String.swift */; };
 		202EC6431EA6292F003E1F9B /* Ansi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6321EA6292F003E1F9B /* Ansi.swift */; };
-		202EC6441EA6292F003E1F9B /* Bash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6331EA6292F003E1F9B /* Bash.swift */; };
 		202EC6461EA6292F003E1F9B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6351EA6292F003E1F9B /* Color.swift */; };
 		202EC65A1EA62943003E1F9B /* ItemBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6541EA62943003E1F9B /* ItemBase.swift */; };
 		202EC65C1EA62943003E1F9B /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6561EA62943003E1F9B /* Menu.swift */; };
@@ -124,7 +123,6 @@
 		202EC6231EA628F8003E1F9B /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		202EC6241EA628F8003E1F9B /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		202EC6321EA6292F003E1F9B /* Ansi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ansi.swift; sourceTree = "<group>"; };
-		202EC6331EA6292F003E1F9B /* Bash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bash.swift; sourceTree = "<group>"; };
 		202EC6351EA6292F003E1F9B /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		202EC6541EA62943003E1F9B /* ItemBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemBase.swift; sourceTree = "<group>"; };
 		202EC6561EA62943003E1F9B /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				202EC6321EA6292F003E1F9B /* Ansi.swift */,
-				202EC6331EA6292F003E1F9B /* Bash.swift */,
 				202EC6351EA6292F003E1F9B /* Color.swift */,
 				20219AE11EA7F1FF005B79A4 /* URLImage.swift */,
 			);
@@ -754,7 +751,6 @@
 				20A462C31E9EC03F00321D42 /* File.swift in Sources */,
 				20D9EDD81EB9947A00BBA915 /* Text.Param.swift in Sources */,
 				20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */,
-				202EC6441EA6292F003E1F9B /* Bash.swift in Sources */,
 				20DA49A91EAAC2C20070B4D9 /* GEvent.swift in Sources */,
 				20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */,
 				202EC6271EA628F8003E1F9B /* NSMutableAttributedString.swift in Sources */,

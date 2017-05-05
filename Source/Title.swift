@@ -6,7 +6,7 @@ final class Title: NSMenu, Eventable {
   internal weak var parentable: Eventable?
   internal var headline: Mutable?
 
-  init(_ title: String = "", menus: [Menu] = []) {
+  init(title: String = "", menus: [Menu] = []) {
     self.headline = title.mutable()
     super.init(title: title)
     handle(menus: menus)
@@ -17,7 +17,7 @@ final class Title: NSMenu, Eventable {
     case let .text(text, tails):
       self.init(text, menus: tails.map(Menu.init(tail:)))
     case let .error(messages):
-      preconditionFailure("Error: \(messages)")
+      self.init(errors: messages)
     }
   }
 
@@ -25,6 +25,14 @@ final class Title: NSMenu, Eventable {
     super.init(title: "")
     self.headline = text.colorize
     handle(menus: menus)
+  }
+
+  convenience init(errors: [String]) {
+    self.init(title: ":warning:".emojified, menus: errors.map(Menu.init(title:)))
+  }
+
+  convenience init(error: String) {
+    self.init(errors: [error])
   }
 
   required init(coder decoder: NSCoder) {
@@ -52,5 +60,9 @@ final class Title: NSMenu, Eventable {
         addItem(menu)
       }
     }
+  }
+
+  func didSetError() {
+    parentable?.didSetError()
   }
 }

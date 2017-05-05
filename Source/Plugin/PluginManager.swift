@@ -54,10 +54,9 @@ class PluginManager {
     case let Result.failure(lines):
       errors.append(Tray(errors: [
         "An error occurred while reading file \(name) from \(path)",
-        "\n",
         "Should be on the form {name}.{number}{unit}.{ext}, i.e 'aFile.10d.sh'",
         "Read the official documentation for more information",
-        "Error message:\n"
+        "Error message"
       ] + lines))
     }
   }

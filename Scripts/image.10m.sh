@@ -2,4 +2,5 @@
 
 echo "Image"
 echo "---"
-echo "Image | image=https://i.imgur.com/WVeH43e.png"
+echo "Image 1 | templateImage=https://www.w3schools.com/css/img_flowers.jpg"
+echo "Image 2 | image=https://www.w3schools.com/css/img_flowers.jpg"

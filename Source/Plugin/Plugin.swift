@@ -9,7 +9,7 @@ import Async
 */
 class Plugin: Eventable {
   private let tray: Tray
-  private let file: File
+  internal let file: File
   internal let path: String
   private var error: Title?
   private var title: Title?
@@ -51,12 +51,14 @@ class Plugin: Eventable {
     in didReceivedOutput. The output is parsed and displayed for the user
   */
   func didReceiveError(_ message: String) {
-     use(title: Title(message))
+    use(title: Title(error: message))
   }
 
   func didClickOpenInTerminal() {
-    Bash.open(script: path) {
-      print("Result from Bash.open: \($0)")
+    App.openScript(inTerminal: path) { error in
+      if let anError = error {
+        print("[Error] Received error opening \(self.path): \(anError)")
+      }
     }
   }
 
@@ -98,4 +100,8 @@ class Plugin: Eventable {
   }
 
   deinit { destroy() }
+  
+  func didSetError() {
+    tray.didSetError()
+  }
 }

@@ -8,9 +8,8 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
 
   override init(path: String, file: File) {
     super.init(path: path, file: file)
-    script = Script(path: path, delegate: self)
+    script = Script(path: path, delegate: self, autostart: true)
     timer = Timer.every(interval.seconds, scheduleDidTick)
-    script.start()
   }
 
   /**
@@ -47,20 +46,20 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Succeeded running @path
     Sending data to parent plugin class
   */
-  func scriptDidReceive(success result: Script.Result) {
-    didReceivedOutput(result.toString())
+  func scriptDidReceive (success result: Script.Success) {
+    didReceivedOutput(result.output)
   }
 
   /**
     Failed running @path
     Sending error to parent plugin class
   */
-  func scriptDidReceive(error message: Script.Result) {
-    switch message {
-    case .failure(.terminated):
-      return print("Manual termination of \(path)") /* Ignore, manualy terminated */
+  func scriptDidReceive(failure result: Script.Failure) {
+    switch result {
+    case .terminated:
+      print("[Log] Manual termination of \(file)")
     default:
-      didReceiveError(String(describing: message))
+      didReceiveError(String(describing: result))
     }
   }
 

@@ -1,55 +1,83 @@
 import Hue
 import Cocoa
 import AppKit
+import Async
 import EmitterKit
 import Parser
 
-final class Menu: ItemBase, Eventable {
+enum ImageResult {
+  case data(Data)
+  case image(NSImage)
+  case error(String)
+}
+
+extension Parser.Image.Sort {
+  var isTemplate: Bool {
+    switch self {
+    case .template:
+      return true
+    default:
+      return false
+    }
+  }
+}
+
+final class Menu: ItemBase, Eventable, ScriptDelegate {
+  var script: Script?
   var paction: Parser.Action?
   var headline: Mutable {
     get { return attributedTitle?.mutable() ?? Mutable() }
     set { attributedTitle = newValue }
   }
 
-  init(_ title: String, menus: [Menu] = []) {
+  init(title: String) {
     super.init(title)
+  }
+
+  convenience init(title: String, menus: [Menu]) {
+    self.init(title: title)
     handle(menus: menus)
   }
 
-  init(image data: Data, sort: Parser.Image.Sort, menus: [Menu]) {
-    super.init("")
+  convenience init(errors: [String]) {
+    self.init(title: ":warning: ".emojified, menus: errors.map(Menu.init(title:)))
+  }
+
+  convenience init(image data: Data, sort: Parser.Image.Sort, menus: [Menu]) {
+    self.init(title: "", menus: menus)
     switch sort {
     case .normal:
       self.image = NSImage(data: data, isTemplate: false)
     case .template:
       self.image = NSImage(data: data, isTemplate: true)
     }
-    handle(menus: menus)
   }
 
   convenience init(image: Parser.Image, params: [Parser.Menu.Param], menus: [Menu], action: Action) {
     switch image {
     case let .base64(string, sort):
-      guard let data = Data(base64Encoded: string) else {
-        preconditionFailure("no image")
+      if let data = Data(base64Encoded: string) {
+        self.init(image: data, sort: sort, menus: menus)
+      } else {
+        self.init(error: "Could not read base64 image")
       }
-
-      self.init(image: data, sort: sort, menus: menus)
-    case .href:
-      self.init("URL IMAGE....")
-//      self.init(image: try! Data(contentsOf: URL(string: url)!), sort: sort, menus: menus)
+    case let .href(url, type):
+      self.init(title: "Loading image...")
+      handle(url: url, type: type)
     }
-
     handle(action: action)
     handle(params: params)
   }
 
-  init(_ text: Parser.Text, params: [Parser.Menu.Param], menus: [Menu], action: Parser.Action) {
-    super.init("")
+  convenience init(_ text: Parser.Text, params: [Parser.Menu.Param], menus: [Menu], action: Parser.Action) {
+    self.init(title: "", menus: menus)
     headline = text.colorize
     handle(action: action)
     handle(params: params)
-    handle(menus: menus)
+  }
+
+  convenience init(error: String) {
+    self.init(errors: [error])
   }
 
   private func handle(params: [Parser.Menu.Param]) {
@@ -62,6 +90,17 @@ final class Menu: ItemBase, Eventable {
         keyEquivalentModifierMask = NSAlternateKeyMask
       }
     }
+  }
+
+  private func set(error: String) {
+    self.headline = Mutable(withDefaultFont: ":warning:".emojified + " " + error)
+    parentable?.didSetError()
+  }
+
+  private func set(image: NSImage) {
+    self.title = ""
+    self.headline = Mutable(withDefaultFont: "")
+    self.image = image
   }
 
   private func handle(menus: [Menu]) {
@@ -93,8 +132,8 @@ final class Menu: ItemBase, Eventable {
       self.init(image: image, params: params, menus: tails.map(Menu.init(tail:)), action: action)
     case .separator:
       self.init(isSeparator: true)
-    case let .error(messages):
-      preconditionFailure("Error: \(messages)")
+    case let .error(messages, _):
+      self.init(errors: messages)
     }
   }
 
@@ -109,28 +148,78 @@ final class Menu: ItemBase, Eventable {
       App.open(url: url)
 
       if events.has(.refresh) {
-        self.refresh()
+        refresh()
       }
-    case let .script(.background(path, _, events)):
-//      Bash.open(script: path, args: args) {
-//        print("done (1): \($0)")
-//      }
-
-      print("TODO: Open in background (\(path))")
-
-      if events.has(.refresh) {
-        self.refresh()
-      }
-    case let .script(.foreground(path, _, events)):
-      Bash.open(script: path) {
-        print("done (2): \($0)")
+    case let .script(.background(path, _, _)):
+      script = Script(path: path, delegate: self, autostart: true)
+    case let .script(.foreground(path, events)):
+      App.openScript(inTerminal: path) { error in
+        if let anError = error {
+          self.set(error: anError)
+        }
       }
 
       if events.has(.refresh) {
-        self.refresh()
+        refresh()
       }
     case .refresh:
-      self.refresh()
+      refresh()
+    }
+  }
+
+  func scriptDidReceive(success: Script.Success) {
+    print("[Ok] Script succeeded with status \(success.status)")
+    if shouldRefresh { refresh() }
+  }
+
+  func scriptDidReceive(failure: Script.Failure) {
+    set(error: String(describing: failure))
+  }
+
+  private func handle(url: String, type: Parser.Image.Sort) {
+    guard let anUrl = URL(string: url) else {
+      return set(error: "Could not parse url")
+    }
+    Async.background { () -> ImageResult in
+      do {
+        return try .data(Data(contentsOf: anUrl))
+      } catch(let error) {
+        return .error(error.localizedDescription)
+      }
+    }.background { result -> ImageResult in
+      switch result {
+      case let .data(data):
+        if let anImage = NSImage(data: data, isTemplate: type.isTemplate) {
+          return .image(anImage)
+        }
+        return .error("Could not download image from url")
+      default:
+        return result
+      }
+    }.main { result -> Void in
+      switch result {
+      case let .image(image):
+        self.set(image: image)
+      case let .error(message):
+        self.set(error: message)
+      case .data:
+        preconditionFailure("[Bug] Invalid state. Data now allowed here")
+      }
+    }
+  }
+
+  private var shouldRefresh: Bool {
+    switch paction! {
+    case let .script(.background(_, _, events)) where events.has(.refresh):
+      return true
+    case let .script(.foreground(_, events)) where events.has(.refresh):
+      return true
+    case let .href(_, events) where events.has(.refresh):
+      return true
+    case .refresh:
+      return true
+    default:
+      return false
     }
   }
 
@@ -141,13 +230,21 @@ final class Menu: ItemBase, Eventable {
     @level The number of levels down from the tray
   */
   convenience init(isSeparator: Bool) {
-    self.init("-")
+    self.init(title: "-")
     isHidden = true
   }
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  // convenience init(error: String) {
+  //   self.init(":warning: \(error)".emojified)
+  // }
+  //
+  // required init(coder decoder: NSCoder) {
+  //   fatalError("init(coder:) has not been implemented")
+  // }
 
   func refresh() {
     didTriggerRefresh()
@@ -166,5 +263,9 @@ final class Menu: ItemBase, Eventable {
 
   func didClickOpenInTerminal() {
     parentable?.didClickOpenInTerminal()
+  }
+
+  func didSetError() {
+    parentable?.didSetError()
   }
 }

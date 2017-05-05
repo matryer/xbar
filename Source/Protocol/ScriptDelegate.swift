@@ -1,4 +1,4 @@
 protocol ScriptDelegate: class {
-  func scriptDidReceive(success: Script.Result)
-  func scriptDidReceive(error: Script.Result)
+  func scriptDidReceive(success: Script.Success)
+  func scriptDidReceive(failure: Script.Failure)
 }

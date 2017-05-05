@@ -67,7 +67,7 @@ CHECKOUT OPTIONS:
     :commit: e342da619507419503a815cd70c57505a841bcdd
     :git: https://github.com/JohnSundell/Files.git
   Parser:
-    :commit: 2dfe433f595961778b41f7a91b03b2d4c1beddf5
+    :commit: 8dd457aa16f263a5ffe869f1605ccbeb21fd26ce
     :git: https://github.com/oleander/BitBarParser.git
   SwiftTryCatch:
     :commit: b3984b754b00572b84d658e278940836fb04a2b9

@@ -1,6 +1,5 @@
 import Swift
 import EmitterKit
-import Async
 import SwiftTryCatch
 import Foundation
 
@@ -19,6 +18,11 @@ class Script {
     case terminated()
   }
 
+  struct Success {
+    let status: Int
+    let output: String
+  }
+
   enum Result: CustomStringConvertible {
     case success(String, Int)
     case failure(Failure)
@@ -27,15 +31,6 @@ class Script {
       switch self {
       case let .success(message, status):
         return "Succeeded (\(status)): \(message.inspected())"
-      case let .failure(result):
-        return String(describing: result)
-      }
-    }
-
-    func toString() -> String {
-      switch self {
-      case let .success(message, _):
-        return message
       case let .failure(result):
         return String(describing: result)
       }
@@ -53,6 +48,13 @@ class Script {
     self.args = args
 
     if autostart { start() }
+  }
+
+  /**
+    Is the script running?
+  */
+  func isRunning() -> Bool {
+    return process?.isRunning ?? false
   }
 
   /**
@@ -80,6 +82,7 @@ class Script {
     2. Execute @path with @args in a background thread
     3. When done, notify listeners that the script terminated
   */
+
   func start() {
     stop()
     let process = Process()
@@ -116,7 +119,6 @@ class Script {
       case let (.uncaughtSignal, code):
         self.failed(.exit(output, Int(code)))
       }
-
       buffer.close()
     }
 
@@ -192,24 +194,16 @@ class Script {
     process.environment!["BitBarVersion"] = versionStr
   }
 
-  /**
-    Is the script running?
-  */
-  func isRunning() -> Bool {
-    return process?.isRunning ?? false
-  }
-
   private func succeeded(_ result: String, status: Int32) {
-    let stdout: Result = .success(result, Int(status))
-    Async.main {
-      self.delegate?.scriptDidReceive(success: stdout)
-    }
+    delegate?.scriptDidReceive(
+      success: Success(
+        status: Int(status),
+        output: result
+      )
+    )
   }
 
   private func failed(_ message: Failure) {
-    let error: Result = .failure(message)
-    Async.main {
-      self.delegate?.scriptDidReceive(error: error)
-    }
+    delegate?.scriptDidReceive(failure: message)
   }
 }
