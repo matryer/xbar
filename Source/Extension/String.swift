@@ -1,17 +1,12 @@
 import Foundation
-import Swift
+import Dollar
 
 extension String {
   /**
     Remove surrounding whitespace
   */
-  func trim() -> String {
-    return self.trimmingCharacters(in: .whitespacesAndNewlines)
-  }
-
-  /* Just an alias */
   func trimmed() -> String {
-    return trim()
+    return trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
   /**
@@ -32,44 +27,11 @@ extension String {
     return "\"" + replace("\n", "↵").replace("\0", "0") + "\""
   }
 
-  var camelCase: String {
-    if isEmpty { return self }
-    return substring(to: 1).lowercased() + substring(from: 1)
-  }
-
-  func index(from: Int) -> Index {
-    return self.index(startIndex, offsetBy: from)
-  }
-
-  func substring(from: Int) -> String {
-    let fromIndex = index(from: from)
-    return substring(from: fromIndex)
-  }
-
-  func substring(to: Int) -> String {
-    let toIndex = index(from: to)
-    return substring(to: toIndex)
-  }
-
-  func substring(with r: Range<Int>) -> String {
-    let startIndex = index(from: r.lowerBound)
-    let endIndex = index(from: r.upperBound)
-    return substring(with: startIndex..<endIndex)
-  }
-
   func toData() -> Data {
     return data(using: .utf8)!
   }
 
-  func fromBase64() -> String? {
-    guard let data = Data(base64Encoded: self) else {
-      return nil
-    }
-
-    return String(data: data, encoding: .utf8)
-  }
-
-  func toBase64() -> String {
-    return Data(self.utf8).base64EncodedString()
+  var mutable: Mutable {
+    return Mutable(withDefaultFont: self)
   }
 }

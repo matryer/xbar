@@ -93,13 +93,13 @@ final class Menu: ItemBase, Eventable, ScriptDelegate {
   }
 
   private func set(error: String) {
-    self.headline = Mutable(withDefaultFont: ":warning:".emojified + " " + error)
+    self.headline = (":warning:".emojified + " " + error).mutable
     parentable?.didSetError()
   }
 
   private func set(image: NSImage) {
     self.title = ""
-    self.headline = Mutable(withDefaultFont: "")
+    self.headline = "".mutable
     self.image = image
   }
 
@@ -150,8 +150,8 @@ final class Menu: ItemBase, Eventable, ScriptDelegate {
       if events.has(.refresh) {
         refresh()
       }
-    case let .script(.background(path, _, _)):
-      script = Script(path: path, delegate: self, autostart: true)
+    case let .script(.background(path, args, _)):
+      script = Script(path: path, args: args, delegate: self, autostart: true)
     case let .script(.foreground(path, events)):
       App.openScript(inTerminal: path) { error in
         if let anError = error {
@@ -173,6 +173,7 @@ final class Menu: ItemBase, Eventable, ScriptDelegate {
   }
 
   func scriptDidReceive(failure: Script.Failure) {
+    print("[Err] Script failed with \(failure) using action \(paction!)")
     set(error: String(describing: failure))
   }
 
@@ -254,7 +255,7 @@ final class Menu: ItemBase, Eventable, ScriptDelegate {
     Menus starting with a dash "-" are considered separators
   */
   func isSeparator() -> Bool {
-    return title.trim() == "-"
+    return title.trimmed() == "-"
   }
 
   func didTriggerRefresh() {

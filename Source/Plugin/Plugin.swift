@@ -100,7 +100,7 @@ class Plugin: Eventable {
   }
 
   deinit { destroy() }
-  
+
   func didSetError() {
     tray.didSetError()
   }

@@ -22,7 +22,7 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
   */
   init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil) {
     super.init()
-    set(headline: Mutable(withDefaultFont: title))
+    set(headline: title.mutable)
     set(menu: menu, parentable: parentable)
     if displayed { show() } else { hide() }
   }
@@ -52,9 +52,9 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
     isError = false
     item.attributedTitle = headline
   }
-  
+
   func set(title: Title) {
-    set(headline: title.headline ?? Mutable(withDefaultFont: "-"))
+    set(headline: title.headline ?? "-".mutable)
     set(menu: title, parentable: title)
   }
 
@@ -144,13 +144,13 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
   func didSetError() {
     if isError { return }
     if let title = item.attributedTitle {
-      let newTitle = Mutable(withDefaultFont: "(:warning:) ".emojified)
+      let newTitle = "(:warning:) ".emojified.mutable
       newTitle.append(title)
       set(headline: newTitle)
     } else {
       preconditionFailure("[Bug] Title not set, invalid state")
     }
-    
+
     isError = true
   }
 

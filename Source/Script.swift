@@ -11,32 +11,6 @@ class Script {
   private let listen = Listen(NotificationCenter.default)
   private weak var delegate: ScriptDelegate?
 
-  enum Failure {
-    case crash(String)
-    case exit(String, Int)
-    case misuse(String)
-    case terminated()
-  }
-
-  struct Success {
-    let status: Int
-    let output: String
-  }
-
-  enum Result: CustomStringConvertible {
-    case success(String, Int)
-    case failure(Failure)
-
-    public var description: String {
-      switch self {
-      case let .success(message, status):
-        return "Succeeded (\(status)): \(message.inspected())"
-      case let .failure(result):
-        return String(describing: result)
-      }
-    }
-  }
-
   /**
     @path Full path to script to be executed
     @args Argument to be passed to @path
@@ -115,7 +89,7 @@ class Script {
       case let (.exit, code):
         self.failed(.exit(output, Int(code)))
       case (.uncaughtSignal, 15):
-        self.failed(.terminated())
+        self.failed(.terminated)
       case let (.uncaughtSignal, code):
         self.failed(.exit(output, Int(code)))
       }

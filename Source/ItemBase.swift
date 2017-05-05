@@ -12,7 +12,7 @@ class ItemBase: NSMenuItem {
   init(_ title: String, checked: Bool = false, key: String = "", parentable: Eventable? = nil) {
     super.init(title: title, action: #selector(didClick), keyEquivalent: key)
     self.target = self
-    self.attributedTitle = NSMutableAttributedString(withDefaultFont: title)
+    self.attributedTitle = title.mutable
     self.parentable = parentable
     if checked {
       self.state = NSOnState
@@ -54,7 +54,7 @@ class ItemBase: NSMenuItem {
   }
 
   func set(title: String) {
-    attributedTitle = Mutable(withDefaultFont: title)
+    attributedTitle = title.mutable
   }
 
   func onDidClick(block: @escaping Block<Void>) -> Listener {

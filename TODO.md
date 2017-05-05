@@ -5,3 +5,5 @@
   - forground: no params
 
 - RunLoop.main.add(timer, forMode: .commonModes)
+
+- Buffer should remove ---

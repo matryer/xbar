@@ -12,6 +12,12 @@ final class Title: NSMenu, Eventable {
     handle(menus: menus)
   }
 
+  init(_ text: Parser.Text, menus: [Menu]) {
+    super.init(title: "")
+    self.headline = text.colorize
+    handle(menus: menus)
+  }
+
   convenience init(head: Parser.Menu.Head) {
     switch head {
     case let .text(text, tails):
@@ -19,12 +25,6 @@ final class Title: NSMenu, Eventable {
     case let .error(messages):
       self.init(errors: messages)
     }
-  }
-
-  init(_ text: Parser.Text, menus: [Menu]) {
-    super.init(title: "")
-    self.headline = text.colorize
-    handle(menus: menus)
   }
 
   convenience init(errors: [String]) {
@@ -51,6 +51,11 @@ final class Title: NSMenu, Eventable {
     parentable?.didClickOpenInTerminal()
   }
 
+  /* TODO: Update us with :warning: */
+  func didSetError() {
+    parentable?.didSetError()
+  }
+
   private func handle(menus: [Menu]) {
     for menu in menus {
       if menu.isSeparator() {
@@ -60,9 +65,5 @@ final class Title: NSMenu, Eventable {
         addItem(menu)
       }
     }
-  }
-
-  func didSetError() {
-    parentable?.didSetError()
   }
 }
