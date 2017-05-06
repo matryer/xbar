@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.4.0)
   - Ansi (1.0.2):
     - Attr
     - Cent
@@ -30,6 +31,7 @@ PODS:
   - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Ansi (from `https://github.com/oleander/Ansi.git`)
   - AsyncSwift
   - Attr (from `https://github.com/oleander/Attr.git`)
@@ -83,6 +85,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Ansi: c1c223f9dcc9d0a6dee474a809e24c8dfa3e829b
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   Attr: 0145c20546093eff293a7ee457c14dfcf703d0cd
@@ -103,6 +106,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 7db6cdc9df716f9d0b3cbee76f6920065930996c
+PODFILE CHECKSUM: ecb7f9402234b04227b981a0852b0d25be622fd5
 
 COCOAPODS: 1.2.1

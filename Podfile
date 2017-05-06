@@ -5,6 +5,7 @@ target 'BitBar' do
 
   pod 'Hue'
   pod 'SwiftyUserDefaults'
+  pod 'Alamofire'
   pod 'Sparkle'
   pod 'EmitterKit'
   pod 'AsyncSwift'

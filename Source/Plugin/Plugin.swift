@@ -37,7 +37,6 @@ class Plugin: Eventable {
     Will parse data and populate the menu bar
   */
   func didReceivedOutput(_ data: String) {
-    print("didReceivedOutput", data)
     Async.userInitiated {
       return data
     }.background { data in

@@ -33,14 +33,13 @@ final class PrefItem: ItemBase {
     separator()
 
     listeners += addSub("Open at Login", checked: App.autostart, clickable: true) {
-      /* TODO */
-    //  if menu.state == NSOnState {
-    //    App.update(autostart: false)
-    //    menu.state = NSOffState
-    //  } else {
-    //    App.update(autostart: true)
-    //    menu.state = NSOnState
-    //  }
+      if self.state == NSOnState {
+        App.update(autostart: false)
+        self.state = NSOffState
+      } else {
+        App.update(autostart: true)
+        self.state = NSOnState
+      }
     }
 
     separator()
