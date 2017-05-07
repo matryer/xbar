@@ -124,14 +124,14 @@ class ExecutablePluginTests: Helper {
               }
             }
 
-            // it("handles =false") {
-            //   a(menu, at: [10]) { menu in
-            //     expect(menu).to(have(title: "[Refresh false]"))
-            //     expect(menu).to(have(size: defaultSize))
-            //     expect(menu).to(have(font: defaultFont))
-            //     expect(menu).toNot(beClickable())
-            //   }
-            // }
+            it("handles =false") {
+              a(menu, at: [10]) { menu in
+                expect(menu).to(have(title: "[Refresh false]"))
+                expect(menu).to(have(size: defaultSize))
+                expect(menu).to(have(font: defaultFont))
+                expect(menu).toNot(beClickable())
+              }
+            }
           }
 
           context("emojize") {
