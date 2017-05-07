@@ -24,13 +24,13 @@ extension Menuable {
       case is Menuable:
         return acc + [item as! Menuable]
       case _ where item.isSeparatorItem:
-        return acc + [Menu(isSeparator: true)]
+        return acc + [Menu(title: "-")]
       default:
         return acc
       }
     }
   }
-  
+
   var args: [String] {
     switch act {
     case let .script(.background(_, args, _)):

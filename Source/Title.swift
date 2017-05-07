@@ -1,18 +1,16 @@
-import AppKit
 import Parser
-import EmitterKit
 
-final class Title: NSMenu, Eventable {
-  internal weak var parentable: Eventable?
+final class Title: NSMenu, Parent {
+  weak var root: Parent?
   internal var headline: Mutable?
 
-  init(title: String = "", menus: [Menu] = []) {
+  init(title: String, menus: [NSMenuItem] = []) {
     self.headline = title.mutable()
     super.init(title: title)
     handle(menus: menus)
   }
 
-  init(_ text: Parser.Text, menus: [Menu]) {
+  init(_ text: Parser.Text, menus: [NSMenuItem]) {
     super.init(title: "")
     self.headline = text.colorize
     handle(menus: menus)
@@ -21,14 +19,14 @@ final class Title: NSMenu, Eventable {
   convenience init(head: Parser.Menu.Head) {
     switch head {
     case let .text(text, tails):
-      self.init(text, menus: tails.map(Menu.init(tail:)))
+     self.init(text, menus: tails.map { $0.menuItem })
     case let .error(messages):
       self.init(errors: messages)
     }
   }
 
   convenience init(errors: [String]) {
-    self.init(title: ":warning:".emojified, menus: errors.map(Menu.init(title:)))
+    self.init(title: ":warning:".emojified, menus: errors.map { Menu(title: $0, submenus: []) })
   }
 
   convenience init(error: String) {
@@ -39,31 +37,20 @@ final class Title: NSMenu, Eventable {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func didTriggerRefresh() {
-    refresh()
+  func on(_ event: MenuEvent) {
+    print("event: \(event) in title")
   }
 
-  func refresh() {
-    parentable?.didTriggerRefresh()
-  }
-
-  func didClickOpenInTerminal() {
-    parentable?.didClickOpenInTerminal()
-  }
-
-  /* TODO: Update us with :warning: */
-  func didSetError() {
-    parentable?.didSetError()
-  }
-
-  private func handle(menus: [Menu]) {
+  private func handle(menus: [NSMenuItem]) {
     for menu in menus {
-      if menu.isSeparator {
-        addItem(NSMenuItem.separator())
-      } else {
-        menu.parentable = self
-        addItem(menu)
-      }
+      menu.root = self
+      // if var sub = menu as? BaseMenuItem {
+      //   sub.root = self
+      //   addItem(sub)
+      // } else {
+      //   addItem(menu)
+      // }
+      addItem(menu)
     }
   }
 }

@@ -2,7 +2,8 @@ import Cocoa
 import Alamofire
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, Parent {
+  weak var root: Parent?
   private var manager: PluginManager?
   private let fileManager = FileManager.default
 
@@ -10,20 +11,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     loadPluginManager()
 
     App.onDidWake {
-      self.loadPluginManager()
-    }
-
-    App.onDidClickQuit {
-      NSApp.terminate(self)
-    }
-
-    App.onDidClickChangePluginPath {
-      App.askAboutPluginPath {
-        self.loadPluginManager()
-      }
-    }
-
-    App.onDidClickRefresh {
       self.loadPluginManager()
     }
 
@@ -91,7 +78,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let alert = NSAlert()
     let trusted =
-      pluginUrl.path.hasPrefix("/matryer/bitbar-plugins/raw/master/Network/") &&
+      pluginUrl.path.hasPrefix("/matryer/bitbar-plugins") &&
       pluginUrl.host == "github.com"
 
     alert.messageText = "Download and install the plugin \(title)"
@@ -139,5 +126,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   private func loadManager(fromPath path: String) {
     manager = PluginManager(path: path)
+    manager?.root = self
+  }
+
+  func on(_ event: MenuEvent) {
+    switch event {
+    case .refreshAll:
+      self.loadPluginManager()
+    case .quitApplication:
+      NSApp.terminate(self)
+    case .openPluginFolder:
+      if let path = App.pluginPath {
+        App.open(path: path)
+      }
+    case .openWebsite:
+      App.open(url: App.website)
+    case .changePluginPath:
+      App.askAboutPluginPath {
+        self.loadPluginManager()
+      }
+    case .checkForUpdates:
+      print("[TODO] Check for updates")
+    case let .startOnLogin(state):
+      App.update(autostart: state)
+    default:
+      break
+    }
   }
 }

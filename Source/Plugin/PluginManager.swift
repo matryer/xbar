@@ -14,7 +14,8 @@ import Files
         3. File ending
     4. Notifying the TrayDelegate if a plugin closes
 */
-class PluginManager {
+class PluginManager: Parent {
+  weak var root: Parent?
   private let tray = Tray(title: "BitBar", isVisible: false)
   private let path: String
   private var errors = [Tray]() {
@@ -72,6 +73,14 @@ class PluginManager {
       tray.show()
     } else {
       tray.hide()
+    }
+
+    for error in errors {
+      error.root = self
+    }
+
+    for plugin in plugins {
+      plugin.root = self
     }
   }
 

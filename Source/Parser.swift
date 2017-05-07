@@ -24,12 +24,12 @@ class Pro {
     let ext = string(".") *> rest
     return curry(File.init) <^> name <*> time <*> ext
   }
-  
+
   // @example: "10" (as a string)
   private static func digitsAsString() -> P<String> {
     return oneOrMore(digit)
   }
-  
+
   private static func digits() -> P<Int> {
     // TODO: Replace ! with stop(...)
     return { Int($0)! } <^> digitsAsString()

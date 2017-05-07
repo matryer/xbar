@@ -4,7 +4,7 @@ extension Script {
     case exit(String, Int)
     case misuse(String)
     case terminated
-    
+
     public var description: String {
       switch self {
       case let .crash(message):

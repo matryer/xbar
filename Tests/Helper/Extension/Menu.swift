@@ -5,15 +5,14 @@ import Parser
 extension BitBar.Menu: Menuable {
   var items: [NSMenuItem] { return submenu?.items ?? [] }
   var banner: Mutable {
-    return headline
-  }
-
-  var isChecked: Bool { return state == NSOnState  }
-  var act: Action {
-    if let act = paction {
-      return act
+    if let attr = attributedTitle {
+      return attr.mutable()
     }
 
-    return .nop
+    return Mutable(string: "")
+  }
+
+  var act: Action {
+    return paction
   }
 }

@@ -7,12 +7,12 @@ import Async
   - app delegate
   - plugin manager
 */
-class Plugin: Eventable {
+class Plugin: Parent {
+  weak var root: Parent?
   internal let file: File
   internal let path: String
   internal var title: Title?
   private let tray: Tray
-  private var error: Title?
 
   /**
     @path An absolute path to the script
@@ -37,6 +37,10 @@ class Plugin: Eventable {
     Will parse data and populate the menu bar
   */
   func didReceivedOutput(_ data: String) {
+    if data.trimmed().isEmpty {
+      return print("[Log] Empty string passed")
+    }
+
     Async.userInitiated {
       return data
     }.background { data in
@@ -52,14 +56,6 @@ class Plugin: Eventable {
   */
   func didReceiveError(_ message: String) {
     use(title: Title(error: message))
-  }
-
-  func didClickOpenInTerminal() {
-    App.openScript(inTerminal: path) { error in
-      if let anError = error {
-        print("[Error] Received error opening \(self.path): \(anError)")
-      }
-    }
   }
 
   /**
@@ -91,17 +87,27 @@ class Plugin: Eventable {
 
   private func use(title: Title) {
     tray.set(title: title)
-    title.parentable = self
+    title.root = self
     self.title = title
-  }
-
-  func didTriggerRefresh() {
-    refresh()
+    tray.root = self
   }
 
   deinit { destroy() }
 
-  func didSetError() {
-    tray.didSetError()
+  func on(_ event: MenuEvent) {
+    print("event \(event) in plugin")
+    switch event {
+    case .runInTerminal:
+      App.openScript(inTerminal: path) { error in
+        if let anError = error {
+          print("[Error] Received error opening \(self.path): \(anError)")
+        }
+      }
+    case .refreshPlugin:
+      print("refreshPlugin")
+      refresh()
+    default:
+      break
+    }
   }
 }

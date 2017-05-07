@@ -4,7 +4,6 @@ import Attr
 import Async
 @testable import BitBar
 
-
 class ExecutablePluginTests: Helper {
   override func spec() {
     context("manual script") {
@@ -14,7 +13,6 @@ class ExecutablePluginTests: Helper {
       let plugin = ExecutablePlugin(path: path, file: file, item: bar)
       let defaultFont = ".AppleSystemUIFont"
       let defaultSize = 14
-
 
       item(plugin) { menu in
         context("top bar") {
@@ -228,7 +226,7 @@ class ExecutablePluginTests: Helper {
                 expect(menu).to(have(size: defaultSize))
                 expect(menu).to(have(font: defaultFont))
                 expect(menu).toNot(beClickable())
-                expect(menu).toEventually(have(imageUrl: url , isTemplate: true))
+                expect(menu).toEventually(have(imageUrl: url, isTemplate: true))
               }
             }
 
@@ -417,4 +415,3 @@ class ExecutablePluginTests: Helper {
     }
   }
 }
-

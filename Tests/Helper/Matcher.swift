@@ -6,7 +6,6 @@ import Ansi
 import Async
 @testable import BitBar
 
-
 func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (W<Menuable>) -> Void) {
   waitUntil(timeout: 10) { done in
     Async.background {

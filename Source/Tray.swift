@@ -5,10 +5,11 @@ import Cocoa
 /**
   Represents an item in the menu bar
 */
-class Tray: NSObject, NSMenuDelegate, Eventable {
+class Tray: NSObject, NSMenuDelegate, Parent {
+  weak var root: Parent?
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
-  private var updatedAgoItem: UpdatedAgoItem?
+  private var ago: Pref.UpdatedTimeAgo?
   private var isOpen = false
   private var menu = NSMenu()
   private var defaultCount = 0
@@ -59,7 +60,8 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
 
   func set(title: Title) {
     set(headline: title.headline ?? "-".mutable)
-    set(menu: title, parentable: title)
+    // TODO
+   set(menu: title, parentable: nil)
   }
 
   /**
@@ -73,7 +75,8 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
     Remove item from dropdown menu
   */
   func remove(menu item: Menu) {
-    menu.removeItem(item)
+    // TODO
+//    menu.removeItem(item)
   }
 
   /**
@@ -90,28 +93,21 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
     item.show()
   }
 
-  private func separator() {
-    menu.addItem(NSMenuItem.separator())
+  private func add(sub: NSMenuItem) {
+    sub.root = self
+    menu.addItem(sub)
   }
 
   private func setPrefs() {
-    // TODO: separator() should be static
-    separator()
-    updatedAgoItem = UpdatedAgoItem()
-    menu.addItem(updatedAgoItem!)
-    if !App.isConfigDisabled() {
-      let terminal = RunInTerminal()
-      terminal.parentable = self
-      menu.addItem(terminal)
-      menu.addItem(PrefItem())
-    }
+    ago = Pref.UpdatedTimeAgo()
+    add(sub: NSMenuItem.separator())
+    add(sub: ago!)
+    add(sub: Pref.RunInTerminal())
+    add(sub: Pref.Preferences())
   }
 
-  // Private, not to be called
-  // Marked with 'internal' as NSMenuDelegate
-  // doesn't allow for 'private'
   internal func menuWillOpen(_ menu: NSMenu) {
-    updatedAgoItem?.touch()
+    refresh()
     isOpen = true
     item.highlightMode = true
   }
@@ -121,28 +117,26 @@ class Tray: NSObject, NSMenuDelegate, Eventable {
     item.highlightMode = false
   }
 
-  func didClickOpenInTerminal() {
-    parentable?.didClickOpenInTerminal()
-  }
-
-  func didTriggerRefresh() {
-    parentable?.didTriggerRefresh()
-  }
-
-  func didSetError() {
+  func on(_ event: MenuEvent) {
+    print("event: \(event) in tray")
     if isError { return }
-    if let title = item.attributedTitle {
-      let newTitle = "(:warning:) ".emojified.mutable
-      newTitle.append(title)
-      set(headline: newTitle)
-    } else {
-      preconditionFailure("[Bug] Title not set, invalid state")
-    }
+    switch event {
+    case .didSetError:
+      if let title = item.attributedTitle {
+        let newTitle = "(:warning:) ".emojified.mutable
+        newTitle.append(title)
+        set(headline: newTitle)
+      } else {
+        preconditionFailure("[Bug] Title not set, invalid state")
+      }
 
-    isError = true
+      isError = true
+    default:
+      break
+    }
   }
 
   internal func refresh() {
-    updatedAgoItem?.refresh()
+    ago?.touch()
   }
 }
