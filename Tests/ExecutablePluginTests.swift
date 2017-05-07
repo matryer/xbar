@@ -4,6 +4,7 @@ import Attr
 import Async
 @testable import BitBar
 
+
 class ExecutablePluginTests: Helper {
   override func spec() {
     context("manual script") {
@@ -87,7 +88,7 @@ class ExecutablePluginTests: Helper {
             }
           }
 
-          it("handles truncate") {
+          it("handles length") {
             a(menu, at: [6]) { menu in
               expect(menu).to(have(title: "[Tru…"))
               expect(menu).notTo(beClickable())
@@ -395,6 +396,17 @@ class ExecutablePluginTests: Helper {
             it("handles base case") {
               a(menu, at: [28]) { menu in
                 expect(menu).to(have(href: "http://google.com"))
+                expect(menu).to(beClickable())
+                expect(menu).to(have(subMenuCount: 0))
+              }
+            }
+          }
+
+          context("param") {
+            it("handles params") {
+              a(menu, at: [29]) { menu in
+                expect(menu).to(have(title: "[Args]"))
+                expect(menu).to(have(args: ["A", " B ", ""]))
                 expect(menu).to(beClickable())
                 expect(menu).to(have(subMenuCount: 0))
               }

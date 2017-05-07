@@ -1,4 +1,5 @@
 import AppKit
+import Parser
 @testable import BitBar
 
 protocol Menuable {
@@ -10,11 +11,13 @@ protocol Menuable {
   var isChecked: Bool { get }
   var isAlternate: Bool { get }
   var items: [NSMenuItem] { get }
+  var act: Action { get }
 
   func get(at: [Int], rem: [Int]) throws -> Menuable
 }
 
 extension Menuable {
+  var act: Action { return .nop }
   var menus: [Menuable] {
     return items.reduce([]) { acc, item in
       switch item {
@@ -25,6 +28,15 @@ extension Menuable {
       default:
         return acc
       }
+    }
+  }
+  
+  var args: [String] {
+    switch act {
+    case let .script(.background(_, args, _)):
+      return args
+    default:
+      return []
     }
   }
 

@@ -117,6 +117,23 @@ func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
   }
 }
 
+func have(args: [String]) -> MatcherFunc<W<Menuable>> {
+  return MatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "args \(args.joined(separator: ", "))"
+    guard let result = try actualExpression.evaluate() else {
+      return false
+    }
+
+    switch result {
+    case let .success(menu):
+      return menu.args == args
+    default:
+      failureMessage.postfixActual = String(describing: result)
+      return false
+    }
+  }
+}
+
 func have(environment: String, setTo value: String) -> MatcherFunc<Script.Result> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "environment \(environment) set to \(value)"
