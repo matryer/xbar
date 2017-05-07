@@ -10,11 +10,8 @@ class Tray: NSObject, NSMenuDelegate, Parent {
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
   private var ago: Pref.UpdatedTimeAgo?
-  private var isOpen = false
   private var menu = NSMenu()
-  private var defaultCount = 0
   var item: Menubarable
-  internal weak var parentable: Eventable?
   static internal var item: Menubarable {
     return Tray.center.statusItem(withLength: Tray.length)
   }
@@ -24,11 +21,11 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible displayed: Bool = false, parentable: Eventable? = nil, item: Menubarable = Tray.item) {
+  init(title: String, isVisible displayed: Bool = false, item: Menubarable = Tray.item) {
     self.item = item
     super.init()
     set(headline: title.mutable)
-    set(menu: menu, parentable: parentable)
+    set(menu: menu)
     if displayed { show() } else { hide() }
   }
 
@@ -41,11 +38,9 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     set(title: Title(errors: errors))
   }
 
-  private func set(menu: NSMenu, parentable: Eventable? = nil) {
-    defaultCount = menu.items.count
+  private func set(menu: NSMenu) {
     self.menu = menu
     self.menu.delegate = self
-    self.parentable = parentable
     item.menu = menu
     menu.autoenablesItems = false
     menu.delegate = self
@@ -60,23 +55,7 @@ class Tray: NSObject, NSMenuDelegate, Parent {
 
   func set(title: Title) {
     set(headline: title.headline ?? "-".mutable)
-    // TODO
-   set(menu: title, parentable: nil)
-  }
-
-  /**
-    Add @item above pref menu
-  */
-  func add(item: NSMenuItem) {
-    menu.insertItem(item, at: max(0, menu.items.count - defaultCount))
-  }
-
-  /**
-    Remove item from dropdown menu
-  */
-  func remove(menu item: Menu) {
-    // TODO
-//    menu.removeItem(item)
+    set(menu: title)
   }
 
   /**
@@ -108,17 +87,14 @@ class Tray: NSObject, NSMenuDelegate, Parent {
 
   internal func menuWillOpen(_ menu: NSMenu) {
     refresh()
-    isOpen = true
     item.highlightMode = true
   }
 
   internal func menuDidClose(_ menu: NSMenu) {
-    isOpen = false
     item.highlightMode = false
   }
 
   func on(_ event: MenuEvent) {
-    print("event: \(event) in tray")
     if isError { return }
     switch event {
     case .didSetError:
