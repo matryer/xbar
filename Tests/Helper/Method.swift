@@ -8,63 +8,6 @@ import Nimble
 let quotes =  ["\"", "'"]
 let slash = "\\"
 let timeout = 10.0
-// TODO: Rename to something more descriptive
-
-public func tester<T>(_ post: String..., block: @escaping (T) -> Any) -> MatcherFunc<T> {
- return MatcherFunc { actual, failure in
-   failure.postfixMessage = post.joined(separator: " ")
-   guard let result = try actual.evaluate() else {
-     return false
-   }
-
-   let out = block(result)
-   switch out {
-   case is String:
-     failure.postfixActual = out as! String
-     return false
-   case is Bool:
-     return out as! Bool
-   default:
-     preconditionFailure("Invalid data, expected String or Bool got \(type(of: out))")
-   }
- }
-}
-
-func t<T, A: Equatable>(_ title: String, block: @escaping (T) -> Test<A>) -> MatcherFunc<T> {
-  return MatcherFunc { actual, failure in
-    failure.expected = "expected \(title)"
-    guard let result = try actual.evaluate() else {
-      return false
-    }
-
-    let succ = {
-      failure.postfixMessage = "succeed"
-      failure.actualValue = "an unknown success"
-    }
-
-    let fail = {
-      failure.postfixMessage = "succeed"
-      failure.actualValue = "an unknown failure"
-    }
-
-    switch block(result) {
-    case .succ:
-      succ()
-      return true
-    case let .comp(expected, actual):
-      failure.postfixMessage = "equal \(String(describing: expected).inspected())"
-      failure.actualValue = String(describing: actual).inspected()
-      return actual == expected
-    case .fail:
-      fail()
-      return false
-    case let .test(res, expected, actual):
-      failure.postfixMessage = "equal \(String(describing: expected).inspected())"
-      failure.actualValue = String(describing: actual).inspected()
-      return res
-    }
-  }
-}
 
 func toFile(_ path: String) -> String {
   let res = path.components(separatedBy: ".")
@@ -75,14 +18,14 @@ func toFile(_ path: String) -> String {
   preconditionFailure("Could not find file \(res.joined(separator: "."))")
 }
 
-// -- dex
 func escape(char: String) -> String {
- let count = char.characters.count
- guard count == 1 else {
-   preconditionFailure("Char length must be one, not \(count)")
- }
- // FIXME: Can we do this better?
- return char.replace(char, slash + char)
+  let count = char.characters.count
+  guard count == 1 else {
+    preconditionFailure("Char length must be one, not \(count)")
+  }
+  
+  // FIXME: Can we do this better?
+  return char.replace(char, slash + char)
 }
 
 func escape(title: String, what: [String]) -> String {

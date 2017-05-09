@@ -553,7 +553,7 @@ class ExecutablePluginTests: Helper {
 
             context("default menu items") {
               context("run in terminal") {
-                a(menu, at: [menu.items().count - 3]) { menu in
+                a(menu, at: [menu.items.count - 3]) { menu in
                   it("should have the proper title") {
                     expect(menu).to(have(title: "Updated just now"))
                   }
@@ -577,7 +577,7 @@ class ExecutablePluginTests: Helper {
               }
 
               context("run in terminal") {
-                a(menu, at: [menu.items().count - 2]) { menu in
+                a(menu, at: [menu.items.count - 2]) { menu in
                   it("should have the proper title") {
                     expect(menu).to(have(title: "Run in Terminal…"))
                   }
@@ -601,7 +601,7 @@ class ExecutablePluginTests: Helper {
               }
 
               context("Preferences") {
-                a(menu, at: [menu.items().count - 1]) { menu in
+                a(menu, at: [menu.items.count - 1]) { menu in
                   it("should have the proper title") {
                     expect(menu).to(have(title: "Preferences"))
                   }

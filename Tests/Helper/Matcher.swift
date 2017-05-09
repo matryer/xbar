@@ -1,12 +1,13 @@
 import Quick
 import Cent
+import Parser
 import Nimble
 import Attr
 import Ansi
 import Async
 @testable import BitBar
 
-func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (W<Menuable>) -> Void) {
+func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (Menuable) -> Void) {
   waitUntil(timeout: 10) { done in
     Async.background {
       repeat {
@@ -19,178 +20,92 @@ func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (W<Menuable
   }
 }
 
-func a(_ aMenu: W<Menuable>, at indexes: [Int] = [], block: @escaping (W<Menuable>) -> Void) {
-  switch aMenu {
-  case let .success(head):
-    block(menu(head, at: indexes))
-  case .failure:
-    block(.failure)
-  }
+func a(_ aMenu: Menuable, at indexes: [Int] = [], block: @escaping (Menuable) -> Void) {
+  block(menu(aMenu, at: indexes))
 }
 
-func menu(_ menu: Menuable, at indexes: [Int] = []) -> W<Menuable> {
-  do {
-    return .success(try menu.get(at: indexes))
-  } catch {
-    return .failure
-  }
+func menu(_ menu: Menuable, at indexes: [Int] = []) -> Menuable {
+  return try! menu.get(at: indexes)
 }
 
-func the<T: Menuable>(_ parser: P<T>, with input: String) -> W<String> {
-  switch Pro.parse(parser, input) {
-  case let Result.success(result, _):
-    return .success(result.banner.string)
-  case Result.failure(_):
-    return .failure
-  }
-}
-
-func beASuccess(with exp: String? = nil) -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "exit with status 0 and output '\(exp ?? "")'"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
+func beASuccess(with exp: String? = nil) -> Predicate<Script.Result> {
+  return verify("succeed with output \(String(describing: exp))") { result in
     switch (result, exp) {
     case (.success, .none):
-      return true
-    case let (.success(success), .some(exp)) where success.output == exp:
-      return true
+      return .bool(true, exp ?? "<nil>")
+    case let (.success(success), .some(exp)):
+      return .bool(success.output == exp, success.output)
     default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
+      return .fail(result)
     }
   }
 }
 
-// Just an alias for equal()
-// cmp=Monaco
-// W(Param<String>)
-func output<T: Equatable>(_ cmp: T) -> MatcherFunc<W<T>> {
-  return MatcherFunc { actual, _ in
-    guard let result = try actual.evaluate() else {
-      return false
-    }
-
+func beAFailure(with exp: String) -> Predicate<Script.Result> {
+  return verify("be a failure with output \(exp)") { result in
     switch result {
-    case let .success(param):
-      return param == cmp
+    case let .failure(.exit(stderr, status)):
+      return .bool(stderr == exp && status != 0, result)
     default:
-      return false
+      return .fail(result)
     }
   }
 }
 
-func beAFailure(with exp: String) -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "exit with status != 0 and output '\(exp)'"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
+func beACrash(with exp: String) -> Predicate<Script.Result> {
+  return verify("be a crash with output \(exp)") { result in
     switch result {
-    case let .failure(.exit(stderr, status)) where stderr == exp && status != 0:
-      return true
+    case let .failure(.crash(message)):
+      return .bool(message.contains(exp), message)
     default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
+      return .fail(result)
     }
   }
 }
 
-func beACrash(with exp: String) -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "crash with partial output '\(exp)'"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
+func have(args: [String]) -> Predicate<Menuable> {
+  return verify("have args \(args)") { menu in
+    return .bool(menu.args == args, args)
+  }
+}
 
+func have(environment env: String, setTo value: String) -> Predicate<Script.Result> {
+  /* TODO: Compare against env */
+  return verify("environment \(env) set to \(value)") { result in
     switch result {
-    case let .failure(.crash(message)) where message.contains(exp):
-      return true
+    case let .success(result):
+      return .bool(result.output == value + "\n", result)
     default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
+      return .fail(result)
     }
   }
 }
 
-func have(args: [String]) -> MatcherFunc<W<Menuable>> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "args \(args.joined(separator: ", "))"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
-    switch result {
-    case let .success(menu):
-      return menu.args == args
-    default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
-    }
-  }
-}
-
-func have(environment: String, setTo value: String) -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "environment \(environment) set to \(value)"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
-    switch result {
-    case let .success(success):
-      return success.output == value + "\n"
-    default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
-    }
-  }
-}
-
-func beTerminated() -> MatcherFunc<Script.Result> { return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "terminated"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
+func beTerminated() -> Predicate<Script.Result> {
+  return verify("be terminated") { result in
     switch result {
     case .failure(.terminated()):
-      return true
+      return .bool(true, result)
     default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
+      return .bool(false, result)
     }
   }
 }
 
-func beAMisuse(with exp: String) -> MatcherFunc<Script.Result> {
-  return MatcherFunc { actualExpression, failureMessage in
-    failureMessage.postfixMessage = "misuse with partial output '\(exp)'"
-    guard let result = try actualExpression.evaluate() else {
-      return false
-    }
-
+func beAMisuse(with exp: String) -> Predicate<Script.Result> {
+  return verify("be misused with \(exp)") { result in
     switch result {
     case let .failure(.misuse(message)) where message.contains(exp):
-      return true
+      return .bool(message.contains(exp), message)
     default:
-      failureMessage.postfixActual = String(describing: result)
-      return false
+      return .fail(result)
     }
   }
 }
 
-func have(foreground color: Ansi.Color) -> MatcherFunc<W<Menuable>> {
-  return tester("have a foreground") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.banner.has(foreground: color.toNSColor())
-    case .failure:
-      return "expected a color much like \(color)"
-    }
+func have(foreground color: Ansi.Color) -> Predicate<Menuable> {
+  return verify("have foreground color \(color)") { menu in
+    return .bool(menu.banner.has(foreground: color.toNSColor()), "a color")
   }
 }
 
@@ -202,180 +117,107 @@ func toImage(string: String, isTemplate: Bool) -> NSImage? {
   return NSImage(data: data, isTemplate: isTemplate)
 }
 
-func have(imageUrl: String, isTemplate: Bool) -> MatcherFunc<W<Menuable>> {
-  return tester("have an image") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      guard let image1 = menu.image else {
-        return "menu could not parse image"
-      }
-
-      guard let url = URL(string: imageUrl) else {
-        return "could not get image url from \(imageUrl)"
-      }
-
-      var data: Data!
-      do {
-        data = try Data(contentsOf: url)
-      } catch(let error) {
-        return "could not download image url: \(error)"
-      }
-
-      guard let image2 = NSImage(data: data, isTemplate: isTemplate) else {
-        return "failed to parse image in menu"
-      }
-
-      // TODO: Compare content, not size
-      guard image1.size == image2.size else {
-        return false
-      }
-
-      if isTemplate {
-        return image1.isTemplate
-      }
-
-      return !image1.isTemplate
-    case .failure:
-      return "to have an image"
+func have(imageUrl: String, isTemplate: Bool) -> Predicate<Menuable> {
+  return verify("have an image from url \(imageUrl)") { menu in
+    guard let image1 = menu.image else {
+      return .fail("no image")
     }
+
+    guard let url = URL(string: imageUrl) else {
+      return .fail("an invalid url")
+    }
+
+    var data: Data!
+    do {
+      data = try Data(contentsOf: url)
+    } catch(let error) {
+      return .fail("a broken due to \(error)")
+    }
+
+    guard let image2 = NSImage(data: data, isTemplate: isTemplate) else {
+      return .fail("invalid data")
+    }
+
+    guard image1.size == image2.size else {
+      return .fail("size missmatch")
+    }
+
+    if isTemplate {
+      return .bool(image1.isTemplate, "an image")
+    }
+
+    return .bool(!image1.isTemplate, "an image")
   }
 }
 
-func have(image: String, isTemplate: Bool) -> MatcherFunc<W<Menuable>> {
-  return tester("have an image") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      guard let image1 = menu.image else {
-        return "menu could not parse image"
-      }
-
-      guard let image2 = toImage(string: image, isTemplate: isTemplate) else {
-        return "failed to parse image in menu"
-      }
-
-      // TODO: Compare content, not size
-      guard image1.size == image2.size else {
-        return false
-      }
-
-      if isTemplate {
-        return image1.isTemplate
-      }
-
-      return !image1.isTemplate
-    case .failure:
-      return "to have an image"
+func have(image: String, isTemplate: Bool) -> Predicate<Menuable> {
+  return verify("have an image from base64") { menu in
+    guard let image1 = menu.image else {
+      return .fail("invalid data")
     }
+
+    guard let image2 = toImage(string: image, isTemplate: isTemplate) else {
+      return .fail("non parseable image")
+    }
+
+    guard image1.size == image2.size else {
+      return .fail("size missmatch")
+    }
+
+    if isTemplate {
+      return .bool(image1.isTemplate, "an image")
+    }
+
+    return .bool(!image1.isTemplate, "an image")
   }
 }
 
-func have(title: String) -> MatcherFunc<W<Menuable>> {
-  return t("title") { (result: W<Menuable>) -> Test<String> in
-    switch result {
-    case let .success(menu):
-      return .comp(title, menu.banner.string)
-    case .failure:
-      return .fail
-    }
+func have(title: String) -> Predicate<Menuable> {
+  return verify("have title \(title)") { menu in
+    return .bool(title == menu.banner.string, menu.banner.string)
   }
 }
 
-func contain(title: String) -> MatcherFunc<W<Menuable>> {
-  return tester("have a title") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.banner.string.contains(title)
-    case .failure:
-      return "to have a title"
-    }
+func have(title: Mutable) -> Predicate<Menuable> {
+  return verify("have mutable title \(title.string)") { menu in
+    /* TODO Test Menuable properly */
+    return .bool(title.string == menu.banner.string, menu.banner)
   }
 }
 
-func have(title: Mutable) -> MatcherFunc<W<Menuable>> {
-  return tester("have a title") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.banner.string == title.string
-    case .failure:
-      return "to have a title"
-    }
+func have(font: String) -> Predicate<Menuable> {
+  return verify("have font \(font)") { menu in
+    return .bool(font == menu.banner.fontName, menu.banner.fontName)
   }
 }
 
-func have(font: String) -> MatcherFunc<W<Menuable>> {
-  return t("font name") { result -> Test<String> in
-    switch result {
-    case let .success(menu):
-      return .comp(font, menu.banner.fontName)
-    case .failure:
-      return .fail
-    }
+func have(background color: Ansi.Color) -> Predicate<Menuable> {
+  return verify("have background color \(color)") { menu in
+    return .bool(menu.banner.has(background: color.toNSColor()), "unknown")
   }
 }
 
-func have(background color: Ansi.Color) -> MatcherFunc<W<Menuable>> {
-  return tester("have a background") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.banner.has(background: color.toNSColor())
-    case .failure:
-      return "expected a color much like \(color)"
-    }
+func have(size: Int) -> Predicate<Menuable> {
+  return verify("font size \(size)") { menu in
+    return .bool(size == menu.banner.fontSize, menu.banner.fontSize)
   }
 }
 
-func have(size: Int) -> MatcherFunc<W<Menuable>> {
-  return t("font size") { result -> Test<Int> in
-    switch result {
-    case let .success(menu):
-      return .comp(size, menu.banner.fontSize)
-    case .failure:
-      return .fail
-    }
+func beClickable() -> Predicate<Menuable> {
+  return verify("be clickable") { menu in
+    return .bool(menu.isEnabled, menu.isEnabled ? "clickable" : "not clickable")
   }
 }
 
-func beBold() -> MatcherFunc<W<Menuable>> {
-  return tester("bold") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.banner.isBold
-    case .failure:
-      return "failed with a failure"
-    }
+func have(subMenuCount count: Int) -> Predicate<Menuable> {
+  return verify("submenu count \(count)") { menu in
+    return .bool(count == menu.menus.count, menu.menus.count)
   }
 }
 
-func beClickable() -> MatcherFunc<W<Menuable>> {
-  return t("clickable") { result -> Test<Bool> in
-    switch result {
-    case let .success(menu):
-      return .comp(true, menu.isEnabled)
-    case .failure:
-      return .fail
-    }
-  }
-}
-
-func have(subMenuCount count: Int) -> MatcherFunc<W<Menuable>> {
-  return t("sub menu count") { result -> Test<Int> in
-    switch result {
-    case let .success(menu):
-      return .comp(count, menu.menus.count)
-    case .failure:
-      return .fail
-    }
-  }
-}
-
-func have(shortcut: String) -> MatcherFunc<W<Menuable>> {
-  return t("shortcut") { result -> Test<String> in
-    switch result {
-    case let .success(menu):
-      return .comp(shortcut, menu.keyEquivalent)
-    case .failure:
-      return .fail
-    }
+func have(shortcut: String) -> Predicate<Menuable> {
+  return verify("shortcut \(shortcut)") { menu in
+    return .bool(shortcut == menu.keyEquivalent, menu.keyEquivalent)
   }
 }
 
@@ -388,7 +230,7 @@ enum TestValue {
 var noShortcut: TestValue { return .noShortcut }
 var noSubMenus: TestValue { return .noSubMenus }
 
-func have(_ value: TestValue)-> MatcherFunc<W<Menuable>> {
+func have(_ value: TestValue)-> Predicate<Menuable> {
   switch value {
   case .noShortcut:
     return have(shortcut: "")
@@ -399,158 +241,119 @@ func have(_ value: TestValue)-> MatcherFunc<W<Menuable>> {
   }
 }
 
-func haveNoSubMenus() -> MatcherFunc<W<Menuable>> {
+func haveNoSubMenus() -> Predicate<Menuable> {
   return have(subMenuCount: 0)
 }
 
-func beAlternatable() -> MatcherFunc<W<Menuable>> {
-  return tester("alternate") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.isAlternate
-    case .failure:
-      return "failed with a failure"
-    }
+func beAlternatable() -> Predicate<Menuable> {
+  return verify("alternate") { menu in
+    return .bool(
+      menu.isAlternate,
+      menu.isAlternate ? "an alternating menu" : "a non alternating menu"
+    )
   }
 }
 
-func beASeparator() -> MatcherFunc<W<Menuable>> {
-  return tester("separator") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.isSeparator
-    case .failure:
-      return "failed with a failure"
-    }
+func beASeparator() -> Predicate<Menuable> {
+  return verify("be a separator") { menu in
+    return .bool(
+      menu.isSeparator,
+      menu.isSeparator ? "a separator item" : "a non separator item"
+    )
   }
 }
 
-func beChecked() -> MatcherFunc<W<Menuable>> {
-  return tester("alternate") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.isChecked
-    case .failure:
-      return "failed with a failure"
-    }
+func beChecked() -> Predicate<Menuable> {
+  return verify("be checked") { menu in
+    return .bool(
+      menu.isChecked,
+      menu.isChecked ? "a checked menu" : "a unchecked menu"
+    )
   }
 }
 
-func beItalic() -> MatcherFunc<W<Menuable>> {
-  return tester("italic") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-      return menu.banner.isItalic
-    case .failure:
-      return "failed with a failure"
-    }
-  }
-}
-
-func beTrimmed() -> MatcherFunc<W<Menuable>> {
-  return tester("trimmed") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-    return menu.banner == menu.banner.trimmed()
-    case .failure:
-      return "to be trimmed"
-    }
+func beTrimmed() -> Predicate<Menuable> {
+  return verify("be trimmed") { menu in
+    return .bool(menu.banner == menu.banner.trimmed(), "unknown")
   }
 }
 
 enum ClickEvent {
-  case click
   case clicked
 }
 
-func expect(_ packed: W<Menuable>, when: ClickEvent) -> Expectation<W<Menuable>> {
+func expect(_ menu: Menuable, when: ClickEvent) -> Expectation<Menuable> {
   switch when {
   case .clicked:
-    switch packed {
-    case let .success(menu):
-      menu.set(parent: MockParent())
-      menu.onDidClick()
-      return expect(.success(menu))
-    default:
-      return expect(.failure)
-    }
-  default:
-    preconditionFailure("invalid state: \(when)")
+    menu.set(parent: MockParent())
+    menu.onDidClick()
+    return expect(menu)
   }
 }
 
-func have(events: [MenuEvent]) -> MatcherFunc<W<Menuable>> {
-  return t("menu events") { (result: W<Menuable>) -> Test<String> in
-    switch result {
-    case let .success(menu):
-      if !menu.isEnabled && !events.isEmpty {
-        return .fail
-      }
-
-      return .test(events.sorted() == menu.events.sorted(), events, menu.events)
-    case .failure:
-      return .fail
+func have(events: [MenuEvent]) -> Predicate<Menuable> {
+  return verify("have events \(events)") { menu in
+    if !menu.isEnabled && !events.isEmpty {
+      return .fail("an unclickable menu")
     }
+    return .bool(events.sorted() == menu.events.sorted(), menu.events)
   }
 }
 
-func fire(_ events: [MenuEvent], on event: ClickEvent) -> MatcherFunc<W<Menuable>> {
-  let parent = MockParent()
-  var clicked = false
-  return t("menu events") { (result: W<Menuable>) -> Test<String> in
-    switch result {
-    case let .success(menu):
-      if !menu.isEnabled {
-        return .fail
-      }
-
-      if !clicked {
-        menu.set(parent: parent)
-        menu.onDidClick()
-        clicked = true
-      }
-
-      return .test(events.sorted() == menu.events.sorted(), events, menu.events)
-    case .failure:
-      return .fail
-    }
-  }
-}
-
-func receive(_ events: [MenuEvent], from indexes: [Int]) -> MatcherFunc<W<Menuable>> {
+func receive(_ events: [MenuEvent], from indexes: [Int]) -> Predicate<Menuable> {
   let mock = MockParent()
   var clicked = false
-  return t("click") { (result: W<Menuable>) -> Test<String> in
-    switch result {
-    case let .success(parent):
-      if !parent.isEnabled {
-        return .fail
-      }
+  return verify("receive events \(events)") { parent in
+    if !parent.isEnabled && !events.isEmpty {
+      return .fail("an unclickable menu")
+    }
 
-      switch menu(parent, at: indexes) {
-      case let .success(child):
-        if !clicked  {
-          parent.set(parent: mock)
-          child.onDidClick()
-          clicked = true
-        }
-      default:
-        return .fail
-      }
-      return .test(events.sorted() == parent.events.sorted(), events, parent.events)
-    case .failure:
-      return .fail
+    let child = menu(parent, at: indexes)
+    if !clicked  {
+      parent.set(parent: mock)
+      child.onDidClick()
+      clicked = true
+    }
+    return .bool(events.sorted() == parent.events.sorted(), parent.events)
+  }
+}
+
+enum State {
+  case bool(Bool, Any) /* ok, actual */
+  case fail(Any) /* Actual */
+}
+
+func verify<T>(_ message: String, block: @escaping (T) -> State) -> Predicate<T> {
+  return Predicate.define { actualExpression in
+    guard let result = try actualExpression.evaluate() else {
+      return PredicateResult(
+        status: .fail,
+        message: .expectedCustomValueTo(message, "nothing")
+      )
+    }
+
+    switch block(result) {
+    case let .bool(status, actual):
+      return PredicateResult(
+        bool: status,
+        message: .expectedCustomValueTo(message, String(describing: actual))
+      )
+    case let .fail(actual):
+      return PredicateResult(
+        status: .fail,
+        message: .expectedCustomValueTo(message, String(describing: actual))
+      )
     }
   }
 }
 
-func have(href: String) -> MatcherFunc<W<Menuable>> {
-  return tester("href") { (result: W<Menuable>) in
-    switch result {
-    case let .success(menu):
-    return menu.banner == menu.banner.trimmed()
-    case .failure:
-      return "to be trimmed"
+func have(href: String) -> Predicate<Menuable> {
+  return verify("have href \(href)") { menu in
+    switch menu.act {
+    case let .href(actual, _):
+      return .bool(href == actual, actual)
+    default:
+      return .fail(menu.act)
     }
   }
 }

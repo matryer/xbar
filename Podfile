@@ -22,7 +22,7 @@ target 'BitBar' do
 
   target 'Tests' do
     inherit! :search_paths
-    pod 'Nimble', "< 7.0.0"
+    pod 'Nimble'
     pod 'Quick'
   end
 end

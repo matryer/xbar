@@ -20,7 +20,7 @@ PODS:
   - Files (1.8.0)
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
-  - Nimble (6.1.0)
+  - Nimble (7.0.0)
   - Parser (0.1.0):
     - FootlessParser
   - Quick (1.1.0)
@@ -42,7 +42,7 @@ DEPENDENCIES:
   - Files (from `https://github.com/JohnSundell/Files.git`)
   - FootlessParser
   - Hue
-  - Nimble (< 7.0.0)
+  - Nimble
   - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
   - Sparkle
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   Files: 7833a7457be5e6482b563cb0e68075bc13735f22
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
-  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
@@ -106,6 +106,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: ecb7f9402234b04227b981a0852b0d25be622fd5
+PODFILE CHECKSUM: fcba55f7b26ae062e816f0ae024c4d6d0f761e67
 
 COCOAPODS: 1.2.1

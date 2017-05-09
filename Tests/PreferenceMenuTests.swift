@@ -4,7 +4,7 @@ import Nimble
 
 class PreferenceMenuTests: Helper {
   override func spec() {
-    a(.success(Pref.Preferences(pluginPath: nil))) { base in
+    a(Pref.Preferences(pluginPath: nil)) { base in
       it("should have a base menu") {
         expect(base).to(have(title: "Preferences"))
         expect(base).to(beClickable())
@@ -195,7 +195,7 @@ class PreferenceMenuTests: Helper {
 
       context("open plugin folder") {
         context("plugin path") {
-          a(.success(Pref.Preferences(pluginPath: "/a/b/c")), at: [3]) { menu in
+          a(Pref.Preferences(pluginPath: "/a/b/c"), at: [3]) { menu in
             it("should be clickable") {
               expect(menu).to(beClickable())
             }
@@ -207,24 +207,24 @@ class PreferenceMenuTests: Helper {
         }
 
         context("no plugin path") {
-          a(.success(Pref.Preferences(pluginPath: nil)), at: [3]) { menu in
+          a(Pref.Preferences(pluginPath: nil), at: [3]) { menu in
             it("should be clickable") {
               expect(menu).toNot(beClickable())
             }
 
             it("should not fire open plugin event") {
-              expect(menu, when: .clicked).toNot(have(.broadcasted([.openPluginFolder])))
+              expect(menu).toNot(beClickable())
             }
           }
         }
       }
 
       context("open at login") {
-        var parent: W<Menuable>!
+        var parent: Menuable!
 
         context("init state is to not open") {
           beforeEach {
-            parent = .success(Pref.Preferences(openAtLogin: false))
+            parent = Pref.Preferences(openAtLogin: false)
           }
 
           it("should not be checked") {
@@ -249,7 +249,7 @@ class PreferenceMenuTests: Helper {
 
         context("init state is to not open") {
           beforeEach {
-            parent = .success(Pref.Preferences(openAtLogin: true))
+            parent = Pref.Preferences(openAtLogin: true)
           }
 
           it("should not be checked") {
