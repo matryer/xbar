@@ -41,7 +41,6 @@
 		206802161EBF20E200985920 /* Pref.RefreshAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020C1EBF20E200985920 /* Pref.RefreshAll.swift */; };
 		206802171EBF20E200985920 /* Pref.RunInTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */; };
 		206802181EBF20E200985920 /* Pref.UpdatedTimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */; };
-		2068021A1EBF851200985920 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802191EBF851200985920 /* Phase.swift */; };
 		2068021C1EBF866500985920 /* BaseMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068021B1EBF866500985920 /* BaseMenuItem.swift */; };
 		206EC3E71EBCF9A600535712 /* all.sh in Resources */ = {isa = PBXBuildFile; fileRef = 206EC3E51EBCF89300535712 /* all.sh */; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
@@ -171,7 +170,6 @@
 		2068020C1EBF20E200985920 /* Pref.RefreshAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.RefreshAll.swift; path = Pref/Pref.RefreshAll.swift; sourceTree = "<group>"; };
 		2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.RunInTerminal.swift; path = Pref/Pref.RunInTerminal.swift; sourceTree = "<group>"; };
 		2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.UpdatedTimeAgo.swift; path = Pref/Pref.UpdatedTimeAgo.swift; sourceTree = "<group>"; };
-		206802191EBF851200985920 /* Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
 		2068021B1EBF866500985920 /* BaseMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMenuItem.swift; sourceTree = "<group>"; };
 		206EC3E51EBCF89300535712 /* all.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = all.sh; sourceTree = "<group>"; };
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
@@ -464,7 +462,6 @@
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
 				20A462A21E9EC03F00321D42 /* Result.swift */,
 				20A462AE1E9EC03F00321D42 /* Updater.swift */,
-				206802191EBF851200985920 /* Phase.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -806,7 +803,6 @@
 				20823E161EBD0CC200C8D468 /* NSStatusItem.swift in Sources */,
 				2068020F1EBF20E200985920 /* Pref.ChangePluginFolder.swift in Sources */,
 				202EC6461EA6292F003E1F9B /* Color.swift in Sources */,
-				2068021A1EBF851200985920 /* Phase.swift in Sources */,
 				20A462C31E9EC03F00321D42 /* File.swift in Sources */,
 				206802121EBF20E200985920 /* Pref.OpenAtLogin.swift in Sources */,
 				20D9EDD81EB9947A00BBA915 /* Text.Param.swift in Sources */,

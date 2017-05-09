@@ -1,5 +1,4 @@
 import Swift
-import EmitterKit
 import SwiftTryCatch
 import Foundation
 
@@ -8,7 +7,12 @@ class Script {
   private let path: String
   private let args: [String]
   private var process: Process?
-  private let listen = Listen(NotificationCenter.default)
+  private let center = NotificationCenter.default
+  private var buffer: Buffer?
+  private var isEOFEvent = false
+  private var isTerminateEvent = false
+  private var isStream = false
+  private var handler: FileHandle?
   private weak var delegate: ScriptDelegate?
 
   /**
@@ -16,7 +20,7 @@ class Script {
     @args Argument to be passed to @path
     @delegate Called when finished executing script
   */
-  init(path: String, args: [String] = [], delegate: ScriptDelegate? = nil, autostart: Bool = false) {
+  init(path: String, args: [String] = [], delegate: ScriptDelegate, autostart: Bool = false) {
     self.delegate = delegate
     self.path = path
     self.args = args
@@ -59,94 +63,49 @@ class Script {
 
   func start() {
     stop()
-    let process = Process()
     let pipe = Pipe()
-    let buffer = Buffer()
-    let handler = pipe.fileHandleForReading
-    let eofEvent = Event<Void>()
-    let terminateEvent = Event<Void>()
-    var isEOFEvent = false
-    var isTerminateEvent = false
-    var isStream = false
-    let isDone = { isEOFEvent && isTerminateEvent && !isStream }
+    process = Process()
+    buffer = Buffer()
+    handler = pipe.fileHandleForReading
 
-    process.launchPath = path
-    process.arguments = args
+    isEOFEvent = false
+    isTerminateEvent = false
+    isStream = false
 
-    process.standardOutput = pipe
-    process.standardError = pipe
+    process?.launchPath = path
+    
+    process?.arguments = args
 
-    setEnv(process)
+    process?.standardOutput = pipe
+    process?.standardError = pipe
 
-    let processIfDone = {
-      if !isDone() { return }
-      let output = buffer.toString()
-      switch (process.terminationReason, process.terminationStatus) {
-      case (.exit, 0):
-        self.succeeded(output, status: 0)
-      case (.exit, 2):
-        self.failed(.misuse(output))
-      case let (.exit, code):
-        self.failed(.exit(output, Int(code)))
-      case (.uncaughtSignal, 15):
-        self.failed(.terminated)
-      case let (.uncaughtSignal, code):
-        self.failed(.exit(output, Int(code)))
+    setEnv(process!)
+    process?.terminationHandler = { [weak self] _ in
+      if let this = self {
+        this.terminateEvent()
       }
-      buffer.close()
     }
 
-    eofEvent.once {
-      isEOFEvent = true
-      processIfDone()
-    }
+    center.addObserver(
+      self,
+      selector: #selector(didCallNotification),
+      name: .NSFileHandleDataAvailable,
+      object: handler
+    )
 
-    terminateEvent.once {
-      isTerminateEvent = true
-      processIfDone()
-    }
+    handler!.waitForDataInBackgroundAndNotify()
 
-    process.terminationHandler = { _ in
-      terminateEvent.emit()
-    }
-
-    let event = listen.on(.NSFileHandleDataAvailable, for: handler) {
-      let data = handler.availableData
-
-      if !data.isEOF() {
-        buffer.append(data: data)
+    SwiftTryCatch.tryRun({ [weak self] in
+      if let this = self {
+        this.process?.launch()
       }
-
-      if buffer.isFinish() {
-        isStream = true
-        for result in buffer.reset() {
-          self.succeeded(result, status: 0)
+    }, catchRun: { [weak self] in
+      if let this = self {
+        if let message = $0?.reason {
+          this.handleCrash(message)
+        } else {
+          this.handleCrash(String(describing: $0))
         }
-      }
-
-      if data.isEOF() && isStream && buffer.hasData {
-        self.succeeded(buffer.toString(), status: 0)
-      } else if data.isEOF() {
-        eofEvent.emit()
-      } else {
-        handler.waitForDataInBackgroundAndNotify()
-      }
-    }
-
-    eofEvent.once {
-      event.destroy()
-    }
-
-    handler.waitForDataInBackgroundAndNotify()
-    self.process = process
-
-    SwiftTryCatch.tryRun({
-      process.launch()
-    }, catchRun: {
-      if let message = $0?.reason {
-        self.handleCrash(message)
-      } else {
-        self.handleCrash(String(describing: $0))
       }
     }, finallyRun: {
       /* NOP */
@@ -154,7 +113,7 @@ class Script {
   }
 
   private func handleCrash(_ message: String) {
-    self.failed(.crash(message))
+    failed(.crash(message))
   }
 
   private func setEnv(_ process: Process) {
@@ -179,5 +138,61 @@ class Script {
 
   private func failed(_ message: Failure) {
     delegate?.scriptDidReceive(failure: message)
+  }
+
+  @objc private func didCallNotification() {
+    let data = handler!.availableData
+
+    if !data.isEOF() {
+      buffer!.append(data: data)
+    }
+
+    if buffer!.isFinish() {
+      isStream = true
+      for result in buffer!.reset() {
+        succeeded(result, status: 0)
+      }
+    }
+
+    if data.isEOF() && isStream && buffer!.hasData {
+      succeeded(buffer!.toString(), status: 0)
+    } else if data.isEOF() {
+      eofEvent()
+    } else {
+      handler!.waitForDataInBackgroundAndNotify()
+    }
+  }
+
+  private func processIfDone() {
+    if !isDone() { return }
+    let output = self.buffer!.toString()
+    switch (process!.terminationReason, process!.terminationStatus) {
+    case (.exit, 0):
+      succeeded(output, status: 0)
+    case (.exit, 2):
+      failed(.misuse(output))
+    case let (.exit, code):
+      failed(.exit(output, Int(code)))
+    case (.uncaughtSignal, 15):
+      failed(.terminated)
+    case let (.uncaughtSignal, code):
+      failed(.exit(output, Int(code)))
+    }
+    buffer!.close()
+  }
+
+  private func isDone() -> Bool {
+    return isEOFEvent && isTerminateEvent && !isStream
+  }
+
+  private func eofEvent() {
+    isEOFEvent = true
+    processIfDone()
+    center.removeObserver(self)
+  }
+
+  private func terminateEvent() {
+    isTerminateEvent = true
+    processIfDone()
   }
 }
