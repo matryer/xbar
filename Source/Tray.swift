@@ -1,5 +1,4 @@
 import AppKit
-import EmitterKit
 import Cocoa
 
 /**

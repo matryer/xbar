@@ -2,7 +2,6 @@ import Hue
 import Cocoa
 import AppKit
 import Async
-import EmitterKit
 import Parser
 
 class Menu: BaseMenuItem, ScriptDelegate {

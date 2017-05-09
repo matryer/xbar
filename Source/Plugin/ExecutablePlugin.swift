@@ -3,7 +3,7 @@ import Cocoa
 import SwiftyTimer
 
 class ExecutablePlugin: Plugin, ScriptDelegate {
-  private var script: Script!
+  private var script: Script?
   private var timer: Timer!
 
   override init(path: String, file: File, item: Menubarable = Tray.item) {
@@ -16,7 +16,7 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Run @path once every @interval seconds
   */
   override func show() {
-    script.start()
+    script?.start()
     timer.start()
   }
 
@@ -25,14 +25,14 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   */
   override func hide() {
     timer.invalidate()
-    script.stop()
+    script?.stop()
   }
 
   /**
     Restart the script
   */
   override func refresh() {
-    script.restart()
+    script?.restart()
   }
 
   /**
@@ -68,6 +68,6 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Terminates any ongoing script
   */
   private func scheduleDidTick() {
-    script.start()
+    script?.start()
   }
 }

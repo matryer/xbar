@@ -1,12 +1,12 @@
 import EmitterKit
 
 class GEvent {
-  let listener: Listener
-  let event = Event<Void>()
+  let listener: () -> ()
+  // let event = Event<Void>()
   var center: NotificationCenter
 
   init(_ center: NotificationCenter, name: Notification.Name, object: AnyObject?, block: @escaping Block<Void>) {
-    self.listener = event.on(block)
+    self.listener = block
     self.center = center
     center.addObserver(
       self,
@@ -17,7 +17,7 @@ class GEvent {
   }
 
   @objc private func didCallNotification() {
-    event.emit()
+    listener()
   }
 
   func destroy() {
