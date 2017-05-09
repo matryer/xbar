@@ -86,6 +86,9 @@
 		20A80A9D1EC23D5E000DFC31 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80A9C1EC23D5E000DFC31 /* MenuBar.swift */; };
 		20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80A9E1EC23DA9000DFC31 /* Color.swift */; };
 		20A80AA11EC24265000DFC31 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA01EC24265000DFC31 /* Script.swift */; };
+		20A80AA51EC2431E000DFC31 /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA21EC2431D000DFC31 /* ClickEvent.swift */; };
+		20A80AA61EC2431E000DFC31 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA31EC2431E000DFC31 /* State.swift */; };
+		20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA41EC2431E000DFC31 /* TestValue.swift */; };
 		20D9EDD81EB9947A00BBA915 /* Text.Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDD71EB9947A00BBA915 /* Text.Param.swift */; };
 		20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDB1EB9951200BBA915 /* NSImage.swift */; };
 		20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */; };
@@ -212,6 +215,9 @@
 		20A80A9C1EC23D5E000DFC31 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuBar.swift; path = Protocol/MenuBar.swift; sourceTree = "<group>"; };
 		20A80A9E1EC23DA9000DFC31 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = ../Color.swift; sourceTree = "<group>"; };
 		20A80AA01EC24265000DFC31 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Script.swift; path = Script/Script.swift; sourceTree = "<group>"; };
+		20A80AA21EC2431D000DFC31 /* ClickEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickEvent.swift; sourceTree = "<group>"; };
+		20A80AA31EC2431E000DFC31 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		20A80AA41EC2431E000DFC31 /* TestValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestValue.swift; sourceTree = "<group>"; };
 		20AA559E1EA35303008D23FF /* Tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tests.plist; sourceTree = "<group>"; };
 		20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro_Travis.framework; path = Pods/../build/Debug/Pods_Distro_Travis.framework; sourceTree = "<group>"; };
 		20D9EDD71EB9947A00BBA915 /* Text.Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.Param.swift; sourceTree = "<group>"; };
@@ -332,9 +338,12 @@
 				2037F3C31EAAB43F0024F529 /* Extension */,
 				20823E071EBD0B8B00C8D468 /* Menuable.swift */,
 				20823E091EBD0B8B00C8D468 /* NoMatch.swift */,
+				20A80AA31EC2431E000DFC31 /* State.swift */,
+				20A80AA21EC2431D000DFC31 /* ClickEvent.swift */,
 				20823E0B1EBD0B8B00C8D468 /* TestBar.swift */,
 				203180891EC1A5B300DF82B7 /* MockParent.swift */,
 				2037F3D81EAAB4800024F529 /* Helper.swift */,
+				20A80AA41EC2431E000DFC31 /* TestValue.swift */,
 				2037F42D1EAAB5340024F529 /* Method.swift */,
 				2037F3D91EAAB4800024F529 /* Matcher.swift */,
 			);
@@ -824,7 +833,10 @@
 				20823E0C1EBD0B8C00C8D468 /* Menuable.swift in Sources */,
 				203180881EC1A5AB00DF82B7 /* PreferenceMenuTests.swift in Sources */,
 				2037F42E1EAAB5340024F529 /* Method.swift in Sources */,
+				20A80AA51EC2431E000DFC31 /* ClickEvent.swift in Sources */,
 				2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */,
+				20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */,
+				20A80AA61EC2431E000DFC31 /* State.swift in Sources */,
 				2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */,
 				2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */,
 				2037F3D21EAAB4770024F529 /* File.swift in Sources */,

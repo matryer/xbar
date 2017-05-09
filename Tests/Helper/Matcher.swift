@@ -7,6 +7,9 @@ import Ansi
 import Async
 @testable import BitBar
 
+var noShortcut: TestValue { return .noShortcut }
+var noSubMenus: TestValue { return .noSubMenus }
+
 func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (Menuable) -> Void) {
   waitUntil(timeout: 10) { done in
     Async.background {
@@ -221,15 +224,6 @@ func have(shortcut: String) -> Predicate<Menuable> {
   }
 }
 
-enum TestValue {
-  case noShortcut
-  case noSubMenus
-  case broadcasted([MenuEvent])
-}
-
-var noShortcut: TestValue { return .noShortcut }
-var noSubMenus: TestValue { return .noSubMenus }
-
 func have(_ value: TestValue)-> Predicate<Menuable> {
   switch value {
   case .noShortcut:
@@ -278,10 +272,6 @@ func beTrimmed() -> Predicate<Menuable> {
   }
 }
 
-enum ClickEvent {
-  case clicked
-}
-
 func expect(_ menu: Menuable, when: ClickEvent) -> Expectation<Menuable> {
   switch when {
   case .clicked:
@@ -316,11 +306,6 @@ func receive(_ events: [MenuEvent], from indexes: [Int]) -> Predicate<Menuable> 
     }
     return .bool(events.sorted() == parent.events.sorted(), parent.events)
   }
-}
-
-enum State {
-  case bool(Bool, Any) /* ok, actual */
-  case fail(Any) /* Actual */
 }
 
 func verify<T>(_ message: String, block: @escaping (T) -> State) -> Predicate<T> {
