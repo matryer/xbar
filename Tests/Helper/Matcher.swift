@@ -358,15 +358,49 @@ func beClickable() -> MatcherFunc<W<Menuable>> {
 }
 
 func have(subMenuCount count: Int) -> MatcherFunc<W<Menuable>> {
-  return tester("have sub menu count of \(count)") { (result: W<Menuable>) in
+  return t("sub menu count") { result -> Test<Int> in
     switch result {
     case let .success(menu):
-      if menu.menus.count == count { return true }
-      return "sub menu count of \(menu.menus.count)"
+      return .comp(count, menu.menus.count)
     case .failure:
-      return "failed to get menu"
+      return .fail
     }
   }
+}
+
+func have(shortcut: String) -> MatcherFunc<W<Menuable>> {
+  return t("shortcut") { result -> Test<String> in
+    switch result {
+    case let .success(menu):
+      return .comp(shortcut, menu.keyEquivalent)
+    case .failure:
+      return .fail
+    }
+  }
+}
+
+enum TestValue {
+  case noShortcut
+  case noSubMenus
+  case broadcasted([MenuEvent])
+}
+
+var noShortcut: TestValue { return .noShortcut }
+var noSubMenus: TestValue { return .noSubMenus }
+
+func have(_ value: TestValue)-> MatcherFunc<W<Menuable>> {
+  switch value {
+  case .noShortcut:
+    return have(shortcut: "")
+  case .noSubMenus:
+    return have(subMenuCount: 0)
+  case let .broadcasted(events):
+    return have(events: events)
+  }
+}
+
+func haveNoSubMenus() -> MatcherFunc<W<Menuable>> {
+  return have(subMenuCount: 0)
 }
 
 func beAlternatable() -> MatcherFunc<W<Menuable>> {
@@ -426,8 +460,39 @@ func beTrimmed() -> MatcherFunc<W<Menuable>> {
 
 enum ClickEvent {
   case click
+  case clicked
 }
 
+func expect(_ packed: W<Menuable>, when: ClickEvent) -> Expectation<W<Menuable>> {
+  switch when {
+  case .clicked:
+    switch packed {
+    case let .success(menu):
+      menu.set(parent: MockParent())
+      menu.onDidClick()
+      return expect(.success(menu))
+    default:
+      return expect(.failure)
+    }
+  default:
+    preconditionFailure("invalid state: \(when)")
+  }
+}
+
+func have(events: [MenuEvent]) -> MatcherFunc<W<Menuable>> {
+  return t("menu events") { (result: W<Menuable>) -> Test<String> in
+    switch result {
+    case let .success(menu):
+      if !menu.isEnabled && !events.isEmpty {
+        return .fail
+      }
+
+      return .test(events.sorted() == menu.events.sorted(), events, menu.events)
+    case .failure:
+      return .fail
+    }
+  }
+}
 
 func fire(_ events: [MenuEvent], on event: ClickEvent) -> MatcherFunc<W<Menuable>> {
   let parent = MockParent()

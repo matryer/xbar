@@ -18,4 +18,5 @@ extension Title: Menuable {
   var isSeparator: Bool { return false }
   var isChecked: Bool { return false  }
   var isAlternate: Bool { return false }
+  var keyEquivalent: String { return "" }
 }

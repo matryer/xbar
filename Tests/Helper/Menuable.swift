@@ -2,7 +2,11 @@ import AppKit
 import Parser
 @testable import BitBar
 
+var eventRefs = [UInt: [MenuEvent]]()
+var menuRefs = [MockParent: Menuable]()
+
 protocol Menuable: class {
+  var keyEquivalent: String { get }
   var isEnabled: Bool { get }
   var banner: Mutable { get }
   var menus: [Menuable] { get }
@@ -47,5 +51,19 @@ extension Menuable {
     }
     if menus.isEmpty { throw NoMatch.stop(rem) }
     return try menus[index].get(at: indexes.rest(), rem: rem + [index])
+  }
+
+  var id: UInt {
+    return UInt(bitPattern: ObjectIdentifier(self))
+  }
+
+  var events: [MenuEvent] {
+    return eventRefs[id] ?? []
+  }
+
+  func set(parent: MockParent) {
+    menuRefs[parent] = self
+    eventRefs[id] = []
+    root = parent
   }
 }

@@ -2,7 +2,7 @@ import AppKit
 import Parser
 @testable import BitBar
 
-extension BitBar.Menu: Menuable {
+extension BaseMenuItem: Menuable {
   var items: [NSMenuItem] { return submenu?.items ?? [] }
   var banner: Mutable {
     if let attr = attributedTitle {
@@ -13,6 +13,9 @@ extension BitBar.Menu: Menuable {
   }
 
   var act: Action {
-    return paction
+    if let menu = self as? BitBar.Menu {
+      return menu.paction
+    }
+    return .nop
   }
 }

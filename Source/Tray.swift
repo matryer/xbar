@@ -82,7 +82,7 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     add(sub: NSMenuItem.separator())
     add(sub: ago!)
     add(sub: Pref.RunInTerminal())
-    add(sub: Pref.Preferences())
+    add(sub: Pref.Preferences(pluginPath: App.pluginPath))
   }
 
   internal func menuWillOpen(_ menu: NSMenu) {

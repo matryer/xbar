@@ -10,6 +10,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var handler: OpenPluginHandler?
 
   func applicationDidFinishLaunching(_: Notification) {
+    if App.isInTestMode() { return }
     setOpenUrlHandler()
     loadPluginManager()
     setOnWakeUpHandler()

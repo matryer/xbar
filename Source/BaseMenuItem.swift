@@ -11,7 +11,7 @@ class BaseMenuItem: NSMenuItem, MenuItem {
     submenus: [NSMenuItem] = [],
     isAlternate: Bool = false,
     isChecked: Bool = false,
-    isClickable: Bool = true,
+    isClickable: Bool? = nil,
     shortcut: String = ""
   ) {
     super.init(title: "", action: #selector(__onDidClick) as Selector?, keyEquivalent: shortcut)
@@ -27,8 +27,8 @@ class BaseMenuItem: NSMenuItem, MenuItem {
       }
     }
 
-    state = isChecked ? NSOnState : NSOffState
-    isEnabled = state(isClickable: isClickable)
+    self.isChecked = isChecked
+    self.isEnabled = state(isClickable: isClickable)
 
     if isAlternate {
       self.isAlternate = true
@@ -49,7 +49,7 @@ class BaseMenuItem: NSMenuItem, MenuItem {
     submenus: [NSMenuItem] = [],
     isAlternate: Bool = false,
     isChecked: Bool = false,
-    isClickable: Bool = true,
+    isClickable: Bool? = nil,
     shortcut: String = ""
   ) {
     self.init(
@@ -69,7 +69,7 @@ class BaseMenuItem: NSMenuItem, MenuItem {
    submenus: [NSMenuItem] = [],
    isAlternate: Bool = false,
    isChecked: Bool = false,
-   isClickable: Bool = true,
+   isClickable: Bool? = nil,
    shortcut: String = ""
  ) {
     self.init(
@@ -86,24 +86,24 @@ class BaseMenuItem: NSMenuItem, MenuItem {
     attributedTitle = title.mutable()
   }
 
-  private func state(isClickable: Bool) -> Bool {
-    if isSeparator {
-      return false
-    }
-
-    if isClickable {
-      return true
-    }
-
+  private func state(isClickable: Bool?) -> Bool {
     if let sub = submenu {
       return sub.numberOfItems != 0
     }
 
-    if keyEquivalent.isEmpty {
+    if isSeparator {
       return false
     }
 
-    return true
+    if !keyEquivalent.isEmpty {
+      return true
+    }
+
+    if let state = isClickable {
+      return state
+    } else {
+      return true
+    }
   }
 
   required init(coder decoder: NSCoder) {
@@ -116,5 +116,18 @@ class BaseMenuItem: NSMenuItem, MenuItem {
 
   @objc func __onDidClick() {
     onDidClick()
+  }
+}
+
+extension BaseMenuItem {
+  override public var debugDescription: String {
+    let out: [String: Any] = [
+      "title": title,
+      "isChecked": isChecked,
+      "isAlternate": isAlternate,
+      "isEnabled": isEnabled,
+      "hasSubmenu": hasSubmenu
+    ]
+    return String(describing: out)
   }
 }
