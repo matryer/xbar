@@ -1,5 +1,5 @@
 extension Pref {
-  class CheckForUpdates: BaseMenuItem {
+  class CheckForUpdates: MenuItem {
     required convenience init() {
       self.init(title: "Check for Updates…")
     }

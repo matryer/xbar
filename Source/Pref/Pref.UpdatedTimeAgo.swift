@@ -1,7 +1,7 @@
 import DateToolsSwift
 
 extension Pref {
-  class UpdatedTimeAgo: BaseMenuItem {
+  class UpdatedTimeAgo: MenuItem {
     let since = Date()
 
     required convenience init() {

@@ -1,5 +1,5 @@
 extension Pref {
-  class OpenAtLogin: BaseMenuItem {
+  class OpenAtLogin: MenuItem {
     required convenience init(openAtLogin: Bool) {
       self.init(title: "Open at Login", isChecked: openAtLogin)
     }

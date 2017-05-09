@@ -1,5 +1,5 @@
 extension Pref {
-  class OpenPluginFolder: BaseMenuItem {
+  class OpenPluginFolder: MenuItem {
     required convenience init(pluginPath: String?) {
       self.init(title: "Open Plugin Folder…", isClickable: pluginPath != nil)
     }

@@ -5,7 +5,7 @@ import Async
 import EmitterKit
 import Parser
 
-class Menu: BaseMenuItem, ScriptDelegate {
+class Menu: MenuItem, ScriptDelegate {
   typealias Param = Parser.Menu.Param
   var paction: Action = .nop
   var script: Script?

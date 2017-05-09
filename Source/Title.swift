@@ -44,7 +44,7 @@ final class Title: NSMenu, Parent {
   private func handle(menus: [NSMenuItem]) {
     for menu in menus {
       menu.root = self
-      // if var sub = menu as? BaseMenuItem {
+      // if var sub = menu as? MenuItem {
       //   sub.root = self
       //   addItem(sub)
       // } else {

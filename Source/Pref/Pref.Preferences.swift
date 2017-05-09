@@ -1,7 +1,7 @@
 import AppKit
 
 enum Pref {
-  class Preferences: BaseMenuItem {
+  class Preferences: MenuItem {
     convenience init(pluginPath: String? = App.pluginPath, openAtLogin: Bool =  App.autostart) {
       self.init(title: "Preferences", submenus: [
         Pref.RefreshAll(),

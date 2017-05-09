@@ -1,5 +1,5 @@
 extension Pref {
-  class ChangePluginFolder: BaseMenuItem {
+  class ChangePluginFolder: MenuItem {
     required convenience init() {
       self.init(title: "Change Plugin Folder…", shortcut: ",")
     }
