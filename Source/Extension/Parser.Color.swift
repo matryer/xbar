@@ -5,7 +5,8 @@ extension Parser.Color {
     switch self {
     case let .name(name):
       guard let hex = Color.names[name.lowercased()] else {
-        preconditionFailure("no color found")
+        // TODO: Handle missing color
+        return using(hex: "ff4500")
       }
       return using(hex: hex)
     case let .hex(hex):

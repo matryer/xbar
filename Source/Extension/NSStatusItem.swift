@@ -1,6 +1,6 @@
 import AppKit
 
-extension NSStatusItem: Menubarable {
+extension NSStatusItem: MenuBar {
   func show() {
     if #available(OSX 10.12, *) {
       isVisible = true

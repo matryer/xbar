@@ -19,7 +19,7 @@ class Plugin: Parent {
     @file A file object containing {name}.{time}.{ext}
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
-  init(path: String, file: File, item: Menubarable = Tray.item) {
+  init(path: String, file: File, item: MenuBar = Tray.item) {
     self.tray = Tray(title: "…", isVisible: true, item: item)
     self.file = file
     self.path = path

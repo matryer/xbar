@@ -11,8 +11,8 @@ class Tray: NSObject, NSMenuDelegate, Parent {
   private static let length = NSVariableStatusItemLength
   private var ago: Pref.UpdatedTimeAgo?
   private var menu = NSMenu()
-  var item: Menubarable
-  static internal var item: Menubarable {
+  var item: MenuBar
+  static internal var item: MenuBar {
     return Tray.center.statusItem(withLength: Tray.length)
   }
   var isError = false
@@ -21,7 +21,7 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible displayed: Bool = false, item: Menubarable = Tray.item) {
+  init(title: String, isVisible displayed: Bool = false, item: MenuBar = Tray.item) {
     self.item = item
     super.init()
     set(headline: title.mutable)
