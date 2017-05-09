@@ -2,10 +2,6 @@ import AppKit
 @testable import BitBar
 
 extension Title: Menuable {
-  func onDidClick() {
-    /* TODO */
-  }
-
   var isEnabled: Bool {
     return true
   }
@@ -19,4 +15,5 @@ extension Title: Menuable {
   var isChecked: Bool { return false  }
   var isAlternate: Bool { return false }
   var keyEquivalent: String { return "" }
+  func onDidClick() {}
 }

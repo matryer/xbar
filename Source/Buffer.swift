@@ -47,7 +47,6 @@ class Buffer {
   }
 
   func toString() -> String {
-    // TODO: Handle error more gracefully
     return store.toString().remove(del)
   }
 

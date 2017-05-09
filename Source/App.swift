@@ -109,8 +109,6 @@ class App {
   /**
     Invoke @block if user selects a folder
     The selected folder is stored for the future
-    NOTE: @block isn't called if no folder is selected or if the dialog was closed
-    TODO: @block should always be called
   */
   static func askAboutPluginPath(block: @escaping Block<Void>) {
     PathSelector(withURL: App.pluginURL).ask {
