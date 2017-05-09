@@ -58,12 +58,10 @@ func t<T, A: Equatable>(_ title: String, block: @escaping (T) -> Test<A>) -> Mat
     case .fail:
       fail()
       return false
-    case .test(true):
-      succ()
-      return true
-    case .test(false):
-      fail()
-      return false
+    case let .test(res, expected, actual):
+      failure.postfixMessage = "equal \(String(describing: expected).inspected())"
+      failure.actualValue = String(describing: actual).inspected()
+      return res
     }
   }
 }

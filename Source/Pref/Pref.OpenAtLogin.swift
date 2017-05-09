@@ -6,7 +6,11 @@ extension Pref {
 
     override func onDidClick() {
       isChecked = !isChecked
-      broadcast(.startOnLogin(isChecked))
+      if isChecked {
+        broadcast(.openOnLogin)
+      } else {
+        broadcast(.doNotOpenOnLogin)
+      }
     }
   }
 }

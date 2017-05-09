@@ -424,6 +424,61 @@ func beTrimmed() -> MatcherFunc<W<Menuable>> {
   }
 }
 
+enum ClickEvent {
+  case click
+}
+
+
+func fire(_ events: [MenuEvent], on event: ClickEvent) -> MatcherFunc<W<Menuable>> {
+  let parent = MockParent()
+  var clicked = false
+  return t("menu events") { (result: W<Menuable>) -> Test<String> in
+    switch result {
+    case let .success(menu):
+      if !menu.isEnabled {
+        return .fail
+      }
+
+      if !clicked {
+        menu.set(parent: parent)
+        menu.onDidClick()
+        clicked = true
+      }
+
+      return .test(events.sorted() == menu.events.sorted(), events, menu.events)
+    case .failure:
+      return .fail
+    }
+  }
+}
+
+func receive(_ events: [MenuEvent], from indexes: [Int]) -> MatcherFunc<W<Menuable>> {
+  let mock = MockParent()
+  var clicked = false
+  return t("click") { (result: W<Menuable>) -> Test<String> in
+    switch result {
+    case let .success(parent):
+      if !parent.isEnabled {
+        return .fail
+      }
+
+      switch menu(parent, at: indexes) {
+      case let .success(child):
+        if !clicked  {
+          parent.set(parent: mock)
+          child.onDidClick()
+          clicked = true
+        }
+      default:
+        return .fail
+      }
+      return .test(events.sorted() == parent.events.sorted(), events, parent.events)
+    case .failure:
+      return .fail
+    }
+  }
+}
+
 func have(href: String) -> MatcherFunc<W<Menuable>> {
   return tester("href") { (result: W<Menuable>) in
     switch result {

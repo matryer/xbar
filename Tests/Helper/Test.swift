@@ -3,5 +3,5 @@ enum Test<T: Equatable> {
    case fail
    /* Exp, Actual */
    case comp(T, T)
-   case test(Bool)
+   case test(Bool, Any, Any)
 }

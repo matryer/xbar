@@ -4,6 +4,37 @@ import Attr
 import Async
 @testable import BitBar
 
+
+var cache = [UInt: [MenuEvent]]()
+var cache2 = [UInt: Menuable]()
+extension Menuable {
+  var id: UInt {
+    return UInt(bitPattern: ObjectIdentifier(self))
+  }
+
+  var events: [MenuEvent] {
+    return cache[id] ?? []
+  }
+
+  func set(parent: MockParent) {
+    cache2[parent.id] = self
+    self.root = parent
+  }
+}
+
+class MockParent: Parent {
+  var root: Parent?
+  var id: UInt {
+    return UInt(bitPattern: ObjectIdentifier(self))
+  }
+  func on(_ event: MenuEvent) {
+    if cache[cache2[id]!.id] == nil {
+      cache[cache2[id]!.id] = []
+    }
+    cache[cache2[id]!.id]! += [event]
+  }
+}
+
 class ExecutablePluginTests: Helper {
   override func spec() {
     context("manual script") {
@@ -407,6 +438,148 @@ class ExecutablePluginTests: Helper {
                 expect(menu).to(have(args: ["A", " B ", ""]))
                 expect(menu).to(beClickable())
                 expect(menu).to(have(subMenuCount: 0))
+              }
+            }
+          }
+
+          context("events") {
+            context("no script") {
+              context("refresh=true") {
+                it("should refresh a menu with no submenus") {
+                  a(menu, at: [30]) { menu in
+                    expect(menu).toEventually(fire([.refreshPlugin], on: .click))
+                  }
+                }
+
+                it("should propagate click event to parent") {
+                  a(menu, at: [31]) { parent in
+                    expect(parent).toEventually(receive([.refreshPlugin], from: [0, 0]))
+                  }
+                }
+              }
+
+              context("refresh=false") {
+                it("should not refresh menu") {
+                  a(menu, at: [32]) { menu in
+                    expect(menu).toNotEventually(fire([.refreshPlugin], on: .click))
+                  }
+                }
+
+                it("should not propagate click event to parent") {
+                  a(menu, at: [33]) { parent in
+                    expect(parent).toNotEventually(receive([.refreshPlugin], from: [0, 0]))
+                  }
+                }
+              }
+            }
+
+            context("script") {
+              context("refresh=true") {
+                it("should refresh a menu with no submenus") {
+                  a(menu, at: [34]) { menu in
+                    expect(menu).toEventually(fire([.refreshPlugin], on: .click))
+                  }
+                }
+
+                it("should propagate click event to parent") {
+                  a(menu, at: [35]) { parent in
+                    expect(parent).toEventually(receive([.refreshPlugin], from: [0, 0]))
+                  }
+                }
+              }
+
+              context("refresh=false") {
+                it("should not refresh menu") {
+                  a(menu, at: [36]) { menu in
+                    expect(menu).toNotEventually(fire([.refreshPlugin], on: .click))
+                  }
+                }
+
+                it("should not propagate click event to parent") {
+                  a(menu, at: [37]) { parent in
+                    expect(parent).toNotEventually(receive([.refreshPlugin], from: [0, 0]))
+                  }
+                }
+              }
+            }
+
+            context("terminal") {
+              context("refresh=true terminal=true") {
+                let script = "/usr/bin/whoami"
+                let events: [MenuEvent] = [.refreshPlugin, .openScriptInTerminal(script)]
+                it("should refresh menu with no submenus") {
+                  a(menu, at: [38]) { menu in
+                    expect(menu).toEventually(fire(events, on: .click))
+                  }
+                }
+
+                it("should propagate click event to parent") {
+                  a(menu, at: [39]) { parent in
+                    expect(parent).toEventually(receive(events, from: [0, 0]))
+                  }
+                }
+              }
+
+              context("refresh=false terminal=false") {
+                it("should not refresh menu") {
+                  a(menu, at: [40]) { menu in
+                    expect(menu).toNotEventually(fire([.refreshPlugin], on: .click))
+                  }
+                }
+
+                it("should not propagate click event to parent") {
+                  a(menu, at: [41]) { parent in
+                    expect(parent).toNotEventually(receive([.refreshPlugin], from: [0, 0]))
+                  }
+                }
+              }
+            }
+
+            context("href") {
+              let events: [MenuEvent] = [.openUrlInBrowser("http://google.com")]
+              context("href=...") {
+                it("should open href in browser") {
+                  a(menu, at: [42]) { menu in
+                    expect(menu).toEventually(fire(events, on: .click))
+                  }
+                }
+
+                it("should propagate open browser event to parent") {
+                  a(menu, at: [43]) { parent in
+                    expect(parent).toEventually(receive(events, from: [0, 0]))
+                  }
+                }
+              }
+
+              context("refresh=true href=...") {
+                it("should also refresh") {
+                  a(menu, at: [44]) { menu in
+                    expect(menu).toEventually(fire(events + [.refreshPlugin], on: .click))
+                  }
+                }
+
+                it("should also refresh parent") {
+                  a(menu, at: [45]) { parent in
+                    expect(parent).toEventually(receive(events + [.refreshPlugin], from: [0, 0]))
+                  }
+                }
+              }
+            }
+
+            context("bash error") {
+              let events: [MenuEvent] = [.didSetError]
+              context("href=...") {
+                it("should open href in browser") {
+                  a(menu, at: [46]) { menu in
+                    expect(menu).toEventually(fire(events, on: .click))
+                  }
+                }
+
+                it("should propagate open browser event to parent") {
+                  a(menu, at: [47]) { parent in
+                    expect(parent).toEventually(receive(events, from: [0, 0]))
+                  }
+                }
               }
             }
           }

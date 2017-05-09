@@ -74,24 +74,17 @@ class Menu: BaseMenuItem, ScriptDelegate {
   }
 
   override func onDidClick() {
-    broadcast(.refreshPlugin)
     switch paction {
     case .nop: return
     case let .href(url, events):
-      App.open(url: url)
-
+      broadcast(.openUrlInBrowser(url))
       if events.has(.refresh) {
         broadcast(.refreshPlugin)
       }
     case let .script(.background(path, args, _)):
        script = Script(path: path, args: args, delegate: self, autostart: true)
     case let .script(.foreground(path, events)):
-      App.openScript(inTerminal: path) { error in
-        if let anError = error {
-          self.set(error: anError)
-        }
-      }
-
+      broadcast(.openScriptInTerminal(path))
       if events.has(.refresh) {
         broadcast(.refreshPlugin)
       }

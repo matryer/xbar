@@ -95,16 +95,10 @@ class Plugin: Parent {
   deinit { destroy() }
 
   func on(_ event: MenuEvent) {
-    print("event \(event) in plugin")
     switch event {
     case .runInTerminal:
-      App.openScript(inTerminal: path) { error in
-        if let anError = error {
-          print("[Error] Received error opening \(self.path): \(anError)")
-        }
-      }
+      broadcast(.openScriptInTerminal(path))
     case .refreshPlugin:
-      print("refreshPlugin")
       refresh()
     default:
       break

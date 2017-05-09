@@ -73,7 +73,7 @@ class Script {
     isStream = false
 
     process?.launchPath = path
-    
+
     process?.arguments = args
 
     process?.standardOutput = pipe

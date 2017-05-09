@@ -2,6 +2,10 @@ import AppKit
 @testable import BitBar
 
 extension Title: Menuable {
+  func onDidClick() {
+    /* TODO */
+  }
+
   var isEnabled: Bool {
     return true
   }

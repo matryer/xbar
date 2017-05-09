@@ -2,7 +2,7 @@ import AppKit
 import Parser
 @testable import BitBar
 
-protocol Menuable {
+protocol Menuable: class {
   var isEnabled: Bool { get }
   var banner: Mutable { get }
   var menus: [Menuable] { get }
@@ -12,8 +12,9 @@ protocol Menuable {
   var isAlternate: Bool { get }
   var items: [NSMenuItem] { get }
   var act: Action { get }
-
+  weak var root: Parent? { get set }
   func get(at: [Int], rem: [Int]) throws -> Menuable
+  func onDidClick()
 }
 
 extension Menuable {

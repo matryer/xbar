@@ -10,7 +10,7 @@ extension Parent {
       aRoot.on(event)
       aRoot.broadcast(event)
     } else {
-      print("No root found for \(self)")
+      print("[Log] No root found for \(self)")
     }
   }
 
