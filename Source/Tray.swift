@@ -82,7 +82,7 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     add(sub: NSMenuItem.separator())
     add(sub: ago!)
     add(sub: Pref.RunInTerminal())
-    add(sub: Pref.Preferences(pluginPath: App.pluginPath))
+    add(sub: Pref.Preferences())
   }
 
   internal func menuWillOpen(_ menu: NSMenu) {
@@ -103,7 +103,8 @@ class Tray: NSObject, NSMenuDelegate, Parent {
         newTitle.append(title)
         set(headline: newTitle)
       } else {
-        preconditionFailure("[Bug] Title not set, invalid state")
+        /* TODO: Handle this edge case better */
+        print("[Bug] Title not set, invalid state")
       }
 
       isError = true

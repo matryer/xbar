@@ -272,20 +272,6 @@ class PreferenceMenuTests: Helper {
           }
         }
       }
-
-
-      //   Pref.RefreshAll(),
-      //   NSMenuItem.separator(),
-      //   Pref.ChangePluginFolder(),
-      //   Pref.OpenPluginFolder(),
-      //   Pref.GetPlugins(),
-      //   NSMenuItem.separator(),
-      //   Pref.OpenAtLogin(),
-      //   NSMenuItem.separator(),
-      //   Pref.CheckForUpdates(),
-      //   Pref.Quit()
-      // ])
-
     }
   }
 }

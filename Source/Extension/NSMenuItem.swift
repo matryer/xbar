@@ -1,5 +1,9 @@
 import AppKit
 
+/*
+  FIXME: The code below is a result of NSMenuItem.separator()
+  not being inheritable. Should be solvable in a better way
+*/
 extension NSMenuItem {
   weak var root: Parent? {
     get {
