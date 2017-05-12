@@ -188,7 +188,7 @@ func have(title: Immutable) -> Predicate<Menuable> {
 }
 
 func have(font: String?) -> Predicate<Menuable> {
-  return verify("have font \(font)") { menu in
+  return verify("have font \(String(describing: font))") { menu in
     return .bool(font == menu.banner.fontName, menu.banner.fontName ?? "no font")
   }
 }
@@ -201,7 +201,7 @@ func have(background color: Ansi.Color) -> Predicate<Menuable> {
 
 func have(size: Int) -> Predicate<Menuable> {
   return verify("font size \(size)") { menu in
-    return .bool(size == menu.banner.fontSize, menu.banner.fontSize)
+    return .bool(size == menu.banner.fontSize, menu.banner.fontSize ?? "no size")
   }
 }
 
@@ -231,7 +231,7 @@ func have(_ value: TestValue)-> Predicate<Menuable> {
     return have(subMenuCount: 0)
   case let .broadcasted(events):
     return have(events: events)
-  case let .noFont:
+  case .noFont:
     return have(font: nil)
   }
 }

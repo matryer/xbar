@@ -7,7 +7,7 @@ enum FontType: String {
   var font: NSFont {
     switch self {
     case .bar:
-      return NSFont.menuBarFont(ofSize: 16)
+      return NSFont.menuBarFont(ofSize: 0)
     case .item:
       return NSFont.menuFont(ofSize: 0)
     }
