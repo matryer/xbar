@@ -1,6 +1,7 @@
 import Cocoa
 import Sparkle
 import ServiceManagement
+import SwiftyUserDefaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
@@ -63,6 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   }
 
   private func login(_ state: Bool) {
+    Defaults[.startAtLogin] = state
     SMLoginItemSetEnabled(helperId, state)
   }
 
