@@ -1,7 +1,7 @@
 extension Pref {
-  class OpenPluginFolder: BaseMenuItem {
-    required convenience init() {
-      self.init(title: "Open Plugin Folder…", isClickable: App.pluginPath != nil)
+  class OpenPluginFolder: MenuItem {
+    required convenience init(pluginPath: String?) {
+      self.init(title: "Open Plugin Folder…", isClickable: pluginPath != nil)
     }
 
     override func onDidClick() {

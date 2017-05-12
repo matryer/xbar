@@ -12,6 +12,7 @@ class Plugin: Parent {
   internal let file: File
   internal let path: String
   internal var title: Title?
+  internal let interval: Double
   private let tray: Tray
 
   /**
@@ -19,17 +20,12 @@ class Plugin: Parent {
     @file A file object containing {name}.{time}.{ext}
     @delegate Someone that can handle tray events, i.e 'Reload All'
   */
-  init(path: String, file: File, item: Menubarable = Tray.item) {
+  init(path: String, file: File, item: MenuBar = Tray.item) {
     self.tray = Tray(title: "…", isVisible: true, item: item)
     self.file = file
     self.path = path
-  }
-
-  /**
-    How often the plugin should in seconds
-  */
-  var interval: Double {
-    return Double(file.interval)
+    self.interval = Double(file.interval)
+    self.tray.root = self
   }
 
   /**
@@ -41,12 +37,10 @@ class Plugin: Parent {
       return print("[Log] Empty string passed")
     }
 
-    Async.userInitiated {
-      return data
-    }.background { data in
+    Async.background {
       return reduce(data)
-    }.main { head -> Void in
-      self.use(title: Title(head: head))
+    }.main { [weak self] head -> Void in
+      self?.use(title: Title(head: head))
     }
   }
 
@@ -84,30 +78,22 @@ class Plugin: Parent {
   func destroy() {
     terminate()
   }
-
-  private func use(title: Title) {
-    tray.set(title: title)
-    title.root = self
-    self.title = title
-    tray.root = self
-  }
-
   deinit { destroy() }
 
   func on(_ event: MenuEvent) {
-    print("event \(event) in plugin")
     switch event {
     case .runInTerminal:
-      App.openScript(inTerminal: path) { error in
-        if let anError = error {
-          print("[Error] Received error opening \(self.path): \(anError)")
-        }
-      }
+      broadcast(.openScriptInTerminal(path))
     case .refreshPlugin:
-      print("refreshPlugin")
       refresh()
     default:
       break
     }
+  }
+
+  private func use(title: Title) {
+    tray.set(title: title)
+    title.root = tray
+    self.title = title
   }
 }

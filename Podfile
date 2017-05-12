@@ -1,28 +1,29 @@
 target 'BitBar' do
   use_frameworks!
   inhibit_all_warnings!
-  platform :osx, '10.10'
+  platform :osx, '10.11'
 
   pod 'Hue'
   pod 'SwiftyUserDefaults'
   pod 'Alamofire'
   pod 'Sparkle'
+  pod 'AlamofireImage'
   pod 'EmitterKit'
   pod 'AsyncSwift'
   pod 'FootlessParser'
   pod 'SwiftyTimer'
   pod 'Cent'
   pod 'Emojize'
+  pod 'BonMot'
   pod 'SwiftTryCatch', git: 'https://github.com/oleander/SwiftTryCatch.git'
   pod 'Ansi', git: 'https://github.com/oleander/Ansi.git'
   pod 'Files', git: 'https://github.com/JohnSundell/Files.git'
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
-  pod 'Attr', git: 'https://github.com/oleander/Attr.git'
   pod 'Parser', git: 'https://github.com/oleander/BitBarParser.git'
 
   target 'Tests' do
     inherit! :search_paths
-    pod 'Nimble', "< 7.0.0"
+    pod 'Nimble'
     pod 'Quick'
   end
 end

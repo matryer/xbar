@@ -1,7 +1,10 @@
 @testable import BitBar
 import AppKit
 
-class TestBar: Menubarable {
+class TestBar: MenuBar {
+  var button: NSStatusBarButton? {
+    return nil
+  }
   var menu: NSMenu?
   var attributedTitle: NSAttributedString?
   var highlightMode: Bool = false

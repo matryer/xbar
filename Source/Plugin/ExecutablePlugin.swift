@@ -6,7 +6,7 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   private var script: Script?
   private var timer: Timer!
 
-  override init(path: String, file: File, item: Menubarable = Tray.item) {
+  override init(path: String, file: File, item: MenuBar = Tray.item) {
     super.init(path: path, file: file, item: item)
     script = Script(path: path, delegate: self, autostart: true)
     timer = Timer.every(interval.seconds, scheduleDidTick)

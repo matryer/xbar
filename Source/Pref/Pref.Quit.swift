@@ -1,5 +1,5 @@
 extension Pref {
-  class Quit: BaseMenuItem {
+  class Quit: MenuItem {
     required convenience init() {
       self.init(title: "Quit", shortcut: "q")
     }

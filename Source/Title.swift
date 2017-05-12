@@ -1,19 +1,25 @@
 import Parser
+import BonMot
 
 final class Title: NSMenu, Parent {
   weak var root: Parent?
-  internal var headline: Mutable?
-
-  init(title: String, menus: [NSMenuItem] = []) {
-    self.headline = title.mutable()
-    super.init(title: title)
-    handle(menus: menus)
+  internal var headline: Immutable?
+  
+  init(immutable title: Immutable, menus: [NSMenuItem] = []) {
+    super.init(title: "")
+    self.headline = title
+    for menu in menus {
+      menu.root = self
+      addItem(menu)
+    }
   }
 
-  init(_ text: Parser.Text, menus: [NSMenuItem]) {
-    super.init(title: "")
-    self.headline = text.colorize
-    handle(menus: menus)
+  convenience init(_ text: Parser.Text, menus: [NSMenuItem]) {
+    self.init(immutable: text.colorize(as: .bar), menus: menus)
+  }
+  
+  convenience init(title: String, menus: [NSMenuItem] = []) {
+    self.init(immutable: title.immutable, menus: menus)
   }
 
   convenience init(head: Parser.Menu.Head) {
@@ -26,7 +32,7 @@ final class Title: NSMenu, Parent {
   }
 
   convenience init(errors: [String]) {
-    self.init(title: ":warning:".emojified, menus: errors.map { Menu(title: $0, submenus: []) })
+    self.init(immutable: barWarn, menus: errors.map { Menu(title: $0, submenus: []) })
   }
 
   convenience init(error: String) {
@@ -35,22 +41,5 @@ final class Title: NSMenu, Parent {
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  func on(_ event: MenuEvent) {
-    print("event: \(event) in title")
-  }
-
-  private func handle(menus: [NSMenuItem]) {
-    for menu in menus {
-      menu.root = self
-      // if var sub = menu as? BaseMenuItem {
-      //   sub.root = self
-      //   addItem(sub)
-      // } else {
-      //   addItem(menu)
-      // }
-      addItem(menu)
-    }
   }
 }

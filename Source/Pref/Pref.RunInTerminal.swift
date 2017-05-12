@@ -1,5 +1,5 @@
 extension Pref {
-  class RunInTerminal: BaseMenuItem {
+  class RunInTerminal: MenuItem {
     required convenience init() {
       self.init(title: "Run in Terminal…", shortcut: "o")
     }
