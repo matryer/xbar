@@ -31,9 +31,16 @@
 		2037F3DC1EAAB4800024F529 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3D81EAAB4800024F529 /* Helper.swift */; };
 		2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3D91EAAB4800024F529 /* Matcher.swift */; };
 		2037F42E1EAAB5340024F529 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42D1EAAB5340024F529 /* Method.swift */; };
+		204D740F1EC5F89B00A21785 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D740E1EC5F89B00A21785 /* AppDelegate.m */; };
+		204D74121EC5F89B00A21785 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D74111EC5F89B00A21785 /* main.m */; };
+		204D74151EC5F89B00A21785 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D74141EC5F89B00A21785 /* ViewController.m */; };
+		204D74171EC5F89B00A21785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 204D74161EC5F89B00A21785 /* Assets.xcassets */; };
+		204D74201EC5F98A00A21785 /* BitBarHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 204D740B1EC5F89B00A21785 /* BitBarHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */; };
 		205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205E3AA31EC3426A00BC8111 /* Parser.Text.swift */; };
+		2063EFFF1EC5FB8F00A06D64 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2063EFFE1EC5FB8F00A06D64 /* Main.xib */; };
+		2063F0031EC63FB400A06D64 /* RefreshPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */; };
 		2068020F1EBF20E200985920 /* Pref.ChangePluginFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */; };
 		206802101EBF20E200985920 /* Pref.CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */; };
 		206802111EBF20E200985920 /* Pref.GetPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802071EBF20E200985920 /* Pref.GetPlugins.swift */; };
@@ -80,7 +87,6 @@
 		208962061EBC769F00588C43 /* Success.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208962041EBC769F00588C43 /* Success.swift */; };
 		20946B2D1E9EBF6800F7926D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20946B2C1E9EBF6800F7926D /* AppDelegate.swift */; };
 		20A462B51E9EC03F00321D42 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4627E1E9EC03E00321D42 /* App.swift */; };
-		20A462B71E9EC03F00321D42 /* Autostart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462801E9EC03E00321D42 /* Autostart.swift */; };
 		20A462BB1E9EC03F00321D42 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462841E9EC03E00321D42 /* Buffer.swift */; };
 		20A462C31E9EC03F00321D42 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4628C1E9EC03E00321D42 /* File.swift */; };
 		20A462D31E9EC03F00321D42 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629C1E9EC03F00321D42 /* Parser.swift */; };
@@ -118,6 +124,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		204D741F1EC5F96600A21785 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				204D74201EC5F98A00A21785 /* BitBarHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		208075A01EAE5B7800B6939A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,9 +175,20 @@
 		2037F3D91EAAB4800024F529 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		2037F42D1EAAB5340024F529 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
+		204D740B1EC5F89B00A21785 /* BitBarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		204D740D1EC5F89B00A21785 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		204D740E1EC5F89B00A21785 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		204D74111EC5F89B00A21785 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		204D74131EC5F89B00A21785 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		204D74141EC5F89B00A21785 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		204D74161EC5F89B00A21785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		204D741B1EC5F89B00A21785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-env.sh"; sourceTree = "<group>"; };
 		205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
 		205E3AA31EC3426A00BC8111 /* Parser.Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Text.swift; sourceTree = "<group>"; };
+		2063EFFE1EC5FB8F00A06D64 /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
+		2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BitBarHelper-Bridging-Header.h"; sourceTree = "<group>"; };
+		2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshPluginHandler.swift; sourceTree = "<group>"; };
 		206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.ChangePluginFolder.swift; path = Pref/Pref.ChangePluginFolder.swift; sourceTree = "<group>"; };
 		206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.CheckForUpdates.swift; path = Pref/Pref.CheckForUpdates.swift; sourceTree = "<group>"; };
 		206802071EBF20E200985920 /* Pref.GetPlugins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.GetPlugins.swift; path = Pref/Pref.GetPlugins.swift; sourceTree = "<group>"; };
@@ -210,7 +237,6 @@
 		20946B2C1E9EBF6800F7926D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20946B3A1E9EBF6800F7926D /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A4627E1E9EC03E00321D42 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		20A462801E9EC03E00321D42 /* Autostart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autostart.swift; sourceTree = "<group>"; };
 		20A462841E9EC03E00321D42 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		20A4628C1E9EC03E00321D42 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		20A4629C1E9EC03F00321D42 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -265,6 +291,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		204D74081EC5F89B00A21785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20946B261E9EBF6800F7926D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +395,29 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		204D740C1EC5F89B00A21785 /* BitBarHelper */ = {
+			isa = PBXGroup;
+			children = (
+				2063EFFE1EC5FB8F00A06D64 /* Main.xib */,
+				204D740D1EC5F89B00A21785 /* AppDelegate.h */,
+				204D740E1EC5F89B00A21785 /* AppDelegate.m */,
+				204D74131EC5F89B00A21785 /* ViewController.h */,
+				204D74141EC5F89B00A21785 /* ViewController.m */,
+				204D74161EC5F89B00A21785 /* Assets.xcassets */,
+				204D741B1EC5F89B00A21785 /* Info.plist */,
+				204D74101EC5F89B00A21785 /* Supporting Files */,
+			);
+			path = BitBarHelper;
+			sourceTree = "<group>";
+		};
+		204D74101EC5F89B00A21785 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				204D74111EC5F89B00A21785 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2079AB401E9EC1F9005B92AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +473,7 @@
 		20946B201E9EBF6800F7926D = {
 			isa = PBXGroup;
 			children = (
+				204D740C1EC5F89B00A21785 /* BitBarHelper */,
 				B3A1D5E8FDB3E45B7A2BE5A9 /* Frameworks */,
 				1297EBD0479AC7510F233FA6 /* Pods */,
 				2079AB401E9EC1F9005B92AD /* Resources */,
@@ -430,6 +487,7 @@
 			children = (
 				20946B291E9EBF6800F7926D /* BitBar.app */,
 				20946B3A1E9EBF6800F7926D /* Tests.xctest */,
+				204D740B1EC5F89B00A21785 /* BitBarHelper.app */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -437,6 +495,7 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */,
 				208962021EBC769100588C43 /* Script */,
 				20A2C2E31EBAB4D40085AE7B /* Pref */,
 				20DA49BE1EAAC4790070B4D9 /* Protocol */,
@@ -446,7 +505,6 @@
 				20946B2C1E9EBF6800F7926D /* AppDelegate.swift */,
 				208961FB1EBC765700588C43 /* Menu.swift */,
 				20A80A9E1EC23DA9000DFC31 /* Color.swift */,
-				20A462801E9EC03E00321D42 /* Autostart.swift */,
 				20DA49A71EAAC2C20070B4D9 /* Title.swift */,
 				20DA49A81EAAC2C20070B4D9 /* Tray.swift */,
 				20A462841E9EC03E00321D42 /* Buffer.swift */,
@@ -456,6 +514,7 @@
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
 				20A462A21E9EC03F00321D42 /* Result.swift */,
 				203180851EC1993000DF82B7 /* OpenPluginHandler.swift */,
+				2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -552,6 +611,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		204D740A1EC5F89B00A21785 /* BitBarHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 204D741E1EC5F89B00A21785 /* Build configuration list for PBXNativeTarget "BitBarHelper" */;
+			buildPhases = (
+				204D74071EC5F89B00A21785 /* Sources */,
+				204D74081EC5F89B00A21785 /* Frameworks */,
+				204D74091EC5F89B00A21785 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BitBarHelper;
+			productName = BitBarHelper;
+			productReference = 204D740B1EC5F89B00A21785 /* BitBarHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
 		20946B281E9EBF6800F7926D /* BitBar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20946B431E9EBF6800F7926D /* Build configuration list for PBXNativeTarget "BitBar" */;
@@ -563,6 +639,7 @@
 				7D544AB66E4B9B9BB6B323F1 /* [CP] Embed Pods Frameworks */,
 				6B9E068782976194D19BE073 /* [CP] Copy Pods Resources */,
 				208075A01EAE5B7800B6939A /* Embed Frameworks */,
+				204D741F1EC5F96600A21785 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -603,6 +680,11 @@
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				TargetAttributes = {
+					204D740A1EC5F89B00A21785 = {
+						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
 						ProvisioningStyle = Manual;
@@ -631,11 +713,21 @@
 			targets = (
 				20946B281E9EBF6800F7926D /* BitBar */,
 				20946B391E9EBF6800F7926D /* Tests */,
+				204D740A1EC5F89B00A21785 /* BitBarHelper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		204D74091EC5F89B00A21785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				204D74171EC5F89B00A21785 /* Assets.xcassets in Resources */,
+				2063EFFF1EC5FB8F00A06D64 /* Main.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20946B271E9EBF6800F7926D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,6 +860,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		204D74071EC5F89B00A21785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				204D74151EC5F89B00A21785 /* ViewController.m in Sources */,
+				204D74121EC5F89B00A21785 /* main.m in Sources */,
+				204D740F1EC5F89B00A21785 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20946B251E9EBF6800F7926D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -782,6 +884,7 @@
 				20DA49B71EAAC2CA0070B4D9 /* Data.swift in Sources */,
 				203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */,
 				203180761EBFC29800DF82B7 /* MenuEvent.swift in Sources */,
+				2063F0031EC63FB400A06D64 /* RefreshPluginHandler.swift in Sources */,
 				202698A21EC2D355008FD6AF /* Mutable.swift in Sources */,
 				20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */,
 				205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */,
@@ -811,7 +914,6 @@
 				20A462B51E9EC03F00321D42 /* App.swift in Sources */,
 				202EC6651EA62958003E1F9B /* Plugin.swift in Sources */,
 				20DA49AD1EAAC2C20070B4D9 /* Tray.swift in Sources */,
-				20A462B71E9EC03F00321D42 /* Autostart.swift in Sources */,
 				20DA49BC1EAAC2CA0070B4D9 /* NSRange.swift in Sources */,
 				20A462D31E9EC03F00321D42 /* Parser.swift in Sources */,
 				20946B2D1E9EBF6800F7926D /* AppDelegate.swift in Sources */,
@@ -867,6 +969,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		204D741C1EC5F89B00A21785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = BitBarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Source/BitBarHelper-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		204D741D1EC5F89B00A21785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = BitBarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Source/BitBarHelper-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		20946B411E9EBF6800F7926D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -967,7 +1107,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B55715E19F2DC9494FF6193 /* Pods-BitBar.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -992,7 +1131,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 816D5F724DB52ED4AADBA8A1 /* Pods-BitBar.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1055,6 +1193,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		204D741E1EC5F89B00A21785 /* Build configuration list for PBXNativeTarget "BitBarHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				204D741C1EC5F89B00A21785 /* Debug */,
+				204D741D1EC5F89B00A21785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		20946B241E9EBF6800F7926D /* Build configuration list for PBXProject "BitBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -21,7 +21,7 @@ class PluginManager: Parent {
   private var errors = [Tray]() {
     didSet { verifyBar() }
   }
-  private var plugins = [Plugin]() {
+  internal var plugins = [Plugin]() {
     didSet { verifyBar() }
   }
 

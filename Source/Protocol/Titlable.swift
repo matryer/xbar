@@ -7,7 +7,7 @@ let barFont = FontType.bar.font
 let barWarn = ":warning:".emojified.styled(
   with: StringStyle(
     .font(barFont),
-    .baselineOffset(-2)
+    .baselineOffset(-1)
   )
 )
 

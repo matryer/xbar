@@ -1,5 +1,6 @@
 import Cocoa
 import Sparkle
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
@@ -7,7 +8,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
-  private var handler: OpenPluginHandler?
+  private let helperId = "com.getbitbar.com.BitBarHelper" as CFString
+  private let updater = SUUpdater.shared()
 
   func applicationDidFinishLaunching(_: Notification) {
     if App.isInTestMode() { return }
@@ -18,28 +20,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
   func on(_ event: MenuEvent) {
     switch event {
-    case .refreshAll:
-      self.loadPluginManager()
-    case .quitApplication:
-      NSApp.terminate(self)
+    case .refreshAll: loadPluginManager()
+    case .openWebsite: App.open(url: App.website)
+    case .openOnLogin: login(true)
+    case .doNotOpenOnLogin: login(false)
+    case let .openUrlInBrowser(url): App.open(url: url)
+    case .quitApplication: NSApp.terminate(self)
+    case .checkForUpdates: updater?.checkForUpdates(self)
     case .openPluginFolder:
       if let path = App.pluginPath {
         App.open(path: path)
       }
-    case .openWebsite:
-      App.open(url: App.website)
     case .changePluginPath:
       App.askAboutPluginPath { [weak self] in
         self?.loadPluginManager()
       }
-    case .checkForUpdates:
-      SUUpdater.shared().checkForUpdates(self)
-    case .openOnLogin:
-      App.update(autostart: true)
-    case .doNotOpenOnLogin:
-      App.update(autostart: false)
-    case let .openUrlInBrowser(url):
-      App.open(url: url)
     case let .openScriptInTerminal(path):
       App.openScript(inTerminal: path) { maybe in
         if let error = maybe {
@@ -67,6 +62,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     manager?.root = self
   }
 
+  private func login(_ state: Bool) {
+    SMLoginItemSetEnabled(helperId, state)
+  }
+
   @objc private func onDidWake() {
     loadPluginManager()
   }
@@ -82,9 +81,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
   private func setOpenUrlHandler() {
     eventManager.setEventHandler(self,
-      andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
-      forEventClass: AEEventClass(kInternetEventClass),
-      andEventID: AEEventID(kAEGetURL)
+                                 andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
+                                 forEventClass: AEEventClass(kInternetEventClass),
+                                 andEventID: AEEventID(kAEGetURL)
     )
     LSSetDefaultHandlerForURLScheme("bitbar" as CFString, App.id)
   }
@@ -102,8 +101,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
       return print("[Error] Could not get components from url \(string)")
     }
 
-    if components.host == "openPlugin" {
-      handler = OpenPluginHandler(components, parent: self)
+    guard let params = components.queryItems else {
+      return print("[Error] Could not read params from url ")
+    }
+
+    var queries = [String: String]()
+    for param in params {
+      queries[param.name] = param.value
+    }
+
+    switch components.host {
+    case .some("openPlugin"):
+      let _ = OpenPluginHandler(queries, parent: self)
+    case .some("refreshPlugin"):
+      if let pluginManager = manager {
+        let _ = RefreshPluginHandler(queries, manager: pluginManager)
+      } else {
+        print("[Error] Could not find any plugin manager")
+      }
+    case let other:
+      print("[Error] \(String(describing: other)) is not a supported protocol")
     }
   }
 }
+
+

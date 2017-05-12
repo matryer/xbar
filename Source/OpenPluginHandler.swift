@@ -5,24 +5,15 @@ import Cocoa
 class OpenPluginHandler: Parent {
   weak var root: Parent?
   private let fileManager = FileManager.default
-  private let components: NSURLComponents
+  private let queries: [String: String]
 
-  init(_ components: NSURLComponents, parent: Parent) {
-    self.components = components
+  init(_ queries: [String: String], parent: Parent) {
+    self.queries = queries
     self.root = parent
     handle()
   }
 
   private func handle() {
-    guard let params = components.queryItems else {
-      return print("[Error] Could not read params from url ")
-    }
-
-    var queries = [String: String]()
-    for param in params {
-      queries[param.name] = param.value
-    }
-
     guard let src = queries["src"] else {
       return print("[Error] Invalid plugin url, src=... not found")
     }
@@ -43,13 +34,15 @@ class OpenPluginHandler: Parent {
       return print("[Error] Could not get plugin dest folder")
     }
 
-    guard let destUrl = NSURL(scheme: "file", host: nil, path: destPath) else {
+    let urlComponents = NSURLComponents()
+    urlComponents.scheme = "file";
+    urlComponents.path = destPath
+
+    guard let destUrl = urlComponents.url else {
       return print("[Error] Could not get plugin dest folder")
     }
 
-    guard let destFile = destUrl.appendingPathComponent(pluginFileName) else {
-      return print("[Error] Could not append \(pluginFileName) to \(destPath)")
-    }
+    let destFile = destUrl.appendingPathComponent(pluginFileName)
 
     let alert = NSAlert()
     let trusted =

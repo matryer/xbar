@@ -4,7 +4,7 @@ import BonMot
 final class Title: NSMenu, Parent {
   weak var root: Parent?
   internal var headline: Immutable?
-  
+
   init(immutable title: Immutable, menus: [NSMenuItem] = []) {
     super.init(title: "")
     self.headline = title
@@ -17,7 +17,7 @@ final class Title: NSMenu, Parent {
   convenience init(_ text: Parser.Text, menus: [NSMenuItem]) {
     self.init(immutable: text.colorize(as: .bar), menus: menus)
   }
-  
+
   convenience init(title: String, menus: [NSMenuItem] = []) {
     self.init(immutable: title.immutable, menus: menus)
   }
@@ -32,7 +32,7 @@ final class Title: NSMenu, Parent {
   }
 
   convenience init(errors: [String]) {
-    self.init(immutable: barWarn, menus: errors.map { Menu(title: $0, submenus: []) })
+    self.init(immutable: barWarn, menus: errors.map { Menu(error: $0, submenus: []) })
   }
 
   convenience init(error: String) {

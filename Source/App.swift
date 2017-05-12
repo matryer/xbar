@@ -87,14 +87,6 @@ class App {
   }
 
   /**
-    Update wherever the application should start at login or not
-  */
-  static func update(autostart: Bool) {
-    Defaults[.startAtLogin] = autostart
-    if autostart { AutoLogin.on() } else { AutoLogin.off() }
-  }
-
-  /**
     Retrieve the absolute path for a resource
     I.e App.path(forResource: "sub.1m.sh")
   */

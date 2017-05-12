@@ -7,7 +7,7 @@ import Async
   - app delegate
   - plugin manager
 */
-class Plugin: Parent {
+class Plugin: NSObject, Parent {
   weak var root: Parent?
   internal let file: File
   internal let path: String
@@ -25,6 +25,7 @@ class Plugin: Parent {
     self.file = file
     self.path = path
     self.interval = Double(file.interval)
+    super.init()
     self.tray.root = self
   }
 
