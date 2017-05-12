@@ -1,4 +1,5 @@
 import Parser
+import Hue
 
 extension Parser.Color {
   var nscolor: NSColor {

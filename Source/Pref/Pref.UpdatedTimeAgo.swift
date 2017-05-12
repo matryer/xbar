@@ -2,15 +2,19 @@ import DateToolsSwift
 
 extension Pref {
   class UpdatedTimeAgo: MenuItem {
-    let since = Date()
+    let initAt = Date()
 
     required convenience init() {
-      self.init(title: "Never updated…", isClickable: false)
+      self.init(title: "Never ran", isClickable: false)
       touch()
     }
 
     func touch() {
-      set(title: "Updated " + since.timeAgoSinceNow.lowercased())
+      set(title: output)
+    }
+
+    private var output: String {
+      return "Updated " + initAt.timeAgoSinceNow.lowercased()
     }
   }
 }

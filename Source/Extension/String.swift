@@ -1,6 +1,23 @@
 import Foundation
 import Dollar
 
+enum FontType: String {
+  case bar
+  case item
+  var font: NSFont {
+    switch self {
+    case .bar:
+      return NSFont.menuBarFont(ofSize: 16)
+    case .item:
+      return NSFont.menuFont(ofSize: 0)
+    }
+  }
+
+  var size: Float {
+    return Float(font.pointSize)
+  }
+}
+
 extension String {
   /**
     Remove surrounding whitespace
@@ -31,7 +48,11 @@ extension String {
     return data(using: .utf8)!
   }
 
-  var mutable: Mutable {
-    return Mutable(withDefaultFont: self)
+  func mutable() -> Mutable {
+    return Mutable(string: self)
+  }
+
+  var immutable: Immutable {
+    return Immutable(string: self)
   }
 }

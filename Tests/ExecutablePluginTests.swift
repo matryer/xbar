@@ -1,6 +1,6 @@
 import Quick
-import Attr
 import Nimble
+import BonMot
 @testable import BitBar
 
 class ExecutablePluginTests: Helper {
@@ -10,14 +10,15 @@ class ExecutablePluginTests: Helper {
       let path = toFile("all.sh")
       let bar = TestBar()
       let plugin = ExecutablePlugin(path: path, file: file, item: bar)
-      let defaultFont = ".AppleSystemUIFont"
-      let defaultSize = 14
+      let defaultFont = ".SFNSText"
+      let defaultSize = Int(FontType.item.size)
+      let menuBarFontSize = Int(FontType.bar.size)
 
       item(plugin) { menu in
         context("top bar") {
           it("handles title") {
             expect(menu).to(have(title: "[Title]"))
-            expect(menu).to(have(size: defaultSize))
+            expect(menu).to(have(size: menuBarFontSize))
             expect(menu).to(have(font: defaultFont))
           }
         }
@@ -176,8 +177,7 @@ class ExecutablePluginTests: Helper {
             it("template image") {
               a(menu, at: [15]) { menu in
                 expect(menu).to(have(title: ""))
-                expect(menu).to(have(size: defaultSize))
-                expect(menu).to(have(font: defaultFont))
+                expect(menu).to(have(.noFont))
                 expect(menu).toNot(beClickable())
                 expect(menu).to(have(image: base64, isTemplate: true))
               }
@@ -186,8 +186,7 @@ class ExecutablePluginTests: Helper {
             it("handles normal") {
               a(menu, at: [16]) { menu in
                 expect(menu).to(have(title: ""))
-                expect(menu).to(have(size: defaultSize))
-                expect(menu).to(have(font: defaultFont))
+                expect(menu).to(have(.noFont))
                 expect(menu).toNot(beClickable())
                 expect(menu).to(have(image: base64, isTemplate: false))
               }
@@ -198,8 +197,7 @@ class ExecutablePluginTests: Helper {
             it("template image") {
               a(menu, at: [15]) { menu in
                 expect(menu).to(have(title: ""))
-                expect(menu).to(have(size: defaultSize))
-                expect(menu).to(have(font: defaultFont))
+                expect(menu).to(have(.noFont))
                 expect(menu).toNot(beClickable())
                 expect(menu).to(have(image: base64, isTemplate: true))
               }
@@ -208,8 +206,8 @@ class ExecutablePluginTests: Helper {
             it("handles normal") {
               a(menu, at: [16]) { menu in
                 expect(menu).to(have(title: ""))
-                expect(menu).to(have(size: defaultSize))
-                expect(menu).to(have(font: defaultFont))
+                // expect(menu).to(have(size: defaultSize))
+                expect(menu).to(have(.noFont))
                 expect(menu).toNot(beClickable())
                 expect(menu).to(have(image: base64, isTemplate: false))
               }
@@ -217,37 +215,35 @@ class ExecutablePluginTests: Helper {
           }
 
           context("url image") {
-            let url = "https://www.w3schools.com/css/img_flowers.jpg"
+            let url = "https://github.com/oleander/bitbar/raw/master/Resources/bitbar-2048.png"
 
             it("template image") {
               a(menu, at: [17]) { menu in
-                expect(menu).toEventually(have(title: ""))
-                expect(menu).to(have(size: defaultSize))
-                expect(menu).to(have(font: defaultFont))
+                expect(menu).toEventually(have(title: ""), timeout: 3000)
+                expect(menu).to(have(.noFont))
                 expect(menu).toNot(beClickable())
-                expect(menu).toEventually(have(imageUrl: url, isTemplate: true))
+                expect(menu).toEventually(have(imageUrl: url, isTemplate: true), timeout: 3000)
               }
             }
 
             it("handles normal") {
               a(menu, at: [18]) { menu in
-                expect(menu).toEventually(have(title: ""))
-                expect(menu).to(have(size: defaultSize))
-                expect(menu).to(have(font: defaultFont))
+                expect(menu).toEventually(have(title: ""), timeout: 3000)
+                expect(menu).to(have(.noFont))
                 expect(menu).toNot(beClickable())
-                expect(menu).toEventually(have(imageUrl: url, isTemplate: false))
+                expect(menu).toEventually(have(imageUrl: url, isTemplate: false), timeout: 3000)
               }
             }
           }
 
           context("ansi") {
-            let strike = "strikethrough".mutable().style(with: .strikethrough)
-            let space = " ".mutable()
-            let italic = "italic".mutable().style(with: .italic)
-            let bold = "bold".mutable().style(with: .bold)
-            let red = "red".mutable().style(with: .foreground(.red))
-            let car = ":car:".mutable()
-            let all = strike + space + italic + space + car + space + bold + space + red
+            let strike = "strikethrough".styled(with: StringStyle(.strikethrough(.styleSingle, .black)))
+            let space = " ".immutable
+//            let italic = "italic".styled(with: .italic)
+//            let bold = "bold".styled(with: .bold)
+            let red = "red".styled(with: StringStyle(.color(.red)))
+            let car = ":car:".immutable
+            let all = strike + space + car + space + red
             it("handles combination") {
               a(menu, at: [19]) { menu in
                 expect(menu).to(have(title: all))

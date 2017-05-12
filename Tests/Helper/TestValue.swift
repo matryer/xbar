@@ -4,4 +4,5 @@ enum TestValue {
   case noShortcut
   case noSubMenus
   case broadcasted([MenuEvent])
+  case noFont
 }

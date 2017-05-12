@@ -32,6 +32,7 @@ class PluginManager: Parent {
     self.path = path
     self.loadPlugins()
     self.verifyBar()
+    self.tray.root = self
   }
 
   /**
@@ -51,13 +52,12 @@ class PluginManager: Parent {
     switch fileFor(name: name) {
     case let Result.success(file, _):
       plugins.append(ExecutablePlugin(path: path, file: file))
-    case let Result.failure(lines):
+    case Result.failure:
       errors.append(Tray(errors: [
         "An error occurred while reading file \(name) from \(path)",
         "Should be on the form {name}.{number}{unit}.{ext}, i.e 'aFile.10d.sh'",
         "Read the official documentation for more information",
-        "Error message"
-      ] + lines))
+      ]))
     }
   }
 

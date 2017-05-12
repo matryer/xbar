@@ -1,16 +1,16 @@
-import Hue
 import Cocoa
-import AppKit
-import Async
-import EmitterKit
+import Alamofire
+import AlamofireImage
 import Parser
 
 class Menu: MenuItem, ScriptDelegate {
   typealias Param = Parser.Menu.Param
-  var paction: Action = .nop
-  var script: Script?
 
-  convenience init(image: Image, submenus: [NSMenuItem], params: [Param], action: Action) {
+  internal var paction: Action = .nop
+  private var script: Script?
+  private var imageRequest: DataRequest?
+
+  convenience init(image: Parser.Image, submenus: [NSMenuItem], params: [Param], action: Action) {
     switch image {
     case .base64:
       if let nsimage = image.nsImage {
@@ -18,7 +18,7 @@ class Menu: MenuItem, ScriptDelegate {
           image: nsimage,
           submenus: submenus,
           isAlternate: Menu.isAlt(params),
-          isChecked: Menu.isChecked(params),
+          isChecked: Menu.isChk(params),
           isClickable: action.isClickable
         )
       } else {
@@ -30,7 +30,7 @@ class Menu: MenuItem, ScriptDelegate {
           title: "Loading image…",
           submenus: submenus,
           isAlternate: Menu.isAlt(params),
-          isChecked: Menu.isChecked(params),
+          isChecked: Menu.isChk(params),
           isClickable: action.isClickable
         )
 
@@ -47,10 +47,10 @@ class Menu: MenuItem, ScriptDelegate {
     switch tail {
     case let .text(text, params, tails, action):
       self.init(
-        mutable: text.colorize,
+        immutable: text.colorize(as: .item),
         submenus: tails.map { $0.menuItem },
         isAlternate: Menu.isAlt(params),
-        isChecked: Menu.isChecked(params),
+        isChecked: Menu.isChk(params),
         isClickable: action.isClickable
       )
       self.paction = action
@@ -69,10 +69,7 @@ class Menu: MenuItem, ScriptDelegate {
     }
   }
 
-  func on(_ event: MenuItem) {
-    print("event: \(event) in menu: \(String(describing: root))")
-  }
-
+  // Called when user clicks the menu item
   override func onDidClick() {
     switch paction {
     case .nop: return
@@ -93,66 +90,38 @@ class Menu: MenuItem, ScriptDelegate {
     }
   }
 
+  // Background script succeded, send refresh request
   func scriptDidReceive(success: Script.Success) {
-    if shouldRefresh { broadcast(.refreshPlugin) }
+    switch paction {
+    case let .script(.background(_, _, events)) where events.has(.refresh):
+      broadcast(.refreshPlugin)
+    default:
+      break
+    }
   }
 
+  // Background script failed, send refresh request
   func scriptDidReceive(failure: Script.Failure) {
     set(error: String(describing: failure))
   }
 
-  private func set(error: String) {
-    attributedTitle = (":warning: ".emojified + error).mutable
-    broadcast(.didSetError)
-  }
-
+  // Download url as image and update self.image
   private func handle(url: URL, type: Parser.Image.Sort) {
-    Async.background { () -> ImageResult in
-      do {
-        return try .data(Data(contentsOf: url))
-      } catch(let error) {
-        return .error(error.localizedDescription)
-      }
-    }.background { result -> ImageResult in
-      switch result {
-      case let .data(data):
-        if let anImage = NSImage(data: data, isTemplate: type.isTemplate) {
-          return .image(anImage)
-        }
-        return .error("Could not download image from url")
-      default:
-        return result
-      }
-    }.main { result -> Void in
-      switch result {
-      case let .image(image):
-        self.image = image
-        self.title = ""
-        self.attributedTitle = Mutable(string: "")
-      case let .error(message):
-        self.set(error: message)
-      case .data:
-        preconditionFailure("[Bug] Invalid state. Data now allowed here")
+    imageRequest = Alamofire.request(url).responseImage { [weak self] response in
+      if let image = response.result.value {
+        image.isTemplate = type.isTemplate
+        self?.image = image
+        self?.title = ""
+        self?.attributedTitle = "".immutable
+      } else if let error = response.result.error {
+        self?.set(error: String(describing: error))
+      } else {
+        self?.set(error: "Could not download image from \(url)")
       }
     }
   }
 
-  private var shouldRefresh: Bool {
-    switch paction {
-    case let .script(.background(_, _, events)) where events.has(.refresh):
-      return true
-    case let .script(.foreground(_, events)) where events.has(.refresh):
-      return true
-    case let .href(_, events) where events.has(.refresh):
-      return true
-    case .refresh:
-      return true
-    default:
-      return false
-    }
-  }
-
-  static func isAlt(_ params: [Parser.Menu.Param]) -> Bool {
+  private static func isAlt(_ params: [Parser.Menu.Param]) -> Bool {
     return params.reduce(false) { acc, param in
       switch param {
       case .alternate:
@@ -163,7 +132,7 @@ class Menu: MenuItem, ScriptDelegate {
     }
   }
 
-  static func isChecked(_ params: [Parser.Menu.Param]) -> Bool {
+  private static func isChk(_ params: [Parser.Menu.Param]) -> Bool {
     return params.reduce(false) { acc, param in
       switch param {
       case .checked:

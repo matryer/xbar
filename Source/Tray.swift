@@ -5,17 +5,25 @@ import Cocoa
 /**
   Represents an item in the menu bar
 */
-class Tray: NSObject, NSMenuDelegate, Parent {
-  weak var root: Parent?
+
+
+class Tray: NSObject, NSMenuDelegate, Titlable {
+  var warningLabel = barWarn
+  var textFont = barFont
+  internal weak var root: Parent?
+  internal var originalTitle: NSAttributedString?
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
   private var ago: Pref.UpdatedTimeAgo?
   private var menu = NSMenu()
-  var item: MenuBar
+  private var item: MenuBar
   static internal var item: MenuBar {
     return Tray.center.statusItem(withLength: Tray.length)
   }
-  var isError = false
+  var attributedTitle: NSAttributedString? {
+    get { return item.attributedTitle }
+    set { item.attributedTitle = newValue }
+  }
 
   /**
     @title A title to be displayed in the menu bar
@@ -24,8 +32,8 @@ class Tray: NSObject, NSMenuDelegate, Parent {
   init(title: String, isVisible displayed: Bool = false, item: MenuBar = Tray.item) {
     self.item = item
     super.init()
-    set(headline: title.mutable)
     set(menu: menu)
+    set(title: title)
     if displayed { show() } else { hide() }
   }
 
@@ -38,24 +46,13 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     set(title: Title(errors: errors))
   }
 
-  private func set(menu: NSMenu) {
-    self.menu = menu
-    self.menu.delegate = self
-    item.menu = menu
-    menu.autoenablesItems = false
-    menu.delegate = self
-    setPrefs()
-    refresh()
-  }
-
-  func set(headline: NSAttributedString) {
-    isError = false
-    item.attributedTitle = headline
-  }
-
   func set(title: Title) {
-    set(headline: title.headline ?? "-".mutable)
     set(menu: title)
+    if let aTitle = title.headline {
+      set(title: aTitle)
+    } else {
+      set(title: "…")
+    }
   }
 
   /**
@@ -72,6 +69,15 @@ class Tray: NSObject, NSMenuDelegate, Parent {
     item.show()
   }
 
+  private func set(menu: NSMenu) {
+    self.menu = menu
+    self.menu.delegate = self
+    item.menu = menu
+    menu.autoenablesItems = false
+    menu.delegate = self
+    setPrefs()
+  }
+
   private func add(sub: NSMenuItem) {
     sub.root = self
     menu.addItem(sub)
@@ -86,7 +92,7 @@ class Tray: NSObject, NSMenuDelegate, Parent {
   }
 
   internal func menuWillOpen(_ menu: NSMenu) {
-    refresh()
+    ago?.touch()
     item.highlightMode = true
   }
 
@@ -95,25 +101,11 @@ class Tray: NSObject, NSMenuDelegate, Parent {
   }
 
   func on(_ event: MenuEvent) {
-    if isError { return }
     switch event {
     case .didSetError:
-      if let title = item.attributedTitle {
-        let newTitle = "(:warning:) ".emojified.mutable
-        newTitle.append(title)
-        set(headline: newTitle)
-      } else {
-        /* TODO: Handle this edge case better */
-        print("[Bug] Title not set, invalid state")
-      }
-
-      isError = true
+      set(error: true)
     default:
       break
     }
-  }
-
-  internal func refresh() {
-    ago?.touch()
   }
 }

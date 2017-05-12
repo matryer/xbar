@@ -1,9 +1,8 @@
 import Quick
+import Ansi
 import Cent
 import Parser
 import Nimble
-import Attr
-import Ansi
 import Async
 @testable import BitBar
 
@@ -181,16 +180,16 @@ func have(title: String) -> Predicate<Menuable> {
   }
 }
 
-func have(title: Mutable) -> Predicate<Menuable> {
+func have(title: Immutable) -> Predicate<Menuable> {
   return verify("have mutable title \(title.string)") { menu in
     /* TODO Test Menuable properly */
     return .bool(title.string == menu.banner.string, menu.banner)
   }
 }
 
-func have(font: String) -> Predicate<Menuable> {
+func have(font: String?) -> Predicate<Menuable> {
   return verify("have font \(font)") { menu in
-    return .bool(font == menu.banner.fontName, menu.banner.fontName)
+    return .bool(font == menu.banner.fontName, menu.banner.fontName ?? "no font")
   }
 }
 
@@ -232,6 +231,8 @@ func have(_ value: TestValue)-> Predicate<Menuable> {
     return have(subMenuCount: 0)
   case let .broadcasted(events):
     return have(events: events)
+  case let .noFont:
+    return have(font: nil)
   }
 }
 
@@ -268,7 +269,7 @@ func beChecked() -> Predicate<Menuable> {
 
 func beTrimmed() -> Predicate<Menuable> {
   return verify("be trimmed") { menu in
-    return .bool(menu.banner == menu.banner.trimmed(), "unknown")
+    return .bool(menu.banner.string.trimmed() == menu.banner.string, "unknown")
   }
 }
 
@@ -342,3 +343,7 @@ func have(href: String) -> Predicate<Menuable> {
     }
   }
 }
+
+// func + (lhs: Immutable, rhs: Immutable) -> Immutable {
+//   return NSAttributedString.composed(of: [lhs, rhs])
+// }

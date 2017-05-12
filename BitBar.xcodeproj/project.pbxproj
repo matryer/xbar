@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2026989F1EC2D2DD008FD6AF /* Titlable.swift */; };
+		202698A21EC2D355008FD6AF /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202698A11EC2D355008FD6AF /* Mutable.swift */; };
 		202EC6251EA628F8003E1F9B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6211EA628F8003E1F9B /* Array.swift */; };
 		202EC6261EA628F8003E1F9B /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6221EA628F8003E1F9B /* NSAttributedString.swift */; };
 		202EC6281EA628F8003E1F9B /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6241EA628F8003E1F9B /* String.swift */; };
@@ -31,6 +33,7 @@
 		2037F42E1EAAB5340024F529 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42D1EAAB5340024F529 /* Method.swift */; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */; };
+		205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205E3AA31EC3426A00BC8111 /* Parser.Text.swift */; };
 		2068020F1EBF20E200985920 /* Pref.ChangePluginFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */; };
 		206802101EBF20E200985920 /* Pref.CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */; };
 		206802111EBF20E200985920 /* Pref.GetPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802071EBF20E200985920 /* Pref.GetPlugins.swift */; };
@@ -89,10 +92,8 @@
 		20A80AA51EC2431E000DFC31 /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA21EC2431D000DFC31 /* ClickEvent.swift */; };
 		20A80AA61EC2431E000DFC31 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA31EC2431E000DFC31 /* State.swift */; };
 		20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA41EC2431E000DFC31 /* TestValue.swift */; };
-		20D9EDD81EB9947A00BBA915 /* Text.Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDD71EB9947A00BBA915 /* Text.Param.swift */; };
 		20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDB1EB9951200BBA915 /* NSImage.swift */; };
 		20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */; };
-		20D9EDE01EB9956B00BBA915 /* Parser.Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDF1EB9956B00BBA915 /* Parser.Text.swift */; };
 		20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A71EAAC2C20070B4D9 /* Title.swift */; };
 		20DA49AD1EAAC2C20070B4D9 /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A81EAAC2C20070B4D9 /* Tray.swift */; };
 		20DA49B61EAAC2CA0070B4D9 /* CountableClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49AE1EAAC2CA0070B4D9 /* CountableClosedRange.swift */; };
@@ -133,6 +134,8 @@
 		02C15665F39567DE78C746B7 /* Pods-Travis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travis.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travis/Pods-Travis.release.xcconfig"; sourceTree = "<group>"; };
 		0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
 		201B5EE71EA355EA0059950E /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
+		2026989F1EC2D2DD008FD6AF /* Titlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Titlable.swift; path = Protocol/Titlable.swift; sourceTree = "<group>"; };
+		202698A11EC2D355008FD6AF /* Mutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
 		202EC6211EA628F8003E1F9B /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		202EC6221EA628F8003E1F9B /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		202EC6241EA628F8003E1F9B /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-env.sh"; sourceTree = "<group>"; };
 		205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
+		205E3AA31EC3426A00BC8111 /* Parser.Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Text.swift; sourceTree = "<group>"; };
 		206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.ChangePluginFolder.swift; path = Pref/Pref.ChangePluginFolder.swift; sourceTree = "<group>"; };
 		206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.CheckForUpdates.swift; path = Pref/Pref.CheckForUpdates.swift; sourceTree = "<group>"; };
 		206802071EBF20E200985920 /* Pref.GetPlugins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.GetPlugins.swift; path = Pref/Pref.GetPlugins.swift; sourceTree = "<group>"; };
@@ -213,17 +217,15 @@
 		20A4629D1E9EC03F00321D42 /* PathSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSelector.swift; sourceTree = "<group>"; };
 		20A462A21E9EC03F00321D42 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		20A80A9C1EC23D5E000DFC31 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuBar.swift; path = Protocol/MenuBar.swift; sourceTree = "<group>"; };
-		20A80A9E1EC23DA9000DFC31 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = ../Color.swift; sourceTree = "<group>"; };
+		20A80A9E1EC23DA9000DFC31 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		20A80AA01EC24265000DFC31 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Script.swift; path = Script/Script.swift; sourceTree = "<group>"; };
 		20A80AA21EC2431D000DFC31 /* ClickEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickEvent.swift; sourceTree = "<group>"; };
 		20A80AA31EC2431E000DFC31 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		20A80AA41EC2431E000DFC31 /* TestValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestValue.swift; sourceTree = "<group>"; };
 		20AA559E1EA35303008D23FF /* Tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tests.plist; sourceTree = "<group>"; };
 		20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro_Travis.framework; path = Pods/../build/Debug/Pods_Distro_Travis.framework; sourceTree = "<group>"; };
-		20D9EDD71EB9947A00BBA915 /* Text.Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.Param.swift; sourceTree = "<group>"; };
 		20D9EDDB1EB9951200BBA915 /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Color.swift; sourceTree = "<group>"; };
-		20D9EDDF1EB9956B00BBA915 /* Parser.Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Text.swift; sourceTree = "<group>"; };
 		20DA49A71EAAC2C20070B4D9 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		20DA49A81EAAC2C20070B4D9 /* Tray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tray.swift; sourceTree = "<group>"; };
 		20DA49AE1EAAC2CA0070B4D9 /* CountableClosedRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountableClosedRange.swift; sourceTree = "<group>"; };
@@ -296,6 +298,8 @@
 		202EC6201EA628CB003E1F9B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				205E3AA31EC3426A00BC8111 /* Parser.Text.swift */,
+				202698A11EC2D355008FD6AF /* Mutable.swift */,
 				203180791EBFC53C00DF82B7 /* Image.Sort.swift */,
 				2031807A1EBFC53C00DF82B7 /* Menu.Tail.swift */,
 				203180741EBFC29800DF82B7 /* MenuItem.swift */,
@@ -304,7 +308,6 @@
 				203180831EBFC54A00DF82B7 /* ImageResult.swift */,
 				203180731EBFC29800DF82B7 /* MenuEvent.swift */,
 				2031807D1EBFC53C00DF82B7 /* Parser.Image.swift */,
-				20A80A9E1EC23DA9000DFC31 /* Color.swift */,
 				20823E141EBD0C8500C8D468 /* NSStatusItem.swift */,
 				20DA49AE1EAAC2CA0070B4D9 /* CountableClosedRange.swift */,
 				20DA49AF1EAAC2CA0070B4D9 /* Data.swift */,
@@ -314,10 +317,8 @@
 				202EC6211EA628F8003E1F9B /* Array.swift */,
 				202EC6221EA628F8003E1F9B /* NSAttributedString.swift */,
 				202EC6241EA628F8003E1F9B /* String.swift */,
-				20D9EDD71EB9947A00BBA915 /* Text.Param.swift */,
 				20D9EDDB1EB9951200BBA915 /* NSImage.swift */,
 				20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */,
-				20D9EDDF1EB9956B00BBA915 /* Parser.Text.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -444,6 +445,7 @@
 				20A4627E1E9EC03E00321D42 /* App.swift */,
 				20946B2C1E9EBF6800F7926D /* AppDelegate.swift */,
 				208961FB1EBC765700588C43 /* Menu.swift */,
+				20A80A9E1EC23DA9000DFC31 /* Color.swift */,
 				20A462801E9EC03E00321D42 /* Autostart.swift */,
 				20DA49A71EAAC2C20070B4D9 /* Title.swift */,
 				20DA49A81EAAC2C20070B4D9 /* Tray.swift */,
@@ -491,6 +493,7 @@
 		20DA49BE1EAAC4790070B4D9 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				2026989F1EC2D2DD008FD6AF /* Titlable.swift */,
 				203180751EBFC29800DF82B7 /* Parent.swift */,
 				20A80A9C1EC23D5E000DFC31 /* MenuBar.swift */,
 				20DA49C21EAAC4820070B4D9 /* ScriptDelegate.swift */,
@@ -779,8 +782,9 @@
 				20DA49B71EAAC2CA0070B4D9 /* Data.swift in Sources */,
 				203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */,
 				203180761EBFC29800DF82B7 /* MenuEvent.swift in Sources */,
-				20D9EDE01EB9956B00BBA915 /* Parser.Text.swift in Sources */,
+				202698A21EC2D355008FD6AF /* Mutable.swift in Sources */,
 				20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */,
+				205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */,
 				206802161EBF20E200985920 /* Pref.RefreshAll.swift in Sources */,
 				206802111EBF20E200985920 /* Pref.GetPlugins.swift in Sources */,
 				202EC6261EA628F8003E1F9B /* NSAttributedString.swift in Sources */,
@@ -796,11 +800,11 @@
 				20A80A9D1EC23D5E000DFC31 /* MenuBar.swift in Sources */,
 				20A462C31E9EC03F00321D42 /* File.swift in Sources */,
 				206802121EBF20E200985920 /* Pref.OpenAtLogin.swift in Sources */,
-				20D9EDD81EB9947A00BBA915 /* Text.Param.swift in Sources */,
 				20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */,
 				208962051EBC769F00588C43 /* Failure.swift in Sources */,
 				203180861EC1993000DF82B7 /* OpenPluginHandler.swift in Sources */,
 				206802131EBF20E200985920 /* Pref.OpenPluginFolder.swift in Sources */,
+				202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */,
 				20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */,
 				203180821EBFC53C00DF82B7 /* Parser.Image.swift in Sources */,
 				20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */,
@@ -972,7 +976,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				NEW_SETTING = "";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
@@ -997,7 +1001,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				NEW_SETTING = "";
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
@@ -1018,6 +1022,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Resources/Tests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
@@ -1037,6 +1042,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Resources/Tests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;

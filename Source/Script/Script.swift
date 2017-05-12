@@ -42,6 +42,8 @@ class Script {
     if isRunning() {
       process?.terminate()
     }
+
+    center.removeObserver(self)
   }
   deinit { stop() }
 
@@ -141,7 +143,11 @@ class Script {
   }
 
   @objc private func didCallNotification() {
-    let data = handler!.availableData
+    guard let socket = handler else {
+      return print("[Log] No handler to call in didCallNotification()")
+    }
+
+    let data = socket.availableData
 
     if !data.isEOF() {
       buffer!.append(data: data)
@@ -159,7 +165,7 @@ class Script {
     } else if data.isEOF() {
       eofEvent()
     } else {
-      handler!.waitForDataInBackgroundAndNotify()
+      socket.waitForDataInBackgroundAndNotify()
     }
   }
 

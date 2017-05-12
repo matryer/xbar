@@ -1,13 +1,13 @@
 PODS:
   - Alamofire (4.4.0)
-  - Ansi (1.0.2):
-    - Attr
-    - Cent
-    - Dollar
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Ansi (1.0.6):
+    - BonMot
     - FootlessParser
     - Hue
   - AsyncSwift (2.0.1)
-  - Attr (1.0.1)
+  - BonMot (4.3.1)
   - Cent (6.0.3):
     - Dollar (~> 6.1.0)
   - DateToolsSwift (2.0.3)
@@ -32,9 +32,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - Ansi (from `https://github.com/oleander/Ansi.git`)
   - AsyncSwift
-  - Attr (from `https://github.com/oleander/Attr.git`)
+  - BonMot
   - Cent
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
   - EmitterKit
@@ -53,8 +54,6 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Ansi:
     :git: https://github.com/oleander/Ansi.git
-  Attr:
-    :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
     :git: https://github.com/MatthewYork/DateTools.git
   Files:
@@ -66,11 +65,8 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Ansi:
-    :commit: 10b705bcb4af36c9267157f9fa7d3175a000175a
+    :commit: 5da4664e7fff470b2ca730c59269c4d8744a334c
     :git: https://github.com/oleander/Ansi.git
-  Attr:
-    :commit: b815ed693c37dd6cbc9c30439349858666e26bd4
-    :git: https://github.com/oleander/Attr.git
   DateToolsSwift:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
@@ -86,9 +82,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  Ansi: c1c223f9dcc9d0a6dee474a809e24c8dfa3e829b
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Ansi: 0bb4c07821c891fc2c1022b16881fe641ec57ea7
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
-  Attr: 0145c20546093eff293a7ee457c14dfcf703d0cd
+  BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
@@ -106,6 +103,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: fcba55f7b26ae062e816f0ae024c4d6d0f761e67
+PODFILE CHECKSUM: a4332023d46a98cbace13cf9239b07bc982c8a17
 
 COCOAPODS: 1.2.1

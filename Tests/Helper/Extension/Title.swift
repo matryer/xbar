@@ -7,7 +7,7 @@ extension Title: Menuable {
   }
 
   var banner: Mutable {
-    return headline ?? Mutable(string: "")
+    return headline?.mutable ?? "".mutable()
   }
 
   var image: NSImage? { return nil }
