@@ -24,7 +24,6 @@
 		203180811EBFC53C00DF82B7 /* Parser.Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031807C1EBFC53C00DF82B7 /* Parser.Action.swift */; };
 		203180821EBFC53C00DF82B7 /* Parser.Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031807D1EBFC53C00DF82B7 /* Parser.Image.swift */; };
 		203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180831EBFC54A00DF82B7 /* ImageResult.swift */; };
-		203180861EC1993000DF82B7 /* OpenPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180851EC1993000DF82B7 /* OpenPluginHandler.swift */; };
 		203180881EC1A5AB00DF82B7 /* PreferenceMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180871EC1A5AB00DF82B7 /* PreferenceMenuTests.swift */; };
 		2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180891EC1A5B300DF82B7 /* MockParent.swift */; };
 		2037F3D21EAAB4770024F529 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3CB1EAAB4770024F529 /* File.swift */; };
@@ -40,7 +39,6 @@
 		205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */; };
 		205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205E3AA31EC3426A00BC8111 /* Parser.Text.swift */; };
 		2063EFFF1EC5FB8F00A06D64 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2063EFFE1EC5FB8F00A06D64 /* Main.xib */; };
-		2063F0031EC63FB400A06D64 /* RefreshPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */; };
 		2068020F1EBF20E200985920 /* Pref.ChangePluginFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */; };
 		206802101EBF20E200985920 /* Pref.CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */; };
 		206802111EBF20E200985920 /* Pref.GetPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802071EBF20E200985920 /* Pref.GetPlugins.swift */; };
@@ -100,6 +98,8 @@
 		20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA41EC2431E000DFC31 /* TestValue.swift */; };
 		20B316DA1EC7CFAC002DC7B8 /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316D91EC7CFAC002DC7B8 /* FontType.swift */; };
 		20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */; };
+		20B316DF1EC7D157002DC7B8 /* OpenPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */; };
+		20B316E11EC7D15F002DC7B8 /* RefreshPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */; };
 		20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDB1EB9951200BBA915 /* NSImage.swift */; };
 		20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */; };
 		20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A71EAAC2C20070B4D9 /* Title.swift */; };
@@ -169,7 +169,6 @@
 		2031807C1EBFC53C00DF82B7 /* Parser.Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Action.swift; sourceTree = "<group>"; };
 		2031807D1EBFC53C00DF82B7 /* Parser.Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Image.swift; sourceTree = "<group>"; };
 		203180831EBFC54A00DF82B7 /* ImageResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResult.swift; path = ../ImageResult.swift; sourceTree = "<group>"; };
-		203180851EC1993000DF82B7 /* OpenPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenPluginHandler.swift; sourceTree = "<group>"; };
 		203180871EC1A5AB00DF82B7 /* PreferenceMenuTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceMenuTests.swift; sourceTree = "<group>"; };
 		203180891EC1A5B300DF82B7 /* MockParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockParent.swift; sourceTree = "<group>"; };
 		2037F3CB1EAAB4770024F529 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -190,7 +189,6 @@
 		205E3AA31EC3426A00BC8111 /* Parser.Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Text.swift; sourceTree = "<group>"; };
 		2063EFFE1EC5FB8F00A06D64 /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
 		2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BitBarHelper-Bridging-Header.h"; sourceTree = "<group>"; };
-		2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshPluginHandler.swift; sourceTree = "<group>"; };
 		206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.ChangePluginFolder.swift; path = Pref/Pref.ChangePluginFolder.swift; sourceTree = "<group>"; };
 		206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.CheckForUpdates.swift; path = Pref/Pref.CheckForUpdates.swift; sourceTree = "<group>"; };
 		206802071EBF20E200985920 /* Pref.GetPlugins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.GetPlugins.swift; path = Pref/Pref.GetPlugins.swift; sourceTree = "<group>"; };
@@ -254,6 +252,8 @@
 		20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro_Travis.framework; path = Pods/../build/Debug/Pods_Distro_Travis.framework; sourceTree = "<group>"; };
 		20B316D91EC7CFAC002DC7B8 /* FontType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
 		20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
+		20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenPluginHandler.swift; path = Handler/OpenPluginHandler.swift; sourceTree = "<group>"; };
+		20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefreshPluginHandler.swift; path = Handler/RefreshPluginHandler.swift; sourceTree = "<group>"; };
 		20D9EDDB1EB9951200BBA915 /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Color.swift; sourceTree = "<group>"; };
 		20DA49A71EAAC2C20070B4D9 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
@@ -500,8 +500,7 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				20B316D91EC7CFAC002DC7B8 /* FontType.swift */,
-				2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */,
+				20B316DD1EC7D128002DC7B8 /* Handler */,
 				208962021EBC769100588C43 /* Script */,
 				20A2C2E31EBAB4D40085AE7B /* Pref */,
 				20DA49BE1EAAC4790070B4D9 /* Protocol */,
@@ -513,13 +512,13 @@
 				20A80A9E1EC23DA9000DFC31 /* Color.swift */,
 				20DA49A71EAAC2C20070B4D9 /* Title.swift */,
 				20DA49A81EAAC2C20070B4D9 /* Tray.swift */,
+				20B316D91EC7CFAC002DC7B8 /* FontType.swift */,
 				20A462841E9EC03E00321D42 /* Buffer.swift */,
 				20A4628C1E9EC03E00321D42 /* File.swift */,
 				20A4629C1E9EC03F00321D42 /* Parser.swift */,
 				20DA49CB1EAAC88E0070B4D9 /* Alias.swift */,
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
 				20A462A21E9EC03F00321D42 /* Result.swift */,
-				203180851EC1993000DF82B7 /* OpenPluginHandler.swift */,
 				2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */,
 			);
 			path = Source;
@@ -553,6 +552,15 @@
 				2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */,
 			);
 			name = Pref;
+			sourceTree = "<group>";
+		};
+		20B316DD1EC7D128002DC7B8 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */,
+				20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */,
+			);
+			name = Handler;
 			sourceTree = "<group>";
 		};
 		20DA49BE1EAAC4790070B4D9 /* Protocol */ = {
@@ -890,7 +898,6 @@
 				20DA49B71EAAC2CA0070B4D9 /* Data.swift in Sources */,
 				203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */,
 				203180761EBFC29800DF82B7 /* MenuEvent.swift in Sources */,
-				2063F0031EC63FB400A06D64 /* RefreshPluginHandler.swift in Sources */,
 				202698A21EC2D355008FD6AF /* Mutable.swift in Sources */,
 				20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */,
 				205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */,
@@ -911,7 +918,6 @@
 				206802121EBF20E200985920 /* Pref.OpenAtLogin.swift in Sources */,
 				20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */,
 				208962051EBC769F00588C43 /* Failure.swift in Sources */,
-				203180861EC1993000DF82B7 /* OpenPluginHandler.swift in Sources */,
 				206802131EBF20E200985920 /* Pref.OpenPluginFolder.swift in Sources */,
 				202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */,
 				20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */,
@@ -954,6 +960,7 @@
 				20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */,
 				2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */,
 				2037F3D21EAAB4770024F529 /* File.swift in Sources */,
+				20B316DF1EC7D157002DC7B8 /* OpenPluginHandler.swift in Sources */,
 				20823E0E1EBD0B8C00C8D468 /* NoMatch.swift in Sources */,
 				205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */,
 				20823E061EBD0B7400C8D468 /* Title.swift in Sources */,
@@ -963,6 +970,7 @@
 				20823E101EBD0B8C00C8D468 /* TestBar.swift in Sources */,
 				2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */,
 				20823E051EBD0B7400C8D468 /* Script.Result.swift in Sources */,
+				20B316E11EC7D15F002DC7B8 /* RefreshPluginHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
