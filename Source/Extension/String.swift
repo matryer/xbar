@@ -1,24 +1,15 @@
 import Foundation
 import Dollar
 
-enum FontType: String {
-  case bar
-  case item
-  var font: NSFont {
-    switch self {
-    case .bar:
-      return NSFont.menuBarFont(ofSize: 0)
-    case .item:
-      return NSFont.menuFont(ofSize: 0)
+extension String {
+  func truncated(_ length: Int, trailing: String = "…") -> String {
+    if characters.count > length {
+      return self[0..<length] + trailing
+    } else {
+      return self
     }
   }
 
-  var size: Float {
-    return Float(font.pointSize)
-  }
-}
-
-extension String {
   /**
     Remove surrounding whitespace
   */

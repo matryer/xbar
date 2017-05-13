@@ -98,6 +98,8 @@
 		20A80AA51EC2431E000DFC31 /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA21EC2431D000DFC31 /* ClickEvent.swift */; };
 		20A80AA61EC2431E000DFC31 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA31EC2431E000DFC31 /* State.swift */; };
 		20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA41EC2431E000DFC31 /* TestValue.swift */; };
+		20B316DA1EC7CFAC002DC7B8 /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316D91EC7CFAC002DC7B8 /* FontType.swift */; };
+		20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */; };
 		20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDB1EB9951200BBA915 /* NSImage.swift */; };
 		20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */; };
 		20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A71EAAC2C20070B4D9 /* Title.swift */; };
@@ -250,6 +252,8 @@
 		20A80AA41EC2431E000DFC31 /* TestValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestValue.swift; sourceTree = "<group>"; };
 		20AA559E1EA35303008D23FF /* Tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tests.plist; sourceTree = "<group>"; };
 		20B1F31F1EA35A8700299A87 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro_Travis.framework; path = Pods/../build/Debug/Pods_Distro_Travis.framework; sourceTree = "<group>"; };
+		20B316D91EC7CFAC002DC7B8 /* FontType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
+		20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		20D9EDDB1EB9951200BBA915 /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Color.swift; sourceTree = "<group>"; };
 		20DA49A71EAAC2C20070B4D9 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
@@ -387,6 +391,7 @@
 		2037F3C31EAAB43F0024F529 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */,
 				20823E011EBD0B7400C8D468 /* Menu.swift */,
 				20823E021EBD0B7400C8D468 /* Script.Result.swift */,
 				20823E031EBD0B7400C8D468 /* Title.swift */,
@@ -495,6 +500,7 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				20B316D91EC7CFAC002DC7B8 /* FontType.swift */,
 				2063F0011EC6139A00A06D64 /* RefreshPluginHandler.swift */,
 				208962021EBC769100588C43 /* Script */,
 				20A2C2E31EBAB4D40085AE7B /* Pref */,
@@ -924,6 +930,7 @@
 				20A80AA11EC24265000DFC31 /* Script.swift in Sources */,
 				208962061EBC769F00588C43 /* Success.swift in Sources */,
 				206802181EBF20E200985920 /* Pref.UpdatedTimeAgo.swift in Sources */,
+				20B316DA1EC7CFAC002DC7B8 /* FontType.swift in Sources */,
 				20DA49B81EAAC2CA0070B4D9 /* DefaultsKeys.swift in Sources */,
 				203180811EBFC53C00DF82B7 /* Parser.Action.swift in Sources */,
 				20DA49B61EAAC2CA0070B4D9 /* CountableClosedRange.swift in Sources */,
@@ -944,6 +951,7 @@
 				20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */,
 				20A80AA61EC2431E000DFC31 /* State.swift in Sources */,
 				2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */,
+				20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */,
 				2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */,
 				2037F3D21EAAB4770024F529 /* File.swift in Sources */,
 				20823E0E1EBD0B8C00C8D468 /* NoMatch.swift in Sources */,
