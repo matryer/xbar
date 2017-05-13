@@ -18,7 +18,7 @@ class Pro {
     I.e a-file.10d.sh
   */
   internal static func getFile() -> P<File> {
-    let time = curry(toTime) <^> digits() <*> count(1, oneOf("smhd"))
+    let time = curry({ ($0, $1) }) <^> digits() <*> count(1, oneOf("smhd")) >>- toTime
     let rest = oneOrMore(any())
     let name = til(["."], empty: false) <* string(".")
     let ext = string(".") *> rest
@@ -58,7 +58,7 @@ class Pro {
   }
 
   private static func anyOf(_ these: [String]) -> P<String> {
-    if these.isEmpty { preconditionFailure("Min 1 arg") }
+    if these.isEmpty { preconditionFailure("[Bug] Min 1 arg") }
     if these.count == 1 { return string(these[0]) }
     return these[1..<these.count].reduce(string(these[0])) { acc, str in
       return acc <|> string(str)
@@ -91,18 +91,18 @@ class Pro {
     return oneOrMore(parser)
   }
 
-  private static func toTime(_ value: Int, _ unit: String) -> Int {
-    switch unit {
-    case "s":
-      return value
-    case "m":
-      return toTime(value * 60, "s")
-    case "h":
-      return toTime(value * 60, "m")
-    case "d":
-      return toTime(value * 24, "h")
+  private static func toTime(input: (Int, String)) -> P<Int> {
+    switch input {
+    case let (time, "s"):
+      return pure(time)
+    case let (time, "m"):
+      return pure(time * 60)
+    case let (time, "h"):
+      return pure(time * 60 * 60)
+    case let (time, "d"):
+      return pure(time * 24 * 60 * 60)
     default:
-      preconditionFailure("Invalid unit: \(unit)")
+      return stop("Invalid unit '\(input.0)'")
     }
   }
 

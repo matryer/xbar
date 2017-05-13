@@ -26,7 +26,7 @@ extension String {
     return trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
-  /*  /**
+  /**
     Remove all occurrences of @what in @self
   */
   func remove(_ what: String) -> String {
