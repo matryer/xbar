@@ -221,7 +221,12 @@ extension Parser.Text {
 
   private func use(font: NSFont) -> Immutable {
     if params.has(.ansi) {
-     return cleanTitle.ansified(using: font).styled(with: StringStyle(endState))
+      do {
+        return try cleanTitle.ansified(using: font).styled(with: StringStyle(endState))
+      } catch let error {
+        print("[Error] Could not parse ansi: \(String(describing: error))")
+        return cleanTitle.styled(with: StringStyle(endState))
+      }
     } else {
       return cleanTitle.styled(with: StringStyle([.font(font)] + endState))
     }
