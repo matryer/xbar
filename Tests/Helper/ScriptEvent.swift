@@ -2,8 +2,7 @@ enum ScriptEvent: Equatable {
   case termination
   case success
   case unknown(String)
-  
-  
+
   public static func == (lhs: ScriptEvent, rhs: ScriptEvent) -> Bool {
     switch (lhs, rhs) {
     case (.termination, .termination):

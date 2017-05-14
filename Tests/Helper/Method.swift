@@ -19,7 +19,7 @@ func toPath(name: String, ext: String) -> String {
   if let out = bundle.path(forResource: name, ofType: ext) {
     return out
   }
-  
+
   let file = "\(name).\(ext)"
   print("[Error] !! Dont forget to add \(file) to the test target.")
   preconditionFailure("[Error] Could not find file \(file) in test target.")

@@ -21,7 +21,6 @@ class ScriptTests: Helper {
         expect("args.sh".withArgs(["1", "2", "3"])).toEventually(succeed(with: "1 2 3\n"))
       }
 
-
       it("handles file with space in name") {
         expect("space script.sh").toEventually(succeed(with: "Hello\n"))
       }

@@ -335,7 +335,6 @@ func execute(path: String, args: [String] = [], autostart: Bool = true) -> (Fake
   return (delegate, script)
 }
 
-
 func crash(with message: String) -> Predicate<String> {
   return result(in: .fail(.crash(message)), message: "crash with \(message.inspected())")
 }

@@ -1,4 +1,4 @@
-  import Quick
+import Quick
 import Files
 import Nimble
 import BonMot
@@ -553,7 +553,7 @@ class ExecutablePluginTests: Helper {
               context("updated time ago") {
                 a(menu, at: [menu.items.count - 3]) { menu in
                   beforeEach { menu.onWillBecomeVisible() }
-                  
+
                   it("should have the proper title") {
                     expect(menu).toEventually(contain(title: "Updated"))
                   }
