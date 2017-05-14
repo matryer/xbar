@@ -16,14 +16,8 @@ class RefreshPluginHandler {
       return print("[Error] Name not specified for refreshPlugin")
     }
 
-    let plugins = manager.plugins.filter { plugin in
-      return NSPredicate(format: "description LIKE %@", name).evaluate(with: plugin)
-    }
-
-    for plugin in plugins {
+    for plugin in manager.plugins(byName: name) {
       plugin.refresh()
     }
-
-    print("[Log] Found \(plugins.count) plugins to reload")
   }
 }

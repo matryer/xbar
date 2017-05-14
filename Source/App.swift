@@ -1,7 +1,6 @@
 import Foundation
 import Async
 import SwiftyUserDefaults
-import EmitterKit
 
 /**
   Global values and helpers
@@ -144,8 +143,4 @@ class App {
   }
 
   private static let currentBundle = Bundle.main
-  private static let quitEvent = Event<Void>()
-  private static let changePathEvent = Event<Void>()
-  private static let refreshEvent = Event<Void>()
-  private static var listeners = [Listener]()
 }

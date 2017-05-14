@@ -1,20 +1,22 @@
-import Quick
+  import Quick
+import Files
 import Nimble
 import BonMot
 @testable import BitBar
 
+func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+  return NSAttributedString.composed(of: [lhs, rhs])
+}
+
+let aFile = toPath(name: "all.20m", ext: "sh")
 class ExecutablePluginTests: Helper {
   override func spec() {
     context("manual script") {
-      let file = File("test", 10000, "sh")
-      let path = toFile("all.sh")
-      let bar = TestBar()
-      let plugin = ExecutablePlugin(path: path, file: file, item: bar)
       let defaultFont = ".SFNSText"
       let defaultSize = Int(FontType.item.size)
       let menuBarFontSize = Int(FontType.bar.size)
 
-      item(plugin) { menu in
+      item { menu in
         context("top bar") {
           it("handles title") {
             expect(menu).to(have(title: "[Title]"))
@@ -548,10 +550,12 @@ class ExecutablePluginTests: Helper {
             }
 
             context("default menu items") {
-              context("run in terminal") {
+              context("updated time ago") {
                 a(menu, at: [menu.items.count - 3]) { menu in
+                  beforeEach { menu.onWillBecomeVisible() }
+                  
                   it("should have the proper title") {
-                    expect(menu).to(have(title: "Updated just now"))
+                    expect(menu).toEventually(contain(title: "Updated"))
                   }
 
                   it("should not be clickable") {
@@ -604,10 +608,6 @@ class ExecutablePluginTests: Helper {
 
                   it("should be clickable") {
                     expect(menu).to(beClickable())
-                  }
-
-                  it("should have no submenus") {
-                    expect(menu).to(have(subMenuCount: 10))
                   }
 
                   it("should not broadcast anything") {

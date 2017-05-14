@@ -10,7 +10,8 @@ extension Action {
     }
   }
 
-  var isClickable: Bool {
-    return !isNop
+  var isClickable: Bool? {
+    if isNop { return nil }
+    return true
   }
 }

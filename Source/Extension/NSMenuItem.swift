@@ -33,4 +33,5 @@ extension NSMenuItem {
       return isSeparatorItem
     }
   }
+  func onWillBecomeVisible() {}
 }

@@ -1,17 +1,22 @@
 import AppKit
 import BonMot
-func + (lhs: Immutable, rhs: Immutable) -> Immutable {
-  return NSAttributedString.composed(of: [lhs, rhs])
-}
 
 class MenuItem: NSMenuItem, Titlable {
   var warningLabel = menuWarn
   var textFont = menuFont
+  var isManualClickable: Bool?
   weak var _root: Parent?
   internal var originalTitle: NSAttributedString?
   var isChecked: Bool {
     get { return NSOnState == state }
     set { state = newValue ? NSOnState : NSOffState }
+  }
+  var isClickable: Bool {
+    return validateMenuItem(self)
+  }
+
+  convenience init() {
+    self.init(title: "…")
   }
 
   init(
@@ -31,8 +36,7 @@ class MenuItem: NSMenuItem, Titlable {
     target = self
     set(title: immutable)
     if !submenus.isEmpty {
-      submenu = NSMenu()
-      submenu?.autoenablesItems = false
+      submenu = MenuBase()
       for sub in submenus {
         sub.root = self
         submenu?.addItem(sub)
@@ -40,12 +44,28 @@ class MenuItem: NSMenuItem, Titlable {
     }
 
     self.isChecked = isChecked
-    self.isEnabled = state(isClickable: isClickable)
+    self.isManualClickable = isClickable
 
     if isAlternate {
       self.isAlternate = true
       keyEquivalentModifierMask = NSAlternateKeyMask
     }
+  }
+
+  override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    if let state = isManualClickable {
+      return state
+    }
+
+    if hasSubmenu {
+      return true
+    }
+
+    if isSeparator {
+      return false
+    }
+
+    return !keyEquivalent.isEmpty
   }
 
   convenience init(errors: [String], submenus: [NSMenuItem] = []) {
@@ -57,7 +77,7 @@ class MenuItem: NSMenuItem, Titlable {
       menuWarn,
       Special.noBreakSpace,
       error.immutable
-    ]), submenus: submenus)
+    ]), submenus: submenus, isClickable: false)
   }
 
   convenience init(
@@ -96,26 +116,6 @@ class MenuItem: NSMenuItem, Titlable {
      isClickable: isClickable,
      shortcut: shortcut
     )
-  }
-
-  private func state(isClickable: Bool?) -> Bool {
-    if let sub = submenu {
-      return sub.numberOfItems != 0
-    }
-
-    if isSeparator {
-      return false
-    }
-
-    if !keyEquivalent.isEmpty {
-      return true
-    }
-
-    if let state = isClickable {
-      return state
-    } else {
-      return true
-    }
   }
 
   required init(coder decoder: NSCoder) {

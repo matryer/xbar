@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.4.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
-  - Ansi (1.0.6):
+  - Ansi (2.0.0):
     - BonMot
     - FootlessParser
     - Hue
@@ -12,8 +12,7 @@ PODS:
     - Dollar (~> 6.1.0)
   - DateToolsSwift (2.0.3)
   - Dollar (6.1.0)
-  - EmitterKit (5.0.1)
-  - Emojize (6.0.8):
+  - Emojize (6.0.9):
     - Files
     - FootlessParser
     - SwiftyJSON
@@ -33,12 +32,11 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
-  - Ansi (from `https://github.com/oleander/Ansi.git`)
+  - Ansi
   - AsyncSwift
   - BonMot
   - Cent
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
-  - EmitterKit
   - Emojize
   - Files (from `https://github.com/JohnSundell/Files.git`)
   - FootlessParser
@@ -52,8 +50,6 @@ DEPENDENCIES:
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
-  Ansi:
-    :git: https://github.com/oleander/Ansi.git
   DateToolsSwift:
     :git: https://github.com/MatthewYork/DateTools.git
   Files:
@@ -64,9 +60,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/oleander/SwiftTryCatch.git
 
 CHECKOUT OPTIONS:
-  Ansi:
-    :commit: 5da4664e7fff470b2ca730c59269c4d8744a334c
-    :git: https://github.com/oleander/Ansi.git
   DateToolsSwift:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
@@ -83,14 +76,13 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
-  Ansi: 0bb4c07821c891fc2c1022b16881fe641ec57ea7
+  Ansi: bea16ca189274e44fda6550433983f35119ac367
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
-  EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
-  Emojize: 182b9ad9f7108a8b18ec28a642aea239e72db2b7
+  Emojize: 1935550e6aeb5bd755ab8e4e1999017846a6be14
   Files: 7833a7457be5e6482b563cb0e68075bc13735f22
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
@@ -103,6 +95,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: a4332023d46a98cbace13cf9239b07bc982c8a17
+PODFILE CHECKSUM: 58af01e72c6f4de725c52dd911b4058e71e70ae1
 
 COCOAPODS: 1.2.1

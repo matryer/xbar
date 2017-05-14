@@ -6,24 +6,19 @@ let base64 = "R0lGODlhPQBEAPeoAJosM//AwO/AwHVYZ/z595kzAP/s7P+goOXMv8+fhw/v739/f+
 
 class Helper: QuickSpec {
   public func match<T>(_ parser: P<T>, _ input: String, block: (T) -> Void) {
-    switch Pro.parse(parser, input) {
-    case let Result.success(result, _):
+    switch File.parse(parser, input) {
+    case let File.Result.success(result):
       block(result)
-    case let Result.failure(lines):
-      print("warning: Failed parsing")
-      print("warning: Could not parse: ", input.inspected())
-      for error in lines {
-        print("warning:", error.inspected())
-      }
-      fail("Could not parse: " + input)
+    case File.Result.failure:
+      fail("Could not parse: " + input.inspected())
     }
   }
 
   public func failure<T>(_ parser: P<T>, _ input: String) {
-    switch Pro.parse(parser, input) {
-    case Result.success:
+    switch File.parse(parser, input) {
+    case File.Result.success:
      fail("Expected failure success")
-    case Result.failure:
+    case File.Result.failure:
       break /* OK */
     }
   }

@@ -63,7 +63,7 @@ class Menu: MenuItem, ScriptDelegate {
       )
       self.paction = action
     case .separator:
-      preconditionFailure("Tails as separators isn't supported")
+      preconditionFailure("[Bug] Tails as separators isn't supported")
     case let .error(messages, _):
       self.init(errors: messages)
     }

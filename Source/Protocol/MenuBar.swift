@@ -1,6 +1,5 @@
 import AppKit
 
-
 // Represents an instance of NSStatusBarItem
 protocol MenuBar {
   var menu: NSMenu? { get set }
