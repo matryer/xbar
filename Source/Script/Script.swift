@@ -45,19 +45,22 @@ class Script {
     return process?.isRunning ?? false
   }
 
-  /**
-    Stop all running tasks started by this instance
-  */
-  func stop() {
-    if isRunning() {
+  private func terminate() {
+    SwiftTryCatch.tryRun({ [weak process] in
       process?.terminate()
-    }
+    }, catchRun: { error in
+      print("[Error] Could not terminate due to \(String(describing: error)) script")
+    }, finallyRun: {
+      /* NOP */
+    })
+  }
 
+  func stop() {
+    if isRunning() { terminate() }
     center.removeObserver(self)
   }
-  deinit { stop() }
 
-  /**
+    /**
     Restart script. Does not wait until running script finishes
   */
   func restart() {
@@ -91,11 +94,9 @@ class Script {
     process?.standardOutput = pipe
     process?.standardError = pipe
 
-    setEnv(process!)
+    setDefaultEnv()
     process?.terminationHandler = { [weak self] _ in
-      if let this = self {
-        this.terminateEvent()
-      }
+      self?.terminateEvent()
     }
 
     center.addObserver(
@@ -108,9 +109,7 @@ class Script {
     handler!.waitForDataInBackgroundAndNotify()
 
     SwiftTryCatch.tryRun({ [weak self] in
-      if let this = self {
-        this.process?.launch()
-      }
+      self?.process?.launch()
     }, catchRun: { [weak self] in
       if let this = self {
         if let message = $0?.reason {
@@ -128,15 +127,44 @@ class Script {
     failed(.crash(message))
   }
 
-  private func setEnv(_ process: Process) {
-    guard let key = kCFBundleVersionKey else { return }
-    guard let version = Bundle.main.object(forInfoDictionaryKey: key as String) else { return }
-    guard let versionStr = version as? String else { return }
+  private func setDefaultEnv() {
+    setEnv(key: "BitBar", value: "true")
+
+    if isDarkMode {
+      setEnv(key: "BitBarDarkMode", value: "true")
+    }
+
+    if let version = self.version {
+      setEnv(key: "BitBarVersion", value: version)
+    }
+  }
+
+  private var version: String? {
+    guard let key = kCFBundleVersionKey else {
+      return nil
+    }
+
+    guard let version = Bundle.main.object(forInfoDictionaryKey: key as String) else {
+      return nil
+    }
+
+    return version as? String
+  }
+
+  private var isDarkMode: Bool {
+    return UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
+  }
+
+  private func setEnv(key: String, value: String) {
+    guard let process = self.process else {
+      return print("[Error] Can't set \(key) with \(value), no process")
+    }
+
     if process.environment == nil {
       process.environment = [:]
     }
 
-    process.environment!["BitBarVersion"] = versionStr
+    process.environment![key] = value
   }
 
   private func succeeded(_ result: String, status: Int32) {
@@ -194,6 +222,7 @@ class Script {
     case let (.uncaughtSignal, code):
       failed(.exit(output, Int(code)))
     }
+
     buffer!.close()
   }
 

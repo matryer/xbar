@@ -1,161 +1,210 @@
-// import Quick
-// import Nimble
-// @testable import BitBar
-//
-// class ScriptTests: Helper {
-// override func spec() {
-//   describe("stdout") {
-//     it("handles base case") {
-//       testSucc("basic.sh", assumed: "Hello\n")
-//     }
-//
-//     it("handles sleep") {
-//       testSucc("sleep.sh", assumed: "sleep\n")
-//     }
-//
-//     it("handles args") {
-//       testSucc("args.sh", args: ["1", "2", "3"], assumed: "1 2 3\n")
-//     }
-//
-//     it("handles file with space in name") {
-//       testSucc("space script.sh", assumed: "Hello\n")
-//     }
-//   }
-//
-//   describe("stderr") {
-//     it("exit code 1, no output") {
-//       testFail("exit1-no-output.sh", assumed: "")
-//     }
-//
-//     it("exit code 1, with output") {
-//       testFail("exit1-output.sh", assumed: "Exit 1\n")
-//     }
-//   }
-//
-//   describe("env") {
-//     it("has BitBarVersion set") {
-//       testEnv(path: "version-env.sh", env: "BitBarVersion", value: "3.0.0")
-//     }
-//   }
-//
-//   describe("crash") {
-//     it("is missing shebang") {
-//       testCrash("missing-sh-bin.sh", assumed: "launch path not accessible")
-//     }
-//
-//     it("handles non-executable script") {
-//       testCrash("nonexec.sh", assumed: "launch path not accessible")
-//     }
-//
-//     it("handles non-existing file") {
-//       testCrash("does-not-exist.sh", assumed: "launch path not accessible")
-//     }
-//   }
-//
-//   describe("misuse") {
-//     it("handles invalid syntax") {
-//       testMisuse("invalid-syntax.sh", assumed: "syntax error: unexpected end of file")
-//     }
-//   }
-//
-//   describe("stream") {
-//     it("handles one output") {
-//       testStream("stream-nomore.sh", assumed: ["A\n~~~\n"])
-//     }
-//
-//     it("handles more then one") {
-//       testStream("stream-more.sh", assumed: ["A\n~~~\n", "B\n"])
-//     }
-//
-//     it("handles empty stream") {
-//       testStream("stream-nothing.sh", assumed: ["~~~\n"])
-//     }
-//
-//     it("handles sleep") {
-//       testStream("stream-sleep.sh", assumed: ["A\n~~~\n", "B\n"])
-//     }
-//   }
-//
-//   describe("start/stop") {
-//     let path = toFile("sleep.sh")
-//     it("doesn't auto start'") {
-//       var index = 0
-//       let del = ScriptDel() { result in
-//         expect(result).to(beASuccess())
-//         index += 1
-//       }
-//       _ = Script(path: path, delegate: del)
-//       expect(index).toEventuallyNot(beGreaterThan(0))
-//     }
-//
-//     it("should autostart") {
-//       var index = 0
-//       let del = ScriptDel() { result in
-//         expect(result).to(beASuccess())
-//         index += 1
-//       }
-//
-//       _ = Script(path: path, delegate: del, autostart: true)
-//       expect(index).toEventually(equal(1), timeout: 10)
-//     }
-//
-//     it("stop running task") {
-//       var index = 0
-//       let del = ScriptDel() { result in
-//         expect(result).to(beTerminated())
-//         index += 1
-//       }
-//       let script = Script(path: path, args: [], delegate: del, autostart: false)
-//       script.stop()
-//       expect(index).toEventuallyNot(beGreaterThan(0))
-//     }
-//
-//     it("should cancel already running scripts") {
-//       var index = 0
-//       let del = ScriptDel() { result in
-//         if index == 4 {
-//           expect(result).to(beASuccess())
-//         } else {
-//           expect(result).to(beTerminated())
-//         }
-//         index += 1
-//       }
-//       let script = Script(path: path, args: [], delegate: del, autostart: false)
-//
-//       for _ in 0..<5 {
-//         script.start()
-//       }
-//
-//       expect(index).toEventually(equal(5), timeout: timeout)
-//     }
-//
-//     it("should be able to restart script") {
-//       var index = 0
-//       let del = ScriptDel() { result in
-//         if index == 1 {
-//           expect(result).to(beASuccess())
-//         } else {
-//           expect(result).to(beTerminated())
-//         }
-//         index += 1
-//       }
-//
-//       let script = Script(path: path, args: [], delegate: del, autostart: true)
-//       script.restart()
-//       expect(index).toEventually(equal(2), timeout: timeout)
-//       expect(index).toEventuallyNot(beGreaterThan(2))
-//     }
-//
-//     it("should be able to stop a non running script") {
-//       var index = 0
-//       let del = ScriptDel() { result in
-//         index += 1
-//       }
-//       let script = Script(path: path, args: [], delegate: del, autostart: false)
-//
-//       script.stop()
-//       expect(index).toEventuallyNot(beGreaterThan(1))
-//     }
-//   }
-// }
-// }
+import Quick
+import Nimble
+@testable import BitBar
+
+class ScriptTests: Helper {
+  override func spec() {
+    beforeEach {
+      Nimble.AsyncDefaults.Timeout = 5
+    }
+
+    describe("stdout") {
+      it("handles base case") {
+        expect("basic.sh").toEventually(succeed(with: "Hello\n"))
+      }
+
+      it("handles sleep") {
+        expect("sleep.sh").toEventually(succeed(with: "sleep\n"))
+      }
+
+      it("handles args") {
+        expect("args.sh".withArgs(["1", "2", "3"])).toEventually(succeed(with: "1 2 3\n"))
+      }
+
+
+      it("handles file with space in name") {
+        expect("space script.sh").toEventually(succeed(with: "Hello\n"))
+      }
+
+      describe("env") {
+        it("should have BitBarVersion set") {
+          expect("version-env.sh").toEventually(succeed(with: "3.0.0\n"))
+        }
+
+        it("should not set BitBarDarkMode") {
+          expect("bitbar-dark-env.sh").toEventually(succeed(with: "\n"))
+        }
+
+        it("should have BitBar set") {
+          expect("bitbar-env.sh").toEventually(succeed(with: "true\n"))
+        }
+      }
+
+      describe("stream") {
+        it("handles one output") {
+          expect("stream-nomore.sh").toEventually(succeed(with: "A\n"))
+        }
+
+        it("handles more then one") {
+          expect("stream-more.sh").toEventually(succeed(with: ["A\n", "B\n"]))
+        }
+
+        it("handles empty stream") {
+          expect("stream-nothing.sh").toEventually(succeed(with: ""))
+        }
+
+        it("handles sleep") {
+          expect("stream-sleep.sh").toEventually(succeed(with: ["A\n", "B\n"]))
+        }
+      }
+    }
+
+    describe("stderr") {
+      describe("crash") {
+        it("is missing shebang") {
+          expect("missing-sh-bin.sh").toEventually(crash(with: "Couldn't posix_spawn: error 8"))
+        }
+
+        it("handles non-executable script") {
+          expect("nonexec.sh").toEventually(crash(with: "launch path not accessible"))
+        }
+
+        it("handles non-executable script") {
+          expect("does-not-exist.sh").toEventually(crash(with: "launch path not accessible"))
+        }
+      }
+
+      describe("misuse") {
+        it("handles invalid syntax") {
+          expect("invalid-syntax.sh").toEventually(crash(misuse: "syntax error: unexpected end of file"))
+        }
+      }
+
+      describe("status code") {
+        it("exit code 1, no output") {
+          expect("exit1-no-output.sh").toEventually(exit(with: "", andStatusCode: 1))
+        }
+
+        it("exit code 1, with output") {
+          expect("exit1-output.sh").toEventually(exit(with: "Exit 1\n", andStatusCode: 1))
+        }
+      }
+    }
+
+    describe("actions") {
+      let path = "sleep.sh"
+
+      describe("autostart") {
+        it("should not start automaticly if autostart = false") {
+          expect((path, false, [])).toNotEventually(have(events: [.success]))
+        }
+
+        it("should start automaticly if autostart = true") {
+          expect((path, true, [])).toEventually(have(events: [.success]))
+        }
+      }
+
+      describe("stop") {
+        it("should stop script and signal termination") {
+          expect((path, true, [.stop])).toEventually(have(events: []))
+          expect((path, true, [.stop])).toNotEventually(have(events: [.success]))
+          expect((path, true, [.stop])).toNotEventually(have(events: [.termination]))
+        }
+
+        it("should be able to stop a non running script") {
+          expect((path, false, [.stop])).toNotEventually(have(events: [.termination]))
+          expect((path, false, [.stop])).toNotEventually(have(events: [.success]))
+        }
+      }
+
+      describe("restart") {
+        it("should terminate and start on restart") {
+          expect((path, true, [.restart])).toEventually(have(events: [.success]))
+          expect((path, true, [.restart])).toNotEventually(have(events: [.termination]))
+        }
+      }
+
+      describe("start") {
+        it("should only run once (autostart=false)") {
+          expect((path, false, [.start, .start])).toEventually(have(events: [.success]))
+        }
+
+        it("should only run once (autostart=true)") {
+          expect((path, true, [.start, .start])).toEventually(have(events: [.success]))
+        }
+      }
+    }
+  }
+}
+
+func have(events: [ScriptEvent]) -> Predicate<(String, Bool, [ScriptAction])> {
+  let message = "have events \(events)"
+  var delegate: FakeScriptable!
+  var script: Script!
+  var hasInit = false
+
+  return verify(message) { params in
+    let (path, autostart, actions) = params
+    if !hasInit {
+      delegate = FakeScriptable()
+      script = Script(path: toFile(path), args: [], delegate: delegate, autostart: autostart)
+      hasInit = true
+      for action in actions {
+        print("Running action: \(action)")
+        switch action {
+        case .restart:
+          script.restart()
+        case .stop:
+          script.stop()
+        case .start:
+          script.start()
+        }
+      }
+    }
+
+    let result = delegate.result
+    let newEvents = result.reduce([ScriptEvent]()) { acc, out in
+      switch out {
+      case .succ:
+        return acc + [.success]
+      case .fail(.terminated):
+        return acc + [.termination]
+      default:
+        return acc + [.unknown(String(describing: out))]
+      }
+    }
+
+    if newEvents == events {
+      script.stop()
+    }
+
+    return .bool(newEvents == events, newEvents)
+  }
+}
+
+enum ScriptEvent: Equatable {
+  case termination
+  case success
+  case unknown(String)
+
+
+  public static func == (lhs: ScriptEvent, rhs: ScriptEvent) -> Bool {
+    switch (lhs, rhs) {
+    case (.termination, .termination):
+      return true
+    case (.success, .success):
+      return true
+    case let (.unknown(a1), .unknown(a2)):
+      return a1 == a2
+    default:
+      return false
+    }
+  }
+}
+
+enum ScriptAction: String {
+  case restart
+  case stop
+  case start
+}
+

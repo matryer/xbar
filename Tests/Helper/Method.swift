@@ -8,6 +8,7 @@ import Nimble
 let quotes =  ["\"", "'"]
 let slash = "\\"
 let timeout = 10.0
+let bundle = Bundle(for: ExecutablePluginTests.self)
 
 func toFile(_ path: String) -> String {
   let res = path.components(separatedBy: ".")
@@ -15,11 +16,13 @@ func toFile(_ path: String) -> String {
 }
 
 func toPath(name: String, ext: String) -> String {
-  if let out = Bundle(for: ExecutablePluginTests.self).path(forResource: name, ofType: ext) {
+  if let out = bundle.path(forResource: name, ofType: ext) {
     return out
   }
-
-  preconditionFailure("Could not find file: \(name).\(ext)")
+  
+  let file = "\(name).\(ext)"
+  print("[Error] !! Dont forget to add \(file) to the test target.")
+  preconditionFailure("[Error] Could not find file \(file) in test target.")
 }
 
 func escape(char: String) -> String {

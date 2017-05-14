@@ -62,7 +62,6 @@
 		2079ABAD1E9EC2B0005B92AD /* exit1-no-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079AB9B1E9EC2B0005B92AD /* exit1-no-output.sh */; };
 		2079ABAE1E9EC2B0005B92AD /* exit1-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079AB9C1E9EC2B0005B92AD /* exit1-output.sh */; };
 		2079ABAF1E9EC2B0005B92AD /* invalid-syntax.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079AB9D1E9EC2B0005B92AD /* invalid-syntax.sh */; };
-		2079ABB01E9EC2B0005B92AD /* missing-sh-bin.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079AB9E1E9EC2B0005B92AD /* missing-sh-bin.10m.sh */; };
 		2079ABB11E9EC2B0005B92AD /* nonexec.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079AB9F1E9EC2B0005B92AD /* nonexec.sh */; };
 		2079ABB21E9EC2B0005B92AD /* sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA01E9EC2B0005B92AD /* sleep.sh */; };
 		2079ABB31E9EC2B0005B92AD /* space script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA11E9EC2B0005B92AD /* space script.sh */; };
@@ -112,6 +111,14 @@
 		20DA49BC1EAAC2CA0070B4D9 /* NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49B41EAAC2CA0070B4D9 /* NSRange.swift */; };
 		20DA49C81EAAC4820070B4D9 /* ScriptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49C21EAAC4820070B4D9 /* ScriptDelegate.swift */; };
 		20DA49CC1EAAC88E0070B4D9 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49CB1EAAC88E0070B4D9 /* Alias.swift */; };
+		20FE3F671EC89F8E00FE9165 /* bitbar-dark-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FE3F631EC89F1B00FE9165 /* bitbar-dark-env.sh */; };
+		20FE3F681EC89F8E00FE9165 /* bitbar-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FE3F641EC89F1B00FE9165 /* bitbar-env.sh */; };
+		20FE3F6B1EC8AA1D00FE9165 /* missing-sh-bin.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20FE3F691EC8A9E600FE9165 /* missing-sh-bin.sh */; };
+		20FE3F6E1EC8E73F00FE9165 /* FakeScriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F6C1EC8E73F00FE9165 /* FakeScriptable.swift */; };
+		20FE3F6F1EC8E73F00FE9165 /* Std.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F6D1EC8E73F00FE9165 /* Std.swift */; };
+		20FE3F741EC8E74C00FE9165 /* Script.Success.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F711EC8E74C00FE9165 /* Script.Success.swift */; };
+		20FE3F751EC8E74C00FE9165 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F721EC8E74C00FE9165 /* String.swift */; };
+		20FE3F771EC8E77E00FE9165 /* Script.Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F701EC8E74C00FE9165 /* Script.Failure.swift */; };
 		B2A9464CD7E1311B14C764F3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DD874A725348FA9602A297 /* Pods_Tests.framework */; };
 		E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C460801E588526B1CBDDB /* Pods_BitBar.framework */; };
 /* End PBXBuildFile section */
@@ -213,7 +220,6 @@
 		2079AB9B1E9EC2B0005B92AD /* exit1-no-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-no-output.sh"; sourceTree = "<group>"; };
 		2079AB9C1E9EC2B0005B92AD /* exit1-output.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "exit1-output.sh"; sourceTree = "<group>"; };
 		2079AB9D1E9EC2B0005B92AD /* invalid-syntax.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "invalid-syntax.sh"; sourceTree = "<group>"; };
-		2079AB9E1E9EC2B0005B92AD /* missing-sh-bin.10m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "missing-sh-bin.10m.sh"; sourceTree = "<group>"; };
 		2079AB9F1E9EC2B0005B92AD /* nonexec.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = nonexec.sh; sourceTree = "<group>"; };
 		2079ABA01E9EC2B0005B92AD /* sleep.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = sleep.sh; sourceTree = "<group>"; };
 		2079ABA11E9EC2B0005B92AD /* space script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "space script.sh"; sourceTree = "<group>"; };
@@ -267,6 +273,14 @@
 		20DA49B41EAAC2CA0070B4D9 /* NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRange.swift; sourceTree = "<group>"; };
 		20DA49C21EAAC4820070B4D9 /* ScriptDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScriptDelegate.swift; path = Protocol/ScriptDelegate.swift; sourceTree = "<group>"; };
 		20DA49CB1EAAC88E0070B4D9 /* Alias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		20FE3F631EC89F1B00FE9165 /* bitbar-dark-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "bitbar-dark-env.sh"; sourceTree = "<group>"; };
+		20FE3F641EC89F1B00FE9165 /* bitbar-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "bitbar-env.sh"; sourceTree = "<group>"; };
+		20FE3F691EC8A9E600FE9165 /* missing-sh-bin.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "missing-sh-bin.sh"; sourceTree = "<group>"; };
+		20FE3F6C1EC8E73F00FE9165 /* FakeScriptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeScriptable.swift; sourceTree = "<group>"; };
+		20FE3F6D1EC8E73F00FE9165 /* Std.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Std.swift; sourceTree = "<group>"; };
+		20FE3F701EC8E74C00FE9165 /* Script.Failure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.Failure.swift; sourceTree = "<group>"; };
+		20FE3F711EC8E74C00FE9165 /* Script.Success.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.Success.swift; sourceTree = "<group>"; };
+		20FE3F721EC8E74C00FE9165 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		227219AAF75F3604AB28AD31 /* Pods_BitBarParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B55715E19F2DC9494FF6193 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
 		3D04080A1FF16E3A510FF0D1 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Distro_Travis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,6 +396,8 @@
 				20823E091EBD0B8B00C8D468 /* NoMatch.swift */,
 				20A80AA31EC2431E000DFC31 /* State.swift */,
 				20A80AA21EC2431D000DFC31 /* ClickEvent.swift */,
+				20FE3F6D1EC8E73F00FE9165 /* Std.swift */,
+				20FE3F6C1EC8E73F00FE9165 /* FakeScriptable.swift */,
 				203180891EC1A5B300DF82B7 /* MockParent.swift */,
 				2037F3D81EAAB4800024F529 /* Helper.swift */,
 				20A80AA41EC2431E000DFC31 /* TestValue.swift */,
@@ -394,6 +410,9 @@
 		2037F3C31EAAB43F0024F529 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				20FE3F701EC8E74C00FE9165 /* Script.Failure.swift */,
+				20FE3F711EC8E74C00FE9165 /* Script.Success.swift */,
+				20FE3F721EC8E74C00FE9165 /* String.swift */,
 				20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */,
 				20823E011EBD0B7400C8D468 /* Menu.swift */,
 				20823E021EBD0B7400C8D468 /* Script.Result.swift */,
@@ -444,6 +463,9 @@
 		2079AB961E9EC28A005B92AD /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				20FE3F691EC8A9E600FE9165 /* missing-sh-bin.sh */,
+				20FE3F631EC89F1B00FE9165 /* bitbar-dark-env.sh */,
+				20FE3F641EC89F1B00FE9165 /* bitbar-env.sh */,
 				206EC3E51EBCF89300535712 /* all.20m.sh */,
 				2079AB971E9EC2B0005B92AD /* ansi.10m.sh */,
 				2079AB981E9EC2B0005B92AD /* args.sh */,
@@ -452,7 +474,6 @@
 				2079AB9B1E9EC2B0005B92AD /* exit1-no-output.sh */,
 				2079AB9C1E9EC2B0005B92AD /* exit1-output.sh */,
 				2079AB9D1E9EC2B0005B92AD /* invalid-syntax.sh */,
-				2079AB9E1E9EC2B0005B92AD /* missing-sh-bin.10m.sh */,
 				2079AB9F1E9EC2B0005B92AD /* nonexec.sh */,
 				2079ABA01E9EC2B0005B92AD /* sleep.sh */,
 				2079ABA11E9EC2B0005B92AD /* space script.sh */,
@@ -502,7 +523,6 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				201670451EC87C4100490D54 /* MenuBase.swift */,
 				20B316DD1EC7D128002DC7B8 /* Handler */,
 				208962021EBC769100588C43 /* Script */,
 				20A2C2E31EBAB4D40085AE7B /* Pref */,
@@ -513,6 +533,7 @@
 				20946B2C1E9EBF6800F7926D /* AppDelegate.swift */,
 				208961FB1EBC765700588C43 /* Menu.swift */,
 				20A80A9E1EC23DA9000DFC31 /* Color.swift */,
+				201670451EC87C4100490D54 /* MenuBase.swift */,
 				20DA49A71EAAC2C20070B4D9 /* Title.swift */,
 				20DA49A81EAAC2C20070B4D9 /* Tray.swift */,
 				20B316D91EC7CFAC002DC7B8 /* FontType.swift */,
@@ -699,7 +720,7 @@
 				TargetAttributes = {
 					207586D11EC8832200C76254 = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
@@ -758,10 +779,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20FE3F671EC89F8E00FE9165 /* bitbar-dark-env.sh in Resources */,
 				2079ABA91E9EC2B0005B92AD /* ansi.10m.sh in Resources */,
 				2079ABAE1E9EC2B0005B92AD /* exit1-output.sh in Resources */,
 				2079ABB61E9EC2B0005B92AD /* stream-nothing.sh in Resources */,
-				2079ABB01E9EC2B0005B92AD /* missing-sh-bin.10m.sh in Resources */,
+				20FE3F681EC89F8E00FE9165 /* bitbar-env.sh in Resources */,
 				2079ABB71E9EC2B0005B92AD /* stream-sleep.sh in Resources */,
 				2079ABB11E9EC2B0005B92AD /* nonexec.sh in Resources */,
 				2079ABAA1E9EC2B0005B92AD /* args.sh in Resources */,
@@ -773,6 +795,7 @@
 				2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */,
 				2079ABB21E9EC2B0005B92AD /* sleep.sh in Resources */,
 				2079ABAB1E9EC2B0005B92AD /* basic.sh in Resources */,
+				20FE3F6B1EC8AA1D00FE9165 /* missing-sh-bin.sh in Resources */,
 				2079ABAF1E9EC2B0005B92AD /* invalid-syntax.sh in Resources */,
 				2079ABB91E9EC2B0005B92AD /* sub2.10s.sh in Resources */,
 				206EC3E71EBCF9A600535712 /* all.20m.sh in Resources */,
@@ -958,6 +981,7 @@
 			files = (
 				20823E0C1EBD0B8C00C8D468 /* Menuable.swift in Sources */,
 				203180881EC1A5AB00DF82B7 /* PreferenceMenuTests.swift in Sources */,
+				20FE3F751EC8E74C00FE9165 /* String.swift in Sources */,
 				2037F42E1EAAB5340024F529 /* Method.swift in Sources */,
 				20A80AA51EC2431E000DFC31 /* ClickEvent.swift in Sources */,
 				2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */,
@@ -966,10 +990,14 @@
 				2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */,
 				20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */,
 				2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */,
+				20FE3F6E1EC8E73F00FE9165 /* FakeScriptable.swift in Sources */,
 				20823E0E1EBD0B8C00C8D468 /* NoMatch.swift in Sources */,
+				20FE3F741EC8E74C00FE9165 /* Script.Success.swift in Sources */,
 				205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */,
 				20823E061EBD0B7400C8D468 /* Title.swift in Sources */,
 				20823E041EBD0B7400C8D468 /* Menu.swift in Sources */,
+				20FE3F6F1EC8E73F00FE9165 /* Std.swift in Sources */,
+				20FE3F771EC8E77E00FE9165 /* Script.Failure.swift in Sources */,
 				2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */,
 				2037F3DC1EAAB4800024F529 /* Helper.swift in Sources */,
 				2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */,
@@ -1003,7 +1031,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Helper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1017,8 +1047,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Helper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;

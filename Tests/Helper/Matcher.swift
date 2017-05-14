@@ -37,41 +37,6 @@ func menu(_ menu: Menuable, at indexes: [Int] = []) -> Menuable {
   return try! menu.get(at: indexes)
 }
 
-func beASuccess(with exp: String? = nil) -> Predicate<Script.Result> {
-  return verify("succeed with output \(String(describing: exp))") { result in
-    switch (result, exp) {
-    case (.success, .none):
-      return .bool(true, exp ?? "<nil>")
-    case let (.success(success), .some(exp)):
-      return .bool(success.output == exp, success.output)
-    default:
-      return .fail(result)
-    }
-  }
-}
-
-func beAFailure(with exp: String) -> Predicate<Script.Result> {
-  return verify("be a failure with output \(exp)") { result in
-    switch result {
-    case let .failure(.exit(stderr, status)):
-      return .bool(stderr == exp && status != 0, result)
-    default:
-      return .fail(result)
-    }
-  }
-}
-
-func beACrash(with exp: String) -> Predicate<Script.Result> {
-  return verify("be a crash with output \(exp)") { result in
-    switch result {
-    case let .failure(.crash(message)):
-      return .bool(message.contains(exp), message)
-    default:
-      return .fail(result)
-    }
-  }
-}
-
 func have(args: [String]) -> Predicate<Menuable> {
   return verify("have args \(args)") { menu in
     return .bool(menu.args == args, args)
@@ -342,6 +307,8 @@ func verify<T>(_ message: String, block: @escaping (T) -> State) -> Predicate<T>
         status: .fail,
         message: .expectedCustomValueTo(message, String(describing: actual))
       )
+    case let .lift(result):
+      return result
     }
   }
 }
@@ -357,6 +324,112 @@ func have(href: String) -> Predicate<Menuable> {
   }
 }
 
-// func + (lhs: Immutable, rhs: Immutable) -> Immutable {
-//   return NSAttributedString.composed(of: [lhs, rhs])
-// }
+func execute(path: String, args: [String] = [], autostart: Bool = true) -> (FakeScriptable, Script) {
+  let delegate = FakeScriptable()
+  var realPath = path
+  if path != "does-not-exist.sh" {
+    realPath = toFile(path)
+  }
+
+  let script = Script(path: realPath, args: args, delegate: delegate, autostart: autostart)
+  return (delegate, script)
+}
+
+
+func crash(with message: String) -> Predicate<String> {
+  return result(in: .fail(.crash(message)), message: "crash with \(message.inspected())")
+}
+
+func crash(misuse message: String) -> Predicate<String> {
+  return result(in: .fail(.misuse(message)), message: "fail as misuse with \(message.inspected())")
+}
+
+func toSucc(_ output: String) -> Std {
+  return .succ(Script.Success(status: 0, output: output))
+}
+
+// expect(script).toEventually(succeed(with: "output"))
+func succeed(with message: String) -> Predicate<String> {
+  return succeed(with: [message])
+}
+
+// expect(script).toEventually(succeed(with: ["output"]))
+func succeed(with messages: [String]) -> Predicate<String> {
+  return lift(succeed(with: messages)) { path in (path, [String]()) }
+}
+
+func succeed(with message: String) -> Predicate<(String, [String])> {
+  return that(in: [toSucc(message)], message: message)
+}
+
+func succeed(with messages: [String]) -> Predicate<(String, [String])> {
+  return that(in: messages.map(toSucc), message: "succeed with outputs \(messages)")
+}
+
+// expect(script).toEventually(exit(message: "output", andStatusCode: 2))
+func exit(with message: String, andStatusCode status: Int) -> Predicate<String> {
+  return result(
+    in: .fail(.exit(message, status)),
+    message: "exit with output \(message.inspected()) and status code \(status)"
+  )
+}
+
+func result(in expected: Std, message: String) -> Predicate<String> {
+  return lift(that(in: [expected], message: message)) { path in (path, []) }
+}
+
+func that(in expected: [Std], message: String) -> Predicate<(String, [String])> {
+  return lift(that2(in: expected, message: message)) { param in
+    let (path, args) = param
+    return (path, args, true)
+  }
+}
+
+// TODO: Rename
+func that2(in expected: [Std], message: String) -> Predicate<(String, [String], Bool)> {
+  if expected.isEmpty { preconditionFailure("Arg can't be empty") }
+
+  var delegate: FakeScriptable!
+  var script: Script!
+  var hasInit = false
+
+  return verify(message) { params in
+    let (path, args, autostart) = params
+    if !hasInit {
+      let (d, s)  = execute(path: path, args: args, autostart: autostart)
+      delegate = d
+      script = s
+      hasInit = true
+    }
+
+    let result = delegate.result
+    let res = result.enumerated().reduce(true) { acc, state in
+      let (index, status) = state
+      switch expected.get(index: index) {
+      case let .some(exp):
+        return exp == status
+      case .none:
+        return acc
+      }
+    }
+
+    if res && result.count == expected.count {
+      script.stop()
+      return .bool(true, result)
+    }
+
+    return .bool(false, result)
+  }
+}
+
+func lift<T, U>(_ that: Predicate<U>, block: @escaping (T) -> U) -> Predicate<T> {
+  return Predicate.define { exp in
+    return try that.satisfies(exp.cast { maybe in
+      if let val = maybe {
+        return block(val)
+      }
+
+      return nil
+    })
+  }
+}
