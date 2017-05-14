@@ -9,10 +9,11 @@ import Async
 */
 class Plugin: NSObject, Parent {
   weak var root: Parent?
-  internal let file: File
-  internal let path: String
+  private let file: File
+  internal var path: String { return file.path }
+  internal var name: String { return file.script }
+  internal var interval: Double { return file.interval }
   internal var title: Title?
-  internal let interval: Double
   private let tray: Tray
 
   /**
@@ -23,8 +24,6 @@ class Plugin: NSObject, Parent {
   init(path: String, file: File, item: MenuBar = Tray.item) {
     self.tray = Tray(title: "…", isVisible: true, item: item)
     self.file = file
-    self.path = path
-    self.interval = Double(file.interval)
     super.init()
     self.tray.root = self
   }

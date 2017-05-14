@@ -87,9 +87,7 @@
 		20A462B51E9EC03F00321D42 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4627E1E9EC03E00321D42 /* App.swift */; };
 		20A462BB1E9EC03F00321D42 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462841E9EC03E00321D42 /* Buffer.swift */; };
 		20A462C31E9EC03F00321D42 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4628C1E9EC03E00321D42 /* File.swift */; };
-		20A462D31E9EC03F00321D42 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629C1E9EC03F00321D42 /* Parser.swift */; };
 		20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4629D1E9EC03F00321D42 /* PathSelector.swift */; };
-		20A462D91E9EC03F00321D42 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A462A21E9EC03F00321D42 /* Result.swift */; };
 		20A80A9D1EC23D5E000DFC31 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80A9C1EC23D5E000DFC31 /* MenuBar.swift */; };
 		20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80A9E1EC23DA9000DFC31 /* Color.swift */; };
 		20A80AA11EC24265000DFC31 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA01EC24265000DFC31 /* Script.swift */; };
@@ -98,8 +96,8 @@
 		20A80AA71EC2431E000DFC31 /* TestValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A80AA41EC2431E000DFC31 /* TestValue.swift */; };
 		20B316DA1EC7CFAC002DC7B8 /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316D91EC7CFAC002DC7B8 /* FontType.swift */; };
 		20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */; };
-		20B316DF1EC7D157002DC7B8 /* OpenPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */; };
-		20B316E11EC7D15F002DC7B8 /* RefreshPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */; };
+		20B316E21EC7D82B002DC7B8 /* RefreshPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */; };
+		20B316E31EC7D82D002DC7B8 /* OpenPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */; };
 		20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDB1EB9951200BBA915 /* NSImage.swift */; };
 		20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */; };
 		20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A71EAAC2C20070B4D9 /* Title.swift */; };
@@ -239,9 +237,7 @@
 		20A4627E1E9EC03E00321D42 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		20A462841E9EC03E00321D42 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		20A4628C1E9EC03E00321D42 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		20A4629C1E9EC03F00321D42 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		20A4629D1E9EC03F00321D42 /* PathSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSelector.swift; sourceTree = "<group>"; };
-		20A462A21E9EC03F00321D42 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		20A80A9C1EC23D5E000DFC31 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuBar.swift; path = Protocol/MenuBar.swift; sourceTree = "<group>"; };
 		20A80A9E1EC23DA9000DFC31 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		20A80AA01EC24265000DFC31 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Script.swift; path = Script/Script.swift; sourceTree = "<group>"; };
@@ -515,10 +511,8 @@
 				20B316D91EC7CFAC002DC7B8 /* FontType.swift */,
 				20A462841E9EC03E00321D42 /* Buffer.swift */,
 				20A4628C1E9EC03E00321D42 /* File.swift */,
-				20A4629C1E9EC03F00321D42 /* Parser.swift */,
 				20DA49CB1EAAC88E0070B4D9 /* Alias.swift */,
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
-				20A462A21E9EC03F00321D42 /* Result.swift */,
 				2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */,
 			);
 			path = Source;
@@ -893,11 +887,11 @@
 				20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */,
 				20A462BB1E9EC03F00321D42 /* Buffer.swift in Sources */,
 				203180771EBFC29800DF82B7 /* MenuItem.swift in Sources */,
-				20A462D91E9EC03F00321D42 /* Result.swift in Sources */,
 				20DA49BB1EAAC2CA0070B4D9 /* NSMutableData.swift in Sources */,
 				20DA49B71EAAC2CA0070B4D9 /* Data.swift in Sources */,
 				203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */,
 				203180761EBFC29800DF82B7 /* MenuEvent.swift in Sources */,
+				20B316E21EC7D82B002DC7B8 /* RefreshPluginHandler.swift in Sources */,
 				202698A21EC2D355008FD6AF /* Mutable.swift in Sources */,
 				20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */,
 				205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */,
@@ -912,6 +906,7 @@
 				206802101EBF20E200985920 /* Pref.CheckForUpdates.swift in Sources */,
 				208961FD1EBC765700588C43 /* Menu.swift in Sources */,
 				20823E161EBD0CC200C8D468 /* NSStatusItem.swift in Sources */,
+				20B316E31EC7D82D002DC7B8 /* OpenPluginHandler.swift in Sources */,
 				2068020F1EBF20E200985920 /* Pref.ChangePluginFolder.swift in Sources */,
 				20A80A9D1EC23D5E000DFC31 /* MenuBar.swift in Sources */,
 				20A462C31E9EC03F00321D42 /* File.swift in Sources */,
@@ -927,7 +922,6 @@
 				202EC6651EA62958003E1F9B /* Plugin.swift in Sources */,
 				20DA49AD1EAAC2C20070B4D9 /* Tray.swift in Sources */,
 				20DA49BC1EAAC2CA0070B4D9 /* NSRange.swift in Sources */,
-				20A462D31E9EC03F00321D42 /* Parser.swift in Sources */,
 				20946B2D1E9EBF6800F7926D /* AppDelegate.swift in Sources */,
 				206802171EBF20E200985920 /* Pref.RunInTerminal.swift in Sources */,
 				206802151EBF20E200985920 /* Pref.Quit.swift in Sources */,
@@ -960,7 +954,6 @@
 				20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */,
 				2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */,
 				2037F3D21EAAB4770024F529 /* File.swift in Sources */,
-				20B316DF1EC7D157002DC7B8 /* OpenPluginHandler.swift in Sources */,
 				20823E0E1EBD0B8C00C8D468 /* NoMatch.swift in Sources */,
 				205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */,
 				20823E061EBD0B7400C8D468 /* Title.swift in Sources */,
@@ -970,7 +963,6 @@
 				20823E101EBD0B8C00C8D468 /* TestBar.swift in Sources */,
 				2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */,
 				20823E051EBD0B7400C8D468 /* Script.Result.swift in Sources */,
-				20B316E11EC7D15F002DC7B8 /* RefreshPluginHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

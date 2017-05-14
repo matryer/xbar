@@ -57,7 +57,7 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   func scriptDidReceive(failure result: Script.Failure) {
     switch result {
     case .terminated:
-      print("[Log] Manual termination of \(file)")
+      print("[Log] Manual termination of \(name)")
     default:
       didReceiveError(String(describing: result))
     }

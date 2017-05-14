@@ -48,23 +48,12 @@ class PluginManager: Parent {
 
   // Add plugin @name with @path to the list of plugins
   // Will fail with an error message if @name can't be parsed
-  private func addPlugin(_ name: String, path: String) {
-    switch fileFor(name: name) {
-    case let Result.success(file, _):
-      plugins.append(ExecutablePlugin(path: path, file: file))
-    case Result.failure:
-      errors.append(Tray(errors: [
-        "An error occurred while reading file \(name) from \(path)",
-        "Should be on the form {name}.{number}{unit}.{ext}, i.e 'aFile.10d.sh'",
-        "Read the official documentation for more information",
-      ]))
+  private func addPlugin(file: Files.File) {
+    do {
+      plugins.append(ExecutablePlugin(path: path, file: try File(file: file)))
+    } catch let error {
+      errors.append(Tray(error: String(describing: error)))
     }
-  }
-
-  // Parse @name on form {name}.{number}{unit}.{ext}
-  // I.e aFile.10d.sh
-  private func fileFor(name: String) -> Result<File> {
-    return Pro.parse(Pro.getFile(), name)
   }
 
   // Ensure atleast one icon is vissble in the menu bar
@@ -90,7 +79,7 @@ class PluginManager: Parent {
     do {
       for file in try Folder(path: path).files {
         if !file.name.hasPrefix(".") {
-          addPlugin(file.name, path: file.path)
+          addPlugin(file: file)
         }
       }
     } catch (let error) {
