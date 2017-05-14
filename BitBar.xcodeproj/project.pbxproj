@@ -1011,6 +1011,9 @@
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.Helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = None;
+				PROVISIONING_PROFILE_SPECIFIER = None;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1027,6 +1030,9 @@
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.Helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = None;
+				PROVISIONING_PROFILE_SPECIFIER = None;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -1223,6 +1229,7 @@
 				207586E41EC8832200C76254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20946B241E9EBF6800F7926D /* Build configuration list for PBXProject "BitBar" */ = {
 			isa = XCConfigurationList;
