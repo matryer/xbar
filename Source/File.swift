@@ -2,20 +2,9 @@ import Files
 import FootlessParser
 import AppKit
 
-class File: CustomStringConvertible {
+class File {
   internal static let slash = "\\"
-  internal let name: String
-  internal let path: String
-  internal let interval: Double
-  internal let ext: String
-  internal let script: String
-
-  public var description: String {
-    return String(describing:
-      ["name": name, "internal": interval, "ext": ext]
-    )
-  }
-
+  private init() {}
   struct FileError: Error, CustomStringConvertible {
     let file: String
 
@@ -29,25 +18,20 @@ class File: CustomStringConvertible {
     case success(T)
   }
 
-  init(file: Files.File) throws {
-    switch File.parse(File.parser, file.name) {
-    case let Result.success((name, interval, ext)):
-      self.interval = interval
-      self.name = name
-      self.ext = ext
-      self.path = file.path
-      self.script = file.name
-    case Result.failure:
-      throw FileError(file: file.name)
-    }
+  enum Mode {
+    case stream(String)
+    case timer(String, Double)
   }
 
-  init(_ name: String, _ interval: Int, _ ext: String) {
-    self.name = name
-    self.interval = Double(interval)
-    self.ext = ext
-    self.path = "..." /* TODO: Used for testing */
-    self.script = "..."
+  static func toPlugin(file: Files.File, delegate: Managable) throws -> Plugin {
+    switch File.parse(File.parser, file.name) {
+    case let .success(.stream(name)):
+      return StreamablePlugin(name: name, file: file, manager: delegate)
+    case let .success(.timer(name, interval)):
+      return ExecutablePlugin(name: name, interval: interval, file: file, manager: delegate)
+    case .failure:
+      throw FileError(file: file.name)
+    }
   }
 
   static public func join(_ paths: String...) -> String {
@@ -70,14 +54,16 @@ class File: CustomStringConvertible {
     A file name on the form {name}.{int}{unit}.{ext}
     I.e a-file.10d.sh
   */
-  static var parser: P<(String, Double, String)> {
-    let arg = curry({ (time: Int, unit: String) in (time, unit) })
-    let fold = arg <^> digits() <*> count(1, oneOf("smhd"))
-    let time = fold >>- toTime
-    let rest = oneOrMore(any())
+  static var parser: P<Mode> {
+    // Stram: name.stream.sh
+    // exec: name.10s.sh
     let name = til(["."], empty: false) <* string(".")
-    let ext = string(".") *> rest
-    return curry({ ($0, Double($1), $2) }) <^> name <*> time <*> ext
+    let time = curry({ ($0, $1) }) <^> digits() <*> count(1, oneOf("smhd")) >>- toTime
+    return (name >>- { name in
+      let s = pure(Mode.stream(name)) <* string("stream")
+      let e = { Mode.timer(name, Double($0)) } <^> time
+      return s <|> e
+    }) <* (string(".") <* oneOrMore(any()))
   }
 
   // @example: "10" (as a string)
@@ -146,8 +132,8 @@ class File: CustomStringConvertible {
     return oneOrMore(parser)
   }
 
-  private static func toTime(input: (Int, String)) -> P<Int> {
-    switch input {
+  private static func toTime(value: (Int, String)) -> P<Int> {
+    switch value {
     case let (time, "s"):
       return pure(time)
     case let (time, "m"):
@@ -157,7 +143,7 @@ class File: CustomStringConvertible {
     case let (time, "d"):
       return pure(time * 24 * 60 * 60)
     default:
-      return stop("Invalid unit '\(input.0)'")
+      return stop("Invalid unit '\(value.0)'")
     }
   }
 

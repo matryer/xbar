@@ -1,6 +1,4 @@
 import AppKit
-import Swift
-import Foundation
 import Files
 
 /**
@@ -14,14 +12,12 @@ import Files
         3. File ending
     4. Notifying the TrayDelegate if a plugin closes
 */
+
 class PluginManager: Parent {
   weak var root: Parent?
   private let tray = Tray(title: "BitBar", isVisible: false)
   private let path: String
-  private var errors = [Tray]() {
-    didSet { verifyBar() }
-  }
-  internal var plugins = [Plugin]() {
+  internal var pluginFiles = [PluginFile]() {
     didSet { verifyBar() }
   }
 
@@ -35,41 +31,30 @@ class PluginManager: Parent {
     self.tray.root = self
   }
 
-  /**
-    Clean menu bar from error messages and plugins
-  */
-  func destroy() {
-    plugins.forEach { plugin in plugin.destroy() }
-    errors.forEach { title in title.hide() }
-    plugins = []
-    errors = []
-  }
-  deinit { destroy() }
-
   // Add plugin @name with @path to the list of plugins
   // Will fail with an error message if @name can't be parsed
   private func addPlugin(file: Files.File) {
-    do {
-      plugins.append(ExecutablePlugin(path: path, file: try File(file: file)))
-    } catch let error {
-      errors.append(Tray(error: String(describing: error)))
-    }
+    pluginFiles.append(PluginFile(file: file, delegate: self))
   }
 
   // Ensure atleast one icon is vissble in the menu bar
   private func verifyBar() {
-    if errors.isEmpty && plugins.isEmpty {
+    if pluginFiles.isEmpty {
       tray.show()
     } else {
       tray.hide()
     }
+  }
 
-    for error in errors {
-      error.root = self
+  func plugins(byName name: String) -> [PluginFile] {
+    return pluginFiles.filter { plugin in
+      return NSPredicate(format: "name LIKE %@", name).evaluate(with: plugin)
     }
+  }
 
-    for plugin in plugins {
-      plugin.root = self
+  func refresh() {
+    for pluginFile in pluginFiles {
+      pluginFile.refresh()
     }
   }
 
@@ -83,7 +68,17 @@ class PluginManager: Parent {
         }
       }
     } catch (let error) {
-      errors.append(Tray(error: String(describing: error)))
+      tray.set(error: String(describing: error))
+      tray.show()
+    }
+  }
+
+  func on(_ event: MenuEvent) {
+    switch event {
+    case .runInTerminal:
+      broadcast(.openScriptInTerminal(path))
+    default:
+      break
     }
   }
 }

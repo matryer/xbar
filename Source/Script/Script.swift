@@ -13,7 +13,7 @@ class Script {
   private var isTerminateEvent = false
   private var isStream = false
   private var handler: FileHandle?
-  private weak var delegate: ScriptDelegate?
+  internal weak var delegate: ScriptDelegate?
 
   /**
     @path Full path to script to be executed
@@ -26,6 +26,16 @@ class Script {
     self.args = args
 
     if autostart { start() }
+  }
+
+  /**
+    @path Full path to script to be executed
+    @args Argument to be passed to @path
+    @delegate Called when finished executing script
+  */
+  init(path: String, args: [String] = []) {
+    self.path = path
+    self.args = args
   }
 
   /**

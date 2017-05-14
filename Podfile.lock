@@ -12,7 +12,6 @@ PODS:
     - Dollar (~> 6.1.0)
   - DateToolsSwift (2.0.3)
   - Dollar (6.1.0)
-  - EmitterKit (5.0.1)
   - Emojize (6.0.9):
     - Files
     - FootlessParser
@@ -38,7 +37,6 @@ DEPENDENCIES:
   - BonMot
   - Cent
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
-  - EmitterKit
   - Emojize
   - Files (from `https://github.com/JohnSundell/Files.git`)
   - FootlessParser
@@ -84,7 +82,6 @@ SPEC CHECKSUMS:
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
-  EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
   Emojize: 1935550e6aeb5bd755ab8e4e1999017846a6be14
   Files: 7833a7457be5e6482b563cb0e68075bc13735f22
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
@@ -98,6 +95,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 89b1df121062c043e352ee09562bda9d48eba559
+PODFILE CHECKSUM: 58af01e72c6f4de725c52dd911b4058e71e70ae1
 
 COCOAPODS: 1.2.1

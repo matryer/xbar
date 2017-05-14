@@ -6,6 +6,7 @@ var eventRefs = [UInt: [MenuEvent]]()
 var menuRefs = [MockParent: Menuable]()
 
 protocol Menuable: class {
+  var isClickable: Bool { get }
   var keyEquivalent: String { get }
   var isEnabled: Bool { get }
   var banner: Mutable { get }
@@ -16,6 +17,7 @@ protocol Menuable: class {
   var isAlternate: Bool { get }
   var items: [NSMenuItem] { get }
   var act: Action { get }
+  func onWillBecomeVisible()
   weak var root: Parent? { get set }
   func get(at: [Int], rem: [Int]) throws -> Menuable
   func onDidClick()
@@ -50,6 +52,9 @@ extension Menuable {
       return self
     }
     if menus.isEmpty { throw NoMatch.stop(rem) }
+    if index >= menus.count {
+      preconditionFailure("Index: \(index) not found in \(menus.count)")
+    }
     return try menus[index].get(at: indexes.rest(), rem: rem + [index])
   }
 

@@ -1,5 +1,6 @@
 import Quick
 import Ansi
+import Files
 import Cent
 import Parser
 import Nimble
@@ -9,14 +10,20 @@ import Async
 var noShortcut: TestValue { return .noShortcut }
 var noSubMenus: TestValue { return .noSubMenus }
 
-func item(_ plugin: Plugin, at indexes: [Int] = [], block: @escaping (Menuable) -> Void) {
+func item (block: @escaping (Menuable) -> Void) {
+  let mock = MockParent()
+  let plugin = PluginFile(
+    file: try! Files.File(path: aFile),
+    delegate: mock
+  )
+
   waitUntil(timeout: 10) { done in
     Async.background {
       repeat {
         Thread.sleep(forTimeInterval: 0.3)
-      }  while plugin.title == nil
+      }  while !plugin.hasLoaded
     }.main {
-      block(menu(plugin.title!, at: indexes))
+      block(plugin)
       done()
     }
   }
@@ -174,6 +181,12 @@ func have(image: String, isTemplate: Bool) -> Predicate<Menuable> {
   }
 }
 
+func contain(title: String) -> Predicate<Menuable> {
+  return verify("have title \(title)") { menu in
+    return .bool(menu.banner.string.contains(title), menu.banner.string)
+  }
+}
+
 func have(title: String) -> Predicate<Menuable> {
   return verify("have title \(title)") { menu in
     return .bool(title == menu.banner.string, menu.banner.string)
@@ -207,7 +220,7 @@ func have(size: Int) -> Predicate<Menuable> {
 
 func beClickable() -> Predicate<Menuable> {
   return verify("be clickable") { menu in
-    return .bool(menu.isEnabled, menu.isEnabled ? "clickable" : "not clickable")
+    return .bool(menu.isClickable, menu.isClickable ? "clickable" : "not clickable")
   }
 }
 

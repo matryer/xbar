@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201670441EC86AAC00490D54 /* Pref.FirstRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201670431EC86AAC00490D54 /* Pref.FirstRun.swift */; };
+		201670461EC87C4100490D54 /* MenuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201670451EC87C4100490D54 /* MenuBase.swift */; };
 		202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2026989F1EC2D2DD008FD6AF /* Titlable.swift */; };
 		202698A21EC2D355008FD6AF /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202698A11EC2D355008FD6AF /* Mutable.swift */; };
 		202EC6251EA628F8003E1F9B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6211EA628F8003E1F9B /* Array.swift */; };
@@ -26,10 +28,10 @@
 		203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180831EBFC54A00DF82B7 /* ImageResult.swift */; };
 		203180881EC1A5AB00DF82B7 /* PreferenceMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180871EC1A5AB00DF82B7 /* PreferenceMenuTests.swift */; };
 		2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203180891EC1A5B300DF82B7 /* MockParent.swift */; };
-		2037F3D21EAAB4770024F529 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3CB1EAAB4770024F529 /* File.swift */; };
 		2037F3DC1EAAB4800024F529 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3D81EAAB4800024F529 /* Helper.swift */; };
 		2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3D91EAAB4800024F529 /* Matcher.swift */; };
 		2037F42E1EAAB5340024F529 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42D1EAAB5340024F529 /* Method.swift */; };
+		2045509F1EC84DE6005E3646 /* PluginFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2045509E1EC84DE6005E3646 /* PluginFile.swift */; };
 		204D740F1EC5F89B00A21785 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D740E1EC5F89B00A21785 /* AppDelegate.m */; };
 		204D74121EC5F89B00A21785 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D74111EC5F89B00A21785 /* main.m */; };
 		204D74151EC5F89B00A21785 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D74141EC5F89B00A21785 /* ViewController.m */; };
@@ -49,7 +51,7 @@
 		206802161EBF20E200985920 /* Pref.RefreshAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020C1EBF20E200985920 /* Pref.RefreshAll.swift */; };
 		206802171EBF20E200985920 /* Pref.RunInTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */; };
 		206802181EBF20E200985920 /* Pref.UpdatedTimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */; };
-		206EC3E71EBCF9A600535712 /* all.sh in Resources */ = {isa = PBXBuildFile; fileRef = 206EC3E51EBCF89300535712 /* all.sh */; };
+		206EC3E71EBCF9A600535712 /* all.20m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 206EC3E51EBCF89300535712 /* all.20m.sh */; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
 		2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4E1E9EC258005B92AD /* FileNameTests.swift */; };
 		2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB621E9EC258005B92AD /* ScriptTests.swift */; };
@@ -78,7 +80,6 @@
 		20823E061EBD0B7400C8D468 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20823E031EBD0B7400C8D468 /* Title.swift */; };
 		20823E0C1EBD0B8C00C8D468 /* Menuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20823E071EBD0B8B00C8D468 /* Menuable.swift */; };
 		20823E0E1EBD0B8C00C8D468 /* NoMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20823E091EBD0B8B00C8D468 /* NoMatch.swift */; };
-		20823E101EBD0B8C00C8D468 /* TestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20823E0B1EBD0B8B00C8D468 /* TestBar.swift */; };
 		20823E161EBD0CC200C8D468 /* NSStatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20823E141EBD0C8500C8D468 /* NSStatusItem.swift */; };
 		208961FD1EBC765700588C43 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208961FB1EBC765700588C43 /* Menu.swift */; };
 		208962051EBC769F00588C43 /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208962031EBC769F00588C43 /* Failure.swift */; };
@@ -98,6 +99,8 @@
 		20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */; };
 		20B316E21EC7D82B002DC7B8 /* RefreshPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */; };
 		20B316E31EC7D82D002DC7B8 /* OpenPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */; };
+		20B316E81EC7F8CB002DC7B8 /* TestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E61EC7F87F002DC7B8 /* TestBar.swift */; };
+		20B316E91EC7F977002DC7B8 /* StreamablePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E41EC7EFA7002DC7B8 /* StreamablePlugin.swift */; };
 		20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDB1EB9951200BBA915 /* NSImage.swift */; };
 		20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */; };
 		20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA49A71EAAC2C20070B4D9 /* Title.swift */; };
@@ -149,6 +152,8 @@
 /* Begin PBXFileReference section */
 		02C15665F39567DE78C746B7 /* Pods-Travis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travis.release.xcconfig"; path = "Pods/Target Support Files/Pods-Travis/Pods-Travis.release.xcconfig"; sourceTree = "<group>"; };
 		0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
+		201670431EC86AAC00490D54 /* Pref.FirstRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.FirstRun.swift; path = Pref/Pref.FirstRun.swift; sourceTree = "<group>"; };
+		201670451EC87C4100490D54 /* MenuBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBase.swift; sourceTree = "<group>"; };
 		201B5EE71EA355EA0059950E /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
 		2026989F1EC2D2DD008FD6AF /* Titlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Titlable.swift; path = Protocol/Titlable.swift; sourceTree = "<group>"; };
 		202698A11EC2D355008FD6AF /* Mutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
@@ -169,10 +174,10 @@
 		203180831EBFC54A00DF82B7 /* ImageResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResult.swift; path = ../ImageResult.swift; sourceTree = "<group>"; };
 		203180871EC1A5AB00DF82B7 /* PreferenceMenuTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceMenuTests.swift; sourceTree = "<group>"; };
 		203180891EC1A5B300DF82B7 /* MockParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockParent.swift; sourceTree = "<group>"; };
-		2037F3CB1EAAB4770024F529 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		2037F3D81EAAB4800024F529 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2037F3D91EAAB4800024F529 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		2037F42D1EAAB5340024F529 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		2045509E1EC84DE6005E3646 /* PluginFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginFile.swift; sourceTree = "<group>"; };
 		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
 		204D740B1EC5F89B00A21785 /* BitBarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		204D740D1EC5F89B00A21785 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -197,7 +202,7 @@
 		2068020C1EBF20E200985920 /* Pref.RefreshAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.RefreshAll.swift; path = Pref/Pref.RefreshAll.swift; sourceTree = "<group>"; };
 		2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.RunInTerminal.swift; path = Pref/Pref.RunInTerminal.swift; sourceTree = "<group>"; };
 		2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.UpdatedTimeAgo.swift; path = Pref/Pref.UpdatedTimeAgo.swift; sourceTree = "<group>"; };
-		206EC3E51EBCF89300535712 /* all.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = all.sh; sourceTree = "<group>"; };
+		206EC3E51EBCF89300535712 /* all.20m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = all.20m.sh; sourceTree = "<group>"; };
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2079AB4E1E9EC258005B92AD /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
 		2079AB621E9EC258005B92AD /* ScriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
@@ -226,7 +231,6 @@
 		20823E031EBD0B7400C8D468 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		20823E071EBD0B8B00C8D468 /* Menuable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menuable.swift; sourceTree = "<group>"; };
 		20823E091EBD0B8B00C8D468 /* NoMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMatch.swift; sourceTree = "<group>"; };
-		20823E0B1EBD0B8B00C8D468 /* TestBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBar.swift; sourceTree = "<group>"; };
 		20823E141EBD0C8500C8D468 /* NSStatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStatusItem.swift; sourceTree = "<group>"; };
 		208961FB1EBC765700588C43 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		208962031EBC769F00588C43 /* Failure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Failure.swift; path = Script/Failure.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 		20B316DB1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenPluginHandler.swift; path = Handler/OpenPluginHandler.swift; sourceTree = "<group>"; };
 		20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefreshPluginHandler.swift; path = Handler/RefreshPluginHandler.swift; sourceTree = "<group>"; };
+		20B316E41EC7EFA7002DC7B8 /* StreamablePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamablePlugin.swift; sourceTree = "<group>"; };
+		20B316E61EC7F87F002DC7B8 /* TestBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBar.swift; sourceTree = "<group>"; };
 		20D9EDDB1EB9951200BBA915 /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		20D9EDDD1EB9954800BBA915 /* Parser.Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Color.swift; sourceTree = "<group>"; };
 		20DA49A71EAAC2C20070B4D9 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
@@ -359,6 +365,8 @@
 		202EC6601EA6294D003E1F9B /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				2045509E1EC84DE6005E3646 /* PluginFile.swift */,
+				20B316E41EC7EFA7002DC7B8 /* StreamablePlugin.swift */,
 				202EC6611EA62958003E1F9B /* ExecutablePlugin.swift */,
 				202EC6621EA62958003E1F9B /* Plugin.swift */,
 				202EC6631EA62958003E1F9B /* PluginManager.swift */,
@@ -374,7 +382,6 @@
 				20823E091EBD0B8B00C8D468 /* NoMatch.swift */,
 				20A80AA31EC2431E000DFC31 /* State.swift */,
 				20A80AA21EC2431D000DFC31 /* ClickEvent.swift */,
-				20823E0B1EBD0B8B00C8D468 /* TestBar.swift */,
 				203180891EC1A5B300DF82B7 /* MockParent.swift */,
 				2037F3D81EAAB4800024F529 /* Helper.swift */,
 				20A80AA41EC2431E000DFC31 /* TestValue.swift */,
@@ -391,7 +398,6 @@
 				20823E011EBD0B7400C8D468 /* Menu.swift */,
 				20823E021EBD0B7400C8D468 /* Script.Result.swift */,
 				20823E031EBD0B7400C8D468 /* Title.swift */,
-				2037F3CB1EAAB4770024F529 /* File.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -438,7 +444,7 @@
 		2079AB961E9EC28A005B92AD /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				206EC3E51EBCF89300535712 /* all.sh */,
+				206EC3E51EBCF89300535712 /* all.20m.sh */,
 				2079AB971E9EC2B0005B92AD /* ansi.10m.sh */,
 				2079AB981E9EC2B0005B92AD /* args.sh */,
 				2079AB991E9EC2B0005B92AD /* basic.sh */,
@@ -496,6 +502,7 @@
 		20946B2B1E9EBF6800F7926D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				201670451EC87C4100490D54 /* MenuBase.swift */,
 				20B316DD1EC7D128002DC7B8 /* Handler */,
 				208962021EBC769100588C43 /* Script */,
 				20A2C2E31EBAB4D40085AE7B /* Pref */,
@@ -514,6 +521,7 @@
 				20DA49CB1EAAC88E0070B4D9 /* Alias.swift */,
 				20A4629D1E9EC03F00321D42 /* PathSelector.swift */,
 				2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */,
+				20B316E61EC7F87F002DC7B8 /* TestBar.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -534,6 +542,7 @@
 		20A2C2E31EBAB4D40085AE7B /* Pref */ = {
 			isa = PBXGroup;
 			children = (
+				201670431EC86AAC00490D54 /* Pref.FirstRun.swift */,
 				206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */,
 				206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */,
 				206802071EBF20E200985920 /* Pref.GetPlugins.swift */,
@@ -767,7 +776,7 @@
 				2079ABAB1E9EC2B0005B92AD /* basic.sh in Resources */,
 				2079ABAF1E9EC2B0005B92AD /* invalid-syntax.sh in Resources */,
 				2079ABB91E9EC2B0005B92AD /* sub2.10s.sh in Resources */,
-				206EC3E71EBCF9A600535712 /* all.sh in Resources */,
+				206EC3E71EBCF9A600535712 /* all.20m.sh in Resources */,
 				2079ABAC1E9EC2B0005B92AD /* complex.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -882,6 +891,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B316E91EC7F977002DC7B8 /* StreamablePlugin.swift in Sources */,
+				201670461EC87C4100490D54 /* MenuBase.swift in Sources */,
 				202EC6641EA62958003E1F9B /* ExecutablePlugin.swift in Sources */,
 				202EC6661EA62958003E1F9B /* PluginManager.swift in Sources */,
 				20D9EDDC1EB9951200BBA915 /* NSImage.swift in Sources */,
@@ -892,6 +903,7 @@
 				203180841EBFC54A00DF82B7 /* ImageResult.swift in Sources */,
 				203180761EBFC29800DF82B7 /* MenuEvent.swift in Sources */,
 				20B316E21EC7D82B002DC7B8 /* RefreshPluginHandler.swift in Sources */,
+				20B316E81EC7F8CB002DC7B8 /* TestBar.swift in Sources */,
 				202698A21EC2D355008FD6AF /* Mutable.swift in Sources */,
 				20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */,
 				205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */,
@@ -914,10 +926,12 @@
 				20A462D41E9EC03F00321D42 /* PathSelector.swift in Sources */,
 				208962051EBC769F00588C43 /* Failure.swift in Sources */,
 				206802131EBF20E200985920 /* Pref.OpenPluginFolder.swift in Sources */,
+				201670441EC86AAC00490D54 /* Pref.FirstRun.swift in Sources */,
 				202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */,
 				20DA49AC1EAAC2C20070B4D9 /* Title.swift in Sources */,
 				203180821EBFC53C00DF82B7 /* Parser.Image.swift in Sources */,
 				20D9EDDE1EB9954800BBA915 /* Parser.Color.swift in Sources */,
+				2045509F1EC84DE6005E3646 /* PluginFile.swift in Sources */,
 				20A462B51E9EC03F00321D42 /* App.swift in Sources */,
 				202EC6651EA62958003E1F9B /* Plugin.swift in Sources */,
 				20DA49AD1EAAC2C20070B4D9 /* Tray.swift in Sources */,
@@ -953,14 +967,12 @@
 				2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */,
 				20B316DC1EC7CFDE002DC7B8 /* NSMutableAttributedString.swift in Sources */,
 				2031808A1EC1A5B300DF82B7 /* MockParent.swift in Sources */,
-				2037F3D21EAAB4770024F529 /* File.swift in Sources */,
 				20823E0E1EBD0B8C00C8D468 /* NoMatch.swift in Sources */,
 				205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */,
 				20823E061EBD0B7400C8D468 /* Title.swift in Sources */,
 				20823E041EBD0B7400C8D468 /* Menu.swift in Sources */,
 				2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */,
 				2037F3DC1EAAB4800024F529 /* Helper.swift in Sources */,
-				20823E101EBD0B8C00C8D468 /* TestBar.swift in Sources */,
 				2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */,
 				20823E051EBD0B7400C8D468 /* Script.Result.swift in Sources */,
 			);

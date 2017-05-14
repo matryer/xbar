@@ -48,7 +48,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   }
 
   private func loadPluginManager() {
-    print("[Log] Reload plugin manager")
     if let path = App.pluginPath {
       return loadManager(fromPath: path)
     }
@@ -59,6 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   }
 
   private func loadManager(fromPath path: String) {
+    if manager != nil { print("[Log] Reload plugin manager") }
     manager = PluginManager(path: path)
     manager?.root = self
   }

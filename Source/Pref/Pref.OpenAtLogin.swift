@@ -1,7 +1,7 @@
 extension Pref {
   class OpenAtLogin: MenuItem {
     required convenience init(openAtLogin: Bool) {
-      self.init(title: "Open at Login", isChecked: openAtLogin)
+      self.init(title: "Open at Login", isChecked: openAtLogin, isClickable: true)
     }
 
     override func onDidClick() {

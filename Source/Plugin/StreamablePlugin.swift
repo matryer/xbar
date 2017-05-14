@@ -1,28 +1,27 @@
-import SwiftyTimer
-import DateToolsSwift
 import Files
 
-class ExecutablePlugin: Plugin, ScriptDelegate {
+protocol Managable: class, Parent {
+  func plugin(didReceiveOutput: String)
+  func plugin(didReceiveError: String)
+}
+
+class StreamablePlugin: Plugin, ScriptDelegate {
   private let scriptName: String
   private let script: Script
   internal let file: Files.File
-  private var timer: Timer?
-  private var interval: Double
   internal weak var manager: Managable?
   internal weak var root: Parent?
 
   public var description: String {
-    return "Exectable(name: \(scriptName), file: \(file.name), interval: \(interval))"
+    return "Streamable(name: \(scriptName), file: \(file.name))"
   }
 
-  init(name: String, interval: Double, file: Files.File, manager: Managable) {
+  init(name: String, file: Files.File, manager: Managable) {
     self.scriptName = name
-    self.interval = interval
     self.manager = manager
     self.file = file
     self.script = Script(path: file.path)
     self.root = manager
-    newTimer()
     self.script.delegate = self
     self.script.start()
   }
@@ -32,14 +31,12 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   */
   func start() {
     script.start()
-    timer?.start()
   }
 
   /**
     Stop timer and script
   */
   func stop() {
-    timer?.invalidate()
     script.stop()
   }
 
@@ -47,7 +44,6 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Restart the script
   */
   func refresh() {
-    newTimer()
     script.restart()
   }
 
@@ -63,7 +59,11 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
     Sending data to parent plugin class
   */
   func scriptDidReceive(success result: Script.Success) {
-    manager?.plugin(didReceiveOutput: result.output)
+    if !script.isRunning() {
+      manager?.plugin(didReceiveError: "Streaming script is no longer running")
+    } else {
+      manager?.plugin(didReceiveOutput: result.output)
+    }
   }
 
   /**
@@ -73,30 +73,14 @@ class ExecutablePlugin: Plugin, ScriptDelegate {
   func scriptDidReceive(failure error: Script.Failure) {
     switch error {
     case .terminated:
-      print("[Log] Plugin \(name) was terminated")
+      manager?.plugin(didReceiveError: "Streaming script is no longer running")
     default:
       manager?.plugin(didReceiveError: String(describing: error))
     }
   }
 
-  /**
-    Called once every @interval seconds by @timer
-    Terminates any ongoing script
-  */
-  private func scheduleDidTick() {
-    script.start()
-  }
-
-  private func newTimer() {
-    self.timer?.invalidate()
-    self.timer = Timer.every(interval.seconds, scheduleDidTick)
-  }
-
-  var type: String { return "Interval" }
+  var type: String { return "Streamable" }
   var meta: [String: String] {
-    let date = Date()
-    return [
-      "Run": "Every " + date.shortTimeAgo(since: date - Int(interval))
-    ]
+    return [:]
   }
 }

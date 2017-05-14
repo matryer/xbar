@@ -1,45 +1,43 @@
 import Parser
 import BonMot
 
-final class Title: NSMenu, Parent {
+final class Title: MenuBase, Parent {
   weak var root: Parent?
-  internal var headline: Immutable?
+  private let ago = Pref.UpdatedTimeAgo()
+  private let runInTerminal = Pref.RunInTerminal()
+  private var numberOfPrefs = 0
+  internal var hasLoaded: Bool = false
 
-  init(immutable title: Immutable, menus: [NSMenuItem] = []) {
-    super.init(title: "")
-    self.headline = title
+  init(prefs: [NSMenuItem], delegate: Parent) {
+    super.init()
+    root = delegate
+    add(sub: NSMenuItem.separator())
+    add(sub: ago)
+    add(sub: runInTerminal)
+    add(sub: Pref.Preferences(prefs: prefs))
+    numberOfPrefs = numberOfItems
+    self.delegate = self
+  }
+
+  // Only keep pref menus
+  func set(menus: [NSMenuItem]) {
+    for _ in numberOfPrefs..<numberOfItems {
+      removeItem(at: 0)
+    }
+
     for menu in menus {
-      menu.root = self
-      addItem(menu)
+      add(sub: menu)
     }
-  }
 
-  convenience init(_ text: Parser.Text, menus: [NSMenuItem]) {
-    self.init(immutable: text.colorize(as: .bar), menus: menus)
-  }
-
-  convenience init(title: String, menus: [NSMenuItem] = []) {
-    self.init(immutable: title.immutable, menus: menus)
-  }
-
-  convenience init(head: Parser.Menu.Head) {
-    switch head {
-    case let .text(text, tails):
-     self.init(text, menus: tails.map { $0.menuItem })
-    case let .error(messages):
-      self.init(errors: messages)
-    }
-  }
-
-  convenience init(errors: [String]) {
-    self.init(immutable: barWarn, menus: errors.map { Menu(error: $0, submenus: []) })
-  }
-
-  convenience init(error: String) {
-    self.init(errors: [error])
+    hasLoaded = true
   }
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  private func add(sub: NSMenuItem) {
+    sub.root = self
+    insertItem(sub, at: numberOfItems - numberOfPrefs)
   }
 }

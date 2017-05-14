@@ -8,7 +8,6 @@ target 'BitBar' do
   pod 'Alamofire'
   pod 'Sparkle'
   pod 'AlamofireImage'
-  pod 'EmitterKit'
   pod 'AsyncSwift'
   pod 'FootlessParser'
   pod 'SwiftyTimer'

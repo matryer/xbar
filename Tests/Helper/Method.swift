@@ -11,11 +11,15 @@ let timeout = 10.0
 
 func toFile(_ path: String) -> String {
   let res = path.components(separatedBy: ".")
-  if let out = Bundle(for: TestBar.self).path(forResource: res[0], ofType: res[1]) {
+  return toPath(name: res[0], ext: res[1])
+}
+
+func toPath(name: String, ext: String) -> String {
+  if let out = Bundle(for: ExecutablePluginTests.self).path(forResource: name, ofType: ext) {
     return out
   }
 
-  preconditionFailure("Could not find file \(res.joined(separator: "."))")
+  preconditionFailure("Could not find file: \(name).\(ext)")
 }
 
 func escape(char: String) -> String {

@@ -1,4 +1,3 @@
-@testable import BitBar
 import AppKit
 
 class TestBar: MenuBar {
