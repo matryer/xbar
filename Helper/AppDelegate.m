@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  BitBarHelper
-//
-//  Created by Oleander on 2017-05-12.
-//
-//
-
 #import "AppDelegate.h"
 
 @interface AppDelegate ()

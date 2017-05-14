@@ -9,7 +9,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
-  private let helperId = "com.getbitbar.com.BitBarHelper" as CFString
+  private let helperId = "com.getbitbar.com.Helper" as CFString
   private let updater = SUUpdater.shared()
 
   func applicationDidFinishLaunching(_: Notification) {

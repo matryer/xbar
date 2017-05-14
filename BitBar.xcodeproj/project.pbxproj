@@ -32,15 +32,9 @@
 		2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F3D91EAAB4800024F529 /* Matcher.swift */; };
 		2037F42E1EAAB5340024F529 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037F42D1EAAB5340024F529 /* Method.swift */; };
 		2045509F1EC84DE6005E3646 /* PluginFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2045509E1EC84DE6005E3646 /* PluginFile.swift */; };
-		204D740F1EC5F89B00A21785 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D740E1EC5F89B00A21785 /* AppDelegate.m */; };
-		204D74121EC5F89B00A21785 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D74111EC5F89B00A21785 /* main.m */; };
-		204D74151EC5F89B00A21785 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D74141EC5F89B00A21785 /* ViewController.m */; };
-		204D74171EC5F89B00A21785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 204D74161EC5F89B00A21785 /* Assets.xcassets */; };
-		204D74201EC5F98A00A21785 /* BitBarHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 204D740B1EC5F89B00A21785 /* BitBarHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2055F3241E9ED1E800701EE5 /* version-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2055F3221E9ECF4100701EE5 /* version-env.sh */; };
 		205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */; };
 		205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205E3AA31EC3426A00BC8111 /* Parser.Text.swift */; };
-		2063EFFF1EC5FB8F00A06D64 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2063EFFE1EC5FB8F00A06D64 /* Main.xib */; };
 		2068020F1EBF20E200985920 /* Pref.ChangePluginFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */; };
 		206802101EBF20E200985920 /* Pref.CheckForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */; };
 		206802111EBF20E200985920 /* Pref.GetPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206802071EBF20E200985920 /* Pref.GetPlugins.swift */; };
@@ -52,6 +46,12 @@
 		206802171EBF20E200985920 /* Pref.RunInTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */; };
 		206802181EBF20E200985920 /* Pref.UpdatedTimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */; };
 		206EC3E71EBCF9A600535712 /* all.20m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 206EC3E51EBCF89300535712 /* all.20m.sh */; };
+		207586D61EC8832200C76254 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 207586D51EC8832200C76254 /* AppDelegate.m */; };
+		207586D91EC8832200C76254 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 207586D81EC8832200C76254 /* main.m */; };
+		207586DC1EC8832200C76254 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207586DB1EC8832200C76254 /* ViewController.m */; };
+		207586DE1EC8832200C76254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 207586DD1EC8832200C76254 /* Assets.xcassets */; };
+		207586E11EC8832200C76254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 207586DF1EC8832200C76254 /* Main.storyboard */; };
+		207586E61EC8852D00C76254 /* Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 207586D21EC8832200C76254 /* Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
 		2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4E1E9EC258005B92AD /* FileNameTests.swift */; };
 		2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB621E9EC258005B92AD /* ScriptTests.swift */; };
@@ -133,7 +133,7 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				204D74201EC5F98A00A21785 /* BitBarHelper.app in CopyFiles */,
+				207586E61EC8852D00C76254 /* Helper.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,18 +179,9 @@
 		2037F42D1EAAB5340024F529 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		2045509E1EC84DE6005E3646 /* PluginFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginFile.swift; sourceTree = "<group>"; };
 		20457F051EA35EA500072CC8 /* BitBar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitBar.plist; sourceTree = "<group>"; };
-		204D740B1EC5F89B00A21785 /* BitBarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		204D740D1EC5F89B00A21785 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		204D740E1EC5F89B00A21785 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		204D74111EC5F89B00A21785 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		204D74131EC5F89B00A21785 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		204D74141EC5F89B00A21785 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		204D74161EC5F89B00A21785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		204D741B1EC5F89B00A21785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2055F3221E9ECF4100701EE5 /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-env.sh"; sourceTree = "<group>"; };
 		205CB1E81EBC9F160043039F /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
 		205E3AA31EC3426A00BC8111 /* Parser.Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.Text.swift; sourceTree = "<group>"; };
-		2063EFFE1EC5FB8F00A06D64 /* Main.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Main.xib; sourceTree = "<group>"; };
 		2063F0001EC6139900A06D64 /* BitBarHelper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BitBarHelper-Bridging-Header.h"; sourceTree = "<group>"; };
 		206802051EBF20E200985920 /* Pref.ChangePluginFolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.ChangePluginFolder.swift; path = Pref/Pref.ChangePluginFolder.swift; sourceTree = "<group>"; };
 		206802061EBF20E200985920 /* Pref.CheckForUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.CheckForUpdates.swift; path = Pref/Pref.CheckForUpdates.swift; sourceTree = "<group>"; };
@@ -203,6 +194,15 @@
 		2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.RunInTerminal.swift; path = Pref/Pref.RunInTerminal.swift; sourceTree = "<group>"; };
 		2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.UpdatedTimeAgo.swift; path = Pref/Pref.UpdatedTimeAgo.swift; sourceTree = "<group>"; };
 		206EC3E51EBCF89300535712 /* all.20m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = all.20m.sh; sourceTree = "<group>"; };
+		207586D21EC8832200C76254 /* Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		207586D41EC8832200C76254 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		207586D51EC8832200C76254 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		207586D81EC8832200C76254 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		207586DA1EC8832200C76254 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		207586DB1EC8832200C76254 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		207586DD1EC8832200C76254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		207586E01EC8832200C76254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		207586E21EC8832200C76254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2079AB4E1E9EC258005B92AD /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
 		2079AB621E9EC258005B92AD /* ScriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		204D74081EC5F89B00A21785 /* Frameworks */ = {
+		207586CF1EC8832200C76254 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -402,25 +402,25 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		204D740C1EC5F89B00A21785 /* BitBarHelper */ = {
+		207586D31EC8832200C76254 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2063EFFE1EC5FB8F00A06D64 /* Main.xib */,
-				204D740D1EC5F89B00A21785 /* AppDelegate.h */,
-				204D740E1EC5F89B00A21785 /* AppDelegate.m */,
-				204D74131EC5F89B00A21785 /* ViewController.h */,
-				204D74141EC5F89B00A21785 /* ViewController.m */,
-				204D74161EC5F89B00A21785 /* Assets.xcassets */,
-				204D741B1EC5F89B00A21785 /* Info.plist */,
-				204D74101EC5F89B00A21785 /* Supporting Files */,
+				207586D41EC8832200C76254 /* AppDelegate.h */,
+				207586D51EC8832200C76254 /* AppDelegate.m */,
+				207586DA1EC8832200C76254 /* ViewController.h */,
+				207586DB1EC8832200C76254 /* ViewController.m */,
+				207586DD1EC8832200C76254 /* Assets.xcassets */,
+				207586DF1EC8832200C76254 /* Main.storyboard */,
+				207586E21EC8832200C76254 /* Info.plist */,
+				207586D71EC8832200C76254 /* Supporting Files */,
 			);
-			path = BitBarHelper;
+			path = Helper;
 			sourceTree = "<group>";
 		};
-		204D74101EC5F89B00A21785 /* Supporting Files */ = {
+		207586D71EC8832200C76254 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				204D74111EC5F89B00A21785 /* main.m */,
+				207586D81EC8832200C76254 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -480,7 +480,7 @@
 		20946B201E9EBF6800F7926D = {
 			isa = PBXGroup;
 			children = (
-				204D740C1EC5F89B00A21785 /* BitBarHelper */,
+				207586D31EC8832200C76254 /* Helper */,
 				B3A1D5E8FDB3E45B7A2BE5A9 /* Frameworks */,
 				1297EBD0479AC7510F233FA6 /* Pods */,
 				2079AB401E9EC1F9005B92AD /* Resources */,
@@ -494,7 +494,7 @@
 			children = (
 				20946B291E9EBF6800F7926D /* BitBar.app */,
 				20946B3A1E9EBF6800F7926D /* Tests.xctest */,
-				204D740B1EC5F89B00A21785 /* BitBarHelper.app */,
+				207586D21EC8832200C76254 /* Helper.app */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -628,21 +628,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		204D740A1EC5F89B00A21785 /* BitBarHelper */ = {
+		207586D11EC8832200C76254 /* Helper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 204D741E1EC5F89B00A21785 /* Build configuration list for PBXNativeTarget "BitBarHelper" */;
+			buildConfigurationList = 207586E51EC8832200C76254 /* Build configuration list for PBXNativeTarget "Helper" */;
 			buildPhases = (
-				204D74071EC5F89B00A21785 /* Sources */,
-				204D74081EC5F89B00A21785 /* Frameworks */,
-				204D74091EC5F89B00A21785 /* Resources */,
+				207586CE1EC8832200C76254 /* Sources */,
+				207586CF1EC8832200C76254 /* Frameworks */,
+				207586D01EC8832200C76254 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BitBarHelper;
-			productName = BitBarHelper;
-			productReference = 204D740B1EC5F89B00A21785 /* BitBarHelper.app */;
+			name = Helper;
+			productName = Helper;
+			productReference = 207586D21EC8832200C76254 /* Helper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		20946B281E9EBF6800F7926D /* BitBar */ = {
@@ -697,10 +697,9 @@
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				TargetAttributes = {
-					204D740A1EC5F89B00A21785 = {
+					207586D11EC8832200C76254 = {
 						CreatedOnToolsVersion = 8.3.2;
-						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
@@ -730,18 +729,18 @@
 			targets = (
 				20946B281E9EBF6800F7926D /* BitBar */,
 				20946B391E9EBF6800F7926D /* Tests */,
-				204D740A1EC5F89B00A21785 /* BitBarHelper */,
+				207586D11EC8832200C76254 /* Helper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		204D74091EC5F89B00A21785 /* Resources */ = {
+		207586D01EC8832200C76254 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				204D74171EC5F89B00A21785 /* Assets.xcassets in Resources */,
-				2063EFFF1EC5FB8F00A06D64 /* Main.xib in Resources */,
+				207586DE1EC8832200C76254 /* Assets.xcassets in Resources */,
+				207586E11EC8832200C76254 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,13 +876,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		204D74071EC5F89B00A21785 /* Sources */ = {
+		207586CE1EC8832200C76254 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				204D74151EC5F89B00A21785 /* ViewController.m in Sources */,
-				204D74121EC5F89B00A21785 /* main.m in Sources */,
-				204D740F1EC5F89B00A21785 /* AppDelegate.m in Sources */,
+				207586DC1EC8832200C76254 /* ViewController.m in Sources */,
+				207586D91EC8832200C76254 /* main.m in Sources */,
+				207586D61EC8832200C76254 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,52 +987,46 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		207586DF1EC8832200C76254 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				207586E01EC8832200C76254 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		204D741C1EC5F89B00A21785 /* Debug */ = {
+		207586E31EC8832200C76254 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = BitBarHelper/Info.plist;
+				INFOPLIST_FILE = Helper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.Helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Source/BitBarHelper-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		204D741D1EC5F89B00A21785 /* Release */ = {
+		207586E41EC8832200C76254 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				GCC_OPTIMIZATION_LEVEL = fast;
-				INFOPLIST_FILE = BitBarHelper/Info.plist;
+				INFOPLIST_FILE = Helper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.BitBarHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.com.Helper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Source/BitBarHelper-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Release;
 		};
@@ -1223,14 +1216,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		204D741E1EC5F89B00A21785 /* Build configuration list for PBXNativeTarget "BitBarHelper" */ = {
+		207586E51EC8832200C76254 /* Build configuration list for PBXNativeTarget "Helper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				204D741C1EC5F89B00A21785 /* Debug */,
-				204D741D1EC5F89B00A21785 /* Release */,
+				207586E31EC8832200C76254 /* Debug */,
+				207586E41EC8832200C76254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		20946B241E9EBF6800F7926D /* Build configuration list for PBXProject "BitBar" */ = {
 			isa = XCConfigurationList;

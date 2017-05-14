@@ -1,8 +1,8 @@
 //
 //  main.m
-//  BitBarHelper
+//  Helper
 //
-//  Created by Oleander on 2017-05-12.
+//  Created by Oleander on 2017-05-14.
 //
 //
 
