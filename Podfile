@@ -25,10 +25,6 @@ target 'BitBar' do
     pod 'Nimble'
     pod 'Quick'
   end
-
-  target 'Helper' do
-    inherit! :search_paths
-  end
 end
 
 post_install do |installer|

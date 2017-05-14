@@ -58,7 +58,7 @@ lane :import_keys do
     security "unlock-keychain -p travis travis.keychain"
     security "set-keychain-settings -t 3600 -u travis.keychain "
     security "import bitbar.p12 -A -P $CERTPWD -k travis.keychain -T", codesign
-    security "import", cert, "-A -k travis.keychain -T", codesign
+    # security "import", cert, "-A -k travis.keychain -T", codesign
     security "set-key-partition-list -S apple-tool:,apple: -s -k travis travis.keychain"
   end
 end

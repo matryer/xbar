@@ -1,5 +1,7 @@
 language: objective-c
-install: make setup
+install:
+  - make rem
+  - make setup
 osx_image: xcode8.3
 rvm: ruby-2.3.0
 script: fastlane test

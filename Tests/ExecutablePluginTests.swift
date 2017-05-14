@@ -4,10 +4,6 @@ import Nimble
 import BonMot
 @testable import BitBar
 
-func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
-  return NSAttributedString.composed(of: [lhs, rhs])
-}
-
 let aFile = toPath(name: "all.20m", ext: "sh")
 class ExecutablePluginTests: Helper {
   override func spec() {
