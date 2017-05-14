@@ -114,10 +114,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
     switch components.host {
     case .some("openPlugin"):
-      let _ = OpenPluginHandler(queries, parent: self)
+      _ = OpenPluginHandler(queries, parent: self)
     case .some("refreshPlugin"):
       if let pluginManager = manager {
-        let _ = RefreshPluginHandler(queries, manager: pluginManager)
+        _ = RefreshPluginHandler(queries, manager: pluginManager)
       } else {
         print("[Error] Could not find any plugin manager")
       }
@@ -126,5 +126,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     }
   }
 }
-
-

@@ -122,4 +122,3 @@ extension NSMutableAttributedString {
     return true
   }
 }
-

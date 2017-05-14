@@ -300,7 +300,7 @@ func receive(_ events: [MenuEvent], from indexes: [Int]) -> Predicate<Menuable> 
     }
 
     let child = menu(parent, at: indexes)
-    if !clicked  {
+    if !clicked {
       parent.set(parent: mock)
       child.onDidClick()
       clicked = true

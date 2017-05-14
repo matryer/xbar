@@ -5,7 +5,6 @@ import Cocoa
   Represents an item in the menu bar
 */
 
-
 class Tray: NSObject, NSMenuDelegate, Titlable {
   var warningLabel = barWarn
   var textFont = barFont

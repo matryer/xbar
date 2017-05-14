@@ -1,8 +1,5 @@
 import AppKit
 import BonMot
-func + (lhs: Immutable, rhs: Immutable) -> Immutable {
-  return NSAttributedString.composed(of: [lhs, rhs])
-}
 
 class MenuItem: NSMenuItem, Titlable {
   var warningLabel = menuWarn

@@ -35,7 +35,7 @@ class OpenPluginHandler: Parent {
     }
 
     let urlComponents = NSURLComponents()
-    urlComponents.scheme = "file";
+    urlComponents.scheme = "file"
     urlComponents.path = destPath
 
     guard let destUrl = urlComponents.url else {

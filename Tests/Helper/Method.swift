@@ -23,7 +23,7 @@ func escape(char: String) -> String {
   guard count == 1 else {
     preconditionFailure("Char length must be one, not \(count)")
   }
-  
+
   // FIXME: Can we do this better?
   return char.replace(char, slash + char)
 }
