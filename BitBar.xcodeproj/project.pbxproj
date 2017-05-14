@@ -51,7 +51,6 @@
 		207586DC1EC8832200C76254 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207586DB1EC8832200C76254 /* ViewController.m */; };
 		207586DE1EC8832200C76254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 207586DD1EC8832200C76254 /* Assets.xcassets */; };
 		207586E11EC8832200C76254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 207586DF1EC8832200C76254 /* Main.storyboard */; };
-		207586E61EC8852D00C76254 /* Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 207586D21EC8832200C76254 /* Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
 		2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4E1E9EC258005B92AD /* FileNameTests.swift */; };
 		2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB621E9EC258005B92AD /* ScriptTests.swift */; };
@@ -119,6 +118,7 @@
 		20FE3F741EC8E74C00FE9165 /* Script.Success.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F711EC8E74C00FE9165 /* Script.Success.swift */; };
 		20FE3F751EC8E74C00FE9165 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F721EC8E74C00FE9165 /* String.swift */; };
 		20FE3F771EC8E77E00FE9165 /* Script.Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F701EC8E74C00FE9165 /* Script.Failure.swift */; };
+		20FE3F781EC8EB2F00FE9165 /* Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 207586D21EC8832200C76254 /* Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B2A9464CD7E1311B14C764F3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DD874A725348FA9602A297 /* Pods_Tests.framework */; };
 		E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C460801E588526B1CBDDB /* Pods_BitBar.framework */; };
 /* End PBXBuildFile section */
@@ -140,7 +140,7 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				207586E61EC8852D00C76254 /* Helper.app in CopyFiles */,
+				20FE3F781EC8EB2F00FE9165 /* Helper.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +720,7 @@
 				TargetAttributes = {
 					207586D11EC8832200C76254 = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					20946B281E9EBF6800F7926D = {
 						CreatedOnToolsVersion = 8.3;
@@ -1033,7 +1033,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Helper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1050,7 +1049,6 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Helper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
