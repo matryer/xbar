@@ -119,6 +119,8 @@
 		20FE3F751EC8E74C00FE9165 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F721EC8E74C00FE9165 /* String.swift */; };
 		20FE3F771EC8E77E00FE9165 /* Script.Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F701EC8E74C00FE9165 /* Script.Failure.swift */; };
 		20FE3F781EC8EB2F00FE9165 /* Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 207586D21EC8832200C76254 /* Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		20FE3F7A1EC8ED1900FE9165 /* ScriptAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F791EC8ED1900FE9165 /* ScriptAction.swift */; };
+		20FE3F7C1EC8ED2C00FE9165 /* ScriptEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE3F7B1EC8ED2C00FE9165 /* ScriptEvent.swift */; };
 		B2A9464CD7E1311B14C764F3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DD874A725348FA9602A297 /* Pods_Tests.framework */; };
 		E689745E1272368274B9911D /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C460801E588526B1CBDDB /* Pods_BitBar.framework */; };
 /* End PBXBuildFile section */
@@ -281,6 +283,8 @@
 		20FE3F701EC8E74C00FE9165 /* Script.Failure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.Failure.swift; sourceTree = "<group>"; };
 		20FE3F711EC8E74C00FE9165 /* Script.Success.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.Success.swift; sourceTree = "<group>"; };
 		20FE3F721EC8E74C00FE9165 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		20FE3F791EC8ED1900FE9165 /* ScriptAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptAction.swift; sourceTree = "<group>"; };
+		20FE3F7B1EC8ED2C00FE9165 /* ScriptEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEvent.swift; sourceTree = "<group>"; };
 		227219AAF75F3604AB28AD31 /* Pods_BitBarParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B55715E19F2DC9494FF6193 /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
 		3D04080A1FF16E3A510FF0D1 /* Pods_Distro_Travis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Distro_Travis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +407,8 @@
 				20A80AA41EC2431E000DFC31 /* TestValue.swift */,
 				2037F42D1EAAB5340024F529 /* Method.swift */,
 				2037F3D91EAAB4800024F529 /* Matcher.swift */,
+				20FE3F791EC8ED1900FE9165 /* ScriptAction.swift */,
+				20FE3F7B1EC8ED2C00FE9165 /* ScriptEvent.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -995,12 +1001,14 @@
 				20FE3F741EC8E74C00FE9165 /* Script.Success.swift in Sources */,
 				205CB1E91EBC9F160043039F /* ExecutablePluginTests.swift in Sources */,
 				20823E061EBD0B7400C8D468 /* Title.swift in Sources */,
+				20FE3F7A1EC8ED1900FE9165 /* ScriptAction.swift in Sources */,
 				20823E041EBD0B7400C8D468 /* Menu.swift in Sources */,
 				20FE3F6F1EC8E73F00FE9165 /* Std.swift in Sources */,
 				20FE3F771EC8E77E00FE9165 /* Script.Failure.swift in Sources */,
 				2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */,
 				2037F3DC1EAAB4800024F529 /* Helper.swift in Sources */,
 				2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */,
+				20FE3F7C1EC8ED2C00FE9165 /* ScriptEvent.swift in Sources */,
 				20823E051EBD0B7400C8D468 /* Script.Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

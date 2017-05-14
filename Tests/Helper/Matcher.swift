@@ -433,3 +433,47 @@ func lift<T, U>(_ that: Predicate<U>, block: @escaping (T) -> U) -> Predicate<T>
     })
   }
 }
+
+func have(events: [ScriptEvent]) -> Predicate<(String, Bool, [ScriptAction])> {
+  let message = "have events \(events)"
+  var delegate: FakeScriptable!
+  var script: Script!
+  var hasInit = false
+
+  return verify(message) { params in
+    let (path, autostart, actions) = params
+    if !hasInit {
+      delegate = FakeScriptable()
+      script = Script(path: toFile(path), args: [], delegate: delegate, autostart: autostart)
+      hasInit = true
+      for action in actions {
+        switch action {
+        case .restart:
+          script.restart()
+        case .stop:
+          script.stop()
+        case .start:
+          script.start()
+        }
+      }
+    }
+
+    let result = delegate.result
+    let newEvents = result.reduce([ScriptEvent]()) { acc, out in
+      switch out {
+      case .succ:
+        return acc + [.success]
+      case .fail(.terminated):
+        return acc + [.termination]
+      default:
+        return acc + [.unknown(String(describing: out))]
+      }
+    }
+
+    if newEvents == events {
+      script.stop()
+    }
+
+    return .bool(newEvents == events, newEvents)
+  }
+}
