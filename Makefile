@@ -1,8 +1,11 @@
 ifdef test
 	_test=--only_testing=Tests/$(test)
 endif
+
 setup:
 	gem install bundler fastlane --pre
+	brew update
+	brew install tailor
 	bundle install
 	fastlane setup
 test:

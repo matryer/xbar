@@ -56,4 +56,3 @@ func escape(_ what: String, _ toEscape: String) -> String {
 func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
   return NSAttributedString.composed(of: [lhs, rhs])
 }
-

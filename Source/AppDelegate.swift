@@ -9,7 +9,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
-  private let helperId = "com.getbitbar.com.Helper" as CFString
+  private let helperId = "com.getbitbar.Startup"
   private let updater = SUUpdater.shared()
 
   func applicationDidFinishLaunching(_: Notification) {
@@ -17,6 +17,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     setOpenUrlHandler()
     loadPluginManager()
     setOnWakeUpHandler()
+    handleStartupApp()
+  }
+
+  private func sendTerminateToHelper() {
+    print("[Log] Sending terminate signal to helper app")
+    DistributedNotificationCenter.default().post(name: .terminate, object: helperId)
+  }
+
+  private func handleStartupApp() {
+    for app in NSWorkspace.shared().runningApplications {
+      guard let id = app.bundleIdentifier else { continue }
+      if id == helperId {
+        return sendTerminateToHelper()
+      }
+    }
   }
 
   func on(_ event: MenuEvent) {
@@ -65,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
   private func login(_ state: Bool) {
     Defaults[.startAtLogin] = state
-    SMLoginItemSetEnabled(helperId, state)
+    SMLoginItemSetEnabled(helperId as CFString, state)
   }
 
   @objc private func onDidWake() {
