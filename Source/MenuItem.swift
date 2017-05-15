@@ -34,11 +34,6 @@ class MenuItem: NSMenuItem, Titlable {
     )
 
     target = self
-    // let xx = NSAttributedString.composed(of: [
-    //   menuWarn,
-    //   Tab.headIndent(10),
-    //   immutable.styled(with: StringStyle(.hyphenationFactor(0.6), .lineBreakMode(.byWordWrapping), .lineSpacing(30)))
-    // ])
     set(title: immutable)
     if !submenus.isEmpty {
       submenu = MenuBase()
