@@ -9,7 +9,14 @@ class File {
     let file: String
 
     public var description: String {
-      return "Could not read file name from '\(file)'"
+      return [
+        "Invalid file name '\(file)'.",
+        "Must be on form:",
+        "{name}.{int}{s|d|m}.{ext} or",
+        "{name}.stream.{ext},",
+        "i.e spotify.stream.sh",
+        "or itunes.10m.py"
+      ].joined(separator: " ")
     }
   }
 

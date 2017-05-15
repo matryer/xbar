@@ -1,6 +1,6 @@
 @testable import BitBar
 
-enum Std: Equatable {
+enum Std: Equatable, CustomStringConvertible {
   case succ(Script.Success)
   case fail(Script.Failure)
 
@@ -12,6 +12,15 @@ enum Std: Equatable {
       return s1 == s2
     default:
       return false
+    }
+  }
+
+  public var description: String {
+    switch self {
+    case let .succ(message):
+      return "Success: \(String(describing: message))"
+    case let .fail(message):
+      return "Failure: \(String(describing: message))"
     }
   }
 }

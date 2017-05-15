@@ -75,7 +75,7 @@ class PluginFile: NSObject, Parent, Managable {
   }
 
   private var type: String {
-    return plugin?.type ?? "undefined"
+    return plugin?.type ?? "Undefined"
   }
 
   private var defaultPrefs: [String: String] {

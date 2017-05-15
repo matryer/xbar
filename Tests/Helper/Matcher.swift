@@ -327,7 +327,9 @@ func have(href: String) -> Predicate<Menuable> {
 func execute(path: String, args: [String] = [], autostart: Bool = true) -> (FakeScriptable, Script) {
   let delegate = FakeScriptable()
   var realPath = path
-  if path != "does-not-exist.sh" {
+  if path.contains("echo") {
+    realPath = path
+  } else if path != "does-not-exist.sh" {
     realPath = toFile(path)
   }
 

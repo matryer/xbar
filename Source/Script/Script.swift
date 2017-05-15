@@ -1,4 +1,3 @@
-import Swift
 import SwiftTryCatch
 import Foundation
 
@@ -45,16 +44,6 @@ class Script {
     return process?.isRunning ?? false
   }
 
-  private func terminate() {
-    SwiftTryCatch.tryRun({ [weak process] in
-      process?.terminate()
-    }, catchRun: { error in
-      print("[Error] Could not terminate due to \(String(describing: error)) script")
-    }, finallyRun: {
-      /* NOP */
-    })
-  }
-
   func stop() {
     if isRunning() { terminate() }
     center.removeObserver(self)
@@ -75,30 +64,23 @@ class Script {
     2. Execute @path with @args in a background thread
     3. When done, notify listeners that the script terminated
   */
-
   func start() {
     stop()
     let pipe = Pipe()
     process = Process()
     buffer = Buffer()
     handler = pipe.fileHandleForReading
-
     isEOFEvent = false
     isTerminateEvent = false
     isStream = false
-
-    process?.launchPath = path
-
-    process?.arguments = args
-
+    process?.launchPath = "/bin/bash"
+    process?.arguments = arguments
     process?.standardOutput = pipe
     process?.standardError = pipe
-
     setDefaultEnv()
     process?.terminationHandler = { [weak self] _ in
       self?.terminateEvent()
     }
-
     center.addObserver(
       self,
       selector: #selector(didCallNotification),
@@ -215,6 +197,10 @@ class Script {
       succeeded(output, status: 0)
     case (.exit, 2):
       failed(.misuse(output))
+    case (.exit, 126):
+      return failed(.notExec)
+    case (.exit, 127):
+      return failed(.notFound)
     case let (.exit, code):
       failed(.exit(output, Int(code)))
     case (.uncaughtSignal, 15):
@@ -239,5 +225,27 @@ class Script {
   private func terminateEvent() {
     isTerminateEvent = true
     processIfDone()
+  }
+
+  private var namedArgs: [String] {
+    guard !args.isEmpty else {
+      return []
+    }
+
+    return (0..<args.count).map { "\"$" + String($0) + "\"" }
+  }
+
+  private var arguments: [String] {
+    return ["-c", ([path] + namedArgs).joined(separator: " ")] + args
+  }
+
+  private func terminate() {
+    SwiftTryCatch.tryRun({ [weak process] in
+      process?.terminate()
+      }, catchRun: { error in
+        print("[Error] Could not terminate due to \(String(describing: error)) script")
+    }, finallyRun: {
+      /* NOP */
+    })
   }
 }

@@ -17,13 +17,42 @@ class ScriptTests: Helper {
         expect("sleep.sh").toEventually(succeed(with: "sleep\n"))
       }
 
-      it("handles args") {
-        expect("args.sh".withArgs(["1", "2", "3"])).toEventually(succeed(with: "1 2 3\n"))
+
+      describe("args") {
+        it("handles args") {
+          expect("args.sh".withArgs(["1", "2", "3"])).toEventually(succeed(with: "1 2 3\n"))
+        }
+
+        it("handles with '") {
+          expect("args.sh".withArgs(["1", "'"])).toEventually(succeed(with: "1 '\n"))
+        }
+
+        it("handles with \"") {
+          expect("args.sh".withArgs(["1", "\""])).toEventually(succeed(with: "1 \"\n"))
+        }
+
+        it("handles with space") {
+          expect("args.sh".withArgs(["1", " ", "3"])).toEventually(succeed(with: "1   3\n"))
+        }
+
+        it("handles with space (end)") {
+          expect("args.sh".withArgs(["1", " "])).toEventually(succeed(with: "1  \n"))
+        }
       }
 
-      it("handles file with space in name") {
-        expect("space script.sh").toEventually(succeed(with: "Hello\n"))
+      describe("inline") {
+        it("handles arguments") {
+          expect("echo".withArgs(["A"])).toEventually(succeed(with: "A\n"))
+        }
+
+        it("handles without argument") {
+          expect("echo B").toEventually(succeed(with: "B\n"))
+        }
       }
+
+      // it("handles file with space in name") {
+      //   expect("space\\ script.sh").toEventually(succeed(with: "Hello\n"))
+      // }
 
       describe("env") {
         it("should have BitBarVersion set") {
@@ -61,15 +90,15 @@ class ScriptTests: Helper {
     describe("stderr") {
       describe("crash") {
         it("is missing shebang") {
-          expect("missing-sh-bin.sh").toEventually(crash(with: "Couldn't posix_spawn: error 8"))
+          expect("missing-sh-bin.sh").toEventually(succeed(with: "Hello\n"))
         }
 
         it("handles non-executable script") {
-          expect("nonexec.sh").toEventually(crash(with: "launch path not accessible"))
+//          expect("nonexec.sh").toEventually(beNonExecutable())
         }
 
         it("handles non-executable script") {
-          expect("does-not-exist.sh").toEventually(crash(with: "launch path not accessible"))
+//          expect("does-not-exist.sh").toEventually(notExist())
         }
       }
 
