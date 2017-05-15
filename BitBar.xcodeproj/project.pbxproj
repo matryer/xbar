@@ -46,6 +46,8 @@
 		206802171EBF20E200985920 /* Pref.RunInTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */; };
 		206802181EBF20E200985920 /* Pref.UpdatedTimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */; };
 		206EC3E71EBCF9A600535712 /* all.20m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 206EC3E51EBCF89300535712 /* all.20m.sh */; };
+		207384581EC9D1C200D7F83C /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207384571EC9D1C200D7F83C /* Metadata.swift */; };
+		2073845A1EC9D2A500D7F83C /* MetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207384591EC9D2A500D7F83C /* MetadataTests.swift */; };
 		2079AB701E9EC258005B92AD /* BufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB461E9EC258005B92AD /* BufferTests.swift */; };
 		2079AB781E9EC259005B92AD /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB4E1E9EC258005B92AD /* FileNameTests.swift */; };
 		2079AB8C1E9EC259005B92AD /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2079AB621E9EC258005B92AD /* ScriptTests.swift */; };
@@ -202,6 +204,8 @@
 		2068020D1EBF20E200985920 /* Pref.RunInTerminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.RunInTerminal.swift; path = Pref/Pref.RunInTerminal.swift; sourceTree = "<group>"; };
 		2068020E1EBF20E200985920 /* Pref.UpdatedTimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.UpdatedTimeAgo.swift; path = Pref/Pref.UpdatedTimeAgo.swift; sourceTree = "<group>"; };
 		206EC3E51EBCF89300535712 /* all.20m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = all.20m.sh; sourceTree = "<group>"; };
+		207384571EC9D1C200D7F83C /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
+		207384591EC9D2A500D7F83C /* MetadataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataTests.swift; sourceTree = "<group>"; };
 		2079AB461E9EC258005B92AD /* BufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferTests.swift; sourceTree = "<group>"; };
 		2079AB4E1E9EC258005B92AD /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
 		2079AB621E9EC258005B92AD /* ScriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
@@ -516,6 +520,7 @@
 				20A80A9E1EC23DA9000DFC31 /* Color.swift */,
 				201670451EC87C4100490D54 /* MenuBase.swift */,
 				20DA49A71EAAC2C20070B4D9 /* Title.swift */,
+				207384571EC9D1C200D7F83C /* Metadata.swift */,
 				20DA49A81EAAC2C20070B4D9 /* Tray.swift */,
 				20B316D91EC7CFAC002DC7B8 /* FontType.swift */,
 				20A462841E9EC03E00321D42 /* Buffer.swift */,
@@ -531,6 +536,7 @@
 		20946B3D1E9EBF6800F7926D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				207384591EC9D2A500D7F83C /* MetadataTests.swift */,
 				2037F3C21EAAB4220024F529 /* Helper */,
 				2079AB461E9EC258005B92AD /* BufferTests.swift */,
 				2079AB4E1E9EC258005B92AD /* FileNameTests.swift */,
@@ -912,6 +918,7 @@
 				202698A21EC2D355008FD6AF /* Mutable.swift in Sources */,
 				20A80A9F1EC23DA9000DFC31 /* Color.swift in Sources */,
 				205E3AA41EC3426A00BC8111 /* Parser.Text.swift in Sources */,
+				207384581EC9D1C200D7F83C /* Metadata.swift in Sources */,
 				206802161EBF20E200985920 /* Pref.RefreshAll.swift in Sources */,
 				206802111EBF20E200985920 /* Pref.GetPlugins.swift in Sources */,
 				202EC6261EA628F8003E1F9B /* NSAttributedString.swift in Sources */,
@@ -987,6 +994,7 @@
 				2037F3DC1EAAB4800024F529 /* Helper.swift in Sources */,
 				2037F3DD1EAAB4800024F529 /* Matcher.swift in Sources */,
 				20FE3F7C1EC8ED2C00FE9165 /* ScriptEvent.swift in Sources */,
+				2073845A1EC9D2A500D7F83C /* MetadataTests.swift in Sources */,
 				20823E051EBD0B7400C8D468 /* Script.Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

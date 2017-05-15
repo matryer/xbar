@@ -9,7 +9,8 @@ class Helper: QuickSpec {
     switch File.parse(parser, input) {
     case let File.Result.success(result):
       block(result)
-    case File.Result.failure:
+    case let File.Result.failure(message):
+      print(String(describing: message))
       fail("Could not parse: " + input.inspected())
     }
   }
