@@ -50,9 +50,9 @@ class ScriptTests: Helper {
         }
       }
 
-      // it("handles file with space in name") {
-      //   expect("space\\ script.sh").toEventually(succeed(with: "Hello\n"))
-      // }
+      it("handles file with space in name") {
+        expect("space script.sh").toEventually(succeed(with: "Hello\n"))
+      }
 
       describe("env") {
         it("should have BitBarVersion set") {
@@ -94,6 +94,7 @@ class ScriptTests: Helper {
         }
 
         it("handles non-executable script") {
+          // TODO: Implement
 //          expect("nonexec.sh").toEventually(beNonExecutable())
         }
 
