@@ -5,6 +5,7 @@ import Async
 import Parser
 
 class PluginFile: NSObject, Parent, Managable {
+  private let manager = FileManager.default
   internal weak var root: Parent?
   private let file: Files.File
   internal var name: String { return file.name }
@@ -102,7 +103,12 @@ class PluginFile: NSObject, Parent, Managable {
       return MenuItem(title: meta.0 + ": " + meta.1)
     } + defaultPrefs.map { meta in
       return MenuItem(title: meta.0 + ": " + meta.1)
-    } + [Pref.FirstRun(), MenuItem(title: "Path: " + dir)]
+    } + [
+      Pref.FirstRun(),
+      MenuItem(title: "Path: \(dir)"),
+      MenuItem(title: "Is Executable: \(isExec)"),
+      MenuItem(title: "Is Readable: \(isReadable)")
+    ]
   }
 
   private var metadata: [MenuItem] {
@@ -113,5 +119,13 @@ class PluginFile: NSObject, Parent, Managable {
     } catch {
       return []
     }
+  }
+
+  private var isExec: String {
+    return manager.isExecutableFile(atPath: file.path) ? "Yes" : "No"
+  }
+
+  private var isReadable: String {
+    return manager.isReadableFile(atPath: file.path) ? "Yes" : "No"
   }
 }
