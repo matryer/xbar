@@ -9,7 +9,7 @@ target 'BitBar' do
   pod 'Sparkle'
   pod 'AlamofireImage'
   pod 'AsyncSwift'
-  pod 'FootlessParser'
+  pod 'FootlessParser'# , git: "https://github.com/oleander/FootlessParser.git"
   pod 'SwiftyTimer'
   pod 'Cent'
   pod 'Emojize'
