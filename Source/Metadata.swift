@@ -1,12 +1,57 @@
 import FootlessParser
 import Foundation
 import Dollar
+import Files
 
 enum Metadata {
   private static let start = "<bitbar."
-  internal static var parser: P<[Metadata]> {
-    let trash = til(start, allowEmpty: true, consume: false)
-    return oneOrMore(trash *> item <* trash)
+  private static let trash = til(start, allowEmpty: true, consume: false)
+
+  case about(URL)
+  case image(URL)
+  case title(String)
+  case github(String)
+  case author(String)
+  case version(String)
+  case description(String)
+  case dependencies([String])
+  case dropTypes([String])
+  case demoArgs([String])
+
+  init?(key: String, value: String) {
+    switch key.lowercased() {
+    case "title":
+      self = .title(value)
+    case "version":
+      self = .version(value)
+    case "author.github":
+      self = .github(value)
+    case "author":
+      self = .author(value)
+    case "desc":
+      self = .description(value)
+    case "image":
+      if let url = URL(string: value) {
+        self = .image(url)
+      } else {
+        return nil
+      }
+    case "dependencies":
+      self = .dependencies(value.split(delimiter: ",").map { $0.trimmed() })
+    case "droptypes":
+      self = .dropTypes(value.split(delimiter: ",").map { $0.trimmed() })
+    case "demo":
+      // TODO: Handle arbitrary whitespace
+      self = .demoArgs(value.split(delimiter: " ").map { $0.trimmed() })
+    case "abouturl":
+      if let url = URL(string: value) {
+        self = .about(url)
+      } else {
+        return nil
+      }
+    default:
+      return nil
+    }
   }
 
   public enum Result {
@@ -14,7 +59,21 @@ enum Metadata {
     case success([Metadata])
   }
 
-  public static func parse(_ value: String) -> Result {
+  static var parser: P<[Metadata]> {
+    return oneOrMore(trash *> item <* trash) <|> (zeroOrMore(any()) *> pure([]))
+  }
+
+  static func from(path: String) throws -> [Metadata] {
+    let file = try Files.File(path: path)
+    let data = try file.read()
+    guard let content = String(data: data, encoding: .utf8) else {
+      throw "Cannot convert content from file \(path) to readable data"
+    }
+    return try FootlessParser.parse(parser, content)
+  }
+
+  // TODO: Dont use this method in MetadataTests
+  internal static func parse(_ value: String) -> Result {
     do {
       return Result.success(try FootlessParser.parse(parser, value))
     } catch ParseError<Character>.Mismatch(let remainder, let expected, let actual) {
@@ -45,7 +104,7 @@ enum Metadata {
   private static var item: P<Metadata> {
     return string(start) *> til(">") >>- { type in
       return til("</bitbar.\(type)>", allowEmpty: true) >>- { value in
-        if let metadata = Metadata(key: type, value: value) {
+        if let metadata = Metadata(key: type, value: value.trimmed()) {
           return pure(metadata)
         }
         return stop("Could not find any type matching \(type) & \(value)")
@@ -67,52 +126,6 @@ enum Metadata {
   private static func stop<A, B>(_ message: String) -> Parser<A, B> {
     return Parser { parsedtokens in
       throw ParseError.Mismatch(parsedtokens, message, "done")
-    }
-  }
-
-  case about(URL)
-  case image(URL)
-  case title(String)
-  case github(String)
-  case author(String)
-  case version(String)
-  case description(String)
-  case dependencies([String])
-  case dropTypes([String])
-  case demoArgs([String])
-  init?(key: String, value: String) {
-    switch key.lowercased() {
-    case "title":
-      self = .title(value)
-    case "version":
-      self = .version(value)
-    case "author.github":
-      self = .github(value)
-    case "author":
-      self = .author(value)
-    case "desc":
-      self = .description(value)
-    case "image":
-      if let url = URL(string: value) {
-        self = .image(url)
-      } else {
-        return nil
-      }
-    case "dependencies":
-      self = .dependencies(value.split(delimiter: ","))
-    case "droptypes":
-      self = .dropTypes(value.split(delimiter: ","))
-    case "demo":
-      // TODO: Handle arbitrary whitespace
-      self = .demoArgs(value.split(delimiter: " "))
-    case "abouturl":
-      if let url = URL(string: value) {
-        self = .about(url)
-      } else {
-        return nil
-      }
-    default:
-      return nil
     }
   }
 }

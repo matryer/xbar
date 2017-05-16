@@ -3,11 +3,11 @@ import Nimble
 @testable import BitBar
 
 let example = [
-  "X<bitbar.title>A Title</bitbar.title>P",
-  "X<bitbar.version>v10.10.10</bitbar.version>",
-  "X<bitbar.author>Your Name</bitbar.author>",
-  "X<bitbar.author.github>your-github-username</bitbar.author.github>",
-  "X<bitbar.desc>Short description of what your plugin does.</bitbar.desc>",
+  "# <bitbar.title>A Title</bitbar.title>",
+  "# <bitbar.version>v10.10.10</bitbar.version>",
+  "# <bitbar.author>Your Name</bitbar.author>",
+  "# <bitbar.author.github>your-github-username</bitbar.author.github>",
+  "# <bitbar.desc>Short description of what your plugin does.</bitbar.desc>",
   "# <bitbar.image>http://www.hosted-somewhere/pluginimage</bitbar.image>",
   "# <bitbar.dependencies>python,ruby,node</bitbar.dependencies>",
   "# <bitbar.abouturl>http://url-to-about.com/</bitbar.abouturl>",
@@ -49,6 +49,16 @@ class MetadataTests: Helper {
         case let .failure(data):
           fail("Failed: \(data)")
         }
+      }
+    }
+
+    describe("from file") {
+      it("should read existing file with metadata") {
+        expect(try! Metadata.from(path: toFile("metadata.sh"))).to(haveCount(8))
+      }
+
+      it("should handle file without metadata") {
+        expect(try! Metadata.from(path: toFile("version-env.sh"))).to(haveCount(0))
       }
     }
   }

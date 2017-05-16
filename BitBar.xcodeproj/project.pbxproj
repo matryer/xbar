@@ -10,6 +10,9 @@
 		201670441EC86AAC00490D54 /* Pref.FirstRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201670431EC86AAC00490D54 /* Pref.FirstRun.swift */; };
 		201670461EC87C4100490D54 /* MenuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201670451EC87C4100490D54 /* MenuBase.swift */; };
 		20192F531ECB768600B08DE4 /* shared-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20192F511ECB767F00B08DE4 /* shared-env.sh */; };
+		20192F571ECB912B00B08DE4 /* metadata.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20192F541ECB90E500B08DE4 /* metadata.sh */; };
+		20192F5A1ECB94C100B08DE4 /* String.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20192F581ECB94C100B08DE4 /* String.Error.swift */; };
+		20192F5B1ECB94C100B08DE4 /* String.LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20192F591ECB94C100B08DE4 /* String.LocalizedError.swift */; };
 		202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2026989F1EC2D2DD008FD6AF /* Titlable.swift */; };
 		202698A21EC2D355008FD6AF /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202698A11EC2D355008FD6AF /* Mutable.swift */; };
 		202EC6251EA628F8003E1F9B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6211EA628F8003E1F9B /* Array.swift */; };
@@ -166,6 +169,9 @@
 		201670431EC86AAC00490D54 /* Pref.FirstRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.FirstRun.swift; path = Pref/Pref.FirstRun.swift; sourceTree = "<group>"; };
 		201670451EC87C4100490D54 /* MenuBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBase.swift; sourceTree = "<group>"; };
 		20192F511ECB767F00B08DE4 /* shared-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "shared-env.sh"; sourceTree = "<group>"; };
+		20192F541ECB90E500B08DE4 /* metadata.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = metadata.sh; sourceTree = "<group>"; };
+		20192F581ECB94C100B08DE4 /* String.Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.Error.swift; sourceTree = "<group>"; };
+		20192F591ECB94C100B08DE4 /* String.LocalizedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.LocalizedError.swift; sourceTree = "<group>"; };
 		201B5EE71EA355EA0059950E /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
 		2026989F1EC2D2DD008FD6AF /* Titlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Titlable.swift; path = Protocol/Titlable.swift; sourceTree = "<group>"; };
 		202698A11EC2D355008FD6AF /* Mutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
@@ -358,6 +364,8 @@
 		202EC6201EA628CB003E1F9B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				20192F581ECB94C100B08DE4 /* String.Error.swift */,
+				20192F591ECB94C100B08DE4 /* String.LocalizedError.swift */,
 				205E3AA31EC3426A00BC8111 /* Parser.Text.swift */,
 				202698A11EC2D355008FD6AF /* Mutable.swift */,
 				203180791EBFC53C00DF82B7 /* Image.Sort.swift */,
@@ -450,6 +458,7 @@
 		2079AB961E9EC28A005B92AD /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				20192F541ECB90E500B08DE4 /* metadata.sh */,
 				20192F511ECB767F00B08DE4 /* shared-env.sh */,
 				20FE3F691EC8A9E600FE9165 /* missing-sh-bin.sh */,
 				20FE3F631EC89F1B00FE9165 /* bitbar-dark-env.sh */,
@@ -774,6 +783,7 @@
 			files = (
 				20FE3F671EC89F8E00FE9165 /* bitbar-dark-env.sh in Resources */,
 				2079ABA91E9EC2B0005B92AD /* ansi.10m.sh in Resources */,
+				20192F571ECB912B00B08DE4 /* metadata.sh in Resources */,
 				2079ABAE1E9EC2B0005B92AD /* exit1-output.sh in Resources */,
 				20192F531ECB768600B08DE4 /* shared-env.sh in Resources */,
 				2079ABB61E9EC2B0005B92AD /* stream-nothing.sh in Resources */,
@@ -952,6 +962,7 @@
 				20A462B51E9EC03F00321D42 /* App.swift in Sources */,
 				202EC6651EA62958003E1F9B /* Plugin.swift in Sources */,
 				20DA49AD1EAAC2C20070B4D9 /* Tray.swift in Sources */,
+				20192F5A1ECB94C100B08DE4 /* String.Error.swift in Sources */,
 				20DA49BC1EAAC2CA0070B4D9 /* NSRange.swift in Sources */,
 				20946B2D1E9EBF6800F7926D /* AppDelegate.swift in Sources */,
 				206802171EBF20E200985920 /* Pref.RunInTerminal.swift in Sources */,
@@ -966,6 +977,7 @@
 				203180811EBFC53C00DF82B7 /* Parser.Action.swift in Sources */,
 				20DA49B61EAAC2CA0070B4D9 /* CountableClosedRange.swift in Sources */,
 				20DA49C81EAAC4820070B4D9 /* ScriptDelegate.swift in Sources */,
+				20192F5B1ECB94C100B08DE4 /* String.LocalizedError.swift in Sources */,
 				203180781EBFC29800DF82B7 /* Parent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
