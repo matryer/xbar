@@ -3,7 +3,7 @@ import Foundation
 import Dollar
 import Files
 
-enum Metadata {
+enum Metadata: CustomStringConvertible {
   private static let start = "<bitbar."
   private static let trash = til(start, allowEmpty: true, consume: false)
 
@@ -51,6 +51,31 @@ enum Metadata {
       }
     default:
       return nil
+    }
+  }
+
+  public var description: String {
+    switch self {
+    case let .title(title):
+      return "Title: \(title)"
+    case let .version(version):
+      return "Version: \(version)"
+    case let .github(value):
+      return "Github: \(value)"
+    case let .author(value):
+      return "Author: \(value)"
+    case let .description(value):
+      return "Description: \(value)"
+    case let .image(value):
+      return "Image: \(value)"
+    case let .dependencies(value):
+      return "Dependencies: \(value.joined(separator: ", "))"
+    case let .dropTypes(value):
+      return "Drop types: \(value.joined(separator: ", "))"
+    case let .demoArgs(value):
+      return "Demo Args: \(value.joined(separator: ", "))"
+    case let .about(url):
+      return "About: \(url.absoluteString)"
     }
   }
 

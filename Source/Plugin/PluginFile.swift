@@ -18,9 +18,9 @@ class PluginFile: NSObject, Parent, Managable {
 
     do {
       plugin = try File.toPlugin(file: file, delegate: self)
-      title = Title(prefs: prefs, delegate: self)
+      title = Title(prefs: [pref], delegate: self)
     } catch let error {
-      title = Title(prefs: prefs, delegate: self)
+      title = Title(prefs: [pref], delegate: self)
       set(errors: [String(describing: error)])
     }
 
@@ -90,8 +90,12 @@ class PluginFile: NSObject, Parent, Managable {
     return FileSystem().homeFolder.path
   }
 
+  private var pref: MenuItem {
+    return MenuItem(title: "Plugin Details", submenus: prefs)
+  }
+
   private var prefs: [MenuItem] {
-    return [
+    return metadata + [
       "Type": type,
       "File": name
     ].map { meta in
@@ -99,5 +103,15 @@ class PluginFile: NSObject, Parent, Managable {
     } + defaultPrefs.map { meta in
       return MenuItem(title: meta.0 + ": " + meta.1)
     } + [Pref.FirstRun(), MenuItem(title: "Path: " + dir)]
+  }
+
+  private var metadata: [MenuItem] {
+    do {
+      return try Metadata.from(path: file.path).map {
+        return MenuItem(title: String(describing: $0))
+      }
+    } catch {
+      return []
+    }
   }
 }
