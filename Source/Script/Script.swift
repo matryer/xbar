@@ -77,6 +77,7 @@ class Script {
     process?.arguments = arguments
     process?.standardOutput = pipe
     process?.standardError = pipe
+    process?.environment = ProcessInfo.processInfo.environment
     setDefaultEnv()
     process?.terminationHandler = { [weak self] _ in
       self?.terminateEvent()
@@ -138,15 +139,7 @@ class Script {
   }
 
   private func setEnv(key: String, value: String) {
-    guard let process = self.process else {
-      return print("[Error] Can't set \(key) with \(value), no process")
-    }
-
-    if process.environment == nil {
-      process.environment = [:]
-    }
-
-    process.environment![key] = value
+    process?.environment?[key] = value
   }
 
   private func succeeded(_ result: String, status: Int32) {

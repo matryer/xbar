@@ -66,6 +66,12 @@ class ScriptTests: Helper {
         it("should have BitBar set") {
           expect("bitbar-env.sh").toEventually(succeed(with: "true\n"))
         }
+
+        it("should share environment with the host") {
+          let testValue = "ABC 123"
+          setenv("SHAREDBITBARENV", testValue, true)
+          expect("shared-env.sh").toEventually(succeed(with: testValue + "\n"))
+        }
       }
 
       describe("stream") {

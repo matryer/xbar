@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		201670441EC86AAC00490D54 /* Pref.FirstRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201670431EC86AAC00490D54 /* Pref.FirstRun.swift */; };
 		201670461EC87C4100490D54 /* MenuBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201670451EC87C4100490D54 /* MenuBase.swift */; };
+		20192F531ECB768600B08DE4 /* shared-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20192F511ECB767F00B08DE4 /* shared-env.sh */; };
 		202698A01EC2D2DD008FD6AF /* Titlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2026989F1EC2D2DD008FD6AF /* Titlable.swift */; };
 		202698A21EC2D355008FD6AF /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202698A11EC2D355008FD6AF /* Mutable.swift */; };
 		202EC6251EA628F8003E1F9B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EC6211EA628F8003E1F9B /* Array.swift */; };
@@ -164,6 +165,7 @@
 		0BABE2A2604A12052C0B0FA9 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
 		201670431EC86AAC00490D54 /* Pref.FirstRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pref.FirstRun.swift; path = Pref/Pref.FirstRun.swift; sourceTree = "<group>"; };
 		201670451EC87C4100490D54 /* MenuBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBase.swift; sourceTree = "<group>"; };
+		20192F511ECB767F00B08DE4 /* shared-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "shared-env.sh"; sourceTree = "<group>"; };
 		201B5EE71EA355EA0059950E /* Pods_Distro.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Distro.framework; path = Pods/../build/Debug/Pods_Distro.framework; sourceTree = "<group>"; };
 		2026989F1EC2D2DD008FD6AF /* Titlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Titlable.swift; path = Protocol/Titlable.swift; sourceTree = "<group>"; };
 		202698A11EC2D355008FD6AF /* Mutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 		2079AB961E9EC28A005B92AD /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				20192F511ECB767F00B08DE4 /* shared-env.sh */,
 				20FE3F691EC8A9E600FE9165 /* missing-sh-bin.sh */,
 				20FE3F631EC89F1B00FE9165 /* bitbar-dark-env.sh */,
 				20FE3F641EC89F1B00FE9165 /* bitbar-env.sh */,
@@ -772,6 +775,7 @@
 				20FE3F671EC89F8E00FE9165 /* bitbar-dark-env.sh in Resources */,
 				2079ABA91E9EC2B0005B92AD /* ansi.10m.sh in Resources */,
 				2079ABAE1E9EC2B0005B92AD /* exit1-output.sh in Resources */,
+				20192F531ECB768600B08DE4 /* shared-env.sh in Resources */,
 				2079ABB61E9EC2B0005B92AD /* stream-nothing.sh in Resources */,
 				20FE3F681EC89F8E00FE9165 /* bitbar-env.sh in Resources */,
 				2079ABB71E9EC2B0005B92AD /* stream-sleep.sh in Resources */,
