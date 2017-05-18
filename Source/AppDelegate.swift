@@ -1,7 +1,5 @@
 import Cocoa
 //import Sparkle
-import ServiceManagement
-import SwiftyUserDefaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
@@ -9,7 +7,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
-  private let helperId = "com.getbitbar.Startup"
   // TODO
 //  private let updater = SUUpdater.shared()
 
@@ -21,26 +18,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     handleStartupApp()
   }
 
-  private func sendTerminateToHelper() {
-    print("[Log] Sending terminate signal to helper app")
-    DistributedNotificationCenter.default().post(name: .terminate, object: helperId)
-  }
-
   private func handleStartupApp() {
-    for app in NSWorkspace.shared().runningApplications {
-      guard let id = app.bundleIdentifier else { continue }
-      if id == helperId {
-        return sendTerminateToHelper()
-      }
-    }
+    App.terminateHelperApp()
   }
 
   func on(_ event: MenuEvent) {
     switch event {
     case .refreshAll: loadPluginManager()
     case .openWebsite: App.open(url: App.website)
-    case .openOnLogin: login(true)
-    case .doNotOpenOnLogin: login(false)
+    case .openOnLogin: App.startAtLogin(true)
+    case .doNotOpenOnLogin: App.startAtLogin(false)
     case let .openUrlInBrowser(url): App.open(url: url)
     case .quitApplication: NSApp.terminate(self)
       // TODO
@@ -76,11 +63,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     if manager != nil { print("[Log] Reload plugin manager") }
     manager = PluginManager(path: path)
     manager?.root = self
-  }
-
-  private func login(_ state: Bool) {
-    Defaults[.startAtLogin] = state
-    SMLoginItemSetEnabled(helperId as CFString, state)
   }
 
   @objc private func onDidWake() {

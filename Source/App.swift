@@ -1,15 +1,18 @@
 import Foundation
+import ServiceManagement
 import Async
 import SwiftyUserDefaults
+
+#if DEBUG
+  var Defaults = UserDefaults(suiteName: "DEBUG.\(App.id)")
+#else
+  var Defaults = UserDefaults(suiteName: App.id)
+#endif
 
 /**
   Global values and helpers
 */
 class App {
-  /**
-    Event triggers
-  */
-
   /**
     Bundle id for current application, i.e com.getbitbar
   */
@@ -46,14 +49,14 @@ class App {
     Absolute path to plugins folder
   */
   static var pluginPath: String? {
-    return Defaults[.pluginPath]
+    return Defaults?[.pluginPath]
   }
 
   /**
     Does the application start at login?
   */
   static var autostart: Bool {
-    return Defaults[.startAtLogin] ?? false
+    return Defaults?[.startAtLogin] ?? false
   }
 
   /**
@@ -74,15 +77,20 @@ class App {
     NSWorkspace.shared().selectFile(nil, inFileViewerRootedAtPath: path)
   }
 
+  static func startAtLogin(_ state: Bool) {
+    Defaults?[.startAtLogin] = state
+    SMLoginItemSetEnabled(helperId as CFString, state)
+  }
+
   /**
     Update absolute path to plugin folder
   */
   static func update(pluginPath: String?) {
-    guard let path = pluginPath else {
-      return Defaults.remove(.pluginPath)
+    if let path = pluginPath {
+      Defaults?[.pluginPath] = path
+    } else {
+      Defaults?.remove(.pluginPath)
     }
-
-    Defaults[.pluginPath] = path
   }
 
   /**
@@ -94,7 +102,7 @@ class App {
   }
 
   static func isConfigDisabled() -> Bool {
-    return Defaults[.disabled] ?? false
+    return Defaults?[.disabled] ?? false
   }
 
   /**
@@ -118,6 +126,15 @@ class App {
 
   static func isTravis() -> Bool {
     return ProcessInfo.processInfo.environment["TRAVIS"] != nil
+  }
+
+  static func terminateHelperApp() {
+    for app in NSWorkspace.shared().runningApplications {
+      guard let id = app.bundleIdentifier else { continue }
+      if id == helperId {
+        DistributedNotificationCenter.default().post(name: .terminate, object: id)
+      }
+    }
   }
 
   static func openScript(inTerminal path: String, args: [String], block: @escaping (String?) -> Void) {
@@ -145,4 +162,5 @@ class App {
   }
 
   private static let currentBundle = Bundle.main
+  private static let helperId = "com.getbitbar.Startup"
 }
