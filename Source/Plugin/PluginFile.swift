@@ -119,6 +119,7 @@ class PluginFile: NSObject, Parent, Managable {
 
   // Set title to next item in {text}
   private func setNext() {
+    guard noOfItem > 0 else { return }
     set(using: (currentIndex + 1) % noOfItem)
   }
 

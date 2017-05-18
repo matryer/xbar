@@ -556,7 +556,7 @@ class ExecutablePluginTests: Helper {
                   beforeEach { menu.onWillBecomeVisible() }
 
                   it("should have the proper title") {
-                    expect(menu).toEventually(contain(title: "Updated"))
+                    expect(menu).toEventually(contain(title: "Updated just now"))
                   }
 
                   it("should not be clickable") {

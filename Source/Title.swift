@@ -29,6 +29,7 @@ final class Title: MenuBase, Parent {
       add(sub: menu)
     }
 
+    ago.reset()
     hasLoaded = true
   }
 
