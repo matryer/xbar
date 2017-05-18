@@ -6,7 +6,7 @@ import SwiftyUserDefaults
 #if DEBUG
   var Defaults = UserDefaults(suiteName: "DEBUG.\(App.id)")
 #else
-  var Defaults = UserDefaults(suiteName: App.id)
+  var Defaults = UserDefaults(suiteName: String(App.id))
 #endif
 
 /**
