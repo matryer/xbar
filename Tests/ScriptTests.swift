@@ -17,7 +17,6 @@ class ScriptTests: Helper {
         expect("sleep.sh").toEventually(succeed(with: "sleep\n"))
       }
 
-
       describe("args") {
         it("handles args") {
           expect("args.sh".withArgs(["1", "2", "3"])).toEventually(succeed(with: "1 2 3\n"))

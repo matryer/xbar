@@ -1,5 +1,6 @@
 import AppKit
 import Files
+import Parser
 
 /**
   The PluginManager is responsible for
@@ -76,7 +77,7 @@ class PluginManager: Parent {
   func on(_ event: MenuEvent) {
     switch event {
     case .runInTerminal:
-      broadcast(.openScriptInTerminal(path))
+      broadcast(.openPathInTerminal(path))
     default:
       break
     }

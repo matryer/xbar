@@ -77,7 +77,7 @@ class MenuItem: NSMenuItem, Titlable {
       menuWarn,
       Tab.headIndent(10),
       error.immutable
-    ]), submenus: submenus, isClickable: false)
+    ]), submenus: submenus, isClickable: true)
   }
 
   convenience init(

@@ -1,3 +1,5 @@
+import Parser
+
 enum MenuEvent: Comparable {
   case refreshAll
   case quitApplication
@@ -12,7 +14,8 @@ enum MenuEvent: Comparable {
   case openOnLogin
   case doNotOpenOnLogin
   case openUrlInBrowser(String)
-  case openScriptInTerminal(String)
+  case openScriptInTerminal(Action.Script)
+  case openPathInTerminal(String)
 
   public static func < (lhs: MenuEvent, rhs: MenuEvent) -> Bool {
     return String(describing: lhs).characters.count < String(describing: rhs).characters.count
@@ -20,7 +23,6 @@ enum MenuEvent: Comparable {
 
   public static func == (lhs: MenuEvent, rhs: MenuEvent) -> Bool {
     switch (lhs, rhs) {
-    case (.refreshAll, .refreshAll): fallthrough
     case (.quitApplication, .quitApplication): fallthrough
     case (.openPluginFolder, .openPluginFolder): fallthrough
     case (.openWebsite, .openWebsite): fallthrough
@@ -34,10 +36,14 @@ enum MenuEvent: Comparable {
     case (.doNotOpenOnLogin, .doNotOpenOnLogin): fallthrough
     case (.refreshAll, .refreshAll):
       return true
-    case let (.openUrlInBrowser(url1), .openUrlInBrowser(url2)):
-      return url1 == url2
-    case let (.openScriptInTerminal(script1), .openScriptInTerminal(script2)):
-      return script1 == script2
+    case let (.openUrlInBrowser(u1), openUrlInBrowser(u2)):
+      return u1 == u2
+    case let (.openScriptInTerminal(s1), .openScriptInTerminal(s2)):
+      return s1 == s2
+    case let (.openScriptInTerminal(script), .openPathInTerminal(path)):
+      return script.path == path /* TODO: Equal-ish */
+    case let (.openPathInTerminal(p1), .openPathInTerminal(p2)):
+      return p1 == p2
     default:
       return false
     }

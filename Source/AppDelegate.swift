@@ -1,5 +1,5 @@
 import Cocoa
-import Sparkle
+//import Sparkle
 import ServiceManagement
 import SwiftyUserDefaults
 
@@ -10,7 +10,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
   private let helperId = "com.getbitbar.Startup"
-  private let updater = SUUpdater.shared()
+  // TODO
+//  private let updater = SUUpdater.shared()
 
   func applicationDidFinishLaunching(_: Notification) {
     if App.isInTestMode() { return }
@@ -42,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     case .doNotOpenOnLogin: login(false)
     case let .openUrlInBrowser(url): App.open(url: url)
     case .quitApplication: NSApp.terminate(self)
-    case .checkForUpdates: updater?.checkForUpdates(self)
+      // TODO
+//    case .checkForUpdates: updater?.checkForUpdates(self)
     case .openPluginFolder:
       if let path = App.pluginPath {
         App.open(path: path)
@@ -51,12 +53,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
       App.askAboutPluginPath { [weak self] in
         self?.loadPluginManager()
       }
-    case let .openScriptInTerminal(path):
-      App.openScript(inTerminal: path) { maybe in
-        if let error = maybe {
-          print("[Error] openScriptInTerminal: \(error)")
-        }
-      }
+    case let .openPathInTerminal(path):
+      open(script: path)
+    case let .openScriptInTerminal(script):
+      open(script: script.path, args: script.args)
     default:
       print("[Log] Ignored event in AppDelegate: \(event)")
     }
@@ -138,6 +138,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
       }
     case let other:
       print("[Error] \(String(describing: other)) is not a supported protocol")
+    }
+  }
+
+  private func open(script path: String, args: [String] = []) {
+    App.openScript(inTerminal: path, args: args) { maybe in
+      if let error = maybe {
+        print("[Error] open in app delegate: \(error)")
+      }
     }
   }
 }

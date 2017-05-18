@@ -64,8 +64,8 @@ class Menu: MenuItem, ScriptDelegate {
       self.paction = action
     case .separator:
       preconditionFailure("[Bug] Tails as separators isn't supported")
-    case let .error(messages, _):
-      self.init(errors: messages)
+    case let .error(messages):
+      self.init(errors: messages.map { String(describing: $0) })
     }
   }
 
@@ -78,13 +78,11 @@ class Menu: MenuItem, ScriptDelegate {
       if events.has(.refresh) {
         broadcast(.refreshPlugin)
       }
-    case let .script(.background(path, args, _)):
-       script = Script(path: path, args: args, delegate: self, autostart: true)
-    case let .script(.foreground(path, events)):
-      broadcast(.openScriptInTerminal(path))
-      if events.has(.refresh) {
-        broadcast(.refreshPlugin)
-      }
+    case let .script(script) where script.openInTerminal:
+     broadcast(.openScriptInTerminal(script))
+      if script.refreshAfterExec { broadcast(.refreshPlugin) }
+    case let .script(script):
+      self.script = Script(path: script.path, args: script.args, delegate: self, autostart: true)
     case .refresh:
       broadcast(.refreshPlugin)
     }
@@ -93,11 +91,13 @@ class Menu: MenuItem, ScriptDelegate {
   // Background script succeded, send refresh request
   func scriptDidReceive(success: Script.Success) {
     switch paction {
-    case let .script(.background(_, _, events)) where events.has(.refresh):
+    case let .script(script) where script.refreshAfterExec:
       broadcast(.refreshPlugin)
     default:
       break
     }
+
+    script = nil
   }
 
   // Background script failed, send refresh request

@@ -2,7 +2,12 @@ import Quick
 import Files
 import Nimble
 import BonMot
+import Parser
 @testable import BitBar
+
+func scriptEvent(_ path: String, _ args: [String] = [], _ events: [Parser.Event] = []) -> MenuEvent {
+ return .openScriptInTerminal(Parser.Action.Script(path: path, args: args, events: events))
+}
 
 let aFile = toPath(name: "all.20m", ext: "sh")
 class ExecutablePluginTests: Helper {
@@ -467,8 +472,8 @@ class ExecutablePluginTests: Helper {
 
             context("terminal") {
               context("refresh=true terminal=true") {
-                let script = "/usr/bin/whoami"
-                let events: [MenuEvent] = [.refreshPlugin, .openScriptInTerminal(script)]
+                let path = "/usr/bin/whoami"
+                let events: [MenuEvent] = [.refreshPlugin, scriptEvent(path, [], [.refresh, .terminal])]
                 it("should refresh menu with no submenus") {
                   a(menu, at: [38]) { menu in
                     expect(menu, when: .clicked).toEventually(have(.broadcasted(events)))

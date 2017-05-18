@@ -7,16 +7,17 @@ import Foundation
 
 extension Parser.Text {
   private func font(withBase base: NSFont) -> NSFont? {
-    switch (fontName, fontSize) {
-    case let (.some(name), .some(size)):
-      return NSFont(name: name, size: CGFloat(size))
-    case let (.none, .some(size)):
-      return NSFont(name: base.fontName, size: CGFloat(size))
-      // return NSFont.menuBarFont(ofSize: CGFloat(size))
-    case let (.some(name), .none):
-      return NSFont(name: name, size: base.pointSize)
-    default:
+    guard let font = self.font else {
       return base
+    }
+    
+    switch font {
+    case let .font(name, size):
+      return NSFont(name: name, size: CGFloat(size))
+    case let .size(size):
+      return NSFont(name: base.fontName, size: CGFloat(size))
+    case let .name(name):
+      return NSFont(name: name, size: base.pointSize)
     }
   }
 
@@ -27,28 +28,12 @@ extension Parser.Text {
     }
   }
 
-  private var fontName: String? {
-    return params.reduce(nil) { font, param in
-      if (font != nil) { return font }
-      switch param {
-      case let .font(name):
-        return name
-      default:
-        return font
-      }
+  private var font: Parser.Font? {
+    for case let .font(font) in params {
+      return font
     }
-  }
-
-  private var fontSize: Float? {
-    return params.reduce(nil) { size, param in
-      if (size != nil) { return size }
-      switch param {
-      case let .size(value):
-        return value
-      default:
-        return size
-      }
-    }
+    
+    return nil
   }
 
   private var title: String {

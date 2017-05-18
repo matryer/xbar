@@ -120,10 +120,12 @@ class App {
     return ProcessInfo.processInfo.environment["TRAVIS"] != nil
   }
 
-  static func openScript(inTerminal path: String, block: @escaping (String?) -> Void) {
+  static func openScript(inTerminal path: String, args: [String], block: @escaping (String?) -> Void) {
+    let escape = { (val: String) in val.replace("\"", "\\\"").replace(" ", "\\ ") }
+    let input = ([escape(path)] + args.map(escape)).joined(separator: " ")
     let tell = [
       "tell application \"Terminal\" \n",
-      "do script \"\(path.replace(" ", "\\ "))\" \n",
+      "do script \"\(input)\" \n",
       "activate \n",
       "end tell"
     ].joined()

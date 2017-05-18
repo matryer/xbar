@@ -40,8 +40,8 @@ extension Menuable {
 
   var args: [String] {
     switch act {
-    case let .script(.background(_, args, _)):
-      return args
+    case let .script(script):
+      return script.args
     default:
       return []
     }
