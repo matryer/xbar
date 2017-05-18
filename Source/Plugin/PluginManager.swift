@@ -73,13 +73,4 @@ class PluginManager: Parent {
       tray.show()
     }
   }
-
-  func on(_ event: MenuEvent) {
-    switch event {
-    case .runInTerminal:
-      broadcast(.openPathInTerminal(path))
-    default:
-      break
-    }
-  }
 }

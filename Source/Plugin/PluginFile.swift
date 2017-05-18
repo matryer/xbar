@@ -8,6 +8,7 @@ import Parser
 class PluginFile: NSObject, Parent, Managable {
   private let manager = FileManager.default
   internal weak var root: Parent?
+  private var path: String { return file.path }
   private let file: Files.File
   internal var name: String { return file.name }
   internal let tray = Tray(title: "…", isVisible: true)
@@ -62,6 +63,8 @@ class PluginFile: NSObject, Parent, Managable {
       tray.set(error: true)
     case .refreshPlugin:
       refresh()
+    case .runInTerminal:
+      broadcast(.openPathInTerminal(path))
     default:
       break
     }
