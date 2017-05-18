@@ -1,5 +1,6 @@
 import Cocoa
-//import Sparkle
+import AppKit
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
@@ -7,8 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
-  // TODO
-//  private let updater = SUUpdater.shared()
+  private let updater = SUUpdater.shared()
 
   func applicationDidFinishLaunching(_: Notification) {
     if App.isInTestMode() { return }
@@ -30,8 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     case .doNotOpenOnLogin: App.startAtLogin(false)
     case let .openUrlInBrowser(url): App.open(url: url)
     case .quitApplication: NSApp.terminate(self)
-      // TODO
-//    case .checkForUpdates: updater?.checkForUpdates(self)
+    case .checkForUpdates: updater?.checkForUpdates(self)
     case .openPluginFolder:
       if let path = App.pluginPath {
         App.open(path: path)

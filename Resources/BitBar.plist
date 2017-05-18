@@ -29,9 +29,9 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUAllowsAutomaticUpdates</key>
-	<string>NO</string>
+	<false/>
 	<key>SUEnableAutomaticChecks</key>
-	<string>NO</string>
+	<false/>
 	<key>SUFeedURL</key>
 	<string>https://bitbarapp.com/feeds/bitbar</string>
 </dict>
