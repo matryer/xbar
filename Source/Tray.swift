@@ -1,15 +1,18 @@
 import AppKit
 import Cocoa
+import BonMot
 
 /**
   Represents an item in the menu bar
 */
 
-class Tray: Titlable {
-  var warningLabel = barWarn
-  var textFont = barFont
+class Tray: Parent {
+  static private let barfont = NSFont.menuBarFont(ofSize: 0)
+  static private let fontawesome = NSFont(name:"FontAwesome", size: barFont.pointSize + 4)!
+  static private let warning = ":warning:".emojified.styled(
+    with: StringStyle(.font(fontawesome), .baselineOffset(-1))
+  )
   internal weak var root: Parent?
-  internal var originalTitle: NSAttributedString?
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
   private var item: MenuBar
@@ -24,6 +27,25 @@ class Tray: Titlable {
   var attributedTitle: NSAttributedString? {
     get { return item.attributedTitle }
     set { item.attributedTitle = newValue }
+  }
+
+  func set(error: String) {
+    /* TODO */
+    attributedTitle = Tray.warning
+    broadcast(.didSetError)
+  }
+
+  func set(error: Bool) {
+    attributedTitle = Tray.warning
+    broadcast(.didSetError)
+  }
+
+  func set(title: Immutable) {
+    attributedTitle = title.styled(with: .font(Tray.barfont))
+  }
+
+  func set(title: String) {
+    set(title: title.immutable)
   }
 
   /**

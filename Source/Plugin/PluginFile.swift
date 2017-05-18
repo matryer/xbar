@@ -19,6 +19,7 @@ class PluginFile: NSObject, Parent, Managable {
   private var text: [Parser.Text] = []
   private var noOfItem = 0
   private let updateInterval: Double = 10.seconds
+  internal var hasLoaded = false
 
   init(file: Files.File, delegate: Parent) {
     self.file = file
@@ -45,6 +46,8 @@ class PluginFile: NSObject, Parent, Managable {
       case let .error(messages):
         self?.set(errors: messages)
       }
+
+      self?.hasLoaded = true
     }
   }
 
@@ -74,6 +77,7 @@ class PluginFile: NSObject, Parent, Managable {
   private func load(text: [Parser.Text]) {
     self.text = text
     self.noOfItem = text.count
+    self.currentIndex = -1
     if text.isEmpty { set(title: "…") }
     else { set(using: 0) }
   }
@@ -85,7 +89,7 @@ class PluginFile: NSObject, Parent, Managable {
 
   // Set menu bar title to {title}
   private func set(title: String) {
-    tray.set(title: title.immutable)
+    tray.set(title: title)
   }
 
   private func set(errors: [MenuError]) {
@@ -94,7 +98,7 @@ class PluginFile: NSObject, Parent, Managable {
   }
 
   private func set(errors: [String]) {
-    tray.set(title: barWarn)
+    tray.set(error: errors.joined(separator: "\n")) /* TODO */
     title?.set(menus: errors.map { Menu(title: $0) })
   }
 
@@ -197,11 +201,6 @@ class PluginFile: NSObject, Parent, Managable {
   private func setTimer() {
     timer = Timer.new(every: updateInterval) { [weak self] in self?.setNext() }
     timer?.start(modes: .defaultRunLoopMode, .eventTrackingRunLoopMode)
-  }
-
-  // TODO: Move to test
-  var hasLoaded: Bool {
-    return title?.hasLoaded ?? false
   }
 
   private func setTitle() {

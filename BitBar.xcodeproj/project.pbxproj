@@ -71,7 +71,6 @@
 		2079ABB71E9EC2B0005B92AD /* stream-sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA51E9EC2B0005B92AD /* stream-sleep.sh */; };
 		2079ABB91E9EC2B0005B92AD /* sub2.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA71E9EC2B0005B92AD /* sub2.10s.sh */; };
 		2079ABBA1E9EC2B0005B92AD /* sub3.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABA81E9EC2B0005B92AD /* sub3.10s.sh */; };
-		2079ABC01E9EC503005B92AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBB1E9EC503005B92AD /* Images.xcassets */; };
 		2079ABC11E9EC503005B92AD /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBC1E9EC503005B92AD /* App.xib */; };
 		2079ABC21E9EC503005B92AD /* bitbar-2048.png in Resources */ = {isa = PBXBuildFile; fileRef = 2079ABBD1E9EC503005B92AD /* bitbar-2048.png */; };
 		20823E041EBD0B7400C8D468 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20823E011EBD0B7400C8D468 /* Menu.swift */; };
@@ -101,6 +100,7 @@
 		20B316E31EC7D82D002DC7B8 /* OpenPluginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316DE1EC7D157002DC7B8 /* OpenPluginHandler.swift */; };
 		20B316E81EC7F8CB002DC7B8 /* TestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E61EC7F87F002DC7B8 /* TestBar.swift */; };
 		20B316E91EC7F977002DC7B8 /* StreamablePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B316E41EC7EFA7002DC7B8 /* StreamablePlugin.swift */; };
+		20C249E81ECE1B6300EF784A /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 20C249E71ECE1B6300EF784A /* FontAwesome.otf */; };
 		20C3E5AF1EC91468006D2F0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C3E5AE1EC91468006D2F0B /* AppDelegate.swift */; };
 		20C3E5B31EC91468006D2F0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C3E5B21EC91468006D2F0B /* Assets.xcassets */; };
 		20C3E5BB1EC914C7006D2F0B /* Startup.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 20C3E5AC1EC91468006D2F0B /* Startup.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -267,6 +267,7 @@
 		20B316E01EC7D15F002DC7B8 /* RefreshPluginHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefreshPluginHandler.swift; path = Handler/RefreshPluginHandler.swift; sourceTree = "<group>"; };
 		20B316E41EC7EFA7002DC7B8 /* StreamablePlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamablePlugin.swift; sourceTree = "<group>"; };
 		20B316E61EC7F87F002DC7B8 /* TestBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBar.swift; sourceTree = "<group>"; };
+		20C249E71ECE1B6300EF784A /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		20C3E5AC1EC91468006D2F0B /* Startup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Startup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C3E5AE1EC91468006D2F0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20C3E5B21EC91468006D2F0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -447,6 +448,7 @@
 				20946B2A1E9EBF6800F7926D /* Products */,
 				2079AB961E9EC28A005B92AD /* Scripts */,
 				2079ABBC1E9EC503005B92AD /* App.xib */,
+				20C249E71ECE1B6300EF784A /* FontAwesome.otf */,
 				20457F051EA35EA500072CC8 /* BitBar.plist */,
 				2079ABBB1E9EC503005B92AD /* Images.xcassets */,
 				20AA559E1EA35303008D23FF /* Tests.plist */,
@@ -771,9 +773,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2079ABC01E9EC503005B92AD /* Images.xcassets in Resources */,
 				2079ABC11E9EC503005B92AD /* App.xib in Resources */,
 				2079ABC21E9EC503005B92AD /* bitbar-2048.png in Resources */,
+				20C249E81ECE1B6300EF784A /* FontAwesome.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

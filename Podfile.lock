@@ -17,6 +17,7 @@ PODS:
     - FootlessParser
     - SwiftyJSON
   - Files (1.8.0)
+  - FontAwesomeForMacOS (2)
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
   - Nimble (7.0.0)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
   - Emojize
   - Files (from `https://github.com/JohnSundell/Files.git`)
+  - FontAwesomeForMacOS
   - FootlessParser
   - Hue
   - Nimble
@@ -84,6 +86,7 @@ SPEC CHECKSUMS:
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   Emojize: 1935550e6aeb5bd755ab8e4e1999017846a6be14
   Files: 7833a7457be5e6482b563cb0e68075bc13735f22
+  FontAwesomeForMacOS: 2078999f277497d59c133fafec39aa5a080ca753
   FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
@@ -95,6 +98,6 @@ SPEC CHECKSUMS:
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: ae897a01f7745945b6caf3a556b8e05d308a23c8
+PODFILE CHECKSUM: de087f65cf60d1f71d2d6ce0fc088739d53ec2de
 
 COCOAPODS: 1.2.1

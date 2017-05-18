@@ -1,12 +1,17 @@
 import AppKit
 import BonMot
 
-class MenuItem: NSMenuItem, Titlable {
-  var warningLabel = menuWarn
-  var textFont = menuFont
+class MenuItem: NSMenuItem, Parent {
+  static private let menuFont = NSFont.menuFont(ofSize: 0)
+  static private let fontawesome = NSFont(name:"FontAwesome", size: menuFont.pointSize + 1)!
+  static private let warning = ":warning:".emojified.styled(
+    with: StringStyle(.font(fontawesome), .baselineOffset(-1))
+  )
+  // var warningLabel = menuWarn
+  // var textFont = menuFont
   var isManualClickable: Bool?
   weak var _root: Parent?
-  internal var originalTitle: NSAttributedString?
+  // internal var originalTitle: NSAttributedString?
   var isChecked: Bool {
     get { return NSOnState == state }
     set { state = newValue ? NSOnState : NSOffState }
@@ -34,7 +39,7 @@ class MenuItem: NSMenuItem, Titlable {
     )
 
     target = self
-    set(title: immutable)
+    attributedTitle = immutable
     if !submenus.isEmpty {
       submenu = MenuBase()
       for sub in submenus {
@@ -69,15 +74,16 @@ class MenuItem: NSMenuItem, Titlable {
   }
 
   convenience init(errors: [String], submenus: [NSMenuItem] = []) {
-    self.init(error: "Found errors", submenus: errors.map { Menu(title: $0, submenus: []) })
+    self.init(
+      error: "\(errors.count) errors",
+      submenus: errors.map { Menu(title: $0, submenus: []) }
+    )
   }
 
   convenience init(error: String, submenus: [NSMenuItem] = []) {
-    self.init(immutable: NSAttributedString.composed(of: [
-      menuWarn,
-      Tab.headIndent(10),
-      error.immutable
-    ]), submenus: submenus, isClickable: true)
+    /* TODO: Dont pass an empty string */
+    self.init(title: "", submenus: submenus)
+    set(error: error)
   }
 
   convenience init(
@@ -109,7 +115,7 @@ class MenuItem: NSMenuItem, Titlable {
    shortcut: String = ""
  ) {
     self.init(
-     immutable: title.styled(with: .font(menuFont)),
+     immutable: title.styled(with: .font(MenuItem.menuFont)),
      submenus: submenus,
      isAlternate: isAlternate,
      isChecked: isChecked,
@@ -120,6 +126,36 @@ class MenuItem: NSMenuItem, Titlable {
 
   required init(coder decoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  func set(error: String) {
+    set(error: error.immutable)
+  }
+
+  func set(title: String) {
+    set(title: title.immutable)
+  }
+
+  @nonobjc func set(error: Immutable, cascade: Bool = true) {
+    attributedTitle = Immutable.composed(of: [
+      MenuItem.warning,
+      Tab.headIndent(10),
+      error.styled(with: .font(MenuItem.menuFont))
+    ])
+
+    if cascade {
+      broadcast(.didSetError)
+    }
+  }
+
+  @nonobjc func set(title: Immutable) {
+    attributedTitle = title.styled(with: .font(MenuItem.menuFont))
+  }
+
+  @nonobjc func set(error: Bool) {
+    if let title = attributedTitle {
+      set(error: title, cascade: false)
+    }
   }
 
   func onDidClick() {

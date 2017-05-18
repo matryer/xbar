@@ -542,7 +542,7 @@ class ExecutablePluginTests: Helper {
                   }
                 }
 
-                it("should propagate open browser event to parent") {
+                it("should propagate error event from parent") {
                   a(menu, at: [47]) { parent in
                     expect(parent).toEventually(receive(events, from: [0, 0]))
                   }
@@ -556,7 +556,7 @@ class ExecutablePluginTests: Helper {
                   beforeEach { menu.onWillBecomeVisible() }
 
                   it("should have the proper title") {
-                    expect(menu).toEventually(contain(title: "Updated just now"))
+                    expect(menu).toEventually(contain(title: "Updated"))
                   }
 
                   it("should not be clickable") {

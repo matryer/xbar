@@ -19,6 +19,10 @@ final class Title: MenuBase, Parent {
     self.delegate = self
   }
 
+  init(x: Int) {
+    super.init()
+  }
+
   // Only keep pref menus
   func set(menus: [NSMenuItem]) {
     for _ in numberOfPrefs..<numberOfItems {

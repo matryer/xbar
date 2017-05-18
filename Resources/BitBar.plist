@@ -34,5 +34,9 @@
 	<false/>
 	<key>SUFeedURL</key>
 	<string>https://bitbarapp.com/feeds/bitbar</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FontAwesome.otf</string>
+	</array>
 </dict>
 </plist>

@@ -1,6 +1,10 @@
 import Cocoa
+// import FontAwesomeForMacOS
+import Emojize
+// import BonMot
 import AppKit
 import Sparkle
+import BonMot
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
@@ -9,8 +13,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   private var manager: PluginManager?
   private let updater = SUUpdater.shared()
+  private var trays = [Tray]()
+  var menus = [NSMenu]()
+  var subs = [NSMenuItem]()
 
   func applicationDidFinishLaunching(_: Notification) {
+  // doStuff()
     if App.isInTestMode() { return }
     setOpenUrlHandler()
     loadPluginManager()
@@ -129,4 +137,124 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
       }
     }
   }
+
+//   func doStuff() {
+//     // let image = NSImage.fontAwesomeIconWithName(.Github, textColor: .black, size: CGSize(width: 20, height: 20))
+// //
+// //    label.font = NSFont.fontAwesomeOfSize(50)
+// //
+//
+//     let barFont = NSFont.menuBarFont(ofSize: 0)
+//     let bigBarFont = NSFont.menuBarFont(ofSize: 21)
+//     let itemFont = NSFont.menuFont(ofSize: 0)
+//     let warning = ":warning:".emojified.styled(with: .font(barFont))
+//     let bigWarn = ":warning:".emojified.styled(with: .font(bigBarFont), .baselineOffset(-2))
+//     let bigWarnNoOff = ":warning:".emojified.styled(with: .font(bigBarFont))
+//     let car = ":car:".emojified.styled(with: .font(barFont))
+//     let text = "hello!".styled(with: .font(barFont))
+//     let bigText = "hello!".styled(with: .font(barFont))
+//     let bigTitle = bigWarnNoOff + bigText
+//
+//     let manager = FileManager.default
+//
+//     let tray1 = Tray(title: "MyTitle", isVisible: true)
+//     let tray2 = Tray(title: "MyTitle", isVisible: true)
+//     let tray3 = Tray(title: "MyTitle", isVisible: true)
+//     let tray4 = Tray(title: "MyTitle", isVisible: true)
+//     let tray5 = Tray(title: "MyTitle", isVisible: true)
+//     let tray6 = Tray(title: "MyTitle", isVisible: true)
+//     let tray7 = Tray(title: "MyTitle", isVisible: true)
+//     let tray8 = Tray(title: "MyTitle", isVisible: true)
+//     let tray9 = Tray(title: "MyTitle", isVisible: true)
+//     let tray10 = Tray(title: "MyTitle", isVisible: true)
+//     let tray11 = Tray(title: "MyTitle", isVisible: true)
+//     let tray12 = Tray(title: "MyTitle", isVisible: true)
+//     let tray13 = Tray(title: "MyTitle", isVisible: true)
+//     let tray14 = Tray(title: "MyTitle", isVisible: true)
+//     let tray15 = Tray(title: "MyTitle", isVisible: true)
+//
+//     tray1.set(title: warning + text)
+//     tray2.set(title: warning)
+//     tray3.set(title: text)
+//     tray4.set(title: car)
+//     tray5.set(title: car + text)
+//     tray6.set(title: bigWarn)
+//     tray7.set(title: bigWarn + bigText)
+//     tray8.set(title: bigTitle.styled(with: .baselineOffset(-2)))
+//     tray9.set(title: bigTitle.styled(with: .baselineOffset(0)))
+//     tray10.set(title: bigTitle.styled(with: .baselineOffset(-9)))
+//     tray11.set(title: bigTitle.styled(with: .baselineOffset(9)))
+//     tray12.set(title: "A".styled(with: .baselineOffset(9)) + "B".styled(with: .baselineOffset(-9)))
+//     tray13.set(title: warning.styled(with: .baselineOffset(9)) + "Hi!".styled(with: .baselineOffset(-9)))
+//
+//
+//     let menu = NSMenu(title: "YYY")
+//     let sub = NSMenuItem(title: "XXX", action: nil, keyEquivalent: "")
+//     menu.addItem(sub)
+//     tray12.set(menu: menu)
+//
+//
+//     menus.append(menu)
+//     subs.append(sub)
+//
+//
+//     let fontawesome = NSFont(name:"FontAwesome", size: barFont.pointSize + 4)!
+//     // let text2 = "hello! ABC ÖÖ".styled(with: StringStyle(.font(barFont)))
+//     let awarn = ":warning:".emojified.styled(with: StringStyle(.font(fontawesome), .baselineOffset(-1)))
+//
+//
+//
+//     let bwarn =
+//
+//     let errorSubMenu = NSAttributedString.composed(of: [bwarn, Tab.headIndent(10), "This is a test".styled(with: .font(menuFont))])
+// //    tray1.set(title: errorSubMenu)
+//
+//     sub.attributedTitle = errorSubMenu
+//
+//     // let fontawesome = NSFont(name:"FontAwesome", size: barFont.pointSize)!
+//     // let textFont = NSFont.menuBarFont(ofSize: 0)
+//     // let text2 = "hello! ABC ÖÖ".styled(with: StringStyle(.font(textFont)))
+//     // let awarn = ":warning:".emojified.styled(with: StringStyle(.font(fontawesome)))
+//     //
+//     // let fontAwesomeText = NSAttributedString.composed(of: [awarn, Tab.headIndent(7), text2]).styled(with: .numberSpacing(.monospaced), // renamed in 4.0
+//     // .alignment(.center), .maximumLineHeight(15), .minimumLineHeight(15))
+//
+//     // tray14.set(title: warning.styled(with: .baselineOffset(9), .font(bigBarFont)) + "Hi!".styled(with: .baselineOffset(-9)))
+//     // var size = CGSize()
+//     // size.width = 20
+//     // size.height = 20
+//     // tray14.set(title: awarn)
+//     // let image = NSImage.fontAwesomeIconWithName(.warning, textColor: .black, size: size)
+//     // tray15.set(title: "hello ".immutable + image.styled(with: .baselineOffset(-4)))
+//
+//     trays.append(tray1)
+//     // trays.append(tray2)
+//     // trays.append(tray3)
+//     // trays.append(tray4)
+//     // trays.append(tray5)
+//     // trays.append(tray6)
+//     // trays.append(tray7)
+//     // trays.append(tray8)
+//     // trays.append(tray9)
+//     // trays.append(tray10)
+//     // trays.append(tray11)
+//     trays.append(tray12)
+//     // trays.append(tray13)
+//     // trays.append(tray14)
+//     // trays.append(tray15)
+//
+//     // let fontURL = Bundle.main.url(forResource: "FontAwesome", withExtension: "otf"  )
+//       // if let fontURL = fontURL, let data = NSData(contentsOfURL: fontURL) {
+//       //     return data
+//       // }j
+//
+//       // print("FOUND IT")
+//       // print(fontURL)
+// //    print(manager.defaultLineHeight(forFont: bigBarFont))
+// //    print(manager.defaultLineHeightForFont(barFont))
+//   }
+}
+
+func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+  return NSAttributedString.composed(of: [lhs, rhs])
 }

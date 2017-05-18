@@ -12,6 +12,7 @@ target 'BitBar' do
   pod 'FootlessParser'
   pod 'SwiftyTimer'
   pod 'Cent'
+  pod 'FontAwesomeForMacOS'
   pod 'Emojize'
   pod 'BonMot'
   pod 'Ansi'
@@ -19,6 +20,7 @@ target 'BitBar' do
   pod 'Files', git: 'https://github.com/JohnSundell/Files.git'
   pod 'DateToolsSwift', git: 'https://github.com/MatthewYork/DateTools.git'
   pod 'Parser', git: 'https://github.com/oleander/BitBarParser.git'
+  # pod 'FontAwesome.swift', :git => 'https://github.com/OliverZiegler/FontAwesome.swift', :branch => 'osx'
 
   target 'Tests' do
     inherit! :search_paths
