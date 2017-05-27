@@ -18,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   var subs = [NSMenuItem]()
 
   func applicationDidFinishLaunching(_: Notification) {
-  // doStuff()
     if App.isInTestMode() { return }
     setOpenUrlHandler()
     loadPluginManager()

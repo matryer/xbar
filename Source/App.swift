@@ -3,11 +3,11 @@ import ServiceManagement
 import Async
 import SwiftyUserDefaults
 
-#if DEBUG
-  var Defaults = UserDefaults(suiteName: "DEBUG.\(App.id)")
-#else
-  var Defaults = UserDefaults(suiteName: String(App.id))
-#endif
+// #if DEBUG
+//   var Defaults = UserDefaults(suiteName: "DEBUG.\(App.id)")
+// #else
+//   var Defaults = UserDefaults(suiteName: "RELEASE.\(App.id)")
+// #endif
 
 /**
   Global values and helpers
@@ -49,14 +49,14 @@ class App {
     Absolute path to plugins folder
   */
   static var pluginPath: String? {
-    return Defaults?[.pluginPath]
+    return Defaults[.pluginPath]
   }
 
   /**
     Does the application start at login?
   */
   static var autostart: Bool {
-    return Defaults?[.startAtLogin] ?? false
+    return Defaults[.startAtLogin]
   }
 
   /**
@@ -78,7 +78,7 @@ class App {
   }
 
   static func startAtLogin(_ state: Bool) {
-    Defaults?[.startAtLogin] = state
+    Defaults[.startAtLogin] = state
     SMLoginItemSetEnabled(helperId as CFString, state)
   }
 
@@ -87,9 +87,9 @@ class App {
   */
   static func update(pluginPath: String?) {
     if let path = pluginPath {
-      Defaults?[.pluginPath] = path
+      Defaults[.pluginPath] = path
     } else {
-      Defaults?.remove(.pluginPath)
+      Defaults.remove(.pluginPath)
     }
   }
 
@@ -102,7 +102,7 @@ class App {
   }
 
   static func isConfigDisabled() -> Bool {
-    return Defaults?[.disabled] ?? false
+    return Defaults[.disabled] ?? false
   }
 
   /**
