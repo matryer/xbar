@@ -56,7 +56,7 @@ class App {
     Does the application start at login?
   */
   static var autostart: Bool {
-    return Defaults[.startAtLogin]
+    return Defaults[.startAtLogin] ?? false
   }
 
   /**
