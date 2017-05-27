@@ -533,22 +533,23 @@ class ExecutablePluginTests: Helper {
               }
             }
 
-            context("bash error") {
-              let events: [MenuEvent] = [.didSetError]
-              context("href=...") {
-                it("should open href in browser") {
-                  a(menu, at: [46]) { menu in
-                    expect(menu, when: .clicked).toEventually(have(.broadcasted(events)))
-                  }
-                }
-
-                it("should propagate error event from parent") {
-                  a(menu, at: [47]) { parent in
-                    expect(parent).toEventually(receive(events, from: [0, 0]))
-                  }
-                }
-              }
-            }
+            /* TODO */
+            // context("bash error") {
+            //   let events: [MenuEvent] = [.didSetError]
+            //   context("href=...") {
+            //     it("should open href in browser") {
+            //       a(menu, at: [46]) { menu in
+            //         expect(menu, when: .clicked).toEventually(have(.broadcasted(events)))
+            //       }
+            //     }
+            //
+            //     it("should propagate error event from parent") {
+            //       a(menu, at: [47]) { parent in
+            //         expect(parent).toEventually(receive(events, from: [0, 0]))
+            //       }
+            //     }
+            //   }
+            // }
 
             context("default menu items") {
               context("updated time ago") {
