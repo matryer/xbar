@@ -1,5 +1,6 @@
 excluded:
   - Pods
+  - Packages
   - .build
 disabled_rules:
   - todo

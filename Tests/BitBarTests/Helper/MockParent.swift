@@ -10,7 +10,6 @@ class MockParent: Parent, Hashable {
     return SwiftyBeaver.self
   }
 
-
   static func == (lhs: MockParent, rhs: MockParent) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
