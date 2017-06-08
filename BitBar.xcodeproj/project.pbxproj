@@ -35,6 +35,7 @@
 		202A9C3E1EEA13CC00538035 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C3A1EEA13CC00538035 /* App.xib */; };
 		202A9C3F1EEA13CC00538035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9C3B1EEA13CC00538035 /* AppDelegate.swift */; };
 		203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4421EEA061200075DA2 /* BitBarTests.plist */; };
+		20444A731EEA1B0E0097651A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20444A721EEA1B0E0097651A /* Errors.swift */; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -286,6 +287,7 @@
 		20311F281EE9810C0071FB04 /* Pods_BitBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_BitBar.framework; path = Pods/../build/Release/Pods_BitBar.framework; sourceTree = "<group>"; };
 		20311F2A1EE9816B0071FB04 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		203AA4421EEA061200075DA2 /* BitBarTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BitBarTests.plist; path = Resources/BitBarTests.plist; sourceTree = "<group>"; };
+		20444A721EEA1B0E0097651A /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		2064E2051EE95DFB0032ADC0 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		2064E20C1EE95E9A0032ADC0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		2064E20E1EE95E9A0032ADC0 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = Resources/App.xib; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 		20E0A6991EE9603F00564B1B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				20444A721EEA1B0E0097651A /* Errors.swift */,
 				20E0A69A1EE9603F00564B1B /* Array.swift */,
 				20E0A69B1EE9603F00564B1B /* Data.swift */,
 				20E0A69C1EE9603F00564B1B /* DefaultsKeys.swift */,
@@ -1190,6 +1193,7 @@
 				20E0A6FF1EE9603F00564B1B /* Pref.RefreshAll.swift in Sources */,
 				20E0A6DF1EE9603F00564B1B /* Droplet.swift in Sources */,
 				20E0A6F91EE9603F00564B1B /* Pref.FirstRun.swift in Sources */,
+				20444A731EEA1B0E0097651A /* Errors.swift in Sources */,
 				20E0A6DD1EE9603F00564B1B /* Data.swift in Sources */,
 				20E0A7131EE9603F00564B1B /* Parent.swift in Sources */,
 				20E0A6F81EE9603F00564B1B /* Pref.CheckForUpdates.swift in Sources */,

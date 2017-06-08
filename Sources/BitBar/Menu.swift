@@ -6,7 +6,6 @@ import Parser
 
 class Menu: MenuItem, Scriptable {
   typealias Param = Parser.Menu.Param
-
   internal var paction: Action = .nop
   private var script: Script?
   private var imageRequest: DataRequest?

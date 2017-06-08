@@ -143,9 +143,8 @@ final class PluginFile: NSObject, Parent, Managable, Parameterizable, JSONRepres
   }
 
   private func set(errors: [String]) {
-    // TODO
     tray.set(error: true)
-    title?.set(menus: errors.map { Menu(title: $0) })
+    title?.set(menus: errors.map { Menu(error: $0) })
   }
 
   // Set title to {index} in {text}
