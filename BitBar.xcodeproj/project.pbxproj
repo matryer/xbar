@@ -34,7 +34,6 @@
 		202A9C3D1EEA13CC00538035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C391EEA13CC00538035 /* Assets.xcassets */; };
 		202A9C3E1EEA13CC00538035 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C3A1EEA13CC00538035 /* App.xib */; };
 		202A9C3F1EEA13CC00538035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9C3B1EEA13CC00538035 /* AppDelegate.swift */; };
-		202A9C421EEA144A00538035 /* Startup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C411EEA144A00538035 /* Startup.plist */; };
 		203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4421EEA061200075DA2 /* BitBarTests.plist */; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -279,7 +278,6 @@
 		2010456B1EE9DCBF0020599C /* metadata.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = metadata.sh; path = Resources/Scripts/metadata.sh; sourceTree = "<group>"; };
 		2025F7421EE95D250028B75A /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A9C281EEA130200538035 /* Startup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Startup.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		202A9C381EEA13CC00538035 /* Startup-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Startup-Bridging-Header.h"; sourceTree = "<group>"; };
 		202A9C391EEA13CC00538035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/Startup/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		202A9C3A1EEA13CC00538035 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = Sources/Startup/App.xib; sourceTree = SOURCE_ROOT; };
 		202A9C3B1EEA13CC00538035 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Startup/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -629,7 +627,6 @@
 				202A9C391EEA13CC00538035 /* Assets.xcassets */,
 				202A9C3A1EEA13CC00538035 /* App.xib */,
 				202A9C3B1EEA13CC00538035 /* AppDelegate.swift */,
-				202A9C381EEA13CC00538035 /* Startup-Bridging-Header.h */,
 			);
 			path = Startup;
 			sourceTree = "<group>";
@@ -976,7 +973,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				202A9C3D1EEA13CC00538035 /* Assets.xcassets in Resources */,
-				202A9C421EEA144A00538035 /* Startup.plist in Resources */,
 				202A9C3E1EEA13CC00538035 /* App.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1416,7 +1412,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.Startup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Startup/Startup-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1434,7 +1430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.Startup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Startup/Startup-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1476,6 +1472,7 @@
 				202A9C361EEA130200538035 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
