@@ -55,3 +55,6 @@ test
 example2.swift
 testing/all.20m.sh
 testing
+/*.app
+/Dist
+!/Dist/.gitkeep

@@ -5,6 +5,9 @@
       location = "group:BitBar.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Packages/Packages.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

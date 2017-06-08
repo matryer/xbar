@@ -7,6 +7,7 @@ clear_derived_data
 
 desc "Build BitBar.app to the current directory"
 lane :build do;
+  sh "rm -rf ../Dist/BitBar.app"
   clean_build_artifacts
   gym
 end

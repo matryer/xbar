@@ -36,7 +36,7 @@
 	<string>https://bitbarapp.com/feeds/bitbar</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>FontAwesome.otf</string>
+		<string>octicons.ttf</string>
 	</array>
 </dict>
 </plist>

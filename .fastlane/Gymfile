@@ -1,7 +1,10 @@
 scheme "BitBar"
 sdk "macosx"
-output_directory "./"
+output_directory "Dist"
 clean true
 output_name "BitBar"
+configuration "Release"
 codesigning_identity "Mac Developer: linus@oleander.nu (8Z44P9V4VF)"
-export_method "ad-hoc"
+export_method "development"
+workspace "BitBar.xcworkspace"
+xcargs "CODE_SIGNING_REQUIRED='NO' CODE_SIGNING_ALLOWED='NO'"
