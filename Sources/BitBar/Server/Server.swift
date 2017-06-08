@@ -1,16 +1,14 @@
 import Vapor
-import SwiftyBeaver
 import SwiftyTimer
 import Foundation
 import Async
 
-func ok(_ msg: String) throws -> JSON {
+private func ok(_ msg: String) throws -> JSON {
   return try JSON(node: ["message": msg])
 }
 
 func startServer() throws -> Droplet {
   let manager = PluginManager.instance
-  let log = SwiftyBeaver.self
   let drop = try Droplet()
 
   // log.addDestination(ConsoleDestination())

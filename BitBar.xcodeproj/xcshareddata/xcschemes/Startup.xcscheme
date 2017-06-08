@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2025F7411EE95D250028B75A"
-               BuildableName = "BitBar.app"
-               BlueprintName = "BitBar"
+               BlueprintIdentifier = "20C3E5AB1EC91468006D2F0B"
+               BuildableName = "Startup.app"
+               BlueprintName = "Startup"
                ReferencedContainer = "container:BitBar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2007B4441EE9CC2F00E68358"
-               BuildableName = "BitBarTests.xctest"
-               BlueprintName = "BitBarTests"
-               ReferencedContainer = "container:BitBar.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2025F7411EE95D250028B75A"
-            BuildableName = "BitBar.app"
-            BlueprintName = "BitBar"
+            BlueprintIdentifier = "20C3E5AB1EC91468006D2F0B"
+            BuildableName = "Startup.app"
+            BlueprintName = "Startup"
             ReferencedContainer = "container:BitBar.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -58,16 +48,16 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "NO"
+      debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2025F7411EE95D250028B75A"
-            BuildableName = "BitBar.app"
-            BlueprintName = "BitBar"
+            BlueprintIdentifier = "20C3E5AB1EC91468006D2F0B"
+            BuildableName = "Startup.app"
+            BlueprintName = "Startup"
             ReferencedContainer = "container:BitBar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2025F7411EE95D250028B75A"
-            BuildableName = "BitBar.app"
-            BlueprintName = "BitBar"
+            BlueprintIdentifier = "20C3E5AB1EC91468006D2F0B"
+            BuildableName = "Startup.app"
+            BlueprintName = "Startup"
             ReferencedContainer = "container:BitBar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
