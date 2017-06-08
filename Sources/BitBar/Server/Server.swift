@@ -13,7 +13,7 @@ func startServer() throws -> Droplet {
   let log = SwiftyBeaver.self
   let drop = try Droplet()
 
-  log.addDestination(ConsoleDestination())
+  // log.addDestination(ConsoleDestination())
 
   drop.group("plugins") { group in
     group.patch("refresh") { _ in
