@@ -31,6 +31,10 @@
 		2010456A1EE9DC5E0020599C /* image.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 201045651EE9DC5E0020599C /* image.10m.sh */; };
 		2010456C1EE9DCBF0020599C /* metadata.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2010456B1EE9DCBF0020599C /* metadata.sh */; };
 		203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4421EEA061200075DA2 /* BitBarTests.plist */; };
+		203AA44D1EEA0ADC00075DA2 /* servers.json in Resources */ = {isa = PBXBuildFile; fileRef = 203AA44C1EEA0ADC00075DA2 /* servers.json */; };
+		203AA4531EEA0B0700075DA2 /* servers.json in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4521EEA0B0700075DA2 /* servers.json */; };
+		203AA4551EEA0B0F00075DA2 /* servers.json in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4541EEA0B0F00075DA2 /* servers.json */; };
+		203AA4571EEA0B4100075DA2 /* servers.json in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4561EEA0B4100075DA2 /* servers.json */; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -275,6 +279,10 @@
 		20311F281EE9810C0071FB04 /* Pods_BitBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_BitBar.framework; path = Pods/../build/Release/Pods_BitBar.framework; sourceTree = "<group>"; };
 		20311F2A1EE9816B0071FB04 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		203AA4421EEA061200075DA2 /* BitBarTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BitBarTests.plist; path = Resources/BitBarTests.plist; sourceTree = "<group>"; };
+		203AA44C1EEA0ADC00075DA2 /* servers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = servers.json; path = Config/testing/servers.json; sourceTree = "<group>"; };
+		203AA4521EEA0B0700075DA2 /* servers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = servers.json; path = Config/development/servers.json; sourceTree = "<group>"; };
+		203AA4541EEA0B0F00075DA2 /* servers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = servers.json; path = Config/production/servers.json; sourceTree = "<group>"; };
+		203AA4561EEA0B4100075DA2 /* servers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = servers.json; path = Config/servers.json; sourceTree = "<group>"; };
 		2064E2051EE95DFB0032ADC0 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		2064E20C1EE95E9A0032ADC0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		2064E20E1EE95E9A0032ADC0 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = Resources/App.xib; sourceTree = "<group>"; };
@@ -565,9 +573,45 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		203AA4461EEA0A8E00075DA2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				203AA4561EEA0B4100075DA2 /* servers.json */,
+				203AA4491EEA0ABB00075DA2 /* testing */,
+				203AA4481EEA0AB500075DA2 /* development */,
+				203AA4471EEA0AAA00075DA2 /* production */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		203AA4471EEA0AAA00075DA2 /* production */ = {
+			isa = PBXGroup;
+			children = (
+				203AA4541EEA0B0F00075DA2 /* servers.json */,
+			);
+			name = production;
+			sourceTree = "<group>";
+		};
+		203AA4481EEA0AB500075DA2 /* development */ = {
+			isa = PBXGroup;
+			children = (
+				203AA4521EEA0B0700075DA2 /* servers.json */,
+			);
+			name = development;
+			sourceTree = "<group>";
+		};
+		203AA4491EEA0ABB00075DA2 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				203AA44C1EEA0ADC00075DA2 /* servers.json */,
+			);
+			name = testing;
+			sourceTree = "<group>";
+		};
 		2064E20B1EE95E870032ADC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				203AA4461EEA0A8E00075DA2 /* Config */,
 				201045601EE9DC4B0020599C /* Scripts */,
 				2064E20C1EE95E9A0032ADC0 /* Images.xcassets */,
 				2064E20E1EE95E9A0032ADC0 /* App.xib */,
@@ -877,16 +921,20 @@
 			files = (
 				20F870D41EE9DE16003C4A5A /* bitbar-dark-env.sh in Resources */,
 				20F870D51EE9DE16003C4A5A /* bitbar-env.sh in Resources */,
+				203AA4531EEA0B0700075DA2 /* servers.json in Resources */,
 				203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */,
 				20F870E41EE9DE16003C4A5A /* sub3.10s.sh in Resources */,
 				20F870DF1EE9DE16003C4A5A /* stream-more.sh in Resources */,
+				203AA4571EEA0B4100075DA2 /* servers.json in Resources */,
 				20F870DC1EE9DE16003C4A5A /* shared-env.sh in Resources */,
 				20F870DB1EE9DE16003C4A5A /* nonexec.sh in Resources */,
 				207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */,
 				20F870D11EE9DE16003C4A5A /* ansi.10m.sh in Resources */,
 				20F870D61EE9DE16003C4A5A /* complex.sh in Resources */,
 				20F870DD1EE9DE16003C4A5A /* sleep.sh in Resources */,
+				203AA4551EEA0B0F00075DA2 /* servers.json in Resources */,
 				20F870D71EE9DE16003C4A5A /* exit1-no-output.sh in Resources */,
+				203AA44D1EEA0ADC00075DA2 /* servers.json in Resources */,
 				20F870D81EE9DE16003C4A5A /* exit1-output.sh in Resources */,
 				20F870D91EE9DE16003C4A5A /* invalid-syntax.sh in Resources */,
 				20F870E01EE9DE16003C4A5A /* stream-nomore.sh in Resources */,
