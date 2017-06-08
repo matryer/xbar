@@ -1,12 +1,10 @@
 import Foundation
 import Dollar
-// import BitBarSocket
 
 extension String {
   func truncated(_ length: Int, trailing: String = "…") -> String {
     if characters.count > length {
-//      return self[0..<length] + trailing
-      return "OK"
+      return self[0..<length] + trailing
     } else {
       return self
     }

@@ -1232,8 +1232,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug",
-					"$(PROJECT_DIR)/build/Release",
 					"$(PROJECT_DIR)/build/BitBar/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
@@ -1256,8 +1254,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug",
-					"$(PROJECT_DIR)/build/Release",
 					"$(PROJECT_DIR)/build/BitBar/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
