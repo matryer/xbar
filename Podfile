@@ -33,6 +33,10 @@ target "BitBar" do
     pod "Quick"
   end
 
+  target "Startup" do
+    inherit! :search_paths
+  end
+
   abstract_target "Packages" do
     project "Packages/Packages.xcodeproj"
   end

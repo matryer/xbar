@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_625"
+               BlueprintIdentifier = "OBJ_624"
                BuildableName = "Bits.framework"
                BlueprintName = "Bits"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_650"
+               BlueprintIdentifier = "OBJ_649"
                BuildableName = "Debugging.framework"
                BlueprintName = "Debugging"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_657"
+               BlueprintIdentifier = "OBJ_656"
                BuildableName = "libc.framework"
                BlueprintName = "libc"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_668"
+               BlueprintIdentifier = "OBJ_667"
                BuildableName = "Core.framework"
                BlueprintName = "Core"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_703"
+               BlueprintIdentifier = "OBJ_702"
                BuildableName = "Random.framework"
                BlueprintName = "Random"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_723"
+               BlueprintIdentifier = "OBJ_722"
                BuildableName = "Crypto.framework"
                BlueprintName = "Crypto"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_752"
+               BlueprintIdentifier = "OBJ_751"
                BuildableName = "Sockets.framework"
                BlueprintName = "Sockets"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_790"
+               BlueprintIdentifier = "OBJ_789"
                BuildableName = "Transport.framework"
                BlueprintName = "Transport"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -126,7 +126,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_814"
+               BlueprintIdentifier = "OBJ_813"
                BuildableName = "TLS.framework"
                BlueprintName = "TLS"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -140,7 +140,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_844"
+               BlueprintIdentifier = "OBJ_843"
                BuildableName = "CHTTP.framework"
                BlueprintName = "CHTTP"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -154,7 +154,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_870"
+               BlueprintIdentifier = "OBJ_869"
                BuildableName = "Cookies.framework"
                BlueprintName = "Cookies"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -168,7 +168,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_913"
+               BlueprintIdentifier = "OBJ_912"
                BuildableName = "SMTP.framework"
                BlueprintName = "SMTP"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -182,7 +182,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_910"
+               BlueprintIdentifier = "OBJ_909"
                BuildableName = "URI.framework"
                BlueprintName = "URI"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -196,7 +196,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_912"
+               BlueprintIdentifier = "OBJ_911"
                BuildableName = "HTTP.framework"
                BlueprintName = "HTTP"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -210,7 +210,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1058"
+               BlueprintIdentifier = "OBJ_1057"
                BuildableName = "WebSockets.framework"
                BlueprintName = "WebSockets"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -224,7 +224,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1102"
+               BlueprintIdentifier = "OBJ_1101"
                BuildableName = "Console.framework"
                BlueprintName = "Console"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -238,7 +238,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1151"
+               BlueprintIdentifier = "OBJ_1150"
                BuildableName = "Node.framework"
                BlueprintName = "Node"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -252,7 +252,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1205"
+               BlueprintIdentifier = "OBJ_1204"
                BuildableName = "PathIndexable.framework"
                BlueprintName = "PathIndexable"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -266,7 +266,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1221"
+               BlueprintIdentifier = "OBJ_1220"
                BuildableName = "JSON.framework"
                BlueprintName = "JSON"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -280,7 +280,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1248"
+               BlueprintIdentifier = "OBJ_1247"
                BuildableName = "Branches.framework"
                BlueprintName = "Branches"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -294,7 +294,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1291"
+               BlueprintIdentifier = "OBJ_1290"
                BuildableName = "Routing.framework"
                BlueprintName = "Routing"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -308,7 +308,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1343"
+               BlueprintIdentifier = "OBJ_1342"
                BuildableName = "Multipart.framework"
                BlueprintName = "Multipart"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -322,7 +322,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1385"
+               BlueprintIdentifier = "OBJ_1384"
                BuildableName = "FormData.framework"
                BlueprintName = "FormData"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -336,7 +336,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1427"
+               BlueprintIdentifier = "OBJ_1426"
                BuildableName = "BCrypt.framework"
                BlueprintName = "BCrypt"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -350,7 +350,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1452"
+               BlueprintIdentifier = "OBJ_1451"
                BuildableName = "Testing.framework"
                BlueprintName = "Testing"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -364,7 +364,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1519"
+               BlueprintIdentifier = "OBJ_1518"
                BuildableName = "Sessions.framework"
                BlueprintName = "Sessions"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -378,7 +378,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1523"
+               BlueprintIdentifier = "OBJ_1522"
                BuildableName = "Vapor.framework"
                BlueprintName = "Vapor"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -392,7 +392,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1521"
+               BlueprintIdentifier = "OBJ_1520"
                BuildableName = "Configs.framework"
                BlueprintName = "Configs"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -406,7 +406,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1517"
+               BlueprintIdentifier = "OBJ_1516"
                BuildableName = "Cache.framework"
                BlueprintName = "Cache"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -420,7 +420,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1862"
+               BlueprintIdentifier = "OBJ_1861"
                BuildableName = "Packages.framework"
                BlueprintName = "Packages"
                ReferencedContainer = "container:Packages.xcodeproj">
@@ -451,7 +451,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_625"
+            BlueprintIdentifier = "OBJ_624"
             BuildableName = "Bits.framework"
             BlueprintName = "Bits"
             ReferencedContainer = "container:Packages.xcodeproj">

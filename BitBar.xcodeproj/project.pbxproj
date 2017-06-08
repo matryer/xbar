@@ -30,6 +30,11 @@
 		201045691EE9DC5E0020599C /* fail.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 201045641EE9DC5E0020599C /* fail.10m.sh */; };
 		2010456A1EE9DC5E0020599C /* image.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 201045651EE9DC5E0020599C /* image.10m.sh */; };
 		2010456C1EE9DCBF0020599C /* metadata.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2010456B1EE9DCBF0020599C /* metadata.sh */; };
+		202A9C371EEA139000538035 /* Startup.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 202A9C281EEA130200538035 /* Startup.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		202A9C3D1EEA13CC00538035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C391EEA13CC00538035 /* Assets.xcassets */; };
+		202A9C3E1EEA13CC00538035 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C3A1EEA13CC00538035 /* App.xib */; };
+		202A9C3F1EEA13CC00538035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9C3B1EEA13CC00538035 /* AppDelegate.swift */; };
+		202A9C421EEA144A00538035 /* Startup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C411EEA144A00538035 /* Startup.plist */; };
 		203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4421EEA061200075DA2 /* BitBarTests.plist */; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -177,6 +182,7 @@
 		20F870E31EE9DE16003C4A5A /* sub2.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CE1EE9DE16003C4A5A /* sub2.10s.sh */; };
 		20F870E41EE9DE16003C4A5A /* sub3.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CF1EE9DE16003C4A5A /* sub3.10s.sh */; };
 		30D316D377AAA25A82746481 /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABFED631155234D650CD2D7 /* Pods_BitBar.framework */; };
+		3C54EE8D076DE624CA189325 /* Pods_Startup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA4F2FC3BFB2E7AD23B38C2 /* Pods_Startup.framework */; };
 		7F4061CFBB1BDE82589601FC /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BA256CD50B28CA529C9B8E /* Pods_BitBarTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -194,9 +200,10 @@
 		2064E2091EE95E510032ADC0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
 			files = (
+				202A9C371EEA139000538035 /* Startup.app in CopyFiles */,
 				20832A131EE97528006440EC /* App.xib in CopyFiles */,
 				20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */,
 				20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */,
@@ -271,6 +278,12 @@
 		201045651EE9DC5E0020599C /* image.10m.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = image.10m.sh; path = Resources/Scripts/image.10m.sh; sourceTree = "<group>"; };
 		2010456B1EE9DCBF0020599C /* metadata.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = metadata.sh; path = Resources/Scripts/metadata.sh; sourceTree = "<group>"; };
 		2025F7421EE95D250028B75A /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		202A9C281EEA130200538035 /* Startup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Startup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		202A9C381EEA13CC00538035 /* Startup-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Startup-Bridging-Header.h"; sourceTree = "<group>"; };
+		202A9C391EEA13CC00538035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/Startup/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		202A9C3A1EEA13CC00538035 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = Sources/Startup/App.xib; sourceTree = SOURCE_ROOT; };
+		202A9C3B1EEA13CC00538035 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Startup/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		202A9C411EEA144A00538035 /* Startup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Startup.plist; path = Resources/Startup.plist; sourceTree = "<group>"; };
 		20311F221EE980640071FB04 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		20311F281EE9810C0071FB04 /* Pods_BitBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_BitBar.framework; path = Pods/../build/Release/Pods_BitBar.framework; sourceTree = "<group>"; };
 		20311F2A1EE9816B0071FB04 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
@@ -403,11 +416,14 @@
 		20F870CE1EE9DE16003C4A5A /* sub2.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub2.10s.sh; path = Resources/Scripts/sub2.10s.sh; sourceTree = "<group>"; };
 		20F870CF1EE9DE16003C4A5A /* sub3.10s.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = sub3.10s.sh; path = Resources/Scripts/sub3.10s.sh; sourceTree = "<group>"; };
 		20F870D01EE9DE16003C4A5A /* version-env.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "version-env.sh"; path = "Resources/Scripts/version-env.sh"; sourceTree = "<group>"; };
+		39B0F499A93994698012BA51 /* Pods-Startup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Startup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Startup/Pods-Startup.debug.xcconfig"; sourceTree = "<group>"; };
 		518E23AC78858F49F8D40075 /* Pods-BitBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.release.xcconfig"; sourceTree = "<group>"; };
 		55BA256CD50B28CA529C9B8E /* Pods_BitBarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABFED631155234D650CD2D7 /* Pods_BitBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1FCB775D435DE58B64031D /* Pods-BitBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBar/Pods-BitBar.debug.xcconfig"; sourceTree = "<group>"; };
+		8DA4F2FC3BFB2E7AD23B38C2 /* Pods_Startup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Startup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B07560BD5C5B9BE6CBDD42EC /* Pods-BitBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.release.xcconfig"; sourceTree = "<group>"; };
+		E4DB2FEAB2A98D95EFA2D3DC /* Pods-Startup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Startup.release.xcconfig"; path = "Pods/Target Support Files/Pods-Startup/Pods-Startup.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +470,14 @@
 				208FDCAC1EE9C8E100E69F84 /* Cache.framework in Frameworks */,
 				208FDCD41EE9C8E200E69F84 /* TLS.framework in Frameworks */,
 				30D316D377AAA25A82746481 /* Pods_BitBar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		202A9C251EEA130200538035 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C54EE8D076DE624CA189325 /* Pods_Startup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +574,7 @@
 				20E0A6981EE9602500564B1B /* Source */,
 				2064E20B1EE95E870032ADC0 /* Resources */,
 				2007B4461EE9CC2F00E68358 /* Tests */,
+				202A9C291EEA130200538035 /* Startup */,
 				2025F7431EE95D250028B75A /* Products */,
 				7EA58D03D2F272357554359A /* Pods */,
 				F1ABA6CC30C432D454D81A9A /* Frameworks */,
@@ -561,32 +586,12 @@
 			children = (
 				2025F7421EE95D250028B75A /* BitBar.app */,
 				2007B4451EE9CC2F00E68358 /* BitBarTests.xctest */,
+				202A9C281EEA130200538035 /* Startup.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2064E20B1EE95E870032ADC0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				201045601EE9DC4B0020599C /* Scripts */,
-				2064E20C1EE95E9A0032ADC0 /* Images.xcassets */,
-				2064E20E1EE95E9A0032ADC0 /* App.xib */,
-				2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */,
-				203AA4421EEA061200075DA2 /* BitBarTests.plist */,
-				2064E2101EE95E9A0032ADC0 /* bitbar.cer */,
-				2064E2111EE95E9A0032ADC0 /* bitbar.p12.enc */,
-				2064E2121EE95E9A0032ADC0 /* BitBar.plist */,
-				2064E2131EE95E9A0032ADC0 /* bitbarrc.ini */,
-				2064E2141EE95E9A0032ADC0 /* Config.plist */,
-				2064E2151EE95E9A0032ADC0 /* Config.xcconfig */,
-				2064E2161EE95E9A0032ADC0 /* ConfigTests.plist */,
-				2064E2171EE95E9A0032ADC0 /* octicons.ttf */,
-				2064E2181EE95E9A0032ADC0 /* Tests.plist */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		20E0A6981EE9602500564B1B /* Source */ = {
+		202A9C231EEA12D800538035 /* BitBar */ = {
 			isa = PBXGroup;
 			children = (
 				20E0A6991EE9603F00564B1B /* Extension */,
@@ -614,6 +619,47 @@
 				20E0A6D91EE9603F00564B1B /* TestBar.swift */,
 				20E0A6DA1EE9603F00564B1B /* Title.swift */,
 				20E0A6DB1EE9603F00564B1B /* Tray.swift */,
+			);
+			name = BitBar;
+			sourceTree = "<group>";
+		};
+		202A9C291EEA130200538035 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				202A9C391EEA13CC00538035 /* Assets.xcassets */,
+				202A9C3A1EEA13CC00538035 /* App.xib */,
+				202A9C3B1EEA13CC00538035 /* AppDelegate.swift */,
+				202A9C381EEA13CC00538035 /* Startup-Bridging-Header.h */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
+		2064E20B1EE95E870032ADC0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				201045601EE9DC4B0020599C /* Scripts */,
+				2064E20C1EE95E9A0032ADC0 /* Images.xcassets */,
+				2064E20E1EE95E9A0032ADC0 /* App.xib */,
+				2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */,
+				203AA4421EEA061200075DA2 /* BitBarTests.plist */,
+				2064E2101EE95E9A0032ADC0 /* bitbar.cer */,
+				2064E2111EE95E9A0032ADC0 /* bitbar.p12.enc */,
+				2064E2121EE95E9A0032ADC0 /* BitBar.plist */,
+				202A9C411EEA144A00538035 /* Startup.plist */,
+				2064E2131EE95E9A0032ADC0 /* bitbarrc.ini */,
+				2064E2141EE95E9A0032ADC0 /* Config.plist */,
+				2064E2151EE95E9A0032ADC0 /* Config.xcconfig */,
+				2064E2161EE95E9A0032ADC0 /* ConfigTests.plist */,
+				2064E2171EE95E9A0032ADC0 /* octicons.ttf */,
+				2064E2181EE95E9A0032ADC0 /* Tests.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		20E0A6981EE9602500564B1B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				202A9C231EEA12D800538035 /* BitBar */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -715,6 +761,8 @@
 				518E23AC78858F49F8D40075 /* Pods-BitBar.release.xcconfig */,
 				1667A6C84B99FF502D706F3B /* Pods-BitBarTests.debug.xcconfig */,
 				B07560BD5C5B9BE6CBDD42EC /* Pods-BitBarTests.release.xcconfig */,
+				39B0F499A93994698012BA51 /* Pods-Startup.debug.xcconfig */,
+				E4DB2FEAB2A98D95EFA2D3DC /* Pods-Startup.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -761,6 +809,7 @@
 				2064E2051EE95DFB0032ADC0 /* Vapor.framework */,
 				5ABFED631155234D650CD2D7 /* Pods_BitBar.framework */,
 				55BA256CD50B28CA529C9B8E /* Pods_BitBarTests.framework */,
+				8DA4F2FC3BFB2E7AD23B38C2 /* Pods_Startup.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -811,6 +860,26 @@
 			productReference = 2025F7421EE95D250028B75A /* BitBar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		202A9C271EEA130200538035 /* Startup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 202A9C341EEA130200538035 /* Build configuration list for PBXNativeTarget "Startup" */;
+			buildPhases = (
+				C7DB21C6DAEDDC4DA7FA4607 /* [CP] Check Pods Manifest.lock */,
+				202A9C241EEA130200538035 /* Sources */,
+				202A9C251EEA130200538035 /* Frameworks */,
+				202A9C261EEA130200538035 /* Resources */,
+				443F1C579EEB3FA6CB5134C8 /* [CP] Embed Pods Frameworks */,
+				1013DA6078BDA86960EEDCD0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Startup;
+			productName = Startup;
+			productReference = 202A9C281EEA130200538035 /* Startup.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -831,6 +900,11 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
+					202A9C271EEA130200538035 = {
+						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 2025F73D1EE95D250028B75A /* Build configuration list for PBXProject "BitBar" */;
@@ -848,6 +922,7 @@
 			targets = (
 				2025F7411EE95D250028B75A /* BitBar */,
 				2007B4441EE9CC2F00E68358 /* BitBarTests */,
+				202A9C271EEA130200538035 /* Startup */,
 			);
 		};
 /* End PBXProject section */
@@ -896,9 +971,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		202A9C261EEA130200538035 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				202A9C3D1EEA13CC00538035 /* Assets.xcassets in Resources */,
+				202A9C421EEA144A00538035 /* Startup.plist in Resources */,
+				202A9C3E1EEA13CC00538035 /* App.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1013DA6078BDA86960EEDCD0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Startup/Pods-Startup-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		29A041CD7212048248F61656 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -912,6 +1012,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBar/Pods-BitBar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		443F1C579EEB3FA6CB5134C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Startup/Pods-Startup-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7DBFB3732F97CF768D9897CA /* [CP] Copy Pods Resources */ = {
@@ -972,6 +1087,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBar/Pods-BitBar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7DB21C6DAEDDC4DA7FA4607 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E75E6BB951C97F9447F177E1 /* [CP] Check Pods Manifest.lock */ = {
@@ -1081,6 +1211,14 @@
 				20E0A7181EE9603F00564B1B /* Tray.swift in Sources */,
 				20E0A7111EE9603F00564B1B /* Metadata.swift in Sources */,
 				20E0A7041EE9603F00564B1B /* Server.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		202A9C241EEA130200538035 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				202A9C3F1EEA13CC00538035 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,6 +1363,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C1FCB775D435DE58B64031D /* Pods-BitBar.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1247,6 +1386,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 518E23AC78858F49F8D40075 /* Pods-BitBar.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1261,6 +1401,41 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/.build/ctls $(PROJECT_DIR)/.build/CHTTP";
+			};
+			name = Release;
+		};
+		202A9C351EEA130200538035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39B0F499A93994698012BA51 /* Pods-Startup.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Startup.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.Startup;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Startup/Startup-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		202A9C361EEA130200538035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4DB2FEAB2A98D95EFA2D3DC /* Pods-Startup.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/Startup.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.Startup;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Startup/Startup-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1293,6 +1468,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		202A9C341EEA130200538035 /* Build configuration list for PBXNativeTarget "Startup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				202A9C351EEA130200538035 /* Debug */,
+				202A9C361EEA130200538035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
