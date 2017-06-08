@@ -30,6 +30,7 @@
 		201045691EE9DC5E0020599C /* fail.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 201045641EE9DC5E0020599C /* fail.10m.sh */; };
 		2010456A1EE9DC5E0020599C /* image.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 201045651EE9DC5E0020599C /* image.10m.sh */; };
 		2010456C1EE9DCBF0020599C /* metadata.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2010456B1EE9DCBF0020599C /* metadata.sh */; };
+		203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4421EEA061200075DA2 /* BitBarTests.plist */; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -246,7 +247,6 @@
 /* Begin PBXFileReference section */
 		1667A6C84B99FF502D706F3B /* Pods-BitBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2007B4451EE9CC2F00E68358 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2007B4491EE9CC2F00E68358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2010453B1EE9D64D0020599C /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
 		2010453C1EE9D64D0020599C /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
 		2010453E1EE9D64D0020599C /* ClickEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickEvent.swift; sourceTree = "<group>"; };
@@ -274,6 +274,7 @@
 		20311F221EE980640071FB04 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		20311F281EE9810C0071FB04 /* Pods_BitBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_BitBar.framework; path = Pods/../build/Release/Pods_BitBar.framework; sourceTree = "<group>"; };
 		20311F2A1EE9816B0071FB04 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
+		203AA4421EEA061200075DA2 /* BitBarTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BitBarTests.plist; path = Resources/BitBarTests.plist; sourceTree = "<group>"; };
 		2064E2051EE95DFB0032ADC0 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		2064E20C1EE95E9A0032ADC0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		2064E20E1EE95E9A0032ADC0 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = Resources/App.xib; sourceTree = "<group>"; };
@@ -318,8 +319,6 @@
 		2080803A1EE98F6D007B2553 /* Vapor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Vapor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2080803D1EE98F6E007B2553 /* Configs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Configs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		208080401EE98F6E007B2553 /* Cache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		208080441EE99219007B2553 /* Packages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Packages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		208080481EE99288007B2553 /* Packages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Packages.framework; path = build/BitBar/Build/Products/Debug/Packages.framework; sourceTree = "<group>"; };
 		20832A141EE976C7006440EC /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = "../../../Library/Developer/Xcode/DerivedData/BitBar-cyfxzclgllwnpwbaxhgqezyvhnfv/Build/Products/Debug/Vapor.framework"; sourceTree = "<group>"; };
 		208FDC4A1EE9C38E00E69F84 /* Pods_BitBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_BitBar.framework; path = Pods/../build/Debug/Pods_BitBar.framework; sourceTree = "<group>"; };
 		20E0A69A1EE9603F00564B1B /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -465,7 +464,6 @@
 			isa = PBXGroup;
 			children = (
 				2010453A1EE9D64D0020599C /* BitBarTests */,
-				2007B4491EE9CC2F00E68358 /* Info.plist */,
 			);
 			name = Tests;
 			path = BitBarTests;
@@ -487,8 +485,8 @@
 		2010453D1EE9D64D0020599C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2010453E1EE9D64D0020599C /* ClickEvent.swift */,
 				2010453F1EE9D64D0020599C /* Extension */,
+				2010453E1EE9D64D0020599C /* ClickEvent.swift */,
 				201045441EE9D64D0020599C /* Helper.swift */,
 				201045451EE9D64D0020599C /* Matcher.swift */,
 				201045461EE9D64D0020599C /* Menuable.swift */,
@@ -549,37 +547,6 @@
 		2025F7391EE95D250028B75A = {
 			isa = PBXGroup;
 			children = (
-				208080481EE99288007B2553 /* Packages.framework */,
-				208080441EE99219007B2553 /* Packages.framework */,
-				208080401EE98F6E007B2553 /* Cache.framework */,
-				2080803D1EE98F6E007B2553 /* Configs.framework */,
-				2080803A1EE98F6D007B2553 /* Vapor.framework */,
-				208080371EE98F6D007B2553 /* Sessions.framework */,
-				208080341EE98F6D007B2553 /* Testing.framework */,
-				208080311EE98F6D007B2553 /* BCrypt.framework */,
-				2080802E1EE98F6D007B2553 /* FormData.framework */,
-				2080802B1EE98F6D007B2553 /* Multipart.framework */,
-				208080281EE98F6D007B2553 /* Routing.framework */,
-				208080251EE98F6D007B2553 /* Branches.framework */,
-				208080221EE98F6D007B2553 /* JSON.framework */,
-				2080801F1EE98F6D007B2553 /* PathIndexable.framework */,
-				2080801C1EE98F6D007B2553 /* Node.framework */,
-				208080191EE98F6D007B2553 /* Console.framework */,
-				208080161EE98F6D007B2553 /* WebSockets.framework */,
-				208080131EE98F6D007B2553 /* HTTP.framework */,
-				208080101EE98F6D007B2553 /* URI.framework */,
-				2080800D1EE98F6D007B2553 /* SMTP.framework */,
-				2080800A1EE98F6D007B2553 /* Cookies.framework */,
-				208080071EE98F6D007B2553 /* CHTTP.framework */,
-				208080041EE98F6D007B2553 /* TLS.framework */,
-				208080011EE98F6D007B2553 /* Transport.framework */,
-				20807FFE1EE98F6D007B2553 /* Sockets.framework */,
-				20807FFB1EE98F6D007B2553 /* Crypto.framework */,
-				20807FF81EE98F6D007B2553 /* Random.framework */,
-				20807FF51EE98F6D007B2553 /* Core.framework */,
-				20807FF21EE98F6D007B2553 /* libc.framework */,
-				20807FEF1EE98F6D007B2553 /* Debugging.framework */,
-				20807FEC1EE98F6D007B2553 /* Bits.framework */,
 				20E0A6981EE9602500564B1B /* Source */,
 				2064E20B1EE95E870032ADC0 /* Resources */,
 				2007B4461EE9CC2F00E68358 /* Tests */,
@@ -605,6 +572,7 @@
 				2064E20C1EE95E9A0032ADC0 /* Images.xcassets */,
 				2064E20E1EE95E9A0032ADC0 /* App.xib */,
 				2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */,
+				203AA4421EEA061200075DA2 /* BitBarTests.plist */,
 				2064E2101EE95E9A0032ADC0 /* bitbar.cer */,
 				2064E2111EE95E9A0032ADC0 /* bitbar.p12.enc */,
 				2064E2121EE95E9A0032ADC0 /* BitBar.plist */,
@@ -754,6 +722,35 @@
 		F1ABA6CC30C432D454D81A9A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				208080401EE98F6E007B2553 /* Cache.framework */,
+				2080803D1EE98F6E007B2553 /* Configs.framework */,
+				2080803A1EE98F6D007B2553 /* Vapor.framework */,
+				208080371EE98F6D007B2553 /* Sessions.framework */,
+				208080341EE98F6D007B2553 /* Testing.framework */,
+				208080311EE98F6D007B2553 /* BCrypt.framework */,
+				2080802E1EE98F6D007B2553 /* FormData.framework */,
+				2080802B1EE98F6D007B2553 /* Multipart.framework */,
+				208080281EE98F6D007B2553 /* Routing.framework */,
+				208080251EE98F6D007B2553 /* Branches.framework */,
+				208080221EE98F6D007B2553 /* JSON.framework */,
+				2080801F1EE98F6D007B2553 /* PathIndexable.framework */,
+				2080801C1EE98F6D007B2553 /* Node.framework */,
+				208080191EE98F6D007B2553 /* Console.framework */,
+				208080161EE98F6D007B2553 /* WebSockets.framework */,
+				208080131EE98F6D007B2553 /* HTTP.framework */,
+				208080101EE98F6D007B2553 /* URI.framework */,
+				2080800D1EE98F6D007B2553 /* SMTP.framework */,
+				2080800A1EE98F6D007B2553 /* Cookies.framework */,
+				208080071EE98F6D007B2553 /* CHTTP.framework */,
+				208080041EE98F6D007B2553 /* TLS.framework */,
+				208080011EE98F6D007B2553 /* Transport.framework */,
+				20807FFE1EE98F6D007B2553 /* Sockets.framework */,
+				20807FFB1EE98F6D007B2553 /* Crypto.framework */,
+				20807FF81EE98F6D007B2553 /* Random.framework */,
+				20807FF51EE98F6D007B2553 /* Core.framework */,
+				20807FF21EE98F6D007B2553 /* libc.framework */,
+				20807FEF1EE98F6D007B2553 /* Debugging.framework */,
+				20807FEC1EE98F6D007B2553 /* Bits.framework */,
 				208FDC4A1EE9C38E00E69F84 /* Pods_BitBar.framework */,
 				20807E8C1EE98BD8007B2553 /* Pods_BitBar_Packages_WebSockets.framework */,
 				206F1E121EE9899F0069792D /* Pods_BitBar_Packages_Vapor.framework */,
@@ -880,6 +877,7 @@
 			files = (
 				20F870D41EE9DE16003C4A5A /* bitbar-dark-env.sh in Resources */,
 				20F870D51EE9DE16003C4A5A /* bitbar-env.sh in Resources */,
+				203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */,
 				20F870E41EE9DE16003C4A5A /* sub3.10s.sh in Resources */,
 				20F870DF1EE9DE16003C4A5A /* stream-more.sh in Resources */,
 				20F870DC1EE9DE16003C4A5A /* shared-env.sh in Resources */,
@@ -1103,7 +1101,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = BitBarTests/Info.plist;
+				INFOPLIST_FILE = Resources/BitBarTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1119,7 +1117,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = BitBarTests/Info.plist;
+				INFOPLIST_FILE = Resources/BitBarTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
