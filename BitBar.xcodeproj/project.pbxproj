@@ -1378,7 +1378,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/.build/ctls $(PROJECT_DIR)/.build/CHTTP";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/.build/ctls/** $(SRCROOT)/.build/CHTTP/**";
 			};
 			name = Debug;
 		};
@@ -1400,7 +1400,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getbitbar.BitBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/.build/ctls $(PROJECT_DIR)/.build/CHTTP";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/.build/ctls/** $(SRCROOT)/.build/CHTTP/**";
 			};
 			name = Release;
 		};

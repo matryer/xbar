@@ -38,7 +38,7 @@ final class PluginFile: NSObject, Parent, Managable, Parameterizable, JSONRepres
   func plugin(didReceiveOutput data: String) {
     // TODO: Empty title should be special enum
     if data.trimmed().isEmpty {
-      return log(err: "Empty string passed")
+      return set(errors: ["Empty output returned from script"])
     } else {
       log(msg: "Received success from background script (below)")
       log(msg: data.inspected())
