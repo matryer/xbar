@@ -74,7 +74,7 @@ CHECKOUT OPTIONS:
     :commit: 6d0d9bc8be11e1ff6d5b903564333f74ee93ef49
     :git: https://github.com/oleander/BitBarParser.git
   Script:
-    :commit: e552dadbd287012ba0a21228dd93f309170da84a
+    :commit: a2d75ce6b1c86b632d07e8b1331b3a37f468e75a
     :git: https://github.com/oleander/Script.git
 
 SPEC CHECKSUMS:

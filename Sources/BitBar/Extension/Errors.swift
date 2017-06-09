@@ -1,4 +1,5 @@
 import Parser
+import Script
 
 extension MenuError: CustomStringConvertible {
   public var description: String {
@@ -49,6 +50,25 @@ extension ValueError: CustomStringConvertible {
         return "Expected a font but got \(value.inspected())"
       case let .color(value):
         return "Expected a color but got \(value.inspected())"
+    }
+  }
+}
+
+extension Script.Failure: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case let .crash(message):
+      return "Script crashed with error message:\n\t\(message.trimmed())"
+    case let .exit(message, status):
+      return "Script exited with a non-zero exit code \(status):\n\t\(message.trimmed())"
+    case let .misuse(message):
+      return "Invalid syntax used in script:\n\t\(message.trimmed())"
+    case .terminated:
+      return "Script was manually terminated"
+    case .notFound:
+      return "Script or subscript not found, verify the file path"
+    case .notExec:
+      return "Script is not executable, did you run 'chmod +x script.sh' on it?"
     }
   }
 }
