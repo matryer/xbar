@@ -31,4 +31,4 @@ symlink_vapor:
 	ln -rfs Packages/*.xcodeproj/GeneratedModuleMap/CHTTP .build/CHTTP
 prebuild_vapor:
 	swift package --chdir Packages fetch
-	swift package --chdir Packages generate-xcodeproj
+	swift package --chdir Packages -Xswiftc -I/usr/local/opt/openssl/include -Xlinker -L/usr/local/opt/openssl/lib generate-xcodeproj
