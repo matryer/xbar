@@ -22,7 +22,6 @@ target "BitBar" do
   pod "SwiftyJSON"
   pod "Dollar"
   pod "Files"
-  pod "OpenSSL-OSX", git: "https://github.com/GerTeunis/OpenSSL-OSX-Pod.git"
   pod "FootlessParser", git: "https://github.com/oleander/FootlessParser.git"
   pod "DateToolsSwift", git: "https://github.com/MatthewYork/DateTools.git"
   pod "Parser", git: "https://github.com/oleander/BitBarParser.git"
@@ -40,6 +39,9 @@ target "BitBar" do
 
   abstract_target "Packages" do
     project "Packages/Packages.xcodeproj"
+    target "Vapor" do
+      pod "OpenSSL-OSX", git: "https://github.com/GerTeunis/OpenSSL-OSX-Pod.git"
+    end
   end
 
   # target "Config" do

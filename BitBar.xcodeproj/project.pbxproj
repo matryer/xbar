@@ -1371,6 +1371,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/BitBar/Build/Products/Debug",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-OSX\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-OSX/openssl\"",
+					"$(PROJECT_DIR)/Pods/Headers/Public/OpenSSL-OSX/openssl",
+					"$(PROJECT_DIR)/Pods/Headers/Public/OpenSSL-OSX",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1393,6 +1401,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/BitBar/Build/Products/Debug",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-OSX\"",
+					"\"${PODS_ROOT}/Headers/Public/OpenSSL-OSX/openssl\"",
+					"$(PROJECT_DIR)/Pods/Headers/Public/OpenSSL-OSX/openssl",
+					"$(PROJECT_DIR)/Pods/Headers/Public/OpenSSL-OSX",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/BitBar.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
