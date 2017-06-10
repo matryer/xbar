@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2049D0C71EEC82D8006485B1 /* CTLS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2049D0C61EEC82D8006485B1 /* CTLS.framework */; };
+		2049D0CF1EEC8767006485B1 /* CHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2049D0CE1EEC8767006485B1 /* CHTTP.framework */; };
 		C16C565FC2498B152913EC4C /* Pods_BitBar_Packages_Vapor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6A452F202A8A09D8C7021E /* Pods_BitBar_Packages_Vapor.framework */; };
 		OBJ_1000 /* HTTP+Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_390 /* HTTP+Client.swift */; };
 		OBJ_1001 /* Client+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_392 /* Client+Foundation.swift */; };
@@ -3173,6 +3174,7 @@
 		0A6A452F202A8A09D8C7021E /* Pods_BitBar_Packages_Vapor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBar_Packages_Vapor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A70E9FC8C9BC9FE96454F05 /* Pods-BitBar-Packages-Vapor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar-Packages-Vapor.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BitBar-Packages-Vapor/Pods-BitBar-Packages-Vapor.release.xcconfig"; sourceTree = "<group>"; };
 		2049D0C61EEC82D8006485B1 /* CTLS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CTLS.framework; path = ../CTLS.framework; sourceTree = "<group>"; };
+		2049D0CE1EEC8767006485B1 /* CHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CHTTP.framework; path = ../CHTTP.framework; sourceTree = "<group>"; };
 		C9042A807B7709287442C706 /* Pods-BitBar-Packages-Vapor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBar-Packages-Vapor.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BitBar-Packages-Vapor/Pods-BitBar-Packages-Vapor.debug.xcconfig"; sourceTree = "<group>"; };
 		OBJ_100 /* RequestInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInitializable.swift; sourceTree = "<group>"; };
 		OBJ_102 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -3914,6 +3916,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				2049D0CF1EEC8767006485B1 /* CHTTP.framework in Frameworks */,
 				2049D0C71EEC82D8006485B1 /* CTLS.framework in Frameworks */,
 				OBJ_1686 /* Bits.framework in Frameworks */,
 				OBJ_1687 /* Debugging.framework in Frameworks */,
@@ -4219,6 +4222,7 @@
 		95869DC7B1F276F1E6BD0676 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2049D0CE1EEC8767006485B1 /* CHTTP.framework */,
 				2049D0C61EEC82D8006485B1 /* CTLS.framework */,
 				0A6A452F202A8A09D8C7021E /* Pods_BitBar_Packages_Vapor.framework */,
 			);

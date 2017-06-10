@@ -38,6 +38,8 @@
 		20444A731EEA1B0E0097651A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20444A721EEA1B0E0097651A /* Errors.swift */; };
 		2049D0C91EEC831D006485B1 /* CTLS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2049D0C81EEC831D006485B1 /* CTLS.framework */; };
 		2049D0CA1EEC831D006485B1 /* CTLS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2049D0C81EEC831D006485B1 /* CTLS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2049D0CC1EEC8751006485B1 /* CHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2049D0CB1EEC8751006485B1 /* CHTTP.framework */; };
+		2049D0CD1EEC8751006485B1 /* CHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2049D0CB1EEC8751006485B1 /* CHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -244,6 +246,7 @@
 				208FDCCF1EE9C8E200E69F84 /* SMTP.framework in Embed Frameworks */,
 				208FDCB31EE9C8E100E69F84 /* Sessions.framework in Embed Frameworks */,
 				208FDCC71EE9C8E200E69F84 /* Console.framework in Embed Frameworks */,
+				2049D0CD1EEC8751006485B1 /* CHTTP.framework in Embed Frameworks */,
 				208FDCD71EE9C8E200E69F84 /* Transport.framework in Embed Frameworks */,
 				208FDCB71EE9C8E100E69F84 /* BCrypt.framework in Embed Frameworks */,
 				208FDCDF1EE9C8E200E69F84 /* Core.framework in Embed Frameworks */,
@@ -292,6 +295,7 @@
 		203AA4421EEA061200075DA2 /* BitBarTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BitBarTests.plist; path = Resources/BitBarTests.plist; sourceTree = "<group>"; };
 		20444A721EEA1B0E0097651A /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		2049D0C81EEC831D006485B1 /* CTLS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CTLS.framework; sourceTree = "<group>"; };
+		2049D0CB1EEC8751006485B1 /* CHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CHTTP.framework; sourceTree = "<group>"; };
 		2064E2051EE95DFB0032ADC0 /* Vapor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vapor.framework; path = build/Debug/Vapor.framework; sourceTree = "<group>"; };
 		2064E20C1EE95E9A0032ADC0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		2064E20E1EE95E9A0032ADC0 /* App.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = App.xib; path = Resources/App.xib; sourceTree = "<group>"; };
@@ -463,6 +467,7 @@
 				208FDCCC1EE9C8E200E69F84 /* URI.framework in Frameworks */,
 				208FDCD61EE9C8E200E69F84 /* Transport.framework in Frameworks */,
 				208FDCD81EE9C8E200E69F84 /* Sockets.framework in Frameworks */,
+				2049D0CC1EEC8751006485B1 /* CHTTP.framework in Frameworks */,
 				208FDCB01EE9C8E100E69F84 /* Vapor.framework in Frameworks */,
 				208FDCBA1EE9C8E200E69F84 /* Multipart.framework in Frameworks */,
 				208FDCBC1EE9C8E200E69F84 /* Routing.framework in Frameworks */,
@@ -576,6 +581,7 @@
 		2025F7391EE95D250028B75A = {
 			isa = PBXGroup;
 			children = (
+				2049D0CB1EEC8751006485B1 /* CHTTP.framework */,
 				2049D0C81EEC831D006485B1 /* CTLS.framework */,
 				20E0A6981EE9602500564B1B /* Source */,
 				2064E20B1EE95E870032ADC0 /* Resources */,
