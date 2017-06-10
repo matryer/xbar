@@ -29,6 +29,8 @@ symlink_vapor:
 	mkdir -p .build
 	ln -rfs Packages/.build/checkouts/ctls.git-* .build/ctls
 	ln -rfs Packages/*.xcodeproj/GeneratedModuleMap/CHTTP .build/CHTTP
+	ls .build/CHTTP
+	ls .build/ctls
 prebuild_vapor:
 	swift package --chdir Packages fetch
 	swift package --chdir Packages generate-xcodeproj
