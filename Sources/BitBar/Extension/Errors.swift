@@ -58,11 +58,17 @@ extension Script.Failure: CustomStringConvertible {
   public var description: String {
     switch self {
     case let .crash(message):
-      return "Script crashed with error message:\n\t\(message.trimmed())"
+      let intro = "Script crashed"
+      if message.trimmed().isEmpty { return intro }
+      return intro + " with error message:\n\t\(message.trimmed())"
     case let .exit(message, status):
-      return "Script exited with a non-zero exit code \(status):\n\t\(message.trimmed())"
+      let intro = "Script exited with a non-zero exit code \(status)"
+      if message.trimmed().isEmpty { return intro }
+      return intro + ":\n\t\(message.trimmed())"
     case let .misuse(message):
-      return "Invalid syntax used in script:\n\t\(message.trimmed())"
+      let intro = "Invalid syntax used in script"
+      if message.trimmed().isEmpty { return intro }
+      return intro + ":\n\t\(message.trimmed())"
     case .terminated:
       return "Script was manually terminated"
     case .notFound:

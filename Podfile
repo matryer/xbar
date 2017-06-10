@@ -22,6 +22,7 @@ target "BitBar" do
   pod "SwiftyJSON"
   pod "Dollar"
   pod "Files"
+  pod "OpenSSL-OSX", git: "https://github.com/GerTeunis/OpenSSL-OSX-Pod.git"
   pod "FootlessParser", git: "https://github.com/oleander/FootlessParser.git"
   pod "DateToolsSwift", git: "https://github.com/MatthewYork/DateTools.git"
   pod "Parser", git: "https://github.com/oleander/BitBarParser.git"

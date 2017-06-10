@@ -3,7 +3,7 @@ sdk "macosx"
 output_directory "Dist"
 clean true
 output_name "BitBar"
-configuration "Release"
+configuration "Debug"
 codesigning_identity "Mac Developer: linus@oleander.nu (8Z44P9V4VF)"
 export_method "development"
 workspace "BitBar.xcworkspace"
