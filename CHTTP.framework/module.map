@@ -1,4 +1,4 @@
 module CHTTP {
-    umbrella "http_parser.h"
+    umbrella header "http_parser.h"
     export *
 }
