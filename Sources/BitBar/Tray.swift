@@ -7,29 +7,15 @@ import Async
 import SwiftyBeaver
 
 class Tray: Parent {
-  internal let log = SwiftyBeaver.self
-  internal weak var root: Parent?
+  public let log = SwiftyBeaver.self
+  public weak var root: Parent?
   private static let center = NSStatusBar.system()
   private static let length = NSVariableStatusItemLength
   private var item: MenuBar
-  internal var menu: NSMenu? {
-    set { item.menu = newValue }
-    get { return item.menu }
-  }
-
   static internal var item: MenuBar {
     return Tray.center.statusItem(withLength: length)
   }
 
-  var attributedTitle: NSAttributedString? {
-    get { return item.attributedTitle }
-    set { item.attributedTitle = newValue }
-  }
-
-  /**
-    @title A title to be displayed in the menu bar
-    @isVisible Makes it possible to hide item on start up
-  */
   init(title: String, isVisible displayed: Bool = false, id: String? = nil, parent: Parent? = nil) {
     if App.isInTestMode() {
       self.item = TestBar()
@@ -46,21 +32,31 @@ class Tray: Parent {
     if displayed { show() } else { hide() }
   }
 
+  public var attributedTitle: NSAttributedString? {
+    get { return item.attributedTitle }
+    set { Async.main { self.item.attributedTitle = newValue } }
+  }
+
+  public var menu: NSMenu? {
+    set { Async.main { self.item.menu = newValue } }
+    get { return item.menu }
+  }
+
   /**
    Hides item from menu bar
   */
-  func hide() {
+  public func hide() {
     Async.main { self.item.hide() }
   }
 
   /**
     Display item in menu bar
   */
-  func show() {
+  public func show() {
     Async.main { self.item.show() }
   }
 
-  func on(_ event: MenuEvent) {
+  public func on(_ event: MenuEvent) {
     switch event {
     case .didSetError:
       set(error: true)
@@ -69,7 +65,7 @@ class Tray: Parent {
     }
   }
 
-  func set(error: Bool) {
+  public func set(error: Bool) {
     if error {
       showErrorIcons()
       attributedTitle = nil
@@ -86,21 +82,17 @@ class Tray: Parent {
   }
 
   private func showErrorIcons() {
-    guard let button = item.button else {
-      return log.error("Could not find button on status item (show)")
-    }
-
     let fontSize = Int(FontType.bar.size)
     let size = CGSize(width: fontSize, height: fontSize)
     let icon = OcticonsID.bug
 
-    button.image = NSImage(
+    image = NSImage(
       octiconsID: icon,
       iconColor: App.inactiveColor,
       size: size
     )
 
-    button.alternateImage = NSImage(
+    alternateImage = NSImage(
       octiconsID: icon,
       backgroundColor: .white,
       iconColor: .white,
@@ -110,12 +102,27 @@ class Tray: Parent {
   }
 
   private func hideErrorIcons() {
-    guard let button = item.button else {
-      return log.error("Could not find button on status item (hide)")
+    image = nil
+    alternateImage = nil
+  }
+
+  private var image: NSImage? {
+    set { Async.main { self.button?.image = newValue } }
+    get { return button?.image }
+  }
+
+  private var alternateImage: NSImage? {
+    set { Async.main { self.button?.alternateImage = newValue } }
+    get { return button?.alternateImage }
+  }
+
+  private var button: NSButton? {
+    if let button = item.button {
+      return button
     }
 
-    button.image = nil
-    button.alternateImage = nil
+    log.error("Could not find button on status item (hide)")
+    return nil
   }
 
   private func style(_ immutable: Immutable) -> Immutable {
