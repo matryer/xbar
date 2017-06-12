@@ -15,7 +15,7 @@ final class PluginFile: NSObject, Parent, Managable, Parameterizable, JSONRepres
   private var path: String { return file.path }
   private let file: Files.File
   internal var name: String { return file.name }
-  internal let tray = Tray(title: "…", isVisible: true)
+  internal let tray: Tray
   internal var title: Title?
   private var plugin: Plugin?
   private var timer: Timer?
@@ -29,6 +29,7 @@ final class PluginFile: NSObject, Parent, Managable, Parameterizable, JSONRepres
   init(file: Files.File, delegate: Parent) {
     self.file = file
     self.root = delegate
+    self.tray = Tray(title: "…", isVisible: true, id: file.path)
     super.init()
     setTimer()
     setTitle()

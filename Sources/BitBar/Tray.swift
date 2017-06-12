@@ -20,6 +20,7 @@ class Tray: Parent {
   static internal var item: MenuBar {
     return Tray.center.statusItem(withLength: length)
   }
+
   var attributedTitle: NSAttributedString? {
     get { return item.attributedTitle }
     set { item.attributedTitle = newValue }
@@ -29,11 +30,15 @@ class Tray: Parent {
     @title A title to be displayed in the menu bar
     @isVisible Makes it possible to hide item on start up
   */
-  init(title: String, isVisible displayed: Bool = false, parent: Parent? = nil) {
+  init(title: String, isVisible displayed: Bool = false, id: String? = nil, parent: Parent? = nil) {
     if App.isInTestMode() {
       self.item = TestBar()
     } else {
       self.item = Tray.item
+    }
+
+    if let id = id {
+      item.tag = id
     }
 
     set(title: title)

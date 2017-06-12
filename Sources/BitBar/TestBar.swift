@@ -1,9 +1,12 @@
 import AppKit
 
 class TestBar: MenuBar {
-  var button: NSStatusBarButton? {
-    return nil
+  var tag: String? {
+    get { return "TestBar" }
+    set { }
   }
+  
+  var button: NSStatusBarButton? { return nil }
   var menu: NSMenu?
   var attributedTitle: NSAttributedString?
   var highlightMode: Bool = false
