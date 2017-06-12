@@ -58,17 +58,11 @@ extension Script.Failure: CustomStringConvertible {
   public var description: String {
     switch self {
     case let .crash(message):
-      let intro = "Script crashed"
-      if message.trimmed().isEmpty { return intro }
-      return intro + " with error message:\n\t\(message.trimmed())"
+      return "Script crashed" + format(error: message)
     case let .exit(message, status):
-      let intro = "Script exited with a non-zero exit code \(status)"
-      if message.trimmed().isEmpty { return intro }
-      return intro + ":\n\t\(message.trimmed())"
+      return "Script exited with a non-zero exit code \(status)" + format(error: message)
     case let .misuse(message):
-      let intro = "Invalid syntax used in script"
-      if message.trimmed().isEmpty { return intro }
-      return intro + ":\n\t\(message.trimmed())"
+      return "Invalid syntax used in script" + format(error: message)
     case .terminated:
       return "Script was manually terminated"
     case .notFound:
@@ -76,5 +70,10 @@ extension Script.Failure: CustomStringConvertible {
     case .notExec:
       return "Script is not executable, did you run 'chmod +x script.sh' on it?"
     }
+  }
+
+  private func format(error: String) -> String {
+    if error.trimmed().isEmpty { return "" }
+    return ":\n\t" + error.trimmed().replace("\n", "\n\t\t")
   }
 }

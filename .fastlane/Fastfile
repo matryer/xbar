@@ -24,7 +24,9 @@ lane :test do; scan; end
 desc "Build and zip application"
 lane :package do
   build
-  zip path: "BitBar.app", output_path: "BitBar.zip"
+  # sh "codesign --deep --force --sign 'Mac Developer: linus@oleander.nu (8Z44P9V4VF)' ../Dist/BitBar.app"
+  # zip path: "Dist/BitBar.app", output_path: "Dist/BitBar.zip"
+  sh "ditto -c -k --sequesterRsrc --keepParent ../Dist/BitBar.app ../Dist/BitBar.zip"
 end
 
 desc "Generates a new version tag in git and XCode"
@@ -54,12 +56,12 @@ lane :import_keys do
   Dir.chdir ".." do
     openssl "aes-256-cbc -K $encrypted_34de277e100a_key -iv $encrypted_34de277e100a_iv",
       "-in", env_cert, "-out bitbar.p12 -d"
+    security "delete-keychain travis.keychain || :"
     security "create-keychain -p travis travis.keychain"
     security "default-keychain -s travis.keychain"
     security "unlock-keychain -p travis travis.keychain"
     security "set-keychain-settings -t 3600 -u travis.keychain "
     security "import bitbar.p12 -A -P $CERTPWD -k travis.keychain -T", codesign
-    # security "import", cert, "-A -k travis.keychain -T", codesign
     security "set-key-partition-list -S apple-tool:,apple: -s -k travis travis.keychain"
   end
 end

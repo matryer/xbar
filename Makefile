@@ -7,15 +7,15 @@ setup:
 	gem install bundler fastlane --pre
 	brew tap vapor/homebrew-tap
 	brew update
-	brew install tailor ctls
+	brew install tailor ctls coreutils
 	bundle install
-	fastlane setup
+	bundle exec fastlane setup
 test:
-	@bundle exec fastlane scan $(_test) || :
+	bundle exec fastlane test
 wait: test
 	@find . -name "*.swift" | entr -p make test
-rem:
-	security delete-keychain travis.keychain | :
+deploy:
+	bundle exec fastlane deploy
 clean:
 	swift package reset
 	swift package clean
@@ -27,10 +27,8 @@ clean:
 	rm -rf BitBar.xcworkspace
 symlink_vapor:
 	mkdir -p .build
-	ln -rfs Packages/.build/checkouts/ctls.git-* .build/ctls
-	ln -rfs Packages/*.xcodeproj/GeneratedModuleMap/CHTTP .build/CHTTP
-	ls .build/CHTTP
-	ls .build/ctls
+	gln -rfs Packages/.build/checkouts/ctls.git-* .build/ctls
+	gln -rfs Packages/*.xcodeproj/GeneratedModuleMap/CHTTP .build/CHTTP
 prebuild_vapor:
 	swift package --chdir Packages fetch
 	swift package --chdir Packages generate-xcodeproj

@@ -91,7 +91,7 @@ class Tray: Parent {
 
     button.image = NSImage(
       octiconsID: icon,
-      iconColor: NSColor(hex: "#171717"),
+      iconColor: App.inactiveColor,
       size: size
     )
 

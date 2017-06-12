@@ -1,13 +1,9 @@
 language: objective-c
-install:
-  - make rem
-  - make setup
+install: make setup
 osx_image: xcode8.3
 rvm: ruby-2.3.0
-script:
-  - fastlane test
-  # - tailor --max-severity=error --config .tailor.ym
-before_deploy: fastlane deploy
+script: ls # make test
+before_deploy: make deploy
 cache:
   - bundler
   - cocoapods

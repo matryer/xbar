@@ -1,6 +1,6 @@
-import Foundation
 import ServiceManagement
 import Async
+import AppKit
 import SwiftyUserDefaults
 
 // #if DEBUG
@@ -39,7 +39,7 @@ class App {
   */
   static var pluginURL: URL? {
     if let path = pluginPath {
-      return NSURL(string: path) as URL?
+      return URL(fileURLWithPath: path, isDirectory: true)
     }
 
     return nil
@@ -110,10 +110,14 @@ class App {
     The selected folder is stored for the future
   */
   static func askAboutPluginPath(block: @escaping Block<Void>) {
-    PathSelector(withURL: App.pluginURL).ask {
-      App.update(pluginPath: $0?.path)
+    PathSelector(withURL: App.pluginURL).ask { url in
+      App.update(pluginPath: url.path)
       block()
     }
+  }
+
+  static var inactiveColor: NSColor {
+    return NSColor(hex: "#474747")
   }
 
   /**

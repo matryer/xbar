@@ -1,6 +1,7 @@
 import Cocoa
 import Emojize
 import AppKit
+import Async
 // import Sparkle
 import Vapor
 import SwiftyBeaver
@@ -45,10 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
       if let path = App.pluginPath {
         App.open(path: path)
       }
-    case .changePluginPath:
-      App.askAboutPluginPath { [weak self] in
-        self?.manager.refresh()
-      }
+    case .changePluginPath: askAboutPluginPath()
     case let .openPathInTerminal(path):
       open(script: path)
     case let .openScriptInTerminal(script):
@@ -63,8 +61,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
       return manager.set(path: path)
     }
 
-    App.askAboutPluginPath { [weak self] in
-      self?.manager.refresh()
+    askAboutPluginPath()
+  }
+
+  private func askAboutPluginPath() {
+    App.askAboutPluginPath {
+      Async.main {
+        self.loadPluginManager()
+      }
     }
   }
 

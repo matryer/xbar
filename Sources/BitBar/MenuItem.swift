@@ -193,7 +193,7 @@ class MenuItem: NSMenuItem, Parent {
 
     image = NSImage(
       octiconsID: icon,
-      iconColor: NSColor(hex: "#171717"),
+      iconColor: .black,
       size: size
     )
   }

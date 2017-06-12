@@ -1,6 +1,7 @@
 import Vapor
 import SwiftyTimer
 import Foundation
+import SwiftyBeaver
 import Async
 
 private func ok(_ msg: String) throws -> JSON {
@@ -10,8 +11,9 @@ private func ok(_ msg: String) throws -> JSON {
 func startServer() throws -> Droplet {
   let manager = PluginManager.instance
   let drop = try Droplet()
+  let log = SwiftyBeaver.self
 
-  // log.addDestination(ConsoleDestination())
+  log.addDestination(ConsoleDestination())
 
   drop.group("plugins") { group in
     group.patch("refresh") { _ in

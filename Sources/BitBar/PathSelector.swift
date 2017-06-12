@@ -1,5 +1,7 @@
 import Cocoa
+import SwiftyBeaver
 import AppKit
+import Files
 
 /**
   File selector used to ask the user about which plugin folder to use
@@ -9,7 +11,7 @@ import AppKit
 // optional func panel(_ sender: Any,
 //        shouldEnable url: URL) -> Bool
 class PathSelector: NSObject, NSOpenSavePanelDelegate {
-
+  private let log = SwiftyBeaver.self
   private static let title = "Use as Plugins Directory"
   private let panel = NSOpenPanel()
   /**
@@ -18,18 +20,27 @@ class PathSelector: NSObject, NSOpenSavePanelDelegate {
   convenience init(withURL url: URL? = nil) {
     self.init()
     if let aURL = url {
-      panel.directoryURL = aURL
+//      panel.directoryURL = aURL
+    // } else {
+    //   panel.directoryURL = URL(fileURLWithPath: Folder.home.path, isDirectory: true)
     }
     panel.prompt = PathSelector.title
     panel.allowsMultipleSelection = false
     panel.canChooseDirectories = true
     panel.canCreateDirectories = true
     panel.canChooseFiles = false
-    panel.delegate = self
+    // panel.delegate = self
   }
 
-  func ask(block: Block<URL?>) {
-    panel.runModal()
-    block(panel.url)
+  func ask(block: @escaping Block<URL>) {
+    if panel.runModal() == NSFileHandlingPanelOKButton {
+      if self.panel.urls.count == 1 {
+        block(self.panel.urls[0])
+      } else {
+        self.log.error("Invalid number of urls \(self.panel.urls)")
+      }
+    } else {
+      self.log.info("User pressed close in plugin folder dialog")
+    }
   }
 }

@@ -55,6 +55,15 @@ target "BitBar" do
   # end
 end
 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = ""
+    end
+  end
+end
+
+
 pre_install do
   puts `make prebuild_vapor symlink_vapor`
 end
