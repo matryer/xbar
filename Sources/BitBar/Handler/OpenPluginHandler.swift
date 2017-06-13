@@ -77,19 +77,18 @@ class OpenPluginHandler: Parent, GUI {
       return (file, [.removePreviousFile])
     }
 
-    Alamofire.download(src, to: destination).response { [weak self] response in
-      guard let this = self else { return }
+    Alamofire.download(src, to: destination).response { response in
       if let error = response.error {
-        return this.log.error("Could not download \(src) to \(file): \(error.localizedDescription))")
+        return self.log.error("Could not download \(src) to \(file): \(error.localizedDescription))")
       }
 
       do {
-        try this.fileManager.setAttributes([.posixPermissions: 0o777], ofItemAtPath: file.path)
+        try self.fileManager.setAttributes([.posixPermissions: 0o777], ofItemAtPath: file.path)
       } catch let error {
-        return this.log.error("\(file.absoluteString): \(error.localizedDescription)")
+        return self.log.error("\(file.absoluteString): \(error.localizedDescription)")
       }
 
-      self?.broadcast(.refreshAll)
+      self.broadcast(.refreshAll)
     }
   }
 }

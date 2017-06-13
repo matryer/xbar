@@ -20,8 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     if App.isInTestMode() { return }
     manager.root = self
     setOpenUrlHandler()
-    setOnWakeUpHandler()
-    handleStartupApp()
+    // setOnWakeUpHandler()
+    // handleStartupApp()
     handleServerStartup()
     loadPluginManager()
   }
@@ -81,15 +81,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   }
 
   private func setOpenUrlHandler() {
-    eventManager.setEventHandler(self,
-       andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
-       forEventClass: AEEventClass(kInternetEventClass),
-       andEventID: AEEventID(kAEGetURL)
+    // eventManager.setEventHandler(self,
+    //    andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
+    //    forEventClass: AEEventClass(kInternetEventClass),
+    //    andEventID: AEEventID(kAEGetURL)
+    // )
+
+    NSAppleEventManager.shared().setEventHandler(
+      self,
+      andSelector: #selector(handleEvent(event:replyEvent:)),
+      forEventClass: AEEventClass(kInternetEventClass),
+      andEventID: AEEventID(kAEGetURL)
     )
-    LSSetDefaultHandlerForURLScheme("bitbar" as CFString, App.id)
   }
 
-  @objc private func handleEvent(_ event: NSAppleEventDescriptor!, withReplyEvent: NSAppleEventDescriptor!) {
+  @objc func handleEvent(event: NSAppleEventDescriptor!, replyEvent: NSAppleEventDescriptor) {
     guard let desc = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject)) else {
       return log.error("Could not read descriptor from bitbar://")
     }
