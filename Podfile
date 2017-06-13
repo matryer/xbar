@@ -10,7 +10,7 @@ target "BitBar" do
   pod "SwiftyBeaver"
   pod "SwiftyUserDefaults"
   pod "Alamofire"
-  # pod "Sparkle"
+  pod "Sparkle"
   pod "AlamofireImage"
   pod "AsyncSwift"
   pod "SwiftyTimer"

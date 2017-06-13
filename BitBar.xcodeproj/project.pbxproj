@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20013B291EEF2AE0005AB58B /* GUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20013B281EEF2AE0005AB58B /* GUI.swift */; };
+		20013B2B1EEF2AF5005AB58B /* GUIExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20013B2A1EEF2AF5005AB58B /* GUIExt.swift */; };
 		2010454E1EE9D64D0020599C /* ExecutablePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010453B1EE9D64D0020599C /* ExecutablePluginTests.swift */; };
 		2010454F1EE9D64D0020599C /* FileNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010453C1EE9D64D0020599C /* FileNameTests.swift */; };
 		201045501EE9D64D0020599C /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010453E1EE9D64D0020599C /* ClickEvent.swift */; };
@@ -167,22 +169,6 @@
 		20E0A7161EE9603F00564B1B /* TestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A6D91EE9603F00564B1B /* TestBar.swift */; };
 		20E0A7171EE9603F00564B1B /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A6DA1EE9603F00564B1B /* Title.swift */; };
 		20E0A7181EE9603F00564B1B /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A6DB1EE9603F00564B1B /* Tray.swift */; };
-		20F870D11EE9DE16003C4A5A /* ansi.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870BC1EE9DE16003C4A5A /* ansi.10m.sh */; };
-		20F870D41EE9DE16003C4A5A /* bitbar-dark-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870BF1EE9DE16003C4A5A /* bitbar-dark-env.sh */; };
-		20F870D51EE9DE16003C4A5A /* bitbar-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C01EE9DE16003C4A5A /* bitbar-env.sh */; };
-		20F870D61EE9DE16003C4A5A /* complex.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C11EE9DE16003C4A5A /* complex.sh */; };
-		20F870D71EE9DE16003C4A5A /* exit1-no-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C21EE9DE16003C4A5A /* exit1-no-output.sh */; };
-		20F870D81EE9DE16003C4A5A /* exit1-output.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C31EE9DE16003C4A5A /* exit1-output.sh */; };
-		20F870D91EE9DE16003C4A5A /* invalid-syntax.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C41EE9DE16003C4A5A /* invalid-syntax.sh */; };
-		20F870DA1EE9DE16003C4A5A /* missing-sh-bin.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C51EE9DE16003C4A5A /* missing-sh-bin.sh */; };
-		20F870DB1EE9DE16003C4A5A /* nonexec.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C61EE9DE16003C4A5A /* nonexec.sh */; };
-		20F870DC1EE9DE16003C4A5A /* shared-env.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C71EE9DE16003C4A5A /* shared-env.sh */; };
-		20F870DD1EE9DE16003C4A5A /* sleep.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C81EE9DE16003C4A5A /* sleep.sh */; };
-		20F870DE1EE9DE16003C4A5A /* space script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870C91EE9DE16003C4A5A /* space script.sh */; };
-		20F870DF1EE9DE16003C4A5A /* stream-more.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CA1EE9DE16003C4A5A /* stream-more.sh */; };
-		20F870E01EE9DE16003C4A5A /* stream-nomore.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CB1EE9DE16003C4A5A /* stream-nomore.sh */; };
-		20F870E31EE9DE16003C4A5A /* sub2.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CE1EE9DE16003C4A5A /* sub2.10s.sh */; };
-		20F870E41EE9DE16003C4A5A /* sub3.10s.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CF1EE9DE16003C4A5A /* sub3.10s.sh */; };
 		247EF5BA29F1A914FC9B36C3 /* Pods_BitBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D029BEB569918F1F0AD8C1A /* Pods_BitBar.framework */; };
 		92B8035996FCDC59BF3F407E /* Pods_BitBarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BAC48C157A6B28661BA57D /* Pods_BitBarTests.framework */; };
 		E53F481AB850192ACD0E75BF /* Pods_Startup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4802E523822E3E0CECEDFF /* Pods_Startup.framework */; };
@@ -255,6 +241,8 @@
 
 /* Begin PBXFileReference section */
 		1667A6C84B99FF502D706F3B /* Pods-BitBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBarTests/Pods-BitBarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		20013B281EEF2AE0005AB58B /* GUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GUI.swift; sourceTree = "<group>"; };
+		20013B2A1EEF2AF5005AB58B /* GUIExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GUIExt.swift; sourceTree = "<group>"; };
 		2007B4451EE9CC2F00E68358 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2010453B1EE9D64D0020599C /* ExecutablePluginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutablePluginTests.swift; sourceTree = "<group>"; };
 		2010453C1EE9D64D0020599C /* FileNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNameTests.swift; sourceTree = "<group>"; };
@@ -709,6 +697,7 @@
 				20E0A6AB1EE9603F00564B1B /* String.LocalizedError.swift */,
 				20E0A6AC1EE9603F00564B1B /* StringExt.swift */,
 				20E0A6AD1EE9603F00564B1B /* WebSockets.swift */,
+				20013B2A1EEF2AF5005AB58B /* GUIExt.swift */,
 			);
 			name = Extension;
 			path = Sources/BitBar/Extension;
@@ -761,6 +750,7 @@
 			children = (
 				20E0A6C41EE9603F00564B1B /* Managable.swift */,
 				20E0A6C51EE9603F00564B1B /* MenuBar.swift */,
+				20013B281EEF2AE0005AB58B /* GUI.swift */,
 			);
 			name = Protocol;
 			path = Sources/BitBar/Protocol;
@@ -937,25 +927,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20F870D41EE9DE16003C4A5A /* bitbar-dark-env.sh in Resources */,
-				20F870D51EE9DE16003C4A5A /* bitbar-env.sh in Resources */,
 				203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */,
-				20F870E41EE9DE16003C4A5A /* sub3.10s.sh in Resources */,
-				20F870DF1EE9DE16003C4A5A /* stream-more.sh in Resources */,
-				20F870DC1EE9DE16003C4A5A /* shared-env.sh in Resources */,
-				20F870DB1EE9DE16003C4A5A /* nonexec.sh in Resources */,
 				207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */,
-				20F870D11EE9DE16003C4A5A /* ansi.10m.sh in Resources */,
-				20F870D61EE9DE16003C4A5A /* complex.sh in Resources */,
-				20F870DD1EE9DE16003C4A5A /* sleep.sh in Resources */,
-				20F870D71EE9DE16003C4A5A /* exit1-no-output.sh in Resources */,
-				20F870D81EE9DE16003C4A5A /* exit1-output.sh in Resources */,
-				20F870D91EE9DE16003C4A5A /* invalid-syntax.sh in Resources */,
-				20F870E01EE9DE16003C4A5A /* stream-nomore.sh in Resources */,
 				2049CC241EEE15A9005638E9 /* Images.xcassets in Resources */,
-				20F870DE1EE9DE16003C4A5A /* space script.sh in Resources */,
-				20F870E31EE9DE16003C4A5A /* sub2.10s.sh in Resources */,
-				20F870DA1EE9DE16003C4A5A /* missing-sh-bin.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1191,6 +1165,7 @@
 				20E0A6E81EE9603F00564B1B /* Parser.Action.swift in Sources */,
 				20E0A6EA1EE9603F00564B1B /* Parser.Image.swift in Sources */,
 				20E0A7031EE9603F00564B1B /* MenuBar.swift in Sources */,
+				20013B291EEF2AE0005AB58B /* GUI.swift in Sources */,
 				20E0A6ED1EE9603F00564B1B /* String.LocalizedError.swift in Sources */,
 				20E0A6E61EE9603F00564B1B /* NSMenuItem.swift in Sources */,
 				20E0A6F11EE9603F00564B1B /* RefreshPluginHandler.swift in Sources */,
@@ -1198,6 +1173,7 @@
 				20E0A6F21EE9603F00564B1B /* ExecutablePlugin.swift in Sources */,
 				20E0A70C1EE9603F00564B1B /* ImageResult.swift in Sources */,
 				20E0A7181EE9603F00564B1B /* Tray.swift in Sources */,
+				20013B2B1EEF2AF5005AB58B /* GUIExt.swift in Sources */,
 				20E0A7111EE9603F00564B1B /* Metadata.swift in Sources */,
 				20E0A7041EE9603F00564B1B /* Server.swift in Sources */,
 			);
@@ -1355,7 +1331,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = K6FNT9HXR3;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -72,11 +72,9 @@ class PluginManager: Parent {
       return set(error: "No files found in plugin folder \(path ?? "<?>")")
     }
 
-    Async.main {
-      for file in folder.files {
-        if !file.name.hasPrefix(".") {
-          self.addPlugin(file: file)
-        }
+    for file in folder.files {
+      if !file.name.hasPrefix(".") {
+        self.addPlugin(file: file)
       }
     }
   }

@@ -5,7 +5,7 @@ class TestBar: MenuBar {
     get { return "TestBar" }
     set { }
   }
-  
+
   var button: NSStatusBarButton? { return nil }
   var menu: NSMenu?
   var attributedTitle: NSAttributedString?

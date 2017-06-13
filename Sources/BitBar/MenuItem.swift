@@ -1,20 +1,15 @@
 import AppKit
 import BonMot
+import Async
 import SwiftyBeaver
 import OcticonsSwift
 
-class MenuItem: NSMenuItem, Parent {
+class MenuItem: NSMenuItem, Parent, GUI {
+  internal let queue = MenuItem.newQueue(label: "MenuItem")
   private var isError = false
-  var isManualClickable: Bool?
-  internal let log = SwiftyBeaver.self
-  weak var _root: Parent?
-  internal var isChecked: Bool {
-    get { return NSOnState == state }
-    set { state = newValue ? NSOnState : NSOffState }
-  }
-  internal var isClickable: Bool {
-    return validateMenuItem(self)
-  }
+  public var isManualClickable: Bool?
+  public let log = SwiftyBeaver.self
+  public weak var _root: Parent?
 
   convenience init() {
     self.init(title: "…")
@@ -35,22 +30,24 @@ class MenuItem: NSMenuItem, Parent {
     )
 
     target = self
-    attributedTitle = style(immutable)
+    set(title: immutable)
 
     if !submenus.isEmpty {
       submenu = MenuBase()
-      for sub in submenus {
-        sub.root = self
-        submenu?.addItem(sub)
-      }
+    }
+
+    for sub in submenus {
+      add(submenu: sub)
     }
 
     self.isChecked = isChecked
     self.isManualClickable = isClickable
 
     if isAlternate {
-      self.isAlternate = true
-      keyEquivalentModifierMask = .option
+      perform {
+        self.isAlternate = true
+        self.keyEquivalentModifierMask = .option
+      }
     }
   }
 
@@ -84,7 +81,7 @@ class MenuItem: NSMenuItem, Parent {
       shortcut: shortcut
     )
 
-    self.image = image
+    self.icon = image
   }
 
  convenience init(
@@ -109,16 +106,20 @@ class MenuItem: NSMenuItem, Parent {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func set(error: String) {
+  public var isClickable: Bool {
+    return validateMenuItem(self)
+  }
+
+  public func set(error: String) {
     set(error: error.immutable)
   }
 
-  func set(title: String) {
+  public func set(title: String) {
     set(title: title.immutable)
   }
 
-  @nonobjc func set(error: Immutable, cascade: Bool = true) {
-    attributedTitle = style(error)
+  @nonobjc public func set(error: Immutable, cascade: Bool = true) {
+    set(title: error)
     showErrorIcons()
 
     if cascade {
@@ -126,19 +127,28 @@ class MenuItem: NSMenuItem, Parent {
     }
   }
 
-  @nonobjc func set(title: Immutable) {
-    attributedTitle = style(title)
+  @nonobjc public func set(title: Immutable) {
+    perform { self.attributedTitle = self.style(title) }
   }
 
-  @nonobjc func set(error: Bool) {
+  @nonobjc public func set(error: Bool) {
     if error { showErrorIcons() } else { hideErrorIcons() }
   }
 
-  func onDidClick() {
+  public func onDidClick() {
     /* NOP */
   }
 
-  @objc func __onDidClick() {
+  public var isChecked: Bool {
+    get { return NSOnState == state }
+    set {
+      perform {
+        self.state = newValue ? NSOnState : NSOffState
+      }
+    }
+  }
+
+  @objc public func __onDidClick() {
     log.verbose("Clicked dropdown menu")
     onDidClick()
   }
@@ -171,8 +181,7 @@ class MenuItem: NSMenuItem, Parent {
     ])
   }
 
-  // Event from children
-  func on(_ event: MenuEvent) {
+  public func on(_ event: MenuEvent) {
     switch event {
     /* set(error: ...) was used */
     case .didSetError:
@@ -183,25 +192,29 @@ class MenuItem: NSMenuItem, Parent {
   }
 
   private func showErrorIcons() {
-    // Disable menu item
     isError = true
-    submenu?.update()
 
     let fontSize = Int(FontType.item.size)
     let size = CGSize(width: fontSize, height: fontSize)
-    let icon = OcticonsID.bug
 
-    image = NSImage(
-      octiconsID: icon,
+    icon = NSImage(
+      octiconsID: OcticonsID.bug,
       iconColor: .black,
       size: size
     )
+
+    updateSubmenu()
   }
 
   private func hideErrorIcons() {
     isError = false
-    submenu?.update()
-    image = nil
+    icon = nil
+    updateSubmenu()
+  }
+
+  private var icon: NSImage? {
+    set { perform { self.image = newValue } }
+    get { return image }
   }
 
   private func style(_ immutable: Immutable) -> Immutable {
@@ -210,5 +223,16 @@ class MenuItem: NSMenuItem, Parent {
 
   private func style(_ string: String) -> Immutable {
     return string.styled(with: .font(FontType.item.font))
+  }
+
+  private func add(submenu item: NSMenuItem) {
+    perform {
+      item.root = self
+      self.submenu?.addItem(item)
+    }
+  }
+
+  private func updateSubmenu() {
+    perform { self.submenu?.update() }
   }
 }

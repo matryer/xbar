@@ -26,6 +26,7 @@ PODS:
     - FootlessParser
   - Quick (1.1.0)
   - Script (1.0.0)
+  - Sparkle (1.17.0)
   - SwiftyBeaver (1.2.2)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
   - Script (from `https://github.com/oleander/Script.git`)
+  - Sparkle
   - SwiftyBeaver
   - SwiftyJSON
   - SwiftyTimer
@@ -103,11 +105,12 @@ SPEC CHECKSUMS:
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Script: 950e73d8f95060e2701924ba2e2db9912e12503c
+  Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: cbf0d30bc3be3decc0e3e87908d352660d5963ad
+PODFILE CHECKSUM: bb69a41c48986ce9f2db262965829d557ed908ea
 
 COCOAPODS: 1.2.1

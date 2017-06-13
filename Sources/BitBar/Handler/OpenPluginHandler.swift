@@ -3,8 +3,9 @@ import Alamofire
 import SwiftyBeaver
 import Cocoa
 
-class OpenPluginHandler: Parent {
-  weak var root: Parent?
+class OpenPluginHandler: Parent, GUI {
+  internal let queue = OpenPluginHandler.newQueue(label: "OpenPluginHandler")
+  internal weak var root: Parent?
   private let fileManager = FileManager.default
   private let queries: [String: String]
   internal let log = SwiftyBeaver.self
@@ -61,28 +62,34 @@ class OpenPluginHandler: Parent {
 
     alert.addButton(withTitle: "Install")
     alert.addButton(withTitle: "Cancel")
-    if alert.runModal() != NSAlertFirstButtonReturn {
-      return log.info("User aborted openPlugin")
-    }
 
+    perform {
+      if alert.runModal() != NSAlertFirstButtonReturn {
+        return self.log.info("User aborted openPlugin")
+      }
+
+      self.rest(file: destFile, src: src)
+    }
+  }
+
+  private func rest(file: URL, src: String) {
     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-      return (destFile, [.removePreviousFile])
+      return (file, [.removePreviousFile])
     }
 
     Alamofire.download(src, to: destination).response { [weak self] response in
       guard let this = self else { return }
       if let error = response.error {
-        return this.log.error("Could not download \(src) to \(destFile): \(error.localizedDescription))")
+        return this.log.error("Could not download \(src) to \(file): \(error.localizedDescription))")
       }
 
       do {
-        try this.fileManager.setAttributes([.posixPermissions: 0o777], ofItemAtPath: destFile.path)
+        try this.fileManager.setAttributes([.posixPermissions: 0o777], ofItemAtPath: file.path)
       } catch let error {
-        return this.log.error("\(destFile.absoluteString): \(error.localizedDescription)")
+        return this.log.error("\(file.absoluteString): \(error.localizedDescription)")
       }
 
       self?.broadcast(.refreshAll)
     }
   }
-
 }

@@ -2,31 +2,28 @@ import Cocoa
 import Emojize
 import AppKit
 import Async
-// import Sparkle
+import Sparkle
 import Vapor
 import SwiftyBeaver
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
-  weak var root: Parent?
+  internal weak var root: Parent?
   internal let log = SwiftyBeaver.self
   private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   internal let manager = PluginManager.instance
-  // private let updater = SUUpdater.shared()
-  private var trays = [Tray]()
+  private let updater = SUUpdater.shared()
   private var server: Droplet?
-  var menus = [NSMenu]()
-  var subs = [NSMenuItem]()
 
   func applicationDidFinishLaunching(_: Notification) {
     if App.isInTestMode() { return }
     manager.root = self
     setOpenUrlHandler()
-    loadPluginManager()
     setOnWakeUpHandler()
     handleStartupApp()
     handleServerStartup()
+    loadPluginManager()
   }
 
   private func handleStartupApp() {
@@ -41,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     case .doNotOpenOnLogin: App.startAtLogin(false)
     case let .openUrlInBrowser(url): App.open(url: url)
     case .quitApplication: NSApp.terminate(self)
-    case .checkForUpdates: break // updater?.checkForUpdates(self)
+    case .checkForUpdates: updater?.checkForUpdates(self)
     case .openPluginFolder:
       if let path = App.pluginPath {
         App.open(path: path)
@@ -66,9 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
   private func askAboutPluginPath() {
     App.askAboutPluginPath {
-      Async.main {
-        self.loadPluginManager()
-      }
+      self.loadPluginManager()
     }
   }
 
@@ -87,9 +82,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
   private func setOpenUrlHandler() {
     eventManager.setEventHandler(self,
-                                 andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
-                                 forEventClass: AEEventClass(kInternetEventClass),
-                                 andEventID: AEEventID(kAEGetURL)
+       andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
+       forEventClass: AEEventClass(kInternetEventClass),
+       andEventID: AEEventID(kAEGetURL)
     )
     LSSetDefaultHandlerForURLScheme("bitbar" as CFString, App.id)
   }

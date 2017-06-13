@@ -116,10 +116,6 @@ class App {
     }
   }
 
-  static var inactiveColor: NSColor {
-    return NSColor(hex: "#474747")
-  }
-
   /**
     Is this a test? Used by the Tray class to
     prevent the menu bar from flickering during testing

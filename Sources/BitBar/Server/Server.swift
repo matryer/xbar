@@ -11,9 +11,12 @@ private func ok(_ msg: String) throws -> JSON {
 func startServer() throws -> Droplet {
   let manager = PluginManager.instance
   let drop = try Droplet()
+  // Disable log
   let log = SwiftyBeaver.self
+  log.addDestination(FileDestination())
+  // log.addDestination(ConsoleDestination())
 
-  log.addDestination(ConsoleDestination())
+
 
   drop.group("plugins") { group in
     group.patch("refresh") { _ in
@@ -21,7 +24,7 @@ func startServer() throws -> Droplet {
       return try ok("Plugin(s) has beeen refreshed")
     }
 
-    group.get("") { _ in
+    group.get { _ in
       return try JSON(node: manager.pluginsNames)
     }
   }
@@ -31,7 +34,7 @@ func startServer() throws -> Droplet {
   }
 
   drop.group("plugin", PluginFile.parameter) { plugin in
-    plugin.get("") { req in
+    plugin.get { req in
       return try req.parameters.next(PluginFile.self).makeJSON()
     }
 

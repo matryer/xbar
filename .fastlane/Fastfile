@@ -26,7 +26,8 @@ lane :package do
   build
   # sh "codesign --deep --force --sign 'Mac Developer: linus@oleander.nu (8Z44P9V4VF)' ../Dist/BitBar.app"
   # zip path: "Dist/BitBar.app", output_path: "Dist/BitBar.zip"
-  sh "ditto -c -k --sequesterRsrc --keepParent ../Dist/BitBar.app ../Dist/BitBar.zip"
+  # sh "ditto -c -k --sequesterRsrc --keepParent ../Dist/BitBar.app ../Dist/BitBar.zip"
+  sh "hdiutil create -volname BitBar -srcfolder ../Dist/BitBar.app -ov -format UDZO ../Dist/BitBar.dmg"
 end
 
 desc "Generates a new version tag in git and XCode"

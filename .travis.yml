@@ -12,7 +12,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: $API_KEY
-  file: Dist/BitBar.zip
+  file: Dist/BitBar.dmg
   on:
     branch: master
     condition: "-n $encrypted_34de277e100a_key"

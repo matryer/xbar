@@ -25,9 +25,7 @@ extension WebSocket {
   }
 
   func setup() {
-    Async.main {
-      self.handle(dest: SocketLog(self, self.log))
-    }
+    self.handle(dest: SocketLog(self, self.log))
   }
 
   private func handle(dest: SocketLog) {
