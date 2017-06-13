@@ -16,14 +16,10 @@ class PathSelector {
     self.init()
 
     if let aURL = url {
-      log.info("use other folder")
       panel.directoryURL = aURL
     } else {
-      log.info("Use home folder")
       panel.directoryURL = URL(fileURLWithPath: Folder.home.path, isDirectory: true)
     }
-
-    log.info("Use dir \(panel.directoryURL?.absoluteString)")
 
     panel.prompt = PathSelector.title
     panel.allowsMultipleSelection = false

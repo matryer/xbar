@@ -16,8 +16,6 @@ func startServer() throws -> Droplet {
   log.addDestination(FileDestination())
   // log.addDestination(ConsoleDestination())
 
-
-
   drop.group("plugins") { group in
     group.patch("refresh") { _ in
       manager.refresh()
