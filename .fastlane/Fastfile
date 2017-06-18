@@ -25,13 +25,13 @@ desc "Build and zip application"
 lane :package do
   build
   sh "hdiutil create -volname BitBar -srcfolder ../Dist/BitBar.app -ov -format UDZO ../Dist/BitBar.dmg"
-  tag
+  # tag
 end
 
 desc "Generates a new version tag in git and XCode"
 lane :tag do
-  # ensure_git_branch branch: "master"
-  # ensure_git_status_clean
+  ensure_git_branch branch: "master"
+  ensure_git_status_clean
   increment_version_number
   version = get_version_number()
   increment_build_number build_number: version
