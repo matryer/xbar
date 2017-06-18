@@ -33,14 +33,12 @@
 		2010456A1EE9DC5E0020599C /* image.10m.sh in Resources */ = {isa = PBXBuildFile; fileRef = 201045651EE9DC5E0020599C /* image.10m.sh */; };
 		2010456C1EE9DCBF0020599C /* metadata.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2010456B1EE9DCBF0020599C /* metadata.sh */; };
 		202A9C371EEA139000538035 /* Startup.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 202A9C281EEA130200538035 /* Startup.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		202A9C3D1EEA13CC00538035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C391EEA13CC00538035 /* Assets.xcassets */; };
 		202A9C3E1EEA13CC00538035 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202A9C3A1EEA13CC00538035 /* App.xib */; };
 		202A9C3F1EEA13CC00538035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9C3B1EEA13CC00538035 /* AppDelegate.swift */; };
-		203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 203AA4421EEA061200075DA2 /* BitBarTests.plist */; };
 		20444A731EEA1B0E0097651A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20444A721EEA1B0E0097651A /* Errors.swift */; };
 		2049CC241EEE15A9005638E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20C1EE95E9A0032ADC0 /* Images.xcassets */; };
-		2049CC251EEE15A9005638E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20C1EE95E9A0032ADC0 /* Images.xcassets */; };
 		2049CC261EEE15B1005638E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20C1EE95E9A0032ADC0 /* Images.xcassets */; };
+		2075FE021EF1A56C00EFF7C9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20C1EE95E9A0032ADC0 /* Images.xcassets */; };
 		207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064E20E1EE95E9A0032ADC0 /* App.xib */; };
 		20832A111EE974F5006440EC /* octicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2171EE95E9A0032ADC0 /* octicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E20F1EE95E9A0032ADC0 /* bitbar-2048.png */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -108,6 +106,7 @@
 		20C3E1421EE9E07F00ABA14D /* stream-nothing.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870CC1EE9DE16003C4A5A /* stream-nothing.sh */; };
 		20C3E1431EE9E08600ABA14D /* args.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870BD1EE9DE16003C4A5A /* args.sh */; };
 		20C3E1441EE9E08A00ABA14D /* basic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870BE1EE9DE16003C4A5A /* basic.sh */; };
+		20CC20251EF6C2FA00AFA867 /* BitBar.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2121EE95E9A0032ADC0 /* BitBar.plist */; };
 		20E0A6DC1EE9603F00564B1B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A69A1EE9603F00564B1B /* Array.swift */; };
 		20E0A6DD1EE9603F00564B1B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A69B1EE9603F00564B1B /* Data.swift */; };
 		20E0A6DE1EE9603F00564B1B /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A69C1EE9603F00564B1B /* DefaultsKeys.swift */; };
@@ -188,9 +187,10 @@
 		2064E2091EE95E510032ADC0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LoginItems;
-			dstSubfolderSpec = 1;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
+				20CC20251EF6C2FA00AFA867 /* BitBar.plist in CopyFiles */,
 				202A9C371EEA139000538035 /* Startup.app in CopyFiles */,
 				20832A131EE97528006440EC /* App.xib in CopyFiles */,
 				20832A121EE9751A006440EC /* bitbar-2048.png in CopyFiles */,
@@ -552,42 +552,9 @@
 		2025F7391EE95D250028B75A = {
 			isa = PBXGroup;
 			children = (
-				209D16521EED9E6D0076A66E /* Cache.framework */,
-				209D164F1EED9E6D0076A66E /* Configs.framework */,
-				209D164C1EED9E6C0076A66E /* Vapor.framework */,
-				209D16491EED9E6C0076A66E /* Sessions.framework */,
-				209D16461EED9E6C0076A66E /* Testing.framework */,
-				209D16431EED9E6C0076A66E /* BCrypt.framework */,
-				209D16401EED9E6C0076A66E /* FormData.framework */,
-				209D163D1EED9E6C0076A66E /* Multipart.framework */,
-				209D163A1EED9E6C0076A66E /* Routing.framework */,
-				209D16371EED9E6C0076A66E /* Branches.framework */,
-				209D16341EED9E6C0076A66E /* JSON.framework */,
-				209D16311EED9E6C0076A66E /* PathIndexable.framework */,
-				209D162E1EED9E6C0076A66E /* Node.framework */,
-				209D162B1EED9E6C0076A66E /* Console.framework */,
-				209D16281EED9E6C0076A66E /* WebSockets.framework */,
-				209D16251EED9E6C0076A66E /* HTTP.framework */,
-				209D16221EED9E6C0076A66E /* URI.framework */,
-				209D161F1EED9E6C0076A66E /* SMTP.framework */,
-				209D161C1EED9E6C0076A66E /* Cookies.framework */,
-				209D16191EED9E6C0076A66E /* CHTTP.framework */,
-				209D16161EED9E6C0076A66E /* TLS.framework */,
-				209D16131EED9E6C0076A66E /* Transport.framework */,
-				209D16101EED9E6C0076A66E /* Sockets.framework */,
-				209D160D1EED9E6C0076A66E /* Crypto.framework */,
-				209D160A1EED9E6B0076A66E /* Random.framework */,
-				209D16071EED9E6B0076A66E /* Core.framework */,
-				209D16041EED9E6B0076A66E /* libc.framework */,
-				209D16011EED9E6B0076A66E /* Debugging.framework */,
-				209D15FE1EED9E6B0076A66E /* Bits.framework */,
 				20E0A6981EE9602500564B1B /* Source */,
 				2064E20B1EE95E870032ADC0 /* Resources */,
 				2007B4461EE9CC2F00E68358 /* Tests */,
-				202A9C291EEA130200538035 /* Startup */,
-				2025F7431EE95D250028B75A /* Products */,
-				7EA58D03D2F272357554359A /* Pods */,
-				F1ABA6CC30C432D454D81A9A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -646,6 +613,9 @@
 		2064E20B1EE95E870032ADC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F1ABA6CC30C432D454D81A9A /* Frameworks */,
+				2025F7431EE95D250028B75A /* Products */,
+				7EA58D03D2F272357554359A /* Pods */,
 				201045601EE9DC4B0020599C /* Scripts */,
 				2064E20C1EE95E9A0032ADC0 /* Images.xcassets */,
 				2064E20E1EE95E9A0032ADC0 /* App.xib */,
@@ -668,6 +638,7 @@
 		20E0A6981EE9602500564B1B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				202A9C291EEA130200538035 /* Startup */,
 				202A9C231EEA12D800538035 /* BitBar */,
 			);
 			name = Source;
@@ -782,6 +753,35 @@
 		F1ABA6CC30C432D454D81A9A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				209D16521EED9E6D0076A66E /* Cache.framework */,
+				209D164F1EED9E6D0076A66E /* Configs.framework */,
+				209D164C1EED9E6C0076A66E /* Vapor.framework */,
+				209D16491EED9E6C0076A66E /* Sessions.framework */,
+				209D16461EED9E6C0076A66E /* Testing.framework */,
+				209D16431EED9E6C0076A66E /* BCrypt.framework */,
+				209D16401EED9E6C0076A66E /* FormData.framework */,
+				209D163D1EED9E6C0076A66E /* Multipart.framework */,
+				209D163A1EED9E6C0076A66E /* Routing.framework */,
+				209D16371EED9E6C0076A66E /* Branches.framework */,
+				209D16341EED9E6C0076A66E /* JSON.framework */,
+				209D16311EED9E6C0076A66E /* PathIndexable.framework */,
+				209D162E1EED9E6C0076A66E /* Node.framework */,
+				209D162B1EED9E6C0076A66E /* Console.framework */,
+				209D16281EED9E6C0076A66E /* WebSockets.framework */,
+				209D16251EED9E6C0076A66E /* HTTP.framework */,
+				209D16221EED9E6C0076A66E /* URI.framework */,
+				209D161F1EED9E6C0076A66E /* SMTP.framework */,
+				209D161C1EED9E6C0076A66E /* Cookies.framework */,
+				209D16191EED9E6C0076A66E /* CHTTP.framework */,
+				209D16161EED9E6C0076A66E /* TLS.framework */,
+				209D16131EED9E6C0076A66E /* Transport.framework */,
+				209D16101EED9E6C0076A66E /* Sockets.framework */,
+				209D160D1EED9E6C0076A66E /* Crypto.framework */,
+				209D160A1EED9E6B0076A66E /* Random.framework */,
+				209D16071EED9E6B0076A66E /* Core.framework */,
+				209D16041EED9E6B0076A66E /* libc.framework */,
+				209D16011EED9E6B0076A66E /* Debugging.framework */,
+				209D15FE1EED9E6B0076A66E /* Bits.framework */,
 				2D029BEB569918F1F0AD8C1A /* Pods_BitBar.framework */,
 				E1BAC48C157A6B28661BA57D /* Pods_BitBarTests.framework */,
 				2D4802E523822E3E0CECEDFF /* Pods_Startup.framework */,
@@ -927,7 +927,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				203AA4431EEA061200075DA2 /* BitBarTests.plist in Resources */,
 				207F8DF91EE9B4C600CA5D4E /* App.xib in Resources */,
 				2049CC241EEE15A9005638E9 /* Images.xcassets in Resources */,
 			);
@@ -937,8 +936,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2049CC251EEE15A9005638E9 /* Images.xcassets in Resources */,
-				202A9C3D1EEA13CC00538035 /* Assets.xcassets in Resources */,
+				2075FE021EF1A56C00EFF7C9 /* Images.xcassets in Resources */,
 				202A9C3E1EEA13CC00538035 /* App.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

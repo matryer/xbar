@@ -137,6 +137,34 @@ class App {
     }
   }
 
+  static var port: Int {
+    let defaultPort = 9120
+
+    guard let path = Bundle.main.path(forResource: "BitBar", ofType: "plist") else {
+      return defaultPort
+    }
+
+    guard let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else {
+      return defaultPort
+    }
+
+    if isInTestMode(), let port = dict["TestPort"] as? Int {
+      return port
+    }
+
+    #if DEBUG
+      if let port = dict["DevPort"] as? Int {
+        return port
+      }
+    #else
+      if let port = dict["ProdPort"] as? Int {
+        return port
+      }
+    #endif
+
+    return defaultPort
+  }
+
   static func openScript(inTerminal path: String, args: [String], block: @escaping (String?) -> Void) {
     let escape = { (val: String) in val.replace("\"", "\\\"").replace(" ", "\\ ") }
     let input = ([escape(path)] + args.map(escape)).joined(separator: " ")

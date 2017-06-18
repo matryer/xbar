@@ -10,8 +10,8 @@ private func ok(_ msg: String) throws -> JSON {
 
 func startServer() throws -> Droplet {
   let manager = PluginManager.instance
-  let drop = try Droplet()
-  // Disable log
+  let config = try Config(arguments: ["--port=\(App.port)"])
+  let drop = try Droplet(config)
   let log = SwiftyBeaver.self
   log.addDestination(FileDestination())
   // log.addDestination(ConsoleDestination())

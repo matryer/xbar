@@ -10,7 +10,6 @@ import SwiftyBeaver
 class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   internal weak var root: Parent?
   internal let log = SwiftyBeaver.self
-  private var eventManager = NSAppleEventManager.shared()
   private var notificationCenter = NSWorkspace.shared().notificationCenter
   internal let manager = PluginManager.instance
   private let updater = SUUpdater.shared()
@@ -81,12 +80,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   }
 
   private func setOpenUrlHandler() {
-    // eventManager.setEventHandler(self,
-    //    andSelector: #selector(AppDelegate.handleEvent(_:withReplyEvent:)),
-    //    forEventClass: AEEventClass(kInternetEventClass),
-    //    andEventID: AEEventID(kAEGetURL)
-    // )
-
     NSAppleEventManager.shared().setEventHandler(
       self,
       andSelector: #selector(handleEvent(event:replyEvent:)),
