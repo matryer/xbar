@@ -19,8 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     if App.isInTestMode() { return }
     manager.root = self
     setOpenUrlHandler()
-    // setOnWakeUpHandler()
-    // handleStartupApp()
+    setOnWakeUpHandler()
+    handleStartupApp()
     handleServerStartup()
     loadPluginManager()
   }
