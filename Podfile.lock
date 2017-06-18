@@ -17,15 +17,17 @@ PODS:
     - FootlessParser
     - SwiftyJSON
   - Files (1.8.0)
-  - FontAwesomeForMacOS (2)
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
   - Nimble (7.0.0)
+  - OcticonsSwift (0.1.2)
+  - OpenSSL-OSX (1.0.209)
   - Parser (0.1.0):
     - FootlessParser
   - Quick (1.1.0)
+  - Script (1.0.0)
   - Sparkle (1.17.0)
-  - SwiftTryCatch (2.0.2)
+  - SwiftyBeaver (1.2.2)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
   - SwiftyUserDefaults (3.0.0)
@@ -38,42 +40,51 @@ DEPENDENCIES:
   - BonMot
   - Cent
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
+  - Dollar
   - Emojize
-  - Files (from `https://github.com/JohnSundell/Files.git`)
-  - FontAwesomeForMacOS
-  - FootlessParser
+  - Files
+  - FootlessParser (from `https://github.com/oleander/FootlessParser.git`)
   - Hue
   - Nimble
+  - OcticonsSwift
+  - OpenSSL-OSX (from `https://github.com/GerTeunis/OpenSSL-OSX-Pod.git`)
   - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
+  - Script (from `https://github.com/oleander/Script.git`)
   - Sparkle
-  - SwiftTryCatch (from `https://github.com/oleander/SwiftTryCatch.git`)
+  - SwiftyBeaver
+  - SwiftyJSON
   - SwiftyTimer
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
   DateToolsSwift:
     :git: https://github.com/MatthewYork/DateTools.git
-  Files:
-    :git: https://github.com/JohnSundell/Files.git
+  FootlessParser:
+    :git: https://github.com/oleander/FootlessParser.git
+  OpenSSL-OSX:
+    :git: https://github.com/GerTeunis/OpenSSL-OSX-Pod.git
   Parser:
     :git: https://github.com/oleander/BitBarParser.git
-  SwiftTryCatch:
-    :git: https://github.com/oleander/SwiftTryCatch.git
+  Script:
+    :git: https://github.com/oleander/Script.git
 
 CHECKOUT OPTIONS:
   DateToolsSwift:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
-  Files:
-    :commit: ce3c0e16926dc4694054f8e5edd7609b079250ba
-    :git: https://github.com/JohnSundell/Files.git
+  FootlessParser:
+    :commit: c6fb4cf0c61efa31a11c62557aabfd8f2c4d7116
+    :git: https://github.com/oleander/FootlessParser.git
+  OpenSSL-OSX:
+    :commit: c8cd8d1266ebce2f66856449bfe6e71a5a1421c6
+    :git: https://github.com/GerTeunis/OpenSSL-OSX-Pod.git
   Parser:
-    :commit: 6342a909ab4f38ecf6d4feafd6def589a7a17b0a
+    :commit: 6d0d9bc8be11e1ff6d5b903564333f74ee93ef49
     :git: https://github.com/oleander/BitBarParser.git
-  SwiftTryCatch:
-    :commit: b3984b754b00572b84d658e278940836fb04a2b9
-    :git: https://github.com/oleander/SwiftTryCatch.git
+  Script:
+    :commit: a2d75ce6b1c86b632d07e8b1331b3a37f468e75a
+    :git: https://github.com/oleander/Script.git
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -85,19 +96,21 @@ SPEC CHECKSUMS:
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   Emojize: 1935550e6aeb5bd755ab8e4e1999017846a6be14
-  Files: 7833a7457be5e6482b563cb0e68075bc13735f22
-  FontAwesomeForMacOS: 2078999f277497d59c133fafec39aa5a080ca753
-  FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
+  Files: b7734dc3136d4f75e3a98c0b6140bc671ec863ae
+  FootlessParser: aef8884544c638401bddaa5a4c61c09198c12d33
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
+  OcticonsSwift: 64ad8ec6ddd09009c33b64c113bf6ab7b45ce2db
+  OpenSSL-OSX: 0adebe79f9c137609f0163aff869e1b2dcb5e14b
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  Script: 950e73d8f95060e2701924ba2e2db9912e12503c
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
-  SwiftTryCatch: b9581e03fff404eecdb7a8f7ee8e1079e1728ea2
+  SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: de087f65cf60d1f71d2d6ce0fc088739d53ec2de
+PODFILE CHECKSUM: bb69a41c48986ce9f2db262965829d557ed908ea
 
 COCOAPODS: 1.2.1

@@ -1,13 +1,9 @@
 language: objective-c
-install:
-  - make rem
-  - make setup
+install: make setup
 osx_image: xcode8.3
 rvm: ruby-2.3.0
-script:
-  - fastlane test
-  # - tailor --max-severity=error --config .tailor.ym
-before_deploy: fastlane deploy
+script: make test
+before_deploy: make deploy
 cache:
   - bundler
   - cocoapods
@@ -16,7 +12,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: $API_KEY
-  file: BitBar.zip
+  file: Dist/BitBar.dmg
   on:
     branch: master
     condition: "-n $encrypted_34de277e100a_key"

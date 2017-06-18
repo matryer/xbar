@@ -1,0 +1,3 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+OTHER_LDFLAGS = -L/usr/local/opt/openssl/lib
+OTHER_SWIFT_FLAGS = -I/usr/local/opt/openssl/include

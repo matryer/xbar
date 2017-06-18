@@ -1,0 +1,102 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "BCrypt",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/bcrypt.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "Bits",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/bits.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "CTLS",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/ctls.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "Console",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/console.git",
+      "version": "2.1.0"
+    },
+    {
+      "package": "Core",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/core.git",
+      "version": "2.0.2"
+    },
+    {
+      "package": "Crypto",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/crypto.git",
+      "version": "2.0.0"
+    },
+    {
+      "package": "Debugging",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/debugging.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "Engine",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/engine.git",
+      "version": "2.1.0"
+    },
+    {
+      "package": "JSON",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/json.git",
+      "version": "2.0.2"
+    },
+    {
+      "package": "Multipart",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/multipart.git",
+      "version": "2.0.0"
+    },
+    {
+      "package": "Node",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/node.git",
+      "version": "2.0.3"
+    },
+    {
+      "package": "Random",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/random.git",
+      "version": "1.0.0"
+    },
+    {
+      "package": "Routing",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/routing.git",
+      "version": "2.0.0"
+    },
+    {
+      "package": "Sockets",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/sockets.git",
+      "version": "2.0.1"
+    },
+    {
+      "package": "TLS",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/tls.git",
+      "version": "2.0.4"
+    },
+    {
+      "package": "Vapor",
+      "reason": null,
+      "repositoryURL": "https://github.com/vapor/vapor.git",
+      "version": "2.1.0"
+    }
+  ],
+  "version": 1
+}
