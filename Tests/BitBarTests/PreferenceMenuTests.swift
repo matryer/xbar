@@ -8,7 +8,7 @@ class PreferenceMenuTests: Helper {
       it("should have a base menu") {
         expect(base).to(have(title: "Preferences"))
         expect(base).to(beClickable())
-        expect(base).to(have(subMenuCount: 10))
+        expect(base).to(have(subMenuCount: 13))
       }
 
       context("sub menus") {
@@ -45,7 +45,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#3 change plugin folder") {
-          a(base, at: [2]) { menu in
+          a(base, at: [5]) { menu in
             it("should have the proper title") {
               expect(menu).to(have(title: "Change Plugin Folder…"))
             }
@@ -69,7 +69,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#4 open plugin folder") {
-          a(base, at: [3]) { menu in
+          a(base, at: [6]) { menu in
             it("should have the proper title") {
               expect(menu).to(have(title: "Open Plugin Folder…"))
             }
@@ -85,7 +85,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#5 get plugin plugins") {
-          a(base, at: [4]) { menu in
+          a(base, at: [7]) { menu in
             it("should have the proper title") {
               expect(menu).to(have(title: "Get Plugins…"))
             }
@@ -109,7 +109,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#6 separator") {
-          a(base, at: [5]) { menu in
+          a(base, at: [8]) { menu in
             it("should be a separator") {
               expect(menu).to(beASeparator())
             }
@@ -117,7 +117,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#7 open at login") {
-          a(base, at: [6]) { menu in
+          a(base, at: [9]) { menu in
             it("should have the proper title") {
               expect(menu).to(have(title: "Open at Login"))
             }
@@ -137,7 +137,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#8 separator") {
-          a(base, at: [7]) { menu in
+          a(base, at: [10]) { menu in
             it("should be a separator") {
               expect(menu).to(beASeparator())
             }
@@ -145,7 +145,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#9 check for updates") {
-          a(base, at: [8]) { menu in
+          a(base, at: [11]) { menu in
             it("should have the proper title") {
               expect(menu).to(have(title: "Check for Updates…"))
             }
@@ -169,7 +169,7 @@ class PreferenceMenuTests: Helper {
         }
 
         context("#10 quit") {
-          a(base, at: [9]) { menu in
+          a(base, at: [12]) { menu in
             it("should have the proper title") {
               expect(menu).to(have(title: "Quit"))
             }
@@ -195,7 +195,7 @@ class PreferenceMenuTests: Helper {
 
       context("open plugin folder") {
         context("plugin path") {
-          a(Pref.Preferences(pluginPath: "/a/b/c"), at: [3]) { menu in
+          a(Pref.Preferences(pluginPath: "/a/b/c"), at: [6]) { menu in
             it("should be clickable") {
               expect(menu).to(beClickable())
             }
@@ -207,8 +207,8 @@ class PreferenceMenuTests: Helper {
         }
 
         context("no plugin path") {
-          a(Pref.Preferences(pluginPath: nil), at: [3]) { menu in
-            it("should be clickable") {
+          a(Pref.Preferences(pluginPath: nil), at: [10]) { menu in
+            it("should not be clickable") {
               expect(menu).toNot(beClickable())
             }
 
@@ -228,19 +228,19 @@ class PreferenceMenuTests: Helper {
           }
 
           it("should not be checked") {
-            a(parent, at: [6]) { menu in
+            a(parent, at: [9]) { menu in
               expect(menu).toNot(beChecked())
             }
           }
 
           it("should be checked when clicked") {
-            a(parent, at: [6]) { menu in
+            a(parent, at: [9]) { menu in
               expect(menu, when: .clicked).to(beChecked())
             }
           }
 
           it("should broadcast event") {
-            a(parent, at: [6]) { menu in
+            a(parent, at: [9]) { menu in
               expect(menu, when: .clicked).to(have(.broadcasted([.openOnLogin])))
               expect(menu, when: .clicked).to(have(.broadcasted([.doNotOpenOnLogin])))
             }
@@ -253,19 +253,19 @@ class PreferenceMenuTests: Helper {
           }
 
           it("should not be checked") {
-            a(parent, at: [6]) { menu in
+            a(parent, at: [9]) { menu in
               expect(menu).to(beChecked())
             }
           }
 
           it("should be checked when clicked") {
-            a(parent, at: [6]) { menu in
+            a(parent, at: [9]) { menu in
               expect(menu, when: .clicked).toNot(beChecked())
             }
           }
 
           it("should broadcast event") {
-            a(parent, at: [6]) { menu in
+            a(parent, at: [9]) { menu in
               expect(menu, when: .clicked).to(have(.broadcasted([.doNotOpenOnLogin])))
               expect(menu, when: .clicked).to(have(.broadcasted([.openOnLogin])))
             }

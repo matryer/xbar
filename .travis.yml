@@ -2,7 +2,7 @@ language: objective-c
 install: make setup
 osx_image: xcode8.3
 rvm: ruby-2.3.0
-script: ls # make test
+script: make test
 before_deploy: make deploy
 cache:
   - bundler
