@@ -50,3 +50,11 @@ report.xml
 Resources/bitbar.p12-back.p12
 BitBar.app
 .fastlane/README.md
+example.swift
+test
+example2.swift
+testing/all.20m.sh
+testing
+/*.app
+/Dist
+!/Dist/.gitkeep

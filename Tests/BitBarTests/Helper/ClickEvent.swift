@@ -1,0 +1,3 @@
+enum ClickEvent {
+  case clicked
+}

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20946B281E9EBF6800F7926D"
+               BlueprintIdentifier = "2025F7411EE95D250028B75A"
                BuildableName = "BitBar.app"
                BlueprintName = "BitBar"
                ReferencedContainer = "container:BitBar.xcodeproj">
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20946B391E9EBF6800F7926D"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
+               BlueprintIdentifier = "2007B4441EE9CC2F00E68358"
+               BuildableName = "BitBarTests.xctest"
+               BlueprintName = "BitBarTests"
                ReferencedContainer = "container:BitBar.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20946B281E9EBF6800F7926D"
+            BlueprintIdentifier = "2025F7411EE95D250028B75A"
             BuildableName = "BitBar.app"
             BlueprintName = "BitBar"
             ReferencedContainer = "container:BitBar.xcodeproj">
@@ -58,14 +58,14 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "YES"
+      debugDocumentVersioning = "NO"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20946B281E9EBF6800F7926D"
+            BlueprintIdentifier = "2025F7411EE95D250028B75A"
             BuildableName = "BitBar.app"
             BlueprintName = "BitBar"
             ReferencedContainer = "container:BitBar.xcodeproj">
@@ -75,16 +75,16 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/Resources/templates/Leaks.tracetemplate"
+      savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20946B281E9EBF6800F7926D"
+            BlueprintIdentifier = "2025F7411EE95D250028B75A"
             BuildableName = "BitBar.app"
             BlueprintName = "BitBar"
             ReferencedContainer = "container:BitBar.xcodeproj">
@@ -97,5 +97,14 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
    </ArchiveAction>
 </Scheme>

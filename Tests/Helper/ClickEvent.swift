@@ -1,3 +1,0 @@
-enum ClickEvent {
-  case clicked
-}

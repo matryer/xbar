@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.4.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
-  - Ansi (1.0.6):
+  - Ansi (2.0.0):
     - BonMot
     - FootlessParser
     - Hue
@@ -12,8 +12,7 @@ PODS:
     - Dollar (~> 6.1.0)
   - DateToolsSwift (2.0.3)
   - Dollar (6.1.0)
-  - EmitterKit (5.0.1)
-  - Emojize (6.0.8):
+  - Emojize (6.0.9):
     - Files
     - FootlessParser
     - SwiftyJSON
@@ -21,11 +20,14 @@ PODS:
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
   - Nimble (7.0.0)
+  - OcticonsSwift (0.1.2)
+  - OpenSSL-OSX (1.0.209)
   - Parser (0.1.0):
     - FootlessParser
   - Quick (1.1.0)
+  - Script (1.0.0)
   - Sparkle (1.17.0)
-  - SwiftTryCatch (2.0.2)
+  - SwiftyBeaver (1.2.2)
   - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
   - SwiftyUserDefaults (3.0.0)
@@ -33,76 +35,82 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
-  - Ansi (from `https://github.com/oleander/Ansi.git`)
+  - Ansi
   - AsyncSwift
   - BonMot
   - Cent
   - DateToolsSwift (from `https://github.com/MatthewYork/DateTools.git`)
-  - EmitterKit
+  - Dollar
   - Emojize
-  - Files (from `https://github.com/JohnSundell/Files.git`)
-  - FootlessParser
+  - Files
+  - FootlessParser (from `https://github.com/oleander/FootlessParser.git`)
   - Hue
   - Nimble
+  - OcticonsSwift
+  - OpenSSL-OSX (from `https://github.com/GerTeunis/OpenSSL-OSX-Pod.git`)
   - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
+  - Script (from `https://github.com/oleander/Script.git`)
   - Sparkle
-  - SwiftTryCatch (from `https://github.com/oleander/SwiftTryCatch.git`)
+  - SwiftyBeaver
+  - SwiftyJSON
   - SwiftyTimer
   - SwiftyUserDefaults
 
 EXTERNAL SOURCES:
-  Ansi:
-    :git: https://github.com/oleander/Ansi.git
   DateToolsSwift:
     :git: https://github.com/MatthewYork/DateTools.git
-  Files:
-    :git: https://github.com/JohnSundell/Files.git
+  FootlessParser:
+    :git: https://github.com/oleander/FootlessParser.git
+  OpenSSL-OSX:
+    :git: https://github.com/GerTeunis/OpenSSL-OSX-Pod.git
   Parser:
     :git: https://github.com/oleander/BitBarParser.git
-  SwiftTryCatch:
-    :git: https://github.com/oleander/SwiftTryCatch.git
+  Script:
+    :git: https://github.com/oleander/Script.git
 
 CHECKOUT OPTIONS:
-  Ansi:
-    :commit: 5da4664e7fff470b2ca730c59269c4d8744a334c
-    :git: https://github.com/oleander/Ansi.git
   DateToolsSwift:
     :commit: f64edc01cd77c737ce9a987988b98e59c2b62f0a
     :git: https://github.com/MatthewYork/DateTools.git
-  Files:
-    :commit: ce3c0e16926dc4694054f8e5edd7609b079250ba
-    :git: https://github.com/JohnSundell/Files.git
+  FootlessParser:
+    :commit: c6fb4cf0c61efa31a11c62557aabfd8f2c4d7116
+    :git: https://github.com/oleander/FootlessParser.git
+  OpenSSL-OSX:
+    :commit: c8cd8d1266ebce2f66856449bfe6e71a5a1421c6
+    :git: https://github.com/GerTeunis/OpenSSL-OSX-Pod.git
   Parser:
-    :commit: 5e18d2e584cd60648f66bf9c8fdf29da7a441763
+    :commit: 6d0d9bc8be11e1ff6d5b903564333f74ee93ef49
     :git: https://github.com/oleander/BitBarParser.git
-  SwiftTryCatch:
-    :commit: b3984b754b00572b84d658e278940836fb04a2b9
-    :git: https://github.com/oleander/SwiftTryCatch.git
+  Script:
+    :commit: a2d75ce6b1c86b632d07e8b1331b3a37f468e75a
+    :git: https://github.com/oleander/Script.git
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
-  Ansi: 0bb4c07821c891fc2c1022b16881fe641ec57ea7
+  Ansi: bea16ca189274e44fda6550433983f35119ac367
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
-  EmitterKit: 3062e79639958af72d4ac81c1074a399706f3801
-  Emojize: 182b9ad9f7108a8b18ec28a642aea239e72db2b7
-  Files: 7833a7457be5e6482b563cb0e68075bc13735f22
-  FootlessParser: b398f10654ea8aab5305ca0f9025c9b25a8a2562
+  Emojize: 1935550e6aeb5bd755ab8e4e1999017846a6be14
+  Files: b7734dc3136d4f75e3a98c0b6140bc671ec863ae
+  FootlessParser: aef8884544c638401bddaa5a4c61c09198c12d33
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
+  OcticonsSwift: 64ad8ec6ddd09009c33b64c113bf6ab7b45ce2db
+  OpenSSL-OSX: 0adebe79f9c137609f0163aff869e1b2dcb5e14b
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  Script: 950e73d8f95060e2701924ba2e2db9912e12503c
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
-  SwiftTryCatch: b9581e03fff404eecdb7a8f7ee8e1079e1728ea2
+  SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: a4332023d46a98cbace13cf9239b07bc982c8a17
+PODFILE CHECKSUM: bb69a41c48986ce9f2db262965829d557ed908ea
 
 COCOAPODS: 1.2.1

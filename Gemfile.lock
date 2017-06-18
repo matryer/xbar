@@ -10,7 +10,7 @@ GEM
     addressable (2.4.0)
     babosa (1.0.2)
     backports (3.7.0)
-    claide (1.0.1)
+    claide (1.0.2)
     clamp (0.6.5)
     cocoapods (1.2.1)
       activesupport (>= 4.0.2, < 5)
@@ -56,7 +56,7 @@ GEM
     escape (0.0.4)
     ethon (0.10.1)
       ffi (>= 1.3.0)
-    excon (0.55.0)
+    excon (0.56.0)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     faraday-cookie_jar (0.0.6)
@@ -65,7 +65,7 @@ GEM
     faraday_middleware (0.11.0.1)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.0)
-    fastlane (2.28.9)
+    fastlane (2.37.0)
       CFPropertyList (>= 2.3, < 3.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
@@ -176,9 +176,9 @@ GEM
       clamp (~> 0.6)
       colorize (~> 0.7)
       xcodeproj (~> 1.0)
-    terminal-notifier (1.7.1)
-    terminal-table (1.7.3)
-      unicode-display_width (~> 1.1.1)
+    terminal-notifier (1.8.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     thread_safe (0.3.6)
     travis (1.8.8)
       backports
@@ -198,18 +198,15 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
-    unicode-display_width (1.1.3)
+    unicode-display_width (1.2.1)
     websocket (1.2.4)
     word_wrap (1.0.0)
-    xcode-install (2.1.1)
-      claide (>= 0.9.1, < 1.1.0)
-      fastlane (>= 2.1.0, < 3.0.0)
-    xcodeproj (1.4.4)
+    xcodeproj (1.5.0)
       CFPropertyList (~> 2.3.3)
-      claide (>= 1.0.1, < 2.0)
+      claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.3)
-    xcpretty (0.2.7)
+    xcpretty (0.2.8)
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (0.0.4)
       xcpretty (~> 0.2, >= 0.0.7)
@@ -222,8 +219,7 @@ DEPENDENCIES
   fastlane
   synx
   travis
-  xcode-install
   xcpretty
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

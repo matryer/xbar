@@ -1,8 +1,7 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "cocoapods"
-gem "xcpretty"
-gem "travis"
-gem "fastlane"
-gem "xcode-install"
-gem "synx"
+gem 'cocoapods'
+gem 'fastlane'
+gem 'synx'
+gem 'travis'
+gem 'xcpretty'
