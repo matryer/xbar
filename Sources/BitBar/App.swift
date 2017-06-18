@@ -139,14 +139,7 @@ class App {
 
   static var port: Int {
     let defaultPort = 9120
-
-    guard let path = Bundle.main.path(forResource: "BitBar", ofType: "plist") else {
-      return defaultPort
-    }
-
-    guard let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else {
-      return defaultPort
-    }
+    let dict = plist
 
     if isInTestMode(), let port = dict["TestPort"] as? Int {
       return port
@@ -163,6 +156,27 @@ class App {
     #endif
 
     return defaultPort
+  }
+
+  static var version: String {
+    if let version = plist["CFBundleVersion"] as? String {
+      return version
+    }
+
+    return "Unknown"
+  }
+
+
+  static var plist: [String: AnyObject] {
+    guard let path = Bundle.main.path(forResource: "BitBar", ofType: "plist") else {
+      return [:]
+    }
+
+    if let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+      return dict
+    }
+
+    return [:]
   }
 
   static func openScript(inTerminal path: String, args: [String], block: @escaping (String?) -> Void) {

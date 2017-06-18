@@ -12,6 +12,7 @@ enum Pref {
       self.init(title: "Preferences", submenus: [
         Pref.RefreshAll(),
         NSMenuItem.separator(),
+        Pref.AppVersion(),
         Pref.CLIPort(),
         NSMenuItem.separator(),
         Pref.ChangePluginFolder(),

@@ -108,6 +108,7 @@
 		20C3E1441EE9E08A00ABA14D /* basic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20F870BE1EE9DE16003C4A5A /* basic.sh */; };
 		20CC20251EF6C2FA00AFA867 /* BitBar.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2064E2121EE95E9A0032ADC0 /* BitBar.plist */; };
 		20CC20271EF6CAB300AFA867 /* Pref.CLIPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC20261EF6CAB300AFA867 /* Pref.CLIPort.swift */; };
+		20CC20291EF6CC2900AFA867 /* Pref.AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CC20281EF6CC2900AFA867 /* Pref.AppVersion.swift */; };
 		20E0A6DC1EE9603F00564B1B /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A69A1EE9603F00564B1B /* Array.swift */; };
 		20E0A6DD1EE9603F00564B1B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A69B1EE9603F00564B1B /* Data.swift */; };
 		20E0A6DE1EE9603F00564B1B /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0A69C1EE9603F00564B1B /* DefaultsKeys.swift */; };
@@ -318,6 +319,7 @@
 		209D164F1EED9E6D0076A66E /* Configs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Configs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		209D16521EED9E6D0076A66E /* Cache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CC20261EF6CAB300AFA867 /* Pref.CLIPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pref.CLIPort.swift; sourceTree = "<group>"; };
+		20CC20281EF6CC2900AFA867 /* Pref.AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pref.AppVersion.swift; sourceTree = "<group>"; };
 		20E0A69A1EE9603F00564B1B /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		20E0A69B1EE9603F00564B1B /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		20E0A69C1EE9603F00564B1B /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 		20E0A6B71EE9603F00564B1B /* Pref */ = {
 			isa = PBXGroup;
 			children = (
+				20CC20281EF6CC2900AFA867 /* Pref.AppVersion.swift */,
 				20CC20261EF6CAB300AFA867 /* Pref.CLIPort.swift */,
 				20E0A6B81EE9603F00564B1B /* Pref.ChangePluginFolder.swift */,
 				20E0A6B91EE9603F00564B1B /* Pref.CheckForUpdates.swift */,
@@ -1145,6 +1148,7 @@
 				20E0A6F71EE9603F00564B1B /* Pref.ChangePluginFolder.swift in Sources */,
 				20E0A70A1EE9603F00564B1B /* File.swift in Sources */,
 				20E0A6E41EE9603F00564B1B /* NSAttributedString.swift in Sources */,
+				20CC20291EF6CC2900AFA867 /* Pref.AppVersion.swift in Sources */,
 				20E0A6E91EE9603F00564B1B /* Parser.Color.swift in Sources */,
 				20E0A6F61EE9603F00564B1B /* StreamablePlugin.swift in Sources */,
 				20E0A7091EE9603F00564B1B /* Color.swift in Sources */,
