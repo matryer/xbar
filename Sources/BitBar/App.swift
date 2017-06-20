@@ -164,7 +164,6 @@ class App {
     return "Unknown"
   }
 
-
   static var plist: [String: AnyObject] {
     guard let path = Bundle.main.path(forResource: "BitBar", ofType: "plist") else {
       return [:]
