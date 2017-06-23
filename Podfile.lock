@@ -12,23 +12,21 @@ PODS:
     - Dollar (~> 6.1.0)
   - DateToolsSwift (2.0.3)
   - Dollar (6.1.0)
-  - Emojize (6.0.9):
-    - Files
+  - Emojize (6.0.10):
     - FootlessParser
-    - SwiftyJSON
+    - JASON
   - Files (1.8.0)
   - FootlessParser (2.0.6)
   - Hue (2.0.1)
+  - JASON (3.1)
   - Nimble (7.0.0)
   - OcticonsSwift (0.1.2)
-  - OpenSSL-OSX (1.0.209)
   - Parser (0.1.0):
     - FootlessParser
   - Quick (1.1.0)
-  - Script (1.0.0)
+  - Script (1.0.2)
   - Sparkle (1.17.0)
   - SwiftyBeaver (1.2.2)
-  - SwiftyJSON (3.1.4)
   - SwiftyTimer (2.0.0)
   - SwiftyUserDefaults (3.0.0)
 
@@ -47,13 +45,11 @@ DEPENDENCIES:
   - Hue
   - Nimble
   - OcticonsSwift
-  - OpenSSL-OSX (from `https://github.com/GerTeunis/OpenSSL-OSX-Pod.git`)
   - Parser (from `https://github.com/oleander/BitBarParser.git`)
   - Quick
   - Script (from `https://github.com/oleander/Script.git`)
   - Sparkle
   - SwiftyBeaver
-  - SwiftyJSON
   - SwiftyTimer
   - SwiftyUserDefaults
 
@@ -62,8 +58,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/MatthewYork/DateTools.git
   FootlessParser:
     :git: https://github.com/oleander/FootlessParser.git
-  OpenSSL-OSX:
-    :git: https://github.com/GerTeunis/OpenSSL-OSX-Pod.git
   Parser:
     :git: https://github.com/oleander/BitBarParser.git
   Script:
@@ -76,14 +70,11 @@ CHECKOUT OPTIONS:
   FootlessParser:
     :commit: c6fb4cf0c61efa31a11c62557aabfd8f2c4d7116
     :git: https://github.com/oleander/FootlessParser.git
-  OpenSSL-OSX:
-    :commit: c8cd8d1266ebce2f66856449bfe6e71a5a1421c6
-    :git: https://github.com/GerTeunis/OpenSSL-OSX-Pod.git
   Parser:
     :commit: 6d0d9bc8be11e1ff6d5b903564333f74ee93ef49
     :git: https://github.com/oleander/BitBarParser.git
   Script:
-    :commit: a2d75ce6b1c86b632d07e8b1331b3a37f468e75a
+    :commit: d4058d702a6a053939005c85b16aae27ff1ca3fc
     :git: https://github.com/oleander/Script.git
 
 SPEC CHECKSUMS:
@@ -95,22 +86,21 @@ SPEC CHECKSUMS:
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DateToolsSwift: 303a194ec50a5f212abeb8924542c8cc16b04a35
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
-  Emojize: 1935550e6aeb5bd755ab8e4e1999017846a6be14
+  Emojize: be7d74e7b0b56372144a2faefddf538a3687a892
   Files: b7734dc3136d4f75e3a98c0b6140bc671ec863ae
   FootlessParser: aef8884544c638401bddaa5a4c61c09198c12d33
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
+  JASON: c1204b01c9979eef35b6948ca939aac5e7bef081
   Nimble: 874982b605d4d752fcac6be695d13c502de84b1b
   OcticonsSwift: 64ad8ec6ddd09009c33b64c113bf6ab7b45ce2db
-  OpenSSL-OSX: 0adebe79f9c137609f0163aff869e1b2dcb5e14b
   Parser: 72fa8183309b6bc9c50bb335eab977b40a18565c
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  Script: 950e73d8f95060e2701924ba2e2db9912e12503c
+  Script: ba960cac640d8fb58fc6ffd9fd5e9830829bff44
   Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: bb69a41c48986ce9f2db262965829d557ed908ea
+PODFILE CHECKSUM: 36ac5fa21968d154c1c93f8ddae26208b4cc3938
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.0.beta.1

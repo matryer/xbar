@@ -1,4 +1,5 @@
 import Cocoa
+import Files
 import Emojize
 import AppKit
 import Async
@@ -14,10 +15,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
   internal let manager = PluginManager.instance
   private let updater = SUUpdater.shared()
   private var server: Droplet?
+  private var openPluginHandler: OpenPluginHandler?
+  private var refreshPluginHandler: RefreshPluginHandler?
+  private let installCLI = MoveExecuteable()
 
   func applicationDidFinishLaunching(_: Notification) {
     if App.isInTestMode() { return }
     manager.root = self
+    setEnvs()
     setOpenUrlHandler()
     setOnWakeUpHandler()
     handleStartupApp()
@@ -38,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     case let .openUrlInBrowser(url): App.open(url: url)
     case .quitApplication: NSApp.terminate(self)
     case .checkForUpdates: updater?.checkForUpdates(self)
+    case .installCommandLineInterface: installCommandLineInterface()
     case .openPluginFolder:
       if let path = App.pluginPath {
         App.open(path: path)
@@ -112,9 +118,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
 
     switch components.host {
     case .some("openPlugin"):
-      _ = OpenPluginHandler(queries, parent: self)
+      openPluginHandler = OpenPluginHandler(queries, parent: self)
     case .some("refreshPlugin"):
-      _ = RefreshPluginHandler(queries, manager: manager)
+      refreshPluginHandler = RefreshPluginHandler(queries, manager: manager)
     case let other:
       log.error("\(String(describing: other)) is not a supported protocol")
     }
@@ -134,5 +140,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, Parent {
     } catch {
       log.error("Could not start server: \(error)")
     }
+  }
+
+ private func setEnvs() {
+   if UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark" {
+     setenv("BitBarDarkMode", "1", 1)
+   }
+
+   setenv("BitBar", "1", 1)
+ }
+
+  private func installCommandLineInterface() {
+    installCLI.execute()
+    notify(
+      text: "CLI has been installed",
+      subtext: "Access it using 'bitbar' in your terminal"
+    )
   }
 }

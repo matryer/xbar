@@ -13,6 +13,7 @@ enum MenuEvent: Comparable {
   case newPluginData
   case openOnLogin
   case doNotOpenOnLogin
+  case installCommandLineInterface
   case openUrlInBrowser(String)
   case openScriptInTerminal(Action.Script)
   case openPathInTerminal(String)
@@ -34,6 +35,7 @@ enum MenuEvent: Comparable {
     case (.newPluginData, .newPluginData): fallthrough
     case (.openOnLogin, .openOnLogin): fallthrough
     case (.doNotOpenOnLogin, .doNotOpenOnLogin): fallthrough
+    case (.installCommandLineInterface, .installCommandLineInterface): fallthrough
     case (.refreshAll, .refreshAll):
       return true
     case let (.openUrlInBrowser(u1), openUrlInBrowser(u2)):

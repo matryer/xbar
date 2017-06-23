@@ -3,11 +3,9 @@ import Async
 import AppKit
 import SwiftyUserDefaults
 
-// #if DEBUG
-//   var Defaults = UserDefaults(suiteName: "DEBUG.\(App.id)")
-// #else
-//   var Defaults = UserDefaults(suiteName: "RELEASE.\(App.id)")
-// #endif
+#if DEBUG
+  var Defaults = UserDefaults(suiteName: "\(App.id).Debug")!
+#endif
 
 /**
   Global values and helpers
@@ -165,7 +163,6 @@ class App {
 
     return "Unknown"
   }
-
 
   static var plist: [String: AnyObject] {
     guard let path = Bundle.main.path(forResource: "BitBar", ofType: "plist") else {

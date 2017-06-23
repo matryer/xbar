@@ -6,7 +6,6 @@ let package = Package(
   name: "Packages",
   dependencies: [
     .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 2)
-    // .Package(url: "https://github.com/Bouke/INI", majorVersion: 2)
   ],
   exclude: [
     "Resources",
@@ -14,10 +13,12 @@ let package = Package(
     "Docs",
     "Tests",
     "build",
+    ".build",
     "BitBar.xcworkspace",
     "BitBar.xcodeproj",
     "Sources/BitBar",
     "Sources/Startup",
-    "Sources/Config"
+    "Sources/Config",
+    "Sources/CLI"
   ]
 )

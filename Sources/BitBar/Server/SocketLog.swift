@@ -1,6 +1,6 @@
 import SwiftyBeaver
 import WebSockets
-import SwiftyJSON
+// import SwiftyJSON
 
 public class SocketLog: BaseDestination {
   private let websocket: WebSocket
@@ -14,16 +14,17 @@ public class SocketLog: BaseDestination {
 
   override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String,
                             file: String, function: String, line: Int) -> String? {
-    let json: SwiftyJSON.JSON = [
-      "level": String(describing: level),
-      "message": msg
-    ]
-
-    let output = String(describing: json)
-    if (try? websocket.send(output)) == nil {
-      log.error("Could not send data to connected socket server")
-    }
-
-    return output
+    // let json: SwiftyJSON.JSON = [
+    //   "level": String(describing: level),
+    //   "message": msg
+    // ]
+    //
+    // let output = String(describing: json)
+    // if (try? websocket.send(output)) == nil {
+    //   log.error("Could not send data to connected socket server")
+    // }
+    //
+    // return output
+    return nil
   }
 }

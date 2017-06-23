@@ -23,7 +23,9 @@ enum Pref {
         Pref.OpenAtLogin(openAtLogin: openAtLogin),
         NSMenuItem.separator(),
         Pref.CheckForUpdates(),
-        Pref.Quit()
+        Pref.Quit(),
+        NSMenuItem.separator(),
+        Pref.InstallCommandLineInterface()
       ])
     }
   }
