@@ -38,6 +38,8 @@ pod_install:
 setup: create_build_dir prebuild_vapor symlink_vapor pod_install
 create_build_dir:
 	mkdir -p .build
+	mkdir -p .build/BitBar/Build/Products/Debug
+	mkdir -p .build/BitBar/Build/Products/Release
 symlink_vapor: create_build_dir
 	gln -rfs Packages/.build/checkouts/ctls.git-* .build/ctls
 	gln -rfs Packages/*.xcodeproj/GeneratedModuleMap/CHTTP .build/CHTTP
