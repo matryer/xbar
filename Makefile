@@ -3,7 +3,6 @@ CONFIGURATION ?= Debug
 PROJECT_DIR ?= ${PWD}
 MODE=${echo ${CONFIGURATION} | tr '[:upper:]' '[:lower:]'}
 
-
 ifeq (${CONFIGURATION},"Release")
   MODE=release
 else
