@@ -41,7 +41,7 @@ target "Packages" do
 end
 
 pre_install do
-  system "make symlink_vapor"
+  system "make prebuild_vapor symlink_vapor"
 end
 
 post_install do |installer|
