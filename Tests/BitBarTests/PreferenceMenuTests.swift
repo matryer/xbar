@@ -8,7 +8,7 @@ class PreferenceMenuTests: Helper {
       it("should have a base menu") {
         expect(base).to(have(title: "Preferences"))
         expect(base).to(beClickable())
-        expect(base).to(have(subMenuCount: 13))
+        expect(base).to(have(subMenuCount: 15))
       }
 
       context("sub menus") {
