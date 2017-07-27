@@ -93,6 +93,10 @@
   }else if (params[@"image"]) {
     item.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
   }
+    
+  if (params[@"tooltip"]) {
+    item.toolTip = params[@"tooltip"];
+  }
 
   return item;
 }
