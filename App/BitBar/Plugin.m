@@ -476,7 +476,7 @@
 
 - (NSString *)allContent {
   if (!_allContent) {
-    _allContent = self.content;
+    _allContent = self.content ?: @"";
     if (self.errorContent.length > 0) {
       _allContent = [@"⚠️" stringByAppendingString:_allContent];
       _allContent = [_allContent stringByAppendingString:@"\n---\n"];
