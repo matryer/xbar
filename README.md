@@ -257,69 +257,69 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 Anything that can write to standard out is supported, but here is a list that have been explicitly tested.
 
 1. Ruby
-  1. Status: Working
-  1. Output: `puts "your string here"`
+  - Status: Working
+  - Output: `puts "your string here"`
 1. Python2
-  1. Status: Working
-  1. Output: `print "your string here"`
+  - Status: Working
+  - Output: `print "your string here"`
 1. Python3
-  1. Status: Working
-  1. Output: `print("your string here")`
+  - Status: Working
+  - Output: `print("your string here")`
 1. JavaScript (`node`)
-  1. Status: Working
-  1. Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
-  1. Output: `console.log("your string here")`
-  1. Notes:
-    1. `process.stdout.write` doesn't output desired text.
-    1. There may be a better way to run JavaScript files.
-  1. Tips:
-    1. Use the Node.js [`bitbar` module](https://github.com/sindresorhus/bitbar) to simplify plugin creation.
+  - Status: Working
+  - Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
+  - Output: `console.log("your string here")`
+  - Notes:
+    - `process.stdout.write` doesn't output desired text.
+    - There may be a better way to run JavaScript files.
+  - Tips:
+    - Use the Node.js [`bitbar` module](https://github.com/sindresorhus/bitbar) to simplify plugin creation.
 1. CoffeeScript (`coffee`)
-  1. Status: Working
-  1. Caveats:
-    1. Shebang has to be in the format `#!/usr/bin/env /path/to/the/coffee/executable`
-    1. `coffee` shebang also had to be modified.
-      1. `#!/usr/bin/env /path/to/the/node/executable`
-  1. Output: `console.log "your string here"`
-  1. Notes:
-    1. `process.stdout.write` doesn't output desired text.
-    1. There may be a better way to run CoffeeScript files.
+  - Status: Working
+  - Caveats:
+    - Shebang has to be in the format `#!/usr/bin/env /path/to/the/coffee/executable`
+    - `coffee` shebang also had to be modified.
+      - `#!/usr/bin/env /path/to/the/node/executable`
+  - Output: `console.log "your string here"`
+  - Notes:
+    - `process.stdout.write` doesn't output desired text.
+    - There may be a better way to run CoffeeScript files.
 1. Swift (Interpreted)
-  1. Status: Working
-  1. Output: `print("your string here")`
+  - Status: Working
+  - Output: `print("your string here")`
 1. Swift (Compiled)
-  1. Status: Working
-  1. Caveats: You still need a file extension (`file.1s.cswift`)
-  1. Output: `print("your string here")`
-  1. Notes:
-    1. To compile a swift file, use: `xcrun -sdk macosx swiftc -o file.1s.cswift file.1s.swift`
+  - Status: Working
+  - Caveats: You still need a file extension (`file.1s.cswift`)
+  - Output: `print("your string here")`
+  - Notes:
+    - To compile a swift file, use: `xcrun -sdk macosx swiftc -o file.1s.cswift file.1s.swift`
 1. Go (Interpreted)
-  1. Status: Working
-  1. Caveats:
-    1. Your script's shebang must be: `//usr/env/bin go run $0 $@; exit`
-    1. `go` must be in your `PATH`
-  1. Output: `Println("your string here")`
+  - Status: Working
+  - Caveats:
+    - Your script's shebang must be: `//usr/env/bin go run $0 $@; exit`
+    - `go` must be in your `PATH`
+  - Output: `Println("your string here")`
 1. Go (Compiled)
-  1. Status: Working
-  1. Caveats: You still need a file extension (`file.1s.cgo`)
-  1. Output: `Println("your string here")`
-  1. Notes
-    1. To compile a Go file, use: `go build file.1s.go`
+  - Status: Working
+  - Caveats: You still need a file extension (`file.1s.cgo`)
+  - Output: `Println("your string here")`
+  - Notes
+    - To compile a Go file, use: `go build file.1s.go`
 1. Lisp
-  1. Status: Working
-  1. Caveats: `lisp`/`clisp` must be in your `PATH`
-  1. Output: `(format t "your string here")`
+  - Status: Working
+  - Caveats: `lisp`/`clisp` must be in your `PATH`
+  - Output: `(format t "your string here")`
 1. Perl5
-  1. Status: Working
-  1. Output: `print "your string here"`
-  1. Notes
-    1. Add `-l` to shebang to automatic add newline to print function: `#!/usr/bin/perl -l`
+  - Status: Working
+  - Output: `print "your string here"`
+  -  Notes
+    - Add `-l` to shebang to automatic add newline to print function: `#!/usr/bin/perl -l`
 1. PHP
-  1. Status: Working
-  1. Output: `echo 'your string here'`
-  1. Notes
-    1. Add shebang `#!/usr/bin/php` 
-  1. Utilities:
-    1. BitBar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>
+  - Status: Working
+  - Output: `echo 'your string here'`
+  - Notes
+    - Add shebang `#!/usr/bin/php` 
+  - Utilities:
+    - BitBar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>
   
 
