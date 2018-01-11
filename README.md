@@ -258,6 +258,7 @@ Anything that can write to standard out is supported, but here is a list that ha
 1. Python3
    - Status: Working
    - Output: `print("your string here")`
+   - Caveats: To output unicode shebang has to be in the format `#!/usr/bin/env PYTHONIOENCODING=UTF-8 /path/to/the/python3`
 1. JavaScript (`node`)
    - Status: Working
    - Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
