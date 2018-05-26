@@ -172,7 +172,7 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
   * The comment characters can be anything - use what is suitable for your language
   * `bitbar.title` - The title of the plugin
   * `bitbar.version` - The version of the plugin (start with `v1.0`)
-  * `bitbar.author` - Your name
+  * `bitbar.author` - Your name. Can be a comma separated list of names if there are multiple contributors. [Example](https://github.com/matryer/bitbar-plugins/blob/master/Dev/GitHub/notifications.30s.py)
   * `bitbar.author.github` - Your github username (without `@`)
   * `bitbar.desc` - A short description of what your plugin does
   * `bitbar.image` - A hosted image showing a preview of your plugin (ideally open)
