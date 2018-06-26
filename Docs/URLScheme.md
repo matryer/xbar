@@ -11,7 +11,7 @@ Query parameters:
 
 - `src` Source URL
 
-Examples: see [test page](App/BitBar/incoming-url-tests.html)
+Examples: see [test page](../App/BitBar/incoming-url-tests.html)
 
 ## refreshPlugin
 
