@@ -25,6 +25,7 @@
 
 // UI
 @property (nonatomic) NSStatusItem *statusItem;
+@property (nonatomic) id eventMonitor;
 
 - initWithManager:(PluginManager*)manager;
 - (void) close;
