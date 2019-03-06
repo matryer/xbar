@@ -92,7 +92,7 @@
 
 - (void) receiveWakeNote: (NSNotification*) note
 {
-  [[self pluginManager] reset];
+  [self.pluginManager setupAllPlugins];
 }
 
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
