@@ -108,6 +108,12 @@ In terminal, navigate to the project directory and run:
 git submodule init && git submodule update
 ```
 
+To build run:
+
+```
+make
+```
+
 ## Thanks
 
   * Special thanks to [@muhqu](https://github.com/muhqu) and [@tylerb](https://github.com/tylerb) for all their help (see commit history for details)
