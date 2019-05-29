@@ -200,7 +200,11 @@
     
     [(NSTask*)task setLaunchPath:params[@"bash"]];
     [(NSTask*)task setArguments:params[@"args"]];
-    
+    NSString *path = params[@"path"];
+    if(path != nil) {
+      [(NSTask*)task setEnvironment:@{@"PATH": path}];
+    }
+  
     ((NSTask*)task).terminationHandler = ^(NSTask *task) {
       if (params[@"refresh"]) {
         [self performSelectorOnMainThread:@selector(performRefreshNow) withObject:NULL waitUntilDone:false];
@@ -233,11 +237,15 @@
       argArray.copy;
 
     });
-    
+    NSString *path = params[@"path"];
+  
     if([terminal isEqual: @"false"]){
       NSLog(@"Args: %@", args);
       [params setObject:bash forKey:@"bash"];
       [params setObject:args forKey:@"args"];
+      if(path != nil) {
+        [params setObject:path forKey:@"path"];
+      }
       [self performSelectorInBackground:@selector(startTask:) withObject:params];
     } else {
 
