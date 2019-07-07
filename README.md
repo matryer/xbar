@@ -291,7 +291,7 @@ Anything that can write to standard out is supported, but here is a list that ha
 1. Go (Interpreted)
    - Status: Working
    - Caveats:
-      - Your script's shebang must be: `//usr/env/bin go run $0 $@; exit`
+      - Your script's shebang must be: `//usr/bin/env go run $0 $@; exit`
       - `go` must be in your `PATH`
    - Output: `Println("your string here")`
 1. Go (Compiled)
