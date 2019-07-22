@@ -15,7 +15,7 @@
 @property (nonatomic)        NSArray *plugins;
 @property (nonatomic)    NSStatusBar *statusBar;
 @property (nonatomic)   NSStatusItem *defaultStatusItem;
-@property (nonatomic)   NSDictionary *environment;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *environment;
 
 - initWithPluginPath:(NSString *)path;
 
@@ -28,5 +28,6 @@
 - (void) addHelperItemsToMenu:(NSMenu*)menu asSubMenu:(BOOL)submenu;
 
 - (void) pluginDidUdpdateItself:(Plugin*)plugin;
+- (void) updateEnvironment;
 
 @end
