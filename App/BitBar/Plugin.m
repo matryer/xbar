@@ -241,7 +241,7 @@
       [self performSelectorInBackground:@selector(startTask:) withObject:params];
     } else {
 
-      NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
+      NSString *full_link = [NSString stringWithFormat:@"'%@' %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
       NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
                  do script \"%@\" \n\
                  activate \n\
