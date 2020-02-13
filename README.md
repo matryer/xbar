@@ -34,9 +34,15 @@ Example showing your internal and external IP addresses:
 
 ## Get started
 
-[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
+### Installing BitBar
 
-[Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
+There are two ways to install BitBar on your Mac:
+
+Use Homebrew:
+`brew cask install bitbar`
+
+Or download .app file directly:
+[Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Then copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
 
 ### It's free, so please donate
 
@@ -44,7 +50,12 @@ If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5
 
 ## Installing plugins
 
-Just download the plugin of your choice into your BitBar plugins directory and choose `Refresh` from one of the BitBar menus.
+There are two ways to install BitBar plugins on your Mac:
+
+[Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
+
+Or just download the plugin of your choice into your BitBar plugins directory and choose `Refresh` from one of the BitBar menus. Remember to use `chmod +x {pathname}` before you use the plugins.
+  * `pathname` - The pathname of the file
 
 ### Configure the refresh time
 
