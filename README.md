@@ -327,4 +327,11 @@ Anything that can write to standard out is supported, but here is a list that ha
       - Add shebang `#!/usr/bin/php` 
    - Utilities:
       - BitBar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>  
+ 1. R
+   - Status: Working
+   - Output: `cat(fill = TRUE)` or `bitbaR::bb_print()`
+   - Notes
+      - Add shebang `#!/usr/local/bin/Rscript` 
+   - Utilities:
+      - [bitbaR R Package](https://github.com/jsowder/bitbaR)
 
