@@ -271,6 +271,22 @@ Anything that can write to standard out is supported, but here is a list that ha
    - Status: Working
    - Output: `print("your string here")`
    - Caveats: To output unicode shebang has to be in the format `#!/usr/bin/env PYTHONIOENCODING=UTF-8 /path/to/the/python3`
+   - Tips:
+     - A [virtual environment](https://docs.python.org/3/tutorial/venv.html) can be used with some `#!` magic. Since python ignores stand alone string statements and uses `#` for comments, you can make shell/python script that runs itself with the python venv in a relative path:
+     ```python
+     #!/bin/sh
+     # magic to make shell run python with a relative venv
+     "exec" "`dirname $0`/venv/bin/python" "$0" "$@"
+
+     import sys
+     print(f"The python being used is {sys.executable}")
+     ```
+     outputs, running with `sh -x script.1m.sh`:
+     ```shell
+     ++ dirname script.1m.sh
+     + exec ./venv/bin/python script.1m.sh
+     The python being used is /Users/user/dev/bitbar/venv/bin/python
+     ```
 1. JavaScript (`node`)
    - Status: Working
    - Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
