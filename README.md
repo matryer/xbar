@@ -1,5 +1,29 @@
 # ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar
 
+## NOTA
+
+Para comprobar versióm de Sparkle Framework, que daba erro de seguridade por nom estar actualizado, hai que actualizar o submódulo. Neste repo está:
+
+comando para comprobar versióm em /Applications
+
+```bash
+find /Applications -path '*Autoupdate.app/Contents/Info.plist' -exec echo {} \; -exec grep -A1 CFBundleShortVersionString '{}' \; | grep -v CFBundleShortVersionString
+```
+
+
+
+Repo correxido:
+
+https://github.com/alexandregz/bitbar
+
+
+
+------
+
+
+
+
+
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
 
   * [Download latest BitBar release](https://github.com/matryer/bitbar/releases/latest) - requires Mac OS X Lion or newer (>= 10.7)
@@ -89,10 +113,10 @@ Because Git will ignore everything in `Plugins/Enabled`, you can use it to maint
 #### Example
 
 	cd Plugins/Enabled
-
+	
 	# Enable spotify plugin
 	ln -s ../Music/spotify.10s.sh
-
+	
 	# Enable uptime plugin and change update interval to 30 seconds
 	ln -s ../System/uptime.1m.sh uptime.30s.sh
 
@@ -211,13 +235,13 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 #### Multi-line plugin
 
     #!/bin/bash
-
+    
     # the current date and time
     date
-
+    
     # the current username
     echo $USER
-
+    
     # the current user id
     id -u
 
