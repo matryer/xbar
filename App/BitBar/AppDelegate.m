@@ -30,14 +30,16 @@
 
 - (NSArray*) otherCopies { return [NSRunningApplication runningApplicationsWithBundleIdentifier:NSBundle.mainBundle.bundleIdentifier]; }
 
-- (void)applicationWillFinishLaunching:(NSNotification *)n {
-  NSString *feedURLString;
-#ifdef DISTRO
-  feedURLString = @"https://bitbarapp.com/feeds/distro";
-#else
-  feedURLString = @"https://bitbarapp.com/feeds/bitbar";
-#endif
-  
+  - (void)applicationWillFinishLaunching:(NSNotification *)n {
+
+    // Alexandre Espinosa Menor:
+    // Now we use Info.plist var, so we can modify dynamically url to update:
+    // 1) close app
+    // 2) modify SUFeedURL with `defaults`:
+    //  alex@vosjod:/Applications$ defaults write /Applications/BitBar.app/Contents/Info.plist SUFeedURL -string "https://domain.com/bitbar/sparkletestcast.xml"
+    // 3) relaunch BitBar
+    NSString *feedURLString = [NSBundle.mainBundle.infoDictionary objectForKey:@"SUFeedURL"];
+
   SUUpdater *updater = [SUUpdater sharedUpdater];
   updater.delegate = self;
   updater.automaticallyChecksForUpdates = YES;

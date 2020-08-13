@@ -94,8 +94,9 @@ NSString *const AppleInterfaceThemeChangedNotification = @"AppleInterfaceThemeCh
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
   
   if (!DEFS.userConfigDisabled) {
-    versionMenuitem.alternate = YES;
-    versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
+    // Alexandre Espinosa Menor: We always show version number, because some issues with updates (ex. https://github.com/matryer/bitbar/issues/464)
+//    versionMenuitem.alternate = YES;
+//    versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
     
     // add edit action, aka prefsMenuItem
     ADD_MENU(@"Change Plugin Folder…", changePluginDirectory,@"",self);

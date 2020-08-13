@@ -1,5 +1,11 @@
 # BitBar Changes
 
+## v1.9.3
+
+* Updated Sparkle to version 1.23.0
+* Removed hardcoded SUFeedURL. Added SUFeedURL to Info.plist to change dynamically url to update
+* We always show version number
+
 ## v1.9.2
 
 * Added Sparkle updater
