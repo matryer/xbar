@@ -32,6 +32,29 @@
   
 }
 
+- (NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize
+{
+  NSImage *sourceImage = anImage;
+  //[sourceImage setScalesWhenResized:YES];
+  
+  // Report an error if the source isn't a valid image
+  if (![sourceImage isValid])
+  {
+    NSLog(@"Invalid Image");
+  }
+  else
+  {
+    NSImage *smallImage = [[NSImage alloc] initWithSize: newSize];
+    [smallImage lockFocus];
+    [sourceImage setSize: newSize];
+    [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+    [sourceImage drawAtPoint:NSZeroPoint fromRect:CGRectMake(0, 0, newSize.width, newSize.height) operation:NSCompositeCopy fraction:1.0];
+    [smallImage unlockFocus];
+    return smallImage;
+  }
+  return nil;
+}
+
 - (NSImage*) createImageFromBase64:(NSString*)string isTemplate:(BOOL)template{
   NSData * imageData;
   if ([NSData instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)]) {
@@ -89,9 +112,19 @@
     item.keyEquivalentModifierMask = NSAlternateKeyMask;
   }
   if (params[@"templateImage"]) {
-    item.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
+    NSImage *bimage = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
+    if (params[@"width"] && params[@"height"]){
+      item.image = [self imageResize:bimage newSize:NSMakeSize([params[@"width"] intValue], [params[@"height"] intValue]) ];
+    }else {
+      item.image = bimage;
+    }
   }else if (params[@"image"]) {
-    item.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
+    NSImage *bimage = [self createImageFromBase64:params[@"image"] isTemplate:false];
+    if (params[@"width"] && params[@"height"]){
+      item.image = [self imageResize:bimage newSize:NSMakeSize([params[@"width"] intValue], [params[@"height"] intValue]) ];
+    }else {
+      item.image = bimage;
+    }
   }
 
   return item;
