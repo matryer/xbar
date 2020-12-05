@@ -125,7 +125,15 @@
                                        ?: [NSFont menuFontOfSize:size];
   }
 
-  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @0};
+  NSNumber * offset;
+  
+  if (@available(macOS 11.0.1, *)) {
+    offset = @-1;
+  } else {
+    offset = @0;
+  }
+  
+  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : offset};
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
   if (parseANSI) {
     NSMutableAttributedString * attributedTitle = [title attributedStringParsingANSICodes];
