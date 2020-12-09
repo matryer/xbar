@@ -113,7 +113,7 @@ NSString *const AppleInterfaceThemeChangedNotification = @"AppleInterfaceThemeCh
     
     [targetMenu addItem:NSMenuItem.separatorItem];
     
-    ADD_MENU(@"Check for Updates…", checkForUpdates:, nil, [SUUpdater sharedUpdater]);
+    //ADD_MENU(@"Check for Updates…", checkForUpdates:, nil, [SUUpdater sharedUpdater]);
   }
   
   [targetMenu addItem:versionMenuitem];
