@@ -89,7 +89,11 @@ NSString *const AppleInterfaceThemeChangedNotification = @"AppleInterfaceThemeCh
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
-  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+  NSString *versionString = nil;
+  versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+  if (!versionString) {
+    versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+  }
   
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
   
