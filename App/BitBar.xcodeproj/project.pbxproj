@@ -110,13 +110,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		050A5ED525813AD800CC4CEC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36D0CDF21D0AF009001AFB77 /* Sparkle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 722954B41D04ADAF00ECF9CA;
-			remoteInfo = fileop;
-		};
 		05DAE015183323DD00409786 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05DADFE8183323DD00409786 /* Project object */;
@@ -649,13 +642,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		050A5ED625813AD800CC4CEC /* fileop */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = fileop;
-			remoteRef = 050A5ED525813AD800CC4CEC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -967,14 +953,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-
 				CURRENT_PROJECT_VERSION = 1.10.0;
 				DEVELOPMENT_TEAM = B3T8QSC4HG;
-				MARKETING_VERSION = 1.10.0;
 				HEADER_SEARCH_PATHS = "./Vendor/**";
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -991,8 +976,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1.10.0;
 				DEVELOPMENT_TEAM = B3T8QSC4HG;
-				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				HEADER_SEARCH_PATHS = "./Vendor/**";
 				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1093,6 +1076,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.10.0;
 				DEVELOPMENT_TEAM = B3T8QSC4HG;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1101,6 +1085,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/BitBar/BitBar-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1115,11 +1100,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.10.0;
 				DEVELOPMENT_TEAM = B3T8QSC4HG;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
 				INFOPLIST_FILE = "$(SRCROOT)/BitBar/BitBar-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
