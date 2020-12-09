@@ -125,7 +125,15 @@
                                        ?: [NSFont menuFontOfSize:size];
   }
 
-  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @0};
+  NSNumber * offset;
+  
+  if (@available(macOS 11.0.1, *)) {
+    offset = @-1;
+  } else {
+    offset = @0;
+  }
+  
+  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : offset};
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
   if (parseANSI) {
     NSMutableAttributedString * attributedTitle = [title attributedStringParsingANSICodes];
@@ -241,7 +249,7 @@
       [self performSelectorInBackground:@selector(startTask:) withObject:params];
     } else {
 
-      NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
+      NSString *full_link = [NSString stringWithFormat:@"'%@' %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
       NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
                  do script \"%@\" \n\
                  activate \n\
