@@ -327,4 +327,9 @@ Anything that can write to standard out is supported, but here is a list that ha
       - Add shebang `#!/usr/bin/php` 
    - Utilities:
       - BitBar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>  
-
+1. Rust
+   - Status: Working
+   - Caveats: You still need a file extension (`file.1s.o`)
+   - Output: `println!("your string here)`
+   - Tips:
+      - Use the [`bitbar` crate](https://crates.io/crates/bitbar) to simplify plugin creation.
