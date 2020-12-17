@@ -39,7 +39,8 @@ Example showing your internal and external IP addresses:
 There are two ways to install BitBar on your Mac:
 
 Use Homebrew:
-`brew cask install bitbar`
+
+    brew install bitbar
 
 Or download .app file directly:
 [Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Then copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
