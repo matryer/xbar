@@ -42,7 +42,7 @@ Use Homebrew:
 
     brew install bitbar
 
-Or download .app file directly:
+Or download `.app` file directly:
 [Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Then copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
 
 ### It's free, so please donate
@@ -55,7 +55,7 @@ There are two ways to install BitBar plugins on your Mac:
 
 [Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
 
-Or just download the plugin of your choice into your BitBar plugins directory and choose `Refresh` from one of the BitBar menus. Remember to use `chmod +x {pathname}` before you use the plugins.
+Or, just download the plugin of your choice into your BitBar plugins directory and choose `Refresh` from one of the BitBar menus. (Remember to use `chmod +x {pathname}` before you use the plugins.)
   * `pathname` - The pathname of the file
 
 ### Configure the refresh time
@@ -74,10 +74,10 @@ For example:
 
 Most plugins will come with a default, but you can change it to anything you like:
 
-  * 10s - ten seconds
-  * 1m - one minute
-  * 2h - two hours
-  * 1d - a day
+  * `10s` - ten seconds
+  * `1m` - one minute
+  * `2h` - two hours
+  * `1d` - a day
 
 ### Ensure you have execution rights
 
@@ -114,7 +114,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
 
 To work on the BitBar app, fork, then clone this repo.
 
-In terminal, navigate to the project directory and run:
+In Terminal, navigate to the project directory and run:
 
 ```
 git submodule init && git submodule update
@@ -130,11 +130,11 @@ git submodule init && git submodule update
 
 We're always looking for new plugins, so please send us pull requests if you write anything cool or useful.
 
-[Join the conversation with plugin authors and BitBar maintainers on Slack](https://getbitbar.herokuapp.com/).
+[Join the conversation with plugin authors and BitBar maintainers on Slack](https://getbitbar.herokuapp.com).
 
 ### Got ideas?
 
-If you've got ideas, or want to report a bug, nip over to our [issues page](=https://github.com/matryer/bitbar-plugins/issues) and let us know.
+If you've got ideas, or want to report a bug, nip over to our [Issues page](https://github.com/matryer/bitbar-plugins/issues) and let us know.
 
 If you want to contribute, please send us a pull request and we'll add it to our repos.
 
@@ -149,26 +149,27 @@ If you want to contribute, please send us a pull request and we'll add it to our
   * Lines beginning with `--` will appear in submenus.
     * Use `----` etc. for nested submenus. Two dashes per level of nesting.
   * Your lines might contain `|` to separate the title from other parameters, such as...
-    * `href=..` to make the item clickable
-    * `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
-    * `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
-    * `size=..` to change their text size. eg. `size=12`
-    * `bash=..` to make the item run a given script terminal with your script e.g. `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh` if there are spaces in the file path you will need quotes e.g. `bash="/Users/user/BitBar Plugins/scripts/nginx.restart.sh"`
-    * `param1=` to specify arguments to the script. additional params like this `param2=foo param3=bar` full example  `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh" param1=--verbose` assuming that nginx.restart.sh is executable or `bash=/usr/bin/ruby param1=/Users/user/rubyscript.rb param2=arg1 param3=arg2` if script is not executable
-    * `terminal=..` start bash script without opening Terminal. `true` or `false`
-    * `refresh=..` to make the item refresh the plugin it belongs to. If the item runs a script, refresh is performed after the script finishes. eg. `refresh=true`
-    * `dropdown=..` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
-    * `length=..` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string. eg. `length=10`
-    * `trim=..` whether to trim leading/trailing whitespace from the title.  `true` or `false` (defaults to `true`)
-    * `alternate=true` to mark a line as an alternate to the previous one for when the Option key is pressed in the dropdown
-    * `templateImage=..` set an image for this item. The image data must be passed as base64 encoded string and should consist of only black and clear pixels. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. Use a 144 DPI resolution to support Retina displays. The imageformat can be any of the formats supported by Mac OS X
-    * `image=..` set an image for this item. The image data must be passed as base64 encoded string. Use a 144 DPI resolution to support Retina displays. The imageformat can be any of the formats supported by Mac OS X
-    * `emojize=false` will disable parsing of github style `:mushroom:` into :mushroom:
+    * `href=…` to make the item clickable
+    * `color=…` to change their text color (e.g., `color=red` or `color=#ff0000`).
+    * `font=…` to change their text font (e.g., `font=UbuntuMono-Bold`).
+    * `size=…` to change their text size (e.g., `size=12`).
+    * `bash=…` to make the item run a given script terminal with your script (e.g., `bash=/Users/user/BitBar_Plugins/scripts/nginx.restart.sh`). If there are spaces in the file path, you will need quotes (e.g., `bash="/Users/user/BitBar Plugins/scripts/nginx.restart.sh"`).
+    * `param1=…` to specify arguments to the script. Additional params like this `param2=foo param3=bar`. 
+      * **Full example:** <br>  `bash="/Users/user/BitBar_Plugins/scripts/nginx.restart.sh" param1=--verbose` assuming that `nginx.restart.sh` is executable, or `bash=/usr/bin/ruby param1=/Users/user/rubyscript.rb param2=arg1 param3=arg2` if script is not executable.
+    * `terminal=…` start bash script without opening Terminal. Value must be `true` or `false`.
+    * `refresh=…` to make the item refresh the plugin it belongs to. If the item runs a script, refresh is performed after the script finishes. (e.g., `refresh=true`.)
+    * `dropdown=…` May be set to `true` or `false`. If `false`, the line will only appear and cycle in the status bar but not in the dropdown
+    * `length=…` to truncate the line to the specified number of characters. A `…` will be added to any truncated strings, as well as a tooltip displaying the full string (e.g., `length=10`).
+    * `trim=…` whether to trim leading/trailing whitespace from the title.  Value must be `true` or `false` (defaults to `true`).
+    * `alternate=true` to mark a line as an alternate to the previous one for when the Option key (<kbd style="font-size:medium">⌥</kbd>) is pressed in the dropdown.
+    * `templateImage=…` set an image for this item. The image data must be passed as base64-encoded string and should consist of only black and clear pixels. The alpha channel in the image can be used to adjust the opacity of black content, however. This is the recommended way to set an image for the statusbar. Use a 144 DPI resolution to support Retina displays. The image format can be any of the formats supported by Mac OS X.
+    * `image=…` set an image for this item. The image data must be passed as base64-encoded string. Use a 144 DPI resolution to support Retina displays. The imageformat can be any of the formats supported by Mac OS X.
+    * `emojize=false` will disable parsing of GitHub style emoji (e.g., `:mushroom:` into :mushroom:).
     * `ansi=false` turns off parsing of ANSI codes.
 
 ### Metadata
 
-To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the following metadata to your source code (usually in comments somewhere):
+To enhance your entry on [getbitbar.com](https://getbitbar.com), add the following metadata to your source code (usually in comments somewhere):
 
 ```
 # <bitbar.title>Title goes here</bitbar.title>
@@ -185,7 +186,7 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
   * `bitbar.title` - The title of the plugin
   * `bitbar.version` - The version of the plugin (start with `v1.0`)
   * `bitbar.author` - Your name
-  * `bitbar.author.github` - Your github username (without `@`)
+  * `bitbar.author.github` - Your GitHub username (without `@`)
   * `bitbar.desc` - A short description of what your plugin does
   * `bitbar.image` - A hosted image showing a preview of your plugin (ideally open)
   * `bitbar.dependencies` - Comma separated list of dependencies
@@ -197,10 +198,10 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 
   * If you're writing scripts, ensure it has a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) at the top.
   * You can add to `PATH` by including something like `export PATH='/usr/local/bin:/usr/bin:$PATH'` in your plugin script.
-  * You can use emoji in the output (find an example in the Music/vox Plugin).
+  * You can use emoji in the output. (Find an example in the Music/vox Plugin.)
   * If your bash script generates text in another language, set the `LANG` variable with: `export LANG="es_ES.UTF-8"` (for Spanish) to show the text in correct format.
   * If you want to call the plugin script for action, you can use `bash=$0`
-  * If your plugin should support Retina displays, export your icon at 36x36 with a resolution of 144 DPI (see [this issue](https://github.com/matryer/bitbar/issues/314) for a more thorough explanation).
+  * If your plugin should support Retina displays, export your icon at 36×36 with a resolution of 144 DPI (see [this issue](https://github.com/matryer/bitbar/issues/314) for a more thorough explanation).
 
 ### Examples
 
@@ -233,7 +234,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
     echo "Five"
     echo "Six"
 
-  * Only One, Two and Three will appear in the top bar
+  * Only One, Two, and Three will appear in the top bar
   * Clicking the plugin menu item will show all lines
 
 
@@ -271,7 +272,7 @@ Anything that can write to standard out is supported, but here is a list that ha
 1. Python3
    - Status: Working
    - Output: `print("your string here")`
-   - Caveats: To output unicode shebang has to be in the format `#!/usr/bin/env PYTHONIOENCODING=UTF-8 /path/to/the/python3`
+   - Caveats: To output unicode, shebang has to be in the format `#!/usr/bin/env PYTHONIOENCODING=UTF-8 /path/to/the/python3`
 1. JavaScript (`node`)
    - Status: Working
    - Caveats: Shebang has to be in the format `#!/usr/bin/env /path/to/the/node/executable`
