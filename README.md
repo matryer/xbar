@@ -45,10 +45,6 @@ Use Homebrew:
 Or download .app file directly:
 [Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Then copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
 
-### It's free, so please donate
-
-If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR` or [send something useful (Amazon Wishlist)](http://amzn.to/1Pd9yOt).
-
 ## Installing plugins
 
 There are two ways to install BitBar plugins on your Mac:
