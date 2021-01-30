@@ -304,7 +304,7 @@ Anything that can write to standard out is supported, but here is a list that ha
    - Output: `Println("your string here")`
 1. Go (Compiled)
    - Status: Working
-   - Caveats: You still need a file extension (`file.1s.cgo`)
+   - Caveats: You still need a file extension (`file.1s.gotool`)
    - Output: `Println("your string here")`
    - Notes
       - To compile a Go file, use: `go build file.1s.go`
