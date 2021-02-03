@@ -20,7 +20,7 @@ And finally...
 
 ## Examples
 
-Example showing the latest Buy and Sell figures for BitCoins:
+Example showing the latest Buy and Sell figures for Bitcoin:
 
 ![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Bitcoins.png)
 
