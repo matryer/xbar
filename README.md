@@ -1,4 +1,4 @@
-* [ANNOUNCEMENT: BitBar is getting a Reboot](https://github.com/matryer/bitbar/issues/607)
+[BREAKING: BITBAR IS GETTING A REBOOT](https://github.com/matryer/bitbar/issues/607)
 
 # ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar
 
