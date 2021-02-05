@@ -1,3 +1,5 @@
+* [ANNOUNCEMENT: BitBar is getting a Reboot](https://github.com/matryer/bitbar/issues/607)
+
 # ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
