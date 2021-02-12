@@ -1,3 +1,5 @@
+[BREAKING: BITBAR IS GETTING A REBOOT](https://github.com/matryer/bitbar/issues/607)
+
 # ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar
 
 BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the output from any script/program in your Mac OS X Menu Bar.
@@ -20,7 +22,7 @@ And finally...
 
 ## Examples
 
-Example showing the latest Buy and Sell figures for BitCoins:
+Example showing the latest Buy and Sell figures for Bitcoin:
 
 ![BitBar Example showing BitCoins plugin](https://raw.github.com/matryer/bitbar/master/Docs/BitBar-Example-Bitcoins.png)
 
@@ -44,10 +46,6 @@ Use Homebrew:
 
 Or download .app file directly:
 [Get the latest version of BitBar](https://github.com/matryer/bitbar/releases). Then copy it to your Applications folder and run it - it will ask you to (create and) select a plugins folder, do so.
-
-### It's free, so please donate
-
-If you love this, any BitCoin donations are most welcome, to `1DGoNEYAnjE5DqK7y5zMPR4PLU5HLKpLNR` or [send something useful (Amazon Wishlist)](http://amzn.to/1Pd9yOt).
 
 ## Installing plugins
 
@@ -308,7 +306,7 @@ Anything that can write to standard out is supported, but here is a list that ha
    - Output: `Println("your string here")`
 1. Go (Compiled)
    - Status: Working
-   - Caveats: You still need a file extension (`file.1s.cgo`)
+   - Caveats: You still need a file extension (`file.1s.gotool`)
    - Output: `Println("your string here")`
    - Notes
       - To compile a Go file, use: `go build file.1s.go`
