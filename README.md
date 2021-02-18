@@ -1,4 +1,4 @@
-# [BREAKING: BITBAR IS GETTING A REBOOT](https://github.com/matryer/bitbar/issues/607) << click to read more
+# [BREAKING: BITBAR IS GETTING A REBOOT](https://github.com/matryer/bitbar/issues/607) << read
 
 # ![BitBar](https://github.com/matryer/bitbar/raw/master/Docs/bitbar-32.png) BitBar
 
