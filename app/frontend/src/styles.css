@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
 	cursor: default !important;
 }
@@ -23,14 +22,14 @@ html, body {
 	overscroll-behavior-y: none;
 	
 }
-/* 
+
 ::-webkit-scrollbar {
 	width: 11px;
 	height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #6A676D;
+	background-color: rgba(255,255,255.0.5);
 	border: 2px solid transparent;
 	border-radius: 10px;
 	background-clip: padding-box;
@@ -40,13 +39,9 @@ html, body {
 	background: rgba(0,0,0,0);
 }
 
-&:hover {
-	background-color: rgb(128,128,128);
-}
-
 ::-webkit-scrollbar-track {
 	background-color: rgba(128,128,128,0);
-} */
+} 
 
 /* Credit: https://stackoverflow.com/a/4407335 */
 .noselect {
