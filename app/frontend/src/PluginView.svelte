@@ -39,23 +39,6 @@
 			.finally(() => done())
 	}
 
-	function gotoOpenPluginIssue(plugin) {
-		let body = `re: ${plugin.title}`
-		const githubUsernamesList = plugin.authors
-			.map(author => author.githubUsername)
-			.filter(githubUsername => githubUsername && githubUsername != '')
-			.join(', ')
-		if (plugin.authors.length > 0) {
-			body = `fao @${githubUsernamesList} - ${body}`
-		}
-		body = `${body}
-
-` // line feeds
-		const path = `https://github.com/matryer/xbar-plugins/issues/new?body=${encodeURIComponent(body)}&title=${encodeURIComponent(plugin.path)}:%20`
-		openURL(path)
-			.catch(e => err = e)
-	}
-	
 </script>
 
 <style>
@@ -81,9 +64,6 @@
 						on:click={() => install(plugin)}
 					>
 						Install
-					</Button>
-					<Button on:click={ () => gotoOpenPluginIssue(plugin) }>
-						Open issue&hellip;
 					</Button>
 				</p>
 			</div>

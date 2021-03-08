@@ -116,6 +116,23 @@
 			.finally(() => done())
 	}
 
+	function gotoOpenPluginIssue(plugin) {
+		let body = `re: ${plugin.title}`
+		const githubUsernamesList = plugin.authors
+			.map(author => author.githubUsername)
+			.filter(githubUsername => githubUsername && githubUsername != '')
+			.join(', ')
+		if (plugin.authors.length > 0) {
+			body = `fao @${githubUsernamesList} - ${body}`
+		}
+		body = `${body}
+
+` // line feeds
+		const path = `https://github.com/matryer/xbar-plugins/issues/new?body=${encodeURIComponent(body)}&title=${encodeURIComponent(plugin.path)}:%20`
+		openURL(path)
+			.catch(e => err = e)
+	}
+
 </script>
 
 <style>
@@ -168,6 +185,9 @@
 			</PluginDetails>
 			{#if installedPlugin}
 				<div class='p-3'>
+					<Button on:click={ () => gotoOpenPluginIssue(installedPlugin) }>
+						Open issue&hellip;
+					</Button>
 					<Button on:click={ onUninstallClick }>
 						Uninstall this plugin
 					</Button>
