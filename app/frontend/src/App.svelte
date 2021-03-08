@@ -155,7 +155,7 @@
 			<div class='flex-grow' ></div>
 			<div>
 				<Button on:click='{ openBugPage }'>
-					🕷
+					Report bug
 				</Button>
 			</div>
 			<div>

@@ -172,7 +172,6 @@
 				</div>
 				<div slot='footer'>
 					{#if refreshInterval}
-						<hr>
 						<div class='p-4 text-right'>
 							<span class='mr-1'>Refresh every:</span>
 							<Duration 
@@ -217,7 +216,7 @@
 		</div>
 	{/if}
 	{#if installedPlugin}
-		<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-800 bg-opacity-75'>
+		<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-600 bg-opacity-75'>
 			<PluginSourceBrowser files={installedPlugin.files} />
 		</div>
 	{/if}

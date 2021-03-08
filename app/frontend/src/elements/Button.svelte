@@ -2,8 +2,8 @@
 	export let style = 'default'
 
 	const classes = {
-		'default': 'bg-gray-100 active:bg-gray-300 text-sm dark:text-gray-800 rounded shadow-sm px-4 border border-gray-300 dark:opacity-75',
-		'primary': 'bg-purple-800 active:bg-purple-700 text-sm text-white rounded shadow-sm px-4 border border-purple-900',
+		'default': 'text-sm rounded shadow-sm px-4 border bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-gray-700 border-gray-300 dark:border-gray-600 dark:bg-opacity-50 hover:bg-opacity-75',
+		'primary': 'bg-blue-900 active:bg-blue-800 text-sm text-white rounded shadow-sm px-4 border border-blue-900 dark:bg-opacity-50',
 	}
 
 	$: cssClass = classes[style]

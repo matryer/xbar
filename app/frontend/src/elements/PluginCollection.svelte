@@ -51,7 +51,7 @@
 	<div class='flex flex-wrap p-3'>
 		{#each plugins as plugin}
 			<div
-				class='flex flex-col bg-white dark:bg-gray-700 bg-opacity-50 dark:bg-opacity-25 m-3 mt-0 mb-6 w-80 rounded shadow-lg'
+				class='flex flex-col bg-white dark:bg-gray-700 bg-opacity-50 m-3 mt-0 mb-6 w-80 rounded shadow-lg'
 			>
 				<div class='flex-grow'>
 					<h2 class='text-black flex-grow dark:text-white text-lg p-4 pb-0'>
@@ -74,7 +74,7 @@
 					</div>
 				</div>
 				{#if plugin.authors && plugin.authors.length}
-					<div class='flex items-center space-x-2 border-t dark:border-gray-500 p-4'>
+					<div class='flex items-center space-x-2 p-4'>
 						<img 
 							class='author-pic rounded-full'
 							src='{plugin.authors[0].imageURL}'
