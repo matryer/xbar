@@ -223,36 +223,36 @@ type generator struct {
 
 func newGenerator(outputDir string) (*generator, error) {
 	categoryTemplate, err := template.ParseFiles(
-		filepath.Join("templates", "_layout.html"),
-		filepath.Join("templates", "category.html"),
+		filepath.Join("../../xbarapp.com", "templates", "_layout.html"),
+		filepath.Join("../../xbarapp.com", "templates", "category.html"),
 	)
 	if err != nil {
 		return nil, err
 	}
 	pluginTemplate, err := template.ParseFiles(
-		filepath.Join("templates", "_layout.html"),
-		filepath.Join("templates", "plugin.html"),
+		filepath.Join("../../xbarapp.com", "templates", "_layout.html"),
+		filepath.Join("../../xbarapp.com", "templates", "plugin.html"),
 	)
 	if err != nil {
 		return nil, err
 	}
 	indexTemplate, err := template.ParseFiles(
-		filepath.Join("templates", "_layout.html"),
-		filepath.Join("templates", "index.html"),
+		filepath.Join("../../xbarapp.com", "templates", "_layout.html"),
+		filepath.Join("../../xbarapp.com", "templates", "index.html"),
 	)
 	if err != nil {
 		return nil, err
 	}
 	contributorTemplate, err := template.ParseFiles(
-		filepath.Join("templates", "_layout.html"),
-		filepath.Join("templates", "contributor.html"),
+		filepath.Join("../../xbarapp.com", "templates", "_layout.html"),
+		filepath.Join("../../xbarapp.com", "templates", "contributor.html"),
 	)
 	if err != nil {
 		return nil, err
 	}
 	contributorsTemplate, err := template.ParseFiles(
-		filepath.Join("templates", "_layout.html"),
-		filepath.Join("templates", "contributors.html"),
+		filepath.Join("../../xbarapp.com", "templates", "_layout.html"),
+		filepath.Join("../../xbarapp.com", "templates", "contributors.html"),
 	)
 	if err != nil {
 		return nil, err
