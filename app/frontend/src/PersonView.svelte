@@ -69,7 +69,7 @@
 			</p>
 		</div>
 	</div>
-	<div class='pt-6'>
+	<div>
 		<PluginCollection plugins={personDetails.plugins} />
 	</div>
 {/if}
