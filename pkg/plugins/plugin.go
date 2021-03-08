@@ -303,7 +303,7 @@ func (p *Plugin) loadVariablesFromJSONFile() ([]string, error) {
 
 // OnErr is called when something has gone wrong at some point.
 func (p *Plugin) OnErr(err error) {
-	log.Println("### OnErr", err)
+	log.Println("OnErr", err)
 	p.Items.CycleItems = []*Item{
 		{
 			Plugin: p,
