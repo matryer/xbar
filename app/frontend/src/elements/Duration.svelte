@@ -7,6 +7,7 @@
         n: 0,
         unit: 'seconds',
     }
+    export let disabled = false
 
     let spinnerVisible = false
     let timeout
@@ -33,11 +34,13 @@
     type='number' 
     bind:value={value.n}
     on:change={ onChange }
+    disabled={disabled}
 >
 <select 
     class='mr-1 dark:text-gray-800'
     bind:value={value.unit}
     on:change={ onChange }
+    disabled={disabled}
 >
     <option>seconds</option>
     <option>minutes</option>

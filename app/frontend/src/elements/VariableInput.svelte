@@ -13,6 +13,9 @@
     // set by the inputs.
     export let values = {}
 
+    // disabled is whether this input is disabled or not.
+    export let disabled = false
+
     // fire on change whenever values change
     $: valueDidChange(values)
 	function valueDidChange(values) {
@@ -28,6 +31,7 @@
             class='border px-2 dark:text-gray-800'
             type='text' 
             bind:value='{ values[variable.name] }'
+            disabled={disabled}
         />
     {:else if variable.type === 'boolean'}
         <label class='flex items-center'>
@@ -36,6 +40,7 @@
                 class='border px-2 dark:text-gray-800'
                 type='checkbox' 
                 bind:checked='{ values[variable.name] }'
+                disabled={disabled}
             />
             {#if values[variable.name]}
                 <code class='ml-3'>TRUE</code>
@@ -49,12 +54,14 @@
             class='border px-2 dark:text-gray-800'
             type='number' 
             bind:value='{ values[variable.name] }'
+            disabled={disabled}
         />
     {:else if variable.type === 'list'}
         <select 
             id='{variable.name}'
             class='border px-2 dark:text-gray-800'
             bind:value='{ values[variable.name] }'
+            disabled={disabled}
         >
             {#each variable.options as option}
                 <option 

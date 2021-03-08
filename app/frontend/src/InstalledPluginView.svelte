@@ -178,6 +178,7 @@
 							<Duration 
 								value={refreshInterval} 
 								on:change={ onDurationChanged }
+								disabled={ !installedPlugin.enabled }
 							/>
 						</div>
 					{/if}
@@ -205,12 +206,13 @@
 			</div>
 		{/if}
 	</div>
-	{#if installedPlugin && installedPlugin.vars}
+	{#if installedPlugin && installedPlugin.vars && installedPlugin.enabled}
 		<div class='shadow-lg'>
 			<Variables 
 				on:change={onValuesChanged}
 				variables={installedPlugin.vars} 
 				values={variableValues}
+				disabled={ !installedPlugin.enabled }
 			/>
 		</div>
 	{/if}

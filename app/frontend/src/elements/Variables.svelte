@@ -10,6 +10,7 @@
     export let variables = null
     export let values
     export let debounce = 1000
+    export let disabled = false
 
     let _debounceTimer
     function valueDidChange() {
@@ -38,6 +39,7 @@
 							on:change={valueDidChange}
 							values={values}
 							variable={variable}
+                            disabled={disabled}
 						/>
                     </td>
                     <td class='py-3 pr-6 max-w-md text-sm text-gray-500 dark:text-gray-400'>
