@@ -233,7 +233,7 @@ func (a *app) createDefaultMenus() {
 			menu.Separator(),
 			{
 				Type:     menu.TextType,
-				Label:    fmt.Sprintf("xbar BETA (%s)", version),
+				Label:    fmt.Sprintf("xbar (%s)", version),
 				Disabled: true,
 			},
 			{
