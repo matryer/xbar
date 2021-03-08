@@ -43,7 +43,7 @@
 </Breadcrumbs>
 
 {#if personDetails}
-	<div class='flex space-x-4 max-w-2xl p-3'>
+	<div class='flex space-x-4 max-w-2xl p-6'>
 		<div>
 			<img 
 				alt='Profile pic for {personDetails.person.name}'
