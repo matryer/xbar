@@ -20,7 +20,7 @@ Query parameters:
 - `name` Filename, allowing wildcards. `?` matches one character and `*` matches zero or more characters
 
 This allows for refreshing from the command line using `open`, passing the URL.
-For example by chaining it with a semicolon after a command when `terminal=false` can't be used ([full example](https://github.com/matryer/bitbar-plugins/blob/master/System/downloads.1h.sh)).
+For example by chaining it with a semicolon after a command when `terminal=false` can't be used ([full example](https://github.com/matryer/xbar-plugins/blob/master/System/downloads.1h.sh)).
 
 Example:
 

@@ -149,7 +149,7 @@
   BOOL trusted = NO;
   
   // if the plugin is at our repository, only display the filename
-  if ([URLString hasPrefix:@"https://github.com/matryer/bitbar-plugins/raw/master/"]) {
+  if ([URLString hasPrefix:@"https://github.com/matryer/xbar-plugins/raw/master/"]) {
     trusted = YES;
   }
   

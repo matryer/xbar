@@ -51,7 +51,7 @@
 		body = `${body}
 
 ` // line feeds
-		const path = `https://github.com/matryer/bitbar-plugins/issues/new?body=${encodeURIComponent(body)}&title=${encodeURIComponent(plugin.path)}:%20`
+		const path = `https://github.com/matryer/xbar-plugins/issues/new?body=${encodeURIComponent(body)}&title=${encodeURIComponent(plugin.path)}:%20`
 		openURL(path)
 			.catch(e => err = e)
 	}

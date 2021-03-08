@@ -10,7 +10,7 @@ BitBar (by [Mat Ryer - @matryer](https://twitter.com/matryer)) lets you put the 
 
 Digging deeper:
 
-  * [Browse plugin repository](https://github.com/matryer/bitbar-plugins)
+  * [Browse plugin repository](https://github.com/matryer/xbar-plugins)
   * [Guide to writing your own plugins](#writing-plugins)
   * [Distributing pre-configured BitBar](https://github.com/matryer/bitbar/blob/master/Docs/DistributingBitBar.md)
   * [Learn about integrating with bitbar via the bitbar:// URL scheme](https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md)
@@ -51,7 +51,7 @@ Or download .app file directly:
 
 There are two ways to install BitBar plugins on your Mac:
 
-[Browse our plugins](https://github.com/matryer/bitbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
+[Browse our plugins](https://github.com/matryer/xbar-plugins) to find useful scripts, or [write your own](https://github.com/matryer/bitbar#writing-plugins).
 
 Or just download the plugin of your choice into your BitBar plugins directory and choose `Refresh` from one of the BitBar menus. Remember to use `chmod +x {pathname}` before you use the plugins.
   * `pathname` - The pathname of the file
@@ -106,7 +106,7 @@ In case you made the mistake of choosing a directory with thousands of files as 
 ## Contributing
 
   * Help us [solve bugs](https://github.com/matryer/bitbar/issues?q=is%3Aopen+is%3Aissue+label%3Abug) or [build new features](https://github.com/matryer/bitbar/issues?q=is%3Aopen+is%3Aissue+label%3A%22♡+todo%22).
-  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/bitbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins) below.
+  * If you want to contribute a plugin, please head over to the [Plugin repository](https://github.com/matryer/xbar-plugins) and submit a pull request. Be sure to read our [guide to writing plugins](https://github.com/matryer/bitbar#writing-plugins) below.
 
 ### BitBar app
 
@@ -122,7 +122,7 @@ git submodule init && git submodule update
 
   * Special thanks to [@muhqu](https://github.com/muhqu) and [@tylerb](https://github.com/tylerb) for all their help (see commit history for details)
   * Thanks to [Chris Ryer](http://www.chrisryer.co.uk/) for the app logo - and to [@mazondo](https://twitter.com/mazondo) for the original
-  * Thanks for all our [plugin contributors](https://github.com/matryer/bitbar-plugins) who have come up with some pretty genius things
+  * Thanks for all our [plugin contributors](https://github.com/matryer/xbar-plugins) who have come up with some pretty genius things
 
 # Writing plugins
 
@@ -132,7 +132,7 @@ We're always looking for new plugins, so please send us pull requests if you wri
 
 ### Got ideas?
 
-If you've got ideas, or want to report a bug, nip over to our [issues page](=https://github.com/matryer/bitbar-plugins/issues) and let us know.
+If you've got ideas, or want to report a bug, nip over to our [issues page](=https://github.com/matryer/xbar-plugins/issues) and let us know.
 
 If you want to contribute, please send us a pull request and we'll add it to our repos.
 
@@ -189,7 +189,7 @@ To enhance your entry on [getbitbar.com](https://getbitbar.com/), add the follow
   * `bitbar.dependencies` - Comma separated list of dependencies
   * `bitbar.abouturl` - Absolute URL to about information
 
-For a real example, see the [Cycle text and detail plugin source code](https://github.com/matryer/bitbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh).
+For a real example, see the [Cycle text and detail plugin source code](https://github.com/matryer/xbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh).
 
 ### Useful tips
 

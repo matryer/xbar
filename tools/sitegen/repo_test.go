@@ -20,7 +20,7 @@ func TestReadRepo(t *testing.T) {
 	})
 	r := &RepoReader{
 		RepoOwner:         "matryer",
-		RepoName:          "bitbar-plugins",
+		RepoName:          "xbar-plugins",
 		EachPluginFn:      each,
 		GitHubAccessToken: "",
 	}

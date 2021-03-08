@@ -71,7 +71,7 @@ func run(ctx context.Context, args []string) error {
 	})
 	reader := &RepoReader{
 		RepoOwner:         "matryer",
-		RepoName:          "bitbar-plugins",
+		RepoName:          "xbar-plugins",
 		EachPluginFn:      eachPlugin,
 		GitHubAccessToken: os.Getenv("XBAR_GITHUB_ACCESS_TOKEN"),
 		SmallSample:       *small,
