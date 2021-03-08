@@ -7,7 +7,11 @@ VERSION=`git describe --tags`
 #   git push origin v0.1.0
 #   ./build.sh
 
-echo "Building xbar ${VERSION}..."
+echo ""
+echo ""
+echo "\txbar ${VERSION}..."
+echo ""
+echo ""
 
 sed "s/0.0.0/${VERSION}/" ./assets/mac/info.plist.src > ./assets/mac/info.plist
 wails build -package -production -ldflags "-X main.version=${VERSION}"
