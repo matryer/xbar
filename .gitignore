@@ -8,6 +8,7 @@ app/node_modules
 app/build
 pkg/update/testarea
 xbarapp.com/node_modules
+xbarapp.com/public/docs
 xbarapp.com/package-lock.json
 app/assets/mac/info.plist
 app/frontend/package-lock.json
