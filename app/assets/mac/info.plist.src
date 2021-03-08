@@ -20,6 +20,6 @@
 	<key>CFBundleShortVersionString</key><string>0.0.0</string>
 	<key>CFBundleIconFile</key><string>iconfile</string>
 	<key>NSHighResolutionCapable</key><string>true</string>
-	<key>MinimumOSVersion</key><string>10.15.0</string>
+	<key>LSMinimumSystemVersion</key><string>10.15</string>
 	<key>NSHumanReadableCopyright</key><string>Copyright 2021 Mat Ryer and the xbar contributors</string>
 </dict></plist>
