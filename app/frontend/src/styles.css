@@ -28,11 +28,6 @@ html, body {
 	
 }
 
-::-webkit-scrollbar {
-	width: 11px;
-	height: 10px;
-}
-
 ::-webkit-scrollbar-thumb {
 	background-color: rgba(255,255,255.0.5);
 	border: 2px solid transparent;
