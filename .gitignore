@@ -11,3 +11,6 @@ xbarapp.com/node_modules
 xbarapp.com/package-lock.json
 app/assets/mac/info.plist
 app/frontend/package-lock.json
+.DS_Store
+app/.DS_Store
+app/assets/.DS_Store
