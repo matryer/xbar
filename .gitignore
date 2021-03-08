@@ -5,6 +5,7 @@ app/frontend/package.json.md5
 xbarapp.com/public/docs/
 tools/sitegen/sitegen
 app/node_modules
+app/build
 pkg/update/testarea
 xbarapp.com/node_modules
 xbarapp.com/package-lock.json
