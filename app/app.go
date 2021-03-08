@@ -133,7 +133,7 @@ func (a *app) RefreshAll() {
 		plugin.OnRefresh = a.onRefresh
 		plugin.Stdout = os.Stdout
 		plugin.Stderr = os.Stderr
-		//plugin.Debugf = plugins.DebugfLog
+		plugin.Debugf = plugins.DebugfLog
 		a.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
 			Menu:    a.preferencesMenu,
