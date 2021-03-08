@@ -16,7 +16,7 @@ func main() {
 	app := newApp()
 	err := wails.Run(&options.App{
 		Title:             "xbar",
-		Width:             1060,
+		Width:             1080,
 		Height:            700,
 		MinWidth:          800,
 		MinHeight:         600,
