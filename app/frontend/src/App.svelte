@@ -33,7 +33,6 @@
 	})
 
 	$: if ($sigRefresh) {
-		console.info("App: refreshing")
 		const done = wait()
 		const done2 = wait()
 		refreshCategories(categories)
