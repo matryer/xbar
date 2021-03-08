@@ -55,9 +55,11 @@
 				{#each plugin.authors as author}
 					<span class='mr-2'>
 						{author.name || author.githubUsername}
-						<Button on:click={() => gotoPerson(author.githubUsername)}>
-							@{author.githubUsername}
-						</Button>
+						{#if author.githubUsername}
+							<Button on:click={() => gotoPerson(author.githubUsername)}>
+								@{author.githubUsername}
+							</Button>
+						{/if}
 					</span>
 				{/each}
 			{:else}
