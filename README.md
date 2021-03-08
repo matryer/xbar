@@ -74,7 +74,8 @@ For example:
 Most plugins will come with a default, but you can change it to anything you like:
 
   * 10s - ten seconds
-  * 1m - one minute
+  * 1m - 
+  minute
   * 2h - two hours
   * 1d - a day
 
@@ -216,6 +217,24 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
     else           echo "DO | $FONT color=cadetblue"
     echo "---"
     ...
+
+#### Plugin with variables
+
+Specifying variables in the metadata will cause end-users to be prompted
+for values when they install the plugin.
+
+From there, the values will be available as environment variables.
+
+```bash
+#!/bin/zsh
+
+# ... other metadata ...
+#
+# <xbar.var>string(VAR_API_KEY=""): API key to get access to remote data.</xbar.var>
+
+# VAR_API_KEY will be available as an environment variable
+load_data -apikey=$VAR_API_KEY
+```
 
 ### Supported languages
 
