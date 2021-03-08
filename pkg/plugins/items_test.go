@@ -209,7 +209,7 @@ three
 	is.NoErr(err)
 	is.Equal(len(items.CycleItems), 1)
 	is.Equal(len(items.ExpandedItems), 5)
-	is.Equal(items.ExpandedItems[1].Params.Size, 1) // items.ExpandedItems[1].Params.Size
+	is.Equal(items.ExpandedItems[1].Params.Size, 5) // items.ExpandedItems[1].Params.Size
 }
 
 func TestErrors(t *testing.T) {

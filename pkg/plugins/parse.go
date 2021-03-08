@@ -58,7 +58,7 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 				Text:   " ",
 				Params: params,
 			}
-			blankLineItem.Params.Size = 1
+			blankLineItem.Params.Size = 5
 			items.ExpandedItems = append(items.ExpandedItems, blankLineItem)
 			continue
 		}
