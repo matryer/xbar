@@ -2,7 +2,7 @@
 
 	import { params } from 'svelte-hash-router'
 	import { installedPlugins } from './pagedata.svelte'
-	import { getPlugin, openURL, installPlugin, refreshInstalledPlugins } from './rpc.svelte'
+	import { getPlugin, installPlugin, refreshInstalledPlugins } from './rpc.svelte'
 	import { wait } from './waiters.svelte'
 	import Error from './elements/Error.svelte'
 	import Button from './elements/Button.svelte'

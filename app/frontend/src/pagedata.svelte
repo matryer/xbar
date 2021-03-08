@@ -1,6 +1,6 @@
 <script context='module'>
 
-    import { writable } from "svelte/store"
+    import { writable } from 'svelte/store'
 
     export const categories = writable(null)
     export const installedPlugins = writable(null)

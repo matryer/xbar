@@ -1,6 +1,5 @@
 <script>
 
-	import { onMount } from 'svelte'
 	import { Router } from 'svelte-hash-router'
 	import { Events } from '@wails/runtime'
 	import { 
@@ -17,6 +16,7 @@
 	import Error from './elements/Error.svelte'
 	import { globalWaiter, wait } from './waiters.svelte'
 	import KeyboardShortcuts from './elements/KeyboardShortcuts.svelte'
+    import { sigRefresh } from './signals.svelte'
 
 	let err
 
@@ -32,8 +32,8 @@
 		location.hash = `/plugin-details/${params.path}`
 	})
 
-	onMount(() => {
-
+	$: if ($sigRefresh) {
+		console.info("App: refreshing")
 		const done = wait()
 		const done2 = wait()
 		refreshCategories(categories)
@@ -43,8 +43,7 @@
 		refreshInstalledPlugins(installedPlugins)
 			.catch(e => err = e)
 			.finally(() => done2())
-
-	})
+	}
 
 	function openSponsorPage() {
 		openURL('https://github.com/sponsors/matryer')

@@ -20,13 +20,17 @@
 	import Switch from './elements/Switch.svelte'
 	import Spinner from './elements/Spinner.svelte'
 	import Duration from './elements/Duration.svelte'
+	import { sigRefresh } from './signals.svelte'
 
 	let err
 
-	$: loadPluginMetadata($params._)
 	let installedPlugin = null
 	let refreshInterval
 	let variableValues = null
+
+	$: if ($sigRefresh && $params._) {
+		loadPluginMetadata($params._)
+	}
 
 	function loadPluginMetadata(installedPluginPath) {
 		if (!installedPluginPath) { return }
