@@ -68,32 +68,29 @@ func SetRefreshInterval(pluginDirectory, installedPluginPath string, refreshInte
 	if err := validateRefreshInterval(refreshInterval); err != nil {
 		return "", RefreshInterval{}, errors.Wrap(err, "invalid refresh interval")
 	}
-	var (
-		oldFullPath = filepath.Join(pluginDirectory, installedPluginPath)
-		newFilename = strings.Replace(installedPluginPath, "."+interval+".", "."+refreshInterval.String()+".", 1)
-		newFullPath = filepath.Join(pluginDirectory, newFilename)
-	)
+	oldFullPath := filepath.Join(pluginDirectory, installedPluginPath)
+	newFilename := strings.Replace(installedPluginPath, "."+interval+".", "."+refreshInterval.String()+".", 1)
+	newFullPath := filepath.Join(pluginDirectory, newFilename)
 	if err := os.Rename(oldFullPath, newFullPath); err != nil {
-		return "", RefreshInterval{}, errors.Wrap(err, "unable to rename plugin to new refresh interval")
+		return "", RefreshInterval{}, errors.Wrap(err, "rename plugin file to new refresh interval")
 	}
-
-	fi, err := os.Stat(newFullPath)
+	_, err := os.Stat(newFullPath)
 	if err != nil {
-		return "", RefreshInterval{}, errors.Wrap(err, "unable to stat plugin file")
+		return "", RefreshInterval{}, errors.Wrap(err, "stat plugin file")
 	}
-
-	// If plugin is not folder-based, we are finished. Otherwise, we have to
-	// rename the executable file inside the folder to correspond with the new
-	// name of the folder.
-	if !fi.IsDir() {
+	oldVarFullPath := oldFullPath + variableJSONFileExt
+	_, err = os.Stat(oldVarFullPath)
+	if err != nil && !os.IsNotExist(err) {
+		return "", RefreshInterval{}, errors.Wrap(err, "stat plugin vars file")
+	}
+	if err != nil && os.IsNotExist(err) {
+		// no variable file, no probs
 		return newFilename, refreshInterval, nil
 	}
-	var (
-		oldExecutableFile = filepath.Join(newFullPath, installedPluginPath)
-		newExecutableFile = filepath.Join(newFullPath, newFilename)
-	)
-	if err := os.Rename(oldExecutableFile, newExecutableFile); err != nil {
-		return "", RefreshInterval{}, errors.Wrap(err, "unable to rename executable in folder-based plugin")
+	newVarFilename := newFilename + variableJSONFileExt
+	newVarFullPath := filepath.Join(pluginDirectory, newVarFilename)
+	if err := os.Rename(oldVarFullPath, newVarFullPath); err != nil {
+		return "", RefreshInterval{}, errors.Wrap(err, "rename plugin vars file to new refresh interval")
 	}
 	return newFilename, refreshInterval, nil
 }
@@ -111,7 +108,7 @@ func validateRefreshInterval(refreshInterval RefreshInterval) error {
 }
 
 // ParseFilenameInterval parses the filename to extract the refresh interval
-// or returns a default if it is unable to do so.
+// or returns a default if it is do so.
 func ParseFilenameInterval(filename string) (RefreshInterval, error) {
 	// ignore disabled piece
 	filename = strings.TrimSuffix(filename, disabledPluginExtension)

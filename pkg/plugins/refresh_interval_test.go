@@ -35,6 +35,36 @@ func TestSetRefreshInterval(t *testing.T) {
 		_, err = os.Stat(newPluginPath)
 		is.NoErr(err)
 	})
+	t.Run("update vars json file too", func(t *testing.T) {
+		var (
+			testpath          = filepath.Join(baseTestPath, "single-file-plugin")
+			oldPluginName     = "set-refresh-interval.1m.sh"
+			oldPluginPath     = filepath.Join(testpath, oldPluginName)
+			oldPluginVarsName = "set-refresh-interval.1m.sh" + variableJSONFileExt
+			oldPluginVarsPath = filepath.Join(testpath, oldPluginVarsName)
+			newPluginName     = "set-refresh-interval.1d.sh"
+			newPluginPath     = filepath.Join(testpath, newPluginName)
+			newPluginVarsName = "set-refresh-interval.1d.sh" + variableJSONFileExt
+			newPluginVarsPath = filepath.Join(testpath, newPluginVarsName)
+		)
+		err := os.MkdirAll(testpath, 0777)
+		is.NoErr(err)
+		t.Cleanup(func() {
+			os.RemoveAll(testpath)
+		})
+		_, err = os.Create(oldPluginPath)
+		is.NoErr(err)
+		_, err = os.Create(oldPluginVarsPath)
+		is.NoErr(err)
+		renamedPlugin, refreshInterval, err := SetRefreshInterval(testpath, oldPluginName, RefreshInterval{N: 1, Unit: "days"})
+		is.NoErr(err)
+		is.Equal(renamedPlugin, newPluginName)
+		is.Equal(refreshInterval, RefreshInterval{N: 1, Unit: "days"})
+		_, err = os.Stat(newPluginPath)
+		is.NoErr(err)
+		_, err = os.Stat(newPluginVarsPath)
+		is.NoErr(err)
+	})
 	t.Run("disabled plugin", func(t *testing.T) {
 		var (
 			testpath      = filepath.Join(baseTestPath, "single-file-plugin")
@@ -57,34 +87,7 @@ func TestSetRefreshInterval(t *testing.T) {
 		_, err = os.Stat(newPluginPath)
 		is.NoErr(err)
 	})
-	// t.Run("folder-based plugin", func(t *testing.T) {
-	// 	var (
-	// 		testpath        = filepath.Join(baseTestPath, "folder-based-plugin")
-	// 		oldPluginName   = "set-refresh-interval.1d.sh"
-	// 		oldPluginFolder = filepath.Join(testpath, oldPluginName)
-	// 		oldPluginPath   = filepath.Join(oldPluginFolder, oldPluginName)
-	// 		newPluginName   = "set-refresh-interval.42m.sh"
-	// 		newPluginFolder = filepath.Join(testpath, newPluginName)
-	// 		newPluginPath   = filepath.Join(newPluginFolder, newPluginName)
-	// 	)
-	// 	err := os.MkdirAll(oldPluginFolder, 0777)
-	// 	is.NoErr(err)
-	// 	t.Cleanup(func() {
-	// 		err := os.RemoveAll(testpath)
-	// 		is.NoErr(err)
-	// 	})
-	// 	_, err = os.Create(oldPluginPath)
-	// 	is.NoErr(err)
-	// 	renamedPlugin, refreshInterval, err := SetRefreshInterval(testpath, oldPluginName, RefreshInterval{N: 42, Unit: "minutes"})
-	// 	is.NoErr(err)
-	// 	is.Equal(renamedPlugin, newPluginName)
-	// 	is.Equal(refreshInterval, RefreshInterval{N: 42, Unit: "minutes"})
-	// 	fi, err := os.Stat(newPluginFolder)
-	// 	is.NoErr(err)
-	// 	is.True(fi.IsDir())
-	// 	_, err = os.Stat(newPluginPath)
-	// 	is.NoErr(err)
-	// })
+
 	t.Run("plugin file does not exist", func(t *testing.T) {
 		var (
 			testpath      = filepath.Join(baseTestPath, "plugin-does-not-exist")
@@ -96,13 +99,8 @@ func TestSetRefreshInterval(t *testing.T) {
 			os.RemoveAll(testpath)
 		})
 		// Do not create plugin file here.
-		renamedPlugin, refreshInterval, err := SetRefreshInterval(testpath, oldPluginName, RefreshInterval{N: 1, Unit: "hours"})
-		is.Equal(renamedPlugin, "")
-		is.Equal(refreshInterval, RefreshInterval{})
-		is.Equal(err.Error(), errors.Errorf(
-			"unable to rename plugin to new refresh interval: "+
-				"rename testdata/set-refresh-interval-test/plugin-does-not-exist/set-refresh-interval.1m.sh "+
-				"testdata/set-refresh-interval-test/plugin-does-not-exist/set-refresh-interval.1h.sh: no such file or directory").Error())
+		_, _, err = SetRefreshInterval(testpath, oldPluginName, RefreshInterval{N: 1, Unit: "hours"})
+		is.True(err != nil)
 	})
 	t.Run("bad refresh interval", func(t *testing.T) {
 		var (
