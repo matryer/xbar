@@ -121,45 +121,6 @@ func TestMenuParser(t *testing.T) {
 	is.Equal(menuitems.Items[9].MacAlternate, true)
 }
 
-// func TestNewMenu(t *testing.T) {
-
-// 	is := is.New(t)
-// 	ctx := context.Background()
-// 	ctx, cancel := context.WithTimeout(ctx, 100*time.Second)
-// 	defer cancel()
-
-// 	expandedItems := menu.NewMenuFromItems(
-// 		menu.Text("four", nil, nil),
-// 		menu.Text("five", nil, nil),
-// 		menu.Text("six", nil, nil),
-// 	)
-
-// 	parser := NewMenuParser()
-
-// 	type args struct {
-// 		items      []*plugins.Item
-// 		pluginPath string
-// 	}
-
-// 	tests := []struct {
-// 		name string
-// 		args args
-// 		want *menu.Menu
-// 	}{
-// 		{"no items", args{pluginPath: "./testdata/plugins/simple.1m.sh"}, nil},
-// 		{"3 items", args{pluginPath: "./testdata/plugins/expanded.1m.sh"}, expandedItems},
-// 	}
-// 	for _, test := range tests {
-// 		p := plugins.NewPlugin(test.args.pluginPath)
-// 		var got *menu.Menu
-// 		p.OnRefresh = func(refreshCtx context.Context, plugin *plugins.Plugin, err error) {
-// 			got = parser.ParseItems(plugin.Items.ExpandedItems)
-// 		}
-// 		p.Refresh(ctx)
-// 		is.Equal(JSON(got, is), JSON(test.want, is))
-// 	}
-// }
-
 func JSON(menu *menu.Menu, is *is.I) string {
 	data, err := json.Marshal(menu)
 	is.NoErr(err)
