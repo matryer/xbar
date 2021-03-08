@@ -69,9 +69,7 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 		menuItem.Image = item.Params.TemplateImage
 		menuItem.MacTemplateImage = true
 	}
-
 	menuItem.MacAlternate = item.Params.Alternate
-
 	if item.Params.Dropdown == false {
 		menuItem.Hidden = true
 	}
