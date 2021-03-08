@@ -9,6 +9,7 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/mholt/archiver"
 	"github.com/pkg/errors"
@@ -85,6 +86,7 @@ func (u *Updater) Restart() error {
 	if err != nil {
 		return errors.Wrap(err, "start app")
 	}
+	time.Sleep(2 * time.Second)
 	os.Exit(1)
 	return nil
 }
