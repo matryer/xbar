@@ -38,6 +38,20 @@ const backend = {
       "OpenURL": (arg1) => {
         return window.backend.main.CommandService.OpenURL(arg1);
       },
+      /**
+       * WindowHide
+       * @returns {Promise} 
+       */
+      "WindowHide": () => {
+        return window.backend.main.CommandService.WindowHide();
+      },
+      /**
+       * WindowMinimise
+       * @returns {Promise} 
+       */
+      "WindowMinimise": () => {
+        return window.backend.main.CommandService.WindowMinimise();
+      },
     }
     "PersonService": {
       /**

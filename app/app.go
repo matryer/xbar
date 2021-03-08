@@ -156,6 +156,7 @@ func (a *app) RefreshAll() {
 func (a *app) Start(runtime *wails.Runtime) {
 	a.runtime = runtime
 	a.PluginsService.runtime = runtime
+	a.CommandService.runtime = runtime
 	a.createDefaultMenus()
 	// ensure the plugin directory is there
 	if err := os.MkdirAll(pluginDirectory, 0777); err != nil {

@@ -7,14 +7,27 @@ import (
 	"path/filepath"
 
 	"github.com/pkg/errors"
+	wails "github.com/wailsapp/wails/v2"
 )
 
 // CommandService provides window service.
-type CommandService struct{}
+type CommandService struct {
+	runtime *wails.Runtime
+}
 
 // NewCommandService makes a new CommandService.
 func NewCommandService() *CommandService {
 	return &CommandService{}
+}
+
+// WindowHide hides the window.
+func (c *CommandService) WindowHide() {
+	c.runtime.Window.Hide()
+}
+
+// WindowMinimise minimises the window.
+func (c *CommandService) WindowMinimise() {
+	c.runtime.Window.Minimise()
 }
 
 // OpenPath opens a window.
