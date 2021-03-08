@@ -1,6 +1,6 @@
 [![](xbarapp.com/public/img/xbar-menu-preview.png)](https://xbarapp.com/)
 
-# ![xbar logo](xbar-logo-32.png) xbar
+# Welcome to xbar
 
 xbar (the BitBar reboot, by [Mat Ryer](https://twitter.com/matryer)) lets you put the output from any script/program in your macOS menu bar.
 
