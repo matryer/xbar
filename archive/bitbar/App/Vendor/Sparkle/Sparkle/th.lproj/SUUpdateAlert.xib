@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9046" systemVersion="15C27e" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9046"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="9046"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SUUpdateAlert">
+            <connections>
+                <outlet property="automaticallyInstallUpdatesButton" destination="117" id="o2H-xw-Qv8"/>
+                <outlet property="descriptionField" destination="101" id="9oA-2S-eXN"/>
+                <outlet property="installButton" destination="76" id="176"/>
+                <outlet property="laterButton" destination="22" id="177"/>
+                <outlet property="releaseNotesContainerView" destination="fKC-QA-GZa" id="BYw-MA-Z5h"/>
+                <outlet property="releaseNotesView" destination="18" id="32"/>
+                <outlet property="skipButton" destination="23" id="178"/>
+                <outlet property="window" destination="5" id="69"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window identifier="SUUpdateAlert" title="อัพเดทซอฟต์แวร์" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="SUUpdateAlert" animationBehavior="default" id="5" userLabel="Update Alert (release notes)">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="746" y="229" width="620" height="370"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="745"/>
+            <value key="minSize" type="size" width="550" height="150"/>
+            <value key="maxSize" type="size" width="700" height="600"/>
+            <view key="contentView" id="6">
+                <rect key="frame" x="0.0" y="0.0" width="620" height="370"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="7" userLabel="Program icon">
+                        <rect key="frame" x="22" y="286" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="7" secondAttribute="height" multiplier="1:1" id="7pS-Kw-VGo"/>
+                            <constraint firstAttribute="width" priority="800" constant="64" id="QhW-E9-8Br"/>
+                            <constraint firstAttribute="height" priority="800" constant="64" id="aXh-vN-k5u"/>
+                        </constraints>
+                        <animations/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="168"/>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="applicationIcon" id="9"/>
+                        </connections>
+                    </imageView>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="10" userLabel="Version text field">
+                        <rect key="frame" x="106" y="338" width="494" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="777" constant="17" id="n8w-DR-XEM"/>
+                        </constraints>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="169">
+                            <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="titleText" id="11"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="350" verticalHuggingPriority="999" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="101" userLabel="Question text field">
+                        <rect key="frame" x="106" y="316" width="494" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" priority="300" constant="28" id="H6E-te-Fog"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="KUO-Dw-g6s"/>
+                        </constraints>
+                        <animations/>
+                        <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" id="174">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="descriptionText" id="103"/>
+                        </connections>
+                    </textField>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="fKC-QA-GZa" userLabel="Container to hide release notes">
+                        <rect key="frame" x="108" y="74" width="492" height="234"/>
+                        <subviews>
+                            <box boxType="oldStyle" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="89">
+                                <rect key="frame" x="0.0" y="0.0" width="492" height="214"/>
+                                <view key="contentView" id="hbB-V1-Bf6">
+                                    <rect key="frame" x="1" y="1" width="490" height="212"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <webView maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18">
+                                            <rect key="frame" x="0.0" y="-2" width="492" height="214"/>
+                                            <animations/>
+                                            <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" minimumFontSize="7" plugInsEnabled="NO" javaEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO">
+                                                <nil key="identifier"/>
+                                            </webPreferences>
+                                            <connections>
+                                                <binding destination="-2" name="hidden" keyPath="showsReleaseNotes" id="161">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </webView>
+                                    </subviews>
+                                    <animations/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="18" firstAttribute="top" secondItem="89" secondAttribute="top" constant="1" id="3ps-Yo-uZA"/>
+                                    <constraint firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="-1" id="5W0-Eb-Snn"/>
+                                    <constraint firstAttribute="bottom" secondItem="18" secondAttribute="bottom" constant="-1" id="NOY-VJ-z4I"/>
+                                    <constraint firstItem="18" firstAttribute="leading" secondItem="89" secondAttribute="leading" constant="1" id="kSE-Xj-CRB"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="pvn-8k-9Ev"/>
+                                </constraints>
+                                <animations/>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <font key="titleFont" size="11" name="LucidaGrande"/>
+                                <connections>
+                                    <binding destination="-2" name="hidden" keyPath="showsReleaseNotes" id="164">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </box>
+                            <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="17">
+                                <rect key="frame" x="-2" y="220" width="88" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="100" constant="100" id="gkn-FW-9aC"/>
+                                </constraints>
+                                <animations/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Release Notes:" usesSingleLineMode="YES" id="170">
+                                    <font key="font" metaFont="smallSystemBold"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="hidden" keyPath="showsReleaseNotes" id="72">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="89" firstAttribute="top" secondItem="17" secondAttribute="bottom" constant="6" id="1H8-33-yNF"/>
+                            <constraint firstAttribute="trailing" secondItem="89" secondAttribute="trailing" id="Bv8-Jz-SXd"/>
+                            <constraint firstAttribute="bottom" secondItem="89" secondAttribute="bottom" id="E4h-VA-0Xt"/>
+                            <constraint firstItem="17" firstAttribute="top" secondItem="fKC-QA-GZa" secondAttribute="top" id="P9G-6a-y7j"/>
+                            <constraint firstItem="89" firstAttribute="leading" secondItem="fKC-QA-GZa" secondAttribute="leading" id="e5T-q1-kq1"/>
+                            <constraint firstItem="17" firstAttribute="leading" secondItem="fKC-QA-GZa" secondAttribute="leading" id="tFH-k0-O7I"/>
+                        </constraints>
+                        <animations/>
+                    </customView>
+                    <button horizontalHuggingPriority="150" verticalHuggingPriority="750" horizontalCompressionResistancePriority="997" translatesAutoresizingMaskIntoConstraints="NO" id="22">
+                        <rect key="frame" x="345" y="12" width="129" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="222" constant="90" id="2Zy-5G-GBj"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="เตือนในภายหลัง" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="171">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="remindMeLater:" target="-2" id="34"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="998" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                        <rect key="frame" x="103" y="12" width="111" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="ข้ามเวอร์ชั่นนี้" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="172">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="skipThisVersion:" target="-2" id="33"/>
+                        </connections>
+                    </button>
+                    <button horizontalHuggingPriority="20" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="76">
+                        <rect key="frame" x="474" y="12" width="132" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="222" constant="120" id="N94-uf-6oP"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="ติดตั้งอัพเดท" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="173">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="installUpdate:" target="-2" id="77"/>
+                        </connections>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="117">
+                        <rect key="frame" x="106" y="49" width="495" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="28" id="0AI-ue-a0r"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="yM1-TA-HfP"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="check" title="ดาวน์โหลดและติดตั้งอัพเดทโดยอัตโนมัติในอนาคต" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="175">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="-2" name="hidden" keyPath="allowsAutomaticUpdates" id="141">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                            <binding destination="93" name="value" keyPath="values.SUAutomaticallyUpdate" id="135"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="10" firstAttribute="leading" secondItem="7" secondAttribute="trailing" constant="22" id="2ef-4I-Il3"/>
+                    <constraint firstAttribute="trailing" secondItem="fKC-QA-GZa" secondAttribute="trailing" constant="20" id="406-Cn-C5d"/>
+                    <constraint firstItem="101" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="7XS-9C-U6N"/>
+                    <constraint firstItem="23" firstAttribute="top" secondItem="117" secondAttribute="bottom" constant="12" id="CBk-cX-pk2"/>
+                    <constraint firstItem="22" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="23" secondAttribute="trailing" constant="12" id="EeC-NR-NYg"/>
+                    <constraint firstAttribute="trailing" secondItem="76" secondAttribute="trailing" constant="20" id="GdV-QF-Cdi"/>
+                    <constraint firstItem="76" firstAttribute="width" secondItem="22" secondAttribute="width" multiplier="0.8" priority="110" id="I8t-73-gX0"/>
+                    <constraint firstItem="117" firstAttribute="top" secondItem="fKC-QA-GZa" secondAttribute="bottom" priority="900" constant="8" id="M7E-UY-nWx"/>
+                    <constraint firstItem="fKC-QA-GZa" firstAttribute="top" secondItem="101" secondAttribute="bottom" constant="8" id="Mbz-C0-6Cx"/>
+                    <constraint firstItem="117" firstAttribute="leading" secondItem="23" secondAttribute="leading" id="Nm4-V1-7X0"/>
+                    <constraint firstItem="23" firstAttribute="leading" secondItem="117" secondAttribute="leading" id="OXY-8u-ljs"/>
+                    <constraint firstItem="23" firstAttribute="leading" secondItem="10" secondAttribute="leading" constant="1" id="RRB-n5-xid"/>
+                    <constraint firstItem="76" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="12" id="VQk-Ut-ggj"/>
+                    <constraint firstItem="7" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" id="alH-AL-5RD"/>
+                    <constraint firstItem="22" firstAttribute="baseline" secondItem="23" secondAttribute="baseline" id="ayY-6b-JGg"/>
+                    <constraint firstItem="76" firstAttribute="baseline" secondItem="22" secondAttribute="baseline" id="dIR-3Q-wQx"/>
+                    <constraint firstAttribute="bottom" secondItem="76" secondAttribute="bottom" constant="19" id="gcR-Kl-Wlq"/>
+                    <constraint firstAttribute="trailing" secondItem="101" secondAttribute="trailing" constant="22" id="k7p-HC-x7i"/>
+                    <constraint firstItem="fKC-QA-GZa" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="-1" id="nVW-Qt-8JE"/>
+                    <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="22" id="oQx-Oc-awc"/>
+                    <constraint firstItem="76" firstAttribute="width" secondItem="23" secondAttribute="width" priority="109" id="pLI-z3-P0b"/>
+                    <constraint firstItem="fKC-QA-GZa" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="qQ9-OJ-06z"/>
+                    <constraint firstItem="101" firstAttribute="top" secondItem="10" secondAttribute="bottom" constant="8" id="r7Q-z5-jkx"/>
+                    <constraint firstItem="10" firstAttribute="top" secondItem="6" secondAttribute="top" constant="15" id="rXd-o0-WQQ"/>
+                    <constraint firstAttribute="trailing" secondItem="117" secondAttribute="trailing" constant="21" id="sHI-Hm-eSA"/>
+                    <constraint firstItem="7" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="22" id="zSE-lw-Ggj"/>
+                </constraints>
+                <animations/>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="50"/>
+            </connections>
+            <point key="canvasLocation" x="466" y="290"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="93" userLabel="Shared Defaults"/>
+    </objects>
+    <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
+    </resources>
+</document>

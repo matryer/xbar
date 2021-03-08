@@ -1,0 +1,112 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_btcusd.sh",
+					"filename": "bitfinex_btcusd.sh",
+					"content": "#!/bin/bash\n\n# Shows last BTC price (in USD) on Bitfinex BTCUSD Order Book.\n#\n# \u003cbitbar.title\u003eBitfinex BTCUSD last price\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eRoberto Santacroce Martins\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emileschet\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows last BTC price (in USD) on Bitfinex BTCUSD Order Book.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/AJU4wmc.png\u003c/bitbar.image\u003e\n#\n# by Roberto Santacroce Martins\n# Based on Coinbase bitbar plugin by Mat Ryer\n\necho -n \"Ƀ$\"; curl -s \"https://api.bitfinex.com/v1/pubticker/BTCUSD\" | egrep -o '\"last_price\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"last_price\"://' | sed 's/\\\"//g'"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_btcusd.sh",
+			"filename": "bitfinex_btcusd.sh",
+			"dir": "Cryptocurrency/Bitcoin/bitfinex.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_btcusd.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/bitfinex.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"bitfinex.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/bitfinex.com",
+					"text": "bitfinex.com",
+					"isLast": true
+				}
+			],
+			"title": "Bitfinex BTCUSD last price",
+			"version": "v1.0",
+			"author": "Roberto Santacroce Martins",
+			"authors": [
+				{
+					"name": "Roberto Santacroce Martins",
+					"githubUsername": "mileschet",
+					"imageURL": "https://avatars.githubusercontent.com/u/76659029?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows last BTC price (in USD) on Bitfinex BTCUSD Order Book.",
+			"imageURL": "http://i.imgur.com/AJU4wmc.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:44.780421Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_all.sh",
+					"filename": "bitfinex_all.sh",
+					"content": "#!/bin/bash\n\n# Shows (Ask, Bid, Mid, High, Low, Volume and Timestamp from Bitfinex REST API Ticker BTCUSD \n#\n# \u003cbitbar.title\u003eBitfinex REST API Ticker BTCUSD plugin\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eRoberto Santacroce Martins\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emileschet\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows (Ask, Bid, Mid, High, Low, Volume and Timestamp from Bitfinex REST API Ticker BTCUSD \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/V8dABjz.png\u003c/bitbar.image\u003e\n#\n# by Roberto Santacroce Martins\n# Based on Coinbase bitbar plugin by Mat Ryer\n\n#echo -n \"Ƀ$\"; \nRESULT=$(curl -s \"https://api.bitfinex.com/v1/pubticker/BTCUSD\") \necho -n \"Ƀ$ \"; echo \"$RESULT\" | egrep -o '\"last_price\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"last_price\"://' | sed 's/\\\"//g'\necho -n \"Ask \"; echo \"$RESULT\" | egrep -o '\"ask\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"ask\"://' | sed 's/\\\"//g'\necho -n \"Bid \"; echo \"$RESULT\" | egrep -o '\"bid\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"bid\"://' | sed 's/\\\"//g'\necho -n \"Low \"; echo \"$RESULT\" | egrep -o '\"low\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"low\"://' | sed 's/\\\"//g'\necho -n \"Mid \"; echo \"$RESULT\" | egrep -o '\"mid\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"mid\"://' | sed 's/\\\"//g'\necho -n \"High \"; echo \"$RESULT\" | egrep -o '\"high\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"high\"://' | sed 's/\\\"//g'\necho -n \"Vol \"; echo \"$RESULT\" | egrep -o '\"volume\":\"[0-9]+(\\.)?([0-9]{0,8}\")?' | sed 's/\"volume\"://' | sed 's/\\\"//g'\nTIMESTAMP=$(echo \"$RESULT\" | egrep -o '\"timestamp\":\"[0-9]+' | sed 's/\"timestamp\"://' | sed 's/\\\"//g')\necho -n \"Updated At \"; date -r \"$TIMESTAMP\" +\"%F %T\"\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_all.sh",
+			"filename": "bitfinex_all.sh",
+			"dir": "Cryptocurrency/Bitcoin/bitfinex.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_all.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/bitfinex.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"bitfinex.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/bitfinex.com",
+					"text": "bitfinex.com",
+					"isLast": true
+				}
+			],
+			"title": "Bitfinex REST API Ticker BTCUSD plugin",
+			"version": "v1.0",
+			"author": "Roberto Santacroce Martins",
+			"authors": [
+				{
+					"name": "Roberto Santacroce Martins",
+					"githubUsername": "mileschet",
+					"imageURL": "https://avatars.githubusercontent.com/u/76659029?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows (Ask, Bid, Mid, High, Low, Volume and Timestamp from Bitfinex REST API Ticker BTCUSD ",
+			"imageURL": "http://i.imgur.com/V8dABjz.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:44.760249Z",
+			"vars": null
+		}
+	]
+}

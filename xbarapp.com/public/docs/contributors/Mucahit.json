@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Mucahit Tutuncu",
+		"githubUsername": "Mucahit",
+		"imageURL": "https://avatars.githubusercontent.com/u/5108459?v=4",
+		"bio": "Frontend Engineer, Maker",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/progress.1h.sh",
+					"filename": "progress.1h.sh",
+					"content": "#!/usr/bin/env bash\n\n# Progress Bar of Year, Month and Day: See the big picture.\n#\n# by Mucahit (http://github.com/mucahit)\n#\n# \u003cbitbar.title\u003eProgress Bar of Year, Month and Day\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMucahit\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eMucahit\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eProgress Bar of Year, Month and Day: See the big picture.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://user-images.githubusercontent.com/5108459/43047918-c946f6bc-8de7-11e8-940a-036f44087b92.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://gist.github.com/mucahit/0bd2ace80ded22328d0c638715a4911b\u003c/bitbar.abouturl\u003e\n\nwidth=20\nfill_char=\"▄\"\nempty_char=\"\"\n\nbitbar=\"size=14 color=white font='Avenir'\"\n\nnow=$(date +%s)\n\nY_start=$(date -j 01010000 +%s)\nY_end=$(date -jr \"$Y_start\" -v +1y +%s)\nY_progress=$(\n    echo \"($now - $Y_start) * 100 / ($Y_end - $Y_start)\" | bc -l\n)\n\nm_start=$(date -j \"$(date +%m)010000\" +%s)\nm_end=$(date -jr \"$m_start\" -v +1m +%s)\nm_progress=$(\n    echo \"($now - $m_start) * 100 / ($m_end - $m_start)\" | bc -l\n)\n\nd_start=$(date -j \"$(date +%m%d)0000\" +%s)\nd_end=$(date -jr \"$d_start\" -v +1d +%s)\nd_progress=$(\n    echo \"($now - $d_start) * 100 / ($d_end - $d_start)\" | bc -l\n)\n\nround() { printf %.0f \"$1\"; }\n\nprogress() {\n    filled=$(round \"$(echo \"$1 * $width / 100\" | bc -l)\")\n    empty=$((width - filled))\n    # repeat the characters using printf\n    printf \"$fill_char%0.s\" $(seq \"$filled\")\n    printf \"$empty_char%0.s\" $(seq \"$empty\")\n}\n\necho \"$(round \"$Y_progress\")%\"\necho ---\n\n# day + progress bar\necho \"Day: $(round \"$d_progress\")%   | $bitbar\"\necho \"$(progress \"$d_progress\")      | $bitbar\"\n\n# month + progress bar\necho \" | $bitbar\"\necho \"Month: $(round \"$m_progress\")%   | $bitbar\"\necho \"$(progress \"$m_progress\")        | $bitbar\"\n\n# year + progress bar\"\necho \" | $bitbar\"\necho \"Year: $(round \"$Y_progress\")%   | $bitbar\"\necho \"$(progress \"$Y_progress\")       | $bitbar\"\n"
+				}
+			],
+			"path": "Time/progress.1h.sh",
+			"filename": "progress.1h.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/progress.1h.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Progress Bar of Year, Month and Day",
+			"version": "v1.0",
+			"author": "Mucahit",
+			"authors": [
+				{
+					"name": "Mucahit Tutuncu",
+					"githubUsername": "Mucahit",
+					"imageURL": "https://avatars.githubusercontent.com/u/5108459?v=4",
+					"bio": "Frontend Engineer, Maker",
+					"primary": true
+				}
+			],
+			"desc": "Progress Bar of Year, Month and Day: See the big picture.",
+			"imageURL": "https://user-images.githubusercontent.com/5108459/43047918-c946f6bc-8de7-11e8-940a-036f44087b92.jpg",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "https://gist.github.com/mucahit/0bd2ace80ded22328d0c638715a4911b",
+			"lastUpdated": "2021-03-08T15:22:06.267366Z",
+			"vars": null
+		}
+	]
+}

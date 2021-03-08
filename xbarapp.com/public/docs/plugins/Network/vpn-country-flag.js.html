@@ -1,0 +1,361 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>VPN Country Flag in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='It shows the country flag corresponding to your IP Address (useful when using VPNs). - install xbar for free to get started.'>
+	<meta name='author' content='Miguel Laginha'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png'>
+	<meta itemprop='name' content='VPN Country Flag in your macOS menu bar'>
+	<meta itemprop='description' content='It shows the country flag corresponding to your IP Address (useful when using VPNs). - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='VPN Country Flag in your macOS menu bar'>
+	<meta name='twitter:description' content='It shows the country flag corresponding to your IP Address (useful when using VPNs). - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='VPN Country Flag in your macOS menu bar'>
+	<meta property='og:description' content='It shows the country flag corresponding to your IP Address (useful when using VPNs). - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Network/vpn-country-flag.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png'>
+	<link rel='shortcut icon' href='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>VPN Country Flag</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/brecke.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/19879?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/brecke.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Miguel Laginha (<code style='color:white;'>@brecke</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						It shows the country flag corresponding to your IP Address (useful when using VPNs).
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Network%2fvpn-country-flag.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png' 
+				alt='Image preview of VPN Country Flag plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>vpn-country-flag.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Network/vpn-country-flag.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/vpn-country-flag.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+/*
+    &lt;bitbar.title&gt;VPN Country Flag&lt;/bitbar.title&gt;
+    &lt;bitbar.version&gt;v0.1&lt;/bitbar.version&gt;
+    &lt;bitbar.author&gt;Miguel Laginha&lt;/bitbar.author&gt;
+    &lt;bitbar.author.github&gt;brecke&lt;/bitbar.author.github&gt;
+    &lt;bitbar.desc&gt;It shows the country flag corresponding to your IP Address (useful when using VPNs).&lt;/bitbar.desc&gt;
+    &lt;bitbar.image&gt;https://user-images.githubusercontent.com/19879/30689083-d8e4d2bc-9eb7-11e7-8d83-d45a9079c287.png&lt;/bitbar.image&gt;
+    &lt;bitbar.dependencies&gt;node&lt;/bitbar.dependencies&gt;
+    &lt;bitbar.abouturl&gt;https://github.com/brecke/bitbar-vpn-flag&lt;/bitbar.abouturl&gt;
+*/
+
+var ipapi = require(&#39;ipapi.co&#39;);
+var https = require(&#39;https&#39;);
+var flag = require(&#39;country-code-emoji&#39;).flag;
+
+var IPAddress;
+https.get(&#39;https://ipapi.co/ip/&#39;, function(resp) {
+    var body = &#39;&#39;;
+    resp.on(&#39;data&#39;, function(data) {
+        body &#43;= data;
+    });
+
+    resp.on(&#39;end&#39;, function() {
+		IPAddress = body;
+	
+		ipapi.location(function(country) {
+			console.log(flag(country)); 
+		}, IPAddress.toString(), &#39;&#39;, &#39;country&#39;);
+    });
+});
+
+
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

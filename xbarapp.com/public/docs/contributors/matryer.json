@@ -1,0 +1,746 @@
+{
+	"person": {
+		"name": "Mat Ryer",
+		"githubUsername": "matryer",
+		"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+		"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh",
+					"filename": "balance.1h.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Your Balance\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows your balance in BTC.  Be sure you add your API \u0026 account details.\u003c/bitbar.desc\u003e\n\nAPI_KEY=\"YOUR_API_KEY\"\nAPI_SECRET=\"YOUR_API_SECRET\"\nACCOUNT_ID=\"YOUR_ACCOUNT_ID\"\nAPI_VERSION=\"2017-08-07\" # You'll need to verify this in your Account Details\n\nREQUEST_METHOD=\"GET\"\nREQUEST_URL=\"https://api.coinbase.com\"\nREQUEST_PATH=\"/v2/accounts/${ACCOUNT_ID}\"\n\nTIMESTAMP=$(date +%s)\nSIGNATURE=$(echo -n \"${TIMESTAMP}${REQUEST_METHOD}${REQUEST_PATH}\" | openssl dgst -sha256 -hmac \"${API_SECRET}\")\n\nBTC_BALANCE=$(curl -s ${REQUEST_URL}${REQUEST_PATH} \\\n  --request ${REQUEST_METHOD} \\\n  --header \"CB-VERSION: ${API_VERSION}\" \\\n  --header \"CB-ACCESS-KEY: ${API_KEY}\" \\\n  --header \"CB-ACCESS-SIGN: ${SIGNATURE}\" \\\n  --header \"CB-ACCESS-TIMESTAMP: ${TIMESTAMP}\" | jq -r \".data.balance.amount\")\n\nLAST_BTC_RATE=$(cat ~/.bitbar_last_btc_rate)\nLAST_USD_BALANCE=$(cat ~/.bitbar_last_usd_balance)\n\nBTC_RATE=$(curl -s https://api.coinbase.com/v2/prices/BTC-USD/spot | jq -r '.data.amount')\nUSD_BALANCE=$(echo \"$BTC_BALANCE * $BTC_RATE\" | bc)\n\nDELTA_USD=$(printf \"%.2f\" \"$(echo \"$USD_BALANCE-${LAST_USD_BALANCE:-0}\" | bc)\")\nDELTA_BTC=$(printf \"%.2f\" \"$(echo \"$BTC_RATE-${LAST_BTC_RATE:-0}\" | bc)\")\n\nif [ \"$(echo \"$DELTA_BTC \u003e 0.00\" | bc)\" -eq \"1\" ]; then\n  HIDE_DELTA=0\n  CHG_SYMBOL=\"▲ \"\n  COLOR=green\nelif [ \"$(echo \"$DELTA_BTC \u003c 0.00\" | bc)\" -eq \"1\" ]; then\n  HIDE_DELTA=0\n  CHG_SYMBOL=\"▼ \"\n  COLOR=red\n  DELTA_BTC=${DELTA_BTC#-}\n  DELTA_USD=${DELTA_USD#-}\nelse\n  HIDE_DELTA=1\nfi\n\necho -n \"$BTC_RATE\" \u003e ~/.bitbar_last_btc_rate\necho -n \"$USD_BALANCE\" \u003e ~/.bitbar_last_usd_balance\n\nif [ \"$HIDE_DELTA\" -eq \"1\" ]; then\n  printf \"Ƀ%.2f\\n\" \"${BTC_RATE}\"\n  printf \"$%.2f\\n\" \"${USD_BALANCE}\"\nelse\n  printf \"Ƀ%.2f (${CHG_SYMBOL}%.2f) | color=$COLOR\\n\" \"${BTC_RATE}\" \"${DELTA_BTC}\"\n  printf \"$%.2f (${CHG_SYMBOL}%.2f) | color=$COLOR\\n\" \"${USD_BALANCE}\" \"${DELTA_USD}\"\nfi\necho \"---\"\nprintf \"Balance: %f (%.2f)\" \"${BTC_BALANCE}\" \"${USD_BALANCE}\"\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh",
+			"filename": "balance.1h.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Your Balance",
+			"version": "v1.1",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows your balance in BTC.  Be sure you add your API \u0026 account details.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.110128Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh",
+					"filename": "buy-and-sell.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy and Sell\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest Buy and Sell values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Buy: $\"; curl -s \"https://coinbase.com/api/v1/prices/buy?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\necho -n \"Sell: $\"; curl -s \"https://coinbase.com/api/v1/prices/sell?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh",
+			"filename": "buy-and-sell.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Buy and Sell",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest Buy and Sell values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.157433Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh",
+					"filename": "buy.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest buy values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Buy: $\"; curl -s \"https://coinbase.com/api/v1/prices/buy?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh",
+			"filename": "buy.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Buy",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest buy values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.161509Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh",
+					"filename": "sell.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest sell values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Sell: $\"; curl -s \"https://coinbase.com/api/v1/prices/sell?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh",
+			"filename": "sell.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Buy",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest sell values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.173378Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh",
+					"filename": "spotrate.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Spot rate\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest spot rate values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"BTC: $\"; curl -s \"https://coinbase.com/api/v1/prices/spot_rate?currency=USD\" | egrep -o '\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh",
+			"filename": "spotrate.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Spot rate",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest spot rate values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.175359Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/Battery/keyboard.1m.sh",
+					"filename": "keyboard.1m.sh",
+					"content": "#!/bin/sh\n\n# \u003cbitbar.title\u003eKeybard Battery\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n\nPERCENTAGE=$(ioreg -c AppleBluetoothHIDKeyboard | grep BatteryPercent | fgrep -v \\{ | sed 's/[^[:digit:]]//g')\n\nif [ \"$PERCENTAGE\" ]; then\n        echo \"Keyboard: $PERCENTAGE%\"\n#else\n#        echo \"without bluetooth keyboard?\"\nfi\n\n"
+				}
+			],
+			"path": "System/Battery/keyboard.1m.sh",
+			"filename": "keyboard.1m.sh",
+			"dir": "System/Battery",
+			"docsPlugin": "System/Battery/keyboard.1m.sh.html",
+			"docsCategory": "System/Battery.html",
+			"pathSegments": [
+				"System",
+				"Battery"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": false
+				},
+				{
+					"path": "System/Battery",
+					"text": "Battery",
+					"isLast": true
+				}
+			],
+			"title": "Keybard Battery",
+			"version": "",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:01.829481Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/Battery/trackpad.1m.sh",
+					"filename": "trackpad.1m.sh",
+					"content": "#!/bin/sh\n\n# \u003cbitbar.title\u003eTrackpad Battery\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nPERCENTAGE=$(ioreg -n BNBTrackpadDevice | fgrep BatteryPercent | fgrep -v \\{ | sed 's/[^[:digit:]]//g')\n\nif [ \"$PERCENTAGE\" ]; then\n        echo \"Trackpad: $PERCENTAGE%\"\nfi\n"
+				}
+			],
+			"path": "System/Battery/trackpad.1m.sh",
+			"filename": "trackpad.1m.sh",
+			"dir": "System/Battery",
+			"docsPlugin": "System/Battery/trackpad.1m.sh.html",
+			"docsCategory": "System/Battery.html",
+			"pathSegments": [
+				"System",
+				"Battery"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": false
+				},
+				{
+					"path": "System/Battery",
+					"text": "Battery",
+					"isLast": true
+				}
+			],
+			"title": "Trackpad Battery",
+			"version": "1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:01.987377Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Time/unixtime.5s.sh",
+					"filename": "unixtime.5s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eUnix Time\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays unix time.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/h2cyuYu.png\u003c/bitbar.image\u003e\n\ndate +%s\n"
+				}
+			],
+			"path": "Time/unixtime.5s.sh",
+			"filename": "unixtime.5s.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/unixtime.5s.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Unix Time",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Displays unix time.",
+			"imageURL": "http://i.imgur.com/h2cyuYu.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.71329Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/real-cpu-usage.10s.sh",
+					"filename": "real-cpu-usage.10s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eReal CPU Usage\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer and Tyler Bunnell\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCalcualtes and displays real CPU usage stats.\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nif [ \"$1\" == \"activitymonitor\" ]; then\n\topen -a \"Activity Monitor\"\n\texit\nfi\n\nIDLE=$(top -F -R -l3 | grep \"CPU usage\" | tail -1 | egrep -o '[0-9]{0,3}\\.[0-9]{0,2}% idle' | sed 's/% idle//')\n\nUSED=$(echo 100 - \"$IDLE\" | bc)\n\necho \"CPU: $USED%\"\necho \"---\"\necho \"Open Activity Monitor| bash='$0' param1=activitymonitor terminal=false\"\n"
+				}
+			],
+			"path": "System/real-cpu-usage.10s.sh",
+			"filename": "real-cpu-usage.10s.sh",
+			"dir": "System",
+			"docsPlugin": "System/real-cpu-usage.10s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Real CPU Usage",
+			"version": "1.0",
+			"author": "Mat Ryer and Tyler Bunnell",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Calcualtes and displays real CPU usage stats.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:04.402703Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/tail.5s.sh",
+					"filename": "tail.5s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003etail\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTails a text file. Perfect for tailing logs in the menu bar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/101659/12247623/b65b6f1e-b8ac-11e5-8ec2-6d9d885bfb6f.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/Dev/Logs/tail.5s.sh\u003c/bitbar.abouturl\u003e\n\n# \u003cxbar.var\u003estring(VAR_FILE=\"\"): The file to tail.\u003c/xbar.var\u003e\n# \u003cxbar.var\u003enumber(VAR_LINES=15): The number of lines to show.\u003c/xbar.var\u003e\n\n# If you're using xbar, use the app to install this and set the preferences\n# in the UI.\n\n# For old BitBar builds, set the values by uncommenting these lines:\n# VAR_FILE=/path/to/file\n# VAR_LINES=15\n\necho -n \"↧ \"\nbasename \"$VAR_FILE\"\necho ---\ntail -n \"$VAR_LINES\" \"$VAR_FILE\"\n"
+				}
+			],
+			"path": "Dev/tail.5s.sh",
+			"filename": "tail.5s.sh",
+			"dir": "Dev",
+			"docsPlugin": "Dev/tail.5s.sh.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "tail",
+			"version": "v2.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Tails a text file. Perfect for tailing logs in the menu bar.",
+			"imageURL": "https://cloud.githubusercontent.com/assets/101659/12247623/b65b6f1e-b8ac-11e5-8ec2-6d9d885bfb6f.png",
+			"dependencies": [],
+			"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/Dev/Logs/tail.5s.sh",
+			"lastUpdated": "2021-03-08T15:21:52.285698Z",
+			"vars": [
+				{
+					"type": "string",
+					"name": "VAR_FILE",
+					"default": "",
+					"desc": "The file to tail.",
+					"options": null
+				},
+				{
+					"type": "number",
+					"name": "VAR_LINES",
+					"default": "15",
+					"desc": "The number of lines to show.",
+					"options": null
+				}
+			]
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Tutorial/alternate_options.sh",
+					"filename": "alternate_options.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eAlternate Options Tutorial\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/EDYR52G.png\u003c/bitbar.image\u003e\n# \u003cbitbar.desc\u003eExample of how to include alternate items that replace the one before it when the Option key is pressed.\u003c/bitbar.desc\u003e\necho \"Hello\"\necho \"Option key is pressed | alternate=true\"\n\necho \"Another\""
+				}
+			],
+			"path": "Dev/Tutorial/alternate_options.sh",
+			"filename": "alternate_options.sh",
+			"dir": "Dev/Tutorial",
+			"docsPlugin": "Dev/Tutorial/alternate_options.sh.html",
+			"docsCategory": "Dev/Tutorial.html",
+			"pathSegments": [
+				"Dev",
+				"Tutorial"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Tutorial",
+					"text": "Tutorial",
+					"isLast": true
+				}
+			],
+			"title": "Alternate Options Tutorial",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Example of how to include alternate items that replace the one before it when the Option key is pressed.",
+			"imageURL": "http://i.imgur.com/EDYR52G.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:50.23042Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Tutorial/cycle_text_and_detail.sh",
+					"filename": "cycle_text_and_detail.sh",
+					"content": "#!/bin/bash\n\n#\n# Include BitBar metadata like this at the top of the file\n# (commented out, of course):\n#\n# \u003cbitbar.title\u003eCycle text and detail text\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample of how to include items that cycle in the top, and items that only appear in the dropdown.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://camo.githubusercontent.com/5cec3248a9fc4eede235ead682a65f977577f670/68747470733a2f2f7261772e6769746875622e636f6d2f6d6174727965722f6269746261722f6d61737465722f446f63732f4269744261722d4578616d706c652d4d656e752e706e67\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh\u003c/bitbar.abouturl\u003e\n#\n# Text above --- will be cycled through in the menu bar,\n# whereas text underneath will be visible only when you\n# open the menu.\n#\n\necho one\necho two\necho three\necho ---\necho These lines are only visible\necho when you open the menu.\n"
+				}
+			],
+			"path": "Dev/Tutorial/cycle_text_and_detail.sh",
+			"filename": "cycle_text_and_detail.sh",
+			"dir": "Dev/Tutorial",
+			"docsPlugin": "Dev/Tutorial/cycle_text_and_detail.sh.html",
+			"docsCategory": "Dev/Tutorial.html",
+			"pathSegments": [
+				"Dev",
+				"Tutorial"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Tutorial",
+					"text": "Tutorial",
+					"isLast": true
+				}
+			],
+			"title": "Cycle text and detail text",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Example of how to include items that cycle in the top, and items that only appear in the dropdown.",
+			"imageURL": "https://camo.githubusercontent.com/5cec3248a9fc4eede235ead682a65f977577f670/68747470733a2f2f7261772e6769746875622e636f6d2f6d6174727965722f6269746261722f6d61737465722f446f63732f4269744261722d4578616d706c652d4d656e752e706e67",
+			"dependencies": null,
+			"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/Tutorial/cycle_text_and_detail.sh",
+			"lastUpdated": "2021-03-08T15:21:50.262482Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Tutorial/is_bitbar.sh",
+					"filename": "is_bitbar.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eIs BitBar?\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer and Tyler Bunnell\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample script showing use of $BITBAR environment variable\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/TcZJI06.png\u003c/bitbar.image\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n#\n# Example script showing how to let your scripts determine\n# whether they are expected to deliver BitBar output or not.\n#\n# Put this script in your BitBar plugins folder and notice\n# it says \"In BitBar\", but run it directly in Terminal, and it\n# says \"In Terminal\".\nBitBar=${BitBar}\n\nif [ \"$BitBar\" ]; then\n  # this script is being called from within\n  # BitBar.\n  echo \"In BitBar\"\nelse\n  # this script is being called from within\n  # Terminal.\n  echo \"In Terminal\"\nfi\n"
+				}
+			],
+			"path": "Dev/Tutorial/is_bitbar.sh",
+			"filename": "is_bitbar.sh",
+			"dir": "Dev/Tutorial",
+			"docsPlugin": "Dev/Tutorial/is_bitbar.sh.html",
+			"docsCategory": "Dev/Tutorial.html",
+			"pathSegments": [
+				"Dev",
+				"Tutorial"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Tutorial",
+					"text": "Tutorial",
+					"isLast": true
+				}
+			],
+			"title": "Is BitBar?",
+			"version": "1.0",
+			"author": "Mat Ryer and Tyler Bunnell",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Example script showing use of $BITBAR environment variable",
+			"imageURL": "https://i.imgur.com/TcZJI06.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:50.483639Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Network/external-ip.1h.sh",
+					"filename": "external-ip.1h.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eexternal-ip\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGets the current external IP address.\u003c/bitbar.desc\u003e\n\nEXTERNAL_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)\n\nif [ \"$1\" = \"copy\" ]; then\n  # Copy the IP to clipboard\n  echo -n \"$EXTERNAL_IP\" | pbcopy\nfi\n\necho \"$EXTERNAL_IP\"\necho \"---\"\necho \"(External IP address)\"\necho \"Copy IP | terminal=false bash='$0' param1=copy\"\n"
+				}
+			],
+			"path": "Network/external-ip.1h.sh",
+			"filename": "external-ip.1h.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/external-ip.1h.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "external-ip",
+			"version": "",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Gets the current external IP address.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:58.825233Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Network/internal-ip.1h.sh",
+					"filename": "internal-ip.1h.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003einternal-ip\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGets the current internal IP address, and shows more information in the details.\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nifconfig | grep -e \"^en\" | sort -u | while read line ; do\n    ACTIVE_ADAPTER=$(echo $line | awk -F: '{print $1}')\n    INTERNAL_IP_ADDRESS=$(ifconfig $ACTIVE_ADAPTER | grep \"inet \" | awk '{print $2}')\n    if [ -n \"$INTERNAL_IP_ADDRESS\" ]; then\n        echo $INTERNAL_IP_ADDRESS\n        echo \"---\"\n        echo \"(Internal IP address)\"\n        echo \"---\"\n        ifconfig ${ACTIVE_ADAPTER}\n\n        break\n    fi\ndone\n"
+				}
+			],
+			"path": "Network/internal-ip.1h.sh",
+			"filename": "internal-ip.1h.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/internal-ip.1h.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "internal-ip",
+			"version": "1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Gets the current internal IP address, and shows more information in the details.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:58.905298Z",
+			"vars": null
+		}
+	]
+}

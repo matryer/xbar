@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Music/vox.30s.sh",
+				"filename": "vox.30s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eVox\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eDaniel Kay\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejessor\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGet current track info from Vox status with play/pause button\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/480451/12141683/ee53ea2a-b471-11e5-8429-ada2ef579883.png\u003c/bitbar.image\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n#\n# Get current Vox status with play/pause button\n#\n# by Daniel Kay (daniel@enthusiasm.cc)\n# inspired by Jason Tokoph (jason@tokoph.net)\n#\n# Shows current track information from vox\n\nif [ \"$1\" = 'launch' ]; then\n  osascript -e 'tell application \"Vox\" to activate'\n  exit\nfi\n\nif [ \"$(osascript -e 'application \"Vox\" is running')\" = \"false\" ]; then\n  echo \"♫\"\n  echo \"---\"\n  echo \"Vox is not running\"\n  echo \"Launch Vox| bash='$0' param1=launch terminal=false\"\n  exit\nfi\n\nif [ \"$1\" = 'playpause' ]; then\n  osascript -e 'tell application \"Vox\" to playpause'\n  exit\nfi\n\nstate=$(osascript -e 'tell application \"Vox\" to set state to player state');\n\nif [ \"$state\" = \"1\" ]; then\n  state_icon=\"🎵\"\nelse\n  state_icon=\"⚫\"\nfi\n\ntrack=$(osascript -e 'tell application \"Vox\" to set trackname to track');\ntrack=${track//|/-}\nartist=$(osascript -e 'tell application \"Vox\" to set artistname to artist');\nalbum=$(osascript -e 'tell application \"Vox\" to set albumname to album');\ntrackURL=$(osascript -e 'tell application \"Vox\" to set state to trackURL');\n\nif [[ $trackURL =~ soundcloud ]]\nthen\n    echo \"$state_icon $track\"\nelse\n    echo \"$state_icon $artist - $track [$album]\"\nfi\n\necho \"---\"\n\ncase \"$0\" in\n  *\\ * )\n   echo \"Your script path | color=#ff0000\"\n   echo \"($0) | color=#ff0000\"\n   echo \"has a space in it, which BitBar does not support. | color=#ff0000\"\n   echo \"Play/Pause/Next/Previous buttons will not work. | color=#ff0000\"\n  ;;\nesac\n\nif [ \"$state\" = \"1\" ]; then\n  echo \"❚❚ Pause | bash='$0' param1=playpause terminal=false\"\nelse\n  echo \"▶ Play | bash='$0' param1=playpause terminal=false\"\nfi\n"
+			}
+		],
+		"path": "Music/vox.30s.sh",
+		"filename": "vox.30s.sh",
+		"dir": "Music",
+		"docsPlugin": "Music/vox.30s.sh.html",
+		"docsCategory": "Music.html",
+		"pathSegments": [
+			"Music"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Music",
+				"text": "Music",
+				"isLast": true
+			}
+		],
+		"title": "Vox",
+		"version": "1.0",
+		"author": "Daniel Kay",
+		"authors": [
+			{
+				"name": "Daniel Kay",
+				"githubUsername": "jessor",
+				"imageURL": "https://avatars.githubusercontent.com/u/480451?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Get current track info from Vox status with play/pause button",
+		"imageURL": "https://cloud.githubusercontent.com/assets/480451/12141683/ee53ea2a-b471-11e5-8429-ada2ef579883.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.028851Z",
+		"vars": null
+	}
+}

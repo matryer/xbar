@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/external-ip-1.0.1h.sh",
+				"filename": "external-ip-1.0.1h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMy External IP\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCodinCafe\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecodincafe\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will show your current external / public IP and allow you to copy the same to clipboard\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/Ar1JABA.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ecurl\u003c/bitbar.dependencies\u003e\n\necho \"🌎\"\necho '---' \n\nif [ $(curl -LI http://google.com -o /dev/null -w '%{http_code}\\n' -s) == \"200\" ]; then\n    OUTPUT=$(curl -s https://ipinfo.io/ip)\n    result_string=\"$OUTPUT | bash='/bin/bash' param1='-c' param2='/bin/echo $OUTPUT | pbcopy' terminal=false\";\nelse\n    result_string=\"No Internet Connection\"\nfi\n\necho \"$result_string\"\necho ---\necho \"Refresh... | refresh=true\"\n"
+			}
+		],
+		"path": "Network/external-ip-1.0.1h.sh",
+		"filename": "external-ip-1.0.1h.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/external-ip-1.0.1h.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "My External IP",
+		"version": "v1.0",
+		"author": "CodinCafe",
+		"authors": [
+			{
+				"name": "CodinCafe",
+				"githubUsername": "codincafe",
+				"imageURL": "https://avatars.githubusercontent.com/u/3754089?v=4",
+				"bio": "Caffeine for your coding thoughts",
+				"primary": true
+			}
+		],
+		"desc": "This plugin will show your current external / public IP and allow you to copy the same to clipboard",
+		"imageURL": "https://i.imgur.com/Ar1JABA.png",
+		"dependencies": [
+			"curl"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.815234Z",
+		"vars": null
+	}
+}

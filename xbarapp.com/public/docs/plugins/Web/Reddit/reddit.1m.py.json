@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Web/Reddit/reddit.1m.py",
+				"filename": "reddit.1m.py",
+				"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eReddit\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Reddit for Mac\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/zUHPCvq.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\n\n# encoding=utf8\nimport sys\nreload(sys)\nsys.setdefaultencoding('utf8')\n\nimport json\nimport urllib2\nreddit0 = \"https://www.reddit.com\"\nreddit1 = [\n  [\"All\", \"https://www.reddit.com/r/all\", \"\"],\n  [\"Hour\", \"https://www.reddit.com/r/all/top/\", \"?sort=top\u0026t=hour\"],\n  [\"News\", \"https://www.reddit.com/r/news+worldnews+politics\", \"\"],\n]\nicons = {\n  \"bayarea\": \"🇺🇸\",\n  \"news\": \"📰\",\n  \"worldnews\": \"🌎\"\n}\n\nprint (\"🐈\")\nprint (\"---\")\n\nfor r1 in reddit1:\n  print (r1[0])\n  request = urllib2.Request(r1[1] + \".json\" + r1[2], headers={\n    \"User-Agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36\",\n    \"Pragma\": \"no-cache\"\n  })\n  jsonUrl = urllib2.urlopen(request).read()\n  jsonRet = json.loads(jsonUrl)\n  for j in jsonRet['data']['children']:\n    child = j['data']\n    line = child['title']\n    color = \"\"\n    if child['quarantine'] or child['over_18']:\n      line = \"(NSFW) \" + line\n      color = \" color=#EEEEEE\"\n    lim=75\n    w=0\n    l = []\n    sr = child['permalink'].split(\"/\")[2].lower()\n    i = \"\"\n    if sr in icons: i = icons[sr] + \" \"\n    for d in line.split():\n      if w + len(d) + 1 \u003c= lim:\n        l.append(d)\n        w += len(d) + 1\n      else:\n        print (\"--\" + i + \" \".join(l) + \" | href=\" + child['url'] + \" trim=false size=11\" + color)\n        i = \"\"\n        l = [d]\n        w = len(d)\n    if (len(l)):\n      print (\"--\" + i + \" \".join(l) + \" | href=\" + child['url'] + \" trim=false size=11\" + color)\n    print (\"--          [\" + sr + \"] \" + \"Score: \" + str(child['score']) + \", Comments: \" + str(child['num_comments']) + \" | href=\" + reddit0 + child['permalink'] + \" trim=false size=9\" + color)\n    print (\"--          | trim=false size=4\")\nprint (\"---\")\nprint (\"Refresh... | refresh=true\")\n"
+			}
+		],
+		"path": "Web/Reddit/reddit.1m.py",
+		"filename": "reddit.1m.py",
+		"dir": "Web/Reddit",
+		"docsPlugin": "Web/Reddit/reddit.1m.py.html",
+		"docsCategory": "Web/Reddit.html",
+		"pathSegments": [
+			"Web",
+			"Reddit"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Web",
+				"text": "Web",
+				"isLast": false
+			},
+			{
+				"path": "Web/Reddit",
+				"text": "Reddit",
+				"isLast": true
+			}
+		],
+		"title": "Reddit",
+		"version": "v1.0",
+		"author": "Parvez",
+		"authors": [
+			{
+				"name": "Parvez",
+				"githubUsername": "parvez",
+				"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays Reddit for Mac",
+		"imageURL": "http://i.imgur.com/zUHPCvq.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "https://github.com/parvez/bitbar-plugins",
+		"lastUpdated": "2021-03-08T15:22:09.035313Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,762 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Google Calendar in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal - install xbar for free to get started.'>
+	<meta name='author' content='Kodie Grantham'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'>
+	<meta itemprop='name' content='Google Calendar in your macOS menu bar'>
+	<meta itemprop='description' content='Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Google Calendar in your macOS menu bar'>
+	<meta name='twitter:description' content='Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Google Calendar in your macOS menu bar'>
+	<meta property='og:description' content='Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Time/googlecal.30m.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Google Calendar</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/kodie.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/603949?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/kodie.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Kodie Grantham (<code style='color:white;'>@kodie</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Time%2fgooglecal.30m.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png' 
+				alt='Image preview of Google Calendar plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>googlecal.30m.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Time/googlecal.30m.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Time/googlecal.30m.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+/* jshint esversion: 6, loopfunc: true */
+
+/*
+&lt;bitbar.title&gt;Google Calendar&lt;/bitbar.title&gt;
+&lt;bitbar.version&gt;v1.2.0&lt;/bitbar.version&gt;
+&lt;bitbar.author&gt;Kodie Grantham&lt;/bitbar.author&gt;
+&lt;bitbar.author.github&gt;kodie&lt;/bitbar.author.github&gt;
+&lt;bitbar.desc&gt;Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal&lt;/bitbar.desc&gt;
+&lt;bitbar.image&gt;https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png&lt;/bitbar.image&gt;
+&lt;bitbar.dependencies&gt;node, npm&lt;/bitbar.dependencies&gt;
+&lt;bitbar.dependencies.npm&gt;npm/home-config, npm/googleapis, npm/@hapi/hapi, npm/moment, npm/open&lt;/bitbar.dependencies.npm&gt;
+&lt;bitbar.abouturl&gt;https://github.com/kodie/bitbar-googlecal&lt;/bitbar.abouturl&gt;
+*/
+
+var ver = &#39;1.2.1&#39;;
+
+var defaults = {
+  clientId: &#39;529707498278-prhql6kn67hevctqkt0qkgeha51bdhv7.apps.googleusercontent.com&#39;,
+  clientSecret: &#39;TokBYwcOxjSFfxUPk2cxkuyS&#39;,
+  clientRedirect: &#39;http://localhost:3000&#39;,
+  calendarId: &#39;primary&#39;,
+  dateColor: false,
+  dateFont: false,
+  dateFormat: &#39;dddd M/D&#39;,
+  dateSize: 12,
+  days: 7,
+  eventColor: false,
+  eventFont: false,
+  eventLength: 80,
+  eventSize: false,
+  expandEvents: true,
+  limit: 25,
+  showAllOfFirstDay: true,
+  showEmptyDays: false,
+  serverHost: &#39;localhost&#39;,
+  serverPort: 3000,
+  startDate: Date.now(),
+  textToday: &#39; (Today)&#39;,
+  textTomorrow: &#39; (Tomorrow)&#39;,
+  timeFormat: &#39;h:mma&#39;,
+  tokenFile: &#39;.googlecal.json&#39;
+};
+
+if (process.env.BitBar) {
+  var icon = &#39;iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAABD/WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEw&#39; &#43;
+  &#39;OjIwICAgICAgICAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1s&#39; &#43;
+  &#39;bnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iCiAgICAgICAgICAgIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiCiAgICAgICAgICAgIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIgogICAgICAgICAgICB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhv&#39; &#43;
+  &#39;dG9zaG9wLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyI&#43;CiAgICAgICAgIDx4bXA6Q3JlYXRlRGF0ZT4yMDE2LTAyLTI3VDA4OjQ1OjQwWjwveG1wOkNyZWF0ZURhdGU&#43;CiAgICAgICAgIDx4bXA6TW9kaWZ5RGF0ZT4yMDE3LTAyLTIxVDE0OjQ4OjQ4LTA2OjAwPC94bXA6&#39; &#43;
+  &#39;TW9kaWZ5RGF0ZT4KICAgICAgICAgPHhtcDpNZXRhZGF0YURhdGU&#43;MjAxNy0wMi0yMVQxNDo0ODo0OC0wNjowMDwveG1wOk1ldGFkYXRhRGF0ZT4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKTwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3BuZzwvZGM6Zm9ybWF0PgogICAgICAgICA8eG1wTU06SGlzdG9yeT4KICAgICAgICAgICAg&#39; &#43;
+  &#39;PHJkZjpTZXE&#43;CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPmNvbnZlcnRlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6cGFyYW1ldGVycz5mcm9tIGltYWdlL3BuZyB0byBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wPC9zdEV2dDpwYXJhbWV0ZXJzPgogICAgICAgICAgICAgICA8L3JkZjps&#39; &#43;
+  &#39;aT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI&#43;CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24&#43;c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ&#43;eG1wLmlpZDozRTNFRTE5RTBCMjA2ODExODIyQUM1MTg3MTkxRkQ2Qzwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4&#43;MjAxNi0wMi0yN1Qx&#39; &#43;
+  &#39;MzoxNTo1NiswNDowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmNoYW5nZWQ&#43;Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPmNvbnZlcnRlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6cGFyYW1ldGVy&#39; &#43;
+  &#39;cz5mcm9tIGltYWdlL3BuZyB0byBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wPC9zdEV2dDpwYXJhbWV0ZXJzPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI&#43;CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24&#43;c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ&#43;eG1wLmlpZDoz&#39; &#43;
+  &#39;RjNFRTE5RTBCMjA2ODExODIyQUM1MTg3MTkxRkQ2Qzwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4&#43;MjAxNi0wMi0yN1QxMzoxNTo1NiswNDowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmNoYW5nZWQ&#43;Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2Ui&#39; &#43;
+  &#39;PgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDphY3Rpb24&#43;CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6ZDVlNDdmMzItMTk5YS00Mzc5LWEwMDEtMjYzODFlMTEzOWI3PC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6d2hlbj4yMDE2LTAyLTI3VDEzOjMxOjIxKzA0OjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8&#39; &#43;
+  &#39;c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoTWFjaW50b3NoKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmNoYW5nZWQ&#43;Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPmNvbnZlcnRl&#39; &#43;
+  &#39;ZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6cGFyYW1ldGVycz5mcm9tIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3Nob3AgdG8gaW1hZ2UvcG5nPC9zdEV2dDpwYXJhbWV0ZXJzPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI&#43;CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24&#43;ZGVyaXZlZDwvc3RFdnQ6&#39; &#43;
+  &#39;YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6cGFyYW1ldGVycz5jb252ZXJ0ZWQgZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZzwvc3RFdnQ6cGFyYW1ldGVycz4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDph&#39; &#43;
+  &#39;Y3Rpb24&#43;CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6ZDAyY2E5NTUtM2IyYy00MTIyLTkzZTAtOTJmZDI2YzY4ZTdlPC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6d2hlbj4yMDE2LTAyLTI3VDEzOjMxOjIxKzA0OjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoTWFj&#39; &#43;
+  &#39;aW50b3NoKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmNoYW5nZWQ&#43;Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDphY3Rpb24&#43;CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlE&#39; &#43;
+  &#39;PnhtcC5paWQ6MDU2OTA0MWQtNzJmNy00MjFkLTgyZGMtMTAzNGIxZWE4NjE4PC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6d2hlbj4yMDE3LTAyLTIxVDE0OjQ4OjQ4LTA2OjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoTWFjaW50b3NoKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgPHN0RXZ0OmNoYW5nZWQ&#43;Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgICAgICAgICAgIDwvcmRmOlNlcT4KICAgICAgICAgPC94bXBNTTpIaXN0b3J5PgogICAgICAgICA8eG1wTU06RGVyaXZlZEZyb20gcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICA8c3RSZWY6aW5zdGFuY2VJRD54bXAuaWlkOmQ1ZTQ3ZjMyLTE5OWEtNDM3OS1hMDAxLTI2MzgxZTExMzliNzwv&#39; &#43;
+  &#39;c3RSZWY6aW5zdGFuY2VJRD4KICAgICAgICAgICAgPHN0UmVmOmRvY3VtZW50SUQ&#43;eG1wLmRpZDozRTNFRTE5RTBCMjA2ODExODIyQUM1MTg3MTkxRkQ2Qzwvc3RSZWY6ZG9jdW1lbnRJRD4KICAgICAgICAgICAgPHN0UmVmOm9yaWdpbmFsRG9jdW1lbnRJRD54bXAuZGlkOjNFM0VFMTlFMEIyMDY4MTE4MjJBQzUxODcxOTFGRDZDPC9zdFJlZjpvcmlnaW5hbERvY3VtZW50SUQ&#43;CiAgICAgICAgIDwveG1wTU06RGVyaXZlZEZyb20&#43;&#39; &#43;
+  &#39;CiAgICAgICAgIDx4bXBNTTpEb2N1bWVudElEPmFkb2JlOmRvY2lkOnBob3Rvc2hvcDo4NzMxODkyMC0zOTA1LTExN2EtOTlkNS1kZjA0MGM5YWI5NTg8L3htcE1NOkRvY3VtZW50SUQ&#43;CiAgICAgICAgIDx4bXBNTTpJbnN0YW5jZUlEPnhtcC5paWQ6MDU2OTA0MWQtNzJmNy00MjFkLTgyZGMtMTAzNGIxZWE4NjE4PC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06T3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6M0Uz&#39; &#43;
+  &#39;RUUxOUUwQjIwNjgxMTgyMkFDNTE4NzE5MUZENkM8L3htcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgPHBob3Rvc2hvcDpDb2xvck1vZGU&#43;MzwvcGhvdG9zaG9wOkNvbG9yTW9kZT4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24&#43;MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24&#43;MTQ0MDAwMC8xMDAwMDwvdGlmZjpYUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6WVJlc29sdXRp&#39; &#43;
+  &#39;b24&#43;MTQ0MDAwMC8xMDAwMDwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6UmVzb2x1dGlvblVuaXQ&#43;MjwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICAgICAgICAgPGV4aWY6Q29sb3JTcGFjZT42NTUzNTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24&#43;MzI8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24&#43;MzI8L2V4aWY6UGl4ZWxZ&#39; &#43;
+  &#39;RGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAK&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0idyI/PlQH85QAAAAgY0hSTQAAeiUAAICD&#39; &#43;
+  &#39;AAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAc5JREFUeNrsl7FOAkEQhr9biSaEi5hYaaUliYWND2DrS/gCVlZ21iTSUVvyBD4EsTDB0GostAUPQpREzmYuGZbdYyV3WOifbPaY2X93bvef2QPy0QBepDUIx6q8BTSBVFqzDF5F&#43;jpwDBj5/Qw8AVM1Nns&#43;BA4884XyZsADMAQ4BQYq4hRoycBrZbsWW8sauypvAJwaoCM7oDHO2bWifHWgY4Bdx&#43;AP6beVbdvyUQBv1wATh2NL&#43;p6y9SwfBfAmAInjLPtq0IW0DP0cDfyUl/gCSIG2&#39; &#43;
+  &#39;I&#43;J2zuKr8JJIAog9W/oI3MnzGXAUWAdCeaNlAZSNkeGXUbEq1o1VxcrAJnApPVqEwzW&#43;&#43;DATod4BI1oYARFQ81SzVHJ60/JNgc8AbqzunLkd0GKsAa9iy9qrmvjK8iViC&#43;HGes2KZ4sMsGfZdOQ7jszZCeQuLORCKkcxlzJix1O&#43;J4HcoAAixxvGYgeoOjjVQK43DTVmwJs10UjsyF1uv&#43;UgkLsAlwjLxJwIf70S&#43;gIoMw2DNPCfhn8zDd/XKP53fRcYSzzZeY092RHJeX9Zvg05hmVcLUgTKXGkS/5YFIma1kQ34Eu3rNaNgH3gFjjJyYqi&#39; &#43;
+  &#39;MQPugfPvAQDFEQJT9lX76gAAAABJRU5ErkJggg==&#39;;
+
+  console.log(` | dropdown=false templateImage=${icon}`);
+  console.log(&#39;---&#39;);
+}
+
+var npmDeps = &#39;home-config@0.1.0 googleapis@44 @hapi/hapi@18.4.0 moment@2.24.0 open@7.0.0&#39;;
+var dirHome = (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE);
+var dirPlugins = process.argv[1].split(&#39;/&#39;).slice(0, -1).join(&#39;/&#39;);
+
+try {
+  var cfg = Object.assign({}, defaults, require(&#39;home-config&#39;).load(&#39;.bitbarrc&#39;).googlecal);
+  var fs = require(&#39;fs&#39;);
+  var { google } = require(&#39;googleapis&#39;);
+  var Hapi = require(&#39;@hapi/hapi&#39;);
+  var moment = require(&#39;moment&#39;);
+  var open = require(&#39;open&#39;);
+
+  var oauth2Client = new google.auth.OAuth2(cfg.clientId, cfg.clientSecret, cfg.clientRedirect);
+} catch(e) {
+  if (process.env.BitBar) {
+    console.log(`Run Installation | bash=&#34;cd ${dirPlugins} &amp;&amp; npm install ${npmDeps} &amp;&amp; rm package-lock.json || true &amp;&amp; node ${process.argv[1]} getNewToken&#34;`);
+    footer();
+  } else {
+    console.log(e);
+  }
+  process.exit(1);
+}
+
+cfg.tokenFile = cfg.tokenFile.replace(&#39;~&#39;, dirHome);
+if (cfg.tokenFile.indexOf(&#39;/&#39;) &lt; 0) { cfg.tokenFile = dirPlugins &#43; &#39;/&#39; &#43; cfg.tokenFile; }
+
+function refresh() {
+  open(&#39;bitbar://refreshPlugin?name=googlecal.*?.js&#39;);
+}
+
+function getNewToken() {
+  var authUrl = oauth2Client.generateAuthUrl({
+    access_type: &#39;offline&#39;,
+    scope: [&#39;https://www.googleapis.com/auth/calendar.readonly&#39;]
+  });
+
+  open(authUrl);
+
+  console.log(&#39;&#39;);
+  console.log(&#39;If your browser did not do so automatically, please visit the following URL:&#39;);
+  console.log(authUrl);
+  console.log(&#39;&#39;);
+
+  var server = new Hapi.server({
+    port: cfg.serverPort,
+    host: cfg.serverHost,
+  });
+
+  server.route({
+    method: &#39;GET&#39;,
+    path: &#39;/&#39;,
+    handler: function(request, h) {
+      var code = request.query.code;
+
+      return new Promise((resolve) =&gt; {
+        oauth2Client.getToken(code, function(error, token) {
+          if (!error) {
+            fs.writeFileSync(cfg.tokenFile, JSON.stringify(token));
+            refresh();
+            msg = &#39;We\&#39;re all done here! You may now close this window.&#39;;
+          } else {
+            msg = &#39;An error occured while trying to get your authorization code: &#39; &#43; error.message;
+          }
+  
+          server.stop({ timeout: 2000 });
+          console.log(msg);
+          resolve(msg);
+        });
+      });
+    }
+  });
+
+  server.start(function(error) {
+    if (error) {
+      console.log(&#39;An error occured while trying to start the server: &#39; &#43; error.message);
+      process.exit(1);
+    } else {
+      console.log(&#39;Server running at &#39; &#43; server.info.uri);
+      console.log(&#39;Waiting for authorization...&#39;);
+    }
+  });
+}
+
+function refreshToken(oauth2Client, cb) {
+  oauth2Client.refreshAccessToken(function(error, token) {
+    if (!error) {
+      oauth2Client.credentials = Object.assign({}, oauth2Client.credentials, token);
+
+      fs.writeFile(cfg.tokenFile, JSON.stringify(oauth2Client.credentials), function(error, data) {
+        if (!error) {
+          cb(oauth2Client);
+        } else {
+          footer([error.message]);
+          process.exit(1);
+        }
+      });
+    } else {
+      footer([error.message]);
+      process.exit(1);
+    }
+  });
+}
+
+function listEvents(oauth2Client) {
+  var calendar = google.calendar({ version: &#39;v3&#39;, auth: oauth2Client });
+  var processedCalendars = 0;
+  var today = moment().format(&#39;L&#39;);
+  var tomorrow = moment().add(1, &#39;days&#39;).format(&#39;L&#39;);
+  var start = moment(new Date(cfg.startDate));
+  var dateLimit, evnts = {}, errors = [];
+
+  if (!(cfg.calendarId instanceof Array)) {
+    cfg.calendarId = cfg.calendarId.split(&#39;,&#39;);
+  }
+
+  if (cfg.days) {
+    dateLimit = moment(start).add((cfg.days - 1), &#39;days&#39;).format(&#39;L&#39;);
+
+    if (cfg.showEmptyDays) {
+      for (var x = 0; x &lt; cfg.days; x&#43;&#43;) {
+        evnts[moment(start).add(x, &#39;days&#39;).format(&#39;L&#39;)] = [];
+      }
+    }
+  }
+
+  for (var i = 0; i &lt; cfg.calendarId.length; i&#43;&#43;) {
+    calendar.events.list({
+      calendarId: cfg.calendarId[i],
+      timeMin: (cfg.showAllOfFirstDay ? (new Date(moment(start).format(&#39;L&#39;))) : (new Date(moment(start)))).toISOString(),
+      maxResults: cfg.limit,
+      singleEvents: true,
+      orderBy: &#39;startTime&#39;
+    }, function(error, response) {
+      processedCalendars&#43;&#43;;
+
+      if (!error) {
+        var events = response.items;
+
+        if (events.length) {
+          for (var j = 0; j &lt; events.length; j&#43;&#43;) {
+            var event = events[j];
+            var eventStart = moment(event.start.dateTime || event.start.date).format(&#39;L&#39;);
+            var eventEnd = moment(event.end.dateTime || event.end.date).format(&#39;L&#39;);
+
+            if (cfg.days &amp;&amp; eventStart &gt; dateLimit) { break; }
+
+            if (!evnts[eventStart]) { evnts[eventStart] = []; }
+            event.date = eventStart;
+            event.time = moment(event.start.dateTime || event.start.date).format(cfg.timeFormat);
+            evnts[eventStart].push(event);
+
+            if (cfg.expandEvents &amp;&amp; eventStart != eventEnd) {
+              var day = new Date(eventStart);
+
+              while (new Date(day) &lt;= new Date(eventEnd)) {
+                var me = JSON.parse(JSON.stringify(event));
+
+                day.setDate(day.getDate() &#43; 1);
+                me.date = moment(day).format(&#39;L&#39;);
+                me.time = moment(day).format(cfg.timeFormat);
+
+                if ((cfg.days &amp;&amp; day &gt; dateLimit) || (event.end.date &amp;&amp; me.date == moment(event.end.date).format(&#39;L&#39;))) { break; }
+
+                if (!evnts[me.date]) { evnts[me.date] = []; }
+                evnts[me.date].push(me);
+              }
+            }
+          }
+        }
+
+        if (processedCalendars &gt;= cfg.calendarId.length) {
+          var dates = Object.keys(evnts);
+          var date, d, l, e = 0;
+
+          dates.sort();
+
+          for (var di = 0; di &lt; dates.length; di&#43;&#43;) {
+            d = dates[di];
+
+            if (!evnts.hasOwnProperty(d)) { continue; }
+            if (e &gt;= cfg.limit) { break; }
+
+            if (date != d) {
+              if (date) { console.log(&#39;---&#39;); }
+
+              date = moment(new Date(d).toISOString()).format(cfg.dateFormat);
+
+              if (d == today) { date &#43;= cfg.textToday; }
+              if (d == tomorrow) { date &#43;= cfg.textTomorrow; }
+
+              if (process.env.BitBar) {
+                date &#43;= &#39; |&#39;;
+                if (cfg.dateColor) { date &#43;= ` color=${cfg.dateColor}`; }
+                if (cfg.dateFont) { date &#43;= ` font=${cfg.dateFont}`; }
+                if (cfg.dateSize) { date &#43;= ` size=${cfg.dateSize}`; }
+              }
+
+              console.log(date);
+            }
+
+            if (evnts[d].length) {
+              evnts[d].sort(function(a, b) {
+                return moment(`${a.date} ${a.time}`, `MM/DD/YYYY ${cfg.timeFormat}`) - moment(`${b.date} ${b.time}`, `MM/DD/YYYY ${cfg.timeFormat}`);
+              });
+
+              for (var s = 0; (s &lt; evnts[d].length &amp;&amp; s &lt; cfg.limit); s&#43;&#43;) {
+                var str = `${evnts[d][s].time} - ${evnts[d][s].summary}`;
+
+                if (process.env.BitBar) {
+                  str &#43;= ` | href=${evnts[d][s].htmlLink}`;
+
+                  if (cfg.eventColor) { str &#43;= ` color=${cfg.eventColor}`; }
+                  if (cfg.eventFont) { str &#43;= ` font=${cfg.eventFont}`; }
+                  if (cfg.eventLength) { str &#43;= ` length=${cfg.eventLength}`; }
+                  if (cfg.eventSize) { str &#43;= ` size=${cfg.eventSize}`; }
+                }
+
+                console.log(str);
+                e&#43;&#43;;
+              }
+            }
+          }
+
+          if (Object.keys(evnts).length === 0) {
+            console.log(&#39;No upcoming events found.&#39;);
+          }
+        }
+      } else {
+        errors.push(error.message &#43; &#39; (calendar: &#39; &#43; cfg.calendarId[i] &#43;&#39;)&#39;);
+      }
+
+      if (processedCalendars &gt;= cfg.calendarId.length) {
+        footer(errors);
+      }
+    });
+  }
+}
+
+function run() {
+  if (fs.existsSync(cfg.tokenFile)) {
+    var token = fs.readFileSync(cfg.tokenFile, &#39;utf8&#39;);
+    if (token) { oauth2Client.credentials = JSON.parse(token); }
+
+    if (!oauth2Client.credentials.refresh_token) {
+      fs.unlinkSync(cfg.tokenFile);
+
+      console.log(&#39;No refresh token set&#39;);
+      console.log(&#39;You need to re-authorize this plugin with Google&#39;);
+
+      if (process.env.BitBar) {
+        console.log(&#39;Click here to view your currently authorized apps | href=https://myaccount.google.com/permissions&#39;);
+      } else {
+        console.log(&#39;Visit this URL to view your currently authorized apps: https://myaccount.google.com/permissions&#39;);
+      }
+
+      console.log(&#39;You will want to find this plugin and click \&#39;Remove\&#39;&#39;);
+
+      if (process.env.BitBar) {
+        console.log(`After you have done that, click here to re-authorize this plugin | bash=${process.argv[1]} param1=getNewToken refresh=false terminal=true`);
+      } else {
+        console.log(&#39;After you have done that, refresh this plugin and run the setup process again&#39;);
+      }
+
+      footer();
+      process.exit(1);
+    } else if (new Date(Date.now()) &gt; oauth2Client.credentials.expiry_date) {
+      refreshToken(oauth2Client, listEvents);
+    } else {
+      listEvents(oauth2Client);
+    }
+  } else {
+    if (process.env.BitBar) {
+      console.log(`Login To Google | bash=${process.argv[1]} param1=getNewToken refresh=false terminal=true`);
+      footer();
+    } else {
+      console.log(&#39;Google login required.&#39;);
+      getNewToken();
+    }
+  }
+}
+
+function footer(errors) {
+  if (errors &amp;&amp; errors.length) {
+    console.log(&#39;---&#39;);
+    console.log(&#39;Errors:&#39;);
+
+    for (var e = 0; e &lt; errors.length; e&#43;&#43;) {
+      console.log(errors[e]);
+    }
+  }
+
+  if (process.env.BitBar) {
+    console.log(&#39;---&#39;);
+    console.log(`BitBar Google Calendar Plugin v${ver}`);
+    console.log(&#39;--by Kodie Grantham | href=http://kodieg.com&#39;);
+    console.log(&#39;-----&#39;);
+    console.log(&#39;--GitHub Page | href=https://github.com/kodie/bitbar-googlecal&#39;);
+    console.log(&#39;--Changelog | href=https://github.com/kodie/bitbar-googlecal/blob/master/CHANGELOG.md&#39;);
+    console.log(&#39;-----&#39;);
+    console.log(&#39;--Refresh | refresh=true terminal=false&#39;);
+  }
+}
+
+if (process.argv[2] == &#39;getNewToken&#39;) {
+  getNewToken();
+} else if (process.argv[2] == &#39;refresh&#39;) {
+  refresh();
+} else {
+  run();
+}
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

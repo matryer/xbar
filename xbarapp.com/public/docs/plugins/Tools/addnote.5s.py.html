@@ -1,0 +1,377 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Add Note in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Add a note to Apple Notes app. - install xbar for free to get started.'>
+	<meta name='author' content='Frak Nuaimy'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/608LQ25.png'>
+	<meta itemprop='name' content='Add Note in your macOS menu bar'>
+	<meta itemprop='description' content='Add a note to Apple Notes app. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Add Note in your macOS menu bar'>
+	<meta name='twitter:description' content='Add a note to Apple Notes app. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/608LQ25.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Add Note in your macOS menu bar'>
+	<meta property='og:description' content='Add a note to Apple Notes app. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/addnote.5s.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/608LQ25.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/608LQ25.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/608LQ25.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/608LQ25.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Add Note</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/frakman1.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/5826484?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/frakman1.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Frak (<code style='color:white;'>@frakman1</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Add a note to Apple Notes app.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2faddnote.5s.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/608LQ25.png' 
+				alt='Image preview of Add Note plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>addnote.5s.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/addnote.5s.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/addnote.5s.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+# &lt;bitbar.title&gt;Add Note&lt;/bitbar.title&gt;
+# &lt;bitbar.author&gt;Frak Nuaimy&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;frakman1&lt;/bitbar.author.github&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/608LQ25.png&lt;/bitbar.image&gt;
+# &lt;bitbar.desc&gt;Add a note to Apple Notes app.&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+
+
+import os, sys
+import argparse
+import subprocess
+
+
+def run_script(script):
+    return (subprocess.Popen([script], stdout=subprocess.PIPE, shell=True).communicate()[0].strip()).replace(&#34;&#39;&#34;, &#34;’&#34;)
+
+def run_script2(script):
+    return (subprocess.Popen([script], stdout=subprocess.PIPE, shell=True).communicate()[0])
+
+fullPathFileName = os.path.realpath(__file__)
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument(&#39;-n&#39;, action=&#39;store&#39;, dest=&#39;localnote&#39;,help=&#39;Create Note Flag&#39;)
+results = parser.parse_args()
+
+
+if(len(sys.argv) &gt;= 2):
+    if (sys.argv[1] == &#34;-n&#34;): 
+        cmd = &#34;osascript -e \&#39;set theString to text returned of (display dialog \&#34;Please Enter The Note To Add \&#34; with icon note default answer \&#34;\n\n\n\&#34; buttons {\&#34;OK\&#34;,\&#34;Cancel\&#34;} default button 1) \&#39;&#34; 
+        note = run_script(cmd)
+        if len(note) == 0:
+             sys.exit(1)
+        if &#34;\n&#34; in note:
+            i = note.index(&#39;\n&#39;)
+            header = note.splitlines(True)[0]
+            body = note[i&#43;1:]
+        else:
+            header = note
+            body = &#34;&#34;
+        cmd2 = &#34;osascript -e &#39;tell application \&#34;Notes\&#34; \n tell account \&#34;iCloud\&#34; \n make new note at folder \&#34;Notes\&#34; with properties {name:\&#34;%s\&#34;, body:\&#34;%s\&#34;} \n end tell \n end tell&#39;&#34; % (header, body)
+        run_script2(cmd2)
+        sys.exit(1)
+note_icon = &#34;iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm&#43;48GgAAAf9JREFUOI21lE1rE1EYhc97c9PG2C&#43;VIp0mLpqg0I0EV67FneBvqEL/hQGrC8GNiiJFXGRR/4Eg1PqBbqxiFwVta03BTKdJtHWSaeajM3NfFyUlhgqJmR54V&#43;fycO/hvJcA4NHtqTRArypGbcKy9gQzoxsNDPTx6NhwdaVYuv648PI5ANDsnekzv8rW&#43;rfVYlwp1RWwVUSE9ERabdXMa0/nFgrCte35tZXeoADAzCgVS&#43;KcNvoAwMnY&#43;UzqvlVvUE/UFjlO0N&#43;XFG&#43;F&#43;dsRUUH3wS4ms2MX5JWrZxH4XmRgohg&#43;fSmTvHQ5C7AfGRggbGxtxwTQXbU6kVJKRJrvgYSAdG0f4DBCKkGFCjJxTAKIrG37YJA4gowZIYd8JBlzGJJ0bB8U4a2ZAQ4pJhNJGTk4CAKI8s&#43;gRvFTaB&#43;j3OiBrkhkcjc0w6jU2z3TtPFDN/&#43;Lq5iFBGBncvnU96UZXdNODzVNP1AwjDo8J0B6fKRjqO8rLH7W9WYrrEwun9o0KlbzQFwK9Cdi2HU8VHd2kUjKjsYJAu/F69WPrXWzsrm81gpvanun0VEsZs3F3XsLcwC&#43;HrZyQ&#43;tLM7qhVwdd7&#43;/v9MTIcaTHhw95fgiz7u49fPLu2Wzhwy0AxX/t8uD01MWb7HO83YhLEQKAIFIAQES8vLZpvHm/sQhgGYAJAH8As2PnfRzL6c4AAAAASUVORK5CYII=&#34;
+print &#34; | image={}&#34;.format(note_icon) &#43; &#34; trim=false, color=yellow bash=&#34; &#43; fullPathFileName &#43;  &#34; param1=-n param2=null terminal=false refresh=true&#34;
+
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

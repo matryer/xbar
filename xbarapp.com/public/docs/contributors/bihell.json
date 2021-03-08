@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Haseo Chen",
+		"githubUsername": "bihell",
+		"imageURL": "https://avatars.githubusercontent.com/u/19926035?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/bilibili.py",
+					"filename": "bilibili.py",
+					"content": "#!/usr/bin/env PYTHONIOENCODING=UTF-8 /usr/local/bin/python3\n# coding=utf-8\n#\n# \u003cbitbar.title\u003eB站UP主粉丝和投稿视频播放信息获取\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003e胖哥带你入坑带你飞\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ebihell\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003e实时显示B站粉丝数和最新20次投稿的视频信息，请把userId改为你自己的。\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://bihell.com/media/2020/02/bilibili-bitbar.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n#\n# by tpxcer\n\nimport requests\nfrom datetime import datetime\n\n# 请把下面88900889改为你的用户Id\nuserId = 88900889\n\nuserInfoUrl = \"https://api.bilibili.com/x/web-interface/card?mid=\" + str(userId)\nuserInfoRes = requests.request(\"GET\", userInfoUrl).json()\nprint(\"粉丝：\" + str(userInfoRes['data']['follower']))\n\nsubMitVideosUrl = \"http://space.bilibili.com/ajax/member/getSubmitVideos?mid=\" + str(userId)\nsubMitVideosRes = requests.request(\"GET\", subMitVideosUrl).json()\nprint(\"---\")\nfor video in subMitVideosRes[\"data\"][\"vlist\"]:\n    print(video[\"title\"] + \"| color=#123def href=http://bilibili.com/video/av\" + str(video[\"aid\"]))\n    print(\"    投稿时间:\" + datetime.fromtimestamp(video[\"created\"]).strftime(\"%Y-%m-%d %H:%M:%S\") +\n          \"    时长:\" + str(video[\"length\"]) +\n          \"    播放:{0:6}\".format(video[\"play\"]) +\n          \"    收藏:\" + str(video[\"favorites\"]) +\n          \"    评论:\" + str(video[\"comment\"]) +\n          \"    弹幕:\" + str(video[\"video_review\"]))\n"
+				}
+			],
+			"path": "Web/bilibili.py",
+			"filename": "bilibili.py",
+			"dir": "Web",
+			"docsPlugin": "Web/bilibili.py.html",
+			"docsCategory": "Web.html",
+			"pathSegments": [
+				"Web"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": true
+				}
+			],
+			"title": "B站UP主粉丝和投稿视频播放信息获取",
+			"version": "v1.0",
+			"author": "胖哥带你入坑带你飞",
+			"authors": [
+				{
+					"name": "Haseo Chen",
+					"githubUsername": "bihell",
+					"imageURL": "https://avatars.githubusercontent.com/u/19926035?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "实时显示B站粉丝数和最新20次投稿的视频信息，请把userId改为你自己的。",
+			"imageURL": "https://bihell.com/media/2020/02/bilibili-bitbar.jpg",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:09.391771Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,57 @@
+{
+	"person": {
+		"name": "Mario Mann",
+		"githubUsername": "mariomann",
+		"imageURL": "https://avatars.githubusercontent.com/u/3458678?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/icinga2.24m.py",
+					"filename": "icinga2.24m.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*- \n#\n# \u003cbitbar.title\u003eIcinga2 Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMario Mann\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emariomann\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the amount of Service with state OK, WARNING, CRITICAL and UNKNOWN\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/mariomann/pictures/master/icinga2-api.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython, icinga2, icinga2-api\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttp://docs.icinga.org/icinga2/snapshot/doc/module/icinga2/chapter/icinga2-api\u003c/bitbar.abouturl\u003e\n\nimport requests, json\n\nOK = '\\033[92m'\nWARNING = '\\033[93m'\nCRITICAL = '\\033[91m'\nUNKNOWN='\\033[95m'\nENDC = '\\033[0m'\n\nclass State:\n    HOST     = \"localhost\"\n    PORT     = \"5665\"\n    USER     = \"root\"\n    PASSWORD = \"icinga\"\n    msg  = \"\"\n    \n    def getHostCount(self, value):\n        requests.packages.urllib3.disable_warnings()\n        count = \"n/a\"\n        \n        try:\n            url = \"https://\" + self.HOST + \":\" + self.PORT + \"/v1/objects/hosts\"\n            headers = { 'Accept': 'application/json', 'X-HTTP-Method-Override': 'GET' }\n            data = { \"attrs\": [ \"name\", \"state\" ], \"filter\": \"match(\\\"\" + str(value) + \"\\\", host.state)\" }\n        \n            result = requests.post(url, headers=headers, auth=(self.USER, self.PASSWORD), data=json.dumps(data), verify=False)\n    \n            if (result.status_code == 200):\n                data = json.loads(json.dumps(result.json()))\n                count = str(len(data['results']))\n    \n        except Exception, e:\n                self.msg = str(e.message)\n                \n        return count\n        \n    \n    def getServiceCount(self, value):\n        requests.packages.urllib3.disable_warnings()\n        count = \"n/a\"\n        \n        try:\n            url = \"https://\" + self.HOST + \":\" + self.PORT + \"/v1/objects/services\"\n            headers = { 'Accept': 'application/json', 'X-HTTP-Method-Override': 'GET' }\n            data = { \"attrs\": [ \"name\", \"state\" ], \"filter\": \"match(\\\"\" + str(value) + \"\\\", service.state)\" }\n        \n            result = requests.post(url, headers=headers, auth=(self.USER, self.PASSWORD), data=json.dumps(data), verify=False)\n\n            if (result.status_code == 200):\n                data = json.loads(json.dumps(result.json()))\n                count = str(len(data['results']))\n        except Exception, e:\n            self.msg = str(e.message)\n            \n        return count\n\n    def getMessage(self):\n        return self.msg\n\ns = State()\nprint ('🌐 | size=16')\nprint '---'\nprint 'Host UP:\\t\\t' + s.getHostCount(0)\nprint \"Host DOWN:\\t\\t\" + s.getHostCount(1)\nprint '---'\nprint \"Service OK:\\t\\t\\t\" + s.getServiceCount(0)\nprint \"Service WARNING:\\t\" + s.getServiceCount(1)\nprint \"Service CRITICAL:\\t\" + s.getServiceCount(2)\nprint \"Service UNKNOWN:\\t\" + s.getServiceCount(3)\nif (s.getMessage() != \"\"):\n    print '---'\n    print s.getMessage()"
+				}
+			],
+			"path": "Dev/icinga2.24m.py",
+			"filename": "icinga2.24m.py",
+			"dir": "Dev",
+			"docsPlugin": "Dev/icinga2.24m.py.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "Icinga2 Status",
+			"version": "v1.0",
+			"author": "Mario Mann",
+			"authors": [
+				{
+					"name": "Mario Mann",
+					"githubUsername": "mariomann",
+					"imageURL": "https://avatars.githubusercontent.com/u/3458678?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays the amount of Service with state OK, WARNING, CRITICAL and UNKNOWN",
+			"imageURL": "https://raw.githubusercontent.com/mariomann/pictures/master/icinga2-api.png",
+			"dependencies": [
+				"python",
+				"icinga2",
+				"icinga2-api"
+			],
+			"aboutURL": "http://docs.icinga.org/icinga2/snapshot/doc/module/icinga2/chapter/icinga2-api",
+			"lastUpdated": "2021-03-08T15:21:51.655209Z",
+			"vars": null
+		}
+	]
+}

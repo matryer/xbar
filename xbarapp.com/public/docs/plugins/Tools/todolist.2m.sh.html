@@ -1,0 +1,372 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Todo List for menu bar in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Display a todo list in the menu bar with items taken from the macos&#39; Reminders.app from the list called &#39;Today&#39;. Click the item to complete the reminder and display the next one. - install xbar for free to get started.'>
+	<meta name='author' content='Julian Naumann'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/d4cBUKW.png'>
+	<meta itemprop='name' content='Todo List for menu bar in your macOS menu bar'>
+	<meta itemprop='description' content='Display a todo list in the menu bar with items taken from the macos&#39; Reminders.app from the list called &#39;Today&#39;. Click the item to complete the reminder and display the next one. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Todo List for menu bar in your macOS menu bar'>
+	<meta name='twitter:description' content='Display a todo list in the menu bar with items taken from the macos&#39; Reminders.app from the list called &#39;Today&#39;. Click the item to complete the reminder and display the next one. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/d4cBUKW.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Todo List for menu bar in your macOS menu bar'>
+	<meta property='og:description' content='Display a todo list in the menu bar with items taken from the macos&#39; Reminders.app from the list called &#39;Today&#39;. Click the item to complete the reminder and display the next one. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/todolist.2m.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/d4cBUKW.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/d4cBUKW.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/d4cBUKW.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/d4cBUKW.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Todo List for menu bar</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/JulianNaumann.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/8291876?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/JulianNaumann.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Julian Naumann (<code style='color:white;'>@JulianNaumann</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Display a todo list in the menu bar with items taken from the macos&#39; Reminders.app from the list called &#39;Today&#39;. Click the item to complete the reminder and display the next one.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2ftodolist.2m.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/d4cBUKW.png' 
+				alt='Image preview of Todo List for menu bar plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>todolist.2m.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/todolist.2m.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/todolist.2m.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/sh
+# &lt;bitbar.title&gt;Todo List for menu bar&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Julian Naumann&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;JulianNaumann&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Display a todo list in the menu bar with items taken from the macos&#39; Reminders.app from the list called &#39;Today&#39;. Click the item to complete the reminder and display the next one.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/d4cBUKW.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;bash,osascript&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/JulianNaumann/bitbar-todolist&lt;/bitbar.abouturl&gt;
+
+# Icon credit, all icons from &lt;https://www.flaticon.com&gt;:
+# - Bell icon made by Nice And Serious &lt;https://niceandserious.com&gt;
+# - Todo list icon made by Freepik &lt;https://www.freepik.com&gt;
+# - Check icon made by Smashicons &lt;https://smashicons.com&gt;
+
+if [ &#34;$1&#34; = &#34;done&#34; ]; then
+	osascript -e 	&#39;tell application &#34;Reminders&#34;
+				set activeReminders to (reminders of list &#34;Today&#34; whose completed is false)
+				set todo to first item of activeReminders
+				tell todo
+					set completed to true
+				end tell
+			end tell&#39;
+fi
+
+reminder=$(osascript -e &#39;tell application &#34;Reminders&#34;
+				set activeReminders to (reminders of list &#34;Today&#34; whose completed is false)
+				if activeReminders is not {} then
+					return name of first item of activeReminders
+				else
+					return &#34;No Todos!&#34;
+				end if
+			end tell&#39;)
+
+# Choose a different icon by uncommenting the appropriate line and commenting out all others:
+# todo list
+image=iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd&#43;UAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAADs0lEQVRIDbWWW4iNURSAz5mLGeM2TSnXcZkil5SSB28UESGS8ELjlgfxQIkHeUARHlxilFBKKF5mEiajSGZeeCMNRVPzgJLrYI7v&#43;8&#43;/z5zTOWbmhFXfWXvvf&#43;2911p77d1JpFKppCQQ9EH4H3KbRcvcw58k0m0H6UqrxBX0R6iGX/FYMaoE4x9QCuugAsIeUWQleLAankI3nIUJGP2VsIbrvoTWnIUYKIN7oHxLq1S9RrT1tihhTpQ&#43;dBW0w5OcBRjQk/FwA5QtMFQjdHTG/dXxHFPo3EGQs2Hw3qLZBvPhJ&#43;yEOaBEBZVuFv6lBlLxFx0vof&#43;9sGUiETb0&#43;0Aojw2z227YK0bvpvALrIGaeB2LMN9hvYJauAZKPQyOJ/VLYV8Ow2A0tIGF55hF0xYWiQ6XjpFegHlgOs6Dqb2I8Vb0IMj2Vq&#43;9LgMg2C&#43;lfRhMbx3cgpCZkHKGEBY1wmXQCqakAfR0InyF3kT7aTADumLDvfG6FfRfQ6ZKQ4R&#43;12Mvp14ZjZX2FpZBJRhx9nnotfONsIOz&#43;8DCi2hPhZOgmIH8hwND72EzKOEebo6m9POHednOR7MY6/UejsPgOigboaiiyfaLuRtgHnhUryAvpaZqBywEU7cHOqAR4yq030O6aUZiSh0nm8nP2E2mPRcssKPQBI/A9TLXLy8NfFQ0sFiGo&#43;/ACPgMPsaKG/k4D4F32C1Az4YzoLSDAWjj3c483GFDvT0BY2ElHIIHMBI6we9fwQ1DZHr&#43;Cd7DQKK8zMZmaBasov&#43;CvseS2Yx2WvhQqGg2he99aeYbsddrMIwJ9nG/HZ13hnpxDMy/qTkN98FFosVsFxIi8UnDLHpDjfgT7RrGjPwbZM7P&#43;dkd02XflIW2FREt&#43;CeNbSR89wEwwlEM3ESfQrtewaLxw3Yw/17kLfAYnjNxPdpKtQCyozUrA0D7S7Ac9oPj06ElbjvHIHqERb0vtRAe781&#43;pT8J&#43;vO0TcVuJgQ5EM&#43;vZKDg06YXu2AJmIJ9GL4hTU3oNfQLPW1GYsl7Tp3Yej0W055G&#43;whaybkSDoRrYduyN22OfYFImHwztHvTbIZpshEbH4tS2r6hee9o2NAcW5l1sAKOw0MwrXrZl0QLY2sthKJzLPvMe9bA0Ht4F5TweNdrQd9FihLmRIGg8x7vsJjn0QDPwMo7B83gtfBbUcIc60DxfJ2fidTI/NPj4FXaU9AzwCdpN/1qdN45MNaXGIj14H32mFrCPoZOOzpwc290ytq0&#43;me/3lWd6P4NwGhT56kWXgsAAAAASUVORK5CYII=
+
+# bell
+#image=iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAADiElEQVRIDZ2W24uNURTAv2PG/a6UcsllPAgppHgYUV4UpYmUSB4kbyKP/grxwgvlktyKF694QJoHlELGrVwyphnJbYzfb89en&#43;9wztRY9Zu19tprrb2/fTtTFEPIwMBALbqx90E3hPRjnIOpxqBHROywNcktuUg79jc4AkthJWyAt3A8x9Swy4kNazASR&#43;Uih7EfRHLFfwC7E9IA6KZf1RrJf2uSWmu12vfsd3mW4LuPngEjsZ&#43;hZ8IH4gbQiivwK1l//Wn4qXmQn2rij8JOeAi34DFYrA3aYQWchX0M6PI6wZ&#43;0hxYCY1/GYN&#43;EHuholkXfengNd2GCcehUo1lO3ckh&#43;CK8B5fHvmkwJ9ut2OWyY0&#43;Ep3A9imM33S&#43;LpWT0NlBW58KLsF/BodxORWh70sZm30LsL7Art8uJ2C6FgHIG2Lfhgp1oZ38P7sD47Ctjc3tk1seM01aw6&#43;LCGXvTRsBH2JqD92D3wqzcTkVTUv5DXwy0Dtu7tSjHlntVHTFO4HyCPK6Pcp0t6BucJDe8Bf0j&#43;6sqjvdTnF6JBbkzahbVgSJxIobHsyc7ZqPjspaJuS9UDPQZhxOxRp00GmgSEd6TvhzpZofdbKAcWnzDMNcadVIdKGblze9jifpcKmxPT7wQdcmVRsol5wu&#43;XrCGEjXrli6cbnp3CiuKyWg3OtrZ/Y&#43;KXDveQzo46NKfvoiZM5man6y0QZcGMhc80q9AKRMHm4N/yaVEeYGf451vjzWtrR1Llxo4fUIcyMdTmQcuhw&#43;o0nCgwa4i1cDuhHnUcjWU8JP950VYg&#43;2P2yoj0OPB356YkO6GQkx6CdCL4QOsNRCd7lgUiFE30feWT/aB9LfoIPTkJYhYXA2lXy&#43;x3r&#43;XsNk2klZhBAXTJcyFt9NxLXUXhcs4B7xHSnpIiavqlmjTrz0mRRbFFbTv5TgG9uempfw0GnvhBaT3LCf8l6KGP4xPYL8FbLuu6ZPR7fpgOR0um3fIk&#43;iy&#43;lJ44728cSBcSg&#43;Ke2Ad/caq9Vt3DRzTNiD25yT2MrgMXlD9FjPBr3RZvCOxPF&#43;xp4OvgU&#43;PE3MQcfB3cAKUWhqEL2Ap012wYPqhQ5vgRD6BX3sedsMZUDrgFOyAm&#43;D/FX65NeUNNT9HbdqDgsPZNxX6r8Ib2AwboQsuNU2gg/7GNenw5LiR1ZM12mL4psBpULzxpyBdSvRoqOZYw6Us5Teo4ooAlVO16wAAAABJRU5ErkJggg==
+
+# check icon
+#image=iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd&#43;UAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAADHklEQVRIDbWWvWsUURTFN35iExXsFGtjoSgY&#43;0WMtWAKsbARJVoJFv4TgmAQLIMI1hZ&#43;FFpHIYIKiqmUpFHBYOn37zc7Z/I2u2a2MAfOzp377r3nvfvezOxYZxBjuLbAH/XQONcp2IUH4D64E4oVuAzfwafwMfwGxVb4E/7xJrB4Ce83wV9wG7wCz0GTX8J5&#43;BZ&#43;gWIPnIDH4RHoJO/CW/A73Ax/wz5R7isoJMUktPgbOAN3wTYYY6w55lpDlHV7Hn6zMh3T8BOchTtgYKIrtd0l9WWimFWOudawlnC86aaGSxcGfIUXvamxnasCbTDG2MAa1oqoGpWoMxST0FlFzMGMYY4MRbNia1nT2qKp5wGx77ZCKDbKqqrg4idCuqrVcLWmtdVocBXLzc6eNTNpItqNbIuR5qeGNa2tRgWfswU407vt24fa1Xopu3GH6At1RhZgbTXU6pyBziBHv0x2vA3lym4S/BEerJPSRmuroVbnNpzTAOUe9Dzr/xqfnOvYHpBDdUomnvE5/Gp1nsHLGiB913bTm6OsYw3Kg3WesRV4oo4p68RWQ63OIuxqgLWz6nlXn9PcK5ZCp7AV8xUorJETmnuvarzXWNuGBDvbswbUiIC3sY9if4bXdALbJ0tkEbZarQHBJDhzX9I3DKqhkA&#43;22A8/wHK8PEDGiAHB9Vp6jATHH8HdMBjHeAXvxcE1hQtXZcZvSxddzRKcqIZWe&#43;8nxbEX0NeS9nN4GIoH0Pak5a7cb98wZIvUWLKQH0&#43;/Z8LvYKCoz5Ev4JPwIbwPX0OLnIZCMb&#43;D/0JqqqFW64OfA2LsJfgEun&#43;iHOt5&#43;n/Tzr4H3/1YgDN1bA5FmZrE0md32pBa1lZDrQq&#43;WNte3gpkP0YRy&#43;p9n/a9vFV0r&#43;bhrDfAwsNWpX/Y0TenhLmZnDWtrUaFzOR/fYCtF7GhH&#43;By1tMEb/hfDJepaPZFUZ8xW2H/A8edve0qqS&#43;5mO1/ogwSJiXR9tp3N9sT5rFugzHGmmOuNURZt&#43;l1b2h1pRv2RzibG0Gv&#43;mxZ3h4&#43;O1OwC/2rvxdmxSvYy3Dkv/p/ATQejPjjKGMzAAAAAElFTkSuQmCC
+
+echo &#34;$reminder | length=30 bash=&#39;$0&#39; param1=&#39;done&#39; terminal=false refresh=true templateImage=$image&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

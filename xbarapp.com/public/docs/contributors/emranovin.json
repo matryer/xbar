@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Emran",
+		"githubUsername": "emranovin",
+		"imageURL": "https://avatars.githubusercontent.com/u/24988058?v=4",
+		"bio": "I've just felled in love with Swift!",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/openfortivpn.sh",
+					"filename": "openfortivpn.sh",
+					"content": "#!/bin/bash\n\n# Get current status of a OpenFortiVPN connection with options to connect/disconnect.\n# Commands that require admin permissions should be whitelisted with 'visudo', e.g.:\n# YOURUSERNAME ALL=(ALL) NOPASSWD: /usr/local/bin/openfortivpn\n# YOURUSERNAME ALL=(ALL) NOPASSWD: /usr/bin/killall -2 openfortivpn\n# To use openfortivpn in an easy way you can create file like: /Documents/.fortivpn-config and put your crential in it as following:\n#\n# host=123.45.678.9\n# port=1234\n# username=FOO\n# password=MYPASSWORDCHARACHTERS\n# trusted-cert=MYCERTIFICATECHARACHTERS\n\n# \u003cbitbar.title\u003eOpenFortiVPN\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eEmran Mobaraki Novin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eemranovin\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays status of a OpenFortiVPN interface with option to connect/disconnect.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/v2aW5mo.png\u003c/bitbar.image\u003e\n\nVPN_EXECUTABLE=/usr/local/bin/openfortivpn\nVPN_EXECUTABLE_PARAMS=\"-c$HOME/Documents/.fortivpn-config\" # Optional\nVPN_INTERFACE=ppp0\n# Command to determine if OpenFortiVPN is connected or disconnected\nVPN_CONNECTED=\"/sbin/ifconfig | egrep -A1 $VPN_INTERFACE | grep inet\"\n# Command to run to disconnect OpenFortiVPN\nVPN_DISCONNECT_CMD=\"sudo killall -2 openfortivpn\"\n\ncase \"$1\" in\n    connect)\n        # VPN connection command, should eventually result in $VPN_CONNECTED,\n        sudo \"$VPN_EXECUTABLE\" \"$VPN_EXECUTABLE_PARAMS\" \u0026\u003e /dev/null \u0026\n        # Wait for connection so menu item refreshes instantly\n        until eval \"$VPN_CONNECTED\"; do sleep 1; done\n        ;;\n    disconnect)\n            eval \"$VPN_DISCONNECT_CMD\"\n        # Wait for disconnection so menu item refreshes instantly\n        until [ -z \"$(eval \"$VPN_CONNECTED\")\" ]; do sleep 1; done\n        ;;\nesac\n\nif [ -n \"$(eval \"$VPN_CONNECTED\")\" ]; then\n    echo \"✔\"\n    echo '---'\n    echo \"Disconnect OpenFortiVPN | bash='$0' param1=disconnect terminal=false refresh=true\"\n    exit\nelse\n    echo \"✘\"\n    echo '---'\n    echo \"Connect OpenFortiVPN | bash='$0' param1=connect terminal=false refresh=true\"\n    exit\nfi\n"
+				}
+			],
+			"path": "Network/openfortivpn.sh",
+			"filename": "openfortivpn.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/openfortivpn.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "OpenFortiVPN",
+			"version": "v1.0",
+			"author": "Emran Mobaraki Novin",
+			"authors": [
+				{
+					"name": "Emran",
+					"githubUsername": "emranovin",
+					"imageURL": "https://avatars.githubusercontent.com/u/24988058?v=4",
+					"bio": "I've just felled in love with Swift!",
+					"primary": true
+				}
+			],
+			"desc": "Displays status of a OpenFortiVPN interface with option to connect/disconnect.",
+			"imageURL": "https://i.imgur.com/v2aW5mo.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:59.497764Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,89 @@
+"%1$@ %2$@ has been downloaded and is ready to use! This is an important update; would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ has been downloaded and is ready to use! This is an important update; would you like to install it and relaunch %1$@ now?";
+
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ can’t be updated when it’s running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ is currently the newest version available.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ is now available—you have %3$@. Would you like to download it now?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available—you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ downloaded";
+
+"%@ of %@" = "%1$@ of %2$@";
+
+"A new version of %@ is available!" = "A new version of %@ is available!";
+
+"A new version of %@ is ready to install!" = "A new version of %@ is ready to install!";
+
+"An error occurred in retrieving update information. Please try again later." = "An error occurred in retrieving update information. Please try again later.";
+
+"An error occurred while downloading the update. Please try again later." = "An error occurred while downloading the update. Please try again later.";
+
+"An error occurred while extracting the archive. Please try again later." = "An error occurred while extracting the archive. Please try again later.";
+
+"An error occurred while installing the update. Please try again later." = "An error occurred while installing the update. Please try again later.";
+
+"An error occurred while parsing the update feed." = "An error occurred while parsing the update feed.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@.";
+
+"An important update to %@ is ready to install" = "An important update to %@ is ready to install";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Cancel";
+
+"Cancel Update" = "Cancel Update";
+
+"Checking for updates..." = "Checking for updates…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Downloading update…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Extracting update…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Install and Relaunch";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Installing update…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+"Learn More..." = "Learn More…";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+/* OK button. */
+"OK" = "OK";
+
+/* Status message on progress window once download has finished. */
+"Ready to Install" = "Ready to Install";
+
+/* Message that is optionally shown at startup to allow users to turn on/off update checks. */
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu.";
+
+"The update is improperly signed." = "The update is improperly signed.";
+
+"Update Error!" = "Update Error!";
+
+"Updating %@" = "Updating %@";
+
+/* 'Error' message when the user checks for updates but is already current or the feed doesn't contain any updates. (not necessarily shown in UI) */
+"You already have the newest version of %@." = "You already have the newest version of %@.";
+
+/* Status message shown when the user checks for updates but is already current or the feed doesn't contain any updates. */
+"You're up-to-date!" = "You’re up-to-date!";

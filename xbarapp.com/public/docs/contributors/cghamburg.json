@@ -1,0 +1,105 @@
+{
+	"person": {
+		"name": "cghamburg",
+		"githubUsername": "cghamburg",
+		"imageURL": "https://avatars.githubusercontent.com/u/2742203?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/disk-read-write.1s.sh",
+					"filename": "disk-read-write.1s.sh",
+					"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eDisk Read Write\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ecghamburg\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecghamburg\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows Disk Read Write Speeds per second.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.dependencies\u003eiostat\u003c/bitbar.dependencies\u003e\n\n# BitBar Disk IO plugin\n\nSTAT=$(iostat -dc 2 disk0)\nRATE=$(echo \"$STAT\"| tail -n1 | rev | cut -d ' ' -f2 | rev)\nABSOLUTE_UNIT=$(echo \"$STAT\"| head -n2 | tail -n1 | rev | cut -d ' ' -f2 | rev)\necho \"🏃$RATE $ABSOLUTE_UNIT\";\necho \"---\";\necho \"$STAT\"\n"
+				}
+			],
+			"path": "System/disk-read-write.1s.sh",
+			"filename": "disk-read-write.1s.sh",
+			"dir": "System",
+			"docsPlugin": "System/disk-read-write.1s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Disk Read Write",
+			"version": "v1.0",
+			"author": "cghamburg",
+			"authors": [
+				{
+					"name": "cghamburg",
+					"githubUsername": "cghamburg",
+					"imageURL": "https://avatars.githubusercontent.com/u/2742203?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows Disk Read Write Speeds per second.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"iostat"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:03.227399Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Docker/numContainers.5s.sh",
+					"filename": "numContainers.5s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eNumContainers\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ecghamburg\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecghamburg\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003ePrint number of running Docker containers with whale unicode char\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003edocker\u003c/bitbar.dependencies\u003e\n\nCONTAINERS=$(/usr/local/bin/docker ps --format '{{.Names}}' | sort)\nNUM_CONTAINERS=0\nif [ -n \"$CONTAINERS\" ]\nthen\n\tNUM_CONTAINERS=$(echo \"${CONTAINERS}\" | wc -l | tr -d '[:space:]')\nfi\necho \"$(printf \"🐳 %.0f \\n\" \"${NUM_CONTAINERS}\") | size=13\"\necho \"---\"\necho \"${CONTAINERS}\"\n"
+				}
+			],
+			"path": "Dev/Docker/numContainers.5s.sh",
+			"filename": "numContainers.5s.sh",
+			"dir": "Dev/Docker",
+			"docsPlugin": "Dev/Docker/numContainers.5s.sh.html",
+			"docsCategory": "Dev/Docker.html",
+			"pathSegments": [
+				"Dev",
+				"Docker"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Docker",
+					"text": "Docker",
+					"isLast": true
+				}
+			],
+			"title": "NumContainers",
+			"version": "v1.0",
+			"author": "cghamburg",
+			"authors": [
+				{
+					"name": "cghamburg",
+					"githubUsername": "cghamburg",
+					"imageURL": "https://avatars.githubusercontent.com/u/2742203?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Print number of running Docker containers with whale unicode char",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"docker"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:48.091876Z",
+			"vars": null
+		}
+	]
+}

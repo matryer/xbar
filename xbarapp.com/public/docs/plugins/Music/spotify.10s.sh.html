@@ -1,0 +1,502 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Spotify Now Playing in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Display currently playing Spotify song. Play/pause, skip forward, skip backward. - install xbar for free to get started.'>
+	<meta name='author' content='Marcin S.,  Jason Tokoph'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/y1SZwfq.png'>
+	<meta itemprop='name' content='Spotify Now Playing in your macOS menu bar'>
+	<meta itemprop='description' content='Display currently playing Spotify song. Play/pause, skip forward, skip backward. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Spotify Now Playing in your macOS menu bar'>
+	<meta name='twitter:description' content='Display currently playing Spotify song. Play/pause, skip forward, skip backward. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/y1SZwfq.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Spotify Now Playing in your macOS menu bar'>
+	<meta property='og:description' content='Display currently playing Spotify song. Play/pause, skip forward, skip backward. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Music/spotify.10s.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/y1SZwfq.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/y1SZwfq.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/y1SZwfq.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/y1SZwfq.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Spotify Now Playing</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/jtokoph.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/346225?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/jtokoph.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Jason Tokoph (<code style='color:white;'>@jtokoph</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+					
+						
+							<p class='text-white'>
+								and <strong>Jason Tokoph</strong>
+							</p>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Display currently playing Spotify song. Play/pause, skip forward, skip backward.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Music%2fspotify.10s.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/y1SZwfq.png' 
+				alt='Image preview of Spotify Now Playing plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>spotify.10s.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Music/spotify.10s.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Music/spotify.10s.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+
+# Get current Spotify status with play/pause button
+#
+# by Jason Tokoph (jason@tokoph.net)
+#    Marcin Swieczkowski (scatman@bu.edu)
+#
+# Shows current track information for Spotify
+
+# metadata
+# &lt;bitbar.title&gt;Spotify Now Playing&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.2&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Marcin S., Jason Tokoph&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;jtokoph&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Display currently playing Spotify song. Play/pause, skip forward, skip backward.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/y1SZwfq.png&lt;/bitbar.image&gt;
+
+# Comment the following line to disable showing times.
+SHOW_TIME=1
+
+# By default we remove anything after &#34; - &#34;, as it usually is stuff like
+# &#34;Remastered&#34;, &#34;Single Version&#34;, or other garbage that Spotify likes to
+# include.
+#
+# Comment out this line if you want the full track names.
+CLEAN_TRACK_NAMES=1
+# Comment out this line if you want the full album names.
+CLEAN_ALBUM_NAMES=1
+
+# The length of a track/artist name after which to truncate.
+TRUNC_LEN=18
+# String used when replacing truncated text.
+TRUNC_SUFFIX=&#34;...&#34;
+
+# Send a series of semicolon-delimited commands to Spotify
+function tellspotify() {
+  commands=&#34;$(echo &#34;$1&#34; | tr &#34;;&#34; &#34;\\n&#34;)&#34;
+
+  osascript -e &#34;
+            tell application \&#34;Spotify\&#34;
+                $commands
+            end tell&#34;;
+}
+
+## Handle early-return cases
+
+if [ &#34;$1&#34; = &#39;launch&#39; ]; then
+  tellspotify &#39;activate&#39;
+  exit
+fi
+
+first=&#34;$(echo &#34;$1&#34; | head -n 1 | awk &#39;{print $1;}&#39;)&#34;
+case &#34;$first&#34; in
+  &#39;playpause&#39; | &#39;previous&#39; | &#39;next&#39; | &#39;set&#39;)
+    tellspotify &#34;$1&#34;
+    exit
+esac
+
+if [ &#34;$(osascript -e &#39;application &#34;Spotify&#34; is running&#39;)&#34; = &#34;false&#34; ]; then
+  echo &#34;♫&#34;
+  echo &#34;---&#34;
+  echo &#34;Spotify is not running&#34;
+  echo &#34;Launch Spotify | bash=&#39;$0&#39; param1=launch terminal=false&#34;
+  exit
+fi
+
+## Get Spotify info
+
+state=$(tellspotify &#39;player state as string&#39;);
+track=$(tellspotify &#39;name of current track as string&#39;);
+artist=$(tellspotify &#39;artist of current track as string&#39;);
+album=$(tellspotify &#39;album of current track as string&#39;);
+
+# Handle last early-return case (needed $track and $artist to look up lyrics).
+if [ &#34;$1&#34; = &#39;lyrics&#39; ]; then
+  open &#34;https://www.musixmatch.com/search/$track $artist&#34;
+  exit
+fi
+
+if [ &#34;$state&#34; = &#34;playing&#34; ]; then
+  state_icon=&#34;▶&#34;
+else
+  state_icon=&#34;❚❚&#34;
+fi
+
+# Clean up track and/or album names
+if [[ $CLEAN_TRACK_NAMES ]]; then
+  track=&#34;$(echo -e &#34;${track/ - /\\n}&#34; | head -n 1)&#34;
+  track=&#34;$(echo -e &#34;${track/ (Remastered/\\n}&#34; | head -n 1)&#34;
+fi
+if [[ $CLEAN_ALBUM_NAMES ]]; then
+  album=&#34;$(echo -e &#34;${album/ - /\\n}&#34; | head -n 1)&#34;
+  album=&#34;$(echo -e &#34;${album/ (Remastered/\\n}&#34; | head -n 1)&#34;
+fi
+
+## Truncate track and artist
+trunc_track=$track
+if [ ${#trunc_track} -gt $TRUNC_LEN ];then
+  trunc_track=${trunc_track:0:$TRUNC_LEN-${#TRUNC_SUFFIX}}$TRUNC_SUFFIX
+fi
+
+trunc_artist=$artist
+if [ ${#trunc_artist} -gt $TRUNC_LEN ];then
+  trunc_artist=${trunc_artist:0:$TRUNC_LEN-${#TRUNC_SUFFIX}}$TRUNC_SUFFIX
+fi
+
+# Get position and duration of track
+if [[ $SHOW_TIME ]]; then
+  position=$(osascript -e \
+                       &#34;tell application \&#34;Spotify\&#34;
+                            set pos_sec to player position
+                            set time_min to (pos_sec / 60 div 1) as text
+                            set raw_sec to (pos_sec mod 60 div 1) as text
+                            if length of raw_sec is greater than 1 then
+                                set time_sec to raw_sec
+                            else
+                                set time_sec to \&#34;0\&#34; &amp; raw_sec
+                            end if
+                            return time_min as text &amp; \&#34;:\&#34; &amp; time_sec as text
+                        end tell&#34;);
+  duration=$(osascript -e \
+                       &#34;tell application \&#34;Spotify\&#34;
+                            set total_sec to (duration of current track / 1000) as text
+                            set time_min to (total_sec / 60 div 1) as text
+                            set raw_sec to (total_sec mod 60 div 1) as text
+                            if length of raw_sec is greater than 1 then
+                                set time_sec to raw_sec
+                            else
+                                set time_sec to \&#34;0\&#34; &amp; raw_sec
+                            end if
+                            return time_min as text &amp; \&#34;:\&#34; &amp; time_sec as text
+                        end tell&#34;);
+fi
+
+## Print the display
+
+echo &#34;$state_icon $trunc_track - $trunc_artist&#34;
+echo &#34;---&#34;
+
+echo -e &#34;Track:\\t$track&#34;
+echo -e &#34;Artist:\\t$artist&#34;
+echo -e &#34;Album:\\t$album&#34;
+echo &#34;---&#34;
+
+if [[ $SHOW_TIME ]]; then
+  echo &#34;${position} / ${duration}&#34;
+  echo &#39;---&#39;
+fi
+
+if [ &#34;$state&#34; = &#34;playing&#34; ]; then
+  echo -e &#34;❚❚\\tPause | bash=&#39;$0&#39; param1=playpause terminal=false refresh=true&#34;
+  echo -e &#34;↩\\tPrevious | bash=&#39;$0&#39; param1=&#39;set player position to 0;previous track&#39; terminal=false refresh=true&#34;
+  echo -e &#34;↪\\tNext | bash=&#39;$0&#39; param1=&#39;next track&#39; terminal=false refresh=true&#34;
+  echo -e &#34;↻\\tReplay | bash = &#39;$0&#39; param1=&#39;set player position to 0&#39; terminal=false&#34;
+else
+  echo -e &#34;▶\\tPlay | bash=&#39;$0&#39; param1=playpause terminal=false refresh=true&#34;
+  echo -e &#34;↩\\tPrevious | bash=&#39;$0&#39; param1=&#39;set player position to 0;previous track;play&#39; terminal=false refresh=true&#34;
+  echo -e &#34;↪\\tNext | bash=&#39;$0&#39; param1=&#39;next track;play&#39; terminal=false refresh=true&#34;
+  echo -e &#34;↻\\tReplay | bash = &#39;$0&#39; param1=&#39;set player position to 0;play&#39; terminal=false refresh=true&#34;
+fi
+
+echo &#39;---&#39;
+echo -e &#34;♫\\tLyrics | bash=&#39;$0&#39; param1=&#39;lyrics&#39; terminal=false&#34;
+echo &#39;---&#39;
+
+echo &#39;---&#39;
+echo &#34;Open Spotify | bash=&#39;$0&#39; param1=launch terminal=false&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

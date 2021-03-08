@@ -1,0 +1,56 @@
+{
+	"person": {
+		"name": "Albert G",
+		"githubUsername": "alber70g",
+		"imageURL": "https://avatars.githubusercontent.com/u/516972?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Tools/yabai.365d.sh",
+					"filename": "yabai.365d.sh",
+					"content": "#!/usr/bin/env bash\n# \u003cbitbar.title\u003eYabai status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAlbert Groothedde\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ealber70g\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003e\n# Shows the status of Yabai. Current space, and whether window is floating, sticky, on top and fullscreen.echo \"setting up signals\"\n# ```\n# yabai -m signal --add event=space_changed \\\n#   action=\"set SHELL=/bin/sh \u0026\u0026 open -g \\\"bitbar://refreshPlugin?name=yabai-window-info.*?.sh\\\"\"\n# yabai -m signal --add event=window_resized \\\n#   action=\"set SHELL=/bin/sh \u0026\u0026 open -g \\\"bitbar://refreshPlugin?name=yabai-window-info.*?.sh\\\"\"\n# yabai -m signal --add event=window_focused \\\n#   action=\"set SHELL=/bin/sh \u0026\u0026 open -g \\\"bitbar://refreshPlugin?name=yabai-window-info.*?.sh\\\"\"\n# yabai -m signal --add event=application_activated \\\n#   action=\"set SHELL=/bin/sh \u0026\u0026 open -g \\\"bitbar://refreshPlugin?name=yabai-window-info.*?.sh\\\"\"\n# echo \"signals ready\"\n# ```\n# \u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eyabai,jq\u003c/bitbar.dependencies\u003e\nPATH=$PATH:/usr/local/bin\n\nwindowFocused=$(yabai -m query --windows --space | jq '.[] | select(.\"focused\"==1)')\nspace=$(yabai -m query --spaces --space | jq \".index\")\n\nif [[ $windowFocused ]]; then\n  yabaiinfo=$(yabai -m query --windows --window |\n    jq -r \"[.floating,.sticky,.topmost,.\\\"zoom-fullscreen\\\"] | @sh\")\n  read -r -a props \u003c\u003c\u003c \"$yabaiinfo\"\n\n  echo [\"$space\"] ~\"${props[0]}\" s\"${props[1]}\" ^\"${props[2]}\" f\"${props[3]}\"\nelse\n  # no window active\n  echo [\"$space\"] w0\nfi"
+				}
+			],
+			"path": "Tools/yabai.365d.sh",
+			"filename": "yabai.365d.sh",
+			"dir": "Tools",
+			"docsPlugin": "Tools/yabai.365d.sh.html",
+			"docsCategory": "Tools.html",
+			"pathSegments": [
+				"Tools"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": true
+				}
+			],
+			"title": "Yabai status",
+			"version": "v1.0",
+			"author": "Albert Groothedde",
+			"authors": [
+				{
+					"name": "Albert G",
+					"githubUsername": "alber70g",
+					"imageURL": "https://avatars.githubusercontent.com/u/516972?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"yabai",
+				"jq"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:08.007142Z",
+			"vars": null
+		}
+	]
+}

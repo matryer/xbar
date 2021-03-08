@@ -1,0 +1,285 @@
+{
+	"person": {
+		"name": "Parvez",
+		"githubUsername": "parvez",
+		"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/pia-vpn-status.5m.sh",
+					"filename": "pia-vpn-status.5m.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003ePIA VPN Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays PIA VPN connection status\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/YqBwZed.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\npia1=$(curl --silent https://www.privateinternetaccess.com/pages/whats-my-ip/)\npia2=$(echo \"$pia1\" | tr -d \"\\n\" | /usr/local/bin/gsed -r \"s/\u003cscript([^\u003c]|\u003c[^\\/]|\u003c\\/[^s]|\u003c\\/s[^c])*\u003c\\/script\u003e|\u003cstyle([^\u003c]|\u003c[^\\/]|\u003c\\/[^s]|\u003c\\/s[^t])*\u003c\\/style\u003e//g\" | grep -o '\u003cdiv class=\"ipbox-footer\"\u003e.*\u003cdiv class=\"ipbox-map\"\u003e' | /usr/local/bin/gsed -r \"s/\u003c[^\u003e]*\u003e//g\" | /usr/local/bin/gsed -r \"s/:\\s+/: /g\" | /usr/local/bin/gsed -r \"s/\\s\\s+/\\r\\n/g\")\n\nif [[ $pia1 == *\"You are protected by PIA\"* ]]\nthen\n  echo \"✅\"\nelse\n  echo \"🚫\"\nfi\n\necho \"---\"\necho \"$pia2\"\n"
+				}
+			],
+			"path": "Network/pia-vpn-status.5m.sh",
+			"filename": "pia-vpn-status.5m.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/pia-vpn-status.5m.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "PIA VPN Status",
+			"version": "v1.0",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays PIA VPN connection status",
+			"imageURL": "http://i.imgur.com/YqBwZed.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "https://github.com/parvez/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:21:59.457684Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Web/XKCD/xkcd.1h.sh",
+					"filename": "xkcd.1h.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eXKCD\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e0.1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay Random XKCD Strip\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/OEHNotn.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\necho \"| image=AAABAAIAEBAAAAAAAABoBQAAJgAAACAgEAAAAAAA6AIAAI4FAAAoAAAAEAAAACAAAAABAAgAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAAAAJycnABGRkYAenp6AIODgwAkJCQA6+vrAIyMjAAdHR0A29vbAHx8fAAvLy8Ajo6OADg4OAD///8AFhYWAEpKSgB+fn4AsrKyACgoKAAGBgYA+Pj4AKKiogDW1tYAd3d3AICAgAAqKioAiYmJAOjo6AC9vb0AXl5eAPHx8QBnZ2cA+vr6AHBwcADh4eEAgoKCAIuLiwBgYGAA8/PzAJ2dnQBHR0cAe3t7AOPj4wAlJSUAn5+fANPT0wB0dHQAsbGxAFtbWwCPj48AMDAwADk5OQChoaEAdnZ2AH9/fwApKSkAiIiIAJqamgBvb28AeHh4ANfX1wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0zADc7NwAzMwAEBAATNzM8DgAODg4ADg4ADg4ADg48Ig4aKg4DGg4OKTASDQ4OIiIOKggOOAMODi00NDUODiIZIA4AKAAOHgkOAAAOLh08OQ8bDgAOGwUAFQwMFQAjGBgfAA4ADgAcIQACAgAnDiIiDiQsACwkDgEQAAAQAQ4iIg4OFgAWDg4CAAAAAAIOIiIOJAAAACQOLxEODjsvDiIYKxQXDhcUKzYlDg4OJg4iGTs9Dg4OPTsyAAcOIjsOIhkYPA4ODjw2BwAAAAAKDiIYBgALMgsACQ4xAAAxDg4iPA46AAAAOg4ODg4ODg4OPDMYEQwyDBE7Ozs7Ozs7GDMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAACAAAABAAAAAAQAEAAAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAADPz88A39/fACAgIAD///8AcHBwAICAgACQkJAAoKCgANfX1wAoKCgAf39/AIiIiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAREREAARAAEREAAREQAREAERERABERABERABEREAERABEREQAREQAVEUARERABEQwNERDA0REYHRHDEREQAREQAREQAREREAEQAFEREAEREAJREAERERABmAERERABERDCkQwNERETAiAxEREQARERABEAEREREEAABREREAEAEQwAANEADREMANEQwRABAA0QwA0QwADREAERDA0QARABEQAREAEMDRABEMDREAEQwNEAEQwNEMDQAQwNERABEQwNABDA0REMAAAA0REQAREQAQAQAREREAAAAREREAEREMAAAA0RFAAAAAABURABEREMAADRERQAAAAAAVEQAREREQAREREQAAAAAAEREAEREQwAANEREADREQwBERABEQwAAAAA0RAJEREQgREQAREAAREQABEQEREREQEREAEQwRERERANEADREREBERABEAEREREQARAADREQwREQARAREREREQEQAAERCAEREAEQARERERABEAAAAAABERABEAEREREQARDAAAAADREQARDAAREQAA0RDAAAANEREAERAAAAAAARERLAAC0RERABEQwAAAAA0REREREREREQARERDAAA0REREREREREREAERERERERERERERERERERAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"\necho ---\n\nJQ=$(command -v jq)\nCURL=$(curl --silent https://xkcd.com/info.0.json)\nIMG_NUM=$(echo \"${CURL}\" | $JQ -r '.num')\nIMG_RAND=$(( ( RANDOM % IMG_NUM )  + 1 ))\n\nCURL=$(curl --silent \"https://xkcd.com/$IMG_RAND/info.0.json\")\nIMG_URL=$(echo \"${CURL}\" | $JQ -r '.img')\nTITLE=$(echo \"${CURL}\" | $JQ -r '.safe_title')\nSUB_TITLE=$(echo \"${CURL}\" | $JQ -r '.alt' | fold -w 100 -s)\nIMAGE=$(base64 -w 0 \u003c(curl --silent \"$IMG_URL\"))\necho \"| image=$IMAGE\"\necho ---\necho \"$TITLE | size=14 href='https://www.xkcd.com/$IMG_RAND/'\"\necho \"${SUB_TITLE}\"\necho \"Explain XKCD wiki | href='https://www.explainxkcd.com/$IMG_RAND'\"\necho ---\necho \"Refresh... | refresh=true\"\n"
+				}
+			],
+			"path": "Web/XKCD/xkcd.1h.sh",
+			"filename": "xkcd.1h.sh",
+			"dir": "Web/XKCD",
+			"docsPlugin": "Web/XKCD/xkcd.1h.sh.html",
+			"docsCategory": "Web/XKCD.html",
+			"pathSegments": [
+				"Web",
+				"XKCD"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/XKCD",
+					"text": "XKCD",
+					"isLast": true
+				}
+			],
+			"title": "XKCD",
+			"version": "0.1.0",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Display Random XKCD Strip",
+			"imageURL": "http://i.imgur.com/OEHNotn.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "https://github.com/parvez/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:22:09.291159Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Finance/currency-rates.1h.py",
+					"filename": "currency-rates.1h.py",
+					"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eCurrency Rates\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Currency Rates\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/Q1PuzbN.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\n\nimport urllib2\nrateRequest = urllib2.Request(url='http://wu-converter.apple.com/dgw?apptype=finance', data='\u003c?xml version=\"1.0\" encoding=\"utf8\"?\u003e\u003crequest app=\"YGoAppleCurrencyWidget\" appver=\"1.0\" api=\"finance\" apiver=\"1.0.0\"\u003e\u003cquery id=\"0\" type=\"convertcurrency\"\u003e\u003cfrom/\u003e\u003cto/\u003e\u003camount/\u003e\u003c/query\u003e\u003c/request\u003e',headers={'Content-Type': 'text/xml'})\nrateResponse = urllib2.urlopen(rateRequest).read()\n\nfrom xml.dom import minidom\nxmlResponse = minidom.parseString(rateResponse)\nxmlConversionList = xmlResponse.getElementsByTagName('conversion')\n\nlist = []\nfor item in xmlConversionList:\n    nValue1 = item.childNodes[1].firstChild.nodeValue\n    nValue2 = str(round(float(item.childNodes[3].firstChild.nodeValue), 2))\n    if nValue1 == \"INR\":\n        primaryValue = 'Rs ' + nValue2\n    elif nValue1 == \"USD\":\n        discard = ''\n    else:\n        list.append(nValue1 + ': ' + nValue2)\n\nprint primaryValue\nprint (\"---\")\n\nlist.sort()\nfor item in list:\n    print item + ' | font=Monaco size=11'\n"
+				}
+			],
+			"path": "Finance/currency-rates.1h.py",
+			"filename": "currency-rates.1h.py",
+			"dir": "Finance",
+			"docsPlugin": "Finance/currency-rates.1h.py.html",
+			"docsCategory": "Finance.html",
+			"pathSegments": [
+				"Finance"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Finance",
+					"text": "Finance",
+					"isLast": true
+				}
+			],
+			"title": "Currency Rates",
+			"version": "v1.0",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays Currency Rates",
+			"imageURL": "http://i.imgur.com/Q1PuzbN.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://github.com/parvez/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:21:53.356435Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/adobe-flash-update-check.60m.py",
+					"filename": "adobe-flash-update-check.60m.py",
+					"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eAdobe Flash Versions\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays current Adobe Flash Version for Mac\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/kxWNcl4.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\n\nfrom urllib import urlopen\nfrom xml.dom import minidom\nimport json\n\n# Check current version of Adobe Flash using online API from Adobe.\n# Platform: Macintosh\n# Arch: x86-64\n# Returns JSON with download information for PPAPI and NPAPI\nadobeCheckJsonUrl = urlopen('https://get.adobe.com/flashplayer/webservices/json/?platform_type=Macintosh\u0026platform_dist=\u0026platform_arch=x86-64\u0026platform_misc=\u0026browser_arch=\u0026browser_type=\u0026browser_vers=\u0026browser_dist=\u0026eventname=flashplayerotherversions').read()\nadobeCheckJson = json.loads(adobeCheckJsonUrl)\n\n# To check Current version of NPAPI, read plist file stored in plugins directory\ncurrentVersionNPAPIxml = minidom.parse('/Library/Internet Plug-Ins/Flash Player.plugin/Contents/version.plist').getElementsByTagName('string')\n# Store NPAPI versions for future comparison\ncurrentVersionNPAPI = currentVersionNPAPIxml[0].childNodes[0].nodeValue\nnewVersionNPAPI = adobeCheckJson[0]['Version']\n\n# To check Current version of PPAPI (PepperFlash), read json stored in plugins directory\nwith open('/Library/Internet Plug-Ins/PepperFlashPlayer/manifest.json') as json_file:\n    currentVersionPPAPIjson = json.load(json_file)\n# Store PPAPI versions for future comparison\ncurrentVersionPPAPI = currentVersionPPAPIjson['version']\nnewVersionPPAPI = adobeCheckJson[1]['Version']\n\n# Compare with installed version to show appropriate alert icon\nif currentVersionNPAPI == newVersionNPAPI and currentVersionPPAPI == newVersionPPAPI:\n    print (\"✓\")\nelse:\n    print (\"⚡️\")\nprint (\"---\")\n# Show current NPAPI installed version and online available version with link to the dmg\nprint ('Current NPAPI: ' + currentVersionNPAPI)\nprint (adobeCheckJson[0]['Name'] + ': ' + adobeCheckJson[0]['Version'] + '| href:' + adobeCheckJson[0]['download_url'])\nprint (\"---\")\n# Show current PPAPI installed version and online available version with link to the dmg\nprint ('Current PPAPI: ' + currentVersionPPAPI)\nprint (adobeCheckJson[1]['Name'] + ': ' + adobeCheckJson[1]['Version'] + '| href:' + adobeCheckJson[1]['download_url'])\n"
+				}
+			],
+			"path": "System/adobe-flash-update-check.60m.py",
+			"filename": "adobe-flash-update-check.60m.py",
+			"dir": "System",
+			"docsPlugin": "System/adobe-flash-update-check.60m.py.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Adobe Flash Versions",
+			"version": "v1.0",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays current Adobe Flash Version for Mac",
+			"imageURL": "http://i.imgur.com/kxWNcl4.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://github.com/parvez/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:22:02.512886Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/copy-to-clipboard.sh",
+					"filename": "copy-to-clipboard.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eCopy to Clipboard\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will copy text to clipboard\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/SiuAz3C.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\n# Hack for language not being set properly and unicode support\nexport LANG=\"${LANG:-en_US.UTF-8}\"\n\n# Write the list of Text you want enabled\nLIST=\"\nText 1\nSome Text 2\nSome moreText 3\n\"\n\necho \"📋\"\necho '---'\necho \"Clear Clipboard | bash='$0' param1=copy param2=' ' terminal=false\"\necho \"---\"\nwhile read -r line; do\n  if ! [ \"$line\" == \"\" ]; then\n    echo \"$line | bash='/bin/bash' param1='-c' param2='/bin/echo $line | pbcopy' terminal=false\"\n  fi\ndone \u003c\u003c\u003c \"$LIST\"\n"
+				}
+			],
+			"path": "System/copy-to-clipboard.sh",
+			"filename": "copy-to-clipboard.sh",
+			"dir": "System",
+			"docsPlugin": "System/copy-to-clipboard.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Copy to Clipboard",
+			"version": "v0.1",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "This plugin will copy text to clipboard",
+			"imageURL": "http://i.imgur.com/SiuAz3C.png",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:02.863036Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Web/Reddit/reddit.1m.py",
+					"filename": "reddit.1m.py",
+					"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eReddit\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Reddit for Mac\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/zUHPCvq.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\n\n# encoding=utf8\nimport sys\nreload(sys)\nsys.setdefaultencoding('utf8')\n\nimport json\nimport urllib2\nreddit0 = \"https://www.reddit.com\"\nreddit1 = [\n  [\"All\", \"https://www.reddit.com/r/all\", \"\"],\n  [\"Hour\", \"https://www.reddit.com/r/all/top/\", \"?sort=top\u0026t=hour\"],\n  [\"News\", \"https://www.reddit.com/r/news+worldnews+politics\", \"\"],\n]\nicons = {\n  \"bayarea\": \"🇺🇸\",\n  \"news\": \"📰\",\n  \"worldnews\": \"🌎\"\n}\n\nprint (\"🐈\")\nprint (\"---\")\n\nfor r1 in reddit1:\n  print (r1[0])\n  request = urllib2.Request(r1[1] + \".json\" + r1[2], headers={\n    \"User-Agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36\",\n    \"Pragma\": \"no-cache\"\n  })\n  jsonUrl = urllib2.urlopen(request).read()\n  jsonRet = json.loads(jsonUrl)\n  for j in jsonRet['data']['children']:\n    child = j['data']\n    line = child['title']\n    color = \"\"\n    if child['quarantine'] or child['over_18']:\n      line = \"(NSFW) \" + line\n      color = \" color=#EEEEEE\"\n    lim=75\n    w=0\n    l = []\n    sr = child['permalink'].split(\"/\")[2].lower()\n    i = \"\"\n    if sr in icons: i = icons[sr] + \" \"\n    for d in line.split():\n      if w + len(d) + 1 \u003c= lim:\n        l.append(d)\n        w += len(d) + 1\n      else:\n        print (\"--\" + i + \" \".join(l) + \" | href=\" + child['url'] + \" trim=false size=11\" + color)\n        i = \"\"\n        l = [d]\n        w = len(d)\n    if (len(l)):\n      print (\"--\" + i + \" \".join(l) + \" | href=\" + child['url'] + \" trim=false size=11\" + color)\n    print (\"--          [\" + sr + \"] \" + \"Score: \" + str(child['score']) + \", Comments: \" + str(child['num_comments']) + \" | href=\" + reddit0 + child['permalink'] + \" trim=false size=9\" + color)\n    print (\"--          | trim=false size=4\")\nprint (\"---\")\nprint (\"Refresh... | refresh=true\")\n"
+				}
+			],
+			"path": "Web/Reddit/reddit.1m.py",
+			"filename": "reddit.1m.py",
+			"dir": "Web/Reddit",
+			"docsPlugin": "Web/Reddit/reddit.1m.py.html",
+			"docsCategory": "Web/Reddit.html",
+			"pathSegments": [
+				"Web",
+				"Reddit"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/Reddit",
+					"text": "Reddit",
+					"isLast": true
+				}
+			],
+			"title": "Reddit",
+			"version": "v1.0",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays Reddit for Mac",
+			"imageURL": "http://i.imgur.com/zUHPCvq.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://github.com/parvez/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:22:09.035313Z",
+			"vars": null
+		}
+	]
+}

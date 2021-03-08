@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/ssh-status.10min.sh",
+				"filename": "ssh-status.10min.sh",
+				"content": "#!/usr/bin/env bash\n#\n# \u003cbitbar.title\u003eSSH Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eOlivier Tille\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eoliviernt\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/s8FMCLG.png\u003c/bitbar.image\u003e\n# \u003cbitbar.desc\u003eContinuously checks if hosts are available for ssh connection\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eBash\u003c/bitbar.dependencies\u003e\n#\n# SSH Status plugin\n# by Olivier Tille (@oliviernt)\n#\n# Continuously checks if hosts are available for ssh connection on port 22\nHOSTS=(\"example1.com\" \"example2.com\")\n\nhead=\"ssh status\"\nbody=\"\"\nerrors=0\nfor host in \"${HOSTS[@]}\"; do\n  if nc -z -G 2 \"$host\" 22 \u0026\u003e /dev/null; then\n    body=\"$body\\n☀️ $host is up | color=green bash=ssh param1=$host\"\n  else\n    body=\"$body\\n⛈ $host looks down from here | color=red bash=ssh param1=$host\"\n    errors=$((errors + 1))\n  fi\n  body=\"$body\\n---\"\ndone\n\necho -n \"$head\"\n[ \"$errors\" -eq 0 ] || echo -n \" ($((${#HOSTS[@]} - errors))/${#HOSTS[@]}) | color=red\"\necho -e \"\\n---\"\necho -e \"$body\"\n"
+			}
+		],
+		"path": "Network/ssh-status.10min.sh",
+		"filename": "ssh-status.10min.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/ssh-status.10min.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "SSH Status",
+		"version": "v0.1.0",
+		"author": "Olivier Tille",
+		"authors": [
+			{
+				"name": "Olivier Tille",
+				"githubUsername": "oliviernt",
+				"imageURL": "https://avatars.githubusercontent.com/u/162120?v=4",
+				"bio": "Software Developer at @lexoffice, Loving the WWW. \r\nPGP: https://keybase.io/oliviernt ",
+				"primary": true
+			}
+		],
+		"desc": "Continuously checks if hosts are available for ssh connection",
+		"imageURL": "http://i.imgur.com/s8FMCLG.png",
+		"dependencies": [
+			"Bash"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:59.694111Z",
+		"vars": null
+	}
+}

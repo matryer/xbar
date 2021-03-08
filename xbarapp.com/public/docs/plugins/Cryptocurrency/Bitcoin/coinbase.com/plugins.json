@@ -1,0 +1,330 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb",
+					"filename": "accounts.1h.rb",
+					"content": "#!/usr/bin/env ruby\n# \u003cbitbar.title\u003eCoinbase.com Account Balances\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.author\u003eBryan Stone\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eaegixx\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows your balances in BTC \u0026 USD.  Be sure you add you API key \u0026 secret.\u003c/bitbar.desc\u003e\n\nrequire 'coinbase/wallet'\n\nAPI_KEY = 'YOUR_API_KEY'\nAPI_SECRET = 'YOUR_SECRET_KEY'\nLAST_BTC_FILE = '~/.bitbar_last_btc_rate'\n\ndef getDelta(current, last)\n  if current != last\n    delta = current - last\n    if delta.positive?\n      { color: 'green', symbol: '▲', amount: delta.abs }\n    else\n      { color: 'red', symbol: '▼', amount: delta.abs }\n    end\n  end\nend\n\ndef printPrimary\n  usd_total = @client.accounts.collect {|a| a.native_balance.amount}.inject(:+)\n  btc_total = @client.accounts.collect {|a| a.balance.amount}.inject(:+)\n  if @delta\n    printf \"1Ƀ = %.2f (#{@delta[:symbol]}%.2f) | color=#{@delta[:color]}\\n\", @current_btc_rate, @delta[:amount]\n    printf \"∑ $%.2f (#{@delta[:symbol]}%.2f) | color=#{@delta[:color]}\\n\", usd_total, (@delta[:amount] * btc_total)\n  else\n    printf \"1Ƀ = %.2f\\n\", @current_btc_rate\n    printf \"∑ $%.2f\\n\", usd_total\n  end\nend\n\ndef printBalance(account)\n  if @delta\n    printf \"%s: $%.2f (#{@delta[:symbol]}%.2f) | color=#{@delta[:color]}\\n\", account.name, account.native_balance.amount, (@delta[:amount] * account.balance.amount)\n  else\n    printf \"%s: $%.2f\\n\", account.name, account.native_balance.amount\n  end\nend\n\n@client = Coinbase::Wallet::Client.new(api_key: API_KEY, api_secret: API_SECRET)\n\nlast_path = File.expand_path(LAST_BTC_FILE)\n@last_btc_rate = BigDecimal.new(File.read(last_path)) if File.exist?(last_path)\n@current_btc_rate = @client.spot_price.amount\n@delta = getDelta(@current_btc_rate, @last_btc_rate)\nFile.open(last_path, 'w') {|f| f.write(@current_btc_rate) }\n\nprintPrimary\nputs '---'\n@client.accounts.each do |account|\n  printBalance(account)\nend\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb",
+			"filename": "accounts.1h.rb",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Account Balances",
+			"version": "v1.0",
+			"author": "Bryan Stone",
+			"authors": [
+				{
+					"name": "Bryan Stone",
+					"githubUsername": "aegixx",
+					"imageURL": "https://avatars.githubusercontent.com/u/7032283?v=4",
+					"bio": "Cloud Architect / Platform Engineer / Sr. Software Engineer\r\n\r\nLove bleeding edge and challenges!",
+					"primary": true
+				}
+			],
+			"desc": "Shows your balances in BTC \u0026 USD.  Be sure you add you API key \u0026 secret.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.034624Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh",
+					"filename": "buy.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest buy values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Buy: $\"; curl -s \"https://coinbase.com/api/v1/prices/buy?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh",
+			"filename": "buy.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Buy",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest buy values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.161509Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh",
+					"filename": "sell.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest sell values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Sell: $\"; curl -s \"https://coinbase.com/api/v1/prices/sell?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh",
+			"filename": "sell.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Buy",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest sell values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.173378Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh",
+					"filename": "buy-and-sell.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy and Sell\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest Buy and Sell values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Buy: $\"; curl -s \"https://coinbase.com/api/v1/prices/buy?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\necho -n \"Sell: $\"; curl -s \"https://coinbase.com/api/v1/prices/sell?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh",
+			"filename": "buy-and-sell.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Buy and Sell",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest Buy and Sell values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.157433Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh",
+					"filename": "spotrate.10s.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Spot rate\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest spot rate values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"BTC: $\"; curl -s \"https://coinbase.com/api/v1/prices/spot_rate?currency=USD\" | egrep -o '\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh",
+			"filename": "spotrate.10s.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Spot rate",
+			"version": "v1.0",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows latest spot rate values (in USD) for Bitcoins in the Coinbase exchange.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.175359Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh",
+					"filename": "balance.1h.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Your Balance\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows your balance in BTC.  Be sure you add your API \u0026 account details.\u003c/bitbar.desc\u003e\n\nAPI_KEY=\"YOUR_API_KEY\"\nAPI_SECRET=\"YOUR_API_SECRET\"\nACCOUNT_ID=\"YOUR_ACCOUNT_ID\"\nAPI_VERSION=\"2017-08-07\" # You'll need to verify this in your Account Details\n\nREQUEST_METHOD=\"GET\"\nREQUEST_URL=\"https://api.coinbase.com\"\nREQUEST_PATH=\"/v2/accounts/${ACCOUNT_ID}\"\n\nTIMESTAMP=$(date +%s)\nSIGNATURE=$(echo -n \"${TIMESTAMP}${REQUEST_METHOD}${REQUEST_PATH}\" | openssl dgst -sha256 -hmac \"${API_SECRET}\")\n\nBTC_BALANCE=$(curl -s ${REQUEST_URL}${REQUEST_PATH} \\\n  --request ${REQUEST_METHOD} \\\n  --header \"CB-VERSION: ${API_VERSION}\" \\\n  --header \"CB-ACCESS-KEY: ${API_KEY}\" \\\n  --header \"CB-ACCESS-SIGN: ${SIGNATURE}\" \\\n  --header \"CB-ACCESS-TIMESTAMP: ${TIMESTAMP}\" | jq -r \".data.balance.amount\")\n\nLAST_BTC_RATE=$(cat ~/.bitbar_last_btc_rate)\nLAST_USD_BALANCE=$(cat ~/.bitbar_last_usd_balance)\n\nBTC_RATE=$(curl -s https://api.coinbase.com/v2/prices/BTC-USD/spot | jq -r '.data.amount')\nUSD_BALANCE=$(echo \"$BTC_BALANCE * $BTC_RATE\" | bc)\n\nDELTA_USD=$(printf \"%.2f\" \"$(echo \"$USD_BALANCE-${LAST_USD_BALANCE:-0}\" | bc)\")\nDELTA_BTC=$(printf \"%.2f\" \"$(echo \"$BTC_RATE-${LAST_BTC_RATE:-0}\" | bc)\")\n\nif [ \"$(echo \"$DELTA_BTC \u003e 0.00\" | bc)\" -eq \"1\" ]; then\n  HIDE_DELTA=0\n  CHG_SYMBOL=\"▲ \"\n  COLOR=green\nelif [ \"$(echo \"$DELTA_BTC \u003c 0.00\" | bc)\" -eq \"1\" ]; then\n  HIDE_DELTA=0\n  CHG_SYMBOL=\"▼ \"\n  COLOR=red\n  DELTA_BTC=${DELTA_BTC#-}\n  DELTA_USD=${DELTA_USD#-}\nelse\n  HIDE_DELTA=1\nfi\n\necho -n \"$BTC_RATE\" \u003e ~/.bitbar_last_btc_rate\necho -n \"$USD_BALANCE\" \u003e ~/.bitbar_last_usd_balance\n\nif [ \"$HIDE_DELTA\" -eq \"1\" ]; then\n  printf \"Ƀ%.2f\\n\" \"${BTC_RATE}\"\n  printf \"$%.2f\\n\" \"${USD_BALANCE}\"\nelse\n  printf \"Ƀ%.2f (${CHG_SYMBOL}%.2f) | color=$COLOR\\n\" \"${BTC_RATE}\" \"${DELTA_BTC}\"\n  printf \"$%.2f (${CHG_SYMBOL}%.2f) | color=$COLOR\\n\" \"${USD_BALANCE}\" \"${DELTA_USD}\"\nfi\necho \"---\"\nprintf \"Balance: %f (%.2f)\" \"${BTC_BALANCE}\" \"${USD_BALANCE}\"\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh",
+			"filename": "balance.1h.sh",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Your Balance",
+			"version": "v1.1",
+			"author": "Mat Ryer",
+			"authors": [
+				{
+					"name": "Mat Ryer",
+					"githubUsername": "matryer",
+					"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+					"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+					"primary": true
+				}
+			],
+			"desc": "Shows your balance in BTC.  Be sure you add your API \u0026 account details.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.110128Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,759 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Slack Team Notifications in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Show notifications for Slack teams and channels with option to mark as read. See https://github.com/benjifs/bitbar-slack-team-notifications for configuration instructions. - install xbar for free to get started.'>
+	<meta name='author' content='Benji Encalada Mora'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/ORbsRBx.jpg'>
+	<meta itemprop='name' content='Slack Team Notifications in your macOS menu bar'>
+	<meta itemprop='description' content='Show notifications for Slack teams and channels with option to mark as read. See https://github.com/benjifs/bitbar-slack-team-notifications for configuration instructions. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Slack Team Notifications in your macOS menu bar'>
+	<meta name='twitter:description' content='Show notifications for Slack teams and channels with option to mark as read. See https://github.com/benjifs/bitbar-slack-team-notifications for configuration instructions. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/ORbsRBx.jpg'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Slack Team Notifications in your macOS menu bar'>
+	<meta property='og:description' content='Show notifications for Slack teams and channels with option to mark as read. See https://github.com/benjifs/bitbar-slack-team-notifications for configuration instructions. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/Slack/slack-team-notifications.1m.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/ORbsRBx.jpg'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/ORbsRBx.jpg'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/ORbsRBx.jpg'>
+	<link rel='shortcut icon' href='https://i.imgur.com/ORbsRBx.jpg'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Slack Team Notifications</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/benjifs.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/4167938?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/benjifs.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Benji Encalada Mora (<code style='color:white;'>@benjifs</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Show notifications for Slack teams and channels with option to mark as read. See https://github.com/benjifs/bitbar-slack-team-notifications for configuration instructions.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2fSlack%2fslack-team-notifications.1m.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/ORbsRBx.jpg' 
+				alt='Image preview of Slack Team Notifications plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>slack-team-notifications.1m.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/Slack/slack-team-notifications.1m.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/Slack/slack-team-notifications.1m.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+/* jshint esversion: 8 */
+/* jshint asi: true */
+
+// &lt;bitbar.title&gt;Slack Team Notifications&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.1.0&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Benji Encalada Mora&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;benjifs&lt;/bitbar.author.github&gt;
+// &lt;bitbar.image&gt;https://i.imgur.com/ORbsRBx.jpg&lt;/bitbar.image&gt;
+// &lt;bitbar.desc&gt;Show notifications for Slack teams and channels with option to mark as read. See https://github.com/benjifs/bitbar-slack-team-notifications for configuration instructions.&lt;/bitbar.desc&gt;
+// &lt;bitbar.dependencies&gt;node.js superagent&lt;/bitbar.dependencies&gt;
+
+const request = require(&#39;superagent&#39;);
+const tokens = require(&#39;./.tokens.js&#39;);
+
+// CONFIG
+// BITBAR_SLACK_ICON defines which Slack Icon is shown
+// 0 -&gt; Original Slack Icon
+// 1 -&gt; White Slack Icon
+// 2 -&gt; Black Slack Icon
+const BITBAR_SLACK_ICON = process.env.BitBarDarkMode ? 1 : 2;
+// If MENTIONS_ONLY is true, the count only includes mentions and DMs.
+// If MENTIONS_ONLY is false, the count includes all unread messages.
+const MENTIONS_ONLY = false;
+// MAX_LENGTH of channel name or user name
+const MAX_LENGTH = 18;
+// Show `No new notifications` message
+const SHOW_ZERO_NOTIFICATIONS = true;
+
+// Is Slack.app installed?
+let SLACK_INSTALLED = true;
+const { exec } = require(&#39;child_process&#39;);
+exec(&#39;ls /Applications | grep Slack | wc -l&#39;, (err, stdout, stderr) =&gt; {
+	if (!err &amp;&amp; stdout == 0) {
+		SLACK_INSTALLED = false;
+	}
+});
+
+const DEBUG = process.argv.indexOf(&#39;--debug&#39;) &gt; 0;
+const SCRIPT = process.argv[1];
+
+// Slack App Credentials
+const SLACK_OAUTH_AUTHORIZE = &#39;https://slack.com/oauth/authorize?scope=client&amp;client_id=&#39;;
+const SLACK_CLIENT_ID = &#39;11708641376.684689498789&#39;;
+
+// Slack API
+const SLACK_API = &#39;https://slack.com/api/&#39;;
+const SLACK_CONVERSATIONS = &#39;conversations&#39;;
+const SLACK_CHANNELS = &#39;channels&#39;;
+const SLACK_GROUPS = &#39;groups&#39;;
+const SLACK_IM = &#39;im&#39;;
+const SLACK_TEAM = &#39;team&#39;;
+const SLACK_USERS = &#39;users&#39;;
+const SLACK_INFO = &#39;.info&#39;;
+const SLACK_LIST = &#39;.list&#39;;
+const SLACK_MARK = &#39;.mark&#39;;
+const SLACK_HISTORY = &#39;.history&#39;;
+const SLACK_AUTH_TEST = &#39;auth.test&#39;;
+
+// ICONS {
+// Original Slack icon (unused)
+const SLACK_ICON = &#39;image=iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAACatJREFUWAmlWGtsVMcVPjP33t21vbt&#43;Ydog8ZSSNjXhISgRkFLTH3kBoSQxceBPo/5o&#43;6tNq/KjvNaISBVSkfqvitTSRIUATtQmMa/8CKaNjSCkBIOVhKaBEBEpNn7trr3rvXdm&#43;p25u8bYsFjqkWZ27syZc86cty3ofmCMICEMo63oHNxNJLZimcS4opXefWFNXWfKGJlq2yxoc5ta2L59lZRyD84XYqTJiEPd6/aksCZKpSSGtut7TOIe&#43;7e3iwJ9v3PojciM6pZgOEekFMnKOOncCOmC3/ThmtozfOGRY9vXSMc5IyujpEcLRI4gN1lJfn/6SPfTe1vIEB6HuQzIMmfUbIzD2lnRNfyEW5Vs8W&#43;lfVMoKKOVUZnhvKyoJOmIfSUaQjj7ZEWEVDafZxxTCJQ/kPGdqtgLi0/seoKFaTqdckv4d/ste9jXARIAo/Wq8cuCHLsWFNWjI3iu&#43;W7TRVMzdJ2fLh5WOWiGTBSmZW0wruYlGfMo1qcyV78ua5WyGrKMMYFyliTTMbfVbflbDAnrOHlDDrwNWJP4sZn4psApIPHQrNs0eGMSlBWoqQmvYzD&#43;2zCREV4kgi9WQQAOAZsFa&#43;XEy/sFcKYNZQVKCaGbjxrn/A8arkI5L7Ezu8nqiBOvdp14IuJWVwvhetVuf9GMHAD/J4z7UNPp024mkRCJzLI7VNoHBo09JnK&#43;Uby2vGuw26SHW7BVB50o5m2kyTmzKRPJbUpi5467fH5PONrsLBustQphM3asTQWM69rcsHu36RDCbtyTAA4urKq9iB8eU2Dxu3vryRmDicsriZ26GcK0IWd9BHOPE2Jfa00JFkhj0KOdQ49jbyXe7MEx4b1T1W&#43;d1hBeJQL49MVzq2veKhGU0bRRfoTjqSzka2eJts2vqiXv7XhQB2Ij2MSFpLOXxJ5TyJzGmoyTnkSeuUuM3JW4jTVwXtE5dEpFR5/9aPmsURXUSyGy9zVZz&#43;ZU4ZETO3&#43;iAzrgxGN4f8hi0fEdNnm6KzqHU94MJL2&#43;4QD5AsdTNXNXqZBfIg3VTxR69X6c/9zzYrLgIzvcAxnVxeavxcd3LiUpD/DjkUA5YiWMZbz65AuLju36FPfNVlsOrPGNBwTW2nSG4w&#43;M4JbctOyC8XzdkYepixYLa99E2XBQkrWFS4vx1RjOOY240JII0qOgZbYwEqIDvoWkNpHANNbSGE5TJoZqETf&#43;3/2i7/Hena4EvUP51jiY60jbZZjxLSOUKJvSKMlCXOFCCWCJGXNaA4QLTqySsa99sEgMXl5Pg9roazLKSubkaQXgKELpwJcWH/MBgqUUWXgN4/AQY7KSlQVZjJA71UiGnKpkDLYVAtXyfoPx3Mo49M605HamZEGa3/GerIhGLS1HOl59IqIy&#43;ZNoQcYjUrjWGB7zYTynKhrTo2Oktd4lP1yV7Ap0sEZn0&#43;dcpdKuCrJ2BMGIxBrlIT1xSK0yjKdHM5cKudH151dXH4MQkkxKXn5q73E1VlhHOf/jiDbpiNK9Xn/mT8/qb54ryRwXIudk83Aek/aMzjKeyebPF5T64ZX1r3QJQmmgzSJU46CpoZFiGWAKeXJ&#43;1Nvv3dQVptHPy3gwJl//9gNj8LoCzRWDlgkLgxITrlNYI68xnNxfRzPWZGj5ct9&#43;l6bTB2KUyyQon9WURJ/n&#43;IrWvjxkj5EwORy4jlsiWNfggJ0NS/ubwVneIhcnHLCTxLFvBTKUwv1QCJMCrVSRVjvVQmzv66o10WjB1xXeEKwSEzPUxYAqUZxH2bMAiH6xiaxAbG27&#43;cXsLej0xD7jiIfxWhiWfJdkje&#43;YP87/7PVf8b2ul/dXPHD80h9I6edgohii4pr0acfcmwfbWSiYjINeD7QvXKe08wquLGDiUJ5BzQ2Z4xsRbrexZMD7hEYa&#43;tSQ3tbwzOUz4ss5W1fDxT6olC6NIn0yoEaaehkTt3T&#43;1fk3Dv2M967P3nriW27syX6kDw06FcBnyiM62DD3xsF2xhloX7IOKaCdWeZsWRuXw&#43;Ky2qcA1FJV4dBoXtNYIB6TCMM9VdKjjPbzLAgPXPJ9q/kwwX0xp&#43;X5pOM9&#43;Q3awYDQ2gNnBPiMaKTeW2ICVexlzpmcHmMkxc1ucQToaEtrtFHj&#43;4w3PBLkq2ISLbhuhUC0EMSZJtpO&#43;xB&#43;VlGvcHiAFHIpBAd3OHDoW8Ax0Rxr1BHzu&#43;kXtcNdVIc8uYA1g0NOKkyH8Utj/BuUSnv8C14ims1ZN17ITpRG5sF&#43;6Iy8AMCu3KOaAf5AknX5O&#43;TBOwzFnlQbWUlZL7mSMmCURybjszDSLN60Ju2EeTvNAv2tRrJy2DUMO1EBGSua1QWIbg6H5CQEZADLyaCErnjcj0IOLh1vVVdzGbTZmGndd9h7CIZEAiXN0EF37o1Drdfnbv1OXHovhjoQlIYwsOVL824cts2YErZogX4oFstUWkFEoTPwBEDuvxW/uSVG5tVUOU&#43;x6BYHUwmXcUpgn1Z8H3vtwKB/uGFjdys/h&#43;Z9eXDLtdlbXoO6VqIsZpVS78y7eeRqT2NzpLGnrcCGtjCBMswZssKs/hO1As3&#43;9Vn8FUlP9/5j0fNS0tLwjg3rUv0K6fDMN0LCiHg6V7&#43;x&#43;yRvuyXC4qtD6NiIhwVDzQ719N3pC&#43;PP5lfbCGRHI1mPBvJW6SbRzB93v4kvHtMGaMk&#43;l53VKs4KQH1FHTTBZ1JoCJqsBstRRdslCp95AQjG&#43;t9Z8nshFNpAVgASrBADePCRhg3d/&#43;452hj5XkPDnQ8sEu44gweKDvY324jZbUFtE9TaYfemThNUVDyE4USUIkH2IiU8l36ZjHsUBGE&#43;5oBDOG/rfXvxT2duvPQXw7UKzf1Uurd3xt3j9tbdVqEWJ55YtWIDTE0WAaajpPzADPUPB0h0qjCUVcFgRo2xyqUwf&#43;59d8mDLMzRoxOK90SCxfU0BcIfwvZC0aKTCCUogbaIfcC4TpiIuACzuaOFwBSqq2BXbZ7hawsGl5XleV8fYSKQxrcuZ12Yd9ipw6wE30GeH1GKewKupJNyFTRoHyOlsW0p3y0HZaUlarCKAcWzyJolOuwDnDoKVSiwaB4&#43;mU9/HapdihbCmE&#43;qYjblltphVDAIFFI5ywQyDyXGCZUITvwtKxA7Om6LOUgJWRO8MdOp8CLoO/mfRkkZiXF3oLXZViII9fx2JKcIJoqx6SKucOrrPDebU4frN1x6j4VbuzaMptKdyb9lBQqRwwdx8uxTuVTB6M/REfQim7&#43;PGH5swVeH/sn9EDsr8s&#43;/jNKr4dTvK2160Rp8jgzcWr&#43;h&#43;0Wm1doa5prJQkz8/h9TqIg86VwbWQAAAABJRU5ErkJggg==&#39;;
+
+// Dark Slack Icon
+const SLACK_ICON_B = &#39;image=iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABLNJREFUWAmllstvTVEUxg9Vr1BVYYBIDJpIGGAibdN2RoIwYCBG5R/pjZAwYoSJQRO0BgYMqKQdVycqIpHcDkx1QpXE&#43;/H9ztnftXvt&#43;&#43;yXfGevs/baa6&#43;91jr73ixrjFWRyajksvhOnBIHRLBa7MilLOvXyBw22JZEI/ZlXcujnYxr5Z8EhyOPQ4l51kwEG/uKlrQm&#43;tTHtAzH38Wf4m/xi4huVjSQ0TGHDbasQYcPsKYY0k9SXQ8&#43;EWUwCBL9uqDYp7E7EBkwh40PhO4ID8E&#43;i7eqZ91oI9vPQeak1Yj7J3VAB&#43;Ax5aPiM&#43;WgMimBtINHIo7Wii7bj6D7FUYNK0czAZH2snghbEdQZJaRU28RXRpnQar2EJcMGYeplLL5mPhKPCf2iDQs9jTwJ7FLTK2VOgkO4YSwDn/5SX2qXIGyDuY0B1PYJqVLnJqPdQRDqaGRx0FWfKqjkvvEzqBzoHqtgBNBgiewh6KBn9Qaz3tkPX3YK54WN4kz4jOxgnFJOGyVk1qzMXjZrfFj8EGm7MvNPxrsGEZEz3v05ZmVwiQLiZyxGX4L625rBHvEegFdyq2y7JBGB4EP74uuJGbzIi&#43;UwYbNjLZf0DrKvENcCj5SGbqsOXBNxP/XMCITFGOZevJ1AORWYPv1WkQf2GktH2wI&#43;EKBr4pY7sLpazSCS8DCevTpsQdvxQ&#43;ByIDS44OvCHvwshgqX5b9YGdfeSz9UqBslyfCRgzHa/h5GtnQc&#43;wVB&#43;S9iSXHoJ7PRZqSSw7y&#43;8WILiZ9wjsndjBk2iUkKK4EbOivW&#43;IG0bgugQDIqv2z95CY3xu&#43;pHjnV7u6tr6XvCnNSL/gEKB3WWKZXmFDbGPQc5tFysm9xbgogo74YixUxZMTEBjZIIAYBEgTNwI&#43;tor8FSFgSAB8nTB1ibImB&#43;lyySgVp2fyhmiQ9psiZXDJToZJZ49Xykg5OUyKboe4JWZlOyzmGNCTzWNyGt5pQIPGjG0sOyjsCMb6dkZiyaaDE361nVpfAQ7oTLBBT7qxw55NyYYxJwEdZcaG/jDj92rZvqboof0i8N9OZNfXDX4YpUBprMMe7BW7ReaQgf8r2U&#43;h/eeX93jOvg7ghJoCojYsvw8KAq8GmQA4JgD8&#43;ILzeqmagu2XCOhuWIKScnDLOuKJaC6IlcEnJDDs&#43;bz9d4Qy&#43;WtqNLLOAd2TnOO&#43;njiOOZLPFI8rYY7FtmFTZL6kXSLgS3wi2qaVcRwHLsV5yWNin8jn&#43;Fgsi5SCjDWCT0hzclOfFQ&#43;KZJE5gq8Fguazn7QBi5x&#43;6xhpXgecyhAbOUM7WbBC5HGwIU4BATgwn8oB5QZVD9b5MPQJPwlXw6gh98dH8UB8IZJtZ1LiMuCrXhYrxg4olSH3ECXuEbeLOE7xovTAV0bxlnjylTUDNqkF5sgUAS6KvNN3ZM3XwB3JvSI2dYNqNiCXUv5qAhsyytgZZK4DfxSnJIO6vlySwrT2k88dxJmyY/cb86kesZ3/Ifgd&#43;//QKEMOYCZa6d5xOd5ojlJBZMAca7F1APZhn5pqD3aYujxxPhS5HZSMrpr5pSe9fUVLWhdjJ6NaPi8uiNPigAjItJu1XzJz2GBbEo3Yl3XLxr&#43;Yk&#43;18ezbHlQAAAABJRU5ErkJggg==&#39;;
+
+// White Slack Icon
+const SLACK_ICON_W = &#39;image=iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABRxJREFUWAmlmM9rXUUUx/OS2KpotRU3KoJCQaGbrqQJTXcWrChCF1I31X8kQRDc6UrrwkVBrS5c6MJWaNc1G1OkIMSFW93YmBTapk2en8&#43;98329ubnvh8mB7zsz55w5c2bOmbmTTE2NoX6/34sJ7UWwCv4CV8G8Ovg0mCntuaLTRtsl5RLt6bq1j1&#43;cVAHBL4EuOhX3KBe6DJB9qw18sLiM&#43;V8cB1n16TLRJvwB2AZ3imw5Tun/UmTqtNHWMdJp7eCzse/i47YwK5prDDZI5QeL7BUmeVrQf7XI1GlTLajIXis8Pkt3JxsZbcP0dmn3GzLbOndRmbhrgQkgvOmj4a5udjloGm2Xzg9wHR0Am&#43;BBgbItMHIS9BPTyIB6vZ51MANfxeP7xatBubNyV/0UyA5lFxDtjQYpK8Wmw12rRXeAoC7Cf0P/LjgC3BnpDtgAh8Cuscg6yYWiyIb08e&#43;uT82iUDgQKBxGDFpBJ3YRfp5BmBTv0jcEPYPBlwvKonIl9GZRVE4weh2DE&#43;AR4Eq7tt/ghatZYez38NCwMdGHM6y3xXxHEbwNngDXkf0Mr3cY5bBLD9VIuoL2cRy5whfAv8Xa2gvdL41F7ST656Ns8OryVLlUhA70EpNPgntl3IUyyYv0RwX0YbE7XsbJ9JF57S&#43;5/e9pCJki02WhT4KcrHdw5Li7IGmutx5Bg5xL8lBI90BObMad08jTIWVA3Rv/G/tHMbUO7oMEkgmaXqLzhEpZULN9SKc3lUBG7KBJ4QUp/UlB3hK2K0l9eerHU5STd6PocrKUZy7nlm5aQ3Mmbx90pvaF937/jSF&#43;LjdsLhSbZuFnWP3NpHcS&#43;KW2KDcKbheurIn10r8Br4KB&#43;x6qUgg3qBXgmL/B56A6iQZF&#43;xMgrQHn0m4ZLKhvXlIa&#43;8Vu5zb3khMKt3ezpMgx07RzlzXb1soGOmtrQNhbc0&#43;CpHILmzUN0M14msxjm5QZ2DrGnp4BMcgALeJxpI/D2PsUcXJhsefDPLzwGbQAkjJTdQtIn&#43;KgItqPgc&#43;AaXCbTdmbKuHNlJ0pOlOb9KYtN03O0SwJU3YqE83TaVMK7ovKqJ70ctuo9KugtKNvMPuheZ1cKx7y7DSY9i18ttgobz9hc5z1ZTFLd4F&#43;/GYF7X5T7tzSVWvomKuD8uy0nfymwI8rhCzqyPKEfQlHh5E75mUg5a0UP7X0od/0w&#43;PrmBOsF2mq3m7a/xSdgbcph0EfFrpvohyAjG&#43;PGdaP/brOvipWCj0B3sCJuP4CPwywmO5gjjtYjneeI97GOU3juNdCAvq68syWf2MCW3S&#43;UvKD/KOi88scsgYkT87z2sI9iT&#43;BvdAlfVSpYHXn8HCR/gngXxg/IltF5tM13yzEO6hZH9UKsfU56019Fp66U5fv1w4HpWPqlxl7peoz2Nu66TzyGeRVwPBxO/Rccb5nljh8wlbFicDTk8C2kZuSrmJuT&#43;oYrwI/CR8DuaQ/D8V3&#43;PoVvScvtUJzJ2FjrY2mBAQftUPeuEfAs2AYfeBMKHNlDJ3YUzYJ5Yh32apzl6wTP5L2rTtXnHfOlwRztOz6yKAmDSipZI6hpI0plnsv2fb6yKF4i7Y0cs5JakQneUJ07VTzFHXVSBYzyQthdLQEkgCuG1UhU5O0KPqdVKwJ2wogU6WNtgkoPuIT1R6I3FcO4V2XJ&#43;L6padr2icVdFB16SFPcHuIpAxpOqG9CP4AvomugfkSSPtfeuq00XYps9MeWT/a/QejJXmUB/EJZQAAAABJRU5ErkJggg==&#39;
+// }
+
+let unread_count = 0;
+const slack_output = {};
+const errors = [];
+let call_log = {};
+
+debug(&#39;Debugging&#39;);
+
+if (process.argv.indexOf(&#39;--mark&#39;) &gt; 0) {
+	console.log(&#39;Mark as read&#39;);
+
+	let token;
+	for (let i = 3; i &lt; process.argv.length; i&#43;&#43;) {
+		if (process.argv[i].indexOf(&#39;--token=&#39;) === 0) {
+			token = process.argv[i].split(&#39;=&#39;)[1];
+		}
+	}
+	if (!token) {
+		console.log(&#39;Error: Missing token&#39;);
+		return;
+	}
+
+	for (let i = 3; i &lt; process.argv.length; i&#43;&#43;) {
+		let args = process.argv[i].split(&#39;=&#39;);
+		if (args.length != 2) {
+			continue;
+		}
+		if ([SLACK_CHANNELS, SLACK_GROUPS, SLACK_IM].indexOf(args[0]) &lt; 0) {
+			continue;
+		}
+
+		let channels = args[1].split(&#39;,&#39;);
+		for (let j in channels) {
+			console.log(&#39;/&#39; &#43; args[0] &#43; SLACK_MARK &#43; &#39; (&#39; &#43; channels[j] &#43; &#39;)&#39;);
+			slack_request(SLACK_CONVERSATIONS &#43; SLACK_MARK, {
+				&#39;token&#39;: token,
+				&#39;channel&#39;: channels[j],
+				&#39;ts&#39;: Math.floor(Date.now() / 1000) &#43; &#39;.000000&#39;
+			})
+				.then((body) =&gt; {
+					// console.log(&#39;  Success: &#39; &#43; args[0] &#43; &#39;:&#39; &#43; channels[j]);
+				});
+		}
+	}
+	return;
+}
+
+function debug(message) {
+	return DEBUG &amp;&amp; console.log(message);
+}
+
+function slack_request(URL, query) {
+	debug(&#39;  /&#39; &#43; URL &#43; (query.channel ? &#39; (&#39; &#43; query.channel &#43; &#39;)&#39; : &#39;&#39;));
+	// The following is to keep track of how many calls are being made
+	// for each token to each method. Should help debug the rate limits
+	if (!call_log[query.token]) {
+		call_log[query.token] = {};
+	}
+	if (!call_log[query.token][URL]) {
+		call_log[query.token][URL] = 0;
+	}
+	call_log[query.token][URL]&#43;&#43;;
+	return request
+		.get(SLACK_API &#43; URL)
+		.query(query)
+		.then((res) =&gt; {
+			debug(res.body);
+			if (res &amp;&amp; res.body &amp;&amp; res.body.ok === true) {
+				return Promise.resolve(res.body);
+			}
+			return Promise.reject(res.body.error);
+		})
+		.catch((err) =&gt; {
+			debug(&#39;ERROR: &#39; &#43; err);
+			debug(&#39;  &#39; &#43; URL);
+			debug(&#39;  &#39; &#43; JSON.stringify(query));
+			errors.push(URL &#43; &#39;: &#39; &#43; err &#43; &#39; | color=red&#39;);
+		});
+}
+
+function output() {
+	unread_count = unread_count &gt; 10 ? &#39;10&#43;&#39; : unread_count &gt; 0 ? unread_count : &#39;&#39;;
+	const slack_icon = BITBAR_SLACK_ICON == 2 ? SLACK_ICON_B : BITBAR_SLACK_ICON == 1 ? SLACK_ICON_W : SLACK_ICON;
+	if (errors.length &gt; 0) {
+		console.log(&#39;! |color=red &#39; &#43; slack_icon);
+	} else {
+		console.log(unread_count &#43; &#39; | &#39; &#43; slack_icon);
+	}
+
+	if (Object.keys(slack_output).length) {
+		for (let i in slack_output) {
+			let team = slack_output[i];
+
+			if (SHOW_ZERO_NOTIFICATIONS || team.notifications.length &gt; 0) {
+				console.log(&#39;---&#39;);
+				console.log(team.name &#43; &#39; | size=12&#39;);
+			}
+			if (team.notifications.length &gt; 0) {
+				for (let j in team.notifications) {
+					console.log(team.notifications[j]);
+				}
+				console.log(&#39;Mark all as read &#39; &#43;
+					&#39;|bash=&#39; &#43; SCRIPT &#43;
+					&#39; param1=--mark&#39; &#43;
+					&#39; param2=--token=&#39; &#43; team.token &#43;
+					(team.params[SLACK_IM] ? &#39; param3=&#39; &#43; SLACK_IM &#43; &#39;=&#39; &#43; team.params[SLACK_IM].join() : &#39;&#39;) &#43;
+					(team.params[SLACK_GROUPS] ? &#39; param4=&#39; &#43; SLACK_GROUPS &#43; &#39;=&#39; &#43; team.params[SLACK_GROUPS].join() : &#39;&#39;) &#43;
+					(team.params[SLACK_CHANNELS] ? &#39; param5=&#39; &#43; SLACK_CHANNELS &#43; &#39;=&#39; &#43; team.params[SLACK_CHANNELS].join() : &#39;&#39;) &#43;
+					&#39; refresh=true&#39; &#43;
+					&#39; terminal=false&#39;);
+			} else if (SHOW_ZERO_NOTIFICATIONS) {
+				console.log(&#39;No new notifications&#39;);
+			}
+		}
+	}
+	if (errors.length &gt; 0) {
+		console.log(&#39;---&#39;);
+		console.log(&#39;Errors&#39;);
+		for (let i in errors) {
+			console.log(&#39;--&#39; &#43; errors[i]);
+		}
+	}
+	console.log(&#39;---&#39;);
+	console.log(&#39;Add New Workspace&#39;);
+	console.log(&#39;--Generate OAuth Token | href=&#39; &#43; SLACK_OAUTH_AUTHORIZE &#43; SLACK_CLIENT_ID);
+	debug(call_log);
+}
+
+function channel_output(channel) {
+	unread_count &#43;= channel.count;
+
+	let output_str = (channel.is_im ? &#39;@&#39; : &#39;#&#39;) &#43; channel.name;
+	if (output_str.length &gt; MAX_LENGTH) {
+		output_str = output_str.substring(0, MAX_LENGTH - 1) &#43; &#39;…&#39;;
+	}
+	output_str &#43;= &#39; &#39;.repeat(MAX_LENGTH &#43; 2 - output_str.length);
+	output_str &#43;= (channel.count &gt; 10 ? &#39;10&#43;&#39; : channel.count);
+
+	let key = channel.is_im ? SLACK_IM : channel.is_channel ? SLACK_CHANNELS : SLACK_GROUPS;
+	let href;
+	if (SLACK_INSTALLED) {
+		href = &#39;slack://channel?team=&#39; &#43; channel.team &#43; &#39;&amp;id=&#39; &#43; channel.id;
+	} else {
+		href = &#39;https://app.slack.com/client/&#39; &#43; channel.team &#43; &#39;/&#39; &#43; channel.id;
+	}
+
+	slack_output[channel.token].notifications.push(output_str &#43; &#39;|font=Menlo size=13 href=&#39; &#43; href);
+
+	slack_output[channel.token].notifications.push(&#39;Mark as read &#39; &#43;
+		&#39;|alternate=true&#39; &#43;
+		&#39; font=Menlo size=13&#39; &#43;
+		&#39; bash=&#39; &#43; SCRIPT &#43;
+		&#39; param1=--mark&#39; &#43;
+		&#39; param2=--token=&#39; &#43; channel.token &#43;
+		&#39; param3=&#39; &#43; key &#43; &#39;=&#39; &#43; channel.id &#43;
+		&#39; refresh=true&#39; &#43;
+		&#39; terminal=false&#39;);
+
+	if (!slack_output[channel.token].params[key]) {
+		slack_output[channel.token].params[key] = [];
+	}
+	slack_output[channel.token].params[key].push(channel.id);
+}
+
+async function run() {
+	if (typeof tokens === &#39;undefined&#39; || !tokens || !tokens.length) {
+		errors.push(&#39;Missing Slack Legacy Token | color=red href=https://api.slack.com/custom-integrations/legacy-tokens&#39;);
+		errors.push(&#39;Generate OAuth Token | color=red href=&#39; &#43; SLACK_OAUTH_AUTHORIZE &#43; SLACK_CLIENT_ID);
+		return output();
+	}
+
+	for (let i in tokens) {
+		await get_team_notifications(tokens[i]);
+	}
+	output();
+}
+
+function get_team_notifications(token) {
+	return get_team_info(token)
+		.then((team) =&gt; {
+			if (team) {
+				slack_output[token] = {
+					&#39;id&#39;: team.id,
+					&#39;name&#39;: team.name,
+					&#39;token&#39;: token,
+					&#39;notifications&#39;: [],
+					&#39;params&#39;: {},
+					&#39;errors&#39;: []
+				};
+				return get_auth_info(token);
+			} else {
+				throw &#39;Invalid token&#39;;
+			}
+		})
+		.then((user_id) =&gt; {
+			slack_output[token][&#39;user_id&#39;] = user_id;
+			return get_team_conversations(token);
+		})
+		.then((channels) =&gt; {
+			return check_channels_unread(channels, token);
+		})
+		.then((channels) =&gt; {
+			for (let i in channels) {
+				if (channels[i]) {
+					channel_output(channels[i]);
+				}
+			}
+		})
+		.catch((errors) =&gt; {
+			debug(errors);
+		})
+}
+
+function get_team_info(token) {
+	debug(&#39;Fetching team info for &#39; &#43; token);
+	return slack_request(SLACK_TEAM &#43; SLACK_INFO, {
+		&#39;token&#39;: token
+	})
+		.then((body) =&gt; {
+			if (body &amp;&amp; body.team) {
+				return Promise.resolve(body.team);
+			}
+		});
+}
+
+function get_auth_info(token) {
+	debug(&#39;Fetch auth info for &#39; &#43; token);
+	return slack_request(SLACK_AUTH_TEST, {
+		&#39;token&#39;: token
+	}).
+		then((body) =&gt; {
+			if (body &amp;&amp; body.user_id) {
+				return Promise.resolve(body.user_id);
+			}
+		});
+}
+
+function get_team_conversations(token) {
+	debug(&#39;Fetching conversations for &#39; &#43; token);
+	return slack_request(SLACK_CONVERSATIONS &#43; SLACK_LIST, {
+		&#39;token&#39;: token,
+		&#39;exclude_archived&#39;: true,
+		&#39;limit&#39;: 200,
+		&#39;types&#39;: &#39;public_channel,private_channel,mpim,im&#39;
+	})
+		.then((body) =&gt; {
+			if (body &amp;&amp; body.channels) {
+				return Promise.resolve(body.channels);
+			}
+		});
+}
+
+async function check_channels_unread(channels, token) {
+	let req = [];
+	for (let i in channels) {
+		if (channels[i]) {
+			req.push(is_channel_unread(channels[i], token));
+		}
+	}
+	return await Promise.all(req);
+}
+
+function is_channel_unread(channel, token) {
+	return get_unread_count(channel, token)
+		.then((unread_count) =&gt; {
+			if (channel &amp;&amp; unread_count &gt; 0) {
+				if (channel.is_im) {
+					return get_user(channel.user, token)
+						.then((user) =&gt; {
+							if (user) {
+								return Promise.resolve({
+									&#39;id&#39;: channel.id,
+									&#39;name&#39;: user.name,
+									&#39;count&#39;: unread_count,
+									&#39;team&#39;: user.team_id,
+									&#39;is_im&#39;: true,
+									&#39;token&#39;: token
+								});
+							}
+						});
+				} else if (channel.is_member || channel.is_group) {
+					let team = channel.shared_team_ids &amp;&amp; channel.shared_team_ids.length &gt; 0 ? channel.shared_team_ids[0] : &#39;&#39;;
+					return Promise.resolve({
+						&#39;id&#39;: channel.id,
+						&#39;name&#39;: channel.name,
+						&#39;count&#39;: unread_count,
+						&#39;team&#39;: team,
+						&#39;is_channel&#39;: channel.is_member &amp;&amp; channel.is_channel,
+						&#39;is_group&#39;: channel.is_group || (channel.is_channel &amp;&amp; channel.is_private),
+						&#39;token&#39;: token
+					});
+				}
+			}
+		});
+}
+
+function get_unread_count(channel, token) {
+	// unread_count_display is a count of messages that the calling user has
+	// yet to read that matter to them (this means it excludes things like
+	// join/leave messages)
+	// unread_count_display does not show up consistently.
+	// In the case unread_count_display is not present, check conversations.history
+	if (channel &amp;&amp; !(&#39;unread_count_display&#39; in channel)) {
+		return check_conversation_history(channel, token)
+			.then((unread_count) =&gt; {
+				return Promise.resolve(unread_count);
+			})
+	} else {
+		return Promise.resolve(channel.unread_count_display);
+	}
+}
+
+function check_conversation_history(channel, token) {
+	debug(&#39;Fetch history for &#39; &#43; channel.id);
+	return slack_request(SLACK_CONVERSATIONS &#43; SLACK_HISTORY, {
+		&#39;token&#39;: token,
+		&#39;channel&#39;: channel.id,
+		&#39;oldest&#39;: channel.last_read != &#39;0000000000.000000&#39; ? channel.last_read : 0,
+		&#39;unreads&#39;: true
+	})
+		.then((body) =&gt; {
+			if (body &amp;&amp; body.unread_count_display &gt; 0) {
+				const user_id = slack_output[token][&#39;user_id&#39;];
+				if (channel.is_im || channel.is_mpim) {
+					return Promise.resolve(body.unread_count_display);
+				}
+				return Promise.resolve(count_mentions(body, user_id));
+			}
+			return Promise.resolve(0);
+		});
+}
+
+function count_mentions(body, user_id) {
+	if (MENTIONS_ONLY &amp;&amp; body.messages &amp;&amp; body.messages.length &gt; 0) {
+		let count = 0;
+		for (let i in body.messages) {
+			if (i &gt;= body.unread_count_display) {
+				break;
+			}
+			if (body.messages[i].text.indexOf(user_id) &gt;= 0) {
+				count&#43;&#43;;
+			}
+		}
+		return count;
+	}
+	return body.unread_count_display;
+}
+
+function get_user(user, token) {
+	debug(&#39;Fetch user info for &#39; &#43; user);
+	return slack_request(SLACK_USERS &#43; SLACK_INFO, {
+		&#39;token&#39;: token,
+		&#39;user&#39;: user
+	})
+		.then((body) =&gt; {
+			if (body &amp;&amp; body.user) {
+				return Promise.resolve(body.user);
+			}
+		});
+}
+
+run();
+
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

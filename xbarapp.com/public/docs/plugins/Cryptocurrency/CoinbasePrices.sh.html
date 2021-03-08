@@ -1,0 +1,366 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Coinbase Prices in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash. - install xbar for free to get started.'>
+	<meta name='author' content='Mustafa Türksavaş,  UdjinM6'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'>
+	<meta itemprop='name' content='Coinbase Prices in your macOS menu bar'>
+	<meta itemprop='description' content='Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Coinbase Prices in your macOS menu bar'>
+	<meta name='twitter:description' content='Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Coinbase Prices in your macOS menu bar'>
+	<meta property='og:description' content='Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Cryptocurrency/CoinbasePrices.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'>
+	<link rel='shortcut icon' href='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Coinbase Prices</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/mustafaturksavas.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/6232697?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/mustafaturksavas.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Mustafa Türksavaş (<code style='color:white;'>@mustafaturksavas</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+					
+						
+							<p class='text-white'>
+								and <strong>UdjinM6</strong>
+							</p>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Cryptocurrency%2fCoinbasePrices.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif' 
+				alt='Image preview of Coinbase Prices plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>CoinbasePrices.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Cryptocurrency/CoinbasePrices.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Cryptocurrency/CoinbasePrices.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+
+# &lt;bitbar.title&gt;Coinbase Prices&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Mustafa Türksavaş, UdjinM6&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;mustafaturksavas&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;bash, python&lt;/bitbar.dependencies&gt;
+#
+# Based on Cryptocurrency Prices plugin by viiraj (github.com/viiraj).
+#
+# I hope this plugin provides value for you and if you feel like it, tips are always appreciated.
+# Bitcoin: 1MYkRDn8KtGeeQSoiafymPPB3mncVi2rKN
+# Ethereum: 0x2F0138E7035d0dB3D5e0B5b3008D8E0746641E09
+# Litecoin: LVYrJcvdBmhazNoAtJhBvaSsyY2kWHwraJ
+
+bitcoin_icon=&#39;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAACXBIWXMAABYlAAAWJQFJUiTwAAABY0lEQVRIx2P4z0AdyEBzg1DAdIYfQJgCZHmCWdsYMAFRBs0BC2UAWT5g1p6hbZAggwIcrgALVQNZSWDWAQY24g3qwRtJ/xgeMqxkCGJgotQgGLzAoEUdg/4zvGQQIxzYLAyODF/gQv0MlgwWDK4MOQxbgV5DKG0nLtZ2wIUykII2EMmoU8QZtAWrQQwMB&#43;HiDygzaDNc/CQlBskwfIKLN5JrkAxDFsMTuOh9BiFSDXoHDI2HDB9RlJ1kECc2r20hkI5OMXhQxyAQzCTNoDJgaAgAvaLLEMkwn&#43;EbkuLvDBLkR78yUoD/Z0gn3yAGhnwk5V2UGBRGLYNmICkvIGzQLqwG8TA0oJQAVvgMymcoYehg&#43;AUXWgoM0kygWC/DbpQ4&#43;89wjYERt0FiRNeNX4GlFJ505EykMacZDPGn7HwCBnxiOMcwjcGJcOEvzqADh2vBQk1AVhaYdZCBc7TKpqJBA9ZiAwDMH49EXcmY2QAAAABJRU5ErkJggg==&#39;
+eth_icon=&#39;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAACXBIWXMAABYlAAAWJQFJUiTwAAAC/UlEQVRYw&#43;WYX6gMcRTH997158GD/7Z7mzm/8/vN7KZNN1ohL&#43;vBG&#43;GmyN8Hrrh0S3nQxQPPIg9S8i9SJEUePVGKuOF6Q0qkkD9JQv6M7xmzzO6dXcvO7JJbp&#43;bOTr/zmXO&#43;55zfb1Ke56X&#43;Jkv980D1/GnS8zXRPFy21/N8okDGmEnG5luOUjsN8/qWAznERx2bHgqQo/jl5M7O8S0DcpWaBYivISDPKHWoVUDtABgQiDCQAGaZZzYdCJHYEABUAokN1BJ47ECiE9FLDSBPK9XbNCA4Oxh2HgUEe5XryE1IHMjYZjqcfakDCPf5SNJAbYbo2lDHVYAgcKnExIBcorURTmsBedrmm5UCjwWIiMZiPDyPdEp8Drpajut3kcBEm2IHMor3l785fQTEcehkAaLTD1ukLLUM9/phjyu09Np13YmxAWWVmoqFPwfpeSrpQbQWoxdd8AUeThnR3Sxxn8O8GjPu6s8o8bG4gNqw4BV/gGrdA0frAHD7lxpCVAC8G88vBMwpiShgZzcMlCPSkg7YLjh&#43;9ruilsgC7IxjYQ3mpQ0DyRvi7T5UcVYPUNhOgifdsIZc5iLCPfinQBD5W6R8az6fH9F4hBzHDrSYRpPbWDbD6miMSNcJtIwOf&#43;8UrNUQkCyGijoPmGmymGVZ4yDSAz&#43;qriqQulHq0thVjsb/&#43;1zSK2Mpe7xlt5S3DNXSwNRad2GMXBoCBOHjuTVSnWJyHRTD2bgb4&#43;HSFEeE&#43;iSFfhpsXgKwywDaZoj3SDT83oVNGu5d/76L5CcS2ViBujKZUXBwL5SSO7A58lsxVRwmFkQuI03Q39oGOsKpZG4iwxXOZiAFn8JakR6DqFChUBgOwC1oEW/Kfifem&#43;x&#43;iHhHRFnfB8z2iKE6iBk2MukdY1pGSR2j472xzJSmbGGVUlyWmgggpHJzU08dEO6q6kDqYlD2zT0oomGergTSil&#43;UOnPTgZC6MYB6VHFy7W7t2R69CFF54H9sQPNs&#43;ceG4JzWi0itkOaZONB/9wXtG&#43;MF7xgwhWr8AAAAAElFTkSuQmCC&#39;
+ltc_icon=&#39;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAACXBIWXMAABYlAAAWJQFJUiTwAAABVklEQVRIx2P8z0AdwMRALfAfC8QA3ijSW8l3kRkK7xT5BpkSNog4r71GkRYh1yBFFMl75McaESFEnEGoIXQahZfAYEC81w6hSNrCxUUZ1jP8YeAm1iBmhi9IUgiNAQwvgfxLxAe2LooURCMfwwIofw5MGQsZacgRaIwcRtATdNEMFKl8hgkM/&#43;C8VQwCxBt0FkXqA5z1jiGSlATJwfALq5IdDFKkpWwLLNJfGDJIzyJ5GJJHGJTJyWuLUSR&#43;MpTjzAsEDLqJImFFXgkpwrAWRfg1eUWtH8MLNOFt5BjUh0W4kXSDGBk&#43;YhH2Jt0gRazCoqTXa/pA/IahAEXsIf7Axm6QHsMmBh2Gx8QUsfiLkVUMTRhl9XlgvsMN/uFLR3uxSmKHq3EX/owMJiTU/KdxG6QBLFCJB6eYiKzN8IN/DGepY9BNhs&#43;4C39Dhr9EG3QSGKSDrsUGAN8MmUJvvpOgAAAAAElFTkSuQmCC&#39;
+dash_icon=&#39;iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4wsdAAwGzHGX5gAAAg5JREFUWMPt1z1oVEEQB/DfhRON&#43;JXCmGKDIoiKmEIhIIhKCmsLwSKihb0EXikWChYi1ykIQggIFjaCglUghWJhLCwUFItYPPwKQvBiJDEhFnkHIu/d7TsuscnAcTA7uzPz35n/7GNd/rNUoqxq6QhGSpw7i3f4hQk8lYQveYbVyAMPYHfJ5A5l/&#43;ezJF5mSUxKwmLDqCsi&#43;y3Y2wG0B/ECd9XS7jIIbMbODl77JWxqINMVsWE79uB3i98CliKDGFZLT8Yi8B1J5qCZLKMbIauXY9if6fOK/RYGK6vSW7W0msF8EbebJLavsuqNXkuv42rOSh1DXWvANfcxV0ABfWsRwCymCmpmvvoXVGcwip4Sh8/jsCR8aMG2eVe9hB/VzPkRPGoju0lMR7Rxf45&#43;AVONK7jcJrxvJGGmhU0PtuboFyXhWyOAC204r&#43;NhhN2JAv3blUqspf34mrFZzPSs4xNGJWEiYs/ZAv3jRit8xkBWlTGyhAVJ&#43;BnBAf04WrA6uhLAymicXqUWHCvQP5eEeuwwapcBb2CoYPVK2QdJGccHcQenCizG8ap5ALV0Q3ZAb4TLZWzEcZzOpmEzVrwpCXOtEOjDvTaeYa3kmiSMx7wJd2Bbh50PS8KDf5VFRdhbciY0kxTn8pw3Q2CgA46f4QnGJKGwzYsC2IX3JdhxJqvs1/iY7a1Lwuz6p9e6tJI/DAh9aD&#43;iV7oAAAAASUVORK5CYII=&#39;
+
+bit_price=$(curl -s -H &#34;CB-Version: 2015-04-08&#34; &#34;https://api.coinbase.com/v2/prices/BTC-USD/buy&#34; | python -c &#34;import sys, json; print(json.load(sys.stdin)[&#39;data&#39;][&#39;amount&#39;])&#34;)
+eth_price=$(curl -s -H &#34;CB-Version: 2015-04-08&#34; &#34;https://api.coinbase.com/v2/prices/ETH-USD/buy&#34; | python -c &#34;import sys, json; print(json.load(sys.stdin)[&#39;data&#39;][&#39;amount&#39;])&#34;)
+ltc_price=$(curl -s -H &#34;CB-Version: 2015-04-08&#34; &#34;https://api.coinbase.com/v2/prices/LTC-USD/buy&#34; | python -c &#34;import sys, json; print(json.load(sys.stdin)[&#39;data&#39;][&#39;amount&#39;])&#34;)
+dash_price=$(curl -s -H &#34;CB-Version: 2015-04-08&#34; &#34;https://api.coinbase.com/v2/prices/DASH-USD/buy&#34; | python -c &#34;import sys, json; print(json.load(sys.stdin)[&#39;data&#39;][&#39;amount&#39;])&#34;)
+
+echo &#34;$bit_price | templateImage=$bitcoin_icon&#34;
+echo &#34;$eth_price | templateImage=$eth_icon&#34;
+echo &#34;$ltc_price | templateImage=$ltc_icon&#34;
+echo &#34;$dash_price | templateImage=$dash_icon&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

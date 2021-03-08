@@ -1,0 +1,102 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Litecoin/ltc-gbp.py",
+					"filename": "ltc-gbp.py",
+					"content": "#!/usr/bin/python\n# coding=utf-8\n#\n# \u003cbitbar.title\u003eLitecoin Ticker (£1GBP)\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eimpshum\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eimpshum\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays current Litecoin price for £1 from Coinmarketcap\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/GUaQ8hZ.jpg/bitbar.image\u003e\n#\n# by impshum\n\nfrom urllib import urlopen\nurl = urlopen('https://coinmarketcap-nexuist.rhcloud.com/api/ltc').read()\n\nimport json\nresult = json.loads(url)\n\ndef flow():\n    if result ['change'] \u003e '0':\n        print (' £%.4f | image=iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QAyQACAALwzISXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AQHACkSBTjB+AAAALNJREFUOMvVk70NAjEMhb87WYiGBZAQU7ABNSVSWpZgEEagsJDoKBELUCEKFuBuCKTw0xyQC0lICe5i+/k9/wT+3opUUJQhcAUqa8I5ZQT4tANwioGTCkQZA9vmOQE2oUJFhL0DXBz33RpKUfCLfLTQJMx9IlEWuQr6QB3prGtNS1lwiMvEYo7ekNsKRBkB+y+rH1hDFVOwy7ids+gbVzrsM6CXeYDTF85xroB1ZoHb73ymB5RhJkpZTihGAAAAAElFTkSuQmCC color=#000000'% float(result['price']['gbp']))\n    else:\n        print (' £%.4f | image=iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QABACnAADQ9FZaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AQHACQ1FZwK3gAAAMRJREFUOMvNkjEKAjEQRZ+jKNjYKh5AbzCdjVcQj+BFPIKlp7EMeAJrUbASQVCEr80uG9cNbqe/Cgn/5WUI/DqNfBHM+kCzbs+lPUAr2pwBq5qABbB+M8gszkDvS/kOdAG5VBgEM4ApsP0CGLukjxlEoA0wSZR3Lo0qhxhZDIBDAmDA0wsBLD51CZeOwLKivHbprZx6AkAHuEXbD5fawYwywMqAzOKeDTTPvKqcTGZBMLsGs0utn5gADYEHcKp9e9ni//MCDtNCE3qjsIwAAAAASUVORK5CYII= color=#000000'% float(result['price']['gbp']))\n\nflow()\n"
+				}
+			],
+			"path": "Cryptocurrency/Litecoin/ltc-gbp.py",
+			"filename": "ltc-gbp.py",
+			"dir": "Cryptocurrency/Litecoin",
+			"docsPlugin": "Cryptocurrency/Litecoin/ltc-gbp.py.html",
+			"docsCategory": "Cryptocurrency/Litecoin.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Litecoin"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Litecoin",
+					"text": "Litecoin",
+					"isLast": true
+				}
+			],
+			"title": "Litecoin Ticker (£1GBP)",
+			"version": "v1.0",
+			"author": "impshum",
+			"authors": [
+				{
+					"name": "impshum",
+					"githubUsername": "impshum",
+					"imageURL": "https://avatars.githubusercontent.com/u/3229127?v=4",
+					"bio": "If it wasn't for those damn whelks!",
+					"primary": true
+				}
+			],
+			"desc": "Displays current Litecoin price for £1 from Coinmarketcap",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:46.601107Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Litecoin/ltc-usd.1s.py",
+					"filename": "ltc-usd.1s.py",
+					"content": "#!/usr/bin/env python\n# coding=utf-8\n#\n# \u003cbitbar.title\u003eLitecoin USD Tracker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003emgjo5899\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emgjo5899\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eIt tracks Litecoin price in USD\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/OI9eD75.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n#\n# by mgjo5899\n\ntry:\n\timport requests\nexcept ImportError:\n  print(\"Need to install requests module\")\n  print(\"Type the following:\")\n  print(\"pip install requests\")\n\nimport json\n\nurl = 'https://www.worldcoinindex.com/apiservice/json?key=zQ5ePYHCeRw211NEeQ8DrZMbI'\nr = requests.get(url)\nj = json.loads(r.text)\n\nfor market in j['Markets']:\n  if 'litecoin' == market['Name'].lower():\n    price = market['Price_usd']\n\nprice = \"%.2f\" % price\n\nprint(str(price) + \" | image=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\")\n"
+				}
+			],
+			"path": "Cryptocurrency/Litecoin/ltc-usd.1s.py",
+			"filename": "ltc-usd.1s.py",
+			"dir": "Cryptocurrency/Litecoin",
+			"docsPlugin": "Cryptocurrency/Litecoin/ltc-usd.1s.py.html",
+			"docsCategory": "Cryptocurrency/Litecoin.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Litecoin"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Litecoin",
+					"text": "Litecoin",
+					"isLast": true
+				}
+			],
+			"title": "Litecoin USD Tracker",
+			"version": "v2.0",
+			"author": "mgjo5899",
+			"authors": [
+				{
+					"name": "Joseph",
+					"githubUsername": "mgjo5899",
+					"imageURL": "https://avatars.githubusercontent.com/u/17048946?v=4",
+					"bio": "Listening to Yiruma songs helps me to focus when coding :)",
+					"primary": true
+				}
+			],
+			"desc": "It tracks Litecoin price in USD",
+			"imageURL": "https://i.imgur.com/OI9eD75.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:46.611833Z",
+			"vars": null
+		}
+	]
+}

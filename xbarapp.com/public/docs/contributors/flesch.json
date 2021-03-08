@@ -1,0 +1,125 @@
+{
+	"person": {
+		"name": "John Flesch",
+		"githubUsername": "flesch",
+		"imageURL": "https://avatars.githubusercontent.com/u/13259?v=4",
+		"bio": "𝕱 • Insatiable curiosity for technologies that make life better.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/ProductHunt/producthunt-tech-hunts.1d.py",
+					"filename": "producthunt-tech-hunts.1d.py",
+					"content": "#!/usr/bin/env python\n\n# \u003cbitbar.title\u003eProduct Hunt - Today in Tech\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJohn Flesch\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eflesch\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eToday's featured tech hunts on Product Hunt\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/13259/12370591/3039c57e-bbdc-11e5-9b42-e4ab9f6bf851.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.producthunt.com/\u003c/bitbar.abouturl\u003e\n\nimport json\nimport urllib2\n\ndef get_token():\n    data = json.dumps(credentials)\n    try:\n        request = urllib2.Request('https://api.producthunt.com/v1/oauth/token', headers = {\n            'Accept': 'application/json',\n            'Content-Type': 'application/json',\n            'Content-Length': len(data.encode('utf-8'))\n        })\n        response = urllib2.urlopen(request, data)\n        response = json.load(response)\n        return response['access_token']\n    except Exception:\n        print ':('\n\ndef get_posts():\n    try:\n        token = get_token()\n        request = urllib2.Request('https://api.producthunt.com/v1/posts', headers = {\n            'Accept': 'application/json',\n            'Content-Type': 'application/json',\n            'Authorization': ('Bearer %s' % token)\n        })\n        response = urllib2.urlopen(request)\n        response = json.load(response)\n        return map(format_posts, response['posts'])\n    except Exception:\n        print ':('\n\ndef format_posts(post):\n    return (u'%s - %s| href=%s' % (post['name'], post['tagline'], post['discussion_url'])).encode('utf-8')\n\ncredentials = {\n    'client_id': '92822f15f8f1dac5477cd3e8639d8153c70a5b976d2b55bad7cb117ff6d5bd72',\n    'client_secret': 'fb5d3738f716b4c99cc3d798cd0a27401734edd20a8cf2efdc29a6c04dda344b',\n    'grant_type': 'client_credentials'\n}\n\nprint (u'\\u2117 | size=18').encode('utf-8')\nprint '---'\nprint '\\n'.join(get_posts())\nprint '---'\nprint 'Product Hunt - Today in Tech | href=https://www.producthunt.com/tech'\n"
+				}
+			],
+			"path": "Web/ProductHunt/producthunt-tech-hunts.1d.py",
+			"filename": "producthunt-tech-hunts.1d.py",
+			"dir": "Web/ProductHunt",
+			"docsPlugin": "Web/ProductHunt/producthunt-tech-hunts.1d.py.html",
+			"docsCategory": "Web/ProductHunt.html",
+			"pathSegments": [
+				"Web",
+				"ProductHunt"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/ProductHunt",
+					"text": "ProductHunt",
+					"isLast": true
+				}
+			],
+			"title": "Product Hunt - Today in Tech",
+			"version": "v1.0.0",
+			"author": "John Flesch",
+			"authors": [
+				{
+					"name": "John Flesch",
+					"githubUsername": "flesch",
+					"imageURL": "https://avatars.githubusercontent.com/u/13259?v=4",
+					"bio": "𝕱 • Insatiable curiosity for technologies that make life better.",
+					"primary": true
+				}
+			],
+			"desc": "Today's featured tech hunts on Product Hunt",
+			"imageURL": "https://cloud.githubusercontent.com/assets/13259/12370591/3039c57e-bbdc-11e5-9b42-e4ab9f6bf851.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://www.producthunt.com/",
+			"lastUpdated": "2021-03-08T15:22:09.066361Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/GitHub/notifications.30s.py",
+					"filename": "notifications.30s.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eGitHub Notifications\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev3.0.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMatt Sephton, Keith Cirkel, John Flesch\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eflesch\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGitHub (and GitHub:Enterprise) notifications in your menu bar!\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/hW7dw9E.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nimport json\nimport urllib2\nimport os\nimport sys\nimport re\nfrom itertools import groupby\n\n# GitHub.com\ngithub_api_key = os.getenv( 'GITHUB_TOKEN', 'Enter your GitHub.com Personal Access Token here...' )\n\n# GitHub:Enterprise (optional)\nenterprise_api_key = os.getenv( 'GITHUB_ENTERPRISE_TOKEN', 'Enter your GitHub:Enterprise Personal Access Token here...' )\nenterprise_api_url = os.getenv( 'GITHUB_ENTERPRISE_API', 'https://github.example.com/api/v3' )\n\nactive = '#4078C0'\ninactive = '#7d7d7d'\n\n# Utility Functions\n\ndef plural( word, n ):\n    return str(n) + ' ' + (word + 's' if n \u003e 1 else word)\n\ndef get_dict_subset( thedict, *keys ):\n    return dict([ (key, thedict[key]) for key in keys if key in thedict ])\n\ndef print_bitbar_line( title, **kwargs ):\n    print title + ' | ' + ( ' '.join( [ '{}={}'.format( k, v ) for k, v in kwargs.items() ] ) )\n\ndef make_github_request( url, method='GET', data=None, enterprise = False ):\n    try:\n        api_key = enterprise_api_key if enterprise else github_api_key\n        headers = {\n            'Authorization': 'token ' + api_key,\n            'Accept': 'application/json',\n        }\n        if data is not None:\n            data = json.dumps(data)\n            headers['Content-Type'] = 'application/json'\n            headers['Contnet-Length'] = len(data)\n        request = urllib2.Request( url, headers=headers )\n        request.get_method = lambda: method\n        response = urllib2.urlopen( request, data )\n        return json.load( response ) if response.headers.get('content-length', 0) \u003e 0 else {}\n    except Exception:\n        return None\n\ndef get_notifications( enterprise ):\n    url = '%s/notifications' % (enterprise_api_url if enterprise else 'https://api.github.com')\n    return make_github_request( url, enterprise=enterprise ) or []\n\ndef print_notifications( notifications, enterprise=False ):\n    notifications = sorted( notifications, key=lambda notification: notification['repository']['full_name'] )\n    for repo, repo_notifications in groupby( notifications, key=lambda notification: notification['repository']['full_name'] ):\n        if repo:\n            repo_notifications = list( repo_notifications )\n            print_bitbar_line( title=repo )\n            print_bitbar_line(\n                title='{title} - Mark {count} As Read'.format( title=repo, count=len( repo_notifications ) ),\n                alternate='true',\n                refresh='true',\n                bash=__file__,\n                terminal='false',\n                param1='readrepo',\n                param2=repo,\n                param3='--enterprise' if enterprise else None\n            )\n            for notification in repo_notifications:\n                formatted_notification = format_notification( notification )\n                print_bitbar_line( refresh='true', **get_dict_subset( formatted_notification, 'title', 'href', 'image', 'templateImage' ) )\n                print_bitbar_line(\n                    refresh='true',\n                    title='%s - Mark As Read' % formatted_notification['title'],\n                    alternate='true',\n                    bash=__file__,\n                    terminal='false',\n                    param1='readthread',\n                    param2=formatted_notification['thread'],\n                    param3='--enterprise' if enterprise else None,\n                    **get_dict_subset( formatted_notification, 'image', 'templateImage' )\n                )\n\ndef format_notification( notification ):\n    type = notification['subject']['type']\n    formatted = {\n        'thread': notification['url'],\n        'title': notification['subject']['title'].encode('utf-8'),\n        'href': notification['subject']['url'],\n        'image': 'iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA',\n    }\n    if len(formatted['title']) \u003e 90:\n        formatted['title'] = formatted['title'][:79] + '…'\n    formatted['title'] = formatted['title'].replace('|','-')\n    latest_comment_url = notification.get( 'subject', {} ).get( 'latest_comment_url', None )\n    typejson = make_github_request( formatted['href'] )\n    if latest_comment_url:\n        formatted['href'] = ( make_github_request( latest_comment_url ) or {} ).get( 'html_url', formatted['href'] )\n    # Try to hack a web-viewable URL if the last check failed\n    if formatted['href']:\n        formatted['href'] = re.sub( 'api\\.|api/v3/|repos/', '', re.sub( '(pull|commit)s', ur'\\1', formatted['href'] ) )\n    if (type == 'PullRequest'):\n        if typejson and typejson['merged']:\n            formatted['image'] += 'SpJREFUKJG9kkFOwmAQhb+ZQiVx5xm4hIlncEF7jLZuWSjSeAJsvQUY4xkMHsCtcU9MXBmwJsy4EWgFEt34VpP55mX+eflhj9KoGO5jAK00LmOwoZiaYIPRbXaXRsVQRC6BvWZJ4uLJRI6DcKlUMsVl/G0CwIw3UR8V4+QKxFd9BbfDqiP6buo1sB5QjgTJ07i8aPTFgvNFa/7i7fYzaL+YpEN3zwGux4mY2QmAm6db783i0rO4bGyrh7OL66a0Bigm6d5gGkYz3brvV8a/SjeF/dPGJLrpmTMDXs/i4vTnQNYrInNm5szqvIVYbiJdCV1Z6ANwXze6em4i3SBcqi+CNVeAIFxq9dkR0+07HfHVz6rzlsLAK5keUCEu/R0hDD7C+SME6A7+Z30BqF2G+GPLjSUAAAAASUVORK5CYII='\n        elif typejson and typejson['state'] == 'closed':\n            formatted['image'] += 'Q9JREFUKJG9kjFOw0AQRd9sbAiiQOIMqWJfAInOPULANehTQIjFCbgHFS1eKhR6cDpEbyHRmljyDpWVTWJbSsOvRvvm72i+BjpkI2ZdDIBszNVzTG7HvGcx543JxmifT7KIj4FyUlaYcMjcKI8Id17Pj8JDknMvrD4zoriwRg4OMaKtU44FUhtz6z8aFW7KkC9X82mESbJghpICJDkiyimAwvV2EDG6uZMfThs3TeFYB8miP1XjFb0pdhp31cro/muijbjAUTjDtx1zttnwEnGJo8BR+DxQSAcwWv5i9vd4BZ58Yy2kgTIqq3VuAMoKEx4htCQrijaX5fMAYRoOmbMEJ0y2lhGmZcgbNdDGd9Uf3M1iNlKZZGMAAAAASUVORK5CYII='\n        else:\n            formatted['image'] += 'TJJREFUKJG9krFOAlEQRe/MLpqHnd/ATyBWsLWF+hcLPYXibvwCE/gLC2MNVrD7AbbGnpjYboBlro2QXWATabzVy5x338ydPKBC4awTVTEA8Huz9i1FI5gZBINh6+0lnHUiEXkAUGmWMGm/c7Fues4pLU9IPv+aAABm9i2qT6Pm+BECbuoqpnZWW4lmmRLG3ZdV9VyAOEyD+1JdVO4yqX+ua7UPofRHrUlEMgaA4cVYALkEACF6e/N2k4DdJCh1Ky7nENftyVACo9akcjElox3I9yfjsdoaVfFPHbtpcG2GOUy/wjS42r0QTjs3ZpibYV7kPmkxVuuGOKfIl1MAr0WjqMRcrBqec8oCVwDwnNOFnwugezkJ4+ZnFbkPeANanpwsAQr7+2m8Qab1FKcAeYgfqR/3P4pMOYR15QAAAABJRU5ErkJggg=='\n        if typejson and typejson.get( 'user', {} ).get( 'login', None ):\n            formatted['title'] += ' (by @{})'.format(typejson['user']['login'])\n    elif (type == 'RepositoryInvitation'):\n        formatted['image'] = 'iVBORw0KGgoAAAANSUhEUgAAAA4AAAAKCAYAAACE2W/HAAAAAXNSR0IArs4c6QAAAM1JREFUKBWVkD0OQUEUhcdv/ASJn55SyxLoVBJq8tZjBRQsgkZiAQoqOiQ2oFc935nMvLxEXsRJPufOufe+kTHGmBeEf3Jg3i4t8IwOP6QZzeoi+3PFt1BRkKAq+Q4uEKbdUA+/wxm6LoubshPcoO8b9lp3GOMPGPomPoInqOcV/VUfyKfwhsChegJxfS3O6R5hALpFqFY2A69osUyygT3UQOpAWwVSpt4aShAt6lWXkIUk5WiswL5qiqIODdBz6+ZirM67cwFvulwfaH0AC7M1lHL62U4AAAAASUVORK5CYII=';\n        formatted['templateImage'] = formatted.pop('image');\n        formatted['href'] = 'https://github.com/{}/invitations'.format(notification['repository']['full_name'])\n    elif (type == 'Issue'):\n        if typejson and typejson['state'] == 'closed':\n            formatted['image'] += 'YpJREFUKJGdkj9I23EQxT93SZrJQYNQ6Bo65BtQcHRpSeyUuQqNWx2ti7qJRpqhUxGX0lGhlXQ0uJhfU7cOLm3+QKCzoIjoJpp8z0HT/BpJBd90HO/dvTsePBLS36iM8Uw6vANyQNJ7RJU/wG7nmo1XLY7uCStp8uL5BJwgbJtRU8E8jImR98qoGHPZBjsSFhlsCRQjCQovD2iHhx5OEDu/ZF2E5Y4wLn/tXdMy5WO2zkqXHKQxgEy95+y7Y1KMXwogbeaBk0iCwqBn7DteAJym+NmBnSiAF3IK2/32wiIVqoGjYE1GRMlGARSSZtQGbZtq8CNwFBBWDUxgJjqI3I9Mg7XAgRoXmSYlACqOWuAG39ePimNB7+oyxuzhBLEwIUhj3c92sZckLsaSAvg2m14ZPb98eGs8ThFlqBcAx4wJX8T4cGasvm5yFRaUUjwZUd4bLKow/W/kbsWfgTMxvorxmwhtjHEPbxSGEd5many7F/JqiqdemceT88rzu3ZLoWywma1z/NA5/8UNNkSJCdaYQF4AAAAASUVORK5CYII='\n        else:\n            formatted['image'] += 'ZxJREFUKJGdkjFoU2EUhb97k9jNRzEFoWvJVHXoZCqIaQaH7JaUbtpi2zc4ORWJYKGTYJLBroFaiGPo0hBwyAOhU51Cd8EOOid53uugL4SnkOK3/dx7OPccfvhPZPqxHZUWc0gIUjFs6c/CJdDBtN580P36lzCM1jZ+mr9HuFKkJfgXABO9i/mmqOTd7VlztXcyEYbR2oabtFx5kx+Oa7VHn+LpS7bOV3K5UfBaTF+6WLW52juR7ai0mDEGovq2WezuJ8t7UdkBGsXu5KqdfvlQhOeeGRc0h4QIV/nhuDarkIVgft+xHxJnQwWpKNJKn/cvasvtkcCxuFTUsKWkiOsgrhcoBb2uIE1W4NKRO8DH6cF0KSnLewYDBTqGb26dr+Sm53tR2ZNmE8LTx3O4V9XpKKZ1FV24MZyf2aoH8YE5garXBWC3X1oX12NXO8zfvPWqttwepZ08iA9wXqDypFE8a09y7PZL64geCXx37IO4XiSZcK/+dso8bRTP2pD65DufH96WOBuKSwWlAGD4QJ2Oqtff3e99mxVnJr8AXSGi02ni0+YAAAAASUVORK5CYII='\n    elif (type == 'Commit'):\n        formatted['image'] += 'HhJREFUKJHl0LEKwkAQBNCH3yIaf05S+VUqmh8ykFoUYn8WbnEc8a7XgYVlmNkdhv/EDgNmvHDFtmXq8ETCiFvsD2xqxksI9xnXB3cqxamYceHgVOpWC6JUi/QNQxj7jDsEd6wZ83KmLOId69bXzqekOeas0eiv4g3q4SY7NY1R2gAAAABJRU5ErkJggg=='\n        formatted['templateImage'] = formatted.pop('image')\n    elif (type == 'Release'):\n        formatted['image'] += 'JdJREFUKJGl0DsKwkAUBdDTRgvFHbgmNyLY+QWzKxM/kK2kSKc70MIIQ0ziqBceA/dxinn8mSkKVMGUmH+CBWaNboQjdn2wqt97Pa8kNd5+C0O86YNdSZC34RLjCJxhHZYLXDCIxKuwTHGOwBNcm2WKUw9OcMCybZl6XjHpQOs30cB5gKNQiDPPP0WjV/a4aVwxNsNfUGce7P8k4XgVPSYAAAAASUVORK5CYII='\n        formatted['templateImage'] = formatted.pop('image')\n    return formatted\n\nif len(sys.argv) \u003e 1:\n    command = sys.argv[1]\n    args = sys.argv[2:]\n    enterprise=False\n    if ('--enterprise' in args):\n        enterprise=True\n        args.remove( '--enterprise' )\n    if command == 'readrepo':\n        url = '%s/repos/%s/notifications' % (enterprise_api_url if enterprise else 'https://api.github.com', args[0])\n        print 'Marking %s as read' % url\n        make_github_request( url=url, method='PUT', data={}, enterprise=enterprise )\n    elif command == 'readthread':\n        url = args[0]\n        print 'Marking %s as read' % url\n        make_github_request( url=url, method='PATCH', data={}, enterprise=enterprise )\n\nelse:\n    is_github_defined = len( github_api_key ) == 40\n    is_github_enterprise_defined = len( enterprise_api_key ) == 40\n    github_notifications = get_notifications( enterprise=False ) if is_github_defined else []\n    enterprise_notifications = get_notifications( enterprise=True ) if is_github_enterprise_defined else []\n    has_notifications = len( github_notifications ) + len( enterprise_notifications )\n    color = active if has_notifications else inactive\n\n    if (has_notifications):\n        print_bitbar_line(\n            title=u'\\u25CF'.encode( 'utf-8' ),\n            color=color\n        )\n        print '---'\n    else:\n        print ''\n        exit(0)\n\n    print_bitbar_line( title='Refresh', refresh='true' )\n\n    if is_github_defined:\n        if len( github_notifications ):\n            print_bitbar_line(\n                title=( u'GitHub \\u2014 %s' % plural( 'notification', len( github_notifications ) ) ).encode( 'utf-8' ),\n                color=active,\n                href='https://github.com/notifications',\n            )\n            print_notifications( github_notifications )\n        else:\n            print_bitbar_line(\n                title=u'GitHub \\u2014 No new notifications'.encode( 'utf-8' ),\n                color=inactive,\n                href='https://github.com',\n            )\n\n    if is_github_enterprise_defined:\n        if len( enterprise_notifications ):\n            if is_github_defined:\n                print '---'\n            print_bitbar_line(\n                title=( u'GitHub:Enterprise \\u2014 %s' % plural( 'notification', len( enterprise_notifications ) ) ).encode( 'utf-8' ),\n                color=active,\n                href='%s/notifications' % re.sub( '/api/v3', '',  enterprise_api_url ),\n            )\n            print_notifications( enterprise_notifications, enterprise=True )\n        else:\n            print '---'\n            print_bitbar_line(\n                title=u'GitHub:Enterprise \\u2014 No new notifications',\n                color=inactive,\n            )\n"
+				}
+			],
+			"path": "Dev/GitHub/notifications.30s.py",
+			"filename": "notifications.30s.py",
+			"dir": "Dev/GitHub",
+			"docsPlugin": "Dev/GitHub/notifications.30s.py.html",
+			"docsCategory": "Dev/GitHub.html",
+			"pathSegments": [
+				"Dev",
+				"GitHub"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/GitHub",
+					"text": "GitHub",
+					"isLast": true
+				}
+			],
+			"title": "GitHub Notifications",
+			"version": "v3.0.2",
+			"author": "Matt Sephton,  Keith Cirkel,  John Flesch",
+			"authors": [
+				{
+					"name": "John Flesch",
+					"githubUsername": "flesch",
+					"imageURL": "https://avatars.githubusercontent.com/u/13259?v=4",
+					"bio": "𝕱 • Insatiable curiosity for technologies that make life better.",
+					"primary": true
+				},
+				{
+					"name": "Keith Cirkel",
+					"githubUsername": "",
+					"imageURL": "",
+					"bio": "",
+					"primary": false
+				},
+				{
+					"name": "John Flesch",
+					"githubUsername": "",
+					"imageURL": "",
+					"bio": "",
+					"primary": false
+				}
+			],
+			"desc": "GitHub (and GitHub:Enterprise) notifications in your menu bar!",
+			"imageURL": "https://i.imgur.com/hW7dw9E.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:48.655336Z",
+			"vars": null
+		}
+	]
+}

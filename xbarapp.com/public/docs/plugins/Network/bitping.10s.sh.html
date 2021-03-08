@@ -1,0 +1,660 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>bitping/track/graph in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Sends pings to one or more sites, display connectivity status, record results to file (separated daily) and graph the last X minutes performance via the dropdown with no external dependencies - install xbar for free to get started.'>
+	<meta name='author' content='Simon Hudson'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta itemprop='name' content='bitping/track/graph in your macOS menu bar'>
+	<meta itemprop='description' content='Sends pings to one or more sites, display connectivity status, record results to file (separated daily) and graph the last X minutes performance via the dropdown with no external dependencies - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='bitping/track/graph in your macOS menu bar'>
+	<meta name='twitter:description' content='Sends pings to one or more sites, display connectivity status, record results to file (separated daily) and graph the last X minutes performance via the dropdown with no external dependencies - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='bitping/track/graph in your macOS menu bar'>
+	<meta property='og:description' content='Sends pings to one or more sites, display connectivity status, record results to file (separated daily) and graph the last X minutes performance via the dropdown with no external dependencies - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Network/bitping.10s.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>bitping/track/graph</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/SimonSays13.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/24798358?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/SimonSays13.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Simon Hudson (<code style='color:white;'>@SimonSays13</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Sends pings to one or more sites, display connectivity status, record results to file (separated daily) and graph the last X minutes performance via the dropdown with no external dependencies
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Network%2fbitping.10s.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+					<p class='text=sm opacity-75 py-4 max-w-lg mt-8 text-white'>
+						<strong>Can you help?</strong>&mdash;This plugin is missing an image.
+						Please add one 
+						(via <code>&lt;xbar.image&gt;...&lt;/xbar.image&gt;</code> metadata) to enhance this plugin's presence. <a class='underline' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/bitping.10s.sh'>View file on GitHub</a>
+					</p>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://xbarapp.com/public/img/xbar-2048.png' 
+				alt='Image preview of bitping/track/graph plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>bitping.10s.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Network/bitping.10s.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/bitping.10s.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+
+# &lt;bitbar.title&gt;bitping/track/graph&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Simon Hudson&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;SimonSays13&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Sends pings to one or more sites, display connectivity status, record results to file (separated daily) and graph the last X minutes performance via the dropdown with no external dependencies&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;http://www.provulo.com/&lt;/bitbar.abouturl&gt;
+
+# This is a plugin for Bitbar
+# https://github.com/matryer/bitbar
+#
+# Author: (Simon Hudson) simon.hudson@gmail.com
+# Based on original bitbar ping by Trung Đinh Quang, Grant Sherrick and Kent Karlsson.
+# Includes bitbash code by GaneshV to render bitmap to menu ( https://github.com/ganeshv )
+# Theme from http://colorbrewer2.org/
+
+RED_GREEN_THEME=(&#34;#d73027&#34; &#34;#fc8d59&#34; &#34;#fee08b&#34; &#34;#d9ef8b&#34; &#34;#91cf60&#34; &#34;#1a9850&#34;)
+
+# Configuration
+
+COLORS=(${RED_GREEN_THEME[@]})
+MENUFONT=&#34;&#34;
+FONT=&#34;&#34;
+MAX_PING=1000
+SITES=(8.8.8.8) #Google DNS; SITES=(google.com youtube.com wikipedia.org github.com) using only one site is recommended for graph consistency
+GRAPHMINUTES=30
+SITE_INDEX=0
+PING_TIMES=
+bpp=4
+rowbytes=$((width * bpp))
+pixbytes=$((width * height * bpp))
+OLDIFS=$IFS
+bmp_header=()
+pixels=()
+
+FILE_OUT=&#34;$HOME/Documents/PingTest/$(date &#43;%Y%m%d).txt&#34;
+
+#Uncomment if header row required in output file
+#if [ ! -f &#34;$FILE_OUT&#34; ]; then
+#    echo &#34;date, host, response&#34; &gt;&gt; $FILE_OUT
+#fi
+
+# Functions, etc
+
+function colorize {
+
+    if [ &#34;$1&#34; -ge $MAX_PING ]; then
+
+        echo &#34;${COLORS[0]}&#34;
+
+    elif [ &#34;$1&#34; -ge 600 ]; then
+
+        echo &#34;${COLORS[1]}&#34;
+
+    elif [ &#34;$1&#34; -ge 400 ]; then
+
+        echo &#34;${COLORS[2]}&#34;
+
+    elif [ &#34;$1&#34; -ge 200 ]; then
+
+        echo &#34;${COLORS[3]}&#34;
+
+    elif [ &#34;$1&#34; -ge 100 ]; then
+
+        echo &#34;${COLORS[4]}&#34;
+
+    else
+
+        echo &#34;${COLORS[5]}&#34;
+
+    fi
+
+}
+
+hexle32() {
+
+    local num
+    printf -v num &#34;%08x&#34; &#34;$1&#34;
+    retval=&#34;${num:6:2} ${num:4:2} ${num:2:2} ${num:0:2}&#34;
+
+}
+
+errmsg() {
+
+    &gt;&amp;2 echo &#34;$@&#34;
+
+}
+
+make_bmp_header() {
+
+    local headerbytes comp pixoffset filebytes _filebytes _pixoffset
+    local _headerbytes _width _height _pixbytes
+    bmp_header=()
+    headerbytes=40
+    comp=&#34;00&#34;
+
+    if [ &#34;$bmp_ver&#34; -eq 5 ]; then
+
+        headerbytes=124
+        comp=&#34;03&#34;
+
+    fi
+
+    pixoffset=$((headerbytes &#43; 14))
+    filebytes=$((pixbytes &#43; pixoffset))
+
+    hexle32 $filebytes
+    _filebytes=$retval
+    hexle32 $pixoffset
+    _pixoffset=$retval
+    hexle32 $headerbytes
+    _headerbytes=$retval
+    hexle32 &#34;$width&#34;
+    _width=$retval
+    hexle32 &#34;$height&#34;
+    _height=$retval
+    hexle32 $pixbytes
+    _pixbytes=$retval
+
+    bmp_header&#43;=(
+        42 4d
+        $_filebytes
+        00 00
+        00 00
+        $_pixoffset
+        $_headerbytes
+        $_width
+        $_height
+        01 00
+        20 00
+        $comp 00 00 00
+        $_pixbytes
+        13 0b 00 00
+        13 0b 00 00
+        00 00 00 00
+        00 00 00 00
+    )
+
+    if [ &#34;$bmp_ver&#34; -eq 5 ]; then
+
+        bmp_header&#43;=(
+            00 00 ff 00
+            00 ff 00 00
+            ff 00 00 00
+            00 00 00 ff
+            42 47 52 73
+            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+            00 00 00 00
+            00 00 00 00
+            00 00 00 00
+            00 00 00 00
+            00 00 00 00
+            00 00 00 00
+            00 00 00 00
+        )
+
+    fi
+
+}
+
+point() {
+
+    local off
+    off=$(($2 * rowbytes &#43; $1 * bpp))
+    pixels[$off]=${curcol[0]}
+    pixels[$((off &#43; 1))]=${curcol[1]}
+    pixels[$((off &#43; 2))]=${curcol[2]}
+    pixels[$((off &#43; 3))]=${curcol[3]}
+
+}
+
+line() {
+
+    local x1 y1 x2 y2 x y
+
+    if [ &#34;$1&#34; -eq &#34;$3&#34; ]; then
+
+        if [ &#34;$2&#34; -gt &#34;$4&#34; ]; then y1=$4; y2=$2; else y1=$2; y2=$4; fi
+        for ((y = y1; y &lt;= y2; y&#43;&#43;)); do
+            point &#34;$1&#34; $y
+        done
+
+    elif [ &#34;$2&#34; -eq &#34;$4&#34; ]; then
+
+        if [ &#34;$1&#34; -gt &#34;$3&#34; ]; then x1=$3; x2=$1; else x1=$1; x2=$3; fi
+        for ((x = x1; x &lt;= x2; x&#43;&#43;)); do
+            point $x &#34;$2&#34;
+        done
+
+    else
+
+        errmsg &#34;Only vertical and horizontal lines supported&#34; &#34;$@&#34;
+
+    fi
+
+}
+
+output_bmp() {
+
+    local _bmp=(${bmp_header[@]/#/&#39;\x&#39;})
+    _bmp&#43;=(${pixels[@]/#/&#39;\x&#39;})
+
+    local IFS=&#39;&#39;
+    echo -ne &#34;${_bmp[*]}&#34;
+    IFS=$OLDIFS
+
+}
+
+init_bmp() {
+
+    local i
+    bmp_ver=${1:-$bmp_ver}
+    width=${2:-$width}
+    height=${3:-$height}
+
+    rowbytes=$((width * bpp))
+    pixbytes=$((width * height * bpp))
+
+    make_bmp_header
+
+    if [ ${#pixels[@]} -ne $pixbytes ]; then
+
+        pixels=()
+        for ((i = 0; i &lt; width * height; i&#43;&#43;)); do
+
+            pixels&#43;=(${curcol[@]});
+
+        done
+
+    fi
+}
+
+#Generate Output
+
+while [ $SITE_INDEX -lt ${#SITES[@]} ]; do
+
+    NEXT_SITE=&#34;${SITES[$SITE_INDEX]}&#34;
+    NEXT_PING_TIME=$(ping -c 2 -n -q &#34;$NEXT_SITE&#34; 2&gt;/dev/null | awk -F &#39;/&#39; &#39;END {printf &#34;%.0f\n&#34;, $5}&#39;)
+
+    if [ &#34;$NEXT_PING_TIME&#34; -eq 0 ]; then
+
+        NEXT_PING_TIME=$MAX_PING
+
+    fi
+
+    if [ -z &#34;$PING_TIMES&#34; ]; then
+
+        PING_TIMES=($NEXT_PING_TIME)
+
+    else
+
+        PING_TIMES=(${PING_TIMES[@]} $NEXT_PING_TIME)
+
+    fi
+
+    SITE_INDEX=$(( SITE_INDEX &#43; 1 ))
+
+done
+
+if [ $NEXT_PING_TIME -ge $MAX_PING ]; then
+
+    MSG=&#34;DOWN&#34;
+
+else
+
+    MSG=&#34;UP&#34;
+
+fi
+
+echo &#34;$MSG | color=$(colorize $NEXT_PING_TIME) $MENUFONT&#34;
+echo &#34;---&#34;
+
+SITE_INDEX=0
+
+while [ $SITE_INDEX -lt ${#SITES[@]} ]; do
+
+    PING_TIME=${PING_TIMES[$SITE_INDEX]}
+
+    echo &#34;$(date &#39;&#43;%d/%m/%Y %H:%M:%S&#39;), ${SITES[$SITE_INDEX]}, $PING_TIME&#34; &gt;&gt; &#34;$FILE_OUT&#34;
+
+    if [ $PING_TIME -eq $MAX_PING ]; then
+
+        PING_TIME=&#34;FAIL&#34;
+
+    else
+
+        PING_TIME=&#34;$PING_TIME ms | color=$(colorize $PING_TIME) $FONT&#34;
+
+    fi
+
+    echo &#34;${SITES[$SITE_INDEX]}: $PING_TIME&#34;
+    SITE_INDEX=$(( SITE_INDEX &#43; 1 ))
+
+done
+
+echo &#34;---&#34;
+
+pixels=()
+curcol=(00 00 00 00)
+init_bmp 5 $((GRAPHMINUTES*6)) 50
+curcol=(00 ff 00 ff)
+max_height=50
+
+readings=$(tail -$((GRAPHMINUTES*6)) &#34;$FILE_OUT&#34; | cut -f3 -d &#39;,&#39;  | sed -e &#39;:a&#39; -e &#39;N&#39; -e &#39;$!ba&#39; -e &#39;s/\n/ /g&#39;)
+heights=($readings)
+
+for ((i = 0; i &lt; ${#heights[@]}; i&#43;&#43;)); do
+
+    if [ ${#heights[$i]} -gt $max_height ]; then
+
+        line $i 1 $i $max_height
+
+    else
+
+        line $i 1 $i $((1 &#43; ${heights[$i]}))
+
+    fi
+
+done
+
+IMAGE=$(output_bmp | base64)
+echo &#34; | image=$IMAGE&#34;
+
+echo &#34;Refresh... | refresh=true&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

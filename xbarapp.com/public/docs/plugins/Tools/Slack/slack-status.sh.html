@@ -1,0 +1,368 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Slack Stuatus in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Change your status on Slack from the menubar. - install xbar for free to get started.'>
+	<meta name='author' content='Ben Sehl'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta itemprop='name' content='Slack Stuatus in your macOS menu bar'>
+	<meta itemprop='description' content='Change your status on Slack from the menubar. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Slack Stuatus in your macOS menu bar'>
+	<meta name='twitter:description' content='Change your status on Slack from the menubar. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Slack Stuatus in your macOS menu bar'>
+	<meta property='og:description' content='Change your status on Slack from the menubar. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/Slack/slack-status.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Slack Stuatus</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/benjaminsehl.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/1060770?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/benjaminsehl.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Benjamin Sehl (<code style='color:white;'>@benjaminsehl</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Change your status on Slack from the menubar.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2fSlack%2fslack-status.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+					<p class='text=sm opacity-75 py-4 max-w-lg mt-8 text-white'>
+						<strong>Can you help?</strong>&mdash;This plugin is missing an image.
+						Please add one 
+						(via <code>&lt;xbar.image&gt;...&lt;/xbar.image&gt;</code> metadata) to enhance this plugin's presence. <a class='underline' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/Slack/slack-status.sh'>View file on GitHub</a>
+					</p>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://xbarapp.com/public/img/xbar-2048.png' 
+				alt='Image preview of Slack Stuatus plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>slack-status.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/Slack/slack-status.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/Slack/slack-status.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+
+# &lt;bitbar.title&gt;Slack Stuatus&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Ben Sehl&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;benjaminsehl&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Change your status on Slack from the menubar.&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;Autocode, Slack&lt;/bitbar.dependencies&gt;
+
+# Sign up for an account at Autocode
+
+if [ -z ${1&#43;x} ]
+  then
+    echo &#34;| image=iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd&#43;UAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAJAAAAABAAAAkAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAHKADAAQAAAABAAAAHAAAAAB2hRU3AAAACXBIWXMAABYlAAAWJQFJUiTwAAACZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24&#43;MzY8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24&#43;MzY8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpDb2xvclNwYWNlPjE8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24&#43;CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE&#43;Cjg6NLAAAAPZSURBVEgNjZbbi81RFMdn3Ma4ixAPLmNMeVUu5TYaIi/K8OLfkOJPEOXRi&#43;SFFC/uUkK5xzPjmoiRkDtj5vh89tnr&#43;Pk5c2a&#43;9T1r7b3W2pe1196/09Q0CCqVyghNyC3wAfwAz8K2CEGfD0/B9/Ah3JpjUmz4DSkJHJkDV6H3Q/GzKiq3ka2wBd7IfWEboN2ZY9MY5cmGWkk3Afr8gKOyXIrsgO1wRe4LWzNtYwaFjo3Qn43KCowFjkaPHajbrxTjqqL&#43;bwxQ39rUdCwbxiOdYExuGzeQdRciQkZ/tbf0m3ZI3h3MdESQxTKmubn5LnIT/bvgdOhOJ8PP0EU0RHlcxut34KF2mSbHbwacpHQWZCcUfVVRk4eyPVJcWxR&#43;I0Yxq5W1ml5LuhXWdonurt29afoNr&#43;B/HCkaLhQ/F7IEvx3QyU/Qd9WVes&#43;i9FGHxH6CjevKnuUdHsn29djdTEC920AvtfgOf0MHqEfvWgy&#43;EH0ZFMaIsB1GHw0vQfEF/khapfLYopkF&#43;2ALNIWNEPdxKk4/s6OpjrTbZWFNgdNsgLHQ9P&#43;Cs1WuQ3Nsh84OoCzSPiczuBc&#43;gy/ga&#43;hCtcWZXslt44XSxXmlrpnSNuhzNRz04rSZwAT0TfB1IfCABtrTYU&#43;hX9Ur1p5SiGJ1dkB3YEWaoglZ6vMJusrnVNo7/FMcOmrF1C2AH2k/QibQvxjFO&#43;sOzV4P9m/xtEXZmxonM/gmMoHguSiem34iztorZJ8DTsWvK7ft&#43;wK/Q1PtkVRjcfITcx0W8ZRGXPC9BcMr9I0EJ6BvgC8L9kbqTYxt5vt09vJaxGfmPrqvyrZss/S1izdwGnRHMVlcKf2K9KoUY8&#43;b0pUwrkWkzLRafWugMCWer&#43;c4E86D&#43;s6BUb2og8K0mvbVKm&#43;h18LBDBbvoYViv3ABIs7cyT&#43;mnr9XykW58DLtj2vR64R7oHCQ&#43;ALso2h0iom0FzERu3fRZ04f75iLcYFl2u/YYreP90ny3EljO3Q1R&#43;m7hRS26yGlHr&#43;dxN7DYS10IicvxljFbspqPYn/ZYvGjn9AX0ol8iAU8U5aAKLLAKQXfEKWKeafgUoN/Gqfp3Lq4lkqhdQ&#43;XT7IizCegZ6l8f5z288uLiCdvDhGPBT9qQhwKhrr7drUFGHafEXai53ofrKWM55P5cjyuPr&#43;l87SAPGilKVxcVaWuwv&#43;mmN3ZFlXDDZhTOBhCwd3l5a8sIJjwiiMOMP4o5Uch/VjOnREroHx1f6FLu7AVjgW3oIibOrrcmw6rmFNmAPS7hmgGz6B3&#43;BFWDs3dD9t56A231&#43;vVr0aqM37B5qm8sUxGfm7AAAAAElFTkSuQmCC&#34;;
+  else 
+    curl -s --request POST \
+        --url &#34;https://YOURUSERNAME.api.stdlib.com/slack-status@dev/&#34; \
+        --header &#39;content-type: application/json&#39; \
+        --data &#39;{
+          &#34;email&#34;: &#34;&#39;&#34;$1&#34;&#39;&#34;,
+          &#34;emoji&#34;: &#34;&#39;&#34;$2&#34;&#39;&#34;,
+          &#34;text&#34;: &#34;&#39;&#34;$3&#34;&#39;&#34;,
+          &#34;expiration&#34;: &#34;&#39;&#34;$4&#34;&#39;&#34;
+        }&#39;;
+fi
+
+# Configure whatever statuses you want, with your email on slack, the emoji shortcode, the text, and how long you want it to last for
+
+echo &#34;---&#34;
+echo &#34;:hear_no_evil: Focus | bash=&#39;$0&#39; param1=you@email.com param2=hear_no_evil param3=&#39;Focus mode&#39; param4=&#39;in four hours&#39; terminal=false refresh=true&#34;
+echo &#34;:calendar: In a meeting | bash=&#39;$0&#39; param1=you@email.com param2=calendar param3=&#39;In a meeting&#39; param4=&#39;in one hour&#39; terminal=false refresh=true&#34;
+echo &#34;:walking: Taking a break | bash=&#39;$0&#39; param1=you@email.com param2=walking param3=&#39;Taking a break&#39; param4=&#39;in half an hour&#39; terminal=false refresh=true&#34;
+echo &#34;:hamburger: Eating lunch | bash=&#39;$0&#39; param1=you@email.com param2=hamburger param3=&#39;Eating lunch&#39; param4=&#39;in one hour&#39; terminal=false refresh=true&#34;
+echo &#34;:sunglasses: Done for the day | bash=&#39;$0&#39; param1=you@email.com param2=sunglasses param3=&#39;Done for the day&#39; param4=&#39;tomorrow at 8am&#39; terminal=false refresh=true&#34;
+echo &#34;:palm_tree: On vacation  | bash=&#39;$0&#39; param1=you@email.com param2=palm_tree param3=&#39;On vacation&#39; param4=&#39;in one week&#39; terminal=false refresh=true&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ is gedownload en is klaar voor gebruik! Wilt u %1$@ nu installeren en herstarten?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ kan niet worden geupdate als het van een alleen-lezen volume, zoals een schijfkopie of CD, geopend is. Verplaats %1$@ naar de Map ’Programma’s’, herstart van daar, en probeer opnieuw.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ is momenteel de recentste versie.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ is nu beschikbaar—u heeft %3$@. Wilt u het nu downloaden?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ gedownload";
+
+"%@ of %@" = "%1$@ van %2$@";
+
+"A new version of %@ is available!" = "Een nieuwe versie van %@ is beschikbaar!";
+
+"A new version of %@ is ready to install!" = "Een nieuwe versie van %@ is klaar om te installeren!";
+
+"An error occurred in retrieving update information. Please try again later." = "Bij het ophalen van update-informatie deed zich een fout voor. Probeer alstublieft later opnieuw.";
+
+"An error occurred while downloading the update. Please try again later." = "Bij het downloaden deed zich een fout voor. Probeer alstublieft later opnieuw.";
+
+"An error occurred while extracting the archive. Please try again later." = "Bij het uitpakken van het archief deed zich een fout voor. Probeer alstublieft later opnieuw.";
+
+"An error occurred while installing the update. Please try again later." = "Bij het installeren van de update deed zich een fout voor. Probeer alstublieft later opnieuw.";
+
+"An error occurred while parsing the update feed." = "Bij het afhandelen van de update feed deed zich een fout voor.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Bij het herstarten van %1$@ deed zich een fout voor. Maar de nieuwe versie is beschikbaar de volgende keer u %1$@ opstart.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Annuleren";
+
+"Cancel Update" = "Updaten annuleren";
+
+"Checking for updates..." = "Controleren op updates …";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Downloaden update …";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Bezig met uitpakken van de update …";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Installeer en herstart";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Update installeren …";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+/* OK button. */
+"OK" = "OK";
+
+/* Status message on progress window once download has finished. */
+"Ready to Install" = "Klaar om te installeren";
+
+/* Message that is optionally shown at startup to allow users to turn on/off update checks. */
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Zou %1$@ automatisch op updates moeten controleren? U kunt altijd nog handmatig controleren op updates via het %1$@ menu.";
+
+"Update Error!" = "Update-fout!";
+
+"Updating %@" = "%@ updaten";
+
+/* 'Error' message when the user checks for updates but is already current or the feed doesn't contain any updates. (not necessarily shown in UI) */
+"You already have the newest version of %@." = "U heeft al de nieuwste versie van %@.";
+
+/* Status message shown when the user checks for updates but is already current or the feed doesn't contain any updates. */
+"You're up-to-date!" = "U heeft de nieuwste versie!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "Meer informatie …";

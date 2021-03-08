@@ -1,0 +1,95 @@
+{
+	"person": {
+		"name": "Ganesh V",
+		"githubUsername": "ganeshv",
+		"imageURL": "https://avatars.githubusercontent.com/u/827790?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/mdf.1m.sh",
+					"filename": "mdf.1m.sh",
+					"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eDisk Usage\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eGanesh V\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eganeshv\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisk usage statistics\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.github.com/ganeshv/mtop/master/screenshots/mdf2.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.about\u003ehttps://github.com/ganeshv/mtop\u003c/bitbar.about\u003e\n\n# Bash builtins are used as much as possible to reduce performance impact.\n\n#!/usr/bin/env bash\n\n## bmplib.sh v1.0\n#\n# Make your own BMP from scratch, no external dependencies.\n# Useful in BitBar plugins.\n#\n# pixels=()             # set pixels to empty or with background of same size\n#                       # as will be declared in init_bmp\n# curcol=(bb 66 44 aa)  # set current color, BGRA, hex (%02x)\n# init_bmp 1 25 16      # initialize BMP, version 1 width 25 height 16\n#                       # if pixels not valid, initialize to $curcol\n# curcol=(00 00 00 ff)  # set current color to fully opaque black\n# point $x $y           # set ($x, $y) to $curcol. (0, 0) is bottom left\n# line $x1 $y1 $x2 $y2  # draw horizontal or vertical line\n# rect $x $y $w $h      # draw rectangle. ($x, $y) is bottom left\n# fill $x $y $w $h      # draw filled rectangle. ($x, $y) is bottom left\n# output_bmp            # output BMP to stdout\n\nbmp_ver=5               # set to 1 if you want most compatible BMP. no alpha.\nwidth=25                # width of image\nheight=16               # height of image\ncurcol=(00 00 00 00)    # current color\n\n# No user-servicable parts below\n# We avoid subshells for performance reasons\n\nbpp=4\nrowbytes=$((width * bpp))\npixbytes=$((width * height * bpp))\n\nOLDIFS=$IFS\nbmp_header=()\npixels=()\n\n# Takes number, prints hex bytes in little endian\n# e.g. hexle32 3142 will output 46 0c 00 00\nhexle32() {\n    local num\n    printf -v num \"%08x\" \"$1\"\n    retval=\"${num:6:2} ${num:4:2} ${num:2:2} ${num:0:2}\"\n}\n\nerrmsg() {\n    \u003e\u00262 echo \"$@\"\n}\n\n# make_bmp_header\n# version can be 1 or 5\n# v1 is the most compatible, but the graph will be opaque - no alpha support.\n# v5 supports alpha channel.\nmake_bmp_header() {\n    local headerbytes comp pixoffset filebytes _filebytes _pixoffset\n    local _headerbytes _width _height _pixbytes\n    bmp_header=()\n    headerbytes=40\n    comp=\"00\"\n    if [ \"$bmp_ver\" -eq 5 ]; then\n        headerbytes=124\n        comp=\"03\"\n    fi\n    pixoffset=$((headerbytes + 14))\n    filebytes=$((pixbytes + pixoffset))\n\n    hexle32 $filebytes\n    _filebytes=$retval\n    hexle32 $pixoffset\n    _pixoffset=$retval\n    hexle32 $headerbytes\n    _headerbytes=$retval\n    hexle32 $width\n    _width=$retval\n    hexle32 $height\n    _height=$retval\n    hexle32 $pixbytes\n    _pixbytes=$retval\n\n    # Common bits for version 1 and 5\n    bmp_header+=(\n        42 4d                   # \"BM\" magic\n        \"$_filebytes\"             # size of file\n        00 00                   # reserved\n        00 00                   # reserved\n        \"$_pixoffset\"             # offset of pixel data\n        \"$_headerbytes\"           # remaining bytes in header\n        \"$_width\"                 # width\n        \"$_height\"                # height\n        01 00                   # 1 color plane\n        20 00                   # 32 bits per pixel\n        \"$comp\" 00 00 00          # compression\n        \"$_pixbytes\"              # size of pixel data\n        13 0b 00 00             # ~72 dpi horizontal\n        13 0b 00 00             # ~72 dpi vertical\n        00 00 00 00             # colors in palette\n        00 00 00 00             # all colors are important\n    )\n    if [ \"$bmp_ver\" -eq 5 ]; then\n        bmp_header+=(\n            00 00 ff 00             # red channel mask (BGRA)\n            00 ff 00 00             # green channel mask\n            ff 00 00 00             # blue channel mask\n            00 00 00 ff             # alpha channel mask\n            42 47 52 73             # sRGB\n            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n            00 00 00 00             # red gamma\n            00 00 00 00             # green gamma\n            00 00 00 00             # blue gamma\n            00 00 00 00             # intent\n            00 00 00 00             # profile data\n            00 00 00 00             # profile size\n            00 00 00 00             # reserved\n        )\n    fi\n}\n\n# point x y\npoint() {\n    local off\n    off=$(($2 * rowbytes + $1 * bpp))\n    pixels[$off]=${curcol[0]}\n    pixels[$((off + 1))]=${curcol[1]}\n    pixels[$((off + 2))]=${curcol[2]}\n    pixels[$((off + 3))]=${curcol[3]}\n}\n\n# line x1 y1 x2 y2\nline() {\n    local x1 y1 x2 y2 x y\n    if [ \"$1\" -eq \"$3\" ]; then\n        if [ \"$2\" -gt \"$4\" ]; then y1=$4; y2=$2; else y1=$2; y2=$4; fi\n        for ((y = y1; y \u003c= y2; y++)); do\n            point \"$1\" $y\n        done\n    elif [ \"$2\" -eq \"$4\" ]; then\n        if [ \"$1\" -gt \"$3\" ]; then x1=$3; x2=$1; else x1=$1; x2=$3; fi\n        for ((x = x1; x \u003c= x2; x++)); do\n            point $x \"$2\"\n        done\n    else\n        errmsg \"Only vertical and horizontal lines supported\" \"$@\"\n    fi\n}\n\n# fill x y w h\nfunction fill() {\n    local x2 y2 y\n    x2=$(($1 + $3 - 1))\n    y2=$(($2 + $4 - 1))\n    for ((y = $2; y \u003c= y2; y++)); do\n        line \"$1\" $y $x2 $y\n    done\n}\n\n# rect x y w h\nfunction rect() {\n    local x2 y2\n    x2=$(($1 + $3 - 1))\n    y2=$(($2 + $4 - 1))\n    line \"$1\" \"$2\" $x2 \"$2\"\n    line \"$1\" $y2 $x2 $y2\n    line \"$1\" \"$2\" \"$1\" $y2\n    line $x2 \"$2\" $x2 $y2\n}\n\noutput_bmp() {\n    local _bmp=(\"${bmp_header[@]/#/'\\x'}\")\n    _bmp+=(\"${pixels[@]/#/'\\x'}\")\n\n    local IFS=''\n    #echo -ne \"${_bmp[*]}\" \u003e/tmp/mtop.bmp\n    echo -ne \"${_bmp[*]}\"\n    IFS=$OLDIFS\n}\n\n# init_bmp bmp_ver width height\ninit_bmp() {\n    local i\n    bmp_ver=${1:-$bmp_ver}\n    width=${2:-$width}\n    height=${3:-$height}\n\n    rowbytes=$((width * bpp))\n    pixbytes=$((width * height * bpp))\n\n    make_bmp_header\n    if [ ${#pixels[@]} -ne $pixbytes ]; then\n        pixels=()\n        for ((i = 0; i \u003c width * height; i++)); do\n            pixels+=(\"${curcol[@]}\");\n        done\n    fi\n}\n\n## End of bmplib.sh\n# Common functions and globals for m* plugins\n# Assumes bmplib.sh already loaded\n\nosver=$(sw_vers -productVersion)\n\n# Colors in BGRA format\nfgcol=(00 00 00 ff)\nfgcol_alert=(00 00 00 88)  # semi-transparent.\nbgcol=(00 00 00 00)\nbmp_ver=5\nicontype=templateImage\n\nif [[ $osver == 10.8.* ]]; then\n    bmp_ver=1\n    bgcol=(d0 d0 d0 7f)\n    icontype=image\nfi\n\n# return the alert colour if alert condition is met.\n# else return foreground colour.\n# alert condition: free capacity \u003c 2%. \ndetermine_col() {\n  if (( $1 \u003c 98 )); then\n  \tretval=(\"${fgcol[@]}\")\n  else\n  \tretval=(\"${fgcol_alert[@]}\")\n  fi\n}\n\n# Routines to draw simple progress-bar-like buckets for showing\n# capacity of disks, batteries etc.\n\ninit_bar() {\n    pixels=()\n    curcol=(\"${bgcol[@]}\")\n    init_bmp $bmp_ver \"$1\" \"$2\"\n    determine_col \"$root_capacity\"; col=(\"${retval[@]}\")\n    curcol=(\"${col[@]}\")\n    rect 0 0 \"$1\" \"$2\"\n}\n\n# Horizontal bar\n# hbar width height capacity\nhbar() {\n    local w=$((($1 - 4) * $3 / 100))\n    init_bar \"$1\" \"$2\"\n    fill 2 2 $w $(($2 - 4))\n}\n\n\n# Vertical bar\n# vbar width height capacity\nvbar() {\n    local h=$((($2 - 4) * $3 / 100))\n    init_bar \"$1\" \"$2\"\n    fill 2 2 $(($1 - 4)) $h\n}\n\nOLDIFS=$IFS\n\ndisk=()\nused=()\nfree=()\ncapacity=()\nroot_capacity=0\n\nget_disk_stats() {\n    local IFS=$'\\n'\n    local i dfdata dudata diskname\n\n    dfdata=(\"$(df -H)\")\n\n    IFS=$OLDIFS\n    for ((i = 0; i \u003c \"${#dfdata[@]}\"; i++)); do\n        line=(\"${dfdata[$i]}\")\n        if [ \"${line[8]}\" = \"/\" ]; then\n            root_capacity=\"${line[4]/\\%}\"            \n        fi\n        if [[ \"${line[0]}\" == /dev/* ]]; then\n            dudata=(\"$(diskutil info \"${line[0]}\" | grep \"Volume Name\")\")\n            diskname=\"${dudata[*]:2}\"\n            disk+=(\"${diskname:-Untitled}\")\n            used+=(\"${line[2]}\")\n            free+=(\"${line[3]}\")\n            capacity+=(\"${line[4]/\\%}\")\n        fi\n    done\n}\n\nif [ \"$1\" = 'disk_utility' ]; then\n    osascript \u003c\u003c END\n    tell application \"Disk Utility\"\n        reopen\n        activate\n    end tell\nEND\n    exit 0\nelif [ \"$1\" = 'perf' ]; then\n    PERF=1\nfi\n\n[ -z \"$PERF\" ] \u0026\u0026 get_disk_stats\n\nvbar 10 16 \"$root_capacity\"\n\necho -n \"| $icontype=\"\noutput_bmp | base64\necho \"---\"\nfor ((i = 0; i \u003c ${#capacity[@]}; i++)); do\n    echo \"Disk   ${disk[$i]} | size=12 refresh=true font=Menlo\"\n    echo \"Used   ${used[$i]}| size=12 refresh=true font=Menlo\"\n    echo \"Free   ${free[$i]}| size=12 refresh=true font=Menlo\"\n    hbar 128 10 \"${capacity[$i]}\"\n    echo -n \"| refresh=true $icontype=\"\n    output_bmp | base64\n    echo \"---\"\ndone\necho \"Open Disk Utility | bash='$0' param1=disk_utility terminal=false\"\n"
+				}
+			],
+			"path": "System/mdf.1m.sh",
+			"filename": "mdf.1m.sh",
+			"dir": "System",
+			"docsPlugin": "System/mdf.1m.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Disk Usage",
+			"version": "v1.0",
+			"author": "Ganesh V",
+			"authors": [
+				{
+					"name": "Ganesh V",
+					"githubUsername": "ganeshv",
+					"imageURL": "https://avatars.githubusercontent.com/u/827790?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Disk usage statistics",
+			"imageURL": "https://raw.github.com/ganeshv/mtop/master/screenshots/mdf2.jpg",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:03.966497Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/mtop.5s.sh",
+					"filename": "mtop.5s.sh",
+					"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eCPU Usage Graph\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eGanesh V\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eganeshv\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCPU usage bar graph\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.github.com/ganeshv/mtop/master/screenshots/mtop2.png\u003c/bitbar.image\u003e\n# \u003cbitbar.about\u003ehttps://github.com/ganeshv/mtop\u003c/bitbar.about\u003e\n\n# CPU utilization bar graph is rendered onto a 25x16 BMP file created from\n# scratch with no external dependencies. The dropdown contains current usage,\n# load average and the top 5 CPU-hogs as reported by `top`.\n#\n# Tested on Mountain Lion through El Capitan. Works with Dark Mode (though\n# you have to restart Bitbar if you change mode).\n#\n# Mountain Lion does not interpret the BITMAPV5HEADER variant of the BMP\n# format, which has alpha channel support. We fall back to a basic version\n# (BITMAPINFOHEADER).\n#\n# Bash builtins are used as much as possible to reduce performance impact.\n\nif [ \"$1\" = 'activity_monitor' ]; then\n    osascript \u003c\u003c END\n    tell application \"Activity Monitor\"\n        reopen\n        activate\n    end tell\nEND\n    exit 0\nfi\n\nHISTORY_FILE=$HOME/.bitbar.mtop\n[ ! -r \"$HISTORY_FILE\" ] \u0026\u0026 touch \"$HISTORY_FILE\"\n[ X\"$(find \"$HISTORY_FILE\" -mtime -2m)\" != X\"$HISTORY_FILE\" ] \u0026\u0026 echo -n \u003e\"$HISTORY_FILE\" # Discard history if older than 2 minutes\n\nOLDIFS=$IFS\nbmp=()\nwidth=25\nheight=16\n\nosver=$(sw_vers -productVersion)\n\n# Colors in BGRA format\nfgcol=\"00 00 00 ff\"\nbgcol=\"00 00 00 00\"\nbmp_ver=5\nicontype=templateImage\n\nif [[ $osver == 10.8.* ]]; then\n    bmp_ver=1\n    bgcol=\"d0 d0 d0 7f\"\n    icontype=image\nfi\n\nborder=$fgcol\nforeground=$fgcol\nbackground=$bgcol\nborder_height=3\n\n# Takes number, prints hex bytes in little endian\n# e.g. hexle32 3142 will output 46 0c 00 00\nhexle32() {\n    printf -v _num \"%08x\" \"$1\"\n    echo \"${_num:6:2}\" \"${_num:4:2}\" \"${_num:2:2}\" \"${_num:0:2}\"\n}\n\n# make_bmp_header version\n# version can be 1 or 5\n# v1 is the most compatible, but the graph will be opaque - no alpha support.\n# v5 supports alpha channel.\nmake_bmp_header() {\n    headertype=$1\n    headerbytes=40\n    comp=\"00\"\n    if [ \"$headertype\" -eq 5 ]; then\n        headerbytes=124\n        comp=\"03\"\n    fi\n    pixoffset=$((headerbytes + 14))\n    pixbytes=$((width * height * 4))\n    filebytes=$((pixbytes + pixoffset))\n        \n    # Common bits for version 1 and 5\n    bmp+=(\n        42 4d                   # \"BM\" magic\n        $(hexle32 $filebytes)   # size of file\n        00 00                   # reserved\n        00 00                   # reserved\n        $(hexle32 $pixoffset)   # offset of pixel data\n        $(hexle32 $headerbytes) # remaining bytes in header\n        $(hexle32 $width)       # width\n        $(hexle32 $height)      # height\n        01 00                   # 1 color plane\n        20 00                   # 32 bits per pixel\n        $comp 00 00 00          # Compression\n        $(hexle32 $pixbytes)    # size of pixel data\n        13 0b 00 00             # ~72 dpi horizontal\n        13 0b 00 00             # ~72 dpi vertical\n        00 00 00 00             # colors in palette\n        00 00 00 00             # all colors are important\n    )\n    if [ \"$headertype\" -eq 5 ]; then\n        bmp+=(\n            00 00 ff 00             # red channel mask (BGRA)\n            00 ff 00 00             # green channel mask\n            ff 00 00 00             # blue channel mask\n            00 00 00 ff             # alpha channel mask\n            42 47 52 73             # sRGB\n            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n            00 00 00 00             # red gamma\n            00 00 00 00             # green gamma\n            00 00 00 00             # blue gamma\n            00 00 00 00             # intent\n            00 00 00 00             # profile data\n            00 00 00 00             # profile size\n            00 00 00 00             # reserved\n        )\n    fi\n}\n\n\n# add_row thickness \"b g r a\"\nadd_row() {\n    thickness=$1\n    for ((i = 0; i \u003c thickness; i++)); do\n        for ((j = 0; j \u003c width; j++)); do\n            bmp+=($2)\n        done\n    done\n}\n\n# add_pixel \"b g r a\"\nadd_pixel() {\n    bmp+=($1)\n}\n\noutput_bmp() {\n    bmp=(${bmp[@]/#/'\\x'})\n    local IFS=''\n    #echo -ne \"${bmp[*]}\" \u003e/tmp/mtop.bmp\n    echo -ne \"${bmp[*]}\"\n}\n\nget_cpu_stats() {\n    local IFS=$'\\n'\n    topdata=($(top -F -R -l2 -o cpu -n 5 -s 2 -stats pid,command,cpu))\n    nlines=${#topdata[@]}\n    histdata=($(tail -$((width - 1)) \"$HISTORY_FILE\"))\n\n    IFS=$OLDIFS\n    for ((i = nlines / 2; i \u003c nlines; i++)); do\n        line=(${topdata[$i]})\n        word=${line[0]}\n        if [ \"$word\" = Load ]; then\n            loadstr=${topdata[$i]}\n        elif [ \"$word\" = CPU ]; then\n            cpustr=${line[*]}\n            histdata+=(\"${line[2]/'%'/} ${line[4]/'%'/} ${line[6]/'%'/}\")\n        elif [ \"$word\" = PID ]; then\n            top5=(\"${topdata[@]:$i}\")\n        fi\n    done\n\n    IFS=$'\\n'\n    echo \"${histdata[*]}\" \u003e\"$HISTORY_FILE\"\n}\n\nrender_graph() {\n    start=$((width - ${#histdata[@]}))\n\n    heights=()\n    for ((i = 0; i \u003c ${#histdata[@]}; i++)); do\n        comps=(${histdata[$i]})\n        heights[$i]=$(((100 - $(printf \"%.0f\" \"${comps[2]}\")) * (height - border_height) / 100))\n    done \n\n    for ((i = 0; i \u003c $((height - border_height)); i++)); do\n        h=0\n        for ((j = 0; j \u003c width; j++)); do\n            if [ $j -lt $start ]; then\n                add_pixel \"$background\"\n            elif [ ${heights[$h]} -gt $i ]; then\n                add_pixel \"$foreground\"\n                h=$((h + 1))\n            else\n                add_pixel \"$background\"\n                h=$((h + 1))\n            fi\n        done\n    done\n}\n\nget_cpu_stats\n\nmake_bmp_header $bmp_ver\nadd_row 2 \"$border\"\nrender_graph\nadd_row 1 \"$border\"\n\necho -n \"| $icontype=\"\noutput_bmp | base64\necho \"---\"\necho \"$cpustr | refresh=true\"\necho \"$loadstr | refresh=true\"\necho \"---\"\ntop5=(\"${top5[@]/%/| font=Menlo}\")\nIFS=$'\\n'\necho \"${top5[*]}\"\nIFS=$OLDIFS\necho \"---\"\necho \"Open Activity Monitor | bash='$0' param1=activity_monitor terminal=false\"\n"
+				}
+			],
+			"path": "System/mtop.5s.sh",
+			"filename": "mtop.5s.sh",
+			"dir": "System",
+			"docsPlugin": "System/mtop.5s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "CPU Usage Graph",
+			"version": "v1.0",
+			"author": "Ganesh V",
+			"authors": [
+				{
+					"name": "Ganesh V",
+					"githubUsername": "ganeshv",
+					"imageURL": "https://avatars.githubusercontent.com/u/827790?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "CPU usage bar graph",
+			"imageURL": "https://raw.github.com/ganeshv/mtop/master/screenshots/mtop2.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:04.0888Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,225 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Science/fah-score.1m.py",
+					"filename": "fah-score.1m.py",
+					"content": "#!/usr/bin/env python3\n\n\n# This script displays your Folding@Home score.\n# https://foldingathome.org/\n# https://stats.foldingathome.org/donors\n#\n# \u003cbitbar.title\u003eFolding@Home score\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eYuichi Tanaka\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eyuichielectric\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the score of your Folding@Home account\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/yuichielectric/fah-score-bitbar-plugin/master/screen-capture.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython3\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/yuichielectric/fah-score-bitbar-plugin\u003c/bitbar.abouturl\u003e\n\nimport json\nimport urllib.request\n\n# Specify your accoount name here\nuser_account = 'yuichielectric'\n\n\ndef separator(num):\n    return \"{:,}\".format(num)\n\n\nurl = 'https://stats.foldingathome.org/api/donor/' + user_account\nreq = urllib.request.Request(url)\nwith urllib.request.urlopen(req) as res:\n    body = json.load(res)\n    print(\"F@h \" + separator(body[\"credit\"]))\n    print('---')\n\n    # User rank\n    top = body[\"rank\"] / body[\"total_users\"] * 100\n    print(\"Rank: \" + separator(body[\"rank\"]) +\n          \" / \" + separator(body[\"total_users\"]) +\n          (\" (top %.02f %%)\" % top) +\n          (\"| href='https://stats.foldingathome.org/donor/%s'\" % user_account))\n\n    # Team\n    print(\"---\")\n    for t in sorted(body[\"teams\"], key=lambda t: t[\"credit\"], reverse=True):\n        print(t[\"name\"] + \" \" + separator(t[\"credit\"]) +\n              (\"| href='https://stats.foldingathome.org/team/%d'\" % t[\"team\"]))\n"
+				}
+			],
+			"path": "Science/fah-score.1m.py",
+			"filename": "fah-score.1m.py",
+			"dir": "Science",
+			"docsPlugin": "Science/fah-score.1m.py.html",
+			"docsCategory": "Science.html",
+			"pathSegments": [
+				"Science"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Science",
+					"text": "Science",
+					"isLast": true
+				}
+			],
+			"title": "Folding@Home score",
+			"version": "v1.0",
+			"author": "Yuichi Tanaka",
+			"authors": [
+				{
+					"name": "Yuichi Tanaka",
+					"githubUsername": "yuichielectric",
+					"imageURL": "https://avatars.githubusercontent.com/u/183380?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays the score of your Folding@Home account",
+			"imageURL": "https://raw.githubusercontent.com/yuichielectric/fah-score-bitbar-plugin/master/screen-capture.png",
+			"dependencies": [
+				"python3"
+			],
+			"aboutURL": "https://github.com/yuichielectric/fah-score-bitbar-plugin",
+			"lastUpdated": "2021-03-08T15:22:00.753959Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Science/iss-overhead-check.60m.py",
+					"filename": "iss-overhead-check.60m.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eISS Overhead Check\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eThiago Paes\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emrprompt\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCheck International Space Station Pass Times Over !\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nfrom time import localtime\nfrom requests import get\n\nLATITUDE = -27.591665  # Put your latitude here\nLONGITUDE = -48.589599  # Put your longitude here\nALTITUDE = 12  # Put your altitude here\n\n\ndef iss_overhead():\n    url = \"http://api.open-notify.org/iss-pass.json?lat={}\u0026lon={}\u0026alt={}\".format(LATITUDE, LONGITUDE, ALTITUDE)\n    response = get(url)\n    content = response.json()\n\n    print('🛰')\n    separator()\n\n    if content['message'] == 'success':\n        for overhead in content['response']:\n            ts = overhead['risetime']\n            year, month, day, hour, minute, seconds, weekday, year_day, is_dst = localtime(ts)\n\n            print(\"🛰 {}/{} - {}:{} UTC\".format(day, month, hour, minute))\n    else:\n        print(\"☠ Invalid response.\")\n\n\ndef separator():\n    print('---')\n\n\n# Execution\ntry:\n    iss_overhead()\nexcept Exception as e:\n    print('☠ Script error:')\n    print(e)\n    separator()\n"
+				}
+			],
+			"path": "Science/iss-overhead-check.60m.py",
+			"filename": "iss-overhead-check.60m.py",
+			"dir": "Science",
+			"docsPlugin": "Science/iss-overhead-check.60m.py.html",
+			"docsCategory": "Science.html",
+			"pathSegments": [
+				"Science"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Science",
+					"text": "Science",
+					"isLast": true
+				}
+			],
+			"title": "ISS Overhead Check",
+			"version": "v0.0.1",
+			"author": "Thiago Paes",
+			"authors": [
+				{
+					"name": "Thiago Paes",
+					"githubUsername": "mrprompt",
+					"imageURL": "https://avatars.githubusercontent.com/u/166088?v=4",
+					"bio": "Self-taught software engineer. PHP, JS, Python, ZCPE, DevOps, Grower, Writer, Electronics Hobbyist, Astronomy Enthusiast, Open Source Advocate",
+					"primary": true
+				}
+			],
+			"desc": "Check International Space Station Pass Times Over !",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:00.771672Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Science/apod.1h.py",
+					"filename": "apod.1h.py",
+					"content": "#!/usr/bin/env PYTHONIOENCODING=UTF-8 /usr/local/bin/python3\n\n# Copyright 2019 Jacob Vossen \n\n# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\n# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\n# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n# \u003cbitbar.title\u003eNASA Picture of the Day\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJake Vossen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejakevossen5\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays a the NASA picture of the day\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/jakevossen5/apodbitbar/master/example.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython3,pillow\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/jakevossen5/apodbitbar/tree/master\u003c/bitbar.abouturl\u003e\n\n\n\n# May need to pip(3) install pillow\n# May need to install certificates: https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org\nimport base64\nimport urllib.request\nfrom PIL import Image\nimport io\nfrom io import BytesIO\n\n# with open(\"/tmp/temp.jpg\", \"rb\") as image_file:\n    # encoded_string = str(base64.b64encode(image_file.read()))[2:][:-1]\n# print(encoded_string)\nprint('🔭') # The telescope emoji is here, if your text editor does not render it\nprint('---')\nurl = 'https://apod.nasa.gov/apod/'\nreq = urllib.request.Request(url)\n# try:\nr = str(urllib.request.urlopen(req).read())\n# print(r)\n# print(r.find('.jpg'))\ntry:\n    image_url = \"\"\n    for i in range(r.find('.jpg'), 0, -1):\n        if r[i] != '\"':\n            image_url = r[i] + image_url\n        else:\n            break\n    image_url = image_url + \"jpg\"\n    image_url = \"https://apod.nasa.gov/apod/\" + image_url\n\n\n    image_req = urllib.request.Request(image_url)\n\n    image_path = io.BytesIO(urllib.request.urlopen(image_req).read())\n    pillow_image = Image.open(image_path)\n    # pillow_image.show()\n    maxsize = (720, 720)\n\n    pillow_image.thumbnail(maxsize)\n    buff = BytesIO()\n    pillow_image.save(buff, format=\"JPEG\")\n    encoded_string = base64.b64encode(buff.getvalue())\n    # base64_data = base64.b64encode(binary_data)\n\n\n    # encoded_string = \"\"\n    # except:\n    # print(\"There was an error, most likely with SSL certificates. Click me to fix |href=https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org\")\n    \n    # print(r)\n    # image_string = \"image=\" + encoded_string\n    print(\"| href=https://apod.nasa.gov/apod/ image=\" +  str(encoded_string)[2:][:-1])\nexcept:\n    print(\"Could not complete the request. Either the picture of the day is a video, or you do not have the proper dependencies installed\")\n"
+				}
+			],
+			"path": "Science/apod.1h.py",
+			"filename": "apod.1h.py",
+			"dir": "Science",
+			"docsPlugin": "Science/apod.1h.py.html",
+			"docsCategory": "Science.html",
+			"pathSegments": [
+				"Science"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Science",
+					"text": "Science",
+					"isLast": true
+				}
+			],
+			"title": "NASA Picture of the Day",
+			"version": "v1.0",
+			"author": "Jake Vossen",
+			"authors": [
+				{
+					"name": "Jake Vossen",
+					"githubUsername": "jakevossen5",
+					"imageURL": "https://avatars.githubusercontent.com/u/16298666?v=4",
+					"bio": "CS (B.S + M.S) student at Colorado School of Mines",
+					"primary": true
+				}
+			],
+			"desc": "Displays a the NASA picture of the day",
+			"imageURL": "https://raw.githubusercontent.com/jakevossen5/apodbitbar/master/example.png",
+			"dependencies": [
+				"python3",
+				"pillow"
+			],
+			"aboutURL": "https://github.com/jakevossen5/apodbitbar/tree/master",
+			"lastUpdated": "2021-03-08T15:22:00.665549Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Science/people-in-space.6h.js",
+					"filename": "people-in-space.6h.js",
+					"content": "#!/usr/bin/env /usr/local/bin/node\n\n// \u003cbitbar.title\u003ePeople In Space\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eMullwar\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003emullwar\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eHow many people are in Space right now?\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/i9biB3R.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.abouturl\u003ehttps://github.com/mullwar/bitbar-plugins\u003c/bitbar.abouturl\u003e\n\n\"use strict\";\n\n/* jshint -W100 */\n/* jshint esversion: 6 */\n\nconst https = require('https');\n\nconst ENDPOINT = 'https://www.howmanypeopleareinspacerightnow.com/peopleinspace.json';\n\nfunction request(endpoint) {\n    return new Promise((resolve, reject) =\u003e {\n        https.get(endpoint, (res) =\u003e {\n            const body = [];\n            res.setEncoding('utf8');\n            res.on('data', (data) =\u003e body.push(data));\n            res.on('end', () =\u003e {\n                try {\n                    resolve(JSON.parse(body.join()));\n                } catch (error) {\n                    reject(error);\n                }\n            });\n            res.on('error', (error) =\u003e {\n                reject(error);\n            });\n        });\n    });\n}\n\nfunction getEmojiFlag(name) {\n    switch (name.toLowerCase()) {\n        case 'russia': return '🇷🇺';\n        case 'usa': return '🇺🇸';\n        case 'italy': return '🇮🇹';\n        case 'china': return '🇨🇳';\n        case 'japan': return '🇯🇵';\n        case 'canada': return '🇨🇦';\n        case 'france': return '🇫🇷';\n        case 'germany': return '🇩🇪';\n        case 'belgium': return '🇧🇪';\n        case 'netherlands': return '🇳🇱';\n        case 'sweden': return '🇸🇪';\n    }\n}\n\nrequest(ENDPOINT).then((json) =\u003e {\n    console.log(`👨🏻‍🚀 ${json.number}`);\n    console.log(`---`);\n    json.people.forEach((person) =\u003e {\n        console.log(`${getEmojiFlag(person.country)} ${person.name} | href=${person.biolink} color=black`);\n        console.log(`${person.title} – ${person.launchdate.split('-').reverse().join('.')}`);\n        console.log(`---`);\n    });\n}).catch((error) =\u003e {\n    console.log(`👨🏻‍🚀 ?\\n---`);\n    console.log(`Houston, we have an error! | color=red`);\n    console.log(`---`);\n    console.log(error);\n});\n"
+				}
+			],
+			"path": "Science/people-in-space.6h.js",
+			"filename": "people-in-space.6h.js",
+			"dir": "Science",
+			"docsPlugin": "Science/people-in-space.6h.js.html",
+			"docsCategory": "Science.html",
+			"pathSegments": [
+				"Science"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Science",
+					"text": "Science",
+					"isLast": true
+				}
+			],
+			"title": "People In Space",
+			"version": "v1.1",
+			"author": "Mullwar",
+			"authors": [
+				{
+					"name": "Mullwar",
+					"githubUsername": "mullwar",
+					"imageURL": "https://avatars.githubusercontent.com/u/988769?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "How many people are in Space right now?",
+			"imageURL": "http://i.imgur.com/i9biB3R.png",
+			"dependencies": [
+				"node"
+			],
+			"aboutURL": "https://github.com/mullwar/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:22:00.807604Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Science/pubmed.py",
+					"filename": "pubmed.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003ePubmed Articles\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDogancan Ozturan\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eozturan\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eNumber of publications for a given keyword on Pubmed\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/lqCaAJP.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nimport urllib2\nfrom HTMLParser import HTMLParser\n\n# add as much as you want\nkeyword_list = [\"CRISPR\",\"TALEN\", \"Zinc+Finger\"]\n\ndef get_html(keyword):\n\tf = urllib2.urlopen(\"https://www.ncbi.nlm.nih.gov/pubmed/?term=%s\" %keyword)\n\treturn str(f.read())\n\nclass MyHTMLParser(HTMLParser):\n\tdef __init__(self):\n\t\tHTMLParser.__init__(self)\n\t\tself.__text = []\n\n\tdef handle_starttag(self, tag, attrs):\n\t\tif tag == \"meta\":\n\t\t\tself.__text.append(attrs[1][1])\n\n\tdef text(self):\n\t\treturn self.__text\n\n\ndef html(text):\n\tparser = MyHTMLParser()\n\tparser.feed(text)\n\tparser.close()\n\treturn parser.text()\n\nif __name__ == '__main__':\n\tprint \" 🏛️ \"\n\tprint \"---\"\n\tfor i in keyword_list:\n\t\tprint \"%s\" %i + \" -- \" + html(get_html(i))[15] + \" | href=https://www.ncbi.nlm.nih.gov/pubmed/?term=%s\" %i"
+				}
+			],
+			"path": "Science/pubmed.py",
+			"filename": "pubmed.py",
+			"dir": "Science",
+			"docsPlugin": "Science/pubmed.py.html",
+			"docsCategory": "Science.html",
+			"pathSegments": [
+				"Science"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Science",
+					"text": "Science",
+					"isLast": true
+				}
+			],
+			"title": "Pubmed Articles",
+			"version": "v1.0.0",
+			"author": "Dogancan Ozturan",
+			"authors": [
+				{
+					"name": "Dogancan Ozturan",
+					"githubUsername": "ozturan",
+					"imageURL": "https://avatars.githubusercontent.com/u/2972709?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Number of publications for a given keyword on Pubmed",
+			"imageURL": "http://i.imgur.com/lqCaAJP.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:00.897128Z",
+			"vars": null
+		}
+	]
+}

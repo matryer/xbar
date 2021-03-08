@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Music/plex-status-improved-30s.py",
+				"filename": "plex-status-improved-30s.py",
+				"content": "import xml.etree.ElementTree as ET\nimport os\nimport urllib.request\nimport ssl\n\n# \u003cbitbar.title\u003ePlex Status - Improved\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ePatrick Coffey\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003epatricktcb\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSee what's currently playing on your Plex Server\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://res.cloudinary.com/cyberge/image/upload/v1550627901/icons/plex_878759_eey690.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# plextoken will need to be set manually. You can follow this guide from Plex on how to get one: https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/\n# plexhost should be whatever IP/domain name your local machine uses to connect.\n# myip is used in two ways. The first is to show where media is being played if it's not local, the second is when there are multiple streams being played to prefer the local one over another.\n# myuserid is the id of your preferred watcher. This is typically 1, but depending on how your server admin set things up it could be different\n\ndef plexMusicInfo(el):\n    trackInfo = \"[\" + el.attrib['title'] + \" by \" + el.attrib['grandparentTitle'] + \"]\\n---\\nAlbum: \" + el.attrib['parentTitle']\n    if el.find(\"Player\").attrib[\"state\"] == \"paused\":\n        trackInfo = \"  \" + trackInfo\n    return trackInfo\n\ndef plexMovieInfo(el):\n    trackInfo = \"[🎥  \" + el.attrib['title']\n    return trackInfo\n\ndef plexTVInfo(el):\n    trackInfo = \"[📺  \" + el.attrib['grandparentTitle'] + \" - \" + el.attrib['title'] + \"]\\n---\\n\" + el.attrib['parentTitle'] + \" Episode \" + el.attrib['parentIndex']\n    return trackInfo\n\ndef plexMediaInfo(mc, myip, myuserid):\n    trackInfo = \"❯\\n---\\nNothing Playing\"\n    if mc.find(\"User\").attrib[\"id\"] == myuserid:\n        if str(mc.tag) == \"Track\":\n            if mc.find(\"Player\").attrib[\"state\"] == \"playing\":\n                trackInfo = plexMusicInfo(mc)\n        elif str(mc.tag) == \"Video\":\n            if mc.find(\"Player\").attrib[\"state\"] == \"playing\":\n                if mc.attrib['type'] == \"movie\":\n                    trackInfo = plexMovieInfo(mc)\n                elif mc.attrib['type'] == \"episode\":\n                    trackInfo = plexTVInfo(mc)\n        if mc.find(\"Player\").attrib['address'] != myip:\n            trackInfo = trackInfo + \"\\n\" + mc.find(\"Player\").attrib['product'] + \" on \" + mc.find(\"Player\").attrib['platform']\n    return trackInfo\n\ndef getPlexStatus(plextoken, plexhost):\n    ctx = ssl.create_default_context()\n    ctx.check_hostname = False\n    ctx.verify_mode = ssl.CERT_NONE\n    # Plex uses self signed certs, so they can't be verified.\n    plexAddress = 'https://' + plexhost + ':32400/status/sessions?X-Plex-Token=' + plextoken \n    plexXML = urllib.request.urlopen(plexAddress, context=ctx).read()\n    return plexXML\n\ndef parseXML(rawXML, myip, myuserid):\n    tree = ET.ElementTree(ET.fromstring(rawXML))\n    root = tree.getroot()\n    trackInfo = \"❯\\n---\\nNothing Playing\"\n    if root.attrib['size'] == \"1\":\n        trackInfo = plexMediaInfo(root[0], myip, myuserid)\n    else:\n        for mc in root:\n            if mc.find(\"Player\").attrib['address'] == myip:\n                trackInfo = plexMediaInfo(mc, myip, myuserid)\n    return trackInfo\n\n#This is the function to be used with the script is called by itself by BitBar. But the file is written so that if you want, you can just import these functions into another python script if you want to.\nif __name__ == '__main__':\n    plextoken = \"YOUR TOKEN\"\n    plexhost = \"YOUR PLEX HOST\"\n    myip = \"YOUR IP\" #This is your IP, from the Plex Host's perspective. So your local IP if the server is on your network, and public IP if it's not\n    myuserid = \"1\" #This is usually 1, but might not be.\n    try:\n        plexXML = getPlexStatus(plextoken, plexhost)\n        print(parseXML(plexXML, myip, myuserid))\n    except:\n        print(\"🚫\\n---\\nCould not connect to Plex server \" + plexhost + \"\\nServer may be offline, or token may be invalid.\")\n"
+			}
+		],
+		"path": "Music/plex-status-improved-30s.py",
+		"filename": "plex-status-improved-30s.py",
+		"dir": "Music",
+		"docsPlugin": "Music/plex-status-improved-30s.py.html",
+		"docsCategory": "Music.html",
+		"pathSegments": [
+			"Music"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Music",
+				"text": "Music",
+				"isLast": true
+			}
+		],
+		"title": "Plex Status - Improved",
+		"version": "v1.0",
+		"author": "Patrick Coffey",
+		"authors": [
+			{
+				"name": "Patrick",
+				"githubUsername": "patricktcb",
+				"imageURL": "https://avatars.githubusercontent.com/u/15157503?v=4",
+				"bio": "IT Consultant",
+				"primary": true
+			}
+		],
+		"desc": "See what's currently playing on your Plex Server",
+		"imageURL": "https://res.cloudinary.com/cyberge/image/upload/v1550627901/icons/plex_878759_eey690.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:57.595763Z",
+		"vars": null
+	}
+}

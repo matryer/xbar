@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/WhereAmI.48h.sh",
+				"filename": "WhereAmI.48h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eWhereAmI\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003enoyannus\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003enoyannus\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays current system volume, system version, and user's home folder.\n# \u003cbitbar.desc\u003eUseful for staying oriented while booting into multiple test systems.\u003c/bitbar.desc\u003e\n# \u003cbitbar.desc\u003eReadme: https://github.com/noyannus/WhereAmI-Readme/blob/master/Readme.md\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/noyannus/WhereAmI-Readme/master/Minimalist.pngg\u003c/bitbar.image\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/noyannus/WhereAmI-Readme/master/KingSizeInfo.png\u003c/bitbar.image\u003e\n\n\n# Use the last `cut` to get only the relevant part of something like \"High Sierra beta with Spaghetticode Fork #123 Version 456alpha\"\nBOOTVOLUME=$(diskutil info \"$(df / | tail -1 | cut -d' ' -f 1)\" | grep 'Volume Name:' | cut -c  30-)\n\nSYSTEMVERSION=$(defaults read loginwindow SystemVersionStampAsString)\n\nUSERDIR=$HOME\n\n\n# Un/comment below to select appearance: either minimalist version, or king size info\n\n# # The minimalist version:\n# echo \"• $BOOTVOLUME\" @ \"$SYSTEMVERSION •\"\n\n# The king size info:\necho \"◥◤\"         # if you write a nice way to color this less brutally, send me a pull request.\necho \"---\"\necho \"Boot Volume:        $BOOTVOLUME | size=18\"    color=black\necho \"System Version:   $SYSTEMVERSION | size=18\" color=black\necho \"User Directory:     $USERDIR | size=18\"       color=black\n\n\n\n"
+			}
+		],
+		"path": "System/WhereAmI.48h.sh",
+		"filename": "WhereAmI.48h.sh",
+		"dir": "System",
+		"docsPlugin": "System/WhereAmI.48h.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "WhereAmI",
+		"version": "v1.0.1",
+		"author": "noyannus",
+		"authors": [
+			{
+				"name": "noyannus",
+				"githubUsername": "noyannus",
+				"imageURL": "https://avatars.githubusercontent.com/u/6339921?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Readme: https://github.com/noyannus/WhereAmI-Readme/blob/master/Readme.md",
+		"imageURL": "https://raw.githubusercontent.com/noyannus/WhereAmI-Readme/master/KingSizeInfo.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:02.31371Z",
+		"vars": null
+	}
+}

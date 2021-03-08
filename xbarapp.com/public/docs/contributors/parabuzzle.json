@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Mike Heijmans",
+		"githubUsername": "parabuzzle",
+		"imageURL": "https://avatars.githubusercontent.com/u/428?v=4",
+		"bio": "Mike Heijmans has over 10 years of experience in the tech industry. He is a Builder, Rubyist, DevOps architect, public speaker, and open source advocate.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Weather/metar.5m.rb",
+					"filename": "metar.5m.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eMetar\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMichael Heijmans\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparabuzzle\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the current METAR aviation weather information for the airport of your choice\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://github.com/parabuzzle/bitbar_metar/raw/master/metar-ifr.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttp://www.github.com/parabuzzle/bitbar_metar\u003c/bitbar.abouturl\u003e\n\n# Handle RVM Machines\nunless ENV['USING_RVM']\n  # Re-run this script with RVM's default Ruby, after setting up the RVM path,\n  # and setting USING_RVM to true, so that this sentry code won't run the second\n  # time through.\n  system(\n    \u003c\u003c-EOF\n      export USING_RVM=true\n      export PATH=\"~/.rvm/bin:$PATH\"\n      rvm-auto-ruby #{File.expand_path(__FILE__)}\n    EOF\n  )\n  # Return the exit code from running the script with RVM:\n  exit $?.exitstatus.to_i\nend\n\n\nrequire 'bitbar'\nrequire 'Base64'\nrequire 'metar'\nrequire 'inifile'\n\ndef flight_rules\n  c = ceiling\n  v = meters_to_miles(visibility)\n  return \"LIFR\" if c \u003c= 500  || v \u003c= 1\n  return \"IFR\"  if c \u003c= 1000 || v \u003c 3\n  return \"MVFR\" if c \u003c= 3000 || v \u003c 5\n  return \"VFR\"\nend\n\ndef ceiling\n  conditions = PARSED_METAR.sky_conditions\n  c = 300000\n  conditions.each do |condition|\n    if [\"broken\", \"overcast\"].include? condition.quantity\n      f = meters_to_feet(condition.height.value).to_i\n      c = f if f \u003c c\n    end\n  end\n  return c\nend\n\ndef airport_code\n  config = IniFile.load(ENV['HOME'] + '/.bitbarrc')['metar']\n  config['airport'].upcase\nend\n\ndef visibility\n  PARSED_METAR.visibility.distance.value.to_i\nend\n\ndef meters_to_feet(num)\n  num * 3.28084\nend\n\ndef meters_to_miles(num)\n  (num * 0.000621371).round(1)\nend\n\ndef celius_to_fahrenheit(num)\n  ((num * 1.8) + 32).round(1)\nend\n\ndef format_number(num)\n  num.to_s.reverse.gsub(/(\\d{3})(?=\\d)/, '\\\\1,').reverse\nend\n\ndef color(fr)\n  case fr\n  when \"LIFR\"\n    return \"#ff00ff\"\n  when \"IFR\"\n    return :red\n  when \"MVFR\"\n    return :blue\n  else\n    return :green\n  end\nend\n\ndef temperature\n  PARSED_METAR.temperature_and_dew_point.temperature.value.to_i if PARSED_METAR.temperature_and_dew_point.temperature\nend\n\ndef dew_point\n  PARSED_METAR.temperature_and_dew_point.dew_point.value.to_i if PARSED_METAR.temperature_and_dew_point.dew_point\nend\n\n# String generation methods\n\ndef wind_gust_string\n  wind = PARSED_METAR.wind\n  \" (Gusting at #{wind.gusts.value.round * 2})\" if wind.gusts\nend\n\ndef wind_string\n  wind = PARSED_METAR.wind\n  return unless wind\n  if wind.direction == :variable_direction\n    direction = \"Wind: Variable Direction @ #{parsed.wind.speed.value.round * 2} Knots\"\n  else\n    direction = \"Wind #{wind.direction.value.round}° @ #{wind.speed.value.round * 2} Knots\"\n  end\n  return \"#{direction}#{wind_gust_string}\"\nend\n\ndef metar_issued_at_string\n  \"Metar Issued: #{PARSED_METAR.time.localtime.strftime('%m/%d/%Y %I:%M %p')}\"\nend\n\ndef visibility_string\n  \"Visibility #{meters_to_miles(visibility)} sm\" if visibility\nend\n\n\ndef temp_string\n  \"Temp: #{celius_to_fahrenheit(temperature)}° F\" if temperature\nend\n\ndef dew_point_string\n  \"Dew Point: #{celius_to_fahrenheit(dew_point)}° F\" if dew_point\nend\n\n# setup variables\nPARSED_METAR = Metar::Station.find_by_cccc(airport_code).parser\n\nflight_rule = flight_rules\n\n# Make the menu\nBitBar::Menu.new do\n  item flight_rule,  color: color(flight_rule)\n  item airport_code, color: color(flight_rule)\n\n  separator\n\n  item metar_issued_at_string, color: :black\n  item visibility_string, color: :black\n  item temp_string, color: :black\n  item dew_point_string, color: :black\n  item wind_string, color: :black\n  item \"Sky Conditions\" do\n    PARSED_METAR.sky_conditions.each do |condition|\n      if condition.height\n        item \"#{condition.quantity} - #{format_number(meters_to_feet(condition.height.value).to_i)} ft\", color: :black\n      else\n        item \"Sky Clear\", color: :blue\n      end\n    end\n  end\n  separator\nend\n\n\n"
+				}
+			],
+			"path": "Weather/metar.5m.rb",
+			"filename": "metar.5m.rb",
+			"dir": "Weather",
+			"docsPlugin": "Weather/metar.5m.rb.html",
+			"docsCategory": "Weather.html",
+			"pathSegments": [
+				"Weather"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Weather",
+					"text": "Weather",
+					"isLast": true
+				}
+			],
+			"title": "Metar",
+			"version": "v1.0",
+			"author": "Michael Heijmans",
+			"authors": [
+				{
+					"name": "Mike Heijmans",
+					"githubUsername": "parabuzzle",
+					"imageURL": "https://avatars.githubusercontent.com/u/428?v=4",
+					"bio": "Mike Heijmans has over 10 years of experience in the tech industry. He is a Builder, Rubyist, DevOps architect, public speaker, and open source advocate.",
+					"primary": true
+				}
+			],
+			"desc": "Displays the current METAR aviation weather information for the airport of your choice",
+			"imageURL": "http://github.com/parabuzzle/bitbar_metar/raw/master/metar-ifr.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "http://www.github.com/parabuzzle/bitbar_metar",
+			"lastUpdated": "2021-03-08T15:22:08.748147Z",
+			"vars": null
+		}
+	]
+}

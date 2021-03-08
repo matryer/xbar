@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "etopiei",
+		"githubUsername": "etopiei",
+		"imageURL": "https://avatars.githubusercontent.com/u/17671663?v=4",
+		"bio": "Software Engineer",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/mac-mux.sh",
+					"filename": "mac-mux.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMac-Mux\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/7vjC2UU.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.author\u003eetopiei\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eetopiei\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin makes it wasy to manage tmux from the menu bar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n\n# shellcheck source=/dev/null\nsource ~/.bash_profile\nif [ \"$1\" = 'opensession' ]; then\n\t\tcommand='tmux attach -t '\"$2\"''\n\t\tosascript -e 'tell application \"Terminal\" to do script \"'\"$command\"'\"'\n\t\tosascript -e 'set window 1 of application \"Terminal\" to frontmost'\nfi\n\nif [ \"$1\" = 'newsession' ]; then\n\t\tosascript -e 'tell application \"Terminal\" to do script \"tmux\"'\n\t\tosascript -e 'tell application \"Terminal\" activate'\nfi\n\noutput=$(tmux list-sessions \u0026\u003e /dev/null \u0026\u0026 tmux list-session | wc -l || echo \"0\")\nnumber=$(echo \"$output\" | xargs)\n\nif [ \"$number\" != '0' ]; then\n\t# here get all the session names in an array\n\tIFS=\" \" read -r -a nameArray \u003c\u003c\u003c \"$(tmux list-sessions | awk 'BEGIN{FS=\":\"}{print $1}')\"\n\techo \"mac-mux ($number)\"\n\techo \"---\"\n\techo \"$number Running tmux sessions | color=white\"\n\techo \"---\"\n\tfor i in \"${nameArray[@]}\"\n\tdo\n\t\t\techo \"Open session: $i | bash='$0' param1=opensession param2=$i terminal=false\"\n\tdone\n\techo \"---\"\n\techo \"Start new tmux session | bash='$0' param1=newsession terminal=false\"\n\texit\nfi\n\necho \"mac-mux\"\necho \"---\"\necho \"Start a tmux session | bash='$0' param1=newsession terminal=false\"\n"
+				}
+			],
+			"path": "Dev/mac-mux.sh",
+			"filename": "mac-mux.sh",
+			"dir": "Dev",
+			"docsPlugin": "Dev/mac-mux.sh.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "Mac-Mux",
+			"version": "v0.1",
+			"author": "etopiei",
+			"authors": [
+				{
+					"name": "etopiei",
+					"githubUsername": "etopiei",
+					"imageURL": "https://avatars.githubusercontent.com/u/17671663?v=4",
+					"bio": "Software Engineer",
+					"primary": true
+				}
+			],
+			"desc": "This plugin makes it wasy to manage tmux from the menu bar.",
+			"imageURL": "https://i.imgur.com/7vjC2UU.jpg",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:51.737248Z",
+			"vars": null
+		}
+	]
+}

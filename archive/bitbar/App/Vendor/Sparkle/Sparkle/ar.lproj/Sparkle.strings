@@ -1,0 +1,83 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "تم تنزيل %1$@ %2$@ وهو جاهز للاستخدام، هل ترغب بتثبيت التحديث وإعادة تشغيل %1$@ الآن؟";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "لا يمكن تحديث %1$@ إذا شُغّل من وحدة تخزين للقراءة فقط كصورة قرص أو قارئ الأقراص الضوئية. انقل %1$@ إلى مجلد التطبيقات وأعد تشغيله من هناك ثم حاول مجددًا.";
+
+"%@ %@ is currently the newest version available." = "الإصدار %2$@ هو أحدث إصدار متوفر حاليًا لتطبيق %1$@";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "لديك الإصدار %3$@ من تطبيق %1$@، هل ترغب بتزيل الإصدار %2$@ الآن";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" =  "تم تنزيل %@";
+
+"%@ of %@" = "%1$@ من %2$@";
+
+"A new version of %@ is available!" = "يتوفر إصدار جديد من تطبيق %@";
+
+"A new version of %@ is ready to install!" = "الإصدار الجديد من تطبيق %@ جاهز للتثبيت";
+
+"An error occurred in retrieving update information. Please try again later." = "حال خطأ دون الحصول على معلومات حول التحديث، الرجاء المحاولة لاحقًا.";
+
+"An error occurred while downloading the update. Please try again later." =  "حدث خطأ أثناء تنزيل التحديث، الرجاء المحاولة لاحقًا.";
+
+"An error occurred while extracting the archive. Please try again later." = "حدث خطأ أثناء استخراج الأرشيف، الرجاء المحاولة لاحقًا.";
+
+"An error occurred while installing the update. Please try again later." = "حدث خطأ أثناء تثبيت التحديث، الرجاء المحاولة لاحقًا.";
+
+"An error occurred while parsing the update feed." =  "حدث خطأ أثناء تحليل المعلومات المزوّدَة حول التحديث.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "حدث خطأ أثناء إعادة تشغيل %1$@، إلا أن الإصدار الجديد سيكون متوفرًا في المرة القادمة التي تشغل فيها %1$@";
+
+/* the unit for bytes */
+"B" = "بايت";
+
+"Cancel" = "إلغاء";
+
+"Cancel Update" = "إلغاء التحديث";
+
+"Checking for updates..." = "يجري التحقق من وجود تحديثات...";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "يجري تنزيل التحديث...";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "يجري استخراج التحديث...";
+
+/* the unit for gigabytes */
+"GB" = "غيغا بايت";
+
+"Install and Relaunch" = "تثبيت وإعادة تشغيل التطبيق";
+
+/* Take care not to overflow the status window. */
+"Installing update..." =  "يجري تثبيت التحديث...";
+
+/* the unit for kilobytes */
+"KB" = "كيلو بايت";
+
+/* the unit for megabytes */
+"MB" = "ميغا بايت";
+
+/* OK button. */
+"OK" = "موافق";
+
+/* Status message on progress window once download has finished. */
+"Ready to Install" = "جاهز للتثبيت";
+
+/* Message that is optionally shown at startup to allow users to turn on/off update checks. */
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "هل ترغب في أن يتحقق %1$@ من وجود تحديثات تلقائيًا؟ يمكنك التحقق من وجود تحديثات يدويًا في أي وقت من قائمة %1$@.";
+
+"Update Error!" = "حدث خطأ أثناء التحديث";
+
+"Updating %@" = "تحديث %@";
+
+/* 'Error' message when the user checks for updates but is already current or the feed doesn't contain any updates. (not necessarily shown in UI) */
+"You already have the newest version of %@." ="لديك أحدث إصدار من تطبيق %@";
+
+/* Status message shown when the user checks for updates but is already current or the feed doesn't contain any updates. */
+"You're up-to-date!" = "لديك أحدث إصدار";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+"Learn More..." = "مزيد من التفاصيل...";

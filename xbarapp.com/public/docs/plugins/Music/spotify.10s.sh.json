@@ -1,0 +1,51 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Music/spotify.10s.sh",
+				"filename": "spotify.10s.sh",
+				"content": "#!/bin/bash\n\n# Get current Spotify status with play/pause button\n#\n# by Jason Tokoph (jason@tokoph.net)\n#    Marcin Swieczkowski (scatman@bu.edu)\n#\n# Shows current track information for Spotify\n\n# metadata\n# \u003cbitbar.title\u003eSpotify Now Playing\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMarcin S., Jason Tokoph\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejtokoph\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay currently playing Spotify song. Play/pause, skip forward, skip backward.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/y1SZwfq.png\u003c/bitbar.image\u003e\n\n# Comment the following line to disable showing times.\nSHOW_TIME=1\n\n# By default we remove anything after \" - \", as it usually is stuff like\n# \"Remastered\", \"Single Version\", or other garbage that Spotify likes to\n# include.\n#\n# Comment out this line if you want the full track names.\nCLEAN_TRACK_NAMES=1\n# Comment out this line if you want the full album names.\nCLEAN_ALBUM_NAMES=1\n\n# The length of a track/artist name after which to truncate.\nTRUNC_LEN=18\n# String used when replacing truncated text.\nTRUNC_SUFFIX=\"...\"\n\n# Send a series of semicolon-delimited commands to Spotify\nfunction tellspotify() {\n  commands=\"$(echo \"$1\" | tr \";\" \"\\\\n\")\"\n\n  osascript -e \"\n            tell application \\\"Spotify\\\"\n                $commands\n            end tell\";\n}\n\n## Handle early-return cases\n\nif [ \"$1\" = 'launch' ]; then\n  tellspotify 'activate'\n  exit\nfi\n\nfirst=\"$(echo \"$1\" | head -n 1 | awk '{print $1;}')\"\ncase \"$first\" in\n  'playpause' | 'previous' | 'next' | 'set')\n    tellspotify \"$1\"\n    exit\nesac\n\nif [ \"$(osascript -e 'application \"Spotify\" is running')\" = \"false\" ]; then\n  echo \"♫\"\n  echo \"---\"\n  echo \"Spotify is not running\"\n  echo \"Launch Spotify | bash='$0' param1=launch terminal=false\"\n  exit\nfi\n\n## Get Spotify info\n\nstate=$(tellspotify 'player state as string');\ntrack=$(tellspotify 'name of current track as string');\nartist=$(tellspotify 'artist of current track as string');\nalbum=$(tellspotify 'album of current track as string');\n\n# Handle last early-return case (needed $track and $artist to look up lyrics).\nif [ \"$1\" = 'lyrics' ]; then\n  open \"https://www.musixmatch.com/search/$track $artist\"\n  exit\nfi\n\nif [ \"$state\" = \"playing\" ]; then\n  state_icon=\"▶\"\nelse\n  state_icon=\"❚❚\"\nfi\n\n# Clean up track and/or album names\nif [[ $CLEAN_TRACK_NAMES ]]; then\n  track=\"$(echo -e \"${track/ - /\\\\n}\" | head -n 1)\"\n  track=\"$(echo -e \"${track/ (Remastered/\\\\n}\" | head -n 1)\"\nfi\nif [[ $CLEAN_ALBUM_NAMES ]]; then\n  album=\"$(echo -e \"${album/ - /\\\\n}\" | head -n 1)\"\n  album=\"$(echo -e \"${album/ (Remastered/\\\\n}\" | head -n 1)\"\nfi\n\n## Truncate track and artist\ntrunc_track=$track\nif [ ${#trunc_track} -gt $TRUNC_LEN ];then\n  trunc_track=${trunc_track:0:$TRUNC_LEN-${#TRUNC_SUFFIX}}$TRUNC_SUFFIX\nfi\n\ntrunc_artist=$artist\nif [ ${#trunc_artist} -gt $TRUNC_LEN ];then\n  trunc_artist=${trunc_artist:0:$TRUNC_LEN-${#TRUNC_SUFFIX}}$TRUNC_SUFFIX\nfi\n\n# Get position and duration of track\nif [[ $SHOW_TIME ]]; then\n  position=$(osascript -e \\\n                       \"tell application \\\"Spotify\\\"\n                            set pos_sec to player position\n                            set time_min to (pos_sec / 60 div 1) as text\n                            set raw_sec to (pos_sec mod 60 div 1) as text\n                            if length of raw_sec is greater than 1 then\n                                set time_sec to raw_sec\n                            else\n                                set time_sec to \\\"0\\\" \u0026 raw_sec\n                            end if\n                            return time_min as text \u0026 \\\":\\\" \u0026 time_sec as text\n                        end tell\");\n  duration=$(osascript -e \\\n                       \"tell application \\\"Spotify\\\"\n                            set total_sec to (duration of current track / 1000) as text\n                            set time_min to (total_sec / 60 div 1) as text\n                            set raw_sec to (total_sec mod 60 div 1) as text\n                            if length of raw_sec is greater than 1 then\n                                set time_sec to raw_sec\n                            else\n                                set time_sec to \\\"0\\\" \u0026 raw_sec\n                            end if\n                            return time_min as text \u0026 \\\":\\\" \u0026 time_sec as text\n                        end tell\");\nfi\n\n## Print the display\n\necho \"$state_icon $trunc_track - $trunc_artist\"\necho \"---\"\n\necho -e \"Track:\\\\t$track\"\necho -e \"Artist:\\\\t$artist\"\necho -e \"Album:\\\\t$album\"\necho \"---\"\n\nif [[ $SHOW_TIME ]]; then\n  echo \"${position} / ${duration}\"\n  echo '---'\nfi\n\nif [ \"$state\" = \"playing\" ]; then\n  echo -e \"❚❚\\\\tPause | bash='$0' param1=playpause terminal=false refresh=true\"\n  echo -e \"↩\\\\tPrevious | bash='$0' param1='set player position to 0;previous track' terminal=false refresh=true\"\n  echo -e \"↪\\\\tNext | bash='$0' param1='next track' terminal=false refresh=true\"\n  echo -e \"↻\\\\tReplay | bash = '$0' param1='set player position to 0' terminal=false\"\nelse\n  echo -e \"▶\\\\tPlay | bash='$0' param1=playpause terminal=false refresh=true\"\n  echo -e \"↩\\\\tPrevious | bash='$0' param1='set player position to 0;previous track;play' terminal=false refresh=true\"\n  echo -e \"↪\\\\tNext | bash='$0' param1='next track;play' terminal=false refresh=true\"\n  echo -e \"↻\\\\tReplay | bash = '$0' param1='set player position to 0;play' terminal=false refresh=true\"\nfi\n\necho '---'\necho -e \"♫\\\\tLyrics | bash='$0' param1='lyrics' terminal=false\"\necho '---'\n\necho '---'\necho \"Open Spotify | bash='$0' param1=launch terminal=false\"\n"
+			}
+		],
+		"path": "Music/spotify.10s.sh",
+		"filename": "spotify.10s.sh",
+		"dir": "Music",
+		"docsPlugin": "Music/spotify.10s.sh.html",
+		"docsCategory": "Music.html",
+		"pathSegments": [
+			"Music"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Music",
+				"text": "Music",
+				"isLast": true
+			}
+		],
+		"title": "Spotify Now Playing",
+		"version": "v1.2",
+		"author": "Marcin S.,  Jason Tokoph",
+		"authors": [
+			{
+				"name": "Jason Tokoph",
+				"githubUsername": "jtokoph",
+				"imageURL": "https://avatars.githubusercontent.com/u/346225?v=4",
+				"bio": "wigglezipheartpeach",
+				"primary": true
+			},
+			{
+				"name": "Jason Tokoph",
+				"githubUsername": "",
+				"imageURL": "",
+				"bio": "",
+				"primary": false
+			}
+		],
+		"desc": "Display currently playing Spotify song. Play/pause, skip forward, skip backward.",
+		"imageURL": "http://i.imgur.com/y1SZwfq.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.007801Z",
+		"vars": null
+	}
+}

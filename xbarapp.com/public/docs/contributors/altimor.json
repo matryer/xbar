@@ -1,0 +1,59 @@
+{
+	"person": {
+		"name": "Florent Crivello",
+		"githubUsername": "altimor",
+		"imageURL": "https://avatars.githubusercontent.com/u/1656495?v=4",
+		"bio": "@Altimor",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/Things/thingsdoingnow.10s.sh",
+					"filename": "thingsdoingnow.10s.sh",
+					"content": "#!/bin/bash\n\n# Show the one task you tagged with `Now` in Things\n#\n# by Florent Crivello (forked from Max Clayton Clowes' plugin (maxcc@me.com))\n#\n\n# metadata\n# \u003cbitbar.title\u003eThings Doing Now\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eFlorent Crivello\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ealtimor\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow the one task you tagged with `Now` in Things\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/CLtYE1E.gif\u003c/bitbar.image\u003e\n\nfunction tellthings() {\n\tosascript -e \"tell application \\\"Things3\\\" \n\t$1\nend tell\"\n}\n\nif [ \"$1\" = 'launch' ]; then\n  tellthings 'activate'\n  exit\nfi\n\ncase \"$1\" in\n  'show quick entry panel' | 'log completed now' | 'empty trash')\n    tellthings \"$1\"\n    exit\nesac\n\nif [ \"$1\" = 'complete' ]; then\n  tellthings \"set toDo to to do named \\\"$2\\\" of list \\\"Today\\\"\n\tset status of toDo to completed\n\tdelay 1.3\"\n  exit\nfi\n\nif [ \"$(osascript -e 'application \"Things3\" is running')\" = \"false\" ]; then\n  echo \"☑\"\n  echo \"---\"\n  echo \"Things 3 is not running\"\n  echo \"Launch Things3 | bash='$0' param1=launch terminal=false\"\n  exit\nfi\n\ncurrentlyDoing=$(tellthings 'set currentlyDoing to \"\"\nrepeat with n from 1 to count of to dos of list \"Today\"\n\tset toDo to item n of to dos of list \"Today\"\n\tset toDoName to name of toDo\n\tif status of toDo = open then\n    set tagList to tags of toDo \n    repeat with aTag in tagList\n    set tagName to name of aTag\n      if tagName = \"Now\" then\n        set currentlyDoing to toDoName\n        return currentlyDoing\n      end if\n      end repeat\n\tend if\nend repeat\nreturn currentlyDoing');\n\nif [ \"$currentlyDoing\" != \"\" ]; then\n\techo \"☐ $currentlyDoing | bash='$0' param1=launch terminal=false\"\nfi"
+				}
+			],
+			"path": "Lifestyle/Things/thingsdoingnow.10s.sh",
+			"filename": "thingsdoingnow.10s.sh",
+			"dir": "Lifestyle/Things",
+			"docsPlugin": "Lifestyle/Things/thingsdoingnow.10s.sh.html",
+			"docsCategory": "Lifestyle/Things.html",
+			"pathSegments": [
+				"Lifestyle",
+				"Things"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": false
+				},
+				{
+					"path": "Lifestyle/Things",
+					"text": "Things",
+					"isLast": true
+				}
+			],
+			"title": "Things Doing Now",
+			"version": "v1.0",
+			"author": "Florent Crivello",
+			"authors": [
+				{
+					"name": "Florent Crivello",
+					"githubUsername": "altimor",
+					"imageURL": "https://avatars.githubusercontent.com/u/1656495?v=4",
+					"bio": "@Altimor",
+					"primary": true
+				}
+			],
+			"desc": "Show the one task you tagged with `Now` in Things",
+			"imageURL": "http://i.imgur.com/CLtYE1E.gif",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:54.49509Z",
+			"vars": null
+		}
+	]
+}

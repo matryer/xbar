@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/Ripple/xrp-gbp.py",
+				"filename": "xrp-gbp.py",
+				"content": "#!/usr/bin/python\n# coding=utf-8\n#\n# \u003cbitbar.title\u003eRipplecoin Ticker (£1GBP)\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eimpshum\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eimpshum\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays current Ripplecoin price for £1 from Coinmarketcap\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003e\u003c/bitbar.image\u003e\n#\n# by impshum\n\nfrom urllib import urlopen\nurl = urlopen('https://coinmarketcap-nexuist.rhcloud.com/api/xrp').read()\n\nimport json\nresult = json.loads(url)\n\ndef flow():\n    if result ['change'] \u003e '0':\n        print (' £%.4f | image=iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QAyQACAALwzISXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AQHACkSBTjB+AAAALNJREFUOMvVk70NAjEMhb87WYiGBZAQU7ABNSVSWpZgEEagsJDoKBELUCEKFuBuCKTw0xyQC0lICe5i+/k9/wT+3opUUJQhcAUqa8I5ZQT4tANwioGTCkQZA9vmOQE2oUJFhL0DXBz33RpKUfCLfLTQJMx9IlEWuQr6QB3prGtNS1lwiMvEYo7ekNsKRBkB+y+rH1hDFVOwy7ids+gbVzrsM6CXeYDTF85xroB1ZoHb73ymB5RhJkpZTihGAAAAAElFTkSuQmCC color=#000000'% float(result['price']['gbp']))\n    else:\n        print (' £%.4f | image=iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QABACnAADQ9FZaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AQHACQ1FZwK3gAAAMRJREFUOMvNkjEKAjEQRZ+jKNjYKh5AbzCdjVcQj+BFPIKlp7EMeAJrUbASQVCEr80uG9cNbqe/Cgn/5WUI/DqNfBHM+kCzbs+lPUAr2pwBq5qABbB+M8gszkDvS/kOdAG5VBgEM4ApsP0CGLukjxlEoA0wSZR3Lo0qhxhZDIBDAmDA0wsBLD51CZeOwLKivHbprZx6AkAHuEXbD5fawYwywMqAzOKeDTTPvKqcTGZBMLsGs0utn5gADYEHcKp9e9ni//MCDtNCE3qjsIwAAAAASUVORK5CYII= color=#000000'% float(result['price']['gbp']))\n\nflow()\n"
+			}
+		],
+		"path": "Cryptocurrency/Ripple/xrp-gbp.py",
+		"filename": "xrp-gbp.py",
+		"dir": "Cryptocurrency/Ripple",
+		"docsPlugin": "Cryptocurrency/Ripple/xrp-gbp.py.html",
+		"docsCategory": "Cryptocurrency/Ripple.html",
+		"pathSegments": [
+			"Cryptocurrency",
+			"Ripple"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": false
+			},
+			{
+				"path": "Cryptocurrency/Ripple",
+				"text": "Ripple",
+				"isLast": true
+			}
+		],
+		"title": "Ripplecoin Ticker (£1GBP)",
+		"version": "v1.0",
+		"author": "impshum",
+		"authors": [
+			{
+				"name": "impshum",
+				"githubUsername": "impshum",
+				"imageURL": "https://avatars.githubusercontent.com/u/3229127?v=4",
+				"bio": "If it wasn't for those damn whelks!",
+				"primary": true
+			}
+		],
+		"desc": "Displays current Ripplecoin price for £1 from Coinmarketcap",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:47.019709Z",
+		"vars": null
+	}
+}

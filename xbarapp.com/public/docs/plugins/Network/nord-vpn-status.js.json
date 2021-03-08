@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/nord-vpn-status.js",
+				"filename": "nord-vpn-status.js",
+				"content": "#!/usr/local/bin/node\n\n// \u003cbitbar.title\u003eNordVPN Status\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eDustin McBride\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003edustinmcbride\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eYour nordVPN protected status for bit bar\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/dustinmcbride/bitbar-nord-vpn-status/master/screenshots/protected.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.abouturl\u003ehttps://github.com/dustinmcbride/bitbar-nord-vpn-status\u003c/bitbar.abouturl\u003e\n\n'use strict';\n\nvar nordUri = 'https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data';\nvar https = require('https');\n\nfunction createOutput (res) {\n  var titleMessage = res.status ? 'NordVPN | color=green' : '⛔ NordVPN | color=red';\n  var statusMessage = res.status ? 'Protected' : 'Unprotected';\n  \n  console.log(titleMessage);\n  console.log('---');\n  console.log('Status: ' + statusMessage);\n  console.log('ISP: ' + res.isp);\n  console.log('IP: ' + res.ip);\n}\n\nhttps.get(nordUri, function (res) {\n  res.setEncoding('utf8');\n  var body = '';\n  res.on('data', function (data) {\n    body += data;\n  });\n  res.on('end', function () {\n    createOutput(JSON.parse(body));\n  });\n});\n\n"
+			}
+		],
+		"path": "Network/nord-vpn-status.js",
+		"filename": "nord-vpn-status.js",
+		"dir": "Network",
+		"docsPlugin": "Network/nord-vpn-status.js.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "NordVPN Status",
+		"version": "v1.0",
+		"author": "Dustin McBride",
+		"authors": [
+			{
+				"name": "Dustin McBride",
+				"githubUsername": "dustinmcbride",
+				"imageURL": "https://avatars.githubusercontent.com/u/4693713?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Your nordVPN protected status for bit bar",
+		"imageURL": "https://raw.githubusercontent.com/dustinmcbride/bitbar-nord-vpn-status/master/screenshots/protected.png",
+		"dependencies": [
+			"node"
+		],
+		"aboutURL": "https://github.com/dustinmcbride/bitbar-nord-vpn-status",
+		"lastUpdated": "2021-03-08T15:21:59.250835Z",
+		"vars": null
+	}
+}

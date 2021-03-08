@@ -1,0 +1,59 @@
+{
+	"person": {
+		"name": "Nikita Zhavoronkov",
+		"githubUsername": "Har01d",
+		"imageURL": "https://avatars.githubusercontent.com/u/14060856?v=4",
+		"bio": "Russian Bitcoin and blockchain enthusiast. Information security and AML/CFT specialist. Lead developer @Blockchair. Lecturer at NRNU MEPhI.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Ethereum/ethusd.1m.sh",
+					"filename": "ethusd.1m.sh",
+					"content": "#!/bin/bash\n\n# Shows last Ethereum price in USD.\n#\n# \u003cbitbar.title\u003eEthereum last price\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e0.1B\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eNikita Zhavoronkov\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eHar01d\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows last Ethereum price in USD.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/lF2AA7o.png\u003c/bitbar.image\u003e\n#\n# by Nikita Zhavoronkov\n# Based on Coinbase bitbar plugin by Mat Ryer\n\necho -n \"𝚵 \"; curl -s \"https://api.coinbase.com/v2/prices/ETH-USD/spot\" | egrep -o '\"amount\":\"[0-9]+(\\.)?' | sed 's/\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'"
+				}
+			],
+			"path": "Cryptocurrency/Ethereum/ethusd.1m.sh",
+			"filename": "ethusd.1m.sh",
+			"dir": "Cryptocurrency/Ethereum",
+			"docsPlugin": "Cryptocurrency/Ethereum/ethusd.1m.sh.html",
+			"docsCategory": "Cryptocurrency/Ethereum.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Ethereum"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Ethereum",
+					"text": "Ethereum",
+					"isLast": true
+				}
+			],
+			"title": "Ethereum last price",
+			"version": "0.1B",
+			"author": "Nikita Zhavoronkov",
+			"authors": [
+				{
+					"name": "Nikita Zhavoronkov",
+					"githubUsername": "Har01d",
+					"imageURL": "https://avatars.githubusercontent.com/u/14060856?v=4",
+					"bio": "Russian Bitcoin and blockchain enthusiast. Information security and AML/CFT specialist. Lead developer @Blockchair. Lecturer at NRNU MEPhI.",
+					"primary": true
+				}
+			],
+			"desc": "Shows last Ethereum price in USD.",
+			"imageURL": "http://i.imgur.com/lF2AA7o.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:46.292419Z",
+			"vars": null
+		}
+	]
+}

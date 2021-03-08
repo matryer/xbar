@@ -1,0 +1,622 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Homebridge Controller in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Control Homebridge and connected devices. - install xbar for free to get started.'>
+	<meta name='author' content='Eric Andrechek'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png'>
+	<meta itemprop='name' content='Homebridge Controller in your macOS menu bar'>
+	<meta itemprop='description' content='Control Homebridge and connected devices. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Homebridge Controller in your macOS menu bar'>
+	<meta name='twitter:description' content='Control Homebridge and connected devices. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Homebridge Controller in your macOS menu bar'>
+	<meta property='og:description' content='Control Homebridge and connected devices. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/IoT/homebridge.10s.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png'>
+	<link rel='shortcut icon' href='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Homebridge Controller</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/EricAndrechek.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/35144594?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/EricAndrechek.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Eric Andrechek (<code style='color:white;'>@EricAndrechek</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Control Homebridge and connected devices.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=IoT%2fhomebridge.10s.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png' 
+				alt='Image preview of Homebridge Controller plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>homebridge.10s.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/IoT/homebridge.10s.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/IoT/homebridge.10s.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python3
+#encoding: utf-8
+
+# &lt;bitbar.title&gt;Homebridge Controller&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Eric Andrechek&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;EricAndrechek&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Control Homebridge and connected devices.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://user-images.githubusercontent.com/35144594/102293908-0b849200-3f16-11eb-9778-7ce25edcc7ec.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python, requests module&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://homebridge.io/&lt;/bitbar.abouturl&gt;
+
+import requests
+import json
+import pathlib
+import os
+import sys
+
+# Below Code Snippet from https://github.com/albertosottile/darkdetect/blob/master/darkdetect/_detect.py
+
+import ctypes
+import ctypes.util
+
+appkit = ctypes.cdll.LoadLibrary(ctypes.util.find_library(&#39;AppKit&#39;))
+objc = ctypes.cdll.LoadLibrary(ctypes.util.find_library(&#39;objc&#39;))
+
+void_p = ctypes.c_void_p
+ull = ctypes.c_uint64
+
+objc.objc_getClass.restype = void_p
+objc.sel_registerName.restype = void_p
+objc.objc_msgSend.restype = void_p
+objc.objc_msgSend.argtypes = [void_p, void_p]
+
+msg = objc.objc_msgSend
+
+def _utf8(s):
+    if not isinstance(s, bytes):
+        s = s.encode(&#39;utf8&#39;)
+    return s
+
+def n(name):
+    return objc.sel_registerName(_utf8(name))
+
+def C(classname):
+    return objc.objc_getClass(_utf8(classname))
+
+def theme():
+    NSAutoreleasePool = objc.objc_getClass(&#39;NSAutoreleasePool&#39;)
+    pool = msg(NSAutoreleasePool, n(&#39;alloc&#39;))
+    pool = msg(pool, n(&#39;init&#39;))
+
+    NSUserDefaults = C(&#39;NSUserDefaults&#39;)
+    stdUserDef = msg(NSUserDefaults, n(&#39;standardUserDefaults&#39;))
+
+    NSString = C(&#39;NSString&#39;)
+
+    key = msg(NSString, n(&#34;stringWithUTF8String:&#34;), _utf8(&#39;AppleInterfaceStyle&#39;))
+    appearanceNS = msg(stdUserDef, n(&#39;stringForKey:&#39;), void_p(key))
+    appearanceC = msg(appearanceNS, n(&#39;UTF8String&#39;))
+
+    if appearanceC is not None:
+        out = ctypes.string_at(appearanceC)
+    else:
+        out = None
+
+    msg(pool, n(&#39;release&#39;))
+
+    if out is not None:
+        return out.decode(&#39;utf-8&#39;)
+    else:
+        return &#39;Light&#39;
+
+def isDark():
+    return theme() == &#39;Dark&#39;
+
+homebridgeBlack = &#34;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAJAAAAABAAAAkAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAA4NgJpAAAACXBIWXMAABYlAAAWJQFJUiTwAAACaGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8ZXhpZjpDb2xvclNwYWNlPjE8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjY3NTwvZXhpZjpQaXhlbFhEaW1lbnNpb24&#43;CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj42NzU8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KHeXkngAABmpJREFUWAmtmFuIVVUYx/&#43;Ot2rKy3gdLceacUabsmIyulicogaEzB6yhwIjjCHSp27QQzQPgRCk5EsQFZhFgmH1EhS9WWA3pAwqMwwKE0KLQoacGXe//zpr7bPPmbOdOdHCPWutb33fWv/1/y57H6WGtlmbp/tpEJdNG/WmodhWpjwVed2GFVVmtKtd&#43;7V/fArGM9EZ2yDNHpEqC6U5f0onkWU8M3jO8bj5DOsaqOUGndYYlrSBgaGZwxqe6u0u8DZrpM4LpS8ZZpyULZF2pO0HaiCSqNgbWHkzM62C6ZeWzpK&#43;Y9fsEukDbvKrx4B6iT5vwzBzmbRuuXSjH4DOjYvNL99izIBBKoJZIL1pWReEce3fGGaLpVcsWyu1XyQdxEcZp4enXTreF5asEdwZBvmfiobPT1&#43;uGeJA3dLixAxg9taWpculPjb7BZlB7eyUnvd4tnTkYult/HzQcyj6MNpNj33LXWCmR1rE4AdvmpiJO3GmQlwBqiuB4rR/zM4yaaP1rpOWWcYeP0U7d81dV1BoHPqwxEwC81ajUnHeKy3n0KPI7KZzi6T7vE4sdQNoLK4lk5YAhVtfJS1hk&#43;99AMwkMFyeK3Nx4mLPHJ5V0rXpFOLHrv3RDOG&#43;ey3vlnoANG550qOfMqDATLMATpsslSp2AXPXHsfK2V5pPePQVksLKAtHYWirBRGQGWoZEDZSZCakdiGAAzPcepCrZTFGts&#43;XtmGSYTjaJ91iezcALicDCR/pCmlFZOiY57FNypCraoqZ5Ka9ydo9YO4ykAjmybTWIXlsUGNFUGnd4AwIJn1JN1/OT2ljLxxdnk1lYDhDflQANV4ARdZTE6pZZtee2Cyls4Kd1xtbWMDPDsam2UQV3mhW7KpLpe2NGzAP7OK&#43;pxibqfHeWkyFBAHZR14D&#43;IGCfVgrzKsbNcRMXTYBZpM3MhjS97FkPAAIXgnXkFVgDI0yVMfUWAGUq3wHQA&#43;jkgH8fbIhuQxvVlvYAKO8djQGMKnttE1gHk2GtiGLPjZrHDICoqG4FpgquG8U3fXJjtowD/0AinLxKUF/R1xL4CS/IBGayteTofsVFDWz4ofxQ2kNZjrx8RHmGXXoa9bHDQy2Ho864cbs94R1AFAHynGKvdM/w19nzFy0k66W5mP9N0ZnhmIceBHkDxTAbEkGXHU&#43;N0u0v2c5sXc7VOOB8Kp4OupiHk5KoOrcRxhstc1c3m0Eee6yYIswMIRf37AANu5vBqYC3YD5ApUQA9ZNbZV0G746yzyjaD4X5cENXD&#43;VhMx6ca0Npro3xAxFFnQBGT62uqDwGMOMTPjW9BsQLD3odbdKORhnaMiUXulWmB5hnnVW3/YMqwdx2WcsR3kEF4GlrgUwScIe4eW3jCD9hKF9fsosJYVKOZikkvd90vXY/4XA77EX4kKKqV2Ww9izUc4nU/MWQFX47gXIgEtAUruJMMBNnzOf4CZcs46gfnWetHtt&#43;CSqWq1mDyg7ZRs22m0pibAQ3UOWYbfFMprZLW0hXYurg3z1ASaw5rpRXOOgO7n2KLIQzFz1BBdZk3Rwy5XEw2mvY7uH9c88hp0DSYeeyDh/M7VGHajkJg8zzgAVsimZUpsGHWd&#43;GG&#43;jbLxoPVx&#43;kqyFoGojBtdA/c/MAugF4kdNrU0KpqZa/cmihdVi5xvuS4swc4&#43;BOOgphtuTHNAJ1O&#43;A4l&#43;1uRCyzyNU&#43;E1JRl&#43;f5oWFsiFshw/6DmLhCENT/VqxagNmazTOXQ2ondbFZgSaclBRL3UtMZOM3IeDVkorof0o80A7SM1MAmPgEKZwAXpX/R10/nl0yHNaG/HkpMl1gvQ//vFGrtqd3H4XNWofWXh33Mu057fFLWAg7aggnDzK80cl1ifEBv2/tQCqYTeDKR4S0vdmPl8A/RVrGQBfjjZTZaZNFX61NhxUNrVeYsOuTGDcB8A38A0Ni4eZOwmKWZl0WSpv/f39syhWAzNb&#43;N8Ob5xAeef8IDODv75B5uB/x4uxmclJm3Eo/d9CdVLbfFLrmkIARIAPUX&#43;OIzYz79aWpxbE9tIET/ULuupvX9i36TC4mrLcxdVC9uEuV&#43;LQYlalaWlvIJGQCTrTWgQV2KmQygTxfsr6aQrfYNwVwiZv5wOTWxvUBPry1QmDEE/DMEsR5K0Q2pRipqVzDCiylQdtPKxZ1zTImyla5gTqUY9LRNEuV/8XiQlN2mZQqJ4AAAAASUVORK5CYII=&#34;
+homebridgeWhite = &#34;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAJAAAAABAAAAkAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAA4NgJpAAAACXBIWXMAABYlAAAWJQFJUiTwAAACaGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8ZXhpZjpDb2xvclNwYWNlPjE8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjY3NTwvZXhpZjpQaXhlbFhEaW1lbnNpb24&#43;CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj42NzU8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KHeXkngAABftJREFUWAmdWFtonEUU/nOtV9RGTestigGtQWuJBUEt8dYntXlo&#43;6CgSCSI9kmr4IOYh0JBULEvgqjgDQsVtS9CxTcVWi&#43;IVmhNKhUUFcSGJt2mu/9l/L4z58zO7v7Z7Hbg7Jw5t/n&#43;M&#43;fM/ydJ0jS2Jdv6SE3i0qVzrsEO6x5Qb6nx2Qgnkon&#43;LsAMcA8AWAW6F7Te9gTfH/F9WA&#43;CBnQOOrMpncfHpwdmkpmOng6Bz2EQzGtB34Ns7LbgEBBAaTzI24NiZs4CzBoEPgLi&#43;Bz0p3DOvW6gOEPWC9roarXbMZMuMnlsF/gua2ZQgp06tcYVhQeT5x&#43;IrFpdh83&#43;BnG8KTLnzofdV16kv0Vx3FWrt6i&#43;oQYpSyaSmfbpEyt5UquZyxHaMvO&#43;qmWC/AYA&#43;EO2zvNXXZ7vEr4oDmP&#43;KAJ3gA6QtQKKAy7Hw9FnxrnLwP8K4pDMaGAWttXVCHgPyrkqeOey7EG1uwIryn6zvcCX1pnpW2Y4rJJgi4vMjAeT5x&#43;2GEYC2F0JmgVxFAC0VWI4dz3WGWjWzMF3DgjG9tTD4I&#43;CHI5BwIDr0U02QPYu1qRbw0b&#43;AeYgY4YmxfbMmVGsctBcsOsUEJx8ZpyLu8kXsAaBzQTIHwsYjBrozmizIdQNMzUlgJwjoAyy7gDByWpmGM4NBQydZWYzeBs7wDytixTzHREoHt8GBXQN&#43;Bwxj0X69kcGB99NPuX&#43;mJxr7qb7YWdjZwie5ztVmLk0DaCC3tcWj&#43;yIAuSrRh7QbBpmKC0zpd0kQdK0DgYANDC7zI7YQOUGCroL1I5dhjIv/sKv7SV&#43;DUAsqM7LdhPbVwL6nx3NQSD22c3z59SOoKSmsLYG&#43;UJ1n5i/6WzNC8oHco7d5GumtZu2aCB22lPmTF/QetBVlGGWixazZYptHhf6aqx/BHHsB1lN&#43;ksSAgsQ3x1SM5HxJHgbT0Zg6POlKpYAdFpB2QMaKBZ6DOpirA3UN&#43;DvUb96PeFc&#43;YLkeMc2FCNcal6M3yx7zHSuUlkLCV8JHD&#43;BWKwcz2hweWKsnxWpc6kdn&#43;pZp3Oqq7iTJ1dbbKb5EtAiqAKSp1Onh7H2I8seNQcIaG9P&#43;JnYpundasnpefWXlsbaQLH74kxNiU9RHMDsjyzaxGcoz9/TYNvFmD&#43;NYJju70RXFPvNX302QV4TXZ6/pDKrETs&#43;5CrdpDp&#43;mvB1Yh3aExfhCBTHQBy/&#43;El&#43;H7FN3fx8HQwKMsgREJa&#43;i9L0LvBL6r&#43;rCdQLKqd&#43;1PxjG5FB6e&#43;ESoX3xNfq9B/m7eYEvhSM6eMZtreBFkAcL1OH2WrqNZE696LKz4t9Aw8ju6j6wY&#43;Dhk0Jnq36LYgjZEYC1mobIXsLHbYH83XBp1ZjDD4Ur4k9YruwcCma56DItAzAl1&#43;M4hAVdAjMr7561hrBOHcfdGxpP/wNvC74Vqs3QXFClP6L4JDwRVG/FGdW&#43;I6HQx&#43;INSGpREE/rkGkm8JmzsUvV75YXxE75/7BJ&#43;qNwc5/2v6uOk77gq7TTw86wNEuzGkJlud7o0APicz/hFcIlgbqX/A3B3s2Q5Y9AdmWIGtuc1MsN8PZALF&#43;DoNYC2/jd1J4/zNFf7D1u4vf0hxFsYRMBVDxPtC2/&#43;SIjWMejvYKuBb8LKg&#43;sszAsAn4GSEPQH/wu9XwoK553wzGNvE&#43;XfEMpEH5qmDL7kX6H1AZ6y08LfgLRX769NXIEIt9HuTvp3bfPV0hgjGCCqjYDzKCCS9D8Hbb8vPlBxCP&#43;A0BGGUvjlHC9yb8q7VE0SJCeB6NZAMzPznslcDj8llcWBgC799xRRG60mxbgjYJxsbGBpPxZHygi38wcPP4iOoZ4idvUfwMPcfHthf4xpemKZpm4kjsfwt&#43;kYTgTbbLLrGZZYlXw3EQu&#43;tTc8Cqo&#43;zzlFpOaixBupIkPL0FXW62zTCPgGwcMnsIWurOdPFMIJqQWCx8TzegsKFlh7W1D3QCnxWbGQn8uS3RSwTtwARzgmpJX9A2MtjYipz3zBC1mDuqmW72SQhIs7ViXRkoBbOiPRtoNBnlFVFaHv8DAwCY5Iue/DEAAAAASUVORK5CYII=&#34;
+offlineIcon = &#34;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAJAAAAABAAAAkAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAA4NgJpAAAACXBIWXMAABYlAAAWJQFJUiTwAAACaGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8ZXhpZjpDb2xvclNwYWNlPjE8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjY3NTwvZXhpZjpQaXhlbFhEaW1lbnNpb24&#43;CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj42NzU8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KHeXkngAABWFJREFUWAmlmFuIVmUUhvcctROVU5l2mKKBsqFMJiGoZDp5lTkX6kVBERNDlFdlQRfRXAhCUJE3QVTQiQSj8kYwuqtAK4kysNQwKCqICoqItLLn3bPePevf/56Z/zfhZa1vHd&#43;9vu/b&#43;3eKovZvY7GxT6iZG5cniqIljnUP6G0MPhnjeDHe3wWZAfWAwCJwC1jpnuj9Se9jPQgGQlY&#43;xzTKsbGpgeliuqOno/BiFUEuA5&#43;AE4FtLs5aBBrrYZ&#43;flCZzEmTOp/BBIDK7wXehP2tSkth6wWpwXeBM23NcpXd5ZgajWCbzWthW0PAHIILPh&#43;009PfD5ikeZX11&#43;FvOoGzFeDE9//jKqPJJfWbOo6An82q4S4H9cvAtUPOnwdbQDyDfACa3Rwms2wnlgnPpJHoy56J/BdSwnEwU1sH2uRpGN6m/InZdxC1nLdvX7oXeeM7sb5MkLIpimozJvN4WmAzEXQAOARH/F2yIGpeh/w0OORy9c0IE&#43;6mXon8J1KAkg&#43;yJJqvQXw5ckxrpAQ4D5UxE7Aj6P7KnuM4IkeTJNB3gsggx48DbosbHwA2p2RBrTWoyEdKEuiNEgs&#43;MJtNygFl7MmvRRULYDB4M/Tjy&#43;kRK27cqCF2MrgkdSf75J0Rwvk3epvptuo04k9mSim8Ju6ZQkUp&#43;kROhg0FQn5ryAR3TInF6Mo23KYq0kSFPt8xbbFJqXJJCnh65umV6kO&#43;Be5V5LUQi2AXnvE0UWRcFy22qF8Hn6T4ScSJVnimkL8i74XvL&#43;fZ5rReUC&#43;UzU79N66OQyDzgZOWCleBC2ZDlixbpSWn78kFfwvpToDq7gM/kzEsSgwtof3UjFFieGaSDJ8Iu3/2JjHLeC9&#43;fyKkg5Qc0qeP4MqmzWJvUh&#43;g3R97secK4G6jhS24YQRvCLt899qEvA/okyP4Z0PZIfyjyyidm/XDY66R0Tg&#43;H7w/kEtfWmM8GvwM5yqeLoneyVhPhbiegK95P&#43;E7E3hRxin00bH5fmVR9&#43;yYjZw9yZstSE0/olSi2KTXIZDTuj8O3y/mRswb7sfA9ETZvu7dPhNeETz9N9DnxherJh3AYxxGghC9CSr/LTdEbyWDPH9cbWes8KXdrjdRjYZd/xHVzTGnD6XfCcvQPIuln5CYnoTeSsT9LYq8FvwGRelI&#43;pM/UM2F/POyn5txKJ8ik&#43;tHHwFI70XVVPwJqUN&#43;m1dheANvBpSlHNfRQytkuO/IcsDds5TFAb34xRkJ1oFNh/erz1OpkbsWn26Omgt7AK1Lulax/CZ9&#43;EewLPb8UF/yW9ZGkM1GOEnlvFClvU2qWP676sD4VcT8ir0hx&#43;mn7TfhEemfyzU/GgZIk&#43;oU5FcV22M/6jrCpweZkN6mfsF&#43;V7Dp/94H1ydZ6ze2YS5JsQjo/B4CavwgmQtd6UvnIaqvR9VtaPt2kilTug73zydQS/Qm4hCL&#43;rKhZJqNLoJ8R5QMEwW0RszfWet8M5pjcpytdhaKoPhW6sjvA7WHTeaueFv2MsF&#43;ErsP&#43;K1gcttnvlAz/5x9FS1K5BjaRqZqg&#43;22rny/7gab4nHKQ1fRyjQa9txjnf60NjjaTioJyGkj95PAnQdvlKQ6ht3zjVMixbUVrhtHR0cFirBgb6OIPDGqetyhPSJP5HGgyb7oXeke3STwK/21hZjE7fhdbSNLMU9Kr4SgQmbedh97R9LVLbTs1WjCu9PQuOpd0M&#43;QwEBFhn&#43;PR286dfVmKSAwkm0u9pxtSNPR0dLZ2An0i1qoS8pS26g2G&#43;chU4SLVNr7K26rQ2Idc75kheZEdnZlu&#43;pQ3L6ZVHdpWKrMrkwoyC8brAo0UI3pFVJdjtlpR/AchkkzScviaWgAAAABJRU5ErkJggg==&#34;
+homebridgeIcon = homebridgeWhite if isDark() else homebridgeBlack
+printColor = &#34;white&#34; if isDark() else &#34;black&#34;
+
+def printer(content):
+    if type(content) is list:
+        for line in content:
+            print(line &#43; &#34; | color={}&#34;.format(printColor))
+    elif content != &#34;---&#34; and content != &#34;--&#34;:
+        print(content &#43; &#34; | color={}&#34;.format(printColor))
+    else:
+        print(content)
+
+
+def doStuff(token, url, icon, command, unit):
+    headers = {
+        &#39;accept&#39;: &#39;*/*&#39;,
+        &#39;Authorization&#39;: &#39;Bearer {}&#39;.format(token),
+    }
+
+    if command:
+        if command == &#34;restart&#34;:
+            requests.put(&#39;{}/api/server/restart&#39;.format(url), headers=headers)
+        elif command == &#34;reboot&#34;:
+            requests.put(&#39;{}/api/platform-tools/linux/restart-host&#39;.format(url), headers=headers)
+    else:
+        cpu = &#34;&#34;
+        temp = &#34;&#34;
+        ram = &#34;&#34;
+        updates = []
+        numUpdates = 0
+        uptime = &#34;&#34;
+        status = &#34;&#34;
+        state = False
+
+        updatesRequest = requests.get(&#39;{}/api/plugins&#39;.format(url), headers=headers)
+        if updatesRequest.status_code == 200:
+            for plugin in updatesRequest.json():
+                name = plugin[&#39;name&#39;]
+                update = plugin[&#39;updateAvailable&#39;]
+                link = &#34;https://github.com/&#34; &#43; plugin[&#39;author&#39;] &#43; &#39;/&#39; &#43; plugin[&#39;name&#39;] &#43; &#39;/releases/latest&#39;
+                try:
+                    name = plugin[&#39;displayName&#39;]
+                except:
+                    pass
+                if update is True:
+                    numUpdates &#43;= 1
+                updates.append(&#34;{} v{} - {} | href={}&#34;.format(name, plugin[&#39;installedVersion&#39;], &#34;up to date&#34; if not update else &#34;new update v{}&#34;.format(plugin[&#39;latestVersion&#39;]), link))
+        nodeJSRequest = requests.get(&#39;{}/api/status/nodejs&#39;.format(url), headers=headers)
+        if nodeJSRequest.status_code == 200:
+            nodeVersion = nodeJSRequest.json()
+            updates.append(&#34;NodeJS {} - {} | href=https://github.com/nodejs/node/releases/latest&#34;.format(nodeVersion[&#39;currentVersion&#39;], &#34;up to date&#34; if not nodeVersion[&#39;updateAvailable&#39;] else &#34;new update {}&#34;.format(nodeVersion[&#39;latestVersion&#39;])))
+            numUpdates &#43;= 1 if nodeVersion[&#39;updateAvailable&#39;] else 0
+        homebridgeRequest = requests.get(&#39;{}/api/status/homebridge-version&#39;.format(url), headers=headers)
+        if homebridgeRequest.status_code == 200:
+            hbVersion = homebridgeRequest.json()
+            updates.append(&#34;Homebridge v{} - {} | href=https://github.com/homebridge/homebridge/releases/latest&#34;.format(hbVersion[&#39;installedVersion&#39;], &#34;up to date&#34; if not hbVersion[&#39;updateAvailable&#39;] else &#34;new update v{}&#34;.format(hbVersion[&#39;latestVersion&#39;])))
+            numUpdates &#43;= 1 if hbVersion[&#39;updateAvailable&#39;] else 0
+        numUpdates = &#34;Avaliable Updates: &#34; &#43; str(numUpdates)
+
+        cpuRequest = requests.get(&#39;{}/api/status/cpu&#39;.format(url), headers=headers)
+        if cpuRequest.status_code == 200:
+            cpu = &#34;CPU: &#34; &#43; str(round(float(cpuRequest.json()[&#34;currentLoad&#34;]))) &#43; &#34;%&#34;
+            try:
+                init_temp = float(cpuRequest.json()[&#34;cpuTemperature&#34;][&#34;main&#34;])
+                if unit == &#34;F&#34;:
+                    init_temp = str(round((init_temp * (9/5)) &#43; 32))
+                else:
+                    init_temp = str(round(init_temp)) 
+                temp = &#34;Temperature: &#34; &#43; init_temp &#43; &#34;˚&#34; &#43; unit
+            except:
+                pass
+        
+        ramRequest = requests.get(&#39;{}/api/status/ram&#39;.format(url), headers=headers)
+        if ramRequest.status_code == 200:
+            ram = &#34;RAM: &#34; &#43; str(100 - round((int(ramRequest.json()[&#34;mem&#34;][&#34;available&#34;]) / int(ramRequest.json()[&#34;mem&#34;][&#34;total&#34;])) * 100)) &#43; &#34;%&#34;
+        
+        uptimeRequest = requests.get(&#39;{}/api/status/uptime&#39;.format(url), headers=headers)
+        if uptimeRequest.status_code == 200:
+            uptime = &#34;Uptime: &#34; &#43; str(round(round(float(uptimeRequest.json()[&#34;processUptime&#34;])) / 86400)) &#43; &#34; days&#34;
+        
+        statusRequest = requests.get(&#39;{}/api/status/homebridge&#39;.format(url), headers=headers)
+        if statusRequest.status_code == 200:
+            if statusRequest.json()[&#34;status&#34;] == &#34;up&#34;:
+                state = True
+            upWord = &#34;up&#34;
+            downWord = &#34;down&#34;
+            status = &#34;Homebridge is &#34; &#43; upWord if state else downWord
+        
+        ico = &#34;&#34;
+        if icon.upper() == &#34;CPU&#34;:
+            ico = cpu.split(&#34;: &#34;)[1]
+        elif icon.upper() == &#34;RAM&#34;:
+            ico = ram.split(&#34;: &#34;)[1]
+        elif icon.upper() == &#34;TEMP&#34;:
+            ico = temp.split(&#34;: &#34;)[1]
+        elif icon.upper() == &#34;UPTIME&#34;:
+            ico = uptime.split()[1] &#43; &#34;d&#34;
+        elif icon.upper() == &#34;UPDATES&#34;:
+            ico = numUpdates.split(&#34;: &#34;)[1]
+        else:
+            ico = &#34;| image={}&#34;.format(homebridgeIcon) if state else &#34;| image={}&#34;.format(offlineIcon)
+        print(ico)
+        printer(&#39;---&#39;)
+        printer(&#39;Open Homebridge UI | href={}&#39;.format(url))
+        printer(&#39;---&#39;)
+        printer(status)
+        printer(numUpdates)
+        printer(uptime)
+        printer(&#39;---&#39;)
+        printer(cpu)
+        printer(ram)
+        printer(temp)
+        printer(&#39;---&#39;)
+        printer(updates)
+        printer(&#39;---&#39;)
+        print(&#39;Restart Homebridge | bash=&#34;&#39; &#43; str(__file__) &#43; &#39;&#34; param1=restart terminal=false&#39;)
+        print(&#39;Reboot Server | bash=&#34;&#39; &#43; str(__file__) &#43; &#39;&#34; param1=reboot terminal=false&#39;)
+
+def login(username, password, url, icon, command, unit, config):
+    headers = {
+        &#39;accept&#39;: &#39;*/*&#39;,
+        &#39;Content-Type&#39;: &#39;application/json&#39;,
+    }
+    data = {
+        &#34;username&#34;: username,
+        &#34;password&#34;: password
+    }
+    response = requests.post(&#39;{}/api/auth/login&#39;.format(url), headers=headers, data=json.dumps(data))
+    if response.status_code == 201:
+        token = response.json()[&#39;access_token&#39;]
+        firstSection = &#34;&#34;
+        lastSection = &#34;&#34;
+        with open(config, &#39;r&#39;) as oldConfig:
+            conf = oldConfig.read().split(&#39;[homebridge]&#39;)
+            firstSection = conf[0]
+            try:
+                lastSection = &#34;[&#34; &#43; conf[1].split(&#34;[&#34;)[1]
+            except IndexError:
+                pass
+        with open(config, &#39;w&#39;) as newConfig:
+            newConfig.write(firstSection)
+            newConfig.write(&#39;[homebridge]\n&#39;)
+            newConfig.write(&#34;# edit the username and password to your homebridge&#39;s and then save and close\n&#34;)
+            newConfig.write(&#34;# you can also modify the url from the default if desired\n&#34;)
+            newConfig.write(&#34;# to change the icon image, specify whether you want to see: \&#34;CPU\&#34;, \&#34;TEMP\&#34;, \&#34;RAM\&#34;, \&#34;UPTIME\&#34;, \&#34;UPDATES\&#34;, or \&#34;STATUS\&#34;. Defaults to \&#34;STATUS\&#34;\n&#34;)
+            newConfig.write(&#34;username = \&#34;{}\&#34;\n&#34;.format(username))
+            newConfig.write(&#34;password = \&#34;{}\&#34;\n&#34;.format(password))
+            newConfig.write(&#34;url = \&#34;{}\&#34;\n&#34;.format(url))
+            newConfig.write(&#34;icon = \&#34;{}\&#34;\n&#34;.format(icon))
+            newConfig.write(&#34;token = \&#34;{}\&#34;\n&#34;.format(token))
+            newConfig.write(&#34;unit = \&#34;{}\&#34;\n&#34;.format(unit))
+            newConfig.write(lastSection)
+        doStuff(token, url, icon, command, unit)
+    else:
+        printer(&#39;❌&#39;) # login failed
+
+config = pathlib.Path.home().joinpath(&#39;.config&#39;, &#39;bitbar&#39;, &#39;config&#39;)
+config.touch(exist_ok=True)
+
+command = None
+if len(sys.argv) &gt; 1:
+    command = sys.argv[1]
+
+hbConfig = []
+with open(config, &#39;r&#39;) as file:
+    for section in file.read().split(&#39;[&#39;):
+        if section.split(&#39;\n&#39;)[0] == &#39;homebridge]&#39;:
+            hbConfig = section.split(&#39;\n&#39;)[3:]
+if hbConfig == []:
+    with open(config, &#34;a&#34;) as file:
+        file.write(&#34;\n[homebridge]\n&#34;)
+        file.write(&#34;# edit the username and password to your homebridge&#39;s and then save and close\n&#34;)
+        file.write(&#34;# you can also modify the url from the default if desired\n&#34;)
+        file.write(&#34;# to change the icon image, specify whether you want to see: \&#34;CPU\&#34;, \&#34;TEMP\&#34;, \&#34;RAM\&#34;, \&#34;UPTIME\&#34;, \&#34;UPDATES\&#34;, or \&#34;STATUS\&#34;. Defaults to \&#34;STATUS\&#34;\n&#34;)
+        file.write(&#34;username = \&#34;\&#34;\n&#34;)
+        file.write(&#34;password = \&#34;\&#34;\n&#34;)
+        file.write(&#34;url = \&#34;http://homebridge.local\&#34;\n&#34;)
+        file.write(&#34;icon = \&#34;STATUS\&#34;\n&#34;)
+        file.write(&#34;token = \&#34;\&#34;\n&#34;)
+        file.write(&#34;unit = \&#34;C\&#34;\n&#34;)
+    os.system(&#34;open &#34; &#43; str(config))
+else:
+    token = &#34;&#34;
+    username = &#34;&#34;
+    password = &#34;&#34;
+    url = &#34;&#34;
+    icon = &#34;&#34;
+    unit = &#34;&#34;
+    for line in hbConfig:
+        if line.split(&#34; = &#34;)[0] == &#34;username&#34;:
+            username = line.split(&#34; = &#34;)[1].split(&#34;\&#34;&#34;)[1]
+        elif line.split(&#34; = &#34;)[0] == &#34;password&#34;:
+            password = line.split(&#34; = &#34;)[1].split(&#34;\&#34;&#34;)[1]
+        elif line.split(&#34; = &#34;)[0] == &#34;token&#34;:
+            token = line.split(&#34; = &#34;)[1].split(&#34;\&#34;&#34;)[1]
+        elif line.split(&#34; = &#34;)[0] == &#34;url&#34;:
+            url = line.split(&#34; = &#34;)[1].split(&#34;\&#34;&#34;)[1]
+        elif line.split(&#34; = &#34;)[0] == &#34;icon&#34;:
+            icon = line.split(&#34; = &#34;)[1].split(&#34;\&#34;&#34;)[1]
+        elif line.split(&#34; = &#34;)[0] == &#34;unit&#34;:
+            unit = line.split(&#34; = &#34;)[1].split(&#34;\&#34;&#34;)[1]
+    if token:
+        headers = {
+            &#39;accept&#39;: &#39;*/*&#39;,
+            &#39;Authorization&#39;: &#39;Bearer {}&#39;.format(token),
+        }
+
+        checkToken = requests.get(&#39;{}/api/auth/check&#39;.format(url), headers=headers)
+        if checkToken.status_code == 401:
+            login(username, password, url, icon, command, unit, config)
+        elif checkToken.status_code == 200:
+            doStuff(token, url, icon, command, unit)
+        else:
+            printer(&#34;❌&#34;)
+    else:
+        login(username, password, url, icon, command, unit, config)
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

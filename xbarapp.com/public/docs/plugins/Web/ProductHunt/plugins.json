@@ -1,0 +1,104 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/ProductHunt/producthunt-tech-hunts.1d.py",
+					"filename": "producthunt-tech-hunts.1d.py",
+					"content": "#!/usr/bin/env python\n\n# \u003cbitbar.title\u003eProduct Hunt - Today in Tech\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJohn Flesch\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eflesch\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eToday's featured tech hunts on Product Hunt\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/13259/12370591/3039c57e-bbdc-11e5-9b42-e4ab9f6bf851.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.producthunt.com/\u003c/bitbar.abouturl\u003e\n\nimport json\nimport urllib2\n\ndef get_token():\n    data = json.dumps(credentials)\n    try:\n        request = urllib2.Request('https://api.producthunt.com/v1/oauth/token', headers = {\n            'Accept': 'application/json',\n            'Content-Type': 'application/json',\n            'Content-Length': len(data.encode('utf-8'))\n        })\n        response = urllib2.urlopen(request, data)\n        response = json.load(response)\n        return response['access_token']\n    except Exception:\n        print ':('\n\ndef get_posts():\n    try:\n        token = get_token()\n        request = urllib2.Request('https://api.producthunt.com/v1/posts', headers = {\n            'Accept': 'application/json',\n            'Content-Type': 'application/json',\n            'Authorization': ('Bearer %s' % token)\n        })\n        response = urllib2.urlopen(request)\n        response = json.load(response)\n        return map(format_posts, response['posts'])\n    except Exception:\n        print ':('\n\ndef format_posts(post):\n    return (u'%s - %s| href=%s' % (post['name'], post['tagline'], post['discussion_url'])).encode('utf-8')\n\ncredentials = {\n    'client_id': '92822f15f8f1dac5477cd3e8639d8153c70a5b976d2b55bad7cb117ff6d5bd72',\n    'client_secret': 'fb5d3738f716b4c99cc3d798cd0a27401734edd20a8cf2efdc29a6c04dda344b',\n    'grant_type': 'client_credentials'\n}\n\nprint (u'\\u2117 | size=18').encode('utf-8')\nprint '---'\nprint '\\n'.join(get_posts())\nprint '---'\nprint 'Product Hunt - Today in Tech | href=https://www.producthunt.com/tech'\n"
+				}
+			],
+			"path": "Web/ProductHunt/producthunt-tech-hunts.1d.py",
+			"filename": "producthunt-tech-hunts.1d.py",
+			"dir": "Web/ProductHunt",
+			"docsPlugin": "Web/ProductHunt/producthunt-tech-hunts.1d.py.html",
+			"docsCategory": "Web/ProductHunt.html",
+			"pathSegments": [
+				"Web",
+				"ProductHunt"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/ProductHunt",
+					"text": "ProductHunt",
+					"isLast": true
+				}
+			],
+			"title": "Product Hunt - Today in Tech",
+			"version": "v1.0.0",
+			"author": "John Flesch",
+			"authors": [
+				{
+					"name": "John Flesch",
+					"githubUsername": "flesch",
+					"imageURL": "https://avatars.githubusercontent.com/u/13259?v=4",
+					"bio": "𝕱 • Insatiable curiosity for technologies that make life better.",
+					"primary": true
+				}
+			],
+			"desc": "Today's featured tech hunts on Product Hunt",
+			"imageURL": "https://cloud.githubusercontent.com/assets/13259/12370591/3039c57e-bbdc-11e5-9b42-e4ab9f6bf851.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://www.producthunt.com/",
+			"lastUpdated": "2021-03-08T15:22:09.066361Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Web/ProductHunt/producthunt-posts-votes.1h.js",
+					"filename": "producthunt-posts-votes.1h.js",
+					"content": "#!/usr/local/bin/node\n/*\n* \u003cbitbar.title\u003eProductHunt Posts Votes Count\u003c/bitbar.title\u003e\n* \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n* \u003cbitbar.author\u003eVarun Malhotra\u003c/bitbar.author\u003e\n* \u003cbitbar.author.github\u003esoftvar\u003c/bitbar.author.github\u003e\n* \u003cbitbar.image\u003e\u003c/bitbar.image\u003e\n* \u003cbitbar.desc\u003eProductHunt Posts Votes count and Emoji notification 🔔  on change in votes count\u003c/bitbar.desc\u003e\n* \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n* \u003cbitbar.abouturl\u003ehttp://varunmalhotra.xyz/blog/2016/02/bitbar-plugins-for-github-and-producthunt.html\u003c/bitbar.abouturl\u003e\n*/\n\nvar https = require('https');\nvar fs = require('fs');\n\n// Configurable params\n// Either of userId or username should be provided\n// Providing userId will save one extra call for getting userId from username since PH API works on userId\nvar config = {\n    accessToken: '',\n    username: null,\n    userId: 294870,\n    filename: '/tmp/product-hunt-bitbar-votes-data.txt'\n};\n\n\nvar userId;\nvar displayInMenuBar = 'PH| color=#da552f dropdown=false';\ndisplayInMenuBar += '\\n---\\n';\n\nfunction checkIfFileExists() {\n    fs.exists(config.filename, function (exists) {\n        if (exists) {\n            return;\n        } else {\n            fs.writeFile(config.filename, {flag: 'wx'}, 0, function (err, data) {\n                if (err) { throw err; }\n            });\n        }\n    });\n}\n\nfunction sortOn(arr, key, orderBy) {\n    arr.sort(function (a, b) {\n        return orderBy ? b[key] - a[key] : a[key] - b[key];\n    });\n}\n\nfunction fetchPostVotes() {\n    // Fetch votes on each posts\n    var options = {\n        hostname: 'api.producthunt.com',\n        path: '/v1/users/' + userId + '/posts',\n        method: 'GET',\n        headers: {\n         'Authorization': 'Bearer ' + config.accessToken\n        }\n    };\n    var output = '';\n    var req = https.request(options, function(res) {\n        var body = '';\n        res.on('data', function(chunk) {\n            body += chunk;\n        });\n        res.on('end', function() {\n            var name;\n            var votes = [];\n            var response = JSON.parse(body);\n            var posts = response.posts;\n\n            // sort response on votes_count to show posts having higher votes on top\n            sortOn(posts, 'votes_count', true);\n\n            for (var i = 0; i \u003c posts.length; i++) {\n                name = posts[i].name;\n                output +=  '(' + posts[i].votes_count + ')' + name + ' | length=15 href=' + posts[i].discussion_url;\n                output += '\\n---\\n';\n                votes.push(posts[i].votes_count);\n            }\n\n            var oldData;\n            fs.readFile(config.filename, 'utf8', function (err, data) {\n                if (err) { throw err; }\n                oldData = data;\n\n                // SHow notification bell in OS X menu bar if current and previous data dont match\n                // Voilla! someone upvoted your post on ProductHunt\n                if (oldData.toString() !== votes.toString()) {\n                    displayInMenuBar = 'PH🔔| color=#da552f dropdown=false';\n                    displayInMenuBar += '\\n---\\n';\n                }\n\n                // Write all the votes count in the file\n                fs.writeFile(config.filename, votes.toString(), function (err) {\n                    if (err) { throw err; }\n                });\n\n                // Finally log the entire output\n                console.log(displayInMenuBar + output);\n            });\n        });\n    });\n    req.end();\n\n    req.on('error', function(e) {\n        console.error(e);\n    });\n}\n\nfunction getUserId(options) {\n    var req = https.request(options, function(res) {\n        var body = '';\n        res.on('data', function(chunk) {\n            body += chunk;\n        });\n        res.on('end', function() {\n            var response = JSON.parse(body);\n            if (response.error) {\n                console.log('No such PH User Found');\n                return;\n            }\n            // Update userId\n            userId = response.user.id;\n            console.log(userId);\n            fetchPostVotes();\n        });\n    });\n\n    req.end();\n\n    req.on('error', function(e) {\n        console.error(e);\n    });\n}\n\ncheckIfFileExists();\n\nif (config.userId) {\n    userId = config.userId;\n    fetchPostVotes();\n} else if (config.username) {\n    // Since we need ProductHunt userId for fetching user related data, get userId\n    // API call options\n    var options = {\n        hostname: 'api.producthunt.com',\n        path: '/v1/users/' + config.username,\n        method: 'GET',\n        headers: {\n            'Authorization': 'Bearer ' + config.accessToken\n        }\n    };\n    getUserId(options);\n} else {\n    console.log('!PH| color=#da552f dropdown=false\\n---\\n Provide PH userId/username.');\n}\n"
+				}
+			],
+			"path": "Web/ProductHunt/producthunt-posts-votes.1h.js",
+			"filename": "producthunt-posts-votes.1h.js",
+			"dir": "Web/ProductHunt",
+			"docsPlugin": "Web/ProductHunt/producthunt-posts-votes.1h.js.html",
+			"docsCategory": "Web/ProductHunt.html",
+			"pathSegments": [
+				"Web",
+				"ProductHunt"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/ProductHunt",
+					"text": "ProductHunt",
+					"isLast": true
+				}
+			],
+			"title": "ProductHunt Posts Votes Count",
+			"version": "v1.0",
+			"author": "Varun Malhotra",
+			"authors": [
+				{
+					"name": "Varun Malhotra",
+					"githubUsername": "softvar",
+					"imageURL": "https://avatars.githubusercontent.com/u/4180800?v=4",
+					"bio": "Lead Software Engineer | Science \u0026 Cosmos Fanatic | Being Psychologist to enhance AI skills\r\n",
+					"primary": true
+				}
+			],
+			"desc": "ProductHunt Posts Votes count and Emoji notification 🔔  on change in votes count",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"node"
+			],
+			"aboutURL": "http://varunmalhotra.xyz/blog/2016/02/bitbar-plugins-for-github-and-producthunt.html",
+			"lastUpdated": "2021-03-08T15:22:08.985727Z",
+			"vars": null
+		}
+	]
+}

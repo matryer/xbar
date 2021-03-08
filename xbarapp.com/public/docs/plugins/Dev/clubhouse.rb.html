@@ -1,0 +1,465 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Clubhouse in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests - install xbar for free to get started.'>
+	<meta name='author' content='Tom Haratyk'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/oExbPOg.png'>
+	<meta itemprop='name' content='Clubhouse in your macOS menu bar'>
+	<meta itemprop='description' content='Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Clubhouse in your macOS menu bar'>
+	<meta name='twitter:description' content='Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/oExbPOg.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Clubhouse in your macOS menu bar'>
+	<meta property='og:description' content='Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/clubhouse.rb.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/oExbPOg.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/oExbPOg.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/oExbPOg.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/oExbPOg.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Clubhouse</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/jazzytomato.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/397195?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/jazzytomato.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Tom Haratyk (<code style='color:white;'>@jazzytomato</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fclubhouse.rb'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/oExbPOg.png' 
+				alt='Image preview of Clubhouse plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>clubhouse.rb</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/clubhouse.rb'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/clubhouse.rb'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env ruby
+
+# &lt;bitbar.title&gt;Clubhouse&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Tom Haratyk&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;jazzytomato&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;ruby&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/oExbPOg.png&lt;/bitbar.image&gt;
+
+CLUBHOUSE_API_TOKEN=&#39;CHANGE_ME&#39;
+CLUBHOUSE_USER=&#39;CHANGE_ME&#39;
+GITHUB_ORG=&#39;CHANGE_ME&#39; # for PRs
+CLUBHOUSE_WORKFLOW=&#39;Engineering&#39;
+CLUBHOUSE_NUMBER_OF_ITEMS=20 # max is 25
+CLUBHOUSE_QUERY=&#34;owner:#{CLUBHOUSE_USER} !is:done !is:archived&#34; # https://help.clubhouse.io/hc/en-us/articles/360000046646-Search-Operators
+
+BAR_COLORS = true
+
+require &#39;net/http&#39;
+require &#34;uri&#34;
+require &#39;json&#39;
+require &#39;pathname&#39;
+require &#39;openssl&#39;
+require &#39;time&#39;
+
+SCRIPT_PATH = Pathname.new($0).realpath()
+REFRESH = &#34;---\nRefresh | refresh=true&#34;
+
+def get_workflows
+  uri = URI.parse(&#34;https://api.clubhouse.io/api/v3/workflows&#34;)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+  request[&#34;Content-Type&#34;] = &#34;application/json&#34;
+  request[&#34;Clubhouse-Token&#34;] = CLUBHOUSE_API_TOKEN
+
+  http.request(request)
+end
+
+def get_stories
+  uri = URI.parse(&#34;https://api.clubhouse.io/api/v3/search/stories?page_size=#{CLUBHOUSE_NUMBER_OF_ITEMS}&amp;query=#{CLUBHOUSE_QUERY}&#34;)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+  request[&#34;Content-Type&#34;] = &#34;application/json&#34;
+  request[&#34;Clubhouse-Token&#34;] = CLUBHOUSE_API_TOKEN
+
+  http.request(request)
+end
+
+def format_pr(pr)
+  repo = /#{GITHUB_ORG}\/(.*)\/pull/.match(pr[&#39;url&#39;])[1]
+  icon = pr[&#39;closed&#39;] ? &#39;:cl:&#39; : (pr[&#39;review_status&#39;] == &#39;approved&#39; ? &#39;:white_check_mark:&#39; : &#39;&#39;)
+  updated_at = Time.parse(pr[&#39;updated_at&#39;])
+  day = updated_at.strftime(&#39;%a %d/%m&#39;)
+  timestamp = (day != Time.now.strftime(&#39;%a %d/%m&#39;) ? (&#39;on &#39; &#43; day) : &#39;&#39;) &#43; &#34; at &#34; &#43; updated_at.strftime(&#34;%I:%M%p&#34;)
+  &#34;\n----#{icon} #{repo} ##{pr[&#39;number&#39;]} -&gt; #{pr[&#39;target_branch_name&#39;]} - Modified on #{timestamp} | href=#{pr[&#39;url&#39;]}&#34;
+end
+
+def format_branch(b)
+  &#34;\n----:clipboard:#{b[&#39;name&#39;]} | terminal=false bash=&#39;/bin/bash&#39; param1=&#39;-c&#39; param2=\&#34;&#39;echo #{b[&#39;name&#39;]} | pbcopy&#39;\&#34;&#34;
+end
+
+def format_labels(item)
+  &#34;[&#34; &#43; item[&#39;labels&#39;].map { |l| l[&#39;name&#39;] }.join(&#39; &#39;) &#43; &#34;] &#34;
+end
+
+def create_branch(item)
+  name = &#34;ch#{item[&#39;id&#39;]}/#{item[&#39;name&#39;].downcase.gsub(/(?!\s)\W/, &#39;&#39;).gsub(/\s&#43;/, &#39;-&#39;)[0..50]}&#34;
+  &#34;:clipboard::heavy_plus_sign: #{name} | terminal=false bash=&#39;/bin/bash&#39; param1=&#39;-c&#39; param2=\&#34;&#39;echo #{name} | pbcopy&#39;\&#34;&#34;
+end
+
+def build_item(item)
+  (item[&#39;blocked&#39;] ? &#39;:no_entry_sign: &#39; : &#39;&#39;) &#43;
+  item[&#39;name&#39;].gsub(&#39;|&#39;, &#39;/&#39;) &#43; &#34; &#34; &#43; 
+  &#34; | color=black length=80 href=#{item[&#39;app_url&#39;]}&#34; &#43;
+  &#34;\n--#{format_labels(item)}&#34; &#43;
+  &#34;\n--:clipboard:Copy story id #{item[&#39;id&#39;].to_s} | terminal=false bash=&#39;/bin/bash&#39; param1=&#39;-c&#39; param2=\&#34;&#39;echo #{item[&#39;id&#39;]} | pbcopy&#39;\&#34;&#34; &#43;
+  &#34;\n--Branches&#34; &#43;
+  item[&#39;branches&#39;].map(&amp;method(:format_branch)).uniq.join(&#39;&#39;) &#43;
+  (item[&#39;branches&#39;].size == 0 ? &#34;\n----&#34; &#43; create_branch(item) : &#39;&#39;) &#43;
+  &#34;\n--PRs&#34; &#43;
+  item[&#39;branches&#39;].flat_map { |b| b[&#39;pull_requests&#39;].map(&amp;method(:format_pr)) }.join(&#39;&#39;) &#43;
+  &#34;\n&#34;
+end
+
+def handle_error(msg, details = &#34;&#34;)
+  puts &#34;&#34;&#34;
+    :checkered_flag::interrobang:
+    ---
+    #{msg} | color=red
+    #{details}
+    ---
+    #{REFRESH}
+  &#34;&#34;&#34;
+  exit
+end
+
+error = nil
+
+response = get_workflows
+if response.code != &#39;200&#39;
+  handle_error &#34;Error when making request to clubhouse API: HTTP #{response.code}&#34;, response.body.to_s
+end
+
+workflows = JSON.parse(response.body)
+workflows_hash = workflows.find { |w| w[&#39;name&#39;] == CLUBHOUSE_WORKFLOW }.fetch(&#39;states&#39;).reduce({}) { |h, s| h[s[&#39;id&#39;]] = s[&#39;name&#39;]; h }
+
+response = get_stories
+
+if response.code != &#39;200&#39;
+  handle_error &#34;Error when making request to clubhouse API: HTTP #{response.code}&#34; , response.body.to_s
+end
+
+stories = JSON.parse(response.body).fetch(&#39;data&#39;)
+
+lines = &#39;&#39;
+
+workflows_hash.each do |wfid, wf|
+  wf_stories = stories.select { |s| s[&#39;workflow_state_id&#39;] == wfid }
+  if wf_stories.any?
+    lines &#43;= wf &#43; &#34;\n&#34;
+    lines &#43;= wf_stories.map { |s|  build_item(s) }.join(&#34;\n&#34;)
+  end
+end
+
+puts &#34;&#34;&#34;
+:checkered_flag:
+---
+#{lines}
+---
+#{REFRESH}
+&#34;&#34;&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

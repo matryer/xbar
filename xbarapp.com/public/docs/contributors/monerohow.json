@@ -1,0 +1,347 @@
+{
+	"person": {
+		"name": "Monero.how",
+		"githubUsername": "monerohow",
+		"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-btc-bitfinex.30s.sh",
+					"filename": "monero-btc-bitfinex.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero BTC price at Bitfinex\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in BTC) on the Bitfinex exchange.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s https://api.bitfinex.com/v1/pubticker/xmrbtc | tr -d '{}\"' | tr ':,' '\\n' | grep -A1 \"last_price\" | tail -1)\nprintf \"%.*f | image=%s\\n\" 5 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-btc-bitfinex.30s.sh",
+			"filename": "monero-btc-bitfinex.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-btc-bitfinex.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero BTC price at Bitfinex",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in BTC) on the Bitfinex exchange.",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.679192Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-btc-kraken.30s.sh",
+					"filename": "monero-btc-kraken.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero BTC price at Kraken\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in BTC) on the Kraken exchange\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s \"https://api.kraken.com/0/public/Ticker?pair=XMRXBT\" | tr -d '{}\"[]' | tr ':,' '\\n' | grep -A1 \"^c$\" | tail -1)\nprintf \"%.*f | image=%s\\n\" 5 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-btc-kraken.30s.sh",
+			"filename": "monero-btc-kraken.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-btc-kraken.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero BTC price at Kraken",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in BTC) on the Kraken exchange",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.679082Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-usd-bitfinex.30s.sh",
+					"filename": "monero-usd-bitfinex.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero USD price at Bitfinex\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in USD) on the Bitfinex exchange.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s https://api.bitfinex.com/v1/pubticker/xmrusd | tr -d '{}\"' | tr ':,' '\\n' | grep -A1 \"last_price\" | tail -1)\nprintf \"$%.*f | image=%s\\n\" 2 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-usd-bitfinex.30s.sh",
+			"filename": "monero-usd-bitfinex.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-usd-bitfinex.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero USD price at Bitfinex",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in USD) on the Bitfinex exchange.",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.835406Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-usd-kraken.30s.sh",
+					"filename": "monero-usd-kraken.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero USD price at Kraken\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in USD) on the Kraken exchange\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s \"https://api.kraken.com/0/public/Ticker?pair=xmrusd\" | tr -d '{}\"[]' | tr ':,' '\\n' | grep -A1 \"^c$\" | tail -1)\nprintf \"$%.*f | image=%s\\n\" 2 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-usd-kraken.30s.sh",
+			"filename": "monero-usd-kraken.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-usd-kraken.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero USD price at Kraken",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in USD) on the Kraken exchange",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.855345Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-usd-poloniex.30s.sh",
+					"filename": "monero-usd-poloniex.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero USD price at Poloniex\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in USD) on the Poloniex exchange\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s https://poloniex.com/public?command=returnTicker | tr '}' '\\n' | grep USDT_XMR | tr -d '{}\"' | tr ':,' '\\n' | grep -A1 \"last\" | tail -1)\nprintf \"$%.*f | image=%s\\n\" 2 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-usd-poloniex.30s.sh",
+			"filename": "monero-usd-poloniex.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-usd-poloniex.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero USD price at Poloniex",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in USD) on the Poloniex exchange",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.855888Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-btc-poloniex.30s.sh",
+					"filename": "monero-btc-poloniex.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero BTC price at Poloniex\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in BTC) on the Poloniex exchange\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s https://poloniex.com/public?command=returnTicker | tr '}' '\\n' | grep BTC_XMR | tr -d '{}\"' | tr ':,' '\\n' | grep -A1 \"last\" | tail -1)\nprintf \"%.*f | image=%s\\n\" 5 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-btc-poloniex.30s.sh",
+			"filename": "monero-btc-poloniex.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-btc-poloniex.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero BTC price at Poloniex",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in BTC) on the Poloniex exchange",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.7193Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Monero/monero-cny-bter.30s.sh",
+					"filename": "monero-cny-bter.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMonero CNY price at Bter\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMonero.how\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emonerohow\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the last Monero price (in CNY) on the Bter exchange\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.monero.how\u003c/bitbar.abouturl\u003e\n#\n# Visit https://www.monero.how for Monero tutorials, paper wallets and the latest Monero news\n# \n\nmoneroIconBase64='iVBORw0KGgoAAAANSUhEUgAAABoAAAAeCAYAAAAy2w7YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAE3RFWHRTb2Z0d2FyZQBtb25lcm8uaG9398/iYQAAAyxJREFUeNrclstrE1EUxu9MJkWrtvWxKmgXRrG4KBRELFUqVtFKqnUnLkRF1L9AwYXBpeBCEVcuXIgbQRG0rYraGokP4iok5KHZqJi0TUwnD9I8/U48I9Mwk7FNcOGBX7i599zz3ee5I7lcLmFh/eAgGAAOsA5IIAm+AA+YBN5GQZQGbXvBJTAMZIP2DWArOASuglfgGnhuFMwowApwG7wEB0x86o1muA88A3fAKiuhTvAYXODOy7Ez4AlYbya0EjzgWTRrQ+AhWG0kdB3sF62zPeBWvdBucJ7L0+BrEwI/wGsun9QGrwld0e2JGxwGsWWIJIATvNDV0f2RSaiPj7Jma4CPO8wtQSQFRsEn0KGrp/u3Q+bRGx1hryRJR3iUVjYP3zG+vEbmJIFBs96VSsWDACMWy5iAjxO+U9Vq1cxnQOa0sshsNptIJpPC7/eLQqHwUZZls2VMoW20VCq5A4GASCQStb4G1kNCaxddcUkS5XJZxONxoaqqCIfDYmFhwYuA9cs4j7oxDMRDPuQ7MzMjIFqLUWcdslEGIOd8Pi/sdvvFTCbTFwqFSMyDwCOcTFWaJUSmWKRXUZTL6CMVi0Vhlut+Giav36Pqx1KMZ7NZBwVEkNoy0nKh7I5EIiKdTvfAZwK+O9HHbJNUEoo2yH8q6CYxzMwRDAZJzAOmaZaYySa0PaU9YF+zHPqNnokpzk2aFXVrrBW2sNgIBD5TO8+ERLbrfbkvrV9BF3NaQcNNLMUj/KFpSygnaWMNNpXEJiFGl7vIy9WrX2rqk8vlRHt7+w0c93taTJS/K2jMplKpIDloJ46ONt0J/C/VLcFmDIQetpJeRDtD9BONRgXizWIgsxQDoqKrq0soPp+P7oodlYM8AiQmWZvNRoON3Way4d3oM0SzisX+3G8ZdW/b2toKCh1HBK6g8iw43kTWpid/mAaou7S0Je6aBo+8DM5x5m6VfQCntcOlP4ZpcAy8aYHIe3CUM7rheZ/jbH63CZH7/GUUs/oKyoBTLLiU2dETQfnwhH4mf/NdN87Qw0U5bhdngE4tqfKT/w5MWO2v1OANaanJ4h/Z/yf0S4ABAI1oQOxFaPzhAAAAAElFTkSuQmCC'\n\nxmrLast=$(curl -s http://data.bter.com/api/1/ticker/xmr_cny | tr -d '{}\"' | tr ':,' '\\n' | grep -A1 \"last\" | tail -1)\nprintf \"¥%.*f | image=%s\\n\" 2 \"$xmrLast\" \"$moneroIconBase64\"\necho \"---\"\necho \"Live chart | href=\\\"https://www.monero.how/monero-chart\\\"\"\necho \"Monero.how homepage | href=\\\"https://www.monero.how\\\"\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/Monero/monero-cny-bter.30s.sh",
+			"filename": "monero-cny-bter.30s.sh",
+			"dir": "Cryptocurrency/Monero",
+			"docsPlugin": "Cryptocurrency/Monero/monero-cny-bter.30s.sh.html",
+			"docsCategory": "Cryptocurrency/Monero.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Monero"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"isLast": true
+				}
+			],
+			"title": "Monero CNY price at Bter",
+			"version": "v1.0",
+			"author": "Monero.how",
+			"authors": [
+				{
+					"name": "Monero.how",
+					"githubUsername": "monerohow",
+					"imageURL": "https://avatars.githubusercontent.com/u/24931986?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the last Monero price (in CNY) on the Bter exchange",
+			"imageURL": "https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg",
+			"dependencies": null,
+			"aboutURL": "https://www.monero.how",
+			"lastUpdated": "2021-03-08T15:21:46.763163Z",
+			"vars": null
+		}
+	]
+}

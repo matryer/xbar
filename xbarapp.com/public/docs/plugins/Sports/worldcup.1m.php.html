@@ -1,0 +1,477 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>World Cup 2018 in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shows current and daily scores from the 2018 World Cup. Needs Steve Edson&#39;s bitbar-php: https://github.com/SteveEdson/bitbar-php  - install xbar for free to get started.'>
+	<meta name='author' content='Daniel Goldsmith'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png'>
+	<meta itemprop='name' content='World Cup 2018 in your macOS menu bar'>
+	<meta itemprop='description' content='Shows current and daily scores from the 2018 World Cup. Needs Steve Edson&#39;s bitbar-php: https://github.com/SteveEdson/bitbar-php  - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='World Cup 2018 in your macOS menu bar'>
+	<meta name='twitter:description' content='Shows current and daily scores from the 2018 World Cup. Needs Steve Edson&#39;s bitbar-php: https://github.com/SteveEdson/bitbar-php  - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='World Cup 2018 in your macOS menu bar'>
+	<meta property='og:description' content='Shows current and daily scores from the 2018 World Cup. Needs Steve Edson&#39;s bitbar-php: https://github.com/SteveEdson/bitbar-php  - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Sports/worldcup.1m.php.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>World Cup 2018</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/dg01d.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/1061809?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/dg01d.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										daniel goldsmith (<code style='color:white;'>@dg01d</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shows current and daily scores from the 2018 World Cup. Needs Steve Edson&#39;s bitbar-php: https://github.com/SteveEdson/bitbar-php 
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Sports%2fworldcup.1m.php'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png' 
+				alt='Image preview of World Cup 2018 plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>worldcup.1m.php</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Sports/worldcup.1m.php'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Sports/worldcup.1m.php'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/php
+
+&lt;?php
+
+/**
+ * worldcup - BitBar WorldCup 2018 scores
+ *
+ * PHP version 7
+ *
+ * @author   Daniel Goldsmith &lt;dgold@ascraeus.org&gt;
+ * @license  https://opensource.org/licenses/FPL-1.0.0 0BSD
+ * @link     https://github.com/dg01d/bitbar-worldcup
+ * @category Utility
+ * @version  2.1
+ * &lt;bitbar.title&gt;World Cup 2018&lt;/bitbar.title&gt;
+ * &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+ * &lt;bitbar.author&gt;Daniel Goldsmith&lt;/bitbar.author&gt;
+ * &lt;bitbar.author.github&gt;dg01d&lt;/bitbar.author.github&gt;
+ * &lt;bitbar.desc&gt;Shows current and daily scores from the 2018 World Cup. Needs Steve Edson&#39;s bitbar-php: https://github.com/SteveEdson/bitbar-php &lt;/bitbar.desc&gt;
+ * &lt;bitbar.image&gt;https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png&lt;/bitbar.image&gt;
+ * &lt;bitbar.dependencies&gt;php,bitbar-php&lt;/bitbar.dependencies&gt;
+ * &lt;bitbar.abouturl&gt;https://github.com/dg01d/bitbar-worldcup&lt;/bitbar.abouturl&gt;
+ * Instructions: Install bitbar-php following the instructions on that project&#39;s github page.
+ * Uses the wonderful World Cup API provided by http://worldcup.sfg.io
+ */
+
+require &#34;.bitbar/vendor/autoload.php&#34;;
+
+use SteveEdson\BitBar;
+
+function array_msort($array, $cols)
+{
+    $colarr = array();
+    foreach ($cols as $col =&gt; $order) {
+        $colarr[$col] = array();
+        foreach ($array as $k =&gt; $row) { $colarr[$col][&#39;_&#39;.$k] = strtolower($row[$col]); }
+    }
+    $eval = &#39;array_multisort(&#39;;
+    foreach ($cols as $col =&gt; $order) {
+        $eval .= &#39;$colarr[\&#39;&#39;.$col.&#39;\&#39;],&#39;.$order.&#39;,&#39;;
+    }
+    $eval = substr($eval,0,-1).&#39;);&#39;;
+    eval($eval);
+    $ret = array();
+    foreach ($colarr as $col =&gt; $arr) {
+        foreach ($arr as $k =&gt; $v) {
+            $k = substr($k,1);
+            if (!isset($ret[$k])) $ret[$k] = $array[$k];
+            $ret[$k][$col] = $array[$k][$col];
+        }
+    }
+    return $ret;
+}
+
+
+$flagsrc = &#39;{&#34;PAN&#34;:&#34;🇵🇦&#34;,&#34;TUN&#34;:&#34;🇹🇳&#34;,&#34;ENG&#34;:&#34;🏴󠁧󠁢󠁥󠁮󠁧󠁿&#34;,&#34;POL&#34;:&#34;🇵🇱&#34;,&#34;JPN&#34;:&#34;🇯🇵&#34;,&#34;COL&#34;:&#34;🇨🇴&#34;,&#34;SEN&#34;:&#34;🇸🇳&#34;,&#34;ARG&#34;:&#34;🇦🇷&#34;,&#34;ISL&#34;:&#34;🇮🇸&#34;,&#34;PER&#34;:&#34;🇵🇪&#34;,&#34;DEN&#34;:&#34;🇩🇰&#34;,&#34;CRO&#34;:&#34;🇭🇷&#34;,&#34;NGA&#34;:&#34;🇳🇬&#34;,&#34;RUS&#34;:&#34;🇷🇺&#34;,&#34;KSA&#34;:&#34;🇸🇦&#34;,&#34;EGY&#34;:&#34;🇪🇬&#34;,&#34;URU&#34;:&#34;🇺🇾&#34;,&#34;POR&#34;:&#34;🇵🇹&#34;,&#34;ESP&#34;:&#34;🇪🇸&#34;,&#34;MAR&#34;:&#34;🇲🇦&#34;,&#34;IRN&#34;:&#34;🇮🇷&#34;,&#34;FRA&#34;:&#34;🇫🇷&#34;,&#34;AUS&#34;:&#34;🇦🇺&#34;,&#34;BRA&#34;:&#34;🇧🇷&#34;,&#34;SUI&#34;:&#34;🇨🇭&#34;,&#34;CRC&#34;:&#34;🇨🇷&#34;,&#34;SRB&#34;:&#34;🇷🇸&#34;,&#34;GER&#34;:&#34;🇩🇪&#34;,&#34;MEX&#34;:&#34;🇲🇽&#34;,&#34;SWE&#34;:&#34;🇸🇪&#34;,&#34;KOR&#34;:&#34;🇰🇷&#34;,&#34;BEL&#34;:&#34;🇧🇪&#34;}&#39;;
+
+$flags = json_decode($flagsrc, true);
+
+// Create BitBar formatter
+$bb = new BitBar();
+
+$json = file_get_contents(&#34;http://worldcup.sfg.io/matches/current&#34;);
+$data = json_decode($json, true);
+
+
+if (!empty($data)) {
+    $homeTeam = $data[0][&#39;home_team&#39;][&#39;code&#39;];
+    $homeTeamFlag= $flags[$homeTeam];
+    $homeTeamScore = $data[0][&#39;home_team&#39;][&#39;goals&#39;];
+    $awayTeam = $data[0][&#39;away_team&#39;][&#39;code&#39;];
+    $awayTeamFlag = $flags[$awayTeam];
+    $awayTeamScore = $data[0][&#39;away_team&#39;][&#39;goals&#39;];
+    $scoreLine = &#34;$homeTeamFlag $homeTeamScore — $awayTeamScore $awayTeamFlag&#34;;
+} else {
+    $scoreLine = &#34;⚽&#34;;
+};
+
+$line = $bb-&gt;newLine();
+
+$line
+    -&gt;setText($scoreLine)
+    -&gt;setFontFace(&#34;SF Mono&#34;)
+    -&gt;show();
+
+$todayJson = file_get_contents(&#34;http://worldcup.sfg.io/matches/today&#34;);
+$todayData = json_decode($todayJson, true);
+
+if (!empty($todayData)) {
+    $cnt = count($todayData);
+    for ($n = 0; $n &lt; $cnt; $n&#43;&#43;) {
+        $team1 = $todayData[$n][&#39;home_team&#39;][&#39;country&#39;];
+        $team1code =  $todayData[$n][&#39;home_team&#39;][&#39;code&#39;];
+        $team1flag = $flags[$team1code];
+        $team1s = $todayData[$n][&#39;home_team&#39;][&#39;goals&#39;];
+        $team2 = $todayData[$n][&#39;away_team&#39;][&#39;country&#39;];
+        $team2code =  $todayData[$n][&#39;away_team&#39;][&#39;code&#39;];
+        $team2flag = $flags[$team2code];
+        $team2s = $todayData[$n][&#39;away_team&#39;][&#39;goals&#39;];
+
+        $scores = &#34;$team1code $team1flag $team1s – $team2s $team2flag $team2code&#34;;
+        $match = &#34;\&#34;https://www.fifa.com/worldcup/matches/match/&#34; . $todayData[$n][&#39;fifa_id&#39;] . &#34;/#match-summary\&#34;&#34;;
+        if (($todayData[$n][&#39;status&#39;]) == &#34;in progress&#34;) {
+            $time = $todayData[$n][&#39;time&#39;];
+            $scores = $scores . &#34; &#34; . $time . &#34; ⚽| href=$match&#34;;
+        } else {
+            $scores .= &#34; | href=$match&#34;;
+        }
+        if (($todayData[$n][&#39;status&#39;] == &#34;completed&#34;) || ($todayData[$n][&#39;status&#39;] == &#34;in progress&#34;)) {
+            $line = $bb-&gt;newLine();
+
+            $arrayEvents = array_merge($todayData[$n][&#39;home_team_events&#39;], $todayData[$n][&#39;away_team_events&#39;]);
+            $arraySortEvents = array_msort($arrayEvents, array(&#39;id&#39;=&gt;SORT_ASC));
+            foreach ($arraySortEvents as $val) {
+                if (in_array($val[&#39;type_of_event&#39;], array(&#39;goal&#39;, &#34;goal-own&#34;, &#34;goal-penalty&#34;))) {
+                    $scores .= &#34;\n\033[35m&#34;;
+                    $scores .= $val[&#39;player&#39;] . &#34; &#34; . $val[&#39;time&#39;];
+                }
+                if ($val[&#39;type_of_event&#39;] == &#34;goal-penalty&#34;) {
+                    $scores .= &#34; (P)&#34;;
+                }
+                if ($val[&#39;type_of_event&#39;] == &#34;goal-own&#34;) {
+                    $scores .= &#34; (OG)&#34;;
+                }
+                if (in_array($val[&#39;type_of_event&#39;], array(&#39;red-card&#39;, &#34;yellow-card&#34;))) {
+                    $scores .= &#34;\n\033[35m&#34;;
+                    $scores .= $val[&#39;player&#39;] . &#34; &#34; . $val[&#39;time&#39;];
+                }
+                if ($val[&#39;type_of_event&#39;] == &#34;yellow-card&#34;) {
+                    $scores .= &#34; \033[1;33m◼\033[0m&#34;;
+                }
+                if ($val[&#39;type_of_event&#39;] == &#34;red-card&#34;) {
+                    $scores .= &#34; \033[1;31m◼\033[0m&#34;;
+                }
+                $scores .= &#34; | size=11&#34;;
+            }
+            $comGame = $line
+                -&gt;setText($scores)
+                -&gt;setDropdown(true);
+            $comGame-&gt;show();
+        } else {
+            $line = $bb-&gt;newLine();
+            $line
+                -&gt;setText($scores)
+                -&gt;setFontFace(&#34;SF Mono&#34;)
+                -&gt;setDropdown(true)
+                -&gt;show();
+        }
+    }
+}
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

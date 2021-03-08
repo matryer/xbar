@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Gabi Maeztu",
+		"githubUsername": "merqurio",
+		"imageURL": "https://avatars.githubusercontent.com/u/1485056?v=4",
+		"bio": "\r\n    medical doctor and mathematician. I work at the intersection of medicine and machine learning.\r\n",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/spent_time.1s.py",
+					"filename": "spent_time.1s.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eSpent time displayer\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eGabriel de Maeztu\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emerqurio\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay the time of the year already gone as percentage\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython2l\u003c/bitbar.dependencies\u003e\n\nimport datetime\nfrom calendar import monthrange, isleap\n\nnow = datetime.datetime.now()\nday = datetime.datetime(now.year, now.month, now.day)\nmonth = datetime.datetime(now.year, now.month, 1)\nyear = datetime.datetime(now.year, 1, 1)\n\nday_in_seconds = 24*60*60\n\nif isleap(year.year):\n    number_of_days = 366\nelse:\n    number_of_days = 365\n\nspent_day = ((now-day).seconds*100)/day_in_seconds\nspent_month = (int((now-month).total_seconds()) *100)/(monthrange(month.year, month.month)[1]*day_in_seconds)\nspent_year = (int((now-year).total_seconds())*100)/(number_of_days*day_in_seconds)\n\ndef display():\n    print('Day → {:d}%'.format(spent_day))\n    print('---')\n    print('Day → {:d}%'.format(spent_day))\n    print('Month → {:d}%'.format(spent_month))\n    print('Year → {:d}%'.format(spent_year))\n\nif __name__ == '__main__':\n    display()\n"
+				}
+			],
+			"path": "Time/spent_time.1s.py",
+			"filename": "spent_time.1s.py",
+			"dir": "Time",
+			"docsPlugin": "Time/spent_time.1s.py.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Spent time displayer",
+			"version": "v1.0",
+			"author": "Gabriel de Maeztu",
+			"authors": [
+				{
+					"name": "Gabi Maeztu",
+					"githubUsername": "merqurio",
+					"imageURL": "https://avatars.githubusercontent.com/u/1485056?v=4",
+					"bio": "\r\n    medical doctor and mathematician. I work at the intersection of medicine and machine learning.\r\n",
+					"primary": true
+				}
+			],
+			"desc": "Display the time of the year already gone as percentage",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"python2l"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.404985Z",
+			"vars": null
+		}
+	]
+}

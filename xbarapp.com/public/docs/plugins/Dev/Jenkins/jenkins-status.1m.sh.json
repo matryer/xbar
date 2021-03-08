@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Jenkins/jenkins-status.1m.sh",
+				"filename": "jenkins-status.1m.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCheck status of single Jenkins project\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eStratouklos\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eStratouklos\u003c/bitbar.author.github\u003e\n\nUSER=\"username\"\nPASS=\"pass\"\nBASE_URL=\"my-jenkins.com\"\nJOBNAME=\"jobname\"\n\nRESULT=$(curl -silent http://${USER}:${PASS}@${BASE_URL}/job/${JOBNAME}/lastBuild/api/json?pretty=true | grep \"result\" | awk '{print $3}')\n\nif [[ $RESULT == *\"SUCCESS\"* ]]\nthen\n  echo '🍏'\nelse\n  echo '🍎'\nfi\n"
+			}
+		],
+		"path": "Dev/Jenkins/jenkins-status.1m.sh",
+		"filename": "jenkins-status.1m.sh",
+		"dir": "Dev/Jenkins",
+		"docsPlugin": "Dev/Jenkins/jenkins-status.1m.sh.html",
+		"docsCategory": "Dev/Jenkins.html",
+		"pathSegments": [
+			"Dev",
+			"Jenkins"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Jenkins",
+				"text": "Jenkins",
+				"isLast": true
+			}
+		],
+		"title": "Check status of single Jenkins project",
+		"version": "",
+		"author": "Stratouklos",
+		"authors": [
+			{
+				"name": "Stratos Xakoustos",
+				"githubUsername": "Stratouklos",
+				"imageURL": "https://avatars.githubusercontent.com/u/657997?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:49.473687Z",
+		"vars": null
+	}
+}

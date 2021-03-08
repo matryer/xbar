@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/battery_health.2s.py",
+				"filename": "battery_health.2s.py",
+				"content": "#!/usr/bin/env python2\n#- * -coding: utf - 8 - * -\n#\n# \u003cbitbar.title\u003eBattery Health\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAndros Fenollosa\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etanrax\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows power percentaje and notice when you load\u003c/bitbar.desc\u003e\n\nimport os, math, subprocess, pickle, tempfile\n\n# Get info battery\nSAVE_LOCATION = os.path.join(tempfile.gettempdir(), 'batteryHealth2.pkl')\nLIM_LOWER = 45\nLIM_UPPER = 85\np = subprocess.Popen([\"ioreg\", \"-rc\", \"AppleSmartBattery\"], stdout = subprocess.PIPE)\noutput = p.communicate()[0]\nb_max = 0\no_cur = 0\nis_charging = ''\ndateSave = False\nalertMin = False\nalertMax = False\n\ntry:\n    dateFile = open(SAVE_LOCATION)\n    dateSave = pickle.load(dateFile)\n    alertMin = dateSave['alertMin']\n    alertMax = dateSave['alertMax']\nexcept:\n    pass\n\n# Get variables\nfor l in output.splitlines():\n    if 'MaxCapacity' in l:\n        o_max = l\n    if 'CurrentCapacity' in l:\n        o_cur = l\n    if 'IsCharging' in l:\n        is_charging = l\n\nb_max = float(o_max.rpartition('=')[-1].strip())\nb_cur = float(o_cur.rpartition('=')[-1].strip())\nis_charging = str(is_charging.rpartition('=')[-1].strip())\nif is_charging == 'Yes':\n    is_charging = True\nelse:\n    is_charging = False\n\n# Calculate porcent battery\ncharge = b_cur / b_max\ncharge_porcent = int(math.ceil(100 * charge))\n\n# Logic\n## Alert Min\nif LIM_LOWER \u003e= charge_porcent and not alertMin:\n    alertMin = True\n    os.system('osascript -e \\'display notification \"Battery too low\" with title \"Battery health\" sound name \"Blow\"\\'')\n\n## Alert Max\nif LIM_UPPER \u003c= charge_porcent and not alertMax:\n    alertMax = True\n    os.system('osascript -e \\'display notification \"Very charged battery\" with title \"Battery health\" sound name \"Blow\"\\'')\n\n## Reset alerts\nif LIM_UPPER \u003e charge_porcent \u003e LIM_LOWER:\n    alertMin = False\n    alertMax = False\n    \n# Save\ndateTemp = {'alertMax': alertMax, 'alertMin': alertMin}\ndateSave = open(SAVE_LOCATION, 'w+')\npickle.dump(dateTemp, dateSave)\n\n# Print\nfinal = ''\nif is_charging:\n    final += '⚡️'\nelif alertMin or alertMax:\n    final += '🔴'\nfinal = '{text}{charge}%'.format(text=final, charge=charge_porcent) \nprint(final) \n"
+			}
+		],
+		"path": "System/battery_health.2s.py",
+		"filename": "battery_health.2s.py",
+		"dir": "System",
+		"docsPlugin": "System/battery_health.2s.py.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Battery Health",
+		"version": "v1.1",
+		"author": "Andros Fenollosa",
+		"authors": [
+			{
+				"name": "Andros Fenollosa",
+				"githubUsername": "tanrax",
+				"imageURL": "https://avatars.githubusercontent.com/u/4553672?v=4",
+				"bio": "Teacher, Web Developer, CEO of Sapps, blogger, podcaster and Shepherd of Zombie Sheep. Lover of Clojure, Python and Linux.",
+				"primary": true
+			}
+		],
+		"desc": "Shows power percentaje and notice when you load",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:02.623123Z",
+		"vars": null
+	}
+}

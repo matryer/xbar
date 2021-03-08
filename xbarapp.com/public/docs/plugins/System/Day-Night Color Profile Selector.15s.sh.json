@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/Day-Night Color Profile Selector.15s.sh",
+				"filename": "Day-Night Color Profile Selector.15s.sh",
+				"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eDay/Night Color Profile Selector\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eNadav G\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003enadigo\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSimple menubar day/night icc selector\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash, customdisplayprofiles\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/nadigo/\u003c/bitbar.abouturl\u003e\n#-----------------------------------------------------------------\n#----- required: https://github.com/timsutton/customdisplayprofiles \n#----- move 'customdisplayprofiles' to /usr/local/bin\n#----- set your own profile paths for 'day_profile' and 'night_profile'\n#-----------------------------------------------------------------\nTOOL_PATH=\"/usr/local/bin/customdisplayprofiles\"\nvar=$($TOOL_PATH current-path)\n#--------- set your own profile paths for 'day_profile' and 'night_profile'\nday_profile=\"/Library/ColorSync/Profiles/Displays/Color LCD-12362588-7C1D-77EE-5963-4AEFA92D88E2.icc\"\nnight_profile=\"/System/Library/ColorSync/Profiles/AdobeRGB1998.icc\"\n#--------------------------------------------------------------------\nif [ \"$1\" == \"day\" ]\nthen\n\t$TOOL_PATH set \"$day_profile\"\n\texit\nelif [ \"$1\" == \"night\" ]\nthen\n\t$TOOL_PATH set \"$night_profile\"\n\texit\nfi \n#------- build manu --------------------------------\necho \"ICC\"\necho \"---\"\necho \"${var[*]##*/} | length=20\"\necho \"---\"\necho \"Day | bash='$0' param1=day color=white templateImage=\"iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHHSURBVEhL3dbPK2ZRHMfxp7ExfixmkCgMsvFrg4WykJpY+lOUmTE7LGTnV0q21iRJ2IlSShP+AEsL2VIyjXl/zu08HTPnuc7z3Oupx6dedc95uuebe+85X5lSSw1usWpGRUwPnnFiRkXMmxXuRlV06U1o4Q7otQSlC39wgVpNeFIN/T5tRv6M4xHHZhSQCmhR/UVxxeNii2qN75oIjYrZ4pua8OQzPkaXL9IIW3RGE/lGxXcwYUZRhrCNe2hhucY87JOpxD6+mVHClGEJtpjPHYaRapbhK/YvPYl+pBI9Xl+RXK7wAYmjd+orEGcMQfmEPof2qc0DfIvHWYBNK+y6vdD3ks0N3Bt/QamDOx9qC8oAdBi5v80imxWcO+yJpH3q3hRqA0o9DmHXPcUogqJ96ls8zk8kjg4H3+K5/EY7Esc2fV8RnzWklhGEfN16h2oyidMEnb2KtsMlfAWfsA7bNFrgayBBsa1t14yi6ETS4bAIdS19vVNw32kzdF9BLdXtp5OayCPlKKiftyGknw6iIbr8L24/39NESHTTGX6YkT9foBNJfTdXtM4B5swopby/f29fSydU+MiMihhtK314X82odJLJ/AWeXdquW1Zv2QAAAABJRU5ErkJggg==\" terminal=false\"\necho \"Night | bash='$0' param1=night color=gray image=\"iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE0SURBVEhL7dY9S0JhGIfxI4VBg01RUxBNDVLUB/AL5Bq2VrS6NigivYD0AVyKxK9QS9gW2lBTey2t0hBkg0Vdt/HAQe7q2HluafCCH+hy/nA8Lwaj/mPLGP/6OJxWcIWL3rchlEABb/jAJsyT0RPIoDMP83YRHn2BefKbutPrPMK8JsKjog3TVtE/6kzArCNoo2IJZt1AGxVFmPUEbVTcQW4z741BGwzbgEmv0AadB0zBe/fQBsPOIWfHa2fQxvqdIglvbUMb0sgbaw5emoY8l7UhTQcVzCJ2+9BGfvKOFvawgzXkkEcNM/i1FKJcZFEdIHJpPEM70CAaGPgOyEDeStoBo7jEJP7UAq6hHfg7XRwi9h9DeT6v4xbakCNXeB2L8J7ct1so4xhVlJCFyaN0VMyC4BNzsdCubdoJYQAAAABJRU5ErkJggg==\"  terminal=false\"\n"
+			}
+		],
+		"path": "System/Day-Night Color Profile Selector.15s.sh",
+		"filename": "Day-Night Color Profile Selector.15s.sh",
+		"dir": "System",
+		"docsPlugin": "System/Day-Night Color Profile Selector.15s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Day/Night Color Profile Selector",
+		"version": "v1.0",
+		"author": "Nadav G",
+		"authors": [
+			{
+				"name": "Nadav G",
+				"githubUsername": "nadigo",
+				"imageURL": "https://avatars.githubusercontent.com/u/6098053?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Simple menubar day/night icc selector",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"bash",
+			"customdisplayprofiles"
+		],
+		"aboutURL": "https://github.com/nadigo/",
+		"lastUpdated": "2021-03-08T15:22:02.15214Z",
+		"vars": null
+	}
+}

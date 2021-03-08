@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "AWS/ecs-cluster.10m.sh",
+				"filename": "ecs-cluster.10m.sh",
+				"content": "#!/bin/sh\n# \u003cbitbar.title\u003eAmazon ECS Cluster Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eBob Zoller\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ebobzoller\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows statistics about your Amazon ECS cluster.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eawscli,jq\u003c/bitbar.dependencies\u003e\n\n# Dependencies: \n#   awscli (https://aws.amazon.com/cli/)\n#   jq (https://stedolan.github.io/jq/)\n\nAWS_CLI_PROFILE=\"default\"\nECS_CLUSTER=\"\"\n\nexport PATH=\"$PATH:/usr/local/bin\"\n\nif [ -z \"$ECS_CLUSTER\" ]; then\n  echo \"Missing configuration: cluster name\"\n  exit 1\nfi\n\ndata=$( aws --profile $AWS_CLI_PROFILE ecs list-container-instances --output json --cluster $ECS_CLUSTER )\ninstance_ids=$( echo \"$data\" | jq -r '.containerInstanceArns | map(. | split(\"/\") | last) | join(\" \")' )\n\ndata=$( aws --profile $AWS_CLI_PROFILE ecs describe-container-instances --output json --cluster $ECS_CLUSTER --container-instances \"$instance_ids\" )\ninstance_count=$( echo \"$data\" | jq -r '.containerInstances | length' )\n\ntotal_memory=$(( $( echo \"$data\" | jq -r '.containerInstances | map(.registeredResources[] | select(.name == \"MEMORY\") | .integerValue) | add' ) / 1000 ))\nremaining_memory=$(( $( echo \"$data\" | jq -r '.containerInstances | map(.remainingResources[] | select(.name == \"MEMORY\") | .integerValue) | add' ) / 1000 ))\nreserved_memory=$(( total_memory - remaining_memory ))\nusage_memory=$( echo \"$reserved_memory * 100 / $total_memory\" | bc )\n\ntotal_cpu=$( echo \"$data\" | jq -r '.containerInstances | map(.registeredResources[] | select(.name == \"CPU\") | .integerValue) | add' )\nremaining_cpu=$( echo \"$data\" | jq -r '.containerInstances | map(.remainingResources[] | select(.name == \"CPU\") | .integerValue) | add' )\nreserved_cpu=$(( total_cpu - remaining_cpu ))\nusage_cpu=$( echo \"$reserved_cpu * 100 / $total_cpu\" | bc )\n\nmono() {\n  echo \"$1 | font=Monaco trim=false\"\n}\n\necho \"#:${instance_count} C:${usage_cpu}% M:${usage_memory}%\"\necho \"---\"\nmono \"Instances:\"\nmono \"  Count:    ${instance_count}\"\nmono \"Memory:\"\nmono \"  Total:    ${total_memory} GB\"\nmono \"  Reserved: ${reserved_memory} GB\"\nmono \"  Free:     ${remaining_memory} GB\"\nmono \"CPU:\"\nmono \"  Total:    ${total_cpu} shares\"\nmono \"  Reserved: ${reserved_cpu} shares\"\nmono \"  Free:     ${remaining_cpu} shares\"\n\n"
+			}
+		],
+		"path": "AWS/ecs-cluster.10m.sh",
+		"filename": "ecs-cluster.10m.sh",
+		"dir": "AWS",
+		"docsPlugin": "AWS/ecs-cluster.10m.sh.html",
+		"docsCategory": "AWS.html",
+		"pathSegments": [
+			"AWS"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "AWS",
+				"text": "AWS",
+				"isLast": true
+			}
+		],
+		"title": "Amazon ECS Cluster Status",
+		"version": "v1.0",
+		"author": "Bob Zoller",
+		"authors": [
+			{
+				"name": "Bob Zoller",
+				"githubUsername": "bobzoller",
+				"imageURL": "https://avatars.githubusercontent.com/u/16850?v=4",
+				"bio": "luddite-leaning technology leader",
+				"primary": true
+			}
+		],
+		"desc": "Shows statistics about your Amazon ECS cluster.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"awscli",
+			"jq"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:44.379934Z",
+		"vars": null
+	}
+}

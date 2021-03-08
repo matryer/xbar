@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/GitHub/repo-issues.5m.js",
+				"filename": "repo-issues.5m.js",
+				"content": "#!/usr/bin/env /usr/local/bin/node\n\n// \u003cbitbar.title\u003eGithub Repository Issues\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eTom Genoni\u003c/bitbar.author\u003e\n// \u003cbitbar.desc\u003eLists all pull requests and issues, up to 100 total.\u003c/bitbar.desc\u003e\n// \u003cbitbar.author.github\u003etomgenoni\u003c/bitbar.author.github\u003e\n// \u003cbitbar.dependencies\u003enode.js\u003c/bitbar.dependencies\u003e\n\n$HOSTNAME = \"\"; // For enterprise Github accounts, e.g., github.tinderforcats.com/api/v3\n$ORG = \"matryer\";\n$REPOSITORY = \"bitbar\";\n$BITBAR_TITLE = \"bitbar\";\n$GITHUB_ACCESS_TOKEN = \"\";\n\n// ----------- Ignore below this line ---------------\n\nvar https = require('https');\n\nvar options = {\n  host: $HOSTNAME || 'api.github.com',\n  headers: {'user-agent': 'Mozilla/5.0'},\n  path: '/repos/'+$ORG+'/'+$REPOSITORY+'/issues?GITHUB_ACCESS_TOKEN=' + $GITHUB_ACCESS_TOKEN + '\u0026per_page=100'\n};\n\nhttps.get(options, function(res) {\n  var body = '';\n  res.on('data', function(data) {\n    body += data;\n  });\n  res.on('end', function() {\n    handleResponse(JSON.parse(body));\n  });\n});\n\nfunction fixedIssues(body) {\n\n  var arr = [];\n\n  var closeTerms = ['close', 'closes', 'closed', 'fix', 'fixes', 'fixed', 'resolve', 'resolves', 'resolved'];\n\n  body.map(function(issues){\n    if ( issues.pull_request ) {\n      var comments = issues.body;\n\n      closeTerms.forEach(function(term) {\n        var regex = new RegExp(term + \" #([0-9]+)\", \"ig\");\n        var matches = comments.match(regex);\n        if (matches) {\n          matches.forEach(function(match) {\n            var num = match.split(\"#\")[1];\n            arr.push(num);\n          });\n        }\n      });\n    }\n  });\n\n  return arr;\n}\n\nfunction allIssues(body) {\n\n  var fixed = fixedIssues(body);\n\n  var issues = body.map(function(issues){\n    if ( issues.pull_request ) {\n      return [issues.title, ' - #', issues.number, ' | href=', issues.html_url,'\\n'].join('');\n    }\n  }).join('\\n');\n\n  var prs = body.map(function(issues){\n    var color = \"\";\n    if ( !issues.pull_request ) {\n      if ( fixed.indexOf(issues.number.toString()) \u003e -1 ) {\n        color = \"color=#aaaaaa\";\n      }\n      return [issues.title, ' - #', issues.number,' (', issues.user.login, ') | href=', issues.html_url, ' ', color, '\\n'].join('');\n    }\n  }).join('\\n');\n\n  return [issues, prs];\n}\n\nfunction issueCount(body) {\n  var p = 0;\n  body.map(function(issues){\n    if ( issues.pull_request ) {\n      p++;\n    }\n  });\n  var i = body.length - p;\n  return [i, p];\n}\n\nfunction handleResponse(body) {\n  var countPRs = issueCount(body)[1];\n  var countIssues = issueCount(body)[0];\n  var listIssues = allIssues(body)[1];\n  var listPRs = allIssues(body)[0];\n\n  console.log($BITBAR_TITLE + \" \" + countPRs + \"/\" + countIssues);\n\n  console.log(\"---\");\n  console.log(\"Pull Requests \" + countPRs);\n  console.log(listPRs);\n\n  console.log(\"---\");\n  console.log(\"Issues \" + countIssues);\n  console.log(listIssues);\n\n}\n"
+			}
+		],
+		"path": "Dev/GitHub/repo-issues.5m.js",
+		"filename": "repo-issues.5m.js",
+		"dir": "Dev/GitHub",
+		"docsPlugin": "Dev/GitHub/repo-issues.5m.js.html",
+		"docsCategory": "Dev/GitHub.html",
+		"pathSegments": [
+			"Dev",
+			"GitHub"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/GitHub",
+				"text": "GitHub",
+				"isLast": true
+			}
+		],
+		"title": "Github Repository Issues",
+		"version": "v1.0",
+		"author": "Tom Genoni",
+		"authors": [
+			{
+				"name": "Tom Genoni",
+				"githubUsername": "tomgenoni",
+				"imageURL": "https://avatars.githubusercontent.com/u/1171072?v=4",
+				"bio": "Design Systems at Thumbtack",
+				"primary": true
+			}
+		],
+		"desc": "Lists all pull requests and issues, up to 100 total.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"node.js"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:48.689832Z",
+		"vars": null
+	}
+}

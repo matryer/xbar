@@ -1,0 +1,119 @@
+{{ define "title" }}{{ .Author.Name }} is on xbar{{ end }}
+{{ define "head" }}
+	<meta name='description' content='{{ .Author.Name }} is on xbar.'>
+	<meta name='author' content='{{ .Author.Name }}'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='{{ .Author.ImageURL }}'>
+	<meta itemprop='name' content='{{ .Author.Name }} is on xbar.'>
+	<meta itemprop='description' content='{{ .Author.Name }} is on xbar.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='{{ .Author.Name }} is on xbar.'>
+	<meta name='twitter:description' content='{{ .Author.Name }} is on xbar.'>
+	<meta name='twitter:image' content='{{ .Author.ImageURL }}'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='{{ .Author.Name }} is on xbar.'>
+	<meta property='og:description' content='{{ .Author.Name }} is on xbar.'>
+	<meta property='og:url' content='https://xbarapp.com/contributors/{{ .Author.GitHubUsername }}.html'>
+	<meta property='og:site_name' content='Browse and install plugins by {{ .Author.Name }} on xbar.'>
+	<meta property='og:type' content='article:author'>
+	<meta property='og:image' content='{{ .Author.ImageURL }}'>
+	<link rel='apple-touch-icon' sizes='180x180' href='{{ .Author.ImageURL }}'>
+	<link rel='icon' type='image/png' sizes='32x32' href='{{ .Author.ImageURL }}'>
+	<link rel='shortcut icon' href='{{ .Author.ImageURL }}'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+{{ end }}
+{{ define "body" }}
+	<div class='container mx-auto p-8'>
+		<div class='flex md:space-x-8'>
+			<div class='pb-2 mb-4 hidden md:block'>
+				<img class='max-h-sm rounded-xl' src='{{ .Author.ImageURL }}' />
+				<p class='mt-8 text-white opacity-75'>
+					Meet other <a class='underline' href='/docs/contributors/index.html'>xbar contributors</a>.
+				</p>
+			</div>
+			<div class='pb-2 mb-4 text-white'>
+				<h1 class='hidden md:block text-3xl'>
+					{{ .Author.Name }}&mdash;<span class='text-white opacity-50'>@{{ .Author.GitHubUsername }}</span>
+				</h1>
+				<div class='md:hidden flex items-end space-x-4'>
+					<img class='md:hidden align-bottom inline max-h-sm rounded-xl w-24 h-24' src='{{ .Author.ImageURL }}' />
+					<div class='flex flex-col'>
+						<div class='flex-grow'></div>
+						<h1 class='text-3xl'>
+							{{ .Author.Name }}&mdash;<span class='text-white opacity-50'>@{{ .Author.GitHubUsername }}</span>
+						</h1>
+					</div>
+				</div>
+				<p class='text-xl py-4 max-w-md'>
+					{{ .Author.NiceBio }}
+				</p>
+				{{ if eq .Author.GitHubUsername "matryer" }}
+					<p class='p-4'>
+						<a 
+							class='text-sm text-gray-800 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded border border-gray-300' 
+							target='github' 
+							href='https://github.com/sponsors/matryer'
+							style='text-decoration:none;'
+						>Support xbar on GitHub Sponsors</a>
+					</p>
+				{{ else }}
+					<p class='p-4'>
+						<a 
+							class='text-sm text-gray-800 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded border border-gray-300' 
+							target='github' 
+							href='https://github.com/{{ .Author.GitHubUsername }}'
+							style='text-decoration:none;'
+						>Visit @{{ .Author.GitHubUsername }} on GitHub</a>
+					</p>
+				{{ end }}
+				{{ if .Plugins }}
+					{{ template "plugins-list" .Plugins }}
+				{{ end }}
+			</div>
+		</div>
+	</div>
+{{ end }}
+{{ define "plugins-list" }}
+	{{ if . }}
+		{{ range . }}
+			<div class='flex space-x-4 rounded-lg mt-8 py-8 p-8 md:px-16 bg-black bg-opacity-25'>
+				<div class='w-24 h-24 overflow-hidden'>
+					<a href='/docs/plugins/{{ .Path }}.html'>
+						<img 
+							src='{{ .ImageURL }}'
+							onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+						>
+					</a>
+				</div>
+				<div class='flex-grow'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/{{ .Path }}.html'
+						><strong class='text-xl'>{{ .Title }}</strong></a>
+					</p>
+					<p class='max-w-md'>
+						{{ .Desc }}
+					</p>
+					{{ range .Authors }}
+						<p class='mt-4'>
+							<a class='flex space-x-2 items-center' href='/docs/contributors/{{ .GitHubUsername }}.html'>
+								<span class='flex-grow text-right'>
+									<strong>{{ .Name }}</strong>
+									{{ if .GitHubUsername }}
+										(@{{ .GitHubUsername }})
+									{{ end }}
+								</span>
+								{{ if .ImageURL }}
+									<img class='w-10 h-10 rounded-full inline' src='{{ .ImageURL }}'>
+								{{ end }}
+							</a>
+						</p>
+					{{ end }}
+				</div>
+			</div>
+		{{ end }}
+	{{ end }}
+{{ end }}

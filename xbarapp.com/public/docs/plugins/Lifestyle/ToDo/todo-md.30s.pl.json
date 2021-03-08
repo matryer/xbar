@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/ToDo/todo-md.30s.pl",
+				"filename": "todo-md.30s.pl",
+				"content": "#!/usr/bin/env perl\n\n# Inspired from [Simple Todo Tracker](https://getbitbar.com/plugins/Lifestyle/todo.30s.sh)\n\nuse strict;\nuse warnings;\n\n# Edit the path to the file describe your ToDo\nmy $file_path = \"$ENV{HOME}/Dropbox/TODO.md\";\n\n# Select your editor\nmy $editor = \"/Applications/Atom.app/Contents/Resources/app/atom.sh\"; # Atom\n# my $editor = \"/Applications/TextMate.app/Contents/Resources/mate\"; # TextMate\n# my $editor = \"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl\"; # Sublime Text\n# my $editor = \"/Applications/CotEditor.app/Contents/SharedSupport/bin/cot\"; # CotEditor\n# my $editor = \"/Applications/Emacs.app/Contents/MacOS/Emacs\"; # Emacs\n\n# Change here depending on your preference\nmy $font_color_finished = \"#C0C0C0\";\nmy $font_color_unfinieshed = \"black\";\nmy $font_color_label = \"gray\";\nmy $menu_bar_icon = \":ballot_box_with_check:\";\n\n# \u003cbitbar.title\u003eSimple ToDo Tracker for Markdown\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKenji Akiyama\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eartifactsauce\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTracking ToDo list described in Markdown\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/nIEVIdR.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eperl\u003c/bitbar.dependencies\u003e\n\nmy $unfinished_task_cnt = 0;\nmy @tasks = ();\n\nopen my $fh, \"\u003c\", $file_path or die $!;\nmy $content = do { local $/; \u003c$fh\u003e };\nclose $fh;\n\n$content =~s/\u003c!--.*?--\u003e//sg;\n\nfor ( split /\\n/, $content ) {\n    next unless $_ =~/^\\s*(?:[\\-\\+\\*]|\\d+\\.?)\\s{1,3}\\[(.)\\]\\s+(.+)$/;\n    my $task = {\n        checked =\u003e ($1 eq \"x\"),\n        title =\u003e $2,\n    };\n\n    if ( $task-\u003e{title} =~s/^(?:label\\:(\\S+))?\\s*(.+)$/$2/i ) {\n        $task-\u003e{label} = $1;\n    }\n\n    if ( $task-\u003e{title} =~s/\\[(.+?)\\]\\((\\S+?)\\)/$1/ ) {\n        $task-\u003e{url} = $2;\n    }\n\n    $unfinished_task_cnt++ unless $task-\u003e{checked};\n    push @tasks, $task;\n}\n\nprint \"$menu_bar_icon:$unfinished_task_cnt\\n\";\nprint \"---\\n\";\n\nfor ( my $i = 0; $i \u003c= $#tasks; $i++ ) {\n    my $font_color = $tasks[$i]-\u003e{checked} ? $font_color_finished : $font_color_unfinieshed;\n    my $option_string = \"color=$font_color trim=false\";\n    $option_string .= \" href=$tasks[$i]-\u003e{url}\" if defined $tasks[$i]-\u003e{url};\n\n    if ( ! defined $tasks[$i]-\u003e{label} ) {\n        printf \"%s | %s\\n\", $tasks[$i]-\u003e{title}, $option_string;\n    }\n    elsif ( defined $tasks[$i-1]-\u003e{label} \u0026\u0026 $tasks[$i-1]-\u003e{label} eq $tasks[$i]-\u003e{label}) {\n        printf \"    %s | %s\\n\", $tasks[$i]-\u003e{title}, $option_string;\n    }\n    else {\n        printf \"%s | color=$font_color_label\\n\", $tasks[$i]-\u003e{label};\n        printf \"    %s | %s\\n\", $tasks[$i]-\u003e{title}, $option_string;\n    }\n}\n\nprint \"---\\n\";\nprint \"Open file | bash=$editor param1=$file_path terminal=false\\n\";\n# print \"Refresh | refresh=true\\n\"; # enable to refresh manually\n"
+			}
+		],
+		"path": "Lifestyle/ToDo/todo-md.30s.pl",
+		"filename": "todo-md.30s.pl",
+		"dir": "Lifestyle/ToDo",
+		"docsPlugin": "Lifestyle/ToDo/todo-md.30s.pl.html",
+		"docsCategory": "Lifestyle/ToDo.html",
+		"pathSegments": [
+			"Lifestyle",
+			"ToDo"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": false
+			},
+			{
+				"path": "Lifestyle/ToDo",
+				"text": "ToDo",
+				"isLast": true
+			}
+		],
+		"title": "Simple ToDo Tracker for Markdown",
+		"version": "v1.1",
+		"author": "Kenji Akiyama",
+		"authors": [
+			{
+				"name": "Kenji Akiyama",
+				"githubUsername": "artifactsauce",
+				"imageURL": "https://avatars.githubusercontent.com/u/125637?v=4",
+				"bio": "\r\n    A raw guy programmer.\r\n",
+				"primary": true
+			}
+		],
+		"desc": "Tracking ToDo list described in Markdown",
+		"imageURL": "http://i.imgur.com/nIEVIdR.png",
+		"dependencies": [
+			"perl"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:54.757273Z",
+		"vars": null
+	}
+}

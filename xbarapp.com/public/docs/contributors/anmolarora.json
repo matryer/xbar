@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Anmol Arora",
+		"githubUsername": "anmolarora",
+		"imageURL": "https://avatars.githubusercontent.com/u/5461473?v=4",
+		"bio": "Engineer",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Tools/wallpaper_refresh.1h.sh",
+					"filename": "wallpaper_refresh.1h.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eWallpaper refresh\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAnmol Arora\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eanmolarora\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eA new HD wallpaper every hour.\u003c/bitbar.desc\u003e\n\necho 'W'\necho ---\n\n# Download image from server\ncurl \"$(curl https://powerful-inlet-26346.herokuapp.com/image_url)\" \u003e \"/tmp/wallpaper_refresh_image.png\"\n# Set image as wallpaper\nSCRIPT_TEXT='tell application \"Finder\" to set desktop picture to POSIX file \"/tmp/wallpaper_refresh_image.png\"'\nosascript -e \"${SCRIPT_TEXT}\"\n"
+				}
+			],
+			"path": "Tools/wallpaper_refresh.1h.sh",
+			"filename": "wallpaper_refresh.1h.sh",
+			"dir": "Tools",
+			"docsPlugin": "Tools/wallpaper_refresh.1h.sh.html",
+			"docsCategory": "Tools.html",
+			"pathSegments": [
+				"Tools"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": true
+				}
+			],
+			"title": "Wallpaper refresh",
+			"version": "v1.0",
+			"author": "Anmol Arora",
+			"authors": [
+				{
+					"name": "Anmol Arora",
+					"githubUsername": "anmolarora",
+					"imageURL": "https://avatars.githubusercontent.com/u/5461473?v=4",
+					"bio": "Engineer",
+					"primary": true
+				}
+			],
+			"desc": "A new HD wallpaper every hour.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:07.975486Z",
+			"vars": null
+		}
+	]
+}

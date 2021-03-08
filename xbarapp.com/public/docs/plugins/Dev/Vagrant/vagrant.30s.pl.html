@@ -1,0 +1,409 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Vagrant Global Status in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Show vagrant images running, from vagrant global-status command - install xbar for free to get started.'>
+	<meta name='author' content='Alexandre Espinosa Menor'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/4YAFZC6.png'>
+	<meta itemprop='name' content='Vagrant Global Status in your macOS menu bar'>
+	<meta itemprop='description' content='Show vagrant images running, from vagrant global-status command - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Vagrant Global Status in your macOS menu bar'>
+	<meta name='twitter:description' content='Show vagrant images running, from vagrant global-status command - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/4YAFZC6.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Vagrant Global Status in your macOS menu bar'>
+	<meta property='og:description' content='Show vagrant images running, from vagrant global-status command - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/Vagrant/vagrant.30s.pl.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/4YAFZC6.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/4YAFZC6.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/4YAFZC6.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/4YAFZC6.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Vagrant Global Status</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/alexandregz.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/1374718?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/alexandregz.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Alexandre Espinosa Menor (<code style='color:white;'>@alexandregz</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Show vagrant images running, from vagrant global-status command
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fVagrant%2fvagrant.30s.pl'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/4YAFZC6.png' 
+				alt='Image preview of Vagrant Global Status plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>vagrant.30s.pl</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/Vagrant/vagrant.30s.pl'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/Vagrant/vagrant.30s.pl'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env perl
+# &lt;bitbar.title&gt;Vagrant Global Status&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;1.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Alexandre Espinosa Menor&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;alexandregz&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Show vagrant images running, from vagrant global-status command&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/4YAFZC6.png&lt;/bitbar.image&gt;
+#
+# &#34;running&#34; line run command &#34;vagrant suspend&#34;
+# &#34;saved, poweroff, aborted&#34; line run command &#34;vagrant up&#34;
+#
+
+use strict;
+
+$ENV{&#39;PATH&#39;} = $ENV{&#39;PATH&#39;}.&#39;:/usr/local/bin&#39;; 
+
+if ($#ARGV &gt;= 1) {
+        exit exec_sub_command(@ARGV);
+}
+
+# action =&gt; [status1 from machine, status2, ...]
+my $actions_from_status = {
+        up =&gt; [&#34;saved&#34;, &#34;poweroff&#34;, &#34;aborted&#34;],
+        suspend =&gt; [&#34;running&#34;],
+        resume =&gt; [&#34;suspended&#34;]
+};
+
+my $status = `vagrant global-status`;
+
+if($status =~ /^\-{10,}\n(.*)\n\s&#43;\n/sm) {
+        my @images = split(/\n/, $1);
+
+        print &#34;🇻&#34;; print &#34;(&#34;.scalar(@images).&#34;)&#34; if(@images);
+        print &#34;\n&#34;;
+        print &#34;---\n&#34;;
+
+        foreach my $i(@images) {
+                my @data_image = split(/\s&#43;/, $i);
+                my $i_id = $data_image[0];
+                my $i_image = $data_image[1];
+                my $i_provider = $data_image[2];
+                my $i_status = $data_image[3];
+                my $i_path = $data_image[4];
+
+                my $color = &#34;black&#34;;
+                $color = &#34;green&#34; if($i_status eq &#39;running&#39;);
+                $color = &#34;red&#34; if($i_status eq &#39;saved&#39;);
+
+                print &#34;$i_id - $i_image ($i_provider) | color=black\n&#34;;
+                print &#34;   $i_path | bash=$0 param1=path_copy param2=$i_path color=gray trim=false terminal=false\n&#34;;
+
+                print &#34;$i_status | color=$color &#34;;
+                foreach my $action(keys(%{$actions_from_status})) {
+                        print &#34;bash=vagrant param1=$action param2=$i_id terminal=true&#34; if(grep $_ eq $i_status, @{$actions_from_status-&gt;{$action}});
+                }
+                print &#34;\n&#34;;
+                print &#34;---\n&#34;;
+        }
+}
+else{
+        #print &#34;Without Vagrant images running?&#34;;
+        print &#34;🇻(0)&#34;;
+}
+
+sub exec_sub_command {
+        my ($sub_command, @args) = @_;
+        my $sub_command_methods = {
+                &#39;path_copy&#39; =&gt; \&amp;sub_command_path_copy,
+        };
+        if (!defined $sub_command_methods-&gt;{$sub_command}) {
+                die &#34;Undefined sub command: $sub_command&#34;;
+        }
+        return $sub_command_methods-&gt;{$sub_command}(@args);
+}
+
+sub sub_command_path_copy {
+        my $path = shift;
+        open my $fh, &#39;|/usr/bin/pbcopy&#39; or die $!;
+        print $fh $path;
+        close $fh;
+        return;
+}
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

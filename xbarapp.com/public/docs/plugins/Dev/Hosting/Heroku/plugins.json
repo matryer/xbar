@@ -1,0 +1,172 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/Hosting/Heroku/heroku.1m.rb",
+					"filename": "heroku.1m.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eHeroku\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDeluan Quintao\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edeluan\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCurrently this plugin displays Heroku service status and open issues\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/B7A1wvm.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n\nrequire 'json'\nrequire 'open-uri'\n\nHEROKU_CMD=\"/usr/local/bin/heroku\"\n\nICON=\"iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAA3RJREFUOBGVVL9rFEEUfm9m93Y3xp/RQlGCiiBpBDs7ISRWsQtGELGwUNsoNkpOMGIRa/UfCMZgIShoFAkIESsrY6edFlGDJmfuZndm/N7s3ZkLCeq72915M+998837MUyrZHj4oSaax/N32f5xt1888IUXFsjNzlaLdTw8rzP531MtEPn6kcE7+5zzfcwO6NoKmlKKvbctO7LQlFNe1hzZBOqnqZdXP4gOYa5WqwqPE21kYGIyjtPTeVHPsRZhj7ARMXn8yjEWxA9rRaQrUeHMOxV19U8+vbQoIVPv3/eJIQkwKdqtVSxqHOmY4yglrSJ4gyYr/LAaJZhPxCaCLnvuybneJRMLC/OsZBCkirenFetAzlNurbltisaQtcUsoMh7Z523zhT1azIPo1esxN0v6UYeQrBrV5//AyhLXqhgV6bYOX48NTP6BPTmlYqEqWbiZ1MzV8aNbbyB0SG4iHRURQdguR42I9auR3RoEcBC2Dy552f7b/UkOp5EOPblRQMWwuCPrANYLrYyCbaZMLQ2/4xcnDQ6fh1H2SASV7DkZo1sCFiwK3f2fG+5sTjAho4YZc+hkM6bYuURkgTaIqFAyiHeGwCy18R1sfKWvqLWUl/hc0nBBx/MjM6Ri64jST/KiuBQry3E5i6lGpIWhh6txGdODU5cAtgJrZIsS7bQcv3bOywfjWKzZK1eQva3QkeYQ9UEzw5A75mlguUfV7KzYCGxI5RSUTfLYlsTL89awqFhJqaI5C+ZDrLmyBIPaQRvTV5bdK6Q+sOcdyEBzXDlpmhilSCr3x2AYAiOkjmpZHUdRX0vdJnoIs206ijUb0gxXgLelg5A2OPEaFrmCrzfPnhx+SIYzknDBaYIqHhqVnJddQC1ENuAYzTmIWgGaTNvmOxhXBbjMDyGGOLIMMUJxNEwh/svUJQQrZJ2Um5UbzDPdaNh0cvkV8DzplK6F/0r5nWkJcN3/8iJibtkSbKblp1SshYjkTbDanUMu/OWtNKNXku2punmXq1jXDspVeIsk29S2bR3c7bzQnfacxo3zo6k0iX8eqyNA025baLp6eFm7iRAE09qtW/bcfClwppwfslTaAbZGklvmJocNwCA9TYMX9MKfRd2x4+TawVAviE+Q0P3u7Y1frbmxW5DqZsaT8+OoTbL2K41/CeQtU5Nve37GzcPb+4ia8bVAAAAAElFTkSuQmCC\"\n\ndef status_icon(icon=\"\", ok=true)\n  if icon.respond_to?('each')\n    msg = \"\"\n    icon.each do |i|\n      msg += \"#{i} | image=#{ICON} dropdown=false\\n\"\n    end\n  else\n    msg = \"#{icon} | image=#{ICON} dropdown=false\\n\"\n    msg += \"#{icon} | image=#{ICON} dropdown=false color=red\\n\" unless ok\n  end\n  msg + \"---\"\nend\n\ndef status\n  begin\n    @status ||= (content = URI(\"https://status.heroku.com/api/v3/current-status\").read; JSON.parse(content))\n  rescue =\u003e e\n    puts status_icon \":interrobang:\", false\n    puts \"Error: #{e} | color=red\"\n    puts \"---\"\n    puts \"Refresh... | refresh=true\"\n    exit\n  end\nend\n\ndef issues\n  @issues ||= [].tap do |resp|\n    status[\"issues\"].each do |issue|\n      href = issue[\"full_url\"]\n      title = issue[\"title\"]\n      color = issue[\"status_prod\"]\n      resp \u003c\u003c \"#{title} | color=#{color} href=#{href}\"\n    end\n  end\nend\n\nif status[\"status\"][\"Production\"] != \"green\"\n  puts status_icon [\":grey_exclamation:\", \":exclamation:\"], false\nelse\n  puts status_icon\nend\n\nputs \"---\"\nif issues.size \u003e 0\n  issues.each do |issue|\n    puts issue\n  end\nelse\n  puts \"All good. Relax | href=https://status.heroku.com/ color=green\"\nend\n\nputs \"---\"\nputs \"Refresh... | refresh=true\"\n"
+				}
+			],
+			"path": "Dev/Hosting/Heroku/heroku.1m.rb",
+			"filename": "heroku.1m.rb",
+			"dir": "Dev/Hosting/Heroku",
+			"docsPlugin": "Dev/Hosting/Heroku/heroku.1m.rb.html",
+			"docsCategory": "Dev/Hosting/Heroku.html",
+			"pathSegments": [
+				"Dev",
+				"Hosting",
+				"Heroku"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting",
+					"text": "Hosting",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting/Heroku",
+					"text": "Heroku",
+					"isLast": true
+				}
+			],
+			"title": "Heroku",
+			"version": "v0.2",
+			"author": "Deluan Quintao",
+			"authors": [
+				{
+					"name": "Deluan Quintão",
+					"githubUsername": "deluan",
+					"imageURL": "https://avatars.githubusercontent.com/u/331353?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Currently this plugin displays Heroku service status and open issues",
+			"imageURL": "http://i.imgur.com/B7A1wvm.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.079697Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Hosting/Heroku/listapps.5m.sh",
+					"filename": "listapps.5m.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eHeroku List List\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCody Brumfield\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecody1213\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eLists Heroku apps with links to both the live version and, while holding ALT/OPTION, the Heroku dashboard page).\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eheroku-toolbelt\u003c/bitbar.dependencies\u003e\n\n#If your Heroku Toolbelt command isn't /usr/local/bin/heroku, change it here:\nheroku_cmd=\"/usr/local/bin/heroku\"\n\n#If you have a custom URL system like https://instance-name.mydomain.com, you can change the default Heroku URLs below to match your system. \n#If your URLs don't use the instance name, you could replace this with a function to parse the output of heroku domains -a instance-name\nurlprefix=\"https://\" #part of URL before your instance name\nurlsuffix=\".herokuapp.com\" #part of URL after your instance name\n\nfunction prepLine {\n  # This function preps the lines for each instance and can be used to show different info or customize the URLs\n  echo \"$1 | href=$urlprefix$1$urlsuffix\"\n  echo \"$1 on Heroku | alternate=true href=https://dashboard.heroku.com/apps/$1\"\n  count=$((count+1));\n}\n\necho \"| templateImage=iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAADzUlEQVRoBe2YuYsUQRjFvQ+8EFHEI1lcDwzFQIw0UvAPUGMRjA3ExEQwMjAVM9mNBE0UwcDIQDxBVJAFQRDFAzzwvt9vu99S9PY0PVU9PYH9wes6uo73vq+qpnpmzOis80Dngc4D/5sHZkqwkaKdMaJtTnTPrOOskv5/S+qKVbH9iuMkl1O8VyZiKIQg8kdYJRwXlgjfheXCLeGMgCG2GB333a53R4SvAmMtFF4Jp4TPgtspOzibnQ+9WSlEQ9wIpi16Pozi5UI/xhgP+oZtg+pmsxYyqmHfCZDAi6RXBFtRyNz8xW6ltCUSRIT8W2FEwKL2bXGybKh6T7zm/sW0OALvf+aVx/KUskmzHJ8KOOmX0Io5Ihs12wcBj37L06tKbRZH2dE4qDztIetosK/83mOravDmyeoKcftNovZRQIjxQ3k2PmYxWanPp0PbZ7fazcOTa0S9xgRHcbHy14XbQrj0VGzH7OFRTWdSZUsLD4fLqxe7Rk6opiMSkvLmRsA8YZGAuC/CJ8GG2N8uxKZNCWHNY6x5bK2wQ9gmbBXWC8sEhCJiQrgojAuIIMrJYjRGX1a2tBCAmCfCBeF1Xvam7pVeUjsihdVZhlnLhp6hkPcaE5J4kx+4kDDi2DssMdfTjusM9RzB1PtKMzQhG0TCQiALIGmCJk/KO/ZGWOcoEr01Aha91KM7ZvNOrWu8GXr0mcr3hbvCI+GFwA/gauGEsFPwwbBS+S0CbVynbH+WIgTvhuv7scrXctxR+kYo2gNVQBwhoS0NCzH5FCFEgPsRV4wx4aYQHqsqTi4Ve5m5iApHcOMWI8TH5HOx2SXwHWGDtA8D2oUXQA4DzMKyUkPPGCEmg3eBybPUIBuSV3HKLIB2jVusEMhADJDvRV6v2rFYIbCzZ522w7jHLOGR2aNJZTUiUseonKDuyxQSjib7whu87ryNt4sR4j7rxOakgCBOKAtTtn0zqX5m9unDfemocD7vzIYfmpgYITnvyaOWfz8OCGfzSsQMZZmlCKGvo3NY+XO5GJZZyrj5MP0lqRO6Pz+Mh4TT+fScZhaZVw02MZHUWfjLk+s4/yBi/qHMSi08Uzcn3xTYS2GfcE9gj/g+pmw7liIEsisEbrx7BK7o3Gz5iKoy3wToT+QQ7rqqfpXvUpYW3yITwl6hrgjILOAhmy/4hCOPRe+rmIj4Os6/hvsFxECobiQeqi3/nvDpiyPhwBhY60sy9Jy9mlGpfob9ii2r3hXbTiundKYvHu3Xi2VzJu+RskGnqR1ARXHeZCED4NgN2Xmg80DngQF64B9GCddbdS0DAwAAAABJRU5ErkJggg==\"\necho \"---\"\ncount=0;\n\nfor x in $(\"$heroku_cmd\" apps --all | awk '{if(NR\u003e1)print}'); do prepLine \"$x\"; done\necho \"---\"\necho \"$count instances | href=https://dashboard.heroku.com/\"\n"
+				}
+			],
+			"path": "Dev/Hosting/Heroku/listapps.5m.sh",
+			"filename": "listapps.5m.sh",
+			"dir": "Dev/Hosting/Heroku",
+			"docsPlugin": "Dev/Hosting/Heroku/listapps.5m.sh.html",
+			"docsCategory": "Dev/Hosting/Heroku.html",
+			"pathSegments": [
+				"Dev",
+				"Hosting",
+				"Heroku"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting",
+					"text": "Hosting",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting/Heroku",
+					"text": "Heroku",
+					"isLast": true
+				}
+			],
+			"title": "Heroku List List",
+			"version": "v1.0",
+			"author": "Cody Brumfield",
+			"authors": [
+				{
+					"name": "Cody Brumfield",
+					"githubUsername": "cody1213",
+					"imageURL": "https://avatars.githubusercontent.com/u/1279978?v=4",
+					"bio": "Modern JavaScript, DevOps, Data Viz, and start-up management.",
+					"primary": true
+				}
+			],
+			"desc": "Lists Heroku apps with links to both the live version and, while holding ALT/OPTION, the Heroku dashboard page).",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"heroku-toolbelt"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.302593Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Hosting/Heroku/herokuappserrors.1h.rb",
+					"filename": "herokuappserrors.1h.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eHeroku apps:errors\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJosh Beckman\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eandjosh\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin displays Heroku errors for a given app. You must be logged in via heroku-cli.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/tAHBNUO.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.dependencies\u003eheroku-toolbelt\u003c/bitbar.dependencies\u003e\n\nrequire 'json'\n\nHEROKU_CMD=\"/usr/local/bin/heroku\"\n\n# Configuration options\napp = \"appname\" # Which app?\nhours = 24      # how many hours should the error window contain?\n\n\n# Heroku Error Glossary\nglossary = {\n\"H10\" =\u003e \"App crashed\",\n\"H11\" =\u003e \"Backlog too deep\",\n\"H12\" =\u003e \"Request timeout\",\n\"H13\" =\u003e \"Connection closed without response\",\n\"H14\" =\u003e \"No web dynos running\",\n\"H15\" =\u003e \"Idle connection\",\n\"H16\" =\u003e \"Redirect to herokuapp.com\",\n\"H17\" =\u003e \"Poorly formatted HTTP response\",\n\"H18\" =\u003e \"Server Request Interrupted\",\n\"H19\" =\u003e \"Backend connection timeout\",\n\"H20\" =\u003e \"App boot timeout\",\n\"H21\" =\u003e \"Backend connection refused\",\n\"H22\" =\u003e \"Connection limit reached\",\n\"H23\" =\u003e \"Endpoint misconfigured\",\n\"H24\" =\u003e \"Forced close\",\n\"H25\" =\u003e \"HTTP Restriction\",\n\"H26\" =\u003e \"Request Error\",\n\"H27\" =\u003e \"Client Request Interrupted\",\n\"H28\" =\u003e \"Client Connection Idle\",\n\"H80\" =\u003e \"Maintenance mode\",\n\"H81\" =\u003e \"Blank app\",\n\"H82\" =\u003e \"Free dyno quota exhausted\",\n\"H99\" =\u003e \"Platform error\",\n\"R10\" =\u003e \"Boot timeout\",\n\"R12\" =\u003e \"Exit timeout\",\n\"R13\" =\u003e \"Attach error\",\n\"R14\" =\u003e \"Memory quota exceeded\",\n\"R15\" =\u003e \"Memory quota vastly exceeded\",\n\"R16\" =\u003e \"Detached\",\n\"R17\" =\u003e \"Checksum error\",\n\"R99\" =\u003e \"Platform error\",\n\"L10\" =\u003e \"Drain buffer overflow\",\n\"L11\" =\u003e \"Tail buffer overflow\",\n\"L12\" =\u003e \"Local buffer overflow\",\n\"L13\" =\u003e \"Local delivery error\",\n\"L14\" =\u003e \"Certificate validation error\",\n\"L15\" =\u003e \"Tail buffer temporarily unavailable\"}\ntotal = 0\ncopy = \"\"\nstatus = `#{HEROKU_CMD} apps:errors -a #{app} --json --hours #{hours}`\nstatus = JSON.parse(status)\n\nstatus.keys.each do |level|\n    status[level].keys.each do |type|\n        if status[level][type].is_a? Numeric\n            # router errors\n            total += status[level][type]\n            copy += \"#{type}: #{status[level][type]} (#{glossary[type]})\\n\"\n        else\n            status[level][type].keys.each do |error|\n                # dyno errors\n                total += status[level][type][error]\n                copy += \"#{error}: #{status[level][type][error]} (#{glossary[error]})\\n\"\n            end\n        end\n    end\nend\n\nputs \"#{total} #{app} errors\"\nputs \"---\"\nputs \"In the last #{hours} hours\"\nputs copy\nputs \"Refresh... | refresh=true\"\n"
+				}
+			],
+			"path": "Dev/Hosting/Heroku/herokuappserrors.1h.rb",
+			"filename": "herokuappserrors.1h.rb",
+			"dir": "Dev/Hosting/Heroku",
+			"docsPlugin": "Dev/Hosting/Heroku/herokuappserrors.1h.rb.html",
+			"docsCategory": "Dev/Hosting/Heroku.html",
+			"pathSegments": [
+				"Dev",
+				"Hosting",
+				"Heroku"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting",
+					"text": "Hosting",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting/Heroku",
+					"text": "Heroku",
+					"isLast": true
+				}
+			],
+			"title": "Heroku apps:errors",
+			"version": "v0.1",
+			"author": "Josh Beckman",
+			"authors": [
+				{
+					"name": "Josh Beckman",
+					"githubUsername": "andjosh",
+					"imageURL": "https://avatars.githubusercontent.com/u/2358584?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "This plugin displays Heroku errors for a given app. You must be logged in via heroku-cli.",
+			"imageURL": "http://i.imgur.com/tAHBNUO.png",
+			"dependencies": [
+				"heroku-toolbelt"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.279635Z",
+			"vars": null
+		}
+	]
+}

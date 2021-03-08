@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/bandwidth.1s.sh",
+				"filename": "bandwidth.1s.sh",
+				"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eBandwidth\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAnt Cosentino\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eskibz\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays TX and RX bitrate of your main ethernet interface in the status bar and hides other interfaces in the context menu.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eifstat\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/2462211/12748504/584bbcea-c9b3-11e5-8109-ad8fdcefdc75.png\u003c/bitbar.image\u003e\n\nexport PATH=\"/usr/local/bin:${PATH}\"\nINTERFACES=$(ifconfig -lu)\n\necho \"▼ $(ifstat -n -w -i en0 0.1 1 | tail -n 1 | awk '{print $1, \" - \", $2;}') ▲\"\necho \"---\"\nfor INTERFACE in ${INTERFACES}; do\n  if [[ ${INTERFACE} != \"en0\" ]]; then\n    echo \"${INTERFACE}: ▼ $(ifstat -n -w -i \"${INTERFACE}\" 0.1 1 | tail -n 1 | awk '{print $1, \" - \", $2;}') ▲\"\n  fi\ndone\n"
+			}
+		],
+		"path": "Network/bandwidth.1s.sh",
+		"filename": "bandwidth.1s.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/bandwidth.1s.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Bandwidth",
+		"version": "v0.0.0",
+		"author": "Ant Cosentino",
+		"authors": [
+			{
+				"name": "Ant Cosentino",
+				"githubUsername": "skibz",
+				"imageURL": "https://avatars.githubusercontent.com/u/2462211?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays TX and RX bitrate of your main ethernet interface in the status bar and hides other interfaces in the context menu.",
+		"imageURL": "https://cloud.githubusercontent.com/assets/2462211/12748504/584bbcea-c9b3-11e5-8109-ad8fdcefdc75.png",
+		"dependencies": [
+			"ifstat"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.398521Z",
+		"vars": null
+	}
+}

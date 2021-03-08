@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Git/gitfinderinfo.1s.sh",
+				"filename": "gitfinderinfo.1s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eFinder Git Info\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMiguel Carvalho\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emmcarvalho\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the active git branch of the focused finder Window in the menu bar. When open, lists all finder windows with active git projects.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/mmcarvalho/git-finder-info/main/gitfinderinfo-screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/mmcarvalho/git-finder-info\u003c/bitbar.abouturl\u003e\n#\n# Dependencies: none.\n\nread -d '' get_windows \u003c\u003cEOL\ntell application \"Finder\"\n\tset mywindowlist to the name of every window\n\t# send result as text to bash - avoid strange chars. \n\t# @todo: improve it using 'text item delimiters' or move functionality to bash completely. \n\tset windowsPaths to \"\"\n\trepeat with thePath in mywindowlist\n\t\tset windowsPaths to windowsPaths \u0026 thePath \u0026 \"|\"\n\tend repeat\nend tell\nEOL\nwindows_list=$(osascript -e \"${get_windows}\")\nif [ -n \"$windows_list\" ]; then\n\tIFS='|'\n\tread -a paths \u003c\u003c\u003c \"$windows_list\"\n    i=0\n    for path in \"${paths[@]}\"\n    do\n        git_path=\"${path}/.git\"\n        if [ -d \"$git_path\" ]; then\n            branch=$(cd \"${path}\" \u0026\u0026 git branch --show-current)\n            basename=$(basename ${path})\n            if [ \"$i\" -eq \"0\" ]; then\n                echo \"𣎴 $branch\"\n                echo ---\n            fi\n\t\t\techo \"📂 $branch ($basename)\"\n\t\telse\n\t\t\tif [ \"$i\" -eq \"0\" ]; then\n                echo \"∅ no git dir\"\n                echo ---\n            fi\n\t\tfi\n        i=$(($i + 1))\n    done\n\techo ---\n\techo \"△ Open finder windows with active git projects.\"\nelse\n    echo \"∅ no git dir\"\nfi\n\n"
+			}
+		],
+		"path": "Dev/Git/gitfinderinfo.1s.sh",
+		"filename": "gitfinderinfo.1s.sh",
+		"dir": "Dev/Git",
+		"docsPlugin": "Dev/Git/gitfinderinfo.1s.sh.html",
+		"docsCategory": "Dev/Git.html",
+		"pathSegments": [
+			"Dev",
+			"Git"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Git",
+				"text": "Git",
+				"isLast": true
+			}
+		],
+		"title": "Finder Git Info",
+		"version": "v1.0",
+		"author": "Miguel Carvalho",
+		"authors": [
+			{
+				"name": "Miguel Carvalho",
+				"githubUsername": "mmcarvalho",
+				"imageURL": "https://avatars.githubusercontent.com/u/40001773?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays the active git branch of the focused finder Window in the menu bar. When open, lists all finder windows with active git projects.",
+		"imageURL": "https://raw.githubusercontent.com/mmcarvalho/git-finder-info/main/gitfinderinfo-screenshot.png",
+		"dependencies": null,
+		"aboutURL": "https://github.com/mmcarvalho/git-finder-info",
+		"lastUpdated": "2021-03-08T15:21:48.271525Z",
+		"vars": null
+	}
+}

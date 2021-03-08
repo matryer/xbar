@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/bandwidth-test-min.2h.sh",
+				"filename": "bandwidth-test-min.2h.sh",
+				"content": "#!/bin/bash\n#\n# Bandwith test, using speedtest-cli (https://github.com/sivel/speedtest-cli)\n# Mini version! \n#\n# \u003cbitbar.title\u003eBandwith test (minified)\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJonny Lin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003erangedsp\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eModified mini version of Alexandre Espinosa Menor's Bandwith tester, which uses https://speedtest.net via speedtest-cli\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003espeedtest-cli\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/mrPw9MV.png\u003c/bitbar.image\u003e\n#\n# Dependencies: \n#   speedtest-cli (https://github.com/sivel/speedtest-cli)\n\n# modify this path according your prefs\n\nif command -v \"/usr/local/bin/speedtest-cli\" \u003e/dev/null 2\u003e\u00261; then\n\tOUTPUT=$(/usr/local/bin/speedtest-cli --simple)\nelse\n\tOUTPUT=$(~/bin/speedtest-cli --simple)\nfi\n\nresult_string=\"${OUTPUT/Ping: /P:}\"\nresult_string=\"${result_string/Download: /D:}\"\nresult_string=\"${result_string/Upload: /U:}\"\nresult_string=\"${result_string/ Mbit/Mb}\"\nresult_string=\"${result_string/ Mbit/Mb}\"\nresult_string=\"${result_string/ ms/ms}\"\necho \"$result_string\"\n"
+			}
+		],
+		"path": "Network/bandwidth-test-min.2h.sh",
+		"filename": "bandwidth-test-min.2h.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/bandwidth-test-min.2h.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Bandwith test (minified)",
+		"version": "v1.0",
+		"author": "Jonny Lin",
+		"authors": [
+			{
+				"name": "Jonny Lin",
+				"githubUsername": "rangedsp",
+				"imageURL": "https://avatars.githubusercontent.com/u/4970707?v=4",
+				"bio": "like an elevator, i move between all levels of software",
+				"primary": true
+			}
+		],
+		"desc": "Modified mini version of Alexandre Espinosa Menor's Bandwith tester, which uses https://speedtest.net via speedtest-cli",
+		"imageURL": "http://i.imgur.com/mrPw9MV.png",
+		"dependencies": [
+			"speedtest-cli"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.254675Z",
+		"vars": null
+	}
+}

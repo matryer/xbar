@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/githubzen.1m.py",
+				"filename": "githubzen.1m.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eGitHub Zen\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJosh\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eandjosh\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGitHub zen in your menu bar!\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/U4OHxDm.png\u003c/bitbar.image\u003e\n\nimport urllib2\nimport os\n\napi_key = os.getenv('GITHUB_TOKEN', 'Enter your GitHub.com Personal Access Token here...')\nurl = 'https://api.github.com/zen'\n\nrequest = urllib2.Request( url, headers = { 'Authorization': 'token ' + api_key } )\nresponse = urllib2.urlopen( request )\nprint ( '%s' % (response.read())).encode( 'utf-8' )\n"
+			}
+		],
+		"path": "Lifestyle/githubzen.1m.py",
+		"filename": "githubzen.1m.py",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/githubzen.1m.py.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "GitHub Zen",
+		"version": "v1.0.0",
+		"author": "Josh",
+		"authors": [
+			{
+				"name": "Josh Beckman",
+				"githubUsername": "andjosh",
+				"imageURL": "https://avatars.githubusercontent.com/u/2358584?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "GitHub zen in your menu bar!",
+		"imageURL": "http://i.imgur.com/U4OHxDm.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:55.311493Z",
+		"vars": null
+	}
+}

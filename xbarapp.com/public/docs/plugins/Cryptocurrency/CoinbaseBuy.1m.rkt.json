@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/CoinbaseBuy.1m.rkt",
+				"filename": "CoinbaseBuy.1m.rkt",
+				"content": "#!/usr/local/bin/racket\n#lang rackjure\n\n; \u003cbitbar.title\u003eCoinbase buy prices\u003c/bitbar.title\u003e\n; \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n; \u003cbitbar.author\u003eDaniel Kvasnicka\u003c/bitbar.author\u003e\n; \u003cbitbar.author.github\u003edkvasnicka\u003c/bitbar.author.github\u003e\n; \u003cbitbar.desc\u003eFetches BUY proces for cryptocurrencies traded at Coinbase\u003c/bitbar.desc\u003e\n; \u003cbitbar.dependencies\u003eracket, rackjure package\u003c/bitbar.dependencies\u003e\n \n(require net/url\n         json)\n\n(define currencies '(BTC ETH LTC)) ; change to set watched coins\n(define url-template \"https://api.coinbase.com/v2/prices/~s-USD/buy\") \n\n(define get-json \n  (compose bytes-\u003ejsexpr \n           port-\u003ebytes \n           get-pure-port \n           string-\u003eurl))\n\n(displayln\n  (string-join\n    (map\n      (compose\n        (λ~\u003e 'data 'amount)\n        get-json\n        (curry format url-template))\n      currencies)\n    \" • \"))\n"
+			}
+		],
+		"path": "Cryptocurrency/CoinbaseBuy.1m.rkt",
+		"filename": "CoinbaseBuy.1m.rkt",
+		"dir": "Cryptocurrency",
+		"docsPlugin": "Cryptocurrency/CoinbaseBuy.1m.rkt.html",
+		"docsCategory": "Cryptocurrency.html",
+		"pathSegments": [
+			"Cryptocurrency"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": true
+			}
+		],
+		"title": "Coinbase buy prices",
+		"version": "v1.0",
+		"author": "Daniel Kvasnicka",
+		"authors": [
+			{
+				"name": "Daniel Kvasnička",
+				"githubUsername": "dkvasnicka",
+				"imageURL": "https://avatars.githubusercontent.com/u/708118?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Fetches BUY proces for cryptocurrencies traded at Coinbase",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"racket",
+			"rackjure package"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:45.681491Z",
+		"vars": null
+	}
+}

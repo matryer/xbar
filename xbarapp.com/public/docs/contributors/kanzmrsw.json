@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Koji ANZAI",
+		"githubUsername": "kanzmrsw",
+		"imageURL": "https://avatars.githubusercontent.com/u/388826?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/itstimeto.15m.py",
+					"filename": "itstimeto.15m.py",
+					"content": "#!/usr/bin/env python\n# coding: UTF-8\n\n# \u003cbitbar.title\u003eIt's time to\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKouji Anzai\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekanzmrsw\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows emoji means that it's time to do something.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/qRgqIVq.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nimport datetime\n\nd = datetime.datetime.now().time()\nmorning = datetime.time(9,0,0)\ndaytime = datetime.time(17,30,0)\nnight = datetime.time(22,0,0)\n\nif d \u003c morning:\n\tprint '🌅'\nelif morning \u003c= d \u003c daytime:\n\tprint '👷'\nelif daytime \u003c= d \u003c night:\n\tprint '🍺'\nelse:\n\tprint '💤'\n"
+				}
+			],
+			"path": "Time/itstimeto.15m.py",
+			"filename": "itstimeto.15m.py",
+			"dir": "Time",
+			"docsPlugin": "Time/itstimeto.15m.py.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "It's time to",
+			"version": "v1.0",
+			"author": "Kouji Anzai",
+			"authors": [
+				{
+					"name": "Koji ANZAI",
+					"githubUsername": "kanzmrsw",
+					"imageURL": "https://avatars.githubusercontent.com/u/388826?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows emoji means that it's time to do something.",
+			"imageURL": "http://i.imgur.com/qRgqIVq.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:05.997696Z",
+			"vars": null
+		}
+	]
+}

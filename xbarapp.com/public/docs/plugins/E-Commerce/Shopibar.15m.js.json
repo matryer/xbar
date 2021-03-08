@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "E-Commerce/Shopibar.15m.js",
+				"filename": "Shopibar.15m.js",
+				"content": "#!/usr/bin/env /usr/local/bin/node\n\n/*\n * \u003cbitbar.title\u003eShopibar\u003c/bitbar.title\u003e\n * \u003cbitbar.version\u003ev1.0.1\u003c/bitbar.version\u003e\n * \u003cbitbar.author\u003eEtka Özdemir\u003c/bitbar.author\u003e\n * \u003cbitbar.author.github\u003em-etka\u003c/bitbar.author.github\u003e\n * \u003cbitbar.image\u003ehttp://i.imgur.com/Dt499Nh.png\u003c/bitbar.image\u003e\n * \u003cbitbar.desc\u003eShopify Admin Plugin for BitBar\u003c/bitbar.desc\u003e\n * \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n *\n */\n\n/*\n * Visit http://shopibar.etka.org for installation and details\n */\n\n\n/* Shopibar configuration */\nvar admin = {\n    myShopifyAccountName: 'example.myshopify.com',\n    apiKey: 'example.com_api_key',\n    password: 'example.com_password'\n};\nshowCustomerCount = true;\nshowPendingOrders = true;\nshowUnshippedOrders = true;\n/* End of Shopibar configuration  */\n\nvar verbose = true;\n\n// Start plug-in\nconsole.log('🛒');\nconsole.log('---');\nprintBitBarLine('Shopibar', ['color=black', 'font=Phosphate', 'size=20']);\n\n\n// Get data using Shopify Admin API\nget(admin, 'shop', function(data) {\n    // Show shop info\n    printBitBarLine(data.shop.name, ['color=black', 'font=Calibri', 'size=18']);\n\n    if (showCustomerCount) {\n        // Get customer count\n        get(admin, 'customerCount', function(data) {\n            // Show customer count\n            printBitBarLine('Customer Count:', ['color=gray', 'font=Calibri', 'size=14']);\n            printBitBarLine(data.count, ['color=black', 'font=Calibri', 'size=16']);\n        });\n    }\n\n    if (showPendingOrders) {\n        // Get pending orders\n        get(admin, 'pendingOrders', function(data) {\n            printOrders(data, 'Pending Orders');\n        });\n    }\n\n    if (showUnshippedOrders) {\n        // Get unshipped orders\n        get(admin, 'unshippedOrders', function(data) {\n            printOrders(data, 'Unshipped Orders');\n        });\n    }\n\n});\n\n// Print order details\nfunction printOrders(data, title) {\n    // Show orders\n    printBitBarLine(' ');\n    printBitBarLine(title + ':', ['color=gray', 'font=Calibri', 'size=14']);\n    printBitBarLine(data.orders.length, ['color=black', 'font=Calibri', 'size=16']);\n    for (var i = 0; i \u003c data.orders.length; i++) {\n        // Show order price and user info\n        printBitBarLine('--$' + data.orders[i].total_line_items_price, ['color=black', 'font=Calibri', 'size=16']);\n        printBitBarLine('--' + data.orders[i].email, ['font=Calibri', 'size=14']);\n        // Show items ordered\n        for (var j = 0; j \u003c data.orders[i].line_items.length; j++) {\n            if (j !== 0) {\n                printBitBarLine('----');\n            }\n            printBitBarLine('----' + data.orders[i].line_items[j].title, ['font=Calibri', 'size=16', 'color=black']);\n            printBitBarLine('----');\n            printBitBarLine('----Name     : ' + data.orders[i].line_items[j].name, ['font=Monaco', 'size=11']);\n            printBitBarLine('----SKU      : ' + data.orders[i].line_items[j].sku, ['font=Monaco', 'size=11']);\n            printBitBarLine('----Price    : $' + data.orders[i].line_items[j].price, ['font=Monaco', 'size=11']);\n            printBitBarLine('----Quantity : ' + data.orders[i].line_items[j].quantity, ['font=Monaco', 'size=11']);\n\n        }\n        printBitBarLine('-----');\n\n    }\n}\n\n\n// Get\nfunction get(admin, requestName, callback) {\n    var endpoint = {\n        url: '',\n        requestType: 'GET'\n    };\n    switch (requestName) {\n        case 'shop':\n            endpoint.url = '/admin/shop.json';\n            endpoint.requestType = 'GET';\n            break;\n        case 'customerCount':\n            endpoint.url = '/admin/customers/count.json';\n            endpoint.requestType = 'GET';\n            break;\n        case 'pendingOrders':\n            endpoint.url = '/admin/orders.json?status=pending';\n            endpoint.requestType = 'GET';\n            break;\n        case 'unshippedOrders':\n            endpoint.url = '/admin/orders.json?fulfillment_status=unshipped';\n            endpoint.requestType = 'GET';\n            break;\n        default:\n            break;\n    }\n    performRequest(admin, endpoint.url, endpoint.requestType, function(data) {\n        if (data.errors \u0026\u0026 verbose) {\n            console.log('Errors: ' + data.errors);\n        } else {\n            callback(data);\n        }\n    });\n\n}\n\n// HTTPS request \nfunction performRequest(admin, endpoint, method, success) {\n    var https = require('https');\n    var auth = new Buffer(admin.apiKey + ':' + admin.password).toString('base64');\n\n    var headers = {};\n\n    headers = {\n        'Authorization': 'Basic ' + auth,\n        'Content-Type': 'application/json'\n    };\n\n    var options = {\n        host: admin.myShopifyAccountName,\n        path: endpoint,\n        method: method,\n        headers: headers\n    };\n\n    var req = https.request(options, function(res) {\n        res.setEncoding('utf-8');\n\n        var responseString = '';\n\n        res.on('data', function(data) {\n            responseString += data;\n        });\n\n        res.on('end', function() {\n            var responseObject = JSON.parse(responseString);\n            success(responseObject);\n        });\n    });\n\n    req.end();\n\n    req.on('error', function(err) {\n        console.log('Error: Could not connect! Check your credientials and connection.');\n        if (verbose) {\n            console.log(err);\n        }\n    });\n}\n\n// Plug-in output\nfunction printBitBarLine(title, args) {\n    var lineArgs = [];\n\n    if (title !== '-----') {\n        for (var i in args) {\n            lineArgs.push(args[i]);\n        }\n\n        if (lineArgs.length !== 0) {\n            title = title + '|';\n        }\n    }\n    console.log(title + lineArgs.join(' '));\n}"
+			}
+		],
+		"path": "E-Commerce/Shopibar.15m.js",
+		"filename": "Shopibar.15m.js",
+		"dir": "E-Commerce",
+		"docsPlugin": "E-Commerce/Shopibar.15m.js.html",
+		"docsCategory": "E-Commerce.html",
+		"pathSegments": [
+			"E-Commerce"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "E-Commerce",
+				"text": "E-Commerce",
+				"isLast": true
+			}
+		],
+		"title": "Shopibar",
+		"version": "v1.0.1",
+		"author": "Etka Özdemir",
+		"authors": [
+			{
+				"name": "Etka Özdemir",
+				"githubUsername": "m-etka",
+				"imageURL": "https://avatars.githubusercontent.com/u/6973643?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shopify Admin Plugin for BitBar",
+		"imageURL": "http://i.imgur.com/Dt499Nh.png",
+		"dependencies": [
+			"node"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.62141Z",
+		"vars": null
+	}
+}

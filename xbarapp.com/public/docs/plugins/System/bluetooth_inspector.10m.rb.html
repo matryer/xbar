@@ -1,0 +1,930 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Bluetooth Inspector in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary. - install xbar for free to get started.'>
+	<meta name='author' content='Ryan Scott Lewis'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'>
+	<meta itemprop='name' content='Bluetooth Inspector in your macOS menu bar'>
+	<meta itemprop='description' content='Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Bluetooth Inspector in your macOS menu bar'>
+	<meta name='twitter:description' content='Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Bluetooth Inspector in your macOS menu bar'>
+	<meta property='og:description' content='Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/System/bluetooth_inspector.10m.rb.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Bluetooth Inspector</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/RyanScottLewis.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/39534?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/RyanScottLewis.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Ryan Scott Lewis (<code style='color:white;'>@RyanScottLewis</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=System%2fbluetooth_inspector.10m.rb'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png' 
+				alt='Image preview of Bluetooth Inspector plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>bluetooth_inspector.10m.rb</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/System/bluetooth_inspector.10m.rb'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/System/bluetooth_inspector.10m.rb'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env ruby
+# &lt;bitbar.title&gt;Bluetooth Inspector&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;0.1.4&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Ryan Scott Lewis&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;RyanScottLewis&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;ruby&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/RyanScottLewis/bitbar-bluetooth_inspector&lt;/bitbar.abouturl&gt;
+
+# NOTE: Configuration is at the BOTTOM of this file!
+
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+# -= Code -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+
+
+require &#39;open3&#39;
+
+module BluetoothInspector
+
+  # The plugin controller.
+  class Controller
+
+    class &lt;&lt; self
+
+      # Collect bluetooth devices, format for bitbar output, and print to output.
+      #
+      # @return [String]
+      def run(&amp;block)
+        new.run(&amp;block)
+      end
+
+    end
+
+    def initialize
+      collect_devices
+      setup_formatter
+    end
+
+    # Get all devices.
+    #
+    # @return [&lt;Device&gt;]
+    attr_reader :devices
+
+    # Get the formatter.
+    #
+    # @return [Formatter]
+    attr_reader :formatter
+
+    # Collect bluetooth devices, format for bitbar output, and print to output.
+    #
+    # @return [String]
+    def run(&amp;block)
+      run_config_block_if_needed(&amp;block)
+
+      output = @formatter.format(@devices)
+
+      print output
+    end
+
+    protected
+
+    def collect_devices
+      stdout_str, _, _ = Open3.capture3(&#34;system_profiler SPBluetoothDataType&#34;)
+
+      @devices = Parser.parse(stdout_str)
+    end
+
+    def setup_formatter
+      @formatter = Formatter.new
+    end
+
+    def run_config_block_if_needed(&amp;block)
+      return nil unless block_given?
+
+      block.arity &gt; 0 ? yield(self) : run_in_controller_context(&amp;block)
+    end
+
+    def run_in_controller_context(&amp;block)
+      ControllerContext.new(self).instance_eval(&amp;block)
+    end
+
+  end
+
+end
+
+module BluetoothInspector
+
+  # The DSL context for the configuration block given to the Controller.
+  class ControllerContext
+
+    def initialize(controller)
+      @controller = controller
+    end
+
+    # Get all devices.
+    #
+    # @return [&lt;Device&gt;]
+    def devices
+      @controller.devices
+    end
+
+    # Find a device by it&#39;s name or shortname.
+    #
+    # @param [#to_s] value
+    # @return [&lt;Device&gt;]
+    def device(value, &amp;block)
+      value = value.to_s
+      device = devices.find { |d| d.name == value || d.shortname == value }
+
+      run_device_block_if_needed(device, &amp;block)
+
+      device
+    end
+
+    def bar_format(value)
+      @controller.formatter.bar_format = value
+    end
+
+    def item_format(value)
+      @controller.formatter.item_format = value
+    end
+
+    protected
+
+    def run_device_block_if_needed(device, &amp;block)
+      return nil unless !device.nil? &amp;&amp; block_given?
+
+      block.arity &gt; 0 ? yield(device) : run_in_device_context(device, &amp;block)
+    end
+
+    def run_in_device_context(device, &amp;block)
+      DeviceContext.new(device).instance_eval(&amp;block)
+    end
+
+  end
+
+end
+
+module BluetoothInspector
+
+  # A bluetooth device.
+  class Device
+    def initialize(attributes={})
+      @bar_item = true
+      @menu_item = true
+
+      update_attributes(attributes)
+
+      raise &#34;name must be given&#34; if @name.nil?
+    end
+
+    # Get the name of the device.
+    #
+    # @return [String]
+    attr_reader :name
+
+    # Set the name of the device.
+    #
+    # @param [#to_s] value
+    # @return [String]
+    def name=(value)
+      @name = value.to_s
+    end
+
+    # Get the major type of the device.
+    #
+    # @return [String]
+    attr_reader :major_type
+
+    # Set the major_type of the device.
+    #
+    # @param [#to_s] value
+    # @return [String]
+    def major_type=(value)
+      @major_type = value.to_s
+    end
+
+    # Get the minor type of the device.
+    #
+    # @return [String]
+    attr_reader :minor_type
+
+    # Set the minor_type of the device.
+    #
+    # @param [#to_s] value
+    # @return [String]
+    def minor_type=(value)
+      @minor_type = value.to_s
+    end
+
+    # Get whether the device is paired.
+    #
+    # @return [Boolean]
+    def paired?
+      @paired
+    end
+
+    # Get whether the device is not paired.
+    #
+    # @return [Boolean]
+    def unpaired?
+      !@paired
+    end
+
+    # set whether the device is paired.
+    #
+    # @param [Boolean] value
+    # @return [Boolean]
+    def paired=(value)
+      @paired = !!value
+    end
+
+    # Get whether the device is connected.
+    #
+    # @return [Boolean]
+    def connected?
+      @connected
+    end
+
+    # Get whether the device is not connected.
+    #
+    # @return [Boolean]
+    def disconnected?
+      !@connected
+    end
+
+    # set whether the device is connected.
+    #
+    # @param [Boolean] value
+    # @return [Boolean]
+    def connected=(value)
+      @connected = !!value
+    end
+
+    # Get the shortname of the device.
+    #
+    # @return [nil, String]
+    def shortname
+      @shortname.nil? ? @name : @shortname
+    end
+
+    # Set the shortname of the device.
+    #
+    # @param [nil, #to_s] value
+    # @return [nil, String]
+    def shortname=(value)
+      @shortname = value.nil? ? nil : value.to_s
+    end
+
+    # Get whether this device has a shortname.
+    #
+    # @return [Boolean]
+    def shortname?
+      !@shortname.nil?
+    end
+
+    # Get the battery level in a range of `0..100`.
+    #
+    # @return [nil, Float]
+    attr_reader :battery
+
+    # Set the battery level in a range of `0..100`.
+    #
+    # @param [nil, #to_f] value
+    # @return [nil Float]
+    def battery=(value)
+      @battery = value.nil? ? nil : value.to_i
+    end
+
+    # Get whether this device has no battery level.
+    #
+    # @return [Boolean]
+    def no_battery?
+      @battery.nil?
+    end
+
+    # Get whether this device has a battery level.
+    #
+    # @return [Boolean]
+    def battery?
+      !no_battery?
+    end
+
+    # Get the color of the device.
+    #
+    # @return [nil, String]
+    attr_reader :color
+
+    # Set the name of the device.
+    #
+    # @param [nil, #to_s] value
+    # @return [nil, String]
+    def color=(value)
+      @color = value.nil? ? nil : value.to_s
+    end
+
+    # Get whether this device has a color.
+    #
+    # @return [Boolean]
+    def color?
+      !@color.nil?
+    end
+
+    # Get whether this device is shown within the bar.
+    #
+    # @return [Boolean]
+    def bar_item?
+      @bar_item
+    end
+
+    # Set whether this device is shown within the bar.
+    #
+    # @param [Boolean] value
+    # @return [Boolean]
+    def bar_item=(value)
+      @bar_item = !!value
+    end
+
+    # Get whether this device is shown within the menu.
+    #
+    # @return [Boolean]
+    def menu_item?
+      @menu_item
+    end
+
+    # Set whether this device is shown within the menu.
+    #
+    # @param [Boolean] value
+    # @return [Boolean]
+    def menu_item=(value)
+      @menu_item = !!value
+    end
+
+    # Get device&#39;s attributes.
+    #
+    # @return [Hash]
+    def to_h
+      {
+        name:      @name,
+        shortname: @shortname,
+        battery:   @battery
+      }
+    end
+
+    protected
+
+    def update_attributes(attributes)
+      attributes.to_h.each do |name, value|
+        next unless self.class.method_defined?(&#34;#{name}=&#34;)
+
+        send(&#34;#{name}=&#34;, value)
+      end
+    end
+
+  end
+
+end
+
+module BluetoothInspector
+
+  # The DSL context for a device.
+  class DeviceContext
+
+    def initialize(device)
+      @device = device
+    end
+
+    # Get the device.
+    #
+    # @param [String]
+    # @return [String]
+    attr_reader :device
+
+    # Get/set the name of the device.
+    #
+    # @param [String]
+    # @return [String]
+    def name(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set the major type of the device.
+    #
+    # @param [String]
+    # @return [String]
+    def major_type(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set the minor type of the device.
+    #
+    # @param [String]
+    # @return [String]
+    def minor_type(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set whether the device is paired.
+    #
+    # @param [String]
+    # @return [String]
+    def paired?(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set whether the device is connected.
+    #
+    # @param [String]
+    # @return [String]
+    def connected?(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set the shortname of the device.
+    #
+    # @return [nil, String]
+    def shortname(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set the battery level of the device.
+    #
+    # @return [nil, Integer]
+    def battery(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set the color of the device.
+    #
+    # @return [nil, String]
+    def color(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set whether the device is shown within the bar.
+    #
+    # @return [Boolean]
+    def bar_item(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    # Get/set whether the device is shown within the menu.
+    #
+    # @return [Boolean]
+    def menu_item(*arguments)
+      get_or_set_attribute(__method__, arguments)
+    end
+
+    protected
+
+    def validate_arguments(arguments)
+      raise ArgumentError, &#34;wrong number of arguments (given #{arguments.count}, expected 0..1)&#34; if arguments.length &gt; 1
+    end
+
+    def get_or_set_attribute(name, arguments)
+      validate_arguments(arguments)
+
+      arguments.empty? ? @device.send(name) : @device.send(&#34;#{name}=&#34;, arguments.first)
+    end
+
+  end
+
+end
+
+module BluetoothInspector
+
+  # Formats a list of devices for the expected bitbar output.
+  class Formatter
+
+    def initialize
+      @bar_format = &#34;:shortname :battery%&#34;
+      @item_format = &#34;:name&#34;
+    end
+
+    # Get the format for a device as a bar item.
+    #
+    # @return [String]
+    attr_reader :bar_format
+
+    # Set the format for a device as a bar item.
+    #
+    # @param [#to_s] value
+    # @return [String]
+    def bar_format=(value)
+      @bar_format = value.to_s
+    end
+
+    # Get the format for a device as a menu item.
+    #
+    # @return [String]
+    attr_reader :item_format
+
+    # Set the format for a device as a menu item.
+    #
+    # @param [#to_s] value
+    # @return [String]
+    def item_format=(value)
+      @item_format = value.to_s
+    end
+
+    def format(devices)
+      lines = []
+
+      devices.find_all(&amp;:bar_item?).each { |device| lines &lt;&lt; format_device(@bar_format, device) }
+
+      lines &lt;&lt; &#34;---&#34;
+      devices.find_all(&amp;:menu_item?).each { |device| lines &lt;&lt; format_device(@item_format, device) }
+
+      lines.join(&#34;\n&#34;)
+    end
+
+    protected
+
+    def format_device(format_string, device)
+      output = format_string
+      device.to_h.each { |name, value| output = output.gsub(/:#{name}/, value.to_s) }
+
+      device.color.nil? ? output : output &#43; &#34; | color=#{device.color}&#34;
+    end
+
+  end
+
+end
+
+require &#34;yaml&#34;
+
+module BluetoothInspector
+
+  # Parses the output of the `system_profiler` command and returns an Array of Device instances.
+  class Parser
+
+    class &lt;&lt; self
+
+      # Parse the command output.
+      #
+      # @param [#to_s] data The command output.
+      # @return [&lt;Device&gt;]
+      def parse(data)
+        new.parse(data)
+      end
+
+    end
+
+    # Parse the command output.
+    #
+    # @param [#to_s] data The command output.
+    # @return [&lt;Device&gt;]
+    def parse(data)
+      data = YAML.load(data.to_s)
+
+      data[&#34;Bluetooth&#34;][&#34;Devices (Paired, Configured, etc.)&#34;].collect do |name, attributes|
+        Device.new(
+          name:       name,
+          battery:    attributes[&#34;Battery Level&#34;],
+          major_type: attributes[&#34;Major Type&#34;],
+          minor_type: attributes[&#34;Minor Type&#34;],
+          paired:     attributes[&#34;Paired&#34;],
+          connected:  attributes[&#34;Connected&#34;],
+        )
+      end
+    end
+
+  end
+
+end
+
+module BluetoothInspector
+
+  class &lt;&lt; self
+
+    # Run the plugin controller.
+    def run(&amp;block)
+      Controller.run(&amp;block)
+    end
+
+  end
+
+end
+
+
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+# -= Configuration =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+
+# See https://github.com/RyanScottLewis/bitbar-bluetooth_inspector for configuration documentation.
+
+BluetoothInspector.run do
+  devices.delete_if(&amp;:no_battery?)
+  devices.delete_if(&amp;:disconnected?)
+
+  # Color all low battery level devices red:
+  devices.find_all { |device| device.battery &lt; 20 }.each { |device| device.color = &#34;red&#34; }
+
+  # Add device emojis to each shortname
+  devices.each do |device|
+    device.shortname = case device.minor_type
+                            when &#39;Mouse&#39;    then &#39;🖱&#39;
+                            when &#39;Keyboard&#39; then &#39;⌨️&#39;
+                       end
+  end
+end
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

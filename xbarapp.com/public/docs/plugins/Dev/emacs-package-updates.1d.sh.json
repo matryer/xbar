@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/emacs-package-updates.1d.sh",
+				"filename": "emacs-package-updates.1d.sh",
+				"content": "#!/bin/sh\n\n# \u003cbitbar.title\u003eEmacs Package Updates\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTakashi Masuda\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emasutaka\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eList available updates from Emacs package\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/SBlrP2t.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eemacs\u003c/bitbar.dependencies\u003e\n\nEMACS=$(command -v emacs)\n\nexit_with_error() {\n  echo \"🐮err | color=red\";\n  exit 1;\n}\n\ncat \u003c\u003cEOE \u003e /tmp/emacs-package-updates.el\n(require 'package)\n\n(add-to-list 'package-archives '(\"melpa\" . \"https://melpa.org/packages/\") t)\n(package-initialize)\n\n(defun melpa-archive-contents ()\n  (let ((archive-contents (expand-file-name \"elpa/archives/melpa/archive-contents\"\n                                            user-emacs-directory))\n        lisp)\n    (when (file-readable-p archive-contents)\n      (with-temp-buffer\n        (progn\n          (insert-file-contents archive-contents)\n          (setq lisp\n                (condition-case nil\n                    (read (current-buffer))\n                  (error ()))))))\n    lisp))\n\n(catch 'success\n  (let ((retry-count 0))\n    (while (\u003c retry-count 3)\n      (list-packages)\n      (if (last (melpa-archive-contents))\n          (throw 'success \"list-packages() succeeded.\")\n        (setq retry-count (+ retry-count 1)))\n      (sleep-for 3))\n    (error (format \"list-packages() failed with retry count %d.\" retry-count))))\n\n(defun my-package-version (pkg-desc)\n  (package-version-join (package-desc-version pkg-desc)))\n\n(let ((upgrades (with-current-buffer \"*Packages*\"\n                  (package-menu--find-upgrades)))\n      pkg-desc pkg-name)\n  (message \"🐮%d\" (length upgrades))\n  (message \"---\")\n  (dolist (upgrade upgrades)\n    (setq pkg-desc (cdr upgrade))\n    (setq pkg-name (package-desc-name pkg-desc))\n    (message \"%s (%s \u003c %s)\"\n             pkg-name\n             (my-package-version (cadr (assoc pkg-name package-alist)))\n             (my-package-version pkg-desc)))\n  (message \"---\")\n  (message \"Refresh... | refresh=true\"))\nEOE\n\n($EMACS -Q --batch -l /tmp/emacs-package-updates.el 2\u003e\u00261 || exit_with_error) | sed -ne '/🐮/,$p'\n"
+			}
+		],
+		"path": "Dev/emacs-package-updates.1d.sh",
+		"filename": "emacs-package-updates.1d.sh",
+		"dir": "Dev",
+		"docsPlugin": "Dev/emacs-package-updates.1d.sh.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Emacs Package Updates",
+		"version": "v1.2",
+		"author": "Takashi Masuda",
+		"authors": [
+			{
+				"name": "Takashi Masuda",
+				"githubUsername": "masutaka",
+				"imageURL": "https://avatars.githubusercontent.com/u/170014?v=4",
+				"bio": "\r\n    I like curry! 🍛\r\n",
+				"primary": true
+			}
+		],
+		"desc": "List available updates from Emacs package",
+		"imageURL": "http://i.imgur.com/SBlrP2t.png",
+		"dependencies": [
+			"emacs"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:51.274499Z",
+		"vars": null
+	}
+}

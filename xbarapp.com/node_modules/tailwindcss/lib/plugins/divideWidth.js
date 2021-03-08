@@ -1,0 +1,51 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _lodash = _interopRequireDefault(require("lodash"));
+
+var _nameClass = _interopRequireDefault(require("../util/nameClass"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _default() {
+  return function ({
+    addUtilities,
+    theme,
+    variants
+  }) {
+    const generators = [(_size, modifier) => {
+      const size = _size === '0' ? '0px' : _size;
+      return {
+        [`${(0, _nameClass.default)('divide-y', modifier)} > :not([hidden]) ~ :not([hidden])`]: {
+          '--tw-divide-y-reverse': '0',
+          'border-top-width': `calc(${size} * calc(1 - var(--tw-divide-y-reverse)))`,
+          'border-bottom-width': `calc(${size} * var(--tw-divide-y-reverse))`
+        },
+        [`${(0, _nameClass.default)('divide-x', modifier)} > :not([hidden]) ~ :not([hidden])`]: {
+          '--tw-divide-x-reverse': '0',
+          'border-right-width': `calc(${size} * var(--tw-divide-x-reverse))`,
+          'border-left-width': `calc(${size} * calc(1 - var(--tw-divide-x-reverse)))`
+        }
+      };
+    }];
+
+    const utilities = _lodash.default.flatMap(generators, generator => {
+      return [..._lodash.default.flatMap(theme('divideWidth'), (value, modifier) => {
+        return generator(value, modifier);
+      }), {
+        '.divide-y-reverse > :not([hidden]) ~ :not([hidden])': {
+          '--tw-divide-y-reverse': '1'
+        },
+        '.divide-x-reverse > :not([hidden]) ~ :not([hidden])': {
+          '--tw-divide-x-reverse': '1'
+        }
+      }];
+    });
+
+    addUtilities(utilities, variants('divideWidth'));
+  };
+}

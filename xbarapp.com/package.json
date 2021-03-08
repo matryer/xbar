@@ -1,0 +1,14 @@
+{
+  "name": "xbarapp.com",
+  "scripts": {
+    "build:tailwind": "NODE_ENV=production postcss styles.css -o public/css/xbar.css",
+    "build": "npm run build:tailwind"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.4",
+    "cssnano": "^4.1.10",
+    "postcss": "^8.2.7",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3"
+  }
+}

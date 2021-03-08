@@ -1,0 +1,84 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ ได้ถูกดาวน์โหลดและพร้อมใช้งานแล้ว คุณต้องการติดตั้งและเริ่ม %1$@ ใหม่เดี๋ยวนี้หรือไม่";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ ไม่สามารถรับการอัพเดทได้เมื่อถูกเรียกจากดิสก์แบบอ่านอย่างเดียวหรือซีดีรอม ย้าย %1$@ ไปยังโฟลเดอร์แอปพลิเคชัน และเรียกใช้งาน จากนั้นลองใหม่อีกครั้ง";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ เป็นเวอร์ชั่นใหม่ล่าสุดแล้ว";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ พร้อมให้ดาวน์โหลดแล้ว (คุณมีเวอร์ชั่น %3$@) ต้องการดาวน์โหลดเลยหรือไม่";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "ดาวน์โหลด %@ เสร็จสิ้น";
+
+"%@ of %@" = "%1$@ จาก %2$@";
+
+"A new version of %@ is available!" = "%@ มีเวอร์ชั่นใหม่!";
+
+"A new version of %@ is ready to install!" = "เวอร์ชั่นใหม่ของ %@ พร้อมสำหรับการติดตั้งแล้ว";
+
+"An error occurred in retrieving update information. Please try again later." = "เกิดข้อผิดพลาดระหว่างการรับข้อมูลอัพเดท กรุณาลองใหม่ในภายหลัง";
+
+"An error occurred while downloading the update. Please try again later." = "เกิดข้อผิดพลาดระหว่างพยายามดาวน์โหลดอัพเดท กรุณาลองใหม่ในภายหลัง";
+
+"An error occurred while extracting the archive. Please try again later." = "เกิดข้อผิดพลาดระหว่างการแตกไฟล์ที่ถูกบีบอัด กรุณาลองใหม่ในภายหลัง";
+
+"An error occurred while installing the update. Please try again later." = "เกิดข้อผิดพลาดระหว่างการติดตั้งอัพเดท กรุณาลองใหม่ในภายหลัง";
+
+"An error occurred while parsing the update feed." = "เกิดข้อผิดพลาดระหว่างการประมวลผลฟีดอัพเดท กรุณาลองใหม่ในภายหลัง";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "เกิดข้อผิดพลาดระหว่างการเริ่ม %1$@ ใหม่ อย่างไรก็ตามเวอร์ชั่นใหม่จะใช้ได้เมื่อคุณเรียก %1$@ ครั้งถัดไป";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "ยกเลิก";
+
+"Cancel Update" = "ยกเลิกอัพเดท";
+
+"Checking for updates..." = "ตรวจสอบอัพเดท…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "กำลังดาวน์โหลดอัพเดท…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "กำลังแตกไฟล์อัพเดท…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "ติดตั้งและเริ่มแอปพลิเคชันใหม่";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "กำลังติดตั้งอัพเดท…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+/* OK button. */
+"OK" = "ตกลง";
+
+/* Status message on progress window once download has finished. */
+"Ready to Install" = "พร้อมติดตั้ง";
+
+/* Message that is optionally shown at startup to allow users to turn on/off update checks. */
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "คุณต้องการให้ %1$@ ตรวจสอบอัพเดทโดยอัตโนมัติหรือไม่ คุณสามารถเริ่มการตรวจสอบอัพเดทด้วยตนเองได้ทุกเมื่อจากเมนูของ %1$@";
+
+"Update Error!" = "อัพเดทผิดพลาด!";
+
+"Updating %@" = "กำลังอัพเดท %@";
+
+/* 'Error' message when the user checks for updates but is already current or the feed doesn't contain any updates. (not necessarily shown in UI) */
+"You already have the newest version of %@." = "คุณมีเวอร์ชั่นล่าสุดของ %@ แล้ว";
+
+/* Status message shown when the user checks for updates but is already current or the feed doesn't contain any updates. */
+"You're up-to-date!" = "คุณมีเวอร์ชั่นล่าสุดแล้ว!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+"Learn More..." = "เรียนรู้เพิ่มเติม…";
+

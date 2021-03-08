@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "AWS/sqs-status.1m.sh",
+				"filename": "sqs-status.1m.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eAmazon SQS Queue Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eBrandon Stilson\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ebbstilson\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows current queue stats for specified AWS SQS queues. Updates every minute.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eawscli,jq\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/UFhXIL5.png\u003c/bitbar.image\u003e\n\n# Dependencies:\n#   awscli (https://aws.amazon.com/cli/)\n#   jq (https://stedolan.github.io/jq/)\n\n# Hello, User! Be sure to fill out the following areas:\n# 1. Your region in the AWS_REGION.\n# 2. The names of the SQS queues you want to track in the QUEUES array.\n\nexport PATH=\"$PATH:/usr/local/bin\"\n\nAWS_PROFILE=\"default\"\nexport AWS_PROFILE\n\nAWS_REGION=\"\"\nexport AWS_REGION\n\n# Add the queues you want to report on here. Do not use quotes or commas!\n# For example: QUEUES=(foo-queue foo-queue-deadletter bar-queue bar-queue-deadletter)\nQUEUES=()\n\nQUEUECOLOR=\"white\"\nNUMCOLOR=\"red\"\n\nmonoq() {\n  echo \"$1 | font=Monaco trim=false color=$QUEUECOLOR href=$2\"\n}\n\nmonon() {\n  echo \"$1 | font=Monaco trim=false color=$NUMCOLOR\"\n}\n\nSQS_URL_ROOT=\"https://console.aws.amazon.com/sqs/home?region=$AWS_REGION#queue-browser:prefix=\"\n\necho \"SQS\"\necho \"---\"\nfor idx in ${!QUEUES[*]}\ndo\n    QUEUE_URL=$(aws sqs get-queue-url --queue-name=\"${QUEUES[idx]}\" | jq .QueueUrl | cut -d '\"' -f 2)\n    RESP=$(aws sqs get-queue-attributes \\\n        --queue-url \"$QUEUE_URL\" \\\n        --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible \\\n        | jq .Attributes)\n\n    DEPTH=$(echo \"$RESP\" | jq '.ApproximateNumberOfMessages | tonumber')\n    INFLIGHT=$(echo \"$RESP\" | jq '.ApproximateNumberOfMessagesNotVisible | tonumber')\n\n    monoq \"Queue     : ${QUEUES[idx]}\" \"$SQS_URL_ROOT${QUEUES[idx]}\"\n    monon \"Depth     : $DEPTH\"\n    monon \"In-flight : $INFLIGHT\"\ndone\n"
+			}
+		],
+		"path": "AWS/sqs-status.1m.sh",
+		"filename": "sqs-status.1m.sh",
+		"dir": "AWS",
+		"docsPlugin": "AWS/sqs-status.1m.sh.html",
+		"docsCategory": "AWS.html",
+		"pathSegments": [
+			"AWS"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "AWS",
+				"text": "AWS",
+				"isLast": true
+			}
+		],
+		"title": "Amazon SQS Queue Status",
+		"version": "v0.1",
+		"author": "Brandon Stilson",
+		"authors": [
+			{
+				"name": "Brandon Stilson",
+				"githubUsername": "bbstilson",
+				"imageURL": "https://avatars.githubusercontent.com/u/7949037?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows current queue stats for specified AWS SQS queues. Updates every minute.",
+		"imageURL": "https://i.imgur.com/UFhXIL5.png",
+		"dependencies": [
+			"awscli",
+			"jq"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:44.367202Z",
+		"vars": null
+	}
+}

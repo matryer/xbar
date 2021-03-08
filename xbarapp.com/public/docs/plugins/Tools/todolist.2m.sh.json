@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Tools/todolist.2m.sh",
+				"filename": "todolist.2m.sh",
+				"content": "#!/bin/sh\n# \u003cbitbar.title\u003eTodo List for menu bar\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJulian Naumann\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eJulianNaumann\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay a todo list in the menu bar with items taken from the macos' Reminders.app from the list called 'Today'. Click the item to complete the reminder and display the next one.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/d4cBUKW.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash,osascript\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/JulianNaumann/bitbar-todolist\u003c/bitbar.abouturl\u003e\n\n# Icon credit, all icons from \u003chttps://www.flaticon.com\u003e:\n# - Bell icon made by Nice And Serious \u003chttps://niceandserious.com\u003e\n# - Todo list icon made by Freepik \u003chttps://www.freepik.com\u003e\n# - Check icon made by Smashicons \u003chttps://smashicons.com\u003e\n\nif [ \"$1\" = \"done\" ]; then\n\tosascript -e \t'tell application \"Reminders\"\n\t\t\t\tset activeReminders to (reminders of list \"Today\" whose completed is false)\n\t\t\t\tset todo to first item of activeReminders\n\t\t\t\ttell todo\n\t\t\t\t\tset completed to true\n\t\t\t\tend tell\n\t\t\tend tell'\nfi\n\nreminder=$(osascript -e 'tell application \"Reminders\"\n\t\t\t\tset activeReminders to (reminders of list \"Today\" whose completed is false)\n\t\t\t\tif activeReminders is not {} then\n\t\t\t\t\treturn name of first item of activeReminders\n\t\t\t\telse\n\t\t\t\t\treturn \"No Todos!\"\n\t\t\t\tend if\n\t\t\tend tell')\n\n# Choose a different icon by uncommenting the appropriate line and commenting out all others:\n# todo list\nimage=iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAADs0lEQVRIDbWWW4iNURSAz5mLGeM2TSnXcZkil5SSB28UESGS8ELjlgfxQIkHeUARHlxilFBKKF5mEiajSGZeeCMNRVPzgJLrYI7v+8+/z5zTOWbmhFXfWXvvf+2911p77d1JpFKppCQQ9EH4H3KbRcvcw58k0m0H6UqrxBX0R6iGX/FYMaoE4x9QCuugAsIeUWQleLAankI3nIUJGP2VsIbrvoTWnIUYKIN7oHxLq1S9RrT1tihhTpQ+dBW0w5OcBRjQk/FwA5QtMFQjdHTG/dXxHFPo3EGQs2Hw3qLZBvPhJ+yEOaBEBZVuFv6lBlLxFx0vof+9sGUiETb0+0Aojw2z227YK0bvpvALrIGaeB2LMN9hvYJauAZKPQyOJ/VLYV8Ow2A0tIGF55hF0xYWiQ6XjpFegHlgOs6Dqb2I8Vb0IMj2Vq+9LgMg2C+lfRhMbx3cgpCZkHKGEBY1wmXQCqakAfR0InyF3kT7aTADumLDvfG6FfRfQ6ZKQ4R+12Mvp14ZjZX2FpZBJRhx9nnotfONsIOz+8DCi2hPhZOgmIH8hwND72EzKOEebo6m9POHednOR7MY6/UejsPgOigboaiiyfaLuRtgHnhUryAvpaZqBywEU7cHOqAR4yq030O6aUZiSh0nm8nP2E2mPRcssKPQBI/A9TLXLy8NfFQ0sFiGo+/ACPgMPsaKG/k4D4F32C1Az4YzoLSDAWjj3c483GFDvT0BY2ElHIIHMBI6we9fwQ1DZHr+Cd7DQKK8zMZmaBasov+CvseS2Yx2WvhQqGg2he99aeYbsddrMIwJ9nG/HZ13hnpxDMy/qTkN98FFosVsFxIi8UnDLHpDjfgT7RrGjPwbZM7P+dkd02XflIW2FREt+CeNbSR89wEwwlEM3ESfQrtewaLxw3Yw/17kLfAYnjNxPdpKtQCyozUrA0D7S7Ac9oPj06ElbjvHIHqERb0vtRAe781+pT8J+vO0TcVuJgQ5EM+vZKDg06YXu2AJmIJ9GL4hTU3oNfQLPW1GYsl7Tp3Yej0W055G+whaybkSDoRrYduyN22OfYFImHwztHvTbIZpshEbH4tS2r6hee9o2NAcW5l1sAKOw0MwrXrZl0QLY2sthKJzLPvMe9bA0Ht4F5TweNdrQd9FihLmRIGg8x7vsJjn0QDPwMo7B83gtfBbUcIc60DxfJ2fidTI/NPj4FXaU9AzwCdpN/1qdN45MNaXGIj14H32mFrCPoZOOzpwc290ytq0+me/3lWd6P4NwGhT56kWXgsAAAAASUVORK5CYII=\n\n# bell\n#image=iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAADiElEQVRIDZ2W24uNURTAv2PG/a6UcsllPAgppHgYUV4UpYmUSB4kbyKP/grxwgvlktyKF694QJoHlELGrVwyphnJbYzfb89en+9wztRY9Zu19tprrb2/fTtTFEPIwMBALbqx90E3hPRjnIOpxqBHROywNcktuUg79jc4AkthJWyAt3A8x9Swy4kNazASR+Uih7EfRHLFfwC7E9IA6KZf1RrJf2uSWmu12vfsd3mW4LuPngEjsZ+hZ8IH4gbQiivwK1l//Wn4qXmQn2rij8JOeAi34DFYrA3aYQWchX0M6PI6wZ+0hxYCY1/GYN+EHuholkXfengNd2GCcehUo1lO3ckh+CK8B5fHvmkwJ9ut2OWyY0+Ep3A9imM33S+LpWT0NlBW58KLsF/BodxORWh70sZm30LsL7Art8uJ2C6FgHIG2Lfhgp1oZ38P7sD47Ctjc3tk1seM01aw6+LCGXvTRsBH2JqD92D3wqzcTkVTUv5DXwy0Dtu7tSjHlntVHTFO4HyCPK6Pcp0t6BucJDe8Bf0j+6sqjvdTnF6JBbkzahbVgSJxIobHsyc7ZqPjspaJuS9UDPQZhxOxRp00GmgSEd6TvhzpZofdbKAcWnzDMNcadVIdKGblze9jifpcKmxPT7wQdcmVRsol5wu+XrCGEjXrli6cbnp3CiuKyWg3OtrZ/Y+KXDveQzo46NKfvoiZM5man6y0QZcGMhc80q9AKRMHm4N/yaVEeYGf451vjzWtrR1Llxo4fUIcyMdTmQcuhw+o0nCgwa4i1cDuhHnUcjWU8JP950VYg+2P2yoj0OPB356YkO6GQkx6CdCL4QOsNRCd7lgUiFE30feWT/aB9LfoIPTkJYhYXA2lXy+x3r+XsNk2klZhBAXTJcyFt9NxLXUXhcs4B7xHSnpIiavqlmjTrz0mRRbFFbTv5TgG9uempfw0GnvhBaT3LCf8l6KGP4xPYL8FbLuu6ZPR7fpgOR0um3fIk+iy+lJ44728cSBcSg+Ke2Ad/caq9Vt3DRzTNiD25yT2MrgMXlD9FjPBr3RZvCOxPF+xp4OvgU+PE3MQcfB3cAKUWhqEL2Ap012wYPqhQ5vgRD6BX3sedsMZUDrgFOyAm+D/FX65NeUNNT9HbdqDgsPZNxX6r8Ib2AwboQsuNU2gg/7GNenw5LiR1ZM12mL4psBpULzxpyBdSvRoqOZYw6Us5Teo4ooAlVO16wAAAABJRU5ErkJggg==\n\n# check icon\n#image=iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAADHklEQVRIDbWWvWsUURTFN35iExXsFGtjoSgY+0WMtWAKsbARJVoJFv4TgmAQLIMI1hZ+FFpHIYIKiqmUpFHBYOn37zc7Z/I2u2a2MAfOzp377r3nvfvezOxYZxBjuLbAH/XQONcp2IUH4D64E4oVuAzfwafwMfwGxVb4E/7xJrB4Ce83wV9wG7wCz0GTX8J5+BZ+gWIPnIDH4RHoJO/CW/A73Ax/wz5R7isoJMUktPgbOAN3wTYYY6w55lpDlHV7Hn6zMh3T8BOchTtgYKIrtd0l9WWimFWOudawlnC86aaGSxcGfIUXvamxnasCbTDG2MAa1oqoGpWoMxST0FlFzMGMYY4MRbNia1nT2qKp5wGx77ZCKDbKqqrg4idCuqrVcLWmtdVocBXLzc6eNTNpItqNbIuR5qeGNa2tRgWfswU407vt24fa1Xopu3GH6At1RhZgbTXU6pyBziBHv0x2vA3lym4S/BEerJPSRmuroVbnNpzTAOUe9Dzr/xqfnOvYHpBDdUomnvE5/Gp1nsHLGiB913bTm6OsYw3Kg3WesRV4oo4p68RWQ63OIuxqgLWz6nlXn9PcK5ZCp7AV8xUorJETmnuvarzXWNuGBDvbswbUiIC3sY9if4bXdALbJ0tkEbZarQHBJDhzX9I3DKqhkA+22A8/wHK8PEDGiAHB9Vp6jATHH8HdMBjHeAXvxcE1hQtXZcZvSxddzRKcqIZWe+8nxbEX0NeS9nN4GIoH0Pak5a7cb98wZIvUWLKQH0+/Z8LvYKCoz5Ev4JPwIbwPX0OLnIZCMb+D/0JqqqFW64OfA2LsJfgEun+iHOt5+n/Tzr4H3/1YgDN1bA5FmZrE0md32pBa1lZDrQq+WNte3gpkP0YRy+p9n/a9vFV0r+bhrDfAwsNWpX/Y0TenhLmZnDWtrUaFzOR/fYCtF7GhH+By1tMEb/hfDJepaPZFUZ8xW2H/A8edve0qqS+5mO1/ogwSJiXR9tp3N9sT5rFugzHGmmOuNURZt+l1b2h1pRv2RzibG0Gv+mxZ3h4+O1OwC/2rvxdmxSvYy3Dkv/p/ATQejPjjKGMzAAAAAElFTkSuQmCC\n\necho \"$reminder | length=30 bash='$0' param1='done' terminal=false refresh=true templateImage=$image\"\n"
+			}
+		],
+		"path": "Tools/todolist.2m.sh",
+		"filename": "todolist.2m.sh",
+		"dir": "Tools",
+		"docsPlugin": "Tools/todolist.2m.sh.html",
+		"docsCategory": "Tools.html",
+		"pathSegments": [
+			"Tools"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Tools",
+				"text": "Tools",
+				"isLast": true
+			}
+		],
+		"title": "Todo List for menu bar",
+		"version": "v1.0",
+		"author": "Julian Naumann",
+		"authors": [
+			{
+				"name": "Julian Naumann",
+				"githubUsername": "JulianNaumann",
+				"imageURL": "https://avatars.githubusercontent.com/u/8291876?v=4",
+				"bio": "CS/Machine Learning student in Germany",
+				"primary": true
+			}
+		],
+		"desc": "Display a todo list in the menu bar with items taken from the macos' Reminders.app from the list called 'Today'. Click the item to complete the reminder and display the next one.",
+		"imageURL": "https://i.imgur.com/d4cBUKW.png",
+		"dependencies": [
+			"bash",
+			"osascript"
+		],
+		"aboutURL": "https://github.com/JulianNaumann/bitbar-todolist",
+		"lastUpdated": "2021-03-08T15:22:07.94493Z",
+		"vars": null
+	}
+}

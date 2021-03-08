@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Kağan İNAN",
+		"githubUsername": "kaaninan",
+		"imageURL": "https://avatars.githubusercontent.com/u/4940927?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/prayer-time.1m.py",
+					"filename": "prayer-time.1m.py",
+					"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n# \u003cbitbar.title\u003ePrayer Time\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKagan Inan\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekaaninan\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eImsak ve aksam ezani saatlerine ne kadar kaldigini takip edin !\u003c/bitbar.desc\u003e\n\nimport urllib2\nimport json\nfrom datetime import datetime\nimport time\n\n# Istanbul, Turkey -\u003e 9541\n# For others: https://ezanvakti.herokuapp.com/\nlocation_code = 9541\n\nurl_prayer = \"https://ezanvakti.herokuapp.com/vakitler?ilce=%s\" % location_code\nurl_time = \"http://worldclockapi.com/api/json/utc/now\"\n\n\n# Get UTC time and convert to local time\nresult_time = urllib2.urlopen(url_time).read()\njsonDataTime = json.loads(result_time)\nnow_server = jsonDataTime['currentDateTime']\nutc = datetime.strptime(now_server[:-1], '%Y-%m-%dT%H:%M')\nnow_timestamp = time.time()\noffset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)\nnow_server = utc + offset\n\n\n# Get Prayer Time\nresult = urllib2.urlopen(url_prayer).read()\njsonData = json.loads(result)\nFMT = '%H:%M'\nimsak = datetime.strptime(jsonData[0][\"Imsak\"], FMT)\naksam = datetime.strptime(jsonData[0][\"Aksam\"], FMT)\nnow = datetime.strptime(now_server.strftime(FMT), FMT)\n\n\n# Select time gap\nif now \u003c imsak:\n\tprint ':watch: ' + str(imsak - now)[:-3]\nelse:\n\tprint ':watch: ' + str(aksam - now)[:-3]\n\nprint \"---\"\nprint \"Imsak: \" + datetime.strftime(imsak, FMT)\nprint \"Aksam: \" + datetime.strftime(aksam, FMT)\n"
+				}
+			],
+			"path": "Time/prayer-time.1m.py",
+			"filename": "prayer-time.1m.py",
+			"dir": "Time",
+			"docsPlugin": "Time/prayer-time.1m.py.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Prayer Time",
+			"version": "1.0",
+			"author": "Kagan Inan",
+			"authors": [
+				{
+					"name": "Kağan İNAN",
+					"githubUsername": "kaaninan",
+					"imageURL": "https://avatars.githubusercontent.com/u/4940927?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Imsak ve aksam ezani saatlerine ne kadar kaldigini takip edin !",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.083684Z",
+			"vars": null
+		}
+	]
+}

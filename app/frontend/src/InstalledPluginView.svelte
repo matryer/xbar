@@ -1,0 +1,202 @@
+<script>
+
+	import { params } from 'svelte-hash-router'
+	import { 
+		uninstallPlugin,
+		refreshInstalledPlugins,
+		getInstalledPluginMetadata, 
+		loadVariableValues, saveVariableValues,
+		setEnabled,
+		setRefreshInterval,
+	} from './rpc.svelte'
+	import { installedPlugins, selectedInstalledPluginPath, clearNav } from './pagedata.svelte'
+	import { wait } from './waiters.svelte'
+	import Breadcrumbs from './elements/Breadcrumbs.svelte'
+	import PluginDetails from './elements/PluginDetails.svelte'
+	import Variables from './elements/Variables.svelte'
+	import PluginSourceBrowser from './elements/PluginSourceBrowser.svelte'
+	import Button from './elements/Button.svelte'
+	import Error from './elements/Error.svelte'
+	import Switch from './elements/Switch.svelte'
+	import Spinner from './elements/Spinner.svelte'
+	import Duration from './elements/Duration.svelte'
+
+	let err
+
+	$: loadPluginMetadata($params._)
+	let installedPlugin = null
+	let refreshInterval
+	let variableValues = null
+
+	function loadPluginMetadata(installedPluginPath) {
+		if (!installedPluginPath) { return }
+		const done1 = wait()
+		const done2 = wait()
+		getInstalledPluginMetadata(installedPluginPath)
+			.then(result => {
+				installedPlugin = result.plugin
+				installedPlugin.enabled = result.enabled
+				refreshInterval = result.refreshInterval
+			})
+			.catch(e => err = e)
+			.finally(() => done1())
+		loadVariableValues(installedPluginPath)
+			.then(result => variableValues = result)
+			.catch(e => err = e)
+			.finally(() => done2())
+	}
+
+	$: updateValues(installedPlugin ? installedPlugin.vars : null, variableValues)
+
+	function updateValues(variables, values) {
+		if (!variables || !values) return // wait for both
+		variables.forEach(v => {
+			if (typeof values[v.name] !== 'undefined') {
+				return
+			}
+			switch (v.type) {
+			case 'string':
+			case 'list':
+				values[v.name] = v.default
+				break
+			case 'boolean':
+				const def = v.default || ""
+				values[v.name] = def.toUpperCase() == 'TRUE'
+				break
+			case 'number':
+				values[v.name] = parseFloat(v.default) || 0
+				break
+			default:
+				console.warn(`Variables: ${v.name} has unsupported type ${v.type} (skipping)`)
+			}
+		})
+	}
+
+	function onValuesChanged() {
+		saveVariableValues(installedPlugin.path, variableValues)
+	}
+
+	let pluginEnableToggleWaiter = 0
+	function toggleEnabled() {
+		pluginEnableToggleWaiter++
+		installedPlugin.enabled = !installedPlugin.enabled
+		setEnabled(installedPlugin.path, installedPlugin.enabled) 
+			.then(updatedPath => {
+				// redirect to new place
+				selectedInstalledPluginPath.set(updatedPath)
+				location.hash = `/installed-plugins/${updatedPath}`
+				refreshInstalledPlugins(installedPlugins)
+			})
+			.catch(e => err = e)
+			.finally(() => pluginEnableToggleWaiter--)
+	}
+
+	function onDurationChanged() {
+		const done = wait()
+		setRefreshInterval(installedPlugin.path, refreshInterval)
+			.then(result => {
+				// redirect to new place
+				selectedInstalledPluginPath.set(result.installedPluginPath)
+				location.hash = `/installed-plugins/${result.installedPluginPath}`
+				refreshInstalledPlugins(installedPlugins)
+			})
+			.catch(e => err = e)
+			.finally(() => done())
+	}
+
+	function onUninstallClick() {
+		const done = wait()
+		uninstallPlugin(installedPlugin)
+			.then(() => {
+				clearNav()
+				location.hash = ''
+				refreshInstalledPlugins(installedPlugins)
+			})
+			.catch(e => err = e)
+			.finally(() => done())
+	}
+
+</script>
+
+<style>
+	.plugin-image {
+		max-width: 300px;
+	}
+	.flex-fix {
+		flex: none;
+	}
+</style>
+
+<Error err={err} />
+
+<Breadcrumbs>
+	{#if installedPlugin}
+		<strong>
+			{installedPlugin.title || installedPlugin.filename}
+		</strong>
+	{/if}
+</Breadcrumbs>
+
+<div class='flex flex-col h-full max-w-full'>
+	<div class='flex p-6 flex-wrap space-x-8 flex-fix'>
+		<div>
+			<PluginDetails plugin={installedPlugin}>
+				<div slot='action' class='pl-3'>
+					<Spinner 
+						width=16 
+						height=16
+						waiter={ pluginEnableToggleWaiter } 
+					/>
+					<Switch 
+						on={ installedPlugin.enabled } 
+						loading={ pluginEnableToggleWaiter>0 }
+						on:click={ toggleEnabled }
+					/>
+				</div>
+				<div slot='footer'>
+					{#if refreshInterval}
+						<hr>
+						<div class='p-4 text-right'>
+							<span class='mr-1'>Refresh every:</span>
+							<Duration 
+								value={refreshInterval} 
+								on:change={ onDurationChanged }
+							/>
+						</div>
+					{/if}
+				</div>
+			</PluginDetails>
+			{#if installedPlugin}
+				<div class='p-3'>
+					<Button on:click={ onUninstallClick }>
+						Uninstall this plugin
+					</Button>
+				</div>
+			{/if}
+		</div>
+		{#if installedPlugin && installedPlugin.imageURL}
+			<div class='flex-shrink mb-8'>
+				<img 
+					alt='Screenshot of {installedPlugin.title}' 
+					src={installedPlugin.imageURL} 
+					onerror='this.style.display="none"'
+					class='plugin-image max-h-64'
+				/>
+			</div>
+		{/if}
+	</div>
+	{#if installedPlugin && installedPlugin.vars}
+		<div class='shadow-lg'>
+			<Variables 
+				on:change={onValuesChanged}
+				variables={installedPlugin.vars} 
+				values={variableValues}
+			/>
+		</div>
+	{/if}
+	{#if installedPlugin}
+		<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-800 bg-opacity-75'>
+			<PluginSourceBrowser files={installedPlugin.files} />
+		</div>
+	{/if}
+</div>

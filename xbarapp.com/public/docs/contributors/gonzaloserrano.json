@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Gonzalo Serrano",
+		"githubUsername": "gonzaloserrano",
+		"imageURL": "https://avatars.githubusercontent.com/u/349328?v=4",
+		"bio": "@gonzaloserrano on twitter",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/AirPodsPower.sh",
+					"filename": "AirPodsPower.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eAirPods Power\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eGonzalo Serrano Revuelta\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003egonzaloserrano\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays AirPods battery\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n\n# Based on AirPods Battery CLI, Version 2.3 - https://github.com/duk242/AirPodsBatteryCLI\n\nOUTPUT='🎧'\nBLUETOOTH_DEFAULTS=$(defaults read /Library/Preferences/com.apple.Bluetooth)\nSYSTEM_PROFILER=$(system_profiler SPBluetoothDataType 2\u003e/dev/null)\nMAC_ADDR=$(grep -b2 \"Minor Type: Headphones\"\u003c\u003c\u003c\"${SYSTEM_PROFILER}\"|awk '/Address/{print $3}')\nCONNECTED=$(grep -ia6 \"${MAC_ADDR}\"\u003c\u003c\u003c\"${SYSTEM_PROFILER}\"|awk '/Connected: Yes/{print 1}')\nBLUETOOTH_DATA=$(grep -ia6 '\"'\"${MAC_ADDR}\"'\"'\u003c\u003c\u003c\"${BLUETOOTH_DEFAULTS}\")\nBATTERY_LEVELS=(\"BatteryPercentCombined\" \"HeadsetBattery\" \"BatteryPercentSingle\" \"BatteryPercentCase\" \"BatteryPercentLeft\" \"BatteryPercentRight\")\n\nif [[ \"${CONNECTED}\" ]]; then\n    for I in \"${BATTERY_LEVELS[@]}\"; do\n        declare -x \"${I}\"=\"$(awk -v pat=\"${I}\" '$0~pat{gsub (\";\",\"\"); print $3 }'\u003c\u003c\u003c\"${BLUETOOTH_DATA}\")\"\n        [[ -n \"${!I}\" ]] \u0026\u0026 OUTPUT=\"${OUTPUT} $(awk '/BatteryPercent/{print substr($0,15,1)}'\u003c\u003c\u003c\"${I}\")${!I}\"\n    done\n    echo \"${OUTPUT}\"\nelse\n    printf \"%s\\n---\\nNot connected\" \"${OUTPUT}\"\nfi\n"
+				}
+			],
+			"path": "System/AirPodsPower.sh",
+			"filename": "AirPodsPower.sh",
+			"dir": "System",
+			"docsPlugin": "System/AirPodsPower.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "AirPods Power",
+			"version": "v1.0",
+			"author": "Gonzalo Serrano Revuelta",
+			"authors": [
+				{
+					"name": "Gonzalo Serrano",
+					"githubUsername": "gonzaloserrano",
+					"imageURL": "https://avatars.githubusercontent.com/u/349328?v=4",
+					"bio": "@gonzaloserrano on twitter",
+					"primary": true
+				}
+			],
+			"desc": "Displays AirPods battery",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:01.684933Z",
+			"vars": null
+		}
+	]
+}

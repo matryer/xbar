@@ -1,0 +1,61 @@
+{
+	"person": {
+		"name": "Allan Frese",
+		"githubUsername": "frese",
+		"imageURL": "https://avatars.githubusercontent.com/u/40183?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Tools/PagerDuty/pagerduty.30s.rb",
+					"filename": "pagerduty.30s.rb",
+					"content": "#!/usr/bin/ruby\n# \u003cbitbar.title\u003ePagerDuty\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAllan Frese\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003efrese\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows current pagerduty alert status.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby (httparty gem)\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/5onainp.png\u003c/bitbar.image\u003e\n\nrequire \"json\"\nrequire \"pp\"\nrequire \"optparse\"\nrequire \"httparty\"\nrequire \"date\"\n\n#--------------------------------------------------------------------\n# Set some configuration for PagerDuty\n$token    = \"\"\n$mail     = \"\"\n$team_ids = \"\"\n#--------------------------------------------------------------------\n\nclass PagerDuty\n\n    def main\n        begin\n            # Init some defaults\n            $verbose = false\n            $id      = nil\n            $command = \"GET\"\n            $color   = Hash.new\n\n\t\t\tif ENV['BitBarDarkMode'].nil?\n\t\t\t\t$color['normal']       = 'black'\n\t\t\t\t$color['triggered']    = 'red'\n\t\t\t\t$color['acknowledged'] = 'orange'\n\t\t\t\t$color['resolved']     = 'green'\n\t\t\telse\n\t\t\t\t$color['normal']       = 'white'\n\t\t\t\t$color['triggered']    = 'red'\n\t\t\t\t$color['acknowledged'] = 'yellow'\n\t\t\t\t$color['resolved']     = 'green'\n\t\t\tend\n\n            OptionParser.new do |opt|\n                opt.banner = \"Usage: #{$0} [options]\"\n                opt.on(\"-a\", \"--ackowledge ID\", \"Acknowledge an incident\") { |id| $command = \"ACKOWLEDGE\"; $id = id }\n                opt.on(\"-r\", \"--resolve ID\", \"Resolve an incident\")        { |id| $command = \"RESOLVE\";    $id = id }\n                opt.on(\"-v\", \"--verbose\" )                                 { $verbose = true }\n            end.parse!\n\n            case $command\n            when \"GET\"\n                list_incidents\n            when \"ACKOWLEDGE\"\n                update_incident($id, \"acknowledged\")\n            when \"RESOLVE\"\n                update_incident($id, \"resolved\")\n            end\n\n        rescue StandardError =\u003e ex\n            puts \"ERR|color=purple\"\n            puts \"---\"\n            puts ex.class\n            puts ex.message\n        end\n\n    end\n\n    def list_incidents\n        out = HTTParty.get(\"https://api.pagerduty.com/incidents\",\n                           timeout: 25,\n                           query:   { \"since\" =\u003e (Time.now-24*60*60).strftime(\"%Y-%m-%dT%H:%M:%S\"),\n                                      \"sort_by\" =\u003e \"created_at:desc\",\n\t\t\t\t\t\t\t\t\t  \"team_ids\" =\u003e $team_ids.split(\",\") },\n                           headers: { \"Content-type\"  =\u003e \"application/json\",\n                                      \"Authorization\" =\u003e \"Token token=#{$token}\",\n                                      \"Accept\"        =\u003e \"application/vnd.pagerduty+json;version=2\" })\n\n        pd = JSON.parse(out.body)\n        incidents = Array.new\n        @count = 0\n        @color = \"yellow\"\n        pd['incidents'].each { |i|\n            log(\"Incident: #{i}\")\n            if i['status'].eql?(\"resolved\")\n                @inc = nil\n                incidents.each { |i2| @inc = i2 if i2['incident_key'].eql?(i['incident_key']) and i2['status'].eql?(\"resolved\") }\n                if @inc.nil?\n                    i['count'] = 1\n                    incidents.push(i)\n                else\n                    @inc['count'] += 1\n                end\n            else\n                @count += 1\n                @color = \"red\" if i['status'].eql?(\"triggered\")\n                i['count'] = 1\n                incidents.push(i)\n            end\n        }\n\n        if incidents.empty?\n            puts \"OK|color=green\"\n        else\n            puts @count\u003e0 ? \"#{@count} Alert#{@count==1 ? \"\" : \"s\"}|color=#{@color} dropdown=false\" : \"OK|color=green dropdown=false\"\n            puts \"---\"\n            incidents.each { |incident|\n                log(incident.inspect)\n                urgency = incident['urgency'].eql?(\"high\") ? \"⚡\" : \"\"\n                status  = incident['status']\n                color   = $color[status]\n                option  = incident['status'].eql?(\"triggered\") ? \"-a\" : \"-r\"\n                count   = incident['count'] \u003e 1 ? \"(#{incident['count']})\" : \"\"\n\n                desc = incident['summary']\n\t\t\t\tdesc.gsub!(/\\n/,\"\")\n\n                bash = \"bash=#{File.expand_path(__FILE__)} param1=#{option} param2=#{incident['id']}\" unless incident['status'].eql?(\"resolved\")\n                time = Time.parse(incident['created_at']).localtime.strftime(\"%H:%M:%S\")\n                puts \"#{count}#{urgency} [#{time}] #{incident['incident_key']}#{urgency}|color=#{color} #{bash} refresh=true terminal=false length=100\"\n\n                begin\n    \t\t\t\tresp = JSON.parse(fetch(incident['first_trigger_log_entry']['self']))\n                    client_url = resp['log_entry']['channel']['client_url']\n\t\t\t\t    client_url.gsub!(\" \",\"%20\")\n                rescue\n\t\t\t\t    client_url = incident['service']['html_url']\n\t\t\t\t    client_url.gsub!(\" \",\"%20\")\n                end\n\n\t\t\t\tif desc.length \u003e= 100\n                    puts \"#{desc[0..99]}...|color=#{$color['normal']} size=11 href=#{client_url}\"\n\t\t\t\t    puts \"...#{desc[100..200]}|alternate=true color=#{$color['normal']} size=11\"\n\t\t\t\telse\n                    puts \"#{desc}...|color=#{$color['normal']} size=11 href=#{client_url}\"\n\t\t\t\tend\n                puts \"---\"\n            }\n        end\n    end\n\n    def fetch(url)\n\t\tlog(\"--------------------------------------\")\n\t\tlog(\"fetch: #{url}\")\n        out = HTTParty.get(url, headers: { \"Content-type\"  =\u003e \"application/json\",\n                                           \"Authorization\" =\u003e \"Token token=#{$token}\",\n                                           \"Accept\"        =\u003e \"application/vnd.pagerduty+json;version=2\" })\n\n        log(\"output: #{out.body}\")\n        return out.body\n    end\n\n    def update_incident(id, cmd)\n        body = { incident: { type: \"incident_reference\", status: cmd } }\n        out = HTTParty.put(\"https://api.pagerduty.com/incidents/#{id}\",\n                           body:  body.to_json,\n                           headers: { \"Content-type\"  =\u003e \"application/json\",\n                                      \"Authorization\" =\u003e \"Token token=#{$token}\",\n                                      \"Accept\"        =\u003e \"application/vnd.pagerduty+json;version=2\",\n                                      \"From\"          =\u003e $mail.to_str })\n\n        log(\"output: #{out}\")\n        return out\n    end\n\n    def log(line)\n        return unless $verbose\n        puts line\n    end\n\n    self\n\nend.new.main\n"
+				}
+			],
+			"path": "Tools/PagerDuty/pagerduty.30s.rb",
+			"filename": "pagerduty.30s.rb",
+			"dir": "Tools/PagerDuty",
+			"docsPlugin": "Tools/PagerDuty/pagerduty.30s.rb.html",
+			"docsCategory": "Tools/PagerDuty.html",
+			"pathSegments": [
+				"Tools",
+				"PagerDuty"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": false
+				},
+				{
+					"path": "Tools/PagerDuty",
+					"text": "PagerDuty",
+					"isLast": true
+				}
+			],
+			"title": "PagerDuty",
+			"version": "v2.0",
+			"author": "Allan Frese",
+			"authors": [
+				{
+					"name": "Allan Frese",
+					"githubUsername": "frese",
+					"imageURL": "https://avatars.githubusercontent.com/u/40183?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows current pagerduty alert status.",
+			"imageURL": "http://i.imgur.com/5onainp.png",
+			"dependencies": [
+				"ruby (httparty gem)"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:07.204584Z",
+			"vars": null
+		}
+	]
+}

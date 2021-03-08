@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/website-status.sh",
+				"filename": "website-status.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003ewebsite-status\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMarc Oehler\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekemar220\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGets the status of your website\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nurl='http://www.kemar.ch' # replace with your url\n\ncode=$(curl -o /dev/null --silent --head --write-out '%{http_code}\\n' $url)\n\ncase \"$code\" in\n\"200\")\n    echo \"ok\"\n    ;;\n\"301\" | \"302\")\n    echo \"redirected\"\n    ;;\n*)\n    echo \"error\"\n    ;;\nesac\n\necho \"---\"\necho $url\necho \"http code $code\"\n"
+			}
+		],
+		"path": "Network/website-status.sh",
+		"filename": "website-status.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/website-status.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "website-status",
+		"version": "1.0",
+		"author": "Marc Oehler",
+		"authors": [
+			{
+				"name": "Marc",
+				"githubUsername": "kemar220",
+				"imageURL": "https://avatars.githubusercontent.com/u/7531652?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Gets the status of your website",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:00.350712Z",
+		"vars": null
+	}
+}

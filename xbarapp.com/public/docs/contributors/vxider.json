@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "vxider",
+		"githubUsername": "vxider",
+		"imageURL": "https://avatars.githubusercontent.com/u/6134315?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/power_wattage.30s.sh",
+					"filename": "power_wattage.30s.sh",
+					"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003ePower Wattage\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003evxider\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003evxider\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThe AC power adapter wattage for macos\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/4N0xk1g.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003e\u003c/bitbar.abouturl\u003e\n\npower_wattage=\"$(/usr/sbin/system_profiler SPPowerDataType | grep \"Wattage (W)\" | awk \"{print \\$3\\\"W\\\"}\")\"\n\nif [ -z \"$power_wattage\" ]\nthen\n  echo \"🔋\"\u001b \nelse\n  echo \"🔌${power_wattage}\"\nfi\n\necho \"---\"\necho \"Refresh... | refresh=true\""
+				}
+			],
+			"path": "System/power_wattage.30s.sh",
+			"filename": "power_wattage.30s.sh",
+			"dir": "System",
+			"docsPlugin": "System/power_wattage.30s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Power Wattage",
+			"version": "v1.0",
+			"author": "vxider",
+			"authors": [
+				{
+					"name": "vxider",
+					"githubUsername": "vxider",
+					"imageURL": "https://avatars.githubusercontent.com/u/6134315?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "The AC power adapter wattage for macos",
+			"imageURL": "https://i.imgur.com/4N0xk1g.jpg",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:04.353927Z",
+			"vars": null
+		}
+	]
+}

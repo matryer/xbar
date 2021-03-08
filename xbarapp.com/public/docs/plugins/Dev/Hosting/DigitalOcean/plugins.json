@@ -1,0 +1,60 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/Hosting/DigitalOcean/digitalocean.1h.js",
+					"filename": "digitalocean.1h.js",
+					"content": "#!/usr/bin/env /usr/local/bin/node\n\n/* jshint esversion: 6 */\n\n/*\n * \u003cbitbar.title\u003eDigitalOcean\u003c/bitbar.title\u003e\n * \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n * \u003cbitbar.author\u003eHasit Mistry\u003c/bitbar.author\u003e\n * \u003cbitbar.author.github\u003ehasit\u003c/bitbar.author.github\u003e\n * \u003cbitbar.image\u003ehttp://i.imgur.com/1YTWFSn.png\u003c/bitbar.image\u003e\n * \u003cbitbar.desc\u003eView status of DigitalOcean Droplets\u003c/bitbar.desc\u003e\n * \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n */\n\nvar https = require('https');\n\nvar hostname = 'api.digitalocean.com';\n\n// Add your Digital Ocean token.\n// If you have different DO teams you can add multiple tokens: ['DO_TOKEN_1', 'DO_TOKEN_2', ...]\nvar DOTokens = ['DO_TOKEN'];\n\nvar menuBarIcon = '💧';\nvar startMenu = '---';\n\nconsole.log(menuBarIcon);\nconsole.log(startMenu);\n\nfor (var i = 0; i \u003c DOTokens.length; i++) {\n    if (DOTokens.length == 1 \u0026\u0026 DOTokens[0] === 'DO_TOKEN') {\n        console.log('DO token is missing!');\n    } else {\n        tokenIndex = i;\n        getDroplets();\n    }\n}\n\nfunction getDroplets() {\n    performRequest('/v2/droplets', 'GET', function(data) {\n        var droplets = data.droplets;\n\n        for (var i = 0; i \u003c droplets.length; i++) {\n            var status = 'iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAXVBMVEUAAADAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvAOSvGu33lAAAAHnRSTlMAAwYHCQoQEh0fNVBRX2N5fJG+wMfK3O3v8fP3+/37J2BkAAAATklEQVQIHQXBhQHCAADAsA53d1j+P5OkqoaqqmbHr/G8rGr1BuOmmjwB47L2AM51A/CrFwBDFwDf2gI41fAAfObV4gFe66qG3fV9P0yrPxEfCr3MVhkLAAAAAElFTkSuQmCC';\n            var date = new Date(droplets[i].created_at);\n            var humanDate = date.getFullYear() + '/' + date.getMonth() + 1 + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();\n\n            if (droplets[i].status === 'active') {\n                status = 'iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAXVBMVEUAAAAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmAnrmCynqnaAAAAHnRSTlMAAwYHCQoQEh0fNVBRX2N5fJG+wMfK3O3v8fP3+/37J2BkAAAATklEQVQIHQXBhQHCAADAsA53d1j+P5OkqoaqqmbHr/G8rGr1BuOmmjwB47L2AM51A/CrFwBDFwDf2gI41fAAfObV4gFe66qG3fV9P0yrPxEfCr3MVhkLAAAAAElFTkSuQmCC';\n            }\n\n            printBitBarLine(droplets[i].name, ['color=black', 'image=' + status]);\n\n            // Open in browser and console\n            printBitBarLine('--Open in browser', ['href=https://cloud.digitalocean.com/droplets/' + droplets[i].id]);\n            printBitBarLine('--Connect to console', ['href=https://cloud.digitalocean.com/droplets/' + droplets[i].id + '/console?no_layout=true']);\n\n            // Droplet creation date and time\n            printBitBarLine('-----');\n            printBitBarLine('--Created');\n            printBitBarLine('--' + humanDate, ['color=black']);\n\n            // Droplet IPv4 address\n            printBitBarLine('-----');\n            printBitBarLine('--IP Address');\n            printBitBarLine('--' + droplets[i].networks.v4[0].ip_address, ['color=black']);\n\n            // Droplet region\n            printBitBarLine('-----');\n            printBitBarLine('--Region');\n            printBitBarLine('--' + droplets[i].region.name, ['color=black']);\n\n            // Droplet details - image, memory, storage, vcpus\n            printBitBarLine('-----');\n            printBitBarLine('--Details');\n            printBitBarLine('--Image: ' + droplets[i].image.distribution + droplets[i].image.name, ['color=black']);\n            printBitBarLine('--Memory: ' + droplets[i].memory + 'MB', ['color=black']);\n            printBitBarLine('--Storage: ' + droplets[i].disk + 'GB', ['color=black']);\n            printBitBarLine('--CPUs: ' + droplets[i].vcpus, ['color=black']);\n        }\n    });\n}\n\nfunction printBitBarLine(title, args) {\n    var lineArgs = [];\n\n    if (title !== '-----') {\n        for (var i in args) {\n            lineArgs.push(args[i]);\n        }\n\n        if (lineArgs.length !== 0) {\n            title = title + '|';\n        }\n    }\n\n    console.log(title + lineArgs.join(' '));\n}\n\nfunction performRequest(endpoint, method, success) {\n    var headers = {};\n\n    headers = {\n        'Authorization': 'Bearer ' + DOTokens[tokenIndex],\n        'Content-Type': 'application/json'\n    };\n\n    var options = {\n        host: hostname,\n        path: endpoint,\n        method: method,\n        headers: headers\n    };\n\n    var req = https.request(options, function(res) {\n        res.setEncoding('utf-8');\n\n        var responseString = '';\n\n        res.on('data', function(data) {\n            responseString += data;\n        });\n\n        res.on('end', function() {\n            var responseObject = JSON.parse(responseString);\n            success(responseObject);\n        });\n    });\n\n    req.end();\n\n    req.on('error', function(err) {\n        console.log(err);\n    });\n}\n"
+				}
+			],
+			"path": "Dev/Hosting/DigitalOcean/digitalocean.1h.js",
+			"filename": "digitalocean.1h.js",
+			"dir": "Dev/Hosting/DigitalOcean",
+			"docsPlugin": "Dev/Hosting/DigitalOcean/digitalocean.1h.js.html",
+			"docsCategory": "Dev/Hosting/DigitalOcean.html",
+			"pathSegments": [
+				"Dev",
+				"Hosting",
+				"DigitalOcean"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting",
+					"text": "Hosting",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Hosting/DigitalOcean",
+					"text": "DigitalOcean",
+					"isLast": true
+				}
+			],
+			"title": "DigitalOcean",
+			"version": "v1.0",
+			"author": "Hasit Mistry",
+			"authors": [
+				{
+					"name": "Hasit Mistry",
+					"githubUsername": "hasit",
+					"imageURL": "https://avatars.githubusercontent.com/u/1553055?v=4",
+					"bio": "I am a software engineer who designs and develops web apps, system level tools and CLI tools. My primary language is Go.",
+					"primary": true
+				}
+			],
+			"desc": "View status of DigitalOcean Droplets",
+			"imageURL": "http://i.imgur.com/1YTWFSn.png",
+			"dependencies": [
+				"node"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.081264Z",
+			"vars": null
+		}
+	]
+}

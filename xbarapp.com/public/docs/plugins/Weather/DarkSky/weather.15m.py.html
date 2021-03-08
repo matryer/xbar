@@ -1,0 +1,604 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Weather in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Detailed weather plugin powered by DarkSky with auto location lookup. Supports metric and imperial units. Needs API key from https://darksky.net/dev/. - install xbar for free to get started.'>
+	<meta name='author' content='Daniel Seripap'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png'>
+	<meta itemprop='name' content='Weather in your macOS menu bar'>
+	<meta itemprop='description' content='Detailed weather plugin powered by DarkSky with auto location lookup. Supports metric and imperial units. Needs API key from https://darksky.net/dev/. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Weather in your macOS menu bar'>
+	<meta name='twitter:description' content='Detailed weather plugin powered by DarkSky with auto location lookup. Supports metric and imperial units. Needs API key from https://darksky.net/dev/. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Weather in your macOS menu bar'>
+	<meta property='og:description' content='Detailed weather plugin powered by DarkSky with auto location lookup. Supports metric and imperial units. Needs API key from https://darksky.net/dev/. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Weather/DarkSky/weather.15m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png'>
+	<link rel='shortcut icon' href='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Weather</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/seripap.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/683200?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/seripap.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Daniel Seripap (<code style='color:white;'>@seripap</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Detailed weather plugin powered by DarkSky with auto location lookup. Supports metric and imperial units. Needs API key from https://darksky.net/dev/.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Weather%2fDarkSky%2fweather.15m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png' 
+				alt='Image preview of Weather plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>weather.15m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Weather/DarkSky/weather.15m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Weather/DarkSky/weather.15m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# &lt;bitbar.title&gt;Weather&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v3.5.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Daniel Seripap&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;seripap&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Detailed weather plugin powered by DarkSky with auto location lookup. Supports metric and imperial units. Needs API key from https://darksky.net/dev/.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://cloud.githubusercontent.com/assets/683200/16276583/ff267f36-387c-11e6-9fd0-fc57b459e967.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+
+
+# -----------------------------------------------------------------------------------
+# For a more accurate location lookup, download and install CoreLocationCLI
+# Available here: https://github.com/fulldecent/corelocationcli/releases
+# This will allow a more precise location lookup as it uses native API for loc lookup
+# -----------------------------------------------------------------------------------
+
+import json
+import urllib2
+import textwrap
+from random import randint
+import commands
+
+# get yours at https://darksky.net/dev
+api_key = &#39;&#39;
+
+# get yours API key for encode location at https://opencagedata.com
+geo_api_key = &#39;&#39;
+
+# if you want to set manual location, define following two vars. If left empty, script will try to determine the location
+# example:
+# manual_city = &#39;Novi Sad&#39;
+# manual_latlng = &#39;45.2526331,19.7817785&#39;
+manual_city = &#39;&#39;
+manual_latlng = &#39;&#39;
+
+
+# set to si for metric, leave blank for imperial
+units = &#39;&#39;
+
+# optional, see message above
+core_location_cli_path = &#39;~/CoreLocationCLI&#39;
+
+def manual_location_lookup():
+  if manual_latlng == &#34;&#34; or manual_city == &#34;&#34;:
+     return False;
+  else:
+     return { &#34;loc&#34;: manual_latlng, &#34;preformatted&#34;: manual_city }
+
+def mac_location_lookup():
+  try:
+    exit_code, loc = commands.getstatusoutput(core_location_cli_path &#43; &#39; -once -format &#34;%latitude,%longitude&#34;&#39;)
+    if exit_code != 0:
+      raise ValueError(&#39;CoreLocationCLI not found&#39;)
+    formatted_city_name = reverse_latlong_lookup(loc)
+    return { &#34;loc&#34;: loc, &#34;preformatted&#34;: formatted_city_name }
+  except:
+    return False
+
+def auto_loc_lookup():
+  try:
+    location = urllib2.urlopen(&#39;https://ipinfo.io/json&#39;)
+    return json.load(location)
+  except urllib2.URLError:
+    return False
+
+def reverse_latlong_lookup(loc):
+  try:
+    location_url = &#39;https://api.opencagedata.com/geocode/v1/json?q=&#39; &#43; loc &#43; &#39;&amp;key=&#39; &#43; geo_api_key &#43; &#39;&amp;language=en&amp;no_annotations=1&amp;pretty=1&#39;
+    location = json.load(urllib2.urlopen(location_url))
+    if &#39;results&#39; in location:
+      return location[&#39;results&#39;][0][&#39;formatted&#39;].encode(&#39;UTF-8&#39;)
+    else:
+      return &#39;Could not lookup location name&#39;
+  except:
+    return &#39;Could not lookup location name&#39;
+
+def full_country_name(country):
+  try:
+    countries = json.load(urllib2.urlopen(&#39;http://country.io/names.json&#39;))
+    try:
+      if country in countries:
+        return countries[country].encode(&#39;UTF-8&#39;)
+      else:
+        return False
+    except KeyError:
+      return False
+  except urllib2.URLError:
+    return False
+
+def calculate_bearing(degree):
+  cardinals = [&#39;N&#39;, &#39;NE&#39;, &#39;E&#39;, &#39;SE&#39;, &#39;S&#39;, &#39;SW&#39;, &#39;W&#39;, &#39;NW&#39;]
+  return cardinals[int(round(((6 * degree)) / 360))]
+
+def get_wx_icon(icon_code):
+  if icon_code == &#39;clear-day&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFYAAABaCAQAAACInWkHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAADMAAAAzAAAADsAAAA5A2zbKAAABe9JREFUaN7tm9tvFFUcxz/bbrf30JaU5QUptUUuFQhye4KEKBYBjUEwIbE2Bh4khBdjoFpJFDCENiFcXgyRKj7iA4kJ4B8gPBgBoTW0DS1tua29LWx3trS7HV/OTme3O925nFnF7G8fdqdzzu989rtnZn7n9zsF2VbNbQIEuE21bNde6bC5VDIPiJIr23WOdFgXLQubhc3CZmGzsP8e7FZ2Z/jL5LCbrXY6bqefYRrxWOxXyyNUVB5Ra7Gnh0aG6We7VdRt9KGiMmQZ1y6sh0aGUFHpY1vqJkaBzEIqAZhLC/AjqulBVRQigGKhD3j4mBbmAlDJQktfEx&#43;HCKPaULeQDWxiExsotKGqSphD&#43;KzBgo/DGu6gjblr3jw0MqihHraOCpBnW12rqHpV8&#43;w6cl9dKarGzaq6HoqpwI&#43;fCopNtLakarplzSSn8PAVRcTvDBeZStGuiIXUUUc18ymmABgnzFN6aKedPpQUfXJo0O4ACkc5xaQTXePqTk&#43;GYXYlnc1lKQe5ykMmRZvE1wQDXOUgS2esyXYxrJsAtudqsk3P3V62JICu5Sx9TKXE1L&#43;m6OMsaxOAt9ArZ66mUjdCL/W6vy3iJE9mYMVQeMYzFGIzzj3hJFU6D/X0EjGvqvnrO59P6OFXTdP3aWal7nyI&#43;9zlL3oIMg4UUM4ilvE6r1Kqa3ebY1wmJo7eppoLvJCpa7LN4RuCOsU6aWUz/hQxWg5&#43;NtPCPV3rUb5mjpt4evNzgag2dD/fmghZajguQiMVlSgX8GcCdT6XtEHDnGeVyankYRXntbuKyiXmu41azkVtuKfsJ99S73z281Trf5FyN1HzOKFd4x1GUWca20aHdt84Ie/uOtP28FwM1M46217WcVd4ec4et1AXa5o8TrjfWrd6Hmu/z2I3UPM4JwYIsc&#43;xt72EhLdzbkyFjVp8dEaC&#43;zxOa7HcRtmoPtqE826WSPG4hC7hsU1uZABrCIiApEmazyYRAAVYIxf2iFDhFguk&#43;VzALeH1iEzUcq4Lt19KlaBZeL0u8/GwXoTJAd6QCruGv0VIv95Mc3O5rNVUANBBl1TYTjoAqGC1PNgV4v0PQlJhQ/yeNIJj2EIR3au0S0UFaBdJpioz&#43;Rsv82Y5qzJKlFIRe4bplw47QJgSwE8pEbyUzxZwerkyS5gXppF7FFAijoLSYYMolAAlFAA1/ECxYdsXXlbM8vAMUwj4KAJgIuXq35lFxPqrCB9QSN0ssJM5KVMWcUtOWrqXnDMaUW9TXoKG08DDc2JMK&#43;qzkMQ0a4UiLlCYAGKMEjMEfuFlJzkGpz1E6QHGGQOgmDLpsGXiZx9jHOjhQ7yGNFNefkvrMERAwMqLC&#43;L2ioANEALGuDFbYzP32QgPxHerkw5bJ66DB0TSNzb3BLsj3tcm5FacW6kWa9wx09wc7E1GAFjOa1JhF7McgBFuyoPtohOASocLxWSrF8/PTnMBkjnYUa6JTzulBt8fiE/XGJWpwUu1rJleMHZJWzB2u7Vg1C/FT0tZip9xbymemOTY69jbPneTHC9V&#43;gj0ibm7jhJz7e4n5uSkPN/JVMrTaTLZx6eZSyaDkzT9Sr5jLJNpegA/bboCSB/HqUnbpzapANKWmQIIQBlHE0pL92gxLC3NYzOtdOpaBzlqL4y3W7Tz8h7NrNKdjxftehnRinZVLGMFNQmB5Z8c4zJRcfQWtXwvu2iXqhxaZVgODRI0LIcu0nnYwn0ifCH3cetOoflNesRlKhHXZ6qEP8BESsxJHhqU8Hdq0YZiDjf9nPXxGc0izTHE5xI3R3j4iFaxJUvhOK1MOFW1ycVtJ9Cg7ZAxqa45VLc29DSIhLLDuWtVVfu40&#43;o22cN1X1U9riN182lCsaWqve19iepaC484QMSmqjV0o6DQbSJiSK1uhAPWYLfTb3Ou2t&#43;SGld3gB3WYGEHA7YuKyebfRsYYoB3jRoY75j7hSil/IyVXbDOTOUnIoS5krERHSib1v43u&#43;n/c5aFzcJmYbOwLyGs/P&#43;7jTGIFxjUNvRKs38ACUAqfzc9bJkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDDFtlJNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwtOvq8QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=&#39;
+  elif icon_code == &#39;clear-night&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAEsAAABaCAQAAABazWNfAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAAFuAAABbgAAAIkAAACQDbZgmwAACCBJREFUaN7Nm2lsVNcVx3/zvOPxNh4v4AUbjAFj7CEQAmnqkoCBpmliqohKXaSqgKp&#43;KLRSkdoo6pdKLW3VLa2iVFRVP8SgpkrVUiVSIYUGCk5sh0KNwdRmwODxhs3Y4/Hu8fSDIcy9b5b7Zm6lnvvpvpnzn/9d3rnnnnPGhi7JxEk&#43;&#43;RSQSzZZ2DEYx4sXH1P4GKCfaVUwW8J0Uimmns1UsZwiinBgSN8IMMUD7nIbN13cpJspgv87WnYqaaCRdThxKCKNM04P73ION2P6aVXSwLM8xwqS4tBeZIQLvM8FOggkMDEhYlDJUVqYJJhgm&#43;c6P2EjKYmTWsd36WQuYUqPWoBejvEkyfFTyuUQ7QS0UXrcuvkhVaE/pbq3kmngMLvIjPqtGSbxM808s0wSIJNlJJOGHTvLomoGaeOXnMJvhZaTgxyhOOLnC9yhiy5u08ddBvEz/9AEpJJJLuVUsJJV1LCW9Igofk7wGp2qi7eeZqYiTP80PbzOfjZREBMnk/U0cYw2/BHQFvmAPSrvdjLPczkCiJdTHKKCNNXxAZBCIS/zJrci7NI&#43;DpMbi9SXcYdVnuE0X4ilHnXmfsFCWGQ/b1AaTTWDbzAURnGWDzlIUdyUIJUDeMJSepeXog82g1fxhln9K3ybsgQoQRpHGA5D6hpfIy/W8h0JQ2qOZlwJUVpCHjEhT9LMk7FUU/gq902qD/gBjgRJJfGlMDPl4ZtkxVZu4q5JtZevk5EgKdhNjwn5BvtVzsV6Okyq/2JvXL6CKJu4YkJu4RMqRn05b5u2&#43;emEd9QS8ikTqfepU1FN4/vMSKofUa&#43;BVDKvmpBb2aym/BnTW3KbRg2kYA8Dpo2xTU21iDOS6ggHNOwpKOWs6RV6Xk3V4Ciz0kH8PYsnXiTkV5iX7Plh1eFu4aagusBxsjWQAhedAnKAN2J4bh9LCj81vbprtZBK4UcsCsgXWKM&#43;onvSNB/SQgq20ic5RJ9XVU3iZ9KITuPUQsrgV9IqNGNXVd5Ml6DqY5&#43;mudrINekNfEpd&#43;ajkKzaTo4nWt6R38Jj6vbCQ04JqH7s1kSrm75JxfkZd&#43;TkmBOXjpGqitVe6ff9ODdkADF4QrIiPt5nTQspgp&#43;AMjXFSHTmHVmFEF8nXNFfZtAjI52I5xaGzVUuJ8OwveDXRcrFS6L/HuDqtJ4TZGaGVRU20nhIutV4&#43;VEU2SMMlHMc3uK2JVDq1QiTmKjdVVQ2KqRCe3MCjiZZTuoZ20qdOq4AVIf1ZOljQRKtAuE/O0U1QVdWggOUhfR89mkghDdgSskGp4FP56dVGq0yyhpZoVQjXoTFtOytJWAV4wD0rtEQDN6Qe0o9JSzzsR5m3QitX6I&#43;pb8uYyCItS8iy8oQ2WvJsjcdPK8iEJlIyraDV2RKvRYvaZgsTsgUx8IX0bNg1JKce0RCRs60gG9KZnqWNVkBCzk2EVs7/C60xoV&#43;YSPZFEHERIc&#43;UZ4xKq09STiSCHCoL3Bf6&#43;VaQDXoFu26nXBMt6BX89mxWWaE1zGBIP4tKbbSGGBBoVamrGowIynZqtdEaFg7nZay2QmtQOtlrte2uEWnfrlcPnxv46BAs8AbJiY5f/JLv/gTV6rSgndGQJyVaArhL0sZISK&#43;UTVZoXWFIePKCSkZBSdqFfWujUTUGaACjtAnPtmmKAsKIhLxdFdkAFnhHsDAOXtR0BAU4K/ikhey3glxOuxAr6FDLLSjIKilRc5UaFbUln2iSlULcyckE57XUc0xQKiA7uEOLunoj/cKo7lkJJUaVHVK2rV3F2j/yIIepE&#43;x7Nsn8Tcv9epgtbAjpFzPFP9R94E9L2dYh9mqarybGpaCuhUClnbekQPWfNIXf7JyQkP8Q6xh6fA2YY5rdQslJGT4tsa45xmkUTHQFXlpVF3IZr0ujGrJmZyJKOr&#43;WkD1WYtm1pnRwFw0aaJmTUUEusS7y18W73DBJ7BKeOanionCUxyeDzLNTSBSUUMQl1etyPiel3E&#43;Qt7R4YNn8VkJe4PeRqpzkVOM0PWwVwmWwhnTamUqQ1ixutgnBJYMNZNGqivxZBqX5muFNKy5vRNlnylfPclwKv4edLQA3i2wXos/JbKSeW1YCZ2Glm2meFgrLknCxhhuCxxeB1iLXsLNF&#43;MxGBdsZ4j8J2bEgnWSwVbgi26hmM256Q&#43;1Y&#43;DT2LK0U4JLuwQXsYJHrzCRAbJ6PKKReQLZRwrPArce7LFJ2fYbLlFEjGdNMtlPNKP0JOD0ztJFPrfTLOTSwll4GluYsctJ/gg/IM6mnUctuVtPPSNzL6ecSduqlaEcKNewgj368RK1F8PFP0tloygBmsYW9OBhmOE5iU1wkn02mYImDBnaQhjt6icQ0LcxTF6ZmNJdn&#43;CQOHjBpJYL8cF5W0sQuysPEcGzk4eGcCsjLXDFZ/qU2j4cTfJE6xeLFDGp4iZ9z01QE9KgN8gq5quWwLr7D5yKmvudwc53rXMVNH2MPhwBBbA9bJmVUUE0d9VRHLE4Lcpkf82fm1IuHnXyFgzFueV4mmGQID&#43;P4mSSAnSyyyaeUbOzkRM3pj3KS1&#43;hW5POx2HDxmzDFhuHbIgECEZbe3GY4Q1OUsuIYksk&#43;/opP8cfU2jQXOBC9AFZFcmjij2HrRq23Sc5yKFw1dHwucRafYg87qYr7nwEBPJznPc7QH37HxCvplPA0L1JPgaXa5mnu82/e4Tz3IvumiV4gUinHhYsNVLICR5RTw0svd3DTTWvs415XcsBJCU6KqGQ1DrKEvx&#43;N4cXDLTwMCGG4KPJf/PjF&#43;SBQP58AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDDFtlJNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwtOvq8QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=&#39;
+  elif icon_code == &#39;rain&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAQAAACSoYmJAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAACTAAAAkgAAABgAAAAmnG/7qQAAB5tJREFUaN7t22mM1eUVx/HPDLPA4MiwFSjQgoIUQUBlUWsxUxY1Cm6t6RKXpqKY0NpI0rRR2xibarRWrWkqsbXGULVErag1Wqul0ggEcAELIovso8wwjDALs56&#43;4HIFO8x679x54fe&#43;mvN/lt88&#43;T/bOeefJdX0N9p4k4wyVD8F8jWpUuWQ7Tb4wH9t9mnnushKodxBpil2jlMVyT1BmTrlPrDCcquVZVZ0jomucrGx8pO2eodVqVUvS0/5euqlR/LpYes970UbNGZCdA/T/NAlBiX&#43;PmSLDdbZqsQBteply9dToZFGG2O8kQoSZfdaapH3UjJw7WCs3ykVQjhkudt8wwDZLfyLQ8x2l5VqErV2udvIrhNc4AYfJrre5zGzFLW5bn9XeNr&#43;RO13XSWnKySP9IRaIRzwqKkd6DTXdEtUCeGgBwxJt&#43;TpVgmhyWtmn3CtaJ1errQiMd6vGZdOyVfaIYQyv9C/060N83BivN91QbokX2efEDa4NEVLZp5r7RTCRy5Kh&#43;TvKRPCMhNT2u4MG4SwxfRUS57jYyG87JSUD8cUq4Ww3ixnm22ms31FXmebPdMHQnjV8JRLhrOsF0KF/WpU22&#43;b5yzozAAN8k8hrHRaWiRDcWKKH//baKEBHWku291C2OG8tEmGb9tjq9c97Rn/tl1DYml92fj2N3aRcqHKD9IqmRyTjFAgR67eRrnGK4lN7D3ntK&#43;pvolX49HOT4x2U2heYkFcZVR7Ks5XL2xM49vcMsU2CeHJ5AmxVYZ4W2i0IEOS4RL7hGpXtbXCfA3CWwZmUDR3Jk4oRW0pXGS50ODGjEpmhA3CATPbUnimSmG9oRkWzUNCuDe7hSI5BjrDBW7QGy/ak2nN3lSPKc0f3bOcqlixcYborScOeiXTirFTtT6&#43;1NyjiR60TdNxG&#43;lb&#43;mRaMcbaK&#43;z9/EgPMN9NhoFQZqe9PtXg9c46WFJCrlw0HG&#43;c5NXECB&#43;w1DwT9ZObUodO57hQjbD2WFNx4hh&#43;2DOK9cy0wma4TQh//sww3RYhlJjf9q2ySynyH6HGNUcNX/OuEN53Yaa1nZBrHRbeOXoBKbRECB&#43;almllJ2REYljvOGq4UZ1Q5vJMK2uBsYkZt&#43;jI4XiYdUKjn2VaVyvMVS6U&#43;ib8SJOwvGO3sC6kh0eF8Hv6WibUuy7TmtrApQ4LbzPLAWF9&#43;t1/KWC8T4Td2aYrwjIlmVbUZhqzTUWjlZlW0iZG6IN92U5BpS2Z1tMGss2Rj7coF3YanWlFbeBS&#43;4VSxRwWNqfJN5c6ephjsxAekZujQb7sY4Jl3YciVyuxS6OvmuNb&#43;mG1&#43;9TzsVDi9EwrbIYZKtUqtc/hxP1plSlHHr0jVB3ZGrsZvz3uwlfmEaceeZBjo0kKnOGNTGv8HMNciDqbVCq11j&#43;s&#43;eyidbM64dkMOBZb5gYNwr8MddL/axtvu1CS4ghKZ&#43;lrudDo5uYf53pCCPdkWudxXK9WWH/ipfgilcIuZ2VaaZKh1gpNbj1xkQLPCOHZdsS200mWu4SwxpdbKnaeEqHJfd1iOs5WJlT7bmsFF6oXqv0047JHWimExXq1VrS3RUKo8UAKot0d52RPJgKgY9pSfIC/JIJfL5rWoitsqHPTdFbp5X6NQrkr2lqlvz&#43;oS3iZHjKtGT9TD6e4xVr7zE&#43;D7J7uUifUWtge/2GBH9ud3OtfcYe5JhtjtElmWWCxrQkH5UELO5Hl0RyFfqNWaHB/&#43;/2Iky1WkTym1Cm31x6lqpO2I7Kr/VrflEke7nGNQqOHFXakgXzFFtmciJMe&#43;2vyiZfM97QmodHzHQn9NsP5lieG6AEnt178RO9OtuEmmWy0IXrLVmO/j6yz2mY1&#43;vqlm&#43;Vhk3stUdkJwf3Mc4shOOgeD6rp/Bjk6K2PIicdkyYIPf1EiRBqPef8DuZ69XK5NxIh&#43;w99pyvuT9MtS07ax13QzunTx2X&#43;pjLxWjzXdafMwe5IhNrDAS&#43;YZ3Qb1pReznCrZcmpvdFN7Zt8nY&#43;nTLTAZYkAdJNd3rbKGtuVq1Ivkv3kKTDIKGf5ugkGJ&#43;w7LPaYbe3rMhVBoBxn&#43;r65RiRbq1Zmnz3KVatBvpMMMthg/ZNzo8FGz1piY/s7TFXk6ki49GJTDWp1UtbabaWXvGlvRztLJflGmmCKiYbrp1CebFkITWpUKbXN&#43;1ZZZ/fno4GZE32UXvoYYLBCBQpQo0q5UmUq1KWlxy/4gq7i5HRkL2R3vokWyLLQ7V2Tg546ZtjvoDmZltEeBnpDCCta9l90L36ezM75VTfKGWmRCbYLTZqEElMzLact5PlTIvXv70J4qnXXS&#43;aZqUKoMMN5SoUqczMtqTXyPCWEx&#43;TK9rAQlnbTfJ0k05ULu50NTrdNONSNc3bQwx&#43;FcH9yzbgzkUacWvdOShlpq/CJyUnLOLuE3campoN0bOPjDMUa65OWTVZgkAndV/RAedihNmlpsB05zWeJdg/RB9Rj1DGrRZ7T0Kg8Db2liFE&#43;Eipdn7RcrULYmyLPX1ocURWGO1ee8/UTRrje7QbgSU9o6opR6xjDkw6zqsRHe2Fl&#43;z73yASj/TUpN9R4PpUfSKbvyFhojsuNkWWzFyxVkbqm/wekN9f9mOza5AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wMy0wNFQxOTo0NjozMiswMDowMMW2Uk0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDC06&#43;rxAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm&#43;48GgAAAABJRU5ErkJggg==&#39;
+  elif icon_code == &#39;snow&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFIAAABaCAQAAACBdsl9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAACFAAAAhgAAABwAAAAWqvgHvwAACY9JREFUaN7N2nt0VeWZx/FPLiQk3MJFYUCQIOBQqXgrA1qhlbFdWqcDVUetWnRpp1PruDr1snDN2IU6rdqu1taujm1nWpg6q46tRdRRHC0FoTKiiCAUAQXkFiRcQhJCbid55g8OMYFcTpITjr/8k/3u93n39&#43;y93&#43;d93v08WdKlQqONM9EnnaaffgrUqVJlpw022uA9lV0dOisteJ8wzQwTDVHQ6oh1DnjX/1nqTeUnH3Kwz7nBFIOSxwnlyhxRpVq&#43;QgUGKZKXPFtllQX&#43;x9aTBznQNWY7Xy802u0tq2yyxT7V6jTIlqvAEKcbZ7ILjErCbvYr/2V3N29PCspxqVckhHDA78w2vul&#43;taZco8w0z24hhLfdpHfPIg71Q2VC2ONxF7WL1/KnTTTXViHUmGdczyGe42UhVHvKZNmdtv&#43;EnzgghHdc1jOIf2OjEP7sBoVdHCPb57yefBI3yUk34lX2COF5Z3VzpJF&#43;plaocKfcdCJ&#43;yR6h1qMGp2G03u51WKhye1r8Nfi83UKtf03bvMzxdWVCmb833lQXmmBoF97yJp1prVDnO2l2HbepEqrsUa7ch9b5pasVdWWogRYI4XEFaUUk11z1Se957K/WH1zx0YRKdWbd7euy/NEdDqUZstGbBgiLPG&#43;5TWoNUGiML2C1&#43;tQHutCHwgc&#43;lWbAYyo0oOn/AaZ7wmGh3iMpLxMKPC0k3NlDiCcqz812C9W&#43;karJTFXCq2lxO6lrpn3CTpNS6VzoeeGIq04qItwtIfw0FVc/Q4XwTJeXwK7rFCuE7c7q2HHO0k&#43;N&#43;Y6cdMh9nsZwn227S5YixWZ4X1hh4ElHhMkOCr9p/XmPNN00kwxTpB8WKcsIZIkDBjrtRMixbnalsc3c/AEvZwSRI6owqCVkb19xp/GgzBab7VFpi3cyBNlLL9Q2bxrqF2qSAe1cUwzsTjySFp2tVFj4UcNpnhFCqfudnmG4Y7pFg0b/cuxwkKeFsMalmSZrUl8vCXtNPXqY63tCeN3ZmSZrptlqhCePxa9XKBc2OT/TXM3U20IhfPfo4SBLhcP&#43;LtNcx&#43;kSu4VNJsB16oT5qcduJ03fFhrMocCzwv5jr&#43;fHSmfbKyziPLuFZ&#43;RnmqgVDfGOsC7bRYbilZZ&#43;/WOiLNlIZDtHjnKrM83TqkYZhu3ZxmPfyfha2AVdabCEP7JeWJ2heLF9Hd3lvGMMm4WV&#43;mWaCOQaphA5hvumEqHGV8lVg/yPiY8cZ57Ddikw0ZlyJDzm1/CysN0ZmeYDt7f42LLL3Ue3f7k2udQQxbZkmlAfX0S9/WqVWOYpa46dul6NcF&#43;mCXGJcmGBCUbp3/LUWJuF1zI&#43;v3P9p1BjVmsnsz0u1GQ8BprugLC0rS&#43;T05QJy5ySQcQ&#43;Fgi1vtxWhzzzhEaP6JUxyFvUCC8e/y4210TvCUf8Q4YQP2mzcKC9DypwvUphv69l4G4O9nxyo9DBFjrHHDVClYcMaadfbtrXpgI/FsL/pjIn8t2rUmiw1JXNPg9/pF7&#43;yi/8qGuZgTaU5351wkbnpmaQ6yu2JLOGr5pjutMV6au/4c53q9/ZJzSanzY/UOAB1cIel3fGbJJfK0&#43;unZW2WuVP3rDRQY3NVtWnFacBcYifqBNKXdtZ03wzzPPBCbmVsN8i91knhDfM6CbiJC8IocR1HXVtPaeXo9j5zjXWYPkSKmy33hs2qnKux3waez3mP5R2CbCvL7vHGdjknyzq3q/N1ccAfY&#43;b0aPNVys0Wm6WPp0cM89fe06tEF50TvcA21OB22wXQpUXXZVy8mSAy/23Q01f74akaNdlTfIrFclChTc96GKntOOMi0x2j2UOJ73Hc6alnj7uTp45zwy3mJH0m5W2eds62&#43;xSoU5Ctl4GGGaMic42PhkMHrHCv3tBVeoX6m4yPN8U17jEmKblNKFKjVr1cuQpVNj0Rjfa6VW/tayztVapQeY7z1TDVHrLihPytFlGuNBnnGuMga2s/QmH7LLacq/ZqqEVhgkuVqzeBsvt6hpksfvMTD6sGq95wLJW&#43;w0wymijjFSkUG8J1Q7aY7stdjkg2rD6pludBhr82fc92coP6UAjLRZCvTLVQtjWUUiFbLlyUrgFhf5No9DokEohVPhaZxGzPSqEVW50nssskBCWp231nq1W2OEun3Kxx1QKu1INNo5pvB3C&#43;qYCmyJPCfWu6cAuS6E&#43;HdYl9LVYOOiLyeMc35YQHu4c5Cx1wj3NWqYpF37Qjk2&#43;y/zMUn/yG7Pb3YWeqUR4slmyeIQNwuKWOeGOcslFemloUUq4S6X&#43;7Vx6sLlu0hdc5Govu8u7bfTtpzc&#43;kGhqKfOhCfrLb54V7gjyoHq9nNmspdgA7G/zLj7gNhyxWa2xBrtcoeuVtNq7whEDjZOnLtkyxAiUqdEJnWGrsLkpeXKKZ4VaX2qj/xWqhPdca7D&#43;plki2vk&#43;UuglobwpnszzsEbhwc4gkuUhIWzwj6a71isahD&#43;08biz/VI47OqmloneF1a1GYJcq1rY60EzXGG&#43;amGbiZ2DZJjnhNCoKhkIv2tKG337WyGsbLEL&#43;rlQ2uZl830/OeqRZPL1gBs7iwjD/ThZ6xcqLHRBmz0HelNY0mJu/kA40I7n6&#43;NbNidrWmusMPPEJSC1tTvHWSYbqsJab7UTv&#43;T5rb&#43;1xxe8nWwZZKGLve8SO9sZv9gUo9V718o2p2Qa9Q2NwkKjQZGHJYR56S/k7I6GWS6Etb7nfovVC7vafIczpslWt9hjlrT9pSyTGutHNilXaYcnfbr7A6atTPW4UUcYIUepHU1rSYYgT3WqLKVK2whn21Kh4fqqVKK6R25Rk87wiLVKlVrvUX&#43;Zsl1v13nJTvvt8IKrejJ/NOW4ybE&#43;hVgd&#43;no0Gd1Hctf&#43;UE8V6o20Mlk99LifWpOsvR&#43;bguUcDcIhv/dDz6oU6tzRM5BzhPB7Y5LITwjhOx3ajbdNKHG1POS7QamwsSeqkPpaImw7Wr4Bim0Q3ugwE3SzRuGfm7V8V0h0nJzpfKFXfyOwxvtNLduswrAOIYtlqbSkWcti1XKSS2haIRs1IK&#43;ZZbZ8NGrswDKB7BbzOV82He&#43;yOw95yFZc0Kyc&#43;xxTsb3D&#43;GWjhD5mNV2zl1ny1drUaYYU9FUJ4XWfUajAVEuF8K0O7UZYK1S411D5/sJcVcJKp/YE5MBkgdZ&#43;Syy2VwivpHSpG5NF7msssk5CONRzVdfFFqhrcsn1Xkxxzcl1u5JmznyHW3uyRnOQO7ym1D6vu6sTDyzLdE/Y6qAt5rkwNaP/Bz&#43;PhKbgGbneAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwxbZSTQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wMy0wNFQxOTo0NjozMiswMDowMLTr6vEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC&#39;
+  elif icon_code == &#39;sleet&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFAAAABaCAQAAACFgxlAAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAACCAAAAgwAAABsAAAAVtjXJAgAAB3ZJREFUaN7t23twVdUVx/FPHoRAEHmjvKSIohGx8hBaFK0o1dGxFu3UR7VVWm3H2plWZ7RlRmnHTuvUAR&#43;1dUYHXxWVGW0ZtQWKFaEoBWuxVawwQCggECEgCXmT1T9yuSZIIDe5yfEPf/kj95yzz7rf7HP23mutvZIjO&#43;pmhJONdrohjtFDoRqVypVY633v2qSqbYZzsoBWbIrznaGv7odtUa3Uv63wN&#43;&#43;o6VzAXqa6ztn6plF222W//aoUKlJkgN66pa7uttx8i&#43;3uHMAi033XRF1RZ7OVVvlAiTLV6jTIla&#43;bvoYa5cvGG64Adf7hd15S0a6OaYUmeUG1EEo97UrD5B2hdZ4hpptnpxCqvWxyR8L1cKftQvjQ/SbIb&#43;V9XYw1247Unbfp2TF4wzylXqg234SMX5EcE81TJdR7zrDs4431dyGsd30LY/boKnSjjUJ4zZhs4/1LCK8a125Li4WwxoTs4Z3pbaHB447PgrVBnhXCW0YfqVlea&#43;0Zbq4Jwly32ZUFwHKv6etMg4xRZaIpTjJArQrRFnM9PC2Ex/XOAtxB9facEA4IoUGl/3rMua2eF9LKcac6YbGBWcSDIZYIoVKFWiGE3R42NDMz5/lIWOfMLOPB6X7je6aa4jJ3WKRcCEszGd&#43;9LBSqfKsD8A5Vd5daJoQ3ndjam2aoE&#43;alF/2O1mB/EMLzerSm&#43;QCrhJ0mdhIe9PeyUOPa1jT&#43;jnphttxOBGScrcLraUeuRRVZLPxPcafiwRzhYxcfrdlke4XfZ8HzzlRTVQizW5oSBxpltMHOdqxKL7Ztdm&#43;XPvChkxR/GjDfWaa70Ij0GHrXPzsdj33KMPBQwNFudaU&#43;oNZelWo9rywBwAb16NIUMN9V7jYSVd62xFtKlKvycQJ4FOlN067paqYKoc4il&#43;uVCFRTfcle4ZGDh/nuViOUut2xSbOBnwuVrj54OMN&#43;ocTXkuZKaZR1wmqDGg/H2izscGnSXCnlmC2EexsPCz0r1Lglaa4mut4&#43;YVmj/zlNufCCoqSpmijP/UKNGeR7QtjjvKSZDtFYpcJ8TrFR&#43;JPCpIkOUS&#43;rhTW5JhuMhaqTJjpE9WqRn2ucAmVWJ83zKfUxENtznYodtiXN8ymd7wSs4D/C8s/UCIZi7wibjWW9sETXpInQPRWwF7rASiHMkpOvFgXyM88eZ1mF7jPAepxusl6Y70HBUuG9rGcMMtcZSlOZhRDKPWwA5FvnXMcZbGfCgBfrL&#43;xTo8xb5nlVbeOFGWqFmxPG62el8L6pih3fPOdWbJOwIOGV5Dq1wi8Pd6lxLd7rKwni9bVM2OaMw19u9Gb&#43;mOBc&#43;EP1wpyWou9C84RatycQnsNp1gkbjpS9GKtEKPONBPCKzBMO&#43;MmRm92gQtjqmk5OEuW4Q53wytFSy/lmqhH2mnmEpjmpkD57ukqZsMHYozft6qfKhXpLXHEYyHyn&#43;ZU3XJJFvEttE/b4Zuua57nGOiFUecM9LjPGCYY52TluMs8WIWx1RZbwptsiVLktk8F5qkd8lFoPa3xks40&#43;TCW2wwEHhFI3KWgnXIHvKxWq3ZWprXwT3WeNfU2W7lBnm5fcaJZyodKD7dptGuQBlUKFnx3N0WupcwcYpdhwveSptMN6a21SLc8N7jEQK/zaInVt6LtpZpqEHe4y14F2/KEtaKo3hbDPoyZksJlGvkmeTD2blc7PPtpBDfWQvULY6TEXtCoX1ttXPZl6v/eYk&#43;leUqbKN81CNSnncoW7XWjIYd&#43;nQkNM8wtv2J8qCHjFtNb3e3tW354u8m1TUqniKlutV6JEmSo1uuhmgKFGOtGg1Ob3Pss96S&#43;ZlFS01z0oMsklpjqp2T5UgwY5zXppvw2WeMkqlZl9QXb8l4HGGG&#43;8Efo7Vhe5coUDapUrtd4aK73XtqAimw5WFz310V9P3RWoU61MmV0&#43;Vp/Fb/lcn6uT1RFRSJ5BClMFUG2sGuxY9bLIdtusc1b7jWVcANIK5RroOFRlI2eWrRCp0I9dlPrcoKHZb0aa1RGFZK1XV7PUKjENecalA4frFeILFgsLDE4Kr4u7Un7NBjd71JZUJVEo82czLEwdLUgqyVdgjoYURH2zQOGTsqcQXu9oH7BlHeO3h0Fr/rPMqKTwGhGfOSLe2rbWjWRrmqltZmmT1aqM9sW0T9jlYL40KY23K91bLzpFLvqbpTJ99kfJAv4gDfKeEemzBZ5Kn3&#43;&#43;bU8rWxP1J1B/tTH9udaL6ch5WNuK07K3khxU80L4svS7V5BsD36CVdwM5NR0MfO&#43;tm0VZQtwbTrumNakIGyEGWmHbm2m8Vx2NTy1/oZQ4lbFRvp6qpayMVy/PEk8uLfZ8rbdFlVNzixva6lQth7xYKc1s3qcIc22hga1tAfSORpiwVFW4vCBc5PC69ZkOt6uohlWva1pN&#43;JdIzM3no1HXGOpPWCVy13tmVRyqMFrbnGhJwQaLFWaVB9ygz1Wp4qz&#43;3lHCPtTtTi9zVXrIcckh0euy9LDoE/qnzoqnJM608&#43;1n4GCv7T6WJPqwXPab6wjws4G2/XToDIbdRD/B8A26aoIG6gOAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwxbZSTQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wMy0wNFQxOTo0NjozMiswMDowMLTr6vEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC&#39;
+  elif icon_code == &#39;wind&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFoAAAA0CAQAAACgX&#43;ejAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAADDAAAAxAAAADUAAABIB/ZTzgAAA85JREFUaN7tmU1oVEccwH9vd3aT0GRj4ldKpUZCqiERJApCcrAN9aPoQcSD4MEPFAyouamgUCkeEgpFES/SHlqqpUWw7aEUIcXUb9EIHoyCkgiN2RiNkl3XfOzu9GCjMZm8mbeZl6fQ3zvlvf/834/JvPnPzDrYJ0YdX7CYWaSJc5lztJP24T3WcGjgLM&#43;Rr68M3RxnUdBikxNlL71jhN9ct1kVtJyaEE2klMoSSRefBS2oYhV9kypLJNeZH7TieIr5w1VZIvnSzqsc5hL1FD9IH1LxZA1n&#43;EDT&#43;g6r&#43;Wfq0oKjLCVrHB/mGjsYVDz5VKsMFdTakS6n0lOLXkKKuxFqDNrmUcXvxm8qpowYkgHiDLwtbYcCSo3i5hjmq2EjDZRTCCTopJUzdLyR7qLUw/AQdCmjHRyj9tIgpohdNLLg9d8lfMwKtnCCk7x4JdHk&#43;UMcUtxP0WfUPq6NmEkzWxUjoIIWKjnIMw&#43;2Wg5rJzzJC9ZosuRz1KV9lhZPXaxlGT1a6VuUabJscqmpEkmC9SCYY8m9nxusc42QnNIMj1IaKXCNKKSRNsExaj18iG7M0jw/z4&#43;aiGUs1b5lOcsF5XxiRVnHHfZpP8N6gwJVTEPIUi/ruMh2bmhiwmOmOTcqBWGfdUfo5DTfGZRvQYlRxhmCX7iJIOKDbj5p4rRzlS6j&#43;KxyTTORpOAbHON65o0Q0tPecIROo7hOAUij4uqdjOcWl3mpmfIgRZsvtjlTxF/aAnWFDwV1lJIhi&#43;NTf5vjkNGO/mG&#43;pcehjXrSgQuPEtLU5x/YTUIQIez7tGeLXzlEAsQ708c6&#43;vmeZh6DvZ2Lf2RJEucCp7gwOoE6rGXuO93bSeI8pDuHCfR/poxD1JcS7o5keGrSzVQhyeJMW3lxGKSbB1yhw3CJNIGrBhtSP64svfxEfW7/50sBSb&#43;6ethD3vvT06PXSw54rciCDvKQ/y2Z/ECSzyKXFUU&#43;&#43;7nHWS8pHUqIAFnfPsIM6zipWSVfZIPhCdU0EeW0dogMs9lLSkGUIkt6GQYUe/uFBr&#43;1RFjJz&#43;ZbM0EdX1s5YwrRQSNPJ9yv0h7iACymkOfm0sUssbTWk8o8ZUbZY8TMpUOYnRmbSavvmuT3dB4gSPHQyvAI80i5fOwlY9DXibd/oNBJX&#43;JzSzP0sPLA&#43;z7PmK1te5ekFQdLFNKqnfIy7AxaczzbGNJItzMvaMnxzOA3V&#43;UUW4NWVFHNzUmV07Tkss6bDmo5r1Qe4AixoOUmZx5fcZ&#43;RMcJJWtmQyyHzdO4PHapZyQo&#43;ooB&#43;7vInf/Mkl0T/Ao94doovE2BiAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwxbZSTQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wMy0wNFQxOTo0NjozMiswMDowMLTr6vEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC&#39;
+  elif icon_code == &#39;fog&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFoAAAAeCAQAAAAGaMHzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAADVAAAA1QAAAD4AAABcxaWZlwAAAKBJREFUWMPt2MERwjAMRNG/jiF10A0lUQD1UAlHDimFAE44UIEuFjvjV8GORiPZEndmdnyIVTyZs3MErcWqyj97QdkZwiQu1OwUQZ/sAMNfE1cOVhNEvMXKMTtH0KuwZWcI2wpTdoawqXLzaw8x2&#43;1Ep7FhTpz82kMsfu/psVw62SqNlp0iqIkzk9Xkk12Rh74sP7bjWNOJ57Gm8vA7QH4B1oUmCMzIWB0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDDFtlJNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwtOvq8QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=&#39;
+  elif icon_code == &#39;cloudy&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFoAAABJCAQAAAAX4/m8AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAACOAAAAjQAAABwAAAApeQIL/AAABxhJREFUaN7N22lwldUZwPHfvYGEBEJAK0hQIpsbiwsRRuzQilN1XNDBtjrV2nVkSp3O1Baty8iItDpWxk6xrSO11aotjB1b27qg/aCOKLhjECyCBAyLSEIWst/k9ENuQiC54Sbm8uafT/eck2f&#43;c97nnvO&#43;73luTN/JdbIzTDPBMfLU2Ge3d71vmwNfIGoGGWehfynTKBzy16DMaguNj1rwcArdbqPWDtE6&#43;32uUkNHW6st7nZipgRivRyfZZ5fmAnqbfKGD2xTpcFQBQqdY4bTDAPvud9TmiOb3CT5FqsSBPs96RJf6mbMSBd73D5BUOseBdEqj7RCQtDiRRfI7mHkIHM8lxz7hNHRKQ/3sFZBjSWOTWP8CLeqFASPHr3ZjslVID85ozFLtAj2uUFW2hG&#43;Z6&#43;gxa97vC59UOtKjsnOM8s4QyVU22GdYZYqcMDPPNyr&#43;Nd5UIE6P7AyEzPbRrav&#43;bvdnRa0IGjRJGhxV9qz3E7cYgnBe07qpjdLtjz5cmX3Zh07dOgEd5ifzMBG1erEDO1IkZdco6LX01DgL&#43;bhHrd1tI0w2WSnG59MwEYH7FHqIxvsUNeb8Odam9wa3nefy0xT5CRnme9BG&#43;3y1V4Lt3G&#43;CsFm45FnjqXWqNBy2F4aBM12etFNpqZ7Rc&#43;1WRBss0hhl95x5hjcR&#43;nB/ixodZt5nkmuKG1JV2OvHbba4TN1nVJypxVmG5QqYHt6TPBXs/C6m6zro1xqLvK0PDUGyQX7fGC99baqcUCTbHlGGe9sxR37abmVfmtz6qDZHhEEa0zud2E4zrvJOUx422LFhqYYeYy5fuOT5OiPfDv19b1IlaDUrIwowwOCoMSPjUpj9MmWKEveCCxzTHdDhnha0OrmjClztZ2WGteL/5jhKc2CYKWxXbun2SP4oLuufmOMmb2&#43;o8x3i3JB8O&#43;ubgu0CpZlULnvXJ1Mk78dmiQxfxQ0mhe1Xwous1MQ3Nd5CczzgqDcmVHbpeQaFYIa3zrYVOA1QamJUbulJOZ2CcEGE9oa4lolEOv11&#43;ToESz3H0xxo3hbU45nBOXOjtqtR861W7BHMcQ12oYCp0bt1SNrPYnRvtM&#43;19drETzc/nGAMl2ZYJtJbR8nKxVsd3rUXj0S94ig1Q1kodKpZijQ6iWtUbulJIi50mBN/tnWUKxMUOWqqM16pNAmwWYT2/L4Y6UYbn7/PjX3M3utR6GpbdLzzcB2yzVFbdYDCSXIbVvnipQIGiyI2uqIXKNFsCKOK0zFsx6P2umIfKYeY&#43;KO9XXUeqR3j&#43;6RUKsZ&#43;XHFzsBar0ZtlAbNWpETN1s&#43;XhmoRw6HkCML9XGzxdRn4LVBJhgmG1VxJ6JKadQ&#43;aVFoCMriRqBGbdQ&#43;aTFJTIstcXmoH9CbSjs5zkStjXG1yB3Q23c7Y03FDhvjqpCffH82sDnPiXjH7ritGNl&#43;az2AyXaFQZq9oCXuDUGOc6J2OiKznI/NbZvgXBWCNd2/5hswZHtUECxu&#43;zjcakG9&#43;VF79cjlqgVbDr6KXqBF8N8BPNdjvS5odcvBptHeECT8PGq3FAzxB0HwiuM6N1&#43;tTrDX5VH7dUOWmzUI9ph7aEeO5YLgYxdE7dhF&#43;UY1ggY/6do52nOCYIdrU58qHXVy3apGkHCvnO4GTLRaENR4yGlR24IiKzQKEpan3rHHWSUhCD6xzOxIt/YhvuEtQVDvlynPwsBwi5Lv3YNKf4pIO8&#43;FVqkVBGUWpHMzV&#43;whnwuCVRnK7qEmGps8Bj2853Q/8rzq5Jnji77cXYCuWm97x&#43;fuwDsSGVCe7Q5TNNjmQ5tUqNZgiGFOMMl0pzpeDMEmD3nC/vQD3y1IZGRjn&#43;T9w47wa1Wr1dSprc6bburpzLH7BDgOTar7XXmwRc7AZrXGGSHLoE4Gzaps9abV1irvKUx30m3nL1kZeJq5zrUo813/U&#43;QURUYYKVe9GruU&#43;sR2lX0Nfq&#43;g1fX9rHypXYKERf0&#43;GWCBILi7HyPGfNOnguAx&#43;ZmRPk&#43;V4OV&#43;C3&#43;8pSoEwbPdFMD0E8d6S7C/&#43;1UyBV9xiRHdtBf6oXXJqplVTsiUMtyVvJTplgCN8ZZ6ayx1pTNNUGSyma7zoA3JAohySzP9mDHFdkFVmnfYMUs6VtlG5bbbaqfKjuKqes&#43;76Ggc&#43;d2ZrIWZlsbYq5QLGpR3qQFL&#43;NRK8/v3y5f6RHyUx1yMVy30YY8xLvU7RVjmSdPNUKhArjqVtijxnq1Hsxx5ivWCYL2LU9bJDbXQLkHwj46y2axkVWNvqyX7iTlKkl&#43;i3zuryw45zIWeThbYP9ur&#43;qQvyJEKJqa534Vgj3Ve9pEKtfKMMd1cxfLR5HF32nU0Z/NIHO9Xdnf6ocJ&#43;e1V0&#43;gFDie/Li1qyKzFnW2aDukPWhVb7veanRzMtDgqlS5GZZjnFKIPU2qXEOu/2ocq3H/g/yGuhxWj7y/oAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDDFtlJNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwtOvq8QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=&#39;
+  elif icon_code == &#39;partly-cloudy-day&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFoAAABZCAQAAAAUNfsnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAACRAAAAkQAAABsAAAAVPc5p4QAACM1JREFUaN7t23lwldUZx/FPLoEkEAIKRkVQUEEqIipFxm1UqBSGsahFnWrrXpcWHLex49SxLiN1HLXugqi1irZSS7VFxlItWlcErVZjWYJshhIWA9nAJDen/7yEBJJ7b5J7uXbG3538kfOe5fueOctznvO8dFy3&#43;Uq5sztRQweV24myPe2FvD0PHetE2RD9/V9BZ03fQn8L3W7ormlvp1umoSd7wH5pRR5hhlFp74hmOtN6wQv2TZrzN4LgJ0nzHWmh4GNHpQtx982ll&#43;44B1crT1i21DviSfIwwkyjUKR7uqB3V8wVtgiC2UkGSZ5ChUn21BEWCYJSYzOH3BL7j50c20ftKWTIcbkKQfCi/RO8XK4uCZEXC4LlxqQbr630y9ytN&#43;a4WlmLZ30NMdyhinVXr0q5zy1RqrpFrpFmGIlSl1uQqd5tDfsrQTCt6dVyjTLNYluFFr8GG/zddQ5pKl3oZUGwzCl7CngH9qUqvG9E9P9w05U3gTb6WrVa9c3gl7lZvyj3RKstzwxyTsKnMROt9BnyXeRGg0ClzyxUokytmCIDDTfaYPngPbeZL&#43;AUdd7ds/3cXHt72HZBUOEpp&#43;i126vv60xzVAuCjaZkwBBop/qaJQji5jo1AU6&#43;s3wgCGrcnF3sQjMFQa277ZU090Ge0SCoNSXJ0MugctyoXlDtmhT7rshD4oJNJmQL&#43;kTrBQ1ub8cRuKenNAreN0iB3vroqUBe&#43;no&#43;cUU9PGcSnnelqpRr7GWsRxULPlGtQBd1alUrV6rUSl&#43;oyET/7tAP1AjWNq3UiRVzsIs9YbHN4rtsPzu3oc0WesDZDswMcjd/EAR3pJC3yAQzrGgBW2er9dZYpcxGW1tsQ3X&#43;414nKugIWKLhMcx8/aw2zrKEdRQa7wonRABxG6z0qU&#43;sVaFCrbh83fWwv8EGG2ZI0yq0xQLTvaEufT19sbjgmYSWXK4JXlEb9d86L7rI4YoSdNJeRrvGX22OymzxjGPTB/2IoNFPE&#43;To777I8m70bzc6IuUDbIHj3ac0Ai9zw267bIdU4FVBpePb7LMJ3o8a/cwNBnSgjcHusi6aoC&#43;lfobMMVnxLh65HFVekut1R1tjrNJWynVzhV/pg62e9KDVHeyaHMe41mR5WOp6r6RWbHErC9NqAxVbKljaZGo2V5FfR&#43;P4A6cnHPOpqMCVVguC9S5NrbaPWoFea6B9LBWUtrKe9jZTXBD3TNpW29HeEARVrknu9cr1qAM0tkjLsVWFHNUo3G0l6OEOl8qx3YPuVJkm6IUudL8zFLrdNjM6Wk2&#43;eYJqJ7dIzTMtMqCuT6&#43;rC8We1ijY7EonOMNkpxre3lXlAUFwbYu0KbYLvvbLTo/k1rR3tAdvV6Vegxrl3nanY1N3lP5Yg&#43;DPzXr0JGWCBvdER6v0q7/5rcyx9e43OLUKhlgtWNe0fvbzT0Hw&#43;wQ7Xud1uHeVeNHDHjPbIlUR&#43;Me&#43;l0rxXL8TBPfJQczdgqDEYRlEhgPsFx04cvUxxqORK6PMWakUH6dSUGYUjlMuqHJuhpF3Vxfjor33izb352bK97wgeEV/zwmC6Vk6sA71piB4Q9/kmUdaI6j3mq3tOA5kQkdYIoibkkrmqyKPRxDclTVkuNR2wUf6J8&#43;a597ozLEi41MwsXp7W1Cb2qwqskAQPJhVZLhJEDydyDEQU&#43;wgBxngQFR5KdvM3leru&#43;FtQRc7xQSj9FcYbdgfWpRtZuWqdLdPa9B9nOtiR&#43;5iEM1P2fOROdWqQc/doce42cliCNZbYqkyVer9LdvEyJOP7S0Tu5kauc3rvGWqYXpkm7OFxqgRfNg8qcDttgmCT12cgod0z&#43;tmQTBzZ0KuW9QJGs0xJNt0rWofCwU1Ju9Muki1oN4D9s42XRuaqkHwluIdCSOsEARPfMNG8U4dYqkguHVHQr5nBcH8BFed2dZekcW5YEeowfcju3l0tskSapB/Cba7DLpGtvKd2aZKqqs1CubC4coEaw3LNlNSHW2TYFUMJ9gfCyzJNlNSVahEr5iY0XI0el0820xJVSAfNTE9HYYtPs02UQo6Ql&#43;sitlbMTZZn22ipOrhfF0F82N66I4tarPNlERd/NwElPpTbhQdU7&#43;L5/SboBw9fK0eOQ5ylZ/pJm66klz16pGXEYdi59Tbw/Istc0gJ0SH6t96HAb4XLCiQ3cmmdWYKBRjx6/KvTsM5kL/EGxxXLYZd9N9ze55y/3F6TsOgLmqlThVL0d5L9uULTTAeFR6zFobLbHctuaPz9MgmJONQPkEmioumNeWJ3yQFYKN3ygbb1&#43;LBPUuaCtDzCOCYEanPmtIr64TF7yTyEc62gZBhYnZZo001HJBnQsTZeoSzdSPHZ5tXuR7KvKKJ7nZGhhdgs5Lc7h3R3SJbYKNu1wGtqrxkZvm5VTvkTKkk6wRNLo1tZinS6IY0kVJgy27ZGzTHxpF9s1N1ZERc5mNgqDcNEPaeNOuRpvulo4F8iTRQK9HHq7h7Sk2SUm0da7wkIkOVCCGHF0UGew8s2wQ1LlHzzQjH&#43;pVQfBlajeGzTXUkyoj8G1KveZZj5lptretbRY8Ffe4fdKIfLS3o9vZyR0p3s14s21qI0gtWOWNyFE5L01fVMT8MPIf/dc5Ha8mz3fdZK7lKmxTp06tTUrMNsVQRX4RTdplzu/0Pfl&#43;pkXB/MvSsb3lG2CUCc5yhtOMaLr&#43;JeaCKBqmxixHd6KFSdGwCN5MZ9RYWxrdFDGwxjTD2h1LWmCsFyJDv8YjrQYeZUB93RZFewVrPOjUlENKDvAjLzV9W/Chc9Ie8pJAOUaZ1RTeUOkttxhnQJu2eU9DnOtRJeqapvVt7Y2ESkd4cL6TXWBckxm5zZeWWWmldWrUqpOnQB/9DHKYQfaLTOCg1BzPKml/T6VHXY00yWm&#43;0&#43;ILrbgGcY1iuujWoq3NFptrni860lh6Q&#43;D7OsZJRjpMsfxWjhT1Kq1X4h3v&#43;rzj7qFMxO13198hBjnYAXoq1M12tTb60ipLrVKuvnMN/A9GgW0UuBrEvwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wMy0wNFQxOTo0NjozMiswMDowMMW2Uk0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDC06&#43;rxAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm&#43;48GgAAAABJRU5ErkJggg==&#39;
+  elif icon_code == &#39;partly-cloudy-night&#39;:
+    icon = &#39;iVBORw0KGgoAAAANSUhEUgAAAFoAAABICAQAAADcvyoZAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAARt4AAEbeAY4mMlsAAAAHdElNRQfkAwQTLi3Ze1bDAAAAEGNhTnYAAACHAAAAhwAAABcAAAAb1L7rGwAAB3VJREFUaN7N2n9011Udx/HHxmDsB4ELFMGhiCBoBkbmDzQTKUVOEmInjxkpWvbLH/kDk6Oe0mMeTUHNjp2sE6dTphFJmgZpaEmiIqIBY/wqAYXxmzHGNjb27g8&#43;7bDtC3zHhh9fn3&#43;2e9/33uf3fu7nvu9935vjo6EuBvusMxzjVvPThslGRb7oaWvUC8v0TRsnG51ppmqRPDN1SRvoYMp3o3VCqLJEnfBY2kgHUzc/USs0mG20C1UK96YNdWDle8AeYbNJemCEHcJ9aWMdWDeqFd53afL/UJuFx9PGOpDOtF7Y6rKmlFIrheflp422PxWbKTS4TU5TWqG/CyuUpg23P11sl/CiI5ql3i/U&#43;tLBi&#43;d1KEyBnvrq7WjFCoRq1bZYq8IWO5usurhCgV0eta1Z6Zd9T6FL/EXDh9N3fY1xn9lWqLS7yVWEUG&#43;7/3jFg8bpLxdDrBNe9rEWdfTwqrDJiMOPW2SkR5Wp3Qe0QZ0aNeo07JO62ypP&#43;ILrNQi3ZKjrG&#43;qFGYoP3GSO9qjYha70Wd1AnXVWKrfaOpVq5ChWrJcTDDBAP13BLrVKVBntX63qKzHdSPUme0gcjh7u5HzPqUn68F1TjHWcgoy2&#43;Y4x2n1eT&#43;zDDhMzrjLOs0HYZsLhQO7rQVuTVcOzvqJ3VqVKjPWkzULYaZohGWyuUyNscX3yZjpM55knhDrPG62wTWU7O9vTdgqhzCVyW&#43;R3cbdaodY0n&#43;go4DzfTFZmS01MRnNb1dU4bwhhuzta/eh8NydvcbX7ndGijS5tdz9d3aFaaPD7jC83e5X6qV1CvYd1b5GXa4w3k9G/1ase830TXO5ad3vGm21F/rE6YYe7DjYtZaHOvmOj0OiJVtj0cbsye5omzMamv//dtkbuVCdsdnWrkXioGmu10OhhhchtMQWXmugp5bYnDqtRCL9qyzx9rakKbHaDJzsIGUZ73LF2m26zXsImi72lXF2Sn&#43;dIpfrorpOJzlJjYvaVj7JeqHR1BwL/v7c3NnP8ocJ0F&#43;jcwq6fcuHd7Le&#43;pd4Q6k3usIGxr65VrcFma31gRwJe6VFHN7O6Rwh3ZVtpnkeE8NsO&#43;PwyKd/XXGaY/gY62w1eSjznXx3fZHOuCmGFgdlWeoHtwuLsC7RT3VxhaYJ9FBjgNaHeddlW0d0soebwrAf2q6FeE8JUOQaaJYQ/ZO/MLlMnzGyju26/hikXtrjN60KYu89gOYiKzRK2G/UhI8PXk7hICPMMzb7g5&#43;0UZqSyS&#43;7ulWT384xBbSn4M6HW&#43;BSQ4VYh/LK5m9/fxjbPMU40wLHGocw/U4J&#43;S7UiG1UeDLqnUcb6jD5Ny/CXbEoJukKVIn2aJ7aELjTet306caGNatTbZXZKyNRrRJ6cffeMzaEH&#43;qHx8lFlodcssl61OstTg&#43;6uKyr3v809x9vJbmKaka2iEunocg3CTfvLPtdyISwwptX6Ki3l&#43;rVQ5bzM2adYJDT6c9vmw8Os4dYJ85Rkyuzh2cS390qbcx8VelJkGhx7V8dXGoN5JqU2tWVSQRJNyfh1Ha9cWO&#43;ctClb6XSrhVUGtM7a6yo/mqcdPxIaXdUy&#43;ePmCmuclDZfRp2tUnikeWKuU52MOZalzZdRG&#43;xESfPQQq4Rums0x560&#43;TKqUBdUN/eIuYbKsd3itOn2o2GOwMrmibmOxRYb0qbLqBITdLK9dfh9hbCwxTnTR0PdTLVHeLp1pHqlsECPtAkTlRiut26ONMoM9cJ/ndba7F1haRJdSF9X2aLMXItUCWGtcZnMXhAqnJw2Lcj3p30ienVedG4mszxlRisx0JK0iTHEWdhkrSrL/c1Ltmc2vES18FDavOBuodFNuis68GFhqUXC4o/A3aHjLROWO&#43;5ghrnWmo0h2RykH2ZNMAjTvZeN8XAVwmInpIo8zBphlROzM881JYk&#43;H9oBW0do7y6l0eTsi/S3UGhwTwdfpche31InzHVkWwpdZKOwyz2p9PbnvC9scWFbC16jUmjwm0ybmyZ1OgzxkJMsEPa4s&#43;13InJdk5wyLfbdjBNgnlM9bJZTOxR5QBLO/d2hdsdFFgphj0WmGOckvZXoqdTprvGU9UJ4x5kdhjzEHCHMac&#43;Fq/6m2tDk&#43;yuUecs7VtmWnJbufZa5qEOQRyQn4HMNbl9FnZxmiiXNrvfsfbZ5xSQzhbDRzYra1U4XV1othJfbejVgf0O/r6GGG&#43;goBfao8r4y8y21Q0/3mihPvRkesPAQkQe51VcVCDPcYnX7&#43;rm5cnVVrKjFxZ0ik5JPdo3bD2EsHuVG5cmp7L0f5p7pfHOTewGL/cBAnbIqlaO/G8xPLkG8bXyW5TpMvU32XjLa3zPNpY47wAlYnlIX&#43;7kVyQe93gP6HWrT7bvidoqrjUsa3&#43;0DS7xtpTU2q1UndFaoRF&#43;DneKT&#43;iU/qsJzfmHBoV9iax80OQb7sjFObppLGtXYqc5uobOuihU0DYJaS73gjxa1LzTUXui9KvEpI51mkF7yM1yuqLHVKq/7h/kdEUzuGOi9KtbPYAOcoI9uiuSotcMHViu3zJrmZ4Ht0f8AtlrKz5jSaW8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMDRUMTk6NDY6MzIrMDA6MDDFtlJNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTAzLTA0VDE5OjQ2OjMyKzAwOjAwtOvq8QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=&#39;
+  else:
+    icon = &#39;&#39;
+
+  return icon
+
+def get_wx():
+
+  if api_key == &#34;&#34;:
+    return False
+
+  location = manual_location_lookup() or mac_location_lookup() or auto_loc_lookup()
+
+  if location is False:
+    return False
+
+  for locData in location:
+    locData.encode(&#39;utf-8&#39;)
+
+  try:
+    if &#39;loc&#39; in location:
+      wx = json.load(urllib2.urlopen(&#39;https://api.darksky.net/forecast/&#39; &#43; api_key &#43; &#39;/&#39; &#43; location[&#39;loc&#39;] &#43; &#39;?units=&#39; &#43; units &#43; &#34;&amp;v=&#34; &#43; str(randint(0,100))))
+    else:
+      return False
+  except urllib2.HTTPError:
+    return False
+
+  if units == &#39;si&#39;:
+    unit = &#39;C&#39;
+    distance = &#39;m/s&#39;
+    distance_short = &#39;km&#39;
+  else:
+    unit = &#39;F&#39;
+    distance = &#39;mph&#39;
+    distance_short = &#39;mi&#39;
+
+  try:
+
+    weather_data = {}
+
+    if &#39;currently&#39; in wx:
+      for item in wx[&#39;currently&#39;]:
+        if item == &#39;temperature&#39;:
+          weather_data[&#39;temperature&#39;] = str(int(round(wx[&#39;currently&#39;][&#39;temperature&#39;]))) &#43; &#39;°&#39; &#43; unit
+        elif item == &#39;icon&#39;:
+          weather_data[&#39;icon&#39;] = get_wx_icon(str(wx[&#39;currently&#39;][&#39;icon&#39;]))
+        elif item == &#39;summary&#39;:
+          weather_data[&#39;condition&#39;] = str(wx[&#39;currently&#39;][&#39;summary&#39;].encode(&#39;utf-8&#39;))
+        elif item == &#39;windSpeed&#39;:
+          weather_data[&#39;wind&#39;] = str(wx[&#39;currently&#39;][&#39;windSpeed&#39;]) &#43; &#39; &#39; &#43; distance
+        elif item == &#39;windBearing&#39;:
+          weather_data[&#39;windBearing&#39;] = calculate_bearing(wx[&#39;currently&#39;][&#39;windBearing&#39;])
+        elif item == &#39;humidity&#39;:
+          weather_data[&#39;humidity&#39;] = str(int(round(wx[&#39;currently&#39;][&#39;humidity&#39;] * 100))) &#43; &#39;%&#39;
+        elif item == &#39;dewPoint&#39;:
+          weather_data[&#39;dewPoint&#39;] = str(wx[&#39;currently&#39;][&#39;dewPoint&#39;])
+        elif item == &#39;visibility&#39;:
+          weather_data[&#39;visibility&#39;] = str(int(round(wx[&#39;currently&#39;][&#39;visibility&#39;]))) &#43; &#39; &#39; &#43; distance_short
+        elif item == &#39;pressure&#39;:
+          weather_data[&#39;pressure&#39;] = str(wx[&#39;currently&#39;][&#39;pressure&#39;]) &#43; &#39; mb&#39;
+        elif item == &#39;apparentTemperature&#39;:
+          weather_data[&#39;feels_like&#39;] = str(int(round(wx[&#39;currently&#39;][&#39;apparentTemperature&#39;]))) &#43; &#39;°&#39; &#43; unit
+
+    if &#39;minutely&#39; in wx:
+      for item in wx[&#39;minutely&#39;]:
+        if item == &#39;summary&#39;:
+          weather_data[&#39;next_hour&#39;] = str((wx[&#39;minutely&#39;][&#39;summary&#39;].encode(&#39;utf-8&#39;)))
+
+    if &#39;daily&#39; in wx:
+      for item in wx[&#39;daily&#39;]:
+        if item == &#39;summary&#39;:
+          weather_data[&#39;week&#39;] = str((wx[&#39;daily&#39;][&#39;summary&#39;].encode(&#39;utf-8&#39;, &#39;ignore&#39;)))
+
+    if &#39;city&#39; in location and &#39;region&#39; in location:
+      if location[&#39;city&#39;] == &#39;&#39; and location[&#39;region&#39;] == &#39;&#39;:
+        if &#39;country&#39; in location:
+            country = full_country_name(location[&#39;country&#39;])
+
+            if country is False or location[&#39;country&#39;] == &#39;&#39;:
+              weather_data[&#39;country&#39;] = &#39;See Full Forecast&#39;
+            else:
+              weather_data[&#39;country&#39;] = country
+      else:
+        weather_data[&#39;city&#39;] = str(location[&#39;city&#39;].encode(&#39;utf-8&#39;))
+        weather_data[&#39;region&#39;] = str(location[&#39;region&#39;].encode(&#39;utf-8&#39;))
+
+    if &#39;loc&#39; in location:
+      weather_data[&#39;loc&#39;] = str(location[&#39;loc&#39;])
+
+    if &#39;preformatted&#39; in location:
+      weather_data[&#39;preformatted&#39;] = location[&#39;preformatted&#39;]
+
+  except KeyError:
+    return False
+
+  return weather_data
+
+def render_wx():
+
+  if api_key == &#39;&#39;:
+    print &#39;Missing API key&#39;
+    print &#39;---&#39;
+    print &#39;Get an API Key | href=https://darksky.net/dev&#39;
+    return False
+
+  weather_data = get_wx()
+
+  if weather_data is False:
+    print &#39;--&#39;
+    print &#39;---&#39;
+    print &#39;Could not get weather data at this time&#39;
+    return False
+
+  if &#39;icon&#39; in weather_data and &#39;temperature&#39; in weather_data:
+    print weather_data[&#39;temperature&#39;] &#43; &#39; | templateImage=&#39; &#43; weather_data[&#39;icon&#39;]
+  else:
+    print &#39;N/A&#39;
+
+  print &#39;---&#39;
+
+
+  if &#39;city&#39; in weather_data and &#39;region&#39; in weather_data:
+    print weather_data[&#39;city&#39;] &#43; &#39;, &#39; &#43; weather_data[&#39;region&#39;] &#43; &#39; | href=https://darksky.net/&#39; &#43; weather_data[&#39;loc&#39;]
+  elif &#39;country&#39; in weather_data:
+    print weather_data[&#39;country&#39;] &#43; &#39; | href=https://darksky.net/&#39; &#43; weather_data[&#39;loc&#39;]
+  elif &#39;preformatted&#39; in weather_data:
+    print weather_data[&#39;preformatted&#39;] &#43; &#39; | href=https://darksky.net/&#39; &#43; weather_data[&#39;loc&#39;]
+
+  if &#39;condition&#39; in weather_data and &#39;feels_like&#39; in weather_data:
+    print weather_data[&#39;condition&#39;] &#43; &#39;, Feels Like: &#39; &#43; weather_data[&#39;feels_like&#39;]
+
+  print &#39;---&#39;
+
+  if &#39;next_hour&#39; in weather_data:
+    print weather_data[&#39;next_hour&#39;]
+    print &#39;---&#39;
+
+  print &#39;---&#39;
+
+  if &#39;week&#39; in weather_data:
+    print &#34;\n&#34;.join(textwrap.wrap(weather_data[&#39;week&#39;], 50))
+    print &#39;---&#39;
+
+  if &#39;wind&#39; in weather_data and &#39;windBearing&#39; in weather_data:
+    print &#39;Wind: &#39; &#43; weather_data[&#39;wind&#39;] &#43; &#39; &#39; &#43; weather_data[&#39;windBearing&#39;]
+
+  if &#39;humidity&#39; in weather_data:
+    print &#39;Humidity: &#39; &#43; weather_data[&#39;humidity&#39;]
+
+  if &#39;dewPoint&#39; in weather_data:
+    print &#39;Dew Point: &#39; &#43; weather_data[&#39;dewPoint&#39;]
+
+  if &#39;visibility&#39; in weather_data:
+    print &#39;Visibility: &#39; &#43; weather_data[&#39;visibility&#39;]
+
+  if &#39;pressure&#39; in weather_data:
+    print &#39;Pressure: &#39; &#43; weather_data[&#39;pressure&#39;]
+
+  print &#39;---&#39;
+  print &#39;Powered by DarkSky | href=https://darksky.net/poweredby/?ref=bitbarWeather&#39;
+
+render_wx()
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

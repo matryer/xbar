@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Web/rss.15m.php",
+				"filename": "rss.15m.php",
+				"content": "#!/usr/bin/env php\n\u003c?php\n// \u003cbitbar.title\u003eSimple RSS reader\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eAleš Farčnik\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003ealesf\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eSimple RSS \"reader\" that will list latest feed items and link to them.\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/JDdgcGH.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003ephp \u003e= 5.4\u003c/bitbar.dependencies\u003e\n\ndefine('FEED_URL', 'http://feedpress.me/sixcolors?type=xml');\ndefine('ITEM_LIMIT', 25);\n\n// You should not need to change anything below this part\n\n// TODO:\n// - multiple feeds\n// - keep older items in log file for some time\n\ndefine('FEED_LOG', dirname(__FILE__).'/.rss.log');\ndefine('SCRIPT_PATH', __FILE__);\ndefine('PHP_PATH', exec(\"which php\"));\n\n$feed_image = \"iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRT\".\n    \"b2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATBJREFUeNqc0b1KQzEYxvFQq4i2kwiCD\".\n    \"jo4dZIKQm+hm5tUUHDxBnQSF1cXh1IR3AqdBK+gLl5BURz82hy0Iq2lYkHqP/BGHsKxFgM/Tv\".\n    \"vk5D3Jm7Rzro8OHtHABc7x6oYc/QSfqCH33wLBF8rIDiowj2Ws4wQvCYVuh92NH6NW7D4q8oa\".\n    \"VpAVH2EMRk5KP4zChSG5QD/xtVDAr82voRcfJ/tXEd5SiIjpfDhMjmEETc0hbPoZVu85LXNlX\".\n    \"Czafx5k1/GdMYAet6Gsl6Yk2tvbbLSziLjpO6MmG5L4vU7rIbysl/9vy8rFccVPyLR/uS1CXP\".\n    \"uxGt5Ox/FTyqrMt6plDo/yCD8mLlm9K1kjZVnW07NmxGwhjyZ43ki34Att4QhcHuJYXHuT3tD\".\n    \"2fJct8CzAAqHZ3QQFiFvsAAAAASUVORK5CYII=\";\n\nif (isset($argv[1])) {\n    $log_data = @file_get_contents(FEED_LOG);\n    $log_data = json_decode($log_data, true);\n\n    if ($argv[1] == 'MARK_ALL_AS_READ') {\n        foreach ($log_data as \u0026$log_item) {\n            $log_item['visited'] = true;\n        }\n        file_put_contents(FEED_LOG, json_encode($log_data));\n        exit();\n    }\n    exec('open ' . $log_data[$argv[1]]['link']);\n    $log_data[$argv[1]]['visited'] = true;\n    file_put_contents(FEED_LOG, json_encode($log_data));\n    exit();\n}\n\nclass RSSParser\n{\n    protected $url;\n    protected $feed;\n    protected $feed_type;\n    protected $feed_channel;\n    protected $feed_items;\n    protected $feed_guid;\n\n    protected $log_data;\n\n    public $title;\n    public $items;\n    public $unread_no = 0;\n\n    public function __construct($url)\n    {\n        $this-\u003eload($url);\n    }\n\n    private function loadLogData()\n    {\n        $log_data = @file_get_contents(FEED_LOG);\n        if ($log_data) {\n            $this-\u003elog_data = json_decode($log_data, true);\n        }\n    }\n\n    public function load($url)\n    {\n        $this-\u003eloadLogData();\n\n        $feed_data = @file_get_contents(FEED_URL);\n\n        if ($feed_data === '') {\n            $this-\u003etitle = 'No new items at this time.';\n            return;\n        }\n\n        $this-\u003efeed = new DOMDocument();\n        $this-\u003efeed-\u003eloadXML($feed_data);\n\n        if ($this-\u003efeed-\u003egetElementsByTagName('channel')-\u003eitem(0)) {\n            $this-\u003efeed_type = 'rss';\n            $this-\u003efeed_channel = $this-\u003efeed-\u003egetElementsByTagName('channel')-\u003eitem(0);\n            $this-\u003efeed_items = $this-\u003efeed-\u003egetElementsByTagName('channel')\n                -\u003eitem(0)-\u003egetElementsByTagName('item');\n            $this-\u003efeed_guid = 'guid';\n        } else {\n            $this-\u003efeed_type = 'atom';\n            $this-\u003efeed_channel = $this-\u003efeed;\n            $this-\u003efeed_items = $this-\u003efeed-\u003egetElementsByTagName('entry');\n            $this-\u003efeed_guid = 'id';\n        }\n\n        $this-\u003esetTitle();\n        $this-\u003esetItems();\n    }\n\n    public function setTitle()\n    {\n        $this-\u003etitle = $this-\u003egetItemElement($this-\u003efeed_channel, 'title');\n    }\n\n    public function setItems()\n    {\n        $item_count = 1;\n        foreach ($this-\u003efeed_items as $item) {\n            if ($item_count \u003e ITEM_LIMIT) {\n                break;\n            }\n            $title = $this-\u003egetItemElement($item, 'title');\n            $guid = $this-\u003egetItemElement($item, $this-\u003efeed_guid);\n            $link = $this-\u003egetItemElement($item, 'link');\n\n            $this-\u003eitems[$guid] = [\n                'title' =\u003e $title,\n                'link' =\u003e $link,\n                'guid' =\u003e $guid\n            ];\n            if (!isset($this-\u003elog_data[$guid])) {\n                $this-\u003eitems[$guid]['visited'] = false;\n                $this-\u003eunread_no++;\n            } else {\n                $this-\u003eitems[$guid] = $this-\u003elog_data[$guid];\n                if (!$this-\u003eitems[$guid]['visited']) {\n                    $this-\u003eunread_no++;\n                }\n            }\n            $item_count++;\n        }\n\n        if (!empty($this-\u003eitems)) {\n            file_put_contents(FEED_LOG, json_encode($this-\u003eitems));\n        }\n    }\n\n    public function getUnreadCnt()\n    {\n        return $this-\u003eunread_no ? $this-\u003eunread_no : '';\n    }\n\n    private function getItemElement($item, $element)\n    {\n        if (!$item) {\n            return '';\n        }\n        if ($this-\u003efeed_type == 'rss') {\n            return trim($item-\u003egetElementsByTagName($element)-\u003eitem(0)-\u003efirstChild-\u003enodeValue);\n        }\n\n        if ($this-\u003efeed_type == 'atom') {\n            if ($element == 'link') {\n                return trim($item-\u003egetElementsByTagName($element)-\u003eitem(0)-\u003egetAttribute('href'));\n            }\n            return trim($item-\u003egetElementsByTagName($element)-\u003eitem(0)-\u003enodeValue);\n        }\n    }\n}\n\n/**\n * BitBar display\n */\nclass BitBar\n{\n    public function divider()\n    {\n        echo \"---\\n\";\n    }\n\n    public function icon($icon, $text = '')\n    {\n        if ($text) {\n            echo \"{$text} \";\n        }\n        echo \"| size=10 templateImage={$icon}\\n\";\n    }\n\n    public function println($text)\n    {\n        echo \"{$text}\";\n        echo \"\\n\";\n    }\n\n    public function rssItem($title, $guid, $unread = false)\n    {\n        if ($unread) {\n            echo \"● \";\n        }\n        echo \"$title | length=65 terminal=false refresh=true \";\n        echo \"bash=\".PHP_PATH.\" param1=\".SCRIPT_PATH.\" param2=$guid\\n\";\n    }\n\n    public function rssItems($items)\n    {\n        if (empty($items)) {\n            return false;\n        }\n        foreach ($items as $item) {\n            $this-\u003erssItem($item['title'], $item['guid'], !$item['visited']);\n        };\n    }\n\n    public function markAsRead()\n    {\n        echo \"Mark all as read | terminal=false refresh=true \";\n        echo \"bash=\".PHP_PATH.\" param1=\".SCRIPT_PATH.\" param2=MARK_ALL_AS_READ\\n\";\n    }\n\n    public function refresh()\n    {\n        echo \"Refresh | refresh=true\";\n    }\n}\n\n$parser = new RSSParser(FEED_URL);\n$bb = new BitBar();\n\n$bb-\u003eicon($feed_image, $parser-\u003egetUnreadCnt());\n$bb-\u003edivider();\n$bb-\u003eprintln($parser-\u003etitle);\n$bb-\u003edivider();\n$bb-\u003erssItems($parser-\u003eitems);\n$bb-\u003edivider();\n$bb-\u003emarkAsRead();\n$bb-\u003erefresh();\n"
+			}
+		],
+		"path": "Web/rss.15m.php",
+		"filename": "rss.15m.php",
+		"dir": "Web",
+		"docsPlugin": "Web/rss.15m.php.html",
+		"docsCategory": "Web.html",
+		"pathSegments": [
+			"Web"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Web",
+				"text": "Web",
+				"isLast": true
+			}
+		],
+		"title": "Simple RSS reader",
+		"version": "1.0",
+		"author": "Aleš Farčnik",
+		"authors": [
+			{
+				"name": "alesf",
+				"githubUsername": "alesf",
+				"imageURL": "https://avatars.githubusercontent.com/u/1148574?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Simple RSS \"reader\" that will list latest feed items and link to them.",
+		"imageURL": "http://i.imgur.com/JDdgcGH.png",
+		"dependencies": [
+			"php \u003e= 5.4"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:10.302588Z",
+		"vars": null
+	}
+}

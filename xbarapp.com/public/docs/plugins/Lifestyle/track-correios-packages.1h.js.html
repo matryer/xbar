@@ -1,0 +1,500 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Track Brazilian Post Office (Correios) packages in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios. - install xbar for free to get started.'>
+	<meta name='author' content='Carlos E. Torres'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png'>
+	<meta itemprop='name' content='Track Brazilian Post Office (Correios) packages in your macOS menu bar'>
+	<meta itemprop='description' content='EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Track Brazilian Post Office (Correios) packages in your macOS menu bar'>
+	<meta name='twitter:description' content='EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Track Brazilian Post Office (Correios) packages in your macOS menu bar'>
+	<meta property='og:description' content='EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Lifestyle/track-correios-packages.1h.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Track Brazilian Post Office (Correios) packages</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/cetorres.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/533661?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/cetorres.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Carlos Eugenio Torres (<code style='color:white;'>@cetorres</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Lifestyle%2ftrack-correios-packages.1h.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png' 
+				alt='Image preview of Track Brazilian Post Office (Correios) packages plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>track-correios-packages.1h.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Lifestyle/track-correios-packages.1h.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Lifestyle/track-correios-packages.1h.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+/* jshint esversion: 6 */
+
+/*
+ * &lt;bitbar.title&gt;Track Brazilian Post Office (Correios) packages&lt;/bitbar.title&gt;
+ * &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+ * &lt;bitbar.author&gt;Carlos E. Torres&lt;/bitbar.author&gt;
+ * &lt;bitbar.author.github&gt;cetorres&lt;/bitbar.author.github&gt;
+ * &lt;bitbar.desc&gt;EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios.&lt;/bitbar.desc&gt;
+ * &lt;bitbar.abouturl&gt;https://github.com/cetorres/bitbar-track-correios-packages&lt;/bitbar.abouturl&gt;
+ * &lt;bitbar.image&gt;https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png&lt;/bitbar.image&gt;
+ * &lt;bitbar.dependencies&gt;node&lt;/bitbar.dependencies&gt;
+ */
+
+// Enter the track code here.
+// Informe o código de rastreio aqui.
+var code = &#34;&#34;; // Ex.: AA123456789BR
+
+// Don&#39;t change anything else below this line.
+// Não altere mais nada a partir desta linha.
+const fs = require(&#39;fs&#39;);
+const https = require(&#39;https&#39;);
+var url = &#34;https://wsmobile.correios.com.br/service/rest/rastro/rastroMobile/FALECONOSC/7KMJ6FISA4/L/T/&#34; &#43; code &#43; &#34;/101&#34;;
+var logFile = &#34;.track-correios-package.log&#34;;
+
+var getLogData = function(callback) {
+    fs.readFile(__dirname &#43; &#39;/&#39; &#43; logFile, (e, data) =&gt; {
+        if (e) {
+            callback(null);
+        }
+        callback(data);
+    });
+};
+
+var saveLogData = function(data) {
+    fs.writeFile(__dirname &#43; &#39;/&#39; &#43; logFile, data, function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+};
+
+var refreshMenu = function() {
+    console.log(&#34;---&#34;);
+    console.log(&#34;Atualizar | refresh=true&#34;);
+};
+
+var aboutMenu = function() {
+    console.log(&#39;---&#39;);
+    console.log(&#39;by Carlos E. Torres | href=http://cetorres.com&#39;);
+};
+
+const toTitleCase = (phrase) =&gt; {    
+    return phrase ? phrase
+        .toLowerCase()
+        .split(&#39; &#39;)
+        .map(word =&gt; word.charAt(0).toUpperCase() &#43; word.slice(1))
+        .join(&#39; &#39;) : &#34;&#34;;
+};
+
+if (!fs.existsSync(__dirname &#43; &#39;/&#39; &#43; logFile)) {
+    saveLogData(0);
+}
+
+https.get(url, (res) =&gt; {
+
+    res.setEncoding(&#39;utf-8&#39;);
+    var responseString = &#39;&#39;;
+
+    res.on(&#39;data&#39;, function(data) {
+        responseString &#43;= data;
+    });
+
+    res.on(&#39;end&#39;, function() {       
+        var responseObject = JSON.parse(responseString);
+        var nomeObjeto = responseObject.objeto[0].nome != undefined ? responseObject.objeto[0].nome : &#34;OBJETO&#34;;
+        var eventos = responseObject.objeto[0].evento;
+        var eventosTotal = eventos != undefined ? eventos.length : 0;
+
+        if (nomeObjeto != &#34;OBJETO&#34; &amp;&amp; eventosTotal == 0) {
+            console.log(&#34;📦 0 | color=yellow&#34;);
+            console.log(&#34;---&#34;);
+            console.log(nomeObjeto &#43; &#34;\n&#34;);
+            console.log(&#34;Código: &#34; &#43; code);
+            console.log(&#34;---&#34;);
+            console.log(&#34;Sem eventos no momento.&#34;);      
+            
+            refreshMenu();
+            aboutMenu(); 
+        }
+        else if (nomeObjeto == &#34;OBJETO&#34; &amp;&amp; eventosTotal == 0) {
+            console.log(&#34;📦 0 | color=yellow&#34;);
+            console.log(&#34;---&#34;);
+            console.log(nomeObjeto &#43; &#34;\n&#34;);
+            console.log(&#34;Código: &#34; &#43; code);
+            console.log(&#34;---&#34;);
+            console.log(&#34;Objeto não encontrado.&#34;); 
+
+            refreshMenu();
+            aboutMenu(); 
+        }
+        else if (nomeObjeto != &#34;&#34; &amp;&amp; eventosTotal &gt; 0) {
+            var header = eventos.filter(evento =&gt; evento.tipo == &#34;PO&#34;)[0];            
+            
+            getLogData((data) =&gt; {
+                var newEvents = false;
+                var eventosLog = data;
+            
+                if (eventosLog != undefined) {
+                    if (eventosLog != eventosTotal) {
+                        newEvents = true;
+                    }
+                }            
+                
+                saveLogData(eventosTotal);
+
+                var objetoEntregue = eventos.find(e =&gt; e.tipo == &#34;BDE&#34;) != undefined ? true : false;
+
+                if (objetoEntregue) {
+                    console.log(&#34;📦 ✓ | color=green&#34;);    
+                }
+                else {
+                    console.log(&#34;📦 &#34; &#43; eventosTotal &#43; (newEvents ? &#39; | color=green&#39; : &#39;&#39;));
+                }
+                console.log(&#34;---&#34;);            
+                console.log(nomeObjeto &#43; &#34;\n&#34;);
+                console.log(&#34;Código: &#34; &#43; code);
+                console.log(&#39;Postado em: &#39; &#43; (header == undefined ? eventos[0].dataPostagem : header.postagem.datapostagem));
+
+                eventos.forEach(evento =&gt; {                
+                    console.log(&#34;---&#34;);
+                    console.log(evento.data &#43; &#34; - &#34; &#43; evento.hora &#43; &#34;\n&#34;);                 
+                    if (evento.tipo == &#34;RO&#34;) {            
+                        console.log(evento.descricao.trim() &#43; &#34;\n&#34;);                                                        
+                        console.log(&#34;Para: &#34; &#43; toTitleCase(evento.destino[0].local) &#43; (evento.destino[0].cidade != undefined ? (&#34; em &#34; &#43; toTitleCase(evento.destino[0].cidade)) : &#34;&#34;));
+                        console.log(&#34;De: &#34; &#43; toTitleCase(evento.unidade.local) &#43; (evento.unidade.cidade != undefined ? (&#34; em &#34; &#43; toTitleCase(evento.unidade.cidade) &#43; &#34;\n&#34;) : &#34;&#34;));   
+                    } 
+                    else if (evento.tipo == &#34;PAR&#34;) {
+                        console.log(evento.descricao.trim() &#43; &#34;\n&#34;);                                                        
+                        console.log(toTitleCase(evento.unidade.local));
+                    }
+                    else {
+                        console.log(evento.descricao.trim() &#43; &#34;\n&#34;);
+                        if (evento.detalhe != undefined) {
+                            console.log(evento.detalhe.trim() &#43; &#34;\n&#34;);                                
+                        }                        
+                        if (evento.postagem != undefined) {
+                            console.log(&#34;Para: &#34; &#43; toTitleCase(evento.postagem.destinatario));
+                        }
+                        console.log(&#34;De: &#34; &#43; toTitleCase(evento.unidade.local) &#43; (evento.unidade.cidade != undefined ? (&#34; em &#34; &#43; toTitleCase(evento.unidade.cidade) &#43; &#34;\n&#34;) : &#34;&#34;)); 
+                    }               
+                });
+
+                console.log(&#34;---&#34;);
+                console.log(&#34;Ver online | href=&#34; &#43; url); 
+                
+                refreshMenu();
+                aboutMenu(); 
+            });                 
+            
+        }
+        
+    });
+
+})
+.on(&#39;error&#39;, (e) =&gt; {
+    console.log(&#39;✖︎ | color=red&#39;);
+    console.log(&#39;---&#39;);
+    console.log(&#39;Erro ao ler dados do serviço dos Correios.\n&#39; &#43; e);
+    refreshMenu();
+    aboutMenu();
+});
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

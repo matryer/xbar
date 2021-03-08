@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Tim Baumgard",
+		"githubUsername": "tbaumgard",
+		"imageURL": "https://avatars.githubusercontent.com/u/1239241?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/stopwatch.1s.sh",
+					"filename": "stopwatch.1s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eStopwatch\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTim Baumgard\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etbaumgard\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSimple stopwatch for BitBar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/tbaumgard/tbaumgard.github.io/master/_/img/bitbar-stopwatch.png\u003c/bitbar.image\u003e\n\n### Configuration\n\nMAX_SPLITS=25\nSTART_FILE=\"$HOME/.bitbar-stopwatch-start\"\nPAUSE_FILE=\"$HOME/.bitbar-stopwatch-pause\"\nSPLIT_FILE=\"$HOME/.bitbar-stopwatch-split\"\nSPLITS_FILE=\"$HOME/.bitbar-stopwatch-splits\"\nSTART_TEXT=\"Start\"\nSTOP_TEXT=\"Stop\"\nSPLIT_TEXT=\"Split\"\nRESET_TEXT=\"Reset\"\n\n### Functions\n\nfunction stopwatch-print-splits {\n\tlocal COUNTER\n\tlocal CLOCK\n\n\tif [ ! -n \"$1\" ]; then\n\t\treturn\n\tfi\n\n\tCOUNTER=1\n\techo \"---\"\n\n\tfor SPLIT in $1; do\n\t\tCLOCK=\"$(stopwatch-print-clock \"$SPLIT\")\"\n\t\techo \"$COUNTER. $CLOCK\"\n\t\tCOUNTER=$((COUNTER + 1))\n\tdone\n}\n\nfunction stopwatch-print-clock {\n\tlocal NUM_SECONDS=$(($1))\n\tlocal HOURS=$((NUM_SECONDS / 3600))\n\tlocal MINUTES=$((NUM_SECONDS % 3600 / 60))\n\tlocal SECONDS=$((NUM_SECONDS % 3600 % 60))\n\n\tprintf \"%02d:%02d:%02d\" $HOURS $MINUTES $SECONDS\n}\n\n### Main\n\nSTART_TIME=\"$(cat \"$START_FILE\" 2\u003e /dev/null)\"\nPAUSE_TIME=\"$(cat \"$PAUSE_FILE\" 2\u003e /dev/null)\"\nSPLIT_TIME=\"$(cat \"$SPLIT_FILE\" 2\u003e /dev/null)\"\nSPLITS=\"$(cat \"$SPLITS_FILE\" 2\u003e /dev/null)\"\n\nif [ \"$1\" == \"start\" ]; then\n\tdate +%s \u003e \"$START_FILE\"\n\texit\nelif [ \"$1\" == \"pause\" ]; then\n\tELAPSED_TIME=$(($(date +%s) - START_TIME))\n\techo $ELAPSED_TIME \u003e \"$PAUSE_FILE\"\n\texit\nelif [ \"$1\" == \"resume\" ]; then\n\tOFFSET_START_TIME=$(($(date +%s) - PAUSE_TIME))\n\techo $OFFSET_START_TIME \u003e \"$START_FILE\"\n\trm \"$PAUSE_FILE\"\n\texit\nelif [ \"$1\" == \"split\" ]; then\n\tNOW=\"$(date +%s)\"\n\n\tif [ -n \"$SPLIT_TIME\" ]; then\n\t\tELAPSED_TIME=$((NOW - SPLIT_TIME))\n\telse\n\t\tELAPSED_TIME=$((NOW - START_TIME))\n\tfi\n\n\techo \"$NOW\" \u003e \"$SPLIT_FILE\"\n\n\tif [ -n \"$SPLITS\" ]; then\n\t\tprintf \"%s\\n%d\\n\" \"$SPLITS\" $ELAPSED_TIME | tail -n \"$MAX_SPLITS\" \u003e \"$SPLITS_FILE\"\n\telse\n\t\tprintf \"%d\\n\" $ELAPSED_TIME \u003e \"$SPLITS_FILE\"\n\tfi\n\n\texit\nelif [ \"$1\" == \"reset\" ]; then\n\trm \"$START_FILE\"\n\trm \"$PAUSE_FILE\"\n\trm \"$SPLIT_FILE\"\n\trm \"$SPLITS_FILE\"\n\texit\nfi\n\nif [ -n \"$PAUSE_TIME\" ]; then\n\tCLOCK=\"$(stopwatch-print-clock \"$PAUSE_TIME\")\"\n\n\techo \"◎ $CLOCK\"\n\techo \"---\"\n\techo \"$START_TEXT| bash='$0' param1=resume terminal=false refresh=true\"\n\techo \"$RESET_TEXT| bash='$0' param1=reset terminal=false refresh=true\"\n\tstopwatch-print-splits \"$SPLITS\"\nelif [ -n \"$START_TIME\" ]; then\n\tELAPSED_TIME=$(($(date +%s) - START_TIME))\n\tCLOCK=\"$(stopwatch-print-clock \"$ELAPSED_TIME\")\"\n\n\techo \"◉ $CLOCK\"\n\techo \"---\"\n\techo \"$START_TEXT| bash='$0' param1=resume terminal=false refresh=true\"\n\techo \"$STOP_TEXT| bash='$0' param1=pause terminal=false refresh=true\"\n\techo \"$RESET_TEXT| bash='$0' param1=reset terminal=false refresh=true\"\n\t\n\tif [ \"$MAX_SPLITS\" -gt 0 ]; then\n\t\techo \"$SPLIT_TEXT| bash='$0' param1=split terminal=false refresh=true\"\n\tfi\n\n\tstopwatch-print-splits \"$SPLITS\"\nelse\n\techo \"◎ 00:00:00\"\n\techo \"---\"\n\techo \"$START_TEXT| bash='$0' param1=start terminal=false refresh=true\"\nfi\n"
+				}
+			],
+			"path": "Time/stopwatch.1s.sh",
+			"filename": "stopwatch.1s.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/stopwatch.1s.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Stopwatch",
+			"version": "1.0",
+			"author": "Tim Baumgard",
+			"authors": [
+				{
+					"name": "Tim Baumgard",
+					"githubUsername": "tbaumgard",
+					"imageURL": "https://avatars.githubusercontent.com/u/1239241?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Simple stopwatch for BitBar.",
+			"imageURL": "https://raw.githubusercontent.com/tbaumgard/tbaumgard.github.io/master/_/img/bitbar-stopwatch.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.427976Z",
+			"vars": null
+		}
+	]
+}

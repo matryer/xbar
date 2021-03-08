@@ -1,0 +1,90 @@
+/* No comment provided by engineer. */
+"%d days ago" = "%d日前";
+
+/* No comment provided by engineer. */
+"%d hours ago" = "%d時間前";
+
+/* No comment provided by engineer. */
+"%d minutes ago" = "%d分前";
+
+/* No comment provided by engineer. */
+"%d months ago" = "%dヶ月前";
+
+/* No comment provided by engineer. */
+"%d seconds ago" = "%d秒前";
+
+/* No comment provided by engineer. */
+"%d weeks ago" = "%d週間前";
+
+/* No comment provided by engineer. */
+"%d years ago" = "%d年前";
+
+/* No comment provided by engineer. */
+"A minute ago" = "1分前";
+
+/* No comment provided by engineer. */
+"An hour ago" = "1時間前";
+
+/* No comment provided by engineer. */
+"Just now" = "たった今";
+
+/* No comment provided by engineer. */
+"Last month" = "先月";
+
+/* No comment provided by engineer. */
+"Last week" = "先週";
+
+/* No comment provided by engineer. */
+"Last year" = "去年";
+
+/* No comment provided by engineer. */
+"Yesterday" = "昨日";
+
+/* No comment provided by engineer. */
+"1 year ago" = "1年前";
+
+/* No comment provided by engineer. */
+"1 month ago" = "1ヶ月前";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1週間前";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1日前";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1時間前";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1分前";
+
+/* No comment provided by engineer. */
+"1 second ago" = "1秒前";
+
+/* No comment provided by engineer. */
+"This morning" = "午前";
+
+/* No comment provided by engineer. */
+"This afternoon" = "午後";
+
+/* No comment provided by engineer. */
+"Today" = "今日";
+
+/* No comment provided by engineer. */
+"This week" = "今週";
+
+/* No comment provided by engineer. */
+"This month" = "今月";
+
+/* No comment provided by engineer. */
+"This year" = "今年";
+
+/* Short format for */
+"%dy" = "%d年"; // year
+"%dM" = "%d月"; // month
+"%dw" = "%d週"; // week
+"%dd" = "%d日"; // day
+"%dh" = "%d時間"; // hour
+"%dm" = "%d分"; // minute
+"%ds" = "%d秒"; // second
+

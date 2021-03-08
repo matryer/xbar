@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/downloads.1h.sh",
+				"filename": "downloads.1h.sh",
+				"content": "#!/bin/bash\n\nDOWNLOADS_DIR=\"$HOME/Downloads\"\n\n# \u003cbitbar.title\u003eDownloads\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eiosdeveloper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eiosdeveloper\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eQuick access to your recent downloads. Enter URL to download from. Specify downloads directory at the top of the file. Defaults to ~/Downloads. Contains example of how to refresh from the command line (see https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md#refreshplugin)\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/Cv4iS3d.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/System/downloads.1h.sh\u003c/bitbar.abouturl\u003e\n\nFILENAME=$(basename \"$0\")\nDOWNLOADS=$(ls -t \"$DOWNLOADS_DIR\")\n\necho \"Downloads\"\necho \"---\"\necho \"Download from URL… | bash='read -p Enter_URL: url \u0026\u0026 ( cd $DOWNLOADS_DIR \u0026\u0026 curl -L -# -O \\$url ); open' param1=bitbar://refreshPlugin?name=$FILENAME\"\necho \"---\"\necho \"$DOWNLOADS\" | awk -v DOWNLOADS_DIR=\"$DOWNLOADS_DIR\" '{print $0\" | bash=/usr/bin/open param1=\"DOWNLOADS_DIR\"/\"$0\" terminal=false\"}'\n"
+			}
+		],
+		"path": "System/downloads.1h.sh",
+		"filename": "downloads.1h.sh",
+		"dir": "System",
+		"docsPlugin": "System/downloads.1h.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Downloads",
+		"version": "v1.0",
+		"author": "iosdeveloper",
+		"authors": [
+			{
+				"name": "iosdeveloper",
+				"githubUsername": "iosdeveloper",
+				"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Quick access to your recent downloads. Enter URL to download from. Specify downloads directory at the top of the file. Defaults to ~/Downloads. Contains example of how to refresh from the command line (see https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md#refreshplugin)",
+		"imageURL": "http://i.imgur.com/Cv4iS3d.png",
+		"dependencies": null,
+		"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/System/downloads.1h.sh",
+		"lastUpdated": "2021-03-08T15:22:03.284141Z",
+		"vars": null
+	}
+}

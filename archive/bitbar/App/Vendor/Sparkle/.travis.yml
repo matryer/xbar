@@ -1,0 +1,7 @@
+language: objective-c
+osx_image: xcode7
+before_install:
+  - brew update
+  - brew install macmade/tap/xcode-coveralls
+script: make ci
+after_success: xcode-coveralls --exclude /Applications --exclude Tests --exclude Vendor build/Build/Intermediates/Sparkle.build/Coverage/Sparkle.build/Objects-normal/x86_64

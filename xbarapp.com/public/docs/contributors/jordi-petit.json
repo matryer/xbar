@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Jordi Petit",
+		"githubUsername": "jordi-petit",
+		"imageURL": "https://avatars.githubusercontent.com/u/2351822?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/show-hide-desktop-icons.1h.py",
+					"filename": "show-hide-desktop-icons.1h.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eShow/Hide Desktop Icons\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJordi Petit\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejordi-petit\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin displays a menu with two items to show or hide the desktop icons with one click.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/c3KYTAc.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\nimport sys, os\n\nif len(sys.argv) == 1:\n#   print 'Ξ'\n    print '💻'\n    print '---'\n    print 'Hide desktop icons | terminal=false bash=%s param1=hide' % sys.argv[0]\n    print 'Show desktop icons | terminal=false bash=%s param1=show' % sys.argv[0]\nelif sys.argv[1] == 'hide':\n   os.system('defaults write com.apple.finder CreateDesktop false \u0026\u0026 killall Finder')  \nelif sys.argv[1] == 'show':\n   os.system('defaults write com.apple.finder CreateDesktop true  \u0026\u0026 killall Finder')     \n"
+				}
+			],
+			"path": "System/show-hide-desktop-icons.1h.py",
+			"filename": "show-hide-desktop-icons.1h.py",
+			"dir": "System",
+			"docsPlugin": "System/show-hide-desktop-icons.1h.py.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Show/Hide Desktop Icons",
+			"version": "v1.0",
+			"author": "Jordi Petit",
+			"authors": [
+				{
+					"name": "Jordi Petit",
+					"githubUsername": "jordi-petit",
+					"imageURL": "https://avatars.githubusercontent.com/u/2351822?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "This plugin displays a menu with two items to show or hide the desktop icons with one click.",
+			"imageURL": "http://i.imgur.com/c3KYTAc.png",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:04.659879Z",
+			"vars": null
+		}
+	]
+}

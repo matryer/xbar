@@ -1,0 +1,53 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/GitHub/github-trending.1h.rb",
+				"filename": "github-trending.1h.rb",
+				"content": "#!/usr/bin/env ruby\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eGithub Trending\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003emfks17\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emfks17\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGithub Daily Trending Viewer\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/mfks17/bitbar-plugin-github-trending/Screenshots/01.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby, nokogiri\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/mfks17/bitbar-plugins-github-trending\u003c/bitbar.abouturl\u003e\n\nrequire 'open-uri'\nrequire 'json'\nrequire 'nokogiri'\n\nLANG = 'swift'.freeze # your favorite language\n# LANG = 'java'.freeze\n\nurl = 'https://github.com/trending/' + LANG + '?since=daily'\nBASE_URL = 'https://github.com/'.freeze\n\ncharset = nil\nhtml = open(url) do |f|\n  charset = f.charset\n  f.read\nend\n\nhash = {}\n\nputs LANG.capitalize\nputs '---'\n\ndoc = Nokogiri::HTML.parse(html, nil, charset)\ndoc.xpath('//li[@class=\"repo-list-item\"]').each do |node|\n  node.xpath('./h3[@class=\"repo-list-name\"]/a').attribute('href').value.each_line do |s|\n    s.slice!(0)\n    hash = { name: s, url: BASE_URL + s }\n\n    api = 'https://api.github.com/repos/' + s\n    begin\n      res = open(api)\n      code, message = res.status\n    rescue =\u003e _\n      puts '🙅Github Api Limits🙅'\n      exit\n    end\n\n    if code == '200'\n      result = JSON.parse(res.read)\n      puts hash.fetch(:name) + ' ⭐️ Daily: ' + node.xpath('./p[@class=\"repo-list-meta\"]').text.split(\"\\n\")[5].split(' ')[0] + ' - Total: ' + result.fetch('stargazers_count').to_s + '| sizes=14 href=' + hash.fetch(:url)\n    else\n      puts \"OMG!! #{code} #{message}\"\n    end\n  end\nend\n"
+			}
+		],
+		"path": "Dev/GitHub/github-trending.1h.rb",
+		"filename": "github-trending.1h.rb",
+		"dir": "Dev/GitHub",
+		"docsPlugin": "Dev/GitHub/github-trending.1h.rb.html",
+		"docsCategory": "Dev/GitHub.html",
+		"pathSegments": [
+			"Dev",
+			"GitHub"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/GitHub",
+				"text": "GitHub",
+				"isLast": true
+			}
+		],
+		"title": "Github Trending",
+		"version": "v0.1.2",
+		"author": "mfks17",
+		"authors": [
+			{
+				"name": "mfks17",
+				"githubUsername": "mfks17",
+				"imageURL": "https://avatars.githubusercontent.com/u/1155040?v=4",
+				"bio": "programmer 📱 ",
+				"primary": true
+			}
+		],
+		"desc": "Github Daily Trending Viewer",
+		"imageURL": "https://raw.githubusercontent.com/mfks17/bitbar-plugin-github-trending/Screenshots/01.png",
+		"dependencies": [
+			"ruby",
+			"nokogiri"
+		],
+		"aboutURL": "https://github.com/mfks17/bitbar-plugins-github-trending",
+		"lastUpdated": "2021-03-08T15:21:48.533463Z",
+		"vars": null
+	}
+}

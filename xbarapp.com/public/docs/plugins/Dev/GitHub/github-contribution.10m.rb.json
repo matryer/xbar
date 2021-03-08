@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/GitHub/github-contribution.10m.rb",
+				"filename": "github-contribution.10m.rb",
+				"content": "#!/usr/bin/env ruby\n# frozen_string_literal: true\n\n# \u003cbitbar.title\u003eGithub Contribution\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.0.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003emizoR\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emizoR\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://user-images.githubusercontent.com/1257116/34550684-37da7286-f156-11e7-9299-5873b6bb2fd7.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n#\n# To setup, create or edit your ~/.bitbarrc file with a new section:\n#\n# [github_contribution]\n# username = mizoR\n# max_contributions = 10\n\nrequire 'erb'\nrequire 'date'\nrequire 'open-uri'\n\nmodule BitBar\n  class INIFile\n    Error = Class.new(StandardError)\n\n    INIFileNotFound = Class.new(Error)\n\n    SectionNotFound = Class.new(Error)\n\n    def self.load(file = \"#{ENV['HOME']}/.bitbarrc\")\n      raise INIFileNotFound if !File.exist?(file)\n\n      parse(open(file) { |f| f.read })\n    end\n\n    def self.parse(source)\n      # XXX: This implementation isn't correct, but will work in most cases.\n      #      (Probably `StringScanner` will make code correct and clean.)\n      sections = {}\n\n      section = nil\n\n      source.each_line do |line|\n        if line =~ /^ *;/\n          # comment\n          next\n        end\n\n        if line =~ /^\\[(.+)\\]$/\n          section = sections[$1.to_sym] = {}\n          next\n        end\n\n        next unless section\n\n        if line =~ /(.+)=(.+)/\n          name  = $1.strip.to_sym\n          value = $2.strip\n\n          section[name] = value[/^\"(.*)\"$/, 1] || value[/^'(.*)'$/, 1] || value\n          next\n        end\n      end\n\n      new(sections: sections)\n    end\n\n    def initialize(sections:)\n      @sections = sections\n    end\n\n    def fetch(name)\n      @sections.fetch(name.to_sym)\n    rescue KeyError\n      raise SectionNotFound\n    end\n  end\n\n  module GitHubContribution\n    ConfigurationError = Class.new(StandardError)\n\n    class Contribution \u003c Struct.new(:username, :contributed_on, :count)\n      RE_CONTRIBUTION = %r|\u003crect .+ class=\"ContributionCalendar-day\" .+ data-count=\"(\\d+)\" data-date=\"(\\d\\d\\d\\d-\\d\\d-\\d\\d)\" .+\u003e|\n      def self.find_all_by(username:)\n        [].tap do |contributions|\n          today = Date.parse(DateTime.now.to_s).to_s\n          year = today.split(\"-\")[0];\n          html = URI.send(:open, \"https://github.com/users/#{username}/contributions?to=#{today}#year-link-#{year}\") { |f| f.read };\n          html.scan(RE_CONTRIBUTION) do |count, date|\n            contributions \u003c\u003c Contribution.new(username, Date.parse(date), count.to_i)\n            break if Date.parse(date) == Date.parse(DateTime.now.to_s)\n          end\n        end\n      end\n\n      def color\n        count \u003c= 0 ? 'brown' : 'green'\n      end\n\n      def icon\n        case count\n        when 0    then ':poop:'\n        when 1..3 then ':seedling:'\n        when 4..9 then ':herb:'\n        else           ':deciduous_tree:'\n        end\n      end\n    end\n\n    class View\n      TEMPLATE = \u003c\u003c-EOT.gsub(/^ */, '')\n        \u003c%= @contribution.icon %\u003e\u003c%= @contribution.count %\u003e | color=\u003c%= @contribution.color %\u003e\n        ---\n        \u003c% @contributions.each do |c| -%\u003e\n        \u003c%= @helper.link_to(@helper.contribution_text_for(c), @helper.contribution_activity_for(c)) %\u003e\n        \u003c% end -%\u003e\n      EOT\n\n      class Helper\n        def link_to(text, href)\n          if text =~ / | /\n            \"#{text} href=#{href}\"\n          else\n            \"#{text} | href=#{href}\"\n          end\n        end\n\n        def contribution_text_for(contribution)\n          \"#{contribution.icon} #{contribution.contributed_on.strftime('%Y-%m-%d (%a)')}   \\t#{contribution.count} | color=#{contribution.color}\"\n        end\n\n        def contribution_activity_for(contribution)\n          query    = \"to=#{contribution.contributed_on}\"\n          fragment = \"year-link-#{contribution.contributed_on.year}\"\n          \n          \"https://github.com/#{contribution.username}?#{query}##{fragment}\"\n        end\n      end\n\n      def initialize(contributions:)\n        @contribution  = contributions.fetch(0)\n        @contributions = contributions\n        @helper        = Helper.new\n      end\n\n      def render\n        puts ERB.new(TEMPLATE, nil, '-').result(binding)\n      end\n    end\n\n    class App\n      DEFAULT_CONFIG = { max_contributions: 10 }\n\n      def initialize(config = {})\n        config = cast_config(DEFAULT_CONFIG.merge(config))\n\n        @username, @max_contributions = config.values_at(:username, :max_contributions)\n      end\n\n      def run\n        # (DateTime.now-7).to_s\n        contributions = Contribution.find_all_by(username: @username)\n                                    .sort_by(\u0026:contributed_on)\n                                    .select{|l| l.contributed_on \u003c DateTime.now}\n                                    .reverse\n                                    .slice(0, @max_contributions)\n        View.new(contributions: contributions).render\n      end\n\n      private\n\n      def cast_config(config)\n        username          = config[:username].to_s\n        max_contributions = config[:max_contributions].to_i\n\n        if username.empty?\n          raise ConfigurationError, 'GitHub username is not given.'\n        end\n\n        if !max_contributions.positive?\n          raise ConfigurationError,\n            \"Max contributions should be positive integer, but it was #{max_contributions}\"\n        end\n\n        { username: username, max_contributions: max_contributions }\n      end\n    end\n  end\nend\n\nif __FILE__ == $0\n  begin\n    config = BitBar::INIFile.load.fetch(:github_contribution)\n\n    BitBar::GitHubContribution::App.new(config).run\n  rescue BitBar::INIFile::Error\n    puts \u003c\u003c-EOM.gsub(/^ */, '')\n      ⚠️\n      ---\n      To setup, create or edit your ~/.bitbarrc file with a new section:\n      |\n      ;# ~/.bitbarrc\n      [github_contribution]\n      username = \u003cGITHUB_USERNAME\u003e\n      max_contributions = 10\n    EOM\n  rescue BitBar::GitHubContribution::ConfigurationError =\u003e e\n    puts \u003c\u003c-EOM.gsub(/^ */, '')\n      ⚠️\n      ---\n      #{e.message}\n    EOM\n  end\nend"
+			}
+		],
+		"path": "Dev/GitHub/github-contribution.10m.rb",
+		"filename": "github-contribution.10m.rb",
+		"dir": "Dev/GitHub",
+		"docsPlugin": "Dev/GitHub/github-contribution.10m.rb.html",
+		"docsCategory": "Dev/GitHub.html",
+		"pathSegments": [
+			"Dev",
+			"GitHub"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/GitHub",
+				"text": "GitHub",
+				"isLast": true
+			}
+		],
+		"title": "Github Contribution",
+		"version": "v0.0.2",
+		"author": "mizoR",
+		"authors": [
+			{
+				"name": "Ryutaro Mizokami",
+				"githubUsername": "mizoR",
+				"imageURL": "https://avatars.githubusercontent.com/u/1257116?v=4",
+				"bio": "Software developer",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "https://user-images.githubusercontent.com/1257116/34550684-37da7286-f156-11e7-9299-5873b6bb2fd7.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:48.298112Z",
+		"vars": null
+	}
+}

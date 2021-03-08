@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:customNS="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>For unit test only</title>
+    <item>
+        <title>Version 3.0</title>
+        <pubDate>Sat, 26 Jul 2014 15:20:12 +0000</pubDate>
+        <customNS:releaseNotesLink>https://sparkle-project.org/#works</customNS:releaseNotesLink>
+        <enclosure url="http://0.0.0.0:1337/Sparkle_Test_App.zip" customNS:version="3.0" />
+    </item>
+    <item>
+        <title>Version 2.0</title>
+        <description>desc</description>
+        <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
+        <enclosure url="http://0.0.0.0:1337/Sparkle_Test_App.zip" customNS:version="2.0" />
+    </item>
+  </channel>
+</rss>

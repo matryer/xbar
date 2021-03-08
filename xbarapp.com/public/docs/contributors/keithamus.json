@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Keith Cirkel",
+		"githubUsername": "keithamus",
+		"imageURL": "https://avatars.githubusercontent.com/u/118266?v=4",
+		"bio": "\r\n    Works on JavaScript at @github.\r\nMaintainer of @chaijs.\r\n",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Politics/parliament.uk-count.5m.py",
+					"filename": "parliament.uk-count.5m.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eParliament.uk Count\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKeith Cirkel\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekeithamus\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSee the vote count for a Parliament.uk petition\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/I38h0UJ.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nimport json\nimport urllib2\nimport locale\nlocale.setlocale(locale.LC_ALL, 'en_GB')\n\nid = '131215'\nname = 'EU 2nd Ref'\nconstituents = False\n\nrequest = urllib2.Request( 'https://petition.parliament.uk/petitions/' + id + '.json' )\nresponse = urllib2.urlopen( request )\ndata = json.load( response )['data']['attributes']\nprint name + ': ' + locale.format('%d', data['signature_count'], grouping=True)\nprint '---'\nif constituents:\n  for cons in data['signatures_by_constituency']:\n    print cons['name'] + ': ' + locale.format('%d', cons['signature_count'], grouping=True)\nprint 'Refresh | refresh=true'\n"
+				}
+			],
+			"path": "Politics/parliament.uk-count.5m.py",
+			"filename": "parliament.uk-count.5m.py",
+			"dir": "Politics",
+			"docsPlugin": "Politics/parliament.uk-count.5m.py.html",
+			"docsCategory": "Politics.html",
+			"pathSegments": [
+				"Politics"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Politics",
+					"text": "Politics",
+					"isLast": true
+				}
+			],
+			"title": "Parliament.uk Count",
+			"version": "v1.0.0",
+			"author": "Keith Cirkel",
+			"authors": [
+				{
+					"name": "Keith Cirkel",
+					"githubUsername": "keithamus",
+					"imageURL": "https://avatars.githubusercontent.com/u/118266?v=4",
+					"bio": "\r\n    Works on JavaScript at @github.\r\nMaintainer of @chaijs.\r\n",
+					"primary": true
+				}
+			],
+			"desc": "See the vote count for a Parliament.uk petition",
+			"imageURL": "https://i.imgur.com/I38h0UJ.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:00.620011Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,201 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/Jenkins/jenkins-status.1m.sh",
+					"filename": "jenkins-status.1m.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCheck status of single Jenkins project\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eStratouklos\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eStratouklos\u003c/bitbar.author.github\u003e\n\nUSER=\"username\"\nPASS=\"pass\"\nBASE_URL=\"my-jenkins.com\"\nJOBNAME=\"jobname\"\n\nRESULT=$(curl -silent http://${USER}:${PASS}@${BASE_URL}/job/${JOBNAME}/lastBuild/api/json?pretty=true | grep \"result\" | awk '{print $3}')\n\nif [[ $RESULT == *\"SUCCESS\"* ]]\nthen\n  echo '🍏'\nelse\n  echo '🍎'\nfi\n"
+				}
+			],
+			"path": "Dev/Jenkins/jenkins-status.1m.sh",
+			"filename": "jenkins-status.1m.sh",
+			"dir": "Dev/Jenkins",
+			"docsPlugin": "Dev/Jenkins/jenkins-status.1m.sh.html",
+			"docsCategory": "Dev/Jenkins.html",
+			"pathSegments": [
+				"Dev",
+				"Jenkins"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Jenkins",
+					"text": "Jenkins",
+					"isLast": true
+				}
+			],
+			"title": "Check status of single Jenkins project",
+			"version": "",
+			"author": "Stratouklos",
+			"authors": [
+				{
+					"name": "Stratos Xakoustos",
+					"githubUsername": "Stratouklos",
+					"imageURL": "https://avatars.githubusercontent.com/u/657997?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.473687Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Jenkins/jenkins-all-jobs.status.1m.py",
+					"filename": "jenkins-all-jobs.status.1m.py",
+					"content": "#!/usr/bin/env python\n\n# \u003cbitbar.title\u003eJenkins All Build Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDan Rassi\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edrassi\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow current status of *all* jobs on a Jenkins instance, colors indicating status of each build and overall status. Clicks navigate to console output of last build.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/ARJHMjy.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython,requests\u003c/bitbar.dependencies\u003e\n\nimport sys\nimport requests\nimport collections\n\n# Credentials to your jenkins instance\nCREDS = {\n    'USER' : 'user',\n    'PASS' : 'pass',\n'BASE_URL' : 'jenkins-url.com',\n  'SCHEMA' : 'https',\n}\n\n# Text prefix for in-progress builds\nIS_BUILDING_PREFIX = '*'\n# Suffix appended to build URLs on click\nURL_SUFFIX = 'lastBuild/console'\n# Text displayed in the OSX menu bar\nBAR_TEXT = 'build'\n\n# Color defs @ https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/hudson/model/BallColor.java\ncolor_map = collections.OrderedDict([\n    ('grey'    , 'lightgray'),\n    ('disabled', 'lightgray'),\n    ('aborted' , 'lightgray'),\n    ('notbuilt', 'lightgray'),\n    ('blue'    ,  None), # leave default unspecified - black is picked in light mode, and white in dark mode\n    ('yellow'  , 'yellow'),\n    ('red'     , 'red'),\n])\n\nURL='{SCHEMA}://{USER}:{PASS}@{BASE_URL}/api/json?pretty=true'.format(**CREDS)\n\nreq = requests.get(URL)\n\nif req.status_code != requests.codes.ok:\n    sys.exit('error %d from jenkins!' % req.status_code)\n\noutput = ''\nnotify_val = 0\n\ndef get_color(job):\n    is_building = '_anime' in job['color']\n    color_val = color_map.keys().index(job['color'].replace('_anime',''))\n    color = color_map.values()[color_val]\n    return color, color_val, is_building\n\ndef get_color_def(color):\n    return ('color=%s' % color) if color is not None else ''\n\nfor job in req.json()['jobs']:\n    color, color_val, is_building = get_color(job)\n    output += '%s%s|%s href=%s\\n' % (IS_BUILDING_PREFIX if is_building else '',\n                                     job['name'], get_color_def(color), job['url'] + URL_SUFFIX)\n    notify_val = max(notify_val, color_val)\n\nbar_color = color_map.values()[notify_val]\n\nprint BAR_TEXT, '|', get_color_def(bar_color)\nprint '---'\nprint output\n"
+				}
+			],
+			"path": "Dev/Jenkins/jenkins-all-jobs.status.1m.py",
+			"filename": "jenkins-all-jobs.status.1m.py",
+			"dir": "Dev/Jenkins",
+			"docsPlugin": "Dev/Jenkins/jenkins-all-jobs.status.1m.py.html",
+			"docsCategory": "Dev/Jenkins.html",
+			"pathSegments": [
+				"Dev",
+				"Jenkins"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Jenkins",
+					"text": "Jenkins",
+					"isLast": true
+				}
+			],
+			"title": "Jenkins All Build Status",
+			"version": "v1.0",
+			"author": "Dan Rassi",
+			"authors": [
+				{
+					"name": "dan rassi",
+					"githubUsername": "drassi",
+					"imageURL": "https://avatars.githubusercontent.com/u/129646?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Show current status of *all* jobs on a Jenkins instance, colors indicating status of each build and overall status. Clicks navigate to console output of last build.",
+			"imageURL": "http://i.imgur.com/ARJHMjy.png",
+			"dependencies": [
+				"python",
+				"requests"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.426483Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Jenkins/jenkins-latest-build-status.1m.rb",
+					"filename": "jenkins-latest-build-status.1m.rb",
+					"content": "#!/usr/bin/env ruby\n\n# Jenkins Build Status\n# by Tony Mai (thetonymai@gmail.com)\n\n# \u003cbitbar.title\u003eJenkins Build Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTony Mai\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etonymai\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the latest builds of a Jenkins project. Result, Build ID, Timestamp, Duration.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/tonymai/jenkins-bitbar-plugin/master/screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/tonymai/jenkins-bitbar-plugin\u003c/bitbar.abouturl\u003e\n\nrequire 'net/http'\nrequire 'json'\n\n# Variables To Fill Out\n\nUSERNAME = 'username'.freeze\nAUTH_TOKEN = 'auth_token'.freeze\nURL = 'https://url/'.freeze # must have trailing slash '/'\nNAME = 'Jenkins'.freeze\n\n# Information Requests\n\ndef get(url)\n  uri = URI(url)\n  Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|\n    request = Net::HTTP::Get.new(uri)\n    request.basic_auth(USERNAME, AUTH_TOKEN)\n    response = http.request(request)\n    JSON.parse(response.body)\n  end\nend\n\ndef latest_builds(limit = 5)\n  json = get(URL + 'api/json')\n  return unless json.key?('builds')\n\n  json['builds'].take(limit).map { |build| get(build['url'] + 'api/json') }\nend\n\n# Pretty Display Formatters\n\ndef format_status(status)\n  case status\n  when 'SUCCESS' then \"\\u{2714}\"\n  when 'FAILURE' then \"\\u{2718}\"\n  else \"\\u{2022}\"\n  end\nend\n\ndef format_color(status)\n  case status\n  when 'SUCCESS' then 'green'\n  when 'FAILURE' then 'red'\n  else 'yellow'\n  end\nend\n\ndef format_timestamp(timestamp)\n  Time.at(timestamp / 1000).strftime('%b %e %I:%M%P')\nend\n\ndef format_duration(time_in_ms)\n  time_in_sec = time_in_ms / 1000\n  minutes = time_in_sec / 60\n  seconds = time_in_sec % 60\n  \"#{minutes}m #{seconds}s\"\nend\n\n# Print Helpers\n\ndef print_build_details(build)\n  puts \"Last Build (##{build['id']})\"\n  build['actions'].each do |action|\n    next unless action['causes']\n\n    action['causes'].each do |cause|\n      puts cause['shortDescription'] if cause['shortDescription']\n    end\n  end\nend\n\ndef print_builds_summary(builds)\n  puts 'Latest Builds'\n  builds.each do |build|\n    id = build['id']\n    status = format_status(build['result'])\n    time = format_timestamp(build['timestamp'])\n    duration = format_duration(build['duration'])\n    url = build['url']\n    color = format_color(build['result'])\n    puts \"#{status} ##{id}: #{time} (#{duration}) | href=#{url} color=#{color}\"\n  end\nend\n\n# Driver Code\n\ndef run\n  builds = latest_builds\n  return puts 'No builds executing' unless builds\n\n  last = builds.first\n  puts format_status(last['result']) + ' ' + NAME\n  puts '---'\n  print_build_details(last)\n  puts '---'\n  print_builds_summary(builds)\n  puts '---'\n  puts 'Open In Browser | href= ' + URL\nend\n\nrun\n"
+				}
+			],
+			"path": "Dev/Jenkins/jenkins-latest-build-status.1m.rb",
+			"filename": "jenkins-latest-build-status.1m.rb",
+			"dir": "Dev/Jenkins",
+			"docsPlugin": "Dev/Jenkins/jenkins-latest-build-status.1m.rb.html",
+			"docsCategory": "Dev/Jenkins.html",
+			"pathSegments": [
+				"Dev",
+				"Jenkins"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Jenkins",
+					"text": "Jenkins",
+					"isLast": true
+				}
+			],
+			"title": "Jenkins Build Status",
+			"version": "v1.0",
+			"author": "Tony Mai",
+			"authors": [
+				{
+					"name": "Tony Mai",
+					"githubUsername": "tonymai",
+					"imageURL": "https://avatars.githubusercontent.com/u/9425367?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the latest builds of a Jenkins project. Result, Build ID, Timestamp, Duration.",
+			"imageURL": "https://raw.githubusercontent.com/tonymai/jenkins-bitbar-plugin/master/screenshot.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "https://github.com/tonymai/jenkins-bitbar-plugin",
+			"lastUpdated": "2021-03-08T15:21:49.431203Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Jenkins/jenkins-multiple-projects-status.1m.sh",
+					"filename": "jenkins-multiple-projects-status.1m.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eMultiple Jenkins Status\u003c/bitbar.title\u003e\n# \u003cbitbar.desc\u003eCheck status of multiple Jenkins projects\u003c/bitbar.desc\u003e\n# \u003cbitbar.author\u003eNocolas Roger\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003enicolasroger17\u003c/bitbar.author.github\u003e\n# \u003cbitbar.version\u003e1\u003c/bitbar.version\u003e\n\n\nSCHEMA=\"https\"\nBASE_URL=\"jenkins-address.com\"\nUSER=\"username\"\nTOKEN=\"token\" #prefer tokens to passwords (passwords can still be used here), get it from $SCHEMA://$BASE_URL/user/$USER/configure -\u003e Show API Token\nPROJECTS=(\"project1\" \"project2\")\n\nfunction displaytime {\n  local T=$1/1000\n  local D=$((T/60/60/24))\n  local H=$((T/60/60%24))\n  local M=$((T/60%60))\n  local S=$((T%60))\n  local output=\"\"\n\n  if [[ $D -gt 0  || $H -gt 0 || $M -gt 10 ]]\n  then\n    output+=\"\u003e10mn\"\n  else\n    output+=\"${M}mn ${S}s\"\n  fi\n\n  echo \"${output} ago\"\n}\n\n# beginning of display\necho \"Jenkins Status\"\necho \"---\"\n\nfor project in \"${PROJECTS[@]}\"\ndo\n  output=\"${project}: \"\n  url=\"${SCHEMA}://${USER}:${TOKEN}@${BASE_URL}/job/${project// /'%20'}/lastBuild/api/json?pretty=true\"\n  query=$(curl --insecure --silent \"${url}\")\n\n  success=$(echo \"${query}\" | grep '\"result\"' | awk '{print $3}') # grep the \"result\" line\n\n  if [[ $success == *\"SUCCESS\"* ]]\n  then\n    output+='🔵 '\n  else\n    output+='🔴 '\n  fi\n\n  timestamp=$(echo \"${query}\" | grep \"timestamp\" | awk '{print $3}') # grep the \"timestamp\" line\n  timestamp=${timestamp%?} # remove the trailing ','\n  currentTime=$(($(date +'%s * 1000 + %-N / 1000000'))) # generate a timestamp\n  output+=\" $(displaytime $(( currentTime - timestamp )))\"\n  echo \"${output}\"\ndone\n"
+				}
+			],
+			"path": "Dev/Jenkins/jenkins-multiple-projects-status.1m.sh",
+			"filename": "jenkins-multiple-projects-status.1m.sh",
+			"dir": "Dev/Jenkins",
+			"docsPlugin": "Dev/Jenkins/jenkins-multiple-projects-status.1m.sh.html",
+			"docsCategory": "Dev/Jenkins.html",
+			"pathSegments": [
+				"Dev",
+				"Jenkins"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Jenkins",
+					"text": "Jenkins",
+					"isLast": true
+				}
+			],
+			"title": "Multiple Jenkins Status",
+			"version": "1",
+			"author": "Nocolas Roger",
+			"authors": [
+				{
+					"name": "Nicolas",
+					"githubUsername": "nicolasroger17",
+					"imageURL": "https://avatars.githubusercontent.com/u/3426302?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Check status of multiple Jenkins projects",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.465561Z",
+			"vars": null
+		}
+	]
+}

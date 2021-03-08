@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Environment/solaredge.5m.py",
+				"filename": "solaredge.5m.py",
+				"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n# \u003cbitbar.title\u003eSolarEdge Monitoring\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eShaun Grady\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eshaungrady\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays SolarEdge inverter power and energy generation data from your solar energy system. Also calculates system efficiency for the current day and total CO2 offset.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/W4ygbPd.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003esolaredge,python\u003c/bitbar.dependencies\u003e\n\n####################\n# User Configuration\n\nsolaredge_site_id = \"\"\nsolaredge_api_key = \"\"\n\n# Optional. Set to 0 to disable. Total panel DC watt capacity\nsystem_wattage = 0\n\n# Optional. Set to 0 to disable. Find CO2 lbs/MWh for your subregion in the PDF linked below.\n# (Use the \"Non-baseload output emission rates\" figure for your subregion)\n# https://www.epa.gov/sites/production/files/2015-10/documents/egrid2012_summarytables_0.pdf\nco2_lbs_per_MWh = 1018.87  # California\n\n# Optional. Set either as empty string to disable.\nawake_icon = \"☀︎\"\nasleep_icon = \"☾\"\n\n\n##############\n# Begin Script\n\ndef formatWatts (Wh, unit_suffix=\"\"):\n    Wh = float(Wh)\n\n    if Wh \u003c 900:\n        energy = Wh\n        unit = \"W\"\n    elif Wh \u003c 900000:\n        energy = Wh / 1000\n        unit = \"kW\"\n    elif Wh \u003c 900000000:\n        energy = Wh / 1000000\n        unit = \"MW\"\n    elif Wh \u003c 900000000000:\n        energy = Wh / 1000000000\n        unit = \"GW\"\n\n    if energy \u003c 10:\n        energy = round(energy, 2)\n    elif energy \u003c 100:\n        energy = round(energy, 1)\n    else:\n        energy = int(round(energy))\n\n    return str(energy) + \" \" + unit + unit_suffix\n\nif solaredge_site_id == \"\" or solaredge_api_key == \"\":\n    raise SystemExit(\"Site ID/API Key Required\")\n\nimport urllib2\nimport json\n\noverview = \"https://monitoringapi.solaredge.com/site/\" + solaredge_site_id + \"/overview?api_key=\" + solaredge_api_key\n\ntry:\n    result = urllib2.urlopen(overview, timeout = 10).read()\n    json = json.loads(result)\nexcept Exception, err:\n    print(asleep_icon + \" \u003cerr\u003e\")\n    print(\"---\")\n    raise SystemExit(err)\n\nraw_power = json['overview']['currentPower']['power']\nraw_energy = json['overview']['lastDayData']['energy']\n\nif system_wattage \u003e 0:\n    raw_efficiency = raw_energy / system_wattage\n\nraw_energy_mtd = json['overview']['lastMonthData']['energy']\nraw_energy_ytd = json['overview']['lastYearData']['energy']\nraw_energy_total = json['overview']['lifeTimeData']['energy']\n\n# Handle strange API bug where energy total can be much less than YTD\nif raw_energy_ytd \u003e raw_energy_total:\n    raw_energy_total = raw_energy_ytd\n\nenergy_mtd = formatWatts(raw_energy_mtd, \"h\")\nenergy_ytd = formatWatts(raw_energy_ytd, \"h\")\nenergy_total = formatWatts(raw_energy_total, \"h\")\n\nif co2_lbs_per_MWh \u003e 0:\n    offset = (float(raw_energy_total) / 1000000) * co2_lbs_per_MWh\n    unit = \"lbs\"\n    if offset \u003e 1900:\n        co2_offset = offset / 2000\n        unit = \"tons\"\n\n    if co2_offset \u003c 10:\n        co2_offset = round(co2_offset, 2)\n    elif co2_offset \u003c 100:\n        co2_offset = round(co2_offset, 1)\n    else:\n        o2_offset = \"{:,}\".format(int(round()))\n\n    co2_offset = str(co2_offset) + \" \" + unit\n\n# Human-friendly power, energy, efficiency strings\npower = formatWatts(raw_power)\nenergy = formatWatts(raw_energy, \"h\")\nif system_wattage \u003e 0:\n    efficiency = \"%.2f\" % raw_efficiency + \" Wh/W\"\n\n# Formulate output string\nif raw_energy == 0 and raw_power == 0:\n    toolbar_output = \"— Wh\"\nelif raw_power == 0:\n    toolbar_output = energy\nelse:\n    toolbar_output = energy + \" @ \" + power\n\n# Icon\nif raw_power == 0 and asleep_icon:\n    icon_prefix = asleep_icon + \" \"\nelif raw_power \u003e 0 and awake_icon:\n    icon_prefix = awake_icon + \" \"\nelse:\n    icon_prefix = \"\"\n\n\n# Print the data\nprint(icon_prefix + toolbar_output + \"| font='SF Compact Text Regular'\")\n\nif system_wattage \u003e 0:\n    print(\"---\")\n    print(efficiency + \" efficiency | href:https://monitoring.solaredge.com/\")\n\nprint(\"---\")\nprint(energy_mtd + \" this month | href:https://monitoring.solaredge.com/\")\nprint(energy_ytd + \" this year | href:https://monitoring.solaredge.com/\")\n# If YTD and lifetime energy are within 1 kWh, consider them equal and\n# suppress the total energy data from the dropdown menu\nif raw_energy_total - raw_energy_ytd \u003e 1000:\n    print(energy_total + \" lifetime | href:https://monitoring.solaredge.com/\")\n\nif co2_lbs_per_MWh \u003e 0:\n    print(\"---\")\n    print(co2_offset + \" CO₂ offset | href:https://monitoring.solaredge.com/\")\n\n# print(\"---\")\n# print(json['overview']['lastUpdateTime'] + \" | size:11\")\n"
+			}
+		],
+		"path": "Environment/solaredge.5m.py",
+		"filename": "solaredge.5m.py",
+		"dir": "Environment",
+		"docsPlugin": "Environment/solaredge.5m.py.html",
+		"docsCategory": "Environment.html",
+		"pathSegments": [
+			"Environment"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Environment",
+				"text": "Environment",
+				"isLast": true
+			}
+		],
+		"title": "SolarEdge Monitoring",
+		"version": "v1.1",
+		"author": "Shaun Grady",
+		"authors": [
+			{
+				"name": "Shaun Grady",
+				"githubUsername": "shaungrady",
+				"imageURL": "https://avatars.githubusercontent.com/u/52413?v=4",
+				"bio": "Senior front end web developer, Angular enthusiast, design nerd. He/him.",
+				"primary": true
+			}
+		],
+		"desc": "Displays SolarEdge inverter power and energy generation data from your solar energy system. Also calculates system efficiency for the current day and total CO2 offset.",
+		"imageURL": "http://i.imgur.com/W4ygbPd.png",
+		"dependencies": [
+			"solaredge",
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:53.314351Z",
+		"vars": null
+	}
+}

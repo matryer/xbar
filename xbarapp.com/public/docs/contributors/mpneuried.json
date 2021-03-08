@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "M. Peter",
+		"githubUsername": "mpneuried",
+		"imageURL": "https://avatars.githubusercontent.com/u/300631?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/ts-convert.sh",
+					"filename": "ts-convert.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eClipboard Timestamp converter\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eM. Peter\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003empneuried\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin converts timestamps from the clipboard to a date.\n# It's inspired by the original clipboard-base64-encoder plugin\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/dXzJNOS.jpg?1\u003c/birtbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\n# Hack for language not being set properly and unicode support\nexport LANG=\"${LANG:-en_US.UTF-8}\"\n\n# user clicks on 'encodepaste'\nif [[ \"$1\" = \"encodepaste\" ]]; then\n  CONVERTED=$(date -r \"$(pbpaste)\" +'%Y-%m-%d %H:%M:%S')\n  echo -n \"$CONVERTED\" | pbcopy\n  osascript -e \"display notification \\\"$CONVERTED\\\" with title \\\"DATE:\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\n# user clicks on 'encoding'\nif [[ \"$1\" = \"encode\" ]]; then\n  CONVERTED=$(date -r \"$(pbpaste)\" +'%Y-%m-%d %H:%M:%S')\n  osascript -e \"display notification \\\"$CONVERTED\\\" with title \\\"DATE:\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\n# user clicks on 'now'\nif [[ \"$1\" = \"now\" ]]; then\n  NOW=$(date +%s)\n  echo -n \"$NOW\" | pbcopy\n  osascript -e \"display notification \\\"$NOW\\\" with title \\\"Save to Clipboard:\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\n# Print icon\necho \"⏱\"\necho \"---\"\necho \"Convert clipboard timestamp to date | bash='$0' param1=encode terminal=false\"\necho \"Convert clipboard timestamp to date and write it to the clipboard | bash='$0' param1=encodepaste terminal=false\"\necho \"Write the current timestamp to the clipboard | bash='$0' param1=now terminal=false\"\n"
+				}
+			],
+			"path": "Time/ts-convert.sh",
+			"filename": "ts-convert.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/ts-convert.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Clipboard Timestamp converter",
+			"version": "v0.1",
+			"author": "M. Peter",
+			"authors": [
+				{
+					"name": "M. Peter",
+					"githubUsername": "mpneuried",
+					"imageURL": "https://avatars.githubusercontent.com/u/300631?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "http://i.imgur.com/dXzJNOS.jpg?1",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.653252Z",
+			"vars": null
+		}
+	]
+}

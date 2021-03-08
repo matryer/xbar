@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Andrew Larson",
+		"githubUsername": "htmlarson",
+		"imageURL": "https://avatars.githubusercontent.com/u/18153857?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Weather/KRAL.metar.5m.php",
+					"filename": "KRAL.metar.5m.php",
+					"content": "#!/usr/bin/php\n\n\u003c?php\n\n# \u003cbitbar.title\u003eMenuMetar\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAndrew Larson\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ehtmlarson\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eA simple METAR reporter with direct links to the DarkSky or NWS report.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ephp\u003c/bitbar.dependencies\u003e\n\n\n/*\nTo configure this plugin or if you desire multiple reports, use this syntax:\n\n{ICAO}.metar.10m.php\n\nFor example, for KJFK:\n\nKJFK.MenuMETAR.5m.php\n\n*/\n\n$filename_array = explode(\".\", basename(__FILE__));\n$ICAO = strtoupper($filename_array[0]);\n\n\n$metar = file_get_contents(\"https://www.aviationweather.gov/adds/dataserver_current/httpparam?datasource=metars\u0026requestType=retrieve\u0026format=xml\u0026mostRecentForEachStation=constraint\u0026hoursBeforeNow=1.25\u0026stationString=\" . $ICAO) or die($ICAO . \": No data\");\n\n$metar_object = new SimpleXMLElement($metar);\n$ready_to_parse = $metar_object-\u003edata-\u003eMETAR;\n\n$skycond_setup = $ready_to_parse-\u003esky_condition-\u003eattributes();\n$skycond_ready = $skycond_setup[0];\nif($skycond_setup[1]) {\n  $skycond_ready .= \" @ \" . $skycond_setup[1] . \" feet\";\n}\n$temp_f = (intVal($ready_to_parse-\u003etemp_c) * 1.8) + 32;\n$dewpoint_c = $ready_to_parse-\u003edewpoint_c;\n$dewpoint_f = (intVal($ready_to_parse-\u003edewpoint_c) * 1.8) + 32;\n$wind = $ready_to_parse-\u003ewind_speed_kt . \"kt @ \" . $ready_to_parse-\u003ewind_dir_degrees . \"°\";\n// Bitbar content echo\n\n$bitbar_content = $temp_f . \"°F\";\n$bitbar_content .= \"\\n---\";\n$bitbar_content .= \"\\n Current information for \" . $ICAO;\n$bitbar_content .= \"\\nView Report From...\";\n$bitbar_content .= \"\\n--DarkSky|href=https://darksky.net/forecast/\" . $ready_to_parse-\u003elatitude . \",\" . $ready_to_parse-\u003elongitude;\n$bitbar_content .= \"\\n--National Weather Service|href=https://forecast.weather.gov/MapClick.php?lat=\" . $ready_to_parse-\u003elatitude . \"\u0026lon=\" . $ready_to_parse-\u003elongitude;\n$bitbar_content .= \"\\nSky Condition: \" . $skycond_ready;\n$bitbar_content .= \"\\nVisibility: \" . $ready_to_parse-\u003evisibility_statute_mi . \" miles\";\n$bitbar_content .= \"\\nPressure: \" . $ready_to_parse-\u003ealtim_in_hg . \" mmHg\";\n$bitbar_content .= \"\\nDewpoint: \". $dewpoint_f . \"°F\";\n$bitbar_content .= \"\\nWind: \" . $wind;\n\n\necho $bitbar_content;\n"
+				}
+			],
+			"path": "Weather/KRAL.metar.5m.php",
+			"filename": "KRAL.metar.5m.php",
+			"dir": "Weather",
+			"docsPlugin": "Weather/KRAL.metar.5m.php.html",
+			"docsCategory": "Weather.html",
+			"pathSegments": [
+				"Weather"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Weather",
+					"text": "Weather",
+					"isLast": true
+				}
+			],
+			"title": "MenuMetar",
+			"version": "v1.0",
+			"author": "Andrew Larson",
+			"authors": [
+				{
+					"name": "Andrew Larson",
+					"githubUsername": "htmlarson",
+					"imageURL": "https://avatars.githubusercontent.com/u/18153857?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "A simple METAR reporter with direct links to the DarkSky or NWS report.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"php"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:08.577799Z",
+			"vars": null
+		}
+	]
+}

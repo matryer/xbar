@@ -1,0 +1,48 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/transmission.4m.py",
+				"filename": "transmission.4m.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n#\n# Transmission Remote\n#\n# \u003cbitbar.title\u003eTransmission Remote\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eChristoph Russ\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003echristophruss\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003e\n# Checking transmission status, info and allowing adjustment to alternative speed.\n# Requires a single initial setup: `python transmission.4m.py init`\n# This plugin displays all not yet completed torrents using \"transmission-remote\" cli.\n# You can pause any torrent in the list by selecting them.\n# If all active downloads have completed, but some torrents had been paused, the oldest one will be unpaused automatically.\n# \u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003etransmission-remote,python,keyring\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/hUWGq3u.jpg\u003c/bitbar.image\u003e\n#\n# Dependencies:\n#   transmission-remote (https://trac.transmissionbt.com/wiki/Building)\n#      available via homebrew `brew install transmission`\n#   keyring (https://github.com/jaraco/keyring)\n\nimport sys\nimport subprocess\nimport keyring\n\ndef init():\n    import getpass\n    print \"Enter your Transmission Server IP (e.g. 192.168.1.10 or 10.0.1.10): \"\n    host_ip = raw_input()\n    keyring.set_password(\"transmission-bitbar\", \"ip\", host_ip)\n    print \"Enter your Transmission port (default: 9091): \"\n    host_port = raw_input()\n    keyring.set_password(\"transmission-bitbar\", \"port\", host_port)\n    print \"Enter your Transmission user name: \"\n    usr = raw_input()\n    keyring.set_password(\"transmission-bitbar\", \"username\", usr)\n    print \"Enter your Transmission password: \"\n    pswd = getpass.getpass()\n    keyring.set_password(\"transmission-bitbar\", usr, pswd)\n    pswd = ''\n\ndef check_transmission(argv):\n    remote_bin = '/usr/local/bin/transmission-remote' # also make this configurable ?\n    host_ip = keyring.get_password(\"transmission-bitbar\", \"ip\")\n    host_port = keyring.get_password(\"transmission-bitbar\", \"port\")\n    host_user = keyring.get_password(\"transmission-bitbar\", \"username\")\n    host_pswd = keyring.get_password(\"transmission-bitbar\", host_user)\n\n    if 'slowdown' in argv:\n        subprocess.check_output(remote_bin+' '+host_ip+':'+host_port+' --auth '+host_user+':'+host_pswd+' -as', shell=True)\n        exit()\n    elif 'speedup' in argv:\n        subprocess.check_output(remote_bin+' '+host_ip+':'+host_port+' --auth '+host_user+':'+host_pswd+' -AS', shell=True)\n        exit()\n    elif 'pause' in argv:\n        subprocess.check_output(remote_bin+' '+host_ip+':'+host_port+' --auth '+host_user+':'+host_pswd+' -t ' + argv[-1] + ' -S', shell=True)\n    elif 'resume' in argv:\n        subprocess.check_output(remote_bin+' '+host_ip+':'+host_port+' --auth '+host_user+':'+host_pswd+' -t ' + argv[-1] + ' -s', shell=True)\n\n    session_info = subprocess.check_output(remote_bin+' '+host_ip+':'+host_port+' --auth '+host_user+':'+host_pswd+' -si -st', shell=True)\n    session_info_lines = session_info.split('\\n')\n\n    slow_speed = False\n\n    for session_info_line in session_info_lines:\n        if 'speed limit' in session_info_line:\n            if not 'Unlimited' in session_info_line:\n                slow_speed = True\n\n    info = subprocess.check_output(remote_bin+' '+host_ip+':'+host_port+' --auth '+host_user+':'+host_pswd+' -l', shell=True)\n    info_lines = info.split('\\n')\n\n    host_pswd = ''\n\n    return slow_speed,info_lines\n\ndef info_output(slow_speed, info_lines, auto_resume=True):\n    unfinished_lines = []\n    paused_lines = []\n\n    for info_line in info_lines:\n        if not '100%' in info_line and len(info_line)\u003e0:\n            if 'Stopped' in info_line:\n                paused_lines.append(info_line)\n            else:\n                unfinished_lines.append(info_line)\n\n    formatting = ''\n\n    if len(unfinished_lines) \u003c 3:\n        if len(paused_lines) \u003e 0:\n            if not auto_resume:\n                # nothing is actively downloading, but there are paused items in your queue\n                # red means - warning - you need to check this ...\n                formatting = formatting + ' | color=red'\n            else:\n                # with auto_resume we will automatically resume ONE of the items in the queue\n                # it could make sense to resume the smallest download with the simple assumtion that it will download the fastest\n                # of course this can and will lead to larger items being stuck in the queue forever\n                # it's also more work to actually query all info and parse it to find the smallest item in the paused queue\n                # it is a lot easier to just unpause the first (or last) item added to the queue (smallest ID)\n                # the items should already be in order, so we just pick the first one !\n                t_id = paused_lines[0].strip().split(' ')[0]\n                check_transmission([__file__, 'resume', t_id]) # file arg isn't really needed, but it's more consistent this way\n                unfinished_lines.insert(1, paused_lines[0]) #this may not be ordered by ID anymore after this step\n                paused_lines.pop(0) # or del(0) or [1:]\n\n        else:\n            # nothing is actually happening ... all downloads finished\n            formatting = formatting + ' | color=green'\n\n    # PRINTING \u003e.\u003c\n    if slow_speed:\n        print \"¶\" + formatting # | color=#808080 #grey: 999999 #lighter grey: b3b3b3\n    else:\n        print \"∞\" + formatting # | color=white\n\n    print \"---\"\n\n    if slow_speed:\n        print '∞ Unlimited Speed | refresh=true bash=/usr/bin/python param1='+__file__+' param2=speedup terminal=false'\n    else:\n        print '¶ Limit Speed | refresh=true bash=/usr/bin/python param1='+__file__+' param2=slowdown terminal=false'\n\n    print '---'\n\n    content_formatting = ' | size=12 font=Arial'\n    print unfinished_lines[0] + content_formatting\n\n    click_command = ' refresh=true bash=/usr/bin/python param1='+__file__+' param2=pause param3='\n\n    content_formatting = content_formatting + ' color=yellow'\n    for info_line in unfinished_lines[1:-1]:\n        t_id = info_line.strip().split(' ')[0]\n        print info_line + content_formatting + click_command + t_id + ' terminal=false'\n    content_formatting = content_formatting[:-13]\n\n    click_command = ' refresh=true bash=/usr/bin/python param1='+__file__+' param2=resume param3='\n\n    if len(paused_lines) \u003e 0:\n        content_formatting = content_formatting + ' color=red'\n        print '---'\n        for paused_line in paused_lines:\n            t_id = paused_line.strip().split(' ')[0]\n            print paused_line + content_formatting + click_command + t_id + ' terminal=false'\n    content_formatting = content_formatting[:-10]\n\n    print '---'\n    print unfinished_lines[-1] + content_formatting\n\ndef main(argv):\n    if 'init' in argv:\n        # this is an init call to setup account details, which should only have to be done once\n        # simply call:\n        # python ../transmission.4m.py init\n        # then enter your account details, which will be stored in your keychain !\n        # please note for this to work system level access to the created keychain items is REQUIRED\n        # technically any other app can thus read out this information from your keychain\n        # there is no easy way around this if you do not want to enter your password every time\n        init()\n\n    try:\n        slow_speed,info_lines = check_transmission(argv)\n        info_output(slow_speed,info_lines)\n    except Exception as e:\n        print \"¶ | color=yellow\" #error occured\n        print \"---\"\n        print \"Exception caught. Have you initialized this script?\"\n        print \"python \" + __file__ + \" init | refresh=true bash=/usr/bin/python param1=\" + __file__ + \" param2=init terminal=true\"\n        print \"---\"\n        print e\n\nif __name__ == \"__main__\":\n    main(sys.argv)\n"
+			}
+		],
+		"path": "Lifestyle/transmission.4m.py",
+		"filename": "transmission.4m.py",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/transmission.4m.py.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "Transmission Remote",
+		"version": "v1.0",
+		"author": "Christoph Russ",
+		"authors": [
+			{
+				"name": "Christoph Russ",
+				"githubUsername": "christophruss",
+				"imageURL": "https://avatars.githubusercontent.com/u/12080753?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "http://i.imgur.com/hUWGq3u.jpg",
+		"dependencies": [
+			"transmission-remote",
+			"python",
+			"keyring"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:56.436343Z",
+		"vars": null
+	}
+}

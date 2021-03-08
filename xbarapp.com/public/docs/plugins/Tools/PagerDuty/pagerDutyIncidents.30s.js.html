@@ -1,0 +1,495 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>PagerDuty Incidents in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shows all the active incidents grouped by Service. For installation instructions check https://github.com/PedroFuentes/bitbar-plugins/blob/master/pagerDutyIncidents/README.md - install xbar for free to get started.'>
+	<meta name='author' content='Pedro Pablo Fuentes Schuster'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png'>
+	<meta itemprop='name' content='PagerDuty Incidents in your macOS menu bar'>
+	<meta itemprop='description' content='Shows all the active incidents grouped by Service. For installation instructions check https://github.com/PedroFuentes/bitbar-plugins/blob/master/pagerDutyIncidents/README.md - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='PagerDuty Incidents in your macOS menu bar'>
+	<meta name='twitter:description' content='Shows all the active incidents grouped by Service. For installation instructions check https://github.com/PedroFuentes/bitbar-plugins/blob/master/pagerDutyIncidents/README.md - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='PagerDuty Incidents in your macOS menu bar'>
+	<meta property='og:description' content='Shows all the active incidents grouped by Service. For installation instructions check https://github.com/PedroFuentes/bitbar-plugins/blob/master/pagerDutyIncidents/README.md - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/PagerDuty/pagerDutyIncidents.30s.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png'>
+	<link rel='shortcut icon' href='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>PagerDuty Incidents</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/pedrofuentes.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/21779?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/pedrofuentes.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Pedro Fuentes (<code style='color:white;'>@pedrofuentes</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shows all the active incidents grouped by Service. For installation instructions check https://github.com/PedroFuentes/bitbar-plugins/blob/master/pagerDutyIncidents/README.md
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2fPagerDuty%2fpagerDutyIncidents.30s.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png' 
+				alt='Image preview of PagerDuty Incidents plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>pagerDutyIncidents.30s.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/PagerDuty/pagerDutyIncidents.30s.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/PagerDuty/pagerDutyIncidents.30s.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+/*
+&lt;bitbar.title&gt;PagerDuty Incidents&lt;/bitbar.title&gt;
+&lt;bitbar.version&gt;v0.2.0&lt;/bitbar.version&gt;
+&lt;bitbar.author&gt;Pedro Pablo Fuentes Schuster&lt;/bitbar.author&gt;
+&lt;bitbar.author.github&gt;pedrofuentes&lt;/bitbar.author.github&gt;
+&lt;bitbar.desc&gt;Shows all the active incidents grouped by Service. For installation instructions check https://github.com/PedroFuentes/bitbar-plugins/blob/master/pagerDutyIncidents/README.md&lt;/bitbar.desc&gt;
+&lt;bitbar.image&gt;http://cdn.pedrofuent.es/images/github/PagerDutyIncidents_Screenshot.png&lt;/bitbar.image&gt;
+&lt;bitbar.dependencies&gt;node, npm/node-fetch, npm/time-ago, npm/bitbar, npm/home-config&lt;/bitbar.dependencies&gt;
+&lt;bitbar.abouturl&gt;https://github.com/PedroFuentes/bitbar-plugins/tree/master/pagerDutyIncidents&lt;/bitbar.abouturl&gt;
+*/
+/* MIT Licensed https://opensource.org/licenses/MIT */
+/* jshint esversion: 6 */
+
+&#39;use strict&#39;;
+
+const fetch = require(&#39;node-fetch&#39;);
+const ta = require(&#39;time-ago&#39;)();
+const bitbar = require(&#39;bitbar&#39;);
+
+const cfg = require(&#39;home-config&#39;).load(&#39;.bitbarrc&#39;);
+
+if (!cfg.pagerdutyincidents || !cfg.pagerdutyincidents[&#39;api.endpoint&#39;] || !cfg.pagerdutyincidents[&#39;api.token&#39;]) {
+  const json = [];
+
+  json.push({
+    text: &#39;Config Needed&#39;,
+    dropdown: false,
+  },
+  bitbar.sep, {
+    text: &#39;Add to your .bitbarrc config file on your&#39;,
+  }, {
+    text: &#39;home directory the following information:&#39;,
+  },
+  bitbar.sep, {
+    text: &#39;[pagerdutyincidents]&#39;,
+  }, {
+    text: &#39;api.endpoint=https://&#39;,
+  }, {
+    text: &#39;api.token={your-token}&#39;,
+  });
+
+  bitbar(json);
+  process.exit();
+}
+
+const config = {
+  api: {
+    endpoint: cfg.pagerdutyincidents[&#39;api.endpoint&#39;],
+    token: cfg.pagerdutyincidents[&#39;api.token&#39;],
+    query: cfg.pagerdutyincidents[&#39;api.query&#39;] ? cfg.pagerdutyincidents[&#39;api.query&#39;] : &#39;limit=100&amp;statuses[]=triggered&amp;statuses[]=acknowledged&#39;,
+  },
+  icon: {
+    active: &#39;iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8&#43;IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REEwQjNEREYxNjBCMTFFNjgyODVBMzc1NTdCRDNBRUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REEwQjNERTAxNjBCMTFFNjgyODVBMzc1NTdCRDNBRUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEQTBCM0RERDE2MEIxMUU2ODI4NUEzNzU1N0JEM0FFRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEQTBCM0RERTE2MEIxMUU2ODI4NUEzNzU1N0JEM0FFRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv4ywmgAAADTSURBVHja1NOtCgJBFIbhGX8QNYkGg6jFm7CZNXodglGL1RsQMQsmjUaTyWYzWAzGFfxji&#43;L6LpyFYZmybBAHnrDLme8MZ3a1UspTMVZCxVw/Cdjgar7wIqpiFzynQulbrPBBGT1kMMUJfv0FyWCDGXBDF02UMIOLGkbo4I0XtC3Akc4LZDHGHg&#43;0MZe6ugRZh5gw042lQzNTthP4m&#43;/oI4&#43;1dK5giSGeMoOCLUBLuiNFLQyQwxkHqZugYbvGowzPjXKt5gyK0jEd5avS//8zfQUYAGZtQSNj7zxTAAAAAElFTkSuQmCC&#39;,
+    inactive: &#39;iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8&#43;IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzI0MzNGNUIxNjBFMTFFNkEwRTE5QTI1QkJBMzA0MjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzI0MzNGNUMxNjBFMTFFNkEwRTE5QTI1QkJBMzA0MjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMjQzM0Y1OTE2MEUxMUU2QTBFMTlBMjVCQkEzMDQyNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozMjQzM0Y1QTE2MEUxMUU2QTBFMTlBMjVCQkEzMDQyNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Poh/go0AAADaSURBVHja1NM9CsIwFMDxRjuIqJuj4AX0DJ5BRPAKdRAn3Z0Fxc0TiKK7Lp7F0cmKg9/Gf&#43;BVAlahFAQDP5K&#43;ti8vaaq01k6clnBitt8nUEqN4L0CZg&#43;ioO2xCK5dK7MZV1CVyjYY4IYWCjLO4hS851rVddDDHAe0TYE4oouVPK/wCEtQwhl1StNU1GdclARTQp5U6tOlwzbx24H4eM&#43;uwMyewpBZLvQ1jHFFk9iOPoMctmEJglnySGJmkuEusbKsvYHl22ekTWS9KspntStYw498sP7/Z3oKMAD3DYQymUW7vgAAAABJRU5ErkJggg==&#39;,
+  },
+  colors: {
+    critical: &#39;#FF0000&#39;,
+    warning: &#39;#999900&#39;,
+    regularText: &#39;#808080&#39;,
+  },
+};
+
+// TODO: load all available pages
+fetch(`${config.api.endpoint}/incidents?${config.api.query}`, {
+  method: &#39;GET&#39;,
+  headers: {
+    &#39;Content-Type&#39;: &#39;application/json&#39;,
+    Authorization: `Token token=${config.api.token}`,
+  },
+})
+  .then((res) =&gt; res.json())
+  .then((json) =&gt; {
+  // Group incidents by Service
+    const serviceIncidents = [];
+
+    json.incidents.forEach((incident) =&gt; {
+      if (!serviceIncidents[incident.service.id]) {
+        serviceIncidents[incident.service.id] = {
+          name: incident.service.summary,
+          html_url: incident.service.html_url,
+          incidents: [],
+        };
+      }
+
+      serviceIncidents[incident.service.id].incidents.push(incident);
+    });
+
+    return {
+      serviceIncidents,
+      total: json.incidents.length,
+    };
+  })
+  .then((obj) =&gt; {
+    const json = [];
+    const { serviceIncidents } = obj;
+
+    json.push({
+      text: `[${obj.total}]`,
+      dropdown: false,
+      templateImage: config.icon.inactive,
+      size: 8,
+    },
+    bitbar.sep);
+
+    if (Object.keys(serviceIncidents).length) {
+      Object.keys(serviceIncidents).forEach((prop) =&gt; {
+        const incidents = [];
+
+        serviceIncidents[prop].incidents.forEach((incident) =&gt; {
+          const assignedTo = [];
+
+          incident.assignments.forEach((user) =&gt; {
+            assignedTo.push({
+              text: `${user.assignee.summary}, ${ta.ago(new Date(Date.parse(user.at)))}`,
+              href: user.assignee.html_url,
+              color: config.colors.regularText,
+            }, {
+              text: user.assignee.html_url,
+              alternate: true,
+            });
+          });
+
+          incidents.push({
+            text: incident.title,
+            length: 50,
+            href: incident.html_url,
+            color: incident.status === &#39;triggered&#39; ? config.colors.critical : config.colors.warning,
+          }, {
+            text: incident.title,
+            alternate: true,
+          }, {
+            text: &#39;Assigned To&#39;,
+            submenu: assignedTo,
+          }, {
+            text: `Created\t\t: ${ta.ago(new Date(Date.parse(incident.created_at)))}`,
+            color: config.colors.regularText,
+          }, {
+            text: `Created at\t: ${incident.created_at}`,
+            alternate: true,
+            color: config.colors.regularText,
+          }, {
+            text: `Status\t\t: ${incident.status}`,
+            color: config.colors.regularText,
+          }, {
+            text: `Urgency\t\t: ${incident.urgency}`,
+            color: config.colors.regularText,
+          }, {
+            text: `Escalations\t: ${incident.alert_counts.all}`,
+            color: config.colors.regularText,
+          });
+        });
+
+        json.push({
+          text: `${serviceIncidents[prop].name} (${serviceIncidents[prop].incidents.length})`,
+          href: serviceIncidents[prop].html_url,
+          submenu: incidents,
+        },
+        bitbar.sep);
+      });
+    } else {
+      json.push({
+        text: &#39;No Open Incidents&#39;,
+      });
+    }
+
+    bitbar(json);
+  });
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

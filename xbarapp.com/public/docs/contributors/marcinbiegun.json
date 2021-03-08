@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Marcin Biegun",
+		"githubUsername": "marcinbiegun",
+		"imageURL": "https://avatars.githubusercontent.com/u/472392?v=4",
+		"bio": "Software Engineer",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/taskpaper_current_task.29s.py",
+					"filename": "taskpaper_current_task.29s.py",
+					"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n\n#\n# \u003cbitbar.title\u003eTaskpaper Current Task\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMarcin Biegun\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emarcinbiegun\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will display first task in your file having the specified tag\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/2I3eU0D.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n#\n\nimport os\nimport re\nimport sys\n\ntaskpaper_file = '~/todo.taskpaper'\ntag = 'now'\nemoji_prefix = '🍅'\n\ntry:\n    file = open(os.path.expanduser(taskpaper_file), 'r')\nexcept IOError:\n    sys.stdout.write('Taskpaper File Not Found\\n---\\n'\n                     + 'Currently selected file is %s\\n' % taskpaper_file\n                     + 'To select a different file, edit %s|href=file://%s\\n'\n                     % (sys.argv[0], sys.argv[0]))\n    sys.exit(1)\n\nitem = ''\n\nfor line in file:\n\n    # Save header (e.g. \"Work:\")\n    if line.endswith(':\\n'):\n        header = line.strip()[:-1]\n\n    # Find line containing the tag but not @done\n    elif ' @%s' % tag in line and ' @done' not in line:\n        # Remove all tags\n        # Remove dash\n        # Remove whitespace\n        item += '%s (%s)\\n' % (re.sub(' @%s ?' %\n                                      tag, ' ', line).strip()[2:], header)\n        break\n\nfile.close()\n\nif item != '':\n    if emoji_prefix != '':\n        item = emoji_prefix + ' ' + item\n    sys.stdout.write(item)\n"
+				}
+			],
+			"path": "Lifestyle/taskpaper_current_task.29s.py",
+			"filename": "taskpaper_current_task.29s.py",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/taskpaper_current_task.29s.py.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Taskpaper Current Task",
+			"version": "v1.1",
+			"author": "Marcin Biegun",
+			"authors": [
+				{
+					"name": "Marcin Biegun",
+					"githubUsername": "marcinbiegun",
+					"imageURL": "https://avatars.githubusercontent.com/u/472392?v=4",
+					"bio": "Software Engineer",
+					"primary": true
+				}
+			],
+			"desc": "This plugin will display first task in your file having the specified tag",
+			"imageURL": "https://i.imgur.com/2I3eU0D.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:56.202893Z",
+			"vars": null
+		}
+	]
+}

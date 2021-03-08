@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Music/music-controls-like.10s.sh",
+				"filename": "music-controls-like.10s.sh",
+				"content": "#!/bin/bash\n\n# Like the current track in iTunes, Music or pianobar.\n#\n# Special thanks to Google for providing the open-source icons: https://github.com/google/material-design-icons\n# and to mcchrish and alekseysotnikov for their helpful existing BitBar scripts\n#\n# metadata\n# \u003cbitbar.title\u003eMusic Controls - Like Track Button\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSebastián Barschkis\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003esebbas\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eLikes the current track in iTunes, Music or pianobar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/sebbas/music-controls-bitbar/master/music-controls-screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttp://github.com/sebbas/music-controls-bitbar\u003c/bitbar.abouturl\u003e\n\nexport PATH=\"/usr/local/bin:/usr/bin:/bin:$PATH\"\nexport LC_CTYPE=\"UTF-8\"\n\npianobar_ctlfile=\"$HOME/.config/pianobar/ctl\"\n\nNONE=\"none\"\nCMUS=\"cmus\"\nITUNES=\"iTunes\"\nMUSIC=\"Music\"\nSPOTIFY=\"Spotify\"\nPIANOBAR=\"pianobar\"\n\nlike_icon_light=\"iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAcFJREFUWAntV00rRUEYvr4iZYFQPlY2smYntnaShYWdkj1LUn6BIksLZcVPkI2thb2kG1vcLEQhnqfOq9vcOeO8M3Nup5y3nmbO+/G8z8yZzp1bqZT2T3dgGusmCmPHUEIUwvqg4j1Bf6ii1lAC1K8DnQnWIvAFUXBB98B3As5jLBI0fraIMhEj44IfVZyqC4ug8zjUepZxixjZJcaabofoKALMcb/ZarrR8NUhiDHmqK3FqJjF8wjAb0s9eo1nfm/aAZd9IFgDnutGzgUSe4DvErDaFLxPgPkK8npmL/Z0Gg9kFchLhPCyR+bDP4Dk6xxFkZs9VMZDyW+KrCjWSE6vA0/1bcAJEEvMUcKJIcx2UR4qaidMQmP1KlxfHsI+UbPSSBfH8+ghiDW52CRYfV/bRFZFmrvLTFZSS17m2sIJsiwm1XWHiO8ru01l9QwMO8RUEZtPwHma6OA/AOD+tWXMzEa8YmwDvOCLcb4FvAFm/pIkxRgPjAZneB51EI8hdmrU7Dny1SH5ob1B5Zyimrms4W5dKeqcqT2I1oAN4K9LmY2oA85N4AXosiVofUMoGNQWWfLJob5yWHhKV7kDzh34ASdLIkzm2nPzAAAAAElFTkSuQmCC\"\nlike_icon_dark=\"iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAeVJREFUWAntlj9LA0EQxXNRUQIWJkbBP1UasY6daGsnYmFhJ4ilEEtF8BNYWFsIVvoRgo2thb2VaGsMFqKgEn+jWTj3cre7d5cQ8AYeu7cz8+bdZHO7uVxm/7EDrVZrQdA3746YM0FfCEJIEby3UUoqKp+UgPwdMNzGdgp88SnoSh48AGUyT+Ml44mi+JpS4htX47GlkIWIK58QNa2nQO1OQfWKUtBhrLgz/mYk+b1rEUV3I3zpu+hIAbx26IxaEl8hTmXPnwTJEs/ToKhhTHuW780giLIPnE3w7BtlrqB8j57nXbMeNARVQQP0yqRWNajEt0KAbNb7HiiSGnabn8AyuO2iKOEu+/pgnpIgG7feBVHCGWvD50gcAOcpijoVTnM7DBGQHKUg6tBQxs2NoC3wFUPYJzmbttX+fIdMSRA/EeN652nwnRk3cSu/9dGBmPkYYqROidw5VdA0WguCaNFEFuG3zs0ERXTR3sUemAJhJkfAShtRR47rnyFcIMU2OqiRK8YBkAv+j8kc7IM3oNu6iks8wnyisV/yPBNGjG8WXGg5x2HxzusQq4P2jvmyLYHEAskRu7HNi4yDaBQ0QQ2YLmUBLnKGwB54ASOBANcFSCbBhGueHi8cwO3KoZNkz1kHLDrwDQpoMjh/irN5AAAAAElFTkSuQmCC\"\n\n# Trigger like track in music application\nif [[ \"$1\" = 'itunes_like' ]]; then\n  osascript -e 'tell application \"iTunes\"' -e 'if loved of current track is true then' -e 'set loved of current track to false' -e 'else' -e 'set loved of current track to true' -e 'end if' -e 'end tell'\n  exit\nfi\nif [[ \"$1\" = 'music_like' ]]; then\n  osascript -e 'tell application \"Music\"' -e 'if loved of current track is true then' -e 'set loved of current track to false' -e 'else' -e 'set loved of current track to true' -e 'end if' -e 'end tell'\n  exit\nfi\nif [[ \"$1\" = 'pianobar_like' ]]; then\n  echo -ne \"\\n+\" \u003e \"$pianobar_ctlfile\"\n  exit\nfi\n\n# Ensure that pianobar fifo config file exists\nif [ ! -e \"$pianobar_ctlfile\" ]; then\n  mkfifo \"$pianobar_ctlfile\"\nfi\n\nBitBarDarkMode=${BitBarDarkMode}\ncurrent_source=\"$NONE\"\n\n# Get pid of music apps to see if they are currently running\ncmus_pid=$(pgrep -x \"$CMUS\")\nitunes_pid=$(pgrep -x \"$ITUNES\")\nmusic_pid=$(pgrep -x \"$MUSIC\")\nspotify_pid=$(pgrep -x \"$SPOTIFY\")\npianobar_pid=$(pgrep -x \"$PIANOBAR\")\n\n# Keep track of music source\n# Reorder items in for-loop to your liking to change order of precendece\n# (i.e. if available, left-most audio source will be used first)\nfor s in \"$CMUS\" \"$ITUNES\" \"$MUSIC\" \"$SPOTIFY\" \"$PIANOBAR\"; do\n  if [[ $s = \"$CMUS\" \u0026\u0026 $cmus_pid ]]; then\n    # cmus does not support likes\n    exit\n  elif [[ $s = \"$ITUNES\" \u0026\u0026 $itunes_pid ]]; then\n    current_source=\"$ITUNES\"\n    break\n  elif [[ $s = \"$MUSIC\" \u0026\u0026 $music_pid ]]; then\n    current_source=\"$MUSIC\"\n    break\n  elif [[ $s = \"$SPOTIFY\" \u0026\u0026 $spotify_pid ]]; then\n    # spotify (applescript) api does not support likes\n    exit\n  elif [[ $s = \"$PIANOBAR\" \u0026\u0026 $pianobar_pid ]]; then\n    current_source=\"$PIANOBAR\"\n    break\n  fi\ndone\n\n# Do not display menu icon if no audio source is active\nif [[ $current_source = \"$NONE\" ]]; then\n  exit\nfi\n\n# Set like track icon based on dark mode setup\nif [[ \"$BitBarDarkMode\" ]]; then\n  icon=$like_icon_dark\nelse\n  icon=$like_icon_light\nfi\n\n# Trigger like track in correct music app\nif [[ $current_source = \"$ITUNES\" ]]; then\n  echo \" | image=$icon bash='$0' param1='itunes_like' terminal=false refresh=false\"\nelif [[ $current_source = \"$MUSIC\" ]]; then\n  echo \" | image=$icon bash='$0' param1='music_like' terminal=false refresh=false\"\nelif [[ $current_source = \"$PIANOBAR\" ]]; then\n  echo \" | image=$icon bash='$0' param1='pianobar_like' terminal=false refresh=false\"\nfi\n"
+			}
+		],
+		"path": "Music/music-controls-like.10s.sh",
+		"filename": "music-controls-like.10s.sh",
+		"dir": "Music",
+		"docsPlugin": "Music/music-controls-like.10s.sh.html",
+		"docsCategory": "Music.html",
+		"pathSegments": [
+			"Music"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Music",
+				"text": "Music",
+				"isLast": true
+			}
+		],
+		"title": "Music Controls - Like Track Button",
+		"version": "v1.0",
+		"author": "Sebastián Barschkis",
+		"authors": [
+			{
+				"name": "Sebastián Barschkis",
+				"githubUsername": "sebbas",
+				"imageURL": "https://avatars.githubusercontent.com/u/1890600?v=4",
+				"bio": "Physics Developer @blender",
+				"primary": true
+			}
+		],
+		"desc": "Likes the current track in iTunes, Music or pianobar.",
+		"imageURL": "https://raw.githubusercontent.com/sebbas/music-controls-bitbar/master/music-controls-screenshot.png",
+		"dependencies": null,
+		"aboutURL": "http://github.com/sebbas/music-controls-bitbar",
+		"lastUpdated": "2021-03-08T15:21:57.230615Z",
+		"vars": null
+	}
+}

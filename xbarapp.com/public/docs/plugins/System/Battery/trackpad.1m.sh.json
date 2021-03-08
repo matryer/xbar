@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/Battery/trackpad.1m.sh",
+				"filename": "trackpad.1m.sh",
+				"content": "#!/bin/sh\n\n# \u003cbitbar.title\u003eTrackpad Battery\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nPERCENTAGE=$(ioreg -n BNBTrackpadDevice | fgrep BatteryPercent | fgrep -v \\{ | sed 's/[^[:digit:]]//g')\n\nif [ \"$PERCENTAGE\" ]; then\n        echo \"Trackpad: $PERCENTAGE%\"\nfi\n"
+			}
+		],
+		"path": "System/Battery/trackpad.1m.sh",
+		"filename": "trackpad.1m.sh",
+		"dir": "System/Battery",
+		"docsPlugin": "System/Battery/trackpad.1m.sh.html",
+		"docsCategory": "System/Battery.html",
+		"pathSegments": [
+			"System",
+			"Battery"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": false
+			},
+			{
+				"path": "System/Battery",
+				"text": "Battery",
+				"isLast": true
+			}
+		],
+		"title": "Trackpad Battery",
+		"version": "1.0",
+		"author": "Mat Ryer",
+		"authors": [
+			{
+				"name": "Mat Ryer",
+				"githubUsername": "matryer",
+				"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+				"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:01.987377Z",
+		"vars": null
+	}
+}

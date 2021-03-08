@@ -1,0 +1,48 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/postgresql-status.1m.sh",
+				"filename": "postgresql-status.1m.sh",
+				"content": "#!/usr/bin/env bash\n# \u003cbitbar.title\u003ePostgreSQL server status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKenji Akiyama\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eartifactsauce\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow the status of PostgreSQL server installed by Homebrew on localhost and manage server boot with shortcut menus\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/l5E4yg8.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash,perl,postgresql\u003c/bitbar.dependencies\u003e\n\n# TODO Selecting some menus will return warnings because the process has not been completed.\n\nset -eu\n\n# Change here depending on your preference\nMENUBAR_ICON_ENABLED=\":elephant:\"\nMENUBAR_ICON_DISABLED=\":sleepy:\"\nSTATUS_ITEM_COLOR=\"green\"\nDISABLED_ITEM_COLOR=\"#C0C0C0\"\n\n# Below is no need to change basically.\nSERVER_CMD=\"/usr/local/bin/pg_ctl\"\nPGDATA=\"/usr/local/var/postgres\"\n\nSUBCMD_START=\"start\"\nSUBCMD_STOP=\"stop\"\nSUBCMD_RESTART=\"restart\"\nSUBCMD_RELOAD=\"reload\"\nSUBCMD_STATUS=\"status\"\n\nif $SERVER_CMD -D $PGDATA $SUBCMD_STATUS | grep -Fq 'server is running'; then\n  IS_SERVER_RUNNING=true\n  echo \"$MENUBAR_ICON_ENABLED\"\nelse\n  IS_SERVER_RUNNING=false\n  echo \"$MENUBAR_ICON_DISABLED\"\nfi\n\necho \"---\"\necho \"PostgreSQL Server\"\n\n# Server Status from PostgreSQL's `pg_stat_database` table\nif $IS_SERVER_RUNNING; then\n  /usr/local/bin/psql -U postgres -w -q -A -F $'\\x09' -c \"select * from pg_stat_database;\" | perl -nle 'BEGIN { $_=\u003c\u003e; chomp; @headers = split \"\\t\"} last if eof(); @records{@headers} = split \"\\t\"; next if $records{datname} =~/^template/; print \"---\"; print\"$_: $records{$_} | color='$STATUS_ITEM_COLOR'\" for @headers'\nfi\n\n# Server management shortcuts\necho \"---\"\nif $IS_SERVER_RUNNING; then\n  echo \"Start | color=$DISABLED_ITEM_COLOR\"\n  echo \"Stop | bash=$SERVER_CMD param1=-D param2=$PGDATA param4=$SUBCMD_STOP refresh=true terminal=false\"\n  echo \"Restart | bash=$SERVER_CMD param1=-D param2=$PGDATA param4=$SUBCMD_RESTART refresh=true terminal=false\"\n  echo \"Reload | bash=$SERVER_CMD param1=-D param2=$PGDATA param4=$SUBCMD_RELOAD refresh=true terminal=false\"\nelse\n  echo \"Start | bash=$SERVER_CMD param1=-D param2=$PGDATA param4=$SUBCMD_START refresh=true terminal=false\"\n  echo \"Stop | color=$DISABLED_ITEM_COLOR\"\n  echo \"Restart | color=$DISABLED_ITEM_COLOR\"\n  echo \"Reload | color=$DISABLED_ITEM_COLOR\"\nfi\n\necho \"---\"\necho \"Refresh | refresh=true color=$DISABLED_ITEM_COLOR\"\n"
+			}
+		],
+		"path": "System/postgresql-status.1m.sh",
+		"filename": "postgresql-status.1m.sh",
+		"dir": "System",
+		"docsPlugin": "System/postgresql-status.1m.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "PostgreSQL server status",
+		"version": "v1.0",
+		"author": "Kenji Akiyama",
+		"authors": [
+			{
+				"name": "Kenji Akiyama",
+				"githubUsername": "artifactsauce",
+				"imageURL": "https://avatars.githubusercontent.com/u/125637?v=4",
+				"bio": "\r\n    A raw guy programmer.\r\n",
+				"primary": true
+			}
+		],
+		"desc": "Show the status of PostgreSQL server installed by Homebrew on localhost and manage server boot with shortcut menus",
+		"imageURL": "http://i.imgur.com/l5E4yg8.png",
+		"dependencies": [
+			"bash",
+			"perl",
+			"postgresql"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.212811Z",
+		"vars": null
+	}
+}

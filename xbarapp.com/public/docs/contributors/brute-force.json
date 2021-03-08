@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Reuel",
+		"githubUsername": "brute-force",
+		"imageURL": "https://avatars.githubusercontent.com/u/5098101?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/totp.30s.sh",
+					"filename": "totp.30s.sh",
+					"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eYubiKey TOTP generator to clipboard plugin\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ereuel\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ebrute-force\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003egenerates totp codes using yubikey\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/brute-force/\u003c/bitbar.abouturl\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# clicking on an item will copy the code to the clipboard\n\nif [ $# -eq 3 ] \u0026\u0026 [ \"$1\" = \"copy\" ]; then\n  echo -n \"$3\" | pbcopy\n  osascript -e \"display notification \\\" $3 copied to clipboard\\\" with title \\\"$2\\\"\" \u0026\u003e /dev/null\n  exit\nelse\n  echo \"TOTP\"\n  echo \"---\"\n\n  /usr/local/bin/ykman oath code | while read -r line\n  do\n    account=${line/%:* *[0-9]/}\n    code=${line##* }\n\n    # trim account name to max characters\n    account_length_max=20\n    account=${account:0:account_length_max}\n\n    # pad code to for alignment\n    code_length_max=6\n    width=$((account_length_max - ${#account} + code_length_max))\n    item=$(printf \"%s %*s\" \"$account\" $width \"$code\")\n\n    echo \"$item | color=green font=Menlo size=13 bash='$0' param1=copy param2=\\\"$account\\\" param3=$code refresh=true terminal=false\"\n  done\n\n  exit\nfi\n"
+				}
+			],
+			"path": "System/totp.30s.sh",
+			"filename": "totp.30s.sh",
+			"dir": "System",
+			"docsPlugin": "System/totp.30s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "YubiKey TOTP generator to clipboard plugin",
+			"version": "1.0",
+			"author": "reuel",
+			"authors": [
+				{
+					"name": "Reuel",
+					"githubUsername": "brute-force",
+					"imageURL": "https://avatars.githubusercontent.com/u/5098101?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "generates totp codes using yubikey",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "https://github.com/brute-force/",
+			"lastUpdated": "2021-03-08T15:22:04.793505Z",
+			"vars": null
+		}
+	]
+}

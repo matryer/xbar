@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Paul Traylor",
+		"githubUsername": "kfdm",
+		"imageURL": "https://avatars.githubusercontent.com/u/89725?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/rescuetime.1h.py",
+					"filename": "rescuetime.1h.py",
+					"content": "#!/usr/bin/env PYTHONIOENCODING=UTF-8 python3\n# \u003cbitbar.title\u003eRescueTime\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ePaul Traylor\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekfdm\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow your RescueTime productivity pulse in the status bar\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n#\n# To install, you will want to generate an API key for rescue time and then store the\n# key in ~/Library/RescueTime.com/api.key\n# https://www.rescuetime.com/anapi/manage\nimport datetime\nimport json\nimport os\nimport urllib\nfrom urllib.request import urlopen\n\nAPI_KEY = os.path.expanduser('~/Library/RescueTime.com/api.key')\n\nMAPPING = {\n    2: 'Very Productive',\n    1: 'Productive',\n    0: 'Neutral',\n    -1: 'Distracting',\n    -2: 'Very Distracting'\n}\n\n\ndef get(url, params):\n    '''Simple function to mimic the signature of requests.get'''\n    params = urllib.parse.urlencode(params)\n    result = urlopen(url + '?' + params).read()\n    return json.loads(result)\n\nif not os.path.exists(API_KEY):\n    print('X')\n    print('---')\n    print('Missing API Key')\n    exit()\n\nwith open(API_KEY) as fp:\n    key = fp.read().strip()\n    date = datetime.date.today().strftime('%Y-%m-%d')\n    result = get('https://www.rescuetime.com/anapi/data', params={\n        'format': 'json',\n        'key': key,\n        'resolution_time': 'day',\n        'restrict_begin': date,\n        'restrict_end': date,\n        'restrict_kind': 'productivity',\n    })\n    pulse = get('https://www.rescuetime.com/anapi/current_productivity_pulse.json', params={\n        'key': key,\n    })\n\nprint('%s | color=%s' % (pulse['pulse'], pulse['color']))\nprint('---')\nprint('Rescue Time | href=https://www.rescuetime.com/dashboard?src=bitbar')\nfor rank, seconds, people, productivty in result['rows']:\n    print('%s %s' % (MAPPING[productivty], round(seconds / 60, 2)))\n"
+				}
+			],
+			"path": "Dev/rescuetime.1h.py",
+			"filename": "rescuetime.1h.py",
+			"dir": "Dev",
+			"docsPlugin": "Dev/rescuetime.1h.py.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "RescueTime",
+			"version": "v1.0",
+			"author": "Paul Traylor",
+			"authors": [
+				{
+					"name": "Paul Traylor",
+					"githubUsername": "kfdm",
+					"imageURL": "https://avatars.githubusercontent.com/u/89725?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Show your RescueTime productivity pulse in the status bar",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:52.144825Z",
+			"vars": null
+		}
+	]
+}

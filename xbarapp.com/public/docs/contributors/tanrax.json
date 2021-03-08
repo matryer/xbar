@@ -1,0 +1,95 @@
+{
+	"person": {
+		"name": "Andros Fenollosa",
+		"githubUsername": "tanrax",
+		"imageURL": "https://avatars.githubusercontent.com/u/4553672?v=4",
+		"bio": "Teacher, Web Developer, CEO of Sapps, blogger, podcaster and Shepherd of Zombie Sheep. Lover of Clojure, Python and Linux.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Email/offlineimap-notification.1s.py",
+					"filename": "offlineimap-notification.1s.py",
+					"content": "#!/usr/bin/env python\n# - * -coding: utf - 8 - * -\n#\n# \u003cbitbar.title\u003eOfflineimap Checker and notification\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAndros Fenollosa\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etanrax\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eAlert new emails and displays inbox count\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://programadorwebvalencia.com/wp-content/uploads/2016/07/Screen-Shot-2016-07-06-at-18.42.35.jpg\u003c/bitbar.image\u003e\nimport os\nimport pickle\nimport tempfile\nimport re\nfrom os.path import expanduser\n\n# Location\nPATH_MAIL = os.path.join(expanduser(\"~\"), 'Mail')\nDIR_NEW = 'INBOX/new'\nICON_EMPTY = '📪'\nICON_NEWS = '📬'\n\n# Variables\nSAVE_LOCATION = os.path.join(tempfile.gettempdir(),\n                             'offlineimap-notification.pkl')\ndata_save = False\nnum_news = 0\ndata_temp = {}\n\ntry:\n    dateFile = open(SAVE_LOCATION)\n    data_temp = pickle.load(dateFile)\nexcept:\n    pass\n\n\ndef send_alert_osx(mail_from, mail_subject):\n    os.system('osascript -e \\'display notification \\\n    \"{mail_subject}\" with title \"{mail_from}\" sound name \"Blow\"\\''\n              .format(mail_from=mail_from, mail_subject=mail_subject))\n\n\ndef get_fields(path_mail):\n    '''\n    Function get elements: email from, email to and Subject\n\n    return list(mail_from, mail_to, mail_subject)\n    '''\n    mail_from = False\n    mail_from_temp = False\n    mail_to = False\n    mail_to_temp = False\n    mail_subject = False\n    mail_subject_temp = False\n    f = open(path_mail, 'r')\n    for line in f:\n        mail_from_temp = re.search('(?\u003c=[Ff]rom\\: )(.*)(?=)', line)\n        mail_to_temp = re.search('(?\u003c=[Tt]o\\: )(.*)(?=)', line)\n        mail_subject_temp = re.search('(?\u003c=[Ss]ubject\\: )(.*)(?=)', line)\n        if mail_from_temp:\n            mail_from = mail_from_temp.group(1)\n        if mail_to_temp:\n            mail_to = mail_to_temp.group(1)\n        if mail_subject_temp:\n            mail_subject = mail_subject_temp.group(1)\n\n    return {'mail_from': mail_from,\n            'mail_to': mail_to,\n            'mail_subject': mail_subject}\n\n\n# Get info INGOX news\n# Loop folders INBOX\nlist_dirs = os.listdir(os.path.join(PATH_MAIL))\ndata_news_emails = []\nfor name in list_dirs:\n    path_news_INBOX = os.path.join(PATH_MAIL, name, DIR_NEW)\n    if os.path.isdir(path_news_INBOX):\n        # Loop mails news\n        for name in os.listdir(path_news_INBOX):\n            mail = os.path.join(path_news_INBOX, name)\n            if os.path.isfile(mail):\n                num_news += 1\n                data_news_emails.append(get_fields(mail))\n\n# Send notifications\n# Check changes\nif data_news_emails != data_temp:\n    # Send native alert\n    for item in data_news_emails:\n        if item not in data_temp:\n            print(item)\n            send_alert_osx(item['mail_from'], item['mail_subject'])\n\n# Save\ndata_save = open(SAVE_LOCATION, 'w+')\npickle.dump(data_news_emails, data_save)\n\n# Print\nicon = ICON_EMPTY\nif num_news \u003e 0:\n    icon = ICON_NEWS\nprint('{icon}{num_news}'.format(icon=icon, num_news=num_news))\n"
+				}
+			],
+			"path": "Email/offlineimap-notification.1s.py",
+			"filename": "offlineimap-notification.1s.py",
+			"dir": "Email",
+			"docsPlugin": "Email/offlineimap-notification.1s.py.html",
+			"docsCategory": "Email.html",
+			"pathSegments": [
+				"Email"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Email",
+					"text": "Email",
+					"isLast": true
+				}
+			],
+			"title": "Offlineimap Checker and notification",
+			"version": "v1.1",
+			"author": "Andros Fenollosa",
+			"authors": [
+				{
+					"name": "Andros Fenollosa",
+					"githubUsername": "tanrax",
+					"imageURL": "https://avatars.githubusercontent.com/u/4553672?v=4",
+					"bio": "Teacher, Web Developer, CEO of Sapps, blogger, podcaster and Shepherd of Zombie Sheep. Lover of Clojure, Python and Linux.",
+					"primary": true
+				}
+			],
+			"desc": "Alert new emails and displays inbox count",
+			"imageURL": "https://programadorwebvalencia.com/wp-content/uploads/2016/07/Screen-Shot-2016-07-06-at-18.42.35.jpg",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:52.926305Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/battery_health.2s.py",
+					"filename": "battery_health.2s.py",
+					"content": "#!/usr/bin/env python2\n#- * -coding: utf - 8 - * -\n#\n# \u003cbitbar.title\u003eBattery Health\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAndros Fenollosa\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etanrax\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows power percentaje and notice when you load\u003c/bitbar.desc\u003e\n\nimport os, math, subprocess, pickle, tempfile\n\n# Get info battery\nSAVE_LOCATION = os.path.join(tempfile.gettempdir(), 'batteryHealth2.pkl')\nLIM_LOWER = 45\nLIM_UPPER = 85\np = subprocess.Popen([\"ioreg\", \"-rc\", \"AppleSmartBattery\"], stdout = subprocess.PIPE)\noutput = p.communicate()[0]\nb_max = 0\no_cur = 0\nis_charging = ''\ndateSave = False\nalertMin = False\nalertMax = False\n\ntry:\n    dateFile = open(SAVE_LOCATION)\n    dateSave = pickle.load(dateFile)\n    alertMin = dateSave['alertMin']\n    alertMax = dateSave['alertMax']\nexcept:\n    pass\n\n# Get variables\nfor l in output.splitlines():\n    if 'MaxCapacity' in l:\n        o_max = l\n    if 'CurrentCapacity' in l:\n        o_cur = l\n    if 'IsCharging' in l:\n        is_charging = l\n\nb_max = float(o_max.rpartition('=')[-1].strip())\nb_cur = float(o_cur.rpartition('=')[-1].strip())\nis_charging = str(is_charging.rpartition('=')[-1].strip())\nif is_charging == 'Yes':\n    is_charging = True\nelse:\n    is_charging = False\n\n# Calculate porcent battery\ncharge = b_cur / b_max\ncharge_porcent = int(math.ceil(100 * charge))\n\n# Logic\n## Alert Min\nif LIM_LOWER \u003e= charge_porcent and not alertMin:\n    alertMin = True\n    os.system('osascript -e \\'display notification \"Battery too low\" with title \"Battery health\" sound name \"Blow\"\\'')\n\n## Alert Max\nif LIM_UPPER \u003c= charge_porcent and not alertMax:\n    alertMax = True\n    os.system('osascript -e \\'display notification \"Very charged battery\" with title \"Battery health\" sound name \"Blow\"\\'')\n\n## Reset alerts\nif LIM_UPPER \u003e charge_porcent \u003e LIM_LOWER:\n    alertMin = False\n    alertMax = False\n    \n# Save\ndateTemp = {'alertMax': alertMax, 'alertMin': alertMin}\ndateSave = open(SAVE_LOCATION, 'w+')\npickle.dump(dateTemp, dateSave)\n\n# Print\nfinal = ''\nif is_charging:\n    final += '⚡️'\nelif alertMin or alertMax:\n    final += '🔴'\nfinal = '{text}{charge}%'.format(text=final, charge=charge_porcent) \nprint(final) \n"
+				}
+			],
+			"path": "System/battery_health.2s.py",
+			"filename": "battery_health.2s.py",
+			"dir": "System",
+			"docsPlugin": "System/battery_health.2s.py.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Battery Health",
+			"version": "v1.1",
+			"author": "Andros Fenollosa",
+			"authors": [
+				{
+					"name": "Andros Fenollosa",
+					"githubUsername": "tanrax",
+					"imageURL": "https://avatars.githubusercontent.com/u/4553672?v=4",
+					"bio": "Teacher, Web Developer, CEO of Sapps, blogger, podcaster and Shepherd of Zombie Sheep. Lover of Clojure, Python and Linux.",
+					"primary": true
+				}
+			],
+			"desc": "Shows power percentaje and notice when you load",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:02.623123Z",
+			"vars": null
+		}
+	]
+}

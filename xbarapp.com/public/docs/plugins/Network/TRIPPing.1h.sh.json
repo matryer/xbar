@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/TRIPPing.1h.sh",
+				"filename": "TRIPPing.1h.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eTRIPPing\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAnastasios Monachos (secuid0) - [anastasiosm(at)gmail(dot)com]\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003esecuid0\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTRIPPing (TRaceroute-IP-Ping) plugin aims to regularly monitor the path and ping roundtrip, from your network to fixed IPs and determine if they have suddenly been changed. Greetz to Kim DotCom\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/eKxeuxq.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash, osascript\u003c/bitbar.dependencies\u003e\n\n# default refresh interval 1h, to change, rename this file accordingly:\n# traceroute-hops-counter.{time}.sh\n# where {time} can be a integer following by:\n# s for second(s)\n# m for minute(s)\n# h for hour(s)\n# d for day(s)\n\n# Notify the user\nnotify () {\n    osascript -e \"display notification \\\"Number of hops: $1\\\" with title \\\"TRIPPing\\\"\"\t\n}\n\n# Get our public IPv4 and IPv6 addresses\nEXTERNAL_IP4=$(curl -4 --connect-timeout 3 -s http://v4.ipv6-test.com/api/myip.php || echo None)\nEXTERNAL_IP6=$(curl -6 --connect-timeout 3 -s http://v6.ipv6-test.com/api/myip.php || echo None)\n\n# GUI Bar\n[[ \"$EXTERNAL_IP4\" == \"None\" \u0026\u0026 \"$EXTERNAL_IP6\" == \"None\" ]]  \u0026\u0026 echo \":negative_squared_cross_mark:\" || echo \":space_invader:\t\"\n\n# Sites to ping\nSITES_TO_PING=(dns.google www.wikipedia.org www.pastebin.com)\n\n# Traceroute 1.1.1.1\nTRACEROUTE=$(traceroute 1.1.1.1 2\u003e/dev/null)\n\n# GUI\necho \"---\"\necho \":arrows_counterclockwise: Refresh... | color=black refresh=true\"\necho \"---\"\necho \"Public IPs: | color=red\"\necho \"IPv4: ${EXTERNAL_IP4} | color=black terminal=false bash='$0' param2=$EXTERNAL_IP4\"\necho \"IPv6: ${EXTERNAL_IP6} | color=black terminal=false bash='$0' param2=$EXTERNAL_IP6\"\necho \"---\"\necho \"Ping output: | color=red\"\nfor i in \"${SITES_TO_PING[@]}\"\ndo\n\tping -c 1 \"$i\" |grep -vE 'transmitted|statistics|ttl' | sed 's/---//g' | sed '/^$/d'\n   \techo \"-\"\ndone\necho \"---\"\necho \"Traceroute output: | color=red\"\necho \"${TRACEROUTE}\"\n\nHOPS=$(echo \"${TRACEROUTE}\" | awk -F \" \" 'END {print $1}')\nnotify \"$HOPS\"\n"
+			}
+		],
+		"path": "Network/TRIPPing.1h.sh",
+		"filename": "TRIPPing.1h.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/TRIPPing.1h.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "TRIPPing",
+		"version": "v0.1",
+		"author": "Anastasios Monachos (secuid0) - [anastasiosm(at)gmail(dot)com]",
+		"authors": [
+			{
+				"name": "Anastasios Monachos",
+				"githubUsername": "secuid0",
+				"imageURL": "https://avatars.githubusercontent.com/u/4008695?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "TRIPPing (TRaceroute-IP-Ping) plugin aims to regularly monitor the path and ping roundtrip, from your network to fixed IPs and determine if they have suddenly been changed. Greetz to Kim DotCom",
+		"imageURL": "https://i.imgur.com/eKxeuxq.png",
+		"dependencies": [
+			"bash",
+			"osascript"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.024091Z",
+		"vars": null
+	}
+}

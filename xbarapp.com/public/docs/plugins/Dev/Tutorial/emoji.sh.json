@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Tutorial/emoji.sh",
+				"filename": "emoji.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eShow emoji\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKent Karlsson\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003evogonistic\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample of how to use emojis\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/z4T9X6G.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/Tutorial/emoji.sh\u003c/bitbar.abouturl\u003e\n\necho \":sparkles: :coffee: :mushroom:\"\necho \"---\"\n\necho \"Random emojis:exclamation:\"\necho \":smile: :smile_cat: :smiley: :smiley_cat: :smiling_imp:\"\necho \":tent: :thought_balloon: :thumbsdown: :thumbsup: :ticket:\"\necho \":pig: :dolphin: :elephant: :honeybee: :horse:\"\necho \"No :coffee: | emojize=false\"\n\necho \"---\"\necho \"Open emoji cheat sheet in browser… | href=http://www.emoji-cheat-sheet.com/\"\necho \"Refresh | refresh=true\"\n"
+			}
+		],
+		"path": "Dev/Tutorial/emoji.sh",
+		"filename": "emoji.sh",
+		"dir": "Dev/Tutorial",
+		"docsPlugin": "Dev/Tutorial/emoji.sh.html",
+		"docsCategory": "Dev/Tutorial.html",
+		"pathSegments": [
+			"Dev",
+			"Tutorial"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Tutorial",
+				"text": "Tutorial",
+				"isLast": true
+			}
+		],
+		"title": "Show emoji",
+		"version": "v1.0",
+		"author": "Kent Karlsson",
+		"authors": [
+			{
+				"name": "Kent Karlsson",
+				"githubUsername": "vogonistic",
+				"imageURL": "https://avatars.githubusercontent.com/u/159568?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Example of how to use emojis",
+		"imageURL": "http://i.imgur.com/z4T9X6G.png",
+		"dependencies": null,
+		"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/Tutorial/emoji.sh",
+		"lastUpdated": "2021-03-08T15:21:50.46543Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,418 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Machine Box in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Easily start and stop Machine Box boxes. - install xbar for free to get started.'>
+	<meta name='author' content='Machina'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/gkOYSWH.png'>
+	<meta itemprop='name' content='Machine Box in your macOS menu bar'>
+	<meta itemprop='description' content='Easily start and stop Machine Box boxes. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Machine Box in your macOS menu bar'>
+	<meta name='twitter:description' content='Easily start and stop Machine Box boxes. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/gkOYSWH.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Machine Box in your macOS menu bar'>
+	<meta property='og:description' content='Easily start and stop Machine Box boxes. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/machinebox.1m.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/gkOYSWH.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/gkOYSWH.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/gkOYSWH.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/gkOYSWH.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Machine Box</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/machinabot.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/26853250?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/machinabot.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Machina (<code style='color:white;'>@machinabot</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Easily start and stop Machine Box boxes.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fmachinebox.1m.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/gkOYSWH.png' 
+				alt='Image preview of Machine Box plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>machinebox.1m.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/machinebox.1m.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/machinebox.1m.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+
+# ----------------------------------------------------------------
+# TODO: insert your MB_KEY here.
+# Get your key from https://machinebox.io/account
+# For more help, see https://machinebox.io/docs/setup/box-key
+MB_KEY=&#34;&#34;
+# ----------------------------------------------------------------
+
+# &lt;bitbar.title&gt;Machine Box&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Machina&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;machinabot&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Easily start and stop Machine Box boxes.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/gkOYSWH.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;bash,jq,docker&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://machinebox.io/?source=bitbar&lt;/bitbar.abouturl&gt;
+
+export PATH=&#34;$PATH:/usr/local/bin&#34;
+command -v jq &gt;/dev/null 2&gt;&amp;1 || { echo &gt;&amp;2 &#34;Click to install jq command... | href=https://stedolan.github.io/jq/?source=bitbar&#34;; exit 0; }
+command -v docker &gt;/dev/null 2&gt;&amp;1 || { echo &gt;&amp;2 &#34;Click to install Docker... | href=https://machinebox.io/out/docker/install?source=bitbar&#34;; exit 0; }
+
+if [ &#34;$#&#34; -gt 1 ]; then
+    if [ &#34;$1&#34; = &#34;start&#34; ]; then
+        if [ &#34;$MB_KEY&#34; = &#34;&#34; ]; then
+            osascript -e &#39;display notification &#34;You need to configure your MB_KEY environment variable&#34; with title &#34;Machine Box&#34; subtitle &#34;Failed to start box&#34;&#39; 
+            exit 0
+        fi
+        osascript -e &#39;display notification &#34;Go to http://localhost:8080/&#34; with title &#34;Machine Box&#34; subtitle &#34;Downloading and starting...&#34;&#39; 
+        docker run -d -p 8080:8080 -e &#34;MB_KEY=$MB_KEY&#34; &#34;machinebox/$2&#34;
+        open http://localhost:8080
+        exit 0
+    fi
+    if [ &#34;$1&#34; = &#34;stop&#34; ]; then
+        echo &#34;stopping $2...&#34;
+        osascript -e &#39;display notification &#34;Stopping...&#34; with title &#34;Machine Box&#34;&#39; 
+        docker stop &#34;$(docker ps -q --filter ancestor=&#34;machinebox/$2&#34;)&#34;
+        osascript -e &#39;display notification &#34;Box has been stopped&#34; with title &#34;Machine Box&#34; subtitle &#34;Stopped&#34;&#39; 
+        exit 0
+    fi
+fi
+
+echo &#34; | image=iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAMFWlDQ1BJQ0MgUHJvZmlsZQAASImVVwdYU8kWnltSCCSUAAJSQu9IkS4QCL1LBxshCRBKwISgYkcXFVy7iGJFV0EUXAsgiw27sijY6wMRBWVddMWGypsU0PW1753vO7l/zpxz5j/nzp1vBgBle3Z&#43;fg6qAkCuoEAYE&#43;THSEpOYZC6AQJQoAFUgCubI8r3jY4OB1BGn3&#43;Xd7ehN5QbtpJc/zr&#43;X0WVyxNxAECiIU7jiji5EB8FANfi5AsLACC0QbvxrIJ8CR6EWF0ICQJAxCU4Q4a1JDhNhm2kPnExLIiZAJCV2GxhBgA0CW9GIScD5qFJONoLuHwBxFsh9uZksrkQP4TYJjc3D2JlMsQWad/lyfhbzrSxnGx2xhiW1SIVsj9flJ/DnvN/tuN/S26OeHQOI6hKmcLgGEnNsG/V2XlhEqwEcYsgLTIKYjWIL/G5Un8Jvp8pDo6X&#43;w9wRCzYM6AJ4Mvmsv3DINaFWFOcHe8rx45soTQW&#43;qOR/IKQODlOE&#43;bFyPOjhYKcyHB5nuWZvJBRvJ0nCogd9UnnB4ZADFcaerQoMy5RxhM9V8hPiISYBvF1UXZsmDz2cVEmK3LURyiOkXA2gfhtujAwRuaDaeWKRuvC7Dhs6VxwLWDMgsy4YFkslsQTJYWPcuDy/ANkHDAuTxAv54bB1eUXI48tyc&#43;Jlvtj23k5QTGyPmOHRIWxo7GdBXCByfqAPclih0bL53qXXxAdJ&#43;OGoyAcsIA/YAAx1DSQB7IAv32gcQD&#43;k40EAjYQggzAA7Zyy2hEonREAH9jQRH4AyIeEI3F&#43;UlHeaAQ2r&#43;MWWW/tiBdOloojcgGzyDOxXVwb9wTD4e/TKiOuBvuPhrHUB6dlRhA9CcGEwOJlmM8OJB1DlQh4P8bWxh88mB1Ei6C0Rq&#43;5SM8I3QQnhBuEboI90ACeCrNIveawS8W/sCcASJAF8wWKK8uDebsH/XBzSBrZ9wP94L8IXdcE9cBtvhEWIkv7gNrc4bW7xmKx7h96&#43;WP80lYf1&#43;P3E6zojnLWaSNvRnWmNePWVjf9YgLn2E/emLLsSPYRewMdhlrwRoBAzuFNWFt2AkJHlsJT6UrYXS2GCm3bJiHP&#43;pjX2vfb//5h7nZ8vkl/RIV8GYXSD4GVl7&#43;HCE/I7OA4Qt3Yx4jRMCxs2E42ju4AiDZ22Vbx&#43;A16Z6NaKt&#43;sy0qAWCS/cjIyPFvtojHABx9BQDl/jebBdwRaE8AuLSZIxYWymyS7RgQAAUow69CG&#43;gDY2AB63EELsATMEEACAVRIA4kg&#43;mw45kgF3KeBeaBxaAElIE1YCPYAnaA3aAaHASHQSNoAWfABXAVXAe3wAO4LnrBSzAI3oFhBEFICBWhI9qIAWKKWCOOiBvijQQg4UgMkoykIhmIABEj85AlSBmyDtmC7EJqkF&#43;R48gZ5DLSgdxDupF&#43;5A3yCcVQJVQd1UPN0AmoG&#43;qLhqFx6DQ0A52JFqFL0VVoBVqFHkAb0DPoVfQW2oW&#43;RIcwgClimpghZou5YSwsCkvB0jEhtgArxcqxKqwOa4bv&#43;QbWhQ1gH3EiTscZuC1cm8F4PM7BZ&#43;IL8JX4Frwab8DP4TfwbnwQ/0qgEnQJ1gQPQgghiZBBmEUoIZQT9hKOEc7D76aX8I5IJGoSzYmu8LtMJmYR5xJXErcR64mniR3EHuIQiUTSJlmTvEhRJDapgFRC2kw6QDpF6iT1kj6QFckGZEdyIDmFLCAXk8vJ&#43;8knyZ3k5&#43;RhBRUFUwUPhSgFrsIchdUKexSaFa4p9CoMU1Qp5hQvShwli7KYUkGpo5ynPKT8paioaKTorjhZka&#43;4SLFC8ZDiJcVuxY9KakpWSiylqUpipVVK&#43;5ROK91T&#43;otKpZpRmdQUagF1FbWGepb6mPqBRqfZ0UJoXNpCWiWtgdZJe6WsoGyq7Ks8XblIuVz5iPI15QEVBRUzFZYKW2WBSqXKcZU7KkOqdFUH1SjVXNWVqvtVL6v2qZHUzNQC1LhqS9V2q51V66FjdGM6i86hL6HvoZ&#43;n96oT1c3VQ9Sz1MvUD6q3qw9qqGlM1EjQmK1RqXFCo0sT0zTTDNHM0VyteVjztuancXrjfMfxxq0YVzeuc9x7rfFaTC2eVqlWvdYtrU/aDO0A7WzttdqN2o90cB0rnck6s3S265zXGRivPt5zPGd86fjD4&#43;/rorpWujG6c3V367bpDunp6wXp5ett1jurN6Cvqc/Uz9LfoH9Sv9&#43;AbuBtwDfYYHDK4AVDg&#43;HLyGFUMM4xBg11DYMNxYa7DNsNh43MjeKNio3qjR4ZU4zdjNONNxi3Gg&#43;aGJhEmMwzqTW5b6pg6maaabrJ9KLpezNzs0SzZWaNZn3mWuYh5kXmteYPLagWPhYzLaosbloSLd0ssy23WV63Qq2crTKtKq2uWaPWLtZ8623WHTYEG3cbgU2VzR1bJVtf20LbWttuO027cLtiu0a7VxNMJqRMWDvh4oSv9s72OfZ77B84qDmEOhQ7NDu8cbRy5DhWOt50ojoFOi10anJ6PdF6Im/i9ol3nenOEc7LnFudv7i4ughd6lz6XU1cU123ut5xU3eLdlvpdsmd4O7nvtC9xf2jh4tHgcdhjz89bT2zPfd79k0yn8SbtGdSj5eRF9trl1eXN8M71Xund5ePoQ/bp8rnCdOYyWXuZT73tfTN8j3g&#43;8rP3k/od8zvPcuDNZ912h/zD/Iv9W8PUAuID9gS8DjQKDAjsDZwMMg5aG7Q6WBCcFjw2uA7IXohnJCakMFQ19D5oefClMJiw7aEPQm3CheGN0egEaER6yMeRppGCiIbo0BUSNT6qEfR5tEzo3&#43;bTJwcPbly8rMYh5h5MRdj6bEzYvfHvovzi1sd9yDeIl4c35qgnDA1oSbhfaJ/4rrErqQJSfOTribrJPOTm1JIKQkpe1OGpgRM2Tild6rz1JKpt6eZT5s97fJ0nek500/MUJ7BnnEklZCamLo/9TM7il3FHkoLSduaNshhcTZxXnKZ3A3cfp4Xbx3vebpX&#43;rr0vgyvjPUZ/Zk&#43;meWZA3wWfwv/dVZw1o6s99lR2fuyR3ISc&#43;pzybmpuccFaoJswbk8/bzZeR351vkl&#43;V0zPWZunDkoDBPuFSGiaaKmAnV4zGkTW4h/EncXehdWFn6YlTDryGzV2YLZbXOs5qyY87wosOiXufhcztzWeYbzFs/rnu87f9cCZEHagtaFxguXLuxdFLSoejFlcfbi34vti9cVv12SuKR5qd7SRUt7fgr6qbaEViIsubPMc9mO5fhy/vL2FU4rNq/4WsotvVJmX1Ze9nklZ&#43;WVnx1&#43;rvh5ZFX6qvbVLqu3ryGuEay5vdZnbfU61XVF63rWR6xv2MDYULrh7cYZGy&#43;XTyzfsYmySbypqyK8ommzyeY1mz9vydxyq9Kvsn6r7tYVW99v427r3M7cXrdDb0fZjk87&#43;Tvv7gra1VBlVlW&#43;m7i7cPezPQl7Lv7i9kvNXp29ZXu/7BPs66qOqT5X41pTs193/&#43;patFZc239g6oHrB/0PNtXZ1u2q16wvOwQOiQ&#43;9&#43;DX119uHww63HnE7UnfU9OjWY/RjpQ1Iw5yGwcbMxq6m5KaO46HHW5s9m4/9ZvfbvhbDlsoTGidWn6ScXHpy5FTRqaHT&#43;acHzmSc6Wmd0frgbNLZm&#43;cmn2s/H3b&#43;0oXAC2cv&#43;l48dcnrUstlj8vHr7hdabzqcrWhzbnt2O/Ovx9rd2lvuOZ6rem6&#43;/XmjkkdJzt9Os/c8L9x4WbIzau3Im913I6/fffO1Dtdd7l3&#43;&#43;7l3Ht9v/D&#43;8INFDwkPSx&#43;pPCp/rPu46h&#43;W/6jvcuk60e3f3fYk9smDHk7Py6eip597lz6jPit/bvC8ps&#43;xr6U/sP/6iykvel/mvxweKPlD9Y&#43;tryxeHf2T&#43;WfbYNJg72vh65E3K//S/mvf24lvW4eihx6/y303/L70g/aH6o9uHy9&#43;Svz0fHjWZ9Lnii&#43;WX5q/hn19OJI7MpLPFrKlRwEMKpqeDsCbfQBQkwGgX4fnB5rs7iUVRHZflCLwn7DsfiYVFwDq4ENy5GadBuAQVDOoVKhRTADimAB1chpTuYjSnRxluWi1AJAMR0be5AGgAPVz0MjIcPTIyBd498NuAnCyT3bnkwgRnu93OkhQp8ER8KP8E7iCbjp7S8FlAAAACXBIWXMAABYlAAAWJQFJUiTwAAACBmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24&#43;MTIxMDwvZXhpZjpQaXhlbFlEaW1lbnNpb24&#43;CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj4xMDA2PC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24&#43;MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24&#43;CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE&#43;CnmId1cAAA4DSURBVFgJ7Vh5cBTXnf697p7puTWaQxpJMwJJCMkIMJiAgARxhNgmcTnxGuTglO3gpIyTzeKQ3U0t6xy2WeKqTVWcZCsJVO0uppLFhbHXLl/4gACxuZGxHY6g&#43;5bRIGkOzUzPTB/7vZZGHPGR5L&#43;t4kk9fb3je9/7fsdrohvlBgM3GLjBwN/CAPsbGgnP0rOsmZq1q9pG5lbOmrkoVF5hd9rDo1nlH5nEfJZ4Vmlcs8ImiuLFwRdO/CoVcceei7V1dZ5oaUPbS4X2hmEwFKNw/2nnvwr0OiJxL1EBbMk3l3xx3ZxQ2Zd9duc8t8MVdNvsJEsWyubzFLB7tLDfLwqaoRFjomCzUlZRaGw8ZcRmlw6MVHhOHTx5au9Pv7/lRYDMtLW1ybW1tSquC/1/LPa/BrSEXnin9MDS1d9aGr7pX&#43;pCoUqP7CDd0EnVNdLzZOCsB10eoTwYZAA7MbCm6SQKBgE7KjNW5CTrojrKlXnoTF/H6Ucf/s7Od06dOrNly5bWJ598cmSi0cf/ih//6sqbdevWiefPn&#43;cMWLesWbvrrobGLTWB0iKNVFXJalpWxSvwqTGdnLKNTS8tZSSia4OvOIALHD0/dJx0MhIpXX2/SxUSCqtZsrDi9nV3fcnrKbJv3br1GBqM4RBwfKxcJqlAlYlSuC804Pd8YibDj92&#43;ds&#43;aWY3NBnhV85pqSJJVZAKZatR1ymQUcggWqgmWTYwI0EwQQLJAAp&#43;EJJr3ZMWiCYyM4aTB7FLedtdSqxLx0y93/teTP3xk879C45imuUyY5Z&#43;D50teKBxgAWzhOQdrAt6w5PNbVs68pRkKBVoAEQVrXslRMscPhVIiqC52ki8SJKnETaJFQmfoTgWzSpaMdJaE8RxZUzo5YoxcopXkIjcji2Qdemqvalu3VPrGnXdt2X/6wDHgfblgnDt27LBs3LjRwJkVFxfrzc3NeoHZAvBpuBjHcb2u6nfd&#43;w8nG8qnu1NKPp9V0paYkaVMkZXI76JApJwilWEqKy0lLDMxMDqlZ94zmM6rKmUzGUrF45QcxTEwTOmL/RTMSeR1uUm4lMwXb7rbciLe98emRYsb0SrDm35UuRq0sGHDhns8Ho9j&#43;&#43;5fHP7F1u1f8vv8KwcvX5K733gn8pXI7AabLOnRxLgQDTuMQHWEeb1FVBWJUGkgSMwqo39wq2Fh&#43;KLyAuMUirwkuF0T9/g14Fn0RIKMXJaGR0aovb2Dkmc7aUnaZ1jryklZOYs99dtdJyvc3tEivzcejUZf3bx589tgOnz8&#43;PGenTt39k2BXrVy1aFlTctq8cD3&#43;htvpG/7wq0&#43;myzTe61/otV6Mc0tKddV6KInGyPf6gU0IxyhSFkZiW63CYDgIMxi2twkRqiDWa0TE4KHMTAJXs&#43;ApJjFAmvhKtTpzOnTZN9/kcKeoGFfu4Te7G9jTz36Y1q6ehXNX3ALXUYBrgAqd/f09vZOgV68cBH6RKcwKC6aZHTEuDye0CJFAfrx59eysmK/mE0r1OXIUf3qpTSvvh5jSjQ6NkY&#43;n880rEmo1564laDPa&#43;QCz5cYi5kG6goGaXign/r2HqI68pJlSZ3RVeHQZt88l2xouv6Br0vBkiC98tz/0tyFCyifV03PYA7i9/kehZ9hFlmG3WT1QCDAHCUBcba/TGismCFYAFCBd4gVW2j2/Dnk9ftp1zPP0KtHj1Lj3Lkk2x2mHK4Bx3vmtMBTTDyH6wbzSjJJv9q9mzr6&#43;2l&#43;TQ0Glai/tYNCKmxEM5hQViz0qGnBcikujCkp/cjvD&#43;qhSJh6O7uMof7&#43;PPeHZtE0Fbgk2AysBl5WEiU2nE6R32Ini7mMZEY62esit9OFOCFRChHu16/towRAcGOb8j2FTq8/c78N&#43;aTSaXrmtdcoAaNkGFPGRFSnlfJcQuMK2eJpCofK6PxgN/n9fqG8ahoyAVHweL2Gze22XgVao1w&#43;z1KplI4C/ek0mhknD0CLnCkMmIW/s8OoOOs8eAQhi&#43;S5s2Zdk0kOisvh&#43;kPnz68cVuj5LHQMXonBbgAItuGgLIwYIZUsiQwhNSAF73XIAStPyfFxVTcMcfjSpbGCP&#43;YB/ynY/mbEDPyrLKMoFkQQsmEA089j4Lygk8vBJ4G5Qv&#43;N8&#43;fToeefp1BJCQbLTwYPHosmigHmGIKPOaErD8kN4&#43;XtKkIhsx8egCSnjXJ6wqzFkgrZNT5zolQyaSALyOuGZrFigh9ejn5nCnRra&#43;u22hkzPuuyOxZBeQTAqs7dk26OKnAAmohYgElwZjjIyqrpNK22Fm4sN2Fs8AyamkUbfSICQgp59KHi4H4aK0nFXhgbJv65piazjYHn3JOIsoXy8C5MEsiAPGhoRBOczNByecxJQORlFI&#43;N7cY8dk&#43;Bxs1IW3v7mrrpN93PbMa3RNk2U4TWkF&#43;AKA05EcBbEIbRGEtFPofD9LkG8g4&#43;aHdnJ33Q1UUwaHJ7PNxN0QAMLRQOkxfPZJuNLnZ0UD2u58ybhyiJxecrZhYDk5RMTWMZSU9njdRAVJQDPkR&#43;EUEpd1RRlN/A2z3Lq18NmvcwerH7ws9x3nNLbd19yod9RakaZQ1SgfmMQVLZHFPhEKMICk6All0uEzgffBRGdW5wkJoqK0kqKiICKA11RKeT/IiUXNNcFhMpBUaYAoxrrGw8NU4uSJo/VzWNJVLK/kzPSIvoLOtuTbfuov6pCClcEeCE&#43;QjImYXzRImh0ZEjRo5&#43;vyhSzyp9/jvSUJZbFYShRJzEgIdBL8TzZwHLyiOfF&#43;DKwbALg1qx5D7orxpgi7EKVshCxhHBZCIVFYAIvZq&#43;G44KUunv76WRg&#43;/RTd4SHS5RiMZG6SeHXr4/Gh/Z2RUdPk0JM/8pEPxnuQefNi/CGlpj2Uf7sriu&#43;u/mTe/OjlR6NYSyeCxtHfAxCs6bSdVgdXp5BRh3mi6QNzTDOPcUvEBKpiFO3Jn35nv&#43;ysJ9skqdHZ0UPdBC9bqHJI87iwbyvpaj7371tz/9LKop1AAnc84EXUgOrgSXQr&#43;TZ6Od2rn9Co8jvw24PEp9afh2WZJFm13MOZMaG&#43;keYH2JEbjFFMdGNiRJEljm/pvBYLFZAaPg1PQgqIB/Xrg88gjjHw4M0sWjLSQcbjdqHX5ddLngfkg&#43;2X6Wvvyf2zbg&#43;uJj9Jh0KHqIP59kAVcok11N3HzEL39vNvj7pju23lY/7wcVRT4ELexUciolUym6bCBz81jIURagYEWIAgi5XsjAbreRBGnw/B&#43;OyNxqpRNJSkXHKD84Ss5ohkKSi2Svx3SVPCc53nYm//CLTz/YNdT/O04YBp9i92psnwaa1&#43;UGajZeXDer&#43;b6bm56o9pXWuaBnK0kGJ1fN5SmNtHM8q5BiqKRaGAk2C4X9JeRFkBDyGllURg5DJKdFJgZPwrBnJBiGkVbYpVSMjnRdOPrg//zHP2Oso5O5NB/7Gob5A17&#43;EtC8nrhjAQkbW4gvFa1qmPvdpuk3PT7NG/LYZJtulyTYo4VkQTIlosENerF3rMIOZmLO2MFgewOvz6OekULiNZ5LGmNqXjiXGe7dtP3n30PF53nfv5xB8qZ2c5yPZJnX&#43;UtA8zqFGfvWL172tfkl1feQxBaWOoqsxVa7kdGxO&#43;SS4R4BJc&#43;DCxa3wusnlwxW0ZoHB/4nwWHxIGLVRaM9NsTCi&#43;aPU9j3h&#43;3nT/5u5/d/8BxvbnZy1QpP3k&#43;dPg30lDTEYrp32&#43;ce&#43;OG8cFW9B9IYjI&#43;R3WrVg06PkEV0zMETmPrlUQ1/fqebyjwIKvikgJzB3K1bECi41YrmhoFRtzqqO9K6EKqZQakSmV5pP/f2N7/90ONAd2AK4UdcXO2nr39dYJjV19Zu93tKf1Is2wLTvUHsXuK9Hwz1jFX5S3xOQTZimQR9kB1h3EC78wmaVRSi6lAlWbh2JSul8mlqSQ1RMq9Qe/yyUZlFpowsLD4jwJ5&#43;9&#43;1WvaVNTQxHXW93nZs2Z/HC&#43;792z1f1N996qwOA&#43;JaLL9815BYc9vWA&#43;T1nWSuupgiWdGMGy72r731jID7a9VLL0VX/9sX1j5R7fN/riPapxwe6kZilaBDGpuDzRkm1laLpJCHzgopEGsumaGg8RvmxcQrOrqP2GpkqemJ6XfUtgvcLy//9zubmC46Z1QfSrZ3svvX3ypDZwxj7BRwDOHgpyNO8&#43;SSmzQrKGMVVm1Vs8ASWPzizkT20YKVtzayFodaRoQU1/lDFib5WeuK1PUIZwAjVZRTFhvdnJ/bRc4MX6Pm&#43;c7S35z16ofMsST43pcuLaNSis1xViIKJLNk9LnZqsF2&#43;9U&#43;s8dtNqxpWrl4lnR7oohd379k0rmTeBADO8DUsc1CfxDSfnanp0YHBH5WFG0acVvvPkNg4YrnU/b/uaaF3Y4N6PpYU169fTytWrKAINrn8&#43;0bk5Qi989Z&#43;KkXIjo&#43;OUt1n5tLylSupqqqKktjUvvTCi&#43;zwhU7W8cxv9BV333nbrRtupzmil85XWEYqZOXBN1559aVPcnufxnQBuPH&#43;QOeJIo/7cNfo8MJtfzxYcrPdpwZtLrEneslounU1m1Y5jfjOpxT5BmyN9r/&#43;OmGngQCUpmXLl1M1AGvIwfn7DJL6t57eQQ2V9dQZv6zZA15hsLf3wN/96J&#43;&#43;cuYPR44BMP9Yw0m9Rhb8AS&#43;fxPREjQlDEOCnxY3HDh7Gw7vLpk97b8OiZbaZwZC6VzwiReMxstlkM1fmO54E2BQMBBjuLQA0jW0bz8PxeQK96fQhPM&#43;jax&#43;h2xY2qnuOHbY8tO2JNvR7Bw4Fn&#43;CsAIwE/Ua5wcANBm4wcIOB/68M/B&#43;43usvlMdsowAAAABJRU5ErkJggg==&#34;
+
+if ! docker ps &gt;/dev/null 2&gt;&amp;1; then 
+    echo &#34;---&#34;
+    echo &#34;Docker daemon isn&#39;t running&#34;
+    echo &#34;---&#34;
+    echo &#34;Learn more about running Docker... | href=https://machinebox.io/docs/setup/docker?source=bitbar&#34;
+    exit 0
+fi
+
+if [ &#34;$MB_KEY&#34; = &#34;&#34; ]; then
+    echo &#34;---&#34;
+    echo &#34;You need to Setup MB_KEY&#34;
+    echo &#34;by editing the machinebox.sh plugin file&#34;
+    echo &#34;---&#34;
+    echo &#34;Get a free MB_KEY... | href=https://machinebox.io/account?source=bitbar&#34;
+    exit 1
+fi
+
+# list running boxes at the top
+RUNNING_BOXES=$(docker ps --format &#39;{{.Image}}&#39; | grep machinebox)
+
+running=&#34;&#34;
+if [[ &#34;$RUNNING_BOXES&#34; = &#34;&#34; ]]; then 
+    running=&#34;&#34;
+else
+    running=&#34;yes&#34;
+fi
+
+echo &#34;---&#34;
+
+boxes=$(curl --silent &#39;https://machinebox.io/api/boxes?source=bitbar&#39; | jq -r &#39;.boxes[].name&#39;)
+
+for box in $boxes; do
+    if [ &#34;$(docker ps | grep -c &#34;machinebox/$box&#34;)&#34; = 1 ]; then
+        echo &#34;$box&#34;
+        echo &#34;--Open console... | href=http://localhost:8080&#34;
+        echo &#34;--Stop $box | bash=$0 refresh=true terminal=false param1=stop param2=$box&#34;
+    else
+        if [[ &#34;$running&#34; = &#34;yes&#34; ]]; then
+            echo &#34;Start $box&#34;
+        else
+            echo &#34;Start $box | bash=$0 refresh=true terminal=false param1=start param2=$box&#34;
+        fi
+    fi
+done
+
+echo &#34;---&#34;
+echo &#34;Open machinebox.io... | href=https://machinebox.io/account?source=bitbar&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/ejector.5s.sh",
+				"filename": "ejector.5s.sh",
+				"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eEjector\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCarlson Orozco \u0026\u0026 Brian Hartvigsen \u0026\u0026 Matt Sephton\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecarlsonorozco\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eEjector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/carlsonorozco/ejector\u003c/bitbar.abouturl\u003e\n\ndrives=( $(df -Hl | grep /Volumes/ | grep -v \"/System/Volumes/Data\" | grep -v \"/Volumes/Recovery\" | sed 's/.*\\/Volumes\\/*//') )\n\nIFS=$'**********'\nfor details in $( diskutil info -all ); do\n    drives+=( $(echo \"$details\" | grep -A1000 \"Device Node\" | grep -B1000 \"Mounted:[[:space:]]*No$\" | grep \"Volume Name\" | grep -v \"EFI\\|Preboot\\|Recovery\" | awk '{print $3}') )\ndone\n\nif [ \"$1\" = 'eject' ]; then\n    status=$(diskutil eject \"$2\" | sed -e 's/\\/Volumes\\///g')\n    if [ \"$status\" = \"\" ]; then\n        osascript -e \"display notification \\\"Disk $2 failed to eject\\\" with title \\\"Ejector\\\"\"\n    else\n        osascript -e \"display notification \\\"$status\\\" with title \\\"Ejector\\\"\"\n    fi\n\n    exit\nfi\n\nif [ \"$1\" = 'mount' ]; then\n    status=$(diskutil mount \"$2\")\n    if [ \"$status\" = \"\" ]; then\n        osascript -e \"display notification \\\"Disk $2 failed to mount\\\" with title \\\"Ejector\\\"\"\n    else\n        osascript -e \"display notification \\\"$status\\\" with title \\\"Ejector\\\"\"\n    fi\n\n    exit\nfi\n\nif [ \"$1\" = 'unmount' ]; then\n    status=$(diskutil unmount \"$2\")\n    if [ \"$status\" = \"\" ]; then\n        osascript -e \"display notification \\\"Disk $2 failed to unmount\\\" with title \\\"Ejector\\\"\"\n    else\n        osascript -e \"display notification \\\"$status\\\" with title \\\"Ejector\\\"\"\n    fi\n\n    exit\nfi\n\nif [ \"$1\" = 'ejectall' ]; then\n    if [ -z \"$2\" ]; then\n        osascript -e '\n        try\n            tell application \"Finder\"\n                eject the disks\n                display notification \"Successfully ejected disks.\" with title \"Ejector\"\n            end tell\n        on error\n            display notification \"Unable to eject all disks.\" with title \"Ejector\"\n        end try'\n\n        exit\n    fi\n\n    protocol_type=$2\n    protocol_type=\"${protocol_type/dmgs/Disk Image}\"\n    protocol_type=\"${protocol_type/usbs/USB}\"\n\n    IFS=$'**********'\n    for details in $( diskutil info -all ); do\n        name=$(echo \"$details\" | grep \"Volume Name:\" | sed 's/.*Volume Name:[[:space:]]*//')\n        ! [[ ${drives[*]} =~ $name ]] \u0026\u0026 continue\n        protocol=$(echo \"$details\" | grep \"Protocol:\" | sed 's/.*Protocol:[[:space:]]*//')\n        mount_point=$(echo \"$details\" | grep \"Mount Point:\" | sed 's/.*Mount Point:[[:space:]]*//')\n        [[ \"$protocol_type\" = \"$protocol\" ]] \u0026\u0026 ./\"$0\" eject \"$mount_point\"\n    done\n    exit\nfi\n\ntotal_dmg=0\ntotal_usb=0\n\nif [ ${#drives[@]} = 0 ]; then\n    echo \"⏏ | color=gray\"\n    exit\nfi\n\necho \"⏏\"\necho '---'\n\nIFS=$'**********'\nfor details in $( diskutil info -all ); do\n    name=$(echo \"$details\" | grep \"Volume Name:\" | sed 's/.*Volume Name:[[:space:]]*//')\n    ! [[ ${drives[*]} =~ $name ]] \u0026\u0026 continue\n\n    device_node=$(echo \"$details\" | grep \"Device Node:\" | sed 's/.*Device Node:[[:space:]]*//')\n    mount_point=$(echo \"$details\" | grep \"Mount Point:\" | sed 's/.*Mount Point:[[:space:]]*//')\n    free_space=$(echo \"$details\" | grep -E \"Volume (Available|Free) Space:\" | sed 's/.*Volume Free Space:[[:space:]]*//;s/.*Volume Available Space:[[:space:]]*//' | cut -d ' ' -f -2)\n    total_size=$(echo \"$details\" | grep -E \"(Disk|Total) Size:\" | sed 's/.*Total Size:[[:space:]]*//;s/.*Disk Size:[[:space:]]*//' | cut -d ' ' -f -2)\n    protocol=$(echo \"$details\" | grep \"Protocol:\" | sed 's/.*Protocol:[[:space:]]*//')\n\n    [[ $protocol = 'Disk Image' ]] \u0026\u0026 ((total_dmg++))\n    [[ $protocol = 'USB' ]] \u0026\u0026 ((total_usb++))\n\n    if [ \"$mount_point\" != '' ]; then\n        echo \"$name | bash='$0' param1=eject param2='$mount_point' terminal=false\"\n        echo \"$name [unmount] | alternate=true bash='$0' param1=unmount param2='$mount_point' terminal=false\"\n        echo \"├─ Available: $free_space\"\n        echo \"└─ Capacity: $total_size\"\n    else\n        echo \"$name | bash='$0' param1=mount param2=$device_node terminal=false\"\n        echo \"└─ Unmounted: $device_node\"\n    fi\ndone\n\nif [ ${#drives[@]} -ge 2 ]; then\n    echo '---'\n    [ $((total_dmg)) -ge 2 ] \u0026\u0026 echo \"Eject All Disk Images | color=red bash='$0' param1=ejectall param2=dmgs terminal=false\"\n    [ $((total_usb)) -ge 2 ] \u0026\u0026 echo \"Eject All Physical Volumes | color=red bash='$0' param1=ejectall param2=usbs terminal=false\"\n    echo \"Eject All | color=red bash='$0' param1=ejectall terminal=false\"\nfi\n"
+			}
+		],
+		"path": "System/ejector.5s.sh",
+		"filename": "ejector.5s.sh",
+		"dir": "System",
+		"docsPlugin": "System/ejector.5s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Ejector",
+		"version": "v1.2",
+		"author": "Carlson Orozco \u0026\u0026 Brian Hartvigsen \u0026\u0026 Matt Sephton",
+		"authors": [
+			{
+				"name": "Carlson Orozco",
+				"githubUsername": "carlsonorozco",
+				"imageURL": "https://avatars.githubusercontent.com/u/2333279?v=4",
+				"bio": "Christianprenuer • Running Makinilya.com • Dad",
+				"primary": true
+			}
+		],
+		"desc": "Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly.",
+		"imageURL": "https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png",
+		"dependencies": null,
+		"aboutURL": "https://github.com/carlsonorozco/ejector",
+		"lastUpdated": "2021-03-08T15:22:03.293061Z",
+		"vars": null
+	}
+}

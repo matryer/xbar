@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/Battery/watt-meter.20s.py",
+				"filename": "watt-meter.20s.py",
+				"content": "#!/usr/local/bin/python3\n\n# \u003cbitbar.title\u003eWatt Meter\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eEric Ripa\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eeripa\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow current watt drain, tries to be smart and highlight high power usage\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/blj2KCP.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython3\u003c/bitbar.dependencies\u003e\n\nfrom plistlib import loads\nimport sys\nimport subprocess\n\n# Currently only rough guestimates. Only somewhat tested number on MacBook Air.abs\n# Feel free to update/tweak etc..\nIMPACT = {\n    2: {\n        \"MacBook Air\": {\n            \"high\": 20,\n            \"low\": 10\n        },\n        \"MacBook Pro\": {\n            \"high\": 50,\n            \"low\": 20\n        }\n    },\n    4: {\n        \"MacBook Pro\": {\n            \"high\": 70,\n            \"low\": 30\n        }\n    },\n    6: {\n        \"MacBook Pro\": {\n            \"high\": 80,\n            \"low\": 30\n        }\n    }\n}\n\ndef parse_system_profiler():\n    output = subprocess.check_output([\"/usr/sbin/system_profiler\", \\\n                                     \"-xml\", \"SPPowerDataType\", \"SPHardwareDataType\"])\n    plist = loads(output)\n    spbattery_info = plist[0]['_items'][0]\n\n    machine = {\n        \"current_amperage\": int(spbattery_info['sppower_current_amperage']),\n        \"current_voltage\": int(spbattery_info['sppower_current_voltage']),\n        \"current_watt\": abs(int(spbattery_info['sppower_current_voltage']) * \\\n            int(spbattery_info['sppower_current_amperage'])/1000/1000),\n        \"model\": plist[1]['_items'][0]['machine_name'],\n        \"cores\": plist[1]['_items'][0]['number_processors'],\n    }\n    return machine\n\ndef get_impact(machine):\n    model = machine['model']\n    cores = machine['cores']\n    watt = machine['current_watt']\n    low = IMPACT[cores][model]['low']\n    high = IMPACT[cores][model]['high']\n    if watt \u003c= low:\n        return \"low\"\n    if watt \u003e= high:\n        return \"high\"\n    return \"mid\"\n\ndef main():\n    machine = parse_system_profiler()\n    impact = get_impact(machine)\n    color = \"gray\"\n    if impact == \"low\":\n        color = \"green\"\n    if impact == \"high\":\n        color = \"red\"\n    refresh_interval = sys.argv[0].split('.')[2]\n    print(\"%.1fW | color=%s\" % (machine['current_watt'], color))\n    print(\"---\")\n    print(\"Refresh (current interval: %s) | refresh=true\" % refresh_interval)\n\nif __name__ == '__main__':\n    main()\n"
+			}
+		],
+		"path": "System/Battery/watt-meter.20s.py",
+		"filename": "watt-meter.20s.py",
+		"dir": "System/Battery",
+		"docsPlugin": "System/Battery/watt-meter.20s.py.html",
+		"docsCategory": "System/Battery.html",
+		"pathSegments": [
+			"System",
+			"Battery"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": false
+			},
+			{
+				"path": "System/Battery",
+				"text": "Battery",
+				"isLast": true
+			}
+		],
+		"title": "Watt Meter",
+		"version": "v1.0.0",
+		"author": "Eric Ripa",
+		"authors": [
+			{
+				"name": "Eric Ripa",
+				"githubUsername": "eripa",
+				"imageURL": "https://avatars.githubusercontent.com/u/1429673?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Show current watt drain, tries to be smart and highlight high power usage",
+		"imageURL": "http://i.imgur.com/blj2KCP.png",
+		"dependencies": [
+			"python3"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:02.069559Z",
+		"vars": null
+	}
+}

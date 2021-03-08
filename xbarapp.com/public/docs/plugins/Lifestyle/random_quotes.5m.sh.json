@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/random_quotes.5m.sh",
+				"filename": "random_quotes.5m.sh",
+				"content": "#!/bin/bash\n\n# Categories\n# (Uncomment ONE category at a time!)\n#\n# Default \ncat_name=\"Default\"\ncat_url=\"https://gist.githubusercontent.com/JanGross/fb6ada3292474f300ef4/raw/quotes_default\"\n#\n#Computer Science\n#cat_name=\"Computer Science\"\n#cat_url=https://gist.githubusercontent.com/JanGross/2ac95e44ca7d0a7e0663/raw/quotes_cscience\n#\n#--------------------------------------------------------------\n#Settings:\n#----------\n# The amount of characters shown before the quote gets trimmed. (Default: 25)\n# The full quote can always be seen in the dropdown menu!\nmax_chars=\"25\"\n#----------\n# Defines the color of the quote (status bar and dropdown)\nquote_color=\"black\"\n#----------\n\n#BitBar Metadata\n# \u003cbitbar.title\u003eRandom Quotes for BitBar\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJan Groß\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eJanGross\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays a random quote from the selected category\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/0yTkSta.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003e\u003c/bitbar.abouturl\u003e\n\nmkdir -p ~/BitBar_quotes\ncurl -s $cat_url \u003e ~/BitBar_quotes/quotes\nline_c=$(wc -l ~/BitBar_quotes/quotes)\nline=$(jot -r 1  2 \"$line_c\")\nquote=$(tail -n+\"$line\" ~/BitBar_quotes/quotes | head -n1)\necho \"$quote | color=$quote_color length=$max_chars\"\necho \"---\"\necho \"$quote | color=$quote_color size=20\"\necho \"Quote from line $line\"\necho \"---\"\necho \"Category: $cat_name | color=black size=20\"\necho \"Category URL: $cat_url | size=10\"\necho \"Total Quotes in this category: $line_c \"\n\n\n"
+			}
+		],
+		"path": "Lifestyle/random_quotes.5m.sh",
+		"filename": "random_quotes.5m.sh",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/random_quotes.5m.sh.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "Random Quotes for BitBar",
+		"version": "v0.1",
+		"author": "Jan Groß",
+		"authors": [
+			{
+				"name": "Jan Groß",
+				"githubUsername": "JanGross",
+				"imageURL": "https://avatars.githubusercontent.com/u/13641301?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays a random quote from the selected category",
+		"imageURL": "http://i.imgur.com/0yTkSta.png",
+		"dependencies": [
+			"bash"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:55.926001Z",
+		"vars": null
+	}
+}

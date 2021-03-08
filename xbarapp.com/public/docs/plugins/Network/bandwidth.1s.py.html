@@ -1,0 +1,426 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Bandwidth.py in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Displays upload and download speeds - install xbar for free to get started.'>
+	<meta name='author' content='ChTBoner'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/qDPtOxl.png'>
+	<meta itemprop='name' content='Bandwidth.py in your macOS menu bar'>
+	<meta itemprop='description' content='Displays upload and download speeds - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Bandwidth.py in your macOS menu bar'>
+	<meta name='twitter:description' content='Displays upload and download speeds - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/qDPtOxl.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Bandwidth.py in your macOS menu bar'>
+	<meta property='og:description' content='Displays upload and download speeds - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Network/bandwidth.1s.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/qDPtOxl.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/qDPtOxl.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/qDPtOxl.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/qDPtOxl.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Bandwidth.py</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/chtboner.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/14848356?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/chtboner.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										ChTBoner (<code style='color:white;'>@chtboner</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Displays upload and download speeds
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Network%2fbandwidth.1s.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/qDPtOxl.png' 
+				alt='Image preview of Bandwidth.py plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>bandwidth.1s.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Network/bandwidth.1s.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/bandwidth.1s.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env -S PATH=&#34;${PATH}:/usr/local/bin&#34; python3
+
+# &lt;bitbar.title&gt;Bandwidth.py&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;ChTBoner&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;chtboner&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Displays upload and download speeds&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/qDPtOxl.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python3, psutil&lt;/bitbar.dependencies&gt;
+#
+# by ChTBoner
+
+&#34;&#34;&#34;
+    An implementation in python of the Bandwith Bitbar Plugin
+    Should work on Linux too with Argos or other status bar (Polybar for example)
+    https://getbitbar.com/plugins/Network/bandwidth.1s.sh
+
+    Unlike the shell status bar, here he result displayed in the bar will the total of all interfaces
+&#34;&#34;&#34;
+
+import psutil
+from time import sleep
+
+
+def human_bytes(n):
+    &#34;&#34;&#34;
+        convert bytes to human readable format
+        &#39;borrowed&#39; from https://github.com/giampaolo/psutil/blob/master/scripts/ifconfig.py
+    &#34;&#34;&#34;
+
+    symbols = (&#39;K&#39;, &#39;M&#39;, &#39;G&#39;, &#39;T&#39;, &#39;P&#39;, &#39;E&#39;, &#39;Z&#39;, &#39;Y&#39;)
+    prefix = {}
+    for i, s in enumerate(symbols):
+        prefix[s] = 1 &lt;&lt; (i &#43; 1) * 10
+
+    for symbol in reversed(symbols):
+        if n &gt;= prefix[symbol]:
+            value = n / prefix[symbol]
+            return &#39;{} {}&#39;.format(round(value, 2), symbol)
+    return &#34;{} B&#34;.format(round(n, 2))
+
+
+def print_stats(upload, download):
+    &#34;&#34;&#34;
+    pretty prints the results
+    upload and download values are multiplied by 2 to compensate 0.5 second sleep
+    &#34;&#34;&#34;
+    return &#34;▼ {} - {} ▲&#34;.format(human_bytes(upload * 2), human_bytes(download * 2))
+
+
+def main():
+    # create dict to store results for every interface
+    results = {}
+
+    # set original data and store it in dict
+    results.update(
+        {&#39;total&#39;: {
+            &#39;up&#39;: psutil.net_io_counters(pernic=False).bytes_sent,
+            &#39;down&#39;: psutil.net_io_counters(pernic=False).bytes_recv}
+        })
+
+    # loops through all interfaces to store upload and download data
+    for interface in psutil.net_io_counters(pernic=True):
+        results.update(
+            {interface: {
+                &#39;up&#39;: psutil.net_io_counters(pernic=True)[interface].bytes_sent,
+                &#39;down&#39;: psutil.net_io_counters(pernic=True)[interface].bytes_recv}
+            })
+
+    sleep(0.5)
+
+    # after sleeping, updates the data to be the difference between the two iterations
+    results.update(
+        {&#39;total&#39;: {
+            &#39;up&#39;: psutil.net_io_counters(pernic=False).bytes_sent - results[&#34;total&#34;][&#34;up&#34;],
+            &#39;down&#39;: psutil.net_io_counters(pernic=False).bytes_recv - results[&#34;total&#34;][&#34;down&#34;]}
+        })
+
+    # iterates over interfaces to update data
+    for interface in results:
+        if interface != &#39;total&#39;:
+            results.update({
+                interface: {
+                    &#39;up&#39;: psutil.net_io_counters(pernic=True)[interface].bytes_sent - results[interface][&#34;up&#34;],
+                    &#39;down&#39;: psutil.net_io_counters(pernic=True)[interface].bytes_recv - results[interface][&#34;down&#34;]}
+            })
+
+    # print the result to the bar
+    print(print_stats(results[&#34;total&#34;][&#34;up&#34;], results[&#34;total&#34;][&#34;down&#34;]))
+
+    print(&#39;---&#39;)
+    # print in dropdown
+    for interface in results:
+        if interface != &#39;total&#39;:
+            print(&#34;{}: {}&#34;.format(interface, print_stats(results[interface][&#34;up&#34;], results[interface][&#34;down&#34;])))
+
+
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

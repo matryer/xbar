@@ -1,0 +1,56 @@
+{
+	"person": {
+		"name": "Erick Madrid",
+		"githubUsername": "Neovirxp",
+		"imageURL": "https://avatars.githubusercontent.com/u/33076777?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/bitso-btc-eth-xrp.30s.sh",
+					"filename": "bitso-btc-eth-xrp.30s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eBitso buys price\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eErick Madrid\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eNeovirxp\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Bitso buy prices of Bitcoin, Ethereum, Ripple in MXN\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://image.ibb.co/h9mWFG/Screen_Shot_2017_11_28_at_7_59_08_PM.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash, jq\u003c/bitbar.dependencies\u003e\n\n# If you feel this little tool gives you some value, tips are always welcome at the following addresses!\n# Bitcoin: 19sFQuSb1cwGA9Cb5XYVMHeYUVW8ME6ki8\n# Ethereum: 0xF8D3C6dd50536eC8FF61CCE5C47F8191f55c9B81\n\nexport LANG='en_US.UTF-8'\nexport LC_NUMERIC='en_US'\n\nexport PATH=\"/usr/local/bin/:$PATH\"\n\nBTC_MXN=$(curl -s 'https://api.bitso.com/v3/ticker/?book=btc_mxn')\nETH_MXN=$(curl -s 'https://api.bitso.com/v3/ticker/?book=eth_mxn')\nXRP_MXN=$(curl -s 'https://api.bitso.com/v3/ticker/?book=xrp_mxn')\n\nBTC_NOW=$(echo \"$BTC_MXN\" | jq '.payload.last' | tr -d \\\")\nETH_NOW=$(echo \"$ETH_MXN\" | jq '.payload.last' | tr -d \\\")\nXRP_NOW=$(echo \"$XRP_MXN\" | jq '.payload.last' | tr -d \\\")\n\nprintf \"BTC: %'.0f ETH: %'.0f XRP: %'.2f | color=green \\n\" \"$BTC_NOW\" \"$ETH_NOW\" \"$XRP_NOW\"\n\necho '---'\n\necho \"$BTC_NOW\" | xargs printf \"1 BTC = %'.2f MXN  | color=green \\n\"\n\necho '---'\n\n# last 24 hours price high\necho \"$BTC_MXN\" | jq '.payload.high' | tr -d \\\" | xargs printf \"HIGH\\t$%'.2f MXN\\n\"\n# last 24 hours price low\necho \"$BTC_MXN\" | jq '.payload.low' | tr -d \\\"  | xargs printf \"LOW \\t$%'.2f MXN\\n\"\n\necho '---'\n\n# lowest sell order\necho \"$BTC_MXN\" | jq '.payload.ask' | tr -d \\\" | xargs printf \"ASK\\t\\t$%'.2f MXN\\n\"\n# highest buy order\necho \"$BTC_MXN\" | jq '.payload.bid' | tr -d \\\" | xargs printf \"BID\\t\\t$%'.2f MXN\\n\"\n\necho '---'\n\necho \"$ETH_NOW\" | xargs printf \"1 ETH = %'.2f MXN | color=blue \\n\"\n\necho '---'\n\n# last 24 hours price high\necho \"$ETH_MXN\" | jq '.payload.high' | tr -d \\\" | xargs printf \"HIGH\\t$%'.2f MXN\\n\"\n# last 24 hours price low\necho \"$ETH_MXN\" | jq '.payload.low' | tr -d \\\"  | xargs printf \"LOW \\t$%'.2f MXN\\n\"\n\necho '---'\n\n# lowest sell order\necho \"$ETH_MXN\" | jq '.payload.ask' | tr -d \\\" | xargs printf \"ASK\\t\\t$%'.2f MXN\\n\"\n# highest buy order\necho \"$ETH_MXN\" | jq '.payload.bid' | tr -d \\\" | xargs printf \"BID\\t\\t$%'.2f MXN\\n\"\n\necho '---'\n\necho \"$XRP_NOW\" | xargs printf \"1 XRP = %'.2f MXN | color=red \\n\"\n\necho '---'\n\n# last 24 hours price high\necho \"$XRP_MXN\" | jq '.payload.high' | tr -d \\\" | xargs printf \"HIGH\\t$%'.2f MXN\\n\"\n# last 24 hours price low\necho \"$XRP_MXN\" | jq '.payload.low' | tr -d \\\"  | xargs printf \"LOW \\t$%'.2f MXN\\n\"\n\necho '---'\n\n# lowest sell order\necho \"$XRP_MXN\" | jq '.payload.ask' | tr -d \\\" | xargs printf \"ASK\\t\\t$%'.2f MXN\\n\"\n# highest buy order\necho \"$XRP_MXN\" | jq '.payload.bid' | tr -d \\\" | xargs printf \"BID\\t\\t$%'.2f MXN\\n\"\n\n"
+				}
+			],
+			"path": "Cryptocurrency/bitso-btc-eth-xrp.30s.sh",
+			"filename": "bitso-btc-eth-xrp.30s.sh",
+			"dir": "Cryptocurrency",
+			"docsPlugin": "Cryptocurrency/bitso-btc-eth-xrp.30s.sh.html",
+			"docsCategory": "Cryptocurrency.html",
+			"pathSegments": [
+				"Cryptocurrency"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": true
+				}
+			],
+			"title": "Bitso buys price",
+			"version": "v1.0",
+			"author": "Erick Madrid",
+			"authors": [
+				{
+					"name": "Erick Madrid",
+					"githubUsername": "Neovirxp",
+					"imageURL": "https://avatars.githubusercontent.com/u/33076777?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays Bitso buy prices of Bitcoin, Ethereum, Ripple in MXN",
+			"imageURL": "https://image.ibb.co/h9mWFG/Screen_Shot_2017_11_28_at_7_59_08_PM.png",
+			"dependencies": [
+				"bash",
+				"jq"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:47.150033Z",
+			"vars": null
+		}
+	]
+}

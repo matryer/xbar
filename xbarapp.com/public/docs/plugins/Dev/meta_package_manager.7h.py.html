@@ -1,0 +1,561 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Meta Package Manager in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='List outdated packages and manage upgrades. - install xbar for free to get started.'>
+	<meta name='author' content='Kevin Deldycke'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/CiQpQ42.png'>
+	<meta itemprop='name' content='Meta Package Manager in your macOS menu bar'>
+	<meta itemprop='description' content='List outdated packages and manage upgrades. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Meta Package Manager in your macOS menu bar'>
+	<meta name='twitter:description' content='List outdated packages and manage upgrades. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/CiQpQ42.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Meta Package Manager in your macOS menu bar'>
+	<meta property='og:description' content='List outdated packages and manage upgrades. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/meta_package_manager.7h.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/CiQpQ42.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/CiQpQ42.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/CiQpQ42.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/CiQpQ42.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Meta Package Manager</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/kdeldycke.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/159718?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/kdeldycke.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Kevin Deldycke (<code style='color:white;'>@kdeldycke</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						List outdated packages and manage upgrades.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fmeta_package_manager.7h.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/CiQpQ42.png' 
+				alt='Image preview of Meta Package Manager plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>meta_package_manager.7h.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/meta_package_manager.7h.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/meta_package_manager.7h.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# &lt;bitbar.title&gt;Meta Package Manager&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v2.5.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Kevin Deldycke&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;kdeldycke&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;List outdated packages and manage upgrades.&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;python,mpm&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/CiQpQ42.png&lt;/bitbar.image&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/kdeldycke/meta-package-manager&lt;/bitbar.abouturl&gt;
+
+&#34;&#34;&#34;
+Bitbar plugin for Meta Package Manager (a.k.a. the :command:`mpm` CLI).
+
+Default update cycle is set to 7 hours so we have a chance to get user&#39;s
+attention once a day. Higher frequency might ruin the system as all checks are
+quite resource intensive, and Homebrew might hit GitHub&#39;s API calls quota.
+&#34;&#34;&#34;
+
+from __future__ import print_function, unicode_literals
+
+import json
+import os
+import sys
+from operator import itemgetter
+from subprocess import PIPE, Popen
+
+PY2 = sys.version_info[0] == 2
+
+
+FLAT_LAYOUT = True
+&#34;&#34;&#34; Define the rendering mode of outdated packages list.
+
+Set this constant to ``False`` to replace the default flat layout with an
+alternative structure where all upgrade actions are put into submenus, one for
+each manager.
+&#34;&#34;&#34;
+
+
+# Make it easier to change font, sizes and colors of the output
+# See https://github.com/matryer/bitbar#writing-plugins for details
+# An alternate &#34;good looking&#34; font is &#34;font=NotoMono size=13&#34; (not installed
+# on MacOS by default though) that matches the system font quite well.
+FONTS = {
+    &#39;normal&#39;:  &#39;&#39;,                              # Use default system font
+    &#39;summary&#39;: &#39;&#39;,                              # Package summary
+    &#39;package&#39;: &#39;&#39;,                              # Indiviual packages
+    &#39;error&#39;:   &#39;color=red font=Menlo size=12&#39;,  # Errors
+}
+# Use a monospaced font when using submenus
+if not FLAT_LAYOUT:
+    FONTS[&#39;summary&#39;] = &#39;font=Menlo size=12&#39;
+
+
+def fix_environment():
+    &#34;&#34;&#34;Tweak environment variable to find non-default system-wide binaries.
+
+    macOS does not put ``/usr/local/bin`` or ``/opt/local/bin`` in the ``PATH``
+    for GUI apps. For some package managers this is a problem. Additioanlly
+    Homebrew and Macports are using different pathes. So, to make sure we can
+    always get to the necessary binaries, we overload the path. Current
+    preference order would equate to Homebrew, Macports, then system.
+    &#34;&#34;&#34;
+    os.environ[&#39;PATH&#39;] = &#39;:&#39;.join([
+        &#39;/usr/local/bin&#39;,
+        &#39;/usr/local/sbin&#39;,
+        &#39;/opt/local/bin&#39;,
+        &#39;/opt/local/sbin&#39;,
+        os.environ.get(&#39;PATH&#39;, &#39;&#39;)])
+
+    # Python 3 Surrogate Handling. See:
+    # https://click.pocoo.org/6/python3/#python-3-surrogate-handling
+    os.environ[&#39;LC_ALL&#39;] = os.environ[&#39;LANG&#39;] = &#39;en_US.UTF-8&#39;
+
+
+def run(*args):
+    &#34;&#34;&#34;Run a shell command, return error code, output and error message.&#34;&#34;&#34;
+    assert isinstance(args, tuple)
+    try:
+        process = Popen(args, stdout=PIPE, stderr=PIPE)
+    except OSError:
+        return None, None, &#34;`{}` executable not found.&#34;.format(args[0])
+    output, error = process.communicate()
+    return (
+        process.returncode,
+        output.decode(&#39;utf-8&#39;) if output else None,
+        error.decode(&#39;utf-8&#39;) if error else None)
+
+
+def echo(message):
+    &#34;&#34;&#34;Print message to the output.
+
+    Not unlike ``click.echo()``, this method is required to support
+    discrepencies in the way strings are handled in different Python versions
+    and platforms.
+    &#34;&#34;&#34;
+    if PY2:
+        message = message.encode(&#39;utf-8&#39;)
+    print(message)
+
+
+def print_error_header():
+    &#34;&#34;&#34;Generic header for blockng error.&#34;&#34;&#34;
+    echo(&#34;❌ | dropdown=false&#34;)
+    echo(&#34;---&#34;)
+
+
+def print_error(message, submenu=&#34;&#34;):
+    &#34;&#34;&#34;Print a formatted error line by line.
+
+    A red, fixed-width font is used to preserve traceback and exception layout.
+    &#34;&#34;&#34;
+    for line in message.strip().split(&#34;\n&#34;):
+        echo(
+            &#34;{}{} | {f_error} trim=false emojize=false&#34;
+            &#34;&#34;.format(submenu, line, f_error=FONTS[&#39;error&#39;]))
+
+
+def print_package_items(packages, submenu=&#34;&#34;):
+    &#34;&#34;&#34;Print a menu entry for each outdated packages available for upgrade.&#34;&#34;&#34;
+    for pkg_info in packages:
+        echo(
+            &#34;{}{name} {installed_version} → {latest_version} | {upgrade_cli}&#34;
+            &#34; terminal=false refresh=true {f_package} emojize=false&#34;.format(
+                submenu, f_package=FONTS[&#39;package&#39;], **pkg_info))
+
+
+def print_upgrade_all_item(manager, submenu=&#34;&#34;):
+    &#34;&#34;&#34;Print the menu entry to upgrade all outdated package of a manager.&#34;&#34;&#34;
+    if manager.get(&#39;upgrade_all_cli&#39;):
+        if not FLAT_LAYOUT:
+            echo(&#34;-----&#34;)
+        echo(
+            &#34;{}Upgrade all | {} terminal=false refresh=true {f_normal}&#34;.format(
+                submenu, manager[&#39;upgrade_all_cli&#39;], f_normal=FONTS[&#39;normal&#39;]))
+
+
+def print_menu():
+    &#34;&#34;&#34;Print menu structure using BitBar&#39;s plugin API.
+
+    See: https://github.com/matryer/bitbar#plugin-api
+
+    .. todo
+
+        Add minimal requirement on ``meta-package-manager`` module in the
+        invoked ``pip`` command.
+    &#34;&#34;&#34;
+    # Search for generic mpm CLI on system.
+    code, _, error = run(&#39;mpm&#39;)
+    # mpm CLI hasn&#39;t been found on the system. Propose to the user to install
+    # or upgrade it.
+    if code or error:
+        print_error_header()
+        print_error(error)
+        echo(&#34;---&#34;)
+        echo(
+            &#34;Install / upgrade `mpm` CLI. | bash=pip param1=install &#34;
+            &#34;param2=--upgrade param3=meta-package-manager terminal=true &#34;
+            &#34;refresh=true {f_error}&#34;.format(f_error=FONTS[&#39;error&#39;]))
+        return
+
+    # Fetch list of all outdated packages from all package manager available on
+    # the system.
+    _, output, error = run(
+        &#39;mpm&#39;, &#39;--output-format&#39;, &#39;json&#39;, &#39;outdated&#39;, &#39;--cli-format&#39;, &#39;bitbar&#39;)
+
+    # Bail-out immediately on errors related to mpm self-execution or if mpm is
+    # not able to produce any output.
+    if error or not output:
+        print_error_header()
+        print_error(error)
+        return
+
+    # Sort outdated packages by manager&#39;s name.
+    managers = sorted(json.loads(output).values(), key=itemgetter(&#39;name&#39;))
+
+    # Print menu bar icon with number of available upgrades.
+    total_outdated = sum([len(m[&#39;packages&#39;]) for m in managers])
+    total_errors = sum([len(m.get(&#39;errors&#39;, [])) for m in managers])
+    echo(&#34;↑{}{} | dropdown=false&#34;.format(
+        total_outdated,
+        &#34; ⚠️{}&#34;.format(total_errors) if total_errors else &#34;&#34;))
+
+    # Print a full detailed section for each manager.
+    submenu = &#34;--&#34; if not FLAT_LAYOUT else &#34;&#34;
+
+    if not FLAT_LAYOUT:
+        # Compute maximal manager&#39;s name length.
+        label_max_length = max([len(m[&#39;name&#39;]) for m in managers])
+        max_outdated = max([len(m[&#39;packages&#39;]) for m in managers])
+
+    if not FLAT_LAYOUT:
+        echo(&#34;---&#34;)
+
+    for manager in managers:
+        if FLAT_LAYOUT:
+            echo(&#34;---&#34;)
+
+        package_label = &#34;package{}&#34;.format(
+            &#39;s&#39; if len(manager[&#39;packages&#39;]) != 1 else &#39;&#39;)
+
+        if FLAT_LAYOUT:
+            echo(&#34;{0} outdated {1} {2} | {f_summary} emojize=false&#34;.format(
+                len(manager[&#39;packages&#39;]),
+                manager[&#39;name&#39;],
+                package_label,
+                f_summary=FONTS[&#39;summary&#39;]))
+
+        else:
+            # Non-flat layout use a compact table-like rendering of manager
+            # summary.
+            echo(
+                &#34;{error}{0:&lt;{max_length}} {1:&gt;{max_outdated}} {2:&lt;8} | &#34;
+                &#34;{f_summary} emojize=false&#34;.format(
+                    manager[&#39;name&#39;] &#43; &#39;:&#39;,
+                    len(manager[&#39;packages&#39;]),
+                    package_label,
+                    error=&#34;⚠️ &#34; if manager.get(&#39;errors&#39;, None) else &#39;&#39;,
+                    max_length=label_max_length &#43; 1,
+                    max_outdated=len(str(max_outdated)),
+                    f_summary=FONTS[&#39;summary&#39;]))
+
+        print_package_items(manager[&#39;packages&#39;], submenu)
+
+        print_upgrade_all_item(manager, submenu)
+
+        for error_msg in manager.get(&#39;errors&#39;, []):
+            echo(&#34;---&#34; if FLAT_LAYOUT else &#34;-----&#34;)
+            print_error(error_msg, submenu)
+
+
+if __name__ == &#39;__main__&#39;:
+    fix_environment()
+    print_menu()
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

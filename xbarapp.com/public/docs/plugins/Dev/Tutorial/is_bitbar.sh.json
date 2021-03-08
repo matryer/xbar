@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Tutorial/is_bitbar.sh",
+				"filename": "is_bitbar.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eIs BitBar?\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer and Tyler Bunnell\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample script showing use of $BITBAR environment variable\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/TcZJI06.png\u003c/bitbar.image\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n#\n# Example script showing how to let your scripts determine\n# whether they are expected to deliver BitBar output or not.\n#\n# Put this script in your BitBar plugins folder and notice\n# it says \"In BitBar\", but run it directly in Terminal, and it\n# says \"In Terminal\".\nBitBar=${BitBar}\n\nif [ \"$BitBar\" ]; then\n  # this script is being called from within\n  # BitBar.\n  echo \"In BitBar\"\nelse\n  # this script is being called from within\n  # Terminal.\n  echo \"In Terminal\"\nfi\n"
+			}
+		],
+		"path": "Dev/Tutorial/is_bitbar.sh",
+		"filename": "is_bitbar.sh",
+		"dir": "Dev/Tutorial",
+		"docsPlugin": "Dev/Tutorial/is_bitbar.sh.html",
+		"docsCategory": "Dev/Tutorial.html",
+		"pathSegments": [
+			"Dev",
+			"Tutorial"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Tutorial",
+				"text": "Tutorial",
+				"isLast": true
+			}
+		],
+		"title": "Is BitBar?",
+		"version": "1.0",
+		"author": "Mat Ryer and Tyler Bunnell",
+		"authors": [
+			{
+				"name": "Mat Ryer",
+				"githubUsername": "matryer",
+				"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+				"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+				"primary": true
+			}
+		],
+		"desc": "Example script showing use of $BITBAR environment variable",
+		"imageURL": "https://i.imgur.com/TcZJI06.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:50.483639Z",
+		"vars": null
+	}
+}

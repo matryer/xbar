@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Chandler Davidson",
+		"githubUsername": "Chandler-Davidson",
+		"imageURL": "https://avatars.githubusercontent.com/u/16169308?v=4",
+		"bio": "A coffee fueled Software Engineer.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Weather/emojiWeather.30m.js",
+					"filename": "emojiWeather.30m.js",
+					"content": "#!/usr/local/bin/node\n/* jshint esversion: 6 */\n\n//# \u003cbitbar.title\u003eemojiWeather\u003c/bitbar.title\u003e\n//# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n//# \u003cbitbar.author\u003eChandler Davidson\u003c/bitbar.author\u003e\n//# \u003cbitbar.author.github\u003eChandler-Davidson\u003c/bitbar.author.github\u003e\n//# \u003cbitbar.desc\u003eDisplays weather info as an emoji.\u003c/bitbar.desc\u003e\n//# \u003cbitbar.image\u003ehttps://static1.squarespace.com/static/5818f78ef5e2314f65b76331/t/59ded8e6bce1769ff7340715/1507776754374/emojiWeather?format=1500w\u003c/bitbar.image\u003e\n//# \u003cbitbar.dependencies\u003enode/bitbar.dependencies\u003e\n//# \u003cbitbar.abouturl\u003ehttps://github.com/Chandler-Davidson/emojiWeather/blob/master/emojiWeather.1h.js\u003c/bitbar.abouturl\u003e\n\n\nlet request = require('request');\n\nlet apiKey = '';    // https://home.openweathermap.org/api_keys\nlet city = 'Huntsville';\nlet url = `http://api.openweathermap.org/data/2.5/weather?q=${city}\u0026units=imperial\u0026appid=${apiKey}`;\n\nlet emojis = [\n    ':cry:',        // No connection\n    '::',           // \n    ':zap:',        // Thunderstorm\n    ':umbrella:',    // Rain\n    '::',           // \n    ':cloud:',      // Cloudy\n    ':snowflake:',  // Snow\n    '::',           // \n    ':sunny:',      // Clear\n    ':cyclone:'];    // Extreme\n\nrequest(url, function (err, response, body) {   // Collect JSON object\n    if (err) {  // If no connection, so sad...\n        console.log(emojis[0]);\n    } else {\n\n        let weather = JSON.parse(body);\n        let id = weather.weather[0].id; // Seperate the weather ID\n        id = Math.ceil(id / 100);       // Get only the hundreds place (1xx, 2xx)\n\n        console.log(emojis[id]);        // Print the emoji \n    }\n});"
+				}
+			],
+			"path": "Weather/emojiWeather.30m.js",
+			"filename": "emojiWeather.30m.js",
+			"dir": "Weather",
+			"docsPlugin": "Weather/emojiWeather.30m.js.html",
+			"docsCategory": "Weather.html",
+			"pathSegments": [
+				"Weather"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Weather",
+					"text": "Weather",
+					"isLast": true
+				}
+			],
+			"title": "emojiWeather",
+			"version": "v1.0",
+			"author": "Chandler Davidson",
+			"authors": [
+				{
+					"name": "Chandler Davidson",
+					"githubUsername": "Chandler-Davidson",
+					"imageURL": "https://avatars.githubusercontent.com/u/16169308?v=4",
+					"bio": "A coffee fueled Software Engineer.",
+					"primary": true
+				}
+			],
+			"desc": "Displays weather info as an emoji.",
+			"imageURL": "https://static1.squarespace.com/static/5818f78ef5e2314f65b76331/t/59ded8e6bce1769ff7340715/1507776754374/emojiWeather?format=1500w",
+			"dependencies": null,
+			"aboutURL": "https://github.com/Chandler-Davidson/emojiWeather/blob/master/emojiWeather.1h.js",
+			"lastUpdated": "2021-03-08T15:22:08.627393Z",
+			"vars": null
+		}
+	]
+}

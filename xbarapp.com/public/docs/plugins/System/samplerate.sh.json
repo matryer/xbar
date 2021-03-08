@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/samplerate.sh",
+				"filename": "samplerate.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoreAudio Samplerate Display\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAnthony Lauzon\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eanthonylauzon\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays current samplerate for an audio device.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003e\u003c/bitbar.abouturl\u003e\n\nIFS='\n'\n\ndevice_index=0\n\ndevices=($(/usr/sbin/system_profiler  \\\n  SPAudioDataType 2\u003e/dev/null | \\\n  sed '1,/Devices/d' | \\\n  grep \"^        \\w\" | \\\n  sed 's/;$//'))\n\nif (( $# != 0 )); then\n  device_index=$(($1-1))\n  echo $device_index \u003e ~/.bitbar_audio_device_index\nelif [[ -f ~/.bitbar_audio_device_index ]]; then\n  device_index=$(cat ~/.bitbar_audio_device_index)\nfi\n\ndefault_device=\"${devices[$device_index]}\"\nsamplerate=($(/usr/sbin/system_profiler  \\\n  SPAudioDataType 2\u003e/dev/null | \\\n  sed '1,/'\"${default_device}\"'/d' | \\\n  grep SampleRate | \\\n  head -n 1 | \\\n  sed 's/^          Current SampleRate: //'))\n\necho \\( \"${samplerate[0]}\" \\)\necho '---'\n\ni=0\nfor device in \"${devices[@]}\"; do\n  ((i += 1))\n  device=$(echo \"$device\" | tr -d ' ' | sed 's/:$//')\n  echo \"$i $device | bash='$0' param1=$i terminal=false refresh=true\"\ndone\n"
+			}
+		],
+		"path": "System/samplerate.sh",
+		"filename": "samplerate.sh",
+		"dir": "System",
+		"docsPlugin": "System/samplerate.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "CoreAudio Samplerate Display",
+		"version": "v1.0",
+		"author": "Anthony Lauzon",
+		"authors": [
+			{
+				"name": "Anthony Lauzon",
+				"githubUsername": "anthonylauzon",
+				"imageURL": "https://avatars.githubusercontent.com/u/33203?v=4",
+				"bio": "UToronto CS, Xoogler, Musician",
+				"primary": true
+			}
+		],
+		"desc": "Displays current samplerate for an audio device.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"bash"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.461089Z",
+		"vars": null
+	}
+}

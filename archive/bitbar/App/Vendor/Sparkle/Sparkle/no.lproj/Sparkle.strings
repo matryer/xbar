@@ -1,0 +1,52 @@
+"%@ of %@" = "%1$@ of %2$@";
+
+"%@ %@ has been installed and will be ready to use next time %@ starts! Would you like to relaunch now?" = "%1$@ %2$@ har blitt installert og er klar til bruk neste gang %3$@ starter opp! Vil du starte på nytt nå?";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ er den nyeste tilgjengelige versjonen.";
+
+"%@ %@ is now available (you have %@). Would you like to download it now?" = "%1$@ %2$@ er nå tilgjengelig (du har %3$@). Ønsker du å laste den ned nå?";
+
+"%@ does not have permission to write to the application's directory! Are you running off a disk image? If not, ask your system administrator for help." = "%@ har ikke tilgangsrettigheter til å skrive til programmets filbane! Starter du fra en diskfil? Hvis ikke, spør din systemadministrator om hjelp.";
+
+"A new version of %@ has been installed!" = "En ny versjon av %@ har blitt installert!";
+
+"A new version of %@ is available!" = "En ny versjon av %@ er tilgjengelig!";
+
+"An error occurred during installation. Please try again later." = "Det skjedde en feil under installasjonen. Vennligst prøv igjen senere.";
+
+"An error occurred in retrieving update information. Please try again later." = "Det skjedde en feil ved henting av oppdateringsinformasjon. Vennligst prøv igjen senere.";
+
+"An error occurred while extracting the archive. Please try again later." = "Det skjedde en feil ved utpakking av filarkivet. Vennligst prøv igjen senere.";
+
+"An error occurred while trying to download the file. Please try again later." = "Det skjedde en feil under forsøket på å laste ned filen. Vennligst prøv igjen senere.";
+
+"An update is already in progress!" = "Oppdateringen er allerede igang!";
+
+"Cancel" = "Avbryt";
+
+"Check for updates on startup?" = "Vil du se etter oppdateringer ved oppstart?";
+
+"Downloading update..." = "Laster ned oppdatering...";
+
+"Extracting update..." = "Pakker ut oppdatering...";
+
+"Install and Relaunch" = "Installer og start på nytt";
+
+"Installing update..." = "Installerer oppdatering...";
+
+"No" = "Nei";
+
+"OK" = "OK";
+
+"Ready to Install" = "Klar til å installere";
+
+"Update Error!" = "Oppdateringsfeil!";
+
+"Updating %@" = "Oppdaterer %@";
+
+"Would you like %@ to check for updates on startup? If not, you can initiate the check manually from the application menu." = "Ønsker du at %@ skal se etter oppdateringer under oppstart? Hvis ikke kan du sette igang sjekkingen manuelt ifra programmenyen.";
+
+"Yes" = "Ja";
+
+"You're up-to-date!" = "Du er oppdatert!";
+

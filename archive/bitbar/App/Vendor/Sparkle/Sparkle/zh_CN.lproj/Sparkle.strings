@@ -1,0 +1,78 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ 已下载完毕并可以使用！您想要现在安装 %1$@ 吗？";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "无法更新 %1$@，因为它运行于一个只读宗卷如磁盘映像或光盘。移动 %1$@ 到应用程序文件夹并再试一次。";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ 是当前的最新版本。";
+
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ 可供下载，您现在的版本是 %3$@。要现在下载吗？";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ 已下载";
+
+"%@ of %@" = "%1$@ / %2$@";
+
+"A new version of %@ is available!" = "新版本的 %@ 已经发布";
+
+"A new version of %@ is ready to install!" = "新版本的 %@ 可以安装了";
+
+"An error occurred in retrieving update information. Please try again later." = "获取升级信息时出现错误，请稍后再试。";
+
+"An error occurred while downloading the update. Please try again later." = "下载过程中出现错误，请稍后再试。";
+
+"An error occurred while extracting the archive. Please try again later." = "解压过程中出现错误，请稍后再试。";
+
+"An error occurred while installing the update. Please try again later." = "安装更新的过程中出现错误，请稍后再试。";
+
+"An error occurred while parsing the update feed." = "解析更新信息时出现错误，请稍后再试。";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "重新启动 %1$@ 时出现错误，但在下次运行 %1$@ 时新版本将可使用。";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "取消";
+
+"Cancel Update" = "取消更新";
+
+"Checking for updates..." = "正在检查更新…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "正在下载更新…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "正在解压更新…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "安装并重启应用";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "正在安装更新…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "好";
+
+"Ready to Install" = "可以开始安装了";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "您想让 %1$@ 在启动时自动检查更新么？您也可以在程序菜单 %1$@ 中手动检查。";
+
+"Update Error!" = "更新错误！";
+
+"Updating %@" = "正在更新 %@";
+
+"You already have the newest version of %@." = "您已经在使用最新版本的 %@。";
+
+"You're up-to-date!" = "您使用的就是最新版！";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "下载更新包";

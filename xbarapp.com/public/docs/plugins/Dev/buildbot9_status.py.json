@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/buildbot9_status.py",
+				"filename": "buildbot9_status.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eBuildbot 9 Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eRyan Sydnor\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eryansydnor\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays most recent build status on configurable list of builders.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nimport os\nimport sys\nimport json\nimport urllib2\nfrom urllib2 import URLError, HTTPError\n\nbitbar_header = ['BB', '---']\nbuildbot_url = 'http://nine.buildbot.net'\nbuilders = ['db-postgres', 'py27-tw1020', 'db-mysql']\n\n\ndef parse_buildbot_status(url, status):\n    return {\n        'success': status['results'] == 0,\n        'url': url + '#/builders/' + str(status['builderid']) + '/builds/' + str(status['number'])\n    }\n\n\ndef get_buildbot_status(url, builder):\n    builders_url = url + 'api/v2/builders'\n    most_recent_build_url = builders_url + '/%s/builds?complete=true\u0026order=-complete_at\u0026limit=1'\n    try:\n        builder_id_results = json.loads(urllib2.urlopen(builders_url).read()).get('builders', None)\n        builder_id = (b['builderid'] for b in builder_id_results if b[\"name\"] == builder).next()\n        builds = json.loads(urllib2.urlopen(most_recent_build_url % builder_id).read())\n        return builds['builds'][0]\n    except (URLError, HTTPError):\n        bitbar_header.append(\"Could not connect to buildbot.\")\n        print '\\n'.join(bitbar_header)\n        sys.exit(0)\n    except IndexError:\n        bitbar_header.append(\"No recent builds.\")\n        print '\\n'.join(bitbar_header)\n        sys.exit(0)\n\n\ndef main():\n    # add trailing slash if it doesn't already exist\n    url = os.path.join(buildbot_url, '')\n    for builder in builders:\n        status = get_buildbot_status(url, builder)\n        result = parse_buildbot_status(url, status)\n        bitbar_header.append(\"%s | color=%s href=%s\" % (builder, 'green' if result['success'] else 'red', result['url']))\n    print '\\n'.join(bitbar_header)\n\n\nmain()\n"
+			}
+		],
+		"path": "Dev/buildbot9_status.py",
+		"filename": "buildbot9_status.py",
+		"dir": "Dev",
+		"docsPlugin": "Dev/buildbot9_status.py.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Buildbot 9 Status",
+		"version": "v1.0",
+		"author": "Ryan Sydnor",
+		"authors": [
+			{
+				"name": "Ryan Sydnor",
+				"githubUsername": "ryansydnor",
+				"imageURL": "https://avatars.githubusercontent.com/u/1832096?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays most recent build status on configurable list of builders.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:50.973856Z",
+		"vars": null
+	}
+}

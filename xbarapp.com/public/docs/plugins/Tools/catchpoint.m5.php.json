@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Tools/catchpoint.m5.php",
+				"filename": "catchpoint.m5.php",
+				"content": "#!/usr/bin/php\n\u003c?php\n// \u003cbitbar.title\u003eCatchpoint Alerts\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eRobert Castley\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003ercastley\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eDisplay Catchpoint Alerts via the Pull API.\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/xgkKWjy.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003ephp, cURL\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.abouturl\u003ehttp://www.catchpoint.com/\u003c/bitbar.abouturl\u003e\necho \"| templateImage=iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAABrklEQVQ4jYXTy2oUURAG4G96ro7xmhARERHcZm3AhUJAxIW4Fl/B13Onj6EoatCgIJF4jZO59IyL+TvTMyFY0Jw6df3rr9OcLjdzPsDOiu2ENFfuLWxigkc4hz/oYR3beIMNDDA7rVAfj7GGV/EfYIQj/EijO3gb+4lCO7iI90F0kHNUO38l9jBot/ABipWxGkn6irMYx1fG18IQe9G7dURd3E/wx5zddC0xTfEynBS1SUpcx35RC94PR238TdIs3Ayjlxmxgd/mhN9A0cLlBA/yVd1m+F4jtBMOqwadNNjFrMCTFDhT46hCcryV6MPEjHPvZdRnjQTdDfttiw0N8NOyXEjDdpBPcQsvm7idgNJ8vRVvzRScpkjbfOWNjCWj9tFvBm5hvs5RrVAj0KvNnrd4AlXeeu5fCnyLYy3GifkbKpLYzyf+VvQr4XIPn6sH2Qy5G7hkvv5+DVEz3BQW76gTRJvSsZI+HuJ1RqvezjQoxhlxgmtB/SKxS/9aK2SOgqqRcY9ih6uxj2LbTaOlQpPMe4h7+JTEdgr34tvGc7yz2Oh/5Wk42Iq+Ssex/AOGoHohWJhtKAAAAABJRU5ErkJggg==\\n\";\necho \"---\\n\";\n\n$key    = 'Catchpoint_Key';\n$secret = 'Catchpoint_Secret';\n\n$data = array('grant_type' =\u003e 'client_credentials', 'client_id' =\u003e $key, 'client_secret' =\u003e $secret);\n\n$ch = curl_init();\n\ncurl_setopt($ch, CURLOPT_URL, 'https://io.catchpoint.com/ui/api/token');\ncurl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));    \ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, true);\n\n$result = curl_exec($ch);\n\ncurl_close($ch);\n\n$result = json_decode($result);\n\n$_SESSION['token'] = base64_encode($result-\u003eaccess_token);\n\n$ch = curl_init();\n\ncurl_setopt($ch, CURLOPT_URL, 'https://io.catchpoint.com/ui/api/v1/alerts?pageSize=5');\ncurl_setopt($ch, CURLOPT_HTTPHEADER, \n    array('Authorization: Bearer ' . $_SESSION['token']));\n\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, true);\n\n$data = curl_exec($ch);\n\ncurl_close($ch);\n\n$alerts = json_decode($data);\n\nif ($alerts != null) {\n\tforeach ($alerts-\u003ealerts as $a) {\n\t\tswitch ($a-\u003elevel-\u003eid) {\n\t\t\tcase 0:\n\t\t\t\t$color = '#ff8000';\n\t\t\t\t$state = 'Warning';\n\t\t\t\t$emoji = ':neutral_face:';\n\t\t\t\tbreak;\n\t\t\tcase 1:\n\t\t\t\t$color = '#ff0000';\n\t\t\t\t$state = 'Critical';\n\t\t\t\t$emoji = ':worried:';\n\t\t\t\tbreak;\n\t\t\tcase 3:\n\t\t\t\t$color = '#80ff00';\n\t\t\t\t$state = 'OK';\n\t\t\t\t$emoji = ':smile:';\n\t\t\t\tbreak;\n\t\t}\n\t\techo \":clock1030: \" . $a-\u003ereport_time . \" | size=10 color=\" . $color. \"\\n\";\n\t\techo $emoji . \" Test: \" . $a-\u003etest-\u003ename . \" - \" . $state . \"| size= 10 color=\" . $color . \" href=http://portal.catchpoint.com/ui/Content/Charts/Performance.aspx?tList=\" . $a-\u003etest-\u003eid . \"\u0026z=\u0026chartView=1\\n\";\n\t\techo \"Reason: \" . $a-\u003ealert_type-\u003ename . \" | size=10 color=#000000\\n\";\n\t\techo \"---\\n\";\n\t}\n} else {\n\techo \":smile: No recent alerts | size=14 color=\\\"#80ff00\\\"\";\n}\n//echo exec(\"osascript -e 'display notification \\\"\" . $a-\u003ereport_time . \" - \" . $a-\u003ealert_type-\u003ename . \"\\\" with title \\\"\" . $a-\u003etest-\u003ename . \" - \" . $state . \"\\\"'\");\n"
+			}
+		],
+		"path": "Tools/catchpoint.m5.php",
+		"filename": "catchpoint.m5.php",
+		"dir": "Tools",
+		"docsPlugin": "Tools/catchpoint.m5.php.html",
+		"docsCategory": "Tools.html",
+		"pathSegments": [
+			"Tools"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Tools",
+				"text": "Tools",
+				"isLast": true
+			}
+		],
+		"title": "Catchpoint Alerts",
+		"version": "v1.1",
+		"author": "Robert Castley",
+		"authors": [
+			{
+				"name": "Robert Castley",
+				"githubUsername": "rcastley",
+				"imageURL": "https://avatars.githubusercontent.com/u/2493008?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Display Catchpoint Alerts via the Pull API.",
+		"imageURL": "http://i.imgur.com/xgkKWjy.png",
+		"dependencies": [
+			"php",
+			"cURL"
+		],
+		"aboutURL": "http://www.catchpoint.com/",
+		"lastUpdated": "2021-03-08T15:22:07.45426Z",
+		"vars": null
+	}
+}

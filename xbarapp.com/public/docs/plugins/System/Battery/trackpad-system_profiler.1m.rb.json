@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/Battery/trackpad-system_profiler.1m.rb",
+				"filename": "trackpad-system_profiler.1m.rb",
+				"content": "#!/usr/bin/env ruby\n# \u003cbitbar.title\u003eBattery Apple Bluetooth Trackpad\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMaxime Bertheau\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emaxoumime\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow battery percentage for Bluetooth Trackpad\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/1FlcPYx.png\u003c/bitbar.image\u003e\n#\n# A lot of thanks to @alexandregz, I just changed \"Keyboard\" to \"Trackpad\" :grin:\n# Works fine with Apple Trackpad\n#\n\nrequire 'yaml'\n\noutput = YAML.load(`system_profiler SPBluetoothDataType`);\n\noutput['Bluetooth']['Devices (Paired, Configured, etc.)'].each do |device|\n        puts \"Trackpad: \"+device[1]['Battery Level'].to_s if device[1]['Minor Type'].eql?('Trackpad') \u0026\u0026 device[1].has_key?('Battery Level')\nend\n"
+			}
+		],
+		"path": "System/Battery/trackpad-system_profiler.1m.rb",
+		"filename": "trackpad-system_profiler.1m.rb",
+		"dir": "System/Battery",
+		"docsPlugin": "System/Battery/trackpad-system_profiler.1m.rb.html",
+		"docsCategory": "System/Battery.html",
+		"pathSegments": [
+			"System",
+			"Battery"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": false
+			},
+			{
+				"path": "System/Battery",
+				"text": "Battery",
+				"isLast": true
+			}
+		],
+		"title": "Battery Apple Bluetooth Trackpad",
+		"version": "1.0",
+		"author": "Maxime Bertheau",
+		"authors": [
+			{
+				"name": "Maxime Bertheau",
+				"githubUsername": "maxoumime",
+				"imageURL": "https://avatars.githubusercontent.com/u/3897798?v=4",
+				"bio": "Android Engineer @ FrontApp",
+				"primary": true
+			}
+		],
+		"desc": "Show battery percentage for Bluetooth Trackpad",
+		"imageURL": "http://i.imgur.com/1FlcPYx.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:01.977293Z",
+		"vars": null
+	}
+}

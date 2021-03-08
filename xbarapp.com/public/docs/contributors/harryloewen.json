@@ -1,0 +1,101 @@
+{
+	"person": {
+		"name": "Harry Löwen",
+		"githubUsername": "harryloewen",
+		"imageURL": "https://avatars.githubusercontent.com/u/33319470?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Tools/Slack/slack-multi-teams.1m.rb",
+					"filename": "slack-multi-teams.1m.rb",
+					"content": "#!/usr/bin/env ruby\n#\n# Slack Mutli-Teams Overview.\n#\n# by Harry Löwen\n#\n# Provides an overview of unread channels, unread messages and channel histories.\n# Features: multiple teams (workspaces) handling,\n# 'mark as read' and 'open in slack' buttons,\n# display all channels or only unread ones.\n#\n# Uses Slack Legacy Token (from now)\n# https://api.slack.com/custom-integrations/legacy-tokens\n#\n# Refresh rate is set to every minute.\n# Because: 180+ lines of code and 4+ requests running per team (one channel, one user)\n# For a simple unread indicator check out: https://github.com/matryer/bitbar-plugins/blob/master/Messenger/slack-unread.1s.py\n#\n# Feel free to customize settings, colors, all-done-messages, etc.\n#\n# metadata\n# \u003cbitbar.title\u003eSlack Multi-Teams Overview\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eHarry Löwen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eharryloewen\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eProvides an overview of unread channels, unread messages and channel histories.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://drive.google.com/uc?export=preview\u0026id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003cbitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/harryloewen/bitbar-slack-multi-teams/\u003c/bitbar.abouturl\u003e\n\nrequire 'net/http'\nrequire 'open-uri'\nrequire 'json'\n\n# your token(s) please\nTOKENS = [\n  'xoxp-your-slack-token',\n  'xoxp-another-slack-token',\n].freeze\n\n# display all channels or only those with unread messages\nALL_CHANNELS = false\n\n# your default color\nCOLOR = '#696969'.freeze # '#696969' works in darkmode as well\n\n# your random messages if there're no unreads (and if ALL_CHANNELS is set to false)\nALL_DONE_MESSAGES = [\n  \":v: All caught up. | color=#{COLOR}\n    What’s next? | color=#{COLOR}\",\n  \":octopus: All done. | color=#{COLOR}\n    The world is your oyster. | color=#{COLOR}\",\n  \":clap: Everything unread is now read. | color=#{COLOR}\n    You’ve done it. | color=#{COLOR}\",\n  \":boom: Boom. | color=#{COLOR}\n    You’re up to date. | color=#{COLOR}\",\n  \":seedling: Everything’s sorted! | color=#{COLOR}\n    Let’s start something new. | color=#{COLOR}\",\n  \":car: There. | color=#{COLOR}\n    All caught up. | color=#{COLOR}\",\n  \":balloon: There! Caught up. | color=#{COLOR}\n    Set your mind to something new. | color=#{COLOR}\",\n  \":rocket: All done. | color=#{COLOR}\n    The future is yours. | color=#{COLOR}\",\n  \":raised_hands: That’s everything! | color=#{COLOR}\",\n  \":tractor: You’re all read. | color=#{COLOR}\n    Here’s a tractor. | color=#{COLOR}\"\n].freeze\n\n# some helpful methods\ndef load_content(api_method, options = nil)\n  url = \"https://slack.com/api/#{api_method}?token=#{@team[:token]}#{options}\"\n  @content = JSON.parse(open(url).read)\n  return if @content['ok']\n  @output += \"🚫\\n\"\n  @output += \"#{api_method}: #{@content['error']} | color=red\"\nend\n\ndef load_team\n  load_content('team.info')\n  return unless @content['ok']\n  @team[:id] = @content['team']['id']\n  @team[:name] = @content['team']['name']\n  @team.merge!(unreads: 0, users: [], channels: [])\n  @teams \u003c\u003c @team\nend\n\ndef load_channels\n  load_content('users.conversations', '\u0026types=public_channel%2Cprivate_channel%2Cmpim%2Cim')\n  @content['channels'].each do |channel|\n    @team[:channels] \u003c\u003c\n      { id: channel['id'], name: channel['name'], user: channel['user'],\n        is_channel: channel['is_channel'], is_im: channel['is_im'] }\n  end\nend\n\ndef load_users\n  load_content('users.list')\n  @content['members'].each do |user|\n    @team[:users] \u003c\u003c { id: user['id'], name: user['name'] }\n  end\nend\n\ndef find_user(message)\n  return '...' unless message['type'] == 'message'\n  if message['user']\n    '@' + message['user']\n  elsif message['bot_id']\n    if message['attachments']\n      message['attachments'][0]['service_name']\n    else\n      'Bot'\n    end\n  end\nend\n\ndef find_text(message)\n  return '...' unless message['type'] == 'message'\n  if !message['text'].nil? \u0026\u0026 !message['text'].empty?\n    message['text'].tr(\"\\n\", ' ').tr(\"\\r\", ' ')\n  elsif message['attachments']\n    message['attachments'].first['text'].tr(\"\\n\", ' ').tr(\"\\r\", ' ')\n  end\nend\n\ndef handle_messages(channel, red_messages)\n  history = []\n  @content['messages'].each do |message|\n    color = red_messages \u003e 0 ? 'red' : COLOR\n    history \u003c\u003c \"--#{find_user(message)}: #{find_text(message)}|length=90 color=#{color}\\n\"\n    red_messages -= 1\n  end\n  history \u003c\u003c \"\\n-----\\n\"\n  history \u003c\u003c \"--🔗 open in Slack | href=slack://channel?id=#{channel}\u0026team=#{@team[:id]}\\n\"\nend\n\ndef marking_url(channel)\n  timestamp = @content['messages'].first['ts']\n  \"https://slack.com/api/channels.mark?token=#{@team[:token]}\u0026channel=#{channel[:id]}\u0026ts=#{timestamp}\"\nend\n\ndef load_history\n  @team[:channels].each do |channel|\n    method = channel[:is_im] ? 'im.history' : 'channels.history'\n    load_content(method, \"\u0026channel=#{channel[:id]}\u0026count=6\u0026unreads=true\")\n    channel[:unread] = @content['unread_count_display'].to_i\n\n    if channel[:unread] \u003e 0\n      @team[:unreads] += 1\n      channel[:history] = handle_messages(channel[:id], channel[:unread])\n      channel[:history] \u003c\u003c \"--✅ mark as read | bash='/usr/bin/curl' param1='#{marking_url(channel)}' refresh=true terminal=false\\n\"\n    elsif ALL_CHANNELS\n      channel[:history] = handle_messages(channel[:id], channel[:unread])\n    end\n  end\nend\n\n# everything starts here\n@teams = []\n@output = ''\n\nTOKENS.each do |token|\n  @team = { token: token }\n  load_team\nend\n\n@teams.each do |team|\n  @team = team\n  load_channels\n  load_history\n\n  @output += \"\\n---\\n#{@team[:name]}\\n\"\n\n  if @team[:unreads] \u003e 0 || ALL_CHANNELS\n    @team[:channels].each do |channel|\n      next unless channel[:unread] \u003e 0 || ALL_CHANNELS\n      @output += channel[:is_im] ? \"\u003c@#{channel[:user]}\u003e\" : \"##{channel[:name]}\"\n      @output += channel[:unread] \u003e 0 ? \" (#{channel[:unread]})|color=red\\n\" : \"\\n\"\n      channel[:history].each { |message| @output += message.to_s }\n    end\n\n    load_users\n    @team[:users].each do |user|\n      @output = @output.gsub(user[:id], user[:name]).gsub(\"\u003c@#{user[:name]}\u003e\", \"@#{user[:name]}\")\n      @output = @output.gsub('\u003c!channel\u003e', '@channel').gsub('\u003c!here\u003e','@here')\n    end\n  else\n    @output += ALL_DONE_MESSAGES.sample\n  end\nend\n\n@unread_channels = @teams.map { |t| t[:unreads] }.inject(0, :+)\n@unread_channels = '' if @unread_channels.zero?\n\nICON='iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABy2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD53d3cuaW5rc2NhcGUub3JnPC94bXA6Q3JlYXRvclRvb2w+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgoE1OjLAAANl0lEQVRYCaVYCXBd1Xn+z3KXt2mXtdlgjOVFAgtbBhNjY2lIWRs6GeYpNWEpzYxpY2gotEymoeU6U4YMTSEJnVJMUzabRW8mTJJCMANYNo7j2IABW7KwjeVNtiXxtL7lbuec/uc+P8duMp3O5Gie3rv3nvuf73z//3//fy+BP2IoBZQQkCc2d1zFGXWkVFcSQiZCAc+O5ulPlt/7UeA4QPEj/z/L8D84SSmSzmSovpYZGFDgOL9nrLcXGAIRB56/Yq7F4QemQbtzbugxCnUmJd+vi8lJvP2nj+I/B4A4jkP629oIHkImnZZAiNK//++hgKR7e9m5SQjMUU4E7Nw5/KF609GcIy8vuev0a1eIk690yMMvLAmOvLjEn/pZpzr12hVbdj7ZXgNK0d7eXhO/IyDahoPnzj8u272QGX0DIs5Aj1j5kjOLJqxkceO9J5x7NyLdDtJdYgi3RCDdjl8Z/KFsIUGBIgpZoRJ/zbgC0G2LGipn2tDejh4AHxekf791d0MAedchRLOGeBR69XcMnUMbIcULc52/sOd0LrwDCPsmUKggFHZLET6145Z/OJhGNjI9GREZ0m7qAfH5S52rqmyyWUpxUd6XIQdFDXRgyoKgEFZ/v7HhuRcfNKavMUy2OpTQTgh1cQOvutnh15+++WavvK62WaIfXePAhgjY7M4Fa1ki/kOesLsIY8t4MvFX3LSfWPHzxxo0kLLL+uqdaL5U+QNKFPfGDYAYRUPI7VRgw2ejQ+ZbhSV/+UCs8IaRTP0HNe31hmV32cnkjWYy9SO7pvmbGkAUm2ddGIFxwCH4J1dtfryaErYWqasMpvOuKHpuMJVD8HCDCaxb39w/kOZdzlbe3e2E+njx3YPZfNHbNlaQcDhn0vdGTfX6aZs8c7wStmYn5hkiv1yGYZWbmxF+IR8UpyaK6KBqzIg779++vT7T0yPKyXJBzOSpF0uomE2CEIMAOFLKZCgDaoBNGFmNa7+WaW/X/oc7t2xJJMC8hDZd0vHq2EC3/Oy54IvsIJ8i9cogEmyzGfjkDpkfvk5ac5bipgnypqgSSoRFFxkklZzEUmhqTNvT4ywzj0ZptnetM8IY3U8ocq0Jx6FpJ5QCsY3lN/38maUPb9u3+MHffPzXjbUt/15ZW59Jhe6L4xVzvjZgLOQiOETqDEqrmACL2QDiFFUTRzkVvrai5SFkhmmbqRQQTneffO/NkzqI27V84CjFDAYuprOJxwLRb0O/TFGTMUSEeUKoh66aGZle3GBd/CSvir3GLevfuGndBZQuCtwCg1Cq+rr5xDIuAik9EGgWdw4Gnw3BxH4V+nlip6qYFU8YeK8Xuu4viJRPZRzH31DSoEjHuEamT2D8hhlEs31406+vab79ECbq8sJkQYbF0PCKvsoWcqkFqWKXUgJCP1BBoaB9qdkjxDSQ9BYJ1gJg3hBVRiMUhYAc1CqY7id86nTOrp39uXS9PaEKP5Ap670fX9kx4qDeOCXG0EwUF1Geq2/1vl3z0I66NiMWX9M/tKtm/3A/EE8yLeScYa5iPh4fPijqU41g2XGKFHJgTIFElQkDyRM1jNR2kNGju1A8GkktuqoVpy2rjvHE9Jsf7TtT89B3rr/+Y4QeuUQLKwKJZCJCosGse/ZDI7WE3c242YP7XIT0N9TFmsyw+AmKGKWmwfE0gTizyFg+ywvuDNixpMA4CpSSHGOAYcqCREFK1bXKedkYXFqRh+YYITU8gMYKBjR8p3rJwU3579wA6q233rJ233RT8L+BaEC0aqn1N8y0fmLE7D9RUsxxCzkjnkip5opZJJCYvSjKAnPbYgZMBXmYmP5SEc6ZlUgaZiyOjJFJ5Xu7RqXxyFdM73t/Prcqu2ZWQObFA5E0JM27oXLJxZcVqld36QVju58QZdcgRZGb9Xk9qJTyflAyVpyaDETgh1IIZZlxqEvOkp4Ko6jAuALtrlBINTpxWvm+OyaE2Cb84HFEu1aMnfj680vnPpb21z8T59YAYgVP4tbQJ4EEYTJBLWPm6k//pSHR7fSFyuniW6GLY8GkCj+9UKpzqN6yTgTSV1JSpJ6i9CvDsGRdbQtNjgyA63lgcgMURk9DbTX1E648Nfn5D5ctvPHZ715aM1XaU+k/loep45tgJ2FqDcYYw22jrAAJ8Z+UZAWYDZcAjOwnCCi6Q2fM2YGtAeXE4L+27Nj1XqGAe5FgWugQOwZVskE1VTWGI94Ir6pIEWpRMCxT8rjBjvoHee+lt0dAdCCmIQ319RuIVmWi6PYglN/G+lSJSSe0H1wfE81irY1zVQce7u+f/a2agjWzmHq0TSqqL28np51jXLj+oyFhNqXsWqy4OjCPh577MZbf7fFZseuajaZbIFQykg6shpq9GEvd0tX7xH/19Tx8BnFAD2aFwsKpNzk9zT6pqYIDhgVX+1IoA+NXixf6mOVP2T0f1t9RRyBck1LxZQETzShmJAFk28dz7vwuf3JV566//WDPPViluzEwjNDL7yNcHXhq1crxVW//IEsVv1mqkKoAAWFaCS/Qay6GuNS7PNO+YYCk0+jzgTEkoQ/a1+85M/qLxf+tQvtqCIDmsxKKo4Tkj7mKHDFvqrTF10xqEizwIFG0dAbEKLsO8W7gZ4XnCBrWnwtGMC4+sarYYWYZrcJDMhGxwijG42qMs1U4eQv2OBf4fxfcXzG6oz+URlbmjgU0P4jhchgzcpISXpXjRnVB+SFDcUKS8c+XgW6BAlSfq7hOs1Jnh3xjs4S7hIG+PuJ0d4cxHhxRxPwt1pFWcPEy7h0TSxDsnHCshEObKqD1juk3u9KNLV/YHSg1qxlMr1QvN7V9OVNQXi6vaLVFCQqx0YQZoDwoutOQgiSqKFYiZAYtYW4QS4A6gebPDdRYnfllhSw1Ujf88rH1gWE97QWYqJRgyuE0RljgBiN37Tn5rzf/c9aYXmj9KRTlYoNgjcRFMFZgkp1SefsoUmlhSpXWUDQATiuhIpinuI9NCa6WwJYAJaQYSvlP57cQmIQlbDrNBgaAZSAjtlTE3++QtL+Gs8v88RkJ4zkjHB5Xp4bG6ux95PGwuYrZWJQ9FCJXoUnMSUwGatAkpaEJkmLZRN3BbQJ4CPTktBK+RyrmJIOQhqNFFQ76SrwuTgy+cD6YCL4WIAKOACfqW+Ht5w7EXrmqMnswVwCy9yhRg1ll7MuTUQjo4dnN5HIjrliANRgJRdY0cUxhZBLfDKmZgDCcYGKCETmJe7WIjF8LlFVMDgVfVL7gHQv6xhuL/V8dfCOrFz/fTYjewU7GkVvnphuTwLsNxa+pEMaVu/Nji7838UWqBqiymmxCK004zSXM96l8oNhMWsAGl6CPdQuAkYCuYjHGSS4YgbH8ITDbLWW3Yta0kLD+Ys6xhf9wPP7Z1ztuA+xndI46unPAynt2lIF82nzHwhiwJ3DO9bhbWzu2MR6Djvpq9YkpyBws5CF21jWegkEu6HDSgybXVgyTw6YcDBQkn2M1O0H30dXGRMu1dmesniZYAuMNay5+wGBsflWhYyXAp72wcR1HAiK9ONvplRhBF5mM04fixLgV/WhjNxNMSk8kLUNdpuJkyMcs1oloELBRzYZmfHXowISi0+gBjt4h6qAP4uXAFvdN+ME37NvGH2y43BisbkIUmEzY4lDfV6jSpIpzqttYCus2Yq3CbxwRM23QH7lr9my4CHm+cloGOsI95M/UjjR9quYZlmjBdCkWAmoeD7CbC9WCVhsO3lodnizQdxa8K3pPLFJ7ZdYf6j6WyUWEfxvg+OaOPTFOO1HekGxdo7Dx0Pog1ZLBny5tJGTvKXwgRDCZEpg0lB7ICj6fSdhyWqebK6PnMRQnIAajbCFU0DVjX8I29M/8P2sm7qW1qn7eLDjTVMM2UPXub9595CUYjCCAToKl9+d469O/8rCAfAAm3MM5WF6gPJQoaRnUcAPhTxWLnr6jXC8jegAfOLWBr46+OoKYX8EtzGDHGktSk6eweeKETsamyEd1d7YN8b+7jsDaFYp1XUbIvAZp1KYotWPXfqXXqdGGUZF5D0rC/NpfRXGghPE+Kv47tSkOKZtZ1UkWQ2KmMNhfXXHfYFY/s6fTGdzzWTfpDFBQOrGXWi8uUz7KFLkdk8NEhfxUcNieHD+48/CN37jnorj5iCh4HAIMUldz74PJyFKU5UVob2ffGm0W78Y3D3qhS3r2nBl6pfNhzxcjuMry6YKYQkna5E3kN+t5KPhS66j+fS6bSoBQ9o6+oIX/P3/bctcbgrj2ysOZM3gcaejS4La+ygKsQ7+3EBQ3haqCbQfGJcwWBr0c5+2sH2vDCNfpCqoHH391cJLbPxrsddrXL8OYLObIzOUP7B/BuZoBJK0ERB+fA6MPyoCwQtEVwy9FQqTPf/jsOqPz3o3hismpfllX8zlL2C1ypiBQ6igGvK4zWl+ihzs9XxsqD80QLoqw+/X1w/p8yTW/Y6Q892zMlA9LgNLoMh1DWnsc/CzHtxD4goXsvvvxLLYTr8sgKDKTm/gsLlncwqca2O5T0VeyEoVjRHvZKu5eaoZ68cWBwtcr57umPEd/X8BM+YJmCGMc2S/HefkKQHG45vnE3KkKLH73IQO1yvPfh0A+uvvWfxzSLwUcgqXkDwzNUMne79ssT/8f1G6aKUECx6AAAAAASUVORK5CYII='.freeze\n\n# and finally print it!\nputs \"\n#{@unread_channels} | image=#{ICON}\n---\n#{@output}\n---\nSettings\n--Tokens: #{TOKENS.count}\n----Total: #{TOKENS.count}\n----Valid: #{@teams.count} | color=#{@teams.count \u003c TOKENS.count ? 'red' : 'green'}\n----Generate tokens | href=https://api.slack.com/custom-integrations/legacy-tokens\n--Show all channels: #{ALL_CHANNELS} | color=#{ALL_CHANNELS ? 'green' : 'red'}\n---\nRefresh ⟳| refresh=true\n\"\n"
+				}
+			],
+			"path": "Tools/Slack/slack-multi-teams.1m.rb",
+			"filename": "slack-multi-teams.1m.rb",
+			"dir": "Tools/Slack",
+			"docsPlugin": "Tools/Slack/slack-multi-teams.1m.rb.html",
+			"docsCategory": "Tools/Slack.html",
+			"pathSegments": [
+				"Tools",
+				"Slack"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": false
+				},
+				{
+					"path": "Tools/Slack",
+					"text": "Slack",
+					"isLast": true
+				}
+			],
+			"title": "Slack Multi-Teams Overview",
+			"version": "v1.0",
+			"author": "Harry Löwen",
+			"authors": [
+				{
+					"name": "Harry Löwen",
+					"githubUsername": "harryloewen",
+					"imageURL": "https://avatars.githubusercontent.com/u/33319470?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Provides an overview of unread channels, unread messages and channel histories.",
+			"imageURL": "https://drive.google.com/uc?export=preview\u0026id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ",
+			"dependencies": null,
+			"aboutURL": "https://github.com/harryloewen/bitbar-slack-multi-teams/",
+			"lastUpdated": "2021-03-08T15:22:07.205451Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Lifestyle/votd.1d.rb",
+					"filename": "votd.1d.rb",
+					"content": "#!/usr/bin/env ruby\n\n# Simple Verse of the Day plugin.\n#\n# by Harry Löwen\n#\n# Shows current verse of the day + verse image\n# Thanks to YouVersion API Devs!\n#\n# Feel free to customize version, language, colors, etc.\n\n# metadata\n# \u003cbitbar.title\u003eVerse of the day\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eHarry Löwen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eharryloewen\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay verse of the day and verse image.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://drive.google.com/uc?export=download\u0026id=1dpt4wWamYbk_l49u8IAOVf66wA27cAi0\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003cbitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/harryloewen/bitbar-votd/\u003c/bitbar.abouturl\u003e\n\nrequire 'net/http'\nrequire 'open-uri'\nrequire 'json'\nrequire 'openssl'\nrequire 'Date'\nrequire 'base64'\n\nBIBLE_LOGO = 'https://www.bible.com/favicon.ico'.freeze\nBASE_URL = 'https://developers.youversionapi.com/1.0/verse_of_the_day'.freeze\nTODAY = Date.today.yday.to_s\nTOKEN = '...'.freeze\nLANG = 'en'.freeze\nVERSION_ID = '1'.freeze # KJV: 1, ASV: 12, RVES: 147, WEB: 20, ...\nCOLOR = '#696969'.freeze\n\nurl = URI(\"#{BASE_URL}/#{TODAY}?version_id=#{VERSION_ID}\")\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Get.new(url)\nrequest['content-type'] = 'application/json'\nrequest['accept'] = 'application/json'\nrequest['x-youversion-developer-token'] = TOKEN\nrequest['accept-language'] = LANG\n\nresponse = JSON.parse http.request(request).read_body\n\nputs \"\\n---\\nresponse: #{response['message']} | color=red\" if response['message']\n\nbible_logo = Base64.encode64(open(BIBLE_LOGO).read).delete(\"\\n\")\nreference = response['verse']['human_reference']\nverse = response['verse']['text'].split.each_slice(8).map{|a|a.join ' '}.join(\"| color=#{COLOR}\\n\")\nverse_url = response['verse']['url']\nimage_url = 'https:' + response['image']['url'].gsub('{width}', '300').gsub('{height}', '300')\nimage_base64 = Base64.encode64(open(image_url).read).delete(\"\\n\")\nimage_attribution = response['image']['attribution']\n\nputs \"\n#{reference} | image=#{bible_logo}\n---\n#{verse} | color=#{COLOR}\n#{reference} | color=#{COLOR}\n---\n| image=#{image_base64}\n#{image_attribution}\n---\n🔗  open in bible.com | href=#{verse_url}\n---\nRefresh ⟳| refresh=true\n\"\n"
+				}
+			],
+			"path": "Lifestyle/votd.1d.rb",
+			"filename": "votd.1d.rb",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/votd.1d.rb.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Verse of the day",
+			"version": "v1.0",
+			"author": "Harry Löwen",
+			"authors": [
+				{
+					"name": "Harry Löwen",
+					"githubUsername": "harryloewen",
+					"imageURL": "https://avatars.githubusercontent.com/u/33319470?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Display verse of the day and verse image.",
+			"imageURL": "https://drive.google.com/uc?export=download\u0026id=1dpt4wWamYbk_l49u8IAOVf66wA27cAi0",
+			"dependencies": null,
+			"aboutURL": "https://github.com/harryloewen/bitbar-votd/",
+			"lastUpdated": "2021-03-08T15:21:56.70804Z",
+			"vars": null
+		}
+	]
+}

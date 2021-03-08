@@ -1,0 +1,80 @@
+/* No comment provided by engineer. */
+"%d days ago" = "%d天前";
+
+/* No comment provided by engineer. */
+"%d hours ago" = "%d小时前";
+
+/* No comment provided by engineer. */
+"%d minutes ago" = "%d分钟前";
+
+/* No comment provided by engineer. */
+"%d months ago" = "%d个月前";
+
+/* No comment provided by engineer. */
+"%d seconds ago" = "%d秒钟前";
+
+/* No comment provided by engineer. */
+"%d weeks ago" = "%d星期前";
+
+/* No comment provided by engineer. */
+"%d years ago" = "%d年前";
+
+/* No comment provided by engineer. */
+"A minute ago" = "1分钟前";
+
+/* No comment provided by engineer. */
+"An hour ago" = "1小时前";
+
+/* No comment provided by engineer. */
+"Just now" = "刚刚";
+
+/* No comment provided by engineer. */
+"Last month" = "上个月";
+
+/* No comment provided by engineer. */
+"Last week" = "上星期";
+
+/* No comment provided by engineer. */
+"Last year" = "去年";
+
+/* No comment provided by engineer. */
+"Yesterday" = "昨天";
+
+/* You can add a space between the number and the characters. */
+"1 year ago" = "1年前";
+
+/* You can add a space between the number and the characters. */
+"1 month ago" = "1个月前";
+
+/* You can add a space between the number and the characters. */
+"1 week ago" = "1星期前";
+
+/* You can add a space between the number and the characters. */
+"1 day ago" = "1天前";
+
+/* No comment provided by engineer. */
+"This morning" = "今天上午";
+
+/* No comment provided by engineer. */
+"This afternoon" = "今天下午";
+
+/* No comment provided by engineer. */
+"Today" = "今天";
+
+/* No comment provided by engineer. */
+"This week" = "本周";
+
+/* No comment provided by engineer. */
+"This month" = "本月";
+
+/* No comment provided by engineer. */
+"This year" = "今年";
+
+/* Short format for */
+"%dy" = "%d年"; // year
+"%dM" = "%d月"; // month
+"%dw" = "%d周"; // week
+"%dd" = "%d天"; // day
+"%dh" = "%d小时"; // hour
+"%dm" = "%d分"; // minute
+"%ds" = "%d秒"; // second

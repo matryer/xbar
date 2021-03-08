@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/persiandate.1m.sh",
+				"filename": "persiandate.1m.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003ePersian Date\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eIlia Vakili\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etheReticent\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows Persian date\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003e\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ejcal\u003c/bitbar.dependencies\u003e\n\n# To fix the \"command not found\" caused by installing jcal using brew\nPATH=/usr/local/bin:$PATH\n\njdate \"+%W\"\necho \"---\"\njdate \"+%G %d %V %Y\"\n"
+			}
+		],
+		"path": "Time/persiandate.1m.sh",
+		"filename": "persiandate.1m.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/persiandate.1m.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Persian Date",
+		"version": "v0.1",
+		"author": "Ilia Vakili",
+		"authors": [
+			{
+				"name": "Ilia Vakili",
+				"githubUsername": "theReticent",
+				"imageURL": "https://avatars.githubusercontent.com/u/10159793?v=4",
+				"bio": "CTO @EtickPars",
+				"primary": true
+			}
+		],
+		"desc": "Shows Persian date",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"jcal"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:06.026862Z",
+		"vars": null
+	}
+}

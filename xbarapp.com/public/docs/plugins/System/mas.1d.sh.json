@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/mas.1d.sh",
+				"filename": "mas.1d.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMac App Store\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eiosdeveloper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eiosdeveloper\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eLists available updates from the Mac App Store using mas-cli (https://github.com/argon/mas). Based on brew-updates.1h.sh\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/yPeXDAj.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003emas\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/System/mas.1d.sh\u003c/bitbar.abouturl\u003e\n\nif test \"$(which /usr/local/bin/mas)\" 2\u003e /dev/null; then\n  UPDATES=$(/usr/local/bin/mas outdated);\n  UPDATE_COUNT=$(echo \"$UPDATES\" | grep -c '[^[:space:]]');\n  if test \"$UPDATE_COUNT\" -gt 0; then\n    echo \"↓$UPDATE_COUNT | dropdown=false\"\n    echo \"---\";\n    if [ -n \"$UPDATES\" ]; then\n      echo \"Upgrade all | bash=/usr/local/bin/mas param1=upgrade terminal=false refresh=true\"\n      echo \"$UPDATES\" | awk '{itemIdentifier = $1; $1 = \"\"; print $0 \" | bash=/usr/local/bin/mas param1=install param2=\" itemIdentifier \" terminal=false refresh=true\"; }'\n    fi\n  fi\nelse\n  echo \"mas not installed\"\nfi\n"
+			}
+		],
+		"path": "System/mas.1d.sh",
+		"filename": "mas.1d.sh",
+		"dir": "System",
+		"docsPlugin": "System/mas.1d.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Mac App Store",
+		"version": "v1.0",
+		"author": "iosdeveloper",
+		"authors": [
+			{
+				"name": "iosdeveloper",
+				"githubUsername": "iosdeveloper",
+				"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Lists available updates from the Mac App Store using mas-cli (https://github.com/argon/mas). Based on brew-updates.1h.sh",
+		"imageURL": "http://i.imgur.com/yPeXDAj.png",
+		"dependencies": [
+			"mas"
+		],
+		"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/System/mas.1d.sh",
+		"lastUpdated": "2021-03-08T15:22:03.96201Z",
+		"vars": null
+	}
+}

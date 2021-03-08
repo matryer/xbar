@@ -1,0 +1,85 @@
+"%1$@ %2$@ has been downloaded and is ready to use! This is an important update; would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ wurde heruntergeladen und steht zur Verwendung bereit! Dies ist eine wichtige Aktualisierung. Möchten Sie %1$@ jetzt durch die neue Version ersetzen und neu starten?";
+
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ wurde heruntergeladen und steht zur Verwendung bereit! Möchten Sie %1$@ jetzt durch die neue Version ersetzen und neu starten?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ kann nicht aktualisiert werden, wenn es von einem Volumen ohne Schreibzugriff (z.B. Disk Image oder CD/DVD) gestartet wurde. Kopieren Sie %1$@ in den Programme Ordner, aktualisieren Sie es von dort.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ ist zur Zeit die neueste verfügbare Version.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ ist verfügbar (Sie verwenden Version %3$@). Möchten Sie die neue Version jetzt herunterladen?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ ist verfügbar (Sie verwenden Version %3$@). Möchten Sie mehr über diese Aktualisierung erfahren?";
+
+"%@ downloaded" = "%@ heruntergeladen";
+
+"%@ of %@" = "%1$@ von %2$@";
+
+"A new version of %@ is available!" = "Eine neue Version von %@ ist verfügbar!";
+
+"A new version of %@ is ready to install!" = "Eine neue Version von %@ ist zur Installation bereit!";
+
+"An error occurred in retrieving update information. Please try again later." = "Bei der Aktualisierung trat ein Fehler auf. Bitte versuchen Sie es später erneut.";
+
+"An error occurred while downloading the update. Please try again later." = "Beim Herunterladen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.";
+
+"An error occurred while extracting the archive. Please try again later." = "Beim Entpacken der Daten ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.";
+
+"An error occurred while installing the update. Please try again later." = "Bei der Installation der Aktualisierung ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.";
+
+"An error occurred while parsing the update feed." = "Beim Lesen der Aktualisierungsinformationen ist ein Fehler aufgetreten.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Beim erneuten Starten von %1$@ ist ein Fehler aufgetreten. Die neue Version von %1$@ steht beim nächsten Programmstart zur Verfügung.";
+
+"An important update to %@ is ready to install" = "Eine wichtige Aktualisierung von %@ steht zur Installation bereit";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Abbrechen";
+
+"Cancel Update" = "Aktualisierung abbrechen";
+
+"Checking for updates..." = "Suche nach Aktualisierungen …";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Aktualisierung wird heruntergeladen …";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Aktualisierung entpacken …";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Installieren und erneut starten";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Aktualisierung installieren …";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "OK";
+
+"Ready to Install" = "Bereit zum Installieren";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Soll %1$@ automatisch nach Aktualisierungen suchen? Sie können im %1$@-Menü auch manuell nach Aktualisierungen suchen.";
+
+"The update is improperly signed." = "Die Aktualisierung ist nicht ordnungsgemäß signiert.";
+
+"Update Error!" = "Fehler beim Aktualisieren!";
+
+"Updating %@" = "Aktualisierung von %@";
+
+"You already have the newest version of %@." = "Sie haben bereits die neueste Version von %@.";
+
+"You're up-to-date!" = "Sie sind auf dem neuesten Stand!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "Mehr über …";

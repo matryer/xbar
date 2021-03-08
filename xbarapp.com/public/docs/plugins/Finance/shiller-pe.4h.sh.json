@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Finance/shiller-pe.4h.sh",
+				"filename": "shiller-pe.4h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eShiller PE ratio\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eJørgen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejtorvald\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGets the current Shiller PE ratio. Information is provided ‘as is’ and solely for informational purposes, not for trading purposes or advice, and may be delayed.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash, curl\u003c/bitbar.dependencies\u003e\n\nSHILLER_PE=$(curl -s https://www.multpl.com/shiller-pe | grep \"Current Shiller PE Ratio is\" | awk '{print $16}' | cut -d, -f1)\n\nif [ \"$(echo \"17 \u003e $SHILLER_PE\" | bc -l)\" -eq 1 ]; then\n\tICON=\"💸 \"\t\n\tCOLOR=green\nelif [ \"$(echo \"21 \u003e $SHILLER_PE\" | bc -l)\" -eq 1 ]; then\n\tICON=\"💵 \"\n\tCOLOR=orange\nelse\n\tICON=\"\"\n\tCOLOR=black\nfi\n\necho \"${ICON}$SHILLER_PE | color=${COLOR}\"\necho \"---\"\necho \"Current Shiller PE ${SHILLER_PE} | color=${COLOR}\"\necho \"See chart | href=https://www.multpl.com/shiller-pe\"\n"
+			}
+		],
+		"path": "Finance/shiller-pe.4h.sh",
+		"filename": "shiller-pe.4h.sh",
+		"dir": "Finance",
+		"docsPlugin": "Finance/shiller-pe.4h.sh.html",
+		"docsCategory": "Finance.html",
+		"pathSegments": [
+			"Finance"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Finance",
+				"text": "Finance",
+				"isLast": true
+			}
+		],
+		"title": "Shiller PE ratio",
+		"version": "",
+		"author": "Jørgen",
+		"authors": [
+			{
+				"name": "Jørgen",
+				"githubUsername": "jtorvald",
+				"imageURL": "https://avatars.githubusercontent.com/u/1808131?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Gets the current Shiller PE ratio. Information is provided ‘as is’ and solely for informational purposes, not for trading purposes or advice, and may be delayed.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"bash",
+			"curl"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:53.860066Z",
+		"vars": null
+	}
+}

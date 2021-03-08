@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/Battery/battery_cycles.12h.sh",
+				"filename": "battery_cycles.12h.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eBattery Cycles\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMaxime Bertheau\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emaxoumime\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGet your battery cycles and condition on the menu bar !\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://nothingreally.botler.me/bitbar.battery-cycles.png\u003c/bitbar.image\u003e\n\n# Get cycles number\ncycles=$(system_profiler SPPowerDataType | grep \"Cycle Count\" | awk '{print $3}')\n\n# If you want to change the emoticon before the number, here are some\n#echo \"🔋 $cycles\"\n#echo \"♾ $cycles\"\n#echo \"♽ $cycles\"\n\necho \"♾ $cycles\"\n\necho \"---\"\n\n# 1000 cycles maximum\n# Based on the cycles max number provided by Apple for all Macbooks after 2009\n# No way to get the Macbook age from script directly\n\ncolor=green\nif [ \"$cycles\" -gt 1000 ]; then\n    color=red\nelif [ \"$cycles\" -gt 750 ]; then\n    color=orange\nfi\n\necho \"Cycles: $cycles / 1000 | color=$color href='https://support.apple.com/en-us/HT201585'\"\n\n# Get battery condition\ncondition=$(system_profiler SPPowerDataType | grep \"Condition\" | sed -e 's/^.*: //')\n\ncolor=green\nif [ \"$condition\" != \"Normal\" ]; then\n    color=red\nfi\n\necho \"Battery condition: $condition | color=$color\"\n"
+			}
+		],
+		"path": "System/Battery/battery_cycles.12h.sh",
+		"filename": "battery_cycles.12h.sh",
+		"dir": "System/Battery",
+		"docsPlugin": "System/Battery/battery_cycles.12h.sh.html",
+		"docsCategory": "System/Battery.html",
+		"pathSegments": [
+			"System",
+			"Battery"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": false
+			},
+			{
+				"path": "System/Battery",
+				"text": "Battery",
+				"isLast": true
+			}
+		],
+		"title": "Battery Cycles",
+		"version": "1.0",
+		"author": "Maxime Bertheau",
+		"authors": [
+			{
+				"name": "Maxime Bertheau",
+				"githubUsername": "maxoumime",
+				"imageURL": "https://avatars.githubusercontent.com/u/3897798?v=4",
+				"bio": "Android Engineer @ FrontApp",
+				"primary": true
+			}
+		],
+		"desc": "Get your battery cycles and condition on the menu bar !",
+		"imageURL": "https://nothingreally.botler.me/bitbar.battery-cycles.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:01.71244Z",
+		"vars": null
+	}
+}

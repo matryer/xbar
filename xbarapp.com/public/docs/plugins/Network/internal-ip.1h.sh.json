@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/internal-ip.1h.sh",
+				"filename": "internal-ip.1h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003einternal-ip\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eGets the current internal IP address, and shows more information in the details.\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nifconfig | grep -e \"^en\" | sort -u | while read line ; do\n    ACTIVE_ADAPTER=$(echo $line | awk -F: '{print $1}')\n    INTERNAL_IP_ADDRESS=$(ifconfig $ACTIVE_ADAPTER | grep \"inet \" | awk '{print $2}')\n    if [ -n \"$INTERNAL_IP_ADDRESS\" ]; then\n        echo $INTERNAL_IP_ADDRESS\n        echo \"---\"\n        echo \"(Internal IP address)\"\n        echo \"---\"\n        ifconfig ${ACTIVE_ADAPTER}\n\n        break\n    fi\ndone\n"
+			}
+		],
+		"path": "Network/internal-ip.1h.sh",
+		"filename": "internal-ip.1h.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/internal-ip.1h.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "internal-ip",
+		"version": "1.0",
+		"author": "Mat Ryer",
+		"authors": [
+			{
+				"name": "Mat Ryer",
+				"githubUsername": "matryer",
+				"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+				"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+				"primary": true
+			}
+		],
+		"desc": "Gets the current internal IP address, and shows more information in the details.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.905298Z",
+		"vars": null
+	}
+}

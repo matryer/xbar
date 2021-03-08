@@ -1,0 +1,56 @@
+{
+	"person": {
+		"name": "Sean Lane",
+		"githubUsername": "seanlane",
+		"imageURL": "https://avatars.githubusercontent.com/u/5761232?v=4",
+		"bio": "BYU Graduate CS student, currently working with the BYU IDeA Labs and PNNL",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Music/quodlibet-control.1s.py",
+					"filename": "quodlibet-control.1s.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eQuod Libet Control\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSean Lane\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eseanlane\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eControl Quoid Libet via Bitbar\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/VA8ZEbR.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003equodlibet, python\u003c/bitbar.dependencies\u003e\n\nimport os, subprocess, sys\n\nCUR_PATH = os.path.expanduser('~/.quodlibet/current')\nCONTROL_PATH = os.path.expanduser('~/.quodlibet/control')\n\ndef get_current():\n  with open(CUR_PATH, 'r') as cur:\n    lines = cur.readlines()\n  lines = [x.strip().lstrip('~').lstrip('#').split('=', 1) \n    for x in lines]\n  return {x[0]: x[1] for x in lines}\n\ndef run_cmd(cmd_in):\n  if cmd_in == 'delete':\n    status = get_current()\n    run_cmd('next')\n    if os.path.exists(status['filename']):\n      subprocess.check_output('mv \"{}\" {}'.format(\n        status['filename'], os.path.expanduser('~/.Trash/')), shell=True)\n  elif cmd_in == 'menu-previous':\n      run_cmd('force-previous')\n  elif cmd_in == 'open-ql':\n    subprocess.check_output('open -a QuodLibet', shell=True)\n  else:\n    subprocess.check_output('echo {} \u003e {}'.format(cmd_in, CONTROL_PATH), shell=True)\n\ndef cmd(phrase, param1):\n  return '{} | bash={} param1={} terminal=false'.format(\n    phrase, sys.argv[0], param1) \n\nif len(sys.argv) == 2:\n    run_cmd(sys.argv[1])\nelse:\n  if not os.path.exists(CUR_PATH) and not os.path.exists(CONTROL_PATH):\n    print('♫')\n    print('---')\n    print(cmd('Open Quod Libet', 'open-ql'))\n    sys.exit()\n\n  if not os.path.exists(CUR_PATH):\n    print('♫')\n    print('---')\n    print(cmd('Show window', 'focus'))\n    sys.exit()\n\n  status = get_current()\n\n  print('♫ {} - {} | length=30'.format(\n    status['title'], status['artist']))\n  print('---')\n  print(status['title'])\n  print(status['album'])\n  print(status['artist'])\n  print(cmd('Play / Pause', 'play-pause'))\n  print(cmd('Next', 'next'))\n  print(cmd('Previous', 'menu-previous'))\n  print('---')\n  print(cmd('Delete', 'delete'))\n"
+				}
+			],
+			"path": "Music/quodlibet-control.1s.py",
+			"filename": "quodlibet-control.1s.py",
+			"dir": "Music",
+			"docsPlugin": "Music/quodlibet-control.1s.py.html",
+			"docsCategory": "Music.html",
+			"pathSegments": [
+				"Music"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Music",
+					"text": "Music",
+					"isLast": true
+				}
+			],
+			"title": "Quod Libet Control",
+			"version": "v1.0",
+			"author": "Sean Lane",
+			"authors": [
+				{
+					"name": "Sean Lane",
+					"githubUsername": "seanlane",
+					"imageURL": "https://avatars.githubusercontent.com/u/5761232?v=4",
+					"bio": "BYU Graduate CS student, currently working with the BYU IDeA Labs and PNNL",
+					"primary": true
+				}
+			],
+			"desc": "Control Quoid Libet via Bitbar",
+			"imageURL": "https://i.imgur.com/VA8ZEbR.png",
+			"dependencies": [
+				"quodlibet",
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:57.625781Z",
+			"vars": null
+		}
+	]
+}

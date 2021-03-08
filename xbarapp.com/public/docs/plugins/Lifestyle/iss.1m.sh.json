@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/iss.1m.sh",
+				"filename": "iss.1m.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eISS Pass Finder\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCian Dowd\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eBrokenFlows\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTells you when the ISS (space station) will pass over your location and for how long it will be above the horizon. Requires user to enter their location data in the script\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/z4Tc4dt.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ejq\u003c/bitbar.dependencies\u003e\n\necho \"Please open the script to enter your location information, you can delete this line once you have\" 1\u003e\u00262\nexit 0 #you should also delete this one\n\n# Credit: I am not the original author of this script, I altered an existing Linux script for BSD Unix and BitBar. The original Shell Script can be found here: http://vsido.org/index.php?topic=1016.0\n\n# Note: Even if the International Space Station is above the horizon if may only be visible in the late evening and and night, as is the case with stars. Happy spotting\n\n# User set up in the box below\n# ********************************************************************************************************************* #\n# This script requires jq, which you can get by typing                                                                  #\n#                   brew install jq                                                                                     #\n# into the terminal app if you have homebrew installed                                                                  #\n#                                                                                                                       #\n# Please leave out any units                                                                                            #\n# Enter your latitude and longitude (you can find them here: http://mynasadata.larc.nasa.gov/latitudelongitude-finder/) #\nlatit=0                                                                                                                 #\nlongi=0                                                                                                                 #\n#                                                                                                                       #\n# Enter your elevation (you can find it here: www.whatismyelevation.com)                                                #\neleva=0                                                                                                                 #\n# ********************************************************************************************************************* #\n\n\n\ncurl -s --connect-timeout 30 -o /tmp/issn.json \"http://api.open-notify.org/iss-now.json\"\ncurl -s --connect-timeout 30 -o /tmp/issp.json \"http://api.open-notify.org/iss-pass.json?lat=$latit\u0026lon=$longi\u0026alt=$eleva\u0026n=10\"\n\nissnowtu=$(/usr/local/bin/jq -r '.timestamp' /tmp/issn.json)\nlatit=$(/usr/local/bin/jq -r '.iss_position.latitude' /tmp/issn.json)\nlongi=$(/usr/local/bin/jq -r '.iss_position.longitude' /tmp/issn.json)\nisspd1=$(/usr/local/bin/jq -r '.response[0].duration' /tmp/issp.json)\nisspd11=$(printf '%02d:%02d\\n' $((isspd1/60%60)) $((isspd1%60)))\nisspd2=$(/usr/local/bin/jq -r '.response[1].duration' /tmp/issp.json)\nisspd22=$(printf '%02d:%02d\\n' $((isspd2/60%60)) $((isspd2%60)))\nisspd3=$(/usr/local/bin/jq -r '.response[2].duration' /tmp/issp.json)\nisspd33=$(printf '%02d:%02d\\n' $((isspd3/60%60)) $((isspd3%60)))\nisspd4=$(/usr/local/bin/jq -r '.response[3].duration' /tmp/issp.json)\nisspd44=$(printf '%02d:%02d\\n' $((isspd4/60%60)) $((isspd4%60)))\nisspd5=$(/usr/local/bin/jq -r '.response[4].duration' /tmp/issp.json)\nisspd55=$(printf '%02d:%02d\\n' $((isspd5/60%60)) $((isspd5%60)))\nisspd6=$(/usr/local/bin/jq -r '.response[5].duration' /tmp/issp.json)\nisspd66=$(printf '%02d:%02d\\n' $((isspd6/60%60)) $((isspd6%60)))\nisspd7=$(/usr/local/bin/jq -r '.response[6].duration' /tmp/issp.json)\nisspd77=$(printf '%02d:%02d\\n' $((isspd7/60%60)) $((isspd7%60)))\nisspd8=$(/usr/local/bin/jq -r '.response[7].duration' /tmp/issp.json)\nisspd88=$(printf '%02d:%02d\\n' $((isspd8/60%60)) $((isspd8%60)))\nisspd9=$(/usr/local/bin/jq -r '.response[8].duration' /tmp/issp.json)\nisspd99=$(printf '%02d:%02d\\n' $((isspd9/60%60)) $((isspd9%60)))\nisspd10=$(/usr/local/bin/jq -r '.response[9].duration' /tmp/issp.json)\nisspd100=$(printf '%02d:%02d\\n' $((isspd10/60%60)) $((isspd10%60)))\nisspt1=$(/usr/local/bin/jq -r '.response[0].risetime' /tmp/issp.json)\nisspt11=$(date -r \"$isspt1\" +'%H:%M %d/%m/%y')\nisspt2=$(/usr/local/bin/jq -r '.response[1].risetime' /tmp/issp.json)\nisspt22=$(date -r \"$isspt2\" +'%H:%M %d/%m/%y')\nisspt3=$(/usr/local/bin/jq -r '.response[2].risetime' /tmp/issp.json)\nisspt33=$(date -r \"$isspt3\" +'%H:%M %d/%m/%y')\nisspt4=$(/usr/local/bin/jq -r '.response[3].risetime' /tmp/issp.json)\nisspt44=$(date -r \"$isspt4\" +'%H:%M %d/%m/%y')\nisspt5=$(/usr/local/bin/jq -r '.response[4].risetime' /tmp/issp.json)\nisspt55=$(date -r \"$isspt5\" +'%H:%M %d/%m/%y')\nisspt6=$(/usr/local/bin/jq -r '.response[5].risetime' /tmp/issp.json)\nisspt66=$(date -r \"$isspt6\" +'%H:%M %d/%m/%y')\nisspt7=$(/usr/local/bin/jq -r '.response[6].risetime' /tmp/issp.json)\nisspt77=$(date -r \"$isspt7\" +'%H:%M %d/%m/%y')\nisspt8=$(/usr/local/bin/jq -r '.response[7].risetime' /tmp/issp.json)\nisspt88=$(date -r \"$isspt8\" +'%H:%M %d/%m/%y')\nisspt9=$(/usr/local/bin/jq -r '.response[8].risetime' /tmp/issp.json)\nisspt99=$(date -r \"$isspt9\" +'%H:%M %d/%m/%y')\nisspt10=$(/usr/local/bin/jq -r '.response[9].risetime' /tmp/issp.json)\nisspt100=$(date -r \"$isspt10\" +'%H:%M %d/%m/%y')\n\ncurl -s --connect-timeout 30 -o /tmp/gcd.json \"https://maps.googleapis.com/maps/api/geocode/json?latlng=$latit,$longi\u0026components=locality\u0026language=en\"\n\nissnowl=$(/usr/local/bin/jq -r '.results[0].formatted_address' /tmp/gcd.json)\nissnowlc=$(grep \"ZERO_RESULTS\" /tmp/gcd.json)\n\nissptl=$((isspt1 - issnowtu))\n\necho \"ISS passing in $((issptl/3600%60)) hours $((issptl/60%60)) minutes\"\necho \"---\"\n\nif [[ -z \"$issnowlc\" ]]; then\n\t\techo -e \"The ISS is over $issnowl\"\nelse\n\t\techo -e \"The ISS is over an unmapped area\"\nfi\n\necho \"---\"\necho \"\"\necho -e \"ISS will pass over your location at these times:\"\necho \"Visible from $isspt11 for $isspd11 | font=CourierNew\"\necho \"Visible from $isspt22 for $isspd22 | font=CourierNew\"\necho \"Visible from $isspt33 for $isspd33 | font=CourierNew\"\necho \"Visible from $isspt44 for $isspd44 | font=CourierNew\"\necho \"Visible from $isspt55 for $isspd55 | font=CourierNew\"\necho \"Visible from $isspt66 for $isspd66 | font=CourierNew\"\necho \"Visible from $isspt77 for $isspd77 | font=CourierNew\"\necho \"Visible from $isspt88 for $isspd88 | font=CourierNew\"\necho \"Visible from $isspt99 for $isspd99 | font=CourierNew\"\necho \"Visible from $isspt100 for $isspd100 | font=CourierNew\"\n\nrm /tmp/issn.json\nrm /tmp/issp.json\nrm /tmp/gcd.json\nexit 0\n"
+			}
+		],
+		"path": "Lifestyle/iss.1m.sh",
+		"filename": "iss.1m.sh",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/iss.1m.sh.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "ISS Pass Finder",
+		"version": "v1.0",
+		"author": "Cian Dowd",
+		"authors": [
+			{
+				"name": "Cian Dowd",
+				"githubUsername": "BrokenFlows",
+				"imageURL": "https://avatars.githubusercontent.com/u/21959941?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Tells you when the ISS (space station) will pass over your location and for how long it will be above the horizon. Requires user to enter their location data in the script",
+		"imageURL": "http://i.imgur.com/z4Tc4dt.png",
+		"dependencies": [
+			"jq"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:55.530326Z",
+		"vars": null
+	}
+}

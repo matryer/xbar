@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/date-picker.1m.sh",
+				"filename": "date-picker.1m.sh",
+				"content": "#!/bin/bash\n\n# Display todays date and time in various formats including ISO8601 and allows copying to clipboard.\n\n# Comment out the dates you don't need.\n\n# \u003cbitbar.title\u003eDate Picker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTim Battersby\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003euglygus\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay todays date in various forms including iso8601 and copies to the clipboard.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/GVSUqFX.png\u003c/bitbar.image\u003e\n\n# Appears in the menubar YYYY-MM-DD\ndate +%F\necho \"---\"\n\n#---ISO8601\n\nYMD=$(date +%F)\necho \"$YMD |bash='$0' param1=copy param2=$YMD terminal=false\"\n\nDATETIME=$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")\necho \"$DATETIME |bash='$0' param1=copy param2=$DATETIME terminal=false\"\n\necho \"---\"\n\n#---USA\n\nMDY=$(date \"+%D\")\necho \"$MDY |bash='$0' param1=copy param2=$MDY terminal=false\"\n\n MonDY=$(date +\"%b %d %Y\")\n echo \"$MonDY |bash='$0' param1=copy param2=\\\"$MonDY\\\" terminal=false\"\n\nTIME12=$(date +\"%r\")\necho \"$TIME12 |bash='$0' param1=copy param2=\\\"$TIME12\\\" terminal=false\"\n\necho \"---\"\n\n\n#---REST OF THE WORLD\n\nDMY=$(date +\"%d/%m/%y\")\necho \"$DMY |bash='$0' param1=copy param2=$YMD terminal=false\"\n\nDMonY=$(date +\"%d %b %Y\")\necho \"$DMonY |bash='$0' param1=copy param2=\\\"$DMonY\\\" terminal=false\"\n\nTIMESTAMP=$(date +\"%T %D\")\necho \"$TIMESTAMP |bash='$0' param1=copy param2=\\\"$TIMESTAMP\\\" terminal=false\"\n\n\nTIME24=$(date +\"%R:%S\")\necho \"$TIME24 |bash='$0' param1=copy param2=\\\"$TIME24\\\" terminal=false\"\n\n\n\nif [[ \"$#\" -ge 1 ]];then\n    if [[ \"$1\" == 'copy' ]] ; then\n\n        echo -n \"$2\" | pbcopy\n        echo COPIED \"$2\"\n    fi\nfi\n"
+			}
+		],
+		"path": "Time/date-picker.1m.sh",
+		"filename": "date-picker.1m.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/date-picker.1m.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Date Picker",
+		"version": "v1.0",
+		"author": "Tim Battersby",
+		"authors": [
+			{
+				"name": "Tim Battersby",
+				"githubUsername": "uglygus",
+				"imageURL": "https://avatars.githubusercontent.com/u/11585473?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Display todays date in various forms including iso8601 and copies to the clipboard.",
+		"imageURL": "https://i.imgur.com/GVSUqFX.png",
+		"dependencies": [],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:05.713189Z",
+		"vars": null
+	}
+}

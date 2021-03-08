@@ -1,0 +1,56 @@
+{
+	"person": {
+		"name": "Chris Bergeron",
+		"githubUsername": "chrisbergeron",
+		"imageURL": "https://avatars.githubusercontent.com/u/20324315?v=4",
+		"bio": "IT Professional with over 25 years of experience including: Cloud, Infrastructure, Virtualization, Systems Administration, Network and DB Administration.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Music/plex-status.1m.sh",
+					"filename": "plex-status.1m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003ePlex Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.3\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eChris Bergeron\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003echrisbergeron\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSee what's currently playing on your Plex\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://res.cloudinary.com/cyberge/image/upload/v1550627901/icons/plex_878759_eey690.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash,imagemagick\u003c/bitbar.dependencies\u003e\n\n# Put your plex hostname here\nplexhost=\"plex-01\"\n#curlcmd=$(command -v curl)\n\n# Put host to ping here (useful for vpn connections)\npinghost=\"plex-01\"\n\n# To do: Automate this from a curl response\n# The UUID of your Plex Server.  This can be obtained from the browser address bar after selecting an item (it's between /server/ and /detail/)\nserverid=\"YOUR SERVER ID HERE\"\n\n# Temp filename\ntmpfile=\"/tmp/image.jpg\"\ntouch $tmpfile\necho \u003e /tmp/output.txt\n\n# To do, retrieve Plex Token automatically, send username/password in Auth Request Header\n#plextoken=$(curl -s -X POST \\\n#  'https://my.plexapp.com/users/sign_in.xml?X-Plex-Client-Identifier=my-app\u0026Content-Length=0' \\\n#  -H 'cache-control: no-cache')\n\n# Put your Plex API token here\nplextoken=YOUR_PLEX_API_TOKEN_HERE\n\n# If host is unreachable, display message and stop\nif ! (ping -c1 -W1 $plexhost \u003e /dev/null 2\u003e\u00261); then\n  echo \"❌\"\n  echo \"---\"\n  echo \"Can't connect to $pinghost\"\n  exit\nfi\n\n# If we can connect to Plex, let's see what's playing and display it\nif ! (curl -s http://$plexhost:32400/identity \u003e /dev/null 2\u003e\u00261); then\n  echo \"❌\"\n  echo \"---\"\n  echo \"Plex is unreachable | color=red\"\n  echo \"$plexhost\"\nfi\n\n# Get our session data from Plex\nxmldata=$(curl -s -X GET \\\n  \"http://plex-01:32400/status/sessions?X-Plex-Token=$plextoken\" \\\n  -H 'Content-Length: 0' \\\n  -H 'X-Plex-Client-Identifier: my-app' \\\n  -H 'cache-control: no-cache')\n\necho \"XMLDATA is: ($xmldata)\" \u003e\u003e /tmp/output.txt\n\nif (echo \"$xmldata\" | grep \"Unauthorized\"\u003e /dev/null 2\u003e\u00261); then\n  echo -en \"❌\\n---\\nUnauthorized.\\nCheck your API Key.\"\n  exit\nfi\n  \n# Check to see if anything is playing, if not, say so and exit\nif ! (echo \"$xmldata\" | grep \"Video\" \u003e /dev/null 2\u003e\u00261); then\n  echo \"○\"\n  echo \"---\"\n  echo \"Nothing playing\"\n  exit\nfi\n\n# Check to see if a trailer is playing, if so, exit\n# To do: Display trailer info\nif ! (echo \"$xmldata\" | grep \"subtype=\\\"trailer\\\"\" \u003e /dev/null 2\u003e\u00261); then\n  echo \"D\"\n  echo \"---\"\n  echo \"Preview Trailer Playing\"\n  exit\nfi\n\n# If metadata is a movie, parse it separately\nif (echo \"$xmldata\" | grep \"movie\" \u003e /dev/null 2\u003e\u00261); then\n  # We're watching a movie, parse as such\n  thumblink=$(echo \"$xmldata\" | sed -e 's/\u003e/\\\u003e\\n/g' | head -n3 | tail -n1 | cut -f4 -d \"\\\"\" | sed -e 's/art/thumb/g')\n  keydata=\"%2Flibrary%2Fmetadata%2F\"$(echo \"$thumblink\" | cut -f4 -d \"/\")\nelse\n  # We're watching TV, parse as such\n  thumblink=$(echo \"$xmldata\" | sed -e 's/\" /\\n/g' | grep grandparentThumb | cut -f2 -d \"\\\"\"| head -n1)\n  keydata=$(echo \"$xmldata\" | sed -e 's/\" /\\n/g' | grep \"key\" | head -n1 | cut -f2 -d \"\\\"\" | sed -e 's/\\//%2F/g' | head -n1)\nfi\n\n# Debug info\n#echo \"thumbnail link is: ($thumblink)\" \u003e\u003e /tmp/output.txt\n#echo \"keydata for url is: ($keydata)\" \u003e\u003e /tmp/output.txt\n\ncurl -s -o /tmp/image.jpg -X GET \\\n  \"http://plex-01:32400$thumblink?X-Plex-Token=$plextoken\" \\\n  -H 'Content-Length: 0' \\\n  -H 'X-Plex-Client-Identifier: my-app' \\\n  -H 'cache-control: no-cache'\n\n# Resize our image to a small thumbnail\n#mogrify -scale 75x100 $tmpfile\nif ! (mogrify -scale 75x100 /tmp/image.jpg \u003e\u003e /tmp/output.txt 2\u003e\u00261); then\n  echo \"---\"\n  echo \"Couldn't render thumbnail image\"\n  exit\nfi\n\n# Encode our image into base64 text for BitBar\nimgstr=$(base64 /tmp/image.jpg)\n\n# Display our menu output\necho \"| templateImage=iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAAC4kAAAuJATfJy60AAAAHdElNRQfjAhMPKzgxRmpXAAAAuUlEQVQoz5XRMU4CYRQE4O93LbCFtZDQ2dGItS2n4AKchFNwAbnIVhYmW1GTEBJDgiGRbh+FGyPwR+I0r5iZvHlvgGSmEcLeUBalWghhofubKNr55dNYBw823sW5gLW+Z0lH6c3mUnCw8mQgGbhVOZwL+FB4cSd5tFTnonYt2qi1Mn/N0F4IjZkEN/6FKysKU1sh7Exy/pFKIzTmepd0z7ylK6Ocf2InhK3pyXda3P+U9Xpa1jf+qPsIyJ5B7rJwvZwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTktMDItMTlUMjA6NDQ6MDAtMDU6MDBDoNoZAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE5LTAyLTE5VDIwOjQzOjU2LTA1OjAw+xFCggAAAABJRU5ErkJggg==\"\necho \"---\"\n#  echo \"Now Playing | color=green\"\necho \"Now Playing | color=orange\"\necho \"| image=$imgstr href=http://plex-01:32400/web/index.html#!/server/$serverid/details?key=$keydata\"\n"
+				}
+			],
+			"path": "Music/plex-status.1m.sh",
+			"filename": "plex-status.1m.sh",
+			"dir": "Music",
+			"docsPlugin": "Music/plex-status.1m.sh.html",
+			"docsCategory": "Music.html",
+			"pathSegments": [
+				"Music"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Music",
+					"text": "Music",
+					"isLast": true
+				}
+			],
+			"title": "Plex Status",
+			"version": "v0.3",
+			"author": "Chris Bergeron",
+			"authors": [
+				{
+					"name": "Chris Bergeron",
+					"githubUsername": "chrisbergeron",
+					"imageURL": "https://avatars.githubusercontent.com/u/20324315?v=4",
+					"bio": "IT Professional with over 25 years of experience including: Cloud, Infrastructure, Virtualization, Systems Administration, Network and DB Administration.",
+					"primary": true
+				}
+			],
+			"desc": "See what's currently playing on your Plex",
+			"imageURL": "https://res.cloudinary.com/cyberge/image/upload/v1550627901/icons/plex_878759_eey690.png",
+			"dependencies": [
+				"bash",
+				"imagemagick"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:57.645934Z",
+			"vars": null
+		}
+	]
+}

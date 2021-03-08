@@ -1,0 +1,530 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Speedwifi-next W06 transfer amount during 1day in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='show Speedwifi-next w06 transfer amount during 1day for bitbar. - install xbar for free to get started.'>
+	<meta name='author' content='positrium'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png'>
+	<meta itemprop='name' content='Speedwifi-next W06 transfer amount during 1day in your macOS menu bar'>
+	<meta itemprop='description' content='show Speedwifi-next w06 transfer amount during 1day for bitbar. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Speedwifi-next W06 transfer amount during 1day in your macOS menu bar'>
+	<meta name='twitter:description' content='show Speedwifi-next w06 transfer amount during 1day for bitbar. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Speedwifi-next W06 transfer amount during 1day in your macOS menu bar'>
+	<meta property='og:description' content='show Speedwifi-next w06 transfer amount during 1day for bitbar. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Network/w06_transfer.10s.rb.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Speedwifi-next W06 transfer amount during 1day</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/positrium.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/22125861?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/positrium.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										positrium.org (<code style='color:white;'>@positrium</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						show Speedwifi-next w06 transfer amount during 1day for bitbar.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Network%2fw06_transfer.10s.rb'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png' 
+				alt='Image preview of Speedwifi-next W06 transfer amount during 1day plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>w06_transfer.10s.rb</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Network/w06_transfer.10s.rb'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/w06_transfer.10s.rb'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env ruby
+
+# &lt;bitbar.title&gt;Speedwifi-next W06 transfer amount during 1day&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;positrium&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;positrium&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;show Speedwifi-next w06 transfer amount during 1day for bitbar.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;ruby&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/positrium/wifi-transfer-meter&lt;/bitbar.abouturl&gt;
+
+require &#39;open-uri&#39;
+require &#39;nokogiri&#39;
+
+class TransferAmount
+	def initialize
+		@has_error = false
+
+		@scale = {
+			kb: 1024,
+			mb: 1024 * 1024,
+			gb: 1024 * 1024 * 1024,
+			tb: 1024 * 1024 * 1024 * 1024
+		}
+		@scale.freeze
+
+		@payload = {
+			yesterday_download: -9,
+			yesterday_upload: -9,
+			yesterday_duration: -9,
+			today_download: -9,
+			today_upload: -9,
+			today_duration: -9,
+			is_yesterday_flux_over_limit: -9,
+			last_clear_time_3days: -9
+		}
+
+		@doc = Nokogiri.HTML(open(&#34;http://speedwifi-next.home/api/monitoring/statistics_3days&#34;))
+		@doc.xpath(&#39;//response/*&#39;).each do |e|
+			case e.name
+			when &#39;toyestodaydownload&#39;
+				@payload[:yesterday_download] = e.children[0].text
+			when &#39;toyestodayupload&#39;
+				@payload[:yesterday_upload] = e.children[0].text
+			when &#39;toyestodayduration&#39;
+				@payload[:yesterday_duration] = e.children[0].text
+			when &#39;totodaydownload&#39;
+				@payload[:today_download] = e.children[0].text
+			when &#39;totodayupload&#39;
+				@payload[:today_upload] = e.children[0].text
+			when &#39;totodayduration&#39;
+				@payload[:today_duration] = e.children[0].text
+			when &#39;isyestodayfluxoverlimit&#39;
+				@payload[:is_yesterday_flux_over_limit] = e.children[0].text
+			when &#39;lastcleartime3days&#39;
+				@payload[:last_clear_time_3days] = e.children[0].text
+			end
+		end
+		@payload.freeze
+	rescue
+		@has_error = true
+	end
+
+	def yesterday_data_usage
+		yesterday_data = @payload[:yesterday_download].to_i &#43; @payload[:yesterday_upload].to_i
+
+		scale = transfer_scale(yesterday_data)
+		yesterday_usage = ( yesterday_data.to_f / scale[:size] ).round(2)
+
+		{amount: yesterday_usage, label: scale[:label], percentage: yesterday_usage / 10.00 * 100}
+	end
+
+	def today_data_usage
+		today_data = @payload[:today_download].to_i &#43; @payload[:today_upload].to_i
+
+		scale = transfer_scale(today_data)
+		today_usage = ( today_data.to_f / scale[:size] ).round(2)
+
+		{amount: today_usage, label: scale[:label], percentage: today_usage / 10.00 * 100}
+	end
+
+	def limited?
+		limited = @payload[:is_yesterday_flux_over_limit].to_i
+
+		false if limited == 0
+		true if limited != 0
+	end
+
+	def has_error?
+		@has_error
+	end
+
+	def scale_down(value)
+		value * 1024
+	end
+
+	private
+
+	def transfer_scale(byte)
+		scale_info = {size: 0, label: &#39;&#39;}
+
+		if @scale[:mb] &gt; byte
+			scale_info[:size] = @scale[:kb]
+			scale_info[:label] = &#39;KB&#39;
+		elsif @scale[:gb] &gt; byte
+			scale_info[:size] = @scale[:mb]
+			scale_info[:label] = &#39;MB&#39;
+		elsif @scale[:tb] &gt; byte
+			scale_info[:size] = @scale[:gb]
+			scale_info[:label] = &#39;GB&#39;
+		else
+			scale_info[:size] = @scale[:tb]
+			scale_info[:label] = &#39;TB&#39;
+		end
+
+		scale_info
+	end
+
+end
+
+class WarningDetector
+	attr_reader :sign, :amount
+
+	def initialize(amount, percentage, symbols={over: &#34;x&#34;, warn: &#34;!&#34;, ok: &#34;o&#34;, limited: &#34;-&#34;}, limited=false)
+		@amount = amount.round(2)
+		@percentage = percentage
+		@symbols = symbols
+		@limited = limited
+	end
+
+	def total_status
+		@status = :ok
+
+		if @percentage &gt;= 100.00
+			@status = :over
+		elsif @percentage &gt;= 70.00
+			@status = :warn
+		end
+
+		@sign = @symbols[@status]
+		@status
+	end
+
+	def today_left_value
+		value = 0
+
+		case @status
+		when :warn
+			value = scale_down(10.00-@amount).round(2)
+			value = value.round
+		when :ok
+			value = scale_down(7.00-@amount).round(2)
+			value = value.round
+		end
+
+		value = 0 if value &lt; 1
+
+		value
+	end
+
+	private
+
+	def scale_down(n)
+		n * 1024
+	end
+end
+
+a = TransferAmount.new
+
+if a.has_error?
+	puts &#34;&lt;!&gt; connect to w06&#34;
+
+else
+	symbols = {over: &#34;:broken_heart:&#34;, warn: &#34;:yellow_heart:&#34;, ok: &#34;:green_heart:&#34;, limited: &#34;:no_entry_sign:&#34;}
+	symbols.freeze
+
+	usage = a.today_data_usage
+	wc = WarningDetector.new(usage[:amount], usage[:percentage], symbols, a.limited?)
+	wc.total_status
+
+	y_usage = a.yesterday_data_usage
+	wt = WarningDetector.new(y_usage[:amount], y_usage[:percentage], symbols, false)
+	wt.total_status
+
+	puts &#34;#{wc.sign}#{wc.today_left_value}MB(#{wc.amount}#{usage[:label]})&#34;
+	puts &#34;---&#34;
+	puts &#34;admin page|href=http://speedwifi-next.home&#34;
+	puts &#34;hardware page|href=https://www.uqwimax.jp/wimax/products/w06/&#34;
+	puts &#34;---&#34;
+	puts &#34;until today usage&#34;
+	puts &#34;#{wc.sign}#{wc.amount}#{usage[:label]}&#34;
+	puts &#34;--#{symbols[:limited]} restricted now&#34;
+	puts &#34;--#{symbols[:over]} over 10GB (100%)&#34;
+	puts &#34;--#{symbols[:warn]} over  7GB ( 70%)&#34;
+	puts &#34;--#{symbols[:ok]} less 7GB&#34;
+	puts &#34;--today &#43; 1 day ago &#43; 2 days ago&#34;
+	puts &#34;until yesterday usage&#34;
+	puts &#34;#{wt.sign}#{wt.amount}#{y_usage[:label]}&#34;
+	puts &#34;--#{symbols[:over]} over 10GB (100%)&#34;
+	puts &#34;--#{symbols[:warn]} over  7GB ( 70%)&#34;
+	puts &#34;--#{symbols[:ok]} less  7GB&#34;
+	puts &#34;--1 day ago &#43; 2 days ago &#43; 3 days ago&#34;
+end
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+{
+	"person": {
+		"name": "Mehmet Akif Tütüncü",
+		"githubUsername": "makiftutuncu",
+		"imageURL": "https://avatars.githubusercontent.com/u/1009191?v=4",
+		"bio": "👨🏻 Computer Engineer, human of 1 (one) cat -\r\n💻 @numbrs, previously @sahibinden, @vngrs -\r\n🎓 IZTECH",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Finance/exchange-rates.5m.sh",
+					"filename": "exchange-rates.5m.sh",
+					"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eExchange Rates\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMehmet Akif Tütüncü\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emakiftutuncu\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://github.com/makiftutuncu/exchange-bitbar/raw/master/Screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.desc\u003eThis is a BitBar plugin for showing exchange rates of currencies in your menu bar. See https://github.com/makiftutuncu/exchange-bitbar#configuration for configuration.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eshell,curl,jq\u003c/bitbar.dependencies\u003e\n#\n# Exchange Rates by Mehmet Akif Tütüncü\n#\n# This is a BitBar plugin for showing exchange rates of currencies in your menu bar.\n# See https://github.com/makiftutuncu/exchange-bitbar#configuration for configuration.\n\nexport PATH=\"/usr/local/bin:$PATH\"\n\n# Currency pairs for which rates will show as array\nCURRENCY_PAIRS=(\"USD-TRY\" \"EUR-TRY\")\n\nfor pair in \"${CURRENCY_PAIRS[@]}\";\ndo\n  URL=$(echo $pair | awk -F '-' '{print \"https://akifs-exchange-api.herokuapp.com/rates?source=\"$1\"\u0026target=\"$2}')\n  RESPONSE=$(curl -s -X GET $URL | jq -r '\"\\(.source),\\(.target),\\(.rate)\"')\n  echo $RESPONSE | awk -F ',' '{printf \"💵 %s-%s: %0.3f\\n\", $1, $2, $3}'\ndone\n"
+				}
+			],
+			"path": "Finance/exchange-rates.5m.sh",
+			"filename": "exchange-rates.5m.sh",
+			"dir": "Finance",
+			"docsPlugin": "Finance/exchange-rates.5m.sh.html",
+			"docsCategory": "Finance.html",
+			"pathSegments": [
+				"Finance"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Finance",
+					"text": "Finance",
+					"isLast": true
+				}
+			],
+			"title": "Exchange Rates",
+			"version": "v1.0",
+			"author": "Mehmet Akif Tütüncü",
+			"authors": [
+				{
+					"name": "Mehmet Akif Tütüncü",
+					"githubUsername": "makiftutuncu",
+					"imageURL": "https://avatars.githubusercontent.com/u/1009191?v=4",
+					"bio": "👨🏻 Computer Engineer, human of 1 (one) cat -\r\n💻 @numbrs, previously @sahibinden, @vngrs -\r\n🎓 IZTECH",
+					"primary": true
+				}
+			],
+			"desc": "This is a BitBar plugin for showing exchange rates of currencies in your menu bar. See https://github.com/makiftutuncu/exchange-bitbar#configuration for configuration.",
+			"imageURL": "https://github.com/makiftutuncu/exchange-bitbar/raw/master/Screenshot.png",
+			"dependencies": [
+				"shell",
+				"curl",
+				"jq"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:53.456927Z",
+			"vars": null
+		}
+	]
+}

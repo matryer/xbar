@@ -1,0 +1,7 @@
+/node_modules/
+/public/build/
+
+.DS_Store
+/public/bundle.js.map
+/public/bundle.js
+/public/bundle.css

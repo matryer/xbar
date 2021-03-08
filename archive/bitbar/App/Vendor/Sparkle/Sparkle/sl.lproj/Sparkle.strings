@@ -1,0 +1,74 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ je bil uspešno prenešen s spleta in je pripravljen na namestitev. Ga želite namestiti in ponovno zagnati takoj?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "Programa %1$@ ni mogoče posodobiti, ker ga poganjate iz lokacije, kamor pisanje ni dovoljeno (pogosto je to slika diska dmg ali optična enota). Poskusite %1$@ premakniti v direktorij z aplikacijami (Applications), ga ponovno zagnati in šele nato posodobiti.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ je najnovejša verzija programa.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "Na voljo je %1$@ %2$@ — vi imate %3$@. Ga želite prenesti s spleta sedaj?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "prenešenih je %@";
+
+"%@ of %@" = "%1$@ od %2$@";
+
+"A new version of %@ is available!" = "Na voljo je nova verzija programa %@.";
+
+"A new version of %@ is ready to install!" = "Najnovejša verzija programa %@ je že nameščena.";
+
+"An error occurred in retrieving update information. Please try again later." = "Med iskanjem posodobitev je prišlo do napake. Prosimo poskusite ponovno čez nekaj časa.";
+
+"An error occurred while downloading the update. Please try again later." = "Med prenašanje posodobitve s spleta je prišlo do napake. Prosimo poskusite ponovno čez nekaj časa.";
+
+"An error occurred while extracting the archive. Please try again later." = "Med odpiranjem arhiva je prišlo do napake. Prosimo poskusite ponovno čez nekaj časa.";
+
+"An error occurred while installing the update. Please try again later." = "Med nameščanjem posodobitve je prišlo do napake. Prosimo poskusite ponovno čez nekaj časa.";
+
+"An error occurred while parsing the update feed." = "Napaka pri interpretaciji RSS vira s posodobitvami.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Med ponovnim zagonom programa %1$@ je sicer prišlo do napake, vendar bo nova verzija na voljo, ko boste naslednjič pognali program.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Prekliči";
+
+"Cancel Update" = "Prekliči posodabljanje";
+
+"Checking for updates..." = "Iskanje posodobitev …";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Prenašanje posodobitve …";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Razpakiranje posodobitve …";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Namesti in ponovno zaženi";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Nameščanje posodobitve …";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "V redu";
+
+"Ready to Install" = "Pripravljen na namestitev";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Naj %1$@ samodejno preverja, če so na voljo posodobitve? To lahko kadarkoli preverite tudi sami iz menija za %1$@.";
+
+"Update Error!" = "Napaka pri posodabljanju";
+
+"Updating %@" = "Posodabljam %@";
+
+"You already have the newest version of %@." = "Najnovejša verzija programa %@ je že nameščena.";
+
+"You're up-to-date!" = "Uporabljate zadnjo verzijo.";

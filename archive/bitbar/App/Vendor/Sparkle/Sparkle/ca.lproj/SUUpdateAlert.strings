@@ -1,0 +1,18 @@
+/* NSButton (Automatically download and install updates in the future) : <title:Automatically download and install updates in the future> (oid:92) */
+"Automatically download and install updates in the future" = "Descarrega i instal·la les actualitzacions automàticament en el futur";
+
+/* NSButton (Install Update) : <title:Install Update> (oid:76) */
+"Install Update" = "Instal·la l'actualització";
+
+/* NSTextField (Release Notes:) : <title:Release Notes:> (oid:17) */
+"Release Notes:" = "Notes d'aquesta versió:";
+
+/* NSButton (Remind Me Later) : <title:Remind Me Later> (oid:22) */
+"Remind Me Later" = "Recorda-m'ho més tard";
+
+/* NSButton (Skip This Version) : <title:Skip This Version> (oid:23) */
+"Skip This Version" = "Omet aquesta versió";
+
+/* NSWindow (Software Update) : <title:Software Update> (oid:5) */
+"Software Update" = "Actualització del programari";
+

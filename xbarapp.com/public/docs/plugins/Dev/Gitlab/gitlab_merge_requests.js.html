@@ -1,0 +1,835 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>GitLab Merge Requests in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content=' - install xbar for free to get started.'>
+	<meta name='author' content='Simeon Cheeseman'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/t0TtQXO.png'>
+	<meta itemprop='name' content='GitLab Merge Requests in your macOS menu bar'>
+	<meta itemprop='description' content=' - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='GitLab Merge Requests in your macOS menu bar'>
+	<meta name='twitter:description' content=' - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/t0TtQXO.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='GitLab Merge Requests in your macOS menu bar'>
+	<meta property='og:description' content=' - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/Gitlab/gitlab_merge_requests.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/t0TtQXO.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/t0TtQXO.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/t0TtQXO.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/t0TtQXO.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>GitLab Merge Requests</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/simeonc.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/1085899?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/simeonc.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Simeon Cheeseman (<code style='color:white;'>@simeonc</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fGitlab%2fgitlab_merge_requests.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/t0TtQXO.png' 
+				alt='Image preview of GitLab Merge Requests plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>gitlab_merge_requests.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/Gitlab/gitlab_merge_requests.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/Gitlab/gitlab_merge_requests.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+// jshint asi:true
+// jshint esversion: 8
+// &lt;bitbar.title&gt;GitLab Merge Requests&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Simeon Cheeseman&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;simeonc&lt;/bitbar.author.github&gt;
+// &lt;bitbar.desc&gt;List of your assigned and created merge requests.
+// The menu bar shows a count of MRs requiring your approval (🔎), WIP MRs (🛠️), Un-mergable MRs (⛔), MRs with failed pipelines (⚠️), MRs with unresolved discussions (🚧), MRs with running pipeline (🚀), MRs pending approval (💬) and Approved/Ready to Merge (❇️).
+// Each MR in the dropdown is grouped by project and displays `&lt;Unmergable&gt; &#34;Title&#34;; &#34;Pipeline Status&#34; : &#34;Approval Status&#34;`, clicking on an MR opens it in the browser&lt;/bitbar.desc&gt;
+// &lt;bitbar.dependencies&gt;node.js&lt;/bitbar.dependencies&gt;
+// &lt;bitbar.image&gt;https://i.imgur.com/t0TtQXO.png&lt;/bitbar.image&gt;
+
+/**
+ * Information
+ *
+ * This was inspired by the work of Shelton Koskie (@eightygrit), who made the
+ * first version of the &#34;GITLAB Projects&#34; for API v4.
+ *
+ * @see   GitLab API Documentation    https://docs.gitlab.com/ee/api/README.html
+ * @see   Create GitLab Access Token  https://gitlab.com/profile/personal_access_tokens
+ * @see   BitBar Node Module Docs     https://github.com/sindresorhus/bitbar
+ */
+
+/**
+ * The domain your instance is hosted on. Leave the default if using gitlab.com
+ *
+ * @const       {string}
+ */
+const gitlab_domain = &#39;gitlab.com&#39;;
+
+/**
+ * Your private access token.
+ *
+ * @const       {string}
+ * @see       Create a token  https://gitlab.com/profile/personal_access_tokens
+ */
+const private_token = &#39;7Tkm2aLMxk8q-M9TaJz1&#39;;
+
+/**
+ * Font size of the project list
+ *
+ * @const       {string}
+ */
+const font_size = &#39;15&#39;;
+
+/**
+ * Change this array to choose which statuses show and in what order on the menu bar.
+ *
+ * @type {string[]}
+ */
+const MENU_BAR_ORDER = [
+  &#39;newMR&#39;,
+  &#39;reviewer&#39;,
+  &#39;wip&#39;,
+  &#39;unmergable&#39;,
+  &#39;failed&#39;,
+  &#39;unresolved&#39;,
+  &#39;ciRunning&#39;,
+  &#39;pending&#39;,
+  &#39;approved&#39;
+];
+
+/**
+ * MAX length of the title string in the toolbar
+ *
+ * @type {number}
+ */
+const MAX_LENGTH = 60;
+
+/////////////////////////////////////////////////////////////////////////
+// Do not edit below this line unless you know what you&#39;re doing. :)  //
+///////////////////////////////////////////////////////////////////////
+let bitbar;
+const fs = require(&#39;fs&#39;);
+const path = require(&#39;path&#39;);
+const SETTINGS_FILE_PATH = path.resolve(
+  __dirname,
+  &#39;./.gitlab_merge_requests.settings.json&#39;
+);
+
+// Verify bitbar node module is available or try to install it globally.
+try {
+  bitbar = require(&#39;bitbar&#39;);
+} catch (e) {
+  try {
+    bitbar = globalRequire(&#39;bitbar&#39;);
+  } catch (e) {
+    installBitbarModule();
+
+    // Not catching error if one is thrown.
+    bitbar = globalRequire(&#39;bitbar&#39;);
+  }
+}
+
+// Converts the gitlab status to emoji
+// see https://emojipedia.org/ for customisation
+function stateIcon(status) {
+  return {
+    created: &#39;💤&#39;,
+    pending: &#39;💤&#39;,
+    running: &#39;🚀&#39;,
+    failed: &#39;⚠️&#39;,
+    success: &#39;✅&#39;,
+    skipped: &#39;🚀&#39;,
+    manual: &#39;⏯️&#39;
+  }[status];
+}
+
+const gitlabIconBase64 =
+  &#39;iVBORw0KGgoAAAANSUhEUgAAAEMAAABACAYAAABBXsrdAAAAAXNSR0IArs4c6QAAAIRlWElmTU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAACQAAAAAQAAAJAAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAEOgAwAEAAAAAQAAAEAAAAAAB/P4oQAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAC5tJREFUeAHtWm2MVUcZfufMOffevfuFlJbP2gUW2LKttWxbLLTNwi4saou1yWKaVIE0UeMPY2ITjYnpJiZqTP2hxh81ttSq0bA/TI2mfiXll6ax&#43;4eG0sJWNgVLYSmwC7v368yMzzN3D7kQoL0fm5hy32TOOffMzDvv&#43;8z7NWdXpElNBJoINBFoItBEoIlAE4EmAk0Emgh8VBBwIsoND&#43;v51If8uc58rtEo3l7I&#43;RL2Cr7/v4BcIahc&#43;bsBaF&#43;m/Dzwb4CIYOH6&#43;0Nyend7T9/xwfV/Gd&#43;&#43;&#43;hb&#43;diMS8F4vJYpPblu37J3BnpcmtvZsIs&#43;jn&#43;5O18s7md8QQclsvOWEjxPGqL0r2jNDaZfa6d&#43;/2h0li9V1HynHiIKo7bd2ZHcqJV8gv2JbGjg1hhoCBnd/zcvjBTcsWpQamJ4twiTk8xSxO7fCNEJUNSKWfIwLHo7zMZG5/3R/b1vv6KGi6&#43;trCOANAWN8bvdPnO95AAx7ctaKc7KZJq0OHIhfq1PYxEVOf6Z3iXJu4HxMfNXdudB&#43;igBNtL/fkOzVEDDCXOwDm5JgZ1YrKTlnW3XQWXR6B4VdnDrl4wmfa6LhYS9noeAGFkR6Qc7YHO7kuZ38JqQrTgCrif/cpLrBoGusPDCRpzDWuiFKBRexAeAxYj/HdU4VF8e4XZYJ&#43;P7D0qiMlocq99gcE&#43;96EH7Lsf6uzBZYn/T11Qc4VqgbjInJLu&#43;v72xbtwmCri9Zx5QqRdzFqU0TQ7cvvWdsrHRouLcmvx6BjLtGxRwf6l0I1xu4GMMFRVKzBiHEySe1zt5LpMZvmapbl7oZUBBS4PTDbWGgYgeRgQJByWi1KDSyjf0dJzpq8uun&#43;/r8PBfbbZ2h7gR/&#43;mQEsGO6ChYbJP/ujeMlPNdsfeRRFxivoLagi5AR7GEQwvAJW6YCXGwK&#43;Q/3z/LteDpdk7BjnExS8hhvXAMaU2m6HsgNwupSCtlmrE5XqQuM7sK4N/3j29dvhJCfoGsoHE0gIYW1c/Fj87H&#43;3iXer6t0lf2IR3Sxs4OrOoHCVu8aIjyXEBR9Ea4CvO9pPyt34ZX08VIH1QVGfkEGG0&#43;t7Y52HaQABn0k4anySLGRUst1YLZw3MTkTNLHnx9IvdLrXeSCi7ZldbAIrkf&#43;BJqXEL&#43;LC0Odgh1u9czGxurKKjVHYJbf6uUDBUinTgypAc30oSTGTiWBMoDrmNZQ62njhiDs71pSHfrdR/qyhQvvexC9Ate4dLWE7j/nchl0FwOtHg0BC2yORoElPBgoOZzx0BvZ4fbLM2oXajKemEdHayr0agZjQiY4N377wZ4NYSgbcpAUhlBJRMfAWnQcy0OHbu5tW/K3gxcrB3yI58Ir0h&#43;awqmtOUBL/kSDRECwD&#43;EUsotRcv&#43;xn63rFXnroO&#43;s8VIzGF0XbgL6E9LargbaU0HrtDEOJ6Zy5PfCenG1UVZaRFamNton3z3f&#43;wfTKkvQUyjB3a8lcxSUnJYonbtgT2Vvem&#43;nVmqpQTyKnENIqpiFV0hjhWVhmD6TF7rKQVgFkzqtJ8GtYsL1HytZX39kRa97BS6yBYUOqPTztX8P39OD8WlTkJSkfS6pGAuRXBCKmjkXxOeOq4LCMxf9YEmdsiVlF95mM62dTpcr/PJcsuf8ANC7vOTCxbolXmr&#43;EX3tiE/jPCsxu3BcNVSbZbzuT6hx4dmeO4MOe59EVoIz5T1z4OjzyZwUjCkqcC7b5sJCSxDGBSjBVa&#43;HBrcVtq8RMbJt4BegcIFNVEZf2IhfB&#43;BGshyho1MedPtuX6P2Hj5aDQCVYyv5V76/5jN0UHK2fBINM6Y/SAUdpt0Z1yWh42GVfo1B9G/aq382UCVy1mVcXIgd4og1heu0orMmV0JwbHUxuFrwUglf3j1f3lHhOKxrOiQfZHXaajvgBX/aQ1211VcNhoz0azVSdhEXqCHBwUwZKaoViOuLgVQJ4nDX2PiICwEJAgnSbTbEKA3XZ264dkM/pmmOx3wvI/l4wt3zBvBqKdoyvGXuADgIsY9yDPp9DuZzNVQ9GEsveLHcb2GSIpulgLOCLRdCsgpLw6xlDpBKQQhIKutEpyA0BC87VeWIuWcwtVBOIxqnWjAJxLmXiKuTfwdaF/r4m4F0loio/tyLqz6Oh5qoKjAgk5KTY1xVjLEPBa3BAlOCKbO24FsoKmvQsOc&#43;fFHQOSIAEfoJiAcj6bjizl0nGKk2JyGB84vODSI/rsOYsxoNgPmiHOEFxWhRd&#43;i0dtEg3goOulXpxinVTdhfGaXdo2UfgL8y4SHIecHawZWCcvfmiAp6VwFIaSiJ0dzNq1KiPMf5iMlxHE/iM8GgBXaicQ2NbFXuN4L6M1DucbwVGa4&#43;m1QHxnCFCkpmJeunawS0IuQp1wBMuPwUTGPlEa5iBSqazkJ&#43;1KhXdRUwQdj0LpJGcULiHE9UGHFCVqAhNiWuyHURYEuQLJA2mqRM81ILVYj6wdOxwzgdlNXTuvR1c6r0km7TLVqrFN7nPAcKzZhwK9oiNKTSBBDvKvh&#43;GyEWXFIS3Ql5CwIYqVa6SMWYBIiFGHkbGq0DRMvhujpUEeRIm8niH3Vsv1rurf7KZaomnAM0zwGcaH695ikY9I90NlB21s1ChQyYBo4w0zJeR&#43;OO0hpgNbSKqUklU/9FevEbib6EMNHC9BessNKxyCEulRX2K2Ge3ImG2gPZi4GTH1rzulVnzay1SCDf0l88&#43;gxZccO4cXyuhqqyjISxPxDt72W4FAqASmCznbWHg04NJ8BhCWENVbiwDvcBFTcvWnknJdMKtADEZdYBILyL&#43;CCLZ85JiLzWoIEf&#43;QIIRgujF4TZeNa&#43;gfUfuAQE5KoFCC5VExicqHbhEz3Kcrd/WEe7x/8VTEf3mfOl52GuEdyGX6CK3EH5GNpKNNYFVBjKRHSVq2QV3wcXYr&#43;PKYl1rSrz8RYBxwP/CBYRmfPmuXPT0Uau70YgC48JkAujayKIVx9hd5X8oi9UXxnz&#43;SP&#43;1bonUH4/h7SbMhdtEXB7C5JxrHMSYPA0ByWnTgdwFSQhpsk5snCjzuVOOm/GSRTvFKPQMrRuPwAISUmT7wz4WvVkuPut37DHPYu/m3x5jJ8PLjMoP6uKS91gJGtVxpH8C92rdRD8PuzU95gpeI2GkxRxPQzBp2COcKbCRSWTbwflrAlw6CKsSRd1Wcl0IF7M4DfT53o0VjFGtO7UYqbNv2NjH8/sGX8bmithup&#43;LX4kstd4bBgYF8FaCYicRzry49pkgE3yTUcQwfE4BkDegALcdip8GGKUZZGRYB62CtcWiVTiIMEZQsjuw0&#43;3OAlgNrhLn7Y&#43;jLx15Cj1Cl5AtB3Ccq88ayCshemXDiGZaDq7l/8/QENzkzCMmdmd0BIfgl8yVKI0ABs4qksHOXwqi2OY0Smy6kKPDrUYJhwIONaVGlXvGzJqHLwHBbIZPCI0EgiA0FIwEVbVr1LgRpFdE9nD30T/l86U7oMxfAUigl8EOlksR3yFcSzsCDrMKLIHWkWF1iveoUYp6qQp1Gn96uIh5Jbs&#43;3HP0z4wNtL7E8pL1GnVvqJtcTSi3f0WL2nXCF2SlfWu/A6W/h5okMK8hCJ51evJkqPPnkDVvQry4xcQo1Ky&#43;G0GyYA0c67vRniM/IF&#43;3ryuj9pb/LHG1dRrxbl4so1IwAuF&#43;2p3mjkZ7j3zfFdwW&#43;P6beoPGx0IVpENXkFAh5bhC0I4geZdOxSV7WBekn0AwSB7F/PkGgjLPu2UkwDDbyExXRKXcSHeH6Ql&#43;ovPBHnlV5Ng/1YWVm1y73IdKqsXt02&#43;ab6iR8Wlag7TeW6LbJXw&#43;Une6TaJQPLpmb&#43;mHa6fcE3c63M/zd9JXOS5595G80&#43;wTxYrPd2&#43;Y&#43;fbaF4q/7L47eUe3Sp5viDvdxrtOhbb89waW9xWvbpxHBtUEEA8Oft842l9DU9Yk1&#43;hqvm4i0ESgiUATgSYCTQSaCDQRaCLQRODGQOB/dFm0a9MwhJUAAAAASUVORK5CYII=&#39;;
+
+function request(path) {
+  const httpTransport = require(&#39;https&#39;);
+  const responseEncoding = &#39;utf8&#39;;
+  const httpOptions = {
+    hostname: gitlab_domain,
+    port: &#39;443&#39;,
+    path,
+    method: &#39;GET&#39;,
+    headers: { &#39;PRIVATE-TOKEN&#39;: private_token }
+  };
+  httpOptions.headers[&#39;User-Agent&#39;] =
+    &#39;bitbar/gitlab_projects - node &#39; &#43; process.version;
+
+  return new Promise((resolve, reject) =&gt; {
+    const request = httpTransport
+    .request(httpOptions, (res) =&gt; {
+      let responseBufs = [];
+      let responseStr = &#39;&#39;;
+
+      res
+      .on(&#39;data&#39;, (chunk) =&gt; {
+        if (Buffer.isBuffer(chunk)) {
+          responseBufs.push(chunk);
+        } else {
+          responseStr = responseStr &#43; chunk;
+        }
+      })
+      .on(&#39;end&#39;, () =&gt; {
+        if (responseBufs.length &gt; 0) {
+          responseStr = Buffer.concat(responseBufs).toString(responseEncoding);
+        } else {
+          responseStr = responseStr;
+        }
+
+        resolve(JSON.parse(responseStr));
+      });
+    })
+    .setTimeout(0)
+    .on(&#39;error&#39;, (error) =&gt; {
+      reject(error);
+    });
+    request.write(&#39;&#39;);
+    request.end();
+  });
+}
+
+const cachedProjectNames = {};
+async function registerProject(project_id) {
+  if (!cachedProjectNames[project_id]) {
+    const project = await request(`/api/v4/projects/${project_id}`);
+    cachedProjectNames[project_id] = project.name_with_namespace;
+  }
+}
+
+async function getMRs() {
+  if (!fs.existsSync(SETTINGS_FILE_PATH)) {
+    const myUser = await request(&#39;/api/v4/user&#39;);
+    fs.writeFileSync(
+      SETTINGS_FILE_PATH,
+      JSON.stringify({
+        userId: myUser.id
+      })
+    );
+  }
+
+  const statusCount = {};
+  function incrementStatusCount(key) {
+    statusCount[key] = statusCount[key] || 0;
+    statusCount[key] &#43;= 1;
+  }
+
+  const mergeRequestsByProjectId = {};
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayParam = `${yesterday.getFullYear()}-${yesterday.getMonth() &#43; 1}-${yesterday.getDate()}`;
+
+  const { userId, todaysUUID, todaysExcludedEvents = [] } = JSON.parse(fs.readFileSync(SETTINGS_FILE_PATH));
+  let excludedEvents = [];
+  if (todaysUUID === yesterdayParam) {
+    excludedEvents = todaysExcludedEvents;
+  }
+
+  const createdMRs = await request(
+    &#39;/api/v4/merge_requests?scope=created_by_me&amp;state=opened&#39;
+  );
+  const assignedMRs = await request(
+    &#39;/api/v4/merge_requests?scope=assigned_to_me&amp;state=opened&#39;
+  );
+  const approvalMRs = await request(
+    `/api/v4/merge_requests?scope=all&amp;state=opened&amp;approver_ids[]=${userId}`
+  );
+
+  const allMRs = assignedMRs
+  .concat(approvalMRs, createdMRs)
+  .reduce((uniqueMRs, currentMR) =&gt; {
+    if (!uniqueMRs.find(({ id }) =&gt; id === currentMR.id)) {
+      uniqueMRs.push(currentMR);
+    }
+    return uniqueMRs;
+  }, []);
+
+  const bitbar = globalRequire(&#39;bitbar&#39;);
+
+  if (allMRs.length === 0) {
+    // Hide when no open MRs
+    return bitbar([
+      {
+        image: gitlabIconBase64,
+        text: `0 MR`,
+        color: bitbar.darkMode ? &#39;white&#39; : &#39;black&#39;,
+        dropdown: true
+      }
+    ]);
+  }
+
+
+  await Promise.all(
+    allMRs.map(async (mergeRequest) =&gt; {
+      const {
+        web_url,
+        merge_when_pipeline_succeeds,
+        merge_status,
+        title,
+        project_id,
+        iid,
+        blocking_discussions_resolved,
+        work_in_progress,
+        assignee,
+        assignees,
+        author,
+        source_branch
+      } = mergeRequest;
+      excludedEvents.push(`${project_id}_${source_branch}`);
+
+      const isReviewer =
+        (!author || author.id !== userId) &amp;&amp;
+        (!assignee || assignee.id !== userId) &amp;&amp;
+        (!assignees || !assignees.find(({ id }) =&gt; id === userId));
+
+      await registerProject(project_id);
+
+      mergeRequestsByProjectId[project_id] =
+        mergeRequestsByProjectId[project_id] || [];
+
+      const pipelines = await request(
+        `/api/v4/projects/${project_id}/merge_requests/${iid}/pipelines`
+      );
+      let pipelineStatus = &#39;&#39;;
+      if (pipelines.length) {
+        pipelineStatus = stateIcon(pipelines[0].status);
+      }
+      const approvals = await request(
+        `/api/v4/projects/${project_id}/merge_requests/${iid}/approval_state`
+      );
+      const isApproved = approvals.rules.reduce(
+        (isApproved, { approved }) =&gt; isApproved &amp;&amp; approved,
+        true
+      );
+      const hasCurrentUserApproved = approvals.rules.reduce(
+        (currentUserHasApproved, { approved_by }) =&gt;
+          currentUserHasApproved ||
+          !!approved_by.find(({ id }) =&gt; id === userId),
+        false
+      );
+      const canMerge = merge_status === &#39;can_be_merged&#39;;
+      if (isReviewer &amp;&amp; (work_in_progress || !canMerge || isApproved || hasCurrentUserApproved))
+        return;
+      let mergeStatus = &#39;  &#39;;
+      if (!canMerge) {
+        mergeStatus = &#39;⛔ &#39;;
+      } else if (isReviewer) {
+        mergeStatus = &#39;🔎 &#39;;
+      }
+      let approvalStatus = &#39;💬&#39;;
+      if (work_in_progress) {
+        approvalStatus = &#39;🛠️&#39;;
+      } else if (!blocking_discussions_resolved) {
+        approvalStatus = &#39;🚧&#39;;
+      } else if (isApproved) {
+        approvalStatus = &#39;❇️&#39;;
+      }
+      if (isReviewer) {
+        incrementStatusCount(&#39;reviewer&#39;);
+      } else if (work_in_progress) {
+        incrementStatusCount(&#39;wip&#39;);
+      } else if (merge_status !== &#39;can_be_merged&#39;) {
+        incrementStatusCount(&#39;unmergeable&#39;);
+      } else if (pipelines.length &amp;&amp; pipelines[0].status === &#39;failed&#39;) {
+        incrementStatusCount(&#39;failed&#39;);
+      } else if (!blocking_discussions_resolved) {
+        incrementStatusCount(&#39;unresolved&#39;);
+      } else if (pipelines.length &amp;&amp; pipelines[0].status === &#39;running&#39;) {
+        incrementStatusCount(&#39;ciRunning&#39;);
+      } else if (!isApproved) {
+        incrementStatusCount(&#39;pending&#39;);
+      } else {
+        incrementStatusCount(&#39;approved&#39;);
+      }
+
+      let statusString = &#39;&#39;;
+      if (pipelineStatus || approvals.rules.length) {
+        const statusStrings = [];
+        if (pipelineStatus) statusStrings.push(pipelineStatus);
+        if (approvals.rules.length) statusStrings.push(approvalStatus);
+        statusString = `  ${statusStrings.join(&#39; &#39;)}`;
+      }
+      let trimmedTitle = title.substring(0, MAX_LENGTH);
+      if (title.length &gt; MAX_LENGTH) {
+        trimmedTitle &#43;= &#39;...&#39;;
+      }
+      mergeRequestsByProjectId[project_id].push(
+        `${mergeStatus}!${iid}: ${trimmedTitle}${statusString} | href=&#34;${web_url}&#34; size=${font_size}`
+      );
+    })
+  );
+
+  const todaysEvents = await request(
+    `/api/v4/users/4557473/events?after=${yesterdayParam}&amp;action=pushed`
+  );
+  for (let i = 0; i &lt; todaysEvents.length; i &#43;= 1) {
+    const { project_id, push_data: {action, ref, ref_type, commit_to} } = todaysEvents[i];
+    if (excludedEvents.indexOf(`${project_id}_${ref}`) !== -1) continue;
+    if (!(action === &#39;created&#39; &amp;&amp; ref_type === &#39;branch&#39;)) continue;
+
+    const mrCheck = await request(`/api/v4/projects/${project_id}/repository/commits/${commit_to}/merge_requests`);
+    if (mrCheck.length) {
+      excludedEvents.push(`${project_id}_${ref}`);
+      continue;
+    }
+    await registerProject(project_id);
+    const { web_url } = await request(`/api/v4/projects/${project_id}`);
+    const params = [
+      `merge_request%5Bsource_branch%5D=${ref}`,
+      `merge_request%5Bsource_project_id%5D=${project_id}`,
+      `merge_request%5Btarget_project_id%5D=${project_id}`
+    ];
+    const createMRUrl = `${web_url}/-/merge_requests/new?${params.join(&#39;&amp;&#39;)}`;
+    mergeRequestsByProjectId[project_id] = mergeRequestsByProjectId[project_id] || [];
+    mergeRequestsByProjectId[project_id].unshift(
+      `📝: ${ref} | href=&#34;${createMRUrl}&#34; size=${font_size}`
+    );
+    incrementStatusCount(&#39;newMR&#39;);
+  }
+
+  const content = [];
+
+  const statusMap = {
+    reviewer: &#39;🔎&#39;,
+    unmergable: &#39;⛔&#39;,
+    failed: &#39;⚠️&#39;,
+    ciRunning: &#39;🚀&#39;,
+    pending: &#39;💬&#39;,
+    approved: &#39;❇️&#39;,
+    wip: &#39;🛠️&#39;,
+    unresolved: &#39;🚧&#39;,
+    newMR: &#39;📝&#39;
+  };
+  const statusString = MENU_BAR_ORDER
+  .map((key) =&gt; {
+    if (statusCount[key]) {
+      return `${statusMap[key]}[${statusCount[key]}]`;
+    }
+  })
+  .filter((s) =&gt; !!s)
+  .join(&#39;, &#39;);
+
+  content.push({
+    image: gitlabIconBase64,
+    text: `${statusString}`,
+    color: bitbar.darkMode ? &#39;white&#39; : &#39;black&#39;,
+    dropdown: true
+  });
+
+  Object.keys(mergeRequestsByProjectId).forEach((projectId) =&gt; {
+    if (!mergeRequestsByProjectId[projectId].length) return;
+    content.push(bitbar.separator);
+    content.push({
+      text: cachedProjectNames[projectId]
+    });
+    mergeRequestsByProjectId[projectId].forEach((text) =&gt;
+      text ? content.push({ text }) : null
+    );
+  });
+
+  // Update settings file for speed later
+  fs.writeFileSync(
+    SETTINGS_FILE_PATH,
+    JSON.stringify({
+      userId,
+      todaysUUID: yesterdayParam,
+      todaysExcludedEvents: excludedEvents.reduce((uniqueEvents, event) =&gt; {
+        if (uniqueEvents.indexOf(event) === -1) {
+          uniqueEvents.push(event);
+        }
+        return uniqueEvents;
+      }, [])
+    })
+  );
+
+  try {
+    bitbar(content);
+  } catch (error) {
+    console.log(content);
+    throw error;
+  }
+}
+
+getMRs().catch((error) =&gt; {
+  console.error(error);
+});
+
+/**
+ * Sets up the ability to require global node packages.
+ *
+ * @return     {object}  Returns the required node package object
+ */
+function globalRequire(package) {
+  const childProcess = require(&#39;child_process&#39;);
+  const path = require(&#39;path&#39;);
+  const fs = require(&#39;fs&#39;);
+  const env = Object.assign({}, process.env);
+  env.PATH = path.resolve(&#39;/usr/local/bin&#39;) &#43; &#39;:&#39; &#43; env.PATH;
+
+  const globalNodeModulesDir =
+    childProcess
+    .execSync(npmBin() &#43; &#39; root -g&#39;, { env: env })
+    .toString()
+    .trim() &#43; &#39;/&#39;;
+  let packageDir = path.join(globalNodeModulesDir, package, &#39;/&#39;);
+
+  //find package required by older versions of npm
+  if (!fs.existsSync(packageDir)) {
+    packageDir = path.join(globalNodeModulesDir, &#39;npm/node_modules/&#39;, package);
+  }
+
+  // Package not found
+  if (!fs.existsSync(packageDir)) {
+    throw new Error(&#34;Cannot find global module &#39;&#34; &#43; package &#43; &#34;&#39;&#34;);
+  }
+
+  const packageMeta = JSON.parse(
+    fs.readFileSync(path.join(packageDir, &#39;package.json&#39;)).toString()
+  );
+  const main = path.join(packageDir, packageMeta.files[0]);
+
+  return require(main);
+}
+
+/**
+ * Installs Bitbar node module if it doesn&#39;t exits.
+ *
+ * @see    BitBar node module on github    https://github.com/sindresorhus/bitbar
+ */
+function installBitbarModule() {
+  // Allows one to run the npm command as if on the command line.
+  const childProcess = require(&#39;child_process&#39;);
+  const execSync = childProcess.execSync;
+  const path = require(&#39;path&#39;);
+  const fs = require(&#39;fs&#39;);
+
+  const env = Object.assign({}, process.env);
+  env.PATH = path.resolve(&#39;/usr/local/bin&#39;) &#43; &#39;:&#39; &#43; env.PATH;
+
+  // Get the path to npm bin
+  const npm = npmBin();
+
+  // The install command
+  const cmd = npm &#43; &#39; install -g bitbar&#39;;
+
+  console.log(&#39;Installing the BitBar Node module...&#39;);
+
+  const output = execSync(cmd, {
+    cwd: process.cwd(),
+    env: env
+  })
+  .toString(&#39;utf8&#39;)
+  .trim();
+
+  console.log(&#39;Installation complete.&#39;);
+}
+
+/**
+ * Gets the path to your npm executable.
+ *
+ * @return  {string}  The full path to your npm executable
+ */
+function npmBin() {
+  const path = require(&#39;path&#39;);
+  const childProcess = require(&#39;child_process&#39;);
+  const execSync = childProcess.execSync;
+  const env = Object.assign({}, process.env);
+  env.PATH = path.resolve(&#39;/usr/local/bin&#39;) &#43; &#39;:&#39; &#43; env.PATH;
+  const buffs = [];
+
+  // Get the path to npm bin
+  return execSync(&#39;which npm&#39;, { env: env })
+  .toString(&#39;utf8&#39;)
+  .trim();
+}
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/clipboard-base64-encoder.sh",
+				"filename": "clipboard-base64-encoder.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eClipboard BASE64-Encoder\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSteffen Froehlich\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecitoki\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will encode acutal clipboard item with BASE64.\n# The result will be available in clipboard again. Do not use the result\n# for cryptographic purposes!!\n# It's inspired by the original clipboard-history plugin\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://imgur.com/0Ym6xNC\u003c/birtbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\n# Hack for language not being set properly and unicode support\nexport LANG=\"${LANG:-en_US.UTF-8}\"\n\nPREFIX=\"\"\nAPPENDIX=\"\"\n\n# user clicks on 'encoding'\nif [[ \"$1\" = \"encode\" ]]; then\n  echo -n \"$(echo -n \"${PREFIX}$(pbpaste)${APPENDIX}\" | base64)\" | pbcopy\n  osascript -e \"display notification \\\"Clipboard entry encoded with BASE64\\\" with title \\\"BitBar Clipboard BASE64-Encoder\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\nif [[ \"$1\" = \"decode\" ]]; then\n  echo -n \"$(echo -n \"${PREFIX}$(pbpaste)${APPENDIX}\" | base64 -D)\" | pbcopy\n  osascript -e \"display notification \\\"Clipboard entry decoded with BASE64\\\" with title \\\"BitBar Clipboard BASE64-Encoder\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\n\n# Print icon\necho \"🔏\"\necho \"---\"\necho \"Encode clipboard item with BASE64 | bash='$0' param1=encode terminal=false\"\necho \"Decode clipboard item with BASE64 | bash='$0' param1=decode terminal=false\"\n\n"
+			}
+		],
+		"path": "System/clipboard-base64-encoder.sh",
+		"filename": "clipboard-base64-encoder.sh",
+		"dir": "System",
+		"docsPlugin": "System/clipboard-base64-encoder.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Clipboard BASE64-Encoder",
+		"version": "v0.1",
+		"author": "Steffen Froehlich",
+		"authors": [
+			{
+				"name": "Steffen",
+				"githubUsername": "citoki",
+				"imageURL": "https://avatars.githubusercontent.com/u/7259873?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "https://imgur.com/0Ym6xNC",
+		"dependencies": [],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:02.771831Z",
+		"vars": null
+	}
+}

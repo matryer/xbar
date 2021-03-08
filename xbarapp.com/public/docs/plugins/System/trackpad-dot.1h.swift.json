@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/trackpad-dot.1h.swift",
+				"filename": "trackpad-dot.1h.swift",
+				"content": "#!/usr/bin/env xcrun swift\n\n/*\n * \u003cbitbar.title\u003eTrackpad Dot\u003c/bitbar.title\u003e\n * \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n * \u003cbitbar.author\u003eManu Wallner\u003c/bitbar.author\u003e\n * \u003cbitbar.author.github\u003emilch\u003c/bitbar.author.github\u003e\n * \u003cbitbar.desc\u003eDisplays a coloured dot in the menu bar that gradually changes from green to yellow to red the lower your Magic Trackpad's battery\u003c/bitbar.desc\u003e\n * \u003cbitbar.image\u003ehttp://i.imgur.com/4G7B76u.png\u003c/bitbar.image\u003e\n * \u003cbitbar.dependencies\u003eXcode,swift\u003c/bitbar.dependencies\u003e\n */\n\nimport Foundation\n\ntypealias Color = (red : UInt, green : UInt, blue : UInt)\n\nfunc shell(_ args: String...) -\u003e String {\n    let task = Process()\n    task.launchPath = \"/bin/bash\"\n    task.arguments = [\"-c\"] + args\n    \n    let pipe = Pipe()\n    task.standardOutput = pipe\n    task.launch()\n    \n    let data = pipe.fileHandleForReading.readDataToEndOfFile()\n    let output: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String\n    \n    return output.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)\n}\n\nfunc rgb(_ r : UInt, _ g : UInt , _ b : UInt) -\u003e Color {\n    return (red: r, green: g, blue: b)\n}\n\nfunc linear(_ initial: UInt, next: UInt, percent: Double) -\u003e Double {\n    return Double(initial) * (1.0 - percent) + Double(next) * (percent)\n}\n\nfunc interpolate(_ first : Color, second : Color, percent: Double) -\u003e Color {\n    let r = linear(first.red, next: second.red, percent: percent)\n    let g = linear(first.green, next: second.green, percent: percent)\n    let b = linear(first.blue, next: second.blue, percent: percent)\n    return rgb(UInt(r), UInt(g), UInt(b))\n}\n\nfunc componentToHex(_ component : UInt) -\u003e String {\n    return String(format:\"%02X\", component)\n}\n\nfunc colorToHex(_ color: Color) -\u003e String {\n    return [\n        \"#\",\n        componentToHex(color.red),\n        componentToHex(color.green),\n        componentToHex(color.blue)\n        ].joined(separator: \"\")\n}\n\nlet commandString = \"ioreg -c BNBTrackpadDevice | egrep -o 'BatteryPercent. = \\\\d{0,3}' | sed -E 's/[^0-9]+([0-9]{0,3})/\\\\1/g'\"\nlet trackpadPercentString = shell(commandString)\nvar trackpadDropdownString = \"\\(trackpadPercentString)%\"\nvar colorString = \"\"\n\nlet colors = [\n    rgb(231, 76, 60),\n    rgb(241, 196, 15),\n    rgb(0, 177, 106)\n]\n\nif let trackpadPercent = Int(trackpadPercentString) {\n    var interpolationColors : (first: Color, second: Color) = (first: rgb(0,0,0), second: rgb(0,0,0))\n    \n    switch(trackpadPercent) {\n    case 0...50: interpolationColors = (first: colors[0], second: colors[1])\n    case 50...100: interpolationColors = (first: colors[1], second: colors[2])\n    // Catch all to satisfy the compiler\n    default: break\n    }\n    let percent = trackpadPercent % 50 == 0 ? 1.0 : Double(trackpadPercent % 50) / 50.0\n    let color = interpolate(interpolationColors.first, second: interpolationColors.second, percent: percent)\n    colorString = colorToHex(color)\n} else {\n    colorString = \"#bdc3c7\"\n    trackpadDropdownString = \"Not connected\"\n}\n\nprint(\"● | color=\\(colorString)\")\nprint(\"---\")\nprint(\"Trackpad: \\(trackpadDropdownString)\")\n\n"
+			}
+		],
+		"path": "System/trackpad-dot.1h.swift",
+		"filename": "trackpad-dot.1h.swift",
+		"dir": "System",
+		"docsPlugin": "System/trackpad-dot.1h.swift.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Trackpad Dot",
+		"version": "v1.0",
+		"author": "Manu Wallner",
+		"authors": [
+			{
+				"name": "Manu Wallner",
+				"githubUsername": "milch",
+				"imageURL": "https://avatars.githubusercontent.com/u/279407?v=4",
+				"bio": "Jack of all trades, master of none. Co-founded @xforge-at. @fastlane core-team member. DevOps @ AWS.\r\n\r\nI'm @acrooow on Twitter. ",
+				"primary": true
+			}
+		],
+		"desc": "Displays a coloured dot in the menu bar that gradually changes from green to yellow to red the lower your Magic Trackpad's battery",
+		"imageURL": "http://i.imgur.com/4G7B76u.png",
+		"dependencies": [
+			"Xcode",
+			"swift"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.852379Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,56 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh",
+				"filename": "buy.10s.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCoinbase.com Buy\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows latest buy values (in USD) for Bitcoins in the Coinbase exchange.\u003c/bitbar.desc\u003e\n\necho -n \"Buy: $\"; curl -s \"https://coinbase.com/api/v1/prices/buy?currency=USD\" | egrep -o ',\"amount\":\"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/,\"amount\"://'  | sed 's:^.\\(.*\\).$:\\1:'\n"
+			}
+		],
+		"path": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh",
+		"filename": "buy.10s.sh",
+		"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+		"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh.html",
+		"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+		"pathSegments": [
+			"Cryptocurrency",
+			"Bitcoin",
+			"coinbase.com"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": false
+			},
+			{
+				"path": "Cryptocurrency/Bitcoin",
+				"text": "Bitcoin",
+				"isLast": false
+			},
+			{
+				"path": "Cryptocurrency/Bitcoin/coinbase.com",
+				"text": "coinbase.com",
+				"isLast": true
+			}
+		],
+		"title": "Coinbase.com Buy",
+		"version": "v1.0",
+		"author": "Mat Ryer",
+		"authors": [
+			{
+				"name": "Mat Ryer",
+				"githubUsername": "matryer",
+				"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+				"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+				"primary": true
+			}
+		],
+		"desc": "Shows latest buy values (in USD) for Bitcoins in the Coinbase exchange.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:45.161509Z",
+		"vars": null
+	}
+}

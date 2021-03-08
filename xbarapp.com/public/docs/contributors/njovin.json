@@ -1,0 +1,56 @@
+{
+	"person": {
+		"name": "Nathan Jovin",
+		"githubUsername": "njovin",
+		"imageURL": "https://avatars.githubusercontent.com/u/1540436?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/bamboo_build_status.1m.sh",
+					"filename": "bamboo_build_status.1m.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eBamboo Build Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eNathan Jovin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003enjovin\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Bamboo build status\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/RPYrUok.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ejq,curl\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/Dev/Bamboo/bamboo_build_status.1m.sh\u003c/bitbar.abouturl\u003e\n#\n# Displays the status of a single Bamboo build\n# Runs 2 REST calls - one to find out if a build is currently runnning and another to get the last build status if one is not currently running\n#\n# CONFIGURATION\n# All of the below options must be filled in\n\nUSERNAME=\"YOUR_BAMBOO_USERNAME\"\nPASSWORD=\"YOUR_BAMBOO_PASSWORD\"\nSERVER=\"YOUR_BAMBOO_SERVER\"\nPLAN=\"YOUR_BAMBOO_BUILD_PLAN\"\nJQPATH=\"jq\"\n\n# END CONFIGURATION\n\nPLANRESULT=$(curl -s --user $USERNAME:$PASSWORD  $SERVER/builds/rest/api/latest/plan/$PLAN.json\\?os_authType=basic)\nBUILDRESULT=$(curl -s --user $USERNAME:$PASSWORD  $SERVER/builds/rest/api/latest/result/$PLAN/latest.json\\?os_authType=basic)\nISBUILDING=$(echo \"$PLANRESULT\" | $JQPATH '.isBuilding')\n\nRELATIVETIME=$(echo \"$BUILDRESULT\" | $JQPATH '.buildRelativeTime')\nBUILDTIME=$(echo \"$BUILDRESULT\" | $JQPATH '.buildDurationInSeconds')\n#TIME=$(echo \"$BUILDRESULT\" | $JQPATH '.buildRelativeTime')\n\nif [ \"$ISBUILDING\" = \"true\" ]\nthen\n    # This is displayed when the build is currently running, feel free to customize\n    echo \"Building...\"\n    echo ---\nelse\n    STATE=$(echo \"$BUILDRESULT\" | $JQPATH '.state')\n    # We display the exact state as displayed in the JSON data.\n    echo \"${STATE//\\\"/}\"\nfi\n\necho ---\n# Show how long ago the last build was done\necho \"Completed: ${RELATIVETIME//\\\"/}\"\n# Show time it took to complete the last build\necho \"Build time: $BUILDTIME seconds\"\n# Show a link to the builds page\necho \"Build page | href=$SERVER/builds/browse/$PLAN\"\n"
+				}
+			],
+			"path": "Dev/bamboo_build_status.1m.sh",
+			"filename": "bamboo_build_status.1m.sh",
+			"dir": "Dev",
+			"docsPlugin": "Dev/bamboo_build_status.1m.sh.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "Bamboo Build Status",
+			"version": "v1.0",
+			"author": "Nathan Jovin",
+			"authors": [
+				{
+					"name": "Nathan Jovin",
+					"githubUsername": "njovin",
+					"imageURL": "https://avatars.githubusercontent.com/u/1540436?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays Bamboo build status",
+			"imageURL": "http://i.imgur.com/RPYrUok.png",
+			"dependencies": [
+				"jq",
+				"curl"
+			],
+			"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/Dev/Bamboo/bamboo_build_status.1m.sh",
+			"lastUpdated": "2021-03-08T15:21:50.912612Z",
+			"vars": null
+		}
+	]
+}

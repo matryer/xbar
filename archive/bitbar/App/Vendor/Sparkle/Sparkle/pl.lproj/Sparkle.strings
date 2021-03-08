@@ -1,0 +1,75 @@
+/* "%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?"; */
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ został pobrany i jest gotowy do użycia! Czy chcesz teraz zainstalować i ponownie uruchomić %1$@?";
+
+/* "%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again."; */
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ nie może zostać uaktualniony gdy jest uruchomiony z woluminu tylko do odczytu jak obraz dysku lub napęd optyczny. Przenieś %1$@ do folderu Programy, uruchom z nowej lokacji i spróbuj ponownie.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ jest najnowszą dostępną wersją.";
+
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ jest już dostępny (aktualnie posiadasz %3$@). Czy chcesz go teraz pobrać?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ jest już dostępny (aktualnie posiadasz %3$@). Czy chcesz otworzyć stronę z informacjami o tym uaktualnieniu?";
+
+"%@ downloaded" = "Pobrano %@";
+
+"%@ of %@" = "%1$@ z %2$@";
+
+"A new version of %@ is available!" = "Dostępna jest nowa wersja %@!";
+
+"A new version of %@ is ready to install!" = "Nowa wersja %@ gotowa do zainstalowania!";
+
+"An error occurred in retrieving update information. Please try again later." = "Błąd podczas pobierania informacji o uaktualnieniach. Spróbuj ponownie później.";
+
+"An error occurred while downloading the update. Please try again later." = "Błąd podczas pobierania uaktualnienia. Spróbuj ponownie później.";
+
+"An error occurred while extracting the archive. Please try again later." = "Błąd podczas rozpakowywania archiwum. Spróbuj ponownie później";
+
+"An error occurred while installing the update. Please try again later." = "Błąd podczas instalowania uaktualnienia. Spróbuj ponownie później";
+
+"An error occurred while parsing the update feed." = "Błąd podczas wczytywania danych o uaktualnieniu.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Błąd podczas ponownego uruchomienia %1$@, ale nowa wersja będzie dostępna przy ponownym ręcznym uruchomieniu %1$@.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Anuluj";
+
+"Cancel Update" = "Anuluj uaktualnianie";
+
+"Checking for updates..." = "Sprawdzam uaktualnienia…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Pobieram uaktualnienie…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Rozpakowuję uaktualnienie…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Zainstaluj i uruchom ponownie";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Instalowanie uaktualnienia…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "OK";
+
+"Ready to Install" = "Gotowy do instalacji";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Czy %1$@ ma automatycznie sprawdzać uaktualnienia? Zawsze możesz ręcznie sprawdzać z menu %1$@.";
+
+"Update Error!" = "Błąd uaktualniania!";
+
+"Updating %@" = "Uaktualniam %@";
+
+"You already have the newest version of %@." = "Posiadasz najnowszą wersję %@.";
+
+"You're up-to-date!" = "Jesteś na bieżąco!";

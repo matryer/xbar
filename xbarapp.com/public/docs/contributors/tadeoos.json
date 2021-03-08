@@ -1,0 +1,59 @@
+{
+	"person": {
+		"name": "Tadek Teleżyński",
+		"githubUsername": "tadeoos",
+		"imageURL": "https://avatars.githubusercontent.com/u/10894783?v=4",
+		"bio": "Cognitive Science graduate. Python developer. Likes to have his thoughts provoked.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/mayer-multiple.sh",
+					"filename": "mayer-multiple.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMayer Multiple (BTC)\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eTadek Teleżyński\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etadeoos\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003e\n#   Displays Mayer Multiple for Bitcoin\n# \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/NsOofDJ.png\u003c/bitbar.image\u003e\n\nRESULT=$(curl -s \"https://mayermultiple.info/current.json\")\nMM=$(echo \"$RESULT\" | grep -E -o '\"current_mayer_multiple\": \"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"current_mayer_multiple\"://' | sed 's/\\\"//g')\nBTC=$(echo \"$RESULT\" | grep -E -o '\"btc_price\": \"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"btc_price\"://' | sed 's/\\\"//g')\nAMM=$(echo \"$RESULT\" | grep -E -o '\"average_mayer_multiple\": \"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"average_mayer_multiple\"://' | sed 's/\\\"//g')\nPTH=$(echo \"$RESULT\" | grep -E -o '\"percentage_time_higher\": \"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"percentage_time_higher\"://' | sed 's/\\\"//g')\n\nif (( $(echo \"$MM \u003c 2.4\" |bc -l) )); then\n\techo \"$MM | color='green'\";\nelse\n\techo \"$MM\";\nfi\necho \"---\"\necho -n \"BTC $\"; echo \"$BTC\"\necho -n \"Average Mayer Multiple is \"; echo \"$AMM\"\necho -n \"Mayer Multiple has historically been higher \"; echo -n \"$PTH\"; echo \"% of the time\";\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/mayer-multiple.sh",
+			"filename": "mayer-multiple.sh",
+			"dir": "Cryptocurrency/Bitcoin",
+			"docsPlugin": "Cryptocurrency/Bitcoin/mayer-multiple.sh.html",
+			"docsCategory": "Cryptocurrency/Bitcoin.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": true
+				}
+			],
+			"title": "Mayer Multiple (BTC)",
+			"version": "",
+			"author": "Tadek Teleżyński",
+			"authors": [
+				{
+					"name": "Tadek Teleżyński",
+					"githubUsername": "tadeoos",
+					"imageURL": "https://avatars.githubusercontent.com/u/10894783?v=4",
+					"bio": "Cognitive Science graduate. Python developer. Likes to have his thoughts provoked.",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://i.imgur.com/NsOofDJ.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.533819Z",
+			"vars": null
+		}
+	]
+}

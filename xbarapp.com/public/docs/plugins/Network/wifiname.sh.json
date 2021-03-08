@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/wifiname.sh",
+				"filename": "wifiname.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eActive WIFI Name\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eJiri\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eCzechJiri\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays currently connected WIFI Name\u003c/bitbar.desc\u003e\n\nWIFINAME=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}')\n\necho \"WIFI: $WIFINAME\"\n"
+			}
+		],
+		"path": "Network/wifiname.sh",
+		"filename": "wifiname.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/wifiname.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Active WIFI Name",
+		"version": "",
+		"author": "Jiri",
+		"authors": [
+			{
+				"name": "Jiri",
+				"githubUsername": "CzechJiri",
+				"imageURL": "https://avatars.githubusercontent.com/u/6222611?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays currently connected WIFI Name",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:00.3691Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,425 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Syncthing-conflicts in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Bitbar - Syncthing conflicts helper. - install xbar for free to get started.'>
+	<meta name='author' content='Tim Battersby'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/CbthLRt.png'>
+	<meta itemprop='name' content='Syncthing-conflicts in your macOS menu bar'>
+	<meta itemprop='description' content='Bitbar - Syncthing conflicts helper. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Syncthing-conflicts in your macOS menu bar'>
+	<meta name='twitter:description' content='Bitbar - Syncthing conflicts helper. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/CbthLRt.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Syncthing-conflicts in your macOS menu bar'>
+	<meta property='og:description' content='Bitbar - Syncthing conflicts helper. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Lifestyle/syncthing-conflicts.10m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/CbthLRt.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/CbthLRt.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/CbthLRt.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/CbthLRt.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Syncthing-conflicts</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/uglygus.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/11585473?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/uglygus.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Tim Battersby (<code style='color:white;'>@uglygus</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Bitbar - Syncthing conflicts helper.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Lifestyle%2fsyncthing-conflicts.10m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/CbthLRt.png' 
+				alt='Image preview of Syncthing-conflicts plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>syncthing-conflicts.10m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Lifestyle/syncthing-conflicts.10m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Lifestyle/syncthing-conflicts.10m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python3
+&#34;&#34;&#34;
+    syncthing-conflicts.10m.py
+    Python 2 and 3 compatible.
+
+    Searches in your Syncthing shares to find conflicting files.
+    Clicking on a conflict in the menu will open the enclosing folder in the Finder.
+
+    &#39;st&#39; Menu item will turn red if there are any conflicts.
+
+    This is a Bitbar plugin for MacOS
+    https://github.com/matryer/bitbar
+
+    &lt;bitbar.title&gt;Syncthing-conflicts&lt;/bitbar.title&gt;
+    &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+    &lt;bitbar.author&gt;Tim Battersby&lt;/bitbar.author&gt;
+    &lt;bitbar.author.github&gt;uglygus&lt;/bitbar.author.github&gt;
+    &lt;bitbar.desc&gt;Bitbar - Syncthing conflicts helper.&lt;/bitbar.desc&gt;
+    &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+    &lt;bitbar.image&gt;https://i.imgur.com/CbthLRt.png&lt;/bitbar.image&gt;
+
+&#34;&#34;&#34;
+
+import os
+import re
+import argparse
+import sys
+from subprocess import call
+
+
+def find_conflicts():
+    &#34;&#34;&#34; Reads a folder list from config.xml
+        Returns a list of conflict found in those folders.
+    &#34;&#34;&#34;
+    config_file = os.environ[&#39;HOME&#39;] &#43; \
+        &#34;/Library/Application Support/Syncthing/config.xml&#34;
+
+    try:
+        config = open(config_file)
+    except FileNotFoundError:
+        return [&#39;ERROR: config file not found: &#39;&#43; config_file]
+
+    xml_contents = config.read()
+    config.close()
+
+    PATH_REGEX = re.compile(&#39;path=&#34;(.*)&#34; type&#39;)
+    shares = PATH_REGEX.findall(xml_contents)
+
+    c_list = []
+
+    for share in shares:
+        for root, dirs, files in os.walk(share):
+            for file in files:
+
+                if &#34;/.stversions/&#34; in root:
+                    continue
+
+                if &#34;.sync-conflict-&#34; in file:
+                    c_list.append(&#39;--&#39; &#43; os.path.join(root, file) &#43;
+                                  &#39; | terminal=false bash=/usr/bin/open param1=\&#34;&#39; &#43; root &#43; &#39;\&#34;&#39;)
+
+    if c_list:
+        c_list = [&#39;Conflicts&#39;] &#43; c_list
+
+    return c_list
+
+
+def main():
+    &#34;&#34;&#34; Syncthing Bitbar plugin &#34;&#34;&#34;
+
+    parser = argparse.ArgumentParser(description=&#39;Bitbar - Syncthing conflicts helper.&#39;)
+    parser.add_argument(&#39;conflict&#39;, nargs=&#39;?&#39;,
+                        help=&#39;a conflict&#39;)
+    args = parser.parse_args()
+
+    print(args)
+
+    conflicts = find_conflicts()
+
+    if conflicts:
+        print(u&#39; \u001b[31mst\u001b[0m | ansi=true&#39;)
+    else:
+        print(&#39;st&#39;)
+
+    print(&#39;---&#39;)
+
+    if args.conflict:
+        print(&#39;CONFLICT--&#39;, args.conflict)
+        call([&#34;open&#34;, args.conflict])
+
+    for item in conflicts:
+        print(item)
+
+    return 0
+
+
+if __name__ == &#39;__main__&#39;:
+    sys.exit(main())
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

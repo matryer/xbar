@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/process-monitoring.1s.sh",
+				"filename": "process-monitoring.1s.sh",
+				"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eprocess-monitoring\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eOlivier Tille\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eoliviernt\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eMonitors CPU and Memory usage for a certain process\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/ApLSN8L.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/oliviernt/bitbar-plugins/blob/monitoring/Dev/Monitoring/process-monitoring.1s.sh\u003c/bitbar.abouturl\u003e\n\nPROCESS=\"BitBar.app\"\n\n# shellcheck disable=SC2009\nid=$(ps aux | grep -i \"${PROCESS}\" | grep -v grep | awk '{print $2}')\necho -n \"${PROCESS}: \"\ntop -l 1 -pid \"$id\" -stats cpu,mem | tail -1 | awk '{print \"CPU: \" $1 \" - MEM: \" $2}'\necho \"---\"\ntop -l 1 -pid \"$id\"\n"
+			}
+		],
+		"path": "Dev/process-monitoring.1s.sh",
+		"filename": "process-monitoring.1s.sh",
+		"dir": "Dev",
+		"docsPlugin": "Dev/process-monitoring.1s.sh.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "process-monitoring",
+		"version": "v0.1.0",
+		"author": "Olivier Tille",
+		"authors": [
+			{
+				"name": "Olivier Tille",
+				"githubUsername": "oliviernt",
+				"imageURL": "https://avatars.githubusercontent.com/u/162120?v=4",
+				"bio": "Software Developer at @lexoffice, Loving the WWW. \r\nPGP: https://keybase.io/oliviernt ",
+				"primary": true
+			}
+		],
+		"desc": "Monitors CPU and Memory usage for a certain process",
+		"imageURL": "http://i.imgur.com/ApLSN8L.png",
+		"dependencies": [],
+		"aboutURL": "https://github.com/oliviernt/bitbar-plugins/blob/monitoring/Dev/Monitoring/process-monitoring.1s.sh",
+		"lastUpdated": "2021-03-08T15:21:51.957614Z",
+		"vars": null
+	}
+}

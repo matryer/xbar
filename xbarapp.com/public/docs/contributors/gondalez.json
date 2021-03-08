@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "tris",
+		"githubUsername": "gondalez",
+		"imageURL": "https://avatars.githubusercontent.com/u/1468141?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/whirlpool-watched.1m.rb",
+					"filename": "whirlpool-watched.1m.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eWhirlpool watched threads checker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTristan Harmer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003egondalez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eList unread threads from your watch list\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n\nrequire 'json'\nrequire 'time'\nrequire 'net/https'\n\nAPI_KEY = 'YOUR_KEY_HERE' # see https://whirlpool.net.au/profile/?action=account\n\nuri = URI.parse(\"https://whirlpool.net.au/api/?key=#{API_KEY}\u0026get=watched\u0026watchedmode=0\u0026output=json\")\n\nres = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true, verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|\n  req = Net::HTTP::Get.new(uri)\n  http.request(req)\nend\n\nputs 'http error' and exit unless res.is_a? Net::HTTPSuccess\n\nwatched = JSON.parse(res.body)['WATCHED']\n\nputs \":cyclone: #{watched.length}|color=##{watched.length \u003e 0 ? '000000' : 'cccccc'}\"\n\nputs '---'\nwatched.each do |thread|\n  last_post_time = Time.parse(thread['LAST_DATE']).getlocal\n  last_post_time_minutes = ((Time.now - last_post_time) / 60).round\n  href = \"https://forums.whirlpool.net.au/forum-replies.cfm?t=#{thread['ID']}\u0026p=#{thread['LASTPAGE']}\u0026#r#{thread['LASTREAD']}\"\n  puts \"#{thread['TITLE']} -- #{last_post_time_minutes} mins ago | href=#{href}\"\nend\n"
+				}
+			],
+			"path": "Web/whirlpool-watched.1m.rb",
+			"filename": "whirlpool-watched.1m.rb",
+			"dir": "Web",
+			"docsPlugin": "Web/whirlpool-watched.1m.rb.html",
+			"docsCategory": "Web.html",
+			"pathSegments": [
+				"Web"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": true
+				}
+			],
+			"title": "Whirlpool watched threads checker",
+			"version": "v1.0",
+			"author": "Tristan Harmer",
+			"authors": [
+				{
+					"name": "tris",
+					"githubUsername": "gondalez",
+					"imageURL": "https://avatars.githubusercontent.com/u/1468141?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "List unread threads from your watch list",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:10.543725Z",
+			"vars": null
+		}
+	]
+}

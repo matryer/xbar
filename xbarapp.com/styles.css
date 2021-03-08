@@ -1,0 +1,73 @@
+
+/*! xbar styles */
+
+html {
+	min-height: 100%;
+}
+body {
+	min-height: 100vh;
+
+	background: #0f0c29;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */	
+
+	overflow-x: hidden;
+}
+header {
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.6) 100%);
+}
+.fancy-font {
+	font-family: 'Bodoni Moda', serif;
+}
+.fancy-font.text-6xl {
+	line-height: 1.2;
+}
+.hyphens-auto {
+	hyphens: auto;
+}
+strong.bg-brand-text {
+	display: inline-block;
+	color: white;
+}
+.tiny-photo {
+	display: inline-block;
+	background-color: white;
+	transform: rotate(-10deg);
+	border-radius: 3px;
+	margin-top: -20px;
+}
+.tiny-photo img {
+	max-width: 32px;
+	max-height: 32px;
+	margin-left: 32px;
+}
+.tiny-photo img.primary {
+	max-width: 64px;
+	max-height: 64px;
+	margin-left: 0px;
+}
+.light-background {
+	background: rgb(255,255,255);
+	background: linear-gradient(-135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 100%);
+}
+#inner-space {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+#menubar {
+	background-color: rgba(255, 255, 255, 0.2);
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+	width: 100%;
+	font-size: 14px;
+	z-index: 100;
+}
+#menubar a {
+	padding: 2px 8px;
+}
+#menubar a.selected {
+	background-color: rgba(255, 255, 255, 0.15);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

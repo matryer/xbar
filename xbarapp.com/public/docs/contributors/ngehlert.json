@@ -1,0 +1,59 @@
+{
+	"person": {
+		"name": "Nicolas Gehlert",
+		"githubUsername": "ngehlert",
+		"imageURL": "https://avatars.githubusercontent.com/u/8989483?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/Jira/jira.1m.sh",
+					"filename": "jira.1m.sh",
+					"content": "#!/bin/bash\n\n# bitbar plugins for devs that use https://www.atlassian.com/software/jira\n#\n# gets all assigned tasks and displays them on different sorting behaviors.\n# also shows when there are open blockers\n#\n# metadata\n# \u003cbitbar.title\u003ejira\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eNicolas Gehlert\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003engehlert\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003edisplay all tasks that are assigned to you. There are currently two sorting options. Either by type (e.g. Task, Story, Block) or by status (in progress, resolved, ...).\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/HwBF2JX.png\u003c/bitbar.image\u003e\n\nUSER=\"\"\nPASSWORD=\"\"\nJIRA_BASE_URL=\"https://example.com/jira\"\nPROJECT=\"PROJECT\"\nCOOKIE_LOCATION=\"$HOME/.jira-cookie\"\nORDER_BY=\"TYPE\" # available options are [TYPE, STATUS]\n# I think those are the default values, however you should still check your jira configuration\n# Also they are only needed if you want to order by `STATUS`\nSTATUSES=(\"to do\" \"in progress\" \"resolved\" \"done\" \"closed\")\n\nfunction getJsonValue() {\n  KEY=$1\n  num=$2\n  awk -F\"[,:}]\" '{for(i=1;i\u003c=NF;i++){if($i~/'\"$KEY\"'\\042/){print $(i+1)}}}' | tr -d '\"' | sed -n \"${num}\"p\n}\n# stupid hack because json parsing in bash sucks :D find better solution later\nfunction getTextWithCommaJsonValue() {\n  KEY=$1\n  num=$2\n  awk -F\"[:}]\" '{for(i=1;i\u003c=NF;i++){if($i~/'\"$KEY\"'\\042/){print $(i+1)}}}' | tr -d '\"' | sed -n \"${num}\"p\n}\n\nfunction echoAllIssues() {\n  json=$1\n  numberOfTasks=$2\n  color=$3\n  i=\"1\"\n  while [ $i -le \"$numberOfTasks\" ]\n  do\n    issues=$(echo \"$json\" | getTextWithCommaJsonValue summary $i)\n    key=$(echo \"$json\" | getJsonValue key $i)\n    url=\"${JIRA_BASE_URL}/browse/${key}\"\n    echo \"$key: $issues | bash='$0' param1=$url terminal=false color=$color\"\n    ((i+=1))\n  done\n}\n\nfunction jqlEscape() {\n  param=$*\n  echo \"\\\"${param/ /%20}\\\"\"\n}\n\nfunction login() {\n  curl --insecure --silent -X POST -H \"Content-Type: application/json\" -H \"X-Atlassian-Token: nocheck\" -c \"${COOKIE_LOCATION}\" --data \"{\\\"username\\\":\\\"${USER}\\\",\\\"password\\\":\\\"${PASSWORD}\\\"}\" \"${JIRA_BASE_URL}/rest/auth/1/session\"\n}\n\nfunction runType() {\n  recursive=$1\n  blocker=$(curl --insecure --silent -X GET -b \"${COOKIE_LOCATION}\" -H \"Content-Type: application/json\" $JIRA_BASE_URL/rest/api/2/search?jql=sprint%20in%20openSprints\\(\\)AND%20priority=Blocker%20AND%20project=${PROJECT}%20AND%20status\\!=done\\\u0026fields=summary)\n\n  assignedTasks=$(curl --insecure --silent -X GET -b \"${COOKIE_LOCATION}\" -H \"Content-Type: application/json\" $JIRA_BASE_URL/rest/api/2/search?jql=assignee%20in\\(currentUser\\(\\)\\)AND%20sprint%20in%20openSprints\\(\\)AND%20status\\!=done\\\u0026fields=summary)\n\n  stories=$(curl  --insecure --silent -X GET -b \"${COOKIE_LOCATION}\" -H \"Content-Type: application/json\" $JIRA_BASE_URL/rest/api/2/search?jql=sprint%20in%20openSprints\\(\\)%20AND%20issuetype=story%20AND%20project=${PROJECT}%20AND%20status\\!=done\\\u0026fields=summary)\n\n  totalBlocker=$(echo \"$blocker\" | getJsonValue total 1)\n  totalAssignedTasks=$(echo \"$assignedTasks\" | getJsonValue total 1)\n  totalStories=$(echo \"$stories\" | getJsonValue total 1)\n  if [[ -z \"$totalBlocker\" || -z \"$totalAssignedTasks\" || -z \"$totalStories\" ]]\n    then\n      # if data loading failed on the second attempt there is probably a bigger issue\n      if [[ \"$recursive\" = true ]]\n        then\n          echo There seems to be a problem with the jira login. Check your configuration\n          exit\n      fi\n      # token is expired. login again and try to load data\n      login\n      runType true\n  fi\n\n  if [ \"$totalBlocker\" -gt 0 ]\n    then\n      echo \"Blocker: ${totalBlocker} | color=#F44336\"\n    else\n      echo \"Tasks assigned: ${totalAssignedTasks} | color=#333333\"\n  fi\n\n  echo \"---\"\n\n  echo \"Blocker: ${totalBlocker} | color=#333333\"\n  echoAllIssues \"$blocker\" \"$totalBlocker\" \"#F44336\"\n  echo \"---\"\n\n  echo \"Tasks assigned: ${totalAssignedTasks} | color=#333333\"\n  echoAllIssues \"$assignedTasks\" \"$totalAssignedTasks\" \"#333333\"\n  echo \"---\"\n\n  echo \"Open Stories: ${totalStories} | color=#333333\"\n  echoAllIssues \"$stories\" \"$totalStories\" \"#333333\"\n\n  exit\n}\n\nfunction runStatus() {\n  recursive=$1\n  blocker=$(curl --insecure --silent -X GET -b \"${COOKIE_LOCATION}\" -H \"Content-Type: application/json\" $JIRA_BASE_URL/rest/api/2/search?jql=sprint%20in%20openSprints\\(\\)AND%20priority=Blocker%20AND%20project=${PROJECT}%20AND%20status\\!=done\\\u0026fields=summary)\n\n  assignedTasks=$(curl --insecure --silent -X GET -b \"${COOKIE_LOCATION}\" -H \"Content-Type: application/json\" $JIRA_BASE_URL/rest/api/2/search?jql=assignee%20in\\(currentUser\\(\\)\\)AND%20sprint%20in%20openSprints\\(\\)AND%20status\\!=done\\\u0026fields=summary)\n  totalBlocker=$(echo \"$blocker\" | getJsonValue total 1)\n  totalAssignedTasks=$(echo \"$assignedTasks\" | getJsonValue total 1)\n  if [[ -z \"$totalBlocker\" || -z \"$totalAssignedTasks\" ]]\n    then\n      # if data loading failed on the second attempt there is probably a bigger issue\n      if [[ \"$recursive\" = true ]]\n        then\n          echo There seems to be a problem with the jira login. Check your configuration\n          exit\n      fi\n      # token is expired. login again and try to load data\n      login\n      runStatus true\n  fi\n\n  if [ \"$totalBlocker\" -gt 0 ]\n    then\n      echo \"Blocker: ${totalBlocker} | color=#F44336\"\n    else\n      echo \"Tasks assigned: ${totalAssignedTasks} | color=#333333\"\n  fi\n\n  echo \"---\"\n  echo \"Blocker: ${totalBlocker} | color=#333333\"\n  echoAllIssues \"$blocker\" \"$totalBlocker\" \"#F44336\"\n  echo \"---\"\n  for index in ${!STATUSES[*]}\n  do\n    status=${STATUSES[$index]}\n    ecapedStatus=$(jqlEscape \"$status\")\n\n    statusResponse=$(curl  --insecure --silent -X GET -b \"${COOKIE_LOCATION}\" -H \"Content-Type: application/json\" $JIRA_BASE_URL/rest/api/2/search?jql=assignee%20in\\(currentUser\\(\\)\\)AND%20sprint%20in%20openSprints\\(\\)%20AND%20project=${PROJECT}%20AND%20status=\"${ecapedStatus}\"\\\u0026fields=summary)\n    totalTasks=$(echo \"$statusResponse\" | getJsonValue total 1)\n\n    echo \"${status}: ${totalTasks} | color=#333333\"\n    echoAllIssues \"$statusResponse\" \"$totalTasks\" \"#333333\"\n    echo \"---\"\n  done\n  exit\n}\n\n# the program starts here\n\n# opens jira issue page if one entry was clicked\nif [[ \"$1\" == http* ]]; then\n  open \"$1\"\n  exit\nfi\n\n# only login if there is not already a auth token\nif [ ! -f \"${COOKIE_LOCATION}\" ]\n  then\n    login\nfi\n\nif [[ \"${ORDER_BY}\" == \"TYPE\" ]]; then\n  runType\nelif [[ \"${ORDER_BY}\" == \"STATUS\" ]]; then\n  runStatus\nfi\n"
+				}
+			],
+			"path": "Dev/Jira/jira.1m.sh",
+			"filename": "jira.1m.sh",
+			"dir": "Dev/Jira",
+			"docsPlugin": "Dev/Jira/jira.1m.sh.html",
+			"docsCategory": "Dev/Jira.html",
+			"pathSegments": [
+				"Dev",
+				"Jira"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Jira",
+					"text": "Jira",
+					"isLast": true
+				}
+			],
+			"title": "jira",
+			"version": "v1.1",
+			"author": "Nicolas Gehlert",
+			"authors": [
+				{
+					"name": "Nicolas Gehlert",
+					"githubUsername": "ngehlert",
+					"imageURL": "https://avatars.githubusercontent.com/u/8989483?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "display all tasks that are assigned to you. There are currently two sorting options. Either by type (e.g. Task, Story, Block) or by status (in progress, resolved, ...).",
+			"imageURL": "http://i.imgur.com/HwBF2JX.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:49.670598Z",
+			"vars": null
+		}
+	]
+}

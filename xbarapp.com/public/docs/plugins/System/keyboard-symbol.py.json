@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/keyboard-symbol.py",
+				"filename": "keyboard-symbol.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eKeyboard symbol\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eĐinh Quang Hiếu\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edqhieu\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin displays a menu of keyboard symbol\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/dqhieu/keyboard-symbol/master/demo.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\nprint '⌨️'\nprint '---'\nprint '⌘ Command'\nprint '⇧ Shift'\nprint '⌫ Backspace/Delete'\nprint '⇥ Tab'\nprint '⇪ Caps lock'\nprint '⌥ Option/Alt'\nprint '⌃ Control'\nprint '⎋ Escape'\nprint '←↑→↓ Arrow keys'\nprint '↩ Return'\n"
+			}
+		],
+		"path": "System/keyboard-symbol.py",
+		"filename": "keyboard-symbol.py",
+		"dir": "System",
+		"docsPlugin": "System/keyboard-symbol.py.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Keyboard symbol",
+		"version": "v1.0",
+		"author": "Đinh Quang Hiếu",
+		"authors": [
+			{
+				"name": "Đinh Quang Hiếu",
+				"githubUsername": "dqhieu",
+				"imageURL": "https://avatars.githubusercontent.com/u/8291457?v=4",
+				"bio": "Eat, sleep, code, repeat 👍",
+				"primary": true
+			}
+		],
+		"desc": "This plugin displays a menu of keyboard symbol",
+		"imageURL": "https://raw.githubusercontent.com/dqhieu/keyboard-symbol/master/demo.png",
+		"dependencies": [],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:03.553066Z",
+		"vars": null
+	}
+}

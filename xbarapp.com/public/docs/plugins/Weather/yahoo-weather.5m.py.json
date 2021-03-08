@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Weather/yahoo-weather.5m.py",
+				"filename": "yahoo-weather.5m.py",
+				"content": "#!/usr/bin/env LC_ALL=en_US.UTF-8 /usr/local/bin/python3\n#\n# \u003cbitbar.title\u003eYahoo Weather\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev3.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003emgjo5899\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emgjo5899\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eIt tells you the current weather condition of the location where your computer is located at.  It knows the location of the computer by using its public IP.  You can also manually set the city and region through modifying the file. \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/YNypf0P.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n#\n# by mgjo5899\n\nimport json, uuid, time, hmac, hashlib\n\nfrom base64 import b64encode\nfrom urllib.request import urlopen, Request\nfrom urllib.parse import urlencode, quote\n\n# Change unit to 'c' for celsius and 'f' for fahrenheit\nunit = 'c'\n\n# General Placeholders\nurl = 'https://weather-ydn-yql.media.yahoo.com/forecastrss'\nmethod = 'GET'\nconcat = '\u0026'\n\n# Credentials\napp_id = 'f776QQ32'\nconsumer_key = 'dj0yJmk9RlJhbUVpUEpsSUxEJmQ9WVdrOVpqYzNObEZSTXpJbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTk0'\nconsumer_secret = '75c592717d22c5cce623d2c2a1d5a5b36786d865'\n\n# Query and authentication related\nquery = {'location': 'seoul,korea', 'format': 'json', 'u': unit}\noauth = {\n    'oauth_consumer_key': consumer_key,\n    'oauth_nonce': uuid.uuid4().hex,\n    'oauth_signature_method': 'HMAC-SHA1',\n    'oauth_timestamp': str(int(time.time())),\n    'oauth_version': '1.0'\n}\n\n\n# Error handling decorator\ndef exception_handler(msg=\"Something is wrong\"):\n    def decorator(func):\n        def new_func(*args, **kwargs):\n            try:\n                return func(*args, **kwargs)\n            except:\n                print(f\"Error: {msg}\")\n                exit(1)\n        return new_func\n    return decorator\n\n\n@exception_handler(msg=\"Location service\")\ndef get_location_using_ip():\n    service_endpoint = 'http://ip-api.com/json'\n    r = urlopen(service_endpoint).read()\n    j = json.loads(r)\n    city = j['city']\n    region = j['region']\n\n    return f\"{city},{region}\"\n\n\ndef get_auth_header():\n    global oauth\n    merged_params = query.copy()\n    merged_params.update(oauth)\n    sorted_params = [k + '=' + quote(merged_params[k], safe='') for k in sorted(merged_params.keys())]\n    signature_base_str =  method + concat + quote(url, safe='') + concat + quote(concat.join(sorted_params))\n    composite_key = quote(consumer_secret, safe='') + concat\n    oauth_signature = b64encode(hmac.new(composite_key.encode(), msg=signature_base_str.encode(), digestmod=hashlib.sha1).digest()).decode()\n    oauth['oauth_signature'] = oauth_signature\n    auth_header = 'OAuth ' + ', '.join(['{}=\"{}\"'.format(k,v) for k,v in oauth.items()])\n\n    return auth_header\n\n\n@exception_handler(msg=\"Yahoo Weather API\")\ndef get_weather(auth_header):\n    request_url = url + '?' + urlencode(query)\n    request = Request(request_url)\n    request.add_header('Authorization', auth_header)\n    request.add_header('X-Yahoo-App-Id', app_id)\n    r = urlopen(request).read()\n    j = json.loads(r)\n    condition_data = j['current_observation']['condition']\n    condition = condition_data['text']\n    temperature = condition_data['temperature']\n\n    return (condition, temperature)\n\nlocation = get_location_using_ip()\nquery['location'] = location\nauth_header = get_auth_header()\ncondition, temperature = get_weather(auth_header)\n\nif unit == 'c':\n  print(str(condition) + ' : ' + str(int(temperature)) + '°C')\nelif unit == 'f':\n  print(str(condition) + ' : ' + str(int(temperature)) + '°F')\n"
+			}
+		],
+		"path": "Weather/yahoo-weather.5m.py",
+		"filename": "yahoo-weather.5m.py",
+		"dir": "Weather",
+		"docsPlugin": "Weather/yahoo-weather.5m.py.html",
+		"docsCategory": "Weather.html",
+		"pathSegments": [
+			"Weather"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Weather",
+				"text": "Weather",
+				"isLast": true
+			}
+		],
+		"title": "Yahoo Weather",
+		"version": "v3.0",
+		"author": "mgjo5899",
+		"authors": [
+			{
+				"name": "Joseph",
+				"githubUsername": "mgjo5899",
+				"imageURL": "https://avatars.githubusercontent.com/u/17048946?v=4",
+				"bio": "Listening to Yiruma songs helps me to focus when coding :)",
+				"primary": true
+			}
+		],
+		"desc": "It tells you the current weather condition of the location where your computer is located at.  It knows the location of the computer by using its public IP.  You can also manually set the city and region through modifying the file. ",
+		"imageURL": "https://i.imgur.com/YNypf0P.jpg",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:08.917558Z",
+		"vars": null
+	}
+}

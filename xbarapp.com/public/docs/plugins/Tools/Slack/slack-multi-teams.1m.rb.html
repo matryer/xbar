@@ -1,0 +1,538 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Slack Multi-Teams Overview in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Provides an overview of unread channels, unread messages and channel histories. - install xbar for free to get started.'>
+	<meta name='author' content='Harry Löwen'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ'>
+	<meta itemprop='name' content='Slack Multi-Teams Overview in your macOS menu bar'>
+	<meta itemprop='description' content='Provides an overview of unread channels, unread messages and channel histories. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Slack Multi-Teams Overview in your macOS menu bar'>
+	<meta name='twitter:description' content='Provides an overview of unread channels, unread messages and channel histories. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Slack Multi-Teams Overview in your macOS menu bar'>
+	<meta property='og:description' content='Provides an overview of unread channels, unread messages and channel histories. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/Slack/slack-multi-teams.1m.rb.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ'>
+	<link rel='shortcut icon' href='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Slack Multi-Teams Overview</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/harryloewen.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/33319470?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/harryloewen.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Harry Löwen (<code style='color:white;'>@harryloewen</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Provides an overview of unread channels, unread messages and channel histories.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2fSlack%2fslack-multi-teams.1m.rb'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ' 
+				alt='Image preview of Slack Multi-Teams Overview plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>slack-multi-teams.1m.rb</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/Slack/slack-multi-teams.1m.rb'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/Slack/slack-multi-teams.1m.rb'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env ruby
+#
+# Slack Mutli-Teams Overview.
+#
+# by Harry Löwen
+#
+# Provides an overview of unread channels, unread messages and channel histories.
+# Features: multiple teams (workspaces) handling,
+# &#39;mark as read&#39; and &#39;open in slack&#39; buttons,
+# display all channels or only unread ones.
+#
+# Uses Slack Legacy Token (from now)
+# https://api.slack.com/custom-integrations/legacy-tokens
+#
+# Refresh rate is set to every minute.
+# Because: 180&#43; lines of code and 4&#43; requests running per team (one channel, one user)
+# For a simple unread indicator check out: https://github.com/matryer/bitbar-plugins/blob/master/Messenger/slack-unread.1s.py
+#
+# Feel free to customize settings, colors, all-done-messages, etc.
+#
+# metadata
+# &lt;bitbar.title&gt;Slack Multi-Teams Overview&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Harry Löwen&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;harryloewen&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Provides an overview of unread channels, unread messages and channel histories.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://drive.google.com/uc?export=preview&amp;id=1vxQ5qr8opWaHhiqFlJZmi0oCOG3ik0uJ&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;ruby&lt;bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/harryloewen/bitbar-slack-multi-teams/&lt;/bitbar.abouturl&gt;
+
+require &#39;net/http&#39;
+require &#39;open-uri&#39;
+require &#39;json&#39;
+
+# your token(s) please
+TOKENS = [
+  &#39;xoxp-your-slack-token&#39;,
+  &#39;xoxp-another-slack-token&#39;,
+].freeze
+
+# display all channels or only those with unread messages
+ALL_CHANNELS = false
+
+# your default color
+COLOR = &#39;#696969&#39;.freeze # &#39;#696969&#39; works in darkmode as well
+
+# your random messages if there&#39;re no unreads (and if ALL_CHANNELS is set to false)
+ALL_DONE_MESSAGES = [
+  &#34;:v: All caught up. | color=#{COLOR}
+    What’s next? | color=#{COLOR}&#34;,
+  &#34;:octopus: All done. | color=#{COLOR}
+    The world is your oyster. | color=#{COLOR}&#34;,
+  &#34;:clap: Everything unread is now read. | color=#{COLOR}
+    You’ve done it. | color=#{COLOR}&#34;,
+  &#34;:boom: Boom. | color=#{COLOR}
+    You’re up to date. | color=#{COLOR}&#34;,
+  &#34;:seedling: Everything’s sorted! | color=#{COLOR}
+    Let’s start something new. | color=#{COLOR}&#34;,
+  &#34;:car: There. | color=#{COLOR}
+    All caught up. | color=#{COLOR}&#34;,
+  &#34;:balloon: There! Caught up. | color=#{COLOR}
+    Set your mind to something new. | color=#{COLOR}&#34;,
+  &#34;:rocket: All done. | color=#{COLOR}
+    The future is yours. | color=#{COLOR}&#34;,
+  &#34;:raised_hands: That’s everything! | color=#{COLOR}&#34;,
+  &#34;:tractor: You’re all read. | color=#{COLOR}
+    Here’s a tractor. | color=#{COLOR}&#34;
+].freeze
+
+# some helpful methods
+def load_content(api_method, options = nil)
+  url = &#34;https://slack.com/api/#{api_method}?token=#{@team[:token]}#{options}&#34;
+  @content = JSON.parse(open(url).read)
+  return if @content[&#39;ok&#39;]
+  @output &#43;= &#34;🚫\n&#34;
+  @output &#43;= &#34;#{api_method}: #{@content[&#39;error&#39;]} | color=red&#34;
+end
+
+def load_team
+  load_content(&#39;team.info&#39;)
+  return unless @content[&#39;ok&#39;]
+  @team[:id] = @content[&#39;team&#39;][&#39;id&#39;]
+  @team[:name] = @content[&#39;team&#39;][&#39;name&#39;]
+  @team.merge!(unreads: 0, users: [], channels: [])
+  @teams &lt;&lt; @team
+end
+
+def load_channels
+  load_content(&#39;users.conversations&#39;, &#39;&amp;types=public_channel%2Cprivate_channel%2Cmpim%2Cim&#39;)
+  @content[&#39;channels&#39;].each do |channel|
+    @team[:channels] &lt;&lt;
+      { id: channel[&#39;id&#39;], name: channel[&#39;name&#39;], user: channel[&#39;user&#39;],
+        is_channel: channel[&#39;is_channel&#39;], is_im: channel[&#39;is_im&#39;] }
+  end
+end
+
+def load_users
+  load_content(&#39;users.list&#39;)
+  @content[&#39;members&#39;].each do |user|
+    @team[:users] &lt;&lt; { id: user[&#39;id&#39;], name: user[&#39;name&#39;] }
+  end
+end
+
+def find_user(message)
+  return &#39;...&#39; unless message[&#39;type&#39;] == &#39;message&#39;
+  if message[&#39;user&#39;]
+    &#39;@&#39; &#43; message[&#39;user&#39;]
+  elsif message[&#39;bot_id&#39;]
+    if message[&#39;attachments&#39;]
+      message[&#39;attachments&#39;][0][&#39;service_name&#39;]
+    else
+      &#39;Bot&#39;
+    end
+  end
+end
+
+def find_text(message)
+  return &#39;...&#39; unless message[&#39;type&#39;] == &#39;message&#39;
+  if !message[&#39;text&#39;].nil? &amp;&amp; !message[&#39;text&#39;].empty?
+    message[&#39;text&#39;].tr(&#34;\n&#34;, &#39; &#39;).tr(&#34;\r&#34;, &#39; &#39;)
+  elsif message[&#39;attachments&#39;]
+    message[&#39;attachments&#39;].first[&#39;text&#39;].tr(&#34;\n&#34;, &#39; &#39;).tr(&#34;\r&#34;, &#39; &#39;)
+  end
+end
+
+def handle_messages(channel, red_messages)
+  history = []
+  @content[&#39;messages&#39;].each do |message|
+    color = red_messages &gt; 0 ? &#39;red&#39; : COLOR
+    history &lt;&lt; &#34;--#{find_user(message)}: #{find_text(message)}|length=90 color=#{color}\n&#34;
+    red_messages -= 1
+  end
+  history &lt;&lt; &#34;\n-----\n&#34;
+  history &lt;&lt; &#34;--🔗 open in Slack | href=slack://channel?id=#{channel}&amp;team=#{@team[:id]}\n&#34;
+end
+
+def marking_url(channel)
+  timestamp = @content[&#39;messages&#39;].first[&#39;ts&#39;]
+  &#34;https://slack.com/api/channels.mark?token=#{@team[:token]}&amp;channel=#{channel[:id]}&amp;ts=#{timestamp}&#34;
+end
+
+def load_history
+  @team[:channels].each do |channel|
+    method = channel[:is_im] ? &#39;im.history&#39; : &#39;channels.history&#39;
+    load_content(method, &#34;&amp;channel=#{channel[:id]}&amp;count=6&amp;unreads=true&#34;)
+    channel[:unread] = @content[&#39;unread_count_display&#39;].to_i
+
+    if channel[:unread] &gt; 0
+      @team[:unreads] &#43;= 1
+      channel[:history] = handle_messages(channel[:id], channel[:unread])
+      channel[:history] &lt;&lt; &#34;--✅ mark as read | bash=&#39;/usr/bin/curl&#39; param1=&#39;#{marking_url(channel)}&#39; refresh=true terminal=false\n&#34;
+    elsif ALL_CHANNELS
+      channel[:history] = handle_messages(channel[:id], channel[:unread])
+    end
+  end
+end
+
+# everything starts here
+@teams = []
+@output = &#39;&#39;
+
+TOKENS.each do |token|
+  @team = { token: token }
+  load_team
+end
+
+@teams.each do |team|
+  @team = team
+  load_channels
+  load_history
+
+  @output &#43;= &#34;\n---\n#{@team[:name]}\n&#34;
+
+  if @team[:unreads] &gt; 0 || ALL_CHANNELS
+    @team[:channels].each do |channel|
+      next unless channel[:unread] &gt; 0 || ALL_CHANNELS
+      @output &#43;= channel[:is_im] ? &#34;&lt;@#{channel[:user]}&gt;&#34; : &#34;##{channel[:name]}&#34;
+      @output &#43;= channel[:unread] &gt; 0 ? &#34; (#{channel[:unread]})|color=red\n&#34; : &#34;\n&#34;
+      channel[:history].each { |message| @output &#43;= message.to_s }
+    end
+
+    load_users
+    @team[:users].each do |user|
+      @output = @output.gsub(user[:id], user[:name]).gsub(&#34;&lt;@#{user[:name]}&gt;&#34;, &#34;@#{user[:name]}&#34;)
+      @output = @output.gsub(&#39;&lt;!channel&gt;&#39;, &#39;@channel&#39;).gsub(&#39;&lt;!here&gt;&#39;,&#39;@here&#39;)
+    end
+  else
+    @output &#43;= ALL_DONE_MESSAGES.sample
+  end
+end
+
+@unread_channels = @teams.map { |t| t[:unreads] }.inject(0, :&#43;)
+@unread_channels = &#39;&#39; if @unread_channels.zero?
+
+ICON=&#39;iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABy2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24&#43;MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD53d3cuaW5rc2NhcGUub3JnPC94bXA6Q3JlYXRvclRvb2w&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgoE1OjLAAANl0lEQVRYCaVYCXBd1Xn&#43;z3KXt2mXtdlgjOVFAgtbBhNjY2lIWRs6GeYpNWEpzYxpY2gotEymoeU6U4YMTSEJnVJMUzabRW8mTJJCMANYNo7j2IABW7KwjeVNtiXxtL7lbuec/uc&#43;P8duMp3O5Gie3rv3nvuf73z//3//fy&#43;BP2IoBZQQkCc2d1zFGXWkVFcSQiZCAc&#43;O5ulPlt/7UeA4QPEj/z/L8D84SSmSzmSovpYZGFDgOL9nrLcXGAIRB56/Yq7F4QemQbtzbugxCnUmJd&#43;vi8lJvP2nj&#43;I/B4A4jkP629oIHkImnZZAiNK//&#43;&#43;hgKR7e9m5SQjMUU4E7Nw5/KF609GcIy8vuev0a1eIk690yMMvLAmOvLjEn/pZpzr12hVbdj7ZXgNK0d7eXhO/IyDahoPnzj8u272QGX0DIs5Aj1j5kjOLJqxkceO9J5x7NyLdDtJdYgi3RCDdjl8Z/KFsIUGBIgpZoRJ/zbgC0G2LGipn2tDejh4AHxekf791d0MAedchRLOGeBR69XcMnUMbIcULc52/sOd0LrwDCPsmUKggFHZLET6145Z/OJhGNjI9GREZ0m7qAfH5S52rqmyyWUpxUd6XIQdFDXRgyoKgEFZ/v7HhuRcfNKavMUy2OpTQTgh1cQOvutnh15&#43;&#43;&#43;WavvK62WaIfXePAhgjY7M4Fa1ki/kOesLsIY8t4MvFX3LSfWPHzxxo0kLLL&#43;uqdaL5U&#43;QNKFPfGDYAYRUPI7VRgw2ejQ&#43;ZbhSV/&#43;UCs8IaRTP0HNe31hmV32cnkjWYy9SO7pvmbGkAUm2ddGIFxwCH4J1dtfryaErYWqasMpvOuKHpuMJVD8HCDCaxb39w/kOZdzlbe3e2E&#43;njx3YPZfNHbNlaQcDhn0vdGTfX6aZs8c7wStmYn5hkiv1yGYZWbmxF&#43;IR8UpyaK6KBqzIg779&#43;&#43;vT7T0yPKyXJBzOSpF0uomE2CEIMAOFLKZCgDaoBNGFmNa7&#43;WaW/X/oc7t2xJJMC8hDZd0vHq2EC3/Oy54IvsIJ8i9cogEmyzGfjkDpkfvk5ac5bipgnypqgSSoRFFxkklZzEUmhqTNvT4ywzj0ZptnetM8IY3U8ocq0Jx6FpJ5QCsY3lN/38maUPb9u3&#43;MHffPzXjbUt/15ZW59Jhe6L4xVzvjZgLOQiOETqDEqrmACL2QDiFFUTRzkVvrai5SFkhmmbqRQQTneffO/NkzqI27V84CjFDAYuprOJxwLRb0O/TFGTMUSEeUKoh66aGZle3GBd/CSvir3GLevfuGndBZQuCtwCg1Cq&#43;rr5xDIuAik9EGgWdw4Gnw3BxH4V&#43;nlip6qYFU8YeK8Xuu4viJRPZRzH31DSoEjHuEamT2D8hhlEs31406&#43;vab79ECbq8sJkQYbF0PCKvsoWcqkFqWKXUgJCP1BBoaB9qdkjxDSQ9BYJ1gJg3hBVRiMUhYAc1CqY7id86nTOrp39uXS9PaEKP5Ap670fX9kx4qDeOCXG0EwUF1Geq2/1vl3z0I66NiMWX9M/tKtm/3A/EE8yLeScYa5iPh4fPijqU41g2XGKFHJgTIFElQkDyRM1jNR2kNGju1A8GkktuqoVpy2rjvHE9Jsf7TtT89B3rr/&#43;Y4QeuUQLKwKJZCJCosGse/ZDI7WE3c242YP7XIT0N9TFmsyw&#43;AmKGKWmwfE0gTizyFg&#43;ywvuDNixpMA4CpSSHGOAYcqCREFK1bXKedkYXFqRh&#43;YYITU8gMYKBjR8p3rJwU3579wA6q233rJ233RT8L&#43;BaEC0aqn1N8y0fmLE7D9RUsxxCzkjnkip5opZJJCYvSjKAnPbYgZMBXmYmP5SEc6ZlUgaZiyOjJFJ5Xu7RqXxyFdM73t/Prcqu2ZWQObFA5E0JM27oXLJxZcVqld36QVju58QZdcgRZGb9Xk9qJTyflAyVpyaDETgh1IIZZlxqEvOkp4Ko6jAuALtrlBINTpxWvm&#43;OyaE2Cb84HFEu1aMnfj680vnPpb21z8T59YAYgVP4tbQJ4EEYTJBLWPm6k//pSHR7fSFyuniW6GLY8GkCj&#43;9UKpzqN6yTgTSV1JSpJ6i9CvDsGRdbQtNjgyA63lgcgMURk9DbTX1E648Nfn5D5ctvPHZ715aM1XaU&#43;k/loep45tgJ2FqDcYYw22jrAAJ8Z&#43;UZAWYDZcAjOwnCCi6Q2fM2YGtAeXE4L&#43;27Nj1XqGAe5FgWugQOwZVskE1VTWGI94Ir6pIEWpRMCxT8rjBjvoHee&#43;lt0dAdCCmIQ319RuIVmWi6PYglN/G&#43;lSJSSe0H1wfE81irY1zVQce7u&#43;f/a2agjWzmHq0TSqqL28np51jXLj&#43;oyFhNqXsWqy4OjCPh577MZbf7fFZseuajaZbIFQykg6shpq9GEvd0tX7xH/19Tx8BnFAD2aFwsKpNzk9zT6pqYIDhgVX&#43;1IoA&#43;NXixf6mOVP2T0f1t9RRyBck1LxZQETzShmJAFk28dz7vwuf3JV566//WDPPViluzEwjNDL7yNcHXhq1crxVW//IEsVv1mqkKoAAWFaCS/Qay6GuNS7PNO&#43;YYCk0&#43;jzgTEkoQ/a1&#43;85M/qLxf&#43;tQvtqCIDmsxKKo4Tkj7mKHDFvqrTF10xqEizwIFG0dAbEKLsO8W7gZ4XnCBrWnwtGMC4&#43;sarYYWYZrcJDMhGxwijG42qMs1U4eQv2OBf4fxfcXzG6oz&#43;URlbmjgU0P4jhchgzcpISXpXjRnVB&#43;SFDcUKS8c&#43;XgW6BAlSfq7hOs1Jnh3xjs4S7hIG&#43;PuJ0d4cxHhxRxPwt1pFWcPEy7h0TSxDsnHCshEObKqD1juk3u9KNLV/YHSg1qxlMr1QvN7V9OVNQXi6vaLVFCQqx0YQZoDwoutOQgiSqKFYiZAYtYW4QS4A6gebPDdRYnfllhSw1Ujf88rH1gWE97QWYqJRgyuE0RljgBiN37Tn5rzf/c9aYXmj9KRTlYoNgjcRFMFZgkp1SefsoUmlhSpXWUDQATiuhIpinuI9NCa6WwJYAJaQYSvlP57cQmIQlbDrNBgaAZSAjtlTE3&#43;&#43;QtL&#43;Gs8v88RkJ4zkjHB5Xp4bG6ux95PGwuYrZWJQ9FCJXoUnMSUwGatAkpaEJkmLZRN3BbQJ4CPTktBK&#43;RyrmJIOQhqNFFQ76SrwuTgy&#43;cD6YCL4WIAKOACfqW&#43;Ht5w7EXrmqMnswVwCy9yhRg1ll7MuTUQjo4dnN5HIjrliANRgJRdY0cUxhZBLfDKmZgDCcYGKCETmJe7WIjF8LlFVMDgVfVL7gHQv6xhuL/V8dfCOrFz/fTYjewU7GkVvnphuTwLsNxa&#43;pEMaVu/Nji7838UWqBqiymmxCK004zSXM96l8oNhMWsAGl6CPdQuAkYCuYjHGSS4YgbH8ITDbLWW3Yta0kLD&#43;Ys6xhf9wPP7Z1ztuA&#43;xndI46unPAynt2lIF82nzHwhiwJ3DO9bhbWzu2MR6Djvpq9YkpyBws5CF21jWegkEu6HDSgybXVgyTw6YcDBQkn2M1O0H30dXGRMu1dmesniZYAuMNay5&#43;wGBsflWhYyXAp72wcR1HAiK9ONvplRhBF5mM04fixLgV/WhjNxNMSk8kLUNdpuJkyMcs1oloELBRzYZmfHXowISi0&#43;gBjt4h6qAP4uXAFvdN&#43;ME37NvGH2y43BisbkIUmEzY4lDfV6jSpIpzqttYCus2Yq3CbxwRM23QH7lr9my4CHm&#43;cloGOsI95M/UjjR9quYZlmjBdCkWAmoeD7CbC9WCVhsO3lodnizQdxa8K3pPLFJ7ZdYf6j6WyUWEfxvg&#43;OaOPTFOO1HekGxdo7Dx0Pog1ZLBny5tJGTvKXwgRDCZEpg0lB7ICj6fSdhyWqebK6PnMRQnIAajbCFU0DVjX8I29M/8P2sm7qW1qn7eLDjTVMM2UPXub9595CUYjCCAToKl9&#43;d469O/8rCAfAAm3MM5WF6gPJQoaRnUcAPhTxWLnr6jXC8jegAfOLWBr46&#43;OoKYX8EtzGDHGktSk6eweeKETsamyEd1d7YN8b&#43;7jsDaFYp1XUbIvAZp1KYotWPXfqXXqdGGUZF5D0rC/NpfRXGghPE&#43;Kv47tSkOKZtZ1UkWQ2KmMNhfXXHfYFY/s6fTGdzzWTfpDFBQOrGXWi8uUz7KFLkdk8NEhfxUcNieHD&#43;48/CN37jnorj5iCh4HAIMUldz74PJyFKU5UVob2ffGm0W78Y3D3qhS3r2nBl6pfNhzxcjuMry6YKYQkna5E3kN&#43;t5KPhS66j&#43;fS6bSoBQ9o6&#43;oIX/P3/bctcbgrj2ysOZM3gcaejS4La&#43;ygKsQ7&#43;3EBQ3haqCbQfGJcwWBr0c5&#43;2sH2vDCNfpCqoHH391cJLbPxrsddrXL8OYLObIzOUP7B/BuZoBJK0ERB&#43;fA6MPyoCwQtEVwy9FQqTPf/jsOqPz3o3hismpfllX8zlL2C1ypiBQ6igGvK4zWl&#43;ihzs9XxsqD80QLoqw&#43;/X1w/p8yTW/Y6Q892zMlA9LgNLoMh1DWnsc/CzHtxD4goXsvvvxLLYTr8sgKDKTm/gsLlncwqca2O5T0VeyEoVjRHvZKu5eaoZ68cWBwtcr57umPEd/X8BM&#43;YJmCGMc2S/HefkKQHG45vnE3KkKLH73IQO1yvPfh0A&#43;uvvWfxzSLwUcgqXkDwzNUMne79ssT/8f1G6aKUECx6AAAAAASUVORK5CYII=&#39;.freeze
+
+# and finally print it!
+puts &#34;
+#{@unread_channels} | image=#{ICON}
+---
+#{@output}
+---
+Settings
+--Tokens: #{TOKENS.count}
+----Total: #{TOKENS.count}
+----Valid: #{@teams.count} | color=#{@teams.count &lt; TOKENS.count ? &#39;red&#39; : &#39;green&#39;}
+----Generate tokens | href=https://api.slack.com/custom-integrations/legacy-tokens
+--Show all channels: #{ALL_CHANNELS} | color=#{ALL_CHANNELS ? &#39;green&#39; : &#39;red&#39;}
+---
+Refresh ⟳| refresh=true
+&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

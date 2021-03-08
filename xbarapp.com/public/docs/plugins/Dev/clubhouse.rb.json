@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/clubhouse.rb",
+				"filename": "clubhouse.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eClubhouse\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTom Haratyk\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejazzytomato\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/oExbPOg.png\u003c/bitbar.image\u003e\n\nCLUBHOUSE_API_TOKEN='CHANGE_ME'\nCLUBHOUSE_USER='CHANGE_ME'\nGITHUB_ORG='CHANGE_ME' # for PRs\nCLUBHOUSE_WORKFLOW='Engineering'\nCLUBHOUSE_NUMBER_OF_ITEMS=20 # max is 25\nCLUBHOUSE_QUERY=\"owner:#{CLUBHOUSE_USER} !is:done !is:archived\" # https://help.clubhouse.io/hc/en-us/articles/360000046646-Search-Operators\n\nBAR_COLORS = true\n\nrequire 'net/http'\nrequire \"uri\"\nrequire 'json'\nrequire 'pathname'\nrequire 'openssl'\nrequire 'time'\n\nSCRIPT_PATH = Pathname.new($0).realpath()\nREFRESH = \"---\\nRefresh | refresh=true\"\n\ndef get_workflows\n  uri = URI.parse(\"https://api.clubhouse.io/api/v3/workflows\")\n  http = Net::HTTP.new(uri.host, uri.port)\n  http.use_ssl = true\n  http.verify_mode = OpenSSL::SSL::VERIFY_PEER\n\n  request = Net::HTTP::Get.new(uri.request_uri)\n  request[\"Content-Type\"] = \"application/json\"\n  request[\"Clubhouse-Token\"] = CLUBHOUSE_API_TOKEN\n\n  http.request(request)\nend\n\ndef get_stories\n  uri = URI.parse(\"https://api.clubhouse.io/api/v3/search/stories?page_size=#{CLUBHOUSE_NUMBER_OF_ITEMS}\u0026query=#{CLUBHOUSE_QUERY}\")\n  http = Net::HTTP.new(uri.host, uri.port)\n  http.use_ssl = true\n  http.verify_mode = OpenSSL::SSL::VERIFY_PEER\n\n  request = Net::HTTP::Get.new(uri.request_uri)\n  request[\"Content-Type\"] = \"application/json\"\n  request[\"Clubhouse-Token\"] = CLUBHOUSE_API_TOKEN\n\n  http.request(request)\nend\n\ndef format_pr(pr)\n  repo = /#{GITHUB_ORG}\\/(.*)\\/pull/.match(pr['url'])[1]\n  icon = pr['closed'] ? ':cl:' : (pr['review_status'] == 'approved' ? ':white_check_mark:' : '')\n  updated_at = Time.parse(pr['updated_at'])\n  day = updated_at.strftime('%a %d/%m')\n  timestamp = (day != Time.now.strftime('%a %d/%m') ? ('on ' + day) : '') + \" at \" + updated_at.strftime(\"%I:%M%p\")\n  \"\\n----#{icon} #{repo} ##{pr['number']} -\u003e #{pr['target_branch_name']} - Modified on #{timestamp} | href=#{pr['url']}\"\nend\n\ndef format_branch(b)\n  \"\\n----:clipboard:#{b['name']} | terminal=false bash='/bin/bash' param1='-c' param2=\\\"'echo #{b['name']} | pbcopy'\\\"\"\nend\n\ndef format_labels(item)\n  \"[\" + item['labels'].map { |l| l['name'] }.join(' ') + \"] \"\nend\n\ndef create_branch(item)\n  name = \"ch#{item['id']}/#{item['name'].downcase.gsub(/(?!\\s)\\W/, '').gsub(/\\s+/, '-')[0..50]}\"\n  \":clipboard::heavy_plus_sign: #{name} | terminal=false bash='/bin/bash' param1='-c' param2=\\\"'echo #{name} | pbcopy'\\\"\"\nend\n\ndef build_item(item)\n  (item['blocked'] ? ':no_entry_sign: ' : '') +\n  item['name'].gsub('|', '/') + \" \" + \n  \" | color=black length=80 href=#{item['app_url']}\" +\n  \"\\n--#{format_labels(item)}\" +\n  \"\\n--:clipboard:Copy story id #{item['id'].to_s} | terminal=false bash='/bin/bash' param1='-c' param2=\\\"'echo #{item['id']} | pbcopy'\\\"\" +\n  \"\\n--Branches\" +\n  item['branches'].map(\u0026method(:format_branch)).uniq.join('') +\n  (item['branches'].size == 0 ? \"\\n----\" + create_branch(item) : '') +\n  \"\\n--PRs\" +\n  item['branches'].flat_map { |b| b['pull_requests'].map(\u0026method(:format_pr)) }.join('') +\n  \"\\n\"\nend\n\ndef handle_error(msg, details = \"\")\n  puts \"\"\"\n    :checkered_flag::interrobang:\n    ---\n    #{msg} | color=red\n    #{details}\n    ---\n    #{REFRESH}\n  \"\"\"\n  exit\nend\n\nerror = nil\n\nresponse = get_workflows\nif response.code != '200'\n  handle_error \"Error when making request to clubhouse API: HTTP #{response.code}\", response.body.to_s\nend\n\nworkflows = JSON.parse(response.body)\nworkflows_hash = workflows.find { |w| w['name'] == CLUBHOUSE_WORKFLOW }.fetch('states').reduce({}) { |h, s| h[s['id']] = s['name']; h }\n\nresponse = get_stories\n\nif response.code != '200'\n  handle_error \"Error when making request to clubhouse API: HTTP #{response.code}\" , response.body.to_s\nend\n\nstories = JSON.parse(response.body).fetch('data')\n\nlines = ''\n\nworkflows_hash.each do |wfid, wf|\n  wf_stories = stories.select { |s| s['workflow_state_id'] == wfid }\n  if wf_stories.any?\n    lines += wf + \"\\n\"\n    lines += wf_stories.map { |s|  build_item(s) }.join(\"\\n\")\n  end\nend\n\nputs \"\"\"\n:checkered_flag:\n---\n#{lines}\n---\n#{REFRESH}\n\"\"\"\n"
+			}
+		],
+		"path": "Dev/clubhouse.rb",
+		"filename": "clubhouse.rb",
+		"dir": "Dev",
+		"docsPlugin": "Dev/clubhouse.rb.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Clubhouse",
+		"version": "v1.0",
+		"author": "Tom Haratyk",
+		"authors": [
+			{
+				"name": "Tom Haratyk",
+				"githubUsername": "jazzytomato",
+				"imageURL": "https://avatars.githubusercontent.com/u/397195?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Show your Clubhouse.io work and allow to quickly open tickets, associated branches and pull requests",
+		"imageURL": "https://i.imgur.com/oExbPOg.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:51.124832Z",
+		"vars": null
+	}
+}

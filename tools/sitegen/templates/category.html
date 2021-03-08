@@ -1,0 +1,107 @@
+{{ define "title" }}{{ .Category.Text }} in your macOS menu bar{{ end }}
+{{ define "head" }}
+	<meta name='description' content='Put {{ .Category.Text }} plugins into your macOS menu bar with xbar.'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='{{ .Category.Text }} in your macOS menu bar'>
+	<meta itemprop='description' content='Put {{ .Category.Text }} plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='{{ .Category.Text }} in your macOS menu bar'>
+	<meta name='twitter:description' content='Put {{ .Category.Text }} plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='{{ .Category.Text }} in your macOS menu bar'>
+	<meta property='og:description' content='Put {{ .Category.Text }} plugins into your macOS menu bar with xbar.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/{{ .Category.Path }}.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+{{ end }}
+{{ define "body" }}
+	<div class='flex-grow'>
+		{{ if .FeaturedPlugins }}
+			<div class='py-8 light-background'>
+				<div class='grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-4 container mx-auto'>
+					{{ range .FeaturedPlugins }}
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/{{ .Path }}.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									{{ .Title }} 
+								</a>
+							</div>
+							<a href='/docs/plugins/{{ .Path }}.html'>
+								<img 
+									class='my-4 max-h-48 {{ if eq .ImageURL "https://xbarapp.com/public/img/xbar-2048.png" }}opacity-50 w-32{{ end }}' 
+									src='{{ .ImageURL }}'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							{{ if .Desc }}
+								<p class='break-word mb-4 text-white text-lg'>
+									{{ .Desc }}
+								</p>
+							{{ end }}
+							{{ range .Authors }}
+								{{ if .Name }}
+									<div class='mt-4 text-sm text-white text-right'>
+										{{ if .GitHubUsername }}
+											<a href='/docs/contributors/{{ .GitHubUsername }}.html'>
+												<span class='mr-3'>
+													{{ .Name }} (@{{ .GitHubUsername }})
+												</span>
+												{{ if .ImageURL }}
+													<img class='w-8 h-8 rounded-full inline' src='{{ .ImageURL }}'>
+												{{ end }}
+											</a>
+										{{ else }}
+											{{ .Name }}
+										{{ end }}
+									</div>
+								{{ end }}
+							{{ end }}
+						</div>
+					{{ end }}
+				</div>
+				<p class='pt-16 pb-4 px-16 text-center'>
+					<strong class='text-white'>
+						Fancy having your plugin featured?
+					</strong> 
+					<a 
+						target='twitter' 
+						href='https://twitter.com/matryer' 
+						class='underline text-white font-bold'
+					>Get in touch</a>.
+				</p>
+			</div>
+		{{ end }}
+		{{ if .Category.ChildrenCategories }}
+			<div class='container mx-auto p-8 text-white'>
+				<h3 class='font-bold'>Looking for something specific?</h3>
+				<p class='mt-4 text-lg'>
+					{{ template "subcategories" .Category.ChildrenCategories }}
+				</p>
+			</div>
+		{{ end }}
+		<div class='p-8 mt-8'>
+			{{ template "plugins" .Plugins }}
+		</div>
+	</div>
+{{ end }}
+{{ define "subcategories" }}
+	{{ if . }}
+		{{ range $k, $v := . }}
+			<a class='ml-8' href='/docs/plugins/{{ $v.Path }}.html'>{{ $v.Text }}</a>
+			{{ template "subcategories" .ChildrenCategories }}
+		{{ end }}
+	{{ end }}
+{{ end }}

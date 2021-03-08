@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Wilson",
+		"githubUsername": "wilsongoode",
+		"imageURL": "https://avatars.githubusercontent.com/u/45737196?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Environment/covid-19_stats.15m.sh",
+					"filename": "covid-19_stats.15m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eCOVID-19 Stats\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eWilson Goode\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ewilsongoode\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays stats of US COVID-19 cases, with a submenu for user-defineable States. Can also be configured to show the top n states.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://github.com/wilsongoode/covid-bitbar/raw/master/screens/covid-19_top15_states.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ejq\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/wilsongoode/covid-bitbar\u003c/bitbar.abouturl\u003e\n\n# Setting my Bitbar path to include /usr/local/bin. Systems may vary\nPATH=/usr/local/bin:${PATH}\nexport PATH\nLANG=en_US.UTF-8 # needed in BitBar env for awk to format numbers\nexport LANG\n\n# ==============================DEPENDENCIES=================================\n# This script requires jq for manipulating JSON data.\n# Requires: https://stedolan.github.io/jq/\n# Install via brew:  `brew install jq`\n# ===========================================================================\n\n# ===============================DATA SOURCE=================================\n# This script curls JSON data from the NovelCOVID API, available at:\n# https://corona.lmao.ninja\n# GitHub: https://github.com/novelcovid/api\n# There are a few other APIs or tools for pulling COVID-19 data, several of\n# which point back to this one. v1.0 of this script used a node.js-based CLI\n# to pull data, leading to formatting issues across systems and some\n# inconsistencies in iTerm/Terminal and in the BitBar output.\n# ===========================================================================\n\n\n# ==============================CONFIGURATION================================\n# READ THIS SECTION:\n# Set these variables to configure the output to your liking.\n#\n# Choose which states you want stats for. Any states you add here will\n# be shown within the dropdown menu. Be sure to separate each state in\n# its own parentheses with a space between each string.\n# Example:\n# STATES=(\"North Carolina\" \"New York\" \"California\")\nSTATES=(\"North Carolina\" \"New York\" \"California\")\n#\n# ALTERNATIVE TOP STATES MODE:\n# Instead of choosing states, you can choose to have the top n states ranked\n# by number of cases, where n is a number you set with the variable N_STATES.\n# Comment/uncomment one of the next two lines to set your preference.\nTOP_N=true     # Sets the script to show the top states\n# TOP_N=false    # Sets the script to show user-selected states\n#\n# Set the number of states you want to see when TOP_N is true. The data\n# source has 57 entries, including Puerto Rice, US Virgin Islands, and the\n# Diamond Princess cruise. In case the maintainers add more entries, set the\n# number to something much higher (it won't effect performance)\nN_STATES=500\n# ===========================================================================\n# ==============================SCRIPT BELOW=================================\n\n\n# Modifies settings based on TOP_N configuration\nif [[ $TOP_N = \"true\" ]]; then\n    MOD_STATES=\"$\" # Select every line\n    GREP_LIMIT=\"-m$((2 + N_STATES))\" # Off-by-2 due to header and divider\n    TOP_CONFIG=\"Showing the top $N_STATES states\"\nelse\n    MOD_STATES=\"State\\|---\" # Select header and divider\n    GREP_LIMIT=\"\" # No limit\n    TOP_CONFIG=\"Showing user-selected states\"\n    for state in \"${STATES[@]}\"\n        # Adds each user-selected state to the grep call\n        do\n            MOD_STATES=\"$MOD_STATES\\\\|$state\"\n        done\nfi\n\n# Setting ANSI colors for output with awk.\nRED='\\033[01;31m'\nGREEN='\\033[01;32m'\nYELLOW='\\033[01;33m'\nBLUE='\\033[01;36m'\nNONE='\\033[0m'\n\n# USA data for the menu bar line\ncurl -s https://corona.lmao.ninja/countries/USA |\n    # Manipulates data and exports tab-delimited (tsv)\n    jq -r '. | [.country, .cases, .todayCases, .deaths, .todayDeaths] | @tsv' |\n    # Removes quotes\n    sed -E 's/\"//g' |\n    # Prints numbers with comma as thousands place separators\n    awk -F'\\t' '{ printf \"%s\\t%\\047d\\t%\\047d\\t%\\047d\\t%\\047d\\n\",\n        $1, $2, $3, $4, $5 }' |\n    # Pretty-prints with colors and spacing and emojis\n    awk -v \"r=$RED\" -v \"y=$YELLOW\" -v \"g=$GREEN\" -v \"b=$BLUE\" -v \"n=$NONE\" -F'\\t' \\\n        '{ printf (\"%15s %15s %15s %15s %15s |font=AndaleMono\\n\",\n            n$1, \"😷\"b$2, g\"(\"$3\"▲)\", \"💀\"r$4, y\"(\"$5\"▲)\") }'\necho \"---\"\n\n# STATES data for the submenu\n# HINT: you can change the sort order to one of the following:\n# cases, todayCases, deaths, todayDeaths, recovered, active, critical,\n# casesPerOneMillion, deathsPerOneMillion\n# As the data source updates, it is possible more sort options will be added\ncurl -s https://corona.lmao.ninja/states\\?sort=cases |\n    # Manipulates data and exports tab-delimited (tsv)\n    jq -r '[\"State\", \"Cases\", \"Cases (today)\", \"Deaths\", \"Deaths (today)\"],\n        [\"---\"],\n        (.[] | [.state, .cases, .todayCases, .deaths, .todayDeaths]) | @tsv' |\n    # Removes quotes, shortens a few of the longer names\n    sed -E 's/\"//g;\n        s/District Of Columbia/Washington D.C./;\n        s/Northern Mariana Islands/N. Mariana Islands/;\n        s/United States Virgin Islands/US Virgin Islands/;\n        s/Diamond Princess Cruise/Diamond Princess Cr./' |\n    # Grabs specific states/lines or every line, depending on configuration\n    grep $GREP_LIMIT \"$MOD_STATES\" |\n    # Prints numbers with comma as thousands place separators\n    awk -F'\\t' '{ if ($0 ~ \"State\") { print $0 } else\n        if ($0 ~ \"---\") { print $0 } else\n        { printf \"%s\\t%\\047d\\t%\\047d\\t%\\047d\\t%\\047d\\n\",\n            $1, $2, $3, $4, $5 } }' |\n    # Pretty-prints with colors and spacing\n    awk -v \"r=$RED\" -v \"y=$YELLOW\" -v \"g=$GREEN\" -v \"b=$BLUE\" -v \"n=$NONE\" -F'\\t' \\\n        '{if ($0 ~ \"---\" ) { print $0 } else\n        { printf \"%-30s %20s %30s %20s %30s |font=AndaleMono size=12\\n\",\n            y$1, b$2, g$3\"▲\", r$4, y$5\"▲\" }}'\necho \"---\"\n\n# WORLD totals for the submenu\ncurl -s https://corona.lmao.ninja/all |\n    # Manipulates data and exports tab-delimited (tsv)\n    jq -r '. | [\"World\", .cases, .todayCases, .deaths, .todayDeaths] | @tsv' |\n    # Removes quotes\n    sed -E 's/\"//g' |\n    # Prints numbers with comma as thousands place separators\n    awk -F'\\t' '{ printf \"%s\\t%\\047d\\t%\\047d\\t%\\047d\\t%\\047d\\n\",\n        $1, $2, $3, $4, $5 }' |\n    # Pretty-prints with colors and spacing\n    awk -v \"r=$RED\" -v \"y=$YELLOW\" -v \"g=$GREEN\" -v \"b=$BLUE\" -v \"n=$NONE\" -F'\\t' \\\n        '{ printf \"%-30s %20s %30s %20s %30s |font=AndaleMono size=12\\n\",\n            y$1, b$2, g$3\"▲\", r$4, y$5\"▲\"}'\necho \"---\"\necho \"Configuration: $TOP_CONFIG\"\necho \"Refresh | refresh=true\"\n"
+				}
+			],
+			"path": "Environment/covid-19_stats.15m.sh",
+			"filename": "covid-19_stats.15m.sh",
+			"dir": "Environment",
+			"docsPlugin": "Environment/covid-19_stats.15m.sh.html",
+			"docsCategory": "Environment.html",
+			"pathSegments": [
+				"Environment"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Environment",
+					"text": "Environment",
+					"isLast": true
+				}
+			],
+			"title": "COVID-19 Stats",
+			"version": "v1.1",
+			"author": "Wilson Goode",
+			"authors": [
+				{
+					"name": "Wilson",
+					"githubUsername": "wilsongoode",
+					"imageURL": "https://avatars.githubusercontent.com/u/45737196?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays stats of US COVID-19 cases, with a submenu for user-defineable States. Can also be configured to show the top n states.",
+			"imageURL": "https://github.com/wilsongoode/covid-bitbar/raw/master/screens/covid-19_top15_states.png",
+			"dependencies": [
+				"jq"
+			],
+			"aboutURL": "https://github.com/wilsongoode/covid-bitbar",
+			"lastUpdated": "2021-03-08T15:21:53.222393Z",
+			"vars": null
+		}
+	]
+}

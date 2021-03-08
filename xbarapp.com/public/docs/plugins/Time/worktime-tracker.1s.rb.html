@@ -1,0 +1,572 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Worktime Tracker in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='A simple worktime tracker with record history. - install xbar for free to get started.'>
+	<meta name='author' content='Ash Wu(hSATAC)'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta itemprop='name' content='Worktime Tracker in your macOS menu bar'>
+	<meta itemprop='description' content='A simple worktime tracker with record history. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Worktime Tracker in your macOS menu bar'>
+	<meta name='twitter:description' content='A simple worktime tracker with record history. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Worktime Tracker in your macOS menu bar'>
+	<meta property='og:description' content='A simple worktime tracker with record history. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Time/worktime-tracker.1s.rb.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='https://xbarapp.com/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Worktime Tracker</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/hSATAC.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/88208?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/hSATAC.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Ash Wu (<code style='color:white;'>@hSATAC</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						A simple worktime tracker with record history.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Time%2fworktime-tracker.1s.rb'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+					<p class='text=sm opacity-75 py-4 max-w-lg mt-8 text-white'>
+						<strong>Can you help?</strong>&mdash;This plugin is missing an image.
+						Please add one 
+						(via <code>&lt;xbar.image&gt;...&lt;/xbar.image&gt;</code> metadata) to enhance this plugin's presence. <a class='underline' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Time/worktime-tracker.1s.rb'>View file on GitHub</a>
+					</p>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://xbarapp.com/public/img/xbar-2048.png' 
+				alt='Image preview of Worktime Tracker plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>worktime-tracker.1s.rb</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Time/worktime-tracker.1s.rb'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Time/worktime-tracker.1s.rb'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env LC_ALL=en_US.UTF-8 ruby
+
+# &lt;bitbar.title&gt;Worktime Tracker&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v0.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Ash Wu(hSATAC)&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;hSATAC&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;A simple worktime tracker with record history.&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;ruby&lt;/bitbar.dependencies&gt;
+
+# Functionality:
+# * Start / stop / pause / resume the timing session.
+# * Keep history records and export to a txt file.
+# * Rename session.
+
+require &#39;json&#39;
+
+### ASSETS ###
+
+ICON_PLAY = &#34;iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAAGVklEQVRYCe2YWaiVVRTHvTmlZZkmlmkOZYNiQVQUGVGRQVAQFEISTRBBE0EERYFURE9FPfUg0UNP9dCA&#43;CI0WESDRTZpJmXiQFbmrOnV2&#43;&#43;3714f&#43;3z3u/fcc4QgaMH/rLXXXnvttdcev9Mz4hipr6/vuGG46Ovp6ekbht1/36TnWIaQszkGH2a1zJh&#43;LYf/Q2S0l3LXNKqblgZIx0dpezq4E0wDB0C5DAzUslgJloOuqatA6S0yNQX5LnAWOAJGgqCWjKJczgBTu27Wa5mB6GA4PALV9vjcoAxSVWlTytm8M9ZtRp126RD4CuwEO4BZtC6mfCzyaLAVJCqzmdf4sE6ErkZKByPp8EieyolEYDDjwAnAwbsMXLP7srwf&#43;/3YpzqDhWKdjyhl7Bupo0B1iBc7SDuY8mzK54GzwXRwCjCLZnov2AY2gJ/BN7Q7mn2MQj6EPAF9L/IB5DR4ysdGdgDSwOBzwBPgfbALDEVmfg14EVwF0nKDzwKvgsciMuRu90y/CxykjaIjcCv4CAxGf1PRO0jlFvRPgsvB69lmJ9xBn2Rv8MZg2049DWM9jsfPQ&#43;BxoNM4fjYjfw7Wge1gD/ASmARmggvBRcB1LB0ELgmXij60XQMWswR&#43;jP4oD59idPDx4GlQZuo3yi&#43;Da8HUJq/ox4F54B7wCZBcp1L42oi8BBiwGW2bvJa&#43;bADSNMAfAa61oB8QbgHV2Yk8GkwFZ4DpIE1lOKU8F7wCDNSNdBjo84HCprMgbYiDWPSLkP8AQZ8iXFY4Twc&#43;OjfY2&#43;BL8CG4D7imR4E07XKwFBwEMfDnsr5KTPhuy2kYm8cMvQOC1iIs1AHcAEaKXF6AvBsEucvjlDBgj61EyC&#43;EEdxT4yYr4Ck5/VZtfjF2ZNH5HchOkbQH3B0OkWNZhO356DYCycP9WaCvhNwuBYtuGlgJgl5DSEsFnvzVw2w6CjzQnZbJGC8CMcoVyG&#43;GA2ziGq1Uha2dDfBNG4&#43;u0fCt1C8Du4B0Pbg4Sa1vhKxqcEZNLOg5yJdmS4&#43;cd&#43;nArNpRb9YPxcJP3SYGuIqKj3PlafBLsuxmG9C2ZdQ1A8/AWbnx9/Cvsxwd5WIL81xsRwbi2exZ6vkbNB/9ZPT6b4lLgwEKdBHImcgx7ZuQfwXSUMGUmWi0I5BSvx5/vrwk&#43;/OSaKR6oHbEwNKCPrlosYMO9qIvAymqk2gAvpokeRlQUhY/4ccgd2e9/fkCa6R6oGGkPrKpbn&#43;uSAPJcp25gU7MSjuMB3Xdrix7nQrJNnHNJkX5UwZT6s1IuWG85yWzNFiwDmY1mAVsuymmeYiZcDAxIPuMZYfYSvVAUyAuaJzH2rHFJMoT0LvrY9qSJ3Qx3a7j24A&#43;9eOjOVEEHGV4LAvfr3HV/oUcM1eY9ov1QNU67Y7Mjg8Dp2NmxnfwlkApJyIYs/hnLg7K8kAj0HMxnJiNN8MNtpEMqqLayDdSIaT5wKea1NKmX9X/SxBelV6r8sYB2Z5&#43;nLFpyHFO62At&#43;u22RY6BqE/U1GkY/YLFZ9nOTXIjTibizCu18ZozAHAk8/CTXVQs2l6NZmHWOhNxptJ8wK1XNa4EgvBuTksCfjvwSSbtA/dqCPdB0jTIyk&#43;TQJuxub13/Qcg6A2EU3NdDKTJRauORskYPgW8BYJ&#43;QrgyO/TJNmyn2KYgc9uXwiHcBCzO&#43;qY90xpcvUTjyOp1yNtAkO/NK8IeOQUMr15KhVx/j46h7nngV2fMlEFHpjueJae3fJ49SNmXT9B6hCWg2jDI5UZSbtlQlOeCZcA1HkG&#43;hzyj62wW2UojxNlY8BQwE0HuUD8tbgBTok3J0ZttH9QPgy&#43;AFEH6pbAgBznojRT&#43;qoyEos5xFl&#43;hfnzdD5aCOKQRR2wGnq9rwTawF9ix79nZYB64AJTBrKD8KLvbLwb/jChvQaq6JIO1KdzpvBmsAk3k&#43;ejrvlwmpd3vFJ4B6asVbsbbJqujsHFYLXTkGcB1uxL4B8JQZPDrgJ/W14AYdJnhtrF0NBo6MdjyvyffkOcA19oc4HT7yPAK9vm2BbgkvgUbmOIDcGem4/&#43;ZOgrUTqScFf8urF476Ly9DNJjzVsp/VGGje&#43;FRNhY5&#43;1VtctVbVlXgeqVTm1rhuWDdp4HNaQN7dtS14GWngkm1m/dn5kd1h&#43;1pb//5X8jA/8AXKGXdOhgqSAAAAAASUVORK5CYII=&#34;
+ICON_PLAY_COLOR = &#34;iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAAEtElEQVRYCe2XT4gcVRDG6/X0ZpPNRjQa0KybJSKKbDAgeAiiDHpXBNdLwEMOCkIET8Hb6MGT3ryIf44q7smTnkQCHgRzWUyCGFTIrLoqWRNNZnamXz9/1a97pmemd7tnCSrYBd39ul69qq&#43;&#43;qvd6RqSWmoGagZqB/yQD5qahcoKvlUBkeczneSeyGjPL898U54DQCkshqE2STKlloUF5gMJlqVKDGxPxFjUZfyvBcZH4gViCO0QcDJoNJ/GFX0W&#43;EdNSO9QfN8Q8a5PxFLexMk2xMg142LXmnNjnIeskq4&#43;JhHuNdgECSO72Brc1I/H7P0v4HoDjpAIZcDWsILsD6lZgZdUuuFdO0HxvAfIh6r/FuINDZQ42k5Y0gA6duDl0M1xnKeFLbfP6mqQ&#43;KmBMTKYHmgY47M48BV/v4GWWcl81EgQAYjONu0wAa6m1FW5j9mog9rl188bn07TBuNedE0xB3uVefpSgH2IMVteFUYhSVwkonvmxuvRhYL2P7TyKDteTv5g3L1Rltvpmcq2A/rKH3IvzRuyrIOyh&#43;AtooQIATFHSeeSKWOV37G/F/jX22wrLLPlpW2e23mrsTqmqyvkEyB6Rk06iJcD&#43;5qRPP0awY7v&#43;qeORC31/a6jrd430aYNog&#43;eDC3L6GR9dz9&#43;dpYiFyRVpxve607PXpfcBBkuUmY0TEEB39lCKaBkNEkBdzCIzh37tJ3n7VMJmCaulmXgIPuOudO43Eh2CDTaPhameMjlywTY9G8Hc8BraWBjvMWe31Af6xSNy6qiP0RrNZ5h7Mqreo5g76R2BsZiGus5rkiQ7fRAAvW57bTl0euDreHQ&#43;e8dWS7G/J8Eiz&#43;9FfGvpmiKZEmh8gJ6HQdMBRcM75DuUDPw9phX8aLwpFHQ2owucHlkzODmQLC&#43;5TQWUckUA1EMdsBlQBaCicUmBy7/7caIc3CzzBqqdwcZiu4fLLxzYFA&#43;mAkrvbeJG2aQ/8/Ro3KzE&#43;fFk0FwSWvobsPzHpNWkpiLQZfyvsrp/2UjjGoxwbqooOAVWJPm5LInMLkvGbJF822uzGJnN6LMi0FYCZk76P3YkbtOnt1NCwHoASk2&#43;&#43;zTEdjqd40MR45BPr7u8Lg&#43;vi3yC1sfQ&#43;SIZ919ko80Gia3gkvlUj5WvaStwRJTNchRZPW6SZ/a&#43;k05tWcsxpf1uv0p/TYF90NqFGLT3q0l6IC&#43;75vw1abzADtjPYv105pJVHlVyKq/I3Z0eb7MwunGnbL57zpzrAxHVzQKqofR84YflgnviPph5mmB8Qh3oFGzWq6NgFbLXaJs4Sm6SY42Xj9bNF&#43;3MZy6TwmF1RrPlafaLrnmMjfA45yYItF8D0I5umuzcYV57XCf5Tara8LO2OftdVZAaenqguioFu&#43;QeO2oleoRvNx8CiaieolBQA0FBAqbBvG7cK7Oy98tLnsnScg&#43;cMNgdUPWQgr3bndjXEMf/pJjPq5sHdENr69k0yjY96f4MpfHDQYkuVu1JDZGX3QNVLylYHTZdM7woVw7OSHgLv&#43;A5enQ67O7jF/1xuWdzlb8uqsuvSd7/sZuC1atMqtpt46c8wDYLJ9RlYEuOnwl/taJmoGagZqBm4P/JwN8vfgtf3x54JQAAAABJRU5ErkJggg==&#34;
+ICON_PAUSE   = &#34;iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAABuElEQVRYCe1XUUrEQAzd7ioIiifw3ysIHsRbeBE/BI8h&#43;CseSP/0RxBEdlvfW&#43;dJpkxtp0RQNoHsZJI3SfrapeliERIMBAPBQDCwEww0c66y67oVzpXObpqm6WxOYIkjvi8tsG3f6bZPhQfz2bi1SwfG4vZMiRUbz2wmJmOQCwTOoW9QMfYB&#43;xrx59QAsS3sE/gvoWKaLB5CHxC/R3xJHPZ&#43;gqTbW4j1DlqSU1ZDYEVN9lkJCN9Niu9xHZNJIJNErLwm3zvWJXQfSnY3UApxultr2PTTR6V9ACV&#43;stQ2qsT6c/A8bTZFW81phev70aBNUYwXOFmqwANZxfJAOHPXYLODHo1mCX9rE416MxuMBqPeDHjn26lnVG8abxKzfB6Mzn7bZJ2MbDwaHSnhE/ZotObW12CzK5w7PWmc4wjHoZdjHm09BlzVFO3&#43;mMe6VcNybaMqfoxCFM6VkiMYGv&#43;EY4w15OeeF0XhlD9ZahsVC7eo8ATtf4q8pMrEqdlH2FdQsc3Y9lMEK0U5v3Zev/iEUAPFlDZu7RJ4LG7P/FjUAq2NAprqrZv23/lc7ncW&#43;2AgGAgGgoH/wcAnzm2uPw9Tc7IAAAAASUVORK5CYII=&#34;
+
+### HELPERS ###
+
+def prompt(question, default)
+    result = `/usr/bin/osascript -e &#39;Tell application &#34;System Events&#34; to display dialog &#34;#{question}&#34; default answer &#34;#{default}&#34;&#39; -e &#39;text returned of result&#39; 2&gt;/dev/null`.strip
+    result.empty? ? defult : result
+end
+
+def notification(msg, title)
+  `/usr/bin/osascript -e &#39;display notification &#34;#{msg}&#34; with title &#34;#{title}&#34;&#39;`
+end
+
+### CLASSES ###
+
+class WorkSession
+  attr_reader :start_time, :end_time, :pause_time, :resume_time, :saved_duration, :name, :state
+
+  def initialize(name)
+    @name = name
+    @state = &#34;stopped&#34;
+    @saved_duration = 0
+  end
+
+  def duration
+    t = @saved_duration
+
+    if @state != &#34;paused&#34;
+      if @resume_time
+        t &#43;= (Time.now - @resume_time)
+      else
+        t &#43;= (Time.now - @start_time)
+      end
+    end
+
+    Time.at(t).utc.strftime(&#34;%H:%M:%S&#34;)
+  end
+
+  def start
+    return if @state != &#34;stopped&#34;
+    @state = &#34;recording&#34;
+    @start_time = Time.now
+  end
+
+  def stop
+    return if @state != &#34;recording&#34;
+    @state = &#34;stopped&#34;
+    @end_time = Time.now
+  end
+
+  def last_start_time
+    @resume_time || @start_time
+  end
+
+  def pause
+    return if @state != &#34;recording&#34;
+    @state = &#34;paused&#34;
+    @pause_time = Time.now
+    @saved_duration &#43;= (@pause_time - last_start_time)
+  end
+
+  def resume
+    return if @state != &#34;paused&#34;
+    @state = &#34;recording&#34;
+    @resume_time = Time.now
+  end
+
+  def rename(new_name)
+    @name = new_name
+  end
+
+  def to_s
+    &#34;#{@name}, #{@start_time} ~ #{@end_time}, #{duration}&#34;
+  end
+end
+
+class WorkTimer
+  attr_reader :workdir, :session
+
+  def initialize(workdir = nil)
+    @workdir = workdir || File.dirname(__FILE__)
+    load_session
+  end
+
+  def session_file
+    File.join @workdir, &#34;.worktimer.dat&#34;
+  end
+
+  def history_file
+    File.join @workdir, &#34;worktimer&#34;, &#34;history.txt&#34;
+  end
+
+  def state
+    @session.nil? ? &#34;stopped&#34; : @session.state
+  end
+
+  def start
+    session_name = prompt(&#34;Enter session name:&#34;, &#34;Unnamed Session&#34;)
+    @session = WorkSession.new session_name
+    @session.start
+    save_session
+
+    notification(&#34;New session [#{@session.name}] has started.&#34;, &#34;Worktime Tracker&#34;)
+  end
+
+  def stop
+    @session.stop
+    save_history
+    delete_session
+
+    notification(&#34;You spent #{duration} in [#{@session.name}]&#34;, &#34;Worktime Tracker&#34;)
+  end
+
+  def pause
+    @session.pause
+    save_session
+
+    notification(&#34;Session [#{@session.name}] has been paused.&#34;, &#34;Worktime Tracker&#34;)
+  end
+
+  def resume
+    @session.resume
+    save_session
+
+    notification(&#34;Session [#{@session.name}] has been resumed.&#34;, &#34;Worktime Tracker&#34;)
+  end
+
+  def rename
+    abort &#34;Session does not exist.&#34; if @session.nil?
+    session_name = prompt(&#34;Enter new session name:&#34;, @session.name)
+    @session.rename session_name
+    save_session
+
+    notification(&#34;Current session renamed to: [#{@session.name}]&#34;, &#34;Worktime Tracker&#34;)
+  end
+
+  def duration
+    @session.nil? ? &#39;&#39; : @session.duration
+  end
+
+  def save_session
+    File.open(session_file, &#39;w&#39;) {|f| f.write(Marshal.dump(@session)) }
+  end
+
+  def delete_session
+    File.delete(session_file)
+  end
+
+  def load_session
+    if File.exist? session_file
+      @session = Marshal.load(File.read(session_file))
+    end
+  end
+
+  def save_history
+    system &#39;mkdir&#39;, &#39;-p&#39;, File.dirname(history_file)
+    File.open(history_file, &#39;a&#39;) { |f| f.write(&#34;#{session}\n&#34;) }
+  end
+
+  def history
+    if File.exist? history_file
+      system &#39;/usr/bin/open&#39;, history_file
+    else
+      notification(&#34;History file not found.&#34;, &#34;Worktime Tracker&#34;)
+    end
+  end
+end
+
+timer = WorkTimer.new
+
+### ACTIONS ###
+
+if ARGV[0]
+  action = ARGV[0].to_sym
+  if timer.respond_to? action
+    timer.send(action)
+    exit
+  end
+end
+
+### RENDER ###
+
+REFRESH = &#34;---\nReload| refresh=true&#34;
+
+
+case timer.state
+when &#34;stopped&#34;
+  TITLE = &#34;|templateImage=#{ICON_PLAY}&#34;
+  MENU = &#34;&#34;&#34;
+Start | bash=&#39;#{__FILE__}&#39; param1=start terminal=false
+&#34;&#34;&#34;
+when &#34;recording&#34;
+  TITLE = &#34; #{timer.duration} | image=#{ICON_PLAY_COLOR}&#34;
+  MENU = &#34;&#34;&#34;
+#{timer.session.name} | bash=&#39;#{__FILE__}&#39; param1=rename terminal=false
+---
+Pause | bash=&#39;#{__FILE__}&#39; param1=pause terminal=false
+Stop | bash=&#39;#{__FILE__}&#39; param1=stop terminal=false
+&#34;&#34;&#34;
+when &#34;paused&#34;
+  TITLE = &#34;#{timer.duration} |templateImage=#{ICON_PAUSE}&#34;
+  MENU = &#34;&#34;&#34;
+#{timer.session.name} | bash=&#39;#{__FILE__}&#39; param1=rename terminal=false
+---
+Resume | bash=&#39;#{__FILE__}&#39; param1=resume terminal=false
+&#34;&#34;&#34;
+end
+
+HISTORY = &#34;History | bash=&#39;#{__FILE__}&#39; param1=history terminal=false&#34;
+
+puts &#34;&#34;&#34;
+#{TITLE}
+---
+#{MENU}
+---
+#{HISTORY}
+---
+#{REFRESH}
+&#34;&#34;&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

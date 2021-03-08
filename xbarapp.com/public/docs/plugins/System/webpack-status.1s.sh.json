@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/webpack-status.1s.sh",
+				"filename": "webpack-status.1s.sh",
+				"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eWebpack Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eFrancesco Belladonna\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eFire-Dragon-DoL\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay the current status of webpack server compile: completed/ongoing/failed.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/Fire-Dragon-DoL/bitbar-webpack-status-plugin/master/bitbar-webpack-status-plugin.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003enode,webpack\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/Fire-Dragon-DoL/bitbar-webpack-status-plugin\u003c/bitbar.abouturl\u003e\n\ncolor_red=\"✘ | color=#ff0000 dropdown=false\"\ncolor_yellow=\"◉ | color=#ffa500 dropdown=false\"\ncolor_green=\"✔︎ | color=#008000 dropdown=false\"\n\nwebpack_status=\"/tmp/webpack-status\"\n\nsemaphore=0\n\nif [ -f $webpack_status ]; then\n  semaphore=$(cat $webpack_status)\nfi\n\nsemaphore_color=$color_yellow\n\n# -1 red, 0 yellow, 1 green\ncase $semaphore in\n-1)\n  # Red\n  semaphore_color=$color_red\n  ;;\n1)\n  # Green\n  semaphore_color=$color_green\n  ;;\n*)\n  # Orange\n  semaphore_color=$color_yellow\n  ;;\nesac\n\necho \"$semaphore_color\"\necho \"---\"\necho \"Clear Webpack Status | terminal=false bash=rm param1=-f param2='$webpack_status'\"\n"
+			}
+		],
+		"path": "System/webpack-status.1s.sh",
+		"filename": "webpack-status.1s.sh",
+		"dir": "System",
+		"docsPlugin": "System/webpack-status.1s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Webpack Status",
+		"version": "v1.1.2",
+		"author": "Francesco Belladonna",
+		"authors": [
+			{
+				"name": "Francesco Belladonna",
+				"githubUsername": "Fire-Dragon-DoL",
+				"imageURL": "https://avatars.githubusercontent.com/u/1329559?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Display the current status of webpack server compile: completed/ongoing/failed.",
+		"imageURL": "https://raw.githubusercontent.com/Fire-Dragon-DoL/bitbar-webpack-status-plugin/master/bitbar-webpack-status-plugin.jpg",
+		"dependencies": [
+			"node",
+			"webpack"
+		],
+		"aboutURL": "https://github.com/Fire-Dragon-DoL/bitbar-webpack-status-plugin",
+		"lastUpdated": "2021-03-08T15:22:05.253554Z",
+		"vars": null
+	}
+}

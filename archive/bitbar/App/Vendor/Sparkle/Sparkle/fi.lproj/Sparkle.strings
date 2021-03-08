@@ -1,0 +1,56 @@
+"%@ of %@" = "%1$@ / %2$@";
+
+"%@ %@ has been installed and will be ready to use next time %@ starts! Would you like to relaunch now?" = "%1$@ %2$@ on asennettu ja on valmiina käyttöön seuraavan kerran kun %3$@ käynnistetään! Haluatko käynnistää ohjelman uudelleen?";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ on uusin saatavilla oleva versio.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ on nyt saatavilla (sinulla on %3$@). Haluatko ladata sen nyt?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ does not have permission to write to the application's directory! Are you running off a disk image? If not, ask your system administrator for help." = "Käyttäjällä %@ ei ole oikeuksia ohjelman kansioon! Ajatko ohjelmaa levytiedostosta? Jos et, kysy apua järjestelmän ylläpitäjältä.";
+
+"A new version of %@ has been installed!" = "Uusi versio ohjelmasta %@ on asennettu!";
+
+"A new version of %@ is available!" = "Uusi versio ohjelmasta  %@ on saatavilla!";
+
+"An error occurred during installation. Please try again later." = "Asennuksen yhteydessä tapahtui virhe. Yritä myöhemmin uudelleen.";
+
+"An error occurred in retrieving update information. Please try again later." = "Päivitystietojen haussa tapahtui virhe. Yritä myöhemmin uudelleen.";
+
+"An error occurred while extracting the archive. Please try again later." = "Pakkauksen purkamisen yhteydessä tapahtui virhe. Yritä myöhemmin uudelleen.";
+
+"An error occurred while trying to download the file. Please try again later." = "Tiedoston haussa tapahtui virhe. Yritä myöhemmin uudelleen.";
+
+"An update is already in progress!" = "Päivitys on jo menossa!";
+
+"Cancel" = "Kumoa";
+
+"Check for updates on startup?" = "Tarkista päivityksiä käynnistyksen yhteydessä?";
+
+"Downloading update..." = "Haen päivitystä…";
+
+"Extracting update..." = "Puran päivitystä…";
+
+"Install and Relaunch" = "Asenna ja käynnistä ohjelma uudelleen";
+
+"Installing update..." = "Asennan päivityksen…";
+
+"No" = "Ei";
+
+"OK" = "OK";
+
+"Ready to Install" = "Valmiina asentamaan";
+
+"Update Error!" = "Virhe päivityksessä!";
+
+"Updating %@" = "Päivitän %@";
+
+"Would you like %@ to check for updates on startup? If not, you can initiate the check manually from the application menu." = "Haluatko tarkistaa päivitykset ohjelmaan %@ käynnistyksen yhteydessä? Jos et, voit käynnnistää tarkistuksen käsin ohjelmavalikosta.";
+
+"Yes" = "Kyllä";
+
+"You're up-to-date!" = "Sinulla on viimeisin versio!";
+

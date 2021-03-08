@@ -1,0 +1,1969 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Time in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Put Time plugins into your macOS menu bar with xbar.'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='Time in your macOS menu bar'>
+	<meta itemprop='description' content='Put Time plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Time in your macOS menu bar'>
+	<meta name='twitter:description' content='Put Time plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Time in your macOS menu bar'>
+	<meta property='og:description' content='Put Time plugins into your macOS menu bar with xbar.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Time.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='flex-grow'>
+		
+			<div class='py-8 light-background'>
+				<div class='grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-4 container mx-auto'>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Time/stopwatch.1s.sh.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Stopwatch 
+								</a>
+							</div>
+							<a href='/docs/plugins/Time/stopwatch.1s.sh.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://raw.githubusercontent.com/tbaumgard/tbaumgard.github.io/master/_/img/bitbar-stopwatch.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Simple stopwatch for BitBar.
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/tbaumgard.html'>
+												<span class='mr-3'>
+													Tim Baumgard (@tbaumgard)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/1239241?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Time/beats.1s.lisp.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Beats Time 
+								</a>
+							</div>
+							<a href='/docs/plugins/Time/beats.1s.lisp.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='http://i.imgur.com/W0iKDfu.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Displays Swatch .beats time.
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/queitsch.html'>
+												<span class='mr-3'>
+													Jannis Segebrecht (@queitsch)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/1434770?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Time/ts-convert.sh.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Clipboard Timestamp converter 
+								</a>
+							</div>
+							<a href='/docs/plugins/Time/ts-convert.sh.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='http://i.imgur.com/dXzJNOS.jpg?1'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/mpneuried.html'>
+												<span class='mr-3'>
+													M. Peter (@mpneuried)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/300631?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+				</div>
+				<p class='pt-16 pb-4 px-16 text-center'>
+					<strong class='text-white'>
+						Fancy having your plugin featured?
+					</strong> 
+					<a 
+						target='twitter' 
+						href='https://twitter.com/matryer' 
+						class='underline text-white font-bold'
+					>Get in touch</a>.
+				</p>
+			</div>
+		
+		
+		<div class='p-8 mt-8'>
+			
+	
+		<div class='grid grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-8 divide-white container mx-auto'>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/CalendarLite.1m.sh.html'
+						><strong class='text-xl'>Clock with calendar</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/CalendarLite.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.ibb.co/Krmg0P8/Screen-Shot-2019-11-08-at-23-04-29.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									A clock with a simple calendar
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/WeibingChen17.html'>
+									<span class='text-right break-all'>
+										<strong>Weibing Chen</strong>
+										
+											(@WeibingChen17)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/25602873?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/alarmclock.1s.sh.html'
+						><strong class='text-xl'>Alarm Clock</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/alarmclock.1s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/carlsonorozco/alarmclock/master/image.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Alarm Clock is a plugin for BitBar that notifies/make a sound at a specific time.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/carlsonorozco.html'>
+									<span class='text-right break-all'>
+										<strong>Carlson Orozco</strong>
+										
+											(@carlsonorozco)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2333279?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/ProcessBarOfYear.1d.sh.html'
+						><strong class='text-xl'>Process Bar of Year</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/ProcessBarOfYear.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/cnfn/grocery/master/images/blog/bitbar_plugin_process_bar_of_year.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Process Bar of Year: Dividing the year into 100 pieces. More info: https://github.com/cnfn/BitBarPlugins/tree/master/ProcessBarOfYear
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/cnfn.html'>
+									<span class='text-right break-all'>
+										<strong>Cnfn</strong>
+										
+											(@cnfn)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1445517?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/age-ticker.1s.py.html'
+						><strong class='text-xl'>Age Ticker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/age-ticker.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://github.com/garythung/bitbar-age-ticker/blob/master/bitbar-age-ticker.gif?raw=true'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays your age ticking in years with decimals. Set your birthday in the script.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/garythung.html'>
+									<span class='text-right break-all'>
+										<strong>Gary Thung</strong>
+										
+											(@garythung)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7055455?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/aideadlines.15m.py.html'
+						><strong class='text-xl'>AI deadlines counter</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/aideadlines.15m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://github.com/nzer0/bitbar-aideadlines/blob/master/aid-screenshot.png?raw=true'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Count the days to the submission deadlines of AI conferences.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/nzer0.html'>
+									<span class='text-right break-all'>
+										<strong>Jiseob Kim</strong>
+										
+											(@nzer0)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2021812?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/date-picker.1m.sh.html'
+						><strong class='text-xl'>Date Picker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/date-picker.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/GVSUqFX.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display todays date in various forms including iso8601 and copies to the clipboard.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/uglygus.html'>
+									<span class='text-right break-all'>
+										<strong>Tim Battersby</strong>
+										
+											(@uglygus)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/11585473?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/ddate.30m.js.html'
+						><strong class='text-xl'>Discordian Date</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/ddate.30m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://user-images.githubusercontent.com/1476865/69000513-2dee4b00-08d1-11ea-9d23-c4c5aaa8d815.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the current date of the Discordian calendar
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/hpcodecraft.html'>
+									<span class='text-right break-all'>
+										<strong>hpcodecraft</strong>
+										
+											(@hpcodecraft)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1476865?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/cal.1d.sh.html'
+						><strong class='text-xl'>cal</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/cal.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/busterc/bitbar-cal/master/screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows a calendar of the current, previous and next year
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/busterc.html'>
+									<span class='text-right break-all'>
+										<strong>Buster Collings</strong>
+										
+											(@busterc)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1676932?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/countdown.1s.py.html'
+						><strong class='text-xl'>Countdown</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/countdown.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://cloud.githubusercontent.com/assets/7404532/12356787/ae62636c-bba4-11e5-8ff8-6a1eaffcbfc2.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows countdown of established date.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/P4R.html'>
+									<span class='text-right break-all'>
+										<strong>Pere Albujer</strong>
+										
+											(@P4R)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7404532?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/beats.1s.lisp.html'
+						><strong class='text-xl'>Beats Time</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/beats.1s.lisp.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/W0iKDfu.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays Swatch .beats time.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/queitsch.html'>
+									<span class='text-right break-all'>
+										<strong>Jannis Segebrecht</strong>
+										
+											(@queitsch)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1434770?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/countdown_timer.1s.rb.html'
+						><strong class='text-xl'>Countdown Timer</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/countdown_timer.1s.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/kizzx2/bitbar-countdown-timer/master/screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple countdown timer. Set the time by calling the script from terminal.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kizzx2.html'>
+									<span class='text-right break-all'>
+										<strong>Chris Yuen</strong>
+										
+											(@kizzx2)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/92614?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/countdown_timer_2.1s.py.html'
+						><strong class='text-xl'>Countdown Timer 2</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/countdown_timer_2.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/fferri/bitbar-countdown-timer/master/screenshot.gif'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple countdown timer.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/fferri.html'>
+									<span class='text-right break-all'>
+										<strong>Federico Ferri</strong>
+										
+											(@fferri)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5294568?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/fuzzyclock.1s.py.html'
+						><strong class='text-xl'>Fuzzy Clock</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/fuzzyclock.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display the current system time in a &#39;fuzzy&#39; manner, rounding to the nearest 5 minutes and using words.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/whonut.html'>
+									<span class='text-right break-all'>
+										<strong>Dylan</strong>
+										
+											(@whonut)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3856888?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/googlecal.30m.js.html'
+						><strong class='text-xl'>Google Calendar</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/googlecal.30m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/kodie/bitbar-googlecal/master/screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows upcoming events from your Google Calendar - Be sure to read the installation instructions here: https://github.com/kodie/bitbar-googlecal
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kodie.html'>
+									<span class='text-right break-all'>
+										<strong>Kodie Grantham</strong>
+										
+											(@kodie)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/603949?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/pomodoro.1s.sh.html'
+						><strong class='text-xl'>Pomodoro Timer</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/pomodoro.1s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/T0zFY89.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Pomodoro Timer that uses Pomodoro Technique™
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/gorangajic.html'>
+									<span class='text-right break-all'>
+										<strong>Goran Gajic</strong>
+										
+											(@gorangajic)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/249310?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/lapse.30m.sh.html'
+						><strong class='text-xl'>Lapse</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/lapse.30m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Progress Bar of Day, Week, Month, Year, and Life.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/SaiG18.html'>
+									<span class='text-right break-all'>
+										<strong>Sai Gurrapu</strong>
+										
+											(@SaiG18)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/9091157?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/itstimeto.15m.py.html'
+						><strong class='text-xl'>It&#39;s time to</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/itstimeto.15m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/qRgqIVq.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows emoji means that it&#39;s time to do something.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kanzmrsw.html'>
+									<span class='text-right break-all'>
+										<strong>Koji ANZAI</strong>
+										
+											(@kanzmrsw)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/388826?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/persiandate.1m.sh.html'
+						><strong class='text-xl'>Persian Date</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/persiandate.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows Persian date
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/theReticent.html'>
+									<span class='text-right break-all'>
+										<strong>Ilia Vakili</strong>
+										
+											(@theReticent)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/10159793?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/pomodoro2.30s.sh.html'
+						><strong class='text-xl'>Pomodoro Timer</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/pomodoro2.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/WswKpT4.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Timer that uses Pomodoro timeboxing
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mkoura.html'>
+									<span class='text-right break-all'>
+										<strong>Martin Kourim</strong>
+										
+											(@mkoura)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2352619?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/prayer-time.1m.py.html'
+						><strong class='text-xl'>Prayer Time</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/prayer-time.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Imsak ve aksam ezani saatlerine ne kadar kaldigini takip edin !
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kaaninan.html'>
+									<span class='text-right break-all'>
+										<strong>Kağan İNAN</strong>
+										
+											(@kaaninan)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4940927?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/shiftstats.30s.py.html'
+						><strong class='text-xl'>Shift Stats</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/shiftstats.30s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/6VTobzU.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the remaining time of today&#39;s work shift as well as the time of arrival and when its time to leave
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/JanGross.html'>
+									<span class='text-right break-all'>
+										<strong>Jan Groß</strong>
+										
+											(@JanGross)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/13641301?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/progress-procrastination.15s.sh.html'
+						><strong class='text-xl'>Progress Bar to Beat Procrastination!</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/progress-procrastination.15s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://user-images.githubusercontent.com/6628281/62536640-f7b71f00-b83d-11e9-9297-a63cc24ef115.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Progress Bar of Year, Month, and (Work) Day, the latter of which helps you keep track of your time as a resource and beat procrastination!
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/jasonrwang.html'>
+									<span class='text-right break-all'>
+										<strong>Jason R. Wang</strong>
+										
+											(@jasonrwang)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6628281?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/progress.1h.sh.html'
+						><strong class='text-xl'>Progress Bar of Year, Month and Day</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/progress.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://user-images.githubusercontent.com/5108459/43047918-c946f6bc-8de7-11e8-940a-036f44087b92.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Progress Bar of Year, Month and Day: See the big picture.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Mucahit.html'>
+									<span class='text-right break-all'>
+										<strong>Mucahit Tutuncu</strong>
+										
+											(@Mucahit)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5108459?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/switchtimezones.5s.sh.html'
+						><strong class='text-xl'>Switch Timezones</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/switchtimezones.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/0Oevp2W.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Allows to switch timezone for current time shown in the Bar. 
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/wasapl.html'>
+									<span class='text-right break-all'>
+										<strong>Vasily Pleshakov</strong>
+										
+											(@wasapl)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2486829?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/spent_time.1s.py.html'
+						><strong class='text-xl'>Spent time displayer</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/spent_time.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display the time of the year already gone as percentage
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/merqurio.html'>
+									<span class='text-right break-all'>
+										<strong>Gabi Maeztu</strong>
+										
+											(@merqurio)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1485056?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/solar-time.1s.py.html'
+						><strong class='text-xl'>Apparent Solar Time</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/solar-time.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://github.com/XanderLeaDaren/bitbar-solar-time/blob/master/bitbar_solar-time.jpg?raw=true'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays the apparent solar time. Specify your longitude in the script.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/XanderLeaDaren.html'>
+									<span class='text-right break-all'>
+										<strong>Aleks ANDRÉ</strong>
+										
+											(@XanderLeaDaren)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/28948599?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/stopwatch.1s.sh.html'
+						><strong class='text-xl'>Stopwatch</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/stopwatch.1s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/tbaumgard/tbaumgard.github.io/master/_/img/bitbar-stopwatch.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple stopwatch for BitBar.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tbaumgard.html'>
+									<span class='text-right break-all'>
+										<strong>Tim Baumgard</strong>
+										
+											(@tbaumgard)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1239241?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/sunrise.4h.swift.html'
+						><strong class='text-xl'>Sunrise</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/sunrise.4h.swift.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/bgreenlee/SunriseBitBar/main/sunrise-bitbar.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays sunrise, sunset, and day length for a location.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/bgreenlee.html'>
+									<span class='text-right break-all'>
+										<strong>Brad Greenlee</strong>
+										
+											(@bgreenlee)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2901?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/timezonesplus.30s.sh.html'
+						><strong class='text-xl'>Timezones&#43;</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/timezonesplus.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/Y4nhdZo.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Rotates current time through four common timezones 
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/aaronedell.html'>
+									<span class='text-right break-all'>
+										<strong>AaronEdell</strong>
+										
+											(@aaronedell)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/11819814?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/timezone.5s.sh.html'
+						><strong class='text-xl'>Timezone</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/timezone.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show the current time of a different timezone.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/xremix.html'>
+									<span class='text-right break-all'>
+										<strong>Toni Hoffmann</strong>
+										
+											(@xremix)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/9824294?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/unixtime.5s.sh.html'
+						><strong class='text-xl'>Unix Time</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/unixtime.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/h2cyuYu.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays unix time.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/ts-convert.sh.html'
+						><strong class='text-xl'>Clipboard Timestamp converter</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/ts-convert.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/dXzJNOS.jpg?1'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mpneuried.html'>
+									<span class='text-right break-all'>
+										<strong>M. Peter</strong>
+										
+											(@mpneuried)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/300631?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/weeknumber.1m.sh.html'
+						><strong class='text-xl'>Week Number</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/weeknumber.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/bfKN7x2.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin will show the current week number.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/citoki.html'>
+									<span class='text-right break-all'>
+										<strong>Steffen</strong>
+										
+											(@citoki)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7259873?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/worldclock.1s.sh.html'
+						><strong class='text-xl'>World Clock</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/worldclock.1s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://cloud.githubusercontent.com/assets/6187908/12207887/464ff8b2-b617-11e5-9d61-787eed228552.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display current UTC time in the menu bar, with various timezones in the drop-down menu
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/asnodgrass.html'>
+									<span class='text-right break-all'>
+										<strong>Adam Snodgrass</strong>
+										
+											(@asnodgrass)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6187908?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/watson.1m.sh.html'
+						><strong class='text-xl'>Watson Status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/watson.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/3OuXrWn.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows Watson&#39;s status
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/toin0u.html'>
+									<span class='text-right break-all'>
+										<strong>Antoine Kirk</strong>
+										
+											(@toin0u)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/672421?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/waketime.1m.sh.html'
+						><strong class='text-xl'>Waketime</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/waketime.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/jsB66g9.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the time since your mac last woke up in hours:minutes
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matthias-vogt.html'>
+									<span class='text-right break-all'>
+										<strong>Matthias</strong>
+										
+											(@matthias-vogt)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4030513?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/worktime-tracker.1s.rb.html'
+						><strong class='text-xl'>Worktime Tracker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/worktime-tracker.1s.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									A simple worktime tracker with record history.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/hSATAC.html'>
+									<span class='text-right break-all'>
+										<strong>Ash Wu</strong>
+										
+											(@hSATAC)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/88208?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+		</div>
+	
+
+		</div>
+	</div>
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

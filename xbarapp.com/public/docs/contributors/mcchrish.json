@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Michael Chris Lopez",
+		"githubUsername": "mcchrish",
+		"imageURL": "https://avatars.githubusercontent.com/u/7200153?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Music/cmus.10s.sh",
+					"filename": "cmus.10s.sh",
+					"content": "#!/bin/bash\n\n# Displays the current track being played by `cmus`, a console music player.\n# All thanks to the cmus-remote.\n#\n# based on Spotify script by Jason Tokoph (jason@tokoph.net)\n#\n# Choose to launch cmus in iTerm2 (version 2.9.20150414+ only) or Terminal\n#\n# Metadata:\n# \u003cbitbar.title\u003eCmus Now Playing\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMichael Chris Lopez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emcchrish\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays currently playing song from cmus. Control cmus in menubar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/qeZCB0a.png\u003c/bitbar.image\u003e\n\nexport PATH=\"/usr/local/bin:/usr/bin:/bin:$PATH\"\n\n\nif [ \"$1\" = 'launch-iterm' ]; then\n  if [ \"$(osascript -e 'application \"iTerm\" is running')\" = \"false\" ]; then\n    osascript -e 'tell application \"iTerm\" to activate'\n    osascript -e 'tell application \"iTerm\" to tell current session of current window to write text \"cmus\"'\n  else\n    # Then create new tab\n    osascript -e 'tell application \"iTerm\" to tell current window to set newTab to (create tab with default profile)'\n    osascript -e 'tell application \"iTerm\" to tell current window to tell current tab to tell current session to write text \"cmus\"'\n  fi\n\n  exit\nfi\n\nif [ \"$1\" = 'launch-terminal' ]; then\n  if [ \"$(osascript -e 'application \"Terminal\" is running')\" = \"false\" ]; then\n    osascript -e 'tell application \"Terminal\" to activate'\n    osascript -e 'tell application \"Terminal\" to do script \"cmus\" in window 1'\n  else\n    # Then create a new tab\n    osascript -e 'tell application \"System Events\" to keystroke \"t\" using command down'\n    osascript -e 'tell application \"Terminal\" to do script \"cmus\" in tab 2 of window 1'\n  fi\n\n  exit\nfi\n\nstate=$(cmus-remote -C status | sed -n 1p | cut -d \" \" -f2)\n\nif [ \"$state\" = \"\" ]; then\n  echo \"♫\"\n  echo \"---\"\n  echo \"cmus is not running\"\n  echo \"Launch cmus in iTerm | bash='$0' param1=launch-iterm terminal=false refresh=true\"\n  echo \"Launch cmus in Terminal | bash='$0' param1=launch-terminal terminal=false refresh=true\"\n  exit\nfi\n\nif [ \"$1\" = 'playpause' ]; then\n  cmus-remote --pause\n  exit\nfi\n\nif [ \"$1\" = 'previous' ]; then\n  cmus-remote --prev\n  exit\nfi\n\nif [ \"$1\" = 'next' ]; then\n  cmus-remote --next\n  exit\nfi\n\nif [ \"$state\" = \"playing\" ]; then\n  state_icon=\"▶\"\nelse\n  state_icon=\"❚❚\"\nfi\n\ntrack=$(cmus-remote -C \"format_print %{title}\")\nartist=$(cmus-remote -C \"format_print %{artist}\")\nalbum=$(cmus-remote -C \"format_print %{album}\")\n\necho \"$state_icon\"\necho \"---\"\n\ncase \"$0\" in\n  *\\ * )\n   echo \"Your script path | color=#ff0000\"\n   echo \"($0) | color=#ff0000\"\n   echo \"has a space in it, which BitBar does not support. | color=#ff0000\"\n   echo \"Play/Pause/Next/Previous buttons will not work. | color=#ff0000\"\n  ;;\nesac\n\necho \"Track: $track | color=#333333 length=40\"\necho \"Artist: $artist | color=#333333 length=40\"\necho \"Album: $album | color=#333333 length=40\"\n\necho \"---\"\n\nif [ \"$state\" = \"playing\" ]; then\n  echo \"Pause | bash='$0' param1=playpause terminal=false refresh=true\"\n  echo \"Previous | bash='$0' param1=previous terminal=false refresh=true\"\n  echo \"Next | bash='$0' param1=next terminal=false refresh=true\"\nelse\n  echo \"Play | bash='$0' param1=playpause terminal=false refresh=true\"\nfi\n"
+				}
+			],
+			"path": "Music/cmus.10s.sh",
+			"filename": "cmus.10s.sh",
+			"dir": "Music",
+			"docsPlugin": "Music/cmus.10s.sh.html",
+			"docsCategory": "Music.html",
+			"pathSegments": [
+				"Music"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Music",
+					"text": "Music",
+					"isLast": true
+				}
+			],
+			"title": "Cmus Now Playing",
+			"version": "v1.0",
+			"author": "Michael Chris Lopez",
+			"authors": [
+				{
+					"name": "Michael Chris Lopez",
+					"githubUsername": "mcchrish",
+					"imageURL": "https://avatars.githubusercontent.com/u/7200153?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays currently playing song from cmus. Control cmus in menubar.",
+			"imageURL": "https://i.imgur.com/qeZCB0a.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:56.956181Z",
+			"vars": null
+		}
+	]
+}

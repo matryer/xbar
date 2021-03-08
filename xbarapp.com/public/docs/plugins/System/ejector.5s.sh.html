@@ -1,0 +1,449 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Ejector in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly. - install xbar for free to get started.'>
+	<meta name='author' content='Carlson Orozco &amp;&amp; Brian Hartvigsen &amp;&amp; Matt Sephton'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'>
+	<meta itemprop='name' content='Ejector in your macOS menu bar'>
+	<meta itemprop='description' content='Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Ejector in your macOS menu bar'>
+	<meta name='twitter:description' content='Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Ejector in your macOS menu bar'>
+	<meta property='og:description' content='Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/System/ejector.5s.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Ejector</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/carlsonorozco.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/2333279?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/carlsonorozco.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Carlson Orozco (<code style='color:white;'>@carlsonorozco</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=System%2fejector.5s.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png' 
+				alt='Image preview of Ejector plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>ejector.5s.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/System/ejector.5s.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/System/ejector.5s.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+#
+# &lt;bitbar.title&gt;Ejector&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.2&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Carlson Orozco &amp;&amp; Brian Hartvigsen &amp;&amp; Matt Sephton&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;carlsonorozco&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png&lt;/bitbar.image&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/carlsonorozco/ejector&lt;/bitbar.abouturl&gt;
+
+drives=( $(df -Hl | grep /Volumes/ | grep -v &#34;/System/Volumes/Data&#34; | grep -v &#34;/Volumes/Recovery&#34; | sed &#39;s/.*\/Volumes\/*//&#39;) )
+
+IFS=$&#39;**********&#39;
+for details in $( diskutil info -all ); do
+    drives&#43;=( $(echo &#34;$details&#34; | grep -A1000 &#34;Device Node&#34; | grep -B1000 &#34;Mounted:[[:space:]]*No$&#34; | grep &#34;Volume Name&#34; | grep -v &#34;EFI\|Preboot\|Recovery&#34; | awk &#39;{print $3}&#39;) )
+done
+
+if [ &#34;$1&#34; = &#39;eject&#39; ]; then
+    status=$(diskutil eject &#34;$2&#34; | sed -e &#39;s/\/Volumes\///g&#39;)
+    if [ &#34;$status&#34; = &#34;&#34; ]; then
+        osascript -e &#34;display notification \&#34;Disk $2 failed to eject\&#34; with title \&#34;Ejector\&#34;&#34;
+    else
+        osascript -e &#34;display notification \&#34;$status\&#34; with title \&#34;Ejector\&#34;&#34;
+    fi
+
+    exit
+fi
+
+if [ &#34;$1&#34; = &#39;mount&#39; ]; then
+    status=$(diskutil mount &#34;$2&#34;)
+    if [ &#34;$status&#34; = &#34;&#34; ]; then
+        osascript -e &#34;display notification \&#34;Disk $2 failed to mount\&#34; with title \&#34;Ejector\&#34;&#34;
+    else
+        osascript -e &#34;display notification \&#34;$status\&#34; with title \&#34;Ejector\&#34;&#34;
+    fi
+
+    exit
+fi
+
+if [ &#34;$1&#34; = &#39;unmount&#39; ]; then
+    status=$(diskutil unmount &#34;$2&#34;)
+    if [ &#34;$status&#34; = &#34;&#34; ]; then
+        osascript -e &#34;display notification \&#34;Disk $2 failed to unmount\&#34; with title \&#34;Ejector\&#34;&#34;
+    else
+        osascript -e &#34;display notification \&#34;$status\&#34; with title \&#34;Ejector\&#34;&#34;
+    fi
+
+    exit
+fi
+
+if [ &#34;$1&#34; = &#39;ejectall&#39; ]; then
+    if [ -z &#34;$2&#34; ]; then
+        osascript -e &#39;
+        try
+            tell application &#34;Finder&#34;
+                eject the disks
+                display notification &#34;Successfully ejected disks.&#34; with title &#34;Ejector&#34;
+            end tell
+        on error
+            display notification &#34;Unable to eject all disks.&#34; with title &#34;Ejector&#34;
+        end try&#39;
+
+        exit
+    fi
+
+    protocol_type=$2
+    protocol_type=&#34;${protocol_type/dmgs/Disk Image}&#34;
+    protocol_type=&#34;${protocol_type/usbs/USB}&#34;
+
+    IFS=$&#39;**********&#39;
+    for details in $( diskutil info -all ); do
+        name=$(echo &#34;$details&#34; | grep &#34;Volume Name:&#34; | sed &#39;s/.*Volume Name:[[:space:]]*//&#39;)
+        ! [[ ${drives[*]} =~ $name ]] &amp;&amp; continue
+        protocol=$(echo &#34;$details&#34; | grep &#34;Protocol:&#34; | sed &#39;s/.*Protocol:[[:space:]]*//&#39;)
+        mount_point=$(echo &#34;$details&#34; | grep &#34;Mount Point:&#34; | sed &#39;s/.*Mount Point:[[:space:]]*//&#39;)
+        [[ &#34;$protocol_type&#34; = &#34;$protocol&#34; ]] &amp;&amp; ./&#34;$0&#34; eject &#34;$mount_point&#34;
+    done
+    exit
+fi
+
+total_dmg=0
+total_usb=0
+
+if [ ${#drives[@]} = 0 ]; then
+    echo &#34;⏏ | color=gray&#34;
+    exit
+fi
+
+echo &#34;⏏&#34;
+echo &#39;---&#39;
+
+IFS=$&#39;**********&#39;
+for details in $( diskutil info -all ); do
+    name=$(echo &#34;$details&#34; | grep &#34;Volume Name:&#34; | sed &#39;s/.*Volume Name:[[:space:]]*//&#39;)
+    ! [[ ${drives[*]} =~ $name ]] &amp;&amp; continue
+
+    device_node=$(echo &#34;$details&#34; | grep &#34;Device Node:&#34; | sed &#39;s/.*Device Node:[[:space:]]*//&#39;)
+    mount_point=$(echo &#34;$details&#34; | grep &#34;Mount Point:&#34; | sed &#39;s/.*Mount Point:[[:space:]]*//&#39;)
+    free_space=$(echo &#34;$details&#34; | grep -E &#34;Volume (Available|Free) Space:&#34; | sed &#39;s/.*Volume Free Space:[[:space:]]*//;s/.*Volume Available Space:[[:space:]]*//&#39; | cut -d &#39; &#39; -f -2)
+    total_size=$(echo &#34;$details&#34; | grep -E &#34;(Disk|Total) Size:&#34; | sed &#39;s/.*Total Size:[[:space:]]*//;s/.*Disk Size:[[:space:]]*//&#39; | cut -d &#39; &#39; -f -2)
+    protocol=$(echo &#34;$details&#34; | grep &#34;Protocol:&#34; | sed &#39;s/.*Protocol:[[:space:]]*//&#39;)
+
+    [[ $protocol = &#39;Disk Image&#39; ]] &amp;&amp; ((total_dmg&#43;&#43;))
+    [[ $protocol = &#39;USB&#39; ]] &amp;&amp; ((total_usb&#43;&#43;))
+
+    if [ &#34;$mount_point&#34; != &#39;&#39; ]; then
+        echo &#34;$name | bash=&#39;$0&#39; param1=eject param2=&#39;$mount_point&#39; terminal=false&#34;
+        echo &#34;$name [unmount] | alternate=true bash=&#39;$0&#39; param1=unmount param2=&#39;$mount_point&#39; terminal=false&#34;
+        echo &#34;├─ Available: $free_space&#34;
+        echo &#34;└─ Capacity: $total_size&#34;
+    else
+        echo &#34;$name | bash=&#39;$0&#39; param1=mount param2=$device_node terminal=false&#34;
+        echo &#34;└─ Unmounted: $device_node&#34;
+    fi
+done
+
+if [ ${#drives[@]} -ge 2 ]; then
+    echo &#39;---&#39;
+    [ $((total_dmg)) -ge 2 ] &amp;&amp; echo &#34;Eject All Disk Images | color=red bash=&#39;$0&#39; param1=ejectall param2=dmgs terminal=false&#34;
+    [ $((total_usb)) -ge 2 ] &amp;&amp; echo &#34;Eject All Physical Volumes | color=red bash=&#39;$0&#39; param1=ejectall param2=usbs terminal=false&#34;
+    echo &#34;Eject All | color=red bash=&#39;$0&#39; param1=ejectall terminal=false&#34;
+fi
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

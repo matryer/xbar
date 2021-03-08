@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Email/gmail-checker.sh",
+				"filename": "gmail-checker.sh",
+				"content": "#!/bin/sh\n\n# \u003cbitbar.title\u003eGmail Checker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eNadav Cohen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003enadavc\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eChecks gmail and displays inbox count\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/LYrIphK.png\u003c/bitbar.image\u003e\n\nUSERNAME=\"GMAIL_USERNAME\"\nPASSWORD=\"GMAIL_PASSWORD\"\nCOLOR=black\nRESULT=$(curl -s -u $USERNAME:$PASSWORD \"https://mail.google.com/mail/feed/atom\" | egrep -o '\u003cfullcount\u003e[0-9]*' | cut -c 12-)\n\nif [ \"$RESULT\" -ne \"0\" ]; then\n   COLOR=red\nfi\n\necho \"📬 $RESULT|color=$COLOR\"\n"
+			}
+		],
+		"path": "Email/gmail-checker.sh",
+		"filename": "gmail-checker.sh",
+		"dir": "Email",
+		"docsPlugin": "Email/gmail-checker.sh.html",
+		"docsCategory": "Email.html",
+		"pathSegments": [
+			"Email"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Email",
+				"text": "Email",
+				"isLast": true
+			}
+		],
+		"title": "Gmail Checker",
+		"version": "v1.0.1",
+		"author": "Nadav Cohen",
+		"authors": [
+			{
+				"name": "Nadav Cohen",
+				"githubUsername": "nadavc",
+				"imageURL": "https://avatars.githubusercontent.com/u/610392?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Checks gmail and displays inbox count",
+		"imageURL": "http://i.imgur.com/LYrIphK.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.827348Z",
+		"vars": null
+	}
+}

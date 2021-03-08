@@ -1,0 +1,55 @@
+{
+	"name": "unbox-primitive",
+	"version": "1.0.0",
+	"description": "Unbox a boxed JS primitive value.",
+	"main": "index.js",
+	"scripts": {
+		"prepublish": "not-in-publish || safe-publish-latest",
+		"preversion": "auto-changelog",
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"tests-only": "node test",
+		"test": "npm run tests-only",
+		"posttest": "npx aud"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ljharb/unbox-primitive.git"
+	},
+	"keywords": [
+		"unbox",
+		"boxed",
+		"primitive",
+		"object",
+		"javascript",
+		"ecmascript"
+	],
+	"author": "Jordan Harband <ljharb@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ljharb/unbox-primitive/issues"
+	},
+	"homepage": "https://github.com/ljharb/unbox-primitive#readme",
+	"devDependencies": {
+		"@ljharb/eslint-config": "^14.0.2",
+		"auto-changelog": "^1.14.1",
+		"eslint": "^6.1.0",
+		"for-each": "^0.3.3",
+		"in-publish": "^2.0.0",
+		"object-inspect": "^1.6.0",
+		"object-is": "^1.0.1",
+		"safe-publish-latest": "^1.1.2",
+		"tape": "^4.11.0"
+	},
+	"dependencies": {
+		"function-bind": "^1.1.1",
+		"has-bigints": "^1.0.0",
+		"has-symbols": "^1.0.0",
+		"which-boxed-primitive": "^1.0.1"
+	},
+	"auto-changelog": {
+		"backfillLimit": false,
+		"commitLimit": false,
+		"template": "keepachangelog"
+	}
+}

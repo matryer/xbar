@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/stash-pull-requests.2m.rb",
+				"filename": "stash-pull-requests.2m.rb",
+				"content": "#!/usr/bin/env ruby\n\nrequire 'duration'\nrequire 'json'\nrequire 'rest-client'\nrequire 'pp'\n\n# rubocop:disable all\n# \u003cbitbar.title\u003eBitbucket Server (Stash) Pull Requests\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAdam Snodgrass\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003easnodgrass\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays a list of open pull requests in for all repositories in a specified project on Bitbucket Server (aka Stash) in which the user is a participant. Results are sorted by last update (ascending), and are prefixed with a character to indicate participation type: A for author, R for reviewer, and nothing for other (e.g. added a comment). Each entry is clickable and will take you to the pull request page.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/9vp4D6e.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003erest-client gem, ruby_duration gem\u003c/bitbar.dependencies\u003e\n# rubocop:enable all\n\n# Change these, or use a wrapper script and pass in via ARGV.\n# Project is optional, and will be ~user if not specified.\nUSER = nil\nPASS = nil\nHOST = nil\nPROJECT = nil\n\n# Stash RESTful API\nclass Stash\n  def initialize(options = {})\n    @host = options.delete(:host) || 'localhost'\n    @port = options.delete(:port) || 443\n    @user = options.delete(:user)\n    @pass = options.delete(:pass)\n    @baseurl = \"https://#{@host}:#{@port}/rest/api\"\n    @rest = RestClient::Resource.new @baseurl, @user, @pass\n  end\n\n  # Returns an array of repository names for the given project\n  def list_repos(project, repos = [], start = 0)\n    url = \"1.0/projects/#{project}/repos\"\n    url \u003c\u003c \"?start=#{start}\" if start \u003e 0\n    j = JSON.parse(@rest[url].get)\n    repos.concat(j['values'].map { |v| v['slug'] })\n    list_repos(project, repos, j['nextPageStart']) unless j['isLastPage']\n    repos\n  end\n\n  # Return an array of pull request IDs for a repo\n  # where the user is some kind of participant\n  def pull_requests(project, repo, user, prs = [], start = 0)\n    url = \"1.0/projects/#{project}/repos/#{repo}/pull-requests\"\n    url \u003c\u003c \"?start=#{start}\u0026username.1=#{user}\"\n    j = JSON.parse(@rest[url].get)\n    prs.concat(j['values'].map { |v| v['id'] })\n    unless j['isLastPage']\n      list_prs(project, repo, user, prs, j['nextPageStart'])\n    end\n    prs\n  end\n\n  # Return the message body for a pull request\n  def pull_request(project, repo, id)\n    url = \"1.0/projects/#{project}/repos/#{repo}/pull-requests/#{id}\"\n    JSON.parse(@rest[url].get)\n  end\nend\n\n# main plugin class\nclass StashPRPlugin\n  def initialize(user, pass, host, project = nil)\n    @user = user\n    @host = host\n    @stash = Stash.new(\n      host: host,\n      user: user,\n      pass: pass\n    )\n    @project = project || \"~#{user}\"\n  end\n\n  def output\n    prs = with_error_handling { all_user_prs }\n\n    puts \"🔧 Pull Requests (#{prs.size})\"\n    puts '---'\n    prs.each { |pr| puts output_line(pr) }\n    puts '---'\n    puts 'Refresh | refresh=true'\n  end\n\n  private\n\n  def all_user_prs\n    prs = []\n    @stash.list_repos(@project).each do |repo|\n      msg(\"Trying #{@project}/#{repo}\")\n      @stash.pull_requests(@project, repo, @user).each do |id|\n        msg(\"Adding PR##{id}\")\n        prs \u003c\u003c @stash.pull_request(@project, repo, id)\n      end\n    end\n    prs.sort { |a, b| b['updatedDate'] \u003c=\u003e a['updatedDate'] }\n  end\n\n  def with_error_handling\n    yield\n  rescue SocketError =\u003e e\n    puts \"😡 Pull Requests\"\n    puts '---'\n    puts e\n  rescue RestClient::RequestTimeout\n    puts \"😡 Pull Requests\"\n    puts '---'\n    puts \"Connection to #{@host} timed out\"\n  end\n\n  # rubocop:disable Metrics/AbcSize\n  def output_line(pr)\n    format('\u003c%s\u003e %s/%s - %s [%s] | href=%s',\n           status(pr),\n           pr['toRef']['repository']['project']['key'],\n           pr['toRef']['repository']['slug'],\n           pr['title'],\n           duration(pr['updatedDate'] / 1000),\n           pr['links']['self'].first['href']\n          )\n  end\n  # rubocop:enable Metrics/AbcSize\n\n  def status(pr)\n    return 'A' if author?(pr)\n    return 'R' if reviewer?(pr)\n    ' '\n  end\n\n  def reviewer?(pr)\n    !pr['reviewers'].select { |r| r['user']['slug'].eql?(@user) }.empty?\n  end\n\n  def author?(pr)\n    pr['author']['user']['slug'].eql?(@user)\n  end\n\n  # rubocop:disable Metrics/AbcSize\n  def duration(tstamp)\n    return 'never' if tstamp == 0\n    duration = ''\n    d = Duration.new(Time.now.to_f - tstamp)\n    duration \u003c\u003c d.format('%w %~w ') if d.weeks \u003e 0\n    duration \u003c\u003c d.format('%d %~d ') if d.days \u003e 0\n    duration \u003c\u003c d.format('%H:%M:%S') if d.weeks \u003c= 0\n    duration.strip\n  end\n  # rubocop:enable Metrics/AbcSize\n\n  def msg(text)\n    return if ENV['BitBar']\n    puts text\n  end\n\n  def debug(obj)\n    return if ENV['BitBar']\n    pp obj\n  end\nend\n\nif ARGV.empty?\n  ARGV \u003c\u003c USER\n  ARGV \u003c\u003c PASS\n  ARGV \u003c\u003c HOST\n  ARGV \u003c\u003c PROJECT unless PROJECT.nil?\nend\nplugin = StashPRPlugin.new(*ARGV)\nplugin.output\n"
+			}
+		],
+		"path": "Dev/stash-pull-requests.2m.rb",
+		"filename": "stash-pull-requests.2m.rb",
+		"dir": "Dev",
+		"docsPlugin": "Dev/stash-pull-requests.2m.rb.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Bitbucket Server (Stash) Pull Requests",
+		"version": "v1.0.0",
+		"author": "Adam Snodgrass",
+		"authors": [
+			{
+				"name": "Adam Snodgrass",
+				"githubUsername": "asnodgrass",
+				"imageURL": "https://avatars.githubusercontent.com/u/6187908?v=4",
+				"bio": "Sapient ambulatory bio-software",
+				"primary": true
+			}
+		],
+		"desc": "Displays a list of open pull requests in for all repositories in a specified project on Bitbucket Server (aka Stash) in which the user is a participant. Results are sorted by last update (ascending), and are prefixed with a character to indicate participation type: A for author, R for reviewer, and nothing for other (e.g. added a comment). Each entry is clickable and will take you to the pull request page.",
+		"imageURL": "http://i.imgur.com/9vp4D6e.png",
+		"dependencies": [
+			"rest-client gem",
+			"ruby_duration gem"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.228479Z",
+		"vars": null
+	}
+}

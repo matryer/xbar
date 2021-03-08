@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Matthias",
+		"githubUsername": "matthias-vogt",
+		"imageURL": "https://avatars.githubusercontent.com/u/4030513?v=4",
+		"bio": "23-year-old from Germany interested in Computer Science and Philosophy (and deciding if interested in Maths, actually not sure)",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/waketime.1m.sh",
+					"filename": "waketime.1m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eWaketime\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMatthias Vogt\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematthias-vogt\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the time since your mac last woke up in hours:minutes\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/jsB66g9.png\u003c/bitbar.image\u003e\n\nwake=$(\n\tsysctl -a | grep 'waketime' | grep -o \"\\d\\{10\\}\" ||\n\tsysctl -a | grep 'boottime' | grep -o \"\\d\\{10\\}\"\n);\nnow=$(date +'%s');\n\nhours=$(echo \"($now - $wake)/3600\" | bc)\nminutes=$(echo \"(($now - $wake)/60)%60\" | bc)\n\necho \"$hours:$(printf \"%02d\" \"$minutes\")h\"\n"
+				}
+			],
+			"path": "Time/waketime.1m.sh",
+			"filename": "waketime.1m.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/waketime.1m.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Waketime",
+			"version": "v1.0.1",
+			"author": "Matthias Vogt",
+			"authors": [
+				{
+					"name": "Matthias",
+					"githubUsername": "matthias-vogt",
+					"imageURL": "https://avatars.githubusercontent.com/u/4030513?v=4",
+					"bio": "23-year-old from Germany interested in Computer Science and Philosophy (and deciding if interested in Maths, actually not sure)",
+					"primary": true
+				}
+			],
+			"desc": "Shows the time since your mac last woke up in hours:minutes",
+			"imageURL": "http://i.imgur.com/jsB66g9.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.829323Z",
+			"vars": null
+		}
+	]
+}

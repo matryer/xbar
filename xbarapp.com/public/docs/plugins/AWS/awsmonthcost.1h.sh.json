@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "AWS/awsmonthcost.1h.sh",
+				"filename": "awsmonthcost.1h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eAWS Cost\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSean Luce\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eseanluce\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow the current months AWS costs.\u003c/bitbar.desc\u003e\n\n#Assumes AWS CLI is installed, 'pip install awscli' or 'pip3 install awscli', and 'aws configure' has been ran.\n\nstart=$(date -v1d +%Y-%m-%d)\nend=$(date -v+1m -v1d -v-1d +%Y-%m-%d)\nexport PATH=\"/usr/local/bin:/usr/bin:$PATH\"\nprefix=$(aws ce get-cost-and-usage --time-period Start=\"$start\",End=\"$end\" --granularity MONTHLY --metric \"BlendedCost\" | awk '/Unit/ {print $2;}' | sed 's/[,\"]//g')\ncost=$(aws ce get-cost-and-usage --time-period Start=\"$start\",End=\"$end\" --granularity MONTHLY --metric \"BlendedCost\" | awk '/Amount/ {print $2;}' | sed 's/[,\"]//g' | xargs printf \"%.*f\\n\" 2)\necho \"$cost\" \"$prefix\""
+			}
+		],
+		"path": "AWS/awsmonthcost.1h.sh",
+		"filename": "awsmonthcost.1h.sh",
+		"dir": "AWS",
+		"docsPlugin": "AWS/awsmonthcost.1h.sh.html",
+		"docsCategory": "AWS.html",
+		"pathSegments": [
+			"AWS"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "AWS",
+				"text": "AWS",
+				"isLast": true
+			}
+		],
+		"title": "AWS Cost",
+		"version": "v1.0.0",
+		"author": "Sean Luce",
+		"authors": [
+			{
+				"name": "Sean Luce",
+				"githubUsername": "seanluce",
+				"imageURL": "https://avatars.githubusercontent.com/u/2560575?v=4",
+				"bio": "Cloud Solutions Architect, specializing in @microsoft Azure, working for @NetApp. Ask me about Azure NetApp Files!\r\n",
+				"primary": true
+			}
+		],
+		"desc": "Show the current months AWS costs.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:44.401038Z",
+		"vars": null
+	}
+}

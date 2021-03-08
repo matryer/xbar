@@ -1,0 +1,8 @@
+// Relaunch Tool only
+
+INFOPLIST_FILE = Sparkle/Autoupdate/Autoupdate-Info.plist
+PRODUCT_NAME = $(SPARKLE_RELAUNCH_TOOL_NAME)
+SKIP_INSTALL = YES
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+CLANG_ENABLE_MODULES = NO
+OTHER_LDFLAGS = -Wl,-U,_NSURLQuarantinePropertiesKey

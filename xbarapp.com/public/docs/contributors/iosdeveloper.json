@@ -1,0 +1,145 @@
+{
+	"person": {
+		"name": "iosdeveloper",
+		"githubUsername": "iosdeveloper",
+		"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/downloads.1h.sh",
+					"filename": "downloads.1h.sh",
+					"content": "#!/bin/bash\n\nDOWNLOADS_DIR=\"$HOME/Downloads\"\n\n# \u003cbitbar.title\u003eDownloads\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eiosdeveloper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eiosdeveloper\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eQuick access to your recent downloads. Enter URL to download from. Specify downloads directory at the top of the file. Defaults to ~/Downloads. Contains example of how to refresh from the command line (see https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md#refreshplugin)\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/Cv4iS3d.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/System/downloads.1h.sh\u003c/bitbar.abouturl\u003e\n\nFILENAME=$(basename \"$0\")\nDOWNLOADS=$(ls -t \"$DOWNLOADS_DIR\")\n\necho \"Downloads\"\necho \"---\"\necho \"Download from URL… | bash='read -p Enter_URL: url \u0026\u0026 ( cd $DOWNLOADS_DIR \u0026\u0026 curl -L -# -O \\$url ); open' param1=bitbar://refreshPlugin?name=$FILENAME\"\necho \"---\"\necho \"$DOWNLOADS\" | awk -v DOWNLOADS_DIR=\"$DOWNLOADS_DIR\" '{print $0\" | bash=/usr/bin/open param1=\"DOWNLOADS_DIR\"/\"$0\" terminal=false\"}'\n"
+				}
+			],
+			"path": "System/downloads.1h.sh",
+			"filename": "downloads.1h.sh",
+			"dir": "System",
+			"docsPlugin": "System/downloads.1h.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Downloads",
+			"version": "v1.0",
+			"author": "iosdeveloper",
+			"authors": [
+				{
+					"name": "iosdeveloper",
+					"githubUsername": "iosdeveloper",
+					"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Quick access to your recent downloads. Enter URL to download from. Specify downloads directory at the top of the file. Defaults to ~/Downloads. Contains example of how to refresh from the command line (see https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md#refreshplugin)",
+			"imageURL": "http://i.imgur.com/Cv4iS3d.png",
+			"dependencies": null,
+			"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/System/downloads.1h.sh",
+			"lastUpdated": "2021-03-08T15:22:03.284141Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/mas.1d.sh",
+					"filename": "mas.1d.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eMac App Store\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eiosdeveloper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eiosdeveloper\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eLists available updates from the Mac App Store using mas-cli (https://github.com/argon/mas). Based on brew-updates.1h.sh\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/yPeXDAj.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003emas\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/matryer/bitbar-plugins/blob/master/System/mas.1d.sh\u003c/bitbar.abouturl\u003e\n\nif test \"$(which /usr/local/bin/mas)\" 2\u003e /dev/null; then\n  UPDATES=$(/usr/local/bin/mas outdated);\n  UPDATE_COUNT=$(echo \"$UPDATES\" | grep -c '[^[:space:]]');\n  if test \"$UPDATE_COUNT\" -gt 0; then\n    echo \"↓$UPDATE_COUNT | dropdown=false\"\n    echo \"---\";\n    if [ -n \"$UPDATES\" ]; then\n      echo \"Upgrade all | bash=/usr/local/bin/mas param1=upgrade terminal=false refresh=true\"\n      echo \"$UPDATES\" | awk '{itemIdentifier = $1; $1 = \"\"; print $0 \" | bash=/usr/local/bin/mas param1=install param2=\" itemIdentifier \" terminal=false refresh=true\"; }'\n    fi\n  fi\nelse\n  echo \"mas not installed\"\nfi\n"
+				}
+			],
+			"path": "System/mas.1d.sh",
+			"filename": "mas.1d.sh",
+			"dir": "System",
+			"docsPlugin": "System/mas.1d.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Mac App Store",
+			"version": "v1.0",
+			"author": "iosdeveloper",
+			"authors": [
+				{
+					"name": "iosdeveloper",
+					"githubUsername": "iosdeveloper",
+					"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Lists available updates from the Mac App Store using mas-cli (https://github.com/argon/mas). Based on brew-updates.1h.sh",
+			"imageURL": "http://i.imgur.com/yPeXDAj.png",
+			"dependencies": [
+				"mas"
+			],
+			"aboutURL": "https://github.com/matryer/bitbar-plugins/blob/master/System/mas.1d.sh",
+			"lastUpdated": "2021-03-08T15:22:03.96201Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/Tutorial/submenus.sh",
+					"filename": "submenus.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eSubmenus\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eiosdeveloper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eiosdeveloper\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample of how to include multiple levels of menu items in v1.8 and later.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/9zJJHns.png\u003c/bitbar.image\u003e\n\necho \"Submenu Tutorial\"\necho \"---\"\n\necho \"Places\"\necho \"--London\"\necho \"--Paris\"\necho \"--Tokyo\"\necho \"Fruit\"\necho \"--Apple\"\necho \"--Orange\"\necho \"--Melon\"\necho \"----Watermelon\"\necho \"----Honeydew\"\n"
+				}
+			],
+			"path": "Dev/Tutorial/submenus.sh",
+			"filename": "submenus.sh",
+			"dir": "Dev/Tutorial",
+			"docsPlugin": "Dev/Tutorial/submenus.sh.html",
+			"docsCategory": "Dev/Tutorial.html",
+			"pathSegments": [
+				"Dev",
+				"Tutorial"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Tutorial",
+					"text": "Tutorial",
+					"isLast": true
+				}
+			],
+			"title": "Submenus",
+			"version": "v1.0",
+			"author": "iosdeveloper",
+			"authors": [
+				{
+					"name": "iosdeveloper",
+					"githubUsername": "iosdeveloper",
+					"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Example of how to include multiple levels of menu items in v1.8 and later.",
+			"imageURL": "http://i.imgur.com/9zJJHns.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:50.584028Z",
+			"vars": null
+		}
+	]
+}

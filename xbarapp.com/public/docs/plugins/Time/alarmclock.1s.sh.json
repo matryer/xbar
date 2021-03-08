@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/alarmclock.1s.sh",
+				"filename": "alarmclock.1s.sh",
+				"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eAlarm Clock\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCarlson Orozco\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecarlsonorozco\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eAlarm Clock is a plugin for BitBar that notifies/make a sound at a specific time.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/carlsonorozco/alarmclock/master/image.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/carlsonorozco/alarmclock\u003c/bitbar.abouturl\u003e\n\n# Set Alarm\nif [ \"$1\" = 'set' ]; then\n    alarm=\"$(osascript -e 'Tell application \"System Events\" to display dialog \"Enter Alarm in 24 Hour Time format:\" default answer \"\"' -e 'text returned of result' 2\u003e/dev/null)\"\n    # shellcheck disable=SC2181\n    if [ $? -ne 0 ]; then\n        # Cancelled\n        exit\n    elif [ -z \"$alarm\" ]; then\n        osascript -e 'Tell application \"System Events\" to display alert \"Alarm not set\" as warning'\n        exit\n    elif [[ ! $alarm =~ ^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$ ]]; then\n        osascript -e 'Tell application \"System Events\" to display alert \"Alarm not set. Invalid time format\" as warning'\n        exit\n    fi\n\n    echo \"$alarm\" \u003e\u003e /tmp/alarmclock.data\n    exit\nfi\n\n# Remove Alarm\nif [ \"$1\" = 'remove' ]; then\n    touch /tmp/alarmclock_tmp.data\n    while IFS= read -r line; do\n        if [ \"$2\" != \"$line\" ]; then\n            echo \"$line\" \u003e\u003e /tmp/alarmclock_tmp.data\n        fi\n    done \u003c/tmp/alarmclock.data\n    mv /tmp/alarmclock_tmp.data /tmp/alarmclock.data\n    exit\nfi\n\n# Stop Alarm\nif [ \"$1\" = 'stop' ]; then\n    rm /tmp/alarmclock_trigger.data\n    exit\nfi\n\n# Create alarmclock.data if not exist\nif [ ! -f '/tmp/alarmclock.data' ]; then\n    touch '/tmp/alarmclock.data'\nfi\n\n# Count all alarms\ntotal_alarms=$(grep -c ':' /tmp/alarmclock.data)\n\n# Header Display\nif [ $((total_alarms)) -gt 0 ]; then\n    if [ ! -f '/tmp/alarmclock_trigger.data' ] ; then\n        echo \"$total_alarms⏰\"\n    else\n        echo \"$total_alarms⏰ | color=red\"\n    fi\n    echo '---'\nelse\n    echo \"⏰\"\nfi\n\n# Parse alarms\nwhile IFS= read -r line; do\n    echo \"$line | color=red bash='$0' param1=remove param2=$line terminal=false\"\n    now=$(date +%R)\n    if [ \"$line\" == \"$now\" ] \u0026\u0026 [ \"$(date +%S)\" -le '03' ] \u0026\u0026 [ ! -f '/tmp/alarmclock_trigger.data' ]; then\n        echo \"$now\" \u003e '/tmp/alarmclock_trigger.data'\n    fi\ndone \u003c/tmp/alarmclock.data\n\n# Set new alarm\necho '---'\necho \"Set Alarm | color=green bash='$0' param1=set terminal=false\"\n\n# Trigger alarm\nif [ -f '/tmp/alarmclock_trigger.data' ]; then\n    echo \"Stop Alarm | color=red bash='$0' param1=stop terminal=false\"\n    afplay /System/Library/Sounds/Tink.aiff\n    afplay /System/Library/Sounds/Tink.aiff\n    afplay /System/Library/Sounds/Tink.aiff\n    afplay /System/Library/Sounds/Tink.aiff\nfi"
+			}
+		],
+		"path": "Time/alarmclock.1s.sh",
+		"filename": "alarmclock.1s.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/alarmclock.1s.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Alarm Clock",
+		"version": "v1.0",
+		"author": "Carlson Orozco",
+		"authors": [
+			{
+				"name": "Carlson Orozco",
+				"githubUsername": "carlsonorozco",
+				"imageURL": "https://avatars.githubusercontent.com/u/2333279?v=4",
+				"bio": "Christianprenuer • Running Makinilya.com • Dad",
+				"primary": true
+			}
+		],
+		"desc": "Alarm Clock is a plugin for BitBar that notifies/make a sound at a specific time.",
+		"imageURL": "https://raw.githubusercontent.com/carlsonorozco/alarmclock/master/image.png",
+		"dependencies": null,
+		"aboutURL": "https://github.com/carlsonorozco/alarmclock",
+		"lastUpdated": "2021-03-08T15:22:05.447076Z",
+		"vars": null
+	}
+}

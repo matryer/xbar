@@ -1,0 +1,386 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>AnyConnect Umbrella Status in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Check and toggle status of Umbrella Roaming Security Module for Cisco AnyConnect. - install xbar for free to get started.'>
+	<meta name='author' content='Jason Masker'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/Jznovev.png'>
+	<meta itemprop='name' content='AnyConnect Umbrella Status in your macOS menu bar'>
+	<meta itemprop='description' content='Check and toggle status of Umbrella Roaming Security Module for Cisco AnyConnect. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='AnyConnect Umbrella Status in your macOS menu bar'>
+	<meta name='twitter:description' content='Check and toggle status of Umbrella Roaming Security Module for Cisco AnyConnect. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/Jznovev.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='AnyConnect Umbrella Status in your macOS menu bar'>
+	<meta property='og:description' content='Check and toggle status of Umbrella Roaming Security Module for Cisco AnyConnect. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Network/umbrella_status.15m.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/Jznovev.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/Jznovev.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/Jznovev.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/Jznovev.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>AnyConnect Umbrella Status</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/jasmas.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/6385332?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/jasmas.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Jason Masker (<code style='color:white;'>@jasmas</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Check and toggle status of Umbrella Roaming Security Module for Cisco AnyConnect.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Network%2fumbrella_status.15m.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/Jznovev.png' 
+				alt='Image preview of AnyConnect Umbrella Status plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>umbrella_status.15m.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Network/umbrella_status.15m.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/umbrella_status.15m.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+# &lt;bitbar.title&gt;AnyConnect Umbrella Status&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.3&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Jason Masker&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;jasmas&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Check and toggle status of Umbrella Roaming Security Module for Cisco AnyConnect.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/Jznovev.png&lt;/bitbar.image&gt;
+
+PLUGIN_BASE=&#39;/opt/cisco/anyconnect/bin/plugins&#39;
+
+IMG_DISABLED=&#39;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL&#43;3gCAo9Q/bPrQvlQol2tQgKD60&#43;INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p&#43;tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M&#43;fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H&#43;n23BaIXzbcOnz5mfPoTvYVz7KzUl5&#43;FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp&#43;krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5&#43;XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH&#43;hRkH25&#43;L&#43;sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX&#43;&#43;DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG&#43;fAPPI6tJnNwb7ClP7IyF&#43;D&#43;bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv&#43;thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf&#43;ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r&#43;xafL549HQ5jH&#43;an&#43;1y&#43;LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC&#43;P/Hs&#43;y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C&#43;DU9&#43;z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAAJcEhZcwAAFiUAABYlAUlSJPAAABRvSURBVFgJAWQUm&#43;sBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPj4&#43;ASYmJgMGBgYDAAAAAwQEBAP&#43;/v4BCQkJAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD39/f/AgIC//z8/P0AAAD9&#43;vr6/dra2v3CwsL/AQAAAAAAAAAAAAAAAAAAAAAiIiIBKysrAx8fHwcAAAAJBQUFCgAAAAgBAQEF/v7&#43;AwAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wICAv3////7AAAA&#43;Pv7&#43;/YAAAD34eHh&#43;QQAAAAAAAAAAAAAAAAAAAABLCwsAxkZGQkCAgMPCwH7EdsHGirYDi1G/gACCwH//gIAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AP//AQL&#43;AgD&#43;9Sjy07ol/t/W9f8F7xoaGvEBAAAAAAAAAAAAAAAAPj4&#43;AyoqKggGBgYRCQL8GLIVUHbqChpVAP38AAD//wAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAABAQAAAwQAFvbmq07rsIr3/gTnAwAAAAAAAAAAAAAAAEVFRQQHBwcLBQMCF8UPO1rhCyRlAPv6AAAA/wAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAD//wABAP8AAAD/AP8A/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAA//8AAP39APUGECv0/wnyIPzl2wIAAAAAAAAAAAAAAAAHBwcEBAQEChH/9A7fCCJhAPr4AAD//gAA/v4AAP7&#43;AAD&#43;/gAA/v4AAP7&#43;AAD&#43;/gAA/v4AAP3/AP78/gAA/v4A//z/APv5/QD&#43;/P4A/vz&#43;AP38/gAA/f8AAP7&#43;AAD&#43;/gAA/v4AAP7&#43;AAD&#43;/gAA/v4AAP7&#43;AAD//gAA&#43;vgA4AohYRD&#43;8w0EAAAAAAAAAAAZGRkBAwMDAwAAAAkF//wN&#43;P8EEwL//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAQEA&#43;/v/AAgHAABFJQ4AzuX2APsAAACZTR4Al8jsAAACAQARCAMAtdjyAPf6/wAFBAEAAP//AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAPgBBBMF//wNAgAAAAAAAAAAMjIyAAAAAAIBAQEF/QIDC//8AAD//P8A//z/AP/8/wD//P8A//z/AP/8/wD&#43;/P8AAv7/AHY/FQDXaScAqE8bAHU5FADw8/sAKA0FAK5SHQD9/f8AVCcOANpsJgB4PhYAAv7/AP77/wD//P8A//z/AP/8/wD//P8A//z/AP/8/wD//AAA/QICCwIAAAAAAAAAAOHh4QECAgIC////AwABAgX//f4AAP79AAD&#43;/QAA/v0AAP79AAD&#43;/QD9/P0AIBEGAM1oJQB2NhQABAD/APX5/wCYy&#43;0A228oAFyw4wABAgEAslcfAIrG6wD1&#43;f4AeDcTAMxoJQAhEwUA/fz9AAD&#43;/QAA/v0AAP79AAD&#43;/QAA/v0A//3&#43;AAABAwUCAAAAAAAAAAD9/f0ABgYGAP///wH/AAACAP3&#43;AP/9/gD//f4A//3&#43;AP/9/gD//P8AJhUHAMVjIwAPBgIA/v7/AA0HAgBrtuQAUikNALHX8gDz9/wAZbXkAG235QAzGggAMpTYALvh9AAaCwUAzmcmACcVBwD9&#43;/4A//3&#43;AP/9/gD//f4A//3&#43;AAD9/gD/AP8BBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/8/gAAAP4AAAAAAAAAAAAA/wEABQcBAE0oDwAEAAAA/AEAAJXK7QCfz&#43;0A1&#43;P1AIROHgAgDgQAsVchAEql3gC&#43;YSMA6fT7AMrb8wB3t&#43;YAGAsEAAkIAwCVTh0Aa7DiANrn9gABAQAAAAAAAAAAAAD/AAEAAAABAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA/f4AAP//AAAAAAAAAQAA9Pn8AKxeJwC21fAAoM/uAJvL7ABoORUAcjsVAAEAFQBeLhIA&#43;P3&#43;AAMBAAA6GgkA6PX8AB8OBgDAZiYAOpnZALZfIgDX6vkAjMXpAPP6/QD&#43;&#43;/4AAgIBAAEAAAAAAAAAAAH&#43;AAABAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEA//z/AP/&#43;/wD//v8A/vv&#43;AEwtEgA5HgwApcPoANjs&#43;ADEZiYAYzITAKzQ7gBWLBEA9fz&#43;AP7/AAD8/gAATysQALPT7wAHAwEA/P3&#43;AEwlDQCv1vEAIBAFAJtPHgCpWCEAHBEGAP/9/gD//v8A//7/AP/8/wAAAQAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAgMDARMIAQAaCwQAGQsDAA4GAgB&#43;RxoAZKXcADEeDQBwPBgA&#43;f0AAOz0/AD0&#43;v0ACwYCAAEAAAAAAAAA/wAAADUbCQDD4PMACAYCAPn8/wBjOBcAosjqAAUDAgD2&#43;/4AIxEGAJ5ZIgD19vsAAPz9AAD8/QAA/f0AAAABAAQAAAAAAAAAAAAAAAAAAAAAAAAAACkuMhm4Qy8AKBgLAP/&#43;/gAAAAAAAAAAALFlEQAAAAAAAAAAAAECAgDq8vgAUCgQAPj6/gAAAAAAAAAAAAAAAAAPCAQA7PL8AAABAQAAAQAAGhAEAOz2/ADl8/sADwgEAPj&#43;/wA0HwwAEAgDAPv8/wAAAAAA/wD/AAAGAAAEAAAAAAAAAAAAAAAAAAAAADExMRNCTE1gAeLeAOGswQAA/v4AAAEBAAAAAAAAAAAAAAAAAAD//wAAAgIAEkdHAFo1HAD6/fwAAQEAAAAAAAAAAAAAAwAAAAwD/wAABAIA7Pf8AJfC6ADS2/IAMYDOAEIrEQACAAAA5/b7APv6/gD//f8AAAAAAP8AAAABCgAABAAAAAAAAAAAAAAAAF9fXx4hISGHAOfnKuOoqAD45&#43;cAAQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//APvu7gAcYWEAAhcXAPn5&#43;QAAAAAAAAAAAObz&#43;wDY4PQARY3SAAwGAgBiPhgAj1ojAO70&#43;gBzQRoA/P4AAAcKAwBMj9QAv9PtAAMCAQAAAP8AAAABAAQAAAAAAAAAAMnJyR8JCQmL&#43;NraNeSgoAD55eUAAgQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAD02NgA45qaABxhYQAKHR0AAP76ANTn&#43;ABintcA8vH4AHRFKABDJg4A9vr&#43;AOPz&#43;wCZveUA&#43;v0AAPz&#43;/gAH/wMA9fj8AAH8/gD/AwEAAP8AAAABAAACAAAAAP/&#43;/hcLCwud&#43;NnZReKXlwH3398A//v7AP339wD9&#43;fkA/fn5AP35&#43;QD9&#43;fkA/fn5AP35&#43;QD&#43;9vYAAP39APTY2ADhlJQA9uDhALzY9ACFsd8AvncwAC8lEABHLhEA9/v&#43;AAABAAAWCwQA7/P7AAkIAgDh7/oAQobOANzj9AAA/v8AAPz/AP/8/gAAAAAAA////ycAAQGe9tvbQuGTkwH44&#43;MAAP//AAcZGQABBAQA&#43;/DwAAD9/QAA/PwAAPz8AP/8/AD/&#43;voACBwcAAEFBQD98fEA&#43;u3tAPjf3wAvPzMAHh4WAJ7A5ADW3/IAUjcXAPn8/gD1&#43;P4AutbwAJi24AC20&#43;8AydzxAKNqLACsxugA7fH5AAD//wD&#43;/gAAPxDarQQAAACx8crKJuOZmQD34eEAAQICAAghIQAheHgA//n5AOCQkAD01tYAAgUFAAAAAAD&#43;&#43;/sAEj09AB9ubgD55uYA3ISEAPvv7wDy0NAA34uLAC1iYgAYQSYAvc3rAGud1wDz&#43;f8ADgcCAPP2&#43;wAHAgEAuXkxAAP//gD4/AAA3ePzAAH&#43;/wD/AAAAAP8AAAABAAAEAAAAJ&#43;irqwD02NgAAQUFAAD9/QD78PAA//j4AAokJAAgcnIA34eHAPPW1gAAAAAAEj4&#43;AB5tbQAFEhIA9NbWAP3z8wD&#43;&#43;PgAAAEBAPLPzwAFsbEAJYCAAMOHOAAGAf8AAgIBAP39/wDy&#43;v8Ac53VAPj3/ADv9fwA4Oz4APPy&#43;gAKCgQAAAAAAP///gAAAAAABP/////&#43;&#43;voB/vz8AAL//wAAAAAA9&#43;DgAN2FhQAjfX0ACiIiACB0dADbf38ABRAQACFycgAFExMA8cvLAN6KigD67e0AAQICAAAAAAD//v4A//z8APz9/gAEAAAA9fj9AAICAQAGBAIAfqTZALbI6gDZ6vkAEw4EAMDN6gAKBgEAAPz&#43;AAAAAAAA/wEAAAEBAAQBAAAA//z8AP/7&#43;wD&#43;/v4AAP//AP8AAADxzc0A239/ACR7ewALKCgAJoGBAAQQEAAFFBQA7sDAAN2JiQD55&#43;cAAQUFAAH8/AAAAQEA//39AP/9/QADAwIA9Pf9AAcEAgDH2/EAc53WAAgEAgBzVCIAdVMjANjk9QAtvuQABQUCAAD//wAAAAAA//8BAAABAAACAAAAAP/9/QD/&#43;voA/vr6AP77&#43;wD/&#43;/sAAAEBAPLNzQDZdnYA9djYAAomJgAGFhYA7r&#43;/ANyAgAD44&#43;MAAP//AP/6&#43;gD&#43;&#43;/sA/vr6AP76&#43;gD//PwAAQD/AAgGAgCtx&#43;gAg6baAMCHOAA8KBAARC4UAPj4/ABMe8cABQL/AAD9/gAA/v4AAP7&#43;AAD&#43;/gAAAAEAAgAAAAD//PwA/vr6AP/7&#43;wD/&#43;voA//r6AP/6&#43;gD/&#43;/sABA4OAAYSEgAAAAAAAAAAAAYWFgADCwsA//r6AP/6&#43;gD/&#43;voA//r6AP/6&#43;gD/&#43;voA//39APz&#43;AACauOIAuczqALyHOAAMCgQAuM/sAC4hDQA4bMIA4&#43;TyAP/8/gD//P0A//z9AP/8/QAA/P4AAAEAAAIAAAAA//z8AP/8/AD&#43;&#43;/sA/vz8AP78/AD99fUAE0NDACiPjwAFFhYA7by8APPT0wAMKysAJ4uLAAwrKwD99fUA/vz8AP78/AD&#43;&#43;/sA//z8AAD9/QABAAAAhpDPAHRYJgDx8vsA5&#43;35ABAHAgA0aL8A1tzvAAIAAQAA/QAAAP0AAAD9AAAA/QAA//3/AAAAAAACAAAAAP/8/AD&#43;&#43;/sA//z8AP/8/AD/&#43;fkAFElJACWCggAGFRUA7Lq6ANl3dwDWcHAA89PTAAwqKgAniYkADS8vAP/5&#43;QD//PwA//z8AP77&#43;wD&#43;&#43;voA////ALWcRABihcoA8fv9AIOi2ADDy&#43;cA1NrvAAEA/wD&#43;/f0A/v79AP7&#43;/QD&#43;/v0A/v79AP/&#43;/gACAgH/AgAAAAH///8A/vj4AP/6&#43;gD&#43;9/cACycnACeGhgAGFhYA78PDANp4eAD45uYA9dTUANhzcwD01tYACyYmACeHhwAFFBQA//j4AP/7&#43;wD//PwABA8PAAQDAgDj5/UADwoFACVRtACZq9kABAIBAAL//wAA/f8AAP3/AAD9/wAA/f8AAP3/AAD&#43;/wD//f8AAQD/&#43;wIAAQG7H25u&#43;w0vLwD89vYA//7&#43;AP77&#43;wD56OgA7Lm5ANVsbAD24eEA////AP8BAQDwy8sA1m5uAPLQ0AD67u4A//z8AP78/AD&#43;&#43;/sAHWZmABx&#43;ggCvweIAXn/GAL/J5gD///8AAwIBAP/9/wD//v8A//7/AP/&#43;/wD//v8A//7/AP/&#43;/wD//f4ACgX78Pr9A/gB////GAAAAILz1tZl12xsAPLPzwABBAQACBwcAP309AD77u4AAAICAAAAAAAAAAAAAAAAAP/&#43;/gAIGRkA/wAAAPro6AAAAQEAE0FBACWOkACDsOcAnLHZAPL1&#43;wAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gEGADYZ5KA6IeiiAQAAAAD//v4MAAEBjvLOzmDVamoF9NfXAAEBAQAAAQEAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP39AAAAAAAAAgIAEj09ABp9gQCMw/oAkqnXAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA/wAFACQT78BRLN2V&#43;fsA2gEAAAAAAAAAAP///xL&#43;/v6F9NDQY9hzcwXwysoAAgcHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AE0REABx5e/2w3fvlmqrK6fj5/P4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAABAAD//wD9AQD/9i8b7cgdD/XS&#43;fwB4v39/eQBAAAAAAAAAAAAAAAA8PDwEgwMDIj85&#43;dk346OAeWdnQABAgIAAAEBAAD//wAAAAAAAAEBAAD//wAAAQEAHWtrABxpafzb7Oyuqqqqvff39/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8BAQH/AAAA/P////YAAADx/v7&#43;7P7&#43;/u35&#43;fnxAQAAAAAAAAAAAAAAAAAAAADo6OgKFBQUkwIAAF/dfX0D&#43;efnAAEDAwAAAAAAAAAAAAAAAAD//f0ABxUVACGFhffo6uqXkZGRpPv7&#43;/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wICAv3////7AAAA&#43;Pv7&#43;/YAAAD34eHh&#43;QEAAAAAAAAAAAAAAAAAAAAAAAAAAPb19R8JCgqtAAAAMQAAAP4A//8AAAAAAAAAAAAAAAAAAAEB/wAAAAP8/Py0v76&#43;bbu8vPIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPf39/8CAgL/AAAA/vz8/Pz6&#43;vr92tra/cLCwv9zAt70YgBl3AAAAABJRU5ErkJggg==&#39;
+IMG_ENABLED=&#39;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL&#43;3gCAo9Q/bPrQvlQol2tQgKD60&#43;INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p&#43;tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M&#43;fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H&#43;n23BaIXzbcOnz5mfPoTvYVz7KzUl5&#43;FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp&#43;krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5&#43;XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH&#43;hRkH25&#43;L&#43;sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX&#43;&#43;DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG&#43;fAPPI6tJnNwb7ClP7IyF&#43;D&#43;bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv&#43;thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf&#43;ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r&#43;xafL549HQ5jH&#43;an&#43;1y&#43;LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC&#43;P/Hs&#43;y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C&#43;DU9&#43;z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAAAJcEhZcwAAFiUAABYlAUlSJPAAABRvSURBVFgJAWQUm&#43;sBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPj4&#43;ASYmJgMGBgYDAAAAAwQEBAP&#43;/v4BCQkJAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD39/f/AgIC//z8/P0AAAD9&#43;vr6/dra2v3CwsL/AQAAAAAAAAAAAAAAAAAAAAAiIiIBKysrAx8fHwcAAAAJBQUFCgAAAAgBAQEF/v7&#43;AwAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wICAv3////7AAAA&#43;Pv7&#43;/YAAAD34eHh&#43;QQAAAAAAAAAAAAAAAAAAAABLCwsAxkZGQkCAgMPCwH7EdsHGirYDi1G/gACCwH//gIAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AP//AQL&#43;AgD&#43;9Sjy07ol/t/W9f8F7xoaGvEBAAAAAAAAAAAAAAAAPj4&#43;AyoqKggGBgYRCQL8GLIVUHbqChpVAP38AAD//wAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAABAQAAAwQAFvbmq07rsIr3/gTnAwAAAAAAAAAAAAAAAEVFRQQHBwcLBQMCF8UPO1rhCyRlAPv6AAAA/wAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAD//wABAP8AAAD/AP8A/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAA//8AAP39APUGECv0/wnyIPzl2wIAAAAAAAAAAAAAAAAHBwcEBAQEChH/9A7fCCJhAPr4AAD//gAA/v4AAP7&#43;AAD&#43;/gAA/v4AAP7&#43;AAD&#43;/gAA/v4AAP3/AP78/gAA/v4A//z/APv5/QD&#43;/P4A/vz&#43;AP38/gAA/f8AAP7&#43;AAD&#43;/gAA/v4AAP7&#43;AAD&#43;/gAA/v4AAP7&#43;AAD//gAA&#43;vgA4AohYRD&#43;8w0EAAAAAAAAAAAZGRkBAwMDAwAAAAkF//wN&#43;P8EEwL//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAQEA&#43;/v/AAgHAABFJQ4AzuX2APsAAACZTR4Al8jsAAACAQARCAMAtdjyAPf6/wAFBAEAAP//AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAPgBBBMF//wNAgAAAAAAAAAAMjIyAAAAAAIBAQEF/QIDC//8AAD//P8A//z/AP/8/wD//P8A//z/AP/8/wD&#43;/P8AAv7/AHY/FQDXaScAqE8bAHU5FADw8/sAKA0FAK5SHQD9/f8AVCcOANpsJgB4PhYAAv7/AP77/wD//P8A//z/AP/8/wD//P8A//z/AP/8/wD//AAA/QICCwIAAAAAAAAAAOHh4QECAgIC////AwABAgX//f4AAP79AAD&#43;/QAA/v0AAP79AAD&#43;/QD9/P0AIBEGAM1oJQB2NhQABAD/APX5/wCYy&#43;0A228oAFyw4wABAgEAslcfAIrG6wD1&#43;f4AeDcTAMxoJQAhEwUA/fz9AAD&#43;/QAA/v0AAP79AAD&#43;/QAA/v0A//3&#43;AAABAwUCAAAAAAAAAAD9/f0ABgYGAP///wH/AAACAP3&#43;AP/9/gD//f4A//3&#43;AP/9/gD//P8AJhUHAMVjIwAPBgIA/v7/AA0HAgBrtuQAUikNALHX8gDz9/wAZbXkAG235QAzGggAMpTYALvh9AAaCwUAzmcmACcVBwD9&#43;/4A//3&#43;AP/9/gD//f4A//3&#43;AAD9/gD/AP8BBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/8/gAAAP4AAAAAAAAAAAAA/wEABQcBAE0oDwAEAAAA/AEAAJXK7QCfz&#43;0A1&#43;P1AIROHgAgDgQAsVchAEql3gC&#43;YSMA6fT7AMrb8wB3t&#43;YAGAsEAAkIAwCVTh0Aa7DiANrn9gABAQAAAAAAAAAAAAD/AAEAAAABAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA/f4AAP//AAAAAAAAAQAA9Pn8AKxeJwC21fAAoM/uAJvL7ABoORUAcjsVAAEAFQBeLhIA&#43;P3&#43;AAMBAAA6GgkA6PX8AB8OBgDAZiYAOpnZALZfIgDX6vkAjMXpAPP6/QD&#43;&#43;/4AAgIBAAEAAAAAAAAAAAH&#43;AAABAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEA//z/AP/&#43;/wD//v8A/vv&#43;AEwtEgA5HgwApcPoANjs&#43;ADEZiYAYzITAKzQ7gBWLBEA9fz&#43;AP7/AAD8/gAATysQALPT7wAHAwEA/P3&#43;AEwlDQCv1vEAIBAFAJtPHgCpWCEAHBEGAP/9/gD//v8A//7/AP/8/wAAAQAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD9/QAHAP4AEQYBAA0FAQB/RxoAZ6bdADEeDABvOxgA&#43;Pz/AOvz/AD0&#43;v0ACwYCAAEAAAAAAAAA/wAAADUbCQDD4PMACAYCAPn8/wBjOBcAosjqAAUDAgD2&#43;/4AIxEGAJ5ZIgD19vsAAPz9AAD8/QAA/f0AAAABAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA0QEQdUGxQAQygRADciDwAhFAkABAMBAK9mEwD///8A5vH5AA8LBADL4/MASiQOAPj6/gAAAAAAAAAAAAAAAAAPCAQA7PL8AAABAQAAAQAAGhAEAOz2/ADl8/sADwgEAPj&#43;/wA0HwwAEAgDAPv8/wAAAAAA/wD/AAAGAAAEAAAAAAAAAAAAAAAAAAAAAFRUUywuLCx1XwULAAMC&#43;ADd69YAttXdAPL38AD/AAAADwgQABwSIAAPCCkALBoMACYWCwD8/vsAAAD/AAAAAAAAAAAAAwAAAAwD/wAABAIA7Pf8AJfC6ADS2/IAMYDOAEIrEQACAAAA5/b7APv6/gD//f8AAAAAAP8AAAABCgAAAQAAAAAAAAAAycjICCgoKF8LDAyG8fjvEszhxgDD3b4A9fn1AP8A/QD///8AAQAAAAABAQACAAEACQcMADkgPwA4ITwAEQoUAPn5&#43;QD8/PwAAAAAAO/3/QA2g88ALSAMAAwGAgBiPhgA6fL8AO70&#43;gBzQRoA/P4AAAcKAwBMj9QAv9PtAAMCAQD9AAIAexKrWgQAAAAAAAAAADMzM1UCAwOK3&#43;3cDrDQpgDb69gAAgECAAAAAAABAAEAAAAAAAAAAAAAAAAA/wD/APf8&#43;ACz1KsA1&#43;jRAFEwWQAiFCcA//z5ANPl9QBintcA8vH4AHRFKABDJg4A9vr&#43;AOPz&#43;wCZveUA&#43;v0AAPz&#43;/gAH/wMA9fj8AAH8/gD/AwEAAP8AAAABAAACAAAAAP/&#43;/TkDBASL3uvaDp/HlQDW6NIA/v79APz9&#43;wD8/fsA&#43;/36APv9&#43;gD7/foA&#43;/36APz9&#43;wD9/fsA//79ANjp1ACfx5UA2&#43;vXAPL6AwCmx&#43;kAvncwAC8lEABHLhEA9/v&#43;AAABAAAWCwQA7/P7AAkIAgDh7/oAQobOANzj9AAA/v8AAPz/AP/8/gAAAAAAA//&#43;/gwAAQKh7PPpKp3HkwDe7NoA/wAAAPz&#43;/QD8/v0A/P79APz&#43;/QD8/v0A/P79APz//QD8/v0A&#43;f36APv9&#43;QD/AAEA8PfuAOXv4QAwHi8ALBoXAIex3QDa4vMAUzcXAPn8/gD1&#43;P4AutbwAJi24AC20&#43;8AydzxAKNqLACsxugA7fH5AAD//wD&#43;/gAAPxDarQQAAQFO///&#43;L7/ZuADS5c0ABQMGAAD9&#43;wABAAAAAAAAAAAAAAAAAAAAAAAAAAABAAD&#43;//8A/fz8AD0kRAAQChIAv9q4APr8&#43;QDT5tAAsNGoAGQ5bwAdEggA9/b7AGud1wDz&#43;f8ADgcCAPP2&#43;wAHAgEAuXkxAAP//gD4/AAA3ePzAAH&#43;/wD/AAAAAP8AAAABAAAEAAAAS/L48Qyw0qoA/f78AP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#43;fz5ADgfPgBmPW8ABwUIAMjfwgDv9uwAAQECAMDaugBOLVYAMSERANSSHQAGAQAAAgIBAP39/wDy&#43;v8Ac53VAPj3/ADv9fwA4Oz4APPy&#43;gAKCgQAAAAAAP///gAAAAAABAAAADnO4sgB7/fsAAEAAQABAfwAAP//AP4AAAACAAEAAAAAAAAAAAAAAQAA/v7&#43;ABcNHABeOWgACQYLAMnewgDr8&#43;kA/P78AAEAAQDy/PkAyN/CADwhUwAEAP4A9fj9AAICAQAGBAIAfqTZALbI6gDZ6vkAEw4EAMDN6gAKBgEAAPz&#43;AAAAAAAA/wEAAAEBAAIA/wAhzOLIAPr7&#43;QD7/fsA&#43;fz5APz9/AAJBAoA9/v3APr9&#43;gD7/foA&#43;Pv4AP7&#43;/gBZNGEAHxMhAOny5wCfxpcA7/fsAPz9&#43;wD6/foA&#43;f35ANLlzQAVDwcA9/n&#43;AAcEAgDM3fIAOXbGAM/b8ABzVCIAxYU2AIpbJwD38foA//3/AP/8/gD//P4A//z&#43;AAABAAAC/wH/AOfy5QD7/foA&#43;/36APj7&#43;ABiOm4AjlWcADEaNgD2&#43;vUA&#43;v36APf59QBJKVEAQihHAPv9&#43;wCYwY0A1ejQAP7//gD7/fsA/P37APv9&#43;gDn8uQAAAEAAAgGAgCtx&#43;gAg6baAMCHOAA8KBAARC4UAPj4/ABMe8cABQL/AAD9/gAA/v4AAP7&#43;AAD&#43;/gAAAAEAAgD/AAD6/PgA&#43;/78APv9&#43;wD7/PoAIRQkAB8SIgB1SIEAHA4eAPH28AAtGjQAYz5uAAQDBQCszKQAtNSsAP4A/gD8/vwA&#43;/77APz&#43;/AD8/fwA&#43;/38AAD/AACcuuMAuczqALyHOAAMCgQAuM/sAC4hDQA4bMIA4&#43;TyAP/8/gD//P0A//z9AP/8/QAA/P4AAAEAAAIBAAEAEAgRAPv9&#43;wD8/vwA/v/9AI68ggDZ6NUAFw4ZAHFEfwArFzAAbUF3AAwHDADJ3sQAnMWRAAEAAQD&#43;/v0A&#43;/37APv9&#43;wD6/foA&#43;/36ABAKEAABAAAAhpDOAHRYJgDx8vsA5&#43;35ABAHAgA0aL8A1tzvAAIAAQAA/QAAAP0AAAD9AAAA/QAA//3/AAAAAAACAAEA4CwbMgD9/vwA&#43;/76AP8A/wDY6dIAlL6IAPD27gAzIDcAjVaaACgZLADq8&#43;cAlsGKAO747AD/Af8A&#43;/77APz&#43;&#43;wD8/vwA/P76APz//QAtGTIA6e/4ALKaQwBihcoA8fv9AIOi2ADDy&#43;cA1NrvAAEA/wD&#43;/f0A/v79AP7&#43;/QD&#43;/v0A/v79AP/&#43;/gACAgH/AgAAAMY8I0H/BgQHAPz8&#43;gD8/vsAAAABALzZtQCkx5sAAQAAABYOGQD9//0Am8KRAMngxAAA//8A/P77AP3&#43;/AD9/vwA/f77APv8&#43;wAFAgQAOyJDAMrZ7QDe4/QADwoFACVRtACZq9kABAIBAAL//wAA/f8AAP3/AAD9/wAA/f8AAP3/AAD&#43;/wD//f8AAQD/&#43;wIAAAC2Gg8e9U8uVwD2&#43;/YA/P38APz//AABAwIAmMSOAKvNowD8/vwAqsuhAKXKnQADAwMA/P78APz9/AD8/fwA/P38APz9/AD2&#43;/UARChLABYLIQCsud8AVHfDAL/J5gD///8AAwIBAP/9/wD//v8A//7/AP/&#43;/wD//v8A//7/AP/&#43;/wD//f4ACgX78Pr9A/gB////DAAAALfg7dw8cKtiANbo0gAEAgQAAAAAAP7&#43;/gAHBAkAFgwcAOry4wD5/vgAAgICAP8A/wAAAAAAAAAAAAEAAQD9/vwAJhUpAI9WnwDp5hEATXO8APT2/AAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gEGADYZ5KA6IeiiAgEBAfQA//92IBMk6XdGgwAZDhsA&#43;fv5AP3&#43;/AD/AP8A9/z0AN7u1QD3/vUA/wD/AP3&#43;/QD&#43;/v4A/v7&#43;AP7&#43;/QD6/PkAFQwYAHVGgwAOAx8AeZPNAPPz/AD//QAA//4AAP/&#43;AAD//gAA//4AAP/&#43;AAD//gAA//4AAP//AAD//wAA/v8FACQR7sA/JOe1/v7/7QEAAAAAAAAAAP/&#43;/1wAAQCUxd2&#43;D4a4egDS5c8ABQMEAAIBAgABAQEAAQAAAP8AAAAAAAAA////AP///gD7/fsAKhkwAHlIhAA0G0D9kaLF4Ke10ewAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAABAAD//wD9AQD/9i8b7cgdD/XS&#43;fwB4v39/eQBAAAAAAAAAAD//v4G/f39WAMEBIve69oWn8eUALDSqwD3&#43;/QAAAAAAP///gAAAAAAAAEBAAEBAQAIAwoASixPAGY8cgAfECPyzMzMqrS0tMv4&#43;Pj8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8BAQH/AAAA/P////YAAADx/v7&#43;7P7&#43;/u35&#43;fnxAQAAAAAAAAAAAAAAAAAAAAD7&#43;fk8AwUFh/3&#43;/TDq8&#43;YLudeyAdTnzwDg7t8A/wAAAB8QHwArGjAARihN/xgOG/b&#43;/P/b0tHRkaeoqM8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wICAv3////7AAAA&#43;Pv7&#43;/YAAAD34eHh&#43;QEAAAAAAAAAAAAAAAAAAAAAAAAAAOno6AwTFBRPAQEBRQEBATkBAQAi//8ABAAAAAAAAAD8////3/z8/Mr4&#43;PjAvr2&#43;tsbHxvYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPf39/8CAgL/AAAA/vz8/Pz6&#43;vr92tra/cLCwv9sojkdx6Z&#43;8QAAAABJRU5ErkJggg==&#39;
+
+# Check plugin status, return 0 if enabled, 1 if disabled
+function check_status {
+    [[ -f $PLUGIN_BASE/libacumbrellaapi.dylib ]] &amp;&amp;
+    [[ -f $PLUGIN_BASE/libacumbrellactrl.dylib ]] &amp;&amp;
+    [[ -f $PLUGIN_BASE/libacumbrellaplugin.dylib ]]
+}
+
+# Check if plugin disabled by utility, return 0 if yes, 1 if no
+function verify_plugin_disabled {
+    [[ -f $PLUGIN_BASE/disabled/libacumbrellaapi.dylib ]] &amp;&amp;
+    [[ -f $PLUGIN_BASE/disabled/libacumbrellactrl.dylib ]] &amp;&amp;
+    [[ -f $PLUGIN_BASE/disabled/libacumbrellaplugin.dylib ]]
+}
+
+# Disable plugin
+function disable_plugin {
+    /usr/bin/osascript -e &#34;do shell script \&#34;mkdir -p $PLUGIN_BASE/disabled &amp;&amp; mv -f $PLUGIN_BASE/libacumbrellaapi.dylib $PLUGIN_BASE/libacumbrellactrl.dylib $PLUGIN_BASE/libacumbrellaplugin.dylib $PLUGIN_BASE/disabled/\&#34; with administrator privileges&#34;
+}
+
+# Enable plugin
+function enable_plugin {
+    /usr/bin/osascript -e &#34;do shell script \&#34;mv -f $PLUGIN_BASE/disabled/libacumbrellaapi.dylib $PLUGIN_BASE/disabled/libacumbrellactrl.dylib $PLUGIN_BASE/disabled/libacumbrellaplugin.dylib $PLUGIN_BASE/\&#34; with administrator privileges&#34;
+}
+
+case &#34;$1&#34; in
+    &#39;enable&#39;)
+        verify_plugin_disabled &amp;&amp;
+        enable_plugin
+        ;;
+    &#39;disable&#39;)
+        check_status &amp;&amp;
+        disable_plugin
+        ;;
+    *)
+        check_status &amp;&amp;
+        echo &#34;| image=$IMG_ENABLED&#34; ||
+        echo &#34;| image=$IMG_DISABLED&#34;
+
+        echo &#39;---&#39;
+
+        (check_status &amp;&amp;
+        echo &#34;Disable Cisco Umbrella| terminal=false refresh=true bash=&#39;$0&#39; param1=disable&#34;) ||
+        (verify_plugin_disabled &amp;&amp;
+        echo &#34;Enable Cisco Umbrella| terminal=false refresh=true bash=&#39;$0&#39; param1=enable&#34;)
+
+esac
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

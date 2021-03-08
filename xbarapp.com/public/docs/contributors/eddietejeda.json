@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Eddie A Tejeda",
+		"githubUsername": "eddietejeda",
+		"imageURL": "https://avatars.githubusercontent.com/u/669988?v=4",
+		"bio": "Currently @navahq , formerly: @codeforamerica @18F @cloud-gov",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/firewall.10m.sh",
+					"filename": "firewall.10m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eFirewall\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eEddie A Tejeda\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eeddietejeda\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin displays the status of the firewall.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/MOBK8cK.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\nenabled=$(/usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate);\n\nif [[ $enabled == *\"enabled\"* ]]\nthen\n  echo '☵'  \nelse\n  echo '❌'\nfi\n\necho '---'\necho \"👁 $(/usr/libexec/ApplicationFirewall/socketfilterfw --getstealthmode)\"\n"
+				}
+			],
+			"path": "System/firewall.10m.sh",
+			"filename": "firewall.10m.sh",
+			"dir": "System",
+			"docsPlugin": "System/firewall.10m.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Firewall",
+			"version": "v1.0",
+			"author": "Eddie A Tejeda",
+			"authors": [
+				{
+					"name": "Eddie A Tejeda",
+					"githubUsername": "eddietejeda",
+					"imageURL": "https://avatars.githubusercontent.com/u/669988?v=4",
+					"bio": "Currently @navahq , formerly: @codeforamerica @18F @cloud-gov",
+					"primary": true
+				}
+			],
+			"desc": "This plugin displays the status of the firewall.",
+			"imageURL": "http://i.imgur.com/MOBK8cK.png",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:03.505198Z",
+			"vars": null
+		}
+	]
+}

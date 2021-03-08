@@ -1,0 +1,62 @@
+{
+	"person": {
+		"name": "Horatiu Ion",
+		"githubUsername": "Link512",
+		"imageURL": "https://avatars.githubusercontent.com/u/4046355?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/Docker/docker-disk.1m.sh",
+					"filename": "docker-disk.1m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eDocker disk usage\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eHoratiu Ion\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eLink512\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows docker disk usage (via docker system df).\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash,docker\u003c/bitbar.dependencies\u003e\n#\n# Docker disk usage plugin\n#\n# Displays the total disk usage of docker. Clicking the menu will show a detailed breakdown (images, containers, volumes, build cache)\n\nexport PATH=\"/usr/local/bin:/usr/bin:$PATH\"\nDOCKER=\"$(command -v docker)\"\n\nhumanize() {\n    local L_BYTES=\"${1:-0}\"\n    local L_BASE=\"${2:-1000}\"\n    echo \"$1\" | awk -v bytes=\"${L_BYTES}\" -v base=\"${L_BASE}\" 'function human(x, base) {\n         if(base!=1024)base=1000\n         basesuf=(base==1024)?\"iB\":\"B\"\n\n         s=\"BKMGTEPYZ\"\n         while (x\u003e=base \u0026\u0026 length(s)\u003e1)\n               {x/=base; s=substr(s,2)}\n         s=substr(s,1,1)\n\n         xf=((s==\"B\")?\"%d\":\"%.2f\")\n         s=(s!=\"B\") ? (s basesuf) : s\n\n         return sprintf( (xf \" %s\\n\"), x, s)\n      }\n      BEGIN{print human(bytes, base)}'\n}\n\ndehumanise() {\n    read -r v\n    echo \"$v\" | awk \\\n        'BEGIN{IGNORECASE = 1}\n        function printpower(n,b,p) {printf \"%d\\n\", n*b^p}\n        /[0-9](B)?$/{ printpower($1, 10,  1); next;};\n        /K(B)?$/{     printpower($1, 10,  3); next;};\n        /M(B)?$/{     printpower($1, 10,  6); next;};\n        /G(B)?$/{     printpower($1, 10,  9); next;};\n        /T(B)?$/{     printpower($1, 10, 12); next;};'\n}\n\nDOCKER_DF=$(${DOCKER} system df --format \"{{.Size}}\")\n\nIMAGE_SIZES=$(echo \"${DOCKER_DF}\" | sed -n 1p | dehumanise)\nCONTAINER_SIZES=$(echo \"${DOCKER_DF}\" | sed -n 2p | dehumanise)\nVOLUME_SIZES=$(echo \"${DOCKER_DF}\" | sed -n 3p | dehumanise)\nBUILD_SIZES=$(echo \"${DOCKER_DF}\" | sed -n 4p | dehumanise)\n\nTOTAL=$((IMAGE_SIZES + CONTAINER_SIZES + VOLUME_SIZES + BUILD_SIZES))\n\necho \"🐳: $(humanize ${TOTAL})\"\necho \"---\"\necho \"images: $(echo \"${DOCKER_DF}\" | sed -n 1p)\"\necho \"containers: $(echo \"${DOCKER_DF}\" | sed -n 2p)\"\necho \"volumes: $(echo \"${DOCKER_DF}\" | sed -n 3p)\"\necho \"build cache: $(echo \"${DOCKER_DF}\" | sed -n 4p)\"\necho \"---\"\necho \"Refresh | refresh=true\"\n"
+				}
+			],
+			"path": "Dev/Docker/docker-disk.1m.sh",
+			"filename": "docker-disk.1m.sh",
+			"dir": "Dev/Docker",
+			"docsPlugin": "Dev/Docker/docker-disk.1m.sh.html",
+			"docsCategory": "Dev/Docker.html",
+			"pathSegments": [
+				"Dev",
+				"Docker"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/Docker",
+					"text": "Docker",
+					"isLast": true
+				}
+			],
+			"title": "Docker disk usage",
+			"version": "v0.0.1",
+			"author": "Horatiu Ion",
+			"authors": [
+				{
+					"name": "Horatiu Ion",
+					"githubUsername": "Link512",
+					"imageURL": "https://avatars.githubusercontent.com/u/4046355?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows docker disk usage (via docker system df).",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"bash",
+				"docker"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:47.894375Z",
+			"vars": null
+		}
+	]
+}

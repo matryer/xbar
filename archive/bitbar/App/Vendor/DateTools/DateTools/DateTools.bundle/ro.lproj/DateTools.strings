@@ -1,0 +1,80 @@
+/* No comment provided by engineer. */
+"%d days ago" = "În urmă cu %d zile";
+
+/* No comment provided by engineer. */
+"%d hours ago" = "În urmă cu %d ore";
+
+/* No comment provided by engineer. */
+"%d minutes ago" = "În urmă cu %d minute";
+
+/* No comment provided by engineer. */
+"%d months ago" = "În urmă cu %d luni";
+
+/* No comment provided by engineer. */
+"%d seconds ago" = "În urmă cu %d secunde";
+
+/* No comment provided by engineer. */
+"%d weeks ago" = "În urmă cu %d săptămâni";
+
+/* No comment provided by engineer. */
+"%d years ago" = "În urmă cu %d ani";
+
+/* No comment provided by engineer. */
+"A minute ago" = "În urmă cu 1 minut";
+
+/* No comment provided by engineer. */
+"An hour ago" = "În urmă cu 1 oră";
+
+/* No comment provided by engineer. */
+"Just now" = "Acum câteva momente";
+
+/* No comment provided by engineer. */
+"Last month" = "Luna trecută";
+
+/* No comment provided by engineer. */
+"Last week" = "Săptămâna trecută";
+
+/* No comment provided by engineer. */
+"Last year" = "Anul trecut";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Ieri";
+
+/* No comment provided by engineer. */
+"1 year ago" = "În urmă cu 1 an";
+
+/* No comment provided by engineer. */
+"1 month ago" = "În urmă cu 1 lună";
+
+/* No comment provided by engineer. */
+"1 week ago" = "În urmă cu 1 săptămână";
+
+/* No comment provided by engineer. */
+"1 day ago" = "În urmă cu 1 zi";
+
+/* No comment provided by engineer. */
+"This morning" = "Azi dimineață";
+
+/* No comment provided by engineer. */
+"This afternoon" = "În această seară";
+
+/* No comment provided by engineer. */
+"Today" = "Astăzi";
+
+/* No comment provided by engineer. */
+"This week" = "Săptămâna aceasta";
+
+/* No comment provided by engineer. */
+"This month" = "Luna aceasta";
+
+/* No comment provided by engineer. */
+"This year" = "Anul acesta";
+
+/* Short format for */
+"%dy" = "%da"; // year (an)
+"%dM" = "%dl"; // month (luna)
+"%dw" = "%dS"; // week (saptamana)
+"%dd" = "%dz"; // day (ziua)
+"%dh" = "%do"; // hour (ora)
+"%dm" = "%dm"; // minute (minut)
+"%ds" = "%ds"; // second  (secunda)

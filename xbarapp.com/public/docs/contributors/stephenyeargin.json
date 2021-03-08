@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Stephen Yeargin",
+		"githubUsername": "stephenyeargin",
+		"imageURL": "https://avatars.githubusercontent.com/u/80459?v=4",
+		"bio": "Developer at @vanderbilt for the @all-of-us program 🔬; hack on stuff at @websages 🛠 \u0026 @nashvillest 📰; Gets it right after trying every other possible outcome",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Tools/statuspage.1m.rb",
+					"filename": "statuspage.1m.rb",
+					"content": "#!/usr/bin/env ruby\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eStatusPage.io\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eStephen Yeargin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003estephenyeargin\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow a StatusPage.io's Status in BitBar\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/FsD4zDD.png\u003c/bitbar.image\u003e\n\nrequire 'open-uri'\nrequire 'json'\n\n# BEGIN Configuration #\n\nstatuspage_id = 'YOUR_ID_HERE' # e.g. 4y7j9y37gcns\nurl = \"https://#{statuspage_id}.statuspage.io/api/v2/summary.json\"\n\n# END Configuration #\n\nstatus_map = {\n  operational: {\n    name: 'Operational',\n    color: 'gold'\n  },\n  degraded_performance: {\n    name: 'Degraded Performance',\n    color: 'orange'\n  },\n  partial_outage: {\n    name: 'Partial Outage',\n    color: 'yellow'\n  },\n  major_outage: {\n    name: 'Major Outage',\n    color: 'red'\n  }\n}\n\nbegin\n  raise 'Missing configuration.' if statuspage_id == 'YOUR_ID_HERE'\n\n  summary = JSON.parse(open(url).read)\n\n  puts summary['status']['description']\n  puts '---'\n  puts \"#{summary['page']['name']}|href=#{summary['page']['url']}\"\n  puts summary['status']['description']\n  puts '---'\n  summary['components'].each do |component|\n    next unless component['status'] != 'operational'\n    puts \"#{status_map[component['status'].to_sym][:name]}: \"\\\n      \"#{component['name']}\"\\\n      \"|color=#{status_map[component['status'].to_sym][:color]}\"\n  end\n  puts \"Open: #{summary['page']['url']}|href=#{summary['page']['url']}\"\nrescue StandardError =\u003e e\n  puts 'Unable to load status!|color=red'\n  puts e.message\n  exit 1\nend\n"
+				}
+			],
+			"path": "Tools/statuspage.1m.rb",
+			"filename": "statuspage.1m.rb",
+			"dir": "Tools",
+			"docsPlugin": "Tools/statuspage.1m.rb.html",
+			"docsCategory": "Tools.html",
+			"pathSegments": [
+				"Tools"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": true
+				}
+			],
+			"title": "StatusPage.io",
+			"version": "v1.0.0",
+			"author": "Stephen Yeargin",
+			"authors": [
+				{
+					"name": "Stephen Yeargin",
+					"githubUsername": "stephenyeargin",
+					"imageURL": "https://avatars.githubusercontent.com/u/80459?v=4",
+					"bio": "Developer at @vanderbilt for the @all-of-us program 🔬; hack on stuff at @websages 🛠 \u0026 @nashvillest 📰; Gets it right after trying every other possible outcome",
+					"primary": true
+				}
+			],
+			"desc": "Show a StatusPage.io's Status in BitBar",
+			"imageURL": "http://i.imgur.com/FsD4zDD.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:07.933405Z",
+			"vars": null
+		}
+	]
+}

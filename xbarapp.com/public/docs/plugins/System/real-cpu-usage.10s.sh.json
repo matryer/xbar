@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/real-cpu-usage.10s.sh",
+				"filename": "real-cpu-usage.10s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eReal CPU Usage\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eMat Ryer and Tyler Bunnell\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCalcualtes and displays real CPU usage stats.\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nif [ \"$1\" == \"activitymonitor\" ]; then\n\topen -a \"Activity Monitor\"\n\texit\nfi\n\nIDLE=$(top -F -R -l3 | grep \"CPU usage\" | tail -1 | egrep -o '[0-9]{0,3}\\.[0-9]{0,2}% idle' | sed 's/% idle//')\n\nUSED=$(echo 100 - \"$IDLE\" | bc)\n\necho \"CPU: $USED%\"\necho \"---\"\necho \"Open Activity Monitor| bash='$0' param1=activitymonitor terminal=false\"\n"
+			}
+		],
+		"path": "System/real-cpu-usage.10s.sh",
+		"filename": "real-cpu-usage.10s.sh",
+		"dir": "System",
+		"docsPlugin": "System/real-cpu-usage.10s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Real CPU Usage",
+		"version": "1.0",
+		"author": "Mat Ryer and Tyler Bunnell",
+		"authors": [
+			{
+				"name": "Mat Ryer",
+				"githubUsername": "matryer",
+				"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+				"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+				"primary": true
+			}
+		],
+		"desc": "Calcualtes and displays real CPU usage stats.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.402703Z",
+		"vars": null
+	}
+}

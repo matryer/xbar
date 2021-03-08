@@ -1,0 +1,560 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0AFD485E18F082FE004D0FE1 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AFD485D18F082FE004D0FE1 /* DateTools.bundle */; };
+		0AFD486018F08640004D0FE1 /* DTTimeAgoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD485F18F08640004D0FE1 /* DTTimeAgoTests.m */; };
+		F00762C218DE5D7500A99075 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00762C118DE5D7500A99075 /* Foundation.framework */; };
+		F00762C418DE5D7500A99075 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00762C318DE5D7500A99075 /* CoreGraphics.framework */; };
+		F00762C618DE5D7500A99075 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00762C518DE5D7500A99075 /* UIKit.framework */; };
+		F00762CC18DE5D7500A99075 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F00762CA18DE5D7500A99075 /* InfoPlist.strings */; };
+		F00762CE18DE5D7500A99075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762CD18DE5D7500A99075 /* main.m */; };
+		F00762D218DE5D7500A99075 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762D118DE5D7500A99075 /* AppDelegate.m */; };
+		F00762D518DE5D7500A99075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F00762D318DE5D7500A99075 /* Main.storyboard */; };
+		F00762D818DE5D7500A99075 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762D718DE5D7500A99075 /* ViewController.m */; };
+		F00762DA18DE5D7500A99075 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00762D918DE5D7500A99075 /* Images.xcassets */; };
+		F00762E118DE5D7500A99075 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00762E018DE5D7500A99075 /* XCTest.framework */; };
+		F00762E218DE5D7500A99075 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00762C118DE5D7500A99075 /* Foundation.framework */; };
+		F00762E318DE5D7500A99075 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00762C518DE5D7500A99075 /* UIKit.framework */; };
+		F00762EB18DE5D7500A99075 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F00762E918DE5D7500A99075 /* InfoPlist.strings */; };
+		F00762FB18DE5D9900A99075 /* DateToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762F618DE5D9900A99075 /* DateToolsTests.m */; };
+		F00762FC18DE5D9900A99075 /* DTTimePeriodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762F718DE5D9900A99075 /* DTTimePeriodTests.m */; };
+		F00762FD18DE5D9900A99075 /* DTTimePeriodGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762F818DE5D9900A99075 /* DTTimePeriodGroupTests.m */; };
+		F00762FE18DE5D9900A99075 /* DTTimePeriodChainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762F918DE5D9900A99075 /* DTTimePeriodChainTests.m */; };
+		F00762FF18DE5D9900A99075 /* DTTimePeriodCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F00762FA18DE5D9900A99075 /* DTTimePeriodCollectionTests.m */; };
+		F007631018DE5DC400A99075 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F007630518DE5DC400A99075 /* NSDate+DateTools.m */; };
+		F007631218DE5DC400A99075 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = F007630718DE5DC400A99075 /* DTTimePeriod.m */; };
+		F007631618DE5DC400A99075 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = F007630B18DE5DC400A99075 /* DTTimePeriodCollection.m */; };
+		F075ABC91B9A52DA00AC95C8 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F075ABC81B9A52DA00AC95C8 /* DTConstants.m */; };
+		F0EE17F318DEB1C20010FAD8 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EE17EE18DEB1C20010FAD8 /* DTError.m */; };
+		F0EE17F518DEB1C20010FAD8 /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EE17F018DEB1C20010FAD8 /* DTTimePeriodChain.m */; };
+		F0EE17F718DEB1C20010FAD8 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EE17F218DEB1C20010FAD8 /* DTTimePeriodGroup.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F00762E418DE5D7500A99075 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F00762B618DE5D7500A99075 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F00762BD18DE5D7500A99075;
+			remoteInfo = DateToolsTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0AFD485D18F082FE004D0FE1 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = ../../../DateTools/DateTools.bundle; sourceTree = "<group>"; };
+		0AFD485F18F08640004D0FE1 /* DTTimeAgoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimeAgoTests.m; sourceTree = "<group>"; };
+		0AFD486118F0AB99004D0FE1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		0AFD486218F0AB99004D0FE1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0AFD486318F0AB99004D0FE1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F00762BE18DE5D7500A99075 /* DateToolsTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateToolsTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F00762C118DE5D7500A99075 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F00762C318DE5D7500A99075 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F00762C518DE5D7500A99075 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F00762C918DE5D7500A99075 /* DateToolsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DateToolsTests-Info.plist"; sourceTree = "<group>"; };
+		F00762CB18DE5D7500A99075 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F00762CD18DE5D7500A99075 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F00762CF18DE5D7500A99075 /* DateToolsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DateToolsTests-Prefix.pch"; sourceTree = "<group>"; };
+		F00762D018DE5D7500A99075 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F00762D118DE5D7500A99075 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F00762D418DE5D7500A99075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F00762D618DE5D7500A99075 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F00762D718DE5D7500A99075 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F00762D918DE5D7500A99075 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F00762DF18DE5D7500A99075 /* DateToolsTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DateToolsTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F00762E018DE5D7500A99075 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F00762E818DE5D7500A99075 /* DateToolsTestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DateToolsTestsTests-Info.plist"; sourceTree = "<group>"; };
+		F00762EA18DE5D7500A99075 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F00762F618DE5D9900A99075 /* DateToolsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateToolsTests.m; sourceTree = "<group>"; };
+		F00762F718DE5D9900A99075 /* DTTimePeriodTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodTests.m; sourceTree = "<group>"; };
+		F00762F818DE5D9900A99075 /* DTTimePeriodGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodGroupTests.m; sourceTree = "<group>"; };
+		F00762F918DE5D9900A99075 /* DTTimePeriodChainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodChainTests.m; sourceTree = "<group>"; };
+		F00762FA18DE5D9900A99075 /* DTTimePeriodCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTimePeriodCollectionTests.m; sourceTree = "<group>"; };
+		F007630118DE5DC400A99075 /* DTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = ../../../DateTools/DTConstants.h; sourceTree = "<group>"; };
+		F007630418DE5DC400A99075 /* NSDate+DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "../../../DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
+		F007630518DE5DC400A99075 /* NSDate+DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "../../../DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
+		F007630618DE5DC400A99075 /* DTTimePeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = ../../../DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
+		F007630718DE5DC400A99075 /* DTTimePeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = ../../../DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
+		F007630A18DE5DC400A99075 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = ../../../DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
+		F007630B18DE5DC400A99075 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = ../../../DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
+		F022EC1418F44D3700743E17 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		F075ABC81B9A52DA00AC95C8 /* DTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = ../../../DateTools/DTConstants.m; sourceTree = "<group>"; };
+		F0EE17ED18DEB1C20010FAD8 /* DTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = ../../../DateTools/DTError.h; sourceTree = "<group>"; };
+		F0EE17EE18DEB1C20010FAD8 /* DTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = ../../../DateTools/DTError.m; sourceTree = "<group>"; };
+		F0EE17EF18DEB1C20010FAD8 /* DTTimePeriodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = ../../../DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
+		F0EE17F018DEB1C20010FAD8 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = ../../../DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
+		F0EE17F118DEB1C20010FAD8 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = ../../../DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
+		F0EE17F218DEB1C20010FAD8 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = ../../../DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		F0EE17F918DEB1CF0010FAD8 /* DateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = ../../../DateTools/DateTools.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F00762BB18DE5D7500A99075 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F00762C418DE5D7500A99075 /* CoreGraphics.framework in Frameworks */,
+				F00762C618DE5D7500A99075 /* UIKit.framework in Frameworks */,
+				F00762C218DE5D7500A99075 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F00762DC18DE5D7500A99075 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F00762E118DE5D7500A99075 /* XCTest.framework in Frameworks */,
+				F00762E318DE5D7500A99075 /* UIKit.framework in Frameworks */,
+				F00762E218DE5D7500A99075 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F00762B518DE5D7500A99075 = {
+			isa = PBXGroup;
+			children = (
+				F00762C718DE5D7500A99075 /* DateToolsTests */,
+				F00762E618DE5D7500A99075 /* DateToolsTestsTests */,
+				F00762C018DE5D7500A99075 /* Frameworks */,
+				F00762BF18DE5D7500A99075 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F00762BF18DE5D7500A99075 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F00762BE18DE5D7500A99075 /* DateToolsTests.app */,
+				F00762DF18DE5D7500A99075 /* DateToolsTestsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F00762C018DE5D7500A99075 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F00762C118DE5D7500A99075 /* Foundation.framework */,
+				F00762C318DE5D7500A99075 /* CoreGraphics.framework */,
+				F00762C518DE5D7500A99075 /* UIKit.framework */,
+				F00762E018DE5D7500A99075 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F00762C718DE5D7500A99075 /* DateToolsTests */ = {
+			isa = PBXGroup;
+			children = (
+				F007630018DE5DB000A99075 /* DateTools */,
+				F00762D018DE5D7500A99075 /* AppDelegate.h */,
+				F00762D118DE5D7500A99075 /* AppDelegate.m */,
+				F00762D318DE5D7500A99075 /* Main.storyboard */,
+				F00762D618DE5D7500A99075 /* ViewController.h */,
+				F00762D718DE5D7500A99075 /* ViewController.m */,
+				F00762D918DE5D7500A99075 /* Images.xcassets */,
+				F00762C818DE5D7500A99075 /* Supporting Files */,
+			);
+			path = DateToolsTests;
+			sourceTree = "<group>";
+		};
+		F00762C818DE5D7500A99075 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F00762C918DE5D7500A99075 /* DateToolsTests-Info.plist */,
+				F00762CA18DE5D7500A99075 /* InfoPlist.strings */,
+				F00762CD18DE5D7500A99075 /* main.m */,
+				F00762CF18DE5D7500A99075 /* DateToolsTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F00762E618DE5D7500A99075 /* DateToolsTestsTests */ = {
+			isa = PBXGroup;
+			children = (
+				F00762F618DE5D9900A99075 /* DateToolsTests.m */,
+				F00762F718DE5D9900A99075 /* DTTimePeriodTests.m */,
+				F00762F818DE5D9900A99075 /* DTTimePeriodGroupTests.m */,
+				F00762F918DE5D9900A99075 /* DTTimePeriodChainTests.m */,
+				F00762FA18DE5D9900A99075 /* DTTimePeriodCollectionTests.m */,
+				0AFD485F18F08640004D0FE1 /* DTTimeAgoTests.m */,
+				F00762E718DE5D7500A99075 /* Supporting Files */,
+			);
+			path = DateToolsTestsTests;
+			sourceTree = "<group>";
+		};
+		F00762E718DE5D7500A99075 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F00762E818DE5D7500A99075 /* DateToolsTestsTests-Info.plist */,
+				F00762E918DE5D7500A99075 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F007630018DE5DB000A99075 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD485D18F082FE004D0FE1 /* DateTools.bundle */,
+				F0EE17F918DEB1CF0010FAD8 /* DateTools.h */,
+				F0EE17ED18DEB1C20010FAD8 /* DTError.h */,
+				F0EE17EE18DEB1C20010FAD8 /* DTError.m */,
+				F007630118DE5DC400A99075 /* DTConstants.h */,
+				F075ABC81B9A52DA00AC95C8 /* DTConstants.m */,
+				F007630418DE5DC400A99075 /* NSDate+DateTools.h */,
+				F007630518DE5DC400A99075 /* NSDate+DateTools.m */,
+				F007630618DE5DC400A99075 /* DTTimePeriod.h */,
+				F007630718DE5DC400A99075 /* DTTimePeriod.m */,
+				F0EE17F118DEB1C20010FAD8 /* DTTimePeriodGroup.h */,
+				F0EE17F218DEB1C20010FAD8 /* DTTimePeriodGroup.m */,
+				F007630A18DE5DC400A99075 /* DTTimePeriodCollection.h */,
+				F007630B18DE5DC400A99075 /* DTTimePeriodCollection.m */,
+				F0EE17EF18DEB1C20010FAD8 /* DTTimePeriodChain.h */,
+				F0EE17F018DEB1C20010FAD8 /* DTTimePeriodChain.m */,
+			);
+			name = DateTools;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F00762BD18DE5D7500A99075 /* DateToolsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F00762F018DE5D7500A99075 /* Build configuration list for PBXNativeTarget "DateToolsTests" */;
+			buildPhases = (
+				F00762BA18DE5D7500A99075 /* Sources */,
+				F00762BB18DE5D7500A99075 /* Frameworks */,
+				F00762BC18DE5D7500A99075 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DateToolsTests;
+			productName = DateToolsTests;
+			productReference = F00762BE18DE5D7500A99075 /* DateToolsTests.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F00762DE18DE5D7500A99075 /* DateToolsTestsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F00762F318DE5D7500A99075 /* Build configuration list for PBXNativeTarget "DateToolsTestsTests" */;
+			buildPhases = (
+				F00762DB18DE5D7500A99075 /* Sources */,
+				F00762DC18DE5D7500A99075 /* Frameworks */,
+				F00762DD18DE5D7500A99075 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F00762E518DE5D7500A99075 /* PBXTargetDependency */,
+			);
+			name = DateToolsTestsTests;
+			productName = DateToolsTestsTests;
+			productReference = F00762DF18DE5D7500A99075 /* DateToolsTestsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F00762B618DE5D7500A99075 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					F00762DE18DE5D7500A99075 = {
+						TestTargetID = F00762BD18DE5D7500A99075;
+					};
+				};
+			};
+			buildConfigurationList = F00762B918DE5D7500A99075 /* Build configuration list for PBXProject "DateToolsTests" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ja,
+				es,
+			);
+			mainGroup = F00762B518DE5D7500A99075;
+			productRefGroup = F00762BF18DE5D7500A99075 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F00762BD18DE5D7500A99075 /* DateToolsTests */,
+				F00762DE18DE5D7500A99075 /* DateToolsTestsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F00762BC18DE5D7500A99075 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F00762DA18DE5D7500A99075 /* Images.xcassets in Resources */,
+				F00762CC18DE5D7500A99075 /* InfoPlist.strings in Resources */,
+				F00762D518DE5D7500A99075 /* Main.storyboard in Resources */,
+				0AFD485E18F082FE004D0FE1 /* DateTools.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F00762DD18DE5D7500A99075 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F00762EB18DE5D7500A99075 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F00762BA18DE5D7500A99075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F007631618DE5DC400A99075 /* DTTimePeriodCollection.m in Sources */,
+				F0EE17F718DEB1C20010FAD8 /* DTTimePeriodGroup.m in Sources */,
+				F00762D818DE5D7500A99075 /* ViewController.m in Sources */,
+				F00762D218DE5D7500A99075 /* AppDelegate.m in Sources */,
+				F0EE17F518DEB1C20010FAD8 /* DTTimePeriodChain.m in Sources */,
+				F075ABC91B9A52DA00AC95C8 /* DTConstants.m in Sources */,
+				F0EE17F318DEB1C20010FAD8 /* DTError.m in Sources */,
+				F007631218DE5DC400A99075 /* DTTimePeriod.m in Sources */,
+				F007631018DE5DC400A99075 /* NSDate+DateTools.m in Sources */,
+				F00762CE18DE5D7500A99075 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F00762DB18DE5D7500A99075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AFD486018F08640004D0FE1 /* DTTimeAgoTests.m in Sources */,
+				F00762FB18DE5D9900A99075 /* DateToolsTests.m in Sources */,
+				F00762FD18DE5D9900A99075 /* DTTimePeriodGroupTests.m in Sources */,
+				F00762FF18DE5D9900A99075 /* DTTimePeriodCollectionTests.m in Sources */,
+				F00762FC18DE5D9900A99075 /* DTTimePeriodTests.m in Sources */,
+				F00762FE18DE5D9900A99075 /* DTTimePeriodChainTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F00762E518DE5D7500A99075 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F00762BD18DE5D7500A99075 /* DateToolsTests */;
+			targetProxy = F00762E418DE5D7500A99075 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F00762CA18DE5D7500A99075 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F00762CB18DE5D7500A99075 /* en */,
+				0AFD486218F0AB99004D0FE1 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F00762D318DE5D7500A99075 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F00762D418DE5D7500A99075 /* Base */,
+				0AFD486118F0AB99004D0FE1 /* ja */,
+				F022EC1418F44D3700743E17 /* es */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F00762E918DE5D7500A99075 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F00762EA18DE5D7500A99075 /* en */,
+				0AFD486318F0AB99004D0FE1 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F00762EE18DE5D7500A99075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F00762EF18DE5D7500A99075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F00762F118DE5D7500A99075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DateToolsTests/DateToolsTests-Prefix.pch";
+				INFOPLIST_FILE = "DateToolsTests/DateToolsTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F00762F218DE5D7500A99075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DateToolsTests/DateToolsTests-Prefix.pch";
+				INFOPLIST_FILE = "DateToolsTests/DateToolsTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F00762F418DE5D7500A99075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DateToolsTests.app/DateToolsTests";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DateToolsTests/DateToolsTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DateToolsTestsTests/DateToolsTestsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F00762F518DE5D7500A99075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DateToolsTests.app/DateToolsTests";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DateToolsTests/DateToolsTests-Prefix.pch";
+				INFOPLIST_FILE = "DateToolsTestsTests/DateToolsTestsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F00762B918DE5D7500A99075 /* Build configuration list for PBXProject "DateToolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F00762EE18DE5D7500A99075 /* Debug */,
+				F00762EF18DE5D7500A99075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F00762F018DE5D7500A99075 /* Build configuration list for PBXNativeTarget "DateToolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F00762F118DE5D7500A99075 /* Debug */,
+				F00762F218DE5D7500A99075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F00762F318DE5D7500A99075 /* Build configuration list for PBXNativeTarget "DateToolsTestsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F00762F418DE5D7500A99075 /* Debug */,
+				F00762F518DE5D7500A99075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F00762B618DE5D7500A99075 /* Project object */;
+}

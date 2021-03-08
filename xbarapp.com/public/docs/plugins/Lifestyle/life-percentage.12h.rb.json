@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/life-percentage.12h.rb",
+				"filename": "life-percentage.12h.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eLife Percentage\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKerem Bozdaş\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekrmbzds\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows what percentage of life you have lived.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/DbXIhiS.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n\n# BitBar Life Percentage plugin\n# by Kerem Bozdaş (@krmbzds)\n\ndob = Time.new(1990, 12, 31, 10, 30, 0)  # Date of birth\ndod = Time.new(2080, 12, 31, 10, 30, 0)  # Date of death\nnow = Time.now()\npercent = ((now - dob) / (dod - dob) * 100).round(2)\nputs \"❤ #{percent}\"\n"
+			}
+		],
+		"path": "Lifestyle/life-percentage.12h.rb",
+		"filename": "life-percentage.12h.rb",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/life-percentage.12h.rb.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "Life Percentage",
+		"version": "v1.0",
+		"author": "Kerem Bozdaş",
+		"authors": [
+			{
+				"name": "Kerem Bozdas",
+				"githubUsername": "krmbzds",
+				"imageURL": "https://avatars.githubusercontent.com/u/1383035?v=4",
+				"bio": "Software Engineer",
+				"primary": true
+			}
+		],
+		"desc": "Shows what percentage of life you have lived.",
+		"imageURL": "http://i.imgur.com/DbXIhiS.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:55.553898Z",
+		"vars": null
+	}
+}

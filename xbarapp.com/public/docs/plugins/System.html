@@ -1,0 +1,3762 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>System in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Put System plugins into your macOS menu bar with xbar.'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='System in your macOS menu bar'>
+	<meta itemprop='description' content='Put System plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='System in your macOS menu bar'>
+	<meta name='twitter:description' content='Put System plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='System in your macOS menu bar'>
+	<meta property='og:description' content='Put System plugins into your macOS menu bar with xbar.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/System.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='flex-grow'>
+		
+			<div class='py-8 light-background'>
+				<div class='grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-4 container mx-auto'>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/System/Battery/keyboard-system_profiler.1m.rb.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Battery Apple Bluetooth keyboard 
+								</a>
+							</div>
+							<a href='/docs/plugins/System/Battery/keyboard-system_profiler.1m.rb.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='http://i.imgur.com/1FlcPYx.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Show battery percentage for Bluetooth Keyboard
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/alexandregz.html'>
+												<span class='mr-3'>
+													Alexandre Espinosa Menor (@alexandregz)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/1374718?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/System/clipboard-base64-encoder.sh.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Clipboard BASE64-Encoder 
+								</a>
+							</div>
+							<a href='/docs/plugins/System/clipboard-base64-encoder.sh.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://imgur.com/0Ym6xNC'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/citoki.html'>
+												<span class='mr-3'>
+													Steffen (@citoki)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/7259873?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/System/microphone.sh.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Mute Mic 
+								</a>
+							</div>
+							<a href='/docs/plugins/System/microphone.sh.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://i.imgur.com/FI64Y5c.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Mutes or unmutes microphone.
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/wasapl.html'>
+												<span class='mr-3'>
+													Vasily Pleshakov (@wasapl)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/2486829?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+				</div>
+				<p class='pt-16 pb-4 px-16 text-center'>
+					<strong class='text-white'>
+						Fancy having your plugin featured?
+					</strong> 
+					<a 
+						target='twitter' 
+						href='https://twitter.com/matryer' 
+						class='underline text-white font-bold'
+					>Get in touch</a>.
+				</p>
+			</div>
+		
+		
+			<div class='container mx-auto p-8 text-white'>
+				<h3 class='font-bold'>Looking for something specific?</h3>
+				<p class='mt-4 text-lg'>
+					
+	
+		
+			<a class='ml-8' href='/docs/plugins/System/Battery.html'>Battery</a>
+			
+	
+
+		
+	
+
+				</p>
+			</div>
+		
+		<div class='p-8 mt-8'>
+			
+	
+		<div class='grid grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-8 divide-white container mx-auto'>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/AirPodsPower.sh.html'
+						><strong class='text-xl'>AirPods Power</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/AirPodsPower.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays AirPods battery
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/gonzaloserrano.html'>
+									<span class='text-right break-all'>
+										<strong>Gonzalo Serrano</strong>
+										
+											(@gonzaloserrano)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/349328?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/DoNotDisturb.1s.py.html'
+						><strong class='text-xl'>Do Not Disturb</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/DoNotDisturb.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i67.tinypic.com/20ac9kl.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Turn on &#34;Do Not Distrub&#34; for certain period. Only for Sierra and High Sierra.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/weibingchen17.html'>
+									<span class='text-right break-all'>
+										<strong>Weibing Chen</strong>
+										
+											(@weibingchen17)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/25602873?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/DarkModeToggle.sh.html'
+						><strong class='text-xl'>Dark Mode Toggle</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/DarkModeToggle.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/khIIfMg.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple toggle for macOS Dark Mode
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Phlooo.html'>
+									<span class='text-right break-all'>
+										<strong>huhu</strong>
+										
+											(@Phlooo)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/57720000?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Day-Night%20Color%20Profile%20Selector.15s.sh.html'
+						><strong class='text-xl'>Day/Night Color Profile Selector</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Day-Night%20Color%20Profile%20Selector.15s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple menubar day/night icc selector
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/nadigo.html'>
+									<span class='text-right break-all'>
+										<strong>Nadav G</strong>
+										
+											(@nadigo)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6098053?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/ColorfulBatteryLevel.5s.sh.html'
+						><strong class='text-xl'>Colorful Battery Indicator</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/ColorfulBatteryLevel.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/JaUKQWj.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple and colorful battery indicator
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Phlooo.html'>
+									<span class='text-right break-all'>
+										<strong>huhu</strong>
+										
+											(@Phlooo)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/57720000?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/active_gpu.1m.py.html'
+						><strong class='text-xl'>Active GPU</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/active_gpu.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/v2MuPOi.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays an image based on the active GPU in multi-GPU machines, such as the MacBook Pro
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eripa.html'>
+									<span class='text-right break-all'>
+										<strong>Eric Ripa</strong>
+										
+											(@eripa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1429673?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/HandoffToggle.1d.sh.html'
+						><strong class='text-xl'>Handoff Toggle</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/HandoffToggle.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/leZPz8Y.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple toggle for macOS Handoff. Great if there is someone using your second Mac or iPad and you don&#39;t wanna paste everything the other person copies.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/martinschilliger.html'>
+									<span class='text-right break-all'>
+										<strong>Martin Schilliger</strong>
+										
+											(@martinschilliger)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/11884891?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Screenshotter.1d.sh.html'
+						><strong class='text-xl'>Screenshotter</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Screenshotter.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/6wt8cbN.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Takes Screenshots from menu bar with confugrable delay (by holding alt key when tapping an option), screenshot modes (fullscreen, window, crop or touchbar), alerts and direct imgur upload 
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/moshed.html'>
+									<span class='text-right break-all'>
+										<strong>moshed</strong>
+										
+											(@moshed)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/8683379?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/WhereAmI.48h.sh.html'
+						><strong class='text-xl'>WhereAmI</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/WhereAmI.48h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/noyannus/WhereAmI-Readme/master/KingSizeInfo.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Readme: https://github.com/noyannus/WhereAmI-Readme/blob/master/Readme.md
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/noyannus.html'>
+									<span class='text-right break-all'>
+										<strong>noyannus</strong>
+										
+											(@noyannus)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6339921?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/adobe-flash-update-check.60m.py.html'
+						><strong class='text-xl'>Adobe Flash Versions</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/adobe-flash-update-check.60m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/kxWNcl4.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Adobe Flash Version for Mac
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/parvez.html'>
+									<span class='text-right break-all'>
+										<strong>Parvez</strong>
+										
+											(@parvez)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/126749?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/appearance-options.1d.sh.html'
+						><strong class='text-xl'>Appearance Options</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/appearance-options.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/KarlPiper/Plugins-for-Bitbar/master/images/appearance-preview.gif'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Set random desktop image, choose image rotation timing and order. Toggle dark mode. Start screensaver. Set Night Shift warmth level (optional, requires: jenghis/nshift).
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/KarlPiper.html'>
+									<span class='text-right break-all'>
+										<strong>☟</strong>
+										
+											(@KarlPiper)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/9043540?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/ad-pass-expiry.sh.html'
+						><strong class='text-xl'>Active Directory Password Expiration Check</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/ad-pass-expiry.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows Active Directory Password Expiration in days
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/gsprague.html'>
+									<span class='text-right break-all'>
+										<strong>Galen Sprague</strong>
+										
+											(@gsprague)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/810706?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/battery_health.2s.py.html'
+						><strong class='text-xl'>Battery Health</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/battery_health.2s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows power percentaje and notice when you load
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tanrax.html'>
+									<span class='text-right break-all'>
+										<strong>Andros Fenollosa</strong>
+										
+											(@tanrax)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4553672?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/arp-spoof-detector.sh.html'
+						><strong class='text-xl'>ARP Spoof Detector</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/arp-spoof-detector.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/2jE6g7v.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin detect the ARP spoofing attack on local area network and notify user
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tuannvm.html'>
+									<span class='text-right break-all'>
+										<strong>Tommy Nguyen</strong>
+										
+											(@tuannvm)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1461216?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/bluetooth_inspector.10m.rb.html'
+						><strong class='text-xl'>Bluetooth Inspector</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/bluetooth_inspector.10m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/RyanScottLewis/bitbar-bluetooth_inspector/master/bitbar-bluetooth_inspector.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show bluetooth information for all connected bluetooth devices using the `system_profiler` binary.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/RyanScottLewis.html'>
+									<span class='text-right break-all'>
+										<strong>Ryan Scott Lewis</strong>
+										
+											(@RyanScottLewis)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/39534?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/clipboard-history.3s.sh.html'
+						><strong class='text-xl'>Clipboard History</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/clipboard-history.3s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/jtokoph.html'>
+									<span class='text-right break-all'>
+										<strong>Jason Tokoph</strong>
+										
+											(@jtokoph)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/346225?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/caffeinate.10h.sh.html'
+						><strong class='text-xl'>Caffeinate</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/caffeinate.10h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/vsCWLwX.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/citoki.html'>
+									<span class='text-right break-all'>
+										<strong>Steffen</strong>
+										
+											(@citoki)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7259873?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/copy-to-clipboard.sh.html'
+						><strong class='text-xl'>Copy to Clipboard</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/copy-to-clipboard.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/SiuAz3C.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin will copy text to clipboard
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/parvez.html'>
+									<span class='text-right break-all'>
+										<strong>Parvez</strong>
+										
+											(@parvez)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/126749?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/caffeinate.1h.sh.html'
+						><strong class='text-xl'>Caffeinate</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/caffeinate.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/vsCWLwX.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/citoki.html'>
+									<span class='text-right break-all'>
+										<strong>Steffen</strong>
+										
+											(@citoki)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7259873?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/clipboard-base64-encoder.sh.html'
+						><strong class='text-xl'>Clipboard BASE64-Encoder</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/clipboard-base64-encoder.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://imgur.com/0Ym6xNC'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/citoki.html'>
+									<span class='text-right break-all'>
+										<strong>Steffen</strong>
+										
+											(@citoki)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7259873?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/cpu-load.5s.sh.html'
+						><strong class='text-xl'>CPU Load</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/cpu-load.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/B6VAsDg.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows CPU load as a percentage (without using top).
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/rnkn.html'>
+									<span class='text-right break-all'>
+										<strong>Paul W. Rankin</strong>
+										
+											(@rnkn)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1256849?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/cpu-temperature.5s.sh.html'
+						><strong class='text-xl'>CPU Temperature</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/cpu-temperature.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin displays the current CPU temperature (requires external &#39;smc&#39; binary)
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eripa.html'>
+									<span class='text-right break-all'>
+										<strong>Eric Ripa</strong>
+										
+											(@eripa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1429673?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/copy-ssh-keys.sh.html'
+						><strong class='text-xl'>Copy SSH keys</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/copy-ssh-keys.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://imgur.com/GYOuLJ1'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Provides a quick way to copy your public keys to the clipboard
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/1c3t3a.html'>
+									<span class='text-right break-all'>
+										<strong>Bastian Kersting</strong>
+										
+											(@1c3t3a)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/45260993?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/currentFiles.1h.rb.html'
+						><strong class='text-xl'>Current Working Files</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/currentFiles.1h.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://customct.com/images/CurrentFilesPlugin-01.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									List of files that I&#39;m currently working on. It allows me to select which editor to use and integrates with Alfred workflow for BitBar.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/raguay.html'>
+									<span class='text-right break-all'>
+										<strong>Richard Guay</strong>
+										
+											(@raguay)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2487495?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/cpu-thermal-throttle.30s.sh.html'
+						><strong class='text-xl'>CPU thermal throttling</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/cpu-thermal-throttle.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays the current CPU thermal throttling speed (using `pmset -g therm`).
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/plaa.html'>
+									<span class='text-right break-all'>
+										<strong>Sampo Juustila</strong>
+										
+											(@plaa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1436281?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/disk-read-write.1s.sh.html'
+						><strong class='text-xl'>Disk Read Write</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/disk-read-write.1s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows Disk Read Write Speeds per second.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/cghamburg.html'>
+									<span class='text-right break-all'>
+										<strong>cghamburg</strong>
+										
+											(@cghamburg)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2742203?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/cpu-usage-kill.5s.sh.html'
+						><strong class='text-xl'>CPU Usage, Kill process</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/cpu-usage-kill.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/Aleksandern/devman/master/images/BitBarCpuUsageKill.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows top 3 consuming processes with opportunity to kill them.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Aleksandern.html'>
+									<span class='text-right break-all'>
+										<strong>Alex</strong>
+										
+											(@Aleksandern)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5274465?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/deleteVSCodeTemp.sh.html'
+						><strong class='text-xl'>Delete VSCode Temp Files</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/deleteVSCodeTemp.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Deletes Visual Studio Code Temporary Files
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/AlexPoulsen.html'>
+									<span class='text-right break-all'>
+										<strong>Alix Poulsen</strong>
+										
+											(@AlexPoulsen)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/9259671?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/downloads.1h.sh.html'
+						><strong class='text-xl'>Downloads</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/downloads.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/Cv4iS3d.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Quick access to your recent downloads. Enter URL to download from. Specify downloads directory at the top of the file. Defaults to ~/Downloads. Contains example of how to refresh from the command line (see https://github.com/matryer/bitbar/blob/master/Docs/URLScheme.md#refreshplugin)
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/iosdeveloper.html'>
+									<span class='text-right break-all'>
+										<strong>iosdeveloper</strong>
+										
+											(@iosdeveloper)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/655921?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/ejector.5s.sh.html'
+						><strong class='text-xl'>Ejector</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/ejector.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/carlsonorozco/ejector/master/image.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Ejector is a plugin for BitBar that enables you to eject all mounted disk / drive / installers / USB connected drives and volumes instantly.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/carlsonorozco.html'>
+									<span class='text-right break-all'>
+										<strong>Carlson Orozco</strong>
+										
+											(@carlsonorozco)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2333279?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/diskAvailable.sh.html'
+						><strong class='text-xl'>DiskAvailable</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/diskAvailable.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									displays free disk space of the root volume
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kalaklanar.html'>
+									<span class='text-right break-all'>
+										<strong>Jackie Meese</strong>
+										
+											(@kalaklanar)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/607221?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/fan-speed.5s.sh.html'
+						><strong class='text-xl'>Fan Speed</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/fan-speed.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin displays the current fan speed from SMC readings (requires external &#39;smc&#39; binary)
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eripa.html'>
+									<span class='text-right break-all'>
+										<strong>Eric Ripa</strong>
+										
+											(@eripa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1429673?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/emacs.24h.sh.html'
+						><strong class='text-xl'>Emacs Menu Controller</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/emacs.24h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/ZTScWDa.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Emacs controlled
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mankoff.html'>
+									<span class='text-right break-all'>
+										<strong>Ken Mankoff</strong>
+										
+											(@mankoff)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/145117?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/firewall_status_indicator.10s.sh.html'
+						><strong class='text-xl'>Firewall Status Indicator</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/firewall_status_indicator.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://tinyapps.org/screenshots/bitbar_firewall_status_indicator.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display status of the built-in Application Firewall
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tinyapps.html'>
+									<span class='text-right break-all'>
+										<strong>Miles Wolbe</strong>
+										
+											(@tinyapps)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1616368?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/firewall.10m.sh.html'
+						><strong class='text-xl'>Firewall</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/firewall.10m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/MOBK8cK.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin displays the status of the firewall.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eddietejeda.html'>
+									<span class='text-right break-all'>
+										<strong>Eddie A Tejeda</strong>
+										
+											(@eddietejeda)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/669988?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/infinit-drive.10s.py.html'
+						><strong class='text-xl'>Ifinit Drive Journal Stats</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/infinit-drive.10s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/strages/infinit-drive-journal-stats-bitbar-plugin/master/screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Short description of what your plugin does.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/strages.html'>
+									<span class='text-right break-all'>
+										<strong>old github handle</strong>
+										
+											(@strages)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/19322781?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/host-switcher.1d.sh.html'
+						><strong class='text-xl'>Host file switcher</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/host-switcher.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple plugin to switch between multiple hosts files
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/canemacchina.html'>
+									<span class='text-right break-all'>
+										<strong>Lorenzo Bugiani</strong>
+										
+											(@canemacchina)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5285750?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/launch-agents.10s.sh.html'
+						><strong class='text-xl'>Launch Agents</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/launch-agents.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/UsJRDoE.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows and manages user Launch Agents.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/rnkn.html'>
+									<span class='text-right break-all'>
+										<strong>Paul W. Rankin</strong>
+										
+											(@rnkn)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1256849?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/keyboard-symbol.py.html'
+						><strong class='text-xl'>Keyboard symbol</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/keyboard-symbol.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/dqhieu/keyboard-symbol/master/demo.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin displays a menu of keyboard symbol
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/dqhieu.html'>
+									<span class='text-right break-all'>
+										<strong>Đinh Quang Hiếu</strong>
+										
+											(@dqhieu)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/8291457?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/killdock.1d.sh.html'
+						><strong class='text-xl'>KillDock</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/killdock.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Killall Dock
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/indapublic.html'>
+									<span class='text-right break-all'>
+										<strong>Vasilii</strong>
+										
+											(@indapublic)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/856260?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/lock-screen.10h.sh.html'
+						><strong class='text-xl'>Screen Lock</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/lock-screen.10h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://cloud.githubusercontent.com/assets/53064/12120421/e515718c-b39e-11e5-830b-bebe1c6445fc.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin displays a menu with an item to lock the screen with one click (lock or login screen).
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tomkinsc.html'>
+									<span class='text-right break-all'>
+										<strong>Chris Tomkins-Tinch</strong>
+										
+											(@tomkinsc)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/53064?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/mas.1d.sh.html'
+						><strong class='text-xl'>Mac App Store</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/mas.1d.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/yPeXDAj.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Lists available updates from the Mac App Store using mas-cli (https://github.com/argon/mas). Based on brew-updates.1h.sh
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/iosdeveloper.html'>
+									<span class='text-right break-all'>
+										<strong>iosdeveloper</strong>
+										
+											(@iosdeveloper)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/655921?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/macos-proxy-switcher.1m.sh.html'
+						><strong class='text-xl'>MacOS Proxy Switcher</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/macos-proxy-switcher.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/glowinthedark/bitbar-plugins/macos-proxy-switcher/images/mac-proxy-switcher.png.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Set http and socks5 proxy settings on MacOS.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/glowinthedark.html'>
+									<span class='text-right break-all'>
+										<strong>glowinthedark</strong>
+										
+											(@glowinthedark)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/48893368?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/mdf.1m.sh.html'
+						><strong class='text-xl'>Disk Usage</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/mdf.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.github.com/ganeshv/mtop/master/screenshots/mdf2.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Disk usage statistics
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ganeshv.html'>
+									<span class='text-right break-all'>
+										<strong>Ganesh V</strong>
+										
+											(@ganeshv)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/827790?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/memusage.5s.py.html'
+						><strong class='text-xl'>Memory usage</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/memusage.5s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the current system memmory usage.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/gautamkrishnar.html'>
+									<span class='text-right break-all'>
+										<strong>Gautam krishna R</strong>
+										
+											(@gautamkrishnar)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/8397274?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/microphone.sh.html'
+						><strong class='text-xl'>Mute Mic</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/microphone.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/FI64Y5c.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Mutes or unmutes microphone.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/wasapl.html'>
+									<span class='text-right break-all'>
+										<strong>Vasily Pleshakov</strong>
+										
+											(@wasapl)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2486829?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/mysql-status.1m.sh.html'
+						><strong class='text-xl'>MySQL server status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/mysql-status.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/Y85ENFb.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show the status of MySQL server installed by Homebrew on localhost and manage server boot with shortcut menus
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/artifactsauce.html'>
+									<span class='text-right break-all'>
+										<strong>Kenji Akiyama</strong>
+										
+											(@artifactsauce)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/125637?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/postgresql-status.1m.sh.html'
+						><strong class='text-xl'>PostgreSQL server status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/postgresql-status.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/l5E4yg8.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show the status of PostgreSQL server installed by Homebrew on localhost and manage server boot with shortcut menus
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/artifactsauce.html'>
+									<span class='text-right break-all'>
+										<strong>Kenji Akiyama</strong>
+										
+											(@artifactsauce)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/125637?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/mtop.5s.sh.html'
+						><strong class='text-xl'>CPU Usage Graph</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/mtop.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.github.com/ganeshv/mtop/master/screenshots/mtop2.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									CPU usage bar graph
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ganeshv.html'>
+									<span class='text-right break-all'>
+										<strong>Ganesh V</strong>
+										
+											(@ganeshv)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/827790?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/real-cpu-usage.10s.sh.html'
+						><strong class='text-xl'>Real CPU Usage</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/real-cpu-usage.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Calcualtes and displays real CPU usage stats.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/power_status.15s.sh.html'
+						><strong class='text-xl'>Power Status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/power_status.15s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows power source, current mode and settings
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/jeffbeadles.html'>
+									<span class='text-right break-all'>
+										<strong>Jeff Beadles</strong>
+										
+											(@jeffbeadles)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1981225?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/power_wattage.30s.sh.html'
+						><strong class='text-xl'>Power Wattage</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/power_wattage.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/4N0xk1g.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									The AC power adapter wattage for macos
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/vxider.html'>
+									<span class='text-right break-all'>
+										<strong>vxider</strong>
+										
+											(@vxider)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6134315?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/real-cpu-usage-chart.10s.sh.html'
+						><strong class='text-xl'>Real CPU Usage Chart (▁▃▃█▇▃)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/real-cpu-usage-chart.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://cloud.githubusercontent.com/assets/18138/12124861/27f42162-b3e8-11e5-845e-38bec5433d03.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Chart CPU usage over last minute.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/maio.html'>
+									<span class='text-right break-all'>
+										<strong>Marian Schubert</strong>
+										
+											(@maio)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/18138?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/samplerate.sh.html'
+						><strong class='text-xl'>CoreAudio Samplerate Display</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/samplerate.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current samplerate for an audio device.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/anthonylauzon.html'>
+									<span class='text-right break-all'>
+										<strong>Anthony Lauzon</strong>
+										
+											(@anthonylauzon)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/33203?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/redis-memcached.10s.sh.html'
+						><strong class='text-xl'>Redis - Memcached</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/redis-memcached.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://oi67.tinypic.com/28u1y1g.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin will start and stop a memcached and redis server
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/koleror.html'>
+									<span class='text-right break-all'>
+										<strong>Hugo Defrance</strong>
+										
+											(@koleror)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1033583?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/timemachine.2m.rb.html'
+						><strong class='text-xl'>Show Time machine Progress</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/timemachine.2m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show time machine backup progress
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/drselump14.html'>
+									<span class='text-right break-all'>
+										<strong>Kris</strong>
+										
+											(@drselump14)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1251454?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/show-hide-desktop-icons.1h.py.html'
+						><strong class='text-xl'>Show/Hide Desktop Icons</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/show-hide-desktop-icons.1h.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/c3KYTAc.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin displays a menu with two items to show or hide the desktop icons with one click.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/jordi-petit.html'>
+									<span class='text-right break-all'>
+										<strong>Jordi Petit</strong>
+										
+											(@jordi-petit)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2351822?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/top5-memory-consuming-processes.sh.html'
+						><strong class='text-xl'>Top 5 Memory-Consuming Applications</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/top5-memory-consuming-processes.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://23.105.211.229/images/top5-memory-consuming.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									top 5 memory-consuming applications
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/hypersport.html'>
+									<span class='text-right break-all'>
+										<strong>Qiansen Y</strong>
+										
+											(@hypersport)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24826364?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/screenshot.1d.py.html'
+						><strong class='text-xl'>Screenshot</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/screenshot.1d.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/51rg3EJ.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Allows for screenshots to be uploaded, saved, and added to the clipboard
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ProjectBarks.html'>
+									<span class='text-right break-all'>
+										<strong>Brandon Barker</strong>
+										
+											(@ProjectBarks)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4194371?v=4'>
+									
+								</a>
+							</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/geekysrm.html'>
+									<span class='text-right break-all'>
+										<strong>Soumya Ranjan Mohanty</strong>
+										
+											(@geekysrm)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/10224804?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/trackpad-dot.1h.swift.html'
+						><strong class='text-xl'>Trackpad Dot</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/trackpad-dot.1h.swift.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/4G7B76u.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays a coloured dot in the menu bar that gradually changes from green to yellow to red the lower your Magic Trackpad&#39;s battery
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/milch.html'>
+									<span class='text-right break-all'>
+										<strong>Manu Wallner</strong>
+										
+											(@milch)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/279407?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/totp.30s.sh.html'
+						><strong class='text-xl'>YubiKey TOTP generator to clipboard plugin</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/totp.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									generates totp codes using yubikey
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/brute-force.html'>
+									<span class='text-right break-all'>
+										<strong>Reuel</strong>
+										
+											(@brute-force)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5098101?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/trash-collector.5s.sh.html'
+						><strong class='text-xl'>Trash Collector</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/trash-collector.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/carlsonorozco/trash-collector/master/image.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Trash Collector is a plugin for BitBar that enables you to empty your trash.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/carlsonorozco.html'>
+									<span class='text-right break-all'>
+										<strong>Carlson Orozco</strong>
+										
+											(@carlsonorozco)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2333279?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/showhide-files.1d.py.html'
+						><strong class='text-xl'>Show hidden files in Finder</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/showhide-files.1d.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://github.com/dashorty/bitbar-showhide-files/blob/master/screenshot.png?raw=true'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show hidden files in Finder
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/dashorty.html'>
+									<span class='text-right break-all'>
+										<strong>Thomas</strong>
+										
+											(@dashorty)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2131900?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/uptime.1m.sh.html'
+						><strong class='text-xl'>uptime</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/uptime.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/qaIxpJN.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show uptime command information.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/chamini2.html'>
+									<span class='text-right break-all'>
+										<strong>Matteo Ferrando</strong>
+										
+											(@chamini2)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2745502?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/uptime.5m.sh.html'
+						><strong class='text-xl'>uptime</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/uptime.5m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/qaIxpJN.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show uptime command information. Tweaked by Jonathan Clark to be more compact.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/chamini2.html'>
+									<span class='text-right break-all'>
+										<strong>Matteo Ferrando</strong>
+										
+											(@chamini2)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2745502?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/umbrella.5s.sh.html'
+						><strong class='text-xl'>UmbrellaBeGone</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/umbrella.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Enable/Disable Umbrella with Status on Menubar
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/levensailor.html'>
+									<span class='text-right break-all'>
+										<strong>Jeff Levensailor</strong>
+										
+											(@levensailor)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2538218?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/virtualbox-vms.5s.sh.html'
+						><strong class='text-xl'>Virtualbox VM status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/virtualbox-vms.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://gist.githubusercontent.com/aequitas/7c57111556900aae6178/raw/76e4e457d700d31af6b2f32cbbb206ed1668b511/virtualbox.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show current number of running Virtualbox VM&#39;s. Allow to shut them all down.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/aequitas.html'>
+									<span class='text-right break-all'>
+										<strong>Johan Bloemberg</strong>
+										
+											(@aequitas)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/365827?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/webpack-status.1s.sh.html'
+						><strong class='text-xl'>Webpack Status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/webpack-status.1s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/Fire-Dragon-DoL/bitbar-webpack-status-plugin/master/bitbar-webpack-status-plugin.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display the current status of webpack server compile: completed/ongoing/failed.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Fire-Dragon-DoL.html'>
+									<span class='text-right break-all'>
+										<strong>Francesco Belladonna</strong>
+										
+											(@Fire-Dragon-DoL)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1329559?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/usbInfo.10s.py.html'
+						><strong class='text-xl'>USB Device Details</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/usbInfo.10s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays the device details user input usb devices
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/RaemondBW.html'>
+									<span class='text-right break-all'>
+										<strong>Raemond</strong>
+										
+											(@RaemondBW)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1922488?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/battery_cycles.12h.sh.html'
+						><strong class='text-xl'>Battery Cycles</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/battery_cycles.12h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://nothingreally.botler.me/bitbar.battery-cycles.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Get your battery cycles and condition on the menu bar !
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/maxoumime.html'>
+									<span class='text-right break-all'>
+										<strong>Maxime Bertheau</strong>
+										
+											(@maxoumime)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3897798?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/keyboard-system_profiler.1m.rb.html'
+						><strong class='text-xl'>Battery Apple Bluetooth keyboard</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/keyboard-system_profiler.1m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/1FlcPYx.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show battery percentage for Bluetooth Keyboard
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/alexandregz.html'>
+									<span class='text-right break-all'>
+										<strong>Alexandre Espinosa Menor</strong>
+										
+											(@alexandregz)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1374718?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/keyboard.1m.sh.html'
+						><strong class='text-xl'>Keybard Battery</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/keyboard.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/battery-status.20s.py.html'
+						><strong class='text-xl'>Battery remaining (Python)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/battery-status.20s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/P6aNey5.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show battery charge percentage and time remaining
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eripa.html'>
+									<span class='text-right break-all'>
+										<strong>Eric Ripa</strong>
+										
+											(@eripa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1429673?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/mouse.1m.sh.html'
+						><strong class='text-xl'>Mouse battery</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/mouse.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/IqjZMJg.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show battery percentage for Bluetooth Mouse
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/alexandregz.html'>
+									<span class='text-right break-all'>
+										<strong>Alexandre Espinosa Menor</strong>
+										
+											(@alexandregz)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1374718?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/trackpad-system_profiler.1m.rb.html'
+						><strong class='text-xl'>Battery Apple Bluetooth Trackpad</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/trackpad-system_profiler.1m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/1FlcPYx.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show battery percentage for Bluetooth Trackpad
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/maxoumime.html'>
+									<span class='text-right break-all'>
+										<strong>Maxime Bertheau</strong>
+										
+											(@maxoumime)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3897798?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/trackpad.1m.sh.html'
+						><strong class='text-xl'>Trackpad Battery</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/trackpad.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/watt-meter.20s.py.html'
+						><strong class='text-xl'>Watt Meter</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/watt-meter.20s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/blj2KCP.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show current watt drain, tries to be smart and highlight high power usage
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eripa.html'>
+									<span class='text-right break-all'>
+										<strong>Eric Ripa</strong>
+										
+											(@eripa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1429673?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/Battery/mAh.10s.sh.html'
+						><strong class='text-xl'>Battery mAh</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/Battery/mAh.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the mAh of battery remaining.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/LucaAngioloni.html'>
+									<span class='text-right break-all'>
+										<strong>Luca Angioloni</strong>
+										
+											(@LucaAngioloni)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/12626501?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+		</div>
+	
+
+		</div>
+	</div>
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

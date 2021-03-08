@@ -1,0 +1,75 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "Το %1$@ %2$@ έχει ληφθεί και είναι έτοιμο προς χρήση! Θα θέλατε να το εγκαταστήσετε και να επανεκκινήσετε το %1$@ τώρα;";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "Το %1$@ δεν μπορεί να ενημερωθεί όσο τρέχει από έναν δίσκο ανάγνωσης-μόνο ή έναν οπτικό δίσκο. Μεταφέρετε το %1$@ στον φάκελο εφαρμογών σας, επανεκκινήστε το από εκεί, και ξαναδοκιμάστε.";
+
+"%@ %@ is currently the newest version available." = "Το %1$@ %2$@ είναι η τελευταία διαθέσιμη έκδοση.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "Το %1$@ %2$@ είναι πλέον διαθέσιμο--έχετε το %3$@. Θέλετε να το κατεβάσετε τώρα;";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ λήφθησαν";
+
+"%@ of %@" = "%1$@ από %2$@";
+
+"A new version of %@ is available!" = "Μία νέα έκδοση του %@ είναι διαθέσιμη!";
+
+"A new version of %@ is ready to install!" = "Μία νέα έκδοση του %@ είναι έτοιμη για εγκατάσταση!";
+
+"An error occurred in retrieving update information. Please try again later." = "Υπήρξε ένα σφάλμα κατά την ανάκτηση των πληροφοριών ενημέρωσης. Παρακαλώ δοκιμάστε αργότερα.";
+
+"An error occurred while downloading the update. Please try again later." = "Υπήρξε ένα σφάλμα κατά την λήψη της ενημέρωσης. Παρακαλώ δοκιμάστε αργότερα.";
+
+"An error occurred while extracting the archive. Please try again later." = "Υπήρξε ένα σφάλμα κατά την εξαγωγή του αρχείου. Παρακαλώ δοκιμάστε αργότερα.";
+
+"An error occurred while installing the update. Please try again later." = "Υπήρξε ένα σφάλμα κατά την εγκατάσταση της ενημέρωσης. Παρακαλώ δοκιμάστε αργότερα.";
+
+"An error occurred while parsing the update feed." = "Υπήρξε ένα σφάλμα κατά την ανάλυση του feed ενημερώσεων.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Υπήρξε ένα σφάλμα κατά την επανεκκίνηση του %1$@, αλλά η νέα έκδοση θα είναι διαθέσιμη την επόμενη φορά που θα τρέξετε το %1$@.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Ακύρωση";
+
+"Cancel Update" = "Ακύρωση Ενημέρωσης";
+
+"Checking for updates..." = "Έλεγχος για ενημερώσεις...";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Λήψη ενημέρωσης...";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Εξαγωγή ενημέρωσης...";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Εγκατάσταση και Επανεκκίνηση";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Εγκατάσταση ενημέρωσης...";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "OK";
+
+"Ready to Install" = "Έτοιμο προς Εγκατάσταση";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Θέλετε το %1$@ να ελέγχει αυτόματα για ενημερώσεις; Μπορείτε πάντα να ελέγχετε για ενημερώσεις χειροκίνητα από το μενού %1$@.";
+
+"Update Error!" = "Σφάλμα Ενημέρωσης!";
+
+"Updating %@" = "Ενημέρωση %@";
+
+"You already have the newest version of %@." = "Έχετε ήδη την τελευταία έκδοση του %@.";
+
+"You're up-to-date!" = "Είστε ενημερωμένοι!";
+

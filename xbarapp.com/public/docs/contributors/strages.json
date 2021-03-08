@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "old github handle",
+		"githubUsername": "strages",
+		"imageURL": "https://avatars.githubusercontent.com/u/19322781?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/infinit-drive.10s.py",
+					"filename": "infinit-drive.10s.py",
+					"content": "#!/usr/bin/env python3\r\n\r\n# \u003cbitbar.title\u003eIfinit Drive Journal Stats\u003c/bitbar.title\u003e\r\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\r\n# \u003cbitbar.author\u003eDimitrie Hoekstra\u003c/bitbar.author\u003e\r\n# \u003cbitbar.author.github\u003estrages\u003c/bitbar.author.github\u003e\r\n# \u003cbitbar.desc\u003eShort description of what your plugin does.\u003c/bitbar.desc\u003e\r\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/strages/infinit-drive-journal-stats-bitbar-plugin/master/screenshot.png\u003c/bitbar.image\u003e\r\n# \u003cbitbar.dependencies\u003epython3\u003c/bitbar.dependencies\u003e\r\n# \u003cbitbar.abouturl\u003ehttps://github.com/strages/infinit-drive-journal-stats-bitbar-plugin\u003c/bitbar.abouturl\u003e\r\n\r\n\r\nimport json\r\nimport os\r\nimport subprocess\r\n\r\np = subprocess.Popen(\r\n  ['infinit-journal', '--stat', '--script'],\r\n  stdout = subprocess.PIPE,\r\n  env = {'PATH': '/usr/local/bin:%s' % os.environ['PATH']},\r\n)\r\nout, err = p.communicate()\r\nres = json.loads(out.decode('utf-8'))\r\n\r\ntotal_size = 0\r\nfor k, v in res.items():\r\n  total_size += v['size']\r\n\r\ndef GetHumanReadable(size,precision=0):\r\n    suffixes=[' B',' KB',' MB',' GB',' TB']\r\n    suffixIndex = 0\r\n    while size \u003e 1024 and suffixIndex \u003c 4:\r\n        suffixIndex += 1 #increment the index of the suffix\r\n        size = size/1024.0 #apply the division\r\n    return \"%.*f%s\"%(precision,size,suffixes[suffixIndex])\r\n\r\ntotal_size_readable = GetHumanReadable(total_size)\r\n\r\nprint(total_size_readable)\r\n"
+				}
+			],
+			"path": "System/infinit-drive.10s.py",
+			"filename": "infinit-drive.10s.py",
+			"dir": "System",
+			"docsPlugin": "System/infinit-drive.10s.py.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Ifinit Drive Journal Stats",
+			"version": "v1.0",
+			"author": "Dimitrie Hoekstra",
+			"authors": [
+				{
+					"name": "old github handle",
+					"githubUsername": "strages",
+					"imageURL": "https://avatars.githubusercontent.com/u/19322781?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Short description of what your plugin does.",
+			"imageURL": "https://raw.githubusercontent.com/strages/infinit-drive-journal-stats-bitbar-plugin/master/screenshot.png",
+			"dependencies": [
+				"python3"
+			],
+			"aboutURL": "https://github.com/strages/infinit-drive-journal-stats-bitbar-plugin",
+			"lastUpdated": "2021-03-08T15:22:03.553093Z",
+			"vars": null
+		}
+	]
+}

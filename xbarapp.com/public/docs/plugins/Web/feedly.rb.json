@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Web/feedly.rb",
+				"filename": "feedly.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eFeedly\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003emorizyun\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emorizyun\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://farm2.staticflickr.com/1541/25991545133_924f4a1a59_c.jpg\u003c/bitbar.image\u003e\n\nrequire 'net/http'\nrequire 'json'\n\nARTICLE_LIMIT = 20.freeze\n\n## PROCEDURE TO GET AUTH TOKEN ##\n# https://blog.morizyun.com/blog/feedly-feed-api-script-bitbar/index.html\nFEEDLY_AUTH_TOKEN = 'YOUR access_token'.freeze\n\ndef get_json_by_feedly_api(url)\n  uri = URI(url)\n\n  req = Net::HTTP::Get.new(uri)\n\n  req['Authorization'] = \"Bearer #{FEEDLY_AUTH_TOKEN}\"\n\n  res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }\n  JSON.parse(res.body)\nend\n\ndef feedly_feeds\n  # get profile\n  profile = get_json_by_feedly_api('https://cloud.feedly.com/v3/profile')\n\n  # get feed information in your profile\n  url = \"https://cloud.feedly.com/v3/streams/contents?streamId=user/#{profile['id']}/category/global.all\"\n  content = get_json_by_feedly_api(url)\n\n  return content['items']\nend\n\ndef output(item)\n  puts \"#{item['title']} | href=#{item['originId']}\"\nrescue =\u003e e\n  puts \"An error occured: #{e}\"\nend\n\nputs 'Feedly'\nputs '---'\nbegin\n  feedly_feeds.each { |item| output(item) }\nrescue\n  puts 'Content is currently unavailable. Please try resetting. | color=red'\nend\n"
+			}
+		],
+		"path": "Web/feedly.rb",
+		"filename": "feedly.rb",
+		"dir": "Web",
+		"docsPlugin": "Web/feedly.rb.html",
+		"docsCategory": "Web.html",
+		"pathSegments": [
+			"Web"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Web",
+				"text": "Web",
+				"isLast": true
+			}
+		],
+		"title": "Feedly",
+		"version": "",
+		"author": "morizyun",
+		"authors": [
+			{
+				"name": "morizyun",
+				"githubUsername": "morizyun",
+				"imageURL": "https://avatars.githubusercontent.com/u/2871482?v=4",
+				"bio": "JavaScript (React, Redux,  Vue, Nuxt), Ruby, Rails, Firebase, Kotlin, Java",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "https://farm2.staticflickr.com/1541/25991545133_924f4a1a59_c.jpg",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:09.764432Z",
+		"vars": null
+	}
+}

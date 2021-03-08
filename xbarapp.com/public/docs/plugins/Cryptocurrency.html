@@ -1,0 +1,3300 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Cryptocurrency in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Put Cryptocurrency plugins into your macOS menu bar with xbar.'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='Cryptocurrency in your macOS menu bar'>
+	<meta itemprop='description' content='Put Cryptocurrency plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Cryptocurrency in your macOS menu bar'>
+	<meta name='twitter:description' content='Put Cryptocurrency plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Cryptocurrency in your macOS menu bar'>
+	<meta property='og:description' content='Put Cryptocurrency plugins into your macOS menu bar with xbar.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Cryptocurrency.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='flex-grow'>
+		
+			<div class='py-8 light-background'>
+				<div class='grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-4 container mx-auto'>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Bitstamp last price 
+								</a>
+							</div>
+							<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='http://i.imgur.com/aQCqOW6.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Shows last BTC price (in USD) on Bitstamp exchange.
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/dlajarretie.html'>
+												<span class='mr-3'>
+													Damien Lajarretie (@dlajarretie)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/5681392?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/tr-markets.1m.py.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									BTC Ticker for TR Markets 
+								</a>
+							</div>
+							<a href='/docs/plugins/Cryptocurrency/Bitcoin/tr-markets.1m.py.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://i.imgur.com/MUj8Bkb.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									TC Ticker for TR Markets(btcturk.com, koinim.com, paribu.com)
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/erhan.html'>
+												<span class='mr-3'>
+													Erhan BÜTE (@erhan)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/3872888?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Cryptocurrency/binance-ticker.6s.py.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Binance Price Ticker 
+								</a>
+							</div>
+							<a href='/docs/plugins/Cryptocurrency/binance-ticker.6s.py.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://i.imgur.com/zJsoTl8.jpg'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Displays Binance&#39;s ticker price for configured coin pairs
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/agezao.html'>
+												<span class='mr-3'>
+													Gabriel Age (@agezao)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/7091570?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+				</div>
+				<p class='pt-16 pb-4 px-16 text-center'>
+					<strong class='text-white'>
+						Fancy having your plugin featured?
+					</strong> 
+					<a 
+						target='twitter' 
+						href='https://twitter.com/matryer' 
+						class='underline text-white font-bold'
+					>Get in touch</a>.
+				</p>
+			</div>
+		
+		
+			<div class='container mx-auto p-8 text-white'>
+				<h3 class='font-bold'>Looking for something specific?</h3>
+				<p class='mt-4 text-lg'>
+					
+	
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin.html'>Bitcoin</a>
+			
+	
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/bitfinex.com.html'>bitfinex.com</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/bitoex.com.html'>bitoex.com</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/bitstamp.net.html'>bitstamp.net</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/bitx.co.html'>bitx.co</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com.html'>coinbase.com</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/coinmarketcap.com.html'>coinmarketcap.com</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/coinone.co.kr.html'>coinone.co.kr</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Bitcoin/huobi.com.html'>huobi.com</a>
+			
+	
+
+		
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Blackcoin.html'>Blackcoin</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Dash.html'>Dash</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Dogecoin.html'>Dogecoin</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Ethereum.html'>Ethereum</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Lisk.html'>Lisk</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Litecoin.html'>Litecoin</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Monero.html'>Monero</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Ripple.html'>Ripple</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Cryptocurrency/Vertcoin.html'>Vertcoin</a>
+			
+	
+
+		
+	
+
+				</p>
+			</div>
+		
+		<div class='p-8 mt-8'>
+			
+	
+		<div class='grid grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-8 divide-white container mx-auto'>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/bitoex.com/bitoex-buy-and-sell.10s.sh.html'
+						><strong class='text-xl'>BitoEX Buy and Sell</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitoex.com/bitoex-buy-and-sell.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show latest buy and seller values in TWD from BitoEX. BitoEX is a popular BTC exchange in TW https://www.bitoex.com
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ryanchentw.html'>
+									<span class='text-right break-all'>
+										<strong>Ryan</strong>
+										
+											(@ryanchentw)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/13937810?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/huobi.com/huobiprice.1s.py.html'
+						><strong class='text-xl'>Huobi last price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/huobi.com/huobiprice.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									A very simple huobi last price display tool
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mountain3th.html'>
+									<span class='text-right break-all'>
+										<strong>Sam Xie</strong>
+										
+											(@mountain3th)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5469314?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Litecoin/ltc-gbp.py.html'
+						><strong class='text-xl'>Litecoin Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Litecoin/ltc-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Litecoin price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Litecoin/ltc-usd.1s.py.html'
+						><strong class='text-xl'>Litecoin USD Tracker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Litecoin/ltc-usd.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/OI9eD75.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									It tracks Litecoin price in USD
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mgjo5899.html'>
+									<span class='text-right break-all'>
+										<strong>Joseph</strong>
+										
+											(@mgjo5899)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/17048946?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Dash/dash-coincap-binance.5m.sh.html'
+						><strong class='text-xl'>Dash tickers: Coincap.io and Binance.com</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Dash/dash-coincap-binance.5m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/k4y72tW.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the latest Dash info from Coincap.io and Binance.com
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/UdjinM6.html'>
+									<span class='text-right break-all'>
+										<strong>UdjinM6</strong>
+										
+											(@UdjinM6)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1935069?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Dash/dash-coincap-poloniex.5m.sh.html'
+						><strong class='text-xl'>Dash tickers: Coincap.io and Poloniex.com</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Dash/dash-coincap-poloniex.5m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/BRmoB48.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the latest Dash info from Coincap.io and Poloniex.com
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/UdjinM6.html'>
+									<span class='text-right break-all'>
+										<strong>UdjinM6</strong>
+										
+											(@UdjinM6)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1935069?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-btc-bitfinex.30s.sh.html'
+						><strong class='text-xl'>Monero BTC price at Bitfinex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-btc-bitfinex.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in BTC) on the Bitfinex exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-btc-kraken.30s.sh.html'
+						><strong class='text-xl'>Monero BTC price at Kraken</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-btc-kraken.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in BTC) on the Kraken exchange
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-usd-bitfinex.30s.sh.html'
+						><strong class='text-xl'>Monero USD price at Bitfinex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-usd-bitfinex.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in USD) on the Bitfinex exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-usd-kraken.30s.sh.html'
+						><strong class='text-xl'>Monero USD price at Kraken</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-usd-kraken.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in USD) on the Kraken exchange
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-usd-poloniex.30s.sh.html'
+						><strong class='text-xl'>Monero USD price at Poloniex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-usd-poloniex.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in USD) on the Poloniex exchange
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-btc-poloniex.30s.sh.html'
+						><strong class='text-xl'>Monero BTC price at Poloniex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-btc-poloniex.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in BTC) on the Poloniex exchange
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Monero/monero-cny-bter.30s.sh.html'
+						><strong class='text-xl'>Monero CNY price at Bter</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Monero/monero-cny-bter.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/monerohow/misc/master/mac-menu-bar-light-and-dark.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Monero price (in CNY) on the Bter exchange
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/monerohow.html'>
+									<span class='text-right break-all'>
+										<strong>Monero.how</strong>
+										
+											(@monerohow)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/24931986?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/eth-gbp.py.html'
+						><strong class='text-xl'>Etherium Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/eth-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/3NK6mXt.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Etherium price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/eth-usd.1s.py.html'
+						><strong class='text-xl'>Ethereum USD Tracker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/eth-usd.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/YEn5Cnk.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									It tracks Ethereum price in USD
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mgjo5899.html'>
+									<span class='text-right break-all'>
+										<strong>Joseph</strong>
+										
+											(@mgjo5899)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/17048946?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/eth_wallet_balances.1m.py.html'
+						><strong class='text-xl'>Etherum Wallet (and token) Balances</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/eth_wallet_balances.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://schluting.com/temp/bitbar-eth-bal.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays a $USD total across all configured wallets, with drop-down showing the value of your ETH and all tokens held.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/manos.html'>
+									<span class='text-right break-all'>
+										<strong>Charlie Schluting</strong>
+										
+											(@manos)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/132518?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/ether-eur-kraken.30s.sh.html'
+						><strong class='text-xl'>Kraken.com ETHEUR last price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/ether-eur-kraken.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/iGX2yjR.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Gives the last price of ether to euro from Kraken.com
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ggrelet.html'>
+									<span class='text-right break-all'>
+										<strong>G.G.</strong>
+										
+											(@ggrelet)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/10114131?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/ethbtc.sh.html'
+						><strong class='text-xl'>Ethereum BFX price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/ethbtc.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/w6D7HHe.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows last Ethereum price on Bitfinex in BTC.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/corv89.html'>
+									<span class='text-right break-all'>
+										<strong>Corvin Wimmer</strong>
+										
+											(@corv89)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7198687?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/ethminer.5s.py.html'
+						><strong class='text-xl'>EthMiner</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/ethminer.5s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/DeWnKKf.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Start and stop the ethminer.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/onekiloparsec.html'>
+									<span class='text-right break-all'>
+										<strong>Cédric Foellmi</strong>
+										
+											(@onekiloparsec)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/226224?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/ethusd.1m.sh.html'
+						><strong class='text-xl'>Ethereum last price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/ethusd.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/lF2AA7o.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows last Ethereum price in USD.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Har01d.html'>
+									<span class='text-right break-all'>
+										<strong>Nikita Zhavoronkov</strong>
+										
+											(@Har01d)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/14060856?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ethereum/gasnow.10s.sh.html'
+						><strong class='text-xl'>ETH Gas Price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ethereum/gasnow.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/f1hPKO2.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									ETH GasPrice forecast system.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/biranyucel.html'>
+									<span class='text-right break-all'>
+										<strong>Biran</strong>
+										
+											(@biranyucel)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/39130180?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/Bitcurex.10s.sh.html'
+						><strong class='text-xl'>Bitcurex stats</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/Bitcurex.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Bicki.html'>
+									<span class='text-right break-all'>
+										<strong>Tomasz Wierzbicki tomaszwierzbicki@icloud.com</strong>
+										
+											(@Bicki)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/20737785?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/mayer-multiple.sh.html'
+						><strong class='text-xl'>Mayer Multiple (BTC)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/mayer-multiple.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/NsOofDJ.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tadeoos.html'>
+									<span class='text-right break-all'>
+										<strong>Tadek Teleżyński</strong>
+										
+											(@tadeoos)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/10894783?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/tr-markets.1m.py.html'
+						><strong class='text-xl'>BTC Ticker for TR Markets</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/tr-markets.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/MUj8Bkb.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									TC Ticker for TR Markets(btcturk.com, koinim.com, paribu.com)
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/erhan.html'>
+									<span class='text-right break-all'>
+										<strong>Erhan BÜTE</strong>
+										
+											(@erhan)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3872888?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Lisk/lsk-gbp.py.html'
+						><strong class='text-xl'>Liskcoin Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Lisk/lsk-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/nxuyiow.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Liskcoin price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Lisk/lsk-usd.py.html'
+						><strong class='text-xl'>Liskcoin Ticker ($1USD)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Lisk/lsk-usd.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/F4UhSWb.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Liskcoin price for $1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Lisk/lskbtc.sh.html'
+						><strong class='text-xl'>Lisk/BTC Poloniex price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Lisk/lskbtc.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/j5qaX2t.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows last Lisk price on Bitfinex in BTC.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/corv89.html'>
+									<span class='text-right break-all'>
+										<strong>Corvin Wimmer</strong>
+										
+											(@corv89)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7198687?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Vertcoin/vtc-btc-bittrex_detail.30s.sh.html'
+						><strong class='text-xl'>Vertcoin BTC price at Bittrex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Vertcoin/vtc-btc-bittrex_detail.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://imgur.com/DEOGHG6.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Vertcoin price (in BTC) on the Bittrex exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/cemyld.html'>
+									<span class='text-right break-all'>
+										<strong>Cem Yildirim</strong>
+										
+											(@cemyld)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6137137?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Vertcoin/vtc-btc-bittrex.30s.sh.html'
+						><strong class='text-xl'>Vertcoin BTC price at Bittrex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Vertcoin/vtc-btc-bittrex.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://imgur.com/DEOGHG6.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Vertcoin price (in BTC) on the Bittrex exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/cemyld.html'>
+									<span class='text-right break-all'>
+										<strong>Cem Yildirim</strong>
+										
+											(@cemyld)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6137137?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_btcusd.sh.html'
+						><strong class='text-xl'>Bitfinex BTCUSD last price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_btcusd.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/AJU4wmc.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows last BTC price (in USD) on Bitfinex BTCUSD Order Book.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mileschet.html'>
+									<span class='text-right break-all'>
+										<strong>Roberto Santacroce Martins</strong>
+										
+											(@mileschet)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/76659029?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_all.sh.html'
+						><strong class='text-xl'>Bitfinex REST API Ticker BTCUSD plugin</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitfinex.com/bitfinex_all.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/V8dABjz.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows (Ask, Bid, Mid, High, Low, Volume and Timestamp from Bitfinex REST API Ticker BTCUSD 
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mileschet.html'>
+									<span class='text-right break-all'>
+										<strong>Roberto Santacroce Martins</strong>
+										
+											(@mileschet)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/76659029?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Blackcoin/blk-gbp.py.html'
+						><strong class='text-xl'>Blackcoin Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Blackcoin/blk-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/guazVdD.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Blackcoin price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Blackcoin/blk-usd.py.html'
+						><strong class='text-xl'>Blackcoin Ticker ($1USD)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Blackcoin/blk-usd.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/PjuyXQd.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Blackcoin price for $1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/99-crypto.py.html'
+						><strong class='text-xl'>Crypto Ticker ($1USD)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/99-crypto.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/B1nq4AU.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/davidosomething.html'>
+									<span class='text-right break-all'>
+										<strong>David O&#39;Trakoun</strong>
+										
+											(@davidosomething)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/609213?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/CoinbaseBuy.1m.rkt.html'
+						><strong class='text-xl'>Coinbase buy prices</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/CoinbaseBuy.1m.rkt.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Fetches BUY proces for cryptocurrencies traded at Coinbase
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/dkvasnicka.html'>
+									<span class='text-right break-all'>
+										<strong>Daniel Kvasnička</strong>
+										
+											(@dkvasnicka)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/708118?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/CoinbasePrices.sh.html'
+						><strong class='text-xl'>Coinbase Prices</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/CoinbasePrices.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://media.giphy.com/media/3oEhmKvAlkJHoqalFK/giphy.gif'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays Coinbase buy prices of Bitcoin, Ethereum, Litecoin, Dash.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mustafaturksavas.html'>
+									<span class='text-right break-all'>
+										<strong>Mustafa Türksavaş</strong>
+										
+											(@mustafaturksavas)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6232697?v=4'>
+									
+								</a>
+							</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/.html'>
+									<span class='text-right break-all'>
+										<strong>UdjinM6</strong>
+										
+									</span>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/CryptoPrices.5m.sh.html'
+						><strong class='text-xl'>Cryptocurrency Prices</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/CryptoPrices.5m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://media.giphy.com/media/xUPGcf2tFHHoAPssy4/giphy.gif'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display the spot USD prices of Bitcoin (from Coinbase) and the spot prices of 9 other cryptoassets (from Poloniex) including Monero, Ethereum, Decred, Ripple, Dash, Litecoin, Siacoin.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/viiraj.html'>
+									<span class='text-right break-all'>
+										<strong>viiraj</strong>
+										
+											(@viiraj)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4239196?v=4'>
+									
+								</a>
+							</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/.html'>
+									<span class='text-right break-all'>
+										<strong>UdjinM6</strong>
+										
+									</span>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/SurBTC-Ticker.10m.sh.html'
+						><strong class='text-xl'>SurBTC Ticker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/SurBTC-Ticker.10m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/platanus/surbtc-bitbar-plugin/master/image/image.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows prices and volume for cryptocurrencies in SurBTC
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/agustinf.html'>
+									<span class='text-right break-all'>
+										<strong>Agustin Feuerhake</strong>
+										
+											(@agustinf)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/313750?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/binance-ticker.6s.py.html'
+						><strong class='text-xl'>Binance Price Ticker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/binance-ticker.6s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/zJsoTl8.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays Binance&#39;s ticker price for configured coin pairs
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/agezao.html'>
+									<span class='text-right break-all'>
+										<strong>Gabriel Age</strong>
+										
+											(@agezao)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7091570?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/bitso-btc-eth-xrp.30s.sh.html'
+						><strong class='text-xl'>Bitso buys price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/bitso-btc-eth-xrp.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://image.ibb.co/h9mWFG/Screen_Shot_2017_11_28_at_7_59_08_PM.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays Bitso buy prices of Bitcoin, Ethereum, Ripple in MXN
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Neovirxp.html'>
+									<span class='text-right break-all'>
+										<strong>Erick Madrid</strong>
+										
+											(@Neovirxp)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/33076777?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/btcmarkets.10s.sh.html'
+						><strong class='text-xl'>BTC Markets ETH &amp; BTC Ticker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/btcmarkets.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/7UwilDM.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays the latest Etherium and Bitcoin prices in AUD and their 24h trade volumes from BTC Markets.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/fredwu.html'>
+									<span class='text-right break-all'>
+										<strong>Fred Wu</strong>
+										
+											(@fredwu)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/31945?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/c20.py.html'
+						><strong class='text-xl'>Crypto20</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/c20.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/cchen408/bitbar-c20/master/screenshots/chris.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display Nav and Underlying Asset Information
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/cchen408.html'>
+									<span class='text-right break-all'>
+										<strong>Christopher Chen</strong>
+										
+											(@cchen408)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2694506?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/cardano.10s.py.html'
+						><strong class='text-xl'>Cardano (ADA) Price Monitor</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/cardano.10s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://s15.postimg.cc/4yheazrln/ada.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									You can monitor Cardano (ADA)&#39;s latest price via CoinRanking.com API
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/soyoz.html'>
+									<span class='text-right break-all'>
+										<strong>Erol Soyöz</strong>
+										
+											(@soyoz)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1260475?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/coincaplite.1m.py.html'
+						><strong class='text-xl'>Coincap Lite</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/coincaplite.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/NiRqDUt.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Retrieves trading information about a coin on coinmarketcap using the v2 api. 
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/reteps.html'>
+									<span class='text-right break-all'>
+										<strong>Peter Stenger</strong>
+										
+											(@reteps)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/13869303?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/coin-alert.5s.sh.html'
+						><strong class='text-xl'>Coin Alert</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/coin-alert.5s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/carlsonorozco/coin-alert/master/image.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Coin Alert is a plugin for BitBar that notifies and make a sound when less than or greater than cryptocurrency price from CoinMarketCap.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/carlsonorozco.html'>
+									<span class='text-right break-all'>
+										<strong>Carlson Orozco</strong>
+										
+											(@carlsonorozco)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2333279?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/coincap.1m.py.html'
+						><strong class='text-xl'>CoinCap</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/coincap.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/a584lGl.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Retrieves trading information about a coin on cryptocompare and coinmarketcap. High &amp; low not available on CMC.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/reteps.html'>
+									<span class='text-right break-all'>
+										<strong>Peter Stenger</strong>
+										
+											(@reteps)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/13869303?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/decred-btc-poloniex.30s.sh.html'
+						><strong class='text-xl'>Decred BTC price on Poloniex</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/decred-btc-poloniex.30s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/g0blinResearch/bitbar-decred-btc-poloniex/master/screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the last Decred price (in BTC) on the Poloniex exchange
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/g0blinResearch.html'>
+									<span class='text-right break-all'>
+										<strong>James Hooker</strong>
+										
+											(@g0blinResearch)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/11961962?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/garlicoin.1m.sh.html'
+						><strong class='text-xl'>Garlicoin Balance</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/garlicoin.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/ferdizz/files/master/garlic-screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows your current Garlicoin balance.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ferdizz.html'>
+									<span class='text-right break-all'>
+										<strong>Ferdinand</strong>
+										
+											(@ferdizz)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/9082645?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/nomics_bitbar.py.html'
+						><strong class='text-xl'>Nomics.com Cryptocurrency Tickers</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/nomics_bitbar.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.ibb.co/4SD8cZs/Screen-Shot-2019-11-25-at-6-16-56-PM.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Provides price updates and 24h change for the top ten cryptocurrencies by marketcap.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/dtand.html'>
+									<span class='text-right break-all'>
+										<strong>Daniel Anderson</strong>
+										
+											(@dtand)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/8932569?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinmarketcap.com/btc-gbp.py.html'
+						><strong class='text-xl'>Bitcoin coin Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinmarketcap.com/btc-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/oXZWn0I.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Bitcoin price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinmarketcap.com/btc-usd.py.html'
+						><strong class='text-xl'>Bitcoin coin Ticker ($1USD)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinmarketcap.com/btc-usd.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/CyCMvOT.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Bitcoin price for $1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinone.co.kr/coinone.15s.py.html'
+						><strong class='text-xl'>Coinone Ticker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinone.co.kr/coinone.15s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									coineone.co.kr Ticker
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/eldkqmfhf123.html'>
+									<span class='text-right break-all'>
+										<strong>Sun-woo, Lee</strong>
+										
+											(@eldkqmfhf123)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6386021?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/bitx.co/buy-and-sell.1m.py.html'
+						><strong class='text-xl'>BitX Buy and Sell</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitx.co/buy-and-sell.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://cloud.githubusercontent.com/assets/868608/24828465/e257fc20-1c5d-11e7-9641-5abed32bcb9b.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows latest buy and sell values (in ZAR) for Bitcoins on the BitX exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kblum.html'>
+									<span class='text-right break-all'>
+										<strong>Konrad Blum</strong>
+										
+											(@kblum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/868608?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh.html'
+						><strong class='text-xl'>Bitstamp last price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/aQCqOW6.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows last BTC price (in USD) on Bitstamp exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/dlajarretie.html'>
+									<span class='text-right break-all'>
+										<strong>Damien Lajarretie</strong>
+										
+											(@dlajarretie)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5681392?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Dogecoin/doge-gbp.py.html'
+						><strong class='text-xl'>Dogecoin coin Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Dogecoin/doge-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/FBUh3fk.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Dogecoin price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Dogecoin/doge-usd.py.html'
+						><strong class='text-xl'>Dogecoin coin Ticker ($1USD)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Dogecoin/doge-usd.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/FBUh3fk.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Dogecoin price for $1 from Coinmarketcap.com
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb.html'
+						><strong class='text-xl'>Coinbase.com Account Balances</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows your balances in BTC &amp; USD.  Be sure you add you API key &amp; secret.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/aegixx.html'>
+									<span class='text-right break-all'>
+										<strong>Bryan Stone</strong>
+										
+											(@aegixx)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/7032283?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh.html'
+						><strong class='text-xl'>Coinbase.com Your Balance</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/balance.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows your balance in BTC.  Be sure you add your API &amp; account details.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh.html'
+						><strong class='text-xl'>Coinbase.com Buy and Sell</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/buy-and-sell.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows latest Buy and Sell values (in USD) for Bitcoins in the Coinbase exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh.html'
+						><strong class='text-xl'>Coinbase.com Buy</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/buy.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows latest buy values (in USD) for Bitcoins in the Coinbase exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh.html'
+						><strong class='text-xl'>Coinbase.com Buy</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/sell.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows latest sell values (in USD) for Bitcoins in the Coinbase exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh.html'
+						><strong class='text-xl'>Coinbase.com Spot rate</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Bitcoin/coinbase.com/spotrate.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows latest spot rate values (in USD) for Bitcoins in the Coinbase exchange.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matryer.html'>
+									<span class='text-right break-all'>
+										<strong>Mat Ryer</strong>
+										
+											(@matryer)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/101659?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ripple/xrp-gbp.py.html'
+						><strong class='text-xl'>Ripplecoin Ticker (£1GBP)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ripple/xrp-gbp.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Ripplecoin price for £1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ripple/xrp-usd.py.html'
+						><strong class='text-xl'>Ripplecoin Ticker ($1USD)</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ripple/xrp-usd.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/2xOj6Pu.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current Ripplecoin price for $1 from Coinmarketcap
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Cryptocurrency/Ripple/xrpusd.1m.sh.html'
+						><strong class='text-xl'>XRP last price</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Cryptocurrency/Ripple/xrpusd.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/iAMBYVv.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows last Ripple (XRP) price in USD.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/kevbost.html'>
+									<span class='text-right break-all'>
+										<strong>Kevin Bost</strong>
+										
+											(@kevbost)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1672548?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+		</div>
+	
+
+		</div>
+	</div>
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

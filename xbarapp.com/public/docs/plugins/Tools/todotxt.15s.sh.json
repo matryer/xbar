@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Tools/todotxt.15s.sh",
+				"filename": "todotxt.15s.sh",
+				"content": "#!/usr/bin/env bash\n#\n## \u003cbitbar.title\u003eTodo.txt\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# # \u003cbitbar.author\u003eDwight Spencer\u003c/bitbar.author\u003e\n# # \u003cbitbar.author.github\u003edenzuko\u003c/bitbar.author.github\u003e\n# # \u003cbitbar.desc\u003eTodo.txt intergration with mac gui, click to do a item\u003c/bitbar.desc\u003e\n# # \u003cbitbar.dependancies\u003etodo.sh\u003c/bitbar.dependancies\u003e\n\n# Dependancies:\n#   todo.sh (brew install todo.sh)\n\nexport PATH=\"$PATH:/usr/local/bin\"\n\nlist_items() {\n    todo.sh ls  | awk 'NR\u003e1 {print buf}{buf = $0}' | sed '/--/d' | awk ' { print $0,\"| bash=/usr/local/bin/todo.sh param1=do param2=\"$1\" terminal=false refresh=true\" }'\n}\n\nadd_item() {\n    todo.sh add \"$(osascript -e 'Tell application \"System Events\" to display dialog \"New task:\" default answer \"\"' -e 'text returned of result' 2\u003e/dev/null)\" \u003e/dev/null\n}\n\nif [ \"${1}\" == \"add\" ]; then\n    add_item\nelse\n    echo \"🗒\"\n    echo \"---\"\n    list_items\n    echo \"---\"\n    echo \"Add task | bash=$0 param1=add\"\nfi\n"
+			}
+		],
+		"path": "Tools/todotxt.15s.sh",
+		"filename": "todotxt.15s.sh",
+		"dir": "Tools",
+		"docsPlugin": "Tools/todotxt.15s.sh.html",
+		"docsCategory": "Tools.html",
+		"pathSegments": [
+			"Tools"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Tools",
+				"text": "Tools",
+				"isLast": true
+			}
+		],
+		"title": "Todo.txt",
+		"version": "v1.0",
+		"author": "Dwight Spencer",
+		"authors": [
+			{
+				"name": "Dwight Spencer",
+				"githubUsername": "denzuko",
+				"imageURL": "https://avatars.githubusercontent.com/u/19776?v=4",
+				"bio": "Director of devopsroundtable.com\r\nInvestor, thought leader for #devops +#makermovement, and champion of change.\r\n\r\nFounded VCC@dallasmakes, CompuTEK Industries,",
+				"primary": true
+			}
+		],
+		"desc": "Todo.txt intergration with mac gui, click to do a item",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:07.9425Z",
+		"vars": null
+	}
+}

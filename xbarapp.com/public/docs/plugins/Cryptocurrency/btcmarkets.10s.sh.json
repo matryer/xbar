@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/btcmarkets.10s.sh",
+				"filename": "btcmarkets.10s.sh",
+				"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eBTC Markets ETH \u0026 BTC Ticker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eFred Wu\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003efredwu\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the latest Etherium and Bitcoin prices in AUD and their 24h trade volumes from BTC Markets.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/7UwilDM.png\u003c/bitbar.image\u003e\n\necho -n \"ETH \"; curl -s https://api.btcmarkets.net/market/ETH/AUD/tick | \\\n  grep -Eo 'lastPrice\":[0-9\\.]+' | sed 's/lastPrice\"://' | tr -d '\\n'; \\\n  echo -n \" BTC \"; curl -s https://api.btcmarkets.net/market/BTC/AUD/tick | \\\n  grep -Eo 'lastPrice\":[0-9\\.]+' | sed 's/lastPrice\"://'\n\necho '---'\necho 'Volume 24h'\n\nfor COIN_TYPE in 'ETH' 'BTC'\ndo\n  echo -n \"$COIN_TYPE \"; \\\n    curl -s \"https://api.btcmarkets.net/market/$COIN_TYPE/AUD/tick\" | \\\n    grep -Eo 'volume24h\":[0-9\\.]+' | sed 's/volume24h\"://' | tr -d '\\n'; \\\n    echo '| href=https://www.btcmarkets.net/'\ndone\n"
+			}
+		],
+		"path": "Cryptocurrency/btcmarkets.10s.sh",
+		"filename": "btcmarkets.10s.sh",
+		"dir": "Cryptocurrency",
+		"docsPlugin": "Cryptocurrency/btcmarkets.10s.sh.html",
+		"docsCategory": "Cryptocurrency.html",
+		"pathSegments": [
+			"Cryptocurrency"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": true
+			}
+		],
+		"title": "BTC Markets ETH \u0026 BTC Ticker",
+		"version": "v1.0",
+		"author": "Fred Wu",
+		"authors": [
+			{
+				"name": "Fred Wu",
+				"githubUsername": "fredwu",
+				"imageURL": "https://avatars.githubusercontent.com/u/31945?v=4",
+				"bio": "Ruby, Rails, Elixir, Phoenix, JS, UX, Design, Photography, Gadgets. Creativity + Engineering, Art + Science.",
+				"primary": true
+			}
+		],
+		"desc": "Displays the latest Etherium and Bitcoin prices in AUD and their 24h trade volumes from BTC Markets.",
+		"imageURL": "http://i.imgur.com/7UwilDM.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:47.268894Z",
+		"vars": null
+	}
+}

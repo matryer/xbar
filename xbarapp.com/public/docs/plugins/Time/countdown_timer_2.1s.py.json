@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/countdown_timer_2.1s.py",
+				"filename": "countdown_timer_2.1s.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: UTF-8 -*-\n# \u003cbitbar.title\u003eCountdown Timer 2\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eFederico Ferri\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003efferri\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSimple countdown timer.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/fferri/bitbar-countdown-timer/master/screenshot.gif\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/fferri/bitbar-countdown-timer\u003c/bitbar.abouturl\u003e\n\nimport os\nimport re\nimport subprocess\nimport sys\nimport time\n\nicon='iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAxZJREFUWAntlluITVEYx8+4jbuQ++CFSC655Tau8aA8eFKaJzKvlHfFwzwg1+TVRJNQU5SSUAZNIyNyy4gQcikkJLn9/lnLrHXss9bee868zVe/sy7f9//WOmvvvdYqFLosvAIVYXfQW4n3JPRLiNpGX3NCf6d29Sf77xKszztyt7zCiK6z8kaGLRTWEvEY3JXaTXtoVJkzYD66IQGt3qM74E6oJhDfIddkM1ArpTupWbTr4IXxu5Ox9a/46mEZlMWqyPIT7ADDqWs16p0++b7DXTgNjXAV3oPVqWyBBZDbqlG6CTWxBnji9B+lvhAGQbH1pGMCbIa3YHPtpJ7LZqJqA5vILa/QvyhD1t7E7nJy7cmg9UL1eFbDWbATOuhFZGusJFyPV7nqskn9aL0fSnLI787Vsh+J8ulxZ7bzKCR+kFnpC3o5zVrqyvnR6UtVHWeEEk9Lpfg/SF/q8wS93kPl1SuR2vYRKdGR1Ao/cKTR64DVV+ea/Yq1oaYy3QA+gya0JpXCD+pjtLoJlLI3OJR/SqkAt3+eCf5BOdh1BOrd8ekaMhZ+QQOETJ+/JqS9yrOkU3muibhN+cGLTm4sN3GvKe/BMYidZ03EyPQHPEua0GgToZ05ZtJfghOgk78vHICYvTQBA4sDkyZkX0I9sphZvVblogleERPh13Eks2P9bfHb41+tvfLJVIe1d5WsadLb4QK8gsuwH2Jmbw+6FXiWNKFHJmKGF1m6sQNXC0yCNI9LmabqB9PNIGpjiNAXIGZHo/MFXDP5U9+9bxnB1nzjBVVVJrf+8IBgpONcZ0TPnL5yVfea3IezJrSPrSPXjuIxx5vJKPeoYmesXeuIs1zKQnm1t2kyx0NBId85k0DHwZJQYMSnr1kbqCbzFHKbDsqHoERiI2S16QhugPTfQO0OWSXq+2An1UR9aYqM2j7sISqtbhC6NQatIuj1ndqBtzhd2kCvQyu0gXZtnYNagWqYA9bOUNkE72xHucpVJGoEu1qxUkfJhiyDZ1khN+9EGtplF8MI0AanXF9Aq3ATTkEzdFlZV+APQ77IUZhTv+IAAAAASUVORK5CYII='\n\ndef prompt(text='', defaultAnswer='', icon='note', buttons=('Cancel','Ok'), defaultButton=1):\n    try:\n        d = locals()\n        d['buttonsStr'] = ', '.join('\"%s\"' % button for button in buttons)\n        d['defaultButtonStr'] = isinstance(defaultButton, int) and buttons[defaultButton] or defaultButton\n        return subprocess.check_output(['osascript', '-l', 'JavaScript', '-e', '''\n            const app = Application.currentApplication()\n            app.includeStandardAdditions = true\n            const response = app.displayDialog(\"{text}\", {{\n                defaultAnswer: \"{defaultAnswer}\",\n                withIcon: \"{icon}\",\n                buttons: [{buttonsStr}],\n                defaultButton: \"{defaultButtonStr}\"\n            }})\n            response.textReturned\n        '''.format(**d)]).rstrip()\n    except subprocess.CalledProcessError:\n        pass\n\ndef notify(text, title, sound='Glass'):\n    os.system('osascript -e \\'display notification \"{}\" with title \"{}\" sound name \"{}\"\\''.format(text, title, sound))\n\ndef entry(title='---', **kwargs):\n    args = ' '.join('{}=\\'{}\\''.format(k,v) for k,v in kwargs.items() if v is not None)\n    if args: args = '|' + args\n    print(title + args)\n\ndef parse_time(s):\n    m = re.match('^((\\d+)h)?((\\d+)m)?((\\d+)s?)?$', s)\n    if m is None: raise Exception('invalid time: %s' % s)\n    h, m, s = map(int, (m.group(i) or 0 for i in (2, 4, 6)))\n    return s + 60 * (m + 60 * h)\n\ndef render_time(t):\n    t = int(round(t))\n    h = t // 3600\n    t -= h * 3600\n    m = t // 60\n    t -= m * 60\n    k, v = 'hms', (h, m, t)\n    return ''.join('%d%s' % (v[i], k[i]) for i in range(3) if i == 2 or any(v[:i+1]))\n\ndef read_data_file(filename):\n    with open(data_file, 'rt') as f:\n        lines = f.readlines()\n    t = float(lines[0])\n    task = lines[1].rstrip() if len(lines) \u003e 1 else None\n    return t, task\n\ndef write_data_file(filename, t, task=None):\n    with open(data_file, 'wt') as f:\n        f.write('{:f}{}{}'.format(t, '\\n' if task else '', task or ''))\n\ndef usage():\n    print('''usage: {0} \u003ctime\u003e [task_name]\ntime can be:\n    N or Ns: number of seconds\n    Nm: number of minutes\n    Nh: number of hours\n\nexample:\n    {0} 5m30s 'Egg is ready!'\n'''.format(__file__))\n    sys.exit(1)\n\ndata_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), '.' + os.path.basename(__file__) + '.countdown')\n\nif len(sys.argv) == 1:\n    if os.path.isfile(data_file):\n        t, task = read_data_file(data_file)\n        remain = int(round(max(0, t - time.time())))\n        if remain == 0:\n            notify('Times up!', task or 'Times up!')\n            os.remove(data_file)\n        title = '{}{}{}'.format(task or '', task and ': ' or '', render_time(remain))\n        entry(title, color=('red' if remain \u003c= 10 else 'orange' if remain \u003c 60 else None))\n    else:\n        entry('|templateImage=\\'%s\\'' % icon)\n    entry('---')\n    if os.path.isfile(data_file):\n        entry('Cancel timer', bash=__file__, param1='cancel', terminal='false')\n    else:\n        entry('Set timer...', bash=__file__, param1='set', terminal='false')\nelif len(sys.argv) == 2 and sys.argv[1] == 'set':\n    timestr = prompt('Input time (example: 30s, 15m, 1h, 1m30s)', '5m', 'note', ('Cancel','Set'), 1)\n    task = prompt('Input task name')\n    t = time.time() + parse_time(timestr)\n    write_data_file(data_file, t, task)\nelif len(sys.argv) == 2 and sys.argv[1] == 'cancel':\n    os.remove(data_file)\n"
+			}
+		],
+		"path": "Time/countdown_timer_2.1s.py",
+		"filename": "countdown_timer_2.1s.py",
+		"dir": "Time",
+		"docsPlugin": "Time/countdown_timer_2.1s.py.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Countdown Timer 2",
+		"version": "v1.0",
+		"author": "Federico Ferri",
+		"authors": [
+			{
+				"name": "Federico Ferri",
+				"githubUsername": "fferri",
+				"imageURL": "https://avatars.githubusercontent.com/u/5294568?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Simple countdown timer.",
+		"imageURL": "https://raw.githubusercontent.com/fferri/bitbar-countdown-timer/master/screenshot.gif",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "https://github.com/fferri/bitbar-countdown-timer",
+		"lastUpdated": "2021-03-08T15:22:05.687423Z",
+		"vars": null
+	}
+}

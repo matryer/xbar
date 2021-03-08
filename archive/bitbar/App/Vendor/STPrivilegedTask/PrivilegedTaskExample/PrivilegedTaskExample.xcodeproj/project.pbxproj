@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4F1035E1B5155A200BCAD40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F1035D1B5155A200BCAD40 /* AppDelegate.m */; };
+		F4F103601B5155A200BCAD40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F1035F1B5155A200BCAD40 /* main.m */; };
+		F4F103651B5155A200BCAD40 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F103631B5155A200BCAD40 /* MainMenu.xib */; };
+		F4F1037C1B515A1C00BCAD40 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F1037B1B515A1C00BCAD40 /* STPrivilegedTask.m */; };
+		F4F103801B5166CF00BCAD40 /* lock-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4F1037F1B5166CF00BCAD40 /* lock-icon.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F4F103571B5155A200BCAD40 /* PrivilegedTaskExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivilegedTaskExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F1035B1B5155A200BCAD40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F1035C1B5155A200BCAD40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F4F1035D1B5155A200BCAD40 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F4F1035F1B5155A200BCAD40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F4F103641B5155A200BCAD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F4F1037A1B515A1C00BCAD40 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = ../../STPrivilegedTask.h; sourceTree = "<group>"; };
+		F4F1037B1B515A1C00BCAD40 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = ../../STPrivilegedTask.m; sourceTree = "<group>"; };
+		F4F1037E1B51664C00BCAD40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		F4F1037F1B5166CF00BCAD40 /* lock-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "lock-icon.icns"; sourceTree = "<group>"; };
+		F4F103811B516A3500BCAD40 /* STPrivilegedTask.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = STPrivilegedTask.podspec; path = ../../STPrivilegedTask.podspec; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4F103541B5155A200BCAD40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4F1034E1B5155A200BCAD40 = {
+			isa = PBXGroup;
+			children = (
+				F4F1037D1B51663800BCAD40 /* STPrivilegedTask */,
+				F4F103591B5155A200BCAD40 /* PrivilegedTaskExample */,
+				F4F103581B5155A200BCAD40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4F103581B5155A200BCAD40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4F103571B5155A200BCAD40 /* PrivilegedTaskExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4F103591B5155A200BCAD40 /* PrivilegedTaskExample */ = {
+			isa = PBXGroup;
+			children = (
+				F4F1035F1B5155A200BCAD40 /* main.m */,
+				F4F1035C1B5155A200BCAD40 /* AppDelegate.h */,
+				F4F1035D1B5155A200BCAD40 /* AppDelegate.m */,
+				F4F103631B5155A200BCAD40 /* MainMenu.xib */,
+				F4F1037F1B5166CF00BCAD40 /* lock-icon.icns */,
+				F4F1035B1B5155A200BCAD40 /* Info.plist */,
+			);
+			path = PrivilegedTaskExample;
+			sourceTree = "<group>";
+		};
+		F4F1037D1B51663800BCAD40 /* STPrivilegedTask */ = {
+			isa = PBXGroup;
+			children = (
+				F4F1037E1B51664C00BCAD40 /* README.md */,
+				F4F103811B516A3500BCAD40 /* STPrivilegedTask.podspec */,
+				F4F1037A1B515A1C00BCAD40 /* STPrivilegedTask.h */,
+				F4F1037B1B515A1C00BCAD40 /* STPrivilegedTask.m */,
+			);
+			name = STPrivilegedTask;
+			path = PrivilegedTaskExample;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4F103561B5155A200BCAD40 /* PrivilegedTaskExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F103741B5155A200BCAD40 /* Build configuration list for PBXNativeTarget "PrivilegedTaskExample" */;
+			buildPhases = (
+				F4F103531B5155A200BCAD40 /* Sources */,
+				F4F103541B5155A200BCAD40 /* Frameworks */,
+				F4F103551B5155A200BCAD40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PrivilegedTaskExample;
+			productName = PrivilegedTaskExample;
+			productReference = F4F103571B5155A200BCAD40 /* PrivilegedTaskExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4F1034F1B5155A200BCAD40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
+				TargetAttributes = {
+					F4F103561B5155A200BCAD40 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = F4F103521B5155A200BCAD40 /* Build configuration list for PBXProject "PrivilegedTaskExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4F1034E1B5155A200BCAD40;
+			productRefGroup = F4F103581B5155A200BCAD40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4F103561B5155A200BCAD40 /* PrivilegedTaskExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4F103551B5155A200BCAD40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F103801B5166CF00BCAD40 /* lock-icon.icns in Resources */,
+				F4F103651B5155A200BCAD40 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4F103531B5155A200BCAD40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F103601B5155A200BCAD40 /* main.m in Sources */,
+				F4F1035E1B5155A200BCAD40 /* AppDelegate.m in Sources */,
+				F4F1037C1B515A1C00BCAD40 /* STPrivilegedTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F4F103631B5155A200BCAD40 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4F103641B5155A200BCAD40 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4F103721B5155A200BCAD40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F4F103731B5155A200BCAD40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F4F103751B5155A200BCAD40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PrivilegedTaskExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F4F103761B5155A200BCAD40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PrivilegedTaskExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4F103521B5155A200BCAD40 /* Build configuration list for PBXProject "PrivilegedTaskExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F103721B5155A200BCAD40 /* Debug */,
+				F4F103731B5155A200BCAD40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F103741B5155A200BCAD40 /* Build configuration list for PBXNativeTarget "PrivilegedTaskExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F103751B5155A200BCAD40 /* Debug */,
+				F4F103761B5155A200BCAD40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4F1034F1B5155A200BCAD40 /* Project object */;
+}

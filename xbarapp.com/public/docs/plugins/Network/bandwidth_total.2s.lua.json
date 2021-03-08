@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/bandwidth_total.2s.lua",
+				"filename": "bandwidth_total.2s.lua",
+				"content": "#!/usr/local/bin/lua\n\n-- 1. install lua with e.g. \"brew install lua\"\n-- 2. use this plugin\n\n-- Written in lua, this plugin is smaller and faster than shell versions with similar function.\n\n-- \u003cbitbar.title\u003eBandwidth Total\u003c/bitbar.title\u003e\n-- \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n-- \u003cbitbar.author\u003eCharl P. Botha\u003c/bitbar.author\u003e\n-- \u003cbitbar.author.github\u003ecpbotha\u003c/bitbar.author.github\u003e\n-- \u003cbitbar.desc\u003eDisplays total TX and RX KBytes/s for all active interfaces. Lua = smaller than .sh.\u003c/bitbar.desc\u003e\n-- \u003cbitbar.dependencies\u003eifstat, lua\u003c/bitbar.dependencies\u003e\n-- \u003cbitbar.image\u003ehttps://cpbotha.net/thingies/bitbar_bandwidth_total_lua.jpg\u003c/bitbar.image\u003e\n\n-- to find the network interface connected to default route you could use this:\n-- https://superuser.com/a/627581/130835\n\n-- use ifstat to read current network throughput\n-- example output:\n--        en0                 en10               Total\n-- KB/s in  KB/s out   KB/s in  KB/s out   KB/s in  KB/s out\n-- 20.67      0.00     17.54      0.00     38.21      0.00\nlocal file = io.popen('/usr/local/bin/ifstat -n -w -z -T 0.1 1')\nlocal output = file:read('*all')\n\n-- split into lines\n-- https://stackoverflow.com/a/32847589/532513\nlocal lines = {}\nfor l in output:gmatch(\"[^\\r\\n]+\") do\n    table.insert(lines, l)\nend\n\nlocal speeds = {}\nfor speed in lines[3]:gmatch(\"%S+\") do\n    table.insert(speeds, speed)\nend\n\nlocal ifaces = {}\nfor iface in lines[1]:gmatch(\"%S+\") do\n    table.insert(ifaces, iface)\nend\n\n-- lua tables start from 1\n-- #name is the number of elements, so name[#name] will give you the last element\nprint(string.format(\"▼%.2f ▲%.2f\", speeds[#speeds-1], speeds[#speeds]))\nprint(\"---\")\n\nfor i = 1,#ifaces-1 do\n    -- remember lua is 1-based (hence the *2+1 and *2+2)\n    -- speeds are already %.2f formatted strings, or \"n/a\" if iface not available\n    print(string.format(\"%s: ▼%s ▲%s\", ifaces[i], speeds[i*2-1], speeds[i*2]))\nend\n"
+			}
+		],
+		"path": "Network/bandwidth_total.2s.lua",
+		"filename": "bandwidth_total.2s.lua",
+		"dir": "Network",
+		"docsPlugin": "Network/bandwidth_total.2s.lua.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Bandwidth Total",
+		"version": "v1.0.0",
+		"author": "Charl P. Botha",
+		"authors": [
+			{
+				"name": "Charl P. Botha",
+				"githubUsername": "cpbotha",
+				"imageURL": "https://avatars.githubusercontent.com/u/937871?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays total TX and RX KBytes/s for all active interfaces. Lua = smaller than .sh.",
+		"imageURL": "https://cpbotha.net/thingies/bitbar_bandwidth_total_lua.jpg",
+		"dependencies": [
+			"ifstat",
+			"lua"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.430743Z",
+		"vars": null
+	}
+}

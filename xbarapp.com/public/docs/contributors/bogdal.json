@@ -1,0 +1,106 @@
+{
+	"person": {
+		"name": "Adam Bogdał",
+		"githubUsername": "bogdal",
+		"imageURL": "https://avatars.githubusercontent.com/u/1451824?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/GitHub/github-review-requests.5m.py",
+					"filename": "github-review-requests.5m.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eGithub review requests\u003c/bitbar.title\u003e\n# \u003cbitbar.desc\u003eShows a list of PRs that need to be reviewed\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAdam Bogdał\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ebogdal\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://github-bogdal.s3.amazonaws.com/bitbar-plugins/review-requests.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\n# ----------------------\n# ---  BEGIN CONFIG  ---\n# ----------------------\n\n# https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/\nACCESS_TOKEN = ''\n\nGITHUB_LOGIN = ''\n\n# (optional) PRs with this label (e.g 'in progress') will be grayed out on the list\nWIP_LABEL = ''\n\n# (optional) Filter the PRs by an organization, labels, etc. E.g 'org:YourOrg -label:dropped'\nFILTERS = ''\n\n# --------------------\n# ---  END CONFIG  ---\n# --------------------\n\nimport datetime\nimport json\nimport os\nimport sys\ntry:\n    # For Python 3.x\n    from urllib.request import Request, urlopen\nexcept ImportError:\n    # For Python 2.x\n    from urllib2 import Request, urlopen\n\n\nDARK_MODE = os.environ.get('BitBarDarkMode')\n\nquery = '''{\n  search(query: \"%(search_query)s\", type: ISSUE, first: 100) {\n    issueCount\n    edges {\n      node {\n        ... on PullRequest {\n          repository {\n            nameWithOwner\n          }\n          author {\n            login\n          }\n          createdAt\n          number\n          url\n          title\n          labels(first:100) {\n            nodes {\n              name\n            }\n          }\n        }\n      }\n    }\n  }\n}'''\n\n\ncolors = {\n    'inactive': '#b4b4b4',\n    'title': '#ffffff' if DARK_MODE else '#000000',\n    'subtitle': '#586069'}\n\n\ndef execute_query(query):\n    headers = {\n        'Authorization': 'bearer ' + ACCESS_TOKEN,\n        'Content-Type': 'application/json'}\n    data = json.dumps({'query': query}).encode('utf-8')\n    req = Request(\n        'https://api.github.com/graphql', data=data, headers=headers)\n    body = urlopen(req).read()\n    return json.loads(body)\n\n\ndef search_pull_requests(login, filters=''):\n    search_query = 'type:pr state:open review-requested:%(login)s %(filters)s' % {\n        'login': login, 'filters': filters}\n    response = execute_query(query % {'search_query': search_query})\n    return response['data']['search']\n\n\ndef parse_date(text):\n    date_obj = datetime.datetime.strptime(text, '%Y-%m-%dT%H:%M:%SZ')\n    return date_obj.strftime('%B %d, %Y')\n\n\ndef print_line(text, **kwargs):\n    params = ' '.join(['%s=%s' % (key, value) for key, value in kwargs.items()])\n    print('%s | %s' % (text, params) if kwargs.items() else text)\n\n\nif __name__ == '__main__':\n    if not all([ACCESS_TOKEN, GITHUB_LOGIN]):\n        print_line('⚠ Github review requests', color='red')\n        print_line('---')\n        print_line('ACCESS_TOKEN and GITHUB_LOGIN cannot be empty')\n        sys.exit(0)\n\n    response = search_pull_requests(GITHUB_LOGIN, FILTERS)\n\n    print_line('#%s' % response['issueCount'])\n    print_line('---')\n\n    for pr in [r['node'] for r in response['edges']]:\n        labels = [l['name'] for l in pr['labels']['nodes']]\n        title = '%s - %s' % (pr['repository']['nameWithOwner'], pr['title'])\n        title_color = colors.get('inactive' if WIP_LABEL in labels else 'title')\n        subtitle = '#%s opened on %s by @%s' % (\n            pr['number'], parse_date(pr['createdAt']), pr['author']['login'])\n        subtitle_color = colors.get('inactive' if WIP_LABEL in labels else 'subtitle')\n\n        print_line(title, size=16, color=title_color, href=pr['url'])\n        print_line(subtitle, size=12, color=subtitle_color)\n        print_line('---')\n"
+				}
+			],
+			"path": "Dev/GitHub/github-review-requests.5m.py",
+			"filename": "github-review-requests.5m.py",
+			"dir": "Dev/GitHub",
+			"docsPlugin": "Dev/GitHub/github-review-requests.5m.py.html",
+			"docsCategory": "Dev/GitHub.html",
+			"pathSegments": [
+				"Dev",
+				"GitHub"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/GitHub",
+					"text": "GitHub",
+					"isLast": true
+				}
+			],
+			"title": "Github review requests",
+			"version": "v0.1",
+			"author": "Adam Bogdał",
+			"authors": [
+				{
+					"name": "Adam Bogdał",
+					"githubUsername": "bogdal",
+					"imageURL": "https://avatars.githubusercontent.com/u/1451824?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows a list of PRs that need to be reviewed",
+			"imageURL": "https://github-bogdal.s3.amazonaws.com/bitbar-plugins/review-requests.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:48.311914Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Network/viscosity-active-connection.1s.sh",
+					"filename": "viscosity-active-connection.1s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eViscosity active connection\u003c/bitbar.title\u003e\n# \u003cbitbar.desc\u003eShows the name of the first active connection\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAdam Bogdał\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ebogdal\u003c/bitbar.author.github\u003e\n# \u003cbitbar.dependencies\u003ebash,viscosity\u003c/bitbar.dependencies\u003e\n\nCONNECTION_NAME=$(osascript -e '\ntell application \"Viscosity\"\n    repeat with _connection in connections\n        if the state of _connection is \"Connected\" then\n            return name of _connection\n        end if\n    end repeat\nend tell\n')\n\nif [ -n \"$CONNECTION_NAME\" ]; then\n    echo \"$CONNECTION_NAME | color=green\"\nelse\n    echo \"NoVPN | color=#b4b4b4\"\nfi\n"
+				}
+			],
+			"path": "Network/viscosity-active-connection.1s.sh",
+			"filename": "viscosity-active-connection.1s.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/viscosity-active-connection.1s.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "Viscosity active connection",
+			"version": "v0.1",
+			"author": "Adam Bogdał",
+			"authors": [
+				{
+					"name": "Adam Bogdał",
+					"githubUsername": "bogdal",
+					"imageURL": "https://avatars.githubusercontent.com/u/1451824?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the name of the first active connection",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"bash",
+				"viscosity"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:59.974957Z",
+			"vars": null
+		}
+	]
+}

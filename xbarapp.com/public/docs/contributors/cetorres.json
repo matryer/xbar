@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Carlos Eugenio Torres",
+		"githubUsername": "cetorres",
+		"imageURL": "https://avatars.githubusercontent.com/u/533661?v=4",
+		"bio": "A software engineer..",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/track-correios-packages.1h.js",
+					"filename": "track-correios-packages.1h.js",
+					"content": "#!/usr/bin/env /usr/local/bin/node\n\n/* jshint esversion: 6 */\n\n/*\n * \u003cbitbar.title\u003eTrack Brazilian Post Office (Correios) packages\u003c/bitbar.title\u003e\n * \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n * \u003cbitbar.author\u003eCarlos E. Torres\u003c/bitbar.author\u003e\n * \u003cbitbar.author.github\u003ecetorres\u003c/bitbar.author.github\u003e\n * \u003cbitbar.desc\u003eEN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios.\u003c/bitbar.desc\u003e\n * \u003cbitbar.abouturl\u003ehttps://github.com/cetorres/bitbar-track-correios-packages\u003c/bitbar.abouturl\u003e\n * \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png\u003c/bitbar.image\u003e\n * \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n */\n\n// Enter the track code here.\n// Informe o código de rastreio aqui.\nvar code = \"\"; // Ex.: AA123456789BR\n\n// Don't change anything else below this line.\n// Não altere mais nada a partir desta linha.\nconst fs = require('fs');\nconst https = require('https');\nvar url = \"https://wsmobile.correios.com.br/service/rest/rastro/rastroMobile/FALECONOSC/7KMJ6FISA4/L/T/\" + code + \"/101\";\nvar logFile = \".track-correios-package.log\";\n\nvar getLogData = function(callback) {\n    fs.readFile(__dirname + '/' + logFile, (e, data) =\u003e {\n        if (e) {\n            callback(null);\n        }\n        callback(data);\n    });\n};\n\nvar saveLogData = function(data) {\n    fs.writeFile(__dirname + '/' + logFile, data, function(err) {\n        if (err) {\n            console.log(err);\n        }\n    });\n};\n\nvar refreshMenu = function() {\n    console.log(\"---\");\n    console.log(\"Atualizar | refresh=true\");\n};\n\nvar aboutMenu = function() {\n    console.log('---');\n    console.log('by Carlos E. Torres | href=http://cetorres.com');\n};\n\nconst toTitleCase = (phrase) =\u003e {    \n    return phrase ? phrase\n        .toLowerCase()\n        .split(' ')\n        .map(word =\u003e word.charAt(0).toUpperCase() + word.slice(1))\n        .join(' ') : \"\";\n};\n\nif (!fs.existsSync(__dirname + '/' + logFile)) {\n    saveLogData(0);\n}\n\nhttps.get(url, (res) =\u003e {\n\n    res.setEncoding('utf-8');\n    var responseString = '';\n\n    res.on('data', function(data) {\n        responseString += data;\n    });\n\n    res.on('end', function() {       \n        var responseObject = JSON.parse(responseString);\n        var nomeObjeto = responseObject.objeto[0].nome != undefined ? responseObject.objeto[0].nome : \"OBJETO\";\n        var eventos = responseObject.objeto[0].evento;\n        var eventosTotal = eventos != undefined ? eventos.length : 0;\n\n        if (nomeObjeto != \"OBJETO\" \u0026\u0026 eventosTotal == 0) {\n            console.log(\"📦 0 | color=yellow\");\n            console.log(\"---\");\n            console.log(nomeObjeto + \"\\n\");\n            console.log(\"Código: \" + code);\n            console.log(\"---\");\n            console.log(\"Sem eventos no momento.\");      \n            \n            refreshMenu();\n            aboutMenu(); \n        }\n        else if (nomeObjeto == \"OBJETO\" \u0026\u0026 eventosTotal == 0) {\n            console.log(\"📦 0 | color=yellow\");\n            console.log(\"---\");\n            console.log(nomeObjeto + \"\\n\");\n            console.log(\"Código: \" + code);\n            console.log(\"---\");\n            console.log(\"Objeto não encontrado.\"); \n\n            refreshMenu();\n            aboutMenu(); \n        }\n        else if (nomeObjeto != \"\" \u0026\u0026 eventosTotal \u003e 0) {\n            var header = eventos.filter(evento =\u003e evento.tipo == \"PO\")[0];            \n            \n            getLogData((data) =\u003e {\n                var newEvents = false;\n                var eventosLog = data;\n            \n                if (eventosLog != undefined) {\n                    if (eventosLog != eventosTotal) {\n                        newEvents = true;\n                    }\n                }            \n                \n                saveLogData(eventosTotal);\n\n                var objetoEntregue = eventos.find(e =\u003e e.tipo == \"BDE\") != undefined ? true : false;\n\n                if (objetoEntregue) {\n                    console.log(\"📦 ✓ | color=green\");    \n                }\n                else {\n                    console.log(\"📦 \" + eventosTotal + (newEvents ? ' | color=green' : ''));\n                }\n                console.log(\"---\");            \n                console.log(nomeObjeto + \"\\n\");\n                console.log(\"Código: \" + code);\n                console.log('Postado em: ' + (header == undefined ? eventos[0].dataPostagem : header.postagem.datapostagem));\n\n                eventos.forEach(evento =\u003e {                \n                    console.log(\"---\");\n                    console.log(evento.data + \" - \" + evento.hora + \"\\n\");                 \n                    if (evento.tipo == \"RO\") {            \n                        console.log(evento.descricao.trim() + \"\\n\");                                                        \n                        console.log(\"Para: \" + toTitleCase(evento.destino[0].local) + (evento.destino[0].cidade != undefined ? (\" em \" + toTitleCase(evento.destino[0].cidade)) : \"\"));\n                        console.log(\"De: \" + toTitleCase(evento.unidade.local) + (evento.unidade.cidade != undefined ? (\" em \" + toTitleCase(evento.unidade.cidade) + \"\\n\") : \"\"));   \n                    } \n                    else if (evento.tipo == \"PAR\") {\n                        console.log(evento.descricao.trim() + \"\\n\");                                                        \n                        console.log(toTitleCase(evento.unidade.local));\n                    }\n                    else {\n                        console.log(evento.descricao.trim() + \"\\n\");\n                        if (evento.detalhe != undefined) {\n                            console.log(evento.detalhe.trim() + \"\\n\");                                \n                        }                        \n                        if (evento.postagem != undefined) {\n                            console.log(\"Para: \" + toTitleCase(evento.postagem.destinatario));\n                        }\n                        console.log(\"De: \" + toTitleCase(evento.unidade.local) + (evento.unidade.cidade != undefined ? (\" em \" + toTitleCase(evento.unidade.cidade) + \"\\n\") : \"\")); \n                    }               \n                });\n\n                console.log(\"---\");\n                console.log(\"Ver online | href=\" + url); \n                \n                refreshMenu();\n                aboutMenu(); \n            });                 \n            \n        }\n        \n    });\n\n})\n.on('error', (e) =\u003e {\n    console.log('✖︎ | color=red');\n    console.log('---');\n    console.log('Erro ao ler dados do serviço dos Correios.\\n' + e);\n    refreshMenu();\n    aboutMenu();\n});\n"
+				}
+			],
+			"path": "Lifestyle/track-correios-packages.1h.js",
+			"filename": "track-correios-packages.1h.js",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/track-correios-packages.1h.js.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Track Brazilian Post Office (Correios) packages",
+			"version": "v1.0",
+			"author": "Carlos E. Torres",
+			"authors": [
+				{
+					"name": "Carlos Eugenio Torres",
+					"githubUsername": "cetorres",
+					"imageURL": "https://avatars.githubusercontent.com/u/533661?v=4",
+					"bio": "A software engineer..",
+					"primary": true
+				}
+			],
+			"desc": "EN: Track Brazilian Post Office (Correios) packages. PT: Rastreie encomendas dos Correios.",
+			"imageURL": "https://raw.githubusercontent.com/cetorres/bitbar-track-correios-packages/master/screenshot.png",
+			"dependencies": [
+				"node"
+			],
+			"aboutURL": "https://github.com/cetorres/bitbar-track-correios-packages",
+			"lastUpdated": "2021-03-08T15:21:56.451879Z",
+			"vars": null
+		}
+	]
+}

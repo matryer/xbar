@@ -1,0 +1,129 @@
+{{ define "title" }}{{ .Plugin.Title }} in your macOS menu bar{{ end }}
+{{ define "head" }}
+	<meta name='description' content='{{ .Plugin.Desc }} - install xbar for free to get started.'>
+	<meta name='author' content='{{ .Plugin.Author }}'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='{{ .Plugin.ImageURL }}'>
+	<meta itemprop='name' content='{{ .Plugin.Title }} in your macOS menu bar'>
+	<meta itemprop='description' content='{{ .Plugin.Desc }} - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='{{ .Plugin.Title }} in your macOS menu bar'>
+	<meta name='twitter:description' content='{{ .Plugin.Desc }} - install xbar for free to get started.'>
+	<meta name='twitter:image' content='{{ .Plugin.ImageURL }}'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='{{ .Plugin.Title }} in your macOS menu bar'>
+	<meta property='og:description' content='{{ .Plugin.Desc }} - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/{{ .Plugin.Path }}.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='{{ .Plugin.ImageURL }}'>
+	<link rel='apple-touch-icon' sizes='180x180' href='{{ .Plugin.ImageURL }}'>
+	<link rel='icon' type='image/png' sizes='32x32' href='{{ .Plugin.ImageURL }}'>
+	<link rel='shortcut icon' href='{{ .Plugin.ImageURL }}'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+{{ end }}
+{{ define "body" }}
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>{{ .Plugin.Title }}</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				{{ range .Plugin.Authors }}
+					{{ if .Name }}
+						{{ if .GitHubUsername }}
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/{{ .GitHubUsername }}.html'
+									>
+										<img class='rounded shadow {{ if .Primary }}primary{{ end }}' src='{{ .ImageURL }}'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/{{ .GitHubUsername }}.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										{{ .Name }} (<code style='color:white;'>@{{ .GitHubUsername }}</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						{{ else }}
+							<p class='text-white'>
+								and <strong>{{ .Name }}</strong>
+							</p>
+						{{ end }}
+					{{ end }}
+				{{ end }}
+				{{ if .Plugin.Desc }}
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						{{ .Plugin.Desc }}
+					</p>
+				{{ end }}
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path={{ .Plugin.Path }}'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				{{ if eq .Plugin.ImageURL "https://xbarapp.com/public/img/xbar-2048.png" }}
+					<p class='text=sm opacity-75 py-4 max-w-lg mt-8 text-white'>
+						<strong>Can you help?</strong>&mdash;This plugin is missing an image.
+						Please add one 
+						(via <code>&lt;xbar.image&gt;...&lt;/xbar.image&gt;</code> metadata) to enhance this plugin's presence. <a class='underline' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/{{ .Plugin.Path }}'>View file on GitHub</a>
+					</p>
+				{{ end }}
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='{{ .Plugin.ImageURL }}' 
+				alt='Image preview of {{ .Plugin.Title }} plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	{{ range .Plugin.Files }}
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>{{ .Filename }}</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/{{ .Path }}'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/{{ .Path }}'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>{{ .Content }}</code></pre>
+				</div>
+			</div>
+		</div>
+	{{ end }}
+{{ end }}

@@ -1,0 +1,1014 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Habitica in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Allows you to manage your Habitica tasks, habits and to-dos. See: habitica.com - install xbar for free to get started.'>
+	<meta name='author' content='Stefan du Fresne'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/CUO445t.png'>
+	<meta itemprop='name' content='Habitica in your macOS menu bar'>
+	<meta itemprop='description' content='Allows you to manage your Habitica tasks, habits and to-dos. See: habitica.com - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Habitica in your macOS menu bar'>
+	<meta name='twitter:description' content='Allows you to manage your Habitica tasks, habits and to-dos. See: habitica.com - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/CUO445t.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Habitica in your macOS menu bar'>
+	<meta property='og:description' content='Allows you to manage your Habitica tasks, habits and to-dos. See: habitica.com - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Lifestyle/habitica.1h.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/CUO445t.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/CUO445t.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/CUO445t.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/CUO445t.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Habitica</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/SCdF.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/583851?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/SCdF.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Stefan du Fresne (<code style='color:white;'>@SCdF</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Allows you to manage your Habitica tasks, habits and to-dos. See: habitica.com
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Lifestyle%2fhabitica.1h.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/CUO445t.png' 
+				alt='Image preview of Habitica plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>habitica.1h.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Lifestyle/habitica.1h.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Lifestyle/habitica.1h.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+// &lt;bitbar.title&gt;Habitica&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.2&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Stefan du Fresne&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;SCdF&lt;/bitbar.author.github&gt;
+// &lt;bitbar.desc&gt;Allows you to manage your Habitica tasks, habits and to-dos. See: habitica.com&lt;/bitbar.desc&gt;
+// &lt;bitbar.image&gt;http://i.imgur.com/CUO445t.png&lt;/bitbar.image&gt;
+// &lt;bitbar.dependencies&gt;node6&lt;/bitbar.dependencies&gt;
+
+/*jshint esversion: 6 */
+&#39;use strict&#39;;
+
+// Go here: https://habitica.com/#/options/settings/api
+// And put your values in these vars below!
+const USER_ID = &#39;YOUR_USER_ID_HERE&#39;;
+const API_TOKEN = &#39;YOUR_TOKEN_HERE&#39;;
+
+const HABITICA_ICON =
+  &#39;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAACXBIWXMAABYlAAAWJQFJUiTwAA&#39; &#43;
+  &#39;A6HWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJX&#39; &#43;
+  &#39;NU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpucz&#39; &#43;
+  &#39;ptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzIgNzkuMTU5Mjg0LCAyMDE2&#39; &#43;
+  &#39;LzA0LzE5LTEzOjEzOjQwICAgICAgICAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly&#39; &#43;
+  &#39;93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2Ny&#39; &#43;
+  &#39;aXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG&#39; &#43;
+  &#39;9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcv&#39; &#43;
+  &#39;ZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbn&#39; &#43;
+  &#39;MuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgICAgICAgICB4bWxuczp4bXBNTT0iaHR0&#39; &#43;
+  &#39;cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgICAgICAgICAgeG1sbnM6c3RFdnQ9Im&#39; &#43;
+  &#39;h0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgICAg&#39; &#43;
+  &#39;ICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgIC&#39; &#43;
+  &#39;AgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAg&#39; &#43;
+  &#39;ICAgPHhtcDpDcmVhdGVEYXRlPjIwMTYtMDctMzBUMTM6MzA6MTErMDE6MDA8L3htcDpDcmVhdG&#39; &#43;
+  &#39;VEYXRlPgogICAgICAgICA8eG1wOk1vZGlmeURhdGU&#43;MjAxNi0wNy0zMFQxMzozMTo0NSswMTow&#39; &#43;
+  &#39;MDwveG1wOk1vZGlmeURhdGU&#43;CiAgICAgICAgIDx4bXA6TWV0YWRhdGFEYXRlPjIwMTYtMDctMz&#39; &#43;
+  &#39;BUMTM6MzE6NDUrMDE6MDA8L3htcDpNZXRhZGF0YURhdGU&#43;CiAgICAgICAgIDx4bXA6Q3JlYXRv&#39; &#43;
+  &#39;clRvb2w&#43;QWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoTWFjaW50b3NoKTwveG1wOkNyZWF0b3&#39; &#43;
+  &#39;JUb29sPgogICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3BuZzwvZGM6Zm9ybWF0PgogICAgICAg&#39; &#43;
+  &#39;ICA8cGhvdG9zaG9wOkNvbG9yTW9kZT4zPC9waG90b3Nob3A6Q29sb3JNb2RlPgogICAgICAgIC&#39; &#43;
+  &#39;A8eG1wTU06SW5zdGFuY2VJRD54bXAuaWlkOmI1Y2U5ZjZlLWRmZjEtNDYzNS05Yzk0LTkzN2I2&#39; &#43;
+  &#39;OTI2NzliMTwveG1wTU06SW5zdGFuY2VJRD4KICAgICAgICAgPHhtcE1NOkRvY3VtZW50SUQ&#43;eG&#39; &#43;
+  &#39;1wLmRpZDplYTUwZTRiMi0zZmVjLTQ1MDktOWVhMS02MGIxYTZhZDRhODU8L3htcE1NOkRvY3Vt&#39; &#43;
+  &#39;ZW50SUQ&#43;CiAgICAgICAgIDx4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ&#43;eG1wLmRpZDplYTUwZT&#39; &#43;
+  &#39;RiMi0zZmVjLTQ1MDktOWVhMS02MGIxYTZhZDRhODU8L3htcE1NOk9yaWdpbmFsRG9jdW1lbnRJ&#39; &#43;
+  &#39;RD4KICAgICAgICAgPHhtcE1NOkhpc3Rvcnk&#43;CiAgICAgICAgICAgIDxyZGY6U2VxPgogICAgIC&#39; &#43;
+  &#39;AgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgPHN0RXZ0OmFjdGlvbj5zYXZlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICA8c3RFdnQ6aW5zdGFuY2VJRD54bXAuaWlkOmVhNTBlNGIyLTNmZWMtNDUwOS05ZWExLTYw&#39; &#43;
+  &#39;YjFhNmFkNGE4NTwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0On&#39; &#43;
+  &#39;doZW4&#43;MjAxNi0wNy0zMFQxMzozMTowMiswMTowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgPHN0RXZ0OnNvZnR3YXJlQWdlbnQ&#43;QWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoTW&#39; &#43;
+  &#39;FjaW50b3NoKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0&#39; &#43;
+  &#39;OmNoYW5nZWQ&#43;Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk&#43;CiAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDphY3Rpb24&#43;CiAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6YjVjZTlmNmUtZGZmMS00NjM1LTljOTQt&#39; &#43;
+  &#39;OTM3YjY5MjY3OWIxPC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdn&#39; &#43;
+  &#39;Q6d2hlbj4yMDE2LTA3LTMwVDEzOjMxOjQ1KzAxOjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNS41IC&#39; &#43;
+  &#39;hNYWNpbnRvc2gpPC9zdEV2dDpzb2Z0d2FyZUFnZW50PgogICAgICAgICAgICAgICAgICA8c3RF&#39; &#43;
+  &#39;dnQ6Y2hhbmdlZD4vPC9zdEV2dDpjaGFuZ2VkPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KIC&#39; &#43;
+  &#39;AgICAgICAgICAgPC9yZGY6U2VxPgogICAgICAgICA8L3htcE1NOkhpc3Rvcnk&#43;CiAgICAgICAg&#39; &#43;
+  &#39;IDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgICAgIDx0aWZmOl&#39; &#43;
+  &#39;hSZXNvbHV0aW9uPjE0NDAwMDAvMTAwMDA8L3RpZmY6WFJlc29sdXRpb24&#43;CiAgICAgICAgIDx0&#39; &#43;
+  &#39;aWZmOllSZXNvbHV0aW9uPjE0NDAwMDAvMTAwMDA8L3RpZmY6WVJlc29sdXRpb24&#43;CiAgICAgIC&#39; &#43;
+  &#39;AgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ&#43;CiAgICAgICAg&#39; &#43;
+  &#39;IDxleGlmOkNvbG9yU3BhY2U&#43;NjU1MzU8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aW&#39; &#43;
+  &#39;Y6UGl4ZWxYRGltZW5zaW9uPjM2PC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPGV4&#39; &#43;
+  &#39;aWY6UGl4ZWxZRGltZW5zaW9uPjM2PC9leGlmOlBpeGVsWURpbWVuc2lvbj4KICAgICAgPC9yZG&#39; &#43;
+  &#39;Y6RGVzY3JpcHRpb24&#43;CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE&#43;CiAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAog&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAK&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;IAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCi&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA&#39; &#43;
+  &#39;ogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIC&#39; &#43;
+  &#39;AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg&#39; &#43;
+  &#39;ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgCjw/eHBhY2tldC&#39; &#43;
+  &#39;BlbmQ9InciPz5J4M7HAAAAIGNIUk0AAHolAACAgwAA&#43;f8AAIDpAAB1MAAA6mAAADqYAAAXb5Jf&#39; &#43;
+  &#39;xUYAAAT0SURBVHja7JhfbFN1FMc/567rsBsERiSAhBBoy5LxgMQnHrCsk39BMEaCIQaFGE1IiG&#39; &#43;
+  &#39;BcNybGG2LCVkAJ&#43;kBMDIhIVIhGIIrZmGVogkQkmkzZn&#43;AS3RDDABUurN29x4e1446uawsL8uB5&#39; &#43;
+  &#39;ur2/3/3db8/5nu8554qqcj&#43;ZwX1mntSFiLAguKmsT&#43;13iq/7lh3pNq17BcIdpUEesp24IRC2Sq&#39; &#43;
+  &#39;yjj082ff95yHzW6M5&#43;yMy/XmwdDpWbJfcakKTcJSIAhAORc8DM5PpZO6FLYp3b/sj34BXlprfn&#39; &#43;
+  &#39;5o1HRPquHu/Y8fOKctPbk7BmO4bxZ&#43;xcXWemkKUBqghU7xJ0vWv/BRFndWPb9sZcgISmmaM8nh&#39; &#43;
+  &#39;sbMDSiyrjk7R5gDFAI9Kowr6ktenooQJ50hjl7EXEDmqRqNFQGInvEYHNDa7R7EICQ6Snour4I&#39; &#43;
+  &#39;lVEizFastQqTGKwm413XRaK6FjidU9o3dWz7QeFEGk5Y4zicDwcieyv8VXMGAMVwQGoRDiq8Ck&#39; &#43;
+  &#39;zKThQm5qVDovY6IDHEUhHwrIicCQcizZXBVypNTMdO&#43;CpQtopwJQuU3xD9XFWO5UzqlIX91c8g&#39; &#43;
+  &#39;&#43;kF2EeFjn&#43;Vbe6TbtPrDZx0FFg4pet7E&#43;K9a3rqcsw657XhH/X5HWQ5czOL&#43;lZbPOmRiGrGY2a&#39; &#43;
+  &#39;dD8TJpfXHv8znrUKisZlrIH5niXvy6I3rY9vr8IrwIfCjCGeDHZNa4QS0&#43;GbjxZsZEueWL&#43;rA/&#39; &#43;
+  &#39;8sVi//oxWQEV2M6vBQbfpKVxCxYwXYVTDrpb0EPA70O87KVwoGq3QDCLRxfH5YFjoZDpGZZD4W&#39; &#43;
+  &#39;B1TJBLiO5X6HbrxG1iOTL1C13T1L5tb0YONbVHQwbOGyifCVrrfthRIiNeIpCncm8/VMoqgxGz&#39; &#43;
+  &#39;0l8TSnEJ4b0RxhQyMY1c&#43;6GZqryO4YRSN0oLfeuA90cQ0M3v/D0lw&#43;rQY4Gq2Q5y1rXeiug5lY&#39; &#43;
+  &#39;JdTa11Tf18qloKsgV4&#43;C7A9JZ6fWMOtpjxnHUo5SlUluPYUwf0qX3b0ePt0TmKPIqyQ5Vv02Qg&#39; &#43;
+  &#39;uxVdiVtLh&#43;0YARLe4g5P7835GM4iVapv&#43;VHSXNvUXt8MNAOE/JEphiEvi&#43;rGPFj9BPBpTqWjIl&#39; &#43;
+  &#39;D1nCB7XNu67ETvrFjnzqvp5YU60IfyT3tONLVHQzmFbLy3&#43;ICdiI&#43;zE/FxHm9iPDjdBR7vZvee&#39; &#43;
+  &#39;ymDkhf5alz&#43;YZNpfzhqylCXJFh/wWDCyT2BZ6vfC8o2lfXG232Vn33jHY5AoqwRtHiiSvYVPA6&#39; &#43;
+  &#39;PvAs5Fu8i3744AhYNVtSBT&#43;7zFO13&#43;nnsXYP4xDJbGWsxrOYcsZfODVUtQ2aywaNABwmTufOA9&#39; &#43;
+  &#39;39Aa/T7vyTU0o8ZvqHwkwoZkirtTZFSOL7dHZJQ2MY0Cwz6A8EljW/TdIVI2noV1XYquKfX6fL&#39; &#43;
+  &#39;bXNxpla96jtNtO&#43;q0nQYJ2oa8iA8ktJOOZv9jSNy/WtuNS8nccqK0IVJcIuh4dnrdDN/nCbOBS&#39; &#43;
+  &#39;JuIhXM54oMFqF5hbtUKtzUAvBmPyBqToKWBGOBDZsqLc9N4&#43;CALTMxXNsR7fT6l5zf3slx1v/w&#39; &#43;
+  &#39;10oExMnpHf1FEZjNT11zPpAm0EuSqipY6ySODBYf7kBcACpgKWndCygiKdgG3UISxOdREiXFNl&#39; &#43;
+  &#39;lgg7G1rra7ICAlgQ3FRmq71KYa70e2UCUJzfxwNZqaKzgNcybPmrsa1&#43;bBqg/7&#43;gZbB/BwBXfQ&#39; &#43;
+  &#39;a0r0oBWwAAAABJRU5ErkJggg==&#39;;
+
+//   ================================================================================================
+//   ===     =====    ====  =======  ===      ===        =====  =====  =======  ==        ===      ==
+//   ==  ===  ===  ==  ===   ======  ==  ====  =====  =======    ====   ======  =====  =====  ====  =
+//   =  ========  ====  ==    =====  ==  ====  =====  ======  ==  ===    =====  =====  =====  ====  =
+//   =  ========  ====  ==  ==  ===  ===  ==========  =====  ====  ==  ==  ===  =====  ======  ======
+//   =  ========  ====  ==  ===  ==  =====  ========  =====  ====  ==  ===  ==  =====  ========  ====
+//   =  ========  ====  ==  ====  =  =======  ======  =====        ==  ====  =  =====  ==========  ==
+//   =  ========  ====  ==  =====    ==  ====  =====  =====  ====  ==  =====    =====  =====  ====  =
+//   ==  ===  ===  ==  ===  ======   ==  ====  =====  =====  ====  ==  ======   =====  =====  ====  =
+//   ===     =====    ====  =======  ===      ======  =====  ====  ==  =======  =====  ======      ==
+//   ================================================================================================
+
+// NB: DEBUG on means refreshing post-action doesn&#39;t work
+const DEBUG = false;
+
+const REQUEST_TIMEOUT = 30 * 1000;
+
+const NEW_DAY = &#39;🌅&#39;;
+
+const UNCHECKED = &#39;◻️&#39;;
+const CHECKED = &#39;☑️&#39;;
+const HEALTH = &#39;💗&#39;;
+const EXP = &#39;⭐&#39;;
+const MAGIC = &#39;🔥&#39;;
+
+const SCORE_UP   = &#39;➕&#39;;
+const SCORE_DOWN = &#39;➖&#39;;
+
+const SCORE_TASK = &#39;scoreTask&#39;;
+const SCORE_CHECKLIST_ITEM = &#39;scoreChecklistItem&#39;;
+const START_NEW_DAY = &#39;startNewDay&#39;;
+
+//   ========================================================================
+//   =  ====  =====  =====      ====    ==        ==    ====     ======  ====
+//   =  ====  ====    ====  ===  ====  ======  ======  ====  ===  ====    ===
+//   =  ====  ===  ==  ===  ====  ===  ======  ======  ===  =========  ==  ==
+//   =  ====  ==  ====  ==  ===  ====  ======  ======  ===  ========  ====  =
+//   =        ==  ====  ==      =====  ======  ======  ===  ========  ====  =
+//   =  ====  ==        ==  ===  ====  ======  ======  ===  ========        =
+//   =  ====  ==  ====  ==  ====  ===  ======  ======  ===  ========  ====  =
+//   =  ====  ==  ====  ==  ===  ====  ======  ======  ====  ===  ==  ====  =
+//   =  ====  ==  ====  ==      ====    =====  =====    ====     ===  ====  =
+//   ========================================================================
+
+const https = require(&#39;https&#39;);
+
+const options = function(method, endpoint) {
+  return {
+    method: method,
+    hostname: &#39;habitica.com&#39;,
+    path: &#39;/api/v3/&#39; &#43; endpoint,
+    timeout: REQUEST_TIMEOUT,
+    headers: {
+      &#39;x-api-user&#39;: USER_ID,
+      &#39;x-api-key&#39;: API_TOKEN
+    }
+  };
+};
+
+const request = function(method, endpoint) {
+  return new Promise((resolve, reject) =&gt; {
+    let req = https.request(options(method, endpoint), (res) =&gt; {
+      if (res.statusCode !== 200) {
+        return reject(&#39;HTTP&#39;&#43;res.statusCode&#43;&#39; when &#39;&#43;method&#43;&#39;ing [&#39;&#43;endpoint&#43;&#39;]&#39;);
+      }
+
+      let body = &#39;&#39;;
+      res.on(&#39;data&#39;, data =&gt; body &#43;= data);
+      res.on(&#39;end&#39;,  ()   =&gt; resolve(JSON.parse(body)));
+      res.on(&#39;error&#39;, reject);
+    });
+
+    req.end();
+    req.on(&#39;error&#39;, reject);
+  });
+};
+
+const get = function(endpoint) {
+  return request(&#39;GET&#39;, endpoint);
+};
+
+//   =====================================================================
+//   ====  =======     ===        ==    ====    ====  =======  ===      ==
+//   ===    =====  ===  =====  ======  ====  ==  ===   ======  ==  ====  =
+//   ==  ==  ===  ===========  ======  ===  ====  ==    =====  ==  ====  =
+//   =  ====  ==  ===========  ======  ===  ====  ==  ==  ===  ===  ======
+//   =  ====  ==  ===========  ======  ===  ====  ==  ===  ==  =====  ====
+//   =        ==  ===========  ======  ===  ====  ==  ====  =  =======  ==
+//   =  ====  ==  ===========  ======  ===  ====  ==  =====    ==  ====  =
+//   =  ====  ===  ===  =====  ======  ====  ==  ===  ======   ==  ====  =
+//   =  ====  ====     ======  =====    ====    ====  =======  ===      ==
+//   =====================================================================
+
+const scoreTask = (taskId, direction) =&gt; request(&#39;POST&#39;, &#39;tasks/&#39;&#43;taskId&#43;&#39;/score/&#39;&#43;direction);
+
+const scoreChecklistItem = (taskId, checklistItemId) =&gt;
+  request(&#39;POST&#39;, &#39;tasks/&#39;&#43;taskId&#43;&#39;/checklist/&#39;&#43;checklistItemId&#43;&#39;/score&#39;);
+
+const processArguments = function() {
+  const action = process.argv[2];
+
+  switch (action) {
+    case SCORE_TASK: {
+      const taskId = process.argv[3],
+            direction = process.argv[4];
+      if (taskId &amp;&amp; direction) {
+        return scoreTask(taskId, direction);
+      } else {
+        throw Error(SCORE_TASK &#43; &#39; requires an id and a direction&#39;);
+      }
+      break;
+    }
+    case SCORE_CHECKLIST_ITEM: {
+      const taskId = process.argv[3],
+            checklistItemId = process.argv[4];
+
+      if (taskId &amp;&amp; checklistItemId) {
+        return scoreChecklistItem(taskId, checklistItemId);
+      } else {
+        throw Error(SCORE_CHECKLIST_ITEM &#43; &#39; missing params&#39;);
+      }
+      break;
+    }
+    case START_NEW_DAY: {
+      return request(&#39;POST&#39;, &#39;cron&#39;);
+    }
+    default:
+      throw Error(&#39;Unsupported action &#39; &#43; action);
+  }
+};
+
+//   ==============================================
+//   =  ==========    =====      ===    ====     ==
+//   =  =========  ==  ===   ==   ===  ====  ===  =
+//   =  ========  ====  ==  ====  ===  ===  =======
+//   =  ========  ====  ==  =========  ===  =======
+//   =  ========  ====  ==  =========  ===  =======
+//   =  ========  ====  ==  ===   ===  ===  =======
+//   =  ========  ====  ==  ====  ===  ===  =======
+//   =  =========  ==  ===   ==   ===  ====  ===  =
+//   =        ====    =====      ===    ====     ==
+//   ==============================================
+
+const dayOfWeek = new Date().getDay();
+const now = Date.now();
+const tz = new Date().getTimezoneOffset();
+const days = [&#39;su&#39;, &#39;m&#39;, &#39;t&#39;, &#39;w&#39;, &#39;th&#39;, &#39;f&#39;, &#39;s&#39;];
+
+const relevant = task =&gt; {
+  switch (task.frequency) {
+    case &#39;weekly&#39;:
+      return task.repeat[days[dayOfWeek]];
+    case &#39;daily&#39;:
+      let startDateLocal = new Date(task.startDate).getTime() - (1000 * 60 * tz);
+      let msDifferent = Math.abs(Date.now() - startDateLocal);
+      let daysDifferent = Math.floor(msDifferent / (1000 * 60 * 60 * 24));
+
+      return daysDifferent % task.everyX === 0;
+    default:
+      throw Error(&#39;Cannot handle task.frequency of &#39; &#43; task.frequency);
+  }
+};
+const daily = task =&gt; task.type === &#39;daily&#39;;
+const habit = task =&gt; task.type === &#39;habit&#39;;
+const todo = task =&gt; task.type === &#39;todo&#39;;
+const completed = task =&gt; task.completed;
+const incomplete = task =&gt; !completed(task);
+
+// presumes that habitica never screws up and always contains all the ids
+// we need
+const order = (correctOrder, unorderedItems) =&gt;
+  correctOrder
+    .map(oItem =&gt; unorderedItems.find(item =&gt; item._id === oItem))
+    .filter(i =&gt; i); // identity function, removes undefined
+
+//   ============================================================
+//   ===    ====  ====  ==        ==       ===  ====  ==        =
+//   ==  ==  ===  ====  =====  =====  ====  ==  ====  =====  ====
+//   =  ====  ==  ====  =====  =====  ====  ==  ====  =====  ====
+//   =  ====  ==  ====  =====  =====  ====  ==  ====  =====  ====
+//   =  ====  ==  ====  =====  =====       ===  ====  =====  ====
+//   =  ====  ==  ====  =====  =====  ========  ====  =====  ====
+//   =  ====  ==  ====  =====  =====  ========  ====  =====  ====
+//   ==  ==  ===   ==   =====  =====  ========   ==   =====  ====
+//   ===    =====      ======  =====  =========      ======  ====
+//   ============================================================
+
+const sep = () =&gt; console.log(&#39;---&#39;);
+const title = text =&gt; console.log(text &#43; &#39;|size=10&#39;);
+
+const FILLED = &#39;🌕&#39;;
+const UNFILLED = &#39;🌑&#39;;
+const FILLEDISH = [&#39;🌘&#39;,&#39;🌗&#39;,&#39;🌖&#39;];
+const progressBar = function(n, total, charLength = 10) {
+  n = Math.max(n, 0); // Health can be negative
+
+  const progress = (n / total) * charLength;
+  const ish = progress % 1;
+
+  const filled = Array(Math.floor(progress) &#43; 1).join(FILLED);
+  const middle = ish ? FILLEDISH[Math.ceil(FILLEDISH.length * ish) - 1] : false;
+  const unfilled = Array(charLength - Math.floor(progress) &#43; (middle ? 0 : 1)).join(UNFILLED);
+
+  return filled &#43; (middle ? middle : &#39;&#39;) &#43; unfilled;
+};
+
+const action = function(action, params) {
+  params = Array.prototype.slice.call(arguments).slice(1);
+  return [&#39;terminal=&#39;&#43;DEBUG&#43;&#39; refresh=true bash=&#39; &#43; process.argv[0],
+          &#39;param1=&#39; &#43; process.argv[1],
+          &#39;param2=&#39; &#43; action
+         ].concat(params.map((p, i) =&gt; &#39;param&#39;&#43;(i&#43;3)&#43;&#39;=&#39;&#43;p))
+         .join(&#39; &#39;);
+};
+
+const outputTasks = function(titleName, tasks) {
+  title(titleName);
+
+  tasks.forEach(task =&gt; {
+    console.log([UNCHECKED, task.text, &#39;|&#39;, action(SCORE_TASK, task._id, &#39;up&#39;)].join(&#39; &#39;));
+    task.checklist.forEach(item =&gt; {
+      console.log(
+        [&#39;--&#39;, (completed(item) ? CHECKED : UNCHECKED), item.text, &#39;|&#39;,
+         action(SCORE_CHECKLIST_ITEM, task._id, item.id)].join(&#39; &#39;));
+    });
+  });
+};
+
+const outputHabits = function(habits) {
+  title(&#39;Habits&#39;);
+
+  habits.forEach(habit =&gt; {
+    if (habit.up) {
+      console.log([SCORE_UP, habit.text, &#39;|&#39;, action(SCORE_TASK, habit._id, &#39;up&#39;)].join(&#39; &#39;));
+    }
+    if (habit.down) {
+      console.log([SCORE_DOWN, habit.text, &#39;|&#39;, action(SCORE_TASK, habit._id, &#39;down&#39;)].join(&#39; &#39;));
+    }
+  });
+};
+
+const outputProfile = function(userData) {
+  title(userData.profile.name &#43;
+    &#39; &lt;lvl &#39; &#43; userData.stats.lvl &#43; &#39; &#39; &#43;
+    (n =&gt; n[0].toUpperCase() &#43; n.slice(1))(userData.stats.class) &#43; &#39;&gt;&#39;);
+
+  const font = &#39;| color=black size=10 font=Monaco&#39;;
+
+  const hp = Math.floor(userData.stats.hp),
+        xp = Math.floor(userData.stats.exp),
+        mp = Math.floor(userData.stats.mp),
+        maxHp = userData.stats.maxHealth,
+        maxXp = userData.stats.toNextLevel,
+        maxMp = userData.stats.maxMP;
+
+  console.log([HEALTH, progressBar(hp, maxHp), hp, &#39;/&#39;, maxHp, font].join(&#39; &#39;));
+  console.log([EXP, progressBar(xp, maxXp), xp, &#39;/&#39;, maxXp, font].join(&#39; &#39;));
+  console.log([MAGIC, progressBar(mp, maxMp), mp, &#39;/&#39;, maxMp, font].join(&#39; &#39;));
+};
+
+const outputIcon = function(numDailies, isSleeping, needsCron) {
+  if (isSleeping) {
+    console.log(`Zzz|templateImage=&#34;${HABITICA_ICON}&#34;`);
+  } else {
+    if (numDailies) {
+      numDailies = needsCron ? `(${numDailies})` : numDailies;
+      console.log(`${numDailies}|image=&#34;${HABITICA_ICON}&#34;`);
+    } else {
+      console.log(`|templateImage=&#34;${HABITICA_ICON}&#34;`);
+    }
+  }
+};
+
+const outputNeedsCron = () =&gt; {
+  console.log(&#39;You left Dailies unchecked yesterday!|size=11&#39;);
+  console.log(&#39;Either check them off now or…|size=11&#39;);
+  console.log(NEW_DAY &#43; &#39; Start My New Day|&#39; &#43; action(&#39;startNewDay&#39;));
+};
+
+const output = function(dailies, habits, todos, userData) {
+    outputIcon(dailies.length,
+               userData.preferences.sleep,
+               userData.needsCron);
+
+    if (userData.needsCron) {
+      sep();
+      outputNeedsCron();
+    }
+
+    if (dailies.length) {
+      sep();
+      outputTasks((userData.needsCron ? &#39;Yesterday\&#39;s &#39; : &#39;&#39;) &#43; &#39;Dailies&#39;, dailies);
+    }
+
+    if (habits.length) {
+      sep();
+      outputHabits(habits);
+    }
+
+    if (todos.length) {
+      sep();
+      outputTasks(&#39;To-Dos&#39;, todos);
+    }
+
+    sep();
+    outputProfile(userData);
+    sep();
+    console.log(&#39;Go to website|href=&#34;https://habitica.com&#34;&#39;);
+    console.log(&#39;Refresh|refresh=true&#39;);
+};
+
+//   ==============================================
+//   =        ==  ==========    ====  ====  ====  =
+//   =  ========  =========  ==  ===  ====  ====  =
+//   =  ========  ========  ====  ==  ====  ====  =
+//   =  ========  ========  ====  ==  ====  ====  =
+//   =      ====  ========  ====  ==   ==    ==  ==
+//   =  ========  ========  ====  ===  ==    ==  ==
+//   =  ========  ========  ====  ===  ==    ==  ==
+//   =  ========  =========  ==  =====    ==    ===
+//   =  ========        ====    =======  ====  ====
+//   ==============================================
+
+const failure = function(reason) {
+  console.log(&#39;☹&#39;);
+  console.log(&#39;---&#39;);
+  console.log(reason);
+};
+
+if (USER_ID === &#39;YOUR_USER_ID_HERE&#39; || API_TOKEN === &#39;YOUR_TOKEN_HERE&#39;) {
+  return failure(&#39;Please configure the plugin with your userid and token&#39;);
+}
+
+get(&#39;status&#39;)
+.catch(err =&gt; {
+  throw new Error(&#39;habitica api is down&#39;);
+})
+.then(result =&gt; {
+  if (result.data.status !== &#39;up&#39;) {
+    throw new Error(&#39;habitica api is down&#39;);
+  }
+})
+.then(() =&gt; {
+  if (process.argv.length &gt; 2) {
+    return processArguments().then((r) =&gt; console.log(JSON.stringify(r, null, 2)));
+  } else {
+    return Promise.all([
+      get(&#39;tasks/user&#39;),
+      get(&#39;user&#39;)])
+    .then(([tasks, user]) =&gt; {
+      const dailies = order(
+        user.data.tasksOrder.dailys,
+        tasks.data
+          .filter(daily)
+          .filter(relevant)
+          .filter(incomplete));
+
+      const habits = order(
+        user.data.tasksOrder.habits,
+        tasks.data
+          .filter(habit));
+
+      const todos = order(
+        user.data.tasksOrder.todos,
+        tasks.data
+          .filter(todo)
+          .filter(incomplete));
+
+      output(dailies, habits, todos, user.data);
+    });
+  }
+})
+.catch(failure);
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

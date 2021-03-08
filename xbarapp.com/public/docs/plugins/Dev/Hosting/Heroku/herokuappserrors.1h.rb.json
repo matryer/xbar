@@ -1,0 +1,58 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Hosting/Heroku/herokuappserrors.1h.rb",
+				"filename": "herokuappserrors.1h.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eHeroku apps:errors\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJosh Beckman\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eandjosh\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin displays Heroku errors for a given app. You must be logged in via heroku-cli.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/tAHBNUO.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.dependencies\u003eheroku-toolbelt\u003c/bitbar.dependencies\u003e\n\nrequire 'json'\n\nHEROKU_CMD=\"/usr/local/bin/heroku\"\n\n# Configuration options\napp = \"appname\" # Which app?\nhours = 24      # how many hours should the error window contain?\n\n\n# Heroku Error Glossary\nglossary = {\n\"H10\" =\u003e \"App crashed\",\n\"H11\" =\u003e \"Backlog too deep\",\n\"H12\" =\u003e \"Request timeout\",\n\"H13\" =\u003e \"Connection closed without response\",\n\"H14\" =\u003e \"No web dynos running\",\n\"H15\" =\u003e \"Idle connection\",\n\"H16\" =\u003e \"Redirect to herokuapp.com\",\n\"H17\" =\u003e \"Poorly formatted HTTP response\",\n\"H18\" =\u003e \"Server Request Interrupted\",\n\"H19\" =\u003e \"Backend connection timeout\",\n\"H20\" =\u003e \"App boot timeout\",\n\"H21\" =\u003e \"Backend connection refused\",\n\"H22\" =\u003e \"Connection limit reached\",\n\"H23\" =\u003e \"Endpoint misconfigured\",\n\"H24\" =\u003e \"Forced close\",\n\"H25\" =\u003e \"HTTP Restriction\",\n\"H26\" =\u003e \"Request Error\",\n\"H27\" =\u003e \"Client Request Interrupted\",\n\"H28\" =\u003e \"Client Connection Idle\",\n\"H80\" =\u003e \"Maintenance mode\",\n\"H81\" =\u003e \"Blank app\",\n\"H82\" =\u003e \"Free dyno quota exhausted\",\n\"H99\" =\u003e \"Platform error\",\n\"R10\" =\u003e \"Boot timeout\",\n\"R12\" =\u003e \"Exit timeout\",\n\"R13\" =\u003e \"Attach error\",\n\"R14\" =\u003e \"Memory quota exceeded\",\n\"R15\" =\u003e \"Memory quota vastly exceeded\",\n\"R16\" =\u003e \"Detached\",\n\"R17\" =\u003e \"Checksum error\",\n\"R99\" =\u003e \"Platform error\",\n\"L10\" =\u003e \"Drain buffer overflow\",\n\"L11\" =\u003e \"Tail buffer overflow\",\n\"L12\" =\u003e \"Local buffer overflow\",\n\"L13\" =\u003e \"Local delivery error\",\n\"L14\" =\u003e \"Certificate validation error\",\n\"L15\" =\u003e \"Tail buffer temporarily unavailable\"}\ntotal = 0\ncopy = \"\"\nstatus = `#{HEROKU_CMD} apps:errors -a #{app} --json --hours #{hours}`\nstatus = JSON.parse(status)\n\nstatus.keys.each do |level|\n    status[level].keys.each do |type|\n        if status[level][type].is_a? Numeric\n            # router errors\n            total += status[level][type]\n            copy += \"#{type}: #{status[level][type]} (#{glossary[type]})\\n\"\n        else\n            status[level][type].keys.each do |error|\n                # dyno errors\n                total += status[level][type][error]\n                copy += \"#{error}: #{status[level][type][error]} (#{glossary[error]})\\n\"\n            end\n        end\n    end\nend\n\nputs \"#{total} #{app} errors\"\nputs \"---\"\nputs \"In the last #{hours} hours\"\nputs copy\nputs \"Refresh... | refresh=true\"\n"
+			}
+		],
+		"path": "Dev/Hosting/Heroku/herokuappserrors.1h.rb",
+		"filename": "herokuappserrors.1h.rb",
+		"dir": "Dev/Hosting/Heroku",
+		"docsPlugin": "Dev/Hosting/Heroku/herokuappserrors.1h.rb.html",
+		"docsCategory": "Dev/Hosting/Heroku.html",
+		"pathSegments": [
+			"Dev",
+			"Hosting",
+			"Heroku"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Hosting",
+				"text": "Hosting",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Hosting/Heroku",
+				"text": "Heroku",
+				"isLast": true
+			}
+		],
+		"title": "Heroku apps:errors",
+		"version": "v0.1",
+		"author": "Josh Beckman",
+		"authors": [
+			{
+				"name": "Josh Beckman",
+				"githubUsername": "andjosh",
+				"imageURL": "https://avatars.githubusercontent.com/u/2358584?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "This plugin displays Heroku errors for a given app. You must be logged in via heroku-cli.",
+		"imageURL": "http://i.imgur.com/tAHBNUO.png",
+		"dependencies": [
+			"heroku-toolbelt"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:49.279635Z",
+		"vars": null
+	}
+}

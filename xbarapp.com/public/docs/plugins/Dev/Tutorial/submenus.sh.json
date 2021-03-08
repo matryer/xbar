@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Tutorial/submenus.sh",
+				"filename": "submenus.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eSubmenus\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eiosdeveloper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eiosdeveloper\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample of how to include multiple levels of menu items in v1.8 and later.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/9zJJHns.png\u003c/bitbar.image\u003e\n\necho \"Submenu Tutorial\"\necho \"---\"\n\necho \"Places\"\necho \"--London\"\necho \"--Paris\"\necho \"--Tokyo\"\necho \"Fruit\"\necho \"--Apple\"\necho \"--Orange\"\necho \"--Melon\"\necho \"----Watermelon\"\necho \"----Honeydew\"\n"
+			}
+		],
+		"path": "Dev/Tutorial/submenus.sh",
+		"filename": "submenus.sh",
+		"dir": "Dev/Tutorial",
+		"docsPlugin": "Dev/Tutorial/submenus.sh.html",
+		"docsCategory": "Dev/Tutorial.html",
+		"pathSegments": [
+			"Dev",
+			"Tutorial"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Tutorial",
+				"text": "Tutorial",
+				"isLast": true
+			}
+		],
+		"title": "Submenus",
+		"version": "v1.0",
+		"author": "iosdeveloper",
+		"authors": [
+			{
+				"name": "iosdeveloper",
+				"githubUsername": "iosdeveloper",
+				"imageURL": "https://avatars.githubusercontent.com/u/655921?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Example of how to include multiple levels of menu items in v1.8 and later.",
+		"imageURL": "http://i.imgur.com/9zJJHns.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:50.584028Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,2009 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Web in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Put Web plugins into your macOS menu bar with xbar.'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='Web in your macOS menu bar'>
+	<meta itemprop='description' content='Put Web plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Web in your macOS menu bar'>
+	<meta name='twitter:description' content='Put Web plugins into your macOS menu bar with xbar.'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Web in your macOS menu bar'>
+	<meta property='og:description' content='Put Web plugins into your macOS menu bar with xbar.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Web.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='flex-grow'>
+		
+			<div class='py-8 light-background'>
+				<div class='grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-4 container mx-auto'>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Web/nightscout.30s.js.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									BitBar Nightscout Plugin 
+								</a>
+							</div>
+							<a href='/docs/plugins/Web/nightscout.30s.js.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://raw.githubusercontent.com/cachrisman/bitbar-nightscout/master/screenshot.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Gets the most recent reading and trend arrow from nightscout
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/cachrisman.html'>
+												<span class='mr-3'>
+													Charlie Chrisman (@cachrisman)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/6521666?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Web/mailchimp.10m.rb.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									MailChimp Subscribers 
+								</a>
+							</div>
+							<a href='/docs/plugins/Web/mailchimp.10m.rb.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='https://www.novis.co/media/misc/mc-bitbar.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Display your MailChimp subscriber count for a given list
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/timnovis.html'>
+												<span class='mr-3'>
+													Tim Novis (@timnovis)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/867553?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+						<div class='pb-8 md:pb-2 max-w-md'>
+							<span class='uppercase opacity-50 text-sm fancy-font text-white text-lg'>
+								Featured
+							</span>
+							<div>
+								<a href='/docs/plugins/Web/rss.15m.php.html' class='text-white text-2xl font-bold border-b-4 border-white'>
+									Simple RSS reader 
+								</a>
+							</div>
+							<a href='/docs/plugins/Web/rss.15m.php.html'>
+								<img 
+									class='my-4 max-h-48 ' 
+									src='http://i.imgur.com/JDdgcGH.png'
+									onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+								>
+							</a>
+							
+								<p class='break-word mb-4 text-white text-lg'>
+									Simple RSS &#34;reader&#34; that will list latest feed items and link to them.
+								</p>
+							
+							
+								
+									<div class='mt-4 text-sm text-white text-right'>
+										
+											<a href='/docs/contributors/alesf.html'>
+												<span class='mr-3'>
+													alesf (@alesf)
+												</span>
+												
+													<img class='w-8 h-8 rounded-full inline' src='https://avatars.githubusercontent.com/u/1148574?v=4'>
+												
+											</a>
+										
+									</div>
+								
+							
+						</div>
+					
+				</div>
+				<p class='pt-16 pb-4 px-16 text-center'>
+					<strong class='text-white'>
+						Fancy having your plugin featured?
+					</strong> 
+					<a 
+						target='twitter' 
+						href='https://twitter.com/matryer' 
+						class='underline text-white font-bold'
+					>Get in touch</a>.
+				</p>
+			</div>
+		
+		
+			<div class='container mx-auto p-8 text-white'>
+				<h3 class='font-bold'>Looking for something specific?</h3>
+				<p class='mt-4 text-lg'>
+					
+	
+		
+			<a class='ml-8' href='/docs/plugins/Web/ProductHunt.html'>ProductHunt</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Web/Reddit.html'>Reddit</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Web/Twitch.html'>Twitch</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Web/XKCD.html'>XKCD</a>
+			
+	
+
+		
+			<a class='ml-8' href='/docs/plugins/Web/YouTube.html'>YouTube</a>
+			
+	
+
+		
+	
+
+				</p>
+			</div>
+		
+		<div class='p-8 mt-8'>
+			
+	
+		<div class='grid grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-8 divide-white container mx-auto'>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/Reddit/reddit.1m.py.html'
+						><strong class='text-xl'>Reddit</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/Reddit/reddit.1m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/zUHPCvq.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays Reddit for Mac
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/parvez.html'>
+									<span class='text-right break-all'>
+										<strong>Parvez</strong>
+										
+											(@parvez)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/126749?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/Reddit/redditnotify.30s.py.html'
+						><strong class='text-xl'>Reddit Notifications</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/Reddit/redditnotify.30s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/ohM8E6u.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Check your Reddit messages in your status bar!
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Shugabuga.html'>
+									<span class='text-right break-all'>
+										<strong>Shuga</strong>
+										
+											(@Shugabuga)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/10801851?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/Reddit/subreddit_links.rb.html'
+						><strong class='text-xl'>Subreddit Links</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/Reddit/subreddit_links.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/3ZDUdNH.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/caneroj1.html'>
+									<span class='text-right break-all'>
+										<strong>Joe Canero</strong>
+										
+											(@caneroj1)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3110602?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/beeminder.10m.py.html'
+						><strong class='text-xl'>Beeminder</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/beeminder.10m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/XamwU1E.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays your active Beeminder goals and their due dates/amounts
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/bcongdon.html'>
+									<span class='text-right break-all'>
+										<strong>Ben Congdon</strong>
+										
+											(@bcongdon)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/706257?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/bilibili.py.html'
+						><strong class='text-xl'>B站UP主粉丝和投稿视频播放信息获取</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/bilibili.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://bihell.com/media/2020/02/bilibili-bitbar.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									实时显示B站粉丝数和最新20次投稿的视频信息，请把userId改为你自己的。
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/bihell.html'>
+									<span class='text-right break-all'>
+										<strong>Haseo Chen</strong>
+										
+											(@bihell)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/19926035?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/bitbar-uptime_robot.py.html'
+						><strong class='text-xl'>UptimeRobot Monitor</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/bitbar-uptime_robot.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://uptimerobot.com/assets/img/logo_plain.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Get UptimeRobot statistics for an account.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/finnito.html'>
+									<span class='text-right break-all'>
+										<strong>Finn LeSueur</strong>
+										
+											(@finnito)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6530078?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/commitstrip.1h.sh.html'
+						><strong class='text-xl'>CommitStrip</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/commitstrip.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/CllAUAl.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Random CommitStrip comics
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Yukaii.html'>
+									<span class='text-right break-all'>
+										<strong>Yukai Huang</strong>
+										
+											(@Yukaii)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4230968?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/cornify.1m.sh.html'
+						><strong class='text-xl'>Unicorn!</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/cornify.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/UMphE3q.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Unicorn
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/mnin.html'>
+									<span class='text-right break-all'>
+										<strong>Martin Wilhelmi</strong>
+										
+											(@mnin)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/92227?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/disqus_comments.rb.html'
+						><strong class='text-xl'>Didqus Comments</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/disqus_comments.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/marblenix/Disqus-Comments/master/disqus.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Show comment count per post and number of commenets that are pending.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/marblenix.html'>
+									<span class='text-right break-all'>
+										<strong>Cassidy Marble</strong>
+										
+											(@marblenix)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6401427?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/faith_in_humanity_score.6h.py.html'
+						><strong class='text-xl'>Faith in humanity score</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/faith_in_humanity_score.6h.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays current score from https://faithinhumanityscore.com
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/impshum.html'>
+									<span class='text-right break-all'>
+										<strong>impshum</strong>
+										
+											(@impshum)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3229127?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/edd.15m.py.html'
+						><strong class='text-xl'>Easy Digital Downloads</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/edd.15m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/zackkatz.html'>
+									<span class='text-right break-all'>
+										<strong>Zack Katz</strong>
+										
+											(@zackkatz)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/870979?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/git-repo-stars.1h.js.html'
+						><strong class='text-xl'>Github Repo Stars</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/git-repo-stars.1h.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://varunmalhotra.xyz/media/images/bitbar-plugin-github-repos-stars.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Github repos stars and Emoji notification 🔔 on change in stars count
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/softvar.html'>
+									<span class='text-right break-all'>
+										<strong>Varun Malhotra</strong>
+										
+											(@softvar)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4180800?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/feedly.rb.html'
+						><strong class='text-xl'>Feedly</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/feedly.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://farm2.staticflickr.com/1541/25991545133_924f4a1a59_c.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/morizyun.html'>
+									<span class='text-right break-all'>
+										<strong>morizyun</strong>
+										
+											(@morizyun)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2871482?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/isItUp.5s.js.html'
+						><strong class='text-xl'>Is It Up?</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/isItUp.5s.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/BxHFJMn.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									A MacOs Menu Bar (BitBar) plugin that allows you to check whether or not a website is currently up (online).
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ZacharyDavidSaunders.html'>
+									<span class='text-right break-all'>
+										<strong>Zachary David Saunders</strong>
+										
+											(@ZacharyDavidSaunders)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/14244868?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/freshdesk.3m.rb.html'
+						><strong class='text-xl'>Freshdesk</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/freshdesk.3m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/EqWSeUP.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows open Freshesk tickets count
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/theseanstewart.html'>
+									<span class='text-right break-all'>
+										<strong>Sean Stewart</strong>
+										
+											(@theseanstewart)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2438547?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/googleapps.sh.html'
+						><strong class='text-xl'>Google Apps</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/googleapps.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://lh3.googleusercontent.com/dZhJy5gcVrm77Y0upTcDnnDd7ZuIvVPCCZaBrcP8qFFdXdk3gZIj5WyfXF1Unl2sAW58UxDP7feASybLUyEt-RMBuk2ZAdBkoo2c'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									This plugin&#39;s dropdown menu will open Google Documents, Spreadsheets or Presentations in App-Mode of Chromium or Google Chrome.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/jeschu.html'>
+									<span class='text-right break-all'>
+										<strong>Jens Schumacher</strong>
+										
+											(@jeschu)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/5919254?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/mailchimp.10m.rb.html'
+						><strong class='text-xl'>MailChimp Subscribers</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/mailchimp.10m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://www.novis.co/media/misc/mc-bitbar.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display your MailChimp subscriber count for a given list
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/timnovis.html'>
+									<span class='text-right break-all'>
+										<strong>Tim Novis</strong>
+										
+											(@timnovis)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/867553?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/reputationizer.5m.sh.html'
+						><strong class='text-xl'>Stackoverflow Reputation Score</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/reputationizer.5m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/0XHs8R0.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/MatzFan.html'>
+									<span class='text-right break-all'>
+										<strong>Bruce Steedman</strong>
+										
+											(@MatzFan)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/3764715?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/nightscout.30s.js.html'
+						><strong class='text-xl'>BitBar Nightscout Plugin</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/nightscout.30s.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/cachrisman/bitbar-nightscout/master/screenshot.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Gets the most recent reading and trend arrow from nightscout
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/cachrisman.html'>
+									<span class='text-right break-all'>
+										<strong>Charlie Chrisman</strong>
+										
+											(@cachrisman)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/6521666?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/openui5ver.1h.sh.html'
+						><strong class='text-xl'>OpenUI5 Latest Version Display</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/openui5ver.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/5GVxySB.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/qmacro.html'>
+									<span class='text-right break-all'>
+										<strong>DJ Adams</strong>
+										
+											(@qmacro)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/73068?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/rss.15m.php.html'
+						><strong class='text-xl'>Simple RSS reader</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/rss.15m.php.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/JDdgcGH.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple RSS &#34;reader&#34; that will list latest feed items and link to them.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/alesf.html'>
+									<span class='text-right break-all'>
+										<strong>alesf</strong>
+										
+											(@alesf)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1148574?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/pocket.10m.py.html'
+						><strong class='text-xl'>Pocket Bar</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/pocket.10m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/XQnh7US.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Basic Pocket client.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/inbalboa.html'>
+									<span class='text-right break-all'>
+										<strong>Sergey Shlyapugin</strong>
+										
+											(@inbalboa)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2811912?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/putio.5m.py.html'
+						><strong class='text-xl'>put.io transfers</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/putio.5m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/L85lfpv.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows put.io transfers and lists files/folders
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/rchiechi.html'>
+									<span class='text-right break-all'>
+										<strong>Ryan Chiechi</strong>
+										
+											(@rchiechi)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/18732092?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/toggl.1m.js.html'
+						><strong class='text-xl'>Toggl status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/toggl.1m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/1dlNZLW.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows hours completed today, hours completed this week.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/SCdF.html'>
+									<span class='text-right break-all'>
+										<strong>Stefan du Fresne</strong>
+										
+											(@SCdF)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/583851?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/service-status.5s.js.html'
+						><strong class='text-xl'>Service Status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/service-status.5s.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://hsto.org/webt/dd/yv/qn/ddyvqnycz-hytbdolo5ti48pii4.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Simple plugin to monitor your services/websites availability
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/VitalyEmelyanov.html'>
+									<span class='text-right break-all'>
+										<strong>Vitaly</strong>
+										
+											(@VitalyEmelyanov)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/15330670?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/wikipedia_on_this_day.12h.rb.html'
+						><strong class='text-xl'>Wikipedia On This Day</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/wikipedia_on_this_day.12h.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display Wikipedia On This Day information.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/RyanScottLewis.html'>
+									<span class='text-right break-all'>
+										<strong>Ryan Scott Lewis</strong>
+										
+											(@RyanScottLewis)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/39534?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/wanikani.15m.py.html'
+						><strong class='text-xl'>WaniKani</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/wanikani.15m.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/Tohefs7.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays the number of items and some basic information from WaniKani!
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/jakeoid.html'>
+									<span class='text-right break-all'>
+										<strong>Jake</strong>
+										
+											(@jakeoid)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/13518213?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/waniKaniStats.5m.rb.html'
+						><strong class='text-xl'>WaniKani Stats</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/waniKaniStats.5m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/orRd3Ga.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays user details &amp; review &#43; lesson tracking for WaniKani.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/Nzebo.html'>
+									<span class='text-right break-all'>
+										<strong>Nathan Zebrowski</strong>
+										
+											(@Nzebo)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/8963325?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/whirlpool-watched.1m.rb.html'
+						><strong class='text-xl'>Whirlpool watched threads checker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/whirlpool-watched.1m.rb.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									List unread threads from your watch list
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/gondalez.html'>
+									<span class='text-right break-all'>
+										<strong>tris</strong>
+										
+											(@gondalez)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1468141?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/YouTube/YouTubeTicker.1m.js.html'
+						><strong class='text-xl'>YouTube Ticker</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/YouTube/YouTubeTicker.1m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/0aNslKx.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									A MacOs Menu Bar (BitBar) plugin that displays your YouTube subscriber count.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/ZacharyDavidSaunders.html'>
+									<span class='text-right break-all'>
+										<strong>Zachary David Saunders</strong>
+										
+											(@ZacharyDavidSaunders)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/14244868?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/YouTube/subgap.1s.py.html'
+						><strong class='text-xl'>Youtube Sub gap</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/YouTube/subgap.1s.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://github.com/garythung/bitbar-age-ticker/blob/master/bitbar-age-ticker.gif?raw=true'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays the sub gap between Pewdiepie and T-series. Set your youtube api key in the script. You can also change the channel ids to check on other sub gaps, just make shure the bigger one is first
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tokfrans03.html'>
+									<span class='text-right break-all'>
+										<strong>Tok1</strong>
+										
+											(@tokfrans03)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/34898241?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/Twitch/livestreamer-now-playing.5m.js.html'
+						><strong class='text-xl'>Twitch Following</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/Twitch/livestreamer-now-playing.5m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/dhscE7r.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows which channels you follow are live, what they&#39;re playing, for how long etc. Lets you watch them with streamlink and open the chat in your browser. Based on the play-with-livestreamer bitbar plugin. Requires a Twitch account.
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/SCdF.html'>
+									<span class='text-right break-all'>
+										<strong>Stefan du Fresne</strong>
+										
+											(@SCdF)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/583851?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/Twitch/play-with-livestreamer.5m.js.html'
+						><strong class='text-xl'>Twitch Livestreamer</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/Twitch/play-with-livestreamer.5m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/XEQQaxC.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									list top 10 twitch streams for provided GAME, defaults to Dota 2
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/gorangajic.html'>
+									<span class='text-right break-all'>
+										<strong>Goran Gajic</strong>
+										
+											(@gorangajic)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/249310?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/XKCD/xkcd.1h.sh.html'
+						><strong class='text-xl'>XKCD</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/XKCD/xkcd.1h.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/OEHNotn.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display Random XKCD Strip
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/parvez.html'>
+									<span class='text-right break-all'>
+										<strong>Parvez</strong>
+										
+											(@parvez)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/126749?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/XKCD/new-xkcd.5m.js.html'
+						><strong class='text-xl'>New XKCD</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/XKCD/new-xkcd.5m.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Check for new XKCD comic
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/robtarr.html'>
+									<span class='text-right break-all'>
+										<strong>Rob Tarr</strong>
+										
+											(@robtarr)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/270461?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/ProductHunt/producthunt-tech-hunts.1d.py.html'
+						><strong class='text-xl'>Product Hunt - Today in Tech</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/ProductHunt/producthunt-tech-hunts.1d.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://cloud.githubusercontent.com/assets/13259/12370591/3039c57e-bbdc-11e5-9b42-e4ab9f6bf851.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Today&#39;s featured tech hunts on Product Hunt
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/flesch.html'>
+									<span class='text-right break-all'>
+										<strong>John Flesch</strong>
+										
+											(@flesch)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/13259?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Web/ProductHunt/producthunt-posts-votes.1h.js.html'
+						><strong class='text-xl'>ProductHunt Posts Votes Count</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Web/ProductHunt/producthunt-posts-votes.1h.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://xbarapp.com/public/img/xbar-2048.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									ProductHunt Posts Votes count and Emoji notification 🔔  on change in votes count
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/softvar.html'>
+									<span class='text-right break-all'>
+										<strong>Varun Malhotra</strong>
+										
+											(@softvar)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4180800?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+		</div>
+	
+
+		</div>
+	</div>
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

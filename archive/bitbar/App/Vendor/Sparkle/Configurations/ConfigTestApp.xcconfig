@@ -1,0 +1,7 @@
+// Test Application only
+
+INFOPLIST_FILE = TestApplication/TestApplication-Info.plist
+WRAPPER_EXTENSION = app
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+LD_RUNPATH_SEARCH_PATHS = @executable_path/../Frameworks
+PRODUCT_BUNDLE_IDENTIFIER = org.sparkle-project.SparkleTestApp

@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/cpu-load.5s.sh",
+				"filename": "cpu-load.5s.sh",
+				"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eCPU Load\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ePaul W. Rankin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ernkn\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows CPU load as a percentage (without using top).\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/B6VAsDg.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n\n# BitBar CPU Load plugin\n\nncpu=$(sysctl -n hw.logicalcpu)\ntotal=$(ps -Ao %cpu= | paste -sd+ - | bc)\nusage=$(echo \"scale = 2; $total / $ncpu\" | bc)\n\nprintf \"%0.1f%%\\n\" \"$usage\"\necho \"---\"\necho \"Refresh | refresh=true\"\n"
+			}
+		],
+		"path": "System/cpu-load.5s.sh",
+		"filename": "cpu-load.5s.sh",
+		"dir": "System",
+		"docsPlugin": "System/cpu-load.5s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "CPU Load",
+		"version": "v1.0",
+		"author": "Paul W. Rankin",
+		"authors": [
+			{
+				"name": "Paul W. Rankin",
+				"githubUsername": "rnkn",
+				"imageURL": "https://avatars.githubusercontent.com/u/1256849?v=4",
+				"bio": "Filmmaker. Hobbyist programmer. Most repositories relate to screenwriting.",
+				"primary": true
+			}
+		],
+		"desc": "Shows CPU load as a percentage (without using top).",
+		"imageURL": "https://i.imgur.com/B6VAsDg.png",
+		"dependencies": [
+			"bash"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:03.014824Z",
+		"vars": null
+	}
+}

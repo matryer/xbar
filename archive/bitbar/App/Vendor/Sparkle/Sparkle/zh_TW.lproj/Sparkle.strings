@@ -1,0 +1,74 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ 已下載且可供使用！您是否要現在安裝並重新啟動%1$@？";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "當 %1$@ 正從唯讀卷宗（如磁碟映像檔或光碟機）執行時，無法進行更新。請將 %1$@ 移至您的“應用程式”檔案夾，從該處重新啟動，然後再試一次。  ";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ 已是目前最新的版本。";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ 現在已可取得，您的版本則是 %3$@。您要現在下載嗎？";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ 已下載";
+
+"%@ of %@" = "%1$@ / %2$@";
+
+"A new version of %@ is available!" = "已有新版本的 %@ 可供下載！";
+
+"A new version of %@ is ready to install!" = "新版本的 %@ 已準備安裝！";
+
+"An error occurred in retrieving update information. Please try again later." = "擷取更新資訊時發生錯誤。請稍後再試一次。";
+
+"An error occurred while downloading the update. Please try again later." = "下載更新項目時發生錯誤。請稍後再試一次。";
+
+"An error occurred while extracting the archive. Please try again later." = "解壓縮封存檔時發生錯誤。請稍後再試一次。";
+
+"An error occurred while installing the update. Please try again later." = "安裝更新項目時發生錯誤。請稍後再試一次。";
+
+"An error occurred while parsing the update feed." = "解析更新 feed 時發生錯誤。";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "重新啟動 %1$@ 時發生錯誤，但下次您執行 %1$@ 時將可使用新版本。";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "取消";
+
+"Cancel Update" = "取消更新";
+
+"Checking for updates..." = "正在檢查更新項目⋯";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "正在下載更新項目⋯";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "正在解壓縮更新項目⋯";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "安裝與重新啟動";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "正在安裝更新項目⋯";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "好";
+
+"Ready to Install" = "準備安裝";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "%1$@ 是否應自動檢查更新項目？您可隨時從 %1$@ 選單手動檢查更新項目。";
+
+"Update Error!" = "更新發生錯誤！";
+
+"Updating %@" = "正在更新 %@";
+
+"You already have the newest version of %@." = "您已有最新版本的 %@。";
+
+"You're up-to-date!" = "你已有最新版本！";

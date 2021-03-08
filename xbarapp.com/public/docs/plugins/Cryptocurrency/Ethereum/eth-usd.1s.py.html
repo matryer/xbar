@@ -1,0 +1,360 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Ethereum USD Tracker in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='It tracks Ethereum price in USD - install xbar for free to get started.'>
+	<meta name='author' content='mgjo5899'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/YEn5Cnk.png'>
+	<meta itemprop='name' content='Ethereum USD Tracker in your macOS menu bar'>
+	<meta itemprop='description' content='It tracks Ethereum price in USD - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Ethereum USD Tracker in your macOS menu bar'>
+	<meta name='twitter:description' content='It tracks Ethereum price in USD - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/YEn5Cnk.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Ethereum USD Tracker in your macOS menu bar'>
+	<meta property='og:description' content='It tracks Ethereum price in USD - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Cryptocurrency/Ethereum/eth-usd.1s.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/YEn5Cnk.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/YEn5Cnk.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/YEn5Cnk.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/YEn5Cnk.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Ethereum USD Tracker</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/mgjo5899.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/17048946?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/mgjo5899.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Joseph (<code style='color:white;'>@mgjo5899</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						It tracks Ethereum price in USD
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Cryptocurrency%2fEthereum%2feth-usd.1s.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/YEn5Cnk.png' 
+				alt='Image preview of Ethereum USD Tracker plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>eth-usd.1s.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Cryptocurrency/Ethereum/eth-usd.1s.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Cryptocurrency/Ethereum/eth-usd.1s.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# coding=utf-8
+#
+# &lt;bitbar.title&gt;Ethereum USD Tracker&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v2.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;mgjo5899&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;mgjo5899&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;It tracks Ethereum price in USD&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/YEn5Cnk.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+#
+# by mgjo5899
+
+try:
+  import requests
+except ImportError:
+  print(&#34;Need to install requests module&#34;)
+  print(&#34;Type the following:&#34;)
+  print(&#34;pip install requests&#34;)
+
+import json
+
+url = &#39;https://www.worldcoinindex.com/apiservice/json?key=zQ5ePYHCeRw211NEeQ8DrZMbI&#39;
+r = requests.get(url)
+j = json.loads(r.text)
+
+for market in j[&#39;Markets&#39;]:
+  if &#39;ethereum&#39; == market[&#39;Name&#39;].lower():
+    price = market[&#39;Price_usd&#39;]
+
+price = &#34;%.2f&#34; % price
+
+print(str(price) &#43; &#34; | image=iVBORw0KGgoAAAANSUhEUgAAABkAAAAoCAYAAAALz1FrAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAActpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w&#43;d3d3Lmlua3NjYXBlLm9yZzwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KGMtVWAAAB3xJREFUSA2ll1tsVEUcxs9lL2xbyiVKJIjJ&#43;mAshKjcDBSlhAIxNDEmgiHBCypiKA&#43;Wi1CMWBGoUDQCYoQHo9HEBF6MVB9ASMO2VEzAB4FoAwSQAqWWcmuh3cvx9832NLu0W41OcnbOzPzn&#43;/7XmbOW9S9aVVWVI7E9e/YUlJeXb&#43;Q1X2N/Xu8DNbN5IAGtjRw50lXf1tb2YmFh4VpeF2q8b98&#43;M6/3/9XQ3gBt3rz5wW3btl2tqKjwotFoS1lZ2SgBz5s37x&#43;J/skS&#43;9SpU57AHMepHjRo0P3d3d2d9CNaW1s3aX7v3r1mXe&#43;52oAku3btCuD31NatW&#43;cEg8GFd&#43;7cEWA4kUh4tm2/NHHixFmMUxMmTAjmItB8ThIFdcmSJfHt27eHkavBEskneOSeBCQWT83YsWNDx44dizOXEyvngr8J96yORCLjurq6Ep7nSWNZE0wmkwmIH8N1bzO2sCZnbPolwQq5KYGbHmV/JQTS2hYYzfQap1Ipza&#43;dPHnyI7KmpKQkkBbJ/u2PxBaBQbPtD7FiEGBxrMjSVGOeuOu6EfoPJV9XV5ek85XRlGl9SBRsrWDFAoL9LMHWxgAa95dFAdyWZO25SZMmvYCch9v6WJNFopxXsKmJwWzYiIZ0JgY27300ZE1zaSHP20QSFPSXBPeSCNQKBAJVeXl50ThNQzOZ&#43;ycgd7LnYZKgSmIom6VQL4mCPX/&#43;/CRumoTWFbhJ8llx0ESPdXrNbC61oySoGD9&#43;/AQKNJmZBEZLuYJmgs3OrWhk3717V1aYIhOwHmQsAp0J7r9LWSWB5D/iKSEJhGfcaSzZvXu3IaupqVkSDoefhsAEGyGw0&#43;AkgSGShSrMnuL0LVNcTBJANJ0kWMxYtWNwbR2ActOWLVseYONvCN2H6SJxBSTNFRpOYOvcuXPWiRMnrOvXr1vDhg2zUMhYJ0V6mk6CAONW9o07evRoi5KpN6gsbqAm7uvs7OxGICTXqAgvXrxonT171rpw4YLBIWOt9vZ2CzmL5LAGDx5ssc93o5KgmyS4H0U/YMMb2mSyoLq6upQ4HDAoHHgdHR1Oc3OzdebMGevSpUuWXMW6ss66du2aIQ6FQpaCLStEIrL8/HzJpMAxYUChmcePHz9kLEFoswCuXr0aR/Pg6dOnDZiAhwwZYrh1hMiKzKY9arJYsRIxZE5BQUGcvUG8sYXlifaGDRuqeVlz8uTJO2ge8d0g7dUE7jfFSPGQCwXox0KuVfMVwd0eZHeHDh0aYc&#43;mAOCF8jkZFcHHCRZ08LmZ4D5Jrj6TDOWSjL0bN25Ebt26ZWFVoUu2/BiNRhtwWRGsowF3kFGNSL20ij3o0hhlrJs3b/qBzuSVySa7kHOw5heel4ntTofaGFFfX//T4cOHJzO5DIJmfC1fmQKj783PTMSMd61LKQfwoPaDU058n2xpaTk4derUEQIqpUaUblZdXd1O3PUErzt4kgiLTCD&#43;acBrVtO8jgvJJQnZdmL1&#43;JUrVz6TFAQf4J2Zxh2cVwfR4BGy5801a9b8IIE5c&#43;aMJ5XXMz9XY9wYZ4ND4F0CnwRM7klnh2XVEot1pPuvkgV8LoSfQ94UizXMNDlIRT&#43;P0Bm&#43;qWoh3Avw&#43;lWrVh1HvqykpOQFruD3sKpIALRuHhWrkuMUrn0fzfdoYcqUKeNc13mXuXnUUDtH4vOat7mkgj13yAy0O6TUJOe7APgUyzZWVla2I&#43;dOnz59NRtXkDHDOV7aKLyPLl&#43;&#43;rDpITps2bRi2vgPcMgjCqidqdAaxrtOXjFtbW5vS&#43;QXR2dLS0jAaP4WQSzpPpV8wa9as2wcOHDh2/vz5WFFR0fe4sJ0j5q3bt29/B4FXXFz8Okn3LbnyDIq5WGgnk6lNDQ0NX&#43;CFQGNjY8LEhLvE4TFVh7tiHHzT9BGHVnmQyrJGANfiwjp604qLn5zhOIGNjuNOwb2KWSeyeSgWq69veLpHTImVMpcDWeVBEqBPEfAG3LKIDfn0XTw2R8RDAL0ye/bs0dFotDUQcN8PBsOfqK4AVfHFMSAC0S1cVoalbbICt5pzyBxkYoUkofisWLGiieFSrNC0ssfmbIoDoAPwNQiPQPwqoDrL/KINQsix7y0lDk2KAwr3pn0viRCJSwIyZ&#43;XKlV8D/BWngNYlrCJL4baEyHjU&#43;ymcQCGHK&#43;jLWOzIN9rPx0QvgXCzSBh7Y8aMMXECtBzQP8i2EPOmoul1IVGcnj6RtFdXbgjLfsfKZYwtzkLtzzol7iWxdEvKbQS5A7xFJIBuPx3bxr/0RgmANNbnqtJ10f79&#43;zvkJn1EMJ/V&#43;pBoVXWD2QGIGsFcq3tFFvAuK2hGUy8dN7uSdP1Zge755soi0MDXqs9CGjP91Uha/wjRM5wM3VwLoVjscPfw4cNDjH&#43;IxerLejb3cZMP2q8lWpTWskbvZM5i4tOG5opPF0eH4vBXKuWZO1xWMJ8VB&#43;3zW04SCUBi0nr58uXNDBenN3lhwLn33cW46dK96ZqW&#43;Q&#43;//v/GHTt2fLxu3Tpv9OhR&#43;oD7V/8XJWfcoZeBGhljlrlK1zc1NQX//LN5/UDy9679DX8a2wFCt55LAAAAAElFTkSuQmCC&#34;)
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

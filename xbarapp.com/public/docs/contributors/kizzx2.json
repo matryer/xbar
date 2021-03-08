@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Chris Yuen",
+		"githubUsername": "kizzx2",
+		"imageURL": "https://avatars.githubusercontent.com/u/92614?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/countdown_timer.1s.rb",
+					"filename": "countdown_timer.1s.rb",
+					"content": "#!/usr/bin/ruby\n# \u003cbitbar.title\u003eCountdown Timer\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eChris Yuen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekizzx2\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSimple countdown timer. Set the time by calling the script from terminal.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/kizzx2/bitbar-countdown-timer/master/screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttp://github.com/kizzx2/bitbar-countdown-timer\u003c/bitbar.abouturl\u003e\n\nfn = File.join(File.dirname($0), '.countdown')\n\nif ARGV.count == 0\n  task = nil\n\n  if File.file?(fn)\n    lines = File.read(fn).lines\n\n    time = Time.at(lines.first.to_i)\n    task = lines[1] if lines.count \u003e 1\n  else\n    time = Time.at(0)\n  end\n\n  remain = time - Time.now\n\n  if remain.to_i == 0\n    system %(osascript -e 'display notification \"Times up!\" with title \"Times up!\" sound name \"Glass\"')\n  end\n\n  remain = 0 if remain \u003c 0\n\n  color = nil\n\n  if remain \u003c 15 * 60 \u0026\u0026 remain != 0\n    color = \"red\"\n  elsif remain \u003c 30 * 60 \u0026\u0026 remain != 0\n    color = \"orange\"\n  end\n\n  h = (remain / 3600).to_i\n  remain -= h * 3600\n\n  m = (remain / 60).to_i\n  remain -= m * 60\n\n  s = remain\n\n  str = \"\"\n  str \u003c\u003c \"#{task}: \" if task\n  str \u003c\u003c \"%02i:%02i:%02i\" % [h, m, s]\n  str \u003c\u003c \"| color=#{color}\" if color\n\n  puts str\nelse\n  case ARGV.first\n  when '0'\n    time = 0\n  when /^(\\d+)s$/\n    time = Time.now + $1.to_i\n  when /^(\\d+)m$/\n    time = Time.now + $1.to_i * 60\n  when /^(\\d+)h$/\n    time = Time.now + $1.to_i * 3600\n  else\n    puts \"Error: Invalid argument '#{ARGV.first}'\"\n    exit 1\n  end\n\n  str = \"\"\n  str \u003c\u003c time.to_i.to_s\n\n  if ARGV.count \u003e 1\n    str \u003c\u003c \"\\n\"\n    str \u003c\u003c ARGV.drop(1).join(' ')\n  end\n\n  File.write(fn, str)\nend\n"
+				}
+			],
+			"path": "Time/countdown_timer.1s.rb",
+			"filename": "countdown_timer.1s.rb",
+			"dir": "Time",
+			"docsPlugin": "Time/countdown_timer.1s.rb.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Countdown Timer",
+			"version": "v1.0",
+			"author": "Chris Yuen",
+			"authors": [
+				{
+					"name": "Chris Yuen",
+					"githubUsername": "kizzx2",
+					"imageURL": "https://avatars.githubusercontent.com/u/92614?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Simple countdown timer. Set the time by calling the script from terminal.",
+			"imageURL": "https://raw.githubusercontent.com/kizzx2/bitbar-countdown-timer/master/screenshot.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "http://github.com/kizzx2/bitbar-countdown-timer",
+			"lastUpdated": "2021-03-08T15:22:05.662592Z",
+			"vars": null
+		}
+	]
+}

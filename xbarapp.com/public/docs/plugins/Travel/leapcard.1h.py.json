@@ -1,0 +1,48 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Travel/leapcard.1h.py",
+				"filename": "leapcard.1h.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eLeap Card Balance\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJack Higgins\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eskhg\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays your current Leap Card balance along with any recent card events.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://github.com/skhg/BitBar-Plugins/blob/master/LeapCard/leapcard.jpg?raw=true\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython 2 or 3, pyleapcard, lxml\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/skhg/BitBar-Plugins/tree/master/LeapCard\u003c/bitbar.abouturl\u003e\n\n\n\n\n\n\n\n# START USER DETAILS\n\n# Enter your leapcard.ie login details here. These are sent only to the leap card\n# website and never stored or transmitted anywhere else.\n\nleap_user = \"MyUserName\"\nleap_pass = \"MyPassword\"\n\n# END USER DETAILS\n\n\n\n\n\nfrom sys import exit\n\n# VERIFY DEPENDENCIES\ntry:\n    from pyleapcard import LeapSession\nexcept ImportError:\n    print(\"Leap Card\")\n    print(\"---\")\n    print(\"Looks like the package 'pyleapcard' isn't installed.\")\n    print(\"You need it to run this tool. To install, click 'Install Now',\")\n    print(\"then click 'Preferences' -\u003e 'Refresh All...'\")\n    print(\"Install Now. | bash='sudo /usr/local/bin/pip install pyleapcard'\")\n    exit()\n\n\n\n# START APP\n\nimport pickle\nimport os\nimport subprocess\nimport sys\n\nclass StateMgmt:\n    \n    def __init__(self):\n        os.chdir(self.get_bitbar_plugins_dir())\n        self.relative_state_dir = \"./.leapcard_state/\"\n        self.state_dump_file = self.relative_state_dir+\"leapcard_last_state.pickle\"\n\n    def get_bitbar_plugins_dir(self):\n        bitbar_defaults = subprocess.check_output([\"defaults\", \"read\", \"com.matryer.BitBar\"]).split(\";\")\n        for entry in bitbar_defaults:\n            if \"pluginsDirectory\" in entry:\n                return entry.split(\"\\\"\")[1]\n\n        raise IOError(\"BitBar plugins directory could not be found\")\n    \n    def check_state_dir_exists(self, state_dir):\n        if os.path.exists(state_dir) is False:\n            os.mkdir(state_dir)\n    \n    def load_state(self):\n        self.check_state_dir_exists(self.relative_state_dir)\n\n        if os.path.exists(self.state_dump_file) is False:\n            return None\n        else:\n            try:\n                with open(self.state_dump_file,\"r\") as f_read:\n                    return pickle.load(f_read)\n            except:\n                return None\n    \n    def dump_state(self, card_state,events_state):\n        self.check_state_dir_exists(self.relative_state_dir)\n\n        current_state = [card_state,events_state]\n\n        with open(self.state_dump_file,\"w\") as f_write:\n            pickle.dump(current_state,f_write)\n\nclass ResultsFormatter:\n    \n    def euro_value_to_str(self, value, highlightNegative=False):\n        balance_string =u\"\"\n        negative_balance = False\n\n        if value \u003c 0:\n            balance_string = u\"- \"\n            negative_balance = True\n\n        balance_string += u'€{:,.2f}'.format(abs(value))\n\n        if negative_balance and highlightNegative:\n            balance_string += \" | color=orange\"\n\n        return balance_string\n    \n    def format_card_event(self, event):\n        styleInfo = \" | font=Courier\"\n\n        if event.was_topup is True:\n            styleInfo += \" color=green\"\n\n        euroVal = self.euro_value_to_str(event.price).encode(\"utf-8\")\n        start = event.date + \" \" + event.time + \" (\" + event.provider + \") \"\n\n        return start.encode(\"utf-8\") + euroVal + styleInfo.encode(\"utf-8\")\n    \n    def print_output(self, card, events, is_live, login_url):\n        print(self.euro_value_to_str(card.balance,True).encode(\"utf-8\"))\n        print(\"---\")\n        if is_live is False:\n            print(\"❌ : Using cached data, last update failed\")\n            print(\"---\")\n\n        print(card.card_num+\" (\" + card.card_label + \")\".encode())\n        print(\"---\")\n        print(\"Recent Events\")\n        for e in events:\n            print(self.format_card_event(e))\n        print(\"---\")\n\n        print(\"leapcard.ie | href=\"+login_url)\n    \n    def print_error_message(self, details, login_url):\n        print(\"❌\")\n        print(\"---\")\n        print(\"Error: Unable to retrieve Leap Card state.\")\n        print(\"---\")\n\n        print(\"leapcard.ie | href=\"+login_url)\n\ndef run():\n    login_ok= False\n    login_error = \"\"\n\n    session = LeapSession()\n\n    try:\n        login_ok = session.try_login(leap_user, leap_pass)\n    except Exception:\n        login_error = sys.exc_info()[0]\n\n    state = StateMgmt()\n    formatter = ResultsFormatter()\n\n    if login_ok:\n        card = session.get_card_overview()\n        events = session.get_events()\n        \n        state.dump_state(card,events)\n        formatter.print_output(card,events,True, session.login_url())\n    else:\n        loaded_state = state.load_state()\n        if loaded_state is not None:\n            formatter.print_output(loaded_state[0],loaded_state[1],False, session.login_url())\n        else:\n            formatter.print_error_message(login_error, session.login_url())\n\nrun()\n"
+			}
+		],
+		"path": "Travel/leapcard.1h.py",
+		"filename": "leapcard.1h.py",
+		"dir": "Travel",
+		"docsPlugin": "Travel/leapcard.1h.py.html",
+		"docsCategory": "Travel.html",
+		"pathSegments": [
+			"Travel"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Travel",
+				"text": "Travel",
+				"isLast": true
+			}
+		],
+		"title": "Leap Card Balance",
+		"version": "v1.2.0",
+		"author": "Jack Higgins",
+		"authors": [
+			{
+				"name": "Jack Higgins",
+				"githubUsername": "skhg",
+				"imageURL": "https://avatars.githubusercontent.com/u/1479627?v=4",
+				"bio": "Product Manager and Software Engineer",
+				"primary": true
+			}
+		],
+		"desc": "Displays your current Leap Card balance along with any recent card events.",
+		"imageURL": "https://github.com/skhg/BitBar-Plugins/blob/master/LeapCard/leapcard.jpg?raw=true",
+		"dependencies": [
+			"python 2 or 3",
+			"pyleapcard",
+			"lxml"
+		],
+		"aboutURL": "https://github.com/skhg/BitBar-Plugins/tree/master/LeapCard",
+		"lastUpdated": "2021-03-08T15:22:08.320412Z",
+		"vars": null
+	}
+}

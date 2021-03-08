@@ -1,0 +1,498 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>CryptBar in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Automounter for GoCryptFS - install xbar for free to get started.'>
+	<meta name='author' content='Simon Egerland'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://warmup.mypump.de/cryptbar10.jpg'>
+	<meta itemprop='name' content='CryptBar in your macOS menu bar'>
+	<meta itemprop='description' content='Automounter for GoCryptFS - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='CryptBar in your macOS menu bar'>
+	<meta name='twitter:description' content='Automounter for GoCryptFS - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://warmup.mypump.de/cryptbar10.jpg'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='CryptBar in your macOS menu bar'>
+	<meta property='og:description' content='Automounter for GoCryptFS - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/cryptbar.5m.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://warmup.mypump.de/cryptbar10.jpg'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://warmup.mypump.de/cryptbar10.jpg'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://warmup.mypump.de/cryptbar10.jpg'>
+	<link rel='shortcut icon' href='http://warmup.mypump.de/cryptbar10.jpg'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>CryptBar</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/warmup72.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/30272587?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/warmup72.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Simon (<code style='color:white;'>@warmup72</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Automounter for GoCryptFS
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2fcryptbar.5m.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://warmup.mypump.de/cryptbar10.jpg' 
+				alt='Image preview of CryptBar plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>cryptbar.5m.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/cryptbar.5m.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/cryptbar.5m.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+# &lt;bitbar.title&gt;CryptBar&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Simon Egerland&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;warmup72&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Automounter for GoCryptFS&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://warmup.mypump.de/cryptbar10.jpg&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;Shell-Script for GoCryptFS&lt;/bitbar.dependencies&gt;
+
+# letzten BAckslash im Pfad wenn vorhanden entfernen
+# Mount - Fehler anzeigen, wenn Busy
+
+gocryptfspath=&#34;/usr/local/bin/&#34;
+homepath=$(defaults read com.matryer.Bitbar | grep &#34;pluginsDirectory&#34; | cut -d&#34;\&#34;&#34; -f 2)
+
+# --- Functions ---
+function checkmount {
+	color[$i]=&#34;red&#34;
+	status[$i]=&#34;not mounted | color=HotPink &#34;
+	if [ ! -d &#34;${crypt[$i]}&#34; ]; then pathcheck[$i]=&#34;Crypt-Path not found\n&#34;; fi
+	if [ ! -d &#34;${mountpoint[$i]}&#34; ]; then pathcheck[$i]=&#34;${pathcheck[$i]}Mount-Path not found\n&#34;; fi
+	if [ ! -e &#34;${password[$i]}&#34; ]; then pathcheck[$i]=&#34;${pathcheck[$i]}Password-File not found&#34;; fi
+	if [ &#34;${pathcheck[$i]}&#34; == &#34;&#34; ]; then
+    	check=$(df -h | grep -i -c -a &#34;${mountpoint[$i]}&#34;)
+    	if [ &#34;$check&#34; != &#34;1&#34; ]; then
+			color[$i]=&#34;gainsboro&#34;
+    	else
+			color[$i]=&#34;black&#34;
+			status[$i]=&#34;mounted | color=DarkGreen &#34;
+    	fi
+	fi
+}
+
+function read_para {
+	if [ ! -e &#34;${homepath}/.cryptbar_para&#34; ]; then
+		echo &#34;#Path to Crypt-Folder;Mounting Point;Password-File;Auto Mount [on|off];Parameters for gocryptfs (optional);&#34; &gt; &#34;$homepath/.cryptbar_para&#34;
+		echo &#34;CryptPath;Mountpoint;Password-File;AutoMount;Params;&#34; &gt;&gt; &#34;$homepath/.cryptbar_para&#34;
+	fi
+	i=0
+	while read -r line; do
+		if [ &#34;${line:0:1}&#34; == &#34;#&#34; ]; then continue; fi
+		crypt[$i]=$(cut -d&#39;;&#39; -f 1 &lt;&lt;&lt; &#34;${line}&#34;); crypt[$i]=${crypt[$i]%/}
+		#if [ &#34;${crypt[$i]:(-1)}&#34; == &#34;/&#34; ]; then crypt[$i]=$(echo &#34;${crypt[$i]%%?}&#34;); fi
+    	mountpoint[$i]=$(cut -d&#39;;&#39; -f 2 &lt;&lt;&lt; &#34;${line}&#34;); mountpoint[$i]=${mountpoint[$i]%/}
+		#if [ &#34;${mountpoint[$i]:(-1)}&#34; == &#34;/&#34; ]; then mountpoint[$i]=$(echo &#34;${mountpoint[$i]%%?}&#34;); fi
+    	password[$i]=$(cut -d&#39;;&#39; -f 3 &lt;&lt;&lt; &#34;${line}&#34;); password[$i]=${password[$i]%/}
+		auto[$i]=$(cut -d&#39;;&#39; -f 4 &lt;&lt;&lt; &#34;${line}&#34;)
+    	params[$i]=$(cut -d&#39;;&#39; -f 5 &lt;&lt;&lt; &#34;${line}&#34;)
+    	if [ &#34;${params[$i]}&#34; == &#34;&#34; ]; then params[$i]=&#34;-q&#34;; fi
+		checkmount
+		i=$((i &#43; 1))
+	done &lt; &#34;$homepath/.cryptbar_para&#34;
+	last=$((i - 1))
+}
+
+function write_para {
+	echo &#34;#Path to Crypt-Folder;Mounting Point;Password-File;Auto Mount [on|off];Parameters for gocryptfs (optional);&#34; &gt; &#34;$homepath/.cryptbar_para&#34;
+	#for((i=0; i&lt;${#crypt[*]}; i&#43;&#43;))
+	for((i=0; i&lt;=last; i&#43;&#43;))
+	do
+		echo &#34;${crypt[$i]};${mountpoint[$i]};${password[$i]};${auto[$i]};${params[$i]};&#34; &gt;&gt; &#34;$homepath/.cryptbar_para&#34;
+	done
+}
+
+function mount {
+	if [ &#34;${status[$i]:0:7}&#34; != &#34;mounted&#34; ]; then
+		line=&#34;-passfile=${password[$i]} ${params[$i]} ${crypt[$i]} ${mountpoint[$i]}&#34;
+		$gocryptfspath/gocryptfs -passfile=&#34;${password[$i]}&#34; &#34;${params[$i]}&#34; &#34;${crypt[$i]}&#34; &#34;${mountpoint[$i]}&#34; &amp;&gt;/dev/null
+		code=&#34;$?&#34;
+		checkmount
+		if	[ $code -ne 0 ]; then
+			prefix=&#34;⚠️&#34;
+			error[$i]=&#34;⚠️&#34;
+			osascript -e &#39;display notification &#34;&#39;&#34;Error $code mounting ${mountpoint[$i]} &#34;&#39;&#34; with title &#34;&#39;&#34;GoCryptFS-Mounter&#34;&#39;&#34; sound name &#34;glass&#34;&#39;
+			color[$i]=&#34;red&#34;
+		else
+			prefix=&#34;&#34;
+			error[$i]=&#34;&#34;
+		fi
+	fi
+}
+
+function menu {
+	echo &#34;${prefix}🔐&#34;
+	echo &#34;---&#34;
+	echo &#34;Mount Point Path | color=black&#34;
+	for((i=0; i&lt;${#menu[*]}; i&#43;&#43;))
+	do
+		echo &#34;${menu[$i]}&#34;
+		echo &#34;${button[$i]}&#34;
+		if [ &#34;${button2[$i]}&#34; != &#34;&#34; ]; then echo &#34;${button2[$i]}&#34;; fi
+		echo &#34;--Info | color=black&#34;
+		echo &#34;----Crypt Path: ${crypt[$i]} | color=RoyalBlue&#34;
+		echo &#34;----Mounted on: ${mountpoint[$i]} | color=RoyalBlue&#34;
+		echo &#34;----Auto Mount: ${auto[$i]} | color=black bash=&#39;$0&#39; param1=autoswitch param2=&#39;$i&#39; terminal=false refresh=true&gt;&#34;
+		echo &#34;----Status: ${status[$i]}&#34;
+	done
+	echo &#34;---&#34;
+	echo &#34;Edit Table | color=black bash=&#39;$0&#39; param1=edit terminal=false refresh=true&gt;&#34;
+}
+
+# --- Buttons ---
+if [ &#34;$1&#34; = &#39;mount&#39; ]; then
+    read_para
+	i=$2
+	auto[$i]=&#34;on&#34;
+	mount
+    exit
+fi
+
+if [ &#34;$1&#34; = &#39;umount&#39; ]; then
+    read_para
+	i=$2
+	umount &#34;${crypt[$i]}&#34; &amp;&gt;/dev/null
+	code=&#34;$?&#34;
+	if	[ $code -ne 0 ]; then
+		osascript -e &#39;display notification &#34;&#39;&#34;Error $code - Drive is busy!&#34;&#39;&#34; with title &#34;&#39;&#34;GoCryptFS-Mounter&#34;&#39;&#34; sound name &#34;glass&#34;&#39;
+    fi
+	exit
+fi
+
+if [ &#34;$1&#34; = &#39;open&#39; ]; then
+    read_para
+	i=$2
+	open &#34;${mountpoint[$i]}&#34;
+    exit
+fi
+
+if [ &#34;$1&#34; = &#39;edit&#39; ]; then
+    open &#34;${homepath}/.cryptbar_para&#34;
+    exit
+fi
+
+if [ &#34;$1&#34; = &#39;autoswitch&#39; ]; then
+    read_para
+	i=$2
+	if [ &#34;${auto[$i]}&#34; = &#34;on&#34; ]; then auto[$i]=&#34;off&#34;; else auto[$i]=&#34;on&#34;; fi
+	write_para
+    exit
+fi
+
+# --- MAIN ---
+read_para
+for((i=0; i&lt;=last; i&#43;&#43;))
+do
+	if [ &#34;${auto[$i]}&#34; == &#34;on&#34; ] &amp;&amp; [ &#34;${color[$i]}&#34; != &#34;red&#34; ]; then
+    	mount
+	fi
+	if	[ &#34;${pathcheck[$i]}&#34; != &#34;&#34; ]; then
+		button[$i]=&#34;&#34;
+		button2[$i]=&#34;--${pathcheck[$i]}&#34;
+	else
+		if	[ &#34;${status[$i]:0:7}&#34; != &#34;mounted&#34; ]; then
+			button[$i]=&#34;&#34;
+			button2[$i]=&#34;--Mount | color=black bash=&#39;$0&#39; param1=mount param2=&#39;$i&#39; terminal=false refresh=true&gt;&#34;
+		else
+			button[$i]=&#34;--Open | color=black bash=&#39;$0&#39; param1=open param2=&#39;$i&#39; terminal=false refresh=true&gt;&#34;
+			if [ &#34;${auto[$i]}&#34; != &#34;on&#34; ]; then
+				button2[$i]=&#34;--Umount | color=black bash=&#39;$0&#39; param1=umount param2=&#39;$i&#39; terminal=false refresh=true&gt;&#34;
+			else
+				button2[$i]=&#34;&#34;
+			fi
+		fi
+	fi
+	menu[$i]=&#34;   ▶︎ ${error[$i]}${mountpoint[$i]} | color=${color[$i]} trim=false&#34;
+done
+
+menu
+
+exit
+#----------------------------------------------
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

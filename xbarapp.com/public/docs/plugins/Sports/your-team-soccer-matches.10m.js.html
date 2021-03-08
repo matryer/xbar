@@ -1,0 +1,716 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Your Team: Soccer Matches in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Show completed/upcoming and LIVE matches as well as competition standings for your favorite soccer team. - install xbar for free to get started.'>
+	<meta name='author' content='Taylor Sturtz'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg'>
+	<meta itemprop='name' content='Your Team: Soccer Matches in your macOS menu bar'>
+	<meta itemprop='description' content='Show completed/upcoming and LIVE matches as well as competition standings for your favorite soccer team. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Your Team: Soccer Matches in your macOS menu bar'>
+	<meta name='twitter:description' content='Show completed/upcoming and LIVE matches as well as competition standings for your favorite soccer team. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Your Team: Soccer Matches in your macOS menu bar'>
+	<meta property='og:description' content='Show completed/upcoming and LIVE matches as well as competition standings for your favorite soccer team. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Sports/your-team-soccer-matches.10m.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Your Team: Soccer Matches</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/tsturtz.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/6409518?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/tsturtz.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Taylor Sturtz (<code style='color:white;'>@tsturtz</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Show completed/upcoming and LIVE matches as well as competition standings for your favorite soccer team.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Sports%2fyour-team-soccer-matches.10m.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg' 
+				alt='Image preview of Your Team: Soccer Matches plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>your-team-soccer-matches.10m.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Sports/your-team-soccer-matches.10m.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Sports/your-team-soccer-matches.10m.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+// &lt;bitbar.title&gt;Your Team: Soccer Matches&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Taylor Sturtz&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;tsturtz&lt;/bitbar.author.github&gt;
+// &lt;bitbar.desc&gt;Show completed/upcoming and LIVE matches as well as competition standings for your favorite soccer team.&lt;/bitbar.desc&gt;
+// &lt;bitbar.image&gt;https://raw.githubusercontent.com/tsturtz/your-team-soccer-matches/master/your-team-soccer-matches.jpg&lt;/bitbar.image&gt;
+// &lt;bitbar.dependencies&gt;node,npm/bitbar,npm/date-fns,npm/node-fetch&lt;/bitbar.dependencies&gt;
+// &lt;bitbar.abouturl&gt;https://github.com/tsturtz/your-team-soccer-matches&lt;/bitbar.abouturl&gt;
+
+// -----------------------------------------------------------------------------
+// 🙋‍♂️ Start here!
+// -----------------------------------------------------------------------------
+// 1. Ensure you have the proper node (tested on v12.16.3) and npm dependencies installed.
+//    - npm install --global bitbar node-fetch date-fns
+// 2. Get a free API key from https://www.football-data.org/client/register.
+// 3. Configure the USER_OPTIONS object.
+//    - FOOTBALL_DATA_API_KEY: Provide your API key you just got here.
+//    - TEAM_ID: Provide an accurate TEAM_ID or it will default to my team, Tottenham 😎.
+//      - Use the a dictionary of *some* teams and their IDs below to find your team&#39;s ID.
+//    - NUMBER_OF_FINISHED_MATCHES: The number of completed matches to retrieve and display.
+//      - DEFAULT: 5; MAX: 7;
+//    - NUMBER_OF_SCHEDULED_MATCHES: The number of upcoming matches to retrieve and display.
+//      - DEFAULT: 3; NO MAX;
+
+// -----------------------------------------------------------------------------
+// 👀 Below are some incomplete but butter-than-nothing team id lookup dictionaries.
+// Search the file to get your team&#39;s football-data ID, but don&#39;t touch this code.
+// -----------------------------------------------------------------------------
+const NATIONAL_TEAM_IDS = { Argentina: 762, Australia: 779, Belgium: 805, Brazil: 764, Colombia: 818, Costa_Rica: 793, Croatia: 799, Denmark: 782, Egypt: 825, England: 770, France: 773, Germany: 759, Iceland: 1066, Iran: 840, Japan: 766, Korea_Republic: 772, Mexico: 769, Morocco: 815, Nigeria: 776, Panama: 1836, Peru: 832, Poland: 794, Portugal: 765, Russia: 808, Saudi_Arabia: 801, Senegal: 804, Serbia: 780, Spain: 760, Sweden: 792, Switzerland: 788, Tunisia: 802, Uruguay: 758, };
+const GERMAN_LEAGUE_TEAM_IDS = { Augsburg: 16, Bayer_04_Leverkusen: 3, Bayern_München: 5, Borussia_Mönchengladbach: 18, Bremen: 12, Dortmund: 4, FC_Köln: 1, Frankfurt: 19, Freiburg: 17, Hannover: 8, Hertha_BSC: 9, Hoffenheim: 2, HSV: 7, Kaiserslautern: 13, Mainz: 15, Nürnberg: 14, RB_Leipzig: 721, RB_Salzburg: 1877, Schalke_04: 6, Stuttgart: 10, Wolfsburg: 11, };
+const ENGLISH_LEAGUE_TEAM_IDS = { Arsenal: 57, Aston_Villa: 58, Barnsley: 357, Birmingham: 332, Blackburn_Rovers: 59, Bolton_Wanderers: 60, Bournemouth: 1044, Brentford: 402, Brighton_And_Hove_Albion: 397, Bristol_City: 387, Burnley: 328, Burton_Albion: 1072, Charlton: 348, Chelsea: 61, Crystal_Palace: 354, Derby: 342, England: 770, Everton: 62, Fulham: 63, Huddersfield: 394, Hull_City: 322, Ipswich_Town: 349, Leeds: 341, Leicester_City: 338, Liverpool: 64, Luton_Town: 389, Manchester_City: 65, Manchester_United: 66, Middlesbrough: 343, Millwall: 384, Newcastle: 67, Norwich: 68, Nottingham_Forest: 351, Preston_North_End: 1081, QPR: 69, Reading: 355, Rotherham_Utd: 385, Sheffield_United: 356, Sheffield_Wednesday: 345, Southampton: 340, Stoke: 70, Sunderland: 71, Swansea: 72, Tottenham_Hotspur: 73, Watford: 346, West_Brom: 74, West_Ham: 563, Wigan: 75, Wolverhampton: 76, };
+const SPANISH_LEAGUE_TEAM_IDS = { Atlético_de_Madrid: 78, Barcelona: 81, Real_Madrid: 86, Valencia: 95, };
+const ITALY_LEAGUE_TEAM_IDS = { Atalanta: 102, Inter: 108, Juventus: 109, Napoli: 113, };
+const FRANCE_LEAGUE_TEAM_IDS = { Lille: 521, Lyon: 523, PSG: 524, };
+const NETHERLANDS_LEAGUE_TEAM_IDS = { Ajax: 678, PSV: 674, };
+const MISC_LEAGUE_TEAM_IDS = { AIK_Fotboll: 5277, APOEL: 752, Astana_FK: 1884, Başakşehir: 1897, Basel: 729, BATE: 748, Celtic: 732, Club_Brugge: 851, Crvena_Zvedza: 7283, Dinamo_Zagreb: 755, Dundalk: 1873, Dynamo_Kyiv: 842, F91_Dudelange: 1875, Galatasaray: 610, HJK: 5123, København: 1876, KRC_Genk: 1858, LASK: 2016, Linfield: 1896, Ludogorets: 1901, Maribor: 734, Nõmme_Kalju: 5106, Olympiakos: 654, PAOK_FC: 6146, Porto: 503, Qarabağ_Ağdam: 611, Rosenborg: 889, Santa_Coloma: 1879, Sarajevo: 4275, Shaktar: 1887, Sheriff: 1880, SL_Benfica: 1903, Slavia_Praha: 930, The_New_Saints: 1904, Viktoria_Plzeň: 1881, Young_Boys: 1871, Zenit: 731, };
+
+// -----------------------------------------------------------------------------
+// ✍️ CONFIGURE API KEY AND OPTIONS HERE!
+// -----------------------------------------------------------------------------
+const USER_OPTIONS = {
+  FOOTBALL_DATA_API_KEY: &#39;&#39;,
+  TEAM_ID: ENGLISH_LEAGUE_TEAM_IDS.Tottenham_Hotspur,
+  NUMBER_OF_FINISHED_MATCHES: 5,
+  NUMBER_OF_SCHEDULED_MATCHES: 3,
+};
+
+// -----------------------------------------------------------------------------
+// 🚨 You shouldn&#39;t need to change anything below this line.
+// -----------------------------------------------------------------------------
+
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -&gt; numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+parcelRequire = (function (modules, cache, entry, globalName) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof parcelRequire === &#39;function&#39; &amp;&amp; parcelRequire;
+  var nodeRequire = typeof require === &#39;function&#39; &amp;&amp; require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof parcelRequire === &#39;function&#39; &amp;&amp; parcelRequire;
+        if (!jumped &amp;&amp; currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to &#39;previousRequire&#39;. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire &amp;&amp; typeof name === &#39;string&#39;) {
+          return nodeRequire(name);
+        }
+
+        var err = new Error(&#39;Cannot find module \&#39;&#39; &#43; name &#43; &#39;\&#39;&#39;);
+        err.code = &#39;MODULE_NOT_FOUND&#39;;
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = cache[name] = new newRequire.Module(name);
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports, this);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [function (require, module) {
+      module.exports = exports;
+    }, {}];
+  };
+
+  var error;
+  for (var i = 0; i &lt; entry.length; i&#43;&#43;) {
+    try {
+      newRequire(entry[i]);
+    } catch (e) {
+      // Save first error but execute all entries
+      if (!error) {
+        error = e;
+      }
+    }
+  }
+
+  if (entry.length) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(entry[entry.length - 1]);
+
+    // CommonJS
+    if (typeof exports === &#34;object&#34; &amp;&amp; typeof module !== &#34;undefined&#34;) {
+      module.exports = mainExports;
+
+    // RequireJS
+    } else if (typeof define === &#34;function&#34; &amp;&amp; define.amd) {
+     define(function () {
+       return mainExports;
+     });
+
+    // &lt;script&gt;
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+
+  // Override the current require with this new one
+  parcelRequire = newRequire;
+
+  if (error) {
+    // throw error from earlier, _after updating parcelRequire_
+    throw error;
+  }
+
+  return newRequire;
+})({&#34;Focm&#34;:[function(require,module,exports) {
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i &lt; arguments.length; i&#43;&#43;) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+const bitbar = require(&#39;bitbar&#39;);
+
+const fetch = require(&#39;node-fetch&#39;).default;
+
+const {
+  format,
+  parseISO
+} = require(&#39;date-fns&#39;);
+
+const OPTIONS = {
+  FOOTBALL_DATA_API_KEY: USER_OPTIONS &amp;&amp; USER_OPTIONS.FOOTBALL_DATA_API_KEY,
+  TEAM_ID: USER_OPTIONS &amp;&amp; USER_OPTIONS.TEAM_ID || 73,
+  NUMBER_OF_FINISHED_MATCHES: USER_OPTIONS &amp;&amp; USER_OPTIONS.NUMBER_OF_FINISHED_MATCHES || 5,
+  NUMBER_OF_SCHEDULED_MATCHES: USER_OPTIONS &amp;&amp; USER_OPTIONS.NUMBER_OF_SCHEDULED_MATCHES || 3
+};
+
+if (!OPTIONS.FOOTBALL_DATA_API_KEY) {
+  console.log(&#39;MISSING API KEY&#39;);
+}
+
+if (OPTIONS.NUMBER_OF_FINISHED_MATCHES &gt; 7) {
+  OPTIONS.NUMBER_OF_FINISHED_MATCHES = 7;
+}
+
+(async () =&gt; {
+  const apiUrl = &#39;https://api.football-data.org/v2&#39;;
+  const apiData = {
+    method: &#39;get&#39;,
+    headers: {
+      &#39;Content-Type&#39;: &#39;application/json&#39;,
+      &#39;X-Auth-Token&#39;: OPTIONS.FOOTBALL_DATA_API_KEY
+    }
+  }; // Get team info
+
+  const myTeamResponse = await fetch(`${apiUrl}/teams/${OPTIONS.TEAM_ID}`, apiData);
+  const myTeam = await myTeamResponse.json(); // Get active competitions standings
+  // NOTE: The free API only supports some competitions: https://www.football-data.org/coverage
+
+  const supportedCompetitions = new Set([&#39;BSA&#39;, &#39;PL&#39;, &#39;ELC&#39;, &#39;CL&#39;, &#39;EC&#39;, &#39;FL1&#39;, &#39;BL1&#39;, &#39;SA&#39;, &#39;DED&#39;, &#39;PPL&#39;, &#39;PD&#39;, &#39;WC&#39;]);
+  const activeCompetitionsPromises = myTeam.activeCompetitions.filter(comp =&gt; supportedCompetitions.has(comp.code)).map(comp =&gt; fetch(`${apiUrl}/competitions/${comp.code}/standings?standingType=TOTAL`, apiData));
+  const activeCompetitionsPromisesResponses = await Promise.all(activeCompetitionsPromises);
+  const activeCompetitionsStandings = await Promise.all(activeCompetitionsPromisesResponses.map(resp =&gt; resp.json()));
+  let activeCompetitionsStandingsRender = [];
+  activeCompetitionsStandings.forEach(comp =&gt; {
+    activeCompetitionsStandingsRender = [...activeCompetitionsStandingsRender, {
+      text: comp.competition.name,
+      href: `https://www.google.com/search?q=${comp.competition.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}`,
+      size: 14,
+      submenu: comp.standings.map(standing =&gt; ({
+        text: standing.stage === &#39;GROUP_STAGE&#39; ? standing.group : standing.stage,
+        size: 14,
+        submenu: [{
+          text: &#39;Pos. Team - Points&#39;
+        }, bitbar.separator, ...standing.table.map((table, idx) =&gt; {
+          return _objectSpread({
+            text: `${table.position}. ${table.team.name} - ${table.points}`,
+            href: `https://www.google.com/search?q=${table.team.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}`
+          }, table.team.id === OPTIONS.TEAM_ID &amp;&amp; {
+            font: &#39;Helvetica-Bold&#39;
+          });
+        })]
+      }))
+    }];
+  }); // Get matches
+
+  const matchesResponse = await fetch(`${apiUrl}/teams/${OPTIONS.TEAM_ID}/matches`, apiData);
+  const matchesResponseJson = await matchesResponse.json();
+  const finishedMatches = matchesResponseJson.matches.filter(match =&gt; match.status === &#39;FINISHED&#39;);
+  const scheduledMatches = matchesResponseJson.matches.filter(match =&gt; match.status === &#39;SCHEDULED&#39;);
+  const liveMatches = matchesResponseJson.matches.filter(match =&gt; match.status === &#39;LIVE&#39; || match.status === &#39;IN_PLAY&#39; || match.status === &#39;PAUSED&#39;); // Finished/completed matches
+
+  let finishedMatchesRender = [];
+
+  if (finishedMatches) {
+    let idx = 0; // Use for..of here instead of forEach because it plays nice with async/await
+
+    for (const match of finishedMatches) {
+      if (idx &gt;= finishedMatches.length - OPTIONS.NUMBER_OF_FINISHED_MATCHES) {
+        // Determine winner
+        const isDraw = match.score.winner === &#39;DRAW&#39;;
+        let winningTeamName = &#39;Draw&#39;;
+
+        if (match.score.winner === &#39;HOME_TEAM&#39;) {
+          winningTeamName = match.homeTeam.name;
+        } else if (match.score.winner === &#39;AWAY_TEAM&#39;) {
+          winningTeamName = match.awayTeam.name;
+        }
+
+        const myTeamWon = winningTeamName === myTeam.name;
+        const myTeamIsHome = match.homeTeam.name === myTeam.name; // Get TLA
+
+        const opponentTeamId = myTeamIsHome ? match.awayTeam.id : match.homeTeam.id;
+        const opponentTeamResponse = await fetch(`${apiUrl}/teams/${opponentTeamId}`, apiData);
+        const opponentTeam = await opponentTeamResponse.json(); // Check if there was extra time
+
+        const showExtraTime = match.score.extraTime.homeTeam || match.score.extraTime.awayTeam; // Check if there were penalties
+
+        const showPenalties = match.score.penalties.homeTeam || match.score.penalties.awayTeam; // Render regular scores
+
+        const regularScoreRender = `${myTeamIsHome ? myTeam.tla : opponentTeam.tla} ${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam} ${myTeamIsHome ? opponentTeam.tla : myTeam.tla}`; // Render extra time scores
+
+        const extraTimeRender = `(ET: ${match.score.extraTime.homeTeam} - ${match.score.extraTime.awayTeam})`; // Render extra time scores
+
+        const penaltiesRender = `(Pen: ${match.score.penalties.homeTeam} - ${match.score.penalties.awayTeam})`;
+        finishedMatchesRender = [...finishedMatchesRender, {
+          text: `${match.homeTeam.name} vs. ${match.awayTeam.name}`,
+          size: 14,
+          href: `https://www.google.com/search?q=${match.homeTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}&#43;vs.&#43;${match.awayTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}`
+        }, {
+          text: `${myTeamWon ? &#39;🟢&#39; : isDraw ? &#39;⚪️&#39; : &#39;🔴&#39;} ${regularScoreRender} ${showExtraTime ? extraTimeRender : &#39;&#39;} ${showPenalties ? penaltiesRender : &#39;&#39;}`,
+          size: 14
+        }];
+      }
+
+      idx&#43;&#43;;
+    }
+  } // Scheduled/upcoming matches
+
+
+  let scheduledMatchesRender = [];
+
+  if (scheduledMatches) {
+    scheduledMatches.forEach((match, idx) =&gt; {
+      if (idx &lt; OPTIONS.NUMBER_OF_SCHEDULED_MATCHES) {
+        scheduledMatchesRender = [...scheduledMatchesRender, {
+          text: `${match.homeTeam.name} vs. ${match.awayTeam.name}`,
+          size: 14,
+          href: `https://www.google.com/search?q=${match.homeTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}&#43;vs.&#43;${match.awayTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}`
+        }, {
+          text: `${match.competition.name} - ${match.group || match.stage}${match.matchday ? ` - Match day: ${match.matchday}` : &#39;&#39;}`,
+          size: 14
+        }, {
+          text: `${format(parseISO(match.utcDate), &#39;MM/dd/yyyy - hh:mm a&#39;)}`,
+          size: 14
+        }];
+      }
+    });
+  } // Live matches
+
+
+  let liveMatchesRender = [];
+
+  if (liveMatches) {
+    liveMatches.forEach(async match =&gt; {
+      liveMatchesRender = [...liveMatchesRender, {
+        text: `${match.homeTeam.name} vs. ${match.awayTeam.name}`,
+        size: 14,
+        href: `https://www.google.com/search?q=${match.homeTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}&#43;vs.&#43;${match.awayTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}`
+      }, {
+        text: `${match.competition.name} - ${match.group || match.stage}${match.matchday ? ` - Match day: ${match.matchday}` : &#39;&#39;}`,
+        size: 14
+      }, {
+        text: &#39;Click here to check the score&#39;,
+        size: 14,
+        href: `https://www.google.com/search?q=${match.homeTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}&#43;vs.&#43;${match.awayTeam.name.split(&#39; &#39;).join(&#39;&#43;&#39;)}`
+      }];
+    });
+  } // Prepare render sections
+
+
+  const activeCompetitionsStandingsSection = activeCompetitionsStandingsRender.length ? [bitbar.separator, {
+    text: &#39;Standings&#39;,
+    size: 22
+  }, ...activeCompetitionsStandingsRender] : [bitbar.separator, {
+    text: &#39;Standings&#39;,
+    size: 22
+  }, {
+    text: &#39;No active competitions.&#39;,
+    size: 14
+  }];
+  const finishedMatchesSection = finishedMatchesRender.length ? [bitbar.separator, {
+    text: &#39;Completed Matches&#39;,
+    size: 22
+  }, ...finishedMatchesRender] : [bitbar.separator, {
+    text: &#39;Completed Matches&#39;,
+    size: 22
+  }, {
+    text: &#39;No recently completed matches.&#39;,
+    size: 14
+  }];
+  const scheduledMatchesSection = scheduledMatchesRender.length ? [bitbar.separator, {
+    text: &#39;Upcoming Matches&#39;,
+    size: 22
+  }, ...scheduledMatchesRender] : [bitbar.separator, {
+    text: &#39;Upcoming Matches&#39;,
+    size: 22
+  }, {
+    text: &#39;No upcoming matches.&#39;,
+    size: 14
+  }];
+  const liveMatchesSection = liveMatchesRender.length ? [bitbar.separator, {
+    text: &#39;Live Matches&#39;,
+    size: 22
+  }, ...liveMatchesRender] : [bitbar.separator, {
+    text: &#39;Live Matches&#39;,
+    size: 22
+  }, {
+    text: &#39;No live matches right now.&#39;,
+    size: 14
+  }]; // Render the bitbar dropdown
+
+  bitbar([{
+    text: `⚽︎ ${myTeam.tla}`,
+    dropdown: false
+  }, bitbar.separator, {
+    text: myTeam.name,
+    size: 30,
+    href: myTeam.website
+  }, ...activeCompetitionsStandingsSection, ...finishedMatchesSection, ...scheduledMatchesSection, ...liveMatchesSection]);
+})();
+},{}]},{},[&#34;Focm&#34;], null)</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

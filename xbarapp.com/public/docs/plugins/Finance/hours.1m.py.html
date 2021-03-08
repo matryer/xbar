@@ -1,0 +1,626 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>hours in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='A simple command line tool for managing your work hours and the money you make - install xbar for free to get started.'>
+	<meta name='author' content='Udey Rishi'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png'>
+	<meta itemprop='name' content='hours in your macOS menu bar'>
+	<meta itemprop='description' content='A simple command line tool for managing your work hours and the money you make - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='hours in your macOS menu bar'>
+	<meta name='twitter:description' content='A simple command line tool for managing your work hours and the money you make - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='hours in your macOS menu bar'>
+	<meta property='og:description' content='A simple command line tool for managing your work hours and the money you make - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Finance/hours.1m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>hours</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/udeyrishi.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/4692593?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/udeyrishi.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Udey Rishi (<code style='color:white;'>@udeyrishi</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						A simple command line tool for managing your work hours and the money you make
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Finance%2fhours.1m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png' 
+				alt='Image preview of hours plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>hours.1m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Finance/hours.1m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Finance/hours.1m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/local/bin/python3
+# &lt;bitbar.title&gt;hours&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v2.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Udey Rishi&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;udeyrishi&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;A simple command line tool for managing your work hours and the money you make&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://raw.githubusercontent.com/udeyrishi/hours/master/assets/shift_ongoing.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;Python3&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/udeyrishi/hours&lt;/bitbar.abouturl&gt;
+
+from argparse import ArgumentParser
+import csv
+from enum import Enum, auto
+import os
+from distutils.util import strtobool
+from math import isclose
+import sys
+import time
+
+LOG_FILE_PATH = os.path.join(os.path.expanduser(&#39;~&#39;), &#39;.hours&#39;, &#39;log.csv&#39;)
+
+class ModeFailException(Exception):
+    pass
+
+def prompt_until_success(question, parser_fn, default=None):
+    while True:
+        print(question, end=&#39;&#39;)
+        try:
+            return parser_fn(input())
+        except ValueError:
+            if default is None:
+                print(&#39;Not a valid response.&#39;)
+            else:
+                return default
+
+def script_path():
+    return os.path.realpath(__file__)
+
+def script_name():
+    return os.path.basename(__file__)
+
+class LogEvent(Enum):
+    WAGE_SET = auto()
+    PAYMENT = auto()
+    START = auto()
+    END = auto()
+
+def positive_float(val):
+    num = float(val)
+    if num &lt; 0:
+        raise ValueError(f&#39;{val} is a negative number.&#39;)
+    return num
+
+class LogReport:
+    def __init__(self, active_wage=None, current_shift_started_at=None, earned_past_shifts=0, total_paid=0):
+        self.active_wage = active_wage
+        self.current_shift_started_at = current_shift_started_at
+        self.earned_past_shifts = earned_past_shifts
+        self.total_paid = total_paid
+
+    @property
+    def total_earned(self):
+        return self.earned_past_shifts &#43; (((time.time() - self.current_shift_started_at)/60/60*self.active_wage) if self.current_shift_started_at is not None else 0)
+
+    @property
+    def outstanding_payment(self):
+        return self.total_earned - self.total_paid
+
+    @property
+    def has_outstanding_payment(self):
+        return not isclose(self.total_earned, self.total_paid, abs_tol=0.01)
+
+    @property
+    def in_shift(self):
+        return self.current_shift_started_at != None
+
+    @property
+    def has_active_wage(self):
+        return self.active_wage != None
+
+    @property
+    def current_shift_duration(self):
+        if self.current_shift_started_at is None:
+            return None
+        else:
+            duration = time.time() - self.current_shift_started_at
+            if duration &lt; 0:
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; the ongoing shift seems to have been started in the future.&#39;)
+            m, s = divmod(duration, 60)
+            h, m = divmod(m, 60)
+            return f&#39;{int(h):02d}:{int(m):02d}:{int(s):02d}&#39;
+
+def prepare_report():
+    report = LogReport()
+    
+    for event, value in read_log():
+        if event == LogEvent.WAGE_SET:
+            report.active_wage = value
+        elif event == LogEvent.PAYMENT:
+            report.total_paid &#43;= value
+        elif event == LogEvent.START: 
+            if report.in_shift:
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; found two successive {LogEvent.START.name}s without a {LogEvent.END.name} in between. Try fixing or deleting it.&#39;)
+            if report.active_wage is None:
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; A shift {event.name} event occurred before any {LogEvent.WAGE_SET.name} event.&#39;)
+            report.current_shift_started_at = value
+        elif event == LogEvent.END:
+            if not report.in_shift:
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; found two successive {LogEvent.END.name}s without a {LogEvent.START.name} in between. Try fixing or deleting it.&#39;)
+            if report.active_wage is None:
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; A shift {event.name} event occurred before any {LogEvent.WAGE_SET.name} event.&#39;)
+            
+            seconds = value - report.current_shift_started_at
+            report.current_shift_started_at = None
+            if (seconds &lt; 0):
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; A shift\&#39;s duration cannot be negative. Try fixing or deleting it.&#39;)
+            
+            report.earned_past_shifts &#43;= (seconds/60/60) * report.active_wage
+        else:
+            assert False, f&#39;Support for new LogEvent {event.name} not added.&#39;
+
+    return report
+
+
+def read_log():
+    with open(LOG_FILE_PATH, &#39;r&#39;) as log_file:
+        csv_reader = csv.reader(log_file)
+        for log in csv_reader:
+            event = next((e for e in LogEvent if e.name == log[0]), None)
+            if event is None:
+                raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; found an unknown log event: {log}&#39;)
+            value = float(log[1])
+            yield event, value
+
+def write_log(event, value):
+    with open(LOG_FILE_PATH, &#39;a&#39;) as log_file:
+        csv_writer = csv.writer(log_file)
+        csv_writer.writerow([event.name, value])
+
+def read_sanitized_report(expected_in_shift=None, if_shift_err=None):
+    if (expected_in_shift is None and if_shift_err is not None) or (expected_in_shift is not None and if_shift_err is None):
+        raise ValueError(&#39;Either both, or neither of expected_in_shift and if_shift_err should be null.&#39;)
+
+    report = prepare_report()
+    if not report.has_active_wage:
+        raise ModeFailException(f&#39;Log file at {LOG_FILE_PATH} is corrupted; no {LogEvent.WAGE_SET.name} events found. Try fixing or deleting it.&#39;)
+
+    if expected_in_shift is not None and report.in_shift != expected_in_shift:
+        raise ModeFailException(if_shift_err)
+
+    return report
+
+def configure_as_new(ask_permission=True):
+    if ask_permission:
+        should_configure = prompt_until_success(question=f&#39;Looks like you have never configured {script_name()} before. Would you like to do so now? [Y/n] &#39;, parser_fn=lambda x: strtobool(x) == 1, default=True)
+        if not should_configure:
+            raise ModeFailException(f&#39;{script_name()} cannot run without configuring.&#39;)
+
+    wage = prompt_until_success(question=&#39;What is your hourly wage? &#39;, parser_fn=positive_float)
+
+    if not os.path.exists(os.path.dirname(LOG_FILE_PATH)):
+        os.makedirs(os.path.dirname(LOG_FILE_PATH))
+
+    write_log(LogEvent.WAGE_SET, wage)
+    return LogReport(active_wage=wage)
+
+class App:
+    class Mode:
+        def __init__(self, name, runner, help, is_default):
+            self.name = name
+            self.runner = runner
+            self.help = help
+            self.is_default = is_default
+
+    def __init__(self):
+        self.__registered_modes = []
+
+    def run(self):
+        assert len(self.__registered_modes) &gt; 0, &#39;No modes were registered&#39;
+        default_modes = [mode for mode in self.__registered_modes if mode.is_default]
+        assert len(default_modes) == 1, &#39;Exactly 1 mode should be registered as the default&#39;
+        default_mode = default_modes[0]
+
+        parser = ArgumentParser(description=&#39;A tool for managing your work hours and the money you make.&#39;)
+        group = parser.add_mutually_exclusive_group()
+
+        for mode in self.__registered_modes:
+            group.add_argument(f&#39;-{mode.name[0]}&#39;, f&#39;--{mode.name}&#39;, action=&#39;store_true&#39;, help=mode.help)
+
+        args = parser.parse_args()
+
+        matching_mode = next((mode for mode in self.__registered_modes if getattr(args, mode.name)), default_mode)
+        try:
+            matching_mode.runner()
+            return 0
+        except ModeFailException as e:
+            print(str(e))
+            return 3
+
+    def register_mode(self, expected_in_shift=None, if_shift_err=None, help=None, configure_if_needed=True, is_default=False):
+        def wrapper(mode_fn):
+            report_param_name = next((param[0] for param in mode_fn.__annotations__.items() if param[1] == LogReport), None)
+            num_other_params = len([param for param in mode_fn.__annotations__.items() if param[1] != LogReport])
+            assert num_other_params == 0, &#39;mode functions can only optionally request the current report. Everything else must be gathered via user input for bitbar compatibility.&#39;
+
+            def mode_runner():
+                if os.path.isfile(LOG_FILE_PATH):
+                    report = read_sanitized_report(expected_in_shift, if_shift_err)
+                elif configure_if_needed:
+                    report = configure_as_new()
+                else:
+                    report = None
+
+                kwargs = dict()
+                if report_param_name is not None:
+                    kwargs[report_param_name] = report
+                
+                mode_fn(**kwargs)
+
+            self.__registered_modes.append(App.Mode(name=mode_fn.__name__, runner=mode_runner, help=help, is_default=is_default))
+            return mode_runner
+        return wrapper
+
+app = App()
+
+@app.register_mode(help=&#39;see the current status summary in a bitbar compatible syntax&#39;, configure_if_needed=False, is_default=True)
+def bitbar(report: LogReport):
+    if report is None:
+        print(f&#39;⚙️{script_name()} needs a one-time configuration.&#39;)
+        print(f&#39;Configure | refresh=true bash=&#34;{script_path()}&#34; param1=-i terminal=true&#39;)
+        return 0
+
+    if report.in_shift:
+        print(f&#39;🕒 {report.current_shift_duration}&#39;)
+    else:
+        print(&#39;🏠&#39;)
+
+    print(&#39;---&#39;)
+    if report.in_shift:
+        print(f&#39;End Shift | refresh=true bash=&#34;{script_path()}&#34; param1=-e terminal=false&#39;)
+    else:
+        print(f&#39;Start Shift | refresh=true bash=&#34;{script_path()}&#34; param1=-s terminal=false&#39;)
+
+    print(&#39;---&#39;)
+    if not report.in_shift:
+        print(f&#39;Update wage | refresh=true bash=&#34;{script_path()}&#34; param1=-w terminal=true&#39;)
+    print(f&#39;Receive payment | refresh=true bash=&#34;{script_path()}&#34; param1=-p terminal=true&#39;)
+
+    print(f&#39;Open log | refresh=true bash=&#34;less&#34; param1={LOG_FILE_PATH} terminal=true&#39;)
+
+    if report.has_outstanding_payment:
+        print(&#39;---&#39;)
+        if report.outstanding_payment &gt; 0:
+            print(f&#39;💰 {report.outstanding_payment:.2f} pending&#39;)
+        else:
+            print(f&#39;💰 {-report.outstanding_payment:.2f} overpaid&#39;)
+
+@app.register_mode(help=&#39;see the current status summary info&#39;)
+def info(report: LogReport):
+    if report.in_shift:
+        print(f&#39;🕒 {report.current_shift_duration}&#39;, end=&#39;&#39;)
+    else:
+        print(&#39;🏠&#39;, end=&#39;&#39;)
+
+    if report.has_outstanding_payment:
+        print(&#39; | &#39;, end=&#39;&#39;)
+        if report.outstanding_payment &gt; 0:
+            print(f&#39;💰 {report.outstanding_payment:.2f} pending&#39;, end=&#39;&#39;)
+        else:
+            print(f&#39;💰 {-report.outstanding_payment:.2f} overpaid&#39;, end=&#39;&#39;)
+    print()
+
+@app.register_mode(expected_in_shift=False, if_shift_err=&#39;Cannot change the wage while a shift is ongoing.&#39;, help=&#39;update the hourly wage moving forward&#39;, configure_if_needed=False)
+def wage(report: LogReport):
+    if report is None:
+        # User is trying to use this mode as the first-time setup itself. Do not ask for wage 2x
+        configure_as_new(ask_permission=False)
+    else:
+        wage = prompt_until_success(question=&#39;What is your new hourly wage? &#39;, parser_fn=positive_float)
+        write_log(LogEvent.WAGE_SET, wage)
+
+@app.register_mode(help=&#39;add a received payment&#39;)
+def payment():
+    amount = prompt_until_success(question=&#39;How much amount did you receive? &#39;, parser_fn=positive_float)
+    write_log(LogEvent.PAYMENT, amount)
+
+@app.register_mode(expected_in_shift=False, if_shift_err=&#39;Cannot start a shift while one is ongoing.&#39;, help=&#39;start a shift&#39;)
+def start():
+    write_log(LogEvent.START, time.time())
+
+@app.register_mode(expected_in_shift=True, if_shift_err=&#39;Cannot end a shift when none is ongoing.&#39;, help=&#39;end a shift&#39;)
+def end():
+    write_log(LogEvent.END, time.time())
+
+@app.register_mode(help=&#39;prints the path to the log file&#39;)
+def log():
+    print(LOG_FILE_PATH)
+
+if __name__ == &#39;__main__&#39;:
+    sys.exit(app.run())</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

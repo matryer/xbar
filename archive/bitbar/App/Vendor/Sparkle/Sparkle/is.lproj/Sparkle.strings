@@ -1,0 +1,56 @@
+"%@ of %@" = "%@ af %@";
+
+"%@ %@ has been installed and will be ready to use next time %@ starts! Would you like to relaunch now?" = "%@ %@ hefur verið sett inn og verður tiltækt við næstu ræsingu %@. Viltu endurræsa núna?";
+
+"%@ %@ is currently the newest version available." = "%@ %@ er nýjasta útgáfan sem er fáanleg þessa stundina.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "Útgafa %2$@ af %1$@ er nú fáanlegt en þú ert með %3$@. Viltu sækja hana núna?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ does not have permission to write to the application's directory! Are you running off a disk image? If not, ask your system administrator for help." = "%@ hefur ekki heimild til að skrifa í möppu forritsins! Ertu að keyra forritið af diskmynd? Ef ekki skaltu ráðfæra þig við kerfisstjórann.";
+
+"A new version of %@ has been installed!" = "Ný útgáfa af %@ hefur verið sett inn!";
+
+"A new version of %@ is available!" = "Ný útgáfa af %@ er fáanleg!";
+
+"An error occurred during installation. Please try again later." = "Villa kom upp við innsetningu. Vinsamlegast reynið síðar.";
+
+"An error occurred in retrieving update information. Please try again later." = "Villa kom upp við að sækja uppfærsluupplýsingar. Vinsamlegast reynið síðar.";
+
+"An error occurred while extracting the archive. Please try again later." = "Villa kom upp við afþjöppun skráarsafns. Vinsamlegast reynið síðar.";
+
+"An error occurred while trying to download the file. Please try again later." = "Villa kom upp þegar reynt var að sækja skrána. Vinsamlegast reynið síðar";
+
+"An update is already in progress!" = "Uppfærsla er þegar í gangi!";
+
+"Cancel" = "Hætta við";
+
+"Check for updates on startup?" = "Athuga með uppfærslur í ræsingu?";
+
+"Downloading update..." = "Sækja nýja útgáfu…";
+
+"Extracting update..." = "Afþjappa uppfærslu…";
+
+"Install and Relaunch" = "Setja upp og ræsa aftur";
+
+"Installing update..." = "Set inn uppfærslu…";
+
+"Ready to Install" = "Innsetning reiðubúin";
+
+"No" = "Nei";
+
+"OK" = "Í lagi";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Viltu að forritið %1$@ athugi með uppfærslur þegar það er ræst? Ef ekki getur þú athugað handvirkt af %1$@-valblaðinu.";
+
+"Update Error!" = "Villa við uppfærslu!";
+
+"Updating %@" = "Uppfæri %@";
+
+"Yes" = "Já";
+
+"You're up-to-date!" = "Það er allt uppfært hjá þér!";
+

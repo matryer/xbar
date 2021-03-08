@@ -1,0 +1,698 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Welcome to xbar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='xbar, the BitBar reboot'>
+	<meta itemprop='description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='xbar, the BitBar reboot'>
+	<meta name='twitter:description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='xbar, the BitBar reboot'>
+	<meta property='og:description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta property='og:url' content='https://xbarapp.com/'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.menu-preview {
+			width: auto;
+			max-width: 80%;
+			width: 500px;
+			margin-left: -500px;
+		}
+		.app-preview {
+			opacity: 0.9;
+			max-width: 80%;
+			width: 700px;
+			margin-top: -150px;
+			margin-right: -500px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='flex-grow'>
+		<div class='container mx-auto text-white flex flex-col items-center'>
+			<h2 class='hidden md:block py-8 px-12 bg-white text-white bg-opacity-25 rounded text-5xl text-center font-bold m-16 mb-0 max-w-xl'>
+				Put <strong>anything</strong> in your macOS menu bar
+			</h2>
+			<h2 class='md:hidden text-3xl text-center font-bold m-16 mb-0 max-w-lg'>
+				Put <strong>anything</strong> in your macOS menu bar
+			</h2>
+			<p class='text-3xl mt-8 font-bold opacity-75'>
+				<span class='opacity-50'>(</span>the BitBar reboot<span class='opacity-50'>)</span>
+			</p>
+		</div>
+		<div class='hidden md:block mt-16 text-center'>
+			<p>
+				<img 
+					alt='Screenshot showing xbar menu in action'
+					class='inline menu-preview rounded-lg shadow-xl'
+					src='/public/img/xbar-menu-preview.png'
+				>
+			</p>
+			<p>
+				<img 
+					alt='Screenshot showing the xbar plugin browser app'
+					class='inline app-preview' 
+					src='/public/img/xbar-app-preview.png'
+				>
+			</p>
+		</div>
+		<div class='md:hidden mt-16'>
+			<p>
+				<img 
+					alt='Screenshot showing xbar menu in action'
+					class='inline rounded-lg shadow-xl'
+					src='/public/img/xbar-menu-preview.png'
+				>
+			</p>
+			<p class='mt-4'>
+				<img 
+					alt='Screenshot showing the xbar plugin browser app'
+					class='inline' 
+					src='/public/img/xbar-app-preview.png'
+				>
+			</p>
+		</div>
+		<div class='md:hidden mt-8 container mx-auto flex justify-center items-center text-white text-2xl'>
+			<a 
+				target='github'
+				href='/dl' 
+				class='text-sm rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+			>Coming soon</a>
+		</div>
+		</div>
+		<div class='container mx-auto flex justify-center items-center text-white text-2xl'>
+			<ul class='my-8 md:my-16 md:flex'>
+				<li class='p-8 text-center text-white text-3xl mt-8 font-bold max-w-sm'>
+					<span class='opacity-75'>Hundreds of</span> <strong>pre-built plugins</strong> <span class='opacity-75'>to choose from</span>
+				</li>
+				<li class='p-8 text-center text-white text-3xl mt-8 font-bold max-w-sm'>
+					<span class='opacity-75'>Information you care about,</span> <strong>at a glance</strong>
+				</li>
+				<li class='p-8 text-center text-white text-3xl mt-8 font-bold max-w-sm'>
+					<strong>Write your own plugins</strong><span class='opacity-75'>&mdash;in any language</span>
+				</li>
+			</ul>
+		</div>
+		<h2 class='p-8 text-center text-white text-3xl mt-8 font-bold'>
+			<span class='opacity-75'>with</span> Plugins <span class='opacity-75'>like these&hellip;</span>
+		</h2>
+		
+	
+		<div class='grid grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-8 divide-white container mx-auto'>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Lifestyle/memento_mori.py.html'
+						><strong class='text-xl'>Memento Mori</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Lifestyle/memento_mori.py.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://www.sufiyanyasa.com/img/avatar.jpg'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Memento Mori - Remember, thou art mortal
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/xr1337.html'>
+									<span class='text-right break-all'>
+										<strong>Sufiyan Yasa</strong>
+										
+											(@xr1337)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/2070518?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/trackpad-dot.1h.swift.html'
+						><strong class='text-xl'>Trackpad Dot</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/trackpad-dot.1h.swift.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/4G7B76u.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Displays a coloured dot in the menu bar that gradually changes from green to yellow to red the lower your Magic Trackpad&#39;s battery
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/milch.html'>
+									<span class='text-right break-all'>
+										<strong>Manu Wallner</strong>
+										
+											(@milch)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/279407?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/System/firewall_status_indicator.10s.sh.html'
+						><strong class='text-xl'>Firewall Status Indicator</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/System/firewall_status_indicator.10s.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://tinyapps.org/screenshots/bitbar_firewall_status_indicator.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Display status of the built-in Application Firewall
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/tinyapps.html'>
+									<span class='text-right break-all'>
+										<strong>Miles Wolbe</strong>
+										
+											(@tinyapps)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/1616368?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/waketime.1m.sh.html'
+						><strong class='text-xl'>Waketime</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/waketime.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='http://i.imgur.com/jsB66g9.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows the time since your mac last woke up in hours:minutes
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/matthias-vogt.html'>
+									<span class='text-right break-all'>
+										<strong>Matthias</strong>
+										
+											(@matthias-vogt)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4030513?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Time/watson.1m.sh.html'
+						><strong class='text-xl'>Watson Status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Time/watson.1m.sh.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://i.imgur.com/3OuXrWn.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Shows Watson&#39;s status
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/toin0u.html'>
+									<span class='text-right break-all'>
+										<strong>Antoine Kirk</strong>
+										
+											(@toin0u)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/672421?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+					<p>
+						<a
+							class='hover:underline'
+							href='/docs/plugins/Network/nord-vpn-status.js.html'
+						><strong class='text-xl'>NordVPN Status</strong></a>
+					</p>
+					
+					
+						<div class='flex flex-grow space-x-4 items-center p-4'>
+							<div class='max-w-md w-1/3'>
+								<a href='/docs/plugins/Network/nord-vpn-status.js.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='https://raw.githubusercontent.com/dustinmcbride/bitbar-nord-vpn-status/master/screenshots/protected.png'
+										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+									>
+								</a>
+							</div>
+							<div class='w-2/3 text-sm flex-grow flex flex-col'>
+								<div class='hyphens-auto flex-grow text-xl md:text-base'>
+									Your nordVPN protected status for bit bar
+								</div>
+							</div>
+						</div>
+						
+							<div class='text-right text-sm'>
+								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/dustinmcbride.html'>
+									<span class='text-right break-all'>
+										<strong>Dustin McBride</strong>
+										
+											(@dustinmcbride)
+										
+									</span>
+									
+										<img class='w-10 h-10 rounded-full inline' src='https://avatars.githubusercontent.com/u/4693713?v=4'>
+									
+								</a>
+							</div>
+						
+					
+				</div>
+			
+		</div>
+	
+
+		<div class='p-8 pb-2 text-center text-white text-3xl mt-8 font-bold'>
+			<span class='opacity-75'>Browse</span>
+			hundreds of plugins<span class='opacity-75'>&mdash;by category</span>
+		</div>
+		<div class='p-8 pt-0 text-center text-white text-2xl font-bold mt-8 max-w-2xl mx-auto'>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/AWS.html'>
+					AWS
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Cryptocurrency.html'>
+					Cryptocurrency
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Dev.html'>
+					Dev
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/E-Commerce.html'>
+					E-Commerce
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Email.html'>
+					Email
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Environment.html'>
+					Environment
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Finance.html'>
+					Finance
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Games.html'>
+					Games
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/IoT.html'>
+					IoT
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Lifestyle.html'>
+					Lifestyle
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Music.html'>
+					Music
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Network.html'>
+					Network
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Politics.html'>
+					Politics
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Science.html'>
+					Science
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Sports.html'>
+					Sports
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/System.html'>
+					System
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Time.html'>
+					Time
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Tools.html'>
+					Tools
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Travel.html'>
+					Travel
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Weather.html'>
+					Weather
+				</a>
+			
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/Web.html'>
+					Web
+				</a>
+			
+		</div>
+		<div class='container mx-auto flex flex-col justify-center items-center text-white m-16'>
+			<h2 class='p-8 text-center text-white text-3xl mt-8 font-bold'>
+				<span class='opacity-75'>Meet the</span> plugin contributors&hellip;
+			</h2>
+			<a href='/docs/contributors/index.html'><img class='rounded shadow-xl w-full' style='max-width:768px;' src='/public/img/contributors.jpg'></a>
+		</div>
+		<div class='container mx-auto flex flex-col justify-center items-center text-white m-16'>
+			<h2 class='p-8 text-center text-white text-3xl mt-8 font-bold'>
+				<span class='opacity-75'>
+					<span class='text-5xl pb-2'>💜</span><br>
+					Show your support<br>
+					by
+				</span> Sponsoring xbar
+			</h2>
+			<p class='p-8 pt-0 text-center text-white text-2xl opacity-75 max-w-md'>
+				Every contribution makes a <strong>big difference</strong>
+			</p>
+			<p class='p-8 pt-0 text-center text-white text-2xl opacity-75 max-w-md'>
+				If you use xbar, please consider
+				<a target='github' class='underline' href='https://github.com/sponsors/matryer'>sponsoring it on GitHub</a>
+			</p>
+		</div>
+	</div>
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

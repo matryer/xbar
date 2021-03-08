@@ -1,0 +1,443 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Syncthing in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Monitor the status of your local (or remote) Syncthing - install xbar for free to get started.'>
+	<meta name='author' content='blockloop'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png'>
+	<meta itemprop='name' content='Syncthing in your macOS menu bar'>
+	<meta itemprop='description' content='Monitor the status of your local (or remote) Syncthing - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Syncthing in your macOS menu bar'>
+	<meta name='twitter:description' content='Monitor the status of your local (or remote) Syncthing - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Syncthing in your macOS menu bar'>
+	<meta property='og:description' content='Monitor the status of your local (or remote) Syncthing - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Lifestyle/syncthing.10s.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png'>
+	<link rel='shortcut icon' href='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Syncthing</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/blockloop.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/3022496?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/blockloop.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Brett Jones (<code style='color:white;'>@blockloop</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Monitor the status of your local (or remote) Syncthing
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Lifestyle%2fsyncthing.10s.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png' 
+				alt='Image preview of Syncthing plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>syncthing.10s.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Lifestyle/syncthing.10s.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Lifestyle/syncthing.10s.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env bash
+set -euo pipefail
+
+# &lt;bitbar.title&gt;Syncthing&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v0.2&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;blockloop&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;blockloop&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Monitor the status of your local (or remote) Syncthing&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://blockloop.nyc3.digitaloceanspaces.com/images/syncthing.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;curl&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;jq&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;bc&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;dig&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;awk&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;xargs&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;sed&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.dependencies&gt;tac&lt;/bitbar.dependencies&gt;
+
+PATH=&#34;/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH&#34;
+API_KEY=&#34;&#34;
+HOST=&#34;http://127.0.0.1:8384&#34;
+# HiDPI
+# ICON_DEFAULT=&#34;iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAACyFJREFUWAl1V3twFdUZ/87u3t37fiQhLwIhSkxIYMojEJWioVoctbaoFbW2Mx0f&#43;GKsdXQcR9vGjtNq2z86LbWVqdOZzqCCzyKjIypgRUoIIEgTkQAJEu4Ned733t27d7e/b29SKWPPzNmzu&#43;ec7/n7vu8cQf&#43;vbd0qU3&#43;/Q93dNi9p3HasSZalLpWkTllQs3CcJhJOg7vdEcMO0VDJcQZMQftKir379DWtg&#43;5cd7dEbW2C1q0rud8XPMQF3&#43;5n165dyu7Vqy3&#43;mP/2wFLsvN8nnOs1VauTNC8VwS1vmpQzdHd9QPORX1XJA2q2USCjaCR0x3lHdqTnT9zQfIgXnU/T3TT9uEAAR9BWkmidKLVv7QtmNc/PVUEPRkJhfw4MP9cLRGYJ8jg2yUKQLMkunZJdIqhPJCRSJXmBz0cBCJTKpPMm2c8HC6Wn&#43;9a1Z6l7l0LdXdgvsLbczhcAzB2X&#43;fy3Btqw8W/hUGSFYuTpcN4oke04N4RU8Z0av7Sw0ieqAyr5PJJLRS/adC5nUt&#43;E7mwfyTlvZ/FDEmKxX5MtzU/pdKpXFdKPT6xt7gcPmdYR3FoW4isBYHaC2Ztf6&#43;s0JPnNWDhal80krZPgfWtUk&#43;&#43;7pEJ0zomQTykzzRdLVAAfbl4I4veUjVGwbOo5k6I/H590tkwZ9sVe2QmGospUOpnQ7NKNA99v7ylbouxiV4BlLxzwHLy3ozj/tb52U5J3xALh&#43;qFMykhZtvrX5pj4waJqaCtTIl2gnuE07R/TqS9bpC&#43;nBZgL57cHVVoxy0crZoepPuIlHQK&#43;dHSU7h5IOiFFmM3hiDaRSSc8snw1W2IGE4KmNW/5x7FQ3rQ/iIRjK86kk0aq5KjvLa0Wa5orKWtYLrHHhtKULgCbcD8wUB7ZBOz&#43;EjrGsFeh38wL0R2LaiioKfT&#43;wAStOXiO1xvLozGN3TFpl741xphApLlmZxp6wX7KH46u0FNTVsq01feW17jMByfy9NAnw7R9yiTSJFoCBszbAj83TLBXIUGKpyzDp3DBfX1TtD2eoz&#43;sbKBvQ4EdWLumd0TtHRm3qKJieaue/sUY0WMc5q4LGl/pX2qT83GFqvmPpPPWprZK5Z7l9TQE5qs/PE1DhRJ1&#43;BQqQMPUNOMyElj0cmM0KOhRUNRgoQO6RfA/vbt6LjXPCtCJsRydmixYfxxIK9tT&#43;fwqn7Tq45vbDrl0TNtZHwvF/Eeyurk2oil3LK5xcqZFj&#43;wZpqG8RZ0gNALNJtjMtkMedOmCzv94bgxrkiWbFmkyncTe4&#43;N5V8L5EGJNS6X89OLKEgXC/s8KzgM8ITVt7m&#43;UHGetoyOpGLa0oa2SES1ePXKO3jyn03JofgbMHWivgAe7GxHpfvP7TGf&#43;/C6jc4CNYk&#43;1KtGCWX5XAAPfaGJhXdC50y8oVbSvuwXZVUrb9pUxzV9zNJO3r4qocmdj1BnLGLThiyTiS6Ykb&#43;S9PICL43Yww3f53XH/81yJpUCPYvk5uK0aruDo4aYycNCS&#43;aI4k84RedS6k9lSl4SNl/tkIAgB/N1avwhqsuj9MkU5hFmbJKgwTZQt4Pbpb1Z35tsHvgEQD2KsAp/eTJGuCXnojavmUh1CMq0XyeJ9aHtOJaX3gYUWr5cmS3anBAO16hayIzRqRxxz641n3RBjBnCna1obI78zDLgWmNjCxmHGcUwMmLbr&#43;yPpIm2o99Pm6y6m5uog/RNhePUbA/TywYRL26fALEjb7CbHFs2KatO80YIBCAtRF9bIBNXjKYQc4GmAGzNjdHOh4VHBKCPsZMzDbnQYpua4vBSg25ez6PdtMXpw1VxSYL3NvWfph4fHUblK9DI8cdvSOpoXc5UUGcMk1XbmKSir9aYBAUokqaDKYHmJYx7M670CWsEKEMKAthlYZAzvcDoeaGB&#43;d0OAHu6sowrUhknUg9a6kGvu3&#43;0coic&#43;T1JbUKF&#43;gK4EIqwcp23UCTlb0CkmqEFRQZCBpgGxAD&#43;FkGheXlxJt386TnvGIRg0IWbKAcvvWDMLa5tQE2rh5ye&#43;2UAXVbMjiOqiZX8/uWOQNp7K0IKIh1SeQMq27TIYoYMLVBfYbNV0yY7DmI2vL6&#43;0G6sCzEbctnw2zQGxjwdT1BjRKOyTKeL1YFTc9BqAub2qTAGkWjY1o59BpkGocUTQxgRCGntYcIPBB&#43;1rIbQG7XNI62TapYDfr9jFwrAS1&#43;2hrhp/Y2dTlGUTRQDKA1esRArlfn7jOQPa6EBgEuYeHM3R3Eo/VaAQyWwdtNE0u9OmStCYRL6u5fDDnvYoDiz4F0/iTAFp/Yi8QkEfUgDxY4micyUT5YYy7o5TYPBB3xiN54uUhK9HkdVGUIjOFmw6ygJwMQDoHm&#43;N0L2Xz3YxEPF7iDu3CQjRCovkGUCwQsfskPv/cDzHikoyfGE6NKB0eMXeA0n93tcOjch3r5rrAAPuSWFLb5zu3z2C4Ab23S0QzHXQV2MIc88NZuiV&#43;ADNhomfXVlPq1qr6PXOGrr5w7MUianUA&#43;EXAisdTVHXai&#43;dzsDEilzC0Q3y90h4fFRBxsgjx3Vx0&#43;b&#43;0j7ELdsgwBkM1e8ybJ4fUKgZPr0Evm8Go/nQrAnCsIMa4Ve2xl4Adv3uYRpNFeimjnp6tDlMPXGYe6pIPwOoY4iSj45N0GeTptPo81K&#43;YCRyJHbL4&#43;&#43;8kPJdu7754mC4Y18iY717Nivf1V5By5pilDibpm1xnS4Cc64HKZgyN911WCWPzp4Iwm0s4NGkSVrWoCsvqaAls4O0AOH3vaYgretsoBRcuWHHaYfp1Pr90ohhbrEeWvJ3NzbEmvXxnFH40cKwz/vFVMGqMIvSKhC5dG6IDgwmXe1aEAEeMGOXsicwuJZikLMgjHYuPtviebq21kctOBktaYy6nTPqX3afphdPZkot8PE5Xc8DAw8Y721KMC3K/7TjEM66G4eERnP8Mj1&#43;aMLZ8q9hqkYe33JrC62HFp&#43;NGjQIf4axvgKdzc8j5/5q9CpQirM5gPSIn3MmwA9tuTGgd54B&#43;GApj&#43;rnvPOnFHjiziFJ7gERizRLfyafSfU4vogS8MrmbTvjzit7z7hCPH97G71&#43;fQMtgxVOTZp0IlmkU1mLBhEZp9AHMxb9G/8KwMENMY&#43;7x&#43;U8/QDmHJ8QJvnCipNP76ds9pfuFC4sjDciHEoJh9KKZ/e35ySxoxqH0sl8xsjliuqvllSKe7rmUFW4nOUOn5qiA6fT9Pl4gRI49XCrg2ALKr3UMQ9mvyhGIZ/HLdFSOTc47x5KmNftSmo1lEtUkXx136NL&#43;2dOxmUBmIp7aVhthX97oBMl&#43;I2qQKRezqesMxnLWVSherovraYrFlRRFdzCjQ8lnNu5qYiKmfwxjpPzzqNjNDRZoIX1QYuPYj/5oqRQPp1Y5pduPPhwR0/5biDcxPOVAExpWgi2RNZxXgwGop1Vlk7HcyhdWUuaXaXK9zQFxeKGINWjqsFVvItywEZ8Sqcjw1naNJh1zk7iTC6Q7YWC2wvqhJTb/w0v3XnkkRV9t&#43;Bi8urXXkxcUnhMC1H13J5QztaehKYbaoORgM8y6FgWeM8Drgz98tXMBTFSr414dLhQkV&#43;WW4I&#43;Ias&#43;cnLJfECRN9ZHA89su6s10wXau7tXs&#43;YgUG7/a4GZv&#43;uBiU0dRf6M/rp3Sca21yM9rq33&#43;mojuPNxTUgWTRo3kffRqlSNop5yrk/jDhkv6OeKgt6CozbRk5e5l1M6j6a7afrx9QLw5LQlZhZHn/mkMUnyFTg3rESybg1JYh6yfj3P49ASzzhiyBLOMXLE3qjk&#43;Sj51NLTM3svpPXf/3j5D8YmnIfTm0fdAAAAAElFTkSuQmCC&#34;
+# ICON_NOTIFY=&#34;iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAACwZJREFUWAmNV3lwldUVP/db35K3JYGQkA1MICRhGgJJRqySuFCKLKnYAOUPO9XixnSmTp1xbKeG1qq17R9tB1uZ2m1GBykKqVgHioKAICYS0CSEJJgHCdlekpe3v2&#43;9Pfe&#43;RJHamV44737fPeeec&#43;7vLPcLgf819u8XoaeHQmurzURK/tm7SBSFRgWEBpFAOaF0ERBayLdTMkwBghal/TqBDy3JPnH1GxWDnNfaKkBlJYGWFou/3/RDbnrnr43Hj0snmppM9lL2Vn8t7nzUSei9qqLmC6oDDLSW1HVIaCku71ad4FIUkFGbraVBM7TRFKX/Eqnw0sDG8vNM6EadfNPsz00OUAL7QYAWYlXt786Kq/JPFQKP&#43;zxeVwINXkqlAXQL/aE2iISAKIhcj2VbgMcHIAIogrjM6QQ3OhSJRZM62C9lpa3d3S1VcWg9LkFrI&#43;4nKJsZNzqAxik3XnaovxI3/sXr8dVLWhIuJDULbEo3ehSyIc8lVOc4yXy3Ak5Z4FpShg3jCR26p1L08FiCvhXHBYGQGpcqmqoLotFIu0KE7w40l/egDRFaAMOaceILBxB2QNjLD3Q3aIJ4MOD158djM&#43;YVtL3Vr4qPLMkmDUU&#43;cEoZo0nDgjTaYcOBjrjkDBhp04ZzQxH4Q980fT2s2bc4RJrl8Uvh6Myoalvf6r&#43;/6lwGiUyIuQMrX&#43;6QP354lVF2oLtKF8SjAbe3IBiLaBHTVv5UHiDfWT4fTyvCaDQN54aj8FEoBd1xA67NOlCMwa/KUqB&#43;nhPqF3qhwOeAFDr42qcT8FD/DPVIRC/3&#43;tSpWHRUFsW7GRJzOUFg9uRL23o9Sd0&#43;5vMG6oeiM1rEosqR2vlkbXkOxDWTK3syGIVoGnMTw485kJkZBCz8FhLOXocEL5Z6YMfyPMhSJfh3/xSs/XicyWt1/oDKwjFtW3eGWE5gpXHYmY5U2v6Jy&#43;uvT0XCZkS3lSN1edz44FQSfvDBMBwO6wCqACvQALNtoj1eJrhXAgKSnPGhE0PwSPc0HB5JwO9uK4R78ABHUXZt&#43;5jSPjZpQnZ2XUUq&#43;kwI4ElW5jwEJft6am2gp7IV1XUxmjT3VuZI368rgCAab3r3KgTTFqxySpDGE0ZmDWcygbmeGbifO&#43;JHhooIdaQsKHOI8E5jEZTNc8NAKAGfTafN3/dHpcORZPJ2p3D7qS2V57ke3aY7A56A62I8pTf7VGlHTR5N6CY8cXoYgkkTGlDRGJ5sisFsU5CRhJtIZmfBtZBJ7YhlmzWKYAzEDaN3AhUghzmxdmmOtLsmxwK31/VJmj7GXBcWvdpTIlDaTFPYVDRb2FWZwzKa/OPiOBwcT0EdnnwIjVM8vYT22YwVyWf2jP8ZUWpTA0EwROwFoqhKFwRVXuL3yKtKcyRmx7CQj1Fbnu&#43;xH3QRiBj2&#43;m9jd5Witr0m3&#43;nK&#43;zSWsO/yKWJDiZ&#43;GYhrZdXkG60uEGTSOivlgMH/FsDAFEHenTCQFkykOVEtHwbDj2bjf1NNZ4HZ58UyYJQDhpG5cjcQRRiX/StxslGybrnaKyMMC3nSLV8pSRTg5MAUJLLPKLBliCCuz&#43;yXTPHNYI6EWkWSJyCrYyWiQAGlDd9&#43;XPZ5ecJdMrVsAUBiAHLRbYZrmGkmSNnWGrEXHIiaU&#43;90wk9YbJBcyUyZ2R9xZhXXMRvtInJcYg9iaBWDOAXxlPYwKBI2rLslOJ&#43;NUS70ouXP2DLcUTbP9o0hVAFmtOCNN4HQJ6SDq291&#43;ZXQXiPSHmsMbsBKJxZJiQ&#43;lEWsNaIiTfq4KOkPdFsOQwPTVMOnbxsCCyi4bPzDKlVkJxS5BMXMawPDD&#43;vZpzKMJGszB/0f022DXdKSOb1est89zTTlm60NXTc4AQcghlfr7ilfPvjIRG3kQTKyW8Vgt0DR2wQFBEATR04DVW82i8wEFgBmeW/BoePYGIjBvUBIdLLkgmei1Nu3f8sbrPoKJhJUyO/YbEw2vsiUFgV0RxKd7W&#43;O9Kf18&#43;bq&#43;al5u7wxcInNQ9eU90PljbUfRyR5MuKm&#43;Silc&#43;0XsNW1YlgV7evJiU5LphX/t12N45iRaxggQ8OsOfFSwhJrgdUp1oRcNpY93AI7Vn1RVNm7Suj/4ORsKHElRRFEvX8avghoFrFNfYZUFElzcKxVU7rN6zh3Nf7qiFgr0XgvDHbnr44piJMcIKy4zTfZP0&#43;SNX6KsfDjMePdU3aX06FLGvxyjtuBLazfTftW5jHYhqGB&#43;ZiylZljGZgObl5dGtW7fSbdu20fx8BgDQWR7e5yhLhDAsrV&#43;Fzzh&#43;e/5E475BGoqmDWZaNzHCXz04P6mZQWT72dbyJRXv40SJIHDFRUVF3NiGDRvoyMgIHR8fp83NzXxt4cKFfEYUM04AvMtuRQlbSO&#43;oQdekdOY8QzyDXhjv92PdIZhMGlguFsWGJkwRJ/ROTr/dvnPFzMKy6pb&#43;vq47EFV0gbL8BFHMXMmqqkJubi5/dzgcjPU5b04Wl&#43;6E1qbN0ioHOdMxk3r4wPkx8aHbi6nHgXmJ3NfbR&#43;DRE2NYTKgbyw6/fgSQMFl18yhTeD2a3shmZGKH402G4ca9t20bNExs5pDFPqCYFGuZmcGyibVn5vQGAfPs/WzQxp7oS5H7Xu2xPsTrk2lxsw8MvP1u9chQ5pZoOX4BLRHNVHNZcReysSyS1RmsePz50v/5w7bNefM14dKu2qvoXlu12wXHxjR7y9EhmEH4t99aCA&#43;VZsHZKQ0C6POETWDYpPFD8nzWbAJgmdmzWmb9wOjOhk9AsFgYGM2FZY436yQPGT5XMDgAQ7x3OBJOrsp1KSMR3dx7cggkLL9frF8MjbkqtE9qUIqS&#43;Whq&#43;ayGOauzr3yagxtLDsLhMCcWCjbmePzlhh&#43;eNcaRvaPyPQ/74qr7thzQ7TeuJcgyvF8byrLp&#43;jI/iU0m6dvXUlg7trDaJf&#43;198CvR0DxPUD0GHZ7bGGYY0g0mUwSFv&#43;pqSno7OyEtrY2OHPmDOA6pxvygOUA29Ml8A9EfFLN1LPJWOQcdfokt0PUt703QvedGSLzfQ760vZl5M1vFkCNx&#43;k8dHygGsXB7XF13RyCuVMmEgkYHByEYDAIsViMiQNzbHawbXMAXsis4Ucpe8h&#43;4aMq9cX260V7LlP3rzrS0HrWfq6tj05G0qxBWaxTdQWn9zDZ4qXVLTJ2T9RFMfTsRLS4uJgpp5s3b6YYAhqNRumWLVv4WmFhIZ&#43;Rz2WZHNIWngOAX8QMiemn6rvxc&#43;q&#43;8Xh0xOf0qkUuyXq6Y8po&#43;nM3eePsMDYpgMoS/73oh//a5a79pYuXnOR6iMCUfp7aDGrDMDixZ877ogy5LK69h3RwDgouxMPR2mQyJOKUvpLl9jfkminoS2g6xExSOk&#43;RHq9eQCwt/rOnmpc9U7dmXV37yfeOAtVZZ0zjfa/gvS&#43;wJrR69WpWFjwHQqEQqwYbQ4S3HLDOxNr3XUidX3YAV&#43;acyP3laU/CVn&#43;M2O9akOVzu0wNLsWxLaZBRhXTKyW6/uOnbz0nln19ozVw&#43;m&#43;4M8C2Y8/HwxsM2Qy6GH5cs3GNhxnXmfHtSEeQ2Af2V4ydmBN7MSw4XM&#43;3r9Bseye2x&#43;ZCh3OBG7vbhOyC6Znxq24zdXe0tWkAimtXwrXOFwjQuxngiARgzDkCw8PDPBQMDQzHu8j&#43;ERJLPuZgpnXiw38P/odk5s8nxvQ/&#43;0HJDIh3YNHdpoqkTARai&#43;hctyzjAaP1jvPQ2CrBqec2gKVvQvGVSEvYPhx9SOwv5Dakt5BY2XLjONP/ANxlrCWX8ml8AAAAAElFTkSuQmCC&#34;
+# ICON_PAUSE=&#34;iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAACv9JREFUWAmlV3lwldUVP/db35K3ZCEhkZAQEggJtCFkGYqYxCUFWYxLYyl/2KkWN6YzOnW0tlNjtaN1pn90syNT22lndIBSAUGcRJBNxJgYQAkkJEgiIdvLS957edu33p57X57VjJ3pTO&#43;8&#43;53v3nvuPef&#43;zvKdR&#43;C/tb17Rbh0iUJbm81Yit7uWyKKQqMCQr1IoIxQugQIXcS3UzJCAYYsSgd0Ah9Zkn1i&#43;Lvl1/haW5sAFRUEWlstPp73IPPGfNh4/Lh0oqnJZIPSQwPVuPNRJ6GbVEXNF1QHGCgtrusQ0xKc3606waUoIONptpYEzdDGEpQeEanw6uCWsh7G9NUz&#43;aa5xzwFKIG9IEArsSr39mZEVfmXCoHHfR6vK4YCLyeSALqF&#43;lAbREJAFER&#43;jmVbgNcHIAIogrjC6QQ3KhSejcR1sF/NSFrP97ZWRqHtuARtjbifIG&#43;qfVUBFE658NIDAxW48W9ej69O0uJwPq5ZYFO6xaOQzXkuYWW2k&#43;S6FXDKAj8lYdgwEdOhN5igh8dj9FAUJwRCqlyqaKouiETCXQoRfjjYUnYJZYjQCmjWlBL/UQBhB4S9bF9vvSaI&#43;zO9/vzobMi8irLv96viI8uySH2hD5xSSmjcsCCJclhzoCIuOQVG0rSh83oY/nxlmu6Z0eylDpFmePzSTCQ0ptrW3QP3VXamkEiZmCuw5rVu&#43;ZOHa4zSfb2VuiB2ZLq9BUOzYS1s2spfyjLJD1bl4m1FGIskoXMkAh8HEtAbNeCLOQUWo/ErMxSoW&#43;CEupu8UOBzQAIVfPOzSXhoIEQ9EtHLvD41OBsZk0XxdoZE2icIzN18&#43;cE&#43;T1y3j/q8mXXXIyEtbFGlvTqXNJdlQ1Qz&#43;WFPDUUgkkTfRPOjD6Qog4CZ38KO1OuQ4JViD2xflQcZqgTvDQSh&#43;ZMJxq/V&#43;jNVZo5p27o1wHwCI43Dzs5IJO1fuLz&#43;ukR4xgzrttJem8eFXwvG4SdnRuDwjA6gCrAaBTDZJsrjYYJ7JSAgySkdzqEJHumdhsOjMfj9ukVwB16gA3mbu8aVrvEpE7KyassTkecCAE&#43;xMOcmKNp9qdoGejpLUV0XInFzV0W29OPaAhhC4U3HhmEoaUGNU4Ik3jA8JzjlCUz1VMP9XBE/LqiIUHfCglKHCO82FkLpAjcMBmLw&#43;XTS/MNARDocjsfXO4X1p&#43;&#43;t6OHn6DbdkenJdF2IJvQWnyptr8qjMd2EJz8YgaG4CfV40DjeLMhgtinI2IV5XWZ3wbmASe2wZZtVimAMRg2jbxIPwBWmRPPybOn5qmwL3F7Xp0n6GFNdWPLGpSKB0haawKSi2cLOimzm0eSfFyZg/0QCavHm11E4xdtLKJ9RjEhO2Tv&#43;WKfUpgaCYIiYC0RRlc4LqrzM75FrirMlJsewcB2ttirfYz/oIhA27Du/h9lVith2Q77TlffZbMy&#43;zaeI9UV&#43;GpjVyM7&#43;EMaXCCEUjgfzxmD&#43;hmahCyDuTplICjpTFKiWjIBhR7Nwv6knM8Dt8uKd0EsAZuK6MRyOIoxK/tWo2SjZNv2OU8Q1DOCtS71ShirCqcEgxDDMKjJkmEVYmdyvieaewxIJtYgkS0RWwY5HhgiQg6juSdnj6QN3UXDDQoBFmZCNcstN02yQJGnruYC15GjYhDK/G0JJvV5y4WLCxOyIOysxjlnrGo3yEGMQW3MApBXAIcthVCAoXHVJdjIepVriFcmd/aeR1sJptn8MeyVARhtS7JNILmPfj&#43;c933V1bCeI9AnN4c20YrESSbGheDKpYSwRku9VQUfIr4Qx5NA9NXQ69uFhRmQfGk6ZZEqtmOKWIB7rR7M8MPGjqk5kYa0FvAX3gSBU9UpCloB7Cj3yNGbK8/39A/sIIQeQ54XVr/e8OxoYfQtFrJHws1qga6iABYIiCqChAm&#43;ymEfhBQ4CIaTM&#43;TW8egwRmTCoCQ6XXBCP9VmatmnisdrP5fL6NUbgxm9lLdawGFEkaLBrVz/nGomeknzTtCsX5uVtd3k8p4h34ZPnHqzuLnytu0kXlbdI&#43;euf6n2GLauSQPvvKiFFOW7Y3XUDtp2bQokYQewaDH8WsISY4HZItaIVmUkaGwYfqT7rWt20Nf7ph/9QieFD5Rkn2pO7JZIvG5sXJfyCmqI7Ipas2m71nT2c81p3NSnYdX5o1JaLDq/NtjZ9K4&#43;LYdvOYAo9fS0Mi30q&#43;DAUsdt&#43;dPQsv5eMTU79qmbpgudu27Cl9lhHe4cimH40XTIvL09paGgQsMGRI0fQEgJs3LgRLPyCnz592h4bGzMUSVSRNwTLa&#43;&#43;A/o&#43;7AX7Xc6Jx9zUaiCQNdBKqm2jhb258Pa6ZQ7jsZ0qWLSs/iYSWlJRgoQB08&#43;bNdHR0lE5MTNDa2lq6bt06GggE&#43;FxLSwtDAXmXcl70h2PsqyhhCukbM2hDQmfIMcQRcmwz&#43;H0/2huAqbiB4WJRTGhCkDihb2r6na4dq0M3la5sHbjSewvjxZsy/wSHwwE5OTkgiiIoWJCwzsY6FjOqqjIWXEvx4uut0NZ0l1TjIB92hxIP7&#43;sZFx9av5h6HOiXuLqnaxQePTGOwYRnY9hh9SOAhM6qmx3soBuR5Ba2gI0hw5IMRahJMpkEjHewbZt3DR2cKcDGrCEvMzNLz0zpzQL62cks0MafvJIg97xxyfoIbc8wcLMCA79&#43;az0ylLolWoYV0DLRTLSULr6IyxgW8ZUprIAinHyKUWZ31tNz6TFnwAfOM2auOdJvC5d3Vg&#43;jWgdXul1wdFyz7&#43;24DiGEf9vaRfBQcQacDWqQiTpP2gRGTBo9IOeyZJMJlpmFlLU5Pb6kfBJvyun8x9w8NxmulTM4AE28ayQ8E6/JcSmjYd3cdeo6SBh&#43;v76zBBpzVOia0qAYOfNR1Kr5J/6fY65A/ImaHoyUPw4RFQpdIjzdE6R7zo5Ars9B99y/HB4u8cCF8QRcTVgZS6OT7OYzaMLpuTunr5qm/4tK6VqmT&#43;AFIm5RzcSL8dlwJ3X6JLdD1L///ijd/eF1wpR4ddsK8tbGAqjyOJ0Hjg&#43;uZBLcHtfFOZQxmXLZnLL3tMMxvrQzsve5xpjTZjuPCmB1ikXp1NM3zzpM&#43;8FAJDSa5fSoblXUt713g7709gCZmdXJ3XUFdvdjq&#43;Diz1Y0s4OyvY5DssQrYRn9iscwczgWeizk0s7H3tNjtg95WTikfeAdbgLAipghMf1MXS&#43;WU/dMRCOjPqdXLXRJ1rPdQaPpr73kX2dHMEkBVBT5N&#43;Et/V/0X9xbXFJ2ih2Kt&#43;SQspALBoMwNTXFQ4&#43;FH3tnna2xhqGahv99HO5PQ8EXuTkQkayXP66MUvp6httfn2Mm4EpM02HWJMULFOnxlQuJpUV/9UzLiudqGzbUdp081qHItl83rGRubq6yfv16zGUE2tvbOQrNzc08FZ85c8bGDKkjQg5UDH0IbsN&#43;7usKMDX436cmM&#43;c3H3hitvpzLL92LszwuV2mBpejmBaTIIMDptdI9M5Pnl3bKZbevMUa/ODviiJn6jqruoA9GLIpdHmlwaoNrIHQPHPCt&#43;G4HTsrsL&#43;h7eiWYReaBZvrpa7Vmm3vwPTYssjhXOjGNDspu2A6NDHsNhO3R9qaBuWl&#43;Dm&#43;2vmyJIm3FxYu5gcODw/zZFRUVMSyH4yMjIBhGMdkWf4p0vPIxBRMleV8x/zHHBLpaf&#43;LZ4pCIN6CH9t1qkhKRaDViM4NyzIeMNpu6cG/8fjH84XNaOWtuGcN9mVze68gZf&#43;QD2I/hJ05LBeOlP4b82V6RwO9&#43;ngAAAAASUVORK5CYII=&#34;
+# ICON_SYNC=&#34;iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAC6hJREFUWAl1VwtwVNUZ/s&#43;9d&#43;/dR/aRzYuNQBJJEJJgYyCkqJRQlFI1NIClUKZjrVR8xE7ROta21GitVRzHPpBCrNNpOyJQXqkZGFN5CQoxgSCaEEgkAULer93s7t37Oqf/uQlUqf0n/5577n/O&#43;b//eU8I/D/auVOElhYGVVWUL8n6V2uOKAplMgilIoE8wlgOEDbZ3s5IFwPotBhr0wmctCR65NK3ZnTYsqoqAfLzCaxcadnzG37IDXN7Wnb4sHRk4UKTT3LfbSvGnY&#43;6CLtXkZWQoDjBQG1xXYeYptrrPYoL3LIMDjyNagnQDK1HZWy/yITN7eV5p/miL55pb5r4uQEAI7ATBFhJrIKdzUlRxfFrmcDjfq/PHUOF59QEgG4hHkZBJAREQbTPsagFaD4AEUAWxJkuF3gQUHgsEteBbk5KWM83ryyIQtVhCarKcD/BteP0RQConNnKc/e15ePGv/q8/rmSFoczcc0Cyli5Vyb3ZbiFwhQXSffI4HII9imqQaEvpkPzkMpqe2Ps3Si&#43;EAgpciuiqbghEgk3yET4YXtFXgvqEGElYFjHQfwXALod0O15u5pLNUHcm&#43;wLhKJjo&#43;bnqPt7AUV8ZHqQlE7xg0saVxo3LEigHk5OBOJ2jDsjYVKovxKGP18YZjtGNDrNKbIkb0AaiYz2KNRa1nZ/Qf24J8ZDbAOYvbXRcWrdHCN3V3OBLoh1yR5fZudYWAubVP5LXjL5/qx0tFaEnkgC6rsi8PGACs1RAy5PAJiKwS9IkmFumgvm3uSDTL8TVAS47dN&#43;WNs2yrwS0fN8fmVoLNLjEMW7uCeu5QSBCctvqWn1xnX6vt&#43;XPPdKZFQLW0x&#43;rzidLM5Lgahm2oc93RmBSAJzE8OPOTA&#43;chfw8FvIOPqcEmzM9sKaWRmQpEjw77YhWHyqj6/XSgLJCg/HMLW&#43;OcBzAivNdjs/Q03QX7l9gblqeMQM61R&#43;ryTDVt4xFIeffNgFtSM6gCLAbaiA6zZRn10muFcCApJjHEMThuCR5mGo7Y7BH&#43;&#43;YDHejAXW4dnFDr9zQO2hCMFgyQ408NwDwNC9zOwRZ21uKKbBjQVlxfxKJm9X5KdKPSzKhE5UvPHgJOhMWzHFJkEALwxOKxzOBQx8n3G8DCaBAQQ81qhbkOkU4UDYFctM80D4Qg4vDCfNPbRGpNhyPz3cJ84&#43;tyD9tn6NT9nCyN9n9SVTVK/yKtKYog8V0E5483gWdcRNK8aBetGyIu5kycCALN7CD24LvBkxGwxY1i2TBaI8aRms/HoASDmLxLSnS80UpFnh87rMJ9hiHLuS83ZIlMFbBVGwqGhUq81N4RpN/ftIHe/tUKEHLr6ByhtZLqJ&#43;PWJH2yJ/xjzNjlBnoBEPEXiCKinRGUBzTA17HnOwUiesxLJRj1GaFvPQhN4GwQe/5LnZXKULpgpDLnfHpWIwu8stiaVaADYxppPL8KNaXCKOoHA&#43;2ibv5K8jCFEC/uxxEkjGZosC0RAQMGg3iflNPJIHH7UObMEsARuK6cSkcRTfKoc&#43;jZplEKbvdJaIMC3jpNJ&#43;UpIjwQfsQxLDM8pMcMIZu5Xq/pNrOHN5ImEUkh0QcCtB4pJMAqUG4Rx1ebyt4soaWTAKYnAwpqHeGaZoLJEla2jRg5bwfNiEv4IHRhF4quVGomtgdcWcB1jGnhu6oXWLcxdaEA64BwCnvYUwgzBIUt0QT8SjT1I2SJ&#43;WNrpVThvn&#43;HuQCgKQqHJH7cTiHvBfPe77h855KENl6zelLtmKxmyWZQnZ/QsNaIiTkU0BHl18IY8lhemqYdPzDw4PIPzT2yDUzZsVkj0TjsfMYlgf6flRUj0s4VQjpOfczwoqaLRoENGxq0DmMLfvM&#43;fNtuwgh&#43;3DNb2576/SB7oHuPahitoSf1UxdQwAWCLIogIYAtvGaR&#43;WZTgKjOPLk19D0GHqkz2AmON2OzHis1dK0e/seK7kI00pne&#43;KDr1E1vEDt77CR8M/ElKxsEAQImSYtyMnJXkNE6QPTNenJpoeKG9O3Ni6koryHzHjrrN5qUIciCez8d24mWake2N5wFVY3DaJGrCABTef&#43;5wVLiAkep1QiWpGRhLGk/ZHiE&#43;KtC5eKF5v&#43;7rBUv2lRhjWAuDS0i2&#43;6TnwihiZlkP6IGrFumrEG2j6uTd3aWEwyq890dlNHVu28FOveWzNsNXzbh9hCj3WEYapfAT&#43;WIjINYKIHAz7S0z/4wpxpac8tWrKk5NDBY3VeBQKRaAy/1SA7nU4hkUhASkoKzJ8/HxRFgVgsBrW1tTx9DI/bpaiaMUqzZt0NF5saAf5w&#43;kjZ9g42EEkYiJrpJkb4q8mWxzWzE8UBDjK/cNZRvy&#43;JW5fYtm0b27FjB3&#43;2edmyZaynp4chGDY4OMja2trYs88&#43;a69NS0tlWBEH8baFafX7U1tu&#43;cdFdnkwZivgbuQ0HNXYzvoutvlwB3vpQDv96e5W6wd7LrGS6qY3uPKbcvNXZmdn28qeeOIJrDKTGYbBnnrqKfvd6tWrWW9vr33WtZ/m5mYu452RZWRk8OcV0hwn&#43;ahxVF2363SvuHb&#43;VOZ1Yl6iZEdDNzx6pBeLCUFi2eHtRwAJk1U361AMsuws72hvgeXLlxsbNmzAr6zIt5FnnnkGOjo64J133oF4PA4qdtjKykooLy&#43;H9PR0uPPOO4Xjx4&#43;bsizzorpPwDw7GgSt98kLKln&#43;dot1EmPP&#43;4yHXzDw6zfP64Bcj8Ty8AY0XTTVitypn6EYhkZGCvm4bt065vf7gVIKFt7WAoEArF27lougpqYG6urqYO/evYDeAcwPSEtL48dzp/AlXxPOVRZfwmlNoccN7/dqdEXdFRjF69XqeZNhbXYSnBjSIBlTs58S6DJZdJ8jfXgqQHKkpyeYO20aVFdXE4wt6LpOMPsBvQGbNm2CwsJCmIZyTu3t7TYAAZ149uxZ/go7MMWiIjN41kPCYtVd4ZH4nFS33B3WzeoProCE5ffbe26GslQFGgY1yMaVIcQ&#43;C9dfRhb9AYhGo7B79244dOgQP4abBY2NjbB//37gleDCyymGCBYsWMCVYU8Q7PmqVavA4/HY6&#43;2N/Mf72qlXUre2sSmvNxrwYj3d/tEV7ibaN6qydW83m1DVwODl&#43;njF9r5xs9wZTZmhEPejhkoYxpuiF9iDDz7I313nAwcO2MnJk5QzX4NhwU4HDAHifYBflZEUU30xPhauZy6/5HGK&#43;qpD3QxBkHS/k21ePZPs&#43;XYmFHldrn2H2&#43;3YO73ez7gbkQiWG0844nA4YMWKFbB48WLAMuQyePPNN2FkZAQwSW0Oh8Nsy5YtPA8gFAqd4SMAXkr5EHz54wJlY8PVKW&#43;cZ55XGxNQdYK&#43;VHOBDYYTvDYtE38&#43;6xy&#43;XoYZGenXLDVb8Hp1jRCYXYLoalu&#43;fv36617AirDLMCsri8tWcL3jNOEJ36uNpfIrDVczN11gUzY2GLDhhD7r9VNs10dXzDh2CspoJyqyG9H0GTOPJgd8/KAEbzKYbGxoaAjvNirr7u5mvBmhzGbepHiz4muxS7JgMHgQn3mj/wLZ/7ksNLknooy9leQJlKaaKlyIaTqMmSQ7TZYeL5xELC36ws8rZj5XdPuikjMnj9d53VJgbKIVL1myRODJh7GGEydOwPDwsJ2MCIrHS/d6vU58HsF8WITzpi8D4FgmQKS&#43;ctwbo8ov0feVk5L8Hrepwblo3IAEOMAJw7Mlds&#43;pX8yrh5yvl0PHyb9lZoaSu7v5TQD41YtXl11hmP0Umw7FHHDwKkBgI8irUf4eMr9gfwU9jDlRPYcfBO7fNdymUfowtseKyU7XJA8mU7/DDcOjfZc8pnpXpGphO0wtng2XT7&#43;cEgze5cOmxBWhhXD16lV75OfwjxKCOYjl&#43;TOc8uTjAMev5fjwvzThiWuCwIsfZo2C&#43;A28N9yhiCRXBFaM3rlqWcYDRtU3Ttsflqqq&#43;3D9UuTZyNMn9l7Akf&#43;HXIP8LjJev8aV48j&#43;A73IR5QUS6z1AAAAAElFTkSuQmCC&#34;
+
+# SCALE_FACTOR=&#34;$(gsettings get org.gnome.desktop.interface text-scaling-factor)&#34;
+# if (( $(echo &#34;$SCALE_FACTOR == 1&#34; | bc -l) )); then
+        # regular icons
+        ICON_DEFAULT=&#34;iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4gQXDw8e2d2/XgAABChJREFUOMs1lE1sVFUAhb9733sz82am7XSGttACpWmhVsUiKjEojRqDwKIEUBZGggtJjMGdiCgaNTEB3aAxLgwhRmJIMJEISjWIQTQ1ESSUnwiBgU6hv2B/pvNeZ957914XxZN8&#43;29xzhFgOG7W8dmZtzl36iNS7fvqE7a91lhWtxJyaSUM5gPE7dighb4gtDpaDsMeL7997P7WV/m2&#43;zh14gCCBmB0M/P2vyOTDemVUoo3K4aulDTVzUmHZEwC4Aeagh/iaVGMC05rrT/2RvzekW1LNdxAPPp5DwU3kNW5jg3asvcm0K3rGlzWN1aZGluIaWUAqLIEU5E2R4dK4sfRGcrIvKWinfwzcaRpYUGLZ34w9AfXnlSW9ZUrTevu9loWpx0OFor03Z1hKFAANMYsOue4bGmu5lop5MOrE5QikXeMfnk42/aHmH/oUp0Ti&#43;&#43;PYbrffTBrUpYUey7eoVCOSAgBgtkYKBtDc8Jm10N1CCE4NFCid7xyLJjxXpGWsNYGoelaV&#43;&#43;yJB0Te/vGGPZDYgYibYjUPbQhYWDACzk5VGLtgmq&#43;eKyBVTm3a1Lba22B1Z0yOtO9oMocvDEpbpRC4lKgMfwfcQ8NJIDlWRfHEriONCmlqlNCdksVmc7mhGWyjhQXRjwcM2tgtAFlEMpQjjSlUJORgvc762lLO3x6doSBibK4WQyMi1xqz5SDpkQmybQyFLwIGRm0MZSBCEgDzzWlWVbnsizrYrRh559DjPoRjzekcG0hypWgyTbaiAcycTpyLlvaMvQNe1TFLeIJm5q4RWvKYdPiWuZWx/l7aJqtJwqUAkXSthDMmhtlsLOx2O0Ni2pas0mHN5Y3cPOuT6AMXmQYCxReoJmYiWhIxyhMBxT8iKwQzE1KElLgeRExYQ/apXLUd7K/2NaejXP21jTv/T5IURlKSjOhDMoYOqpjPDu/io3ttTyVS9A76LFicYZRPzL5qUCAvGjF12xLnBupPD0yVU6saExx4uYUw15EYEACNjBRVpwf8Wl0bbZ05KgRghc6shy8/K84Px5MaaP3yUoY9UTanP7&#43;epFLoz67n2ikLeUQVhQm0qBAaNDa8N31KVpyLh&#43;sXkSpojhZ8LAMpyeDSo/V/tqX/t3x4dshVtdfQ6Xsw7kEWzvnkLYlYVlhlCEtBS2pGBvba1nVUoNjCX7OF/mp38snMTt&#43;yT1yRXDgDPGro9KZM2&#43;DJe091Ua1rW5OsakjS2PaJtCzpYxLuFUKuTzkU0FwuN/LD0z4Oze79pH9Y3e04PVveGn7ixz&#43;&#43;lfp1GRW2sgdQpmulNQ1bVUxkq4FwIyvuFYKqChRlIbfPMEnnWK8d3TXpM7z/L1JLr8M9/lw7Arxt5bUWVKuSQhrPZrOShQ2zR6bMyik6CsbdTRjq56&#43;U6U7C&#43;Np/HwL9NXzH60pAeJOLCGgAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA0LTIzVDE1OjE4OjM0LTA1OjAwHpitlgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wNC0yM1QxNToxNTozMC0wNTowMG50uokAAAAASUVORK5CYII=&#34;
+        ICON_NOTIFY=&#34;iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4gQXDxAI4FMEkQAABD1JREFUOMt90l1o1XUcBvDn&#43;/v9X87LXo7bjlvzeEYdbWmpDNQLyxFdBC5Y9IIgaEhURtlFF2aWRgSBlsUIicg1BQlrhZHVUaqJLhls0&#43;WmsOy4tbP2arpzdl7&#43;53/&#43;L79vF1mXfeC5feCBhwBGktvw0eAbGDr/LsLNHUsDmraFpWz3Sawpu04MAEzNmJZQI6T807brnimO7b65OvEivmpPIkpdINQDmN&#43;KuzrfFKH6ik1C0GtlRmtYcFVTSEfIEAAAy1FIWy6KinImoVcp9V5xzuqbe36NAsZB64&#43;cQTroiKraVU8oqR0KQCXa6oN4vLGSqzWivM8AgEpJWPQUn54p0A/zJdgQY9L39mI0882yeFrRI98zJpzUQ76Ux4OCE/ubl2BlhY4T6RyGb5Uw4/gAgEZDYl1dEDuaqpAquHjnegYFj8Z0Vjtna1ZcpNjJa1HdMDsNcPuBB2o4LAUdvPoX0raHABFA&#43;AcDNjOaghr2rYmCiPjkZIH6FsrfOaXic0KS3OK43Nq2NIh7Kww6NHwTs5YLgwFPMTz/ThQ4AMKEpdA7b6MtXkUfb6jH5tpga1ZpWzSCbA&#43;zirQvr&#43;QT41kaL7gwBUGB8R8hQVLmFGjcA0/HK0ypSRELGbg7rFR1iES75nu8riksuUYXNDJXhM4Mz7&#43;ziAAI6QB0ju1SZ/78qanS5V50N1ahcedWWrX5sXsGMs7LAaGt1Uq2sywQCSHvM9JFD8JjKGbYAKBpjknUlT/7&#43;dFCd8ejxN7eYDC0/NoU1LMXfx7XDPOLwK4PXkXzhhc0Vkz3R0ysqg1ix4oIhmeLqDQlgiEDtqJzg93HOue7P9xDXvlJTZDRWBeB63mYnl5shOOsX&#43;zYfTS8ff/7WHn8t1T/VF4xMy9aDl&#43;ZzHL/HxnuS&#43;cWL09mn66ujuwTQjqmaapoNMpdXV18&#43;PBhjkQirOs6A8hDiFe0gu0N90zkVjTXmLj0Zx5v/TKNnGKUoI1lLnw9lbPsPax8XQgDuq4jFovBNE1omgYiAoAwlNouHM89feTKQvbA&#43;SlUBSQkARlboeipmcLgWcVA7J8X/a/Voux6ZzzFvd/eyOHavMX7H2xEIqTDtX3B0BlMCgBc10WhUEAymURPTw8sy4Lv&#43;/8WebL5pU&#43;tWwuzUy5k68BMobalNsDPrK2j5RWGHRRa8sbAjxuU7zUREaSUiMfjyOVySKVS8H2fmRkABsXV25fgzE33ea77&#43;oJDN96&#43;OEefDM7zuqWBxL5d2xKVoeCXQkpbSsmBQAAbN25ES0sLTNOEEIIAZAF0ScQfxrZdT/FI/&#43;h1Mowhl0Xd6G2n4ezv2crkeKGh3HDfseKvP7m&#43;56x2ymVzaGiI&#43;/v7kc1m4ft&#43;BkAHgM8kBk5hpG8rfE2we3R0Um2K9ICQYgi16CNhVUTrUN3QoUYvTIC5zvf9JeVyueS67iCAgwA6AVh/A1pGJFL6j63vAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA0LTIzVDE1OjE4OjM0LTA1OjAwHpitlgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wNC0yM1QxNToxNjowOC0wNTowMDgjSA4AAAAASUVORK5CYII=&#34;
+        ICON_PAUSE=&#34;iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4gQXDxAZiuMkYwAABD1JREFUOMtVkn9olWUcxc/3ed73vb/n3ebu5u7ccNOGtiWE&#43;ofVKBPBUbdfIFEThH5CShmsoWlQEWiGjSH&#43;41BJw1IpsnJBOJbVLA1p65LF3Nqdm3Obeu/e3Xvfn8/z9Icm9oHz5zlwOIcAhdOqFV0XtuNi3weINHYmgpq2XnGeEsSaHc&#43;tAYCAZkxwyEGS4pTteT2F4c3TyxpexYnUaVTQQRAqAUxtwILut1m4MrqaMXrLUWiJMFVSF9YRNhgAoOhKZIoeCpLMAOGslPLDwrVi/7WXmiUwAlqxrweZkMtKypc&#43;Jbm2OwjZ0FoZwhPVMTVPI5oTCgAQ44RZX6pTV/P07ZQFG2yYC78Dl7JfJmszktZ8ozDqDj0oOD8cYqphR2MplkR1HMmYGLhu4aorAADVBsfy&#43;SFsrCvBUN7De39nkfdpWFdy02TZ4p&#43;o5li6QjcC3QZUamdTmYpwRrv&#43;mEHG9hEkAgi3UICtFOpCGrY1V4CI1LGxPPXfdL52rcKLjBNf73qqpTURwj1Rg3YPTGOy6MFQgC8VfHFbEioIwmhR4uyUjdbaEtq/shIPlYdaclJbrxF4KqJkPLUwpo6M5Ggk7yHACBIKd2AcxLkpiUZ8qSZqowGucVYTNrAoIuW8MLGUJny1vC7CVZnOaPBaAbpS8MXtRgSAcRegXmVb3bPfnxh30&#43;fw&#43;YIoKtueoaaHU/Xns&#43;5rQabdp1m2mwzGw5gTCpmCD&#43;YrSKVgA4CmuQGig/meowcKJzvXRULBDnj&#43;wvQYl69fPDfiem98Fnzlo61oXPWypqSie&#43;MBLC0PYePiOAYmC4gFOEJhA7ak3vPHD3XPnPy4XYd4ujpRbszmctB1HYFgsPrK&#43;PgKs3PLgXDbjj205PBfQ0fXJhtWJaNkWh7&#43;uV6EIxQE42aA5AuPNNUtkVK&#43;W1oa17q6uqivrw&#43;JRALJZBIdHR0wTTNv2fZ2LW/7A2dGzcWNZQH8dmUO7/w4AVMqWNCGsz&#43;cHDeLTns0qOmGYaC2thYVFRWoqqpCMpmErusgogiUamOu753a9/vN3M6&#43;cZQEOTgBWVui4Mur&#43;QvfSQA1hFsTCiEgpbyju1jGHM/v8aU6&#43;9VlE&#43;mpotrxQDUawjo8WzAJXQH4n&#43;NulLpzEZ8tql8xYwmxx5Ts8vu/TtNEzlV71y7EtpWJmseffFbjDKOgW2/gnIMxBsYYOOcgov&#43;SBvn0usdAmclxCoYnHMnv/2Vsrjxb8NSj9SWxtauafz5&#43;aP&#43;wlHKNxjlvam6mdDoNx3FgWRZ6e3vJcZyc7/u7CFs&#43;Rdvm53D8k16mz4uv1sDaSaiWGEc8GtD6b1w69&#43;aNg1ufZ8rblEgkYoVCQWmaBl3XMTMzkxVCdCql9nKc/wKD/RsgNKa8A5fG5Or4GRCGFJicFWgoxhLzEa/qFH/2jUoh5luWVep5nuX7/gXHcXYRUbdhGMV/AbVpEwC7SbpYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA0LTIzVDE1OjE4OjM0LTA1OjAwHpitlgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wNC0yM1QxNToxNjoyNS0wNTowMBvRLrMAAAAASUVORK5CYII=&#34;
+        ICON_SYNC=&#34;iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4gQXDxAmPIUJXgAABHdJREFUOMs9z/tr1XUcx/HX&#43;/P5nvvFoztubW4OPdrSmkKo0KoxVgiOmDrEXCkJ1Ri5/VCgoilhEWmiiI0IHSJGLFfqslK6OEx0pMvYpsxibu3M3XXnnJ2zc85338vn3Q9JD3j&#43;AU8CGJe4Csc79&#43;LPqx/DV3Is161p61jKaptE6axpFAKAS3OOSKgeUvZF3TQvp/sbJpdH6vFN9SXMp1Mg5AGY2Iz85veFN89fJgTtmmWU&#43;wQHi70OeJ0CAJAxFKIZE2lFSRfhmlLq0/R4pmP87VIFDIBWNV1G1GOIYM6yjUpqh9xQkao8D9YXBHiORpSyGQAQkIRpS/HF0Rn6cSILHaJf2tZu3ItfWLAwqqjyB8ag0feCLeVpj&#43;DIvpK5WOp34MtoEt2Pshg1bABAgVNiZdiDbcVB9M2Y&#43;PDvOGYs6new2j42b8l1Kmy5O9/hdDU7wdX7n5nHPino4J2HiOoW3EQA4T8M6Mwo9mjYUzofRMQtQzPUEZv93sim3xKS5DrD5PKqXA&#43;e9DvpUPckxjImnAxYimHZj1NgNwiDGYVrEzqqFgbp89V5eDHHU55Q2jqNIKt9rELVRQH&#43;ciBBAzMmXIKgwPifkCApkwo0YIFHFvpdUpOi0OvEIp9Sc7wkqjXb4pXFPsnzHIJ6xtNwMMOyHx8RACENgNqVnm1OXT0/rHffQEvYi9w3NlFpRfXiW3Fjh1toKyjcfCfz3BNe9&#43;4VYdraPgTbUrAYmAUATTNcQpxK/9py0mj7bK1hzNaQlEVzA37lEDxgKf5abP&#43;kk55aU6exYno65MKyHA&#43;2LQmheyyNgEvC43VCV9R&#43;q/VUc&#43;zC8Z2SrRqpDKfL4UJBXhip1EzBVCy2Ktv07knXq7sOY&#43;npv/puDqcUM/N0xuCuoQTf/CfOHdHk9B/R&#43;KYFBQV7ioqKjKNHjqiKigouLy/n27dvc1dXFzfs2MFutzvl8wcaxYxudV8ZTNJ01kTngxTe&#43;XkIb/4yhG0/Pehf/0HTsGGpDXV1dY6GxkY6cOAAlFI4ceIETNPExpoaBINBnxS0VRiWebGpK5bYf3UYQbeEJCCuK6QtNRr77YKSUis0DIMTiQRisRgMw8DZs2fR3t4Oj8cDn88HZl4uZk3rsqX42nf3k7g7keF9zxcg4nXA1G1hSg&#43;ns7o6d&#43;4cpqamcP36dfT29qKsrAyVlZWIRCKora2FlNISixavepi17cNJJe5/dHOSRhIGH325CHtX5xZWbajVBGEwmUxSOp3Gli1bUF9fj2w2C8uy4HK5eHR0FMzcIyfXvgKKjg2T2zsyq&#43;Szvw&#43;lcuJpk19aHAysXbPixrdnvuhPJpOVAGRJSQnl5&#43;ejra0NnZ2d6O3tpdbW1gQRHSQ0foWtDa&#43;h9Uy7cMwJlWkQO8nm8oBEyO/SOh71dryXOLPzdQ3W9lAoFHA4HDw&#43;Pg6lFKSUcaXUMdM0j0rcOo&#43;ejs2wNcHmyXtDqix0BYQ&#43;hlDTNiLZQG5Y&#43;cPHZN&#43;NQaVUOJPJzNV1PQugU0p50DTNZill5l8RAkRHz8PDyQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wNC0yM1QxNToxODozNC0wNTowMB6YrZYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDQtMjNUMTU6MTY6MzgtMDU6MDC2rE/tAAAAAElFTkSuQmCC&#34;
+# fi
+
+function hostnameForIP() {
+        if [ -z &#34;$1&#34; ]; then
+                return
+        fi
+
+        port=&#34;$(echo &#34;$1&#34; | awk -F: &#39;{print $NF}&#39;)&#34;
+        ip=&#34;${1//:$port/}&#34;
+        # strip IPv6 brackets
+        ip=&#34;${ip//[][]/}&#34;
+        hname=&#34;$(dig &#43;short -x &#34;$ip&#34; xargs)&#34;
+        if [ -n &#34;$hname&#34; ]; then
+                echo &#34;${hname//\.$/}&#34;
+        else
+                echo &#34;$ip&#34;
+        fi
+}
+
+[ -z &#34;$API_KEY&#34; ] &amp;&amp; echo &#34;ERROR&#34; &amp;&amp; echo &#34;Open this file and set your API_KEY!&#34; &amp;&amp; exit 1
+
+if ! curl -s -m 1 &#34;$HOST/rest/system/ping&#34; &amp;&gt; /dev/null; then
+        echo &#34;| image=${ICON_NOTIFY}&#34;
+        echo &#34;---&#34;
+        echo &#34;Open | href=${HOST}&#34;
+        echo &#34;State: Not connected&#34;
+        echo &#34;Host: $HOST&#34;
+        exit 0
+fi
+
+STATUS=&#34;$(curl -s -m 2 -H &#34;X-API-KEY:$API_KEY&#34; $HOST/rest/system/status)&#34;
+uptime_s=&#34;$(echo &#34;$STATUS&#34; | jq -r &#39;.uptime&#39;)&#34;
+uptime_m=&#34;$((uptime_s / 60))&#34;
+uptime_h=&#34;$((uptime_m / 60))&#34;
+uptime_d=&#34;$((uptime_h / 24))&#34;
+
+uptime_m=&#34;$((uptime_m % 60))&#34;
+uptime_h=&#34;$((uptime_h % 24))&#34;
+
+CONNS=&#34;$(curl -s -m 2 -H &#34;X-API-KEY:$API_KEY&#34; $HOST/rest/system/connections)&#34;
+CON_ADDRS=&#34;$(echo &#34;$CONNS&#34; | jq -r &#39;.connections[] | select(.connected == true) | .address&#39;)&#34;
+
+STATE=&#34;$(curl -s -m 2 -H &#34;X-API-KEY:$API_KEY&#34; &#34;$HOST/rest/events?event=StateChanged&amp;limit=1&#34;)&#34;
+CHANGES=&#34;$(curl -s -m 1 -H &#34;X-API-KEY:$API_KEY&#34; &#34;$HOST/rest/events?events=LocalChangeDetected,RemoteChangeDetected&amp;limit=50&#34;)&#34; || true
+
+cpu=&#34;$(echo &#34;$STATUS&#34; | jq -r .cpuPercent)&#34;
+cpu=$(echo &#34;scale=2;$cpu&#34; |bc)
+
+state=&#34;$(echo &#34;$STATE&#34; | jq -r &#39;.[].data.to&#39;)&#34;
+[ &#34;$state&#34; == &#34;null&#34; ] &amp;&amp; state=&#39;idle&#39;
+
+ICON=$ICON_DEFAULT
+if [ &#34;$state&#34; == &#34;scanning&#34; ] || [ &#34;$state&#34; == &#34;syncing&#34; ]; then
+        ICON=$ICON_SYNC
+elif [ &#34;$state&#34; == &#34;paused&#34; ]; then
+        ICON=$ICON_PAUSE
+elif [ &#34;$state&#34; == &#34;error&#34; ]; then
+        ICON=$ICON_NOTIFY
+fi
+
+echo &#34;| image=${ICON}&#34;
+echo &#39;---&#39;
+echo &#34;Open | href=${HOST}&#34;
+echo &#34;State: $state&#34;
+echo &#34;Uptime: ${uptime_d}d ${uptime_h}h ${uptime_m}m&#34;
+printf &#34;CPU: %.*f%%\\n&#34; 2 &#34;$cpu&#34;
+echo &#39;---&#39;
+
+echo &#34;Connections&#34;
+if [ -z &#34;$CON_ADDRS&#34; ]; then
+        echo &#34;None&#34;
+else
+        for addr in $CON_ADDRS; do
+                echo -n &#39;- &#39;
+                hostnameForIP &#34;$addr&#34;
+        done
+fi
+
+echo &#39;---&#39;
+echo &#34;Recent Changes&#34;
+echo &#34;$CHANGES&#34; | jq -r &#39;.[] | .data | &#34;-- \(.action)::\t\(.path)&#34;&#39; | uniq | column -t -s $&#39;::&#39; | tac | head
+echo &#39;---&#39;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

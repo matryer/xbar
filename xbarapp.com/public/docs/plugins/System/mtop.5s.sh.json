@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/mtop.5s.sh",
+				"filename": "mtop.5s.sh",
+				"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eCPU Usage Graph\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eGanesh V\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eganeshv\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCPU usage bar graph\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.github.com/ganeshv/mtop/master/screenshots/mtop2.png\u003c/bitbar.image\u003e\n# \u003cbitbar.about\u003ehttps://github.com/ganeshv/mtop\u003c/bitbar.about\u003e\n\n# CPU utilization bar graph is rendered onto a 25x16 BMP file created from\n# scratch with no external dependencies. The dropdown contains current usage,\n# load average and the top 5 CPU-hogs as reported by `top`.\n#\n# Tested on Mountain Lion through El Capitan. Works with Dark Mode (though\n# you have to restart Bitbar if you change mode).\n#\n# Mountain Lion does not interpret the BITMAPV5HEADER variant of the BMP\n# format, which has alpha channel support. We fall back to a basic version\n# (BITMAPINFOHEADER).\n#\n# Bash builtins are used as much as possible to reduce performance impact.\n\nif [ \"$1\" = 'activity_monitor' ]; then\n    osascript \u003c\u003c END\n    tell application \"Activity Monitor\"\n        reopen\n        activate\n    end tell\nEND\n    exit 0\nfi\n\nHISTORY_FILE=$HOME/.bitbar.mtop\n[ ! -r \"$HISTORY_FILE\" ] \u0026\u0026 touch \"$HISTORY_FILE\"\n[ X\"$(find \"$HISTORY_FILE\" -mtime -2m)\" != X\"$HISTORY_FILE\" ] \u0026\u0026 echo -n \u003e\"$HISTORY_FILE\" # Discard history if older than 2 minutes\n\nOLDIFS=$IFS\nbmp=()\nwidth=25\nheight=16\n\nosver=$(sw_vers -productVersion)\n\n# Colors in BGRA format\nfgcol=\"00 00 00 ff\"\nbgcol=\"00 00 00 00\"\nbmp_ver=5\nicontype=templateImage\n\nif [[ $osver == 10.8.* ]]; then\n    bmp_ver=1\n    bgcol=\"d0 d0 d0 7f\"\n    icontype=image\nfi\n\nborder=$fgcol\nforeground=$fgcol\nbackground=$bgcol\nborder_height=3\n\n# Takes number, prints hex bytes in little endian\n# e.g. hexle32 3142 will output 46 0c 00 00\nhexle32() {\n    printf -v _num \"%08x\" \"$1\"\n    echo \"${_num:6:2}\" \"${_num:4:2}\" \"${_num:2:2}\" \"${_num:0:2}\"\n}\n\n# make_bmp_header version\n# version can be 1 or 5\n# v1 is the most compatible, but the graph will be opaque - no alpha support.\n# v5 supports alpha channel.\nmake_bmp_header() {\n    headertype=$1\n    headerbytes=40\n    comp=\"00\"\n    if [ \"$headertype\" -eq 5 ]; then\n        headerbytes=124\n        comp=\"03\"\n    fi\n    pixoffset=$((headerbytes + 14))\n    pixbytes=$((width * height * 4))\n    filebytes=$((pixbytes + pixoffset))\n        \n    # Common bits for version 1 and 5\n    bmp+=(\n        42 4d                   # \"BM\" magic\n        $(hexle32 $filebytes)   # size of file\n        00 00                   # reserved\n        00 00                   # reserved\n        $(hexle32 $pixoffset)   # offset of pixel data\n        $(hexle32 $headerbytes) # remaining bytes in header\n        $(hexle32 $width)       # width\n        $(hexle32 $height)      # height\n        01 00                   # 1 color plane\n        20 00                   # 32 bits per pixel\n        $comp 00 00 00          # Compression\n        $(hexle32 $pixbytes)    # size of pixel data\n        13 0b 00 00             # ~72 dpi horizontal\n        13 0b 00 00             # ~72 dpi vertical\n        00 00 00 00             # colors in palette\n        00 00 00 00             # all colors are important\n    )\n    if [ \"$headertype\" -eq 5 ]; then\n        bmp+=(\n            00 00 ff 00             # red channel mask (BGRA)\n            00 ff 00 00             # green channel mask\n            ff 00 00 00             # blue channel mask\n            00 00 00 ff             # alpha channel mask\n            42 47 52 73             # sRGB\n            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n            00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n            00 00 00 00             # red gamma\n            00 00 00 00             # green gamma\n            00 00 00 00             # blue gamma\n            00 00 00 00             # intent\n            00 00 00 00             # profile data\n            00 00 00 00             # profile size\n            00 00 00 00             # reserved\n        )\n    fi\n}\n\n\n# add_row thickness \"b g r a\"\nadd_row() {\n    thickness=$1\n    for ((i = 0; i \u003c thickness; i++)); do\n        for ((j = 0; j \u003c width; j++)); do\n            bmp+=($2)\n        done\n    done\n}\n\n# add_pixel \"b g r a\"\nadd_pixel() {\n    bmp+=($1)\n}\n\noutput_bmp() {\n    bmp=(${bmp[@]/#/'\\x'})\n    local IFS=''\n    #echo -ne \"${bmp[*]}\" \u003e/tmp/mtop.bmp\n    echo -ne \"${bmp[*]}\"\n}\n\nget_cpu_stats() {\n    local IFS=$'\\n'\n    topdata=($(top -F -R -l2 -o cpu -n 5 -s 2 -stats pid,command,cpu))\n    nlines=${#topdata[@]}\n    histdata=($(tail -$((width - 1)) \"$HISTORY_FILE\"))\n\n    IFS=$OLDIFS\n    for ((i = nlines / 2; i \u003c nlines; i++)); do\n        line=(${topdata[$i]})\n        word=${line[0]}\n        if [ \"$word\" = Load ]; then\n            loadstr=${topdata[$i]}\n        elif [ \"$word\" = CPU ]; then\n            cpustr=${line[*]}\n            histdata+=(\"${line[2]/'%'/} ${line[4]/'%'/} ${line[6]/'%'/}\")\n        elif [ \"$word\" = PID ]; then\n            top5=(\"${topdata[@]:$i}\")\n        fi\n    done\n\n    IFS=$'\\n'\n    echo \"${histdata[*]}\" \u003e\"$HISTORY_FILE\"\n}\n\nrender_graph() {\n    start=$((width - ${#histdata[@]}))\n\n    heights=()\n    for ((i = 0; i \u003c ${#histdata[@]}; i++)); do\n        comps=(${histdata[$i]})\n        heights[$i]=$(((100 - $(printf \"%.0f\" \"${comps[2]}\")) * (height - border_height) / 100))\n    done \n\n    for ((i = 0; i \u003c $((height - border_height)); i++)); do\n        h=0\n        for ((j = 0; j \u003c width; j++)); do\n            if [ $j -lt $start ]; then\n                add_pixel \"$background\"\n            elif [ ${heights[$h]} -gt $i ]; then\n                add_pixel \"$foreground\"\n                h=$((h + 1))\n            else\n                add_pixel \"$background\"\n                h=$((h + 1))\n            fi\n        done\n    done\n}\n\nget_cpu_stats\n\nmake_bmp_header $bmp_ver\nadd_row 2 \"$border\"\nrender_graph\nadd_row 1 \"$border\"\n\necho -n \"| $icontype=\"\noutput_bmp | base64\necho \"---\"\necho \"$cpustr | refresh=true\"\necho \"$loadstr | refresh=true\"\necho \"---\"\ntop5=(\"${top5[@]/%/| font=Menlo}\")\nIFS=$'\\n'\necho \"${top5[*]}\"\nIFS=$OLDIFS\necho \"---\"\necho \"Open Activity Monitor | bash='$0' param1=activity_monitor terminal=false\"\n"
+			}
+		],
+		"path": "System/mtop.5s.sh",
+		"filename": "mtop.5s.sh",
+		"dir": "System",
+		"docsPlugin": "System/mtop.5s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "CPU Usage Graph",
+		"version": "v1.0",
+		"author": "Ganesh V",
+		"authors": [
+			{
+				"name": "Ganesh V",
+				"githubUsername": "ganeshv",
+				"imageURL": "https://avatars.githubusercontent.com/u/827790?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "CPU usage bar graph",
+		"imageURL": "https://raw.github.com/ganeshv/mtop/master/screenshots/mtop2.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.0888Z",
+		"vars": null
+	}
+}

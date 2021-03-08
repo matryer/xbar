@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Email/simple-gmail-checker.sh",
+				"filename": "simple-gmail-checker.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eSimple Gmail Checker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMurat Bastas\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emurat\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eChecks gmail and displays inbox count + unread mails' subjects\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003esh,libxml2\u003c/bitbar.dependencies\u003e\n\nUSERNAME=\"example@gmail.com\"\nPASSWORD=\"verysecretpassword\"\n\nRESULT=$(curl -s -u $USERNAME:$PASSWORD \"https://mail.google.com/mail/feed/atom\" | xmllint --format -)\nCOUNT=$(echo \"$RESULT\" | grep -E -o '\u003cfullcount\u003e[0-9]*' | cut -c 12-)\nENTRIES=$(echo \"$RESULT\" | sed -n 's|\u003ctitle\u003e\\(.*\\)\u003c/title\u003e|\\1|p' | tr -s ' ')\n\nif [ \"$COUNT\" -ne 0 ]; then\n  echo \"📬 $COUNT | color=white\"\nelse\n  echo \"📭\"\nfi\necho \"---\"\n\ncount=0\necho \"$ENTRIES\" | while read -r line || [[ -n $line ]];\ndo\n  if [ $count -eq 1 ]; then\n    echo \"---\"\n  fi\n\n  echo \"$line | href=https://mail.google.com\"\n  (( count++ ))\ndone\n\n"
+			}
+		],
+		"path": "Email/simple-gmail-checker.sh",
+		"filename": "simple-gmail-checker.sh",
+		"dir": "Email",
+		"docsPlugin": "Email/simple-gmail-checker.sh.html",
+		"docsCategory": "Email.html",
+		"pathSegments": [
+			"Email"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Email",
+				"text": "Email",
+				"isLast": true
+			}
+		],
+		"title": "Simple Gmail Checker",
+		"version": "v0.1.0",
+		"author": "Murat Bastas",
+		"authors": [
+			{
+				"name": "Murat Bastas",
+				"githubUsername": "murat",
+				"imageURL": "https://avatars.githubusercontent.com/u/1137480?v=4",
+				"bio": "developer",
+				"primary": true
+			}
+		],
+		"desc": "Checks gmail and displays inbox count + unread mails' subjects",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"sh",
+			"libxml2"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.940031Z",
+		"vars": null
+	}
+}

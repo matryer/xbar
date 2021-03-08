@@ -1,0 +1,74 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "Aplikácia %1$@ %2$@ bola prevzatá a je pripravená na použitie! Chcete teraz nainštalovať a následne znovu spustiť %1$@?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "Aplikáciu %1$@ nemožno aktualizovať, ak je spustená zo zväzku s právami len na čítanie (napríklad z obrazu disku alebo optického disku). Presuňte aplikáciu %1$@ do priečinka Applications, spustite ju odtiaľ a potom znova skúste aktualizáciu.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@\nje najnovšia dostupná verzia.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "Je dostupná aplikácia %1$@ %2$@ — máte %3$@. Chcete ju prevziať teraz?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ prevzaté";
+
+"%@ of %@" = "%1$@ z %2$@";
+
+"A new version of %@ is available!" = "Je dostupná nová verzia aplikácie %@!";
+
+"A new version of %@ is ready to install!" = "Nová verzia aplikácie %@ je pripravená na inštaláciu!";
+
+"An error occurred in retrieving update information. Please try again later." = "Pri získavaní informácie o aktualizácii sa vyskytla chyba. Skúste neskôr.";
+
+"An error occurred while downloading the update. Please try again later." = "Pri preberaní aktualizácie sa vyskytla chyba. Skúste neskôr.";
+
+"An error occurred while extracting the archive. Please try again later." = "Pri rozbaľovaní archívu sa vyskytla chyba. Skúste neskôr.";
+
+"An error occurred while installing the update. Please try again later." = "Pri inštalácii aktualizácie sa vyskytla chyba. Skúste neskôr.";
+
+"An error occurred while parsing the update feed." = "Pri analyzovaní aktualizácie sa vyskytla chyba.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Pri spustení %1$@ sa vyskytla chyba, avšak nová verzia bude dostupná pri opätovnom štarte %1$@.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Zrušiť";
+
+"Cancel Update" = "Zrušiť aktualizáciu";
+
+"Checking for updates..." = "Kontrolujú sa aktualizácie…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Preberá sa aktualizácia…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Rozbaľuje sa aktualizácia…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Inštalovať a znovu spustiť";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Inštaluje sa aktualizácia…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "OK";
+
+"Ready to Install" = "Pripravené na inštaláciu";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Môže %1$@ automaticky kontrolovať aktualizácie? Kedykoľvek ich môžete z ponuky %1$@ skontrolovať aj manuálne.";
+
+"Update Error!" = "Chyba aktualizácie!";
+
+"Updating %@" = "Aktualizuje sa %@";
+
+"You already have the newest version of %@." = "Máte aktuálnu verziu aplikácie %@.";
+
+"You're up-to-date!" = "Máte aktuálnu verziu!";

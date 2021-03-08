@@ -1,0 +1,153 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/Reddit/reddit.1m.py",
+					"filename": "reddit.1m.py",
+					"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eReddit\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Reddit for Mac\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/zUHPCvq.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\n\n# encoding=utf8\nimport sys\nreload(sys)\nsys.setdefaultencoding('utf8')\n\nimport json\nimport urllib2\nreddit0 = \"https://www.reddit.com\"\nreddit1 = [\n  [\"All\", \"https://www.reddit.com/r/all\", \"\"],\n  [\"Hour\", \"https://www.reddit.com/r/all/top/\", \"?sort=top\u0026t=hour\"],\n  [\"News\", \"https://www.reddit.com/r/news+worldnews+politics\", \"\"],\n]\nicons = {\n  \"bayarea\": \"🇺🇸\",\n  \"news\": \"📰\",\n  \"worldnews\": \"🌎\"\n}\n\nprint (\"🐈\")\nprint (\"---\")\n\nfor r1 in reddit1:\n  print (r1[0])\n  request = urllib2.Request(r1[1] + \".json\" + r1[2], headers={\n    \"User-Agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36\",\n    \"Pragma\": \"no-cache\"\n  })\n  jsonUrl = urllib2.urlopen(request).read()\n  jsonRet = json.loads(jsonUrl)\n  for j in jsonRet['data']['children']:\n    child = j['data']\n    line = child['title']\n    color = \"\"\n    if child['quarantine'] or child['over_18']:\n      line = \"(NSFW) \" + line\n      color = \" color=#EEEEEE\"\n    lim=75\n    w=0\n    l = []\n    sr = child['permalink'].split(\"/\")[2].lower()\n    i = \"\"\n    if sr in icons: i = icons[sr] + \" \"\n    for d in line.split():\n      if w + len(d) + 1 \u003c= lim:\n        l.append(d)\n        w += len(d) + 1\n      else:\n        print (\"--\" + i + \" \".join(l) + \" | href=\" + child['url'] + \" trim=false size=11\" + color)\n        i = \"\"\n        l = [d]\n        w = len(d)\n    if (len(l)):\n      print (\"--\" + i + \" \".join(l) + \" | href=\" + child['url'] + \" trim=false size=11\" + color)\n    print (\"--          [\" + sr + \"] \" + \"Score: \" + str(child['score']) + \", Comments: \" + str(child['num_comments']) + \" | href=\" + reddit0 + child['permalink'] + \" trim=false size=9\" + color)\n    print (\"--          | trim=false size=4\")\nprint (\"---\")\nprint (\"Refresh... | refresh=true\")\n"
+				}
+			],
+			"path": "Web/Reddit/reddit.1m.py",
+			"filename": "reddit.1m.py",
+			"dir": "Web/Reddit",
+			"docsPlugin": "Web/Reddit/reddit.1m.py.html",
+			"docsCategory": "Web/Reddit.html",
+			"pathSegments": [
+				"Web",
+				"Reddit"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/Reddit",
+					"text": "Reddit",
+					"isLast": true
+				}
+			],
+			"title": "Reddit",
+			"version": "v1.0",
+			"author": "Parvez",
+			"authors": [
+				{
+					"name": "Parvez",
+					"githubUsername": "parvez",
+					"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays Reddit for Mac",
+			"imageURL": "http://i.imgur.com/zUHPCvq.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://github.com/parvez/bitbar-plugins",
+			"lastUpdated": "2021-03-08T15:22:09.035313Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Web/Reddit/redditnotify.30s.py",
+					"filename": "redditnotify.30s.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eReddit Notifications\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eHeyItsShuga\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eShugabuga\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eCheck your Reddit messages in your status bar!\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/ohM8E6u.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython,praw\u003c/bitbar.dependencies\u003e\n\n############################################################################\n#                      Reddit Notifications for BitBar                     #\n#                            by /u/HeyItsShuga                             #\n#                                                                          #\n#                              Configuration                               #\n#  Tip: Make sure that the quotes stay as real quotes (if using TextEdit). #\n############################################################################\n\nUSERNAME = \"\" # Please put your username inside of the quotes.\nPASSWORD = \"\" # Please put your password inside of the quotes.\n\n############################################################################\n#                        End Configuration. Enjoy!                         #\n############################################################################\n\nimport os\nimport praw\n\nif USERNAME == '':\n    print \"Not Configured! | color=#e51b1b\"\n    print \"---\"\n    print \"Click here to open the config in nano. | color=#e51b1b bash=' nano\", __file__, '\"'\n    os.system(\"open \" + __file__)\n\nmessage_noteInt = \"No Messages!\"\nmessageCount = 0\n\nr = praw.Reddit(user_agent=\"Reddit Notifications for BitBar\",disable_update_check=True)\nr.login(USERNAME, PASSWORD, disable_warning=True)\n\nunreadInt = r.get_unread()\nunread = r.get_unread()\n\nfor messages in unreadInt:\n    message_noteInt = str(messages)\n    messageCount = messageCount + 1\n\nif message_noteInt == \"No Messages!\":\n    print \"| image=iVBORw0KGgoAAAANSUhEUgAAABkAAAAQCAMAAADUOCSZAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAJ9QTFRFAAAAAAAAgICAgICAbW1tgICAeHh4gICAgICAfHx8fHx8fX19fX19e3t7fX19fHx8fn5+fHx8fn5+fHx8fn5+fn5+fHx8fX19fn5+fX19fHx8fn5+fX19fn5+fX19fX19fX19fX19fX19fX19fX19fn5+fn5+fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19ui5QtQAAADR0Uk5TAAECBgcIERIUISUvNTY7REdISUpLT1BWYWhpgIWOj5Gjpau/wMHFyNbX2+Dh4uPk5efo6c9RgL0AAACeSURBVBjTddHZEoIwDAXQiyKItYribkVRcANaEP7/25TRUsGat+RkMk0KT5S64B7ELiFoB0l8jhLzYtaCcbF81UtgmG0asMpHeAuc675T143tfQApsE7H3ge6h3MfSupc9UiRM9RcJSwWFFTEzGiKGYSWm7PctcLA/BY7qnJyIVVPZCtxbn9eTbO1ftPF73Ue1XW4r79oiinX/kI6eQKV6hmFxUk2wQAAAABJRU5ErkJggg==\"\nelse:\n    print \"| image=iVBORw0KGgoAAAANSUhEUgAAABkAAAAQCAMAAADUOCSZAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAJ9QTFRFAAAA/wAA/wAA1Ssr2yQk3yAg4R4e4xwc5hoa6BcX4xwc5Bsb5x0d4xwc5Roa5Roa5h0d5hwc5xwc4xwc5Bsb5Roa5hoa5Bsb5Roa5Bsb5Bsb5Rwc5Bsb5hsb5Bsb5Roa5Bsb5Roa5hsb5hsb5Bsb5Roa5Rsb5hsb5Rsb5Rsb5Rsb5Rsb5Rsb5Rsb5Rsb5Rsb5Rsb5Roa5Rsb5Rsb5RsbcU/E7wAAADR0Uk5TAAECBgcIERIUISUvNTY7REdISUpLT1BWYWhpgIWOj5Gjpau/wMHFyNbX2+Dh4uPk5efo6c9RgL0AAACeSURBVBjTddHZEoIwDAXQiyKItYribkVRcANaEP7/25TRUsGat+RkMk0KT5S64B7ELiFoB0l8jhLzYtaCcbF81UtgmG0asMpHeAuc675T143tfQApsE7H3ge6h3MfSupc9UiRM9RcJSwWFFTEzGiKGYSWm7PctcLA/BY7qnJyIVVPZCtxbn9eTbO1ftPF73Ue1XW4r79oiinX/kI6eQKV6hmFxUk2wQAAAABJRU5ErkJggg==\"\n\nprint \"---\"\nprint \"Messages: \", messageCount, \"| font=HelveticaNeue-Bold href=https://www.reddit.com/message/unread/\"\nprint \"---\"\nif message_noteInt == \"No Messages!\":\n    print \"No Unread Messages! | color=teal\"\nfor messages in unread:\n    print str(messages), \" | color=teal\"\n    print \"---\"\n"
+				}
+			],
+			"path": "Web/Reddit/redditnotify.30s.py",
+			"filename": "redditnotify.30s.py",
+			"dir": "Web/Reddit",
+			"docsPlugin": "Web/Reddit/redditnotify.30s.py.html",
+			"docsCategory": "Web/Reddit.html",
+			"pathSegments": [
+				"Web",
+				"Reddit"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/Reddit",
+					"text": "Reddit",
+					"isLast": true
+				}
+			],
+			"title": "Reddit Notifications",
+			"version": "v1.0.0",
+			"author": "HeyItsShuga",
+			"authors": [
+				{
+					"name": "Shuga",
+					"githubUsername": "Shugabuga",
+					"imageURL": "https://avatars.githubusercontent.com/u/10801851?v=4",
+					"bio": "\r\n    Developer and Designer.\r\n",
+					"primary": true
+				}
+			],
+			"desc": "Check your Reddit messages in your status bar!",
+			"imageURL": "http://i.imgur.com/ohM8E6u.png",
+			"dependencies": [
+				"python",
+				"praw"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:09.041368Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Web/Reddit/subreddit_links.rb",
+					"filename": "subreddit_links.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eSubreddit Links\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eJoe Canero\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecaneroj1\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/3ZDUdNH.png\u003c/bitbar.image\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nrequire 'net/http'\nrequire 'json'\n\n#### Tips ####\n# Update the list of subreddits below\n# to customize the functionality of this\n# plugin.\n# The format should be like this:\n# [name_of_subreddit, \"/top\" or \"/new\"]\n# If you instead want to get links from\n# the front page instead of a subreddit,\n# leave name_of_subreddit empty: \"\"\n#### #### ####\nSUBREDDITS = [\n  [\"\",            \"/top\"],\n  [\"r/AskReddit\", \"/top\"],\n]\n\n# Feel free to make the user agent your username\n# It looks like reddit just requires the user agent to be\n# something unique and not generic.\nUSER_AGENT = \"bitbar-user-agent\"\nREDDIT = \"https://www.reddit.com/\"\nDEFAULT_PORT = 443\n\ndef to_json(subreddit, type)\n  uri = URI.parse(\"#{REDDIT}#{subreddit}#{type}.json\")\n  @http = Net::HTTP::Get.new(uri)\n  @http.add_field('User-Agent', USER_AGENT)\n \n  res = Net::HTTP.start(uri.host, DEFAULT_PORT, :use_ssl =\u003e true) do |http| \n    http.request(@http)\n  end\n \n  data = JSON.parse(res.body)\n  data[\"subreddit_name\"] = (subreddit.eql?(\"\") ? \"Front Page\" : subreddit) + type\n  data\nend\n\ndef prettify(json)\n  puts \"---\"\n  if json[\"quarantine\"] || json[\"over_18\"]\n    puts \"NSFW | color=red\"\n  end\n\n  puts json[\"title\"] + \"| href=#{REDDIT}\" + json[\"permalink\"] + \" color=#337ab7\"\n  puts \"Score: #{json[\"score\"]}, Comments: #{json[\"num_comments\"]}\"\nend\n\n\nbegin\n  puts \"Reddit\\n---\"\n  SUBREDDITS.map { |subreddit| to_json(*subreddit) }\n            .each do |data|\n              puts \"\\n---\\n#{data[\"subreddit_name\"]} | color=black\\n---\"\n              data[\"data\"][\"children\"].each { |child| prettify(child[\"data\"]) }\n            end\nrescue =\u003e e\n  puts e\n  puts \"Content is currently unavailable. Please try resetting. | color=red\"\nend\n"
+				}
+			],
+			"path": "Web/Reddit/subreddit_links.rb",
+			"filename": "subreddit_links.rb",
+			"dir": "Web/Reddit",
+			"docsPlugin": "Web/Reddit/subreddit_links.rb.html",
+			"docsCategory": "Web/Reddit.html",
+			"pathSegments": [
+				"Web",
+				"Reddit"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/Reddit",
+					"text": "Reddit",
+					"isLast": true
+				}
+			],
+			"title": "Subreddit Links",
+			"version": "1.0",
+			"author": "Joe Canero",
+			"authors": [
+				{
+					"name": "Joe Canero",
+					"githubUsername": "caneroj1",
+					"imageURL": "https://avatars.githubusercontent.com/u/3110602?v=4",
+					"bio": "Software Engineer",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://i.imgur.com/3ZDUdNH.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:09.066361Z",
+			"vars": null
+		}
+	]
+}

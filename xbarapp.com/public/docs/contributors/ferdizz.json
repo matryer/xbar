@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Ferdinand",
+		"githubUsername": "ferdizz",
+		"imageURL": "https://avatars.githubusercontent.com/u/9082645?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/garlicoin.1m.sh",
+					"filename": "garlicoin.1m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eGarlicoin Balance\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eferdizz\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eferdizz\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows your current Garlicoin balance.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/ferdizz/files/master/garlic-screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n\nbalance=0\n\ndeclare -a addresses=(\n    \"INSERT-YOUR-WALLET-ADDRESS-#1-HERE\"\n    \"INSERT-YOUR-WALLET-ADDRESS-#2-HERE\" # \u003c-- Repeat for every address you want to add\n)\n\nfor i in \"${addresses[@]}\"\ndo\n    res=\"$(curl -s 'https://garli.co.in/ext/getbalance/'\"$i\")\"\n    balance=\"$(echo \"$balance + $res\" | bc)\"\ndone\n\necho \"$(printf '%.1f' \"$balance\") ₲\"\necho \"---\"\necho \"$balance Garlicoins\"\n\n# GPuEScAvXJvviVMaTH2xg4KPgPDD52AK1M if you want to donate some of that sweet sweet garlic"
+				}
+			],
+			"path": "Cryptocurrency/garlicoin.1m.sh",
+			"filename": "garlicoin.1m.sh",
+			"dir": "Cryptocurrency",
+			"docsPlugin": "Cryptocurrency/garlicoin.1m.sh.html",
+			"docsCategory": "Cryptocurrency.html",
+			"pathSegments": [
+				"Cryptocurrency"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": true
+				}
+			],
+			"title": "Garlicoin Balance",
+			"version": "v1.1",
+			"author": "ferdizz",
+			"authors": [
+				{
+					"name": "Ferdinand",
+					"githubUsername": "ferdizz",
+					"imageURL": "https://avatars.githubusercontent.com/u/9082645?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows your current Garlicoin balance.",
+			"imageURL": "https://raw.githubusercontent.com/ferdizz/files/master/garlic-screenshot.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:47.676441Z",
+			"vars": null
+		}
+	]
+}

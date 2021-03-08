@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Music/songkick.1d.py",
+				"filename": "songkick.1d.py",
+				"content": "#!/usr/bin/env python\n\n# \u003cbitbar.title\u003eSongkick - Upcoming events\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eNobuhide Yayoshi\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eyayoc\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eUpcoming music events on Songkick\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/pu8gJh2.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.songkick.com/\u003c/bitbar.abouturl\u003e\n\nimport json\nimport urllib2\n\ndef get_events():\n    try:\n        ip = get_my_ip()\n        request = urllib2.Request('http://api.songkick.com/api/3.0/events.json?apikey=' + configs['apikey'] + '\u0026location=ip:' + ip)\n        response = urllib2.urlopen(request)\n        response = json.load(response)\n        return map(format_events, response['resultsPage']['results']['event'])\n    except Exception:\n        print ':('\n\ndef format_events(event):\n    return (u'%s / %s | href=%s' % (event['displayName'], event['location']['city'], event['uri'])).encode('utf-8')\n\ndef get_my_ip():\n    request = urllib2.Request('http://ip.42.pl/raw')\n    response = urllib2.urlopen(request)\n    return response.read()\n\nconfigs = {\n    'apikey': 'Your API Key'\n}\n\nprint (u'\\u24c8 | size=18').encode('utf-8')\nprint '---'\nprint '\\n'.join(get_events())\nprint '---'\nprint 'Songkick - Upcoming events | href=https://songkick.com'\n\n\n"
+			}
+		],
+		"path": "Music/songkick.1d.py",
+		"filename": "songkick.1d.py",
+		"dir": "Music",
+		"docsPlugin": "Music/songkick.1d.py.html",
+		"docsCategory": "Music.html",
+		"pathSegments": [
+			"Music"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Music",
+				"text": "Music",
+				"isLast": true
+			}
+		],
+		"title": "Songkick - Upcoming events",
+		"version": "v1.0.0",
+		"author": "Nobuhide Yayoshi",
+		"authors": [
+			{
+				"name": "yayoc",
+				"githubUsername": "yayoc",
+				"imageURL": "https://avatars.githubusercontent.com/u/6383334?v=4",
+				"bio": "Software engineer in Tokyo.",
+				"primary": true
+			}
+		],
+		"desc": "Upcoming music events on Songkick",
+		"imageURL": "http://i.imgur.com/pu8gJh2.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "https://www.songkick.com/",
+		"lastUpdated": "2021-03-08T15:21:57.629769Z",
+		"vars": null
+	}
+}

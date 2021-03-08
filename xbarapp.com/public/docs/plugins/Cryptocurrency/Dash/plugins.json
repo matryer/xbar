@@ -1,0 +1,100 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Dash/dash-coincap-binance.5m.sh",
+					"filename": "dash-coincap-binance.5m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eDash tickers: Coincap.io and Binance.com\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eUdjinM6\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eUdjinM6\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the latest Dash info from Coincap.io and Binance.com\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/k4y72tW.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.dash.org/\u003c/bitbar.abouturl\u003e\n\n# To generate the image, grab PNG and increase the DPI from 72 to 144,\n# then resize it to 32x32 and finally encode the image into base 64\n# for example via https://base64.guru/converter/encode/image/png\niconBase64='iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4wsdAAwGzHGX5gAAAg5JREFUWMPt1z1oVEEQB/DfhRON+JXCmGKDIoiKmEIhIIhKCmsLwSKihb0EXikWChYi1ykIQggIFjaCglUghWJhLCwUFItYPPwKQvBiJDEhFnkHIu/d7TsuscnAcTA7uzPz35n/7GNd/rNUoqxq6QhGSpw7i3f4hQk8lYQveYbVyAMPYHfJ5A5l/+ezJF5mSUxKwmLDqCsi+y3Y2wG0B/ECd9XS7jIIbMbODl77JWxqINMVsWE79uB3i98CliKDGFZLT8Yi8B1J5qCZLKMbIauXY9if6fOK/RYGK6vSW7W0msF8EbebJLavsuqNXkuv42rOSh1DXWvANfcxV0ABfWsRwCymCmpmvvoXVGcwip4Sh8/jsCR8aMG2eVe9hB/VzPkRPGoju0lMR7Rxf45+AVONK7jcJrxvJGGmhU0PtuboFyXhWyOAC204r+NhhN2JAv3blUqspf34mrFZzPSs4xNGJWEiYs/ZAv3jRit8xkBWlTGyhAVJ+BnBAf04WrA6uhLAymicXqUWHCvQP5eEeuwwapcBb2CoYPVK2QdJGccHcQenCizG8ap5ALV0Q3ZAb4TLZWzEcZzOpmEzVrwpCXOtEOjDvTaeYa3kmiSMx7wJd2Bbh50PS8KDf5VFRdhbciY0kxTn8pw3Q2CgA46f4QnGJKGwzYsC2IX3JdhxJqvs1/iY7a1Lwuz6p9e6tJI/DAh9aD+iV7oAAAAASUVORK5CYII='\n\n# Grab all info beforehand\ntoken_info_binance=$(curl -s https://api.binance.com/api/v3/ticker/24hr?symbol=DASHBTC | tr -d '{}\"' | tr ':,' '\\n')\ntoken_info_coincap=$(curl -s https://api.coincap.io/v2/assets/dash/ | tr -d '{}\" ' | tr ':,' '\\n')\nbtc_info_coincap=$(curl -s https://api.coincap.io/v2/assets/bitcoin/ | tr -d '{}\" ' | tr ':,' '\\n')\n\n# Menu bar\ntoken_price_btc=$(echo \"$token_info_binance\" | grep -A1 lastPrice | tail -1)\ntoken_price_usd=$(echo \"$token_info_coincap\" | grep -A1 priceUsd | tail -1)\ntoken_price_btc_precision=6\nif (( $(echo \"$token_price_usd \u003e= 100\" | bc -l) )); then token_price_usd_precision=\"$((token_price_btc_precision-3))\"; else token_price_usd_precision=\"$((token_price_btc_precision-2))\"; fi\nprintf \"%.*f | dropdown=false image=%s\\n\" \"$token_price_btc_precision\" \"$token_price_btc\" \"$iconBase64\"\nprintf \"$%.*f | dropdown=false image=%s\\n\" \"$token_price_usd_precision\" \"$token_price_usd\" \"$iconBase64\"\n\n# BTC\nbtc_percent_change_24h=$(echo \"$btc_info_coincap\" | grep -A1 changePercent24Hr | tail -1)\nif (( $(echo \"$btc_percent_change_24h \u003e= 0\" | bc -l) )); then btc_color_coincap=\"green\"; else btc_color_coincap=\"red\"; fi\nbtc_usd_price=$(echo \"$btc_info_coincap\" | grep -A1 priceUsd | tail -1)\necho \"---\"\nprintf \":moneybag: BTC: $%.*f | color=$btc_color_coincap href=\\\"http://coincap.io/assets/bitcoin/\\\"\\n\" 2 \"$btc_usd_price\"\n\n# Coincap.io\ntoken_percent_change_24h=$(echo \"$token_info_coincap\" | grep -A1 changePercent24Hr | tail -1)\nif (( $(echo \"$token_percent_change_24h \u003e= 0\" | bc -l) )); then token_color_coincap=\"green\"; else token_color_coincap=\"red\"; fi\ntoken_rank=$(echo \"$token_info_coincap\" | grep -A1 rank | tail -1)\ntoken_available_supply=$(echo \"$token_info_coincap\" | grep -A1 supply | tail -1)\ntoken_available_supply_mln=$(echo \"$token_available_supply / 1000000\" | bc -l)\ntoken_market_cap_usd=$(echo \"$token_info_coincap\" | grep -A1 marketCapUsd | tail -1)\ntoken_market_cap_usd_mln=$(echo \"$token_market_cap_usd / 1000000\" | bc -l)\ntoken_volume_usd=$(echo \"$token_info_coincap\" | grep -A1 volumeUsd24Hr | tail -1)\ntoken_volume_usd_m=$(echo \"$token_volume_usd / 1000000\" | bc -l)\necho \"---\"\necho \":chart_with_upwards_trend: Coincap.io: | href=\\\"http://coincap.io/assets/dash/\\\"\"\nprintf \"%sRank: %.*f\\n\" \"* \" 0 \"$token_rank\"\nprintf \"%sSupply: %.*fM DASH\\n\" \"* \" 2 \"$token_available_supply_mln\"\nprintf \"%sMarket Cap: $%.*fM | color=$token_color_coincap\\n\" \"* \" 2 \"$token_market_cap_usd_mln\"\nprintf \"%sPrice: $%.*f | color=$token_color_coincap\\n\" \"* \" 2 \"$token_price_usd\"\nprintf \"%s24h Change: %.*f%% | color=$token_color_coincap\\n\" \"* \" 2 \"$token_percent_change_24h\"\nprintf \"%s24h Volume: $%.*fM\\n\" \"* \" 2 \"$token_volume_usd_m\"\n\n# Binance.com\ntoken_percent_change=$(echo \"$token_info_binance\" | grep -A1 priceChangePercent | tail -1)\nif (( $(echo \"$token_percent_change \u003e= 0\" | bc -l) )); then token_color_binance=\"green\"; else token_color_binance=\"red\"; fi\ntoken_lowest_ask=$(echo \"$token_info_binance\" | grep -A1 askPrice | tail -1)\ntoken_highest_bid=$(echo \"$token_info_binance\" | grep -A1 bidPrice | tail -1)\ntoken_base_volume=$(echo \"$token_info_binance\" | grep -A1 volume | tail -1)\ntoken_base_volume_k=$(echo \"$token_base_volume / 1000\" | bc -l)\ntoken_quote_volume=$(echo \"$token_info_binance\" | grep -A1 quoteVolume | tail -1)\ntoken_high_24h=$(echo \"$token_info_binance\" | grep -A1 highPrice | tail -1)\ntoken_low_24h=$(echo \"$token_info_binance\" | grep -A1 lowPrice | tail -1)\necho \"---\"\necho \":chart_with_upwards_trend: Binance.com: | href=\\\"https://www.binance.com/ru/trade/DASH_BTC\\\"\"\nprintf \"%sPrice: %.*f BTC | color=$token_color_binance\\n\" \"* \" 6 \"$token_price_btc\"\nprintf \"%sAsk: %.*f BTC\\n\" \"* \" 6 \"$token_lowest_ask\"\nprintf \"%sBid: %.*f BTC\\n\" \"* \" 6 \"$token_highest_bid\"\nprintf \"%s24h Change: %.*f%% | color=$token_color_binance\\n\" \"* \" 2 \"$token_percent_change\"\nprintf \"%s24h Volume: %.*f BTC\\n\" \"* \" 2 \"$token_quote_volume\"\nprintf \"%s24h Volume: %.*fK DASH\\n\" \"* \" 2 \"$token_base_volume_k\"\nprintf \"%s24h High: %.*f BTC | color=green\\n\" \"* \" 6 \"$token_high_24h\"\nprintf \"%s24h Low: %.*f BTC | color=red\\n\" \"* \" 6 \"$token_low_24h\"\n\n# URLs\necho \"---\"\necho \"Dash.org | href=\\\"https://www.dash.org\\\" image=$iconBase64\"\necho \"--Wallets | href=\\\"https://www.dash.org/downloads/\\\" image=$iconBase64\"\necho \"--Explorer | href=\\\"https://explorer.dash.org/\\\" image=$iconBase64\"\necho \"--Forum | href=\\\"https://www.dash.org/forum/\\\" image=$iconBase64\"\necho \"--Docs | href=\\\"https://docs.dash.org/\\\" image=$iconBase64\"\n"
+				}
+			],
+			"path": "Cryptocurrency/Dash/dash-coincap-binance.5m.sh",
+			"filename": "dash-coincap-binance.5m.sh",
+			"dir": "Cryptocurrency/Dash",
+			"docsPlugin": "Cryptocurrency/Dash/dash-coincap-binance.5m.sh.html",
+			"docsCategory": "Cryptocurrency/Dash.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Dash"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Dash",
+					"text": "Dash",
+					"isLast": true
+				}
+			],
+			"title": "Dash tickers: Coincap.io and Binance.com",
+			"version": "v1.1",
+			"author": "UdjinM6",
+			"authors": [
+				{
+					"name": "UdjinM6",
+					"githubUsername": "UdjinM6",
+					"imageURL": "https://avatars.githubusercontent.com/u/1935069?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the latest Dash info from Coincap.io and Binance.com",
+			"imageURL": "https://i.imgur.com/k4y72tW.png",
+			"dependencies": null,
+			"aboutURL": "https://www.dash.org/",
+			"lastUpdated": "2021-03-08T15:21:45.901671Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Dash/dash-coincap-poloniex.5m.sh",
+					"filename": "dash-coincap-poloniex.5m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eDash tickers: Coincap.io and Poloniex.com\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eUdjinM6\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eUdjinM6\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the latest Dash info from Coincap.io and Poloniex.com\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/BRmoB48.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.dash.org/\u003c/bitbar.abouturl\u003e\n\n# To generate the image, grab PNG and increase the DPI from 72 to 144,\n# then resize it to 32x32 and finally encode the image into base 64\n# for example via https://base64.guru/converter/encode/image/png\niconBase64='iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4wsdAAwGzHGX5gAAAg5JREFUWMPt1z1oVEEQB/DfhRON+JXCmGKDIoiKmEIhIIhKCmsLwSKihb0EXikWChYi1ykIQggIFjaCglUghWJhLCwUFItYPPwKQvBiJDEhFnkHIu/d7TsuscnAcTA7uzPz35n/7GNd/rNUoqxq6QhGSpw7i3f4hQk8lYQveYbVyAMPYHfJ5A5l/+ezJF5mSUxKwmLDqCsi+y3Y2wG0B/ECd9XS7jIIbMbODl77JWxqINMVsWE79uB3i98CliKDGFZLT8Yi8B1J5qCZLKMbIauXY9if6fOK/RYGK6vSW7W0msF8EbebJLavsuqNXkuv42rOSh1DXWvANfcxV0ABfWsRwCymCmpmvvoXVGcwip4Sh8/jsCR8aMG2eVe9hB/VzPkRPGoju0lMR7Rxf45+AVONK7jcJrxvJGGmhU0PtuboFyXhWyOAC204r+NhhN2JAv3blUqspf34mrFZzPSs4xNGJWEiYs/ZAv3jRit8xkBWlTGyhAVJ+BnBAf04WrA6uhLAymicXqUWHCvQP5eEeuwwapcBb2CoYPVK2QdJGccHcQenCizG8ap5ALV0Q3ZAb4TLZWzEcZzOpmEzVrwpCXOtEOjDvTaeYa3kmiSMx7wJd2Bbh50PS8KDf5VFRdhbciY0kxTn8pw3Q2CgA46f4QnGJKGwzYsC2IX3JdhxJqvs1/iY7a1Lwuz6p9e6tJI/DAh9aD+iV7oAAAAASUVORK5CYII='\n\n# Grab all info beforehand\ntoken_info_poloniex=$(curl -s https://poloniex.com/public?command=returnTicker | tr '}' '\\n' | grep BTC_DASH | tr -d '{}\"' | tr ':,' '\\n')\ntoken_info_coincap=$(curl -s https://api.coincap.io/v2/assets/dash/ | tr -d '{}\" ' | tr ':,' '\\n')\nbtc_info_coincap=$(curl -s https://api.coincap.io/v2/assets/bitcoin/ | tr -d '{}\" ' | tr ':,' '\\n')\n\n# Menu bar\ntoken_price_btc=$(echo \"$token_info_poloniex\" | grep -A1 last | tail -1)\ntoken_price_usd=$(echo \"$token_info_coincap\" | grep -A1 priceUsd | tail -1)\ntoken_price_btc_precision=6\nif (( $(echo \"$token_price_usd \u003e= 100\" | bc -l) )); then token_price_usd_precision=\"$((token_price_btc_precision-3))\"; else token_price_usd_precision=\"$((token_price_btc_precision-2))\"; fi\nprintf \"%.*f | dropdown=false image=%s\\n\" \"$token_price_btc_precision\" \"$token_price_btc\" \"$iconBase64\"\nprintf \"$%.*f | dropdown=false image=%s\\n\" \"$token_price_usd_precision\" \"$token_price_usd\" \"$iconBase64\"\n\n# BTC\nbtc_percent_change_24h=$(echo \"$btc_info_coincap\" | grep -A1 changePercent24Hr | tail -1)\nif (( $(echo \"$btc_percent_change_24h \u003e= 0\" | bc -l) )); then btc_color_coincap=\"green\"; else btc_color_coincap=\"red\"; fi\nbtc_usd_price=$(echo \"$btc_info_coincap\" | grep -A1 priceUsd | tail -1)\necho \"---\"\nprintf \":moneybag: BTC: $%.*f | color=$btc_color_coincap href=\\\"http://coincap.io/assets/bitcoin/\\\"\\n\" 2 \"$btc_usd_price\"\n\n# Coincap.io\ntoken_percent_change_24h=$(echo \"$token_info_coincap\" | grep -A1 changePercent24Hr | tail -1)\nif (( $(echo \"$token_percent_change_24h \u003e= 0\" | bc -l) )); then token_color_coincap=\"green\"; else token_color_coincap=\"red\"; fi\ntoken_rank=$(echo \"$token_info_coincap\" | grep -A1 rank | tail -1)\ntoken_available_supply=$(echo \"$token_info_coincap\" | grep -A1 supply | tail -1)\ntoken_available_supply_mln=$(echo \"$token_available_supply / 1000000\" | bc -l)\ntoken_market_cap_usd=$(echo \"$token_info_coincap\" | grep -A1 marketCapUsd | tail -1)\ntoken_market_cap_usd_mln=$(echo \"$token_market_cap_usd / 1000000\" | bc -l)\ntoken_volume_usd=$(echo \"$token_info_coincap\" | grep -A1 volumeUsd24Hr | tail -1)\ntoken_volume_usd_m=$(echo \"$token_volume_usd / 1000000\" | bc -l)\necho \"---\"\necho \":chart_with_upwards_trend: Coincap.io: | href=\\\"http://coincap.io/assets/dash/\\\"\"\nprintf \"%sRank: %.*f\\n\" \"* \" 0 \"$token_rank\"\nprintf \"%sSupply: %.*fM DASH\\n\" \"* \" 2 \"$token_available_supply_mln\"\nprintf \"%sMarket Cap: $%.*fM | color=$token_color_coincap\\n\" \"* \" 2 \"$token_market_cap_usd_mln\"\nprintf \"%sPrice: $%.*f | color=$token_color_coincap\\n\" \"* \" 2 \"$token_price_usd\"\nprintf \"%s24h Change: %.*f%% | color=$token_color_coincap\\n\" \"* \" 2 \"$token_percent_change_24h\"\nprintf \"%s24h Volume: $%.*fM\\n\" \"* \" 2 \"$token_volume_usd_m\"\n\n# Poloniex.com\ntoken_percent_change=$(echo \"$token_info_poloniex\" | grep -A1 percentChange | tail -1)\ntoken_percent_change=$( echo \"$token_percent_change * 100\" | bc -l )\nif (( $(echo \"$token_percent_change \u003e= 0\" | bc -l) )); then token_color_poloniex=\"green\"; else token_color_poloniex=\"red\"; fi\ntoken_lowest_ask=$(echo \"$token_info_poloniex\" | grep -A1 lowestAsk | tail -1)\ntoken_highest_bid=$(echo \"$token_info_poloniex\" | grep -A1 highestBid | tail -1)\ntoken_base_volume=$(echo \"$token_info_poloniex\" | grep -A1 baseVolume | tail -1)\ntoken_quote_volume=$(echo \"$token_info_poloniex\" | grep -A1 quoteVolume | tail -1)\ntoken_quote_volume_k=$(echo \"$token_quote_volume / 1000\" | bc -l)\ntoken_high_24h=$(echo \"$token_info_poloniex\" | grep -A1 high24hr | tail -1)\ntoken_low_24h=$(echo \"$token_info_poloniex\" | grep -A1 low24hr | tail -1)\necho \"---\"\necho \":chart_with_upwards_trend: Poloniex.com: | href=\\\"https://poloniex.com/exchange#btc_dash\\\"\"\nprintf \"%sPrice: %.*f BTC | color=$token_color_poloniex\\n\" \"* \" 6 \"$token_price_btc\"\nprintf \"%sAsk: %.*f BTC\\n\" \"* \" 6 \"$token_lowest_ask\"\nprintf \"%sBid: %.*f BTC\\n\" \"* \" 6 \"$token_highest_bid\"\nprintf \"%s24h Change: %.*f%% | color=$token_color_poloniex\\n\" \"* \" 2 \"$token_percent_change\"\nprintf \"%s24h Volume: %.*f BTC\\n\" \"* \" 2 \"$token_base_volume\"\nprintf \"%s24h Volume: %.*fK DASH\\n\" \"* \" 2 \"$token_quote_volume_k\"\nprintf \"%s24h High: %.*f BTC | color=green\\n\" \"* \" 6 \"$token_high_24h\"\nprintf \"%s24h Low: %.*f BTC | color=red\\n\" \"* \" 6 \"$token_low_24h\"\n\n# URLs\necho \"---\"\necho \"Dash.org | href=\\\"https://www.dash.org\\\" image=$iconBase64\"\necho \"--Wallets | href=\\\"https://www.dash.org/downloads/\\\" image=$iconBase64\"\necho \"--Explorer | href=\\\"https://explorer.dash.org/\\\" image=$iconBase64\"\necho \"--Forum | href=\\\"https://www.dash.org/forum/\\\" image=$iconBase64\"\necho \"--Docs | href=\\\"https://docs.dash.org/\\\" image=$iconBase64\"\n"
+				}
+			],
+			"path": "Cryptocurrency/Dash/dash-coincap-poloniex.5m.sh",
+			"filename": "dash-coincap-poloniex.5m.sh",
+			"dir": "Cryptocurrency/Dash",
+			"docsPlugin": "Cryptocurrency/Dash/dash-coincap-poloniex.5m.sh.html",
+			"docsCategory": "Cryptocurrency/Dash.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Dash"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Dash",
+					"text": "Dash",
+					"isLast": true
+				}
+			],
+			"title": "Dash tickers: Coincap.io and Poloniex.com",
+			"version": "v1.1",
+			"author": "UdjinM6",
+			"authors": [
+				{
+					"name": "UdjinM6",
+					"githubUsername": "UdjinM6",
+					"imageURL": "https://avatars.githubusercontent.com/u/1935069?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the latest Dash info from Coincap.io and Poloniex.com",
+			"imageURL": "https://i.imgur.com/BRmoB48.png",
+			"dependencies": null,
+			"aboutURL": "https://www.dash.org/",
+			"lastUpdated": "2021-03-08T15:21:45.924065Z",
+			"vars": null
+		}
+	]
+}

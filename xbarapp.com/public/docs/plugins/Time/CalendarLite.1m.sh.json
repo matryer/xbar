@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/CalendarLite.1m.sh",
+				"filename": "CalendarLite.1m.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eClock with calendar\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eWeibing Chen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eWeibingChen17\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eA clock with a simple calendar\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.ibb.co/Krmg0P8/Screen-Shot-2019-11-08-at-23-04-29.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/WeibingChen17/\u003c/bitbar.abouturl\u003e\n\n# If using alongside apples default clock, one can uncomment the following - \n#formatted_date=$(date '+%d/%b/%Y')\n#printf '\\xF0\\x9F\\x93\\x85 %s\\n' \"$formatted_date\"\n# don't forget to comment out the following `date ` command:\ndate \"+%l:%M %p\"\n\necho \"---\"\nfont=\"Monaco\"\ncolor=\"red\"\n\n#Uncomment the below line and comment out all other following lines to trigger the three-month mode\n#cal - 3 |awk 'NF'|sed 's/ $//' |while IFS= read -r i; do echo \" $i|trim=false font=$font color=$color\"|  perl -pe '$b=\"\\b\";s/ _$b(\\d)_$b(\\d) /(\\1\\2)/' |perl -pe '$b=\"\\b\";s/_$b _$b(\\d) /(\\1)/'  ; done\n\n#Comment out these lines to remove \"last month\"\nlast_month=$(date -v-1m +%m)\nlast_year=$(date -v-1m +%Y)\nlast_month_name=$(date -jf %Y-%m-%d \"$last_year\"-\"$last_month\"-01 '+%b')\necho \"Prev: $last_month_name $last_year|trim=false font=$font\"\ncal -d \"$last_year\"-\"$last_month\" |awk 'NF'|sed 's/ *$//'| while IFS= read -r i; do echo \"--$i|trim=false font=$font\"; done \necho \"---\"\n\n#cal |awk 'NF'|while IFS= read -r i; do echo \" $i|trim=false font=$font color=$color\"|  perl -pe '$b=\"\\b\";s/ _$b(\\d)_$b(\\d) /(\\1\\2)/' |perl -pe '$b=\"\\b\";s/_$b _$b(\\d) /(\\1)/' |sed 's/ *$//'; done \ncal |awk 'NF'|while IFS= read -r i; do echo \" $i\"|perl -pe '$b=\"\\b\";s/ _$b(\\d)_$b(\\d) /(\\1\\2)/' |perl -pe '$b=\"\\b\";s/_$b _$b(\\d) /(\\1)/' |sed 's/ *$//' |sed \"s/$/|trim=false font=$font color=$color/\"; done \n\n#Comment out these lines to remove \"next month\"\necho \"---\"\nnext_month=$(date -v+1m +%m)\nnext_year=$(date -v+1m +%Y)\nnext_month_name=$(date -jf %Y-%m-%d \"$next_year\"-\"$next_month\"-01 '+%b')\necho \"Next: $next_month_name $next_year|trim=false font=$font\"\ncal -d \"$next_year\"-\"$next_month\" | awk 'NF'|sed 's/ *$//' | while IFS= read -r i; do echo \"--$i|trim=false font=$font\";done\n"
+			}
+		],
+		"path": "Time/CalendarLite.1m.sh",
+		"filename": "CalendarLite.1m.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/CalendarLite.1m.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Clock with calendar",
+		"version": "v1.0",
+		"author": "Weibing Chen",
+		"authors": [
+			{
+				"name": "Weibing Chen",
+				"githubUsername": "WeibingChen17",
+				"imageURL": "https://avatars.githubusercontent.com/u/25602873?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "A clock with a simple calendar",
+		"imageURL": "https://i.ibb.co/Krmg0P8/Screen-Shot-2019-11-08-at-23-04-29.png",
+		"dependencies": [
+			"bash"
+		],
+		"aboutURL": "https://github.com/WeibingChen17/",
+		"lastUpdated": "2021-03-08T15:22:05.253692Z",
+		"vars": null
+	}
+}

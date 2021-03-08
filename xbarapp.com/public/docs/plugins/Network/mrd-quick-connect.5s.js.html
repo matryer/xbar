@@ -1,0 +1,610 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Microsoft Remote Desktop - Quick Connect in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned. - install xbar for free to get started.'>
+	<meta name='author' content='Marco Ferrer'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1'>
+	<meta itemprop='name' content='Microsoft Remote Desktop - Quick Connect in your macOS menu bar'>
+	<meta itemprop='description' content='Quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Microsoft Remote Desktop - Quick Connect in your macOS menu bar'>
+	<meta name='twitter:description' content='Quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Microsoft Remote Desktop - Quick Connect in your macOS menu bar'>
+	<meta property='og:description' content='Quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Network/mrd-quick-connect.5s.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1'>
+	<link rel='shortcut icon' href='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Microsoft Remote Desktop - Quick Connect</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/marrferr.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/29710945?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/marrferr.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Marco Ferrer (<code style='color:white;'>@marrferr</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Network%2fmrd-quick-connect.5s.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1' 
+				alt='Image preview of Microsoft Remote Desktop - Quick Connect plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>mrd-quick-connect.5s.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Network/mrd-quick-connect.5s.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Network/mrd-quick-connect.5s.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+/*
+  &lt;bitbar.title&gt;Microsoft Remote Desktop - Quick Connect&lt;/bitbar.title&gt;
+  &lt;bitbar.version&gt;v0.1.1&lt;/bitbar.version&gt;
+  &lt;bitbar.author&gt;Marco Ferrer&lt;/bitbar.author&gt;
+  &lt;bitbar.author.github&gt;marrferr&lt;/bitbar.author.github&gt;
+  &lt;bitbar.desc&gt;Quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned.&lt;/bitbar.desc&gt;
+  &lt;bitbar.image&gt;https://www.dropbox.com/s/aiodjoketuujbaf/mrd-quick-connect.png?raw=1&lt;/bitbar.image&gt;
+  &lt;bitbar.dependencies&gt;node,node-simple-plist,node-bitbar&lt;/bitbar.dependencies&gt;
+
+	************** Decoded Contents of the Apple Script Helper ****************
+	***************************************************************************
+	on run connectionLabel
+		set appTitle to &#34;Microsoft Remote Desktop&#34;
+		set connectionLabel to (text of item 1 of connectionLabel as string)
+		#set connectionLabel to &#34;show_connection_list&#34;
+		tell application appTitle
+			activate
+			tell application &#34;System Events&#34;
+				tell process appTitle
+					
+					#Make sure the frontmost windows from mrdp is the connection list
+					set frontmost to true
+					delay 0.4
+					set menuItems to every menu item of menu &#34;Window&#34; of menu bar 1
+					set connectionListMenuItem to false
+					set targetMenuItem to false
+					
+					try
+						repeat with menuItem in menuItems
+							if (name of menuItem as string) is (connectionLabel &amp; &#34; &#34;) then
+								set targetMenuItem to menuItem
+							else if name of menuItem as string is appTitle then
+								set connectionListMenuItem to menuItem
+							end if
+						end repeat
+					end try
+					
+					if targetMenuItem is not false then
+						click targetMenuItem
+					else
+						click connectionListMenuItem
+						delay 0.3
+						
+						set connectionListWindow to windows where title contains appTitle
+						--Initial focusing of window to prevent problems with closing it later on.
+						repeat with w in connectionListWindow
+							set focused of w to true
+						end repeat
+						
+						--Clear the search input
+						keystroke tab
+						key code 115 --home
+						perform action &#34;AXRaise&#34; of (first window whose title is appTitle)
+						keystroke &#34;f&#34; using {command down} --Focus on search input
+						keystroke &#34;a&#34; using {command down} --Select all of inputs contents
+						key code 51 --delete
+						
+						if (connectionLabel as string) is not &#34;show_connection_list&#34; then
+							--Clear any previously selected list item before filtering
+							keystroke tab
+							key code 115 --home
+							perform action &#34;AXRaise&#34; of (first window whose title is appTitle)
+							keystroke &#34;f&#34; using {command down} --Focus on search input
+							keystroke connectionLabel --search query
+							delay 0.1
+							keystroke tab
+							key code 123 --left arrow 
+							key code 124 --right arrow 
+							key code 125 --down
+							delay 0.3
+							key code 36 --enter	
+							
+							--This method of closing connection window is unreliable 
+							#perform action &#34;AXPress&#34; of button 1 of (first window whose title is appTitle)
+							--Work around for consisten results. Using two forms of closing the connection list window
+							--Each method covers a particular window state
+							--Closes window when it is outside of a desktop with a open rdc connection.
+							try
+								repeat with w in windows
+									if title of w contains appTitle then
+										set focused of w to true
+										perform action &#34;AXPress&#34; of button 1 of w
+									end if
+								end repeat
+							end try
+							
+							--Allows window to be close it is focused into a desktop with a running rdc connection
+							tell process &#34;Finder&#34;
+								click button 1 of item 1 of connectionListWindow
+							end tell
+							
+						end if
+					end if
+				end tell
+			end tell
+		end tell
+	end run
+	*******************************************************************
+	*******************************************************************
+ */
+
+&#39;use strict&#39;;
+
+var mrdIcon = &#34;iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAACXBIWXMAABYlAAAWJQFJUiTwAAAEHWlDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjajZVdbBRVGIaf3TkzawLOVQUtSZmgAiGlWcAoDQHd7S7bwtputi3SxkS307O7Y6ez45nZ8hOuiInGG1DvDInx747ExEQD/kTwQm4wmBAUsDHRcAHxJyQk3CjUi9nuDtgGz9U37/m&#43;9/2&#43;95yZgdTliu&#43;7SQtmvVCVC1lr/8SklbpCksdYQTcrKnbgZ0qlIkDF913uXQm4/SMJgIubl9h/0FoxLQMbEg8BjenAnoXEQdBP2L4KIdUFbD8Q&#43;iGkikCX2j8xCamXga5aFIdA11QUvwF0qbHyAKROAKZdr0xD6iTQOxXDa7E46gGAroL0pHJsq1zIWiXVqDqujLX7gO3/uWbd5qLeWmBlMDO6F9gIidemK7m9QB8kTtqV/CjwBCSuzjn7hlvxXT/MloH1kFzXnBnPAJsgOVhVu8cjnqSqNwcX43cP18deAFZB8ltvanikVXvZDgYmgXWQvFuXQ0WgBzTLCYfGolptl2qURyJdrTotc3mgF7Q3Zxp7yxGn9nkwN5pf5DxcHxhu4edfqewpAd2g/SbdQjnS0v7xw1KrB9HjucPFSEvkZJAfXcTD&#43;thgpCvcUI21asXxqrN7qJX/aV0NllvxVd8tFaPe9KRqlsejfL2vovKFiFMvSW&#43;8xa/PsS9RQdJgComNxx0syhTIYuGjaFDFwaWAxEOikLjtnM1MIQmYQeEwh8QlQFJColqVHb4aEo/rKBxsBno&#43;polFnT/wqMfyBqjTxKO2DE/Uy40WT0OsFmmxTaTFDlEUO8V20Y8lnhXPiV0iJ9KiX&#43;xo15ZiE1nUuNHmeZUmEosy&#43;8hyFpeQCi6/4tEgWNqV493NjZ2do&#43;olx75w7GbMK4eAmZhbcUdHHuS5fk2/rl/Sr&#43;lX9PlOhv6zPq/P61fumaXxH5flojv3zbx0VgYXlxqSWSQOHjI28&#43;Y4x7kjXz3a4bkkTr14ceW5I1XveHcHtS8cuylfH749zNHeDpr&#43;Kf1n&#43;lL6/fRH6d&#43;1d7TPtK&#43;109oX2nks7Yx2VvtG&#43;077RPsydlbL36H22ZOJ9S3xlvRa4ppZc435uJkz15pPmsUOn7na3GIOmhvMnLmmfW5xvbh7DhO4bX&#43;W1oryYjcg8TAzOMu8VeN4OBxAogio4OJx6L6cVqXoEVvE0H23e7vYIdrTGHkjZ2SwjE1Gv7HF2GNkOqrGBiNn9BsbjPw9t9NeZlIZyoMhwEDDP6ScWj20tqbTz1gZ33elNeTZfb1WxXUt5dTqYWApGUg1J6f72D8xaUWf9FtlEkBi1YUOFj4PO/8C7YcONtmEkwGsfqqDbeyGR96DU0/bTTW3&#43;I9NfA9BddvW6GllFvRfFhZurYfU23DnrYWFvz9YWLjzIWjzcMb9F6g0fFawID0JAAAAIGNIUk0AAG2YAABzjgAA8nsAAITaAABulAAA5RoAADMnAAAZF5lJHH8AAAYTSURBVHjazJhvcFRnFcZ/7/veu3fv/slm8wdoIBQojQnQkJGmjhCpU2MrWL5AW2TE&#43;okWip3RlqnOqKMzFu3oaP2EbVO1Y1uHijA4jqYqlqot1GFsIbSFpkVIZKYh2cBudjfZ3fvn9cPdZEKDSEIYcmZ25s6dnT3Pvs85z3POK7TWzKQwRh&#43;61jQr4EHgAaARsK5x7iJwEngGeLq5s8sDEFrrUTAvARuu08HsBTY2d3Z5svxi63UEQzn3VoBRQFtmQPlsGQ&#43;ocQYAahoPyJoBgEIXddlFIQR4Hlr7CKGAqUuDBgSAlJNr&#43;4vC80Aq7BsbEKYBU9UqpfBzOfLvHUdFYgjTBN&#43;fLCCNVximfsdOatZtmhYunIE&#43;PtjxZUpnzyBC1mQBCZQdJdbcCkD/Sz8PKBRi0kDcdJraDZsxa&#43;dg1sym&#43;O/uqQAK&#43;NalIgDnXtxVPubJ01Y420P847dhVtWiCyNXVEeXBqQ12vOCR9edeg15PtKyx37zSkJeyz7W2keEQkGiSBS0P8UTmmoIAVrjFwto18WorOLDZ36E3dhM7tgRUMbYd649ICnxCyPoUonqu&#43;&#43;jet0mQrVzcIfSOIPniDQso3/3s&#43;Tf/hfKjoBSlwQ2LYCEYeCk&#43;pF2lCW7X8Wqm0/&#43;5DGGDr&#43;Ckx7EqpuP3XALDbv2kDn8CqcevR9lRxFhe4IuXTUgISVO6hz2x5ppeq6T4tkznLj/Lgqn30MoA2GaaN/HOT9AdEkLTc8fYMnuv3NicztSqkAsx53UVRe17zj4pRKNHb/Dy2Y4vm4Fxd5TqIpKZCSKDEfwshkSn/g0iVXtvLmynvD8RTQ8vQ8ndW4SXSbVGB3CUAj1kY9pBuJ3IcWix3&#43;GMEMcvXMpRiJZ7iiNUIrSQB9GIsnNu/Ywd/s38fJZPnjkS0SbWoi3tuEPD18ZZbKc0L5p6USlFiLQJ9dBKJOKlZ9h6I1X0YURVHUtfqkEvodf9Inf2sZNT3SgXZfureux6upJH/wjzmA/dQ8&#43;RvdD9yBt&#43;/Je5heLFP9zmvDCBhY/&#43;avLUvbhsz/BGejj/Mv7MCoSRJpamPfV79Dzva&#43;Ref2vJB9ai4onyHUdIfPaAaz6hUg7Qu7NQ8RWtCFD4aCGyn/4kl4mzRC9P/42iTcOoqKxCZ3gey5CKeoe&#43;DqhOXX4I8MUzryPCFm4Q2msuQtY/OSLvLu5nZ6dj2BU1ZC8426W7TtM9/Z7UdEYuXePEm9djYpXoH0fcVnKlEIXR7jwp/1orSf4qvZchDKYvWkbGpDRGGb1LAq9pyj2nuJIS5LWoxdYtvcQ72xcTfe2e7hl/z&#43;JNC1HhsK42TTWnHloz8UvFJBlNb&#43;slyEEIhQKkAsBnotfLOI7JZRlIcI2RrIKL5NBSEHVmvWk//FnvFyWytvXBmPH&#43;QHwPawb5tG9bQOqMon2PfzCCIlV7TgDfXj5IaRVO0kd8lyM6tlUfW494RsX4&#43;XzxG/9JEIZVNzWRqH3NJW3r8E938&#43;sL2xh4eNP4Qz207W2BRWJomLxwE5GhvFyQ9gLb8aat4Ce7&#43;9AGubkhdEvFqn&#43;/H3M/uLWsXf5E8fIvPYX/JFhBv&#43;wh8rVd9H43Muc&#43;e7DDHe/w/sPb0QYBioSQ3seMmThZjNo16Hp1wdxL6RI7X8BM1kzeUDSjpDa/zyZ1w/gF4aDo85lA/4tCy&#43;fpfeH32D&#43;Y08w9yvfomvtcqxZN6BicbyRHAiBn89jJGtY&#43;ttDSDPE8XtXIS/hacaVuriXHcIZHEAIgTBDyLCNDAf6oWJxBn7zC5xUP4t&#43;0EGi7bOk/9ZJ/u238J0SZiJJvLWNxKp23KE0b31qAQiBkUiOzV1jqcqrtJ6O0cPL55BWmPodO4mvWIm0wiAkaB8vlyX1&#43;930/fKnqGgsGGU/IifNnV3CGLf4W1c5jaGiMbTj0LPzUaQVRsUTyLCNl03jZdIgJUZFZTDKTtw&#43;SuMpOwksn4YRMShkI1idvGwGbyiNkAIZiYxuaP9rQDsx3lw7pn1&#43;FSIwYcMoG/X/3Vo6xgN6qnwlcr1ibxlDAKh8WbQR2A50jfJ5jaNUzrV99G5orMtmUvx3AJrDXxbJPzP7AAAAAElFTkSuQmCC&#34;,
+	mrdAppleScriptHelper = &#39;RmFzZFVBUyAxLjEwMS4xMA4AAAAED///AAEAAgADAf//AAANAAEAA2wAAgAAAAAABP/&#43;//0NAAQAAmkAAAAAAAMABQAGDQAFAANJAAIAAAAA//wAB//7Cv/8ABguYWV2dG9hcHBudWxsAACAAAAAkAAqKioqDQAHAAFvAAAAAAAA//oL//oAIjAAD2Nvbm5lY3Rpb25sYWJlbAAPY29ubmVjdGlvbkxhYmVsAv/7AAANAAYAAWsAAAAAAkkACAIACAACAAkACg0ACQACcgAAAAAAAwALAAwNAAsAAW0AAAAAAAEADQ4ADQABsQAOEQAOADAATQBpAGMAcgBvAHMAbwBmAHQAIABSAGUAbQBvAHQAZQAgAEQAZQBzAGsAdABvAHANAAwAAW8AAAAAAAD/&#43;Qv/&#43;QAUMAAIYXBwdGl0bGUACGFwcFRpdGxlAgAKAAIADwAQDQAPAAJyAAAABAAOABEAEg0AEQADbAAFAAQADAAT//j/9w0AEwACYwAAAAQADAAUABUNABQAAm4AAAAEAAoAFgAXDQAWAAFtAAAACAAK//YK//YABApjdHh0DQAXAAJuAAAABAAIABgAGQ0AGAACNAAAAAUACP/1ABoK//UABApjb2JqDQAaAAFtAAAABgAH//QD//QAAQ0AGQABbwAAAAQABf/zC//zACIwAA9jb25uZWN0aW9ubGFiZWwAD2Nvbm5lY3Rpb25MYWJlbA0AFQABbQAAAAoAC//yCv/yAAQKVEVYVAH/&#43;AAAAf/3AAANABIAAW8AAAAAAAD/8Qv/8QAiMAAPY29ubmVjdGlvbmxhYmVsAA9jb25uZWN0aW9uTGFiZWwCABAAAgAbABwNABsAA2wABgAPAA//8AAdAB4B//AAAAwAHQAzAC1zZXQgY29ubmVjdGlvbkxhYmVsIHRvICJzaG93X2Nvbm5lY3Rpb25fbGlzdCIAAgAADgAeAAGxAB8RAB8AWgBzAGUAdAAgAGMAbwBuAG4AZQBjAHQAaQBvAG4ATABhAGIAZQBsACAAdABvACAAIgBzAGgAbwB3AF8AYwBvAG4AbgBlAGMAdABpAG8AbgBfAGwAaQBzAHQAIgIAHAACACD/7w0AIAACTwAAAA8CSQAhACINACEAAWsAAAAWAkgAIwIAIwACACQAJQ0AJAADSQACABYAG//u/&#43;3/7Ar/7gAYLm1pc2NhY3R2bnVsbP//gAD//5AAbnVsbAH/7QAAAv/sAAACACUAAgAm/&#43;sNACYAAk8AAAAcAkgAJwAoDQAnAAJPAAAAIAJHACkAKg0AKQABawAAACcCRgArAgArAAIALAAtDQAsAANsAAIAJwAn/&#43;r/6f/oAf/qAAAB/&#43;kAAAH/6AAAAgAtAAIALgAvDQAuAANsAAYAJwAn/&#43;cAMAAxAf/nAAAMADAARgBATWFrZSBzdXJlIHRoZSBmcm9udG1vc3Qgd2luZG93cyBmcm9tIG1yZHAgaXMgdGhlIGNvbm5lY3Rpb24gbGlzdAACAAAOADEAAbEAMhEAMgCAAE0AYQBrAGUAIABzAHUAcgBlACAAdABoAGUAIABmAHIAbwBuAHQAbQBvAHMAdAAgAHcAaQBuAGQAbwB3AHMAIABmAHIAbwBtACAAbQByAGQAcAAgAGkAcwAgAHQAaABlACAAYwBvAG4AbgBlAGMAdABpAG8AbgAgAGwAaQBzAHQCAC8AAgAzADQNADMAAnIAAAAnACwANQA2DQA1AAFtAAAAJwAo/&#43;YK/&#43;YACAtib292dHJ1ZQ0ANgABMQAAACgAK//lCv/lAAQKcGlzZgIANAACADcAOA0ANwADSQACAC0AMv/kADn/4wr/5AAYLnN5c29kZWxhbnVsbP//gAD//4AAbm1icg0AOQABbQAAAC0ALgA6CAA6AAg/2ZmZmZmZmgL/4wAAAgA4AAIAOwA8DQA7AAJyAAAAMwBAAD0APg0APQACbgAAADMAPAA/AEANAD8AATIAAAA6ADz/4gr/4gAECm1lbkkNAEAAAm4AAAAzADoAQQBCDQBBAAI0AAAANwA6/&#43;EAQwr/4QAECm1lbkUNAEMAAW0AAAA4ADkARA4ARAABsQBFEQBFAAwAVwBpAG4AZABvAHcNAEIAAjQAAAAzADf/4ABGCv/gAAQKbWJhcg0ARgABbQAAADUANv/fA//fAAENAD4AAW8AAAAAAAD/3gv/3gAWMAAJbWVudWl0ZW1zAAltZW51SXRlbXMCADwAAgBHAEgNAEcAAnIAAABBAEYASQBKDQBJAAFtAAAAQQBC/90K/90ACAtib292ZmFscw0ASgABbwAAAAAAAP/cC//cADAwABZjb25uZWN0aW9ubGlzdG1lbnVpdGVtABZjb25uZWN0aW9uTGlzdE1lbnVJdGVtAgBIAAIASwBMDQBLAAJyAAAARwBMAE0ATg0ATQABbQAAAEcASP/bCv/bAAgLYm9vdmZhbHMNAE4AAW8AAAAAAAD/2gv/2gAgMAAOdGFyZ2V0bWVudWl0ZW0ADnRhcmdldE1lbnVJdGVtAgBMAAIATwBQDQBPAANsAAIATQBN/9n/2P/XAf/ZAAAB/9gAAAH/1wAAAgBQAAIAUQBSDQBRAANRAAAATQCfAFMAVP/WDQBTAANYAAAAUACWAFX/1QBWDQBVAARaAAAAZACRAFcAWABZ/9QNAFcAAj0AAwBkAHEAWgBbDQBaAANsAAUAZABrAFz/0//SDQBcAAJjAAAAZABrAF0AXg0AXQACbgAAAGQAaQBfAGANAF8AATEAAABlAGn/0Qr/0QAECnBuYW0NAGAAAW8AAABkAGX/0Av/0AAUMAAIbWVudWl0ZW0ACG1lbnVJdGVtDQBeAAFtAAAAaQBq/88K/88ABApURVhUAf/TAAAB/9IAAA0AWwADbAAFAGsAcABh/87/zQ0AYQACYgAAAGsAcABiAGMNAGIAAW8AAABrAGz/zAv/zAAiMAAPY29ubmVjdGlvbmxhYmVsAA9jb25uZWN0aW9uTGFiZWwNAGMAAW0AAABsAG8AZA4AZAABsQBlEQBlAAIAIAH/zgAAAf/NAAANAFgAAnIAAAB0AHkAZgBnDQBmAAFvAAAAdAB1/8sL/8sAFDAACG1lbnVpdGVtAAhtZW51SXRlbQ0AZwABbwAAAAAAAP/KC//KACAwAA50YXJnZXRtZW51aXRlbQAOdGFyZ2V0TWVudUl0ZW0CAFkAAgBoAGkNAGgAAj0AAwB8AIUAagBrDQBqAAJjAAAAfACDAGwAbQ0AbAACbgAAAHwAgQBuAG8NAG4AATEAAAB9AIH/yQr/yQAECnBuYW0NAG8AAW8AAAB8AH3/yAv/yAAUMAAIbWVudWl0ZW0ACG1lbnVJdGVtDQBtAAFtAAAAgQCC/8cK/8cABApURVhUDQBrAAFvAAAAgwCE/8YL/8YAFDAACGFwcHRpdGxlAAhhcHBUaXRsZQIAaQACAHD/xQ0AcAACcgAAAIgAjQBxAHINAHEAAW8AAACIAIn/xAv/xAAUMAAIbWVudWl0ZW0ACG1lbnVJdGVtDQByAAFvAAAAAAAA/8ML/8MAMDAAFmNvbm5lY3Rpb25saXN0bWVudWl0ZW0AFmNvbm5lY3Rpb25MaXN0TWVudUl0ZW0C/8UAAAH/1AAAC//VABQwAAhtZW51aXRlbQAIbWVudUl0ZW0NAFYAAW8AAABTAFb/wgv/wgAWMAAJbWVudWl0ZW1zAAltZW51SXRlbXMNAFQAA1IAAAAAAAD/wf/A/78K/8EAGC5hc2NyZXJyICoqKioAAAAAAACQACoqKioB/8AAAAL/vwAAAf/WAAACAFIAAgBzAHQNAHMAA2wAAgCgAKD/vv&#43;9/7wB/74AAAH/vQAAAf&#43;8AAACAHQAAgB1/7sNAHUABFoAAACgAkYAdgB3/7oAeA0AdgACPgEAAKAApQB5AHoNAHkAAW8AAACgAKP/uQv/uQAgMAAOdGFyZ2V0bWVudWl0ZW0ADnRhcmdldE1lbnVJdGVtDQB6AAFtAAAAowCk/7gK/7gACAtib292ZmFscw0AdwADSQACAKgAr/&#43;3AHv/tgr/twAYLnByY3NjbGljbnVsbP//gAD//4AAdWllbA0AewABbwAAAKgAq/&#43;1C/&#43;1ACAwAA50YXJnZXRtZW51aXRlbQAOdGFyZ2V0TWVudUl0ZW0C/7YAAAL/ugAADQB4AAFrAAAAsgJGAHwCAHwAAgB9AH4NAH0AA0kAAgCyALn/tAB//7MK/7QAGC5wcmNzY2xpY251bGz//4AA//&#43;AAHVpZWwNAH8AAW8AAACyALX/sgv/sgAwMAAWY29ubmVjdGlvbmxpc3RtZW51aXRlbQAWY29ubmVjdGlvbkxpc3RNZW51SXRlbQL/swAAAgB&#43;AAIAgACBDQCAAANJAAIAugDB/7EAgv&#43;wCv&#43;xABguc3lzb2RlbGFudWxs//&#43;AAP//gABubWJyDQCCAAFtAAAAugC9AIMIAIMACD/TMzMzMzMzAv&#43;wAAACAIEAAgCEAIUNAIQAA2wAAgDCAML/r/&#43;u/60B/68AAAH/rgAAAf&#43;tAAACAIUAAgCGAIcNAIYAAnIAAADCANgAiACJDQCIAAI2AQEAwgDUAIoAiw0AigABMgABAMIAx/&#43;sCv&#43;sAAQKY3dpbg0AiwACRQAAAMoA0wCMAI0NAIwAATEAAADLAM//qwr/qwAECnRpdGwNAI0AAW8AAADQANL/qgv/qgAUMAAIYXBwdGl0bGUACGFwcFRpdGxlDQCJAAFvAAAAAAAA/6kL/6kALDAAFGNvbm5lY3Rpb25saXN0d2luZG93ABRjb25uZWN0aW9uTGlzdFdpbmRvdwIAhwACAI4Ajw0AjgADbAABANkA2f&#43;oAJAAkQH/qAAADACQAE4ASEluaXRpYWwgZm9jdXNpbmcgb2Ygd2luZG93IHRvIHByZXZlbnQgcHJvYmxlbXMgd2l0aCBjbG9zaW5nIGl0IGxhdGVyIG9uLgACAAAOAJEAAbEAkhEAkgCQAEkAbgBpAHQAaQBhAGwAIABmAG8AYwB1AHMAaQBuAGcAIABvAGYAIAB3AGkAbgBkAG8AdwAgAHQAbwAgAHAAcgBlAHYAZQBuAHQAIABwAHIAbwBiAGwAZQBtAHMAIAB3AGkAdABoACAAYwBsAG8AcwBpAG4AZwAgAGkAdAAgAGwAYQB0AGUAcgAgAG8AbgAuAgCPAAIAkwCUDQCTAANYAAAA2QD5AJX/pwCWDQCVAAJyAAAA7QD0AJcAmA0AlwABbQAAAO0A7v&#43;mCv&#43;mAAgLYm9vdnRydWUNAJgAAm4AAAAAAAAAmQCaDQCZAAExAAAA7wDz/6UK/6UABApmb2N1DQCaAAFvAAAA7gDv/6QL/6QABTAAAXcAAAv/pwAFMAABdwAADQCWAAFvAAAA3ADf/6ML/6MALDAAFGNvbm5lY3Rpb25saXN0d2luZG93ABRjb25uZWN0aW9uTGlzdFdpbmRvdwIAlAACAJsAnA0AmwADbAACAPoA&#43;v&#43;i/6H/oAH/ogAAAf&#43;hAAAB/6AAAAIAnAACAJ0Ang0AnQADbAABAPoA&#43;v&#43;fAJ8AoAH/nwAADACfABwAFkNsZWFyIHRoZSBzZWFyY2ggaW5wdXQAAgAADgCgAAGxAKERAKEALABDAGwAZQBhAHIAIAB0AGgAZQAgAHMAZQBhAHIAYwBoACAAaQBuAHAAdQB0AgCeAAIAogCjDQCiAANJAAIA&#43;gEB/54ApP&#43;dCv&#43;eABgucHJjc2twcnNudWxs//&#43;AAAAAAABjdHh0DQCkAAExAAAA&#43;gD9/5wK/5wABAp0YWIgAv&#43;dAAACAKMAAgClAKYNAKUAA2wAAQECAQkApwCoAKkNAKcAA0kAAgECAQn/mwCq/5oK/5sAGC5wcmNza2NvZG51bGz//4AAAAAAACoqKioNAKoAAW0AAAECAQX/mQP/mQBzAv&#43;aAAAMAKgACgAEaG9tZQACAAAOAKkAAbEAqxEAqwAIAGgAbwBtAGUCAKYAAgCsAK0NAKwAA0kAAgEKASj/mACu/5cK/5gAGC5wcmNzcGVyZm51bGz//4AAAAAAAGFjdFQNAK4AAm4AAAEKASQArwCwDQCvAAI0AAABHQEk/5YAsQr/lgAECmFjdFQNALEAAW0AAAEgASMAsg4AsgABsQCzEQCzAA4AQQBYAFIAYQBpAHMAZQ0AsAADbAAFAQoBHQC0/5X/lA0AtAACNgEAAQoBHQC1ALYNALUAAjQAAQEKARD/kwC3Cv&#43;TAAQKY3dpbg0AtwABbQAAAQ4BD/&#43;SA/&#43;SAAENALYAAj0AAwETARwAuAC5DQC4AAExAAABFAEY/5EK/5EABAp0aXRsDQC5AAFvAAABGQEb/5AL/5AAFDAACGFwcHRpdGxlAAhhcHBUaXRsZQH/lQAAAf&#43;UAAAC/5cAAAIArQACALoAuw0AugADbAABASkBOAC8AL0Avg0AvAADSQACASkBOP&#43;PAL8AwAr/jwAYLnByY3NrcHJzbnVsbP//gAAAAAAAY3R4dA0AvwABbQAAASkBLADBDgDBAAGxAMIRAMIAAgBmBgDAAAP/jgDD/40K/44ABApmYWFsDQDDAAFKAAABLwE0AMQCAMQAAgDF/4wNAMUAAW0AAAEvATL/iwr/iwAIC2VNZHNLY21kAv&#43;MAAAG/40AAAwAvQAbABVGb2N1cyBvbiBzZWFyY2ggaW5wdXQAAgAADgC&#43;AAGxAMYRAMYAKgBGAG8AYwB1AHMAIABvAG4AIABzAGUAYQByAGMAaAAgAGkAbgBwAHUAdAIAuwACAMcAyA0AxwADbAABATkBSADJAMoAyw0AyQADSQACATkBSP&#43;KAMwAzQr/igAYLnByY3NrcHJzbnVsbP//gAAAAAAAY3R4dA0AzAABbQAAATkBPADODgDOAAGxAM8RAM8AAgBhBgDNAAP/iQDQ/4gK/4kABApmYWFsDQDQAAFKAAABPwFEANECANEAAgDS/4cNANIAAW0AAAE/AUL/hgr/hgAIC2VNZHNLY21kAv&#43;HAAAG/4gAAAwAygAjAB1TZWxlY3QgYWxsIG9mIGlucHV0cyBjb250ZW50cwACAAAOAMsAAbEA0xEA0wA6AFMAZQBsAGUAYwB0ACAAYQBsAGwAIABvAGYAIABpAG4AcAB1AHQAcwAgAGMAbwBuAHQAZQBuAHQAcwIAyAACANQA1Q0A1AADbAABAUkBUADWANcA2A0A1gADSQACAUkBUP&#43;FANn/hAr/hQAYLnByY3NrY29kbnVsbP//gAAAAAAAKioqKg0A2QABbQAAAUkBTP&#43;DA/&#43;DADMC/4QAAAwA1wAMAAZkZWxldGUAAgAADgDYAAGxANoRANoADABkAGUAbABlAHQAZQIA1QACANsA3A0A2wADbAACAVEBUf&#43;C/4H/gAH/ggAAAf&#43;BAAAB/4AAAAIA3AACAN3/fw0A3QAEWgAAAVECRgDeAN//fv99DQDeAAI&#43;AQABUQFYAOAA4Q0A4AADbAAFAVEBVADi/3z/ew0A4gACYwAAAVEBVADjAOQNAOMAAW8AAAFRAVL/egv/egAiMAAPY29ubmVjdGlvbmxhYmVsAA9jb25uZWN0aW9uTGFiZWwNAOQAAW0AAAFSAVP/eQr/eQAEClRFWFQB/3wAAAH/ewAADQDhAAFtAAABVAFXAOUOAOUAAbEA5hEA5gAoAHMAaABvAHcAXwBjAG8AbgBuAGUAYwB0AGkAbwBuAF8AbABpAHMAdA0A3wABawAAAVsCQgDnAgDnAAIA6ADpDQDoAANsAAEBWwFb/3gA6gDrAf94AAAMAOoAPgA4Q2xlYXIgYW55IHByZXZpb3VzbHkgc2VsZWN0ZWQgbGlzdCBpdGVtIGJlZm9yZSBmaWx0ZXJpbmcAAgAADgDrAAGxAOwRAOwAcABDAGwAZQBhAHIAIABhAG4AeQAgAHAAcgBlAHYAaQBvAHUAcwBsAHkAIABzAGUAbABlAGMAdABlAGQAIABsAGkAcwB0ACAAaQB0AGUAbQAgAGIAZQBmAG8AcgBlACAAZgBpAGwAdABlAHIAaQBuAGcCAOkAAgDtAO4NAO0AA0kAAgFbAWL/dwDv/3YK/3cAGC5wcmNza3Byc251bGz//4AAAAAAAGN0eHQNAO8AATEAAAFbAV7/dQr/dQAECnRhYiAC/3YAAAIA7gACAPAA8Q0A8AADbAABAWMBagDyAPMA9A0A8gADSQACAWMBav90APX/cwr/dAAYLnByY3NrY29kbnVsbP//gAAAAAAAKioqKg0A9QABbQAAAWMBZv9yA/9yAHMC/3MAAAwA8wAKAARob21lAAIAAA4A9AABsQD2EQD2AAgAaABvAG0AZQIA8QACAPcA&#43;A0A9wADSQACAWsBif9xAPn/cAr/cQAYLnByY3NwZXJmbnVsbP//gAAAAAAAYWN0VA0A&#43;QACbgAAAWsBhQD6APsNAPoAAjQAAAF&#43;AYX/bwD8Cv9vAAQKYWN0VA0A/AABbQAAAYEBhAD9DgD9AAGxAP4RAP4ADgBBAFgAUgBhAGkAcwBlDQD7AANsAAUBawF&#43;AP//bv9tDQD/AAI2AQABawF&#43;AQABAQ0BAAACNAABAWsBcf9sAQIK/2wABApjd2luDQECAAFtAAABbwFw/2sD/2sAAQ0BAQACPQADAXQBfQEDAQQNAQMAATEAAAF1AXn/agr/agAECnRpdGwNAQQAAW8AAAF6AXz/aQv/aQAUMAAIYXBwdGl0bGUACGFwcFRpdGxlAf9uAAAB/20AAAL/cAAAAgD4AAIBBQEGDQEFAANsAAEBigGZAQcBCAEJDQEHAANJAAIBigGZ/2gBCgELCv9oABgucHJjc2twcnNudWxs//&#43;AAAAAAABjdHh0DQEKAAFtAAABigGNAQwOAQwAAbEBDREBDQACAGYGAQsAA/9nAQ7/Zgr/ZwAECmZhYWwNAQ4AAUoAAAGQAZUBDwIBDwACARD/ZQ0BEAABbQAAAZABk/9kCv9kAAgLZU1kc0tjbWQC/2UAAAb/ZgAADAEIABsAFUZvY3VzIG9uIHNlYXJjaCBpbnB1dAACAAAOAQkAAbEBEREBEQAqAEYAbwBjAHUAcwAgAG8AbgAgAHMAZQBhAHIAYwBoACAAaQBuAHAAdQB0AgEGAAIBEgETDQESAANsAAEBmgGfARQBFQEWDQEUAANJAAIBmgGf/2MBF/9iCv9jABgucHJjc2twcnNudWxs//&#43;AAAAAAABjdHh0DQEXAAFvAAABmgGb/2EL/2EAIjAAD2Nvbm5lY3Rpb25sYWJlbAAPY29ubmVjdGlvbkxhYmVsAv9iAAAMARUAEgAMc2VhcmNoIHF1ZXJ5AAIAAA4BFgABsQEYEQEYABgAcwBlAGEAcgBjAGgAIABxAHUAZQByAHkCARMAAgEZARoNARkAA0kAAgGgAaf/YAEb/18K/2AAGC5zeXNvZGVsYW51bGz//4AA//&#43;AAG5tYnINARsAAW0AAAGgAaMBHAgBHAAIP7mZmZmZmZoC/18AAAIBGgACAR0BHg0BHQADSQACAagBr/9eAR//XQr/XgAYLnByY3NrcHJzbnVsbP//gAAAAAAAY3R4dA0BHwABMQAAAagBq/9cCv9cAAQKdGFiIAL/XQAAAgEeAAIBIAEhDQEgAANsAAEBsAG3ASIBIwEkDQEiAANJAAIBsAG3/1sBJf9aCv9bABgucHJjc2tjb2RudWxs//&#43;AAAAAAAAqKioqDQElAAFtAAABsAGz/1kD/1kAewL/WgAADAEjABEAC2xlZnQgYXJyb3cgAAIAAA4BJAABsQEmEQEmABYAbABlAGYAdAAgAGEAcgByAG8AdwAgAgEhAAIBJwEoDQEnAANsAAEBuAG/ASkBKgErDQEpAANJAAIBuAG//1gBLP9XCv9YABgucHJjc2tjb2RudWxs//&#43;AAAAAAAAqKioqDQEsAAFtAAABuAG7/1YD/1YAfAL/VwAADAEqABIADHJpZ2h0IGFycm93IAACAAAOASsAAbEBLREBLQAYAHIAaQBnAGgAdAAgAGEAcgByAG8AdwAgAgEoAAIBLgEvDQEuAANsAAEBwAHHATABMQEyDQEwAANJAAIBwAHH/1UBM/9UCv9VABgucHJjc2tjb2RudWxs//&#43;AAAAAAAAqKioqDQEzAAFtAAABwAHD/1MD/1MAfQL/VAAADAExAAoABGRvd24AAgAADgEyAAGxATQRATQACABkAG8AdwBuAgEvAAIBNQE2DQE1AANJAAIByAHP/1IBN/9RCv9SABguc3lzb2RlbGFudWxs//&#43;AAP//gABubWJyDQE3AAFtAAAByAHLATgIATgACD/TMzMzMzMzAv9RAAACATYAAgE5AToNATkAA2wAAQHQAdcBOwE8AT0NATsAA0kAAgHQAdf/UAE&#43;/08K/1AAGC5wcmNza2NvZG51bGz//4AAAAAAACoqKioNAT4AAW0AAAHQAdP/TgP/TgAkAv9PAAAMATwADAAGZW50ZXIJAAIAAA4BPQABsQE/EQE/AAwAZQBuAHQAZQByAAkCAToAAgFAAUENAUAAA2wAAgHYAdj/Tf9M/0sB/00AAAH/TAAAAf9LAAACAUEAAgFCAUMNAUIAA2wAAQHYAdj/SgFEAUUB/0oAAAwBRAA9ADdUaGlzIG1ldGhvZCBvZiBjbG9zaW5nIGNvbm5lY3Rpb24gd2luZG93IGlzIHVucmVsaWFibGUgAAIAAA4BRQABsQFGEQFGAG4AVABoAGkAcwAgAG0AZQB0AGgAbwBkACAAbwBmACAAYwBsAG8AcwBpAG4AZwAgAGMAbwBuAG4AZQBjAHQAaQBvAG4AIAB3AGkAbgBkAG8AdwAgAGkAcwAgAHUAbgByAGUAbABpAGEAYgBsAGUAIAIBQwACAUcBSA0BRwADbAAGAdgB2P9JAUkBSgH/SQAADAFJAFQATnBlcmZvcm0gYWN0aW9uICJBWFByZXNzIiBvZiBidXR0b24gMSBvZiAoZmlyc3Qgd2luZG93IHdob3NlIHRpdGxlIGlzIGFwcFRpdGxlKQACAAAOAUoAAbEBSxEBSwCcAHAAZQByAGYAbwByAG0AIABhAGMAdABpAG8AbgAgACIAQQBYAFAAcgBlAHMAcwAiACAAbwBmACAAYgB1AHQAdABvAG4AIAAxACAAbwBmACAAKABmAGkAcgBzAHQAIAB3AGkAbgBkAG8AdwAgAHcAaABvAHMAZQAgAHQAaQB0AGwAZQAgAGkAcwAgAGEAcABwAFQAaQB0AGwAZQApAgFIAAIBTAFNDQFMAANsAAEB2AHY/0gBTgFPAf9IAAAMAU4AXgBYV29yayBhcm91bmQgZm9yIGNvbnNpc3RlbiByZXN1bHRzLiBVc2luZyB0d28gZm9ybXMgb2YgY2xvc2luZyB0aGUgY29ubmVjdGlvbiBsaXN0IHdpbmRvdwACAAAOAU8AAbEBUBEBUACwAFcAbwByAGsAIABhAHIAbwB1AG4AZAAgAGYAbwByACAAYwBvAG4AcwBpAHMAdABlAG4AIAByAGUAcwB1AGwAdABzAC4AIABVAHMAaQBuAGcAIAB0AHcAbwAgAGYAbwByAG0AcwAgAG8AZgAgAGMAbABvAHMAaQBuAGcAIAB0AGgAZQAgAGMAbwBuAG4AZQBjAHQAaQBvAG4AIABsAGkAcwB0ACAAdwBpAG4AZABvAHcCAU0AAgFRAVINAVEAA2wAAQHYAdj/RwFTAVQB/0cAAAwBUwAyACxFYWNoIG1ldGhvZCBjb3ZlcnMgYSBwYXJ0aWN1bGFyIHdpbmRvdyBzdGF0ZQACAAAOAVQAAbEBVREBVQBYAEUAYQBjAGgAIABtAGUAdABoAG8AZAAgAGMAbwB2AGUAcgBzACAAYQAgAHAAYQByAHQAaQBjAHUAbABhAHIAIAB3AGkAbgBkAG8AdwAgAHMAdABhAHQAZQIBUgACAVYBVw0BVgADbAABAdgB2P9GAVgBWQH/RgAADAFYAE8ASUNsb3NlcyB3aW5kb3cgd2hlbiBpdCBpcyBvdXRzaWRlIG9mIGEgZGVza3RvcCB3aXRoIGEgb3BlbiByZGMgY29ubmVjdGlvbi4AAgAADgFZAAGxAVoRAVoAkgBDAGwAbwBzAGUAcwAgAHcAaQBuAGQAbwB3ACAAdwBoAGUAbgAgAGkAdAAgAGkAcwAgAG8AdQB0AHMAaQBkAGUAIABvAGYAIABhACAAZABlAHMAawB0AG8AcAAgAHcAaQB0AGgAIABhACAAbwBwAGUAbgAgAHIAZABjACAAYwBvAG4AbgBlAGMAdABpAG8AbgAuAgFXAAIBWwFcDQFbAANRAAAB2AImAV0BXv9FDQFdAANYAAAB2wIdAV//RAFgDQFfAARaAAAB8QIYAWEBYv9D/0INAWEAAkUAAAHxAfgBYwFkDQFjAAJuAAAB8QH2AWUBZg0BZQABMQAAAfIB9v9BCv9BAAQKdGl0bA0BZgABbwAAAfEB8v9AC/9AAAUwAAF3AAANAWQAAW8AAAH2Aff/Pwv/PwAUMAAIYXBwdGl0bGUACGFwcFRpdGxlDQFiAAFrAAAB&#43;wIUAWcCAWcAAgFoAWkNAWgAAnIAAAH7AgIBagFrDQFqAAFtAAAB&#43;wH8/z4K/z4ACAtib292dHJ1ZQ0BawACbgAAAAAAAAFsAW0NAWwAATEAAAH9AgH/PQr/PQAECmZvY3UNAW0AAW8AAAH8Af3/PAv/PAAFMAABdwAAAgFpAAIBbv87DQFuAANJAAICAwIU/zoBb/85Cv86ABgucHJjc3BlcmZudWxs//&#43;AAAAAAABhY3RUDQFvAAJuAAACAwIQAXABcQ0BcAACNAAAAgkCEP84AXIK/zgABAphY3RUDQFyAAFtAAACDAIPAXMOAXMAAbEBdBEBdAAOAEEAWABQAHIAZQBzAHMNAXEAAm4AAAIDAgkBdQF2DQF1AAI0AAACBAIJ/zcBdwr/NwAECmJ1dFQNAXcAAW0AAAIHAgj/NgP/NgABDQF2AAFvAAACAwIE/zUL/zUABTAAAXcAAAL/OQAAAv87AAAC/0MAAAH/QgAAC/9EAAUwAAF3AAANAWAAATIAAQHeAeP/NAr/NAAECmN3aW4NAV4AA1IAAAAAAAD/M/8y/zEK/zMAGC5hc2NyZXJyICoqKioAAAAAAACQACoqKioB/zIAAAL/MQAAAf9FAAACAVwAAgF4AXkNAXgAA2wAAgInAif/MP8v/y4B/zAAAAH/LwAAAf8uAAACAXkAAgF6AXsNAXoAA2wAAQInAif/LQF8AX0B/y0AAAwBfABaAFRBbGxvd3Mgd2luZG93IHRvIGJlIGNsb3NlIGl0IGlzIGZvY3VzZWQgaW50byBhIGRlc2t0b3Agd2l0aCBhIHJ1bm5pbmcgcmRjIGNvbm5lY3Rpb24AAgAADgF9AAGxAX4RAX4AqABBAGwAbABvAHcAcwAgAHcAaQBuAGQAbwB3ACAAdABvACAAYgBlACAAYwBsAG8AcwBlACAAaQB0ACAAaQBzACAAZgBvAGMAdQBzAGUAZAAgAGkAbgB0AG8AIABhACAAZABlAHMAawB0AG8AcAAgAHcAaQB0AGgAIABhACAAcgB1AG4AbgBpAG4AZwAgAHIAZABjACAAYwBvAG4AbgBlAGMAdABpAG8AbgIBewACAX8BgA0BfwACTwAAAicCQAGBAYINAYEAA0kAAgIwAj//LAGD/ysK/ywAGC5wcmNzY2xpY251bGz//4AA//&#43;AAHVpZWwNAYMAAm4AAAIwAjsBhAGFDQGEAAI0AAACNgI7/yoBhgr/KgAECmJ1dFQNAYYAAW0AAAI5Ajr/KQP/KQABDQGFAAJuAAACMAI2AYcBiA0BhwACNAAAAjMCNv8oAYkK/ygABApjb2JqDQGJAAFtAAACNAI1/ycD/ycAAQ0BiAABbwAAAjACM/8mC/8mACwwABRjb25uZWN0aW9ubGlzdHdpbmRvdwAUY29ubmVjdGlvbkxpc3RXaW5kb3cC/ysAAA0BggACNAAAAicCLf8lAYoK/yUABApwcmNzDQGKAAFtAAACKQIsAYsOAYsAAbEBjBEBjAAMAEYAaQBuAGQAZQByAgGAAAIBjf8kDQGNAANsAAICQQJB/yP/Iv8hAf8jAAAB/yIAAAH/IQAAAv8kAAAC/34AAAH/fQAAAv9/AAAC/7sAAA0AKgACNAAAACAAJP8gAY4K/yAABApwcmNzDQGOAAFvAAAAIgAj/x8L/x8AFDAACGFwcHRpdGxlAAhhcHBUaXRsZQ0AKAABbQAAABwAHQGPDwGPAfAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHNldnMAAgEAYWxpcwAAAAABkgACAAEMTWFjaW50b3NoIEhEAAAAAAAAAAAAAAAAAAAA1S0gsUgrAAAAAAAoEVN5c3RlbSBFdmVudHMuYXBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/pjUJwesAAAAAAAAAAD/////AAAJIAAAAAAAAAAAAAAAAAAAAAxDb3JlU2VydmljZXMAEAAIAADVLVjxAAAAEQAIAADUJz/sAAAAAQAMAAAAKAAAACcAAAAmAAIAPU1hY2ludG9zaCBIRDpTeXN0ZW06AExpYnJhcnk6AENvcmVTZXJ2aWNlczoAU3lzdGVtIEV2ZW50cy5hcHAAAA4AJAARAFMAeQBzAHQAZQBtACAARQB2AGUAbgB0AHMALgBhAHAAcAAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAC1TeXN0ZW0vTGlicmFyeS9Db3JlU2VydmljZXMvU3lzdGVtIEV2ZW50cy5hcHAAABMAAS8A//8AAAL/6wAADQAiAAI0AAAADwAT/x4BkAr/HgAECmNhcHANAZAAAW8AAAARABL/HQv/HQAUMAAIYXBwdGl0bGUACGFwcFRpdGxlAv/vAAAB//4AAAH//QAADgACAAAPEAADAAP/HAGRAZIB/xwAABABkQAB/xsK/xsAGC5hZXZ0b2FwcG51bGwAAIAAAACQACoqKioOAZIABxD/GgAG/xn/GAGTAZT/Fwr/GgAYLmFldnRvYXBwbnVsbAAAgAAAAJAAKioqKgv/GQAiMAAPY29ubmVjdGlvbmxhYmVsAA9jb25uZWN0aW9uTGFiZWwC/xgAABABkwAD/xb/Ff8UC/8WACIwAA9jb25uZWN0aW9ubGFiZWwAD2Nvbm5lY3Rpb25MYWJlbAv/FQAUMAAIbWVudWl0ZW0ACG1lbnVJdGVtC/8UAAUwAAF3AAAQAZQANwAN/xP/Ev8R/xD/D/8OAY//Df8MADr/C/8K/wkARP8I/wf/Bv8F/wT/A/8CAGT/Af8A/v8Ag/7&#43;AZX&#43;/f78/vv&#43;&#43;v75/vj&#43;9/72ALL&#43;9QDB/vT&#43;8wDO/vIA5QD9AQwBHP7x/vD&#43;7/7u/u0BcwGLC/8TABQwAAhhcHB0aXRsZQAIYXBwVGl0bGUK/xIABApjb2JqCv8RAAQKY3R4dAr/EAAEClRFWFQK/w8ABApjYXBwCv8OABgubWlzY2FjdHZudWxs//&#43;AAP//kABudWxsCv8NAAQKcHJjcwr/DAAECnBpc2YK/wsAGC5zeXNvZGVsYW51bGz//4AA//&#43;AAG5tYnIK/woABAptYmFyCv8JAAQKbWVuRQr/CAAECm1lbkkL/wcAFjAACW1lbnVpdGVtcwAJbWVudUl0ZW1zC/8GADAwABZjb25uZWN0aW9ubGlzdG1lbnVpdGVtABZjb25uZWN0aW9uTGlzdE1lbnVJdGVtC/8FACAwAA50YXJnZXRtZW51aXRlbQAOdGFyZ2V0TWVudUl0ZW0K/wQABAprb2NsCv8DABguY29yZWNudGUqKioqAAAAAAAAEAAqKioqCv8CAAQKcG5hbQH/AQAAAv8AAAAK/v8AGC5wcmNzY2xpY251bGz//4AA//&#43;AAHVpZWwK/v4ABApjd2luDgGVAAATCv79AAQKdGl0bAv&#43;/AAsMAAUY29ubmVjdGlvbmxpc3R3aW5kb3cAFGNvbm5lY3Rpb25MaXN0V2luZG93Cv77AAQKZm9jdQr&#43;&#43;gAECnRhYiAK/vkAGC5wcmNza3Byc251bGz//4AAAAAAAGN0eHQD/vgAcwr&#43;9wAYLnByY3NrY29kbnVsbP//gAAAAAAAKioqKgr&#43;9gAECmFjdFQK/vUAGC5wcmNzcGVyZm51bGz//4AAAAAAAGFjdFQK/vQABApmYWFsCv7zAAgLZU1kc0tjbWQD/vIAMwP&#43;8QB7A/7wAHwD/u8AfQP&#43;7gAkCv7tAAQKYnV0VBH/FwJK4EXRT6Diay/jLeQmRbBPKuXBLxICNCpqDAAGT&#43;cSAikq6MEvEgIhZSrpLEZP6moMAAtPKuxrL&#43;3uL&#43;8tRWAAEE9mRWAAEU9mRWAAEk8UAEsXAEVfABBbYQAT4mwMABRraBsAAaFhABUs5CagYQAWJQAdAAqhRWAAElkAF6FhABUs5CbBAB0ACqFFYAARWQADaFtPWf/NVwAIWAAXABhoT18AEmYBHQAMXwASagwAGVkBll8AEWoMABlPYQAaagwAC08qYQAbLWEAHFthAB0sXFrBQDFFYAAeTxcAH18AHlthABPibAwAFGtoGwACZaJhAB8sRltPWf/zT18AIGoMACFPYQAiagwAI08qYQAbay9hABxbYQAdLFxawTgxYQAkYQAlL2oMACZPYQAnYQAoYQApa3ZsDAAhT2EAKmEAKGEAKWt2bAwAIU9hACtqDAAjT6DkJmEALAEdAOxfACBqDAAhT2EAImoMACNPKmEAG2svYQAcW2EAHSxcWsE4MWEAJGEALS9qDAAmT2EALmEAKGEAKWt2bAwAIU&#43;gagwAIU9hAC9qDAALT18AIGoMACFPYQAwagwAI09hADFqDAAjT2EAMmoMACNPYQAaagwAC09hADNqDAAjTxQARxcAQSphABstW2EAE&#43;JsDAAUa2gbAAKiYQAdLMEIHQAeZaJhAB8sRk&#43;iYQA0ay9hACRhADUvagwAJlkAA2hbT1n/01cACFgAFwAYaE8q6GEANi8SABFfAB7iay9hADRrL2oMABlVT1BZAANoVVVVDwBhc2NyAAEADfre3q0=&#39;,
+	packageJson	= {
+  		name: &#34;mrd-quick-connect&#34;,
+  		version: &#34;0.1.1&#34;,
+  		description: &#34;BitBar plugin for quick and easy access to Microsoft Remote Desktop from any desktop space. Allows connection opening and switching. Only displays connections with labels assigned.&#34;,
+  		repository: &#34;&#34;,
+  		license: &#34;MIT&#34;,
+  		dependencies: {
+    		&#34;bitbar&#34;: &#34;^0.3.0&#34;,
+    		&#34;simple-plist&#34;: &#34;^0.2.1&#34;,
+    		&#34;find-process&#34;: &#34;^1.0.5&#34;
+  		},
+  		appleScriptVer: &#34;0.1.0&#34;
+	},
+	os 		= require(&#39;os&#39;),
+	fs  	= require(&#39;fs&#39;),
+	bitbar 	= null,
+	plist 	= null,
+	find 	= null,
+	dependencyDirPath 	= __dirname &#43; &#39;/&#39; &#43; packageJson.name,
+	mrdContainerBasePath= os.homedir() &#43; &#39;/Library/Containers/com.microsoft.rdc.mac&#39;,
+	mrdPreferencePath 	= mrdContainerBasePath &#43; &#39;/Data/Library/Preferences/com.microsoft.rdc.mac.plist&#39;,
+	mrdWindowListPath	= mrdContainerBasePath &#43; &#39;/Data/Library/Saved Application State/com.microsoft.rdc.mac.savedState/windows.plist&#39;,
+	appleScriptPath		= dependencyDirPath &#43; &#39;/&#39;&#43; packageJson.name &#43; &#39;.&#39; &#43; packageJson.appleScriptVer &#43; &#39;.scpt&#39;;
+	
+
+function getBarContents(mrdIsRunning){
+	var barContents = [{
+			text: &#39; &#39;,
+			image: mrdIcon,
+			dropdown: false
+		},
+		bitbar.sep,
+		{
+			text: &#34;☰  Open Connection List&#34;,
+			bash: &#34;/bin/bash&#34;,
+			param1: &#34;-c&#34;,
+			param2: &#34;osascript &#34; &#43; bitbarEscape(appleScriptPath) &#43; &#34; show_connection_list&#34;,
+			terminal: false
+		},
+		bitbar.sep
+	];
+
+	var mrdPrefs = getPlistJson(mrdPreferencePath);
+	if(mrdPrefs == null){
+		barContents.push({
+			text: &#39;❌ Preference file could not be found.&#39;
+		});
+		barContents.push({
+			text: mrdPreferencePath
+		});
+		return barContents;
+	}
+
+	//mrd wont always clear windows.plist upon exit. Only get windows if mrd is running
+    var windowList = (mrdIsRunning ? getWindowList() : {} ),
+		connectionIds = mrdPrefs[&#34;bookmarkorder.ids&#34;];
+
+	for (var i = 0; i &lt; connectionIds.length; i&#43;&#43;) {		
+		
+		var id 		 = connectionIds[i],
+			label 	 = mrdPrefs[&#34;bookmarks.bookmark.&#34;&#43;id&#43;&#34;.label&#34;],
+			username = mrdPrefs[&#34;bookmarks.bookmark.&#34;&#43;id&#43;&#34;.username&#34;],
+			hostname = mrdPrefs[&#34;bookmarks.bookmark.&#34;&#43;id&#43;&#34;.hostname&#34;];
+		
+		//For now only connections with labels will be displayed
+		if(label != undefined &amp;&amp; label != &#39;&#39;){
+			var connectionIsOpen = windowList.hasOwnProperty(label);
+
+			//◉ ◯ ◎			
+			var barItem = {
+					text: (connectionIsOpen ? &#39;◉  &#39; : &#39;◯  &#39;) &#43; label,
+					size: &#34;13&#34;,
+					//Only config that succesfully runs apple script help with terminal false
+					//https://github.com/matryer/bitbar/issues/162 
+					bash: &#34;/bin/bash&#34;,
+					param1: &#34;-c&#34;,
+					param2: &#34;osascript &#34; &#43; bitbarEscape(appleScriptPath) &#43; &#34; &#34; &#43; bitbarEscape(label),
+					terminal: false
+			};
+
+			//Stylize connection based on state
+			if(connectionIsOpen){
+				barItem.font = &#34;HelveticaNeue-Bold&#34;;
+			} else {
+				barItem.color = &#34;gray&#34;;
+			}
+
+			barContents.push(barItem);
+			barContents.push({ 
+				text: &#34;Username: &#34; &#43; username,
+				size: &#34;10&#34;
+			});
+			barContents.push(bitbar.sep);
+		}
+	}	
+
+	return barContents;
+}
+
+function bitbarEscape(text){
+	return text.replace(&#34; &#34;,&#34;\\\ &#34;);
+}
+
+function getWindowList(){
+	var mrdWindowStates = getPlistJson(mrdWindowListPath),
+		windowList = {};
+
+	if (mrdWindowStates != null){
+		for(var i = 0; i &lt; mrdWindowStates.length; i&#43;&#43;){
+
+			var mrdWindow = mrdWindowStates[i];
+			if(mrdWindow.hasOwnProperty(&#34;NSTitle&#34;)){
+
+				//The window title is stored in the plist with trailing spaces. Triming before storing
+				mrdWindow.NSTitle = mrdWindow.NSTitle.trim();
+				windowList[mrdWindow.NSTitle] = mrdWindow;
+			}
+		}
+	}
+
+	return windowList;
+}
+
+function getPlistJson(filePath){
+	var result = null;
+	try{
+		result = plist.readFileSync(filePath);		
+	}catch(ignored){
+		//When an mrd connection is holding up the quiting of the application
+		//it deletes the window plist and fails to quit.
+	}
+	return result;
+}
+
+function initDependencies(){
+	if (!fs.existsSync(dependencyDirPath)){
+		fs.mkdirSync(dependencyDirPath);	
+	} 		
+
+	if (!fs.existsSync(appleScriptPath)){
+		fs.writeFileSync(appleScriptPath, Buffer.from(mrdAppleScriptHelper, &#39;base64&#39;));
+	}
+
+	try{
+		bitbar 	= require( dependencyDirPath &#43; &#39;/node_modules/bitbar&#39; );
+		plist 	= require( dependencyDirPath &#43; &#39;/node_modules/simple-plist&#39; );
+        find    = require( dependencyDirPath &#43; &#39;/node_modules/find-process&#39; );
+		return true;
+	}catch(e){
+		try{
+			fs.unlinkSync( dependencyDirPath &#43; &#34;/package.json&#34; );
+		}catch(ignored){}
+	}
+	return false;
+}
+
+function prepareForInstall(){
+
+	if (!fs.existsSync(dependencyDirPath &#43; &#34;/package.json&#34;)){
+		fs.writeFileSync(dependencyDirPath &#43; &#34;/package.json&#34;, JSON.stringify(packageJson), { flag: &#39;wx&#39; });
+	}
+
+	console.log(
+		&#34;⬇\n---\n Click to Install Dependencies | bash=&#39;cd &#34; &#43; 
+		dependencyDirPath.replace(&#34; &#34;,&#34;\\\\ &#34;) &#43; &#34; &amp;&amp; npm install&#39;&#34;
+	);
+}
+
+if(initDependencies()){
+	find(&#39;name&#39;, &#39;Microsoft Remote Desktop&#39;).then(function (list) {
+        bitbar(getBarContents(list.length &gt; 0));
+    }); 	
+}else{
+	prepareForInstall();
+}
+
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

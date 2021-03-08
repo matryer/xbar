@@ -1,0 +1,536 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Slack Notification in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Displays number of unread Slack messages - install xbar for free to get started.'>
+	<meta name='author' content='mgjo5899'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/I3MdNmU.png'>
+	<meta itemprop='name' content='Slack Notification in your macOS menu bar'>
+	<meta itemprop='description' content='Displays number of unread Slack messages - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Slack Notification in your macOS menu bar'>
+	<meta name='twitter:description' content='Displays number of unread Slack messages - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/I3MdNmU.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Slack Notification in your macOS menu bar'>
+	<meta property='og:description' content='Displays number of unread Slack messages - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Tools/Slack/slack-unread.1s.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/I3MdNmU.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/I3MdNmU.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/I3MdNmU.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/I3MdNmU.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Slack Notification</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/mgjo5899.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/17048946?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/mgjo5899.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Joseph (<code style='color:white;'>@mgjo5899</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Displays number of unread Slack messages
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Tools%2fSlack%2fslack-unread.1s.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/I3MdNmU.png' 
+				alt='Image preview of Slack Notification plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>slack-unread.1s.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Tools/Slack/slack-unread.1s.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Tools/Slack/slack-unread.1s.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# coding=utf-8
+#
+# &lt;bitbar.title&gt;Slack Notification&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.2&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;mgjo5899&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;mgjo5899&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Displays number of unread Slack messages&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/I3MdNmU.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+#
+# by mgjo5899
+
+try:
+	import requests
+except ImportError:
+	print(&#39;You need to `pip install requests`&#39;)
+
+import json
+from time import sleep
+from threading import Thread
+
+#
+# USER TOKEN
+# You need to modify this part by generating your own tokens
+# https://api.slack.com/custom-integrations/legacy-tokens#legacy_token_generator
+#
+tokens = [
+	# Replace this line
+	&#39;xoxp-slack-token-place-holder&#39;,
+]
+
+if tokens == [&#39;xoxp-slack-token-place-holder&#39;]:
+	import sys
+
+	sys.exit(&#39;You need to generate a Slack user token and specify it in the &#34;slack-unread.1s.py&#34; script. \nVisit api.slack.com | color=#09f href=https://api.slack.com/custom-integrations/legacy-tokens#legacy_token_generator&#39;)
+
+dark_mode = False
+# Build script in terminal
+debug_mode = False
+
+blank_icon = &#39; image=iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAABjxJREFUWAnFl13o3mMYx/9/sxckGuVA4YDW2hqFsEaz0rw1b8mcOHGEA4sDlKSY5CVFTmg1aUdy4qUUViYOiAgzyyiRl0KLZhvb3&#43;dzP/f3535&#43;z/PYa&#43;2q73Nd93Vf13Vf93Vfv/v3e6anDjPNzMzMakNOT0/vacdHTCaxadFPoJ9wf35f45GA&#43;3IYN29i0IxzyFfBrgQ7wAb0n6A7Cr6X8ZEhE3Bl&#43;EOgT1fXuaGjPyyZstJR4GgwWz4uKPqyMHwxCO1C&#43;KsOtsBn1yRLGzCeBYx78EnjXKrSJoVupM9cqC6&#43;Gln6e8Bm9sL3VPmSajO3jVd1FmFiq02qSukZHE8hyE3gJLCRPnqnBkUc9Bzj0nvwb5yDjKnORX2C3eh1YBM&#43;Vtb5c8GpYAu6zXDbo42pajxhmCM7B/kn0NIDeqHoqotcdq8OfAGkVPGfwXDGY14BHgWfVV3Y2mSCYmIli40GMYK/BSR7yZ2H3L1JZiMmNq/q1lajJBgfj7tPrc2q6j9yol0lNIBKmYk0H3lJ0UxNzYGLv&#43;v4xsp9cGbhsBfsrLrSAsgmn6N3KpX5B1k4ZzK7gHTZgI3&#43;9hNM0O2Y/lzNo4vtFepNCvgQnAyuB&#43;tRrwOxT1KoCiWpVMlEQ19H2CdnoRIA/hiQdg9YeSqrOHMDwrXgZfBLlPvBPer2aHXZBI41MXh/U6P5YlSuAvhSEOr3UJo/81bSjeRaib7l/RgfMXkfOKYmlxMaTSoGGHc7QPYy9emT2oSykLokFZ22Jtnaq8v8TmQfJG&#43;Idq2JyRUjjLt3JbIPx0rgO/UC4BNq/3QBx4x9zwopPaYcv3B1i&#43;ldryOTMqYPmfPjqRp6/qeDN0D/mLJ7pkbISvV7yir5gRB9/NPLT5kJ8&#43;X1Nz6rnhZjj/MDIBnQ4CLBEUeondvB7EZwFzgL&#43;J79FEg57nCrlzs0J&#43;j9aw7jj5qJ5UBKTw1Gg18r2iajNlX&#43;EPkOsKC3Zyv0CJD6lVS3VHv4XNC2hDoT7dopGYdnHfspl2p6pe2T9Nsr9M&#43;z4CuDuhjwUpdeHbChd3Mu&#43;/LmwG8XsLK&#43;jU4DxzLeAxD/S9KsfSvkSJxs6TcGf1ZFKpmq&#43;F7V14hlk8om5hgkZo43/HPmjgcXAe9b7f4A34M1dWMDhiKBFyK/C3z3/gpeB7eBE8EzQEpiSVTd&#43;TWh0ldVLlVk7nENoDwg8XO8tcyM/7llKCY23REjnwH8zOqI8XIguUC7iLqHNYTPAR5x11PIi0AofuHRu2kra197A0hvd4tHQNlVoC7oseVL2GbeDKQcU6r5Mbquqauvx3c5WAdi1yambJxWx7BLcFPyGuIYmFR53JXrYrkSnkAn9Rd0kbOBfr6jnwPfgpb6ibRzJpoqRn9nu/ZQkv0BHuXI4JfGG54Fw23yb5p5Reeymd7UxOEPzNydHJCHTib6jmNgVbqjR/YNIbULJ0n1VsMHoH98rY12kjrxHVgPVoETsjhySa5r6EyEa&#43;Cd5Bj5dNjF4DjHUPdQIRuo2FV9NuS9qd47M7pUxLnIt7LOm4wLsZa2k9/PyVxr5GuA1812EMpbJOOWW5H01KSqxT6nUP6ToJwH2o2XhEd&#43;MCq7ha8BLRnw/5JrbSNvQ3garARfVqUbkMJ9N&#43;e2SFVH8ioKDMsO4POBl7Xk3bSvxFItN7EFPAlWgPJnyuDIuQXsUUmf&#43;C2rNmmFks/IDw6p3hLkNHqCyE1gXCXVSc/3g6LLP77lxWJ4s/G7tSY48gnWP/N8EGzDwT9Nltx/Xn44KPtQCf3ywYDYUfmqIRGfft8q2uWf23vIW4E6/wX64ZAj/QpZGhdzMJNfgyvDbwZ98iV/D3ipTqSPUmXV51X/7rjQJebq6teyF5q1k3BU4znexRDuUd8P7gUXgvyhWoYsmViSy3E9aFT0Q1cY48T0qDeA18DtjX7/kkvKOPaPP1Mu7pWQr5FUMQmW70AXFp3TIOmxMft2rc9YBw24PK2MveT3nv2kXN7VzNlDuVx3I3sh21PSjwM25R&#43;x9HRR1ZiJ5feiMuphu&#43;p/cMxE9YSfCfp/2n9Ht7DOdz14cCsdgleT5ALkF8H7wL5aVJObeDKHsOyBuZLM2CQm6Q8s&#43;mGyJhn7siQqd3yYQndh/gWMAc7Nm&#43;IPEgAAAABJRU5ErkJggg==&#39;
+color_icon = &#39; image=iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABYlAAAWJQFJUiTwAAABy2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24&#43;MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD53d3cuaW5rc2NhcGUub3JnPC94bXA6Q3JlYXRvclRvb2w&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgoE1OjLAAANl0lEQVRYCaVYCXBd1Xn&#43;z3KXt2mXtdlgjOVFAgtbBhNjY2lIWRs6GeYpNWEpzYxpY2gotEymoeU6U4YMTSEJnVJMUzabRW8mTJJCMANYNo7j2IABW7KwjeVNtiXxtL7lbuec/uc&#43;P8duMp3O5Gie3rv3nvuf73z//3//fy&#43;BP2IoBZQQkCc2d1zFGXWkVFcSQiZCAc&#43;O5ulPlt/7UeA4QPEj/z/L8D84SSmSzmSovpYZGFDgOL9nrLcXGAIRB56/Yq7F4QemQbtzbugxCnUmJd&#43;vi8lJvP2nj&#43;I/B4A4jkP629oIHkImnZZAiNK//&#43;&#43;hgKR7e9m5SQjMUU4E7Nw5/KF609GcIy8vuev0a1eIk690yMMvLAmOvLjEn/pZpzr12hVbdj7ZXgNK0d7eXhO/IyDahoPnzj8u272QGX0DIs5Aj1j5kjOLJqxkceO9J5x7NyLdDtJdYgi3RCDdjl8Z/KFsIUGBIgpZoRJ/zbgC0G2LGipn2tDejh4AHxekf791d0MAedchRLOGeBR69XcMnUMbIcULc52/sOd0LrwDCPsmUKggFHZLET6145Z/OJhGNjI9GREZ0m7qAfH5S52rqmyyWUpxUd6XIQdFDXRgyoKgEFZ/v7HhuRcfNKavMUy2OpTQTgh1cQOvutnh15&#43;&#43;&#43;WavvK62WaIfXePAhgjY7M4Fa1ki/kOesLsIY8t4MvFX3LSfWPHzxxo0kLLL&#43;uqdaL5U&#43;QNKFPfGDYAYRUPI7VRgw2ejQ&#43;ZbhSV/&#43;UCs8IaRTP0HNe31hmV32cnkjWYy9SO7pvmbGkAUm2ddGIFxwCH4J1dtfryaErYWqasMpvOuKHpuMJVD8HCDCaxb39w/kOZdzlbe3e2E&#43;njx3YPZfNHbNlaQcDhn0vdGTfX6aZs8c7wStmYn5hkiv1yGYZWbmxF&#43;IR8UpyaK6KBqzIg779&#43;&#43;vT7T0yPKyXJBzOSpF0uomE2CEIMAOFLKZCgDaoBNGFmNa7&#43;WaW/X/oc7t2xJJMC8hDZd0vHq2EC3/Oy54IvsIJ8i9cogEmyzGfjkDpkfvk5ac5bipgnypqgSSoRFFxkklZzEUmhqTNvT4ywzj0ZptnetM8IY3U8ocq0Jx6FpJ5QCsY3lN/38maUPb9u3&#43;MHffPzXjbUt/15ZW59Jhe6L4xVzvjZgLOQiOETqDEqrmACL2QDiFFUTRzkVvrai5SFkhmmbqRQQTneffO/NkzqI27V84CjFDAYuprOJxwLRb0O/TFGTMUSEeUKoh66aGZle3GBd/CSvir3GLevfuGndBZQuCtwCg1Cq&#43;rr5xDIuAik9EGgWdw4Gnw3BxH4V&#43;nlip6qYFU8YeK8Xuu4viJRPZRzH31DSoEjHuEamT2D8hhlEs31406&#43;vab79ECbq8sJkQYbF0PCKvsoWcqkFqWKXUgJCP1BBoaB9qdkjxDSQ9BYJ1gJg3hBVRiMUhYAc1CqY7id86nTOrp39uXS9PaEKP5Ap670fX9kx4qDeOCXG0EwUF1Geq2/1vl3z0I66NiMWX9M/tKtm/3A/EE8yLeScYa5iPh4fPijqU41g2XGKFHJgTIFElQkDyRM1jNR2kNGju1A8GkktuqoVpy2rjvHE9Jsf7TtT89B3rr/&#43;Y4QeuUQLKwKJZCJCosGse/ZDI7WE3c242YP7XIT0N9TFmsyw&#43;AmKGKWmwfE0gTizyFg&#43;ywvuDNixpMA4CpSSHGOAYcqCREFK1bXKedkYXFqRh&#43;YYITU8gMYKBjR8p3rJwU3579wA6q233rJ233RT8L&#43;BaEC0aqn1N8y0fmLE7D9RUsxxCzkjnkip5opZJJCYvSjKAnPbYgZMBXmYmP5SEc6ZlUgaZiyOjJFJ5Xu7RqXxyFdM73t/Prcqu2ZWQObFA5E0JM27oXLJxZcVqld36QVju58QZdcgRZGb9Xk9qJTyflAyVpyaDETgh1IIZZlxqEvOkp4Ko6jAuALtrlBINTpxWvm&#43;OyaE2Cb84HFEu1aMnfj680vnPpb21z8T59YAYgVP4tbQJ4EEYTJBLWPm6k//pSHR7fSFyuniW6GLY8GkCj&#43;9UKpzqN6yTgTSV1JSpJ6i9CvDsGRdbQtNjgyA63lgcgMURk9DbTX1E648Nfn5D5ctvPHZ715aM1XaU&#43;k/loep45tgJ2FqDcYYw22jrAAJ8Z&#43;UZAWYDZcAjOwnCCi6Q2fM2YGtAeXE4L&#43;27Nj1XqGAe5FgWugQOwZVskE1VTWGI94Ir6pIEWpRMCxT8rjBjvoHee&#43;lt0dAdCCmIQ319RuIVmWi6PYglN/G&#43;lSJSSe0H1wfE81irY1zVQce7u&#43;f/a2agjWzmHq0TSqqL28np51jXLj&#43;oyFhNqXsWqy4OjCPh577MZbf7fFZseuajaZbIFQykg6shpq9GEvd0tX7xH/19Tx8BnFAD2aFwsKpNzk9zT6pqYIDhgVX&#43;1IoA&#43;NXixf6mOVP2T0f1t9RRyBck1LxZQETzShmJAFk28dz7vwuf3JV566//WDPPViluzEwjNDL7yNcHXhq1crxVW//IEsVv1mqkKoAAWFaCS/Qay6GuNS7PNO&#43;YYCk0&#43;jzgTEkoQ/a1&#43;85M/qLxf&#43;tQvtqCIDmsxKKo4Tkj7mKHDFvqrTF10xqEizwIFG0dAbEKLsO8W7gZ4XnCBrWnwtGMC4&#43;sarYYWYZrcJDMhGxwijG42qMs1U4eQv2OBf4fxfcXzG6oz&#43;URlbmjgU0P4jhchgzcpISXpXjRnVB&#43;SFDcUKS8c&#43;XgW6BAlSfq7hOs1Jnh3xjs4S7hIG&#43;PuJ0d4cxHhxRxPwt1pFWcPEy7h0TSxDsnHCshEObKqD1juk3u9KNLV/YHSg1qxlMr1QvN7V9OVNQXi6vaLVFCQqx0YQZoDwoutOQgiSqKFYiZAYtYW4QS4A6gebPDdRYnfllhSw1Ujf88rH1gWE97QWYqJRgyuE0RljgBiN37Tn5rzf/c9aYXmj9KRTlYoNgjcRFMFZgkp1SefsoUmlhSpXWUDQATiuhIpinuI9NCa6WwJYAJaQYSvlP57cQmIQlbDrNBgaAZSAjtlTE3&#43;&#43;QtL&#43;Gs8v88RkJ4zkjHB5Xp4bG6ux95PGwuYrZWJQ9FCJXoUnMSUwGatAkpaEJkmLZRN3BbQJ4CPTktBK&#43;RyrmJIOQhqNFFQ76SrwuTgy&#43;cD6YCL4WIAKOACfqW&#43;Ht5w7EXrmqMnswVwCy9yhRg1ll7MuTUQjo4dnN5HIjrliANRgJRdY0cUxhZBLfDKmZgDCcYGKCETmJe7WIjF8LlFVMDgVfVL7gHQv6xhuL/V8dfCOrFz/fTYjewU7GkVvnphuTwLsNxa&#43;pEMaVu/Nji7838UWqBqiymmxCK004zSXM96l8oNhMWsAGl6CPdQuAkYCuYjHGSS4YgbH8ITDbLWW3Yta0kLD&#43;Ys6xhf9wPP7Z1ztuA&#43;xndI46unPAynt2lIF82nzHwhiwJ3DO9bhbWzu2MR6Djvpq9YkpyBws5CF21jWegkEu6HDSgybXVgyTw6YcDBQkn2M1O0H30dXGRMu1dmesniZYAuMNay5&#43;wGBsflWhYyXAp72wcR1HAiK9ONvplRhBF5mM04fixLgV/WhjNxNMSk8kLUNdpuJkyMcs1oloELBRzYZmfHXowISi0&#43;gBjt4h6qAP4uXAFvdN&#43;ME37NvGH2y43BisbkIUmEzY4lDfV6jSpIpzqttYCus2Yq3CbxwRM23QH7lr9my4CHm&#43;cloGOsI95M/UjjR9quYZlmjBdCkWAmoeD7CbC9WCVhsO3lodnizQdxa8K3pPLFJ7ZdYf6j6WyUWEfxvg&#43;OaOPTFOO1HekGxdo7Dx0Pog1ZLBny5tJGTvKXwgRDCZEpg0lB7ICj6fSdhyWqebK6PnMRQnIAajbCFU0DVjX8I29M/8P2sm7qW1qn7eLDjTVMM2UPXub9595CUYjCCAToKl9&#43;d469O/8rCAfAAm3MM5WF6gPJQoaRnUcAPhTxWLnr6jXC8jegAfOLWBr46&#43;OoKYX8EtzGDHGktSk6eweeKETsamyEd1d7YN8b&#43;7jsDaFYp1XUbIvAZp1KYotWPXfqXXqdGGUZF5D0rC/NpfRXGghPE&#43;Kv47tSkOKZtZ1UkWQ2KmMNhfXXHfYFY/s6fTGdzzWTfpDFBQOrGXWi8uUz7KFLkdk8NEhfxUcNieHD&#43;48/CN37jnorj5iCh4HAIMUldz74PJyFKU5UVob2ffGm0W78Y3D3qhS3r2nBl6pfNhzxcjuMry6YKYQkna5E3kN&#43;t5KPhS66j&#43;fS6bSoBQ9o6&#43;oIX/P3/bctcbgrj2ysOZM3gcaejS4La&#43;ygKsQ7&#43;3EBQ3haqCbQfGJcwWBr0c5&#43;2sH2vDCNfpCqoHH391cJLbPxrsddrXL8OYLObIzOUP7B/BuZoBJK0ERB&#43;fA6MPyoCwQtEVwy9FQqTPf/jsOqPz3o3hismpfllX8zlL2C1ypiBQ6igGvK4zWl&#43;ihzs9XxsqD80QLoqw&#43;/X1w/p8yTW/Y6Q892zMlA9LgNLoMh1DWnsc/CzHtxD4goXsvvvxLLYTr8sgKDKTm/gsLlncwqca2O5T0VeyEoVjRHvZKu5eaoZ68cWBwtcr57umPEd/X8BM&#43;YJmCGMc2S/HefkKQHG45vnE3KkKLH73IQO1yvPfh0A&#43;uvvWfxzSLwUcgqXkDwzNUMne79ssT/8f1G6aKUECx6AAAAAASUVORK5CYII=&#39;
+slack_call_command = &#39; href=slack:&#39;
+
+channels_list_url = &#39;https://slack.com/api/channels.list&#39;
+channels_info_url = &#39;https://slack.com/api/channels.info&#39;
+
+groups_list_url = &#39;https://slack.com/api/groups.list&#39;
+groups_info_url = &#39;https://slack.com/api/groups.info&#39;
+
+conversations_list_url = &#39;https://slack.com/api/conversations.list&#39;
+conversations_info_url = &#39;https://slack.com/api/im.history&#39;
+
+unread_count = 0
+
+
+# When there are many channels under one Slack group, due to request rate limit per group,
+# some come out with &#34;ratelimit exceeded error&#34; returned.
+# So I had to run channel info request as fast as possible for each group
+# ONE TOKEN REPRESENT ONE SLACK GROUP
+def get_unread_count(url, token, channel_id):
+	r = requests.get(url &#43; &#39;?token=&#39; &#43; token &#43; &#39;&amp;channel=&#39; &#43; channel_id &#43; &#39;&amp;unreads=true&#39;)
+	return r
+
+def get_list(url, scope, scope_type = None):
+	if debug_mode:
+		print(&#39;get_list: &#39; &#43; url)
+
+	try:
+		r = requests.get(url)
+
+	except Exception as e:
+		if debug_mode:
+			print(&#39;get_list error&#39;)
+			print(e)
+
+		return
+
+	result = json.loads(r.text)[scope]
+	ids = []
+
+	for channel in result:
+		# Filter
+		if (
+			# Ignore slack user
+			&#39;user&#39; in channel and channel[&#39;user&#39;] == &#39;USLACKBOT&#39; or
+			# Ignore deleted users
+			&#39;is_user_deleted&#39; in channel and channel[&#39;is_user_deleted&#39;] == True or
+			# Ignore channels that don&#39;t have me
+			&#39;is_member&#39; in channel and channel[&#39;is_member&#39;] != True
+		):
+			continue
+
+		# Ignore channels for private messages
+		if scope_type == &#39;user&#39; and not &#39;user&#39; in channel:
+			continue
+
+		ids.append(channel[&#39;id&#39;])
+
+	return ids
+
+def get_channel_unreads(url, token, id, scope = None):
+	global unread_count
+
+	r = get_unread_count(url, token, id)
+
+	try:
+		if scope != None:
+			channel = json.loads(r.text)[scope]
+		else:
+			channel = json.loads(r.text)
+
+		# Only for channels
+		if &#39;is_member&#39; in channel and channel[&#39;is_member&#39;] == False:
+			return
+
+		if &#39;unread_count_display&#39; in channel.keys():
+			unread_count &#43;= channel[&#39;unread_count_display&#39;]
+
+		elif &#39;unread_count&#39; in channel.keys():
+			unread_count &#43;= channel[&#39;unread_count&#39;]
+
+	except Exception as e:
+		if debug_mode:
+			print(&#39;Error: &#39;)
+			print(e)
+
+		sleep(2)
+		
+		
+def groups(token):
+	all_threads = []
+	for id in get_list(groups_list_url &#43; &#39;?token=&#39; &#43; token &#43; &#39;&amp;exclude_archived=true&#39;, &#39;groups&#39;):
+		if debug_mode:
+			print(&#39;Loading groups unreads: %s, id: %s&#39; % (token, id))
+
+		t = Thread(target=get_channel_unreads, args=(groups_info_url, token, id, &#39;group&#39;))
+		t.start()
+		all_threads.append(t)
+
+	for t in all_threads:
+		t.join()
+
+
+def channels(token):
+	all_threads = []
+	for id in get_list(channels_list_url &#43; &#39;?token=&#39; &#43; token &#43; &#39;&amp;exclude_archived=true&#39;, &#39;channels&#39;):
+		if debug_mode:
+			print(&#39;Loading channel unreads: %s, id: %s&#39; % (token, id))
+
+		t = Thread(target=get_channel_unreads, args=(channels_info_url, token, id, &#39;channel&#39;))
+		t.start()
+		all_threads.append(t)
+
+	for t in all_threads:
+		t.join()
+
+
+def privates(token):
+	all_threads = []
+	for id in get_list(conversations_list_url &#43; &#39;?token=&#39; &#43; token &#43; &#39;&amp;types=public_channel,private_channel,mpim,im&#39;, &#39;channels&#39;, &#39;user&#39;):
+		if debug_mode:
+			print(&#39;Loading private channel unreads: %s, id: %s&#39; % (token, id))
+
+		t = Thread(target=get_channel_unreads, args=(conversations_info_url, token, id))
+		t.start()
+		all_threads.append(t)
+
+	for t in all_threads:
+		t.join()
+		
+		
+for token in tokens:
+	if debug_mode:
+		print(&#39;Processing token: %s&#39; % (token))
+	g = Thread(target=groups, args=(token,))
+	c = Thread(target=channels, args=(token,))
+	p = Thread(target=privates, args=(token,))
+	g.start()
+	c.start()
+	p.start()
+
+	g.join()
+	c.join()
+	p.join()
+
+# THIS IS A SPECIAL FEATURE FOR USERS WITH DARK MENU BAR ENABLED
+# REMOVE COMMENTING OUT TO USE
+if unread_count == 0:
+	if dark_mode:
+
+		if debug_mode:
+			print(&#39;0 - blank_icon&#39;)
+		else:
+			# Empty white icon
+			print(&#34; | &#34; &#43; blank_icon &#43; slack_call_command)
+
+	else:
+		if debug_mode:
+			print(&#39;0 - color_icon&#39;)
+		else:
+			print(&#34; | &#34; &#43; color_icon &#43; slack_call_command)
+
+else:
+	if debug_mode:
+		print(str(unread_count) &#43; &#39; - color icon&#39;)
+	else:
+		print(str(unread_count) &#43; &#34; | &#34; &#43; color_icon &#43; slack_call_command)
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

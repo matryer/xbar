@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Games/steam-dashboard.1m.sh",
+				"filename": "steam-dashboard.1m.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eSteam Dashboard\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003enaezith\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003enaezith\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay online player count and track daily/weekly/monthly reviews of a Steam game. Please edit parameters.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/hd7dRju.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://naezith.com/\u003c/bitbar.abouturl\u003e\n\n# Parameters\nAPP_ID=\"590590\" # From Steam page like https://store.steampowered.com/app/590590\nREVIEW_STATS=\"all\" # Alternatively, put \"steam\" for only Steam purchases\nCACHE_FOLDER=\"/Users/naezith/Documents/BitBar/naezith_cache\" # Previous days will be saved here\n\n# Include /usr/local/bin apps\nPATH=/usr/local/bin:${PATH}\nexport PATH\n\n# Unicode support \nLANG=en_US.UTF-8 \nexport LANG\n\n# ANSI colors for output with awk\nBLACK='\\033[00;30m'\nRED='\\033[00;31m'\nGREEN='\\033[00;32m'\nYELLOW='\\033[00;33m'\nBLUE='\\033[00;34m'\nMAGENTA='\\033[00;35m'\nCYAN='\\033[00;36m'\nWHITE='\\033[00;37m'\nNONE='\\033[0m'\n\n# Logs path\nlogs=$CACHE_FOLDER\n\n# Create the folder if it does not exist\n[ ! -d $logs ] \u0026\u0026 mkdir -p $logs\n\n# Fetch store page\nstore_info=$(curl -s https://store.steampowered.com/api/appdetails\\?json=1\\\u0026appids=$APP_ID | jq \".[\\\"$APP_ID\\\"].data\")\ngame_name=$(echo \"$store_info\" | jq '.name' | sed 's/\\\"//g')\nwebsite=$(echo \"$store_info\" | jq '.website' | sed 's/\\\"//g')\nheader_image_url=$(echo \"$store_info\" | jq '.header_image' | cut -d \"\\\"\" -f2)\npicture=$(curl -s \"$header_image_url\" | openssl base64 -A)\n\n# Fetch online count\nonline_count=$(curl -s https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/\\?\\\u0026appid=$APP_ID | jq '.response.player_count')\n\n# Fetch all reviews, Steam and Key activations for texts\nreview_info_all=$(curl -s https://store.steampowered.com/appreviews/$APP_ID\\?json=1\\\u0026start_offset=0\\\u0026day_range=9223372036854775807\\\u0026language=all\\\u0026filter=recent\\\u0026num_per_page=100\\\u0026purchase_type=all\\\u0026review_type=all)\nreviews=$(echo \"$review_info_all\" | jq '.reviews')\n\n# Fetch only Steam purchases for stats\nreview_info=$(curl -s https://store.steampowered.com/appreviews/$APP_ID\\?json=1\\\u0026start_offset=0\\\u0026day_range=9223372036854775807\\\u0026language=all\\\u0026filter=recent\\\u0026num_per_page=20\\\u0026purchase_type=$REVIEW_STATS\\\u0026review_type=all)\nquery_summary=$(echo \"$review_info\" | jq '.query_summary')\nreview_score_desc=$(echo \"$query_summary\" | jq '.review_score_desc')\ntotal_positive=$(echo \"$query_summary\" | jq '.total_positive')\ntotal_negative=$(echo \"$query_summary\" | jq '.total_negative')\ntotal_reviews=$(echo \"$query_summary\" | jq '.total_reviews')\n\n# Prepare dates\ntoday=$(date +%F)\nyesterday=$(date -v-1d +%F)\nlast_week=$(date -v-1w +%F)\nlast_month=$(date -v-1m +%F)\nyesterday_file=$logs/$yesterday\nlast_week_file=$logs/$last_week\nlast_month_file=$logs/$last_month\n\n# Save today's data\necho \"$total_reviews\" \"$total_positive\" \"$total_negative\" \u003e $logs/\"$today\"\n\n# Function: Get review count from file\nget_review_count () { \n    cut -d ' ' -f1 \u003c \"$1\"\n}\n\n# Function Get review count difference from file\nget_review_diff () { \n    pl=$(get_review_count \"$1\")\n    echo \"$total_reviews-$pl\" | bc\n}\n\n# Get differences\n[ -r \"$yesterday_file\" ] \u0026\u0026 r_yesterday_diff=$(get_review_diff \"$yesterday_file\") || r_yesterday_diff=0 # Shows at taskbar so set it to zero if there is no data\n[ -r \"$last_week_file\" ] \u0026\u0026 r_last_week_diff=$(get_review_diff \"$last_week_file\")\n[ -r \"$last_month_file\" ] \u0026\u0026 r_last_month_diff=$(get_review_diff \"$last_month_file\")\n\n# Menu bar\necho \"$online_count\" $r_yesterday_diff | awk -v \"bl=$BLACK\" -v \"w=$WHITE\" -v \"y=$YELLOW\" -v \"b=$BLUE\" -v \"c=$CYAN\" -v \"g=$GREEN\" -v \"m=$MAGENTA\" -v \"n=$NONE\" '{printf g\"🟢\"$1 bl\"⁃⁃\" m\"✍🏻\"$2n}'\n    \n        \n# Dropdown Menu\necho -e \"\\n---\"\n\n# Title\necho \"${game_name} | href=$website\" \n\n# Seperator\necho \"---\"\n\n# Player info\n[ \"$online_count\" -ne 0 ] \u0026\u0026 echo \"🟢\" \"$online_count\" players are currently online! || echo \"🟢\" There isn\\'t any online player \n\n# Seperator\necho \"---\"\n\n# Review Stats\nreviews_url=\"| href=https://store.steampowered.com/app/$APP_ID/#app_reviews_hash\" \nreview_perc=$(awk -v a=\"$total_positive\" -v b=\"$total_reviews\" 'BEGIN{printf(\"%.2f\\n\",100*a/b)}')\necho \"✍🏻\" \"$review_perc\"%, \"${review_score_desc//\\\"/}\" \"$total_reviews\" reviews \"$reviews_url\"\necho \"👍🏻\" \"$total_positive\" positive and \"👎🏻\" \"$total_negative\" negative \"$reviews_url\"\n\n# Recent reviews\nfor review in $(echo \"${reviews}\" | jq -r '.[] | @base64')\ndo\n    _jq() { \n        echo \"${review}\" | base64 --decode | jq -r \"${1}\"\n    }\n\n    # Print reviews\n    mins=$(_jq '.author.playtime_forever') \n    mins_l2w=$(_jq '.author.playtime_last_two_weeks') \n    voted_up=$(_jq '.voted_up')\n    steam_purchase=$(_jq '.steam_purchase')\n    language=$(_jq '.language')\n    timestamp_created=$(_jq '.timestamp_created')\n\n    # Purchase type\n    if [ \"$steam_purchase\" == \"true\" ] ; then\n        t_activation=\"Steam Purchase\"\n        c_activation=$BLUE\n    else\n        t_activation=\"Key Activation\"\n        c_activation=$YELLOW\n    fi\n    \n    # Vote\n    if [ \"$voted_up\" == \"true\" ] ; then\n        t_vote=\"👍🏻\"\n        c_date=$GREEN\n    else\n        t_vote=\"👎🏻\"\n        c_date=$RED\n    fi\n\n    # Other values\n    t_date=$(date -r \"$timestamp_created\" | cut -d ' ' -f-4 | cut -d \":\" -f-2)\n    t_play_time=$(printf 'Playtime: %dh %dm\\n' $((mins/60)) $((mins%60)))\n    t_l2w=$(printf 'Last two weeks: %dh %dm\\n' $((mins_l2w/60)) $((mins_l2w%60)))\n    t_lang=$(tr '[:lower:]' '[:upper:]' \u003c\u003c\u003c \"${language:0:1}\")${language:1}\n    t_href=\" | href=https://steamcommunity.com/profiles/$(_jq '.author.steamid')/recommended/$APP_ID/\"\n    t_review=$(_jq '.review' | sed -e ':a' -e 'N' -e '$!ba' -e 's/\\n/ /g')\n    \n    printf \"%-2s %-20s ${c_date}%-40s${NONE} ${c_activation}%-40s${NONE} ${MAGENTA}%-40s${NONE} ${BLUE}%-50s${NONE} ${WHITE}%s${NONE} %s\\n\" '--' \"$t_vote\" \"$t_date\" \"$t_activation\" \"$t_play_time\" \"$t_l2w\" \"$t_lang\" \"$t_href\"\n    printf \"%-2s %s\\n\" '--' \"$t_review\"\n    echo --\"---\"\ndone\n\necho \"---\"\n\n# Show Today\nif [ -z \"$r_yesterday_diff\" ] ; then\n    echo \"🌝\" There isn\\'t reviews data for yesterday\nelse \n    [ $r_yesterday_diff -ne 0 ] \u0026\u0026 echo \"🌝\" $r_yesterday_diff new reviews today! || echo \"🌝\" No new reviews today\nfi\n\n# Show This week\nif [ -z \"$r_last_week_diff\" ] ; then\n    echo \"🌓\" There isn\\'t reviews data for last week\nelse \n    [ \"$r_last_week_diff\" -ne 0 ] \u0026\u0026 echo \"🌓\" \"$r_last_week_diff\" new reviews this week! || echo \"🌓\" No new reviews this week\nfi\n\n# Show This month\nif [ -z \"$r_last_month_diff\" ] ; then\n    echo \"🌑\" There isn\\'t reviews data for last month\nelse \n    [ \"$r_last_month_diff\" -ne 0 ] \u0026\u0026 echo \"🌑\" \"$r_last_month_diff\" new reviews this month! || echo \"🌑\" No new reviews this month\nfi\n\n# Seperator\necho \"---\"\n\n# Remnants of Naezith\necho \"| image=$picture href=https://store.steampowered.com/app/$APP_ID\"\n\n# Seperator\necho \"---\"\n\n# Refresh button\necho \"Refresh | refresh=true\"\n"
+			}
+		],
+		"path": "Games/steam-dashboard.1m.sh",
+		"filename": "steam-dashboard.1m.sh",
+		"dir": "Games",
+		"docsPlugin": "Games/steam-dashboard.1m.sh.html",
+		"docsCategory": "Games.html",
+		"pathSegments": [
+			"Games"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Games",
+				"text": "Games",
+				"isLast": true
+			}
+		],
+		"title": "Steam Dashboard",
+		"version": "v1.0",
+		"author": "naezith",
+		"authors": [
+			{
+				"name": "naezith",
+				"githubUsername": "naezith",
+				"imageURL": "https://avatars.githubusercontent.com/u/6732486?v=4",
+				"bio": "Tolga Ay",
+				"primary": true
+			}
+		],
+		"desc": "Display online player count and track daily/weekly/monthly reviews of a Steam game. Please edit parameters.",
+		"imageURL": "https://i.imgur.com/hd7dRju.png",
+		"dependencies": [
+			"bash"
+		],
+		"aboutURL": "https://naezith.com/",
+		"lastUpdated": "2021-03-08T15:21:54.375242Z",
+		"vars": null
+	}
+}

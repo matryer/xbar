@@ -1,0 +1,1907 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Travel time in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Provides travel distance and time to your favorite destination, with traffic conditions. A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34; - install xbar for free to get started.'>
+	<meta name='author' content='Yann Milin'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/Ui6I4YH.png'>
+	<meta itemprop='name' content='Travel time in your macOS menu bar'>
+	<meta itemprop='description' content='Provides travel distance and time to your favorite destination, with traffic conditions. A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34; - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Travel time in your macOS menu bar'>
+	<meta name='twitter:description' content='Provides travel distance and time to your favorite destination, with traffic conditions. A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34; - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/Ui6I4YH.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Travel time in your macOS menu bar'>
+	<meta property='og:description' content='Provides travel distance and time to your favorite destination, with traffic conditions. A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34; - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Travel/travel-time.5m.php.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/Ui6I4YH.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/Ui6I4YH.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/Ui6I4YH.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/Ui6I4YH.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Travel time</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/ymilin.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/3737075?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/ymilin.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Yann Milin (<code style='color:white;'>@ymilin</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Provides travel distance and time to your favorite destination, with traffic conditions. A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34;
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Travel%2ftravel-time.5m.php'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/Ui6I4YH.png' 
+				alt='Image preview of Travel time plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>travel-time.5m.php</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Travel/travel-time.5m.php'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Travel/travel-time.5m.php'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env php
+&lt;?php
+/**
+ * Provides travel distance and time for your favorite destination, with traffic conditions.
+ *
+ * A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34;
+ *
+ * How does it work:
+ * - perform a Wifi Access Point scan using airport utility command
+ * - Get current position (lat,lng) with Geolocation API using collected AP data
+ * - Get distance, time and traffic delay using the Distance Matrix API
+ *
+ * @link https://console.developers.google.com/apis/enabled
+ * @link https://developers.google.com/maps/documentation/geolocation/
+ * @link https://developers.google.com/maps/documentation/distance-matrix/
+ *
+ * &lt;bitbar.title&gt;Travel time&lt;/bitbar.title&gt;
+ * &lt;bitbar.version&gt;1.1&lt;/bitbar.version&gt;
+ * &lt;bitbar.author&gt;Yann Milin&lt;/bitbar.author&gt;
+ * &lt;bitbar.author.github&gt;ymilin&lt;/bitbar.author.github&gt;
+ * &lt;bitbar.desc&gt;Provides travel distance and time to your favorite destination, with traffic conditions. A Google Developer Account is required with access to &#34;Google Maps Distance Matrix API&#34; and &#34;Google Maps Geolocation API&#34;&lt;/bitbar.desc&gt;
+ * &lt;bitbar.image&gt;http://i.imgur.com/Ui6I4YH.png&lt;/bitbar.image&gt;
+ * &lt;bitbar.dependencies&gt;php &gt;= 5.4.0&lt;/bitbar.dependencies&gt;
+ */
+
+namespace BitbarPlugins\Travel;
+
+// Required : Your Google Developer Project&#39;s API Key
+const API_KEY = &#34;YOUR_API_KEY&#34;;
+const DESTINATION = &#34;Tour Eiffel&#34;;
+
+/*
+ * Use airport to perform a scan of nearby wifi access points, provides better geolocation accuracy but makes script
+ * slower by a few seconds.
+ * false: fallback to current IP, resulting in less accurate geolocation
+ */
+const SCAN_NEARBY_WIFI_ACCESS_POINTS = true;
+const LANGUAGE = &#34;en&#34;; // list of supported languages https://developers.google.com/maps/faq#languagesupport
+const UNITS = &#34;metric&#34;; // metric, imperial
+
+const AIRPORT_PATH = &#34;/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport&#34;;
+const DEBUG = false; // optimize output for console instead of bitbar
+
+/**
+ * Class TravelTimePlugin
+ *
+ * Renders plugin output
+ *
+ * @package BitbarPlugins\Travel
+ */
+class TravelTimePlugin
+{
+    const GOOGLE_MAP_URL                     = &#34;https://www.google.com/maps&#34;;
+    const GOOGLE_MAP_URL_SOURCE_ADDRESS      = &#39;saddr&#39;;
+    const GOOGLE_MAP_URL_DESTINATION_ADDRESS = &#39;daddr&#39;;
+
+    const ICON_PIN     = &#34;📍&#34;;
+    const ICON_FLAG    = &#34;🏁&#34;;
+    const ICON_CIRCLE  = &#34;⭕️&#34;;
+    const ICON_WARNING = &#34;⚠️&#34;;
+    const COLOR_BLACK  = &#34;#000000&#34;;
+    const COLOR_ORANGE = &#34;#FF9900&#34;;
+    const COLOR_RED    = &#34;#FF0000&#34;;
+
+    const ONE_MINUTES_IN_SECONDS     = 60;
+    const FIVE_MINUTES_IN_SECONDS    = 300;
+    const FIFTEEN_MINUTES_IN_SECONDS = 900;
+
+    private $durationInTraffic = [];
+    private $duration = [];
+    private $distance = [];
+    private $delay = null;
+    private $originAddress = null;
+    private $destinationAddress = null;
+    private $latitude = null;
+    private $longitude = null;
+    private $accuracy = null;
+    private $googleMapsLink = null;
+    private $accessPointCount = 0;
+    private $errors = [];
+    private $warnings = [];
+
+    private $distanceMatrixErrorMessages = [
+        DistanceMatrixResponse::STATUS_CODE_INVALID_REQUEST =&gt; &#34;Invalid Request.&#34;,
+        DistanceMatrixResponse::STATUS_CODE_MAX_ELEMENTS_EXCEEDED =&gt; &#34;Origins and destinations per-query limit exceeded.&#34;,
+        DistanceMatrixResponse::STATUS_CODE_OVER_QUERY_LIMIT =&gt; &#34;Too many requests.&#34;,
+        DistanceMatrixResponse::STATUS_CODE_REQUEST_DENIED =&gt; &#34;Service denied&#34;,
+        DistanceMatrixResponse::STATUS_CODE_UNKNOWN_ERROR =&gt; &#34;Server error, try again.&#34;,
+    ];
+
+    private $distanceMatrixElementErrorMessages = [
+        DistanceMatrixResponseElement::STATUS_CODE_NOT_FOUND =&gt; &#34;Destination could not be geocoded.&#34;,
+        DistanceMatrixResponseElement::STATUS_CODE_ZERO_RESULTS =&gt; &#34;No route could be found.&#34;,
+    ];
+
+    public function __construct()
+    {
+        // Scan and create WifiAccessPoints
+        $wifiAccessPoints = [];
+        if (SCAN_NEARBY_WIFI_ACCESS_POINTS === true) {
+            try {
+                $wifiAccessPoints = WifiAccessPoints::fromAccessPointScannerResponse(AccessPointScanner::scan());
+                $this-&gt;accessPointCount = count($wifiAccessPoints);
+            } catch (AccessPointScannerException $apse) {
+                $this-&gt;warnings[] = $apse-&gt;getMessage();
+            }
+
+            if (count($wifiAccessPoints) &lt; 2) {
+                $this-&gt;warnings[] = &#34;Less than two Wifi Access Points in proximity.&#34;;
+            }
+        }
+
+        // Geolocation
+        try {
+            $geolocationApi = new GeolocationAPI();
+            $geolocationResponse = $geolocationApi-&gt;call(GeolocationRequest::fromArrayDefinition([
+                GeolocationRequest::DEFINITION_WIFI_ACCESS_POINTS =&gt; $wifiAccessPoints
+            ]));
+
+            $this-&gt;latitude = $geolocationResponse-&gt;getLatitude();
+            $this-&gt;longitude = $geolocationResponse-&gt;getLongitude();
+            $this-&gt;accuracy = $geolocationResponse-&gt;getAccuracy();
+        } catch (GeolocationResponseException $gre) {
+            $this-&gt;errors[] = &#34;Geolocation API Error status {$gre-&gt;getStatusCode()}: {$gre-&gt;getMessage()}&#34;;
+        }
+
+        if ($this-&gt;latitude &amp;&amp; $this-&gt;longitude) {
+            // distanceMatrix
+            try {
+                $distanceMatrixAPI = new DistanceMatrixAPI();
+                $distanceMatrixResponse = $distanceMatrixAPI-&gt;call(DistanceMatrixRequest::fromArrayDefinition([
+                    DistanceMatrixRequest::DEFINITION_ORIGINS =&gt; $this-&gt;latitude . &#39;,&#39; . $this-&gt;longitude,
+                    DistanceMatrixRequest::DEFINITION_DESTINATIONS =&gt; DESTINATION,
+                    DistanceMatrixRequest::DEFINITION_KEY =&gt; API_KEY,
+                    DistanceMatrixRequest::DEFINITION_LANGUAGE =&gt; LANGUAGE,
+                    DistanceMatrixRequest::DEFINITION_UNITS =&gt; UNITS,
+                ]));
+
+                $this-&gt;durationInTraffic = $distanceMatrixResponse-&gt;getRows()-&gt;getDurationInTraffic();
+                $this-&gt;duration = $distanceMatrixResponse-&gt;getRows()-&gt;getDuration();
+                $this-&gt;distance = $distanceMatrixResponse-&gt;getRows()-&gt;getDistance();
+                $this-&gt;originAddress = $distanceMatrixResponse-&gt;getOriginAddresses();
+                $this-&gt;destinationAddress = $distanceMatrixResponse-&gt;getDestinationAddresses();
+
+                $this-&gt;computeDelay();
+                $this-&gt;computeGoogleMapsLink();
+            } catch (DistanceMatrixResponseException $e) {
+                $this-&gt;errors[] = &#34;Distance Matrix API Error: &#34; . $this-&gt;distanceMatrixErrorMessages[$e-&gt;getMessage()];
+            } catch (DistanceMatrixResponseElementException $e) {
+                $this-&gt;errors[] = &#34;Distance Matrix API Error: &#34; . $this-&gt;distanceMatrixElementErrorMessages[$e-&gt;getMessage()];
+            }
+        }
+
+    }
+
+    private function computeDelay()
+    {
+        if (is_array($this-&gt;duration)
+            &amp;&amp; is_array($this-&gt;durationInTraffic)
+            &amp;&amp; array_key_exists(&#39;value&#39;, $this-&gt;duration)
+            &amp;&amp; array_key_exists(&#39;value&#39;, $this-&gt;durationInTraffic)
+        ) {
+            $delay = $this-&gt;durationInTraffic[&#39;value&#39;] - $this-&gt;duration[&#39;value&#39;];
+            $this-&gt;delay = $delay &gt; 0 ? $delay : null;
+        } else {
+            $this-&gt;delay = null;
+        }
+    }
+
+    private function computeGoogleMapsLink()
+    {
+        if (isset($this-&gt;originAddress)
+            &amp;&amp; is_string($this-&gt;originAddress)
+            &amp;&amp; isset($this-&gt;destinationAddress)
+            &amp;&amp; is_string($this-&gt;destinationAddress)
+        ) {
+            $this-&gt;googleMapsLink = self::GOOGLE_MAP_URL . &#34;?&#34; . http_build_query([
+                    self::GOOGLE_MAP_URL_SOURCE_ADDRESS =&gt; $this-&gt;originAddress,
+                    self::GOOGLE_MAP_URL_DESTINATION_ADDRESS =&gt; $this-&gt;destinationAddress,
+                ]);
+        } else {
+            $this-&gt;googleMapsLink = null;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this-&gt;render();
+    }
+
+    private function render()
+    {
+        return DEBUG ? $this-&gt;renderConsole() : $this-&gt;renderBitbar();
+    }
+
+    /**
+     * render with Bitbar metadata
+     * @return string
+     */
+    private function renderBitbar()
+    {
+        $return = &#34;&#34;;
+
+        if ($this-&gt;errors) {
+            $return .= self::ICON_WARNING . &#34; Error|color=&#34; . self::COLOR_RED . &#34;\n&#34;;
+            $return .= &#34;---\n&#34;;
+            $return .= implode(&#34;|color=&#34; . self::COLOR_RED . &#34;\n&#34;, $this-&gt;errors) . &#34;\n&#34;;
+            $return .= &#34;---\n&#34;;
+            $return .= &#34;Refresh | refresh=true \n&#34;;
+            return $return;
+        }
+
+        $durationColor = self::COLOR_BLACK;
+        if ($this-&gt;delay &gt; self::FIVE_MINUTES_IN_SECONDS) {
+            $durationColor = self::COLOR_ORANGE;
+        }
+        if ($this-&gt;delay &gt; self::FIFTEEN_MINUTES_IN_SECONDS) {
+            $durationColor = self::COLOR_RED;
+        }
+
+        $return .= self::ICON_PIN . &#34; {$this-&gt;durationInTraffic[&#39;text&#39;]}|color=$durationColor\n&#34;;
+        $return .= &#34;---\n&#34;;
+
+        if ($this-&gt;warnings) {
+            foreach ($this-&gt;warnings as $warning) {
+                $return .= self::ICON_WARNING . &#34; $warning\n&#34;;
+            }
+            $return .= &#34;---\n&#34;;
+        }
+
+        $return .= &#34;{$this-&gt;durationInTraffic[&#39;text&#39;]} ({$this-&gt;distance[&#39;text&#39;]})|color=$durationColor\n&#34;;
+        if ($this-&gt;delay &gt; self::ONE_MINUTES_IN_SECONDS) {
+            $return .= &#34;{$this-&gt;duration[&#39;text&#39;]} without traffic\n&#34;;
+        }
+        $return .= &#34;---\n&#34;;
+
+        $return .= &#34;Directions\n&#34;;
+        $return .= self::ICON_CIRCLE . &#34; {$this-&gt;originAddress} | color=&#34; . self::COLOR_BLACK . &#34;\n&#34;;
+        $return .= self::ICON_FLAG . &#34; {$this-&gt;destinationAddress} | color=&#34; . self::COLOR_BLACK . &#34;\n&#34;;
+        $return .= &#34;---\n&#34;;
+
+        $return .= &#34;Geolocation\n&#34;;
+        $return .= &#34;Latitude: {$this-&gt;latitude} | color=&#34; . self::COLOR_BLACK . &#34;\n&#34;;
+        $return .= &#34;Longitude: {$this-&gt;longitude} | color=&#34; . self::COLOR_BLACK . &#34;\n&#34;;
+        $return .= &#34;Accuracy: {$this-&gt;accuracy}m | color=&#34; . self::COLOR_BLACK . &#34;\n&#34;;
+        $return .= &#34;---\n&#34;;
+
+        if ($this-&gt;googleMapsLink) {
+            $return .= &#34;View on Google maps|href={$this-&gt;googleMapsLink}\n&#34;;
+        }
+        $return .= &#34;Refresh | refresh=true \n&#34;;
+
+        return $return;
+    }
+
+    /**
+     * render for console output
+     * @return string
+     */
+    private function renderConsole()
+    {
+        $return = &#34;&#34;;
+        if ($this-&gt;errors) {
+            return implode(&#34;\n&#34;, $this-&gt;errors);
+        }
+
+        if ($this-&gt;warnings) {
+            $return .= &#34;---\nWarning(s):\n&#34;;
+            $return .= implode(&#34;\n&#34;, $this-&gt;warnings);
+            $return .= &#34;\n---\n\n&#34;;
+        }
+
+        $return .= &#34;Duration: {$this-&gt;durationInTraffic[&#39;text&#39;]}\n&#34;;
+        $return .= &#34;Distance: {$this-&gt;distance[&#39;text&#39;]}\n&#34;;
+        $return .= $this-&gt;delay ? &#34;Traffic Delay: {$this-&gt;delay}s&#34; : &#34;No Traffic Delay&#34;;
+        $return .= &#34;\n\n&#34;;
+
+        $return .= &#34;Directions:\n&#34;;
+        $return .= &#34;\tFrom: {$this-&gt;originAddress}\n&#34;;
+        $return .= &#34;\tTo: {$this-&gt;destinationAddress}\n\n&#34;;
+
+        $return .= &#34;Geolocation:\n&#34;;
+        $return .= &#34;\tLatitude: {$this-&gt;latitude}\n&#34;;
+        $return .= &#34;\tLongitude: {$this-&gt;longitude}\n&#34;;
+        $return .= &#34;\tAccuracy: {$this-&gt;accuracy}\n\n&#34;;
+
+        if ($this-&gt;googleMapsLink) {
+            $return .= &#34;Google Maps URL: {$this-&gt;googleMapsLink}\n\n&#34;;
+        };
+
+        return $return;
+    }
+
+}
+
+/**
+ * Class AccessPointScanner
+ * @package BitbarPlugins\Travel
+ */
+final class AccessPointScanner
+{
+    /**
+     * use `airport` utility command with --scan option : Perform a wireless broadcast scan.
+     *
+     * @return string raw command output
+     * @throws AccessPointScannerException
+     */
+    public static function scan()
+    {
+        if (!self::airportProgramFound()) {
+            throw new AccessPointScannerException(&#34;Airport utility command not found. Please check path.&#34;);
+        }
+
+        return shell_exec(AIRPORT_PATH . &#34; -s&#34;);
+    }
+
+    private static function airportProgramFound()
+    {
+        if (!(is_file(AIRPORT_PATH)
+            &amp;&amp; file_exists(AIRPORT_PATH)
+            &amp;&amp; is_executable(AIRPORT_PATH))
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+}
+
+final class AccessPointScannerException extends \Exception
+{
+
+}
+
+final class WifiAccessPoints implements \Countable, \JsonSerializable
+{
+
+    const PATTERN_AIRPORT_LINE_SCAN = &#39;/^\s*(.&#43;?)\s((?:[0-9A-Fa-f]{2}[:-]){5}(?:[0-9A-Fa-f]{2}))\s(.&#43;?)\s&#43;(\d&#43;).&#43;$/&#39;;
+
+    /**
+     * @var WifiAccessPoint[]
+     */
+    private $accessPoints = [];
+
+    /**
+     * {@inheritDoc}
+     */
+    public function count()
+    {
+        return count($this-&gt;accessPoints);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    function jsonSerialize()
+    {
+        return $this-&gt;accessPoints;
+    }
+
+    /**
+     * @param string $response
+     *
+     * @return self
+     */
+    public static function fromAccessPointScannerResponse($response)
+    {
+        $instance = new self();
+
+        foreach (explode(&#34;\n&#34;, $response) as $airportAccessPoint) {
+            if (preg_match(self::PATTERN_AIRPORT_LINE_SCAN, $airportAccessPoint, $matches)) {
+                $instance-&gt;accessPoints[] = WifiAccessPoint::fromArrayDefinition([
+                    WifiAccessPoint::DEFINITION_MAC_ADDRESS =&gt; $matches[2],
+                    WifiAccessPoint::DEFINITION_SIGNAL_TO_NOISE_RATION =&gt; intval($matches[3]),
+                    WifiAccessPoint::DEFINITION_CHANNEL =&gt; intval($matches[4]),
+                ]);
+            }
+        }
+
+        return $instance;
+    }
+
+}
+
+final class WifiAccessPoint implements \JsonSerializable
+{
+    const DEFINITION_MAC_ADDRESS = &#34;macAddress&#34;;
+    const DEFINITION_SIGNAL_STRENGTH = &#34;signalStrength&#34;;
+    const DEFINITION_AGE = &#34;age&#34;;
+    const DEFINITION_CHANNEL = &#34;channel&#34;;
+    const DEFINITION_SIGNAL_TO_NOISE_RATION = &#34;signalToNoiseRatio&#34;;
+
+    const PATTERN_MAC_ADDRESS = &#39;/^(?:[0-9A-Fa-f]{2}[:-]){5}(?:[0-9A-Fa-f]{2})$/&#39;;
+
+    /**
+     * @var string
+     */
+    private $macAddress = null;
+
+    /**
+     * @var int
+     */
+    private $signalStrength = null;
+
+    /**
+     * @var int
+     */
+    private $age = null;
+
+    /**
+     * @var int
+     */
+    private $channel = null;
+
+    /**
+     * @var int
+     */
+    private $signalToNoiseRatio = null;
+
+    /**
+     * {@inheritDoc}
+     */
+    function jsonSerialize()
+    {
+        $return = [self::DEFINITION_MAC_ADDRESS =&gt; $this-&gt;macAddress];
+
+        if ($this-&gt;signalStrength !== null) {
+            $return[self::DEFINITION_SIGNAL_STRENGTH] = $this-&gt;signalStrength;
+        }
+
+        if ($this-&gt;age !== null) {
+            $return[self::DEFINITION_AGE] = $this-&gt;age;
+        }
+
+        if ($this-&gt;channel !== null) {
+            $return[self::DEFINITION_CHANNEL] = $this-&gt;channel;
+        }
+
+        if ($this-&gt;signalToNoiseRatio !== null) {
+            $return[self::DEFINITION_SIGNAL_TO_NOISE_RATION] = $this-&gt;signalToNoiseRatio;
+        }
+
+        return $return;
+    }
+
+    /**
+     * @param array $definition
+     * @return WifiAccessPoint
+     */
+    public static function fromArrayDefinition(array $definition)
+    {
+        $instance = new self();
+
+        $instance-&gt;macAddress = self::getMacAddressFromDefinition($definition);
+        $instance-&gt;signalStrength = self::getSignalStrengthFromDefinition($definition);
+        $instance-&gt;age = self::getAgeFromDefinition($definition);
+        $instance-&gt;channel = self::getChannelFromDefinition($definition);
+        $instance-&gt;signalToNoiseRatio = self::getSignalToNoiseRatioFromDefinition($definition);
+
+        return $instance;
+    }
+
+    private static function getMacAddressFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_MAC_ADDRESS])
+            &amp;&amp; is_string($definition[self::DEFINITION_MAC_ADDRESS])
+            &amp;&amp; preg_match(self::PATTERN_MAC_ADDRESS, $definition[self::DEFINITION_MAC_ADDRESS]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_MAC_ADDRESS];
+    }
+
+    private static function getSignalStrengthFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_SIGNAL_STRENGTH])
+            &amp;&amp; is_int($definition[self::DEFINITION_SIGNAL_STRENGTH]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_SIGNAL_STRENGTH];
+    }
+
+    private static function getAgeFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_AGE])
+            &amp;&amp; is_int($definition[self::DEFINITION_AGE]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_AGE];
+    }
+
+    private static function getChannelFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_CHANNEL])
+            &amp;&amp; is_int($definition[self::DEFINITION_CHANNEL]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_CHANNEL];
+    }
+
+    private static function getSignalToNoiseRatioFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_SIGNAL_TO_NOISE_RATION])
+            &amp;&amp; is_int($definition[self::DEFINITION_SIGNAL_TO_NOISE_RATION]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_SIGNAL_TO_NOISE_RATION];
+    }
+
+
+}
+
+/**
+ * Class GeolocationAPI
+ *
+ * @link https://developers.google.com/maps/documentation/geolocation/
+ * @package BitbarPlugins\Travel
+ */
+final class GeolocationAPI
+{
+    const GEOLOCATION_URL = &#34;https://www.googleapis.com/geolocation/v1/geolocate&#34;;
+    const METHOD = &#34;POST&#34;;
+
+    /**
+     * @var resource curl handler
+     */
+    private $ch;
+
+    private $headers = [
+        &#34;content-type: application/json&#34;,
+        &#34;Accept: application/json&#34;,
+        &#34;Cache-Control: no-cache&#34;,
+        &#34;Pragma: no-cache&#34;,
+    ];
+
+    public function __construct()
+    {
+        $this-&gt;initCurl();
+    }
+
+    private function initCurl()
+    {
+        $this-&gt;ch = curl_init();
+
+        curl_setopt($this-&gt;ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this-&gt;ch, CURLOPT_HTTPHEADER, $this-&gt;headers);
+        curl_setopt($this-&gt;ch, CURLOPT_CUSTOMREQUEST, self::METHOD);
+        curl_setopt($this-&gt;ch, CURLOPT_POSTFIELDS, $this-&gt;headers);
+    }
+
+    /**
+     * Sends a Geolocation request
+     *
+     * @param GeolocationRequest $request
+     * @return GeolocationResponse
+     */
+    public function call(GeolocationRequest $request)
+    {
+        $url = self::GEOLOCATION_URL . &#39;?&#39; . http_build_query([&#39;key&#39; =&gt; API_KEY]);
+
+        curl_setopt($this-&gt;ch, CURLOPT_POSTFIELDS, json_encode($request));
+        curl_setopt($this-&gt;ch, CURLOPT_URL, $url);
+
+        $response = curl_exec($this-&gt;ch);
+
+        return GeolocationResponse::fromApiResponse($response);
+    }
+
+}
+
+/**
+ * Class GeolocationRequest
+ *
+ * @todo make cellTower definition as an object and sanitize data
+ * @link https://developers.google.com/maps/documentation/geolocation/intro#body
+ * @package BitbarPlugins\Travel
+ */
+final class GeolocationRequest implements \JsonSerializable
+{
+    const DEFINITION_MMC = &#34;homeMobileCountryCode&#34;;
+    const DEFINITION_MNC = &#34;homeMobileNetworkCode&#34;;
+    const DEFINITION_RADIO_TYPE = &#34;radioType&#34;;
+    const DEFINITION_CARRIER = &#34;carrier&#34;;
+    const DEFINITION_CONSIDER_IP = &#34;considerIp&#34;;
+    const DEFINITION_CELL_TOWERS = &#34;cellTowers&#34;;
+    const DEFINITION_WIFI_ACCESS_POINTS = &#34;wifiAccessPoints&#34;;
+
+    /**
+     * The mobile country code (MCC) for the device&#39;s home network.
+     * @var int
+     */
+    private $homeMobileCountryCode = null;
+
+    /**
+     * The mobile network code (MNC) for the device&#39;s home network.
+     * @var int
+     */
+    private $homeMobileNetworkCode = null;
+
+    /**
+     * The mobile radio type. Supported values are lte, gsm, cdma, and wcdma. While this field is optional,
+     * it should be included if a value is available, for more accurate results.
+     * @var string
+     */
+    private $radioType = null;
+
+    /**
+     * The carrier name.
+     * @var string
+     */
+    private $carrier = null;
+
+    /**
+     * Specifies whether to fall back to IP geolocation if wifi and cell tower signals are not available.
+     * Note that the IP address in the request header may not be the IP of the device. Defaults to true.
+     * Set considerIp to false to disable fall back.
+     * @var boolean
+     */
+    private $considerIp = true;
+
+    /**
+     * An array of cell tower objects.
+     *
+     * @var array
+     */
+    private $cellTowers;
+
+    /**
+     * An array of WiFi access point objects.
+     * @var WifiAccessPoints
+     */
+    private $wifiAccessPoints;
+
+    function jsonSerialize()
+    {
+        $return = [];
+
+        if ($this-&gt;homeMobileCountryCode !== null) {
+            $return[self::DEFINITION_MMC] = $this-&gt;homeMobileCountryCode;
+        }
+
+        if ($this-&gt;homeMobileNetworkCode !== null) {
+            $return[self::DEFINITION_MNC] = $this-&gt;homeMobileNetworkCode;
+        }
+
+        if (in_array($this-&gt;radioType, [&#39;lte&#39;, &#39;gsm&#39;, &#39;cdma&#39;, &#39;wcdma&#39;], true)) {
+            $return[self::DEFINITION_RADIO_TYPE] = $this-&gt;radioType;
+        }
+
+        if ($this-&gt;carrier) {
+            $return[self::DEFINITION_CARRIER] = $this-&gt;carrier;
+        }
+
+        if ($this-&gt;considerIp === false) {
+            $return[self::DEFINITION_CONSIDER_IP] = &#39;false&#39;;
+        }
+
+        if (count($this-&gt;cellTowers)) {
+            $return[self::DEFINITION_CELL_TOWERS] = $this-&gt;cellTowers;
+        }
+
+        if (count($this-&gt;wifiAccessPoints)) {
+            $return[self::DEFINITION_WIFI_ACCESS_POINTS] = $this-&gt;wifiAccessPoints;
+        }
+
+        return $return;
+    }
+
+    /**
+     * @param array $definition
+     *
+     * @return self
+     */
+    public static function fromArrayDefinition(array $definition)
+    {
+        $instance = new self();
+
+        $instance-&gt;homeMobileCountryCode = self::getMMCFromDefinition($definition);
+        $instance-&gt;homeMobileNetworkCode = self::getMNCFromDefinition($definition);
+        $instance-&gt;radioType = self::getRadioTypeFromDefinition($definition);
+        $instance-&gt;carrier = self::getCarrierFromDefinition($definition);
+        $instance-&gt;considerIp = self::getConsiderIpFromDefinition($definition);
+        $instance-&gt;cellTowers = self::getCellTowersFromDefinition($definition);
+        $instance-&gt;wifiAccessPoints = self::getWifiAccessPointsFromDefinition($definition);
+
+        return $instance;
+    }
+
+    private static function getMMCFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_MMC])
+            &amp;&amp; is_int($definition[self::DEFINITION_MMC]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_MMC];
+    }
+
+    private static function getMNCFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_MNC])
+            &amp;&amp; is_int($definition[self::DEFINITION_MNC]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_MNC];
+    }
+
+    private static function getRadioTypeFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_RADIO_TYPE])
+            &amp;&amp; is_string($definition[self::DEFINITION_RADIO_TYPE])
+            &amp;&amp; in_array($definition[self::DEFINITION_RADIO_TYPE], [&#39;lte&#39;, &#39;gsm&#39;, &#39;cdma&#39;, &#39;wcdma&#39;], true))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_RADIO_TYPE];
+    }
+
+    private static function getCarrierFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_CARRIER])
+            &amp;&amp; is_string($definition[self::DEFINITION_CARRIER]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_CARRIER];
+    }
+
+    private static function getConsiderIpFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_CONSIDER_IP])
+            &amp;&amp; is_bool($definition[self::DEFINITION_CONSIDER_IP]))
+        ) {
+            return true;
+        }
+
+        return $definition[self::DEFINITION_CONSIDER_IP];
+    }
+
+    private static function getCellTowersFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_CELL_TOWERS])
+            &amp;&amp; is_array($definition[self::DEFINITION_CELL_TOWERS]))
+        ) {
+            return [];
+        }
+
+        return $definition[self::DEFINITION_CELL_TOWERS];
+    }
+
+    private static function getWifiAccessPointsFromDefinition(array $definition)
+    {
+
+        if (!(isset($definition[self::DEFINITION_WIFI_ACCESS_POINTS])
+            &amp;&amp; $definition[self::DEFINITION_WIFI_ACCESS_POINTS] instanceof WifiAccessPoints
+            &amp;&amp; count($definition[self::DEFINITION_WIFI_ACCESS_POINTS]) &gt;= 2)
+        ) {
+            return [];
+        }
+
+        return $definition[self::DEFINITION_WIFI_ACCESS_POINTS];
+    }
+
+    /**
+     * @param string $carrier
+     * @return GeolocationRequest
+     */
+    public function setCarrier($carrier)
+    {
+        $this-&gt;carrier = $carrier;
+        return $this;
+    }
+
+    /**
+     * @param array $cellTowers
+     * @return GeolocationRequest
+     */
+    public function setCellTowers($cellTowers)
+    {
+        $this-&gt;cellTowers = $cellTowers;
+        return $this;
+    }
+
+    /**
+     * @param boolean $considerIp
+     * @return GeolocationRequest
+     */
+    public function setConsiderIp($considerIp)
+    {
+        $this-&gt;considerIp = $considerIp;
+        return $this;
+    }
+
+    /**
+     * @param int $homeMobileCountryCode
+     * @return GeolocationRequest
+     */
+    public function setHomeMobileCountryCode($homeMobileCountryCode)
+    {
+        $this-&gt;homeMobileCountryCode = $homeMobileCountryCode;
+        return $this;
+    }
+
+    /**
+     * @param int $homeMobileNetworkCode
+     * @return GeolocationRequest
+     */
+    public function setHomeMobileNetworkCode($homeMobileNetworkCode)
+    {
+        $this-&gt;homeMobileNetworkCode = $homeMobileNetworkCode;
+        return $this;
+    }
+
+    /**
+     * @param string $radioType
+     * @return GeolocationRequest
+     */
+    public function setRadioType($radioType)
+    {
+        $this-&gt;radioType = $radioType;
+        return $this;
+    }
+
+    /**
+     * @param WifiAccessPoints $wifiAccessPoints
+     * @return GeolocationRequest
+     */
+    public function setWifiAccessPoints($wifiAccessPoints)
+    {
+        $this-&gt;wifiAccessPoints = $wifiAccessPoints;
+        return $this;
+    }
+}
+
+/**
+ * Class GeolocationResponse
+ * @package BitbarPlugins\Travel
+ */
+final class GeolocationResponse
+{
+    const DEFINITION_LOCATION = &#39;location&#39;;
+    const DEFINITION_LATITUDE = &#39;lat&#39;;
+    const DEFINITION_LONGITUDE = &#39;lng&#39;;
+    const DEFINITION_ACCURACY = &#39;accuracy&#39;;
+    const DEFINITION_ERROR = &#39;error&#39;;
+    const DEFINITION_MESSAGE = &#39;message&#39;;
+    const DEFINITION_CODE = &#39;code&#39;;
+
+    /**
+     * @var float
+     */
+    private $latitude = null;
+
+    /**
+     * @var float
+     */
+    private $longitude = null;
+
+    /**
+     * @var float
+     */
+    private $accuracy = null;
+
+    /**
+     * Creates an instance of GeolocationResponse from raw API response in json
+     * @param $response
+     * @return GeolocationResponse
+     * @throws GeolocationResponseException
+     */
+    public static function fromApiResponse($response)
+    {
+        $instance = new self();
+
+        $geolocation = json_decode($response, true);
+
+        if ($geolocationError = self::getErrorFromResponse($geolocation)) {
+            throw $geolocationError;
+        }
+
+        $instance-&gt;latitude = self::getLatitudeFromResponse($geolocation);
+        $instance-&gt;longitude = self::getLongitudeFromResponse($geolocation);
+        $instance-&gt;accuracy = self::getAccuracyFromResponse($geolocation);
+
+        return $instance;
+    }
+
+    private static function getErrorFromResponse(array $geolocation)
+    {
+        if (!(is_array($geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_ERROR, $geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_MESSAGE, $geolocation[self::DEFINITION_ERROR])
+            &amp;&amp; array_key_exists(self::DEFINITION_CODE, $geolocation[self::DEFINITION_ERROR])
+            &amp;&amp; is_string($geolocation[self::DEFINITION_ERROR][self::DEFINITION_MESSAGE])
+            &amp;&amp; is_int($geolocation[self::DEFINITION_ERROR][self::DEFINITION_CODE]))
+        ) {
+            return null;
+        }
+
+        return new GeolocationResponseException(
+            $geolocation[self::DEFINITION_ERROR][self::DEFINITION_MESSAGE],
+            $geolocation[self::DEFINITION_ERROR][self::DEFINITION_CODE]
+        );
+    }
+
+    private static function getLatitudeFromResponse(array $geolocation)
+    {
+        if (!(is_array($geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_LOCATION, $geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_LATITUDE, $geolocation[self::DEFINITION_LOCATION])
+            &amp;&amp; is_float($geolocation[self::DEFINITION_LOCATION][self::DEFINITION_LATITUDE]))
+        ) {
+            return null;
+        }
+
+        return $geolocation[self::DEFINITION_LOCATION][self::DEFINITION_LATITUDE];
+    }
+
+    private static function getLongitudeFromResponse(array $geolocation)
+    {
+        if (!(is_array($geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_LOCATION, $geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_LONGITUDE, $geolocation[self::DEFINITION_LOCATION])
+            &amp;&amp; is_float($geolocation[self::DEFINITION_LOCATION][self::DEFINITION_LONGITUDE]))
+        ) {
+            return null;
+        }
+
+        return $geolocation[self::DEFINITION_LOCATION][self::DEFINITION_LONGITUDE];
+    }
+
+    private static function getAccuracyFromResponse(array $geolocation)
+    {
+        if (!(is_array($geolocation)
+            &amp;&amp; array_key_exists(self::DEFINITION_ACCURACY, $geolocation)
+            &amp;&amp; is_float($geolocation[self::DEFINITION_ACCURACY]))
+        ) {
+            return null;
+        }
+
+        return $geolocation[self::DEFINITION_ACCURACY];
+    }
+
+    /**
+     * @return float
+     */
+    public function getAccuracy()
+    {
+        return $this-&gt;accuracy;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this-&gt;latitude;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this-&gt;longitude;
+    }
+}
+
+final class GeolocationResponseException extends \Exception
+{
+    /**
+     * @var int
+     */
+    private $statusCode;
+
+    public function __construct($message, $code)
+    {
+        $this-&gt;statusCode = $code;
+        $this-&gt;message = $message;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this-&gt;statusCode;
+    }
+}
+
+/**
+ * Class DistanceMatrixAPI
+ *
+ * @link https://developers.google.com/maps/documentation/distance-matrix/
+ * @package BitbarPlugins\Travel
+ */
+final class DistanceMatrixAPI
+{
+    const DISTANCE_MATRIX_URL = &#34;https://maps.googleapis.com/maps/api/distancematrix/json&#34;;
+
+    /**
+     * @var resource curl handler
+     */
+    private $ch;
+
+    private $headers = [
+        &#34;Accept: application/json&#34;,
+        &#34;Cache-Control: no-cache&#34;,
+        &#34;Pragma: no-cache&#34;,
+    ];
+
+    public function __construct()
+    {
+        $this-&gt;initCurl();
+    }
+
+    private function initCurl()
+    {
+        $this-&gt;ch = curl_init();
+
+        curl_setopt($this-&gt;ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this-&gt;ch, CURLOPT_HTTPHEADER, $this-&gt;headers);
+    }
+
+    /**
+     * Send a DistanceMatrix Request
+     *
+     * @param DistanceMatrixRequest $request
+     * @return DistanceMatrixResponse
+     * @throws DistanceMatrixResponseException
+     */
+    public function call(DistanceMatrixRequest $request)
+    {
+        $url = self::DISTANCE_MATRIX_URL . &#39;?&#39; . $request-&gt;toQueryParameters();
+        curl_setopt($this-&gt;ch, CURLOPT_URL, $url);
+        $response = curl_exec($this-&gt;ch);
+
+        return DistanceMatrixResponse::fromApiResponse($response);
+    }
+
+}
+
+/**
+ * Class DistanceMatrixRequest
+ * @todo handle departure_time with unix timestamps
+ * @package BitbarPlugins\Travel
+ */
+final class DistanceMatrixRequest
+{
+    const DEFINITION_ORIGINS = &#34;origins&#34;;
+    const DEFINITION_DESTINATIONS = &#34;destinations&#34;;
+    const DEFINITION_KEY = &#34;key&#34;;
+    const DEFINITION_MODE = &#34;mode&#34;;
+    const DEFINITION_LANGUAGE = &#34;language&#34;;
+    const DEFINITION_UNITS = &#34;units&#34;;
+    const DEFINITION_DEPARTURE_TIME = &#34;departure_time&#34;;
+
+    const PATTERN_LATITUDE_LONGITUDE = &#39;/^\-?\d&#43;(?:\.\d&#43;)?,\-?\d&#43;(?:\.\d&#43;)?$/&#39;;
+
+    /**
+     * One or more addresses and/or textual latitude/longitude values, separated with the pipe (|) character,
+     * from which to calculate distance and time.
+     * @var string
+     */
+    private $origins = null;
+
+    /**
+     * One or more addresses and/or textual latitude/longitude values, separated with the pipe (|) character,
+     * to which to calculate distance and time.
+     * @var string
+     */
+    private $destinations = null;
+
+    /**
+     * Your application&#39;s API key. This key identifies your application for purposes of quota management.
+     * @var string
+     */
+    private $key = null;
+
+    /**
+     * Optional
+     * Specifies the mode of transport to use when calculating distance.
+     * @var string
+     */
+    private $mode = &#39;driving&#39;; // &#39;driving&#39;, &#39;walking&#39;, &#39;cycling&#39;, &#39;transit&#39;
+
+    /**
+     * Optional
+     * The language in which to return results.
+     * @var string
+     */
+    private $language = &#39;en&#39;;
+
+    /**
+     * Optional
+     * Specifies the unit system to use when expressing distance as text.
+     * @var string
+     */
+    private $units = &#39;metric&#39;; // &#39;metric&#39;, &#39;imperial&#39;
+
+    /**
+     * Optional
+     * The desired time of departure. You can specify the time as an integer in seconds since midnight,
+     * January 1, 1970 UTC. Alternatively, you can specify a value of now
+     * @var string
+     */
+    private $departureTime = &#39;now&#39;;
+
+    /**
+     * Convert Request Object to URL-encoded query string
+     *
+     * @return string
+     */
+    public function toQueryParameters()
+    {
+        return http_build_query([
+            self::DEFINITION_ORIGINS =&gt; $this-&gt;origins,
+            self::DEFINITION_DESTINATIONS =&gt; $this-&gt;destinations,
+            self::DEFINITION_KEY =&gt; $this-&gt;key,
+            self::DEFINITION_MODE =&gt; $this-&gt;mode,
+            self::DEFINITION_LANGUAGE =&gt; $this-&gt;language,
+            self::DEFINITION_UNITS =&gt; $this-&gt;units,
+            self::DEFINITION_DEPARTURE_TIME =&gt; $this-&gt;departureTime,
+        ]);
+    }
+
+    /**
+     * @param array $definition
+     *
+     * @return self
+     */
+    public static function fromArrayDefinition(array $definition)
+    {
+        $instance = new self();
+
+        $instance-&gt;origins = self::getOriginsFromDefinition($definition);
+        $instance-&gt;destinations = self::getDestinationsFromDefinition($definition);
+        $instance-&gt;key = self::getKeyFromDefinition($definition);
+        $instance-&gt;mode = self::getModeFromDefinition($definition);
+        $instance-&gt;language = self::getLanguageFromDefinition($definition);
+        $instance-&gt;units = self::getUnitsFromDefinition($definition);
+        $instance-&gt;departureTime = self::getDepartureTimeFromDefinition($definition);
+
+        return $instance;
+    }
+
+    private static function getOriginsFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_ORIGINS])
+            &amp;&amp; is_string($definition[self::DEFINITION_ORIGINS])
+            &amp;&amp; preg_match(self::PATTERN_LATITUDE_LONGITUDE, $definition[self::DEFINITION_ORIGINS]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_ORIGINS];
+    }
+
+    private static function getDestinationsFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_DESTINATIONS])
+            &amp;&amp; is_string($definition[self::DEFINITION_DESTINATIONS]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_DESTINATIONS];
+    }
+
+    private static function getKeyFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_KEY])
+            &amp;&amp; is_string($definition[self::DEFINITION_KEY]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_KEY];
+    }
+
+    private static function getModeFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_MODE])
+            &amp;&amp; is_string($definition[self::DEFINITION_MODE])
+            &amp;&amp; in_array($definition[self::DEFINITION_MODE], [&#39;driving&#39;, &#39;walking&#39;, &#39;cycling&#39;, &#39;transit&#39;]))
+        ) {
+            return &#39;driving&#39;;
+        }
+
+        return $definition[self::DEFINITION_MODE];
+    }
+
+    private static function getLanguageFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_LANGUAGE])
+            &amp;&amp; is_string($definition[self::DEFINITION_LANGUAGE])
+            &amp;&amp; in_array($definition[self::DEFINITION_LANGUAGE], [&#39;ar&#39;, &#39;kn&#39;, &#39;bg&#39;, &#39;ko&#39;, &#39;bn&#39;, &#39;lt&#39;, &#39;ca&#39;, &#39;lv&#39;, &#39;cs&#39;,
+                &#39;ml&#39;, &#39;da&#39;, &#39;mr&#39;, &#39;de&#39;, &#39;nl&#39;, &#39;el&#39;, &#39;no&#39;, &#39;en&#39;, &#39;pl&#39;, &#39;en-AU&#39;, &#39;pt&#39;, &#39;en-GB&#39;, &#39;pt-BR&#39;, &#39;es&#39;, &#39;pt-PT&#39;,
+                &#39;eu&#39;, &#39;ro&#39;, &#39;eu&#39;, &#39;ru&#39;, &#39;fa&#39;, &#39;sk&#39;, &#39;fi&#39;, &#39;sl&#39;, &#39;fil&#39;, &#39;sr&#39;, &#39;fr&#39;, &#39;sv&#39;, &#39;gl&#39;, &#39;ta&#39;, &#39;gu&#39;, &#39;te&#39;, &#39;hi&#39;,
+                &#39;th&#39;, &#39;hr&#39;, &#39;tl&#39;, &#39;hu&#39;, &#39;tr&#39;, &#39;id&#39;, &#39;uk&#39;, &#39;it&#39;, &#39;vi&#39;, &#39;iw&#39;, &#39;zh-CN&#39;, &#39;ja&#39;, &#39;zh-TW&#39;,]))
+        ) {
+            return &#39;en&#39;;
+        }
+
+        return $definition[self::DEFINITION_LANGUAGE];
+    }
+
+    private static function getUnitsFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_UNITS])
+            &amp;&amp; is_string($definition[self::DEFINITION_UNITS])
+            &amp;&amp; in_array($definition[self::DEFINITION_UNITS], [&#39;metric&#39;, &#39;imperial&#39;]))
+        ) {
+            return &#39;metric&#39;;
+        }
+
+        return $definition[self::DEFINITION_UNITS];
+    }
+
+    private static function getDepartureTimeFromDefinition(array $definition)
+    {
+        if (!(isset($definition[self::DEFINITION_DEPARTURE_TIME])
+            &amp;&amp; is_string($definition[self::DEFINITION_DEPARTURE_TIME])
+            &amp;&amp; $definition[self::DEFINITION_DEPARTURE_TIME] === &#39;now&#39;)
+        ) {
+            return &#39;now&#39;;
+        }
+
+        return $definition[self::DEFINITION_DEPARTURE_TIME];
+    }
+}
+
+/**
+ * Class DistanceMatrixResponse
+ * @package BitbarPlugins\Travel
+ */
+final class DistanceMatrixResponse
+{
+    const DEFINITION_STATUS = &#39;status&#39;;
+    const DEFINITION_ORIGIN_ADDRESSES = &#39;origin_addresses&#39;;
+    const DEFINITION_DESTINATION_ADDRESSES = &#39;destination_addresses&#39;;
+    const DEFINITION_ROWS = &#39;rows&#39;;
+
+    const STATUS_CODE_OK = &#39;OK&#39;;
+    const STATUS_CODE_INVALID_REQUEST = &#39;INVALID_REQUEST&#39;;
+    const STATUS_CODE_MAX_ELEMENTS_EXCEEDED = &#39;MAX_ELEMENTS_EXCEEDED&#39;;
+    const STATUS_CODE_OVER_QUERY_LIMIT = &#39;OVER_QUERY_LIMIT&#39;;
+    const STATUS_CODE_REQUEST_DENIED = &#39;REQUEST_DENIED&#39;;
+    const STATUS_CODE_UNKNOWN_ERROR = &#39;UNKNOWN_ERROR&#39;;
+
+    /**
+     * Contains metadata on the request.
+     * @var string
+     */
+    private $status;
+
+    /**
+     * Contains an array of addresses as returned by the API from your original request.
+     * These are formatted by the geocoder and localized according to the language parameter passed with the request.
+     * @var string
+     */
+    private $originAddresses;
+
+    /**
+     * Contains an array of addresses as returned by the API from your original request.
+     * As with origin_addresses, these are localized if appropriate.
+     * @var string
+     */
+    private $destinationAddresses;
+
+    /**
+     * Contains an array of elements
+     * @var DistanceMatrixResponseElement
+     */
+    private $rows;
+
+    /**
+     * Creates an instance of DistanceMatrixResponse from raw API response in json
+     * @param $response
+     * @return DistanceMatrixResponse
+     * @throws DistanceMatrixResponseException
+     */
+    public static function fromApiResponse($response)
+    {
+        $instance = new self();
+
+        $distanceMatrix = json_decode($response, true);
+
+        if ($distanceMatrixError = self::getErrorFromResponse($distanceMatrix)) {
+            throw $distanceMatrixError;
+        }
+
+        $instance-&gt;status = self::getStatusFromResponse($distanceMatrix);
+        $instance-&gt;originAddresses = self::getOriginAddressesFromResponse($distanceMatrix);
+        $instance-&gt;destinationAddresses = self::getDestinationAddressesFromResponse($distanceMatrix);
+        $instance-&gt;rows = DistanceMatrixResponseElement::fromArrayDefinition(self::getRowsFromResponse($distanceMatrix));
+
+        return $instance;
+    }
+
+    private static function getErrorFromResponse(array $distanceMatrix)
+    {
+        if (!(is_array($distanceMatrix)
+            &amp;&amp; array_key_exists(self::DEFINITION_STATUS, $distanceMatrix)
+            &amp;&amp; $distanceMatrix[self::DEFINITION_STATUS] === self::STATUS_CODE_OK)
+        ) {
+            return new DistanceMatrixResponseException($distanceMatrix[self::DEFINITION_STATUS]);
+        }
+
+        return null;
+    }
+
+    private static function getStatusFromResponse(array $distanceMatrix)
+    {
+        if (!(is_array($distanceMatrix)
+            &amp;&amp; array_key_exists(self::DEFINITION_STATUS, $distanceMatrix)
+            &amp;&amp; is_string($distanceMatrix[self::DEFINITION_STATUS]))
+        ) {
+            return null;
+        }
+
+        return $distanceMatrix[self::DEFINITION_STATUS];
+    }
+
+    private static function getOriginAddressesFromResponse(array $distanceMatrix)
+    {
+        if (!(is_array($distanceMatrix)
+            &amp;&amp; array_key_exists(self::DEFINITION_ORIGIN_ADDRESSES, $distanceMatrix)
+            &amp;&amp; is_array($distanceMatrix[self::DEFINITION_ORIGIN_ADDRESSES])
+            &amp;&amp; count($distanceMatrix[self::DEFINITION_ORIGIN_ADDRESSES]) === 1)
+        ) {
+            return null;
+        }
+
+        return $distanceMatrix[self::DEFINITION_ORIGIN_ADDRESSES][0];
+    }
+
+    private static function getDestinationAddressesFromResponse(array $distanceMatrix)
+    {
+        if (!(is_array($distanceMatrix)
+            &amp;&amp; array_key_exists(self::DEFINITION_DESTINATION_ADDRESSES, $distanceMatrix)
+            &amp;&amp; is_array($distanceMatrix[self::DEFINITION_DESTINATION_ADDRESSES])
+            &amp;&amp; count($distanceMatrix[self::DEFINITION_DESTINATION_ADDRESSES]) === 1)
+        ) {
+            return null;
+        }
+
+        return $distanceMatrix[self::DEFINITION_DESTINATION_ADDRESSES][0];
+    }
+
+    private static function getRowsFromResponse(array $distanceMatrix)
+    {
+        if (!(is_array($distanceMatrix)
+            &amp;&amp; array_key_exists(self::DEFINITION_ROWS, $distanceMatrix)
+            &amp;&amp; is_array($distanceMatrix[self::DEFINITION_ROWS])
+            &amp;&amp; count($distanceMatrix[self::DEFINITION_ROWS]) === 1)
+        ) {
+            return null;
+        }
+
+        return $distanceMatrix[self::DEFINITION_ROWS][0];
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestinationAddresses()
+    {
+        return $this-&gt;destinationAddresses;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginAddresses()
+    {
+        return $this-&gt;originAddresses;
+    }
+
+    /**
+     * @return DistanceMatrixResponseElement
+     */
+    public function getRows()
+    {
+        return $this-&gt;rows;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this-&gt;status;
+    }
+
+}
+
+final class DistanceMatrixResponseElement
+{
+    const DEFINITION_ELEMENTS = &#39;elements&#39;;
+    const DEFINITION_STATUS = &#39;status&#39;;
+    const DEFINITION_DURATION = &#39;duration&#39;;
+    const DEFINITION_DISTANCE = &#39;distance&#39;;
+    const DEFINITION_DURATION_IN_TRAFFIC = &#39;duration_in_traffic&#39;;
+
+    const STATUS_CODE_OK = &#39;OK&#39;;
+    const STATUS_CODE_NOT_FOUND = &#39;NOT_FOUND&#39;;
+    const STATUS_CODE_ZERO_RESULTS = &#39;ZERO_RESULTS&#39;;
+
+    /**
+     * Element level status of the request
+     * @var string
+     */
+    private $status = null;
+
+    /**
+     * The length of time it takes to travel this route, expressed in seconds (the value field) and as text.
+     * The textual representation is localized according to the query&#39;s language parameter.
+     * @var array
+     */
+    private $duration = [];
+
+    /**
+     * The total distance of this route, expressed in meters (value) and as text. The textual value uses the unit
+     * system specified with the unit parameter of the original request, or the origin&#39;s region.
+     * @var array
+     */
+    private $distance = [];
+
+    /**
+     * The length of time it takes to travel this route, based on current and historical traffic conditions.
+     * @var array
+     */
+    private $durationInTraffic = [];
+
+    /**
+     * @param array $definition
+     * @return DistanceMatrixResponseElement
+     * @throws DistanceMatrixResponseElementException
+     */
+    public static function fromArrayDefinition(array $definition)
+    {
+        $instance = new self();
+
+        if ($distanceMatrixElementError = self::getErrorFromDefinition($definition)) {
+            throw $distanceMatrixElementError;
+        }
+
+        $instance-&gt;status = self::getStatusFromDefinition($definition);
+        $instance-&gt;duration = self::getDurationFromDefinition($definition);
+        $instance-&gt;distance = self::getDistanceFromDefinition($definition);
+        $instance-&gt;durationInTraffic = self::getDurationInTrafficFromDefinition($definition);
+
+        return $instance;
+    }
+
+    public static function getErrorFromDefinition(array $definition)
+    {
+        if (!(is_array($definition)
+            &amp;&amp; array_key_exists(self::DEFINITION_ELEMENTS, $definition)
+            &amp;&amp; is_array($definition[self::DEFINITION_ELEMENTS])
+            &amp;&amp; count($definition[self::DEFINITION_ELEMENTS]) === 1
+            &amp;&amp; is_array($definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; array_key_exists(self::DEFINITION_STATUS, $definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; $definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_STATUS] === self::STATUS_CODE_OK)
+        ) {
+            return new DistanceMatrixResponseElementException($definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_STATUS]);
+        }
+
+        return null;
+    }
+
+    public static function getStatusFromDefinition(array $definition)
+    {
+        if (!(is_array($definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; array_key_exists(self::DEFINITION_STATUS, $definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; is_string($definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_STATUS]))
+        ) {
+            return null;
+        }
+
+        return $definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_STATUS];
+    }
+
+    public static function getDurationFromDefinition(array $definition)
+    {
+        if (!(is_array($definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; array_key_exists(self::DEFINITION_DURATION, $definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; is_array($definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_DURATION]))
+        ) {
+            return [];
+        }
+
+        return $definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_DURATION];
+    }
+
+    public static function getDistanceFromDefinition(array $definition)
+    {
+        if (!(is_array($definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; array_key_exists(self::DEFINITION_DISTANCE, $definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; is_array($definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_DISTANCE]))
+        ) {
+            return [];
+        }
+
+        return $definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_DISTANCE];
+    }
+
+    public static function getDurationInTrafficFromDefinition(array $definition)
+    {
+        if (!(is_array($definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; array_key_exists(self::DEFINITION_DURATION_IN_TRAFFIC, $definition[self::DEFINITION_ELEMENTS][0])
+            &amp;&amp; is_array($definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_DURATION_IN_TRAFFIC]))
+        ) {
+            return [];
+        }
+
+        return $definition[self::DEFINITION_ELEMENTS][0][self::DEFINITION_DURATION_IN_TRAFFIC];
+    }
+
+    /**
+     * @return array
+     */
+    public function getDistance()
+    {
+        return $this-&gt;distance;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDuration()
+    {
+        return $this-&gt;duration;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDurationInTraffic()
+    {
+        return $this-&gt;durationInTraffic;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this-&gt;status;
+    }
+}
+
+final class DistanceMatrixResponseException extends \Exception
+{
+
+}
+
+final class DistanceMatrixResponseElementException extends \Exception
+{
+
+}
+
+echo new TravelTimePlugin();
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

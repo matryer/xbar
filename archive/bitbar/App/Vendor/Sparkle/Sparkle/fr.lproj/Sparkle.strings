@@ -1,0 +1,81 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ a été téléchargé. Voulez-vous l’installer et relancer %1$@ maintenant ?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ ne peut pas être mis à jour quand il fonctionne à partir d’un volume en lecture seule, comme une image disque ou un lecteur optique. Déplacez %1$@ dans votre dossier Applications, relancez-le à partir de là et réessayez.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ est la version la plus récente disponible.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ est disponible ; vous utilisez la version %3$@. Voulez-vous le télécharger maintenant ?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ téléchargé";
+
+"%@ of %@" = "%1$@ sur %2$@";
+
+"A new version of %@ is available!" = "Une nouvelle version de %@ est disponible !";
+
+"A new version of %@ is ready to install!" = "Une nouvelle version de %@ est prête à être installée !";
+
+"An error occurred in retrieving update information. Please try again later." = "Une erreur est survenue en récupérant les informations de mise à jour. Veuillez réessayer plus tard.";
+
+"An error occurred while downloading the update. Please try again later." = "Une erreur est survenue pendant le téléchargement de la mise à jour. Veuillez réessayer plus tard.";
+
+"An error occurred while extracting the archive. Please try again later." = "Une erreur est survenue pendant l’extraction des données de l’archive. Veuillez réessayer plus tard.";
+
+"An error occurred while installing the update. Please try again later." = "Une erreur est survenue pendant l’installation de la mise à jour. Veuillez réessayer plus tard.";
+
+"An error occurred while parsing the update feed." = "Une erreur est survenue pendant l’analyse de la mise à jour.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Une erreur est survenue en relançant %1$@, mais la nouvelle version sera disponible à la prochaine ouverture de %1$@.";
+
+/* the unit for bytes */
+"B" = "octets";
+
+"Cancel" = "Annuler";
+
+"Cancel Update" = "Annuler la mise à jour";
+
+"Checking for updates..." = "Recherche de mises à jour…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Téléchargement de la mise à jour…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Extraction de la mise à jour…";
+
+/* the unit for gigabytes */
+"GB" = "Go";
+
+"Install and Relaunch" = "Installer et relancer";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Installation de la mise à jour…";
+
+/* the unit for kilobytes */
+"KB" = "ko";
+
+/* the unit for megabytes */
+"MB" = "Mo";
+
+"OK" = "OK";
+
+"Ready to Install" = "Prêt pour l’installation";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "%1$@ doit-il rechercher automatiquement les mises à jour ? La mise à jour est toujours possible manuellement depuis le menu %1$@.";
+
+"Update Error!" = "Erreur pendant la mise à jour !";
+
+"Updating %@" = "Mise à jour de %@";
+
+"You already have the newest version of %@." = "Vous possédez déjà la version la plus récente de %@.";
+
+"You're up-to-date!" = "Votre logiciel est à jour !";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "En savoir plus…";
+
+"The update is improperly signed." = "La signature numérique de la mise à jour est incorrecte";

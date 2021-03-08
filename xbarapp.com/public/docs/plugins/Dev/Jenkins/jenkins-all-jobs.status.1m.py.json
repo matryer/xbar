@@ -1,0 +1,53 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Jenkins/jenkins-all-jobs.status.1m.py",
+				"filename": "jenkins-all-jobs.status.1m.py",
+				"content": "#!/usr/bin/env python\n\n# \u003cbitbar.title\u003eJenkins All Build Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDan Rassi\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edrassi\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow current status of *all* jobs on a Jenkins instance, colors indicating status of each build and overall status. Clicks navigate to console output of last build.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/ARJHMjy.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython,requests\u003c/bitbar.dependencies\u003e\n\nimport sys\nimport requests\nimport collections\n\n# Credentials to your jenkins instance\nCREDS = {\n    'USER' : 'user',\n    'PASS' : 'pass',\n'BASE_URL' : 'jenkins-url.com',\n  'SCHEMA' : 'https',\n}\n\n# Text prefix for in-progress builds\nIS_BUILDING_PREFIX = '*'\n# Suffix appended to build URLs on click\nURL_SUFFIX = 'lastBuild/console'\n# Text displayed in the OSX menu bar\nBAR_TEXT = 'build'\n\n# Color defs @ https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/hudson/model/BallColor.java\ncolor_map = collections.OrderedDict([\n    ('grey'    , 'lightgray'),\n    ('disabled', 'lightgray'),\n    ('aborted' , 'lightgray'),\n    ('notbuilt', 'lightgray'),\n    ('blue'    ,  None), # leave default unspecified - black is picked in light mode, and white in dark mode\n    ('yellow'  , 'yellow'),\n    ('red'     , 'red'),\n])\n\nURL='{SCHEMA}://{USER}:{PASS}@{BASE_URL}/api/json?pretty=true'.format(**CREDS)\n\nreq = requests.get(URL)\n\nif req.status_code != requests.codes.ok:\n    sys.exit('error %d from jenkins!' % req.status_code)\n\noutput = ''\nnotify_val = 0\n\ndef get_color(job):\n    is_building = '_anime' in job['color']\n    color_val = color_map.keys().index(job['color'].replace('_anime',''))\n    color = color_map.values()[color_val]\n    return color, color_val, is_building\n\ndef get_color_def(color):\n    return ('color=%s' % color) if color is not None else ''\n\nfor job in req.json()['jobs']:\n    color, color_val, is_building = get_color(job)\n    output += '%s%s|%s href=%s\\n' % (IS_BUILDING_PREFIX if is_building else '',\n                                     job['name'], get_color_def(color), job['url'] + URL_SUFFIX)\n    notify_val = max(notify_val, color_val)\n\nbar_color = color_map.values()[notify_val]\n\nprint BAR_TEXT, '|', get_color_def(bar_color)\nprint '---'\nprint output\n"
+			}
+		],
+		"path": "Dev/Jenkins/jenkins-all-jobs.status.1m.py",
+		"filename": "jenkins-all-jobs.status.1m.py",
+		"dir": "Dev/Jenkins",
+		"docsPlugin": "Dev/Jenkins/jenkins-all-jobs.status.1m.py.html",
+		"docsCategory": "Dev/Jenkins.html",
+		"pathSegments": [
+			"Dev",
+			"Jenkins"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Jenkins",
+				"text": "Jenkins",
+				"isLast": true
+			}
+		],
+		"title": "Jenkins All Build Status",
+		"version": "v1.0",
+		"author": "Dan Rassi",
+		"authors": [
+			{
+				"name": "dan rassi",
+				"githubUsername": "drassi",
+				"imageURL": "https://avatars.githubusercontent.com/u/129646?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Show current status of *all* jobs on a Jenkins instance, colors indicating status of each build and overall status. Clicks navigate to console output of last build.",
+		"imageURL": "http://i.imgur.com/ARJHMjy.png",
+		"dependencies": [
+			"python",
+			"requests"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:49.426483Z",
+		"vars": null
+	}
+}

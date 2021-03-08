@@ -1,0 +1,54 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Tools/keybase-encrypt.10m.rb",
+				"filename": "keybase-encrypt.10m.rb",
+				"content": "#!/usr/bin/env LC_ALL=en_US.UTF-8 ruby\n\n# \u003cbitbar.title\u003eKeybase Encrypt/Decrypt\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAsh Wu(hSATAC), Aaron Huang(aar0ntw)\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003epan-cat\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eA helper for keybase encryption and decryption. Simply copy content you want to decrypt/encrypt and click action, the result will be copied into your clipboard.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby,keybase\u003c/bitbar.dependencies\u003e\n\n#--- User parameters ----------------------------------------------------------\nKEYBASE = \"/usr/local/bin/keybase\"\n\n#--- Script internals ---------------------------------------------------------\n# TODO: Handle keybase cli error with color or icon?\n\nREFRESH = \"---\\nRefresh | refresh=true\"\n\n# decrypt\nif ARGV[0] == \"decrypt\"\n  `/usr/bin/pbpaste | #{KEYBASE} decrypt | /usr/bin/pbcopy`\n  exit\nend\n\n# ecrypt\nif ARGV[0] == \"encrypt\"\n  target = ARGV[1]\n  `/usr/bin/pbpaste | #{KEYBASE} encrypt #{target} | /usr/bin/pbcopy`\n  exit\nend\n\n\nicon = \"🔑\"\n\n\nfollowing = `#{KEYBASE} list-following`.split(\"\\n\").map{|f|\n  \"--#{f} | bash=#{__FILE__} param1=encrypt param2=#{f} terminal=false\"\n}.join(\"\\n\")\n\n\nputs \"\"\"\n#{icon}\n---\nEncrypt\n#{following}\n---\nDecrypt | bash='#{__FILE__}' param1=decrypt terminal=false\n---\n#{REFRESH}\n\"\"\"\n"
+			}
+		],
+		"path": "Tools/keybase-encrypt.10m.rb",
+		"filename": "keybase-encrypt.10m.rb",
+		"dir": "Tools",
+		"docsPlugin": "Tools/keybase-encrypt.10m.rb.html",
+		"docsCategory": "Tools.html",
+		"pathSegments": [
+			"Tools"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Tools",
+				"text": "Tools",
+				"isLast": true
+			}
+		],
+		"title": "Keybase Encrypt/Decrypt",
+		"version": "v0.1",
+		"author": "Ash Wu(hSATAC),  Aaron Huang(aar0ntw)",
+		"authors": [
+			{
+				"name": "Pan Cat Technologies",
+				"githubUsername": "pan-cat",
+				"imageURL": "https://avatars.githubusercontent.com/u/13352124?v=4",
+				"bio": "Build software better, together, with cats.",
+				"primary": true
+			},
+			{
+				"name": "Aaron Huang(aar0ntw)",
+				"githubUsername": "",
+				"imageURL": "",
+				"bio": "",
+				"primary": false
+			}
+		],
+		"desc": "A helper for keybase encryption and decryption. Simply copy content you want to decrypt/encrypt and click action, the result will be copied into your clipboard.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"ruby",
+			"keybase"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:07.597521Z",
+		"vars": null
+	}
+}

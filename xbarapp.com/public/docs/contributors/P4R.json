@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Pere Albujer",
+		"githubUsername": "P4R",
+		"imageURL": "https://avatars.githubusercontent.com/u/7404532?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/countdown.1s.py",
+					"filename": "countdown.1s.py",
+					"content": "#!/usr/bin/env python\n\n# \u003cbitbar.title\u003eCountdown\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ePere Albujer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eP4R\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows countdown of established date.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/7404532/12356787/ae62636c-bba4-11e5-8ff8-6a1eaffcbfc2.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\n\nfrom datetime import datetime\nimport sys\nfrom exceptions import ValueError\n\n\ndef dateDiffInSeconds(date1, date2):\n    timedelta = date2 - date1\n    return timedelta.days * 24 * 3600 + timedelta.seconds\n\n\ndef daysHoursMinutesSecondsFromSeconds(seconds):\n    minutes, seconds = divmod(seconds, 60)\n    hours, minutes = divmod(minutes, 60)\n    days, hours = divmod(hours, 24)\n    return (days, hours, minutes)\n\n\ndef main():\n\n    if \"--help\" in sys.argv:\n        print(\n            \"\"\"\nTo pass arguments to this script, you can create a separate sh file and execute the main script with it.\n\nAvailable Args:\n    --bar-title: This will appear as the first line in the output. The default is 'Countdown Timer'.\n    --date-format: You can provide a custom date format. The default is '%d-%m-%Y %H:%M'\n    --no-cycle: If this is present in the arguments, the times will not cycle.\n    --help: Prints this message and exits.\n\nExample:\n    countdown.py \"--bar-title\" \"Custom Bar Title\" \"--no-cycle\" \"--date-format\" \"%d-%m-%Y\" \"Time #1\" \"17-07-2017\" \"Time #2\" \"15-08-2017\"\nScript Example:\n    chmod +x /Path/to/countdown.py \u0026\u0026 /Path/to/countdown.py \"--bar-title\" \"Custom Bar Title\" \"--no-cycle\" \"--date-format\" \"%d-%m-%Y\" \"Time #1\" \"17-07-2017\" \"Time #2\" \"15-08-2017\"\n            \"\"\"\n        )\n        return\n\n    arg_count = len(sys.argv)\n    now = datetime.now()\n    date_format = '%d-%m-%Y %H:%M'\n    bar_title = \"Countdown Timer\"\n\n    label = \"\"\n    time = None\n\n    if \"--bar-title\" in sys.argv:\n        found_index = sys.argv.index(\"--bar-title\")\n        if len(sys.argv) \u003e found_index + 1:\n            bar_title = sys.argv[found_index + 1]\n\n    if \"--date-format\" in sys.argv:\n        found_index = sys.argv.index(\"--date-format\")\n        if len(sys.argv) \u003e found_index + 1:\n            date_format = sys.argv[found_index + 1]\n\n    print(bar_title + \" | font=\\'Monospace\\'\")\n    if \"--no-cycle\" in sys.argv:\n        print(\"---\")\n\n    if arg_count == 1:\n        print(\"\"\"\n            Please pass the correct arguments for this plugin to work.\n            You can create an sh file that executes the main Python\n            script file with the appropriate arguments.\n            For examples, see the script file.\n        \"\"\")\n\n    for index in range(1, arg_count):\n        arg = sys.argv[index].strip()\n        if arg == \"--no-cycle\":\n            continue\n\n        if arg == \"--bar-title\":\n            continue\n\n        if index \u003e 0 and sys.argv[index - 1] == \"--date-format\":\n            continue\n\n        try:\n            time = datetime.strptime(arg, date_format)\n            print(label + \": %d d, %d h, %d m | font=\\'Monospace\\'\" % daysHoursMinutesSecondsFromSeconds(dateDiffInSeconds(now, time)))\n        except ValueError:\n            label = arg\n\n\nif __name__ == \"__main__\":\n    main()\n"
+				}
+			],
+			"path": "Time/countdown.1s.py",
+			"filename": "countdown.1s.py",
+			"dir": "Time",
+			"docsPlugin": "Time/countdown.1s.py.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Countdown",
+			"version": "v2.0",
+			"author": "Pere Albujer",
+			"authors": [
+				{
+					"name": "Pere Albujer",
+					"githubUsername": "P4R",
+					"imageURL": "https://avatars.githubusercontent.com/u/7404532?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows countdown of established date.",
+			"imageURL": "https://cloud.githubusercontent.com/assets/7404532/12356787/ae62636c-bba4-11e5-8ff8-6a1eaffcbfc2.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:05.637409Z",
+			"vars": null
+		}
+	]
+}

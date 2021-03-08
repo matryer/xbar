@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/coincaplite.1m.py",
+				"filename": "coincaplite.1m.py",
+				"content": "#!/usr/bin/env PYTHONIOENCODING=UTF-8 /usr/local/bin/python3\n\nimport requests\n\n# \u003cbitbar.title\u003eCoincap Lite\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ePeter Stenger\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ereteps\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eRetrieves trading information about a coin on coinmarketcap using the v2 api. \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/NiRqDUt.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython3\u003c/bitbar.dependencies\u003e\n\ncoins_usd = ['bitcoin','ethereum','litecoin']\n\ncoins_btc = ['stellar','monero']\n\nclass DoesNotExistError(Exception):\n    pass\n\ndef return_id(name):\n    for coin in ALL_COINS:\n        if coin[\"website_slug\"] == name:\n            return coin[\"id\"]\n    raise DoesNotExistError(\"Could not find the coin {}. Is that the full name coinmarketcap uses in it's URL?\".format(name))\n\ndef display_coins(coins, display_in=\"USD\"):\n    formats = {\n            \"USD\":\"{: \u003c5} {:0\u003c9.3f} {:0\u003c+6.2f}% {:0\u003c+6.2f}% {:0\u003e3}|href='https://coinmarketcap.com/currencies/{}' font='Menlo'\",\n            \"BTC\":\"{: \u003c5} {:0\u003c9.7f} {:0\u003c+6.2f}% {:0\u003c+6.2f}% {:0\u003e3}|href='https://coinmarketcap.com/currencies/{}' font='Menlo'\"\n    }\n    for coin in coins:\n        coin_id = return_id(coin)\n        data = requests.get(\"https://api.coinmarketcap.com/v2/ticker/{}?convert={}\".format(coin_id, display_in)).json()[\"data\"]\n        print(formats[display_in].format(data[\"symbol\"], data[\"quotes\"][display_in][\"price\"], data[\"quotes\"][display_in][\"percent_change_24h\"], \\\n                data[\"quotes\"][display_in][\"percent_change_7d\"], data[\"rank\"], data[\"website_slug\"]))\n\n\nprint('Ƀ')\nprint('---')\nALL_COINS = requests.get(\"https://api.coinmarketcap.com/v2/listings\").json()[\"data\"]\nIMAGE_URL = \"https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/{}.png\"\nprint('COIN     USD    24 HOUR  7 DAY  RANK|font=\"Menlo\"')\ndisplay_coins(coins_usd)\nprint('COIN     BTC    24 HOUR  7 DAY  RANK|font=\"Menlo\"')\ndisplay_coins(coins_btc, display_in=\"BTC\")\n"
+			}
+		],
+		"path": "Cryptocurrency/coincaplite.1m.py",
+		"filename": "coincaplite.1m.py",
+		"dir": "Cryptocurrency",
+		"docsPlugin": "Cryptocurrency/coincaplite.1m.py.html",
+		"docsCategory": "Cryptocurrency.html",
+		"pathSegments": [
+			"Cryptocurrency"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": true
+			}
+		],
+		"title": "Coincap Lite",
+		"version": "v1.0",
+		"author": "Peter Stenger",
+		"authors": [
+			{
+				"name": "Peter Stenger",
+				"githubUsername": "reteps",
+				"imageURL": "https://avatars.githubusercontent.com/u/13869303?v=4",
+				"bio": "17",
+				"primary": true
+			}
+		],
+		"desc": "Retrieves trading information about a coin on coinmarketcap using the v2 api. ",
+		"imageURL": "https://i.imgur.com/NiRqDUt.png",
+		"dependencies": [
+			"python3"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:47.506037Z",
+		"vars": null
+	}
+}

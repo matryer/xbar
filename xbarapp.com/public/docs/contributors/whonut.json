@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Dylan",
+		"githubUsername": "whonut",
+		"imageURL": "https://avatars.githubusercontent.com/u/3856888?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/fuzzyclock.1s.py",
+					"filename": "fuzzyclock.1s.py",
+					"content": "#!/usr/bin/python\n\n# \u003cbitbar.title\u003eFuzzy Clock\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eDylan Evans\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ewhonut\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay the current system time in a 'fuzzy' manner, rounding to the nearest 5 minutes and using words.\u003c/bitbar.desc\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n#\n# 1 second refresh rate may be overkill. Wording \u0026 formatting of the time may\n# also be easily altered below.\n\nfrom __future__ import absolute_import, division, print_function, unicode_literals\nfrom time import localtime\n\n\ndef round_to_nearest_five(n):\n    '''Round the float n to the nearest 5.'''\n    return int(5 * round(n / 5))\n\n\ndef next_hour(hour):\n    # modulo before adding one so that 11 =\u003e 12 and not 0\n    return (hour % 12) + 1\n\n\ndef fuzzy_time(struct_time):\n    '''Return the current 'fuzzy time' (rounded to the nearest 5 minutes) as a\n       string.'''\n\n    # Split it into hours \u0026 minutes and rounding the minutes to make the time\n    # 'fuzzy'. Use 12-hour clock.\n    hour = (struct_time.tm_hour % 12) or 12\n    minute = struct_time.tm_min + (struct_time.tm_sec / 60)\n    rounded_min = round_to_nearest_five(minute)\n    if rounded_min == 60:\n        rounded_min = 0\n        hour = next_hour(hour)\n\n    num_word = {1: \"one\", 2: \"two\", 3: \"three\", 4: \"four\", 5: \"five\", 6: \"six\",\n                7: \"seven\", 8: \"eight\", 9: \"nine\", 10: \"ten\", 11: \"eleven\",\n                12: \"twelve\", 20: \"twenty\", 25: \"twenty-five\"}\n\n    # Work out what to display and display it.\n    if rounded_min == 0:\n        return \"{hr} o'clock\".format(hr=num_word[hour])\n    elif rounded_min == 15:\n        return \"quarter past {hr}\".format(hr=num_word[hour])\n    elif rounded_min \u003c 30:\n        return \"{min} past {hr}\".format(min=num_word[rounded_min],\n                                        hr=num_word[hour])\n    elif rounded_min == 30:\n        return \"half past {hr}\".format(hr=num_word[hour])\n    elif rounded_min == 45:\n        return \"quarter to {hr}\".format(hr=num_word[next_hour(hour)])\n    else:\n        return \"{min} to {hr}\".format(min=num_word[60-rounded_min],\n                                      hr=num_word[next_hour(hour)])\n\nif __name__ == '__main__':\n    print(fuzzy_time(localtime()))\n"
+				}
+			],
+			"path": "Time/fuzzyclock.1s.py",
+			"filename": "fuzzyclock.1s.py",
+			"dir": "Time",
+			"docsPlugin": "Time/fuzzyclock.1s.py.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Fuzzy Clock",
+			"version": "1.0",
+			"author": "Dylan Evans",
+			"authors": [
+				{
+					"name": "Dylan",
+					"githubUsername": "whonut",
+					"imageURL": "https://avatars.githubusercontent.com/u/3856888?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Display the current system time in a 'fuzzy' manner, rounding to the nearest 5 minutes and using words.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:05.796537Z",
+			"vars": null
+		}
+	]
+}

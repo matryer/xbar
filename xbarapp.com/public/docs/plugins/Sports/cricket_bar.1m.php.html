@@ -1,0 +1,1316 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Cricket Bar in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Displays live cricket score of a selected match, using data from ESPNcricinfo or Cricbuzz. - install xbar for free to get started.'>
+	<meta name='author' content='Adi'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://www.greatoceanmedia.com.au/images/62.png'>
+	<meta itemprop='name' content='Cricket Bar in your macOS menu bar'>
+	<meta itemprop='description' content='Displays live cricket score of a selected match, using data from ESPNcricinfo or Cricbuzz. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Cricket Bar in your macOS menu bar'>
+	<meta name='twitter:description' content='Displays live cricket score of a selected match, using data from ESPNcricinfo or Cricbuzz. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://www.greatoceanmedia.com.au/images/62.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Cricket Bar in your macOS menu bar'>
+	<meta property='og:description' content='Displays live cricket score of a selected match, using data from ESPNcricinfo or Cricbuzz. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Sports/cricket_bar.1m.php.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://www.greatoceanmedia.com.au/images/62.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://www.greatoceanmedia.com.au/images/62.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://www.greatoceanmedia.com.au/images/62.png'>
+	<link rel='shortcut icon' href='http://www.greatoceanmedia.com.au/images/62.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Cricket Bar</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/gomedia-adi.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/13227940?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/gomedia-adi.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										gomedia-adi (<code style='color:white;'>@gomedia-adi</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Displays live cricket score of a selected match, using data from ESPNcricinfo or Cricbuzz.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Sports%2fcricket_bar.1m.php'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://www.greatoceanmedia.com.au/images/62.png' 
+				alt='Image preview of Cricket Bar plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>cricket_bar.1m.php</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Sports/cricket_bar.1m.php'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Sports/cricket_bar.1m.php'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env php
+&lt;?php
+
+# &lt;bitbar.title&gt;Cricket Bar&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Adi&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;gomedia-adi&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Displays live cricket score of a selected match, using data from ESPNcricinfo or Cricbuzz.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://www.greatoceanmedia.com.au/images/62.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;php&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;http://www.greatoceanmedia.com.au/bitbar&lt;/bitbar.abouturl&gt;
+
+// Inspired by, and respect to Anup Sam Abraham&#39;s Live Cricket Scores v1.1 (https:getbitbar.com/plugins/Sports/live_cricket.2m.py)
+// BitBar plugin help: https:github.com/matryer/bitbar
+//
+// Plugin updated 25/11/17
+//
+// Version history
+// 1.1	- option to set timezone
+//		- selected match ID reset on feed change
+//		- timeout set on Curl connect
+// 1.0	- initial release
+
+//TODO 
+// user specific config/log files
+// option to hide scores in menubar
+// weather link?
+// score format option - Standard, Australia
+// check out [break] in ESPNcricinfo - more informative than live_state (&#34;Stumps&#34; vs &#34;Stumps - Day 3&#34;)?
+
+//??? KNOWN ISSUES
+//
+// General
+// - long menubar displays (e.g. matches with two innings &amp; scores per team) may &#34;disappear&#34; due to lack of room with other menubar items and application menus
+//		- workaround: switch to application with fewer menus, e.g. Finder
+//		- future enhancement: option to hide scores in menubar
+//
+// ESPNcricinfo
+// - home team not always first in summary
+//		- workaround: none
+//		- fix: home team info in detailed feed
+// - summary score doesn&#39;t keep pace with detailed feed score (not sure of bug or deliberate on ESPNcricinfo&#39;s part)
+//		- workaround: none
+//		- fix: only use detailed feed (ties in with previous fix)
+//
+// Cricbuzz
+// - last wicket dismissal information not available
+// 		- workaround/fix: none
+// - duplicate entries in current match list
+//		- workaround: none
+//		- fix: may be difficult - a completed match can have two match IDs
+// - full team names rarely supplied
+//		- workaround/fix: hardcode translations
+// - feed only provides limited match types: TEST, ODI, T20
+//		- workaround/fix: none
+
+
+define(&#39;UA&#39;, &#39;Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30&#39;);
+define(&#39;CONFIG_FILE&#39;, &#34;/var/tmp/bitbar.cricket_bar.config.php&#34;);
+define(&#39;LOG_FILE&#39;, &#34;/var/tmp/bitbar.cricket_bar.log&#34;);
+define(&#39;DEBUG_FILE&#39;, &#34;/var/tmp/bitbar.cricket_bar.debug.log&#34;);
+
+global $abbrev_map;
+
+function update_config($selected_match_id, $feed, $timezone) {
+// rewrite config file with given values
+	file_put_contents(CONFIG_FILE, &#34;&lt;?php\n&#34;);
+	file_put_contents(CONFIG_FILE, &#34;// CRICKET_BAR CONFIGURATION\n&#34;, FILE_APPEND);
+	file_put_contents(CONFIG_FILE, &#34;\$feed = &#39;$feed&#39;;\n&#34;, FILE_APPEND);
+	file_put_contents(CONFIG_FILE, &#34;\$selected_match_id = &#39;$selected_match_id&#39;;\n&#34;, FILE_APPEND);
+	file_put_contents(CONFIG_FILE, &#34;\$timezone = &#39;$timezone&#39;;\n&#34;, FILE_APPEND);
+	file_put_contents(CONFIG_FILE, &#34;?&gt;\n&#34;, FILE_APPEND);
+}
+
+function tz_error_handler($errno, $errstr) {
+// fix for PHP timezone config problem
+	$mac_timezone_abbr = exec(&#39;date &#43;%Z&#39;); // get local Mac timezone abbreviation, e.g. AEST
+	file_put_contents(LOG_FILE, &#39;**(&#39;.__FUNCTION__.&#39;) MAC TIMEZONE ABBR: &#39;.$mac_timezone_abbr.&#34;\n&#34;, FILE_APPEND);
+	$mac_timezone_name = timezone_name_from_abbr(exec(&#39;date &#43;%Z&#39;)); // convert timezone abbreviation to name, e.g. Australia/Melbourne
+	file_put_contents(LOG_FILE, &#39;**(&#39;.__FUNCTION__.&#39;) SET PHP TO MAC TIMEZONE NAME: &#39;.$mac_timezone_name.&#34;\n&#34;, FILE_APPEND);
+	date_default_timezone_set($mac_timezone_name); // set PHP timezone
+}
+
+function curl_obj($url) {
+// curly whirly
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_USERAGENT, UA);
+	curl_setopt($ch, CURLOPT_FAILONERROR, TRUE);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); // set connection timeout (workaround for long connection delays - seen during 1st Ashes Test on Cricbuzz - data is still received though)
+	$output = curl_exec($ch);
+	file_put_contents(LOG_FILE, &#34;**(&#34;.__FUNCTION__.&#34;) CURL: &#34;.$url.&#34;\n&#34;, FILE_APPEND);
+	if (curl_errno($ch)) // may not pick up website problems though
+		file_put_contents(LOG_FILE, &#34;**CURL ERROR: &#34;.curl_error($ch).&#34;\n&#34;, FILE_APPEND);
+	curl_close($ch);
+	// use URL extension to determine decode action
+	$path_parts = pathinfo($url);
+	file_put_contents(LOG_FILE, &#34;**(&#34;.__FUNCTION__.&#34;) DATA FORMAT: &#34;, FILE_APPEND);
+	if ($path_parts[&#39;extension&#39;] == &#39;json&#39;) {
+		file_put_contents(LOG_FILE, &#34;JSON\n&#34;, FILE_APPEND);
+		return json_decode($output);
+	}
+	else if ($path_parts[&#39;extension&#39;] == &#39;xml&#39;) {
+		file_put_contents(LOG_FILE, &#34;XML\n&#34;, FILE_APPEND);
+		return @simplexml_load_string($output); // suppress warnings/errors, otherwise everything goes pear shaped - can occur if XML feed contains badly formatted data (e.g. &amp; instead of &amp;amp;)
+	}
+	else {
+		file_put_contents(LOG_FILE, &#34;UNKNOWN\n&#34;, FILE_APPEND);
+		return &#39;&#39;;
+	}
+}
+
+function get_batsman($detailed_feed, $player_id) {
+// return batsman&#39;s name from given player ID (ESPNcricinfo)
+	$name = &#39;&#39;;
+	foreach($detailed_feed-&gt;team as $team) {
+		foreach ($team-&gt;player as $player) {
+			if ($player-&gt;player_id == $player_id) {
+				$name = $player-&gt;card_long;
+				break;
+			}
+		}
+		if ($name) break;
+	}
+	return ($name ? $name : &#39;?&#39;);
+}
+
+function translate_name($abbrev) {
+// replace given abbreviation with translation if exists (ESPNcricinfo &amp; Cricbuzz)
+	global $abbrev_map;
+
+	$this_abbrev = strtoupper($abbrev);
+	if (array_key_exists($this_abbrev, $abbrev_map))
+		return $abbrev_map[$this_abbrev];
+	else
+		return $abbrev;
+}
+
+function translate_names($string) {
+// translate all abbreviations in a string (Cricbuzz)
+	$words = explode(&#39; &#39;, $string);
+	foreach ($words as $index =&gt; $word)
+		$words[$index] = translate_name($word);
+	return implode(&#39; &#39;, $words);
+}
+
+function projected_score($noofovers, $overs, $score) {
+// calculate projected score based on no. of overs in match, current over &amp; current score (ESPNcricinfo &amp; Cricbuzz)
+	if (strpos($overs,&#39;.&#39;) === FALSE)
+		$balls = (int)$overs * 6;
+	else {
+		$parts = explode(&#39;.&#39;,$overs);
+		$balls = $parts[0] * 6 &#43; $parts[1];
+	}
+	$proj_score = round($score / ($balls / 6) * $noofovers);
+	return &#34; Proj Scr $proj_score&#34;;
+}
+
+//-------------------------------------------------------------------------------------------------
+
+//??? CONFIG FILE
+
+// initialise config file
+if (!file_exists(CONFIG_FILE))
+	touch(CONFIG_FILE);
+
+// read config file
+include(CONFIG_FILE);
+
+// provide defaults
+if (!isset($feed))
+	$feed = &#39;espncricinfo&#39;;
+if (!isset($selected_match_id))
+	$selected_match_id = &#39;&#39;;
+if (!isset($timezone))
+	$timezone = &#39;&#39;;
+
+// update config (value supplied as argument, update config file, exit script)
+if (isset($argv[1])) { // match, feed or timezone
+	if (isset($argv[2])) { // feed or timezone
+		if (isset($argv[3])) { // timezone
+			update_config($selected_match_id, $feed, $argv[3]);
+		}
+		else { // feed
+			update_config(&#39;unknown&#39;, $argv[2], $timezone); // reset selected match when changing feed
+		}
+	}
+	else { // match
+		update_config($argv[1], $feed, $timezone);
+	}
+	exit;
+}
+
+//??? INITIALISE
+
+// initialise logfile
+file_put_contents(LOG_FILE, &#39;**CRICKET_BAR BITBAR PLUGIN&#39;.&#34;\n&#34;);
+file_put_contents(LOG_FILE, &#39;**CONFIG FEED: &#39;.$feed.&#34;\n&#34;, FILE_APPEND);
+file_put_contents(LOG_FILE, &#39;**CONFIG SELECTED_MATCH_ID: &#39;.$selected_match_id.&#34;\n&#34;, FILE_APPEND);
+file_put_contents(LOG_FILE, &#39;**CONFIG TIMEZONE: &#39;.$timezone.&#34;\n&#34;, FILE_APPEND);
+
+if ($timezone) { // set PHP timezone from config
+	date_default_timezone_set($timezone);
+	file_put_contents(LOG_FILE, &#39;**TIMEZONE SET FROM CONFIG&#39;.&#34;\n&#34;, FILE_APPEND);
+}
+else { // trap &amp; fix PHP timezone config warning problem (not an issue in PHP7)
+	set_error_handler(&#34;tz_error_handler&#34;);
+	@date_default_timezone_get();
+	restore_error_handler();
+}
+
+file_put_contents(LOG_FILE, &#39;**PHP VERSION: &#39;.phpversion().&#34;\n&#34;, FILE_APPEND);
+file_put_contents(LOG_FILE, &#39;**PHP TIMEZONE: &#39;.date_default_timezone_get().&#34;\n&#34;, FILE_APPEND);
+file_put_contents(LOG_FILE, &#39;**MAC TIMEZONE ABBR: &#39;.exec(&#39;date &#43;%Z&#39;).&#34;\n&#34;, FILE_APPEND);
+file_put_contents(LOG_FILE, &#39;**MAC TIMEZONE NAME: &#39;.timezone_name_from_abbr(exec(&#39;date &#43;%Z&#39;)).&#34;\n&#34;, FILE_APPEND);
+
+//??? FEED INFO
+
+$feed_info = array(
+	&#39;espncricinfo&#39; =&gt;
+		array(
+			&#39;name&#39; =&gt; &#39;ESPNcricinfo&#39;,
+			&#39;site_url&#39; =&gt; &#39;http://www.espncricinfo.com&#39;,
+			&#39;base_url&#39; =&gt; &#39;http://api.espncricinfo.com&#39;,
+			&#39;summary_path&#39; =&gt; &#39;/netstorage/summary.json&#39;
+		),
+	&#39;cricbuzz&#39; =&gt;
+		array(
+			&#39;name&#39; =&gt; &#39;Cricbuzz&#39;,
+			&#39;site_url&#39; =&gt; &#39;http://www.cricbuzz.com&#39;,
+			&#39;base_url&#39; =&gt; &#39;http://synd.cricbuzz.com&#39;,
+			&#39;summary_path&#39; =&gt; &#39;/j2me/1.0/livematches.xml&#39;
+		)
+);
+
+//??? ABBREVIATIONS
+
+$abbrev_map = array();
+if ($feed == &#39;espncricinfo&#39;)
+	// to fix dodgy country abbreviations (menubar summary only)
+	$abbrev_map = array(
+		&#39;BDESH&#39; =&gt; &#39;BAN&#39;,
+		&#39;INDIA&#39; =&gt; &#39;IND&#39;,
+		&#39;SCOT&#39; =&gt; &#39;SCO&#39;,
+	);
+else if ($feed == &#39;cricbuzz&#39;)
+	// Cricbuzz doesn&#39;t seem to be keen on providing full names so here&#39;s a partial translation
+	$abbrev_map = array(
+		&#39;AFG&#39; =&gt; &#39;Afganistan&#39;,
+		&#39;AUS&#39; =&gt; &#39;Australia&#39;,
+		&#39;BAN&#39; =&gt; &#39;Bangladesh&#39;,
+		&#39;DERBY&#39; =&gt; &#39;Derbyshire&#39;,
+		&#39;DUR&#39; =&gt; &#39;Durham&#39;,
+		&#39;ENG&#39; =&gt; &#39;England&#39;,
+		&#39;ESS&#39; =&gt; &#39;Essex&#39;,
+		&#39;GLAM&#39; =&gt; &#39;Glamorgan&#39;,
+		&#39;GLOUCS&#39; =&gt; &#39;Gloucestershire&#39;,
+		&#39;HAM&#39; =&gt; &#39;Hampshire&#39;,
+		&#39;HK&#39; =&gt; &#39;Hong Kong&#39;,
+		&#39;IND&#39; =&gt; &#39;India&#39;,
+		&#39;IRE&#39; =&gt; &#39;Ireland&#39;,
+		&#39;KENT&#39; =&gt; &#39;Kent&#39;,
+		&#39;KEN&#39; =&gt; &#39;Kenya&#39;,
+		&#39;LEIC&#39; =&gt; &#39;Leicestershire&#39;,
+		&#39;LANCS&#39; =&gt; &#39;Lancashire&#39;,
+		&#39;MDX&#39; =&gt; &#39;Middlesex&#39;,
+		&#39;NED&#39; =&gt; &#39;Netherlands&#39;,
+		&#39;NEP&#39; =&gt; &#39;Nepal&#39;,
+		&#39;NAM&#39; =&gt; &#39;Namibia&#39;,
+		&#39;NOR&#39; =&gt; &#39;Northamptonshire&#39;,
+		&#39;NOTTS&#39; =&gt; &#39;Nottinghamshire&#39;,
+		&#39;NSW&#39; =&gt; &#39;New South Wales&#39;,
+		&#39;NZ&#39; =&gt; &#39;New Zealand&#39;,
+		&#39;PAK&#39; =&gt; &#39;Pakistan&#39;,
+		&#39;PNG&#39; =&gt; &#39;Papua New Guinea&#39;,
+		&#39;QL&#39; =&gt; &#39;Queensland&#39;,
+		&#39;RSA&#39; =&gt; &#39;South Africa&#39;,
+		&#39;SAUS&#39; =&gt; &#39;South Australia&#39;,
+		&#39;SL&#39; =&gt; &#39;Sri Lanka&#39;,
+		&#39;SCO&#39; =&gt; &#39;Scotland&#39;,
+		&#39;SOM&#39; =&gt; &#39;Somerset&#39;,
+		&#39;SUS&#39; =&gt; &#39;Sussex&#39;,
+		&#39;SUR&#39; =&gt; &#39;Surrey&#39;,
+		&#39;TAS&#39; =&gt; &#39;Tasmania&#39;,
+		&#39;UAE&#39; =&gt; &#39;United Arab Emirates&#39;,
+		&#39;VIC&#39; =&gt; &#39;Victoria&#39;,
+		&#39;WA&#39; =&gt; &#39;Western Australia&#39;,
+		&#39;WARKS&#39; =&gt; &#39;Warwickshire&#39;,
+		&#39;WI&#39; =&gt; &#39;West Indies&#39;,
+		&#39;WORCS&#39; =&gt; &#39;Worcestershire&#39;,
+		&#39;YORKS&#39; =&gt; &#39;Yorkshire&#39;,
+		&#39;ZIM&#39; =&gt; &#39;Zimbabwe&#39;,
+	);
+
+//??? SUMMARY FEED
+
+$summary_url = $feed_info[$feed][&#39;base_url&#39;].$feed_info[$feed][&#39;summary_path&#39;];
+$summary_feed = curl_obj($summary_url);
+file_put_contents(LOG_FILE, &#34;**SUMMARY FEED ($summary_url):\n&#34;, FILE_APPEND);
+if ($summary_feed)
+	file_put_contents(LOG_FILE, print_r($summary_feed, TRUE), FILE_APPEND);
+else
+	file_put_contents(LOG_FILE, &#34;--EMPTY\n&#34;, FILE_APPEND);
+
+//??? CURRENT MATCHES
+
+$matches = array();
+if ($summary_feed) {
+	if ($feed == &#39;espncricinfo&#39;)
+		foreach ($summary_feed-&gt;matches as $index =&gt; $this_match_obj)
+			$matches[$index] = $this_match_obj;
+	else if ($feed == &#39;cricbuzz&#39;) {
+		foreach ($summary_feed-&gt;match as $this_match_obj) {
+			$this_match_id = (int)$this_match_obj-&gt;attributes()[&#39;id&#39;];
+			// summary of finished matches lacks some detail, so get try to get detailed instead
+			$this_detailed_feed_url = (string)$this_match_obj-&gt;attributes()[&#39;datapath&#39;].&#39;commentary.xml&#39;;
+			$this_detailed_feed_obj = curl_obj($this_detailed_feed_url);
+			if ($this_detailed_feed_obj)
+				$matches[$this_match_id] = $this_detailed_feed_obj-&gt;match; // includes batsmen
+			else
+				$matches[$this_match_id] = $this_match_obj;
+		}
+	}
+}
+file_put_contents(LOG_FILE, &#34;**MATCHES ARRAY:\n&#34;, FILE_APPEND);
+file_put_contents(LOG_FILE, print_r($matches, TRUE), FILE_APPEND);
+
+// retrieve selected match from &#34;current matches&#34; array
+$selected_match_obj = NULL;
+if ($selected_match_id !== &#39;&#39;) {
+	if (isset($matches[$selected_match_id]))
+		$selected_match_obj = $matches[$selected_match_id];
+	else
+		file_put_contents(LOG_FILE, &#34;**SELECTED MATCH (ID $selected_match_id) NOT FOUND IN SUMMARY FEED\n&#34;, FILE_APPEND);
+}
+else
+	file_put_contents(LOG_FILE, &#34;**NO MATCH SELECTED\n&#34;, FILE_APPEND);
+
+//??? MENUBAR -------------------------------------------------------------------------------------------------
+
+if ($selected_match_obj) { // display selected match information
+
+	file_put_contents(LOG_FILE, &#34;**SELECTED MATCH SUMMARY (MATCH ID $selected_match_id):\n&#34;, FILE_APPEND);
+	file_put_contents(LOG_FILE, print_r($selected_match_obj, TRUE), FILE_APPEND);
+
+	if ($feed == &#39;espncricinfo&#39;) {
+		$team1_abbrev = translate_name($selected_match_obj-&gt;team1_abbrev);
+		$team2_abbrev = translate_name($selected_match_obj-&gt;team2_abbrev);
+		$team1_score = html_entity_decode($selected_match_obj-&gt;team1_score); // lose &amp;amp; &amp;nbsp; etc
+		$team1_score = trim(strtok($team1_score, &#39;(&#39;)); // lose &#34;(31.4 ov)*&#34; text
+		$team2_score = html_entity_decode($selected_match_obj-&gt;team2_score);
+		$team2_score = trim(strtok($team2_score, &#39;(&#39;));
+		echo
+			strtoupper($team1_abbrev).($team1_score ? &#39; &#39;.$team1_score : &#39;&#39;)
+			.&#39; v &#39;
+			.strtoupper($team2_abbrev).($team2_score ? &#39; &#39;.$team2_score : &#39;&#39;)
+			.&#34;\n&#34;
+		;
+	}
+
+	else if ($feed == &#39;cricbuzz&#39;) {
+		$team1_abbrev = (string)$selected_match_obj-&gt;Tm[0]-&gt;attributes()[&#39;sName&#39;];
+		$team2_abbrev = (string)$selected_match_obj-&gt;Tm[1]-&gt;attributes()[&#39;sName&#39;];
+		$team1_score1 = $team1_score2 = $team2_score1 = $team2_score2 = &#39;&#39;;
+		$team1_batting = $team2_batting = FALSE;
+		if (isset($selected_match_obj-&gt;mscr)) { // no scores for games yet to start
+			$scores = $overs = array();
+			$this_team = (string)$selected_match_obj-&gt;mscr-&gt;btTm-&gt;attributes()[&#39;sName&#39;];
+			foreach ($selected_match_obj-&gt;mscr-&gt;btTm-&gt;Inngs as $innings_obj) {
+				$scores[] =
+					(int)$innings_obj-&gt;attributes()[&#39;r&#39;]
+					.((int)$innings_obj-&gt;attributes()[&#39;wkts&#39;] == 10 ? &#39;&#39; : &#39;/&#39;.(int)$innings_obj-&gt;attributes()[&#39;wkts&#39;])
+					.((int)$innings_obj-&gt;attributes()[&#39;Decl&#39;] ? &#39;d&#39; : &#39;&#39;)
+				;
+				$overs[] = (string)$innings_obj-&gt;attributes()[&#39;ovrs&#39;];
+			}
+			$scores = array_reverse($scores); // force second innings score to be last
+			if ($this_team == $team1_abbrev) {
+				$team1_batting = TRUE;
+				$team1_score1 = (isset($scores[0]) ? $scores[0] : &#39;&#39;);
+				$team1_score2 = (isset($scores[1]) ? $scores[1] : &#39;&#39;);
+				$team1_overs = $overs[0];
+				file_put_contents(LOG_FILE, &#34;**BATTING TEAM(1): $this_team\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, &#34;--team1_score1=$team1_score1, team1_score2=$team1_score2, team1_overs=$team1_overs\n&#34;, FILE_APPEND);
+			}
+			else {
+				$team2_batting = TRUE;
+				$team2_score1 = (isset($scores[0]) ? $scores[0] : &#39;&#39;);
+				$team2_score2 = (isset($scores[1]) ? $scores[1] : &#39;&#39;);
+				$team2_overs = $overs[0];
+				file_put_contents(LOG_FILE, &#34;**BATTING TEAM(2): $this_team\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, &#34;--team2_score1=$team2_score1, team2_score2=$team2_score2, team2_overs=$team2_overs\n&#34;, FILE_APPEND);
+			}
+			$scores = array();
+			$this_team = (string)$selected_match_obj-&gt;mscr-&gt;blgTm-&gt;attributes()[&#39;sName&#39;];
+			foreach ($selected_match_obj-&gt;mscr-&gt;blgTm-&gt;Inngs as $innings_obj) {
+				$scores[] =
+					(int)$innings_obj-&gt;attributes()[&#39;r&#39;]
+					.((int)$innings_obj-&gt;attributes()[&#39;wkts&#39;] == 10 ? &#39;&#39; : &#39;/&#39;.(int)$innings_obj-&gt;attributes()[&#39;wkts&#39;])
+					.((int)$innings_obj-&gt;attributes()[&#39;Decl&#39;] ? &#39;d&#39; : &#39;&#39;)
+				;
+			}
+			$scores = array_reverse($scores); // test match scores have 2nd innings first
+			if ($this_team == $team1_abbrev) {
+				$team1_score1 = (isset($scores[0]) ? $scores[0] : &#39;&#39;);
+				$team1_score2 = (isset($scores[1]) ? $scores[1] : &#39;&#39;);
+				file_put_contents(LOG_FILE, &#34;**BOWLING TEAM(1): $this_team\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, &#34;--team1_score1=$team1_score1, team1_score2=$team1_score2\n&#34;, FILE_APPEND);
+			}
+			else {
+				$team2_score1 = (isset($scores[0]) ? $scores[0] : &#39;&#39;);
+				$team2_score2 = (isset($scores[1]) ? $scores[1] : &#39;&#39;);
+				file_put_contents(LOG_FILE, &#34;**BOWLING TEAM(2): $this_team\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, &#34;--team2_score1=$team2_score1, team2_score2=$team2_score2\n&#34;, FILE_APPEND);
+			}
+		}
+		echo
+			$team1_abbrev.($team1_score1 ? &#39; &#39;.$team1_score1 : &#39;&#39;).($team1_score2 ? &#39; &amp; &#39;.$team1_score2 : &#39;&#39;)
+			.&#39; v &#39;
+			.$team2_abbrev.($team2_score1 ? &#39; &#39;.$team2_score1 : &#39;&#39;).($team2_score2 ? &#39; &amp; &#39;.$team2_score2 : &#39;&#39;)
+			.&#34;\n&#34;
+		;
+	}
+}
+
+else { // display icon - 32x32 png, 144 DPI, base64 encoded using &#34;openssl base64 -A -in icon.png&#34; (recommended 36px dimension too big)
+	if ($summary_feed) // normal icon
+		echo &#34;|image=iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4QMOAi05yhhp7QAAASNJREFUWMPt1ztKBEEUheGvB0UnECcYQXQE3YAyCIK4BVeiiJswMtDcwA2IgbmRGzBxB4IoGijoKL7apEaKtuYBCiZ1oIK6fe65f3d1UvTWPHZwhzJarzhCO/gWcYKHiu8a&#43;5juM8NIn2dTWMNLCIvVxhzOMYMlPKITeT6wgolE/7eKRG0MdbzhCctohLcqQv0sBI&#43;Hwc/RsK7vBheYxCjecT/oC6xjKwQUuMJGAIm1G8C6vlPsBZCuWjjEQoB6wzEO&#43;h3JZeUcS2wnIKvn3cFq5KlhM5F1Wx1Yq&#43;xbCajZyr6Z6KuHFec2ElnNQQDD/id/ppp/VgbIABkgA2SADJABMkAGyAAZoApQ/iJrmPvD56C7YZkITUGVUb1I9BY96j&#43;yvgC5iURRySFvJAAAAABJRU5ErkJggg==\n&#34;;
+	else // warning icon
+		echo &#34;|image=iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP&#43;gvaeTAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4QgYCQ84FFrJ6AAABC9JREFUWMPll01sVFUUgL87P7UzUDqdn6bQob8DLWpTbIeWFrCIDdIC2poYDYq2gI3QWjFYFWJCNWlrIhsNooEoCmI0qBt/Nizc6YYdi5qgIVGwTa0lYNtpZ96Pi7kz8&#43;Y5Zcb&#43;JCae5Oa9uffMO98795xzz4P/uGQD3cCvgG4Yk8AQ4JF6HwG/mXSuAv3pDNjSrGtS5xowIecEMCuvupxTDTq6XJsArOkAxBzzVmC1XB&#43;Rv1cY/jMD3AJqgIh8Ww3IMwCMAV4gX85dydTtRcCwyZ0PmXQqTesh4EGTTo/0TEznptzSJLGkAKiQBozSafr9bIpYedjkwe2m57uAHZkAZCI6QJ7LgRDCGC/G52qZbPl8AVSA3v1B3joe97x9Pg&#43;aD4AN2FNW7KLjiWqO9DVRdXc&#43;QCsQWHIAIRgA/K/0bKJkrQ&#43;mwlx4tw27zVIKHF5qgGpdp3NrYzFd&#43;4MQioCmc0&#43;Fj8Nd9ciiVSdTc0kAjgiB7/PTj6KEIoRmFEIzCqqq0fV0DaVFLoCvjIG6WABhYCuwd&#43;jYNvLzlzP09g&#43;U1Z1kbeMpul76jsAGPwc7agEKBQxm6oVMAdzAp1Xr8tm3Zz0Af96cZnRskuu/32Z0bApmFfqeb6SmqgAdDsgquWgArTabZWVfdwO&#43;ghwZjImUtlhEvN59&#43;eFjAD6gfDEBxKa61ex9phYiaiwbjJkhS5FOSbGLYy9sXtwscDhsfPZ&#43;O8wkttWT54jfe90O0PU4xKHOWtaUuRcP4L03WylYmQOqNKLrlJfkJQ6Pck9iDSj059KzbwM2q2XhAPdvLKKtpSLJADqURFMOIPq2qqH0Kxq9BzdSEfAsDOCuLBt9hxrINbg7JjnLsrDZLAkA7Z9pf&#43;FU28IAdjYH2LWzMvntYnGRbcfndqbcAgAiKtX3raK/r2l&#43;AFaLhXMnH0lpPApgw&#43;OOeibb40wEYVL5UunpDFIZ8P4rgDKAs&#43;/sZpkrO6VrAZwOO2vKPDQE/XNCAni8Tl7ubsAaDchgugbBDfzSsi3g&#43;vr841itYm7f2a3cmphGVTXcq3LRp8JJtcFoIRLWaGo/x4&#43;Xr4eAemN/aPbAeVdututob&#43;OdjQvBmbOXCW7/gM27P6b/9UsIp33O3snusHH6RCuAAxgw2jUCtAOtbTsq2LKlNG0v/cf4ND9fm2D46jg3RibBcgdgRePeWj8vPlePbHBbzABeYNDrdnLieDNoWvrjUVHj97MRde4GPyZTYQaPPkCg1J0FvBFr4YQcrwKDly4&#43;SfOudTCrpAW4PT7FyOgkQoA7z4nXvyJ1wOrJnvv2m2HaOi6iKNprwIAACoGfvG7n8gNPrUfXEqEp4lsuDNsvkg6g6FWkOKBS64VCET754go3Rv8CKAY4Y/i4mJGfXappKHI&#43;LK&#43;KbLuNI6anyHvjWuzjxDz3Pf97&#43;Rtb1UL3NeDX6QAAAABJRU5ErkJggg==\n&#34;;
+}
+
+//??? SUBMENU -------------------------------------------------------------------------------------------------
+
+// no data
+if (!$summary_feed) {
+	echo &#34;---\n&#34;;
+	echo &#34;Unable to get &#34;.$feed_info[$feed][&#39;name&#39;].&#34; data\n&#34;;
+}
+
+// detailed match information
+if ($selected_match_obj) {
+
+	echo &#34;---\n&#34;;
+
+	//??? DETAILED - ESPNcricinfo
+
+	if ($feed == &#39;espncricinfo&#39;) {
+		if (array_key_exists($selected_match_id, $matches)) {
+
+			// get detailed match feed data
+			$match_url = $feed_info[$feed][&#39;site_url&#39;].$selected_match_obj-&gt;url; // note: site url NOT base url
+			$detailed_url = str_replace(&#39;.html&#39;, &#39;.json&#39;, $match_url);
+			$detailed_feed = curl_obj($detailed_url);
+			file_put_contents(LOG_FILE, &#34;**DETAILED FEED:\n&#34;, FILE_APPEND);
+			file_put_contents(LOG_FILE, print_r($detailed_feed, TRUE), FILE_APPEND);
+
+			if ($detailed_feed) {
+
+				// output match overview
+				echo
+					strtoupper($selected_match_obj-&gt;team1_name).&#39; v &#39;.strtoupper($selected_match_obj-&gt;team2_name) // e.g. &#34;SRI LANKA v BANGLADESH&#34;
+					.($detailed_feed-&gt;series[0]-&gt;match_title ? &#39; – &#39;.$detailed_feed-&gt;series[0]-&gt;match_title : &#39;&#39;) // e.g. &#34;1st Test&#34;
+					.&#39;, &#39;.($detailed_feed-&gt;match-&gt;town_aka ? $detailed_feed-&gt;match-&gt;town_aka : $detailed_feed-&gt;match-&gt;town_name) // e.g. &#34;Galle&#34;
+					.&#39; | color=black&#39;.&#34;\n&#34;
+				;
+
+				// option key alternative: display series &amp; match dates, e.g. &#34;West Indies in England ODI Series (Sep 21, 2017)&#34;
+				echo
+					$detailed_feed-&gt;series[0]-&gt;series_name
+					.(($detailed_feed-&gt;series[0]-&gt;trophy_name !== $detailed_feed-&gt;series[0]-&gt;series_name) ? &#39; – &#39;.$detailed_feed-&gt;series[0]-&gt;trophy_name : &#39;&#39;) // &#34;The Ashes&#34; is both the series &amp; the trophy name
+					.&#39; (&#39;.$detailed_feed-&gt;match-&gt;date.&#39;)&#39;
+					.&#34; | alternate=true \n&#34;;
+
+				// team id/team name/score array
+				$teams = array();
+				$teams[$detailed_feed-&gt;match-&gt;team1_id] = array(&#39;name&#39; =&gt; $detailed_feed-&gt;match-&gt;team1_name, &#39;score&#39; =&gt; &#39;&#39;);
+				$teams[$detailed_feed-&gt;match-&gt;team2_id] = array(&#39;name&#39; =&gt; $detailed_feed-&gt;match-&gt;team2_name, &#39;score&#39; =&gt; &#39;&#39;);
+				file_put_contents(LOG_FILE, &#34;**TEAMS ARRAY:\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, print_r($teams, TRUE), FILE_APPEND);
+
+				if (isset($detailed_feed-&gt;match-&gt;home_team_id)) {
+					$home_team_id = $detailed_feed-&gt;match-&gt;home_team_id;
+					file_put_contents(LOG_FILE, &#34;**HOME_TEAM_ID (SUPPLIED) = $home_team_id\n&#34;, FILE_APPEND);
+				}
+				else {
+					$home_team_id = $detailed_feed-&gt;match-&gt;team1_id;
+					file_put_contents(LOG_FILE, &#34;**HOME_TEAM_ID (TEAM1) = $home_team_id\n&#34;, FILE_APPEND);
+				}
+				if (isset($detailed_feed-&gt;match-&gt;away_team_id)) {
+					$away_team_id = $detailed_feed-&gt;match-&gt;away_team_id;
+					file_put_contents(LOG_FILE, &#34;**AWAY_TEAM_ID (SUPPLIED) = $away_team_id\n&#34;, FILE_APPEND);
+				}
+				else {
+					$away_team_id = $detailed_feed-&gt;match-&gt;team2_id;
+					file_put_contents(LOG_FILE, &#34;**AWAY_TEAM_ID (TEAM2) = $away_team_id\n&#34;, FILE_APPEND);
+				}
+
+				// make sure home team listed first
+				reset($teams);
+				$first_team_id = key($teams);
+				if ($home_team_id != $first_team_id)
+					$teams = array_reverse($teams, TRUE);
+
+				// get innings data
+				$match_started = FALSE;
+				$winner = $detailed_feed-&gt;match-&gt;winner_team_id;
+				file_put_contents(LOG_FILE, &#34;**WINNER: &#34;.$winner.&#34;\n&#34;, FILE_APPEND);
+				if ($detailed_feed-&gt;innings) {
+					$match_started = TRUE;
+					foreach ($detailed_feed-&gt;innings as $innings) {
+
+						file_put_contents(LOG_FILE, &#34;**INNINGS:\n&#34;, FILE_APPEND);
+						file_put_contents(LOG_FILE, print_r($innings, TRUE), FILE_APPEND);
+
+						if ($teams[$innings-&gt;batting_team_id][&#39;score&#39;])
+							// if team&#39;s second innings add &#39;&amp;&#39;
+							$teams[$innings-&gt;batting_team_id][&#39;score&#39;] .= &#39; &amp; &#39;;
+						$innings_score = $innings-&gt;runs.&#39;/&#39;.$innings-&gt;wickets;
+						if ($innings-&gt;live_current &amp;&amp; ($innings-&gt;event_name != &#39;complete&#39;) &amp;&amp; !$winner) {
+							$innings_score .= &#39; (&#39;.$innings-&gt;overs.&#39; ov)&#39;;
+							$innings_score .= &#39; CRR &#39;.$detailed_feed-&gt;live-&gt;innings-&gt;run_rate;
+							file_put_contents(LOG_FILE, &#34;**TARGET: &#34;.$detailed_feed-&gt;live-&gt;innings-&gt;target.&#34;\n&#34;, FILE_APPEND);
+						}
+						$teams[$innings-&gt;batting_team_id][&#39;score&#39;] .= $innings_score;
+						$teams[$innings-&gt;batting_team_id][&#39;batted&#39;] = $innings-&gt;batted; // make a note if team has batted yet
+
+						file_put_contents(LOG_FILE, &#34;**OVER_LIMIT &#34;.$innings-&gt;over_limit.&#34;\n&#34;, FILE_APPEND);
+						file_put_contents(LOG_FILE, &#34;**TEAM DATA (TEAM ID &#34;.$innings-&gt;batting_team_id.&#34;):\n&#34;, FILE_APPEND);
+						file_put_contents(LOG_FILE, print_r($teams[$innings-&gt;batting_team_id], TRUE), FILE_APPEND);
+
+						if ($innings-&gt;live_current &amp;&amp; !$winner) {
+							// required run rate
+							$required_runrate = $detailed_feed-&gt;live-&gt;innings-&gt;required_run_rate;
+							if ($required_runrate)
+								$teams[$innings-&gt;batting_team_id][&#39;score&#39;] .= &#39; RRR &#39;.$required_runrate;
+							// projected score
+							if (($innings-&gt;event_name != &#39;complete&#39;) &amp;&amp; ($innings-&gt;event_name != &#39;all out&#39;)) {
+								$noofovers = (int)$innings-&gt;over_limit;
+								if ((int)$innings-&gt;ball_limit &amp;&amp; ($innings-&gt;overs &gt; $noofovers / 2))
+									$teams[$innings-&gt;batting_team_id][&#39;score&#39;] .= projected_score($noofovers, $innings-&gt;overs, $innings-&gt;runs);
+							}
+						}
+
+					}
+				}
+
+				// get names/scores of batsmen at crease
+				$batsmen = array();
+				foreach ($detailed_feed-&gt;live-&gt;batting as $batsman) {
+					$batsman_name = get_batsman($detailed_feed,$batsman-&gt;player_id);
+					$batsman_score = $batsman-&gt;runs . &#39; (&#39; . $batsman-&gt;balls_faced . &#39;)&#39;;
+					if ($batsman-&gt;live_current_name == &#39;striker&#39;)
+						$batsman_name .= &#39;*&#39;;
+					$batsmen[] = $batsman_name . &#39;: &#39; . $batsman_score;
+				}
+				file_put_contents(LOG_FILE, &#34;**BATSMEN:\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, print_r($batsmen, TRUE), FILE_APPEND);
+
+				// the match status
+				$match_status = $detailed_feed-&gt;live-&gt;status;
+				file_put_contents(LOG_FILE, &#34;**MATCH STATUS: &#34;.$match_status.&#34;\n&#34;, FILE_APPEND);
+				echo &#34;$match_status... | href=$match_url \n&#34;; // e.g. &#34;Day 1: South Africa elected to bat first&#34; which links to Cricinfo website
+
+				// neutral ground?
+				$neutral_ground = FALSE;
+				if (isset($detailed_feed-&gt;match-&gt;neutral_match))
+					$neutral_ground = $detailed_feed-&gt;match-&gt;neutral_match;
+
+				// work out match type
+				$limited_overs = $detailed_feed-&gt;match-&gt;scheduled_overs;
+				$type_desc = &#39;&#39;;
+				if (strpos($detailed_feed-&gt;match-&gt;international_class_card,&#39;Test&#39;) !== FALSE) // &#34;Test&#34; or &#34;Women&#39;s Test&#34;
+					$type_desc .= &#39;Test match, &#39;.$detailed_feed-&gt;match-&gt;scheduled_days.&#39; days&#39;;
+				else if (strpos($detailed_feed-&gt;match-&gt;international_class_card,&#39;ODI&#39;) !== FALSE)
+					$type_desc = &#39;ODI&#39;;
+				else if (strpos($detailed_feed-&gt;match-&gt;international_class_card,&#39;Twenty20&#39;) !== FALSE)
+					$type_desc = &#39;T20 international&#39;;
+				else if ($detailed_feed-&gt;match-&gt;general_class_card) { // county matches, some T20 etc
+					if (strpos($detailed_feed-&gt;match-&gt;general_class_name,&#39;Twenty20&#39;) !== FALSE)
+						$type_desc .= &#39;T20&#39;;
+					else {
+						$type_desc = $detailed_feed-&gt;match-&gt;general_class_card.&#39; match, &#39;.$detailed_feed-&gt;match-&gt;scheduled_days.&#39; day&#39;.($detailed_feed-&gt;match-&gt;scheduled_days &gt; 1 ? &#39;s&#39; : &#39;&#39;);
+						if ($detailed_feed-&gt;match-&gt;scheduled_overs)
+							$type_desc .= &#39;, &#39;.$detailed_feed-&gt;match-&gt;scheduled_overs.&#39; overs&#39;;
+					}
+				}
+				else if (strpos($detailed_feed-&gt;match-&gt;general_class_name,&#39;Twenty20&#39;) !== FALSE) // e.g. &#34;Other Twenty20 matches&#34;
+						$type_desc .= &#39;T20&#39;;
+				file_put_contents(LOG_FILE, &#34;**MATCH TYPE: $type_desc (international_class_card=&#34;.$detailed_feed-&gt;match-&gt;international_class_card.&#34;, general_class_card=&#34;.$detailed_feed-&gt;match-&gt;general_class_card.&#34;, general_class_name=&#34;.$detailed_feed-&gt;match-&gt;general_class_name.&#39;, scheduled days=&#39;.$detailed_feed-&gt;match-&gt;scheduled_days.&#39;, scheduled overs=&#39;.$detailed_feed-&gt;match-&gt;scheduled_overs.&#34;)\n&#34;, FILE_APPEND);
+
+				// option key alternative - display ground name, country &amp; match type
+				echo $detailed_feed-&gt;match-&gt;ground_name.&#39;, &#39;.$detailed_feed-&gt;match-&gt;country_name.($neutral_ground ? &#39; - neutral ground&#39; : &#39;&#39;).($type_desc ? &#34; ($type_desc)&#34; : &#39;&#39;).&#34; | alternate=true \n&#34;; // e.g. &#34;P Sara Oval, Columbo, Sri Lanka&#34;
+
+				// match live state (not really usable for &#34;innings in progress&#34; - seems to be free text, i.e. no standardised values)
+				$known_live_state = array(&#39;Drinks&#39;, &#39;Lunch&#39;, &#39;Innings break&#39;, &#39;Match delayed by a wet outfield&#39;, &#39;Match delayed by rain&#39;, &#39;Match delayed - Rain&#39;, &#39;Match start delayed (No play before Lunch, wet outfield)&#39;, &#39;Match delayed - Wet outfield&#39;, &#39;Stumps&#39;); // ALSO SOMETIMES NOT SET (= MATCH NOT STARTED/ENDED/IN PLAY?)
+				$live_state == NULL;
+				if (isset($selected_match_obj-&gt;live_state)) {
+					$live_state = $selected_match_obj-&gt;live_state;
+					echo $live_state;
+					if ($match_started) {
+						// get kickoff time
+						$next_timestamp = strtotime($detailed_feed-&gt;match-&gt;next_datetime_gmt.&#39; UTC&#39;); // may take a while to be updated after end of day&#39;s play
+						file_put_contents(LOG_FILE, &#34;**NEXT_DATETIME_GMT: &#34;.$detailed_feed-&gt;match-&gt;next_datetime_gmt.&#34;\n&#34;, FILE_APPEND);
+						file_put_contents(LOG_FILE, &#34;**NEXT_TIMESTAMP: &#34;.$next_timestamp.&#39; &#39;.date(&#39;Y-m-d H:i&#39;,$next_timestamp).&#34;\n&#34;, FILE_APPEND);
+						file_put_contents(LOG_FILE, &#34;**TIME(): &#34;.time().&#34;\n&#34;, FILE_APPEND);
+						if ($next_timestamp &gt; time())  // still waiting for kickoff (according to published next start time)
+							echo &#34; (resumes &#34;.date(&#34;l, H:i T&#34;, $next_timestamp).&#34;)&#34;;
+					}
+					echo &#34;\n&#34;;
+				}
+
+				// match yet to begin so provide local start date/time
+				if (strpos($match_status, &#39;Match scheduled to begin&#39;) === 0) { // add local time translation
+					// translate start date/time to local time
+					$start_datetime_gmt = $detailed_feed-&gt;match-&gt;start_datetime_gmt;
+					file_put_contents(LOG_FILE, &#34;**START_DATETIME_GMT: &#34;.$detailed_feed-&gt;match-&gt;start_datetime_gmt.&#34;\n&#34;, FILE_APPEND);
+					$start_timestamp = strtotime($detailed_feed-&gt;match-&gt;start_datetime_gmt.&#39; UTC&#39;);
+					file_put_contents(LOG_FILE, &#34;**START_TIMESTAMP: &#34;.$start_timestamp.&#39; &#39;.date(&#39;Y-m-d H:i&#39;,$start_timestamp).&#34;\n&#34;, FILE_APPEND);
+					$start_local = date(&#34;jS M g:ia T&#34;, $start_timestamp);
+					echo &#34;Scheduled start $start_local\n&#34;;
+				}
+				else // toss done, use countdown timer instead
+					if (isset($selected_match_obj-&gt;match_clock))
+						if (!$detailed_feed-&gt;innings) // countdown can linger for a while after play starts
+							echo &#34;Starting in &#34;.$selected_match_obj-&gt;match_clock.&#34;\n&#34;;
+
+				// show teams and scores
+				if ($match_started) {
+					foreach ($teams as $team_id =&gt; $team_info) {
+						echo $team_info[&#39;name&#39;] .&#39;: &#39;;
+						if ($team_info[&#39;batted&#39;]) {
+							$score = str_replace(&#39;/10&#39;, &#39;&#39;, $team_info[&#39;score&#39;]); // lose wicket count if 10 (i.e. all out)
+							if ($winner)
+								$score = str_replace(&#39;*&#39;, &#39;&#39;, $score); // lose &#34;currently batting&#34; asterisk if match over
+							echo $score;
+						}
+						else
+							echo &#39;yet to bat&#39;;
+						echo &#34; | color=black size=12 \n&#34;;
+					}
+				}
+
+				// innings still in progress and not innings break?
+				if (!$winner &amp;&amp; ($detailed_feed-&gt;match-&gt;live_state != &#39;Innings break&#39;)) {
+					// show batsmen
+					foreach ($batsmen as $batsman)
+						echo &#34;$batsman | size=12 \n&#34;;
+
+					// last wicket
+					$fow = $detailed_feed-&gt;live-&gt;fow;
+					foreach ($fow as $item) {
+						if ($item-&gt;live_current_name == &#39;current partnership&#39;) {
+							echo
+								&#39;Partnership: &#39;
+								.$item-&gt;partnership_runs
+								.&#39; (&#39;
+								.$item-&gt;partnership_overs
+								.&#39; ov) &#39;
+							;
+						}
+						if ($item-&gt;live_current_name == &#39;last wicket&#39;) {
+							echo
+								&#39;Last wicket: &#39;
+								.get_batsman($detailed_feed,$item-&gt;out_player-&gt;player_id)
+								.&#39; &#39;
+								.html_entity_decode($item-&gt;out_player-&gt;dismissal_string)
+								.&#39; &#39;
+								.$item-&gt;out_player-&gt;runs
+								.&#34; | size=12&#34;
+							;
+							file_put_contents(LOG_FILE, &#34;**LAST WICKET (PLAYER ID = &#34;.$item-&gt;out_player-&gt;player_id.&#34;):\n&#34;, FILE_APPEND);
+							file_put_contents(LOG_FILE, print_r($item-&gt;out_player, TRUE), FILE_APPEND);
+						}
+					}
+					if ($fow)
+						echo &#34;\n&#34;;
+				}
+			}
+			else
+				echo &#34;Detailed feed not available... | href=$match_url \n&#34;;
+
+			// debuggery
+			file_put_contents(LOG_FILE, &#34;**URL: $detailed_url\n&#34;, FILE_APPEND);
+			file_put_contents(LOG_FILE, &#39;**MATCH STARTED: &#39;.($match_started ? &#39;YES&#39; : &#39;NO&#39;).&#34;\n&#34;, FILE_APPEND);
+			file_put_contents(LOG_FILE, &#34;**LIVE_STATE: &#34;.($live_state === NULL ? &#39;NOT SET&#39; : $live_state).&#34;\n&#34;, FILE_APPEND);
+			if ($winner) file_put_contents(LOG_FILE, &#34;**WINNER TEAM ID: $winner\n&#34;, FILE_APPEND);
+
+		}
+		else // else selected match not found
+			file_put_contents(LOG_FILE, &#34;**SELECTED MATCH NOT FOUND IN DETAILED FEED: &#34;.$selected_match_id.&#34;\n&#34;, FILE_APPEND);
+	}
+
+	//??? DETAILED - CRICBUZZ
+
+	else if ($feed == &#34;cricbuzz&#34;) {
+		// output match overview
+		if (isset($selected_match_obj-&gt;Tm)) { // these are generally abbreviated names anyway!
+			$team1_name = $selected_match_obj-&gt;Tm[0]-&gt;attributes()[&#39;Name&#39;];
+			$team2_name = $selected_match_obj-&gt;Tm[1]-&gt;attributes()[&#39;Name&#39;];
+			file_put_contents(LOG_FILE, &#34;**TEAM NAMES FROM -&gt;Tm: team1_name=$team1_name, team2_name=$team2_name\n&#34;, FILE_APPEND);
+		}
+		else {
+			$team_names = explode(&#39; vs &#39;, (string)$selected_match_obj-&gt;attributes()[&#39;mchDesc&#39;]); // e.g. &#34;Ess vs WI&#34;
+			$team1_name = $team_names[0];
+			$team2_name = $team_names[1];
+			file_put_contents(LOG_FILE, &#34;**TEAM NAMES FROM -&gt;mchDesc: team1_name=$team1_name, team2_name=$team2_name\n&#34;, FILE_APPEND);
+		}
+		$description = strtoupper(translate_name($team1_name)).&#39; v &#39;.strtoupper(translate_name($team2_name)); // translate abbreviated team names &amp; use &#34;v&#34; instead of &#34;vs&#34;
+		echo
+			$description // e.g. &#34;Essex vs West Indies&#34;
+			.&#39; – &#39;.(string)$selected_match_obj-&gt;attributes()[&#39;mnum&#39;] // e.g. &#34;1st 3-day practice match&#34;
+			.&#39;, &#39;.(string)$selected_match_obj-&gt;attributes()[&#39;vcity&#39;] // e.g. Chelmsford
+			.&#39; | color=black size=14&#39;
+			.&#34;\n&#34;
+		;
+
+		if (isset($selected_match_obj-&gt;Tme)) { // note -&gt;Tme may not exist: e.g. mchState=nextlive, status=&#34;Coming up on Sep 15 at 13:30 GMT&#34;
+			// option key alternative - display match tour &amp; dates, e.g. &#34;West Indies tour of England, 2017; 1st August - 3rd August&#34;
+			$start_date = date(&#34;jS F&#34;, strtotime((string)$selected_match_obj-&gt;Tme-&gt;attributes()[&#39;Dt&#39;]));
+			$end_date = date(&#34;jS F&#34;, strtotime((string)$selected_match_obj-&gt;Tme-&gt;attributes()[&#39;enddt&#39;]));
+			echo
+				(string)$selected_match_obj-&gt;attributes()[&#39;srs&#39;]
+				.&#39; (&#39;
+				.$start_date
+				.($start_date != $end_date ? &#34; – $end_date&#34; : &#39;&#39;)
+				.&#39;)&#39;
+				.&#34; | alternate=true \n&#34;
+			;
+
+			// local start date/time
+			$start_gmt = (string)$selected_match_obj-&gt;Tme-&gt;attributes()[&#39;Dt&#39;].&#39; &#39;.(string)$selected_match_obj-&gt;Tme-&gt;attributes()[&#39;stTme&#39;].&#39; GMT&#39;;
+			$start_local = date(&#34;jS M g:ia T&#34;, strtotime($start_gmt));
+		}
+
+		// output match status
+		$status_message = array();
+		$status = (string)$selected_match_obj-&gt;state-&gt;attributes()[&#39;status&#39;]; // e.g. &#34;Day 1: Stumps&#34;, &#34;Ess trail by 291 runs&#34;, &#34;No result&#34;
+		$status_message[] = translate_names($status); // translate abbreviated team names
+		if ((string)$selected_match_obj-&gt;state-&gt;attributes()[&#39;addnStatus&#39;])
+			$status_message[] = (string)$selected_match_obj-&gt;state-&gt;attributes()[&#39;addnStatus&#39;]; // e.g. &#34;Day 2: Rain stops play&#34;, &#34;No result&#34;
+		if (strpos($status_message[1], &#39;Day &#39;) !== FALSE) // sometimes &#34;Day x: ...&#34; message is in &#39;addnStatus&#39;
+			$status_message = array_reverse($status_message);
+		$status_message = array_unique($status_message); // to get rid of duplicate messages, e.g. &#34;Day 1: 2nd Session&#34;, &#34;No result&#34;
+		echo implode(&#39; - &#39;, $status_message).&#34; | color=black size=14 \n&#34;;
+
+		// work out if innings in progress
+		// mchState values... NOTE: still &#39;lunch&#39; &amp; &#39;tea&#39; for day/night tests, i.e. no &#39;dinner&#39;
+		//???CHECK WHAT HAPPENS IF INNINGS BREAK &amp; LUNCH/TEA COINCIDE
+		$known_mchState = array(&#39;nextlive&#39;, &#39;preview&#39;, &#39;delay&#39;, &#39;inprogress&#39;, &#39;lunch&#39;, &#39;tea&#39;, &#39;stump&#39;, &#39;innings break&#39;, &#39;rain&#39;, &#39;wetoutfield&#39;, &#39;badlight&#39;, &#39;unforeseen&#39;, &#39;complete&#39;, &#39;Result&#39;, &#39;abandon&#39;);
+		$match_state = (string)$selected_match_obj-&gt;state-&gt;attributes()[&#39;mchState&#39;];
+		$in_progress = (array_search($match_state, array(&#39;inprogress&#39;, &#39;lunch&#39;, &#39;tea&#39;, &#39;stump&#39;, &#39;rain&#39;, &#39;badlight&#39;, &#39;wetoutfield&#39;, &#39;unforeseen&#39;)) !== FALSE);
+		file_put_contents(LOG_FILE, &#34;**MATCH STATE: &#34;.$match_state.&#34; (&#34;.($in_progress ? &#39;&#39; : &#39;NOT &#39;).&#34;IN PROGRESS)\n&#34;, FILE_APPEND);
+
+// record unknown match states
+if (array_search($match_state, $known_mchState) === FALSE)
+	file_put_contents(DEBUG_FILE, $match_state.&#34;\n&#34;, FILE_APPEND);
+
+		// match type: &#34;TEST&#34;, &#34;ODI&#34;, &#34;T20&#34;
+		$type = (string)$selected_match_obj-&gt;attributes()[&#39;type&#39;];
+		$limited_overs = (($type == &#39;ODI&#39;) || ($type == &#39;T20&#39;));
+		$noofovers = NULL;
+		if ($limited_overs) { // note: mscr-&gt;inngsdetail-&gt;attributes()[&#39;noofovers&#39;] can be incorrect (e.g. 50 given for T20 match)
+			$noofovers = 50;
+			if ($type == &#39;T20&#39;)
+				$noofovers = 20;
+		}
+		file_put_contents(LOG_FILE, &#34;**MATCH TYPE: $type\n&#34;, FILE_APPEND);
+		file_put_contents(LOG_FILE, &#34;**LIMITED OVERS: $limited_overs\n&#34;, FILE_APPEND);
+		if (isset($selected_match_obj-&gt;mscr-&gt;inngsdetail))
+			file_put_contents(LOG_FILE, &#34;**NO OF OVERS (SUPPLIED): &#34;.$selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;noofovers&#39;].&#34;\n&#34;, FILE_APPEND);
+		file_put_contents(LOG_FILE, &#34;**NO OF OVERS (DEDUCED): $noofovers\n&#34;, FILE_APPEND);
+
+		// option key alternative - display ground name, country &amp; match type
+		echo
+			(string)$selected_match_obj-&gt;attributes()[&#39;grnd&#39;] // e.g. &#34;County Ground&#34;
+			.&#39;, &#39;.(string)$selected_match_obj-&gt;attributes()[&#39;vcity&#39;] // e.g. &#34;Chelmsford&#34;
+			.&#39;, &#39;.(string)$selected_match_obj-&gt;attributes()[&#39;vcountry&#39;] // e.g. &#34;England&#34;
+			.($type ? &#34; ($type)&#34; : &#39;&#39;)
+			.&#34; | alternate=true \n&#34;
+		;
+
+		if (strpos($status, &#39;Starts on&#39;) === 0) // add local start time
+			echo &#34;Scheduled start $start_local\n&#34;;
+
+		// if match has started (or ended) show teams &amp; scores, checking that there&#39;s some scores to look at (plus if innings in progress: overs, CRR, RRR, Proj Scr)
+		if (((string)$selected_match_obj-&gt;state-&gt;attributes()[&#39;mchState&#39;] != &#39;preview&#39;) &amp;&amp; isset($selected_match_obj-&gt;mscr)) {
+			if (isset($selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;crr&#39;])) {
+				$ov_crr_rrr = &#39;&#39;;
+				if ($in_progress) {
+					$ov_crr_rrr = &#39; CRR &#39;.(string)$selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;crr&#39;];
+					if ((int)$selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;rrr&#39;])
+						$ov_crr_rrr .= &#39; RRR &#39;.(string)$selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;rrr&#39;];
+					if ($team1_batting) {
+						$overs = &#34; ($team1_overs ov)&#34;;
+						if ($team1_score2)
+							$team1_score2 .= $overs.$ov_crr_rrr;
+						else
+							$team1_score1 .= $overs.$ov_crr_rrr;
+						// projected score
+						if ($limited_overs &amp;&amp; ((int)$team1_overs &gt; ($noofovers / 2)))
+							$team1_score1 .= projected_score($noofovers, $team1_overs, $team1_score1);
+					}
+					else if ($team2_batting) {
+						$overs = &#34; ($team2_overs ov)&#34;;
+						if ($team2_score2)
+							$team2_score2 .= $overs.$ov_crr_rrr;
+						else
+							$team2_score1 .= $overs.$ov_crr_rrr;
+						// projected score
+						if ($limited_overs &amp;&amp; ((int)$team2_overs &gt; ($noofovers / 2)))
+							$team2_score1 .= projected_score($noofovers, $team2_overs, $team2_score1);
+					}
+				}
+			}
+			echo
+				translate_name($team1_abbrev)
+				.&#34;: &#34;
+				.($team1_score1 ?  $team1_score1 : &#39;yet to bat&#39;)
+				.($team1_score2 ? &#39; &amp; &#39; . $team1_score2 : &#39;&#39;)
+				.&#39; | color=black size=12&#39;
+				.&#34;\n&#34;
+			;
+			echo
+				translate_name($team2_abbrev)
+				.&#34;: &#34;
+				.($team2_score1 ?  $team2_score1 : &#39;yet to bat&#39;)
+				.($team2_score2 ? &#39; &amp; &#39; . $team2_score2 : &#39;&#39;)
+				.&#39; | color=black size=12&#39;
+				.&#34; \n&#34;
+			;
+		}
+
+		// show batsmen, scores, current partnership, last wicket (if innings still in progress)
+		if ($in_progress) {
+			if (isset($selected_match_obj-&gt;mscr-&gt;btsmn)) { // not available if datapath (&amp; hence detailed feed) not set
+				foreach ($selected_match_obj-&gt;mscr-&gt;btsmn as $batsman) // works for single obj or array of obj
+					echo
+						(string)$batsman-&gt;attributes()[&#39;sName&#39;]
+						.&#34;: &#34;
+						.(string)$batsman-&gt;attributes()[&#39;r&#39;]
+						.&#39; (&#39;
+						.(string)$batsman-&gt;attributes()[&#39;b&#39;]
+						.&#39;)&#39;
+						.&#34; | size=12 \n&#34;
+					;
+				$partnership = (string)$selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;cprtshp&#39;];
+				if ($partnership)
+					echo
+						&#39;Partnership: &#39;
+						.str_replace(&#39;(&#39;, &#39; (&#39;, (string)$selected_match_obj-&gt;mscr-&gt;inngsdetail-&gt;attributes()[&#39;cprtshp&#39;])
+						.&#39; &#39;
+					;
+				// get current scoreboard
+				$selected_scorecard_url = (string)$selected_match_obj-&gt;attributes()[&#39;datapath&#39;].&#39;scorecard.xml&#39;;
+				$selected_scorecard_obj = curl_obj($selected_scorecard_url);
+				file_put_contents(LOG_FILE, &#34;**SCORECARD:\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, print_r($selected_scorecard_obj, TRUE), FILE_APPEND);
+				// get current innings
+				$current_innings = $selected_scorecard_obj-&gt;scrs-&gt;Inngs[0]; // current innings comes first
+				file_put_contents(LOG_FILE, &#34;**CURRENT INNINGS:\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, print_r($current_innings, TRUE), FILE_APPEND);
+				file_put_contents(LOG_FILE, &#34;**TARGET: &#34;.$current_innings-&gt;attributes()[&#39;Target&#39;].&#34;\n&#34;, FILE_APPEND);
+				// look at fall of wickets
+				$last_wicket= &#39;&#39;;
+				foreach ($current_innings-&gt;FOW-&gt;wkt as $wicket) // go through wickets &amp; get last one
+					$last_wicket = $wicket;
+				file_put_contents(LOG_FILE, &#34;**LAST WICKET:\n&#34;, FILE_APPEND);
+				file_put_contents(LOG_FILE, print_r($last_wicket, TRUE), FILE_APPEND);
+				if ($last_wicket) {
+					$last_wicket_player_id = str_replace(&#39;,&#39;, &#39;&#39;, (string)$last_wicket-&gt;attributes()[&#39;id&#39;]); // the ID here is formatted 9,585 !!!!
+					$last_wicket_player = (string)$last_wicket-&gt;attributes()[&#39;btsmn&#39;];
+					echo &#39;Last wicket: &#39;.$last_wicket_player;
+					file_put_contents(LOG_FILE, &#34;**LAST WICKET PLAYER ID: $last_wicket_player_id\n&#34;, FILE_APPEND);
+					// get last wicket&#39;s runs &amp; balls
+					foreach ($current_innings-&gt;btTm-&gt;plyr as $player) {
+						if ((string)$player-&gt;attributes()[&#39;Id&#39;] == $last_wicket_player_id) // the ID here is formatted 9585
+							echo &#39; &#39;.(int)$player-&gt;attributes()[&#39;r&#39;].&#39; (&#39;.(int)$player-&gt;attributes()[&#39;b&#39;].&#39;)&#39;;
+					}
+				}
+				if ($partnership || $last_wicket)
+					echo &#34; | size=12 \n&#34;;
+			}
+		}
+	}
+}
+//else no match selected
+
+//??? REFRESH AREA
+
+if ($selected_match_obj) {
+	echo &#34;---\n&#34;;
+	echo
+		&#39;Refresh now&#39;
+		.&#34; | terminal=false bash=\&#34;&#34;.$argv[0] . &#34;\&#34; refresh=true&#34;
+		.&#34;\n&#34;
+	;
+}
+
+//??? CURRENT MATCHES/MATCH SELECTION AREA
+
+if ($summary_feed) {
+	echo &#34;---\n&#34;;
+	echo &#34;Current matches\n&#34;;
+	foreach ($matches as $index =&gt; $this_match_obj) {
+		$description = &#39;&#39;;
+		if ($feed == &#39;espncricinfo&#39;)
+			$description = $this_match_obj-&gt;team1_name .&#39; v &#39; .$this_match_obj-&gt;team2_name;
+		else if ($feed == &#39;cricbuzz&#39;) {
+			if (isset($this_match_obj-&gt;Tm)) { // these are generally abbreviated names anyway!
+				$team1_name = $this_match_obj-&gt;Tm[0]-&gt;attributes()[&#39;Name&#39;];
+				$team2_name = $this_match_obj-&gt;Tm[1]-&gt;attributes()[&#39;Name&#39;];
+			}
+			else {
+				$team_names = explode(&#39; vs &#39;, (string)$this_match_obj-&gt;attributes()[&#39;mchDesc&#39;]); // e.g. &#34;Ess vs WI&#34;
+				$team1_name = $team_names[0];
+				$team2_name = $team_names[1];
+			}
+			$description = translate_name($team1_name).&#39; v &#39;.translate_name($team2_name); // translate abbreviated team names &amp; use &#34;v&#34; instead of &#34;vs&#34;
+		}
+		// sub-submenu item
+		echo
+			&#39;--&#39;
+			.$description
+			.($index === (int)$selected_match_id ? &#39; ✓&#39; : &#39;&#39;)
+			.&#34; | terminal=false bash=\&#34;&#34;.$argv[0] . &#34;\&#34; param1=\&#34;$index\&#34; refresh=true&#34; // run this PHP script with one argument (match ID)
+			.&#34;\n&#34;
+		;
+	}
+	if (!count($matches))
+		echo &#34;-- none\n&#34;;
+}
+
+// &#34;clear match selection&#34; menu option
+if ($selected_match_obj) {
+	echo
+		&#39;Clear match selection&#39;
+		.&#34; | terminal=false bash=\&#34;&#34;.$argv[0] . &#34;\&#34; param1=unknown refresh=true&#34; // reset match ID
+		.&#34;\n&#34;
+	;
+}
+
+//??? FEED AREA
+
+echo &#34;---\n&#34;;
+// &#34;link to site&#34; menu item
+echo $feed_info[$feed][&#39;name&#39;].&#34; website... | href=&#34;.$feed_info[$feed][&#39;site_url&#39;].&#34;\n&#34;;
+
+// &#34;change feed&#34; submenu
+echo &#34;Change feed\n&#34;;
+foreach (array(&#39;espncricinfo&#39;, &#39;cricbuzz&#39;) as $this_feed) {
+	echo
+		&#39;--&#39; // sub-submenu item
+		.$feed_info[$this_feed][&#39;name&#39;]
+		.($this_feed == $feed ? &#39; ✓&#39; : &#39;&#39;)
+		.&#34; | terminal=false bash=\&#34;&#34;.$argv[0] . &#34;\&#34; param1=filler param2=\&#34;$this_feed\&#34; refresh=true&#34; // run this PHP script with two arguments (second is feed name)
+		.&#34;\n&#34;
+	;
+}
+
+//??? TIMEZONE AREA
+
+echo &#34;---\n&#34;;
+
+// make up list of timezones of format &#34;blah/blahblah&#34;
+$timezones = array();
+foreach (timezone_abbreviations_list() as $abbr =&gt; $tz)
+	foreach ($tz as $val)
+		if (isset($val[&#39;timezone_id&#39;]))
+			if (strpos($val[&#39;timezone_id&#39;],&#39;/&#39;) !== FALSE)
+				$timezones[] = $val[&#39;timezone_id&#39;];
+// sort and strip duplicates
+sort($timezones);
+$timezones = array_unique($timezones);
+
+// &#34;set timezone&#34; submenu
+echo &#34;Your timezone (&#34;.($timezone ? $timezone : date_default_timezone_get()).&#34;)\n&#34;;
+foreach ($timezones as $this_timezone) {
+	echo
+		&#39;--&#39; // sub-submenu item
+		.$this_timezone
+		.($this_timezone == $timezone ? &#39; ✓&#39; : &#39;&#39;)
+		.&#34; | terminal=false bash=\&#34;&#34;.$argv[0] . &#34;\&#34; param1=filler param2=filler param3=\&#34;$this_timezone\&#34; refresh=true&#34; // run this PHP script with three arguments (third is timezone name)
+		.&#34;\n&#34;
+	;
+}
+
+?&gt;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

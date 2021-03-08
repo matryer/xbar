@@ -1,0 +1,56 @@
+{
+	"person": {
+		"name": "Seb Insua",
+		"githubUsername": "sebinsua",
+		"imageURL": "https://avatars.githubusercontent.com/u/152098?v=4",
+		"bio": "🐚",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Finance/teller-track-spending.1h.sh",
+					"filename": "teller-track-spending.1h.sh",
+					"content": "#!/bin/sh\n#\n# Teller.io Banking via the OSX menu bar\n# Requires:\n# - a Teller.io account\n# - a UK Bank\n# - teller-cli: https://github.com/sebinsua/teller-cli#from-release\n# - pcregrep: `brew install pcre`\n#\n# \u003cbitbar.title\u003eTrack spending at UK banks with Teller\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.3.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSeb Insua\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003esebinsua\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTrack your spending with teller-cli and an account at Teller.io\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://camo.githubusercontent.com/e0215e6736172334f62effff36ff8df1ab38fed1/687474703a2f2f692e696d6775722e636f6d2f627638545a4c652e706e67\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eteller-cli, pcregrep\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/sebinsua/teller-cli\u003c/bitbar.abouturl\u003e\n\nexport PATH=\"/usr/local/bin:/usr/bin/:$PATH\";\n\nSPENDING_LIMIT='3000.00'; # Change this to a suitable spending limit.\n\nexit_if_zero() {\n  RETURN_CODE=$1;\n  ERROR_MESSAGE=$2;\n  if [ \"$ERROR_MESSAGE\" = \"\" ]; then\n    ERROR_MESSAGE=\"Offline\";\n  fi;\n  if [ \"$RETURN_CODE\" -ne 0 ]; then\n    echo \"$ERROR_MESSAGE|color=#7e7e7e\";\n    exit 1;\n  fi;\n}\n\n# If we're offline we shouldn't output junk in the menu bar.\ncurl --connect-timeout 5 www.google.com \u003e /dev/null 2\u003e /dev/null;\nexit_if_zero $? \"Offline\";\n\nCURRENT_OUTGOING=$(teller show outgoing current --hide-currency);\nexit_if_zero $? \"Error\";\n\nCURRENT_BALANCE=$(teller show balance current --hide-currency);\nexit_if_zero $? \"Error\";\n\nLAST_TRANSACTION=$(teller list transactions | tail -n 1 | pcregrep -o1 \"[0-9]+[ ]+(.*)\");\nexit_if_zero $? \"Error\";\n\nif [ \"$(echo \"$CURRENT_OUTGOING \u003e $SPENDING_LIMIT\" | bc)\" -ne 0 ]; then\n  OVERSPEND=$(echo \"scale=2; $CURRENT_OUTGOING - $SPENDING_LIMIT\" | bc);\n  echo \"🚨 £$OVERSPEND OVERSPENT|color=red\";\nelse\n  UNDERSPEND=$(echo \"scale=2; $SPENDING_LIMIT - $CURRENT_OUTGOING\" | bc);\n  if [ \"$(echo \"$UNDERSPEND \u003e ($SPENDING_LIMIT/2)\" | bc)\" -ne 0 ]; then\n    echo \"🏦 £$UNDERSPEND remaining|color=green\";\n  else\n    echo \"🏦 £$UNDERSPEND remaining|color=#ffbf00\";\n  fi;\nfi;\necho \"---\";\necho \"Current Account: £$CURRENT_BALANCE\";\necho \"Current Outgoing: £$CURRENT_OUTGOING\";\necho \"Last TX: $LAST_TRANSACTION\";\n"
+				}
+			],
+			"path": "Finance/teller-track-spending.1h.sh",
+			"filename": "teller-track-spending.1h.sh",
+			"dir": "Finance",
+			"docsPlugin": "Finance/teller-track-spending.1h.sh.html",
+			"docsCategory": "Finance.html",
+			"pathSegments": [
+				"Finance"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Finance",
+					"text": "Finance",
+					"isLast": true
+				}
+			],
+			"title": "Track spending at UK banks with Teller",
+			"version": "v1.3.1",
+			"author": "Seb Insua",
+			"authors": [
+				{
+					"name": "Seb Insua",
+					"githubUsername": "sebinsua",
+					"imageURL": "https://avatars.githubusercontent.com/u/152098?v=4",
+					"bio": "🐚",
+					"primary": true
+				}
+			],
+			"desc": "Track your spending with teller-cli and an account at Teller.io",
+			"imageURL": "https://camo.githubusercontent.com/e0215e6736172334f62effff36ff8df1ab38fed1/687474703a2f2f692e696d6775722e636f6d2f627638545a4c652e706e67",
+			"dependencies": [
+				"teller-cli",
+				"pcregrep"
+			],
+			"aboutURL": "https://github.com/sebinsua/teller-cli",
+			"lastUpdated": "2021-03-08T15:21:54.057115Z",
+			"vars": null
+		}
+	]
+}

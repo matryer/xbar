@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/syncthing-conflicts.10m.py",
+				"filename": "syncthing-conflicts.10m.py",
+				"content": "#!/usr/bin/env python3\n\"\"\"\n    syncthing-conflicts.10m.py\n    Python 2 and 3 compatible.\n\n    Searches in your Syncthing shares to find conflicting files.\n    Clicking on a conflict in the menu will open the enclosing folder in the Finder.\n\n    'st' Menu item will turn red if there are any conflicts.\n\n    This is a Bitbar plugin for MacOS\n    https://github.com/matryer/bitbar\n\n    \u003cbitbar.title\u003eSyncthing-conflicts\u003c/bitbar.title\u003e\n    \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n    \u003cbitbar.author\u003eTim Battersby\u003c/bitbar.author\u003e\n    \u003cbitbar.author.github\u003euglygus\u003c/bitbar.author.github\u003e\n    \u003cbitbar.desc\u003eBitbar - Syncthing conflicts helper.\u003c/bitbar.desc\u003e\n    \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n    \u003cbitbar.image\u003ehttps://i.imgur.com/CbthLRt.png\u003c/bitbar.image\u003e\n\n\"\"\"\n\nimport os\nimport re\nimport argparse\nimport sys\nfrom subprocess import call\n\n\ndef find_conflicts():\n    \"\"\" Reads a folder list from config.xml\n        Returns a list of conflict found in those folders.\n    \"\"\"\n    config_file = os.environ['HOME'] + \\\n        \"/Library/Application Support/Syncthing/config.xml\"\n\n    try:\n        config = open(config_file)\n    except FileNotFoundError:\n        return ['ERROR: config file not found: '+ config_file]\n\n    xml_contents = config.read()\n    config.close()\n\n    PATH_REGEX = re.compile('path=\"(.*)\" type')\n    shares = PATH_REGEX.findall(xml_contents)\n\n    c_list = []\n\n    for share in shares:\n        for root, dirs, files in os.walk(share):\n            for file in files:\n\n                if \"/.stversions/\" in root:\n                    continue\n\n                if \".sync-conflict-\" in file:\n                    c_list.append('--' + os.path.join(root, file) +\n                                  ' | terminal=false bash=/usr/bin/open param1=\\\"' + root + '\\\"')\n\n    if c_list:\n        c_list = ['Conflicts'] + c_list\n\n    return c_list\n\n\ndef main():\n    \"\"\" Syncthing Bitbar plugin \"\"\"\n\n    parser = argparse.ArgumentParser(description='Bitbar - Syncthing conflicts helper.')\n    parser.add_argument('conflict', nargs='?',\n                        help='a conflict')\n    args = parser.parse_args()\n\n    print(args)\n\n    conflicts = find_conflicts()\n\n    if conflicts:\n        print(u' \\u001b[31mst\\u001b[0m | ansi=true')\n    else:\n        print('st')\n\n    print('---')\n\n    if args.conflict:\n        print('CONFLICT--', args.conflict)\n        call([\"open\", args.conflict])\n\n    for item in conflicts:\n        print(item)\n\n    return 0\n\n\nif __name__ == '__main__':\n    sys.exit(main())\n"
+			}
+		],
+		"path": "Lifestyle/syncthing-conflicts.10m.py",
+		"filename": "syncthing-conflicts.10m.py",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/syncthing-conflicts.10m.py.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "Syncthing-conflicts",
+		"version": "v1.0",
+		"author": "Tim Battersby",
+		"authors": [
+			{
+				"name": "Tim Battersby",
+				"githubUsername": "uglygus",
+				"imageURL": "https://avatars.githubusercontent.com/u/11585473?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Bitbar - Syncthing conflicts helper.",
+		"imageURL": "https://i.imgur.com/CbthLRt.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:56.036425Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/redmine-show-my-task.1m.rb",
+				"filename": "redmine-show-my-task.1m.rb",
+				"content": "#!/usr/bin/env ruby\n# coding: utf-8\n\n# \u003cbitbar.title\u003eRedmine Show My Task\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ehikouki\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ehikouki\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow Redmine open ticket for mine\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/hikouki/bitbar-redmine/master/preview.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/hikouki\u003c/bitbar.abouturl\u003e\n\nrequire 'net/http'\nrequire 'uri'\nrequire 'json'\n\n# a6140cbf6e84a0bAffb0cX49138fc5687310b518\n#   or\n# launchctl setenv REDMINE_ACCESS_TOKEN a6140cbf6e84a0bAffb0cX49138fc5687310b518\ntoken = ENV[\"REDMINE_ACCESS_TOKEN\"] || ''\n# https://redmine.xxxx.com\n#   or\n# launchctl setenv REDMINE_URL https://redmine.xxxx.com\nredmine_url = ENV[\"REDMINE_URL\"] || ''\n\nuri = URI.parse(\"#{redmine_url}/issues.json?key=#{token}\u0026limit=100\u0026status_id=open\u0026assigned_to_id=me\")\n\nbegin\n  http = Net::HTTP.new(uri.host, uri.port)\n  http.use_ssl = true if(uri.scheme == 'https')\n  res = http.start {\n    http.get(uri.request_uri)\n  }\n\n  raise \"error #{res.code} #{res.message}\" if res.code != '200'\n\n  result = JSON.parse(res.body, symbolize_names: true)\n  issues = result[:issues]\n\n  projects = Hash.new do | h, k |\n    h[k] = {\n      issues_count: 0,\n      trackers: Hash.new do | h1, k1 |\n        h1[k1] = {\n          name: \"tracker name.\",\n          issues: Hash.new {| h2, k2 | h2[k2] = []}\n        }\n      end\n    }\n  end\n\n  dark_mode = `defaults read -g AppleInterfaceStyle 2\u003e/dev/null`\n  if dark_mode.include? \"Dark\" then\n    main_color = \"#FFFFFF\"\n    project_color = \"#FEFEFE\"\n    issue_color = \"#CCCCCC\"\n    tracker_color = \"#33BFDB\"\n    status_color = \"#58BE89\"\n  else\n    main_color = \"black\"\n    project_color = \"black\"\n    issue_color = \"black\"\n    tracker_color = \"#33BFDB\"\n    status_color = \"#58BE89\"\n  end\n\n  last_issue_id = 0\n\n  issues.each do | v |\n    last_issue_id = v[:id] if last_issue_id == 0 \n    project_id   = v[:project][:id]\n    project_name = v[:project][:name]\n    status_id    = v[:status][:id]\n    tracker_id   = v[:tracker][:id]\n    tracker_name = v[:tracker][:name]\n    projects[project_id][:issues_count] += 1\n    projects[project_id][:id] = project_id\n    projects[project_id][:name] = project_name\n    projects[project_id][:trackers][tracker_id][:name] = tracker_name\n    projects[project_id][:trackers][tracker_id][:issues][status_id].push(v)\n  end\n\n  issue_total_count = result[:total_count] \u003e 99 ? '99+' : result[:total_count]\n  issue_last = last_issue_id != 0 ? \" - ##{last_issue_id}\" : \"\"\n  puts issues.empty? ? \"✦ | color=#7d7d7d\" : \"✦ #{issue_total_count}#{issue_last}\"\n  puts \"---\"\n  puts \"Redmine | color=#{main_color} href=#{redmine_url}\"\n  puts \"---\"\n\n  projects.each do | _, project |\n    puts \"#{project[:name]}: #{project[:issues_count]} | color=#{project_color} size=11\"\n    project[:trackers].each do | _, tracker |\n      puts \"➠ #{tracker[:name]} | color=#{tracker_color} size=11\"\n      tracker[:issues].each do | _, status |\n        puts \"[#{status.first[:status][:name]}] | color=#{status_color} size=11\"\n        status.each do | issue |\n          prefix = status.last == issue ? \"└\" : \"├\"\n          puts \"#{prefix} ##{issue[:id]} #{issue[:subject]} | color=#{issue_color} href=#{redmine_url}/issues/#{issue[:id]} size=11\"\n        end\n      end\n    end\n    puts \"---\"\n  end\nrescue\n  puts \"✦ ! | color=#ECB935\"\n  puts \"---\"\n  puts \"Exception: #{$!}\"\nend\n"
+			}
+		],
+		"path": "Dev/redmine-show-my-task.1m.rb",
+		"filename": "redmine-show-my-task.1m.rb",
+		"dir": "Dev",
+		"docsPlugin": "Dev/redmine-show-my-task.1m.rb.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Redmine Show My Task",
+		"version": "v1.0.1",
+		"author": "hikouki",
+		"authors": [
+			{
+				"name": "Kouki Higashikawa",
+				"githubUsername": "hikouki",
+				"imageURL": "https://avatars.githubusercontent.com/u/15326035?v=4",
+				"bio": ":airplane:",
+				"primary": true
+			}
+		],
+		"desc": "Show Redmine open ticket for mine",
+		"imageURL": "https://raw.githubusercontent.com/hikouki/bitbar-redmine/master/preview.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "https://github.com/hikouki",
+		"lastUpdated": "2021-03-08T15:21:52.146697Z",
+		"vars": null
+	}
+}

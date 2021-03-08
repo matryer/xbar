@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Mikey Beck",
+		"githubUsername": "mikeybeck",
+		"imageURL": "https://avatars.githubusercontent.com/u/468643?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/getopenPRs.10m.sh",
+					"filename": "getopenPRs.10m.sh",
+					"content": "#!/bin/bash\n# shellcheck disable=SC2034\n# shellcheck disable=SC2154\n# shellcheck source=/dev/null\n\n# \u003cbitbar.title\u003eBitbucket Pull Requests\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMikey Beck\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emikeybeck\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows Bitbucket open pull request information\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ejq\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/mikeybeck/bitbar-bitbucketPRs\u003c/bitbar.abouturl\u003e\n\n# Relevant documentation for BitBucket: http://web.archive.org/web/20150530151816/https://confluence.atlassian.com/display/BITBUCKET/pullrequests+Resource#pullrequests\n\nUSERNAME=\nPASSWORD=\n\nREPO_OWNER=\nREPO_SLUG=\n\nNUM_APPROVALS_REQ=2  # Number of approvals required for pull request\n\n# Export PATH\nexport PATH=\"/usr/local/bin:/usr/bin:$PATH\"\n\n# Base64 icon to use in system bar\nicon=\"iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAACK0lEQVQ4EbWUO2tUQRSAb2K0CMgGsVCUoCCBlCIqNlY+QImPxsLaH5AiIhYWQsDSQgSxsRHUwsJGLYRNFbXRgGDtgqKCqEl8Jz6+b3bO3SFeDRYe+PY85txzZs7euVXVkxU9M1nh9+f4AHprtvuyXlYNk7Ef1uRMi4Rcw7iUHePSWDh2cIaEj9CBOTgOIRcxfsK5CBQ6TlKEqmo3ng8czNEJ9CdYBxfAtR/wAqZhCk7DKlB+KzpJsJ2Wej8zmA/BYgvwPdv6wX3s1aDESZMzxu9nGE1eVR1Bf4AdcAui6Dy2I/kC7tj4DVDqgjHYKwSd3R34Bh5J8Ti3wYfPg7IdnoExc2Mj6ehRucXCu5z0GK2Us3mEfzlFuz/+4xaUvd1QNVC+FoMEPfYQODOLOTdzFmEPOIImsWiS2J2OwfDVzkixmMXfwl1YCX+Ucod1F7JL2xm702gWjRqLRlLj4pKghf5azPx/KbikfrP7Xws6+Jidc1uuWby/brV+vcqHZl3JElct/FLHM971kHg2NYmEk6y6Qz8A6kOg1N0Lewv2K3gD5sb1w+zKLpSvxuHsn0LbdW32bVoe0VtzM8dG0N6wcahlEmuq9rpGB3U0x3xf4yQbsN/DxrymOgttjUjy7u6ETaDsg/XwVAfxWKK8BD/EJ3SyHEPPhBP6OoafLDt5fLsq0VQ75ulovsIDeA5PoAVpLn3o6H4AexvcAz+eTWIDb8xmcGev4Sp45/t/AVL9dQ7qDO64AAAAAElFTkSuQmCC\"\nresponse=$(curl -s -X GET --user $USERNAME:$PASSWORD \"https://bitbucket.org/api/2.0/repositories/$REPO_OWNER/$REPO_SLUG/pullrequests/\")\njson=$(echo \"$response\" | jq -r -c '[.values[] | {title: .title, author: .author.display_name, num_comments: .comment_count, link_html: .links.html.href, link_status: .links.statuses.href, link_self: .links.self.href}]')\nprs=$(echo \"$response\" | jq -r -c '(.size|tostring)')\n\nnum_approved_by_me=0\ndeclare -a lines\n\nfor pr in $(echo \"${json}\" | jq -r '.[] | @base64'); do\n    _jq() {\n     echo \"${pr}\" | base64 --decode | jq -r \"${1}\"\n    }\n\n   build_state=$(curl -s -X GET --user $USERNAME:$PASSWORD \"$(_jq '.link_status')\" | jq -r '.values[].state')\n   self=$(curl -s -X GET --user $USERNAME:$PASSWORD \"$(_jq '.link_self')\")\n   num_approvals=$(echo \"$self\" | jq -r '[select(.participants[].approved)] | length')\n   colour=\"red\"\n   if [[ $build_state == \"SUCCESSFUL\" ]]; then\n    colour=\"green\" # Colour to show if PR is good to go (approved \u0026 build passed)\n    if [ \"$num_approvals\" -lt \"$NUM_APPROVALS_REQ\" ]; then\n      colour=\"black\" # Colour to show if PR build passed but not approved\n    fi\n   fi\n  \n   approved_by_me=$(echo \"$self\" | jq -r --arg USERNAME \"$USERNAME\" '.participants[] | select(.user.username == $USERNAME) | .approved')\n   if [[ $approved_by_me == \"true\" ]]; then\n    approved_by_me=\":heavy_check_mark:\"\n    ((num_approved_by_me++))\n   else\n    approved_by_me=\"-\"\n   fi\n\n  line=\"$approved_by_me $(_jq '.author') - $(_jq '.title') ┃ :heavy_check_mark: $num_approvals ┃ :speech_balloon: $(_jq '.num_comments') | href=$(_jq '.link_html') color=$colour\"\n  lines+=(\"$line\")\n\ndone\n\n# Print everything out\n\nnum_unapproved_by_me=$((prs - num_approved_by_me))\necho \"$prs / $num_unapproved_by_me | templateImage=$icon dropdown=false\" # Display number of PRs in menu bar\necho \"---\"\necho \"View all open pull requests | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/\"\necho \"---\"\n\nfor line in \"${lines[@]}\"\ndo\n  echo \"$line\" # Display open PRs in dropdown\ndone\n"
+				}
+			],
+			"path": "Dev/getopenPRs.10m.sh",
+			"filename": "getopenPRs.10m.sh",
+			"dir": "Dev",
+			"docsPlugin": "Dev/getopenPRs.10m.sh.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "Bitbucket Pull Requests",
+			"version": "1.0",
+			"author": "Mikey Beck",
+			"authors": [
+				{
+					"name": "Mikey Beck",
+					"githubUsername": "mikeybeck",
+					"imageURL": "https://avatars.githubusercontent.com/u/468643?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows Bitbucket open pull request information",
+			"imageURL": "https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png",
+			"dependencies": [
+				"jq"
+			],
+			"aboutURL": "https://github.com/mikeybeck/bitbar-bitbucketPRs",
+			"lastUpdated": "2021-03-08T15:21:51.341968Z",
+			"vars": null
+		}
+	]
+}

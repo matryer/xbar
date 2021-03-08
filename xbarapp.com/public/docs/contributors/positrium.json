@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "positrium.org",
+		"githubUsername": "positrium",
+		"imageURL": "https://avatars.githubusercontent.com/u/22125861?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/w06_transfer.10s.rb",
+					"filename": "w06_transfer.10s.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eSpeedwifi-next W06 transfer amount during 1day\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003epositrium\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003epositrium\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eshow Speedwifi-next w06 transfer amount during 1day for bitbar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/positrium/wifi-transfer-meter\u003c/bitbar.abouturl\u003e\n\nrequire 'open-uri'\nrequire 'nokogiri'\n\nclass TransferAmount\n\tdef initialize\n\t\t@has_error = false\n\n\t\t@scale = {\n\t\t\tkb: 1024,\n\t\t\tmb: 1024 * 1024,\n\t\t\tgb: 1024 * 1024 * 1024,\n\t\t\ttb: 1024 * 1024 * 1024 * 1024\n\t\t}\n\t\t@scale.freeze\n\n\t\t@payload = {\n\t\t\tyesterday_download: -9,\n\t\t\tyesterday_upload: -9,\n\t\t\tyesterday_duration: -9,\n\t\t\ttoday_download: -9,\n\t\t\ttoday_upload: -9,\n\t\t\ttoday_duration: -9,\n\t\t\tis_yesterday_flux_over_limit: -9,\n\t\t\tlast_clear_time_3days: -9\n\t\t}\n\n\t\t@doc = Nokogiri.HTML(open(\"http://speedwifi-next.home/api/monitoring/statistics_3days\"))\n\t\t@doc.xpath('//response/*').each do |e|\n\t\t\tcase e.name\n\t\t\twhen 'toyestodaydownload'\n\t\t\t\t@payload[:yesterday_download] = e.children[0].text\n\t\t\twhen 'toyestodayupload'\n\t\t\t\t@payload[:yesterday_upload] = e.children[0].text\n\t\t\twhen 'toyestodayduration'\n\t\t\t\t@payload[:yesterday_duration] = e.children[0].text\n\t\t\twhen 'totodaydownload'\n\t\t\t\t@payload[:today_download] = e.children[0].text\n\t\t\twhen 'totodayupload'\n\t\t\t\t@payload[:today_upload] = e.children[0].text\n\t\t\twhen 'totodayduration'\n\t\t\t\t@payload[:today_duration] = e.children[0].text\n\t\t\twhen 'isyestodayfluxoverlimit'\n\t\t\t\t@payload[:is_yesterday_flux_over_limit] = e.children[0].text\n\t\t\twhen 'lastcleartime3days'\n\t\t\t\t@payload[:last_clear_time_3days] = e.children[0].text\n\t\t\tend\n\t\tend\n\t\t@payload.freeze\n\trescue\n\t\t@has_error = true\n\tend\n\n\tdef yesterday_data_usage\n\t\tyesterday_data = @payload[:yesterday_download].to_i + @payload[:yesterday_upload].to_i\n\n\t\tscale = transfer_scale(yesterday_data)\n\t\tyesterday_usage = ( yesterday_data.to_f / scale[:size] ).round(2)\n\n\t\t{amount: yesterday_usage, label: scale[:label], percentage: yesterday_usage / 10.00 * 100}\n\tend\n\n\tdef today_data_usage\n\t\ttoday_data = @payload[:today_download].to_i + @payload[:today_upload].to_i\n\n\t\tscale = transfer_scale(today_data)\n\t\ttoday_usage = ( today_data.to_f / scale[:size] ).round(2)\n\n\t\t{amount: today_usage, label: scale[:label], percentage: today_usage / 10.00 * 100}\n\tend\n\n\tdef limited?\n\t\tlimited = @payload[:is_yesterday_flux_over_limit].to_i\n\n\t\tfalse if limited == 0\n\t\ttrue if limited != 0\n\tend\n\n\tdef has_error?\n\t\t@has_error\n\tend\n\n\tdef scale_down(value)\n\t\tvalue * 1024\n\tend\n\n\tprivate\n\n\tdef transfer_scale(byte)\n\t\tscale_info = {size: 0, label: ''}\n\n\t\tif @scale[:mb] \u003e byte\n\t\t\tscale_info[:size] = @scale[:kb]\n\t\t\tscale_info[:label] = 'KB'\n\t\telsif @scale[:gb] \u003e byte\n\t\t\tscale_info[:size] = @scale[:mb]\n\t\t\tscale_info[:label] = 'MB'\n\t\telsif @scale[:tb] \u003e byte\n\t\t\tscale_info[:size] = @scale[:gb]\n\t\t\tscale_info[:label] = 'GB'\n\t\telse\n\t\t\tscale_info[:size] = @scale[:tb]\n\t\t\tscale_info[:label] = 'TB'\n\t\tend\n\n\t\tscale_info\n\tend\n\nend\n\nclass WarningDetector\n\tattr_reader :sign, :amount\n\n\tdef initialize(amount, percentage, symbols={over: \"x\", warn: \"!\", ok: \"o\", limited: \"-\"}, limited=false)\n\t\t@amount = amount.round(2)\n\t\t@percentage = percentage\n\t\t@symbols = symbols\n\t\t@limited = limited\n\tend\n\n\tdef total_status\n\t\t@status = :ok\n\n\t\tif @percentage \u003e= 100.00\n\t\t\t@status = :over\n\t\telsif @percentage \u003e= 70.00\n\t\t\t@status = :warn\n\t\tend\n\n\t\t@sign = @symbols[@status]\n\t\t@status\n\tend\n\n\tdef today_left_value\n\t\tvalue = 0\n\n\t\tcase @status\n\t\twhen :warn\n\t\t\tvalue = scale_down(10.00-@amount).round(2)\n\t\t\tvalue = value.round\n\t\twhen :ok\n\t\t\tvalue = scale_down(7.00-@amount).round(2)\n\t\t\tvalue = value.round\n\t\tend\n\n\t\tvalue = 0 if value \u003c 1\n\n\t\tvalue\n\tend\n\n\tprivate\n\n\tdef scale_down(n)\n\t\tn * 1024\n\tend\nend\n\na = TransferAmount.new\n\nif a.has_error?\n\tputs \"\u003c!\u003e connect to w06\"\n\nelse\n\tsymbols = {over: \":broken_heart:\", warn: \":yellow_heart:\", ok: \":green_heart:\", limited: \":no_entry_sign:\"}\n\tsymbols.freeze\n\n\tusage = a.today_data_usage\n\twc = WarningDetector.new(usage[:amount], usage[:percentage], symbols, a.limited?)\n\twc.total_status\n\n\ty_usage = a.yesterday_data_usage\n\twt = WarningDetector.new(y_usage[:amount], y_usage[:percentage], symbols, false)\n\twt.total_status\n\n\tputs \"#{wc.sign}#{wc.today_left_value}MB(#{wc.amount}#{usage[:label]})\"\n\tputs \"---\"\n\tputs \"admin page|href=http://speedwifi-next.home\"\n\tputs \"hardware page|href=https://www.uqwimax.jp/wimax/products/w06/\"\n\tputs \"---\"\n\tputs \"until today usage\"\n\tputs \"#{wc.sign}#{wc.amount}#{usage[:label]}\"\n\tputs \"--#{symbols[:limited]} restricted now\"\n\tputs \"--#{symbols[:over]} over 10GB (100%)\"\n\tputs \"--#{symbols[:warn]} over  7GB ( 70%)\"\n\tputs \"--#{symbols[:ok]} less 7GB\"\n\tputs \"--today + 1 day ago + 2 days ago\"\n\tputs \"until yesterday usage\"\n\tputs \"#{wt.sign}#{wt.amount}#{y_usage[:label]}\"\n\tputs \"--#{symbols[:over]} over 10GB (100%)\"\n\tputs \"--#{symbols[:warn]} over  7GB ( 70%)\"\n\tputs \"--#{symbols[:ok]} less  7GB\"\n\tputs \"--1 day ago + 2 days ago + 3 days ago\"\nend\n"
+				}
+			],
+			"path": "Network/w06_transfer.10s.rb",
+			"filename": "w06_transfer.10s.rb",
+			"dir": "Network",
+			"docsPlugin": "Network/w06_transfer.10s.rb.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "Speedwifi-next W06 transfer amount during 1day",
+			"version": "1.0",
+			"author": "positrium",
+			"authors": [
+				{
+					"name": "positrium.org",
+					"githubUsername": "positrium",
+					"imageURL": "https://avatars.githubusercontent.com/u/22125861?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "show Speedwifi-next w06 transfer amount during 1day for bitbar.",
+			"imageURL": "https://raw.githubusercontent.com/positrium/wifi-transfer-meter/master/image20200122.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "https://github.com/positrium/wifi-transfer-meter",
+			"lastUpdated": "2021-03-08T15:22:00.234129Z",
+			"vars": null
+		}
+	]
+}

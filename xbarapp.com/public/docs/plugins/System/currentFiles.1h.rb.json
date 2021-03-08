@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/currentFiles.1h.rb",
+				"filename": "currentFiles.1h.rb",
+				"content": "#!/usr/bin/ruby\n# coding: utf-8\n#\n# \u003cbitbar.title\u003eCurrent Working Files\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eRichard Guay\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eraguay\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eList of files that I'm currently working on. It allows me to select which editor to use and integrates with Alfred workflow for BitBar.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://customct.com/images/CurrentFilesPlugin-01.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttp://customct.com/bitbar\u003c/bitbar.abouturl\u003e\n\n#\n# Global Variables:\n#\ncheckbeg = \"\"\ncheckin = \"\"\nvimProg = \"/usr/local/Cellar/macvim/7.4-107/MacVim.app/Contents/MacOS/MacVim\"\nsublimeProg = \"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl\"\nemacsProg = \"/usr/local/bin/emacsclient\"\n\n#\n# Check for needed files existing and create them\n# if they don't.\n#\nif ! File.exist?(Dir.home + \"/.myCurrentFiles\")\n  fh = File.new(Dir.home + \"/.myCurrentFiles\",\"w+\")\n  fh.write(\"~/.zshrc\\n~/.bashrc\\n~/.zshenv\\n~/.zlogin\\n~/.profile\\n~/.vimrc\\n\")\n  fh.close\n  fh = File.new(Dir.home + \"/.myeditors\",\"w+\")\n  fh.write(\"Emacs|emacs\\nMacVim|vim\\nSublime Text|sublime\\n\")\n  fh.close\n  fh = File.new(Dir.home + \"/.myeditorchoice\",\"w+\")\n  fh.write(\"sublime\")\n  fh.close\nend\n\n#\n# Check for version of BitBar and set the check\n# to be the normal check or an emoji check depending\n# upon the version.\n#\nif ENV[\"BitBarVersion\"] != nil\n  #\n  # The BitBar version is defined. It is at least version 2.0.0-beta10\n  #\n  checkbeg = \"\"\n  checkin = \"checked=true\"\nelse\n  #\n  # This one is less than version 2.0.0-beta10\n  #\n  checkbeg = \"✔️\"\n  checkin = \"\"\nend\n\nif ARGV.empty?\n  #\n  # Create the menu.\n  #\n  puts '🗃';\n  puts \"---\";\n  puts \"Files To Edit:\"\n  cfn = File.expand_path(__FILE__)\n  IO.readlines(Dir.home + \"/.myCurrentFiles\").each { |i|\n    fn = File.basename(i.chop!)\n    puts \"#{fn} | bash=\\\"#{cfn}\\\" param1=\\\"file\\\" param2=\\\"#{i}\\\" terminal=false\"\n  }\n  puts \"---\"\n  puts \"Editor to Use:\"\n  editor = IO.read(Dir.home + \"/.myeditorchoice\")\n  IO.readlines(Dir.home + \"/.myeditors\").each { |i|\n    if i.chop! == \"\"\n        continue\n    end\n    parts = i.split(\"|\")\n    parts[1]\n    if editor == parts[1]\n      puts \"#{checkbeg}#{parts[0]} | bash=\\\"#{cfn}\\\" param1=\\\"#{parts[1]}\\\" #{checkin} terminal=false refresh=true\\n\"\n    else\n      puts \"#{parts[0]} | bash=\\\"#{cfn}\\\" param1=\\\"#{parts[1]}\\\" terminal=false refresh=true\\n\"\n    end\n  }\nelse\n  #\n  # Process a command.\n  #\n  case ARGV[0]\n  when \"file\" then\n    #\n    # Open the file in the preferred editor.\n    #\n    fn = ARGV[1]\n    if fn[0] == '~'\n      fn = Dir.home + fn.slice(1,fn.length)\n    end\n    editor = IO.read(Dir.home + \"/.myeditorchoice\")\n    case editor\n    when \"emacs\" then\n      #\n      # Call the emacsclient program to open the file.\n      #\n      `#{emacsProg} -n \"#{fn}\"`\n    when \"vim\" then\n      #\n      # Call MacVim to open the file.\n      #\n      `'#{vimProg}' '#{fn}'`\n    when \"sublime\" then\n      #\n      # Call Sublime Text to open the file.\n      #\n      `'#{sublimeProg}' '#{fn}'`\n    else\n      #\n      # Else, let the system open the file with the\n      # desired program.\n      #\n      `/usr/bin/open -a '#{editor}' '#{fn}'`\n    end\n  else\n    #\n    # Set the editor Choice.\n    #\n    IO.write(Dir.home + \"/.myeditorchoice\",ARGV[0])\n  end\nend\n"
+			}
+		],
+		"path": "System/currentFiles.1h.rb",
+		"filename": "currentFiles.1h.rb",
+		"dir": "System",
+		"docsPlugin": "System/currentFiles.1h.rb.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Current Working Files",
+		"version": "v0.1",
+		"author": "Richard Guay",
+		"authors": [
+			{
+				"name": "Richard Guay",
+				"githubUsername": "raguay",
+				"imageURL": "https://avatars.githubusercontent.com/u/2487495?v=4",
+				"bio": "I'm an American missionary in Tak, Thailand doing freelance work to help pay medical and college needs for my family of eight kids.",
+				"primary": true
+			}
+		],
+		"desc": "List of files that I'm currently working on. It allows me to select which editor to use and integrates with Alfred workflow for BitBar.",
+		"imageURL": "http://customct.com/images/CurrentFilesPlugin-01.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "http://customct.com/bitbar",
+		"lastUpdated": "2021-03-08T15:22:03.129026Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,698 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>WaniKani Stats in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Displays user details &amp; review &#43; lesson tracking for WaniKani. - install xbar for free to get started.'>
+	<meta name='author' content='Nzebo'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/orRd3Ga.png'>
+	<meta itemprop='name' content='WaniKani Stats in your macOS menu bar'>
+	<meta itemprop='description' content='Displays user details &amp; review &#43; lesson tracking for WaniKani. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='WaniKani Stats in your macOS menu bar'>
+	<meta name='twitter:description' content='Displays user details &amp; review &#43; lesson tracking for WaniKani. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/orRd3Ga.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='WaniKani Stats in your macOS menu bar'>
+	<meta property='og:description' content='Displays user details &amp; review &#43; lesson tracking for WaniKani. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Web/waniKaniStats.5m.rb.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/orRd3Ga.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/orRd3Ga.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/orRd3Ga.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/orRd3Ga.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>WaniKani Stats</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/Nzebo.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/8963325?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/Nzebo.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Nathan Zebrowski (<code style='color:white;'>@Nzebo</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Displays user details &amp; review &#43; lesson tracking for WaniKani.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Web%2fwaniKaniStats.5m.rb'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/orRd3Ga.png' 
+				alt='Image preview of WaniKani Stats plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>waniKaniStats.5m.rb</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Web/waniKaniStats.5m.rb'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Web/waniKaniStats.5m.rb'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# &lt;bitbar.title&gt;WaniKani Stats&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v0.2.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Nzebo&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;Nzebo&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Displays user details &amp; review &#43; lesson tracking for WaniKani.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/orRd3Ga.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;ruby&lt;/bitbar.dependencies&gt;
+
+require &#39;net/http&#39;
+require &#39;json&#39;
+require &#39;time&#39;
+require &#39;date&#39;
+
+
+# WaniKani API Token v2 - Retrieved from https://www.wanikani.com/settings/personal_access_tokens
+API_TOKEN = &#39;&#39;
+
+COLORS = {
+  Radicals: &#39;#00AAFF&#39;,
+  Kanji: &#39;#FF00AA&#39;,
+  Vocabulary: &#39;#7c04b7&#39;
+}.freeze
+
+
+##
+# Base64 encoded icon for the menu
+IMG_BASE64 = &#39;iVBORw0KGgoAAAANSUhEUgAAACoAAAAgCAYAAABkWOo9AAAKx2lDQ1BJQ0MgUHJv&#39; \
+&#39;ZmlsZQAASImVlwdUk8kWgOf/0xsEAhGQEmro0quU0AMovdoISSChxJgQVOzK4gquKCIiqCzIooCCaw&#39; \
+&#39;FkLYgotkWxYd8gi4K4LhZEReX9wCPsvnfee&#43;fdnHvmy82de&#43;/MmZlzAwAFzxGLM2AqAJmiLElkoA8j&#39; \
+&#39;PiGRgesDGEABysAQMDlcqZgVHh4KEJke/y4f7gFoYrxtNRHr33//r6LC40u5AEDhCCfzpNxMhE8g&#43;p&#39; \
+&#39;orlmQBgKpG7IbLs8QTfBlhNQlSIMKPJzh1iocnOHmS0ehJn&#43;hIX4Q1AMCTORxJKgBkI8TOyOamInHI&#39; \
+&#39;fgjbiHhCEcLId&#43;DJFXB4CCN5gWVm5tIJliNsmvyXOKl/i5msiMnhpCp4ai2TgvcTSsUZnJX/53b8b8&#39; \
+&#39;nMkE3nMEGULJAERSIjHdmz&#43;&#43;lLQxQsSp4fNs1C3qT/JAtkQTHTzJX6Jk4zj&#43;MXopibMT90mlOEAWxF&#39; \
+&#39;nCx29DTzpf5R0yxZGqnIlSLxZU0zRzKTV5Yeo7AL&#43;GxF/BxBdNw0Zwtj50&#43;zND0qZMbHV2GXyCIV9f&#39; \
+&#39;NFgT4zeQMUa8&#43;U/mW9QrZibpYgOkixds5M/XwRayamNF5RG4/v5z/jE6PwF2f5KHKJM8IV/vyMQIVd&#39; \
+&#39;mh2lmJuFHMiZueGKPUzjBIdPM/AD/iAU&#43;TBAOLAD9sAWOACk2iz&#43;iokzCnyXildKhKmCLAYLuWV8Bl&#39; \
+&#39;vEtbZk2NnYugIwcWenjsS7&#43;5N3EaLjZ2z84wA42CBG6oxNwAGgFQMAtWDGZtqOXMerAJwv4sok2VO2&#39; \
+&#39;ieuEvAVE5C1QA5pAF3kRTIEVUp8TcAfeSMXBIAxEgwSwGHCBAGQCCVgOVoMNIA8UgO1gFygDFeAAOA&#39; \
+&#39;SOgGOgGZwG58ElcA3cBHfBIyAH/WAIDIMPYAyCIBxEgWiQJqQHGUMWkB3kAnlC/lAoFAklQElQKiSC&#39; \
+&#39;ZNBqaBNUABVBZVAlVAv9DJ2CzkNXoG7oAdQLDUJvoc8wCibDarAObALPgV1gFhwCR8OL4FR4GZwD58&#39; \
+&#39;Lb4FK4Cj4MN8Hn4WvwXVgOD8EjKIAioegofZQVygXliwpDJaJSUBLUWlQ&#43;qgRVhWpAtaI6UbdRctQr&#39; \
+&#39;1Cc0Fk1DM9BWaHd0EDoGzUUvQ69Fb0WXoQ&#43;hm9Ad6NvoXvQw&#43;huGgtHGWGDcMGxMPCYVsxyThynB1G&#39; \
+&#39;BOYi5i7mL6MR&#43;wWCwdy8Q6Y4OwCdg07CrsVuw&#43;bCO2DduN7cOO4HA4TZwFzgMXhuPgsnB5uD24w7hz&#39; \
+&#39;uFu4ftxHPAmvh7fDB&#43;AT8SL8RnwJvg5/Fn8L/wI/RqASjAluhDACj7CSUEioJrQSbhD6CWNEFSKT6E&#39; \
+&#39;GMJqYRNxBLiQ3Ei8THxHckEsmA5EqKIAlJ60mlpKOky6Re0ieyKtmc7EteSJaRt5EPktvID8jvKBSK&#39; \
+&#39;CcWbkkjJomyj1FIuUJ5SPirRlKyV2Eo8pXVK5UpNSreUXisTlI2VWcqLlXOUS5SPK99QfkUlUE2ovl&#39; \
+&#39;QOdS21nHqK2kMdUaGp2KqEqWSqbFWpU7miMqCKUzVR9VflqeaqHlC9oNpHQ9EMab40Lm0TrZp2kdav&#39; \
+&#39;hlVjqrHV0tQK1I6odakNq6uqO6jHqq9QL1c/oy6no&#43;gmdDY9g15IP0a/R/88S2cWaxZ/1pZZDbNuzR&#39; \
+&#39;rVmK3hrcHXyNdo1Lir8VmToemvma65Q7NZ84kWWstcK0JrudZ&#43;rYtar2arzXafzZ2dP/vY7IfasLa5&#39; \
+&#39;dqT2Ku0D2te1R3R0dQJ1xDp7dC7ovNKl63rrpukW657VHdSj6XnqCfWK9c7pvWSoM1iMDEYpo4MxrK&#39; \
+&#39;&#43;tH6Qv06/U79IfM2AaxBhsNGg0eGJINHQxTDEsNmw3HDbSM5pntNqo3uihMcHYxVhgvNu403jUhGkS&#39; \
+&#39;Z7LZpNlkgKnBZDNzmPXMx6YUUy/TZaZVpnfMsGYuZulm&#43;8xumsPmjuYC83LzGxawhZOF0GKfRbclxt&#39; \
+&#39;LVUmRZZdljRbZiWWVb1Vv1WtOtQ603Wjdbv55jNCdxzo45nXO&#43;2TjaZNhU2zyyVbUNtt1o22r71s7c&#39; \
+&#39;jmtXbnfHnmIfYL/OvsX&#43;jYOFA99hv8N9R5rjPMfNju2OX52cnSRODU6DzkbOSc57nXtc1FzCXba6XH&#39; \
+&#39;bFuPq4rnM97frJzckty&#43;2Y25/uVu7p7nXuA3OZc/lzq&#43;f2eRh4cDwqPeSeDM8kzx895V76XhyvKq9n&#39; \
+&#39;3obePO8a7xcsM1Ya6zDrtY&#43;Nj8TnpM&#43;or5vvGt82P5RfoF&#43;&#43;X5e/qn&#43;Mf5n/0wCDgNSA&#43;oDhQMfAVY&#39; \
+&#39;FtQZigkKAdQT1sHTaXXcseDnYOXhPcEUIOiQopC3kWah4qCW2dB88Lnrdz3uP5xvNF85vDQBg7bGfY&#39; \
+&#39;k3Bm&#43;LLwXyKwEeER5RHPI20jV0d2RtGilkTVRX2I9okujH4UYxoji2mPVY5dGFsbOxrnF1cUJ4&#43;fE7&#39; \
+&#39;8m/lqCVoIwoSURlxibWJM4ssB/wa4F/QsdF&#43;YtvLeIuWjFoiuLtRZnLD6zRHkJZ8nxJExSXFJd0hdO&#39; \
+&#39;GKeKM5LMTt6bPMz15e7mDvG8ecW8Qb4Hv4j/IsUjpShlINUjdWfqoMBLUCJ4JfQVlgnfpAWlVaSNpo&#39; \
+&#39;elH0wfz4jLaMzEZyZlnhKpitJFHUt1l65Y2i22EOeJ5cvclu1aNiwJkdRIIekiaUuWGtIcXZeZyr6T&#39; \
+&#39;9WZ7Zpdnf1weu/z4CpUVohXXV5qv3LLyRU5Azk&#43;r0Ku4q9pX66/esLp3DWtN5VpobfLa9nWG63LX9a&#39; \
+&#39;8PXH9oA3FD&#43;oZfN9psLNr4flPcptZcndz1uX3fBX5Xn6eUJ8nr2ey&#43;ueJ79PfC77u22G/Zs&#43;VbPi//&#39; \
+&#39;aoFNQUnBl63crVd/sP2h9IfxbSnbugqdCvdvx24Xbb&#43;3w2vHoSKVopyivp3zdjYVM4rzi9/vWrLrSo&#39; \
+&#39;lDScVu4m7ZbnlpaGnLHqM92/d8KROU3S33KW/cq713y97Rfbx9t/Z772&#43;o0KkoqPj8o/DH&#43;5WBlU1V&#39; \
+&#39;JlUlB7AHsg88r46t7vzJ5afaGq2agpqvB0UH5YciD3XUOtfW1mnXFdbD9bL6wcMLD9884nekpcGqob&#39; \
+&#39;KR3lhwFByVHX35c9LP946FHGs/7nK84YTxib0naSfzm6CmlU3DzYJmeUtCS/ep4FPtre6tJ3&#43;x/uXg&#39; \
+&#39;af3T5WfUzxSeJZ7NPTt&#43;LufcSJu47dX51PN97UvaH12Iv3CnI6Kj62LIxcuXAi5d6GR1nrvscfn0Fb&#39; \
+&#39;crp666XG2&#43;5nSt6brj9ZO/Ov56ssupq&#43;mG842Wm643W7vndp&#43;95XXr/G2/25fusO9cuzv/bve9mHv3&#39; \
+&#39;exb2yO/z7g88yHjw5mH2w7FH6x9jHuc/oT4pear9tOo3s98a5U7yM71&#43;vdefRT171MftG/pd&#43;vuX/t&#39; \
+&#39;znlOclL/Re1A7YDZweDBi8&#43;XLBy/4h8dDYq7w/VP7Y&#43;9r09Yk/vf&#43;8Phw/3P9G8mb87dZ3mu8Ovnd4&#39; \
+&#39;3z4SPvL0Q&#43;aHsdH8j5ofD31y&#43;dT5Oe7zi7HlX3BfSr&#43;afW39FvLt8Xjm&#43;LiYI&#43;FMtgIoROGUFADeHg&#39; \
+&#39;SAkgAA7SYAxAVTPfWkQFP/AyYJ/Cee6rsnxQmAmjYAYtcDEOkNwD5EmQhTkTEc0WhvANvbK/SfIk2x&#39; \
+&#39;t5uKRWpGWpOS8fF3SP&#43;IMwPga8/4&#43;Fjz&#43;PjXGqTYhwC0fZjq5SeEehgA7z1Odq5RN4aSh8G/yD8AZG&#39; \
+&#39;YR7evMlgYAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAILaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8&#39; \
+&#39;eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA1LjQuMC&#39; \
+&#39;I&#43;CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYt&#39; \
+&#39;c3ludGF4LW5zIyI&#43;CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgIC&#39; \
+&#39;AgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIj4KICAgICAgICAgPHRp&#39; \
+&#39;ZmY6UmVzb2x1dGlvblVuaXQ&#43;MjwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICAgICAgICAgPHRpZmY6Q2&#39; \
+&#39;9tcHJlc3Npb24&#43;MTwvdGlmZjpDb21wcmVzc2lvbj4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24&#43;&#39; \
+&#39;MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6UGhvdG9tZXRyaWNJbnRlcnByZXRhdG&#39; \
+&#39;lvbj4yPC90aWZmOlBob3RvbWV0cmljSW50ZXJwcmV0YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0&#39; \
+&#39;aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgoPRSqTAAAHDklEQVRYCcVYa2hcRRSeu7t5SU&#39; \
+&#39;NKWwpBLRWLKCLaWkSq/SH6o9o/LaKIaKv&#43;UBGRomiFKoL4QxELoj8MUqUIlaY&#43;QGixVo21Qdoa64PE&#39; \
+&#39;xBKaamvSxGx3s5ve973H78zj3rvbrKRp1AlnZ&#43;6Z8/jumZkz50YI3YgoZ8bcUzflKaA14O&#43;kMHxE8o&#39; \
+&#39;jyWZn/fJwFifE1FNFW9EdBRK73qQFE3d3/H1BAkc7Jpsspjj9jaIxPttLUARnJIHqJ&#43;k52yjFRwQD/&#39; \
+&#39;N3r4zdMANTe0TWH0oYYXoZ&#43;W44NH11AQvCjHxemnNdCWhkYucgJ&#43;LGMC4xZQ7QpiD66XYDiacaxAOu&#39; \
+&#39;4Q/Tn2hOYT&#43;ENUqSyWYPuoyRic7548bD2XrjR2GbAc8wA0qAH56GM5dvw/yPMnNZ&#43;7gGz/JlbCuNUY&#39; \
+&#39;mo8e9iyQPMwU0sNAUCTXf9zYxlxB4OC8jAG3ZG/GaIolfxk8ZoOPWRGjxKgxNB897MrIoV8NUi2Mv6&#39; \
+&#39;Kyv1raB8cAzIKTgsAb6kGZhidWsAKeG2/0OSCGvXRfOs4ybMN7ENHfpF/zE0WP5hDqE9p&#43;XO/HQpO8&#39; \
+&#39;s1NvWSuWDkOvBSyfeewAVGhAeZ6vt6d1eI71cvyMRtKeF24UzS0/CrKWwfqw1i3LPpe7PWcVrP2aGU&#39; \
+&#39;kFknoSCZ5zYsoriyUfdEmZPSLUMjl2AAobENtiIE0aEAPjlYC4FWmdJDAURFtFc/4TkbMWid9HT0Dq&#39; \
+&#39;lPQnhDr1tnucc&#43;J3oC2gmpsJwuysIKr2N5Z46jQcteHZQ59nZxhzVBeiy0aO35KpomU41WFoyRcEXz&#39; \
+&#39;bwOjAIwLfJDzeLQu5VnsA5FlbsV0XZHhcLL2GWwhRGEugPYDigNhiIoVwLuL1wmDXAZxmzRyM0frkt&#39; \
+&#39;QGUDKYNjwBwlfokzsLVXVKu7oMeZYwHW4gaRi9cKK8eHY5WI4l4obRJN&#43;c14ls2KKRK2f41ozd&#43;iWS&#39; \
+&#39;oNnp0&#43;zh4s5MgjMMaNI2aaOkijkxtZCTfXpZiQB4lsm2uAwAg27OO4H1nlXcz3gVT20MKxbf8Vnh59&#39; \
+&#39;EI9lzSKKwpAq1aJ&#43;5tWAVniG9g8vlcApit7Qk47u0wxwZPAqzD8GfglJ62ty/PfJ909qORs9Z416Yj&#39; \
+&#39;vKkRbUHb/8WTn2vD3kODvMdF1K5AtGZSPX79HRlcu5QStwlGIIKSfT9hgNnHwSvEZOjZ&#43;ZetbxYSwA&#39; \
+&#39;cTSZ&#43;MUYRD9A3ppJQ2r15CTykGoqaBX3tRSoQ1dAaUoLpEsahg4SvcmzvC3YCNNMwLX6eR2vjtHD5g&#39; \
+&#39;qOk&#43;huw5JuykjW2EN0VcBYwA3Xp0BRvuEte7Xi&#43;ctfCyzdFhlPMwxZjh2aCGEUfku9ve3sGNvpmNbJ&#39; \
+&#39;7l2WTQPlhTupe6D2goHidq1ogAK7xDRbYFo96Wr1InrdRIaK5XtTKbnNWDY9yFE0SlPOA4k81wEQUM&#39; \
+&#39;WAF96nlS90aROfZoAXVEsZxw7Kx12AcG3iNAjuwPL/kviKZQRTkL6/k35Nal&#43;&#43;NFS6xEBmfzozfR2M&#39; \
+&#39;ntMGssuhWbPulFPP66exseUJQKL7cQ72ZqyEWDKz/3HUokEqV&#43;/OyLcS7lPzLKinR1bs1NfXgbTTrw&#39; \
+&#39;2lBjKWZzmUWyd23R4aHFmOY/ccAA3V6bKMeiHeXra7nXpKfMvJFcZc7b7UEyqiAkWCR59rg8k&#43;rXMw&#39; \
+&#39;m0ezNwMAVOlIaTGfn82qIYrhYRTja03UMMe1ce3NmJlUFz&#43;/TUxfQJDbxQCFui4PpSn5U5N&#43;8AIOTQ&#39; \
+&#39;fPk&#43;iSVyQkuBL7568GCKild907k0OQTSnSz6x/TDSNAgPkJeYoFhGISfK8fVQspodLl3wmcI16uVlx&#39; \
+&#39;Z1yPCvEQCgjOcVxvnr9HGllI&#43;SgbZHGSE374kchb74l8vgQekwcKQC58FNEn2QbPSbnH/IYNb9oJGg&#39; \
+&#39;FxUxtcjeujo7iNfmN5TSJ2dpHe7ELx27jBxMz7sLGKrPe2YX65iKI&#43;4flfSlncROg5shwF0zhiMWJm&#39; \
+&#39;5jhKhjgqKpUUmtrEunUSKABx6cgVPVOSE2cdReOZexg4hKsNtVFpA9LE2zReGon5jk8bpyomzq21hy&#39; \
+&#39;KViRB&#43;XgGTco7RaGWJtn/B0cviM2M2Mi6qzilxYOCYaG2&#43;TDTnBvAVsw&#43;x60L0qpjnr0MmPpW4yviP&#39; \
+&#39;eJ/9JFx/t/DCg8xHOC0RI/9NlvlTYqXobH8BfC64&#43;QVUtJkxx8Zp4Ubhx&#43;vg/GdhRdtQebvC8d6xFi&#39; \
+&#39;/cjRiuAry7RBi2i0plTHR0jAqHxkVTdFq0tEwABL&#43;IQNnxEMrvZ7nItWx/BBV6p2huHbKarGfkfOYj&#39; \
+&#39;bo44UzUAvhn/cNhB03YPTUwkSTiVaDyiEWqlc84rVPI3AfT35FRvo4GJBY015jBTvyzYr1zZXM2m0D&#39; \
+&#39;ebee5B5mDwVyUTPzO/g6amFmEbr0QVlv0Px7zsT8byN4VTem4z9eg6AAAAAElFTkSuQmCC&#39;
+
+
+# class holding all of the user&#39;s WaniKani information
+class WaniKani
+  def initialize(api_token)
+    @api_token = api_token
+    @reviews = wanikani_api(&#39;https://api.wanikani.com/v2/assignments?immediately_available_for_review&#39;)
+    @lessons = wanikani_api(&#39;https://api.wanikani.com/v2/assignments?immediately_available_for_lessons&#39;)
+    @user = wanikani_api(&#39;https://api.wanikani.com/v2/user&#39;)
+    @summary = wanikani_api(&#39;https://api.wanikani.com/v2/summary&#39;)
+  end
+
+  # method for making API calls to WaniKani
+  def wanikani_api(resource)
+    uri = URI.parse(resource)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Get.new uri.request_uri
+    request.add_field(&#39;Authorization&#39;, &#34;Token #{API_TOKEN}&#34;)
+    response = http.request(request)
+
+    JSON.parse(response.body)
+  end
+
+  # calculate the next time a review is available
+  def calc_next_review_time
+    next_review_time = Time.parse(@summary[&#39;data&#39;][&#39;next_reviews_at&#39;]).localtime
+
+    if next_review_time &lt; Time.now.localtime
+      &#39; Now! | href = https://www.wanikani.com/&#39;
+    else
+      next_review_time.strftime(&#39; %l %p&#39;)
+    end
+
+  end
+
+  # calculates the details (such as # of items per category) for assignments
+  def calc_assignment_details(type)
+    assignment_details = {
+        Radicals: 0,
+        Kanji: 0,
+        Vocabulary: 0
+    }
+
+    if type == &#39;reviews&#39;
+      next_review_time = Time.parse(@summary[&#39;data&#39;][&#39;next_reviews_at&#39;]) &#43; 1
+      next_review_time = next_review_time.to_datetime.rfc3339.to_s.gsub(/\&#43;[0-9:]&#43;/, &#39;Z&#39;)
+
+      now = Time.now.utc.to_datetime.rfc3339.gsub(/\&#43;[0-9:]&#43;/, &#39;Z&#39;)
+
+      if next_review_time &gt; now
+        assignment_data = wanikani_api(&#34;https://api.wanikani.com/v2/assignments?available_after=#{now}&amp;available_before=#{next_review_time}&#34;)
+      else
+        assignment_data = @reviews
+      end
+    elsif type == &#39;lessons&#39;
+      assignment_data = @lessons
+    end
+
+
+
+    assignment_data[&#39;data&#39;].each do |assignment|
+      case assignment[&#39;data&#39;][&#39;subject_type&#39;]
+      when &#39;radical&#39;
+        assignment_details[:Radicals] &#43;= 1
+      when &#39;kanji&#39;
+        assignment_details[:Kanji] &#43;= 1
+      when &#39;vocabulary&#39;
+        assignment_details[:Vocabulary] &#43;= 1
+      else
+        puts &#34;Unknown assignment type: #{assignment[&#39;data&#39;][&#39;subject_type&#39;]}&#34;
+      end
+
+    end
+
+    assignment_details
+
+  end
+
+  # calculate how long the user has been on their current level
+  def calc_level_duration
+
+    level_data = wanikani_api(&#39;https://api.wanikani.com/v2/level_progressions&#39;)
+
+    if level_data[&#39;data&#39;][level_data[&#39;data&#39;].length - 1][&#39;data&#39;][&#39;started_at&#39;].nil?
+      return 0
+    end
+
+    level_start_time = Time.parse(level_data[&#39;data&#39;][level_data[&#39;data&#39;].length - 1][&#39;data&#39;][&#39;started_at&#39;])
+
+    now = Time.now
+
+    ((now - level_start_time) / 3600 / 24).round(2)
+
+  end
+
+  # calculate the percentages of each category for the current level
+  def calc_level_percentage
+
+    subject_items = []
+    totals = {
+      Radical: {
+        total: 0,
+        passed: 0,
+        items: []
+      },
+      Kanji: {
+        total: 0,
+        passed: 0,
+        items: []
+      },
+      Vocabulary: {
+        total: 0,
+        passed: 0,
+        items: []
+      }
+    }
+
+    level_subject_data = wanikani_api(&#34;https://api.wanikani.com/v2/assignments?levels=#{@user[&#39;data&#39;][&#39;level&#39;]}&#34;)
+
+    reset_time = Time.parse(latest_reset)
+
+    level_subject_data[&#39;data&#39;].each do |assignment|
+
+      start_time = assignment[&#39;data&#39;][&#39;started_at&#39;]
+
+      if start_time.nil?
+        totals[assignment[&#39;data&#39;][&#39;subject_type&#39;].capitalize.to_sym][:total] &#43;= 1
+        next
+      end
+
+      next if Time.parse(start_time) &lt; reset_time
+
+      totals[assignment[&#39;data&#39;][&#39;subject_type&#39;].capitalize.to_sym][:total] &#43;= 1
+      subject_items.push(
+        id: assignment[&#39;data&#39;][&#39;subject_id&#39;],
+        type: assignment[&#39;data&#39;][&#39;subject_type&#39;].capitalize,
+        character: &#39;&#39;,
+        srs_stage: assignment[&#39;data&#39;][&#39;srs_stage_name&#39;],
+        srs_stage_id: assignment[&#39;data&#39;][&#39;srs_stage&#39;],
+        document_url: &#39;&#39;
+      )
+
+      if assignment[&#39;data&#39;][&#39;passed&#39;]
+        totals[assignment[&#39;data&#39;][&#39;subject_type&#39;].capitalize.to_sym][:passed] &#43;= 1
+      end
+
+    end
+
+    totals = get_assignment_subjects(totals, subject_items)
+
+    totals
+
+  end
+
+  # get subjects data using the provided subject IDs
+  def get_assignment_subjects(subject_items, subject_items_array)
+
+    subject_data = wanikani_api(&#34;https://api.wanikani.com/v2/subjects?ids=#{subject_items_array.map{|item| item[:id]}.join(&#39;,&#39;)}&#34;)
+
+
+    subject_items_array.each_with_index do |item, idx|
+
+      match = subject_data[&#39;data&#39;].find { |subject| subject[&#39;id&#39;] == item[:id] }
+
+      subject_items_array[idx][:character] = match[&#39;data&#39;][&#39;characters&#39;]
+      subject_items_array[idx][:document_url] = match[&#39;data&#39;][&#39;document_url&#39;]
+
+      subject_items[match[&#39;object&#39;].capitalize.to_sym][:items].push(subject_items_array[idx])
+
+    end
+
+    subject_items
+
+  end
+
+  def latest_reset
+
+    reset_data = wanikani_api(&#34;https://api.wanikani.com/v2/resets&#34;)
+
+    latest_reset_time = &#39;&#39;
+
+    unless reset_data[&#39;data&#39;].empty?
+      latest_reset = reset_data[&#39;data&#39;][reset_data[&#39;data&#39;].length - 1]
+
+      latest_reset_time = Time.parse(latest_reset[&#39;data&#39;][&#39;created_at&#39;]).to_s
+
+    end
+
+    latest_reset_time
+  end
+
+  # print all of the data to stdout for bitbar
+  def print_data
+    if API_TOKEN == &#39;&#39;
+      puts &#39;ERROR&#39;
+      puts &#39;---&#39;
+      puts &#39;Please edit the plugin script and add your WaniKani API token to the API_TOKEN variable at the top&#39;
+      return
+    end
+    puts &#34;L: #{@lessons[&#39;total_count&#39;]} R: #{@reviews[&#39;total_count&#39;]}&#34;
+    puts &#39;---&#39;
+    puts &#34;  WaniKani Stats | size=14 color=#BFBFBF trim=false image=#{IMG_BASE64}&#34;
+    puts &#34;---&#34;
+    puts &#39;User Profile | size=12 color=#BFBFBF&#39;
+    puts &#34;#{@user[&#39;data&#39;][&#39;username&#39;]} - Level: #{@user[&#39;data&#39;][&#39;level&#39;]}&#34;
+    puts &#34;Level duration: #{calc_level_duration} days&#34;
+    puts &#39;---&#39;
+    puts &#39;Current Level Progress | size=12 color=#BFBFBF&#39;
+    level_percentage = calc_level_percentage
+    unless level_percentage == 0
+      level_percentage.each do |key, val|
+        puts &#34;#{key} [#{val[:passed]}/#{val[:total]}] - #{((val[:passed].to_f / val[:total].to_f) * 100).round(0)}%&#34;
+
+        header = &#39;&#39;
+        level_percentage[key.to_sym][:items].sort_by!{|obj| obj[:srs_stage_id]}.each do |item|
+          if item[:srs_stage] != header
+            header = item[:srs_stage]
+            color = if header.include? &#39;Apprentice&#39;
+                      &#39;#FF00AA&#39;
+                    elsif header.include? &#39;Guru&#39;
+                      &#39;#7c04b7&#39;
+                    else
+                      &#39;#BFBFBF&#39;
+                    end
+            puts &#34;-- #{header} | size=12 color=#{color}&#34;
+          end
+          if !item[:character].nil?
+            puts &#34;--  #{item[:character]} | href=#{item[:document_url]}&#34;
+          else
+            puts &#34;--  Non UTF-8 character | href=#{item[:document_url]}&#34;
+          end
+        end
+
+      end
+    end
+    puts &#39;---&#39;
+    puts &#39;Lessons | size=12 color=#BFBFBF&#39;
+    calc_assignment_details(&#39;lessons&#39;).each do |key, val|
+      puts &#34;#{key}: #{val} | color=#{COLORS[key]}&#34;
+    end
+    puts &#39;---&#39;
+    puts &#39;Reviews | size=12 color=#BFBFBF&#39;
+    puts &#34;Next reviews:#{calc_next_review_time}&#34;
+    calc_assignment_details(&#39;reviews&#39;).each do |key, val|
+      puts &#34;#{key}: #{val} | color=#{COLORS[key]}&#34;
+    end
+
+  end
+end
+
+w = WaniKani.new(API_TOKEN)
+w.print_data
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

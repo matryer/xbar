@@ -1,0 +1,126 @@
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ indirildi ve kullanıma hazır! Şimdi yüklemek istiyor musunuz? Uygulama yeniden başlatılacaktır.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ uygulaması disk kalıbı içerisindeyken güncellenemez. Lütfen %1$@ uygulamasını Uygulamalar dizinine kopyalayıp yeniden başlatınız.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ mevcut en yeni sürümdür.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ çıktı (Kullandığınız Sürüm: %3$@). Şimdi yeni sürümü indirmek ister misiniz?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ indirildi";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"%@ of %@" = "%1$@ / %2$@";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"A new version of %@ is available!" = "%@ uygulaması için yeni bir sürüm var!";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"A new version of %@ is ready to install!" = "%@ uygulamasının yeni bir sürümü yüklemeye hazır!";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred in retrieving update information. Please try again later." = "Güncelleme bilgilerini alırken bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred while downloading the update. Please try again later." = "Güncelleme indirilirken bir hata oluştu. Lütfen sonra tekrar deneyiniz.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred while extracting the archive. Please try again later." = "İndirilen arşivi açarken bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred while installing the update. Please try again later." = "Güncellemeyi yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred while parsing the update feed." = "Güncelleme kaynağını incelerken bir hata oluştu.";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred while parsing the update feed: %@" = "Güncelleme kaynağını incelerken bir hata oluştu: %@";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "%1$@ uygulamasını açarken bir hata oluştu; ancak güncelleme %1$@ uygulamasını yeniden başlattığınızda hazır olacaktır.";
+
+/* de_DE v0.1 - the unit for bytes */
+
+"B" = "B";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"Cancel" = "Vazgeç";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"Cancel Update" = "Güncellemeyi iptal et";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"Checking for updates..." = "Güncellemelere bakılıyor...";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"Downloading update..." = "Güncelleme indiriliyor...";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"Extracting update..." = "Güncelleme ayıklanıyor...";
+
+/* de_DE v0.1 - the unit for gigabytes */
+
+"GB" = "GB";
+
+/* de_DE v0.1 - No comment provided by engineer. */
+
+"Install and Relaunch" = "Kur ve yeniden başlat";
+
+
+"Installing update..." = "Güncelleme kuruluyor...";
+
+/* the unit for kilobytes */
+
+"KB" = "KB";
+
+/* the unit for megabytes */
+
+"MB" = "MB";
+
+
+"OK" = "Tamam";
+
+
+"Ready to Install" = "Kuruluma hazır";
+
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "%1$@ uygulaması için güncellemeler otomatik olarak aransın mı? Güncelleme işlemini el ile uygulama menüsünden de başlatabilirsiniz.";
+
+
+"Update Error!" = "Güncelleme hatası.";
+
+
+"Updating %@" = "%@ güncelleniyor";
+
+
+"You already have the newest version of %@." = "%@ uygulamasının en güncel sürümü sizde mevcut.";
+
+
+"You're up-to-date!" = "Uygulama güncel!";
+

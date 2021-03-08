@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Finance/currency-rates.1h.py",
+				"filename": "currency-rates.1h.py",
+				"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eCurrency Rates\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eParvez\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eparvez\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays Currency Rates\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/Q1PuzbN.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/parvez/bitbar-plugins\u003c/bitbar.abouturl\u003e\n#\n# by Parvez\n\nimport urllib2\nrateRequest = urllib2.Request(url='http://wu-converter.apple.com/dgw?apptype=finance', data='\u003c?xml version=\"1.0\" encoding=\"utf8\"?\u003e\u003crequest app=\"YGoAppleCurrencyWidget\" appver=\"1.0\" api=\"finance\" apiver=\"1.0.0\"\u003e\u003cquery id=\"0\" type=\"convertcurrency\"\u003e\u003cfrom/\u003e\u003cto/\u003e\u003camount/\u003e\u003c/query\u003e\u003c/request\u003e',headers={'Content-Type': 'text/xml'})\nrateResponse = urllib2.urlopen(rateRequest).read()\n\nfrom xml.dom import minidom\nxmlResponse = minidom.parseString(rateResponse)\nxmlConversionList = xmlResponse.getElementsByTagName('conversion')\n\nlist = []\nfor item in xmlConversionList:\n    nValue1 = item.childNodes[1].firstChild.nodeValue\n    nValue2 = str(round(float(item.childNodes[3].firstChild.nodeValue), 2))\n    if nValue1 == \"INR\":\n        primaryValue = 'Rs ' + nValue2\n    elif nValue1 == \"USD\":\n        discard = ''\n    else:\n        list.append(nValue1 + ': ' + nValue2)\n\nprint primaryValue\nprint (\"---\")\n\nlist.sort()\nfor item in list:\n    print item + ' | font=Monaco size=11'\n"
+			}
+		],
+		"path": "Finance/currency-rates.1h.py",
+		"filename": "currency-rates.1h.py",
+		"dir": "Finance",
+		"docsPlugin": "Finance/currency-rates.1h.py.html",
+		"docsCategory": "Finance.html",
+		"pathSegments": [
+			"Finance"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Finance",
+				"text": "Finance",
+				"isLast": true
+			}
+		],
+		"title": "Currency Rates",
+		"version": "v1.0",
+		"author": "Parvez",
+		"authors": [
+			{
+				"name": "Parvez",
+				"githubUsername": "parvez",
+				"imageURL": "https://avatars.githubusercontent.com/u/126749?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays Currency Rates",
+		"imageURL": "http://i.imgur.com/Q1PuzbN.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "https://github.com/parvez/bitbar-plugins",
+		"lastUpdated": "2021-03-08T15:21:53.356435Z",
+		"vars": null
+	}
+}

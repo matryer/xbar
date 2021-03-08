@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Jenkins/jenkins-latest-build-status.1m.rb",
+				"filename": "jenkins-latest-build-status.1m.rb",
+				"content": "#!/usr/bin/env ruby\n\n# Jenkins Build Status\n# by Tony Mai (thetonymai@gmail.com)\n\n# \u003cbitbar.title\u003eJenkins Build Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTony Mai\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etonymai\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the latest builds of a Jenkins project. Result, Build ID, Timestamp, Duration.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/tonymai/jenkins-bitbar-plugin/master/screenshot.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/tonymai/jenkins-bitbar-plugin\u003c/bitbar.abouturl\u003e\n\nrequire 'net/http'\nrequire 'json'\n\n# Variables To Fill Out\n\nUSERNAME = 'username'.freeze\nAUTH_TOKEN = 'auth_token'.freeze\nURL = 'https://url/'.freeze # must have trailing slash '/'\nNAME = 'Jenkins'.freeze\n\n# Information Requests\n\ndef get(url)\n  uri = URI(url)\n  Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|\n    request = Net::HTTP::Get.new(uri)\n    request.basic_auth(USERNAME, AUTH_TOKEN)\n    response = http.request(request)\n    JSON.parse(response.body)\n  end\nend\n\ndef latest_builds(limit = 5)\n  json = get(URL + 'api/json')\n  return unless json.key?('builds')\n\n  json['builds'].take(limit).map { |build| get(build['url'] + 'api/json') }\nend\n\n# Pretty Display Formatters\n\ndef format_status(status)\n  case status\n  when 'SUCCESS' then \"\\u{2714}\"\n  when 'FAILURE' then \"\\u{2718}\"\n  else \"\\u{2022}\"\n  end\nend\n\ndef format_color(status)\n  case status\n  when 'SUCCESS' then 'green'\n  when 'FAILURE' then 'red'\n  else 'yellow'\n  end\nend\n\ndef format_timestamp(timestamp)\n  Time.at(timestamp / 1000).strftime('%b %e %I:%M%P')\nend\n\ndef format_duration(time_in_ms)\n  time_in_sec = time_in_ms / 1000\n  minutes = time_in_sec / 60\n  seconds = time_in_sec % 60\n  \"#{minutes}m #{seconds}s\"\nend\n\n# Print Helpers\n\ndef print_build_details(build)\n  puts \"Last Build (##{build['id']})\"\n  build['actions'].each do |action|\n    next unless action['causes']\n\n    action['causes'].each do |cause|\n      puts cause['shortDescription'] if cause['shortDescription']\n    end\n  end\nend\n\ndef print_builds_summary(builds)\n  puts 'Latest Builds'\n  builds.each do |build|\n    id = build['id']\n    status = format_status(build['result'])\n    time = format_timestamp(build['timestamp'])\n    duration = format_duration(build['duration'])\n    url = build['url']\n    color = format_color(build['result'])\n    puts \"#{status} ##{id}: #{time} (#{duration}) | href=#{url} color=#{color}\"\n  end\nend\n\n# Driver Code\n\ndef run\n  builds = latest_builds\n  return puts 'No builds executing' unless builds\n\n  last = builds.first\n  puts format_status(last['result']) + ' ' + NAME\n  puts '---'\n  print_build_details(last)\n  puts '---'\n  print_builds_summary(builds)\n  puts '---'\n  puts 'Open In Browser | href= ' + URL\nend\n\nrun\n"
+			}
+		],
+		"path": "Dev/Jenkins/jenkins-latest-build-status.1m.rb",
+		"filename": "jenkins-latest-build-status.1m.rb",
+		"dir": "Dev/Jenkins",
+		"docsPlugin": "Dev/Jenkins/jenkins-latest-build-status.1m.rb.html",
+		"docsCategory": "Dev/Jenkins.html",
+		"pathSegments": [
+			"Dev",
+			"Jenkins"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Jenkins",
+				"text": "Jenkins",
+				"isLast": true
+			}
+		],
+		"title": "Jenkins Build Status",
+		"version": "v1.0",
+		"author": "Tony Mai",
+		"authors": [
+			{
+				"name": "Tony Mai",
+				"githubUsername": "tonymai",
+				"imageURL": "https://avatars.githubusercontent.com/u/9425367?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows the latest builds of a Jenkins project. Result, Build ID, Timestamp, Duration.",
+		"imageURL": "https://raw.githubusercontent.com/tonymai/jenkins-bitbar-plugin/master/screenshot.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "https://github.com/tonymai/jenkins-bitbar-plugin",
+		"lastUpdated": "2021-03-08T15:21:49.431203Z",
+		"vars": null
+	}
+}

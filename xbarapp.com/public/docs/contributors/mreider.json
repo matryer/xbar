@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Matt Reider",
+		"githubUsername": "mreider",
+		"imageURL": "https://avatars.githubusercontent.com/u/118036?v=4",
+		"bio": "30 years in software\r\n15 years in product \u0026 program management\r\nBoston. San Francisco. Currently in Linz, Austria",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/bear-calls.sh",
+					"filename": "bear-calls.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.author\u003emreider\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emreider\u003c/bitbar.author.github\u003e\n# \u003cbitbar.title\u003eHandy bear calls\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nReplace these with your home page and bookmarks page\n\nHOMEPAGE='bear://x-callback-url/open-note?id=3B82C004-4B7D-4B66-A492-6D0F3EEDA40A-4300-00001FDE04293478'\nBOOKMARKS='bear://x-callback-url/open-note?id=68496A87-42BE-479A-AE9C-3117CB1CB9FB-31243-00045FA30CF5DC43'\n\nrawurlencode() {\n  local string=\"${1}\"\n  local strlen=${#string}\n  local encoded=\"\"\n  local pos c o\n\n  for (( pos=0 ; pos\u003cstrlen ; pos++ )); do\n     c=${string:$pos:1}\n     case \"$c\" in\n        [-_.~a-zA-Z0-9] ) o=\"${c}\" ;;\n        * )               printf -v o '%%%02x' \"'$c\"\n     esac\n     encoded+=\"${o}\"\n  done\n  echo \"${encoded}\"    # You can either set a return variable (FASTER) \n  REPLY=\"${encoded}\"   #+or echo the result (EASIER)... or both... :p\n}\n\n\necho \"🐻\"\necho \"---\"\nHOMEPAGE_LINK='[Home Page]('$HOMEPAGE')'\nHOMEPAGE_ENCODED=$( rawurlencode \"$HOMEPAGE_LINK\" )\nTITLE='Notes For '$(date +\"%a %b %d %Y\")\nTITLE_ENCODED=$( rawurlencode \"$TITLE\" )\nDATE_WITH_HOME_LINK='bear://x-callback-url/create?title='$TITLE_ENCODED'\u0026text='$HOMEPAGE_ENCODED\necho \"Open home page | href=$HOMEPAGE\"\necho \"Open bookmarks | href=$BOOKMARKS\"\necho \"New note with date \u0026 home link | href=$DATE_WITH_HOME_LINK\"\n\n\n"
+				}
+			],
+			"path": "Lifestyle/bear-calls.sh",
+			"filename": "bear-calls.sh",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/bear-calls.sh.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Handy bear calls",
+			"version": "1.0",
+			"author": "mreider",
+			"authors": [
+				{
+					"name": "Matt Reider",
+					"githubUsername": "mreider",
+					"imageURL": "https://avatars.githubusercontent.com/u/118036?v=4",
+					"bio": "30 years in software\r\n15 years in product \u0026 program management\r\nBoston. San Francisco. Currently in Linz, Austria",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:55.141724Z",
+			"vars": null
+		}
+	]
+}

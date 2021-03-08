@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "E-Commerce/nvidia.3m.py",
+				"filename": "nvidia.3m.py",
+				"content": "#!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3\n\n# \u003cbitbar.title\u003e1080ti Stock Checker\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAlex Haynes\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ealexh\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eChecks nvidia site if 1080ti are in stock\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://images.nvidia.com/pascal/img/gtx1080ti/gallery/gallery-2.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\nimport urllib.request, json, time\nwith urllib.request.urlopen(\"http://api.findgpu.com/gpus?\" + str(int(time.time()))) as url:\n\tdata = json.loads(url.read().decode())\n\tmy_item = next((item for item in data if item['gpu_id'] == \"900-1G611-2550-000\"), None)\n\tin_stock = my_item['in_stock']\n\tif in_stock == 'false':\n\t\tstatus = \":heavy_multiplication_x:\"\n\telse:\n\t\tstatus = \":white_check_mark:\"\nprint (\"1080Ti: \" + status)\nprint (\"---\")\nprint (\"Buy Now\" + \"| href=https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080-ti/\")\n"
+			}
+		],
+		"path": "E-Commerce/nvidia.3m.py",
+		"filename": "nvidia.3m.py",
+		"dir": "E-Commerce",
+		"docsPlugin": "E-Commerce/nvidia.3m.py.html",
+		"docsCategory": "E-Commerce.html",
+		"pathSegments": [
+			"E-Commerce"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "E-Commerce",
+				"text": "E-Commerce",
+				"isLast": true
+			}
+		],
+		"title": "1080ti Stock Checker",
+		"version": "v2.0",
+		"author": "Alex Haynes",
+		"authors": [
+			{
+				"name": "Alex Haynes",
+				"githubUsername": "alexh",
+				"imageURL": "https://avatars.githubusercontent.com/u/13091740?v=4",
+				"bio": "Two Sigma IQ, prev: Two Sigma, Slack, UPenn '19",
+				"primary": true
+			}
+		],
+		"desc": "Checks nvidia site if 1080ti are in stock",
+		"imageURL": "https://images.nvidia.com/pascal/img/gtx1080ti/gallery/gallery-2.jpg",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.745742Z",
+		"vars": null
+	}
+}

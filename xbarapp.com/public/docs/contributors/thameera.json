@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Thameera Senanayaka",
+		"githubUsername": "thameera",
+		"imageURL": "https://avatars.githubusercontent.com/u/1736835?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/ssh.sh",
+					"filename": "ssh.sh",
+					"content": "#!/usr/bin/env bash\n#\n# Quickly SSH to your favorite hosts\n# The list of hosts are extracted from ~/.ssh/config\n#\n# \u003cbitbar.title\u003eSSH\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eThameera Senanayaka\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ethameera\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eQuickly SSH to your favorite hosts listed in your ~/.ssh/config file\u003c/bitbar.desc\u003e\n#\n\necho \"ssh\"\necho \"---\"\nawk  '/^Host / \u0026\u0026 !/\\*/ {print $2\" | bash=ssh param1=\"$2}' ~/.ssh/config\n"
+				}
+			],
+			"path": "Network/ssh.sh",
+			"filename": "ssh.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/ssh.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "SSH",
+			"version": "v1.0",
+			"author": "Thameera Senanayaka",
+			"authors": [
+				{
+					"name": "Thameera Senanayaka",
+					"githubUsername": "thameera",
+					"imageURL": "https://avatars.githubusercontent.com/u/1736835?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Quickly SSH to your favorite hosts listed in your ~/.ssh/config file",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:59.840101Z",
+			"vars": null
+		}
+	]
+}

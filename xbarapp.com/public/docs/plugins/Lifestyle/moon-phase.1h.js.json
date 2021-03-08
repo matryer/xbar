@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/moon-phase.1h.js",
+				"filename": "moon-phase.1h.js",
+				"content": "#!/usr/local/bin/node\n\n// \u003cbitbar.title\u003eMoon Phase\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eVolker Wieban\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003ehpcodecraft\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eShows the current moon phase\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n\n// Moon phase calculations taken from https://github.com/tingletech/moon-phase\nDate.prototype.getJulian = function() {\n    return ((this / 86400000) - (this.getTimezoneOffset() / 1440) + 2440587.5);\n};\n\nfunction moon_day(today) {\n    var GetFrac = function(fr) {\n        return (fr - Math.floor(fr));\n    };\n    var thisJD = today.getJulian();\n    var year = today.getFullYear();\n    var degToRad = 3.14159265 / 180;\n    var K0, T, T2, T3, J0, F0, M0, M1, B1, oldJ;\n    K0 = Math.floor((year - 1900) * 12.3685);\n    T = (year - 1899.5) / 100;\n    T2 = T * T;\n    T3 = T * T * T;\n    J0 = 2415020 + 29 * K0;\n    F0 = 0.0001178 * T2 - 0.000000155 * T3 + (0.75933 + 0.53058868 * K0) - (0.000837 * T + 0.000335 * T2);\n    M0 = 360 * (GetFrac(K0 * 0.08084821133)) + 359.2242 - 0.0000333 * T2 - 0.00000347 * T3;\n    M1 = 360 * (GetFrac(K0 * 0.07171366128)) + 306.0253 + 0.0107306 * T2 + 0.00001236 * T3;\n    B1 = 360 * (GetFrac(K0 * 0.08519585128)) + 21.2964 - (0.0016528 * T2) - (0.00000239 * T3);\n    var phase = 0;\n    var jday = 0;\n    while (jday \u003c thisJD) {\n        var F = F0 + 1.530588 * phase;\n        var M5 = (M0 + phase * 29.10535608) * degToRad;\n        var M6 = (M1 + phase * 385.81691806) * degToRad;\n        var B6 = (B1 + phase * 390.67050646) * degToRad;\n        F -= 0.4068 * Math.sin(M6) + (0.1734 - 0.000393 * T) * Math.sin(M5);\n        F += 0.0161 * Math.sin(2 * M6) + 0.0104 * Math.sin(2 * B6);\n        F -= 0.0074 * Math.sin(M5 - M6) - 0.0051 * Math.sin(M5 + M6);\n        F += 0.0021 * Math.sin(2 * M5) + 0.0010 * Math.sin(2 * B6 - M6);\n        F += 0.5 / 1440;\n        oldJ = jday;\n        jday = J0 + 28 * phase + Math.floor(F);\n        phase++;\n    }\n\n    // 29.53059 days per lunar month\n    return (((thisJD - oldJ) / 29.53059));\n}\n\nfunction phase_text(phase) {\n    var txt_phase;\n    if (phase \u003c= 0.0625 || phase \u003e 0.9375) {\n        txt_phase = \"new_moon\";\n    } else if (phase \u003c= 0.1875) {\n        txt_phase = \"waxing_crescent_moon\";\n    } else if (phase \u003c= 0.3125) {\n        txt_phase = \"first_quarter_moon\";\n    } else if (phase \u003c= 0.4375) {\n        txt_phase = \"waxing_gibbous_moon\";\n    } else if (phase \u003c= 0.5625) {\n        txt_phase = \"full_moon\";\n    } else if (phase \u003c= 0.6875) {\n        txt_phase = \"waning_gibbous_moon\";\n    } else if (phase \u003c= 0.8125) {\n        txt_phase = \"last_quarter_moon\";\n    } else if (phase \u003c= 0.9375) {\n        txt_phase = \"waning_crescent_moon\";\n    }\n\n    return txt_phase;\n}\n\nvar phaseLabel = {\n  \"new_moon\"              : \"New moon\",\n  \"waxing_crescent_moon\"  : \"Waxing crescent moon\",\n  \"first_quarter_moon\"    : \"First quarter moon\",\n  \"waxing_gibbous_moon\"   : \"Waxing gibbous moon\",\n  \"full_moon\"             : \"Full moon\",\n  \"waning_gibbous_moon\"   : \"Waning gibbous moon\",\n  \"last_quarter_moon\"     : \"Third quarter moon\",\n  \"waning_crescent_moon\"  : \"Waning crescent moon\",\n};\n\nvar phase     = moon_day(new Date()),\n    phase_str = phase_text(phase),\n    output    = ':' + phase_str + ':|dropdown=false \\n' +\n              '---\\n' +\n              phaseLabel[phase_str] + '\\n' +\n              \"Completed \" + Math.round(phase*100) + \"% of lunar cycle\";\n\nconsole.log(output);\n"
+			}
+		],
+		"path": "Lifestyle/moon-phase.1h.js",
+		"filename": "moon-phase.1h.js",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/moon-phase.1h.js.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "Moon Phase",
+		"version": "v1.0",
+		"author": "Volker Wieban",
+		"authors": [
+			{
+				"name": "hpcodecraft",
+				"githubUsername": "hpcodecraft",
+				"imageURL": "https://avatars.githubusercontent.com/u/1476865?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows the current moon phase",
+		"imageURL": "https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png",
+		"dependencies": [
+			"node"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:55.654084Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,61 @@
+{
+	"person": {
+		"name": "Erhan BÜTE",
+		"githubUsername": "erhan",
+		"imageURL": "https://avatars.githubusercontent.com/u/3872888?v=4",
+		"bio": "Python - Flask",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/tr-markets.1m.py",
+					"filename": "tr-markets.1m.py",
+					"content": "#!/usr/bin/env PYTHONIOENCODING=UTF-8 /usr/local/bin/python3\n# \u003cbitbar.title\u003eBTC Ticker for TR Markets\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eErhan BÜTE\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eerhan\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTC Ticker for TR Markets(btcturk.com, koinim.com, paribu.com)\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/MUj8Bkb.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython3\u003c/bitbar.dependencies\u003e\n\nimport json\nimport http.client\n\n\ndef get_btcturk_price():\n    try:\n        conn = http.client.HTTPSConnection(\"www.btcturk.com\")\n        conn.request(\"GET\", \"/api/ticker\")\n        res = conn.getresponse()\n        data = json.loads(res.read().decode(\"utf-8\"))\n        for item in data:\n            if item[\"pair\"] == \"BTCTRY\":\n                return item[\"ask\"]\n    except:\n        return 0\n    return 0\n\n\ndef get_koinim_price():\n    try:\n        conn = http.client.HTTPSConnection(\"koinim.com\")\n        conn.request(\"GET\", \"/ticker/\")\n        res = conn.getresponse()\n        data = json.loads(res.read().decode(\"utf-8\"))\n        return data[\"ask\"]\n    except:\n        return 0\n\ndef get_paribu_price():\n    try:\n        conn = http.client.HTTPSConnection(\"www.paribu.com\")\n        conn.request(\"GET\", \"/ticker\")\n        res = conn.getresponse()\n        data = json.loads(res.read().decode(\"utf-8\"))\n        return data[\"BTC_TL\"][\"last\"]\n    except:\n        return 0\n\n\nprint(\"BTCTURK : \" + \"{0:.2f}\".format(get_btcturk_price()) +\" TRY\")\nprint(\"---\")\nprint(\"KOINIM : \" + \"{0:.2f}\".format(get_koinim_price()) +\" TRY\")\nprint(\"PARIBU : \" + \"{0:.2f}\".format(get_paribu_price()) +\" TRY\")\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/tr-markets.1m.py",
+			"filename": "tr-markets.1m.py",
+			"dir": "Cryptocurrency/Bitcoin",
+			"docsPlugin": "Cryptocurrency/Bitcoin/tr-markets.1m.py.html",
+			"docsCategory": "Cryptocurrency/Bitcoin.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": true
+				}
+			],
+			"title": "BTC Ticker for TR Markets",
+			"version": "v1.0",
+			"author": "Erhan BÜTE",
+			"authors": [
+				{
+					"name": "Erhan BÜTE",
+					"githubUsername": "erhan",
+					"imageURL": "https://avatars.githubusercontent.com/u/3872888?v=4",
+					"bio": "Python - Flask",
+					"primary": true
+				}
+			],
+			"desc": "TC Ticker for TR Markets(btcturk.com, koinim.com, paribu.com)",
+			"imageURL": "https://i.imgur.com/MUj8Bkb.png",
+			"dependencies": [
+				"python3"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.575873Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,58 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Music/musicRating.10s.sh",
+				"filename": "musicRating.10s.sh",
+				"content": "#!/bin/bash\n\n# Get current Music rating, compatible with Mac OS 10.15 and old versions.\n#\n# based on iTunes script by \n# Sebastian Winkler (sw2@github), Dan Turkel (daturkel@gmail.com) \n\n# metadata\n# \u003cbitbar.title\u003eMusic Rating\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eWeibing Chen, Sebastian Winkler, Dan Turkel\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eweibingchen17\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay currently rating from Music song and modify it.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://www.mindfuckbox.com/wp-content/uploads/2016/01/iTunes_Rating.png\u003c/bitbar.image\u003e\n\nvercomp () {\n    if [[ $1 == \"$2\" ]]; then\n        return 0\n    fi\n    local IFS=.\n    local i ver1=($1) ver2=($2)\n    # fill empty fields in ver1 with zeros\n    for ((i=${#ver1[@]}; i\u003c${#ver2[@]}; i++)); do\n        ver1[i]=0\n    done\n    for ((i=0; i\u003c${#ver1[@]}; i++)); do\n        if [[ -z ${ver2[i]} ]]; then\n            # fill empty fields in ver2 with zeros\n            ver2[i]=0\n        fi\n        if ((10#${ver1[i]} \u003c 10#${ver2[i]})); then\n            return 1\n        fi\n        if ((10#${ver1[i]} \u003e 10#${ver2[i]})); then\n            return 2\n        fi\n    done\n    return 0\n}\n\nMusicApp=\"Music\"\nSysVersion=$(sw_vers -productVersion)\nMacOSCatalina=\"10.15\"\nvercomp $MacOSCatalina \"$SysVersion\"\nif (($? \u003e  1)); then\n    MusicApp=\"iTunes\"\nfi\n\nLAUNCH=\"tell application \\\"$MusicApp\\\" to activate\"\nQUERY_RUNNING=\"application \\\"$MusicApp\\\" is running\"\nSET_TO_00=\"tell application \\\"$MusicApp\\\" to set rating of current track to 00\"\nSET_TO_20=\"tell application \\\"$MusicApp\\\" to set rating of current track to 20\"\nSET_TO_40=\"tell application \\\"$MusicApp\\\" to set rating of current track to 40\"\nSET_TO_60=\"tell application \\\"$MusicApp\\\" to set rating of current track to 60\"\nSET_TO_80=\"tell application \\\"$MusicApp\\\" to set rating of current track to 80\"\nSET_TO_100=\"tell application \\\"$MusicApp\\\" to set rating of current track to 100\"\nGET_NAME=\"tell application \\\"$MusicApp\\\" to name of current track as string\"\nGET_ARTIST=\"tell application \\\"$MusicApp\\\" to artist of current track as string\"\nGET_RATING=\"tell application \\\"$MusicApp\\\" to rating of current track as string\"\n\nif [ \"$1\" = 'launch' ]; then\n  osascript -e \"$LAUNCH\"\n  exit\nfi\n\nif [ \"$(osascript -e \"$QUERY_RUNNING\")\" = \"false\" ]; then\n  echo \"♫\"\n  echo \"---\"\n  echo \"Music is not running\"\n  echo \"Launch Music | bash='$0' param1=launch terminal=false\"\n  exit\nfi\n\ncase $1 in \n    'zero')\n        osascript -e \"$SET_TO_00\"\n        exit\n        ;;\n    'one')\n        osascript -e \"$SET_TO_20\"\n        exit\n        ;;\n    'two')\n        osascript -e \"$SET_TO_40\"\n        exit\n        ;;\n    'three')\n        osascript -e \"$SET_TO_60\"\n        exit\n        ;;\n    'four')\n        osascript -e \"$SET_TO_80\"\n        exit\n        ;;\n    'five')\n        osascript -e \"$SET_TO_100\"\n        exit\n        ;;\nesac\n\nrating_icon_black=\"★\"\nrating_icon_white=\"☆\"\n\ntrack=$(osascript -e \"$GET_NAME\" 2\u003e/dev/null);\nartist=$(osascript -e \"$GET_ARTIST\" 2\u003e/dev/null);\nrating=$(osascript -e \"$GET_RATING\" 2\u003e/dev/null);\n\ncase $rating in\n    00)\n        echo $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    20)\n        echo $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    40)\n        echo $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white \n        ;;\n    60)\n        echo $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white \n        ;;\n    80)\n        echo $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white \n        ;;\n    100)\n        echo $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black\n        ;;\n    *)\n        echo $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\nesac\n\necho \"---\"\n\ncase \"$0\" in\n  *\\ * )\n   echo \"Your script path | color=#ff0000\"\n   echo \"($0) | color=#ff0000\"\n   echo \"has a space in it, which BitBar does not support. | color=#ff0000\"\n   echo \"Play/Pause/Next/Previous buttons will not work. | color=#ff0000\"\n  ;;\nesac\n\necho \"$artist -- $track\"\n\ncase $rating in\n    00)\n        echo Rating: $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    20)\n        echo Rating: $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    40)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white \n        ;;\n    60)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white \n        ;;\n    80)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white \n        ;;\n    100)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black\n        ;;\n    *)\n        echo Rating: $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\nesac\n\necho '---'\necho 'Rerate'\necho \"$rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white | bash='$0' param1=zero refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white | bash='$0' param1=one refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white | bash='$0' param1=two refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white | bash='$0' param1=three refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white | bash='$0' param1=four refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black | bash='$0' param1=five refresh=true terminal=false \"\n"
+			}
+		],
+		"path": "Music/musicRating.10s.sh",
+		"filename": "musicRating.10s.sh",
+		"dir": "Music",
+		"docsPlugin": "Music/musicRating.10s.sh.html",
+		"docsCategory": "Music.html",
+		"pathSegments": [
+			"Music"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Music",
+				"text": "Music",
+				"isLast": true
+			}
+		],
+		"title": "Music Rating",
+		"version": "v0.1",
+		"author": "Weibing Chen,  Sebastian Winkler,  Dan Turkel",
+		"authors": [
+			{
+				"name": "Weibing Chen",
+				"githubUsername": "weibingchen17",
+				"imageURL": "https://avatars.githubusercontent.com/u/25602873?v=4",
+				"bio": "",
+				"primary": true
+			},
+			{
+				"name": "Sebastian Winkler",
+				"githubUsername": "",
+				"imageURL": "",
+				"bio": "",
+				"primary": false
+			},
+			{
+				"name": "Dan Turkel",
+				"githubUsername": "",
+				"imageURL": "",
+				"bio": "",
+				"primary": false
+			}
+		],
+		"desc": "Display currently rating from Music song and modify it.",
+		"imageURL": "http://www.mindfuckbox.com/wp-content/uploads/2016/01/iTunes_Rating.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:57.4625Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/worldclock.1s.sh",
+				"filename": "worldclock.1s.sh",
+				"content": "#!/bin/bash\n\n# Display UTC in the menubar, and one or more additional zones in the drop down.\n# The current format (HH:MM:SS) works best with a one second refresh, or alter\n# the format and refresh rate to taste.\n#\n# \u003cbitbar.title\u003eWorld Clock\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAdam Snodgrass\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003easnodgrass\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay current UTC time in the menu bar, with various timezones in the drop-down menu\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/6187908/12207887/464ff8b2-b617-11e5-9d61-787eed228552.png\u003c/bitbar.image\u003e\n\nZONES=\"Australia/Sydney Europe/Amsterdam America/New_York America/Los_Angeles\"\ndate -u +'%H:%M:%S UTC'\necho '---'\nfor zone in $ZONES; do\n  echo \"$(TZ=$zone date +'%H:%M:%S %z') $zone\"\ndone\n"
+			}
+		],
+		"path": "Time/worldclock.1s.sh",
+		"filename": "worldclock.1s.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/worldclock.1s.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "World Clock",
+		"version": "v1.0",
+		"author": "Adam Snodgrass",
+		"authors": [
+			{
+				"name": "Adam Snodgrass",
+				"githubUsername": "asnodgrass",
+				"imageURL": "https://avatars.githubusercontent.com/u/6187908?v=4",
+				"bio": "Sapient ambulatory bio-software",
+				"primary": true
+			}
+		],
+		"desc": "Display current UTC time in the menu bar, with various timezones in the drop-down menu",
+		"imageURL": "https://cloud.githubusercontent.com/assets/6187908/12207887/464ff8b2-b617-11e5-9d61-787eed228552.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:06.875861Z",
+		"vars": null
+	}
+}

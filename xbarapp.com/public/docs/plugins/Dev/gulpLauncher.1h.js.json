@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/gulpLauncher.1h.js",
+				"filename": "gulpLauncher.1h.js",
+				"content": "#!/usr/bin/env /usr/local/bin/node\n\n\n/* jshint esversion: 6 */\n/* jshint asi: true */\n\n/*\n * \u003cbitbar.title\u003eGulp Launcher\u003c/bitbar.title\u003e\n * \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n * \u003cbitbar.author\u003eAaron Crawford\u003c/bitbar.author\u003e\n * \u003cbitbar.author.github\u003eaaroncrawford\u003c/bitbar.author.github\u003e\n * \u003cbitbar.image\u003ehttps://i.imgur.com/RAxo5tG.png\u003c/bitbar.image\u003e\n * \u003cbitbar.desc\u003eQuickly launch gulp processes on projects.  Useful for agency developers with a lot of projects.  Editing of file required to list your projects.\u003c/bitbar.desc\u003e\n * \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n */\n\n// EDIT ME\nvar file = '/path/to/_projects.json'\n// Example _projects.json file : (you can just create an array in this file, but our file was huge so we decided to store in a separate file)\n/*\n\n[\n  {\n    \"name\": \"Project 1\",\n    \"path\": \"/path/to/readable/file/project1/src\"\n  },\n  {\n    \"name\": \"Project 2\",\n    \"path\": \"/path/to/readable/file/project2/src\"\n  }\n]\n\n*/\n\n\nvar fs = require('fs')\n\nfs.readFile(file, 'utf8', (e, data) =\u003e {\n\tconsole.log('🥤')\n\tconsole.log('---')\n\n\tvar projects = JSON.parse(data)\n\n\tprojects.map((d) =\u003e {\n\t\tvar path = d.path.replace(\" \", \"\\\\\\\\ \")\n\t\t// Currently just goes to the directory and runs 'gulp'.  If you want to modify this process, edit this line\n\t\tconsole.log(`${d.name}|bash=\"cd ${path} \u0026\u0026 gulp\" terminal=true`)\n\t})\t\n})\n\n\n"
+			}
+		],
+		"path": "Dev/gulpLauncher.1h.js",
+		"filename": "gulpLauncher.1h.js",
+		"dir": "Dev",
+		"docsPlugin": "Dev/gulpLauncher.1h.js.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Gulp Launcher",
+		"version": "v1.0",
+		"author": "Aaron Crawford",
+		"authors": [
+			{
+				"name": "Aaron Crawford",
+				"githubUsername": "aaroncrawford",
+				"imageURL": "https://avatars.githubusercontent.com/u/3203500?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Quickly launch gulp processes on projects.  Useful for agency developers with a lot of projects.  Editing of file required to list your projects.",
+		"imageURL": "https://i.imgur.com/RAxo5tG.png",
+		"dependencies": [
+			"node"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:51.560166Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,62 @@
+{
+	"person": {
+		"name": "Srdgh",
+		"githubUsername": "Srdgh",
+		"imageURL": "https://avatars.githubusercontent.com/u/7290027?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/ToDo/todo.15m.rb",
+					"filename": "todo.15m.rb",
+					"content": "#!/usr/bin/env ruby\n# coding: utf-8\n\n# \u003cbitbar.title\u003eTodo Colour\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSrdgh\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eSrdgh\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eTodo list with customisable color-code. Mark tasks \"done\" simply by clicking on them in the menubar drop-down list.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/eNl6QGh.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby, todo.sh\u003c/bitbar.dependencies\u003e\n\n# Change to your todo directory path (which should contain todo.sh and todo.txt)\ntodo_directory = \"#{Dir.home}/todo/\"\n\n# Add further priority labels here\npriority_labels = [ \"+Urgent\" ]\n\n# Change priority color here\npriority_color = \"red\"\n\n# Customise label color-code here (these colors are optimised for a dark theme menubar)\nlabels = {\n  \"+Work\" =\u003e \"orange\",\n  \"+Play\" =\u003e \"yellow\",\n  \"+Family\" =\u003e \"green\",\n  \"+Health\" =\u003e \"cadetblue\",\n  \"+Code\" =\u003e \"purple\",\n  \"+Admin\" =\u003e \"violet\"\n  }\n\ntodo_file = File.open(\"#{todo_directory}todo.txt\")\ntodo_script = (\"#{todo_directory}todo.sh\")\n\nlines = IO.readlines(todo_file)\n\nputs \"Do: #{lines.length}\"\n\nputs \"---\"\n\nline_number = 0\nuntil todo_file.eof() # Until end-of-file\n  line_number += 1\n  line_color = \"\"\n  line = todo_file.readline().chomp\n  priority_labels.each do |priority_label|\n    if line.include?(priority_label) # If line contains priority label, display in priority color\n      line_color = priority_color\n    else # If line contains no priority label, cycle through labels hash, and if line contains a label display in corresponding color\n      labels.each { |label, label_color| line_color = label_color if line.include?(label) }\n    end\n  end\n  line_color.empty? ? puts(\"#{line} | bash=#{todo_script} param1=do param2=#{line_number} terminal=false refresh=\\n\") : puts(\"#{line} | color=#{line_color} bash=#{todo_script} param1=do param2=#{line_number} terminal=false refresh=\\n\") # If the line contains no label, display in default color. Otherwise, in chosen color. Clicking line launches bash script: 'todo.sh do (line_number)'.\nend\nputs \"---\"\nputs \"Click an item to mark 'done'\"\nputs \"Refresh | refresh=\"\n"
+				}
+			],
+			"path": "Lifestyle/ToDo/todo.15m.rb",
+			"filename": "todo.15m.rb",
+			"dir": "Lifestyle/ToDo",
+			"docsPlugin": "Lifestyle/ToDo/todo.15m.rb.html",
+			"docsCategory": "Lifestyle/ToDo.html",
+			"pathSegments": [
+				"Lifestyle",
+				"ToDo"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": false
+				},
+				{
+					"path": "Lifestyle/ToDo",
+					"text": "ToDo",
+					"isLast": true
+				}
+			],
+			"title": "Todo Colour",
+			"version": "v0.1",
+			"author": "Srdgh",
+			"authors": [
+				{
+					"name": "Srdgh",
+					"githubUsername": "Srdgh",
+					"imageURL": "https://avatars.githubusercontent.com/u/7290027?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Todo list with customisable color-code. Mark tasks \"done\" simply by clicking on them in the menubar drop-down list.",
+			"imageURL": "http://i.imgur.com/eNl6QGh.png",
+			"dependencies": [
+				"ruby",
+				"todo.sh"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:54.862177Z",
+			"vars": null
+		}
+	]
+}

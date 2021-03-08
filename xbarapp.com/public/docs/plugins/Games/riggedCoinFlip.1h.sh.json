@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Games/riggedCoinFlip.1h.sh",
+				"filename": "riggedCoinFlip.1h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eRigged Coin Flip\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTyllis Xu\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003elivelycarpet87\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://i.ibb.co/YjYbHms/Rigged-Coin-Flip.png\u003c/bitbar.image\u003e\n# \u003cbitbar.desc\u003eA elaborately rigged coin flip. It can be set to varying degrees of unfairness and results (and its fairness) can be modified by the option key. \u003c/bitbar.desc\u003e\n\n#Configuration START\n\n#Fairness\n# 2: extreme realism\n# 1: fair\n# 0: Unfair\nfair=0\n#Probability for favored outcome\n#This does not influence fair flips\n# 50 to 100\nprob=90\n#favored\n# {H=favor heads|T=favor tails}\nfavored=T\n#Option Key Effect\n# 1: Reverse Favored Outcome\n# 2: Reverse Fairness\n# 3: Print Config (NOT RECOMMENDED)\nopt=2\n\n#Configuration END\n\n#Start Functions\n\nfairFlip(){\n  ((i=RANDOM % 100 + 1))\n  if [[ $i -le 50 ]]\n  then\n    echo \"H\"\n  else\n    echo \"T\"\n  fi\n}\nunfairFlip(){\n  ((i=RANDOM % 100 + 1))\n  if [[ $i -le $prob ]]\n  then\n    echo \"$favored\"\n  elif [[ $i -le 100 ]]\n then\n    echo \"$favored\"\n  else\n    echo \"Invalid Configuration!\"\n  fi\n}\nrealFlip(){\n  ((i=RANDOM % 6000 + 1))\n  if [[ $i == 1 ]]\n  then\n    echo \"The coin lands on its side and is perfectly still...\"\n  elif [[ $i -le 2940 ]]\n  then\n    echo \"$unfavored\"\n  else\n    echo \"$favored\"\n  fi\n}\n\nalternative(){\nif [[ $opt == 1 ]]\nthen\n  ((i=RANDOM % 100 + 1))\n  if [[ $i -le $prob ]]\n  then\n    echo \"$unfavored\"\n  elif [[ $i -le 100 ]]\n then\n    echo \"$favored\"\n  else\n    echo \"Invalid Configuration!\"\n  fi\nelif [[ $opt == 2 ]]\nthen\n  if [[ $fair == 1 || $fair == 2 ]]\n  then\n    unfairFlip\n  elif [[ $fair == 0 ]]\n  then\n    fairFlip\n  else\n    echo \"Invalid Configuration!\"\n  fi\nelif [[ $opt == 3 ]]\nthen\n  echo \"Fairness is $fair. Probability of favored outcome is $prob. Favored outcome is $favored. Option key setting is NO. $opt. Enjoy. \"\nelse\n    echo \"Invalid Configuration!\"\nfi\n}\n\n#End Functions\n\n#Initialize variables\nif [[ $favored == H ]]\nthen\n  unfavored=T\nelif [[ $favored == T ]]\nthen\n  unfavored=H\nelse\n  echo \"Invalid Configuration!\"\n  exit\nfi\n\n\necho \" :question: |dropdown=false\"\necho \" :grey_question: |dropdown=false\"\necho \"---\"\necho Result\nif [[ $fair == 0 ]]\nthen\n  echo \"-- $(unfairFlip)\"\n  echo \"-- $(alternative) | alternate=true\"\n\nelif [[ $fair == 1 ]]\nthen\n  echo \"-- $(fairFlip)\"\n  echo \"-- $(alternative) | alternate=true\"\nelif [[ $fair == 2 ]]\nthen\n  echo \"-- $(realFlip)\"\n  echo \"-- $(alternative) | alternate=true\"\nelse\n  echo \"Invalid Configuration!\"\nfi\n\necho \"Flip another coin. | refresh=true\"\n"
+			}
+		],
+		"path": "Games/riggedCoinFlip.1h.sh",
+		"filename": "riggedCoinFlip.1h.sh",
+		"dir": "Games",
+		"docsPlugin": "Games/riggedCoinFlip.1h.sh.html",
+		"docsCategory": "Games.html",
+		"pathSegments": [
+			"Games"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Games",
+				"text": "Games",
+				"isLast": true
+			}
+		],
+		"title": "Rigged Coin Flip",
+		"version": "v1.0",
+		"author": "Tyllis Xu",
+		"authors": [
+			{
+				"name": "Tyllis Xu",
+				"githubUsername": "livelycarpet87",
+				"imageURL": "https://avatars.githubusercontent.com/u/46377494?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "A elaborately rigged coin flip. It can be set to varying degrees of unfairness and results (and its fairness) can be modified by the option key. ",
+		"imageURL": "https://i.ibb.co/YjYbHms/Rigged-Coin-Flip.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:54.263982Z",
+		"vars": null
+	}
+}

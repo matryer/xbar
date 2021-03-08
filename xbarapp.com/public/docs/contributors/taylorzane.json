@@ -1,0 +1,99 @@
+{
+	"person": {
+		"name": "Taylor Zane Glaeser",
+		"githubUsername": "taylorzane",
+		"imageURL": "https://avatars.githubusercontent.com/u/5092987?v=4",
+		"bio": "Software Engineer\r\nhttps://keybase.io/taylorzane\r\nhttps://gitlab.com/taylorzane",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/SaveToLinkPack.1h.rb",
+					"filename": "SaveToLinkPack.1h.rb",
+					"content": "#!/usr/bin/env ruby\n# \u003cbitbar.title\u003eSave to Linkpack\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTaylor Zane Glaeser\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etaylorzane\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSaves the current Safari link to the selected Linkpack folder. Created because Linkpack lacks a Safari extension, for now. Theoretically this doesn't need to be used with Linkpack, it will just save a bookmark to disk.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/MasCD4V.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.taylorzane.com\u003c/bitbar.abouturl\u003e\n\n# --------------------- #\n# EDIT THESE VARIABLES. #\n# --------------------- #\n\nMENU_TEXT = 'Save to Linkpack'\nLINKPACK_DIR = '/full/path/to/link/pack/dir'\n\n# -------------------------------------------------------- #\n# DON'T EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU'RE DOING. #\n# -------------------------------------------------------- #\n\nLINKPACK_FOLDERS = Dir[\"#{LINKPACK_DIR}/**/*/\"]\n\nif ARGV[0] == 'save'\n  PAGE_TITLE = `osascript -e 'tell Application \"Safari\"' -e 'name of current tab of window 1' -e 'end tell'`\n  PAGE_URL = `osascript -e 'tell Application \"Safari\"' -e 'URL of current tab of window 1' -e 'end tell'`\n\n  SAVE_FOLDER = ARGV[1].gsub(/ZZspaceZZ/, ' ')\n\n  File.open(SAVE_FOLDER + (PAGE_TITLE.strip || PAGE_URL.chomp('/')) + '.url', 'w') do |file|\n    file.write \"[InternetShortcut]\\n\"\n    file.write \"URL=#{PAGE_URL.strip}\\n\"\n    file.write \"TITLE=#{PAGE_TITLE.strip}\\n\"\n  end\nelse\n  puts MENU_TEXT\n  puts \"---\"\n\n  LINKPACK_FOLDERS.each do |folder|\n    folder_display = folder.split(LINKPACK_DIR)[1].gsub(/^\\/|\\/$/, '')\n\n    puts \"#{folder_display} | bash=#{$0} param1=save param2=#{folder.gsub(/\\s/, 'ZZspaceZZ')} terminal=false\"\n  end\n\n  puts \"---\"\n  puts \"Refresh Folders | refresh=true\"\n  # NOTE: This cannot have terminal=false or it won't trigger.\n  # cont: I didn't want to make an ugly AppleScript command.\n  # cont: I will update this if enough people decide they\n  # cont: don't like the Terminal window popping up.\n  puts \"Open Directory | bash=open param1=#{LINKPACK_DIR}\"\nend\n"
+				}
+			],
+			"path": "Lifestyle/SaveToLinkPack.1h.rb",
+			"filename": "SaveToLinkPack.1h.rb",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/SaveToLinkPack.1h.rb.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Save to Linkpack",
+			"version": "v1.0",
+			"author": "Taylor Zane Glaeser",
+			"authors": [
+				{
+					"name": "Taylor Zane Glaeser",
+					"githubUsername": "taylorzane",
+					"imageURL": "https://avatars.githubusercontent.com/u/5092987?v=4",
+					"bio": "Software Engineer\r\nhttps://keybase.io/taylorzane\r\nhttps://gitlab.com/taylorzane",
+					"primary": true
+				}
+			],
+			"desc": "Saves the current Safari link to the selected Linkpack folder. Created because Linkpack lacks a Safari extension, for now. Theoretically this doesn't need to be used with Linkpack, it will just save a bookmark to disk.",
+			"imageURL": "http://i.imgur.com/MasCD4V.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "https://www.taylorzane.com",
+			"lastUpdated": "2021-03-08T15:21:54.48301Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Weather/GeoIPWeather.15m.rb",
+					"filename": "GeoIPWeather.15m.rb",
+					"content": "#!/usr/bin/env ruby\n# coding: utf-8\n\n# \u003cbitbar.title\u003eGeoIPWeather\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTaylor Zane\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etaylorzane\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eYour weather in the menu bar 🌤\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/vrT6vfb.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/taylorzane\u003c/bitbar.abouturl\u003e\n\n### USER VARIABLES\nUNITS = 'F' # This can be: (F)ahrenheit, (C)elsius, (K)elvin\nAPI_KEY = '8b4824b451d5db1612156837df880f55' # you can also get your own at http://openweathermap.org/\n\nrequire 'json'\nrequire 'net/http'\n\ndef no_data(message = nil)\n  if message\n    puts message\n  else\n    puts 'Cannot get weather.'\n  end\n  exit\nend\n\ndef location\n  location_uri = URI('http://ipinfo.io/json')\n\n  begin\n  \tlocation_data = Net::HTTP.get location_uri\n  rescue\n  \tno_data\n  end\n\n  location_json = JSON.parse location_data\n\n  zip = nil\n  country = nil\n\n  if location_json['postal']\n    zip = location_json['postal']\n  else\n    no_data\n  end\n\n  if location_json['country']\n    country = location_json['country']\n  else\n    no_data\n  end\n\n  [zip, country]\nend\n\ndef weather(zip_code, country)\n  temperature_unit =\n    case UNITS.upcase\n    when 'F'\n      '\u0026units=imperial'\n    when 'C'\n      '\u0026units=metric'\n    else\n      ''\n    end\n\n  temperature_symbol =\n    case UNITS.upcase\n    when 'F'\n      '℉'\n    when 'C'\n      '℃'\n    else\n      'K'\n    end\n\n  weather_uri =\n    URI('http://api.openweathermap.org/data/2.5/weather' \\\n        \"?zip=#{zip_code},#{country}\" \\\n        \"\u0026appid=#{API_KEY}\" \\\n        \"#{temperature_unit}\")\n\n  weather_data = Net::HTTP.get(weather_uri)\n\n  no_data unless weather_data\n\n  weather_json = JSON.parse weather_data\n\n  no_data weather_json['message'] if weather_json['cod'] == '404'\n\n  temperature = weather_json['main']['temp'].round\n\n  city = weather_json['name']\n  country = weather_json['sys']['country']\n\n  puts \"#{city}, #{country}: #{temperature}#{temperature_symbol}\"\nend\n\nweather(*location)\n"
+				}
+			],
+			"path": "Weather/GeoIPWeather.15m.rb",
+			"filename": "GeoIPWeather.15m.rb",
+			"dir": "Weather",
+			"docsPlugin": "Weather/GeoIPWeather.15m.rb.html",
+			"docsCategory": "Weather.html",
+			"pathSegments": [
+				"Weather"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Weather",
+					"text": "Weather",
+					"isLast": true
+				}
+			],
+			"title": "GeoIPWeather",
+			"version": "v0.1.1",
+			"author": "Taylor Zane",
+			"authors": [
+				{
+					"name": "Taylor Zane Glaeser",
+					"githubUsername": "taylorzane",
+					"imageURL": "https://avatars.githubusercontent.com/u/5092987?v=4",
+					"bio": "Software Engineer\r\nhttps://keybase.io/taylorzane\r\nhttps://gitlab.com/taylorzane",
+					"primary": true
+				}
+			],
+			"desc": "Your weather in the menu bar 🌤",
+			"imageURL": "http://i.imgur.com/vrT6vfb.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "https://github.com/taylorzane",
+			"lastUpdated": "2021-03-08T15:22:08.565657Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Tools/desktop_cleaner.rb",
+				"filename": "desktop_cleaner.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eDesktop cleaner\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTomoki Yamashita\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etomorrowkey\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eMove desktop files to backup dir\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/tomorrowkey/desktop_cleaner\u003c/bitbar.abouturl\u003e\n\nrequire 'date'\nrequire 'yaml'\nrequire 'pathname'\nrequire 'FileUtils'\n\nPathname.class_eval do\n  def is_older_than(time)\n    if directory?\n      children.all? { |path| path.is_older_than(time) }\n    elsif file?\n      mtime \u003c time\n    else\n      raise \"unknown file type\"\n    end\n  end\n\n  def dot_file?\n    basename.to_s.start_with?('.')\n  end\n\n  def move_to!(dir)\n    FileUtils.mkdir_p(dir)\n    FileUtils.mv(expand_path, dir)\n  end\n\n  def archive_to!(dir)\n    FileUtils.mkdir_p(dir)\n    `zip -rq '#{dir}#{basename}.zip' '#{expand_path}'`\n  end\n\n  def delete_dir\n    FileUtils.remove_dir(expand_path)\n  end\n\n  def encode\n    to_s.gsub(' ', '%20')\n  end\nend\n\nclass DesktopCleaner\n  ONE_DAY_IN_SECONDS = 24 * 60 * 60\n\n  def run\n    unless backup_dir_accesible?\n      STDERR.puts \"#{backup_dir} is not accesible\"\n      exit 1\n    end\n\n    desktop_path.children.each do |path|\n      next if path.dot_file?\n      next if path.symlink?\n\n      if path.is_older_than(threshold_time)\n        if archive_extnames.include?(path.extname)\n          path.archive_to!(destination_dir)\n          path.delete_dir\n        else\n          path.move_to!(destination_dir)\n        end\n      end\n    end\n  end\n\n  def desktop_path\n    Pathname.new(\"#{ENV['HOME']}/Desktop\")\n  end\n\n  def backup_dir\n    @backup_dir ||= begin\n      backup_dir = config['backup_dir']\n      raise 'backup_dir is not configured' unless backup_dir\n      Pathname.new(backup_dir)\n    end\n  end\n\n  private\n\n  def timestamp\n    Date.today.strftime('%Y-%m-%d')\n  end\n\n  def destination_dir\n    \"#{backup_dir}/#{timestamp}/\"\n  end\n\n  def config\n    @config ||= begin\n      path = \"#{ENV['HOME']}/.desktop_cleaner.yml\"\n      raise \"Missing config file at #{path}\" unless File.exist? path\n\n      YAML.load(File.read(path)) || {}\n    end\n  end\n\n  def backup_dir_accesible?\n    File.exist?(backup_dir)\n  end\n\n  def threshold_time\n    @threshold_time ||= begin\n      threshold_days = config['threshold_days'].to_i.tap do |it|\n        raise 'threshold_days must be positive' if it \u003c= 0\n      end\n\n      Time.now - (threshold_days * ONE_DAY_IN_SECONDS)\n    end\n  end\n\n  def archive_extnames\n    config['archive_extnames'] || []\n  end\nend\n\nbegin\n  cleaner = DesktopCleaner.new\n  cleaner.run\n\n  puts 'Desktop'\n  puts '---'\n  puts \"Open | href='file://#{cleaner.desktop_path.encode}'\"\n  puts \"Open Backups | href='file://#{cleaner.backup_dir.encode}'\"\nrescue StandardError =\u003e e\n  puts '⚠ Desktop | color=yellow'\n  puts \"---\"\n  puts e.message\n  puts \"Open usage | href='https://github.com/tomorrowkey/desktop_cleaner'\"\nend\n"
+			}
+		],
+		"path": "Tools/desktop_cleaner.rb",
+		"filename": "desktop_cleaner.rb",
+		"dir": "Tools",
+		"docsPlugin": "Tools/desktop_cleaner.rb.html",
+		"docsCategory": "Tools.html",
+		"pathSegments": [
+			"Tools"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Tools",
+				"text": "Tools",
+				"isLast": true
+			}
+		],
+		"title": "Desktop cleaner",
+		"version": "v1.0.0",
+		"author": "Tomoki Yamashita",
+		"authors": [
+			{
+				"name": "Tomoki Yamashita",
+				"githubUsername": "tomorrowkey",
+				"imageURL": "https://avatars.githubusercontent.com/u/126019?v=4",
+				"bio": "Engineer",
+				"primary": true
+			}
+		],
+		"desc": "Move desktop files to backup dir",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "https://github.com/tomorrowkey/desktop_cleaner",
+		"lastUpdated": "2021-03-08T15:22:07.571068Z",
+		"vars": null
+	}
+}

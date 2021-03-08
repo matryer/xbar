@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/timemachine.2m.rb",
+				"filename": "timemachine.2m.rb",
+				"content": "#!/usr/bin/env ruby\n# encoding: utf-8\n\n# \u003cbitbar.title\u003eShow Time machine Progress\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSlamet Kristanto\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edrselump14\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow time machine backup progress\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003etime machine\u003c/bitbar.dependencies\u003e\n\nrequire 'date'\n\nstatus_lines = `tmutil status`\nstatus = {}\nstatus_lines.each_line do |line|\n  status[:percent] = (line.split(\"=\")[1][2..-4].strip.to_f * 100).round() if /^ *Percent =/ =~ line\n  status[:running] = (line.split(\"=\")[1][0..-2].strip).to_i if /^ *Running =/ =~ line\n  status[:stopping] = (line.split(\"=\")[1][0..-2].strip).to_i if /^ *Stopping =/ =~ line\n  status[:time_remaining] = (line.split(\"=\")[1][0..-2].strip).to_i if /^ *TimeRemaining =/ =~ line\n  status[:cur_bytes] = (line.split(\"=\")[1][0..-2].strip).to_i if /^ *bytes =/ =~ line\n  status[:total_bytes] = (line.split(\"=\")[1][0..-2].strip).to_i if /^ *totalBytes =/ =~ line\n  status[:backup_phase] = line.split(\"=\")[1][0..-2].strip if /^ *BackupPhase =/ =~ line\nend\n\nif status[:running] == 0\n  status_line = \"\"\nelsif status[:stopping] == 1\n  status_line = \"Stopping\"\nelse\n  if status[:percent] == -100\n    status_line = \"Preparing\"\n  else\n    if status[:backup_phase].start_with?(\"Copying\")\n      status_line = \"#{status[:percent]}%\"\n    else\n      status_line = \"Completing\"\n    end\n  end\nend\n\nif File.exist?('/private/var/db/.TimeMachine.Results')\n  last_backup = DateTime.strptime((`defaults read /private/var/db/.TimeMachine.Results BACKUP_COMPLETED_DATE`.strip), \"%Y-%m-%d %H:%M:%S %z\").new_offset(DateTime.now.offset).strftime(\"%A %B %d, %Y %l:%M %P\")\nelse\n  last_backup = `/usr/libexec/PlistBuddy -c \"Print Destinations:0:SnapshotDates\" /Library/Preferences/com.apple.TimeMachine.plist | tail -n 2 | head -n 1`.strip\nend\n\nlast_backup = \"last backup #{last_backup}\"\nunless status_line.empty?\n  puts  \"⏳#{status_line} \"\n  puts  \"---\"\n  puts  \"(#{status[:cur_bytes]/1000000000}/#{status[:total_bytes]/1000000000}GB) | size=11\" unless status[:percent] == -100\n  puts  \"#{last_backup}\"\nend\n"
+			}
+		],
+		"path": "System/timemachine.2m.rb",
+		"filename": "timemachine.2m.rb",
+		"dir": "System",
+		"docsPlugin": "System/timemachine.2m.rb.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Show Time machine Progress",
+		"version": "v1.0",
+		"author": "Slamet Kristanto",
+		"authors": [
+			{
+				"name": "Kris",
+				"githubUsername": "drselump14",
+				"imageURL": "https://avatars.githubusercontent.com/u/1251454?v=4",
+				"bio": "vim,tmux,alfred, ruby, rails, python, golang, typescript, swift, java, c, c++, elixir, terraform, terragrunt, serverless, AWS\r\n",
+				"primary": true
+			}
+		],
+		"desc": "Show time machine backup progress",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"time machine"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.776639Z",
+		"vars": null
+	}
+}

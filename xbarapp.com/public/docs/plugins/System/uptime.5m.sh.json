@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/uptime.5m.sh",
+				"filename": "uptime.5m.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003euptime\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMatteo Ferrando\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003echamini2\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow uptime command information. Tweaked by Jonathan Clark to be more compact.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/qaIxpJN.png\u003c/bitbar.image\u003e\n\n# the `sed` command removes the occasional leading whitespace\nINFO=$(uptime | sed 's/^ *//g')\necho \"$INFO\" | awk -F'[ ,:\\t\\n]+' '\n    {\n        PLURAL = 1\n        VERBOSE = 0\n\n        SEP = \", \"\n\n        DS = \" day\"\n        HS = \" hr\"\n        MS = \" min\"\n        SS = \" sec\"\n\n        ################################\n\n        D = H = M = S = 0\n        if (substr($5,0,1) == \"d\") {\n        # up for a day or more\n            D = $4\n\n            P = $6\n            Q = $7\n        } else {\n            P = $4\n            Q = $5\n        }\n\n        if (int(Q) == 0) {\n        # words evaluate to zero\n        # exact times format, like `P = 55`, `Q = secs`\n            Q = substr(Q,0,1)\n\n            if (Q == \"h\") { H = P }\n            else if (Q == \"m\") { M = P }\n            else if (Q == \"s\") { S = P }\n        } else {\n        # hh:mm format, like `P = 4`, `Q = 20`\n            H = P\n            M = Q\n        }\n\n        MSG = \"↑ \" include(D, DS, SEP, PLURAL, (D \u003e 0))\n        MSG = MSG  include(H, HS, SEP, PLURAL, (D == 0 || VERBOSE))\n        MSG = MSG  include(M, MS, SEP, PLURAL, (D == 0 || VERBOSE))\n#        MSG = MSG  include(S, SS, SEP, PLURAL, (D == 0 || VERBOSE))\n\n        # remove the remaining SEP\n        MSG = substr(MSG, 0, length(MSG) - length(SEP))\n\n        # print \"[\", MSG, \"] | size=12\"\n        print MSG, \"| size=12\"\n    }\n\n    function include(VAL, UNIT, SUFFIX, PLURAL, VERBOSE) {\n        VAL = int(VAL)\n\n        if (PLURAL \u0026\u0026 VAL != 1) {\n            UNIT = UNIT\"s\"\n        }\n\n        if (VERBOSE) { # VAL \u003e 0 || VERBOSE) {\n            return (VAL UNIT SUFFIX)\n        } else {\n            # return \"\"\n        }\n    }'\n\necho \"---\"\necho \"$INFO\" | tr \",\" \"\\n\" | tail -n 2\necho \"---\"\necho \"Refresh now (normally every 5m) | refresh=\"\n"
+			}
+		],
+		"path": "System/uptime.5m.sh",
+		"filename": "uptime.5m.sh",
+		"dir": "System",
+		"docsPlugin": "System/uptime.5m.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "uptime",
+		"version": "v1.2",
+		"author": "Matteo Ferrando",
+		"authors": [
+			{
+				"name": "Matteo Ferrando",
+				"githubUsername": "chamini2",
+				"imageURL": "https://avatars.githubusercontent.com/u/2745502?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Show uptime command information. Tweaked by Jonathan Clark to be more compact.",
+		"imageURL": "http://i.imgur.com/qaIxpJN.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:05.151669Z",
+		"vars": null
+	}
+}

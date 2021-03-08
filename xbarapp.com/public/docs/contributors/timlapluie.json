@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Tim Regener",
+		"githubUsername": "timlapluie",
+		"imageURL": "https://avatars.githubusercontent.com/u/2337105?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/time_on_earth.10m.rb",
+					"filename": "time_on_earth.10m.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eYour time on earth\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTim Regener\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etimlapluie\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the time you are already living.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/EzUARsL.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n\n# --------------------- #\n# EDIT THESE VARIABLES. #\n# --------------------- #\n\n# Add your Birthday here\n# Format: 'YYYY-MM-DD [hh:mm (optional)] [UTC Offset (optional)]'\nBIRTHDAY = '1988-01-12 11:42 +01:00'\n\n# -------------------------------------------------------- #\n# DON'T EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU'RE DOING. #\n# -------------------------------------------------------- #\nrequire 'date'\n\nbirth_time = DateTime.parse(BIRTHDAY)\ntime_now = DateTime.now\ndelta = time_now - birth_time\n\ndays = delta.to_i\n\nhours = (delta * 24)\nminutes = (hours % 1) * 60\nseconds = (minutes % 1) * 60\n\ndef format_int(number)\n  number.to_i.to_s.reverse.gsub(/(\\d{3})(?=\\d)/, '\\\\1,').reverse\nend\n\nputs \"#{format_int(days)} days on 🌍\"\nputs '---'\nputs \"Impressive! That's #{format_int(hours)} hours, #{format_int(minutes)} minutes, #{format_int(seconds)} seconds.\"\n"
+				}
+			],
+			"path": "Lifestyle/time_on_earth.10m.rb",
+			"filename": "time_on_earth.10m.rb",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/time_on_earth.10m.rb.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Your time on earth",
+			"version": "v1.0",
+			"author": "Tim Regener",
+			"authors": [
+				{
+					"name": "Tim Regener",
+					"githubUsername": "timlapluie",
+					"imageURL": "https://avatars.githubusercontent.com/u/2337105?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays the time you are already living.",
+			"imageURL": "http://i.imgur.com/EzUARsL.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:56.336428Z",
+			"vars": null
+		}
+	]
+}

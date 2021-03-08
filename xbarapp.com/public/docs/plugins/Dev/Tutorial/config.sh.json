@@ -1,0 +1,52 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Tutorial/config.sh",
+				"filename": "config.sh",
+				"content": "#!/usr/local/bin/bash\n# shellcheck disable=SC2154\n\n# \u003cbitbar.title\u003eHome Config\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKodie Grantham\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekodie\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample of how to mimic the functionality of the home-config npm module in a bash BitBar plugin\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash4\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/kodie/bitbar-home-config\u003c/bitbar.abouturl\u003e\n\ntypeset -A cfg\ncfg[home_config,color]=\"red\"\ncfg[home_config,text]=\"Try editing $HOME/.bitbarrc\"\n\ncfgFile=\"$HOME/.bitbarrc\"\nif [ ! -e \"$cfgFile\" ]; then touch \"$cfgFile\"; fi\nwhile read -r cfgLine; do\n  if [[ -z $cfgLine ]]; then continue; fi\n  if [[ ${cfgLine:0:1} == '[' ]]; then cfgKey=${cfgLine:1:-1};\n  else IFS='='; cfgVar=($cfgLine); unset IFS; cfg[$cfgKey,${cfgVar[0]}]=${cfgVar[1]}; fi\ndone \u003c \"$cfgFile\"\n\necho \"Config Example | dropdown=false color=${cfg[home_config,color]}\"\necho \"---\"\necho \"${cfg[home_config,text]}\"\n"
+			}
+		],
+		"path": "Dev/Tutorial/config.sh",
+		"filename": "config.sh",
+		"dir": "Dev/Tutorial",
+		"docsPlugin": "Dev/Tutorial/config.sh.html",
+		"docsCategory": "Dev/Tutorial.html",
+		"pathSegments": [
+			"Dev",
+			"Tutorial"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Tutorial",
+				"text": "Tutorial",
+				"isLast": true
+			}
+		],
+		"title": "Home Config",
+		"version": "v1.0",
+		"author": "Kodie Grantham",
+		"authors": [
+			{
+				"name": "Kodie Grantham",
+				"githubUsername": "kodie",
+				"imageURL": "https://avatars.githubusercontent.com/u/603949?v=4",
+				"bio": "Lead Engineer/Systems Administrator for @itsahappymedium",
+				"primary": true
+			}
+		],
+		"desc": "Example of how to mimic the functionality of the home-config npm module in a bash BitBar plugin",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"bash4"
+		],
+		"aboutURL": "https://github.com/kodie/bitbar-home-config",
+		"lastUpdated": "2021-03-08T15:21:50.280195Z",
+		"vars": null
+	}
+}

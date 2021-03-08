@@ -1,0 +1,56 @@
+"%@ of %@" = "%1$@ of %2$@";
+
+"%@ %@ has been installed and will be ready to use next time %@ starts! Would you like to relaunch now?" = "%1$@ %2$@ הותקנה ותהיה מוכנה לפעולה בפעם הבאה שתריץ את %3$@ ! ברצונך לאתחל?";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ היא הגרסה האחונה הזמינה.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ זמין כעת (לך יש %3$@). ברצונך להוריד כעת?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ does not have permission to write to the application's directory! Are you running off a disk image? If not, ask your system administrator for help." = "ל %@ אין הרשאה לכתוב לתקיית התוכניות! האם אתה פועל מ- disc image? אם לא, בקש עזרה ממנהל הרשת.";
+
+"A new version of %@ has been installed!" = "גרסה חדשה של %@ הותקנה!";
+
+"A new version of %@ is available!" = "גרסה חדשה של %@ זמינה!";
+
+"An error occurred during installation. Please try again later." = "שגיאה בהתקנה. אנא נסה שנית במועד מרוחר יותר.";
+
+"An error occurred in retrieving update information. Please try again later." = "שגיאה בקבלת מידע על עדכונים. אנא נסה שנית במועד מרוחר יותר.";
+
+"An error occurred while extracting the archive. Please try again later." = "שגיאה בפתיחת הקובת המקווץ. אנא נסה שנית במועד מרוחר יותר.";
+
+"An error occurred while trying to download the file. Please try again later." = "שגיאה בהורדת הקובץ. אנא נסה שנית במועד מאוחר יותר.";
+
+"An update is already in progress!" = "עדכון כבר מתבצע";
+
+"Cancel" = "ביטול";
+
+"Check for updates on startup?" = "לבדוק עדכונים באתחול?";
+
+"Downloading update..." = "מוריד עדכון…";
+
+"Extracting update..." = "פותח עדכון…";
+
+"Install and Relaunch" = "התקן ואתחל";
+
+"Installing update..." = "מתקין עידכון…";
+
+"No" = "לא";
+
+"OK" = "אישור";
+
+"Ready to Install" = "מוכן להתקנה!";
+
+"Update Error!" = "שגיאה בעדכון!";
+
+"Updating %@" = "מעדכן %@";
+
+"Would you like %@ to check for updates on startup? If not, you can initiate the check manually from the application menu." = "האם ברצונך ש%@ יבדוק עדכונים באתחול? אם לא, תוכל לבדוק ידנית מתפריט התכנה.";
+
+"Yes" = "כן";
+
+"You're up-to-date!" = "התכנה עדכנית!";
+

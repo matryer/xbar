@@ -1,0 +1,179 @@
+{
+	"person": {
+		"name": "Steffen",
+		"githubUsername": "citoki",
+		"imageURL": "https://avatars.githubusercontent.com/u/7259873?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Time/weeknumber.1m.sh",
+					"filename": "weeknumber.1m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eWeek Number\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSteffen Froehlich\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecitoki\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will show the current week number.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/bfKN7x2.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\ndate +\"%V\"\n"
+				}
+			],
+			"path": "Time/weeknumber.1m.sh",
+			"filename": "weeknumber.1m.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/weeknumber.1m.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Week Number",
+			"version": "v0.1",
+			"author": "Steffen Froehlich",
+			"authors": [
+				{
+					"name": "Steffen",
+					"githubUsername": "citoki",
+					"imageURL": "https://avatars.githubusercontent.com/u/7259873?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "This plugin will show the current week number.",
+			"imageURL": "https://i.imgur.com/bfKN7x2.png",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.849233Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/caffeinate.10h.sh",
+					"filename": "caffeinate.10h.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eCaffeinate\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSteffen Froehlich\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecitoki\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will give some caffeine, with lots of sugar, to your Mac to stay awake.\n# Technically the commandline tool 'caffeinate' is executed.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/vsCWLwX.png\u003c/birtbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\nif [ \"$1\" = 'sugar' ]; then\n  # stop all previous processes\n  /usr/bin/killall caffeinate\n\n  # start caffeinate program and prevent the system from idle sleeping when\n  # Mac OSX is running on AC power\n  /usr/bin/caffeinate -s\nfi\n\nif [ \"$1\" = 'caffeine' ]; then\n  # stop all previous processes\n  /usr/bin/killall caffeinate\n\n  # start caffeinate program and prevent the system from idle sleeping\n  /usr/bin/caffeinate -i\nfi\n\nif [ \"$1\" = 'stop' ]; then\n  # send terminate signal to all processes of program 'caffeinate'\n  /usr/bin/killall caffeinate\nfi\n\necho \"☕️\"\necho '---'\necho \"Sugar - stay awake w/ AC power| bash='$0' param1=sugar terminal=false\"\necho \"Caffeine - stay awake w/o AC power | bash='$0' param1=caffeine terminal=false\"\necho \"Stop caffeine dose | bash='$0' param1=stop terminal=false\"\n\n"
+				}
+			],
+			"path": "System/caffeinate.10h.sh",
+			"filename": "caffeinate.10h.sh",
+			"dir": "System",
+			"docsPlugin": "System/caffeinate.10h.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Caffeinate",
+			"version": "v0.1",
+			"author": "Steffen Froehlich",
+			"authors": [
+				{
+					"name": "Steffen",
+					"githubUsername": "citoki",
+					"imageURL": "https://avatars.githubusercontent.com/u/7259873?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://i.imgur.com/vsCWLwX.png",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:02.698128Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/caffeinate.1h.sh",
+					"filename": "caffeinate.1h.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eCaffeinate\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSteffen Froehlich\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecitoki\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will give some caffeine, with lots of sugar, to your Mac to stay awake.\n# Technically the commandline tool 'caffeinate' is executed.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/vsCWLwX.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\n\nfunction get_program_state {\n  instances=$(pgrep caffeinate)\n\n  # set state\n  if [[ $instances = 1 ]]; then\n    state=\"stopped\";\n  else\n    state=\"running\";\n  fi\n}\n\nfunction set_program_icon {\n  get_program_state;\n\n  if [[ \"$state\" = \"stopped\" ]]; then\n    icon=\"☕️\";\n  else\n    icon=\"🍵\";\n  fi\n}\n\n# stop all previous processes\nfunction terminate_caffeinate_instances {\n  /usr/bin/killall caffeinate \u0026\u003e /dev/null\n}\n\nif [[ \"$1\" = \"caffeine\" ]]; then\n  terminate_caffeinate_instances;\n  # start caffeinate program and prevent the system and display\n  # from idle sleeping\n  /usr/bin/caffeinate -di;\n\n  exit\nfi\n\nif [[ \"$1\" = \"stop\" ]]; then\n  terminate_caffeinate_instances;\n\n  exit\nfi\n\n# set program icon to default: 'not active state'\nset_program_icon;\n\necho \"$icon\"\necho \"---\"\necho \"program state: ${state}\"\necho \"---\"\necho \"Prevent machine from idle sleep | bash='$0' param1=caffeine terminal=false\"\necho \"Stop program | bash='$0' param1=stop terminal=false\"\n"
+				}
+			],
+			"path": "System/caffeinate.1h.sh",
+			"filename": "caffeinate.1h.sh",
+			"dir": "System",
+			"docsPlugin": "System/caffeinate.1h.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Caffeinate",
+			"version": "v0.2",
+			"author": "Steffen Froehlich",
+			"authors": [
+				{
+					"name": "Steffen",
+					"githubUsername": "citoki",
+					"imageURL": "https://avatars.githubusercontent.com/u/7259873?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://i.imgur.com/vsCWLwX.png",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:02.73137Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/clipboard-base64-encoder.sh",
+					"filename": "clipboard-base64-encoder.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eClipboard BASE64-Encoder\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSteffen Froehlich\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecitoki\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will encode acutal clipboard item with BASE64.\n# The result will be available in clipboard again. Do not use the result\n# for cryptographic purposes!!\n# It's inspired by the original clipboard-history plugin\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://imgur.com/0Ym6xNC\u003c/birtbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\n# Hack for language not being set properly and unicode support\nexport LANG=\"${LANG:-en_US.UTF-8}\"\n\nPREFIX=\"\"\nAPPENDIX=\"\"\n\n# user clicks on 'encoding'\nif [[ \"$1\" = \"encode\" ]]; then\n  echo -n \"$(echo -n \"${PREFIX}$(pbpaste)${APPENDIX}\" | base64)\" | pbcopy\n  osascript -e \"display notification \\\"Clipboard entry encoded with BASE64\\\" with title \\\"BitBar Clipboard BASE64-Encoder\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\nif [[ \"$1\" = \"decode\" ]]; then\n  echo -n \"$(echo -n \"${PREFIX}$(pbpaste)${APPENDIX}\" | base64 -D)\" | pbcopy\n  osascript -e \"display notification \\\"Clipboard entry decoded with BASE64\\\" with title \\\"BitBar Clipboard BASE64-Encoder\\\"\" \u0026\u003e /dev/null\n  exit\nfi\n\n\n# Print icon\necho \"🔏\"\necho \"---\"\necho \"Encode clipboard item with BASE64 | bash='$0' param1=encode terminal=false\"\necho \"Decode clipboard item with BASE64 | bash='$0' param1=decode terminal=false\"\n\n"
+				}
+			],
+			"path": "System/clipboard-base64-encoder.sh",
+			"filename": "clipboard-base64-encoder.sh",
+			"dir": "System",
+			"docsPlugin": "System/clipboard-base64-encoder.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Clipboard BASE64-Encoder",
+			"version": "v0.1",
+			"author": "Steffen Froehlich",
+			"authors": [
+				{
+					"name": "Steffen",
+					"githubUsername": "citoki",
+					"imageURL": "https://avatars.githubusercontent.com/u/7259873?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://imgur.com/0Ym6xNC",
+			"dependencies": [],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:02.771831Z",
+			"vars": null
+		}
+	]
+}

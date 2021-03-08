@@ -1,0 +1,1259 @@
+{
+	"categories": [
+		{
+			"path": "AWS",
+			"text": "AWS",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "AWS",
+					"text": "AWS",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:44.506131Z"
+		},
+		{
+			"path": "Cryptocurrency",
+			"text": "Cryptocurrency",
+			"children": [
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"children": [
+						{
+							"path": "Cryptocurrency/Bitcoin/bitfinex.com",
+							"text": "bitfinex.com",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/bitfinex.com",
+									"text": "bitfinex.com",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:44.928274Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/bitoex.com",
+							"text": "bitoex.com",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/bitoex.com",
+									"text": "bitoex.com",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:44.904409Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/bitstamp.net",
+							"text": "bitstamp.net",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/bitstamp.net",
+									"text": "bitstamp.net",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:44.933723Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/bitx.co",
+							"text": "bitx.co",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/bitx.co",
+									"text": "bitx.co",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:44.925842Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/coinbase.com",
+							"text": "coinbase.com",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/coinbase.com",
+									"text": "coinbase.com",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:45.188615Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/coinmarketcap.com",
+							"text": "coinmarketcap.com",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/coinmarketcap.com",
+									"text": "coinmarketcap.com",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:45.327006Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/coinone.co.kr",
+							"text": "coinone.co.kr",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/coinone.co.kr",
+									"text": "coinone.co.kr",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:45.631105Z"
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin/huobi.com",
+							"text": "huobi.com",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Cryptocurrency",
+									"text": "Cryptocurrency",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin",
+									"text": "Bitcoin",
+									"isLast": false
+								},
+								{
+									"path": "Cryptocurrency/Bitcoin/huobi.com",
+									"text": "huobi.com",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:45.682546Z"
+						}
+					],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Bitcoin",
+							"text": "Bitcoin",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:44.791128Z"
+				},
+				{
+					"path": "Cryptocurrency/Blackcoin",
+					"text": "Blackcoin",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Blackcoin",
+							"text": "Blackcoin",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:45.575958Z"
+				},
+				{
+					"path": "Cryptocurrency/Dash",
+					"text": "Dash",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Dash",
+							"text": "Dash",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:46.047937Z"
+				},
+				{
+					"path": "Cryptocurrency/Dogecoin",
+					"text": "Dogecoin",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Dogecoin",
+							"text": "Dogecoin",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:45.920189Z"
+				},
+				{
+					"path": "Cryptocurrency/Ethereum",
+					"text": "Ethereum",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Ethereum",
+							"text": "Ethereum",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:45.973736Z"
+				},
+				{
+					"path": "Cryptocurrency/Lisk",
+					"text": "Lisk",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Lisk",
+							"text": "Lisk",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:46.469054Z"
+				},
+				{
+					"path": "Cryptocurrency/Litecoin",
+					"text": "Litecoin",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Litecoin",
+							"text": "Litecoin",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:46.601234Z"
+				},
+				{
+					"path": "Cryptocurrency/Monero",
+					"text": "Monero",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Monero",
+							"text": "Monero",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:46.820633Z"
+				},
+				{
+					"path": "Cryptocurrency/Ripple",
+					"text": "Ripple",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Ripple",
+							"text": "Ripple",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:47.019841Z"
+				},
+				{
+					"path": "Cryptocurrency/Vertcoin",
+					"text": "Vertcoin",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Cryptocurrency",
+							"text": "Cryptocurrency",
+							"isLast": false
+						},
+						{
+							"path": "Cryptocurrency/Vertcoin",
+							"text": "Vertcoin",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:47.247473Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:44.516498Z"
+		},
+		{
+			"path": "Dev",
+			"text": "Dev",
+			"children": [
+				{
+					"path": "Dev/Codeship",
+					"text": "Codeship",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Codeship",
+							"text": "Codeship",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:47.987389Z"
+				},
+				{
+					"path": "Dev/Docker",
+					"text": "Docker",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Docker",
+							"text": "Docker",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:48.044463Z"
+				},
+				{
+					"path": "Dev/Git",
+					"text": "Git",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Git",
+							"text": "Git",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:48.260494Z"
+				},
+				{
+					"path": "Dev/GitHub",
+					"text": "GitHub",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/GitHub",
+							"text": "GitHub",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:48.437156Z"
+				},
+				{
+					"path": "Dev/Gitlab",
+					"text": "Gitlab",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Gitlab",
+							"text": "Gitlab",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:48.838253Z"
+				},
+				{
+					"path": "Dev/Homebrew",
+					"text": "Homebrew",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Homebrew",
+							"text": "Homebrew",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:49.177924Z"
+				},
+				{
+					"path": "Dev/Hosting",
+					"text": "Hosting",
+					"children": [
+						{
+							"path": "Dev/Hosting/DigitalOcean",
+							"text": "DigitalOcean",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Dev",
+									"text": "Dev",
+									"isLast": false
+								},
+								{
+									"path": "Dev/Hosting",
+									"text": "Hosting",
+									"isLast": false
+								},
+								{
+									"path": "Dev/Hosting/DigitalOcean",
+									"text": "DigitalOcean",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:49.223492Z"
+						},
+						{
+							"path": "Dev/Hosting/Heroku",
+							"text": "Heroku",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Dev",
+									"text": "Dev",
+									"isLast": false
+								},
+								{
+									"path": "Dev/Hosting",
+									"text": "Hosting",
+									"isLast": false
+								},
+								{
+									"path": "Dev/Hosting/Heroku",
+									"text": "Heroku",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:49.230368Z"
+						},
+						{
+							"path": "Dev/Hosting/Linode",
+							"text": "Linode",
+							"children": [],
+							"categoryPathSegments": [
+								{
+									"path": "Dev",
+									"text": "Dev",
+									"isLast": false
+								},
+								{
+									"path": "Dev/Hosting",
+									"text": "Hosting",
+									"isLast": false
+								},
+								{
+									"path": "Dev/Hosting/Linode",
+									"text": "Linode",
+									"isLast": true
+								}
+							],
+							"lastUpdated": "2021-03-08T15:21:49.43869Z"
+						}
+					],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Hosting",
+							"text": "Hosting",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:49.22349Z"
+				},
+				{
+					"path": "Dev/Jenkins",
+					"text": "Jenkins",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Jenkins",
+							"text": "Jenkins",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:49.573178Z"
+				},
+				{
+					"path": "Dev/Jira",
+					"text": "Jira",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Jira",
+							"text": "Jira",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:49.6227Z"
+				},
+				{
+					"path": "Dev/Kubernetes",
+					"text": "Kubernetes",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Kubernetes",
+							"text": "Kubernetes",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:49.837455Z"
+				},
+				{
+					"path": "Dev/Nagios",
+					"text": "Nagios",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Nagios",
+							"text": "Nagios",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:49.985245Z"
+				},
+				{
+					"path": "Dev/Pastebin",
+					"text": "Pastebin",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Pastebin",
+							"text": "Pastebin",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:50.011083Z"
+				},
+				{
+					"path": "Dev/Shell",
+					"text": "Shell",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Shell",
+							"text": "Shell",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:50.272751Z"
+				},
+				{
+					"path": "Dev/Tutorial",
+					"text": "Tutorial",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Tutorial",
+							"text": "Tutorial",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:50.230488Z"
+				},
+				{
+					"path": "Dev/Vagrant",
+					"text": "Vagrant",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Dev",
+							"text": "Dev",
+							"isLast": false
+						},
+						{
+							"path": "Dev/Vagrant",
+							"text": "Vagrant",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:50.78023Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:47.987387Z"
+		},
+		{
+			"path": "E-Commerce",
+			"text": "E-Commerce",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "E-Commerce",
+					"text": "E-Commerce",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:52.828776Z"
+		},
+		{
+			"path": "Email",
+			"text": "Email",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Email",
+					"text": "Email",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:52.825044Z"
+		},
+		{
+			"path": "Environment",
+			"text": "Environment",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Environment",
+					"text": "Environment",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:53.216459Z"
+		},
+		{
+			"path": "Finance",
+			"text": "Finance",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Finance",
+					"text": "Finance",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:53.493363Z"
+		},
+		{
+			"path": "Games",
+			"text": "Games",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Games",
+					"text": "Games",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:54.224003Z"
+		},
+		{
+			"path": "IoT",
+			"text": "IoT",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "IoT",
+					"text": "IoT",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:54.617032Z"
+		},
+		{
+			"path": "Lifestyle",
+			"text": "Lifestyle",
+			"children": [
+				{
+					"path": "Lifestyle/Things",
+					"text": "Things",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Lifestyle",
+							"text": "Lifestyle",
+							"isLast": false
+						},
+						{
+							"path": "Lifestyle/Things",
+							"text": "Things",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:54.635299Z"
+				},
+				{
+					"path": "Lifestyle/ToDo",
+					"text": "ToDo",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Lifestyle",
+							"text": "Lifestyle",
+							"isLast": false
+						},
+						{
+							"path": "Lifestyle/ToDo",
+							"text": "ToDo",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:54.790189Z"
+				},
+				{
+					"path": "Lifestyle/Todo",
+					"text": "Todo",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Lifestyle",
+							"text": "Lifestyle",
+							"isLast": false
+						},
+						{
+							"path": "Lifestyle/Todo",
+							"text": "Todo",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:55.023431Z"
+				},
+				{
+					"path": "Lifestyle/Trello",
+					"text": "Trello",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Lifestyle",
+							"text": "Lifestyle",
+							"isLast": false
+						},
+						{
+							"path": "Lifestyle/Trello",
+							"text": "Trello",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:54.906488Z"
+				},
+				{
+					"path": "Lifestyle/ZoomsToday",
+					"text": "ZoomsToday",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Lifestyle",
+							"text": "Lifestyle",
+							"isLast": false
+						},
+						{
+							"path": "Lifestyle/ZoomsToday",
+							"text": "ZoomsToday",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:21:55.184526Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:54.627408Z"
+		},
+		{
+			"path": "Music",
+			"text": "Music",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Music",
+					"text": "Music",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:56.758516Z"
+		},
+		{
+			"path": "Network",
+			"text": "Network",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:21:58.180055Z"
+		},
+		{
+			"path": "Politics",
+			"text": "Politics",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Politics",
+					"text": "Politics",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:00.757149Z"
+		},
+		{
+			"path": "Science",
+			"text": "Science",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Science",
+					"text": "Science",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:00.820498Z"
+		},
+		{
+			"path": "Sports",
+			"text": "Sports",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Sports",
+					"text": "Sports",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:01.161304Z"
+		},
+		{
+			"path": "System",
+			"text": "System",
+			"children": [
+				{
+					"path": "System/Battery",
+					"text": "Battery",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "System",
+							"text": "System",
+							"isLast": false
+						},
+						{
+							"path": "System/Battery",
+							"text": "Battery",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:01.712531Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:01.71253Z"
+		},
+		{
+			"path": "Time",
+			"text": "Time",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:05.409229Z"
+		},
+		{
+			"path": "Tools",
+			"text": "Tools",
+			"children": [
+				{
+					"path": "Tools/BitBar",
+					"text": "BitBar",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Tools",
+							"text": "Tools",
+							"isLast": false
+						},
+						{
+							"path": "Tools/BitBar",
+							"text": "BitBar",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:06.960631Z"
+				},
+				{
+					"path": "Tools/PagerDuty",
+					"text": "PagerDuty",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Tools",
+							"text": "Tools",
+							"isLast": false
+						},
+						{
+							"path": "Tools/PagerDuty",
+							"text": "PagerDuty",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:07.223437Z"
+				},
+				{
+					"path": "Tools/Slack",
+					"text": "Slack",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Tools",
+							"text": "Tools",
+							"isLast": false
+						},
+						{
+							"path": "Tools/Slack",
+							"text": "Slack",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:07.205598Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:06.96063Z"
+		},
+		{
+			"path": "Travel",
+			"text": "Travel",
+			"children": [],
+			"categoryPathSegments": [
+				{
+					"path": "Travel",
+					"text": "Travel",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:08.235348Z"
+		},
+		{
+			"path": "Weather",
+			"text": "Weather",
+			"children": [
+				{
+					"path": "Weather/DarkSky",
+					"text": "DarkSky",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Weather",
+							"text": "Weather",
+							"isLast": false
+						},
+						{
+							"path": "Weather/DarkSky",
+							"text": "DarkSky",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:08.376583Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Weather",
+					"text": "Weather",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:08.376581Z"
+		},
+		{
+			"path": "Web",
+			"text": "Web",
+			"children": [
+				{
+					"path": "Web/ProductHunt",
+					"text": "ProductHunt",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Web",
+							"text": "Web",
+							"isLast": false
+						},
+						{
+							"path": "Web/ProductHunt",
+							"text": "ProductHunt",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:09.066445Z"
+				},
+				{
+					"path": "Web/Reddit",
+					"text": "Reddit",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Web",
+							"text": "Web",
+							"isLast": false
+						},
+						{
+							"path": "Web/Reddit",
+							"text": "Reddit",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:09.035461Z"
+				},
+				{
+					"path": "Web/Twitch",
+					"text": "Twitch",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Web",
+							"text": "Web",
+							"isLast": false
+						},
+						{
+							"path": "Web/Twitch",
+							"text": "Twitch",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:09.116132Z"
+				},
+				{
+					"path": "Web/XKCD",
+					"text": "XKCD",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Web",
+							"text": "Web",
+							"isLast": false
+						},
+						{
+							"path": "Web/XKCD",
+							"text": "XKCD",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:09.291313Z"
+				},
+				{
+					"path": "Web/YouTube",
+					"text": "YouTube",
+					"children": [],
+					"categoryPathSegments": [
+						{
+							"path": "Web",
+							"text": "Web",
+							"isLast": false
+						},
+						{
+							"path": "Web/YouTube",
+							"text": "YouTube",
+							"isLast": true
+						}
+					],
+					"lastUpdated": "2021-03-08T15:22:09.443794Z"
+				}
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": true
+				}
+			],
+			"lastUpdated": "2021-03-08T15:22:09.035459Z"
+		}
+	]
+}

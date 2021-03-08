@@ -1,0 +1,79 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ har hämtats och är klar att använda! Vill du installera det och starta om %1$@ nu?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ kan inte uppdateras när det körs från en skrivskyddad volym som en skivavbild eller en optisk enhet. Flytta %1$@ till mappen Program, starta om det därifrån, och försök igen.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ är för närvarande den senaste tillgängliga versionen.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ finns nu tillgänglig—du har %3$@. Vill hämta uppdateringen nu?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ hämtat";
+
+"%@ of %@" = "%1$@ av %2$@";
+
+"A new version of %@ is available!" = "En ny version av %@ finns tillgänglig!";
+
+"A new version of %@ is ready to install!" = "En ny version av %@ är redo att installeras!";
+
+"An error occurred in retrieving update information. Please try again later." = "Ett fel uppstod vid hämtning av information om uppdateringar. Försök igen senare.";
+
+"An error occurred while downloading the update. Please try again later." = "Ett fel uppstod vid hämtning av uppdateringen. Försök igen senare.";
+
+"An error occurred while extracting the archive. Please try again later." = "Ett fel uppstod vid extrahering av arkivet. Försök igen senare.";
+
+"An error occurred while installing the update. Please try again later." = "Ett fel uppstod vid installationen av uppdateringen. Försök igen senare.";
+
+"An error occurred while parsing the update feed." = "Ett fel uppstod vid tolkning av uppdateringslänken.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Ett fel uppstod när %1$@ skulle startas om, men den nya versionen kommer att finnas tillgänglig nästa gång du kör %1$@.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Avbryt";
+
+"Cancel Update" = "Avbryt uppdatering";
+
+"Checking for updates..." = "Letar efter uppdateringar…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Hämtar uppdatering…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Extraherar uppdatering…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Installera och starta om";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Installerar uppdatering…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "OK";
+
+"Ready to Install" = "Redo att installera";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Ska %1$@ leta efter uppdateringar automatiskt? Du kan alltid leta efter uppdateringar manuellt från %1$@-menyn.";
+
+"Update Error!" = "Uppdateringsfel!";
+
+"Updating %@" = "Uppdaterar %@";
+
+"You already have the newest version of %@." = "Du har redan den senaste versionen av %@.";
+
+"You're up-to-date!" = "Du är uppdaterad!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "Mer info…";

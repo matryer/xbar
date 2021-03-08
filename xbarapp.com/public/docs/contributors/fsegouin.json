@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Florent Segouin",
+		"githubUsername": "fsegouin",
+		"imageURL": "https://avatars.githubusercontent.com/u/2843216?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/circleci-check.5m.py",
+					"filename": "circleci-check.5m.py",
+					"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eCircleCI Check\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eFlorent Segouin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003efsegouin\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin displays the build status of repositories listed on CircleCI.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/Qvdgb39.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n\n# Florent Segouin\n# github.com/fsegouin\n\n# Based on Travis Check by Chris Tomkins-Tinch\n# github.com/tomkinsc\n\n# version history\n# 1.0\n#   initial commit\n# 1.1\n#   - Update icons\n#   - Sort builds\n#   - Add running builds\n\nfrom urllib import unquote\nimport requests\n\n# You need to set your CIRCLECI_API_TOKEN with an API Token from CircleCI.\nCIRCLECI_API_TOKEN = ''\n\nCIRCLECI_API_ENDPOINT = 'https://circleci.com/api/v1/'\n\n# ======================================\n\nSYMBOLS = {\n    'running': u' ▶',\n    'success': u' ✓',\n    'failed': u' ✗',\n    'timedout': u' ⚠',\n    'canceled': u' ⊝',\n    'scheduled': u' ⋯',\n    'no_tests': u' ',\n}\n\nCOLORS = {\n    'running': '#61D3E5',\n    'success': '#39C988',\n    'failed': '#EF5B58',\n    'timedout': '#F3BA61',\n    'canceled': '#898989',\n    'scheduled': '#AC7DD3',\n    'no_tests': 'black',\n}\n\nNO_SYMBOL = u' ❂'\n\n\ndef getOutcomeKey(build):\n    return build['outcome']\n\n\ndef request(uri):\n    url = CIRCLECI_API_ENDPOINT + uri + '?circle-token=' + CIRCLECI_API_TOKEN\n    headers = {'Accept': 'application/json'}\n    r = requests.get(url, headers=headers)\n    return r.json()\n\n\ndef getRessource(ressource_name):\n    return request(ressource_name)\n\n\ndef updateStatuses(projects):\n    output = []\n\n    output.append('CircleCI')\n    output.append('---')\n\n    for project in projects:\n        user_name = project['username']\n        repo_name = project['reponame']\n        repo_href = project['vcs_url']\n        branches = project['branches']\n        running_builds = []\n        recent_builds = []\n        output.append(u'{}/{} | href={}'.format(user_name, repo_name, repo_href))\n\n        for branch_name, branch in sorted(branches.iteritems()):\n            if 'running_builds' in branch and len(branch['running_builds']) \u003e 0:\n                branch['running_builds'][0]['branch_name'] = branch_name\n                running_builds.append(branch['running_builds'][0])\n\n            if 'recent_builds' in branch and len(branch['recent_builds']) \u003e 0:\n                branch['recent_builds'][0]['branch_name'] = branch_name\n                recent_builds.append(branch['recent_builds'][0])\n\n        for running_build in running_builds:\n            status = running_build['status']\n            if not status in ['not_running']:\n                color = 'color={}'.format(COLORS[status]) if COLORS[status] else ''\n                symbol = SYMBOLS.get(status, NO_SYMBOL)\n                branch_href = 'href=https://circleci.com/gh/{}/{}/tree/{}'.format(user_name, repo_name, running_build['branch_name'])\n                output_msg = u'- {} {}'.format(symbol, unquote(running_build['branch_name']))\n                output.append(u'{} | {} {}'.format(output_msg, branch_href, color))\n\n\n        for recent_build in sorted(recent_builds, key=getOutcomeKey):\n            outcome = recent_build['outcome']\n            if not outcome in ['no_tests']:\n                color = 'color={}'.format(COLORS[outcome]) if COLORS[outcome] else ''\n                symbol = SYMBOLS.get(outcome, NO_SYMBOL)\n                branch_href = 'href=https://circleci.com/gh/{}/{}/tree/{}'.format(user_name, repo_name, recent_build['branch_name'])\n                output_msg = u'- {} {}'.format(symbol, unquote(recent_build['branch_name']))\n                output.append(u'{} | {} {}'.format(output_msg, branch_href, color))\n\n        output.append('---')\n\n    for line in output:\n        print line.encode('utf-8')\n\n\nif __name__ == '__main__':\n    if len(CIRCLECI_API_TOKEN) == 0:\n        raise ValueError(\"token can not be empty\")\n\n    updateStatuses(getRessource('projects'))\n"
+				}
+			],
+			"path": "Dev/circleci-check.5m.py",
+			"filename": "circleci-check.5m.py",
+			"dir": "Dev",
+			"docsPlugin": "Dev/circleci-check.5m.py.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "CircleCI Check",
+			"version": "v1.1",
+			"author": "Florent Segouin",
+			"authors": [
+				{
+					"name": "Florent Segouin",
+					"githubUsername": "fsegouin",
+					"imageURL": "https://avatars.githubusercontent.com/u/2843216?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "This plugin displays the build status of repositories listed on CircleCI.",
+			"imageURL": "http://i.imgur.com/Qvdgb39.png",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:51.062643Z",
+			"vars": null
+		}
+	]
+}

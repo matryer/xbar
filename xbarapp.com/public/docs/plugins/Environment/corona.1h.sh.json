@@ -1,0 +1,49 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Environment/corona.1h.sh",
+				"filename": "corona.1h.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eCorona info\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJoakim Ramer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ejramer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows corona virus data from https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6 and alerts you when the corona virus comes to your country.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash, curl, jq, fping\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://github.com/jramer/bitbar-corona/raw/master/corona_info.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/jramer/bitbar-corona\u003c/bitbar.abouturl\u003e\n\nCOUNTRY='Sweden'\nCOUNTRY_FLAG='🇸🇪'\nWARNING_THRESHOLD=0\n\nFPING_PATH=/usr/local/bin/fping\nCURL_PATH=/usr/bin/curl\nJQ_PATH=/usr/local/bin/jq\n\nAPI_URL='https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/2/query'\nPARAMS='f=json\u0026where=1%3D1\u0026returnGeometry=false\u0026spatialRel=esriSpatialRelIntersects\u0026outFields=*\u0026orderByFields=Confirmed%20desc\u0026resultOffset=0\u0026resultRecordCount=250\u0026cacheHint=true'\n\n# Check internet\nCOUNT=6\nuntil (( COUNT == 0 ))\ndo\n  if $FPING_PATH -c1 -t300 8.8.8.8 2\u003e/dev/null 1\u003e/dev/null\n  then\n    break\n  fi\n\n  if (( --COUNT == 0 ))\n  then\n    echo \"-\"\n    exit\n  fi\n\n  sleep 10\ndone\n\nRESPONSE=$($CURL_PATH -s -X GET \"$API_URL?$PARAMS\" -H 'Accept: application/json')\nCONFIRMED=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes.Confirmed] | reduce .[] as \\$num (0; .+\\$num)\")\nDEATHS=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes.Deaths] | reduce .[] as \\$num (0; .+\\$num)\")\nRECOVERED=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes.Recovered] | reduce .[] as \\$num (0; .+\\$num)\")\nCOUNTRIES_INFECTED=$(echo \"$RESPONSE\" | $JQ_PATH \".features | length\")\n\nIN_COUNTRY=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes.Country_Region] | map(select(. == \\\"$COUNTRY\\\")) | if . == [] then \\\"false\\\" else \\\"true\\\" end\")\n\nif [ \"$IN_COUNTRY\" = '\"true\"' ]\nthen\n   COUNTRY_CONFIRMED=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes] | map(select(.Country_Region == \\\"$COUNTRY\\\")) | .[].Confirmed\")\n   COUNTRY_DEATHS=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes] | map(select(.Country_Region == \\\"$COUNTRY\\\")) | .[].Deaths\")\n   COUNTRY_RECOVERED=$(echo \"$RESPONSE\" | $JQ_PATH \"[.features[].attributes] | map(select(.Country_Region == \\\"$COUNTRY\\\")) | .[].Recovered\")\n\n   if [ \"$COUNTRY_CONFIRMED\" -gt \"$WARNING_THRESHOLD\" ]; then\n      echo \"$COUNTRY_FLAG 🔴 😷\"\n   else\n      echo \"$COUNTRY_FLAG 🟢\"\n  fi\n   echo \"---\"\n   echo \"$COUNTRY: | color=white\"\n   echo \"😷 $COUNTRY_CONFIRMED\"\n   echo \"☠️ $COUNTRY_DEATHS | color=red\"\n   echo \"😇 $COUNTRY_RECOVERED | color=green\"\nelse\n   echo \"$COUNTRY_FLAG 🟢\"\nfi\n\necho \"---\"\necho \"The World: | color=white\"\necho \"😷 $CONFIRMED\"\necho \"☠️ $DEATHS | color=red\"\necho \"😇 $RECOVERED | color=green\"\necho \"🗺 $COUNTRIES_INFECTED\"\necho \"---\"\necho \"↻ - Refresh| terminal=false refresh=true\"\necho \"🌍 Check data origin | href=https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6\"\n"
+			}
+		],
+		"path": "Environment/corona.1h.sh",
+		"filename": "corona.1h.sh",
+		"dir": "Environment",
+		"docsPlugin": "Environment/corona.1h.sh.html",
+		"docsCategory": "Environment.html",
+		"pathSegments": [
+			"Environment"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Environment",
+				"text": "Environment",
+				"isLast": true
+			}
+		],
+		"title": "Corona info",
+		"version": "v1.0",
+		"author": "Joakim Ramer",
+		"authors": [
+			{
+				"name": "Joakim Ramer",
+				"githubUsername": "jramer",
+				"imageURL": "https://avatars.githubusercontent.com/u/743717?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows corona virus data from https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6 and alerts you when the corona virus comes to your country.",
+		"imageURL": "https://github.com/jramer/bitbar-corona/raw/master/corona_info.png",
+		"dependencies": [
+			"bash",
+			"curl",
+			"jq",
+			"fping"
+		],
+		"aboutURL": "https://github.com/jramer/bitbar-corona",
+		"lastUpdated": "2021-03-08T15:21:53.187228Z",
+		"vars": null
+	}
+}

@@ -1,0 +1,20 @@
+PROJECT_NAME            = Sparkle
+PROJECT_NUMBER          = 1.14.0
+PROJECT_BRIEF           = "A software update framework for macOS"
+PROJECT_LOGO            = Resources/Images.xcassets/AppIcon.appiconset/icon_32x32@2x.png
+
+RECURSIVE               = YES
+INPUT                   = Sparkle
+OUTPUT_DIRECTORY        = Documentation
+
+GENERATE_HTML           = YES
+GENERATE_LATEX          = NO
+
+GENERATE_BUGLIST        = YES
+GENERATE_DEPRECATEDLIST = YES
+GENERATE_TODOLIST       = YES
+
+ALPHABETICAL_INDEX      = YES
+
+QT_AUTOBRIEF            = YES
+WARN_IF_UNDOCUMENTED    = NO

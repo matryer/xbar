@@ -1,0 +1,80 @@
+/* No comment provided by engineer. */
+"%d days ago" = "%d gün önce";
+
+/* No comment provided by engineer. */
+"%d hours ago" = "%d saat önce";
+
+/* No comment provided by engineer. */
+"%d minutes ago" = "%d dakika önce";
+
+/* No comment provided by engineer. */
+"%d months ago" = "%d ay önce";
+
+/* No comment provided by engineer. */
+"%d seconds ago" = "%d saniye önce";
+
+/* No comment provided by engineer. */
+"%d weeks ago" = "%d hafta önce";
+
+/* No comment provided by engineer. */
+"%d years ago" = "%d yıl önce";
+
+/* No comment provided by engineer. */
+"A minute ago" = "Bir dakika önce";
+
+/* No comment provided by engineer. */
+"An hour ago" = "Bir saat önce";
+
+/* No comment provided by engineer. */
+"Just now" = "Şimdi";
+
+/* No comment provided by engineer. */
+"Last month" = "Geçen ay";
+
+/* No comment provided by engineer. */
+"Last week" = "Geçen hafta";
+
+/* No comment provided by engineer. */
+"Last year" = "Geçen yıl";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Dün";
+
+/* No comment provided by engineer. */
+"1 year ago" = "1 yıl önce";
+
+/* No comment provided by engineer. */
+"1 month ago" = "1 ay önce";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 hafta önce";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1 gün önce";
+
+/* No comment provided by engineer. */
+"This morning" = "Bu sabah";
+
+/* No comment provided by engineer. */
+"This afternoon" = "Öğleden sonra";
+
+/* No comment provided by engineer. */
+"Today" = "Bugün";
+
+/* No comment provided by engineer. */
+"This week" = "Bu hafta";
+
+/* No comment provided by engineer. */
+"This month" = "Bu ay";
+
+/* No comment provided by engineer. */
+"This year" = "Bu yıl";
+
+/* Short format for */
+"%dy" = "%dy"; // year
+"%dM" = "%day"; // month
+"%dw" = "%dh"; // week
+"%dd" = "%dg"; // day
+"%dh" = "%dsa"; // hour
+"%dm" = "%ddk"; // minute
+"%ds" = "%dsn"; // second

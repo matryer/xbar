@@ -1,0 +1,61 @@
+{
+	"person": {
+		"name": "Tok1",
+		"githubUsername": "tokfrans03",
+		"imageURL": "https://avatars.githubusercontent.com/u/34898241?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/YouTube/subgap.1s.py",
+					"filename": "subgap.1s.py",
+					"content": "#!/usr/bin/python\n#\n# \u003cbitbar.title\u003eYoutube Sub gap\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTok1\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etokfrans03\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the sub gap between Pewdiepie and T-series. Set your youtube api key in the script. You can also change the channel ids to check on other sub gaps, just make shure the bigger one is first\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://github.com/garythung/bitbar-age-ticker/blob/master/bitbar-age-ticker.gif?raw=true\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/tokfrans03/BitBar-sub-gap\u003c/bitbar.abouturl\u003e\n\nimport requests\nimport json\n\nYTchannel1=\"UC-lHJZR3Gqxm24_Vd_AJ5Yw\" #pewdiepie\nYTchannel2=\"UCq-Fj5jknLsUf-MWSy4_brA\" #tseries\napiKey = \"YOUR_API_KEY\"\n\nYTchannel1data = requests.get('https://www.googleapis.com/youtube/v3/channels?part=statistics\u0026id=' + YTchannel1 + '\u0026key=' + apiKey)\nYTchannel2data = requests.get('https://www.googleapis.com/youtube/v3/channels?part=statistics\u0026id=' + YTchannel2 + '\u0026key=' + apiKey)\nYTchannel1subs = json.loads(YTchannel1data.text)[\"items\"][0][\"statistics\"][\"subscriberCount\"]\nYTchannel2subs = json.loads(YTchannel2data.text)[\"items\"][0][\"statistics\"][\"subscriberCount\"]\n\ndif = int(YTchannel1subs) - int(YTchannel2subs)\n\nprint(\"{:,d}\".format(int(dif)))\nprint(\"---\")\nprint(\"Channel 1 | color=blue\")\nprint(\"{:,d}\".format(int(YTchannel1subs)))\nprint(\"---\")\nprint(\"Channel 2 | color=red\")\nprint(\"{:,d}\".format(int(YTchannel2subs)))\nprint(\"---\")\nprint(\"Gap | color=green\")\nprint(\"{:,d}\".format(int(dif)))"
+				}
+			],
+			"path": "Web/YouTube/subgap.1s.py",
+			"filename": "subgap.1s.py",
+			"dir": "Web/YouTube",
+			"docsPlugin": "Web/YouTube/subgap.1s.py.html",
+			"docsCategory": "Web/YouTube.html",
+			"pathSegments": [
+				"Web",
+				"YouTube"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/YouTube",
+					"text": "YouTube",
+					"isLast": true
+				}
+			],
+			"title": "Youtube Sub gap",
+			"version": "v1.0",
+			"author": "Tok1",
+			"authors": [
+				{
+					"name": "Tok1",
+					"githubUsername": "tokfrans03",
+					"imageURL": "https://avatars.githubusercontent.com/u/34898241?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays the sub gap between Pewdiepie and T-series. Set your youtube api key in the script. You can also change the channel ids to check on other sub gaps, just make shure the bigger one is first",
+			"imageURL": "https://github.com/garythung/bitbar-age-ticker/blob/master/bitbar-age-ticker.gif?raw=true",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "https://github.com/tokfrans03/BitBar-sub-gap",
+			"lastUpdated": "2021-03-08T15:22:09.371686Z",
+			"vars": null
+		}
+	]
+}

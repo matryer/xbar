@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/bandwidth-test.2h.sh",
+				"filename": "bandwidth-test.2h.sh",
+				"content": "#!/bin/sh\n#\n# Bandwith test, using speedtest-cli (https://github.com/sivel/speedtest-cli) \n#\n# \u003cbitbar.title\u003eBandwith test\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAlexandre Espinosa Menor\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ealexandregz\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eBandwith tester, from https://speedtest.net using speedtest-cli\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003espeedtest-cli\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/mrPw9MV.png\u003c/bitbar.image\u003e\n#\n# Dependencies: \n#   speedtest-cli (https://github.com/sivel/speedtest-cli)\n\n# modify this path according your prefs\nif command -v \"/usr/local/bin/speedtest-cli\" \u003e/dev/null 2\u003e\u00261; then\n\tOUTPUT=$(/usr/local/bin/speedtest-cli --simple)\nelse\n\tOUTPUT=$(~/bin/speedtest-cli --simple)\nfi\n\necho \"$OUTPUT\"\n"
+			}
+		],
+		"path": "Network/bandwidth-test.2h.sh",
+		"filename": "bandwidth-test.2h.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/bandwidth-test.2h.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Bandwith test",
+		"version": "v1.0",
+		"author": "Alexandre Espinosa Menor",
+		"authors": [
+			{
+				"name": "Alexandre Espinosa Menor",
+				"githubUsername": "alexandregz",
+				"imageURL": "https://avatars.githubusercontent.com/u/1374718?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Bandwith tester, from https://speedtest.net using speedtest-cli",
+		"imageURL": "http://i.imgur.com/mrPw9MV.png",
+		"dependencies": [
+			"speedtest-cli"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.271719Z",
+		"vars": null
+	}
+}

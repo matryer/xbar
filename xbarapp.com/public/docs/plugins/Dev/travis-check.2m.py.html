@@ -1,0 +1,510 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>TravisCI Check in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='This plugin displays the build status of repositories listed on TravisCI. - install xbar for free to get started.'>
+	<meta name='author' content='Chris Tomkins-Tinch'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png'>
+	<meta itemprop='name' content='TravisCI Check in your macOS menu bar'>
+	<meta itemprop='description' content='This plugin displays the build status of repositories listed on TravisCI. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='TravisCI Check in your macOS menu bar'>
+	<meta name='twitter:description' content='This plugin displays the build status of repositories listed on TravisCI. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='TravisCI Check in your macOS menu bar'>
+	<meta property='og:description' content='This plugin displays the build status of repositories listed on TravisCI. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/travis-check.2m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png'>
+	<link rel='shortcut icon' href='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>TravisCI Check</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/tomkinsc.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/53064?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/tomkinsc.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Chris Tomkins-Tinch (<code style='color:white;'>@tomkinsc</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						This plugin displays the build status of repositories listed on TravisCI.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2ftravis-check.2m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png' 
+				alt='Image preview of TravisCI Check plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>travis-check.2m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/travis-check.2m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/travis-check.2m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# &lt;bitbar.title&gt;TravisCI Check&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.3&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Chris Tomkins-Tinch&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;tomkinsc&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;This plugin displays the build status of repositories listed on TravisCI.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://cloud.githubusercontent.com/assets/53064/12126193/a775fada-b3bd-11e5-9ae2-091c9c38b1da.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+
+# Chris Tomkins-Tinch
+# github.com/tomkinsc
+
+# Keith Cirkel
+# github.com/keithamus
+
+# version history
+# 1.0
+#   initial commit
+# 1.1
+#   refactor by @keithamus to remove travispy dependency
+# 1.2
+#   additions by @seripap, adding an &#39;in progress&#39; view, fixed missing status levels, added global TLD config
+# 1.3
+#   additions by @seripap, Fixed canceled builds
+
+# Dependencies:
+#   travis API key
+
+import json
+import urllib2
+
+# You need to set your TRAVIS_KEY to an API key for travis.
+# -- Please note that this IS NOT the &#39;Token&#39; listed on the Travis CI website
+# -- Again, this is NOT the token on https://travis-ci.org/profile/your-name
+# The easiest way to get this key is to use the official travis client
+# (`gem install travis`), and run `travis_token`.
+TRAVIS_KEY = &#39;YOUR TRAVIS TOKEN (Run `travis token` to retreive it)&#39;
+
+# If you don&#39;t want to check all repos, then specify the ones you do wish to
+# check here, and this plugin will only get the details of these repos.
+# If you do not specify the `repos_to_check` option - it will fetch all repos
+# available in your account.
+# If you do not include the &#39;branches&#39; key, then only the master branch
+# will be checked.
+# repos_to_check = [
+#     {&#39;name&#39;:&#39;account/repo-name&#39;, &#39;branches&#39;:[&#39;master&#39;, &#39;some-feature&#39;]},
+# ]
+
+# If you set INCLUDE_PULL_REQUESTS to `True`, then this script will get the
+# status of both pull requests and commits. By default, it only gets the status
+# of commits (pushes).
+INCLUDE_PULL_REQUESTS = False
+
+# SUPER SECRET FEATURE!
+# Instead of listing the repos you want to check in an array above, you can
+# use a hidden feature of Travis v3 - stars. Repositories can be starred,
+# and if SECRET_FILTER_BY_STAR is set to `True` then this script will only
+# show the starred repositories.
+# How do you star a repository? As of writing Travis has no UI for it (check
+# their roadmap (http://next.travis-ci.com/) to see when it might be
+# implemented). The only way to star a repository right now, is to curl the
+# v3 api, like so:
+# curl -X POST https://api.travis-ci.org/repo/ACCOUNT%2FREPO/star -H &#34;Accept: application/vnd.travis-ci.3&#43;json&#34; -H &#34;Authorization: token YOUR_TOKEN&#34;
+# (Pay particular attention to the headers, and replace
+# ACCOUNT, REPO and YOUR_TOKEN as necessary)
+SECRET_FILTER_BY_STAR = False
+
+# For enterprise travis, change the .org/ to .com/
+TRAVIS_TLD = &#39;.org/&#39;
+
+TRAVIS_URL = &#39;https://api.travis-ci&#39; &#43; TRAVIS_TLD
+
+# ======================================
+
+SYMBOLS = {
+    &#39;passed&#39;: u&#39;✔︎&#39;,
+    &#39;created&#39;: u&#39;⛬&#39;,
+    &#39;starting&#39;: u&#39;⛬&#39;,
+    &#39;started&#39;: u&#39;⛬&#39;,
+    &#39;failed&#39;: u&#39;✘&#39;,
+    &#39;queued&#39;: u&#39;⚠&#39;,
+    &#39;errored&#39;: u&#39;⚠&#39;,
+    &#39;canceled&#39;: u&#39; ⃠&#39;,
+}
+COLORS = {
+    &#39;passed&#39;: &#39;green&#39;,
+    &#39;created&#39;: &#39;yellow&#39;,
+    &#39;starting&#39;: &#39;yellow&#39;,
+    &#39;started&#39;: &#39;yellow&#39;,
+    &#39;failed&#39;: &#39;red&#39;,
+    &#39;queued&#39;: &#39;yellow&#39;,
+    &#39;errored&#39;: &#39;yellow&#39;,
+    &#39;canceled&#39;: &#39;gray&#39;,
+}
+NO_SYMBOL = u&#39;❂&#39;
+
+
+def request(uri):
+    request = urllib2.Request(TRAVIS_URL &#43; uri, headers={
+        &#39;Authorization&#39;: &#39;token &#39; &#43; TRAVIS_KEY,
+        &#39;Accept&#39;: &#39;application/vnd.travis-ci.3&#43;json&#39;
+    })
+    try:
+        response = urllib2.urlopen(request)
+        return json.load(response)
+
+    except:
+        print(&#34;travis-check error&#34;)
+        print(&#34;---&#34;)
+        print(&#34;Maybe you need to edit the plugin and set your access token?&#34;)
+        print(&#34; (could also be an API/HTTP error)&#34;)
+        exit(1)
+
+def get_all_repos_for_account():
+    url = &#39;repos?repository.active=true&amp;sort_by=name&amp;limit=200&#39;
+    if SECRET_FILTER_BY_STAR:
+        url &#43;= &#39;&amp;starred=true&#39;
+    repos = request(url)
+    all_repos = []
+    for repo in repos[&#39;repositories&#39;]:
+        if repo and &#39;slug&#39; in repo:
+            all_repos.append({&#39;name&#39;: repo[&#39;slug&#39;]})
+
+    return all_repos
+
+
+def update_statuses(repos):
+    output = []
+    fail_count = 0
+    currently_building = 0
+    canceled = 0
+
+    output.append(u&#39;{} | color=green&#39;.format(SYMBOLS[&#39;passed&#39;]))
+    output.append(&#39;---&#39;)
+
+    for repo in repos:
+        if &#39;branches&#39; in repo and len(repo[&#39;branches&#39;]):
+            branch_list = repo[&#39;branches&#39;]
+        else:
+            branch_list = [&#39;master&#39;]
+
+        for branch_name in branch_list:
+            url = &#39;repo/&#39; &#43; urllib2.quote(repo[&#39;name&#39;], safe=&#39;&#39;) &#43; &#39;/builds?limit=1&amp;branch.name=&#39; &#43; branch_name
+            if not INCLUDE_PULL_REQUESTS:
+                url &#43;= &#39;&amp;event_type=push&#39;
+            build = request(url)
+            if &#39;builds&#39; in build and len(build[&#39;builds&#39;]):
+                build = build[&#39;builds&#39;][0]
+                color = &#39;color={}&#39;.format(COLORS[build[&#39;state&#39;]]) if COLORS.get(build[&#39;state&#39;]) else &#39;&#39;
+                symbol = SYMBOLS[build[&#39;state&#39;]] or NO_SYMBOL
+                href = &#39;href=https://travis-ci&#39; &#43; TRAVIS_TLD &#43; &#39;{}/builds/{}&#39;.format(repo[&#39;name&#39;], build[&#39;id&#39;])
+                output_msg = u&#39;{symbol} {repo_name} ({branch_name}) {status}&#39;.format(symbol=symbol, repo_name=repo[&#39;name&#39;], branch_name=branch_name, status=build[&#39;state&#39;])
+                output.append(u&#39;{} | {} {}&#39;.format(output_msg, href, color))
+
+                if build[&#39;state&#39;] == &#34;started&#34; or build[&#39;state&#39;] == &#34;starting&#34; or build[&#39;state&#39;] == &#34;queued&#34; or build[&#39;state&#39;] == &#34;created&#34;:
+                    currently_building &#43;= 1
+                elif build[&#39;state&#39;] == &#34;failed&#34;:
+                    fail_count &#43;= 1
+                elif build[&#39;state&#39;] == &#34;canceled&#34;:
+                    canceled &#43;= 1
+
+    if fail_count &gt; 0:
+        output[0] = u&#39;{}{} | color=red&#39;.format(SYMBOLS[&#39;failed&#39;], fail_count)
+
+    if currently_building &gt; 0:
+        output[0] = u&#39;{}{} | color=yellow&#39;.format(SYMBOLS[&#39;started&#39;], currently_building)        
+
+    if canceled &gt; 0:
+        output[0] = u&#39;{}{} | color=gray&#39;.format(SYMBOLS[&#39;canceled&#39;], canceled)
+
+    for line in output:
+        print line.encode(&#39;utf-8&#39;)
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        repos_to_check
+    except NameError:
+        repos_to_check = get_all_repos_for_account()
+
+    update_statuses(repos_to_check)
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

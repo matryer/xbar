@@ -1,0 +1,535 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Pocket Bar in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Basic Pocket client. - install xbar for free to get started.'>
+	<meta name='author' content='Sergey Shlyapugin'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/XQnh7US.png'>
+	<meta itemprop='name' content='Pocket Bar in your macOS menu bar'>
+	<meta itemprop='description' content='Basic Pocket client. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Pocket Bar in your macOS menu bar'>
+	<meta name='twitter:description' content='Basic Pocket client. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/XQnh7US.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Pocket Bar in your macOS menu bar'>
+	<meta property='og:description' content='Basic Pocket client. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Web/pocket.10m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/XQnh7US.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/XQnh7US.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/XQnh7US.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/XQnh7US.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Pocket Bar</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/inbalboa.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/2811912?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/inbalboa.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Sergey Shlyapugin (<code style='color:white;'>@inbalboa</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Basic Pocket client.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Web%2fpocket.10m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/XQnh7US.png' 
+				alt='Image preview of Pocket Bar plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>pocket.10m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Web/pocket.10m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Web/pocket.10m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env -S PATH=&#34;${PATH}:/usr/local/bin&#34; python3
+
+# &lt;bitbar.title&gt;Pocket Bar&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.6.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Sergey Shlyapugin&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;inbalboa&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Basic Pocket client.&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.imgur.com/XQnh7US.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python3,pocket-api,keyring&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/inbalboa/pocketbar&lt;/bitbar.abouturl&gt;
+
+from argparse import ArgumentParser
+from dataclasses import dataclass
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+APPNAME = &#39;pocketbar&#39;
+CMD = sys.argv[0]
+CACHE_PATH = f&#39;~/Library/Caches/{APPNAME}/articles.json&#39;
+
+
+@dataclass(frozen=True)
+class Article:
+    id: str
+    link: str
+    title: str
+    cmd: str
+
+    def __str__(self):
+        title_ = self.title.replace(&#39;|&#39;, &#39;—&#39;).strip() if self.title else self.link
+        return f&#39;&#39;&#39;{title_}|href={self.link} length=60\n➖ {title_}|alternate=true length=60 bash={self.cmd} param1=--delete param2={self.id} terminal=false refresh=true&#39;&#39;&#39;
+
+
+def get_secrets():
+    consumer_key = keyring.get_password(APPNAME, &#39;consumer_key&#39;)
+    access_token = keyring.get_password(APPNAME, &#39;access_token&#39;)
+    return consumer_key, access_token
+
+
+def update_secrets():
+    consumer_key = get_input(&#39;\&#34;Enter your consumer key from\\n\\&#34;https://getpocket.com/developer/apps/\\&#34;\&#34;&#39;, hidden=True)
+    if not consumer_key:
+        return None, None
+    keyring.set_password(APPNAME, &#39;consumer_key&#39;, consumer_key)
+
+    pocket = Pocket(consumer_key=consumer_key)
+    redirect_uri = &#39;https://getpocket.com/connected_applications&#39;
+    request_token = pocket.get_request_token(redirect_uri)
+    auth_url = f&#39;https://getpocket.com/auth/authorize?request_token={request_token}&amp;redirect_uri={redirect_uri}&#39;
+    subprocess.Popen([&#39;open&#39;, auth_url])
+    get_ok(&#39;\&#34;Press the Authorize button in the opened browser tab, then close this dialog.\&#34;&#39;)
+    access_token = pocket.get_access_token(request_token)
+    keyring.set_password(APPNAME, &#39;access_token&#39;, access_token)
+
+
+def parse_args():
+    parser = ArgumentParser(description=&#39;Pocket Bar&#39;)
+    parser.add_argument(&#39;-a&#39;, &#39;--add&#39;, action=&#39;store_true&#39;, help=&#39;add item&#39;)
+    parser.add_argument(&#39;-d&#39;, &#39;--delete&#39;, type=str, help=&#39;delete item&#39;)
+    parser.add_argument(&#39;-f&#39;, &#39;--full&#39;, action=&#39;store_true&#39;, help=&#39;full retrieve&#39;)
+    parser.add_argument(&#39;-s&#39;, &#39;--secrets&#39;, action=&#39;store_true&#39;, help=&#39;update secrets&#39;)
+    args = parser.parse_args()
+    return args
+
+
+def pocket_icon():
+    return &#39;iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAQAAABuvaSwAAABIElEQVR4Xs3OvS9DYRQH4KdKfaViRWq2SUpCzKJithKrpISko6E6WJBg8L8ws0g6dJMIg6nNbZcmEkLEcG96qduZ31nec/LknJd/lVkVF84T6kLF7HeaU/Xoxm1C3XhUlYvxisCyQSMJNWhZYCXGa&#43;ryeiWvYe03HjdjoDNNmzSCvHoSPlJX1A/6bHhw0BvvedO2o1/KpqbPCP/4xqqGeQwpe9W2Y0vTh3NZzGtYjfFipw35i7b3iIarFmI84V45eof83VlEKbs3EeOUSzVTUTds276xqJtScynlW&#43;Y8O5HRnYxTz&#43;a6x0Uth519YcZUtBS7KRklgWvrcrKypq27Figl3ENawZXAkzt3ngSuFKSTaJhRS3YdO7ZryWhv&#43;If5AkpGXVSbf9oEAAAAAElFTkSuQmCC&#39;
+
+
+def get_ok(caption):
+    osa_bin = &#39;osascript&#39;
+    osa_params = f&#34;-e &#39;Tell application \&#34;System Events\&#34; to display alert \&#34;Pocket Bar\&#34; message {caption} buttons \&#34;Close\&#34; default button \&#34;Close\&#34;&#39;&#34;
+    task = subprocess.Popen(f&#39;{osa_bin} {osa_params} &gt; /dev/null&#39;, shell=True)
+    task.wait()
+
+
+def get_input(caption, hidden=False):
+    osa_bin = &#39;osascript&#39;
+    hidden_text = &#39; with hidden answer&#39; if hidden else &#39;&#39;
+    osa_params = f&#34;-e &#39;Tell application \&#34;System Events\&#34; to display dialog {caption} default answer \&#34;\&#34; with title \&#34;Pocket Bar\&#34; with icon 1 {hidden_text}&#39; -e &#39;text returned of result&#39;&#34;
+    task = subprocess.Popen(f&#39;{osa_bin} {osa_params}&#39;, shell=True, stdout=subprocess.PIPE)
+    answer_text = task.stdout.read()
+    task.wait()
+
+    return answer_text.decode().replace(&#39;\n&#39;, &#39;&#39;).replace(&#39;\r&#39;, &#39;&#39;).strip()
+
+
+def print_error(error):
+    print(&#39;!|color=#ECB935&#39;)
+    print(&#39;---&#39;)
+    print(f&#39;Exception: {error}&#39;)
+
+
+def print_refresh():
+    print(&#39;---&#39;)
+    print(&#39;Refresh|refresh=yes&#39;)
+    print(f&#39;Full refresh|alternate=true bash={CMD} param1=--full terminal=false refresh=yes&#39;)
+    print(&#39;---&#39;)
+    print(&#39;Open Pocket|href=&#34;https://getpocket.com/&#34; refresh=no&#39;)
+    print(f&#39;Re-authorize...|alternate=true bash={CMD} param1=--secrets terminal=false refresh=true&#39;)
+
+
+def print_secrets_error():
+    print(&#39;!|color=#ECB935&#39;)
+    print(&#39;---&#39;)
+    print(&#39;Need authorization&#39;)
+    print(&#39;---&#39;)
+    print(f&#39;Authorize...|bash={CMD} param1=--secrets terminal=false refresh=true&#39;)
+
+
+def print_import_error():
+    print(&#39;!|color=#ECB935&#39;)
+    print(&#39;---&#39;)
+    print(&#39;Need to install pocket-api or/and keyring packages&#39;)
+    print(&#39;---&#39;)
+    print(&#39;Install (with PIP)...|bash=pip3 param1=install param2=-U param3=pocket-api param4=keyring terminal=true refresh=true&#39;)
+
+
+def get_cache(cache_path):
+    try:
+        with open(Path(cache_path).expanduser()) as json_file:
+            return json.load(json_file)
+    except:
+        return {}
+
+
+def set_cache(cache_path, json_data):
+    expanded_cache_path = Path(cache_path).expanduser()
+    expanded_cache_path.parent.mkdir(exist_ok=True)
+    with open(expanded_cache_path, &#39;w&#43;&#39;) as json_file:
+        json.dump(json_data, json_file)
+
+
+def update_from_cache(main_dict, update_dict):
+    if update_dict[&#39;status&#39;] == 2:
+        return main_dict
+    res = dict(main_dict)
+    res_list = res.get(&#39;list&#39;, {})
+    res_list.update(update_dict.get(&#39;list&#39;, {}))
+    res.update(update_dict)
+    res[&#39;list&#39;] = res_list
+    return res
+
+
+def main():
+    parsed_args = parse_args()
+
+    try:
+        global keyring, Pocket, PocketException
+        import keyring
+        from pocket import Pocket, PocketException
+    except ImportError:
+        print_import_error()
+        print_refresh()
+        return
+
+    consumer_key, access_token = get_secrets()
+    pocket = Pocket(consumer_key=consumer_key, access_token=access_token)
+
+    if parsed_args.add:
+        new_url = get_input(&#39;\&#34;Save an item to Pocket:\&#34;&#39;)
+        if new_url:
+            pocket.add(url=new_url)
+        return
+    elif parsed_args.delete:
+        pocket.delete(parsed_args.delete).commit()
+        return
+    elif parsed_args.secrets:
+        update_secrets()
+        return
+
+    raw_articles = {} if parsed_args.full else get_cache(CACHE_PATH)
+    try:
+        raw_answer = pocket.retrieve(detailType=&#39;simple&#39;, since=raw_articles.get(&#39;since&#39;))
+    except PocketException as e:
+        if e.http_code in (400, 401):
+            print_secrets_error()
+        else:
+            print_error(e)
+        print_refresh()
+        return
+    except Exception as e:
+        print_error(e)
+        print_refresh()
+        return
+
+    raw_articles = update_from_cache(raw_articles, raw_answer)
+    set_cache(CACHE_PATH, raw_articles)
+
+    adapted_articles = [Article(
+                            id=i.get(&#39;item_id&#39;),
+                            link=i.get(&#39;resolved_url&#39;, i.get(&#39;given_url&#39;)),
+                            title=i.get(&#39;resolved_title&#39;, i.get(&#39;given_title&#39;)),
+                            cmd=CMD
+                        )
+                        for i in sorted(raw_articles[&#39;list&#39;].values(), key=lambda x: x.get(&#39;time_added&#39;, &#39;&#39;), reverse=True) if i[&#39;status&#39;] == &#39;0&#39;]
+    print(f&#39;{len(adapted_articles)}|font=Verdana size=14 templateImage={pocket_icon()}&#39;)
+    print(&#39;---&#39;)
+    print(*adapted_articles, sep=&#39;\n&#39;)
+    print(&#39;---&#39;)
+    print(f&#39;➕ Save a URL|bash={CMD} param1=--add terminal=false refresh=true&#39;)
+    print_refresh()
+
+
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

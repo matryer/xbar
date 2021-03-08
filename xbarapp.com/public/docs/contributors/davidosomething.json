@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "David O'Trakoun",
+		"githubUsername": "davidosomething",
+		"imageURL": "https://avatars.githubusercontent.com/u/609213?v=4",
+		"bio": "middle out",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/99-crypto.py",
+					"filename": "99-crypto.py",
+					"content": "#!/usr/bin/env python\n# coding=utf-8\n\"\"\"\n# \u003cbitbar.title\u003eCrypto Ticker ($1USD)\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev2.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003edavidosomething\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edavidosomething\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003e\n#   Displays current crypto/$1 from Coinmarketcap\n# \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/B1nq4AU.jpg\u003c/bitbar.image\u003e\n\"\"\"\n\nimport json\nimport urllib2\n\nTICKERS = [\n    {\n        'symbol': 'btc',\n        'sign': 'B',\n    },\n    {\n        'symbol': 'eth',\n        'sign': '𝚵',\n    },\n]\n\nSYMBOLS = {\n    'up': 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QAyQACAALwzIS'\n          'XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AQHACkSBTjB+AAAALNJREFUOM'\n          'vVk70NAjEMhb87WYiGBZAQU7ABNSVSWpZgEEagsJDoKBELUCEKFuBuCKTw0xyQC0lIC'\n          'e5i+/k9/wT+3opUUJQhcAUqa8I5ZQT4tANwioGTCkQZA9vmOQE2oUJFhL0DXBz33RpK'\n          'UfCLfLTQJMx9IlEWuQr6QB3prGtNS1lwiMvEYo7ekNsKRBkB+y+rH1hDFVOwy7ids+g'\n          'bVzrsM6CXeYDTF85xroB1ZoHb73ymB5RhJkpZTihGAAAAAElFTkSuQmCC',\n    'down': 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QABACnAADQ9'\n            'FZaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AQHACQ1FZwK3gAAAMRJRE'\n            'FUOMvNkjEKAjEQRZ+jKNjYKh5AbzCdjVcQj+BFPIKlp7EMeAJrUbASQVCEr80uG9c'\n            'Nbqe/Cgn/5WUI/DqNfBHM+kCzbs+lPUAr2pwBq5qABbB+M8gszkDvS/kOdAG5VBgE'\n            'M4ApsP0CGLukjxlEoA0wSZR3Lo0qhxhZDIBDAmDA0wsBLD51CZeOwLKivHbprZx6A'\n            'kAHuEXbD5fawYwywMqAzOKeDTTPvKqcTGZBMLsGs0utn5gADYEHcKp9e9ni//MCDt'\n            'NCE3qjsIwAAAAASUVORK5CYII=',\n}\n\n\ndef main():\n    \"\"\"\n    Display movement icon, symbol, price\n    \"\"\"\n\n    for ticker in TICKERS:\n        currency = 'usd'\n        symbol = ticker['symbol']\n\n        \"\"\"cryptomate\n        \"\"\"\n        currency = currency.upper()\n        symbol = symbol.upper()\n        api_base = 'https://cryptomate.co.uk/api/'\n        url = api_base + symbol + '/' + currency\n\n        \"\"\"coinmarketcap\n        api_base = 'https://coinmarketcap-nexuist.rhcloud.com/api/'\n        url = api_base + symbol\n        \"\"\"\n\n        request = urllib2.Request(url)\n        response = urllib2.urlopen(request).read()\n        result = json.loads(response)\n\n        \"\"\"cryptomate\n        \"\"\"\n        value = float(result[symbol]['price'])\n        is_up = result[symbol]['change'] \u003e 0\n\n        \"\"\"coinmarketcap\n        value = float(result['price']['usd'])\n        is_up = result['change'] \u003e 0\n        \"\"\"\n\n        # symbol = SYMBOLS['up' if result['change'] \u003e 0 else 'down']\n        if is_up:\n            symbol = ':chart_with_upwards_trend: '\n        else:\n            symbol = ':chart_with_downwards_trend: '\n        output = ''.join((\n            # ' ',\n            symbol,\n            ticker['sign'],\n            '%.2f',\n            ' | size=12'\n            # '| image=', symbol,\n            # ' color=#000000'\n        ))\n        print(output % value)\n\n    print('---')\n    print('Refresh | refresh=true')\n\n\nif __name__ == \"__main__\":\n    main()\n"
+				}
+			],
+			"path": "Cryptocurrency/99-crypto.py",
+			"filename": "99-crypto.py",
+			"dir": "Cryptocurrency",
+			"docsPlugin": "Cryptocurrency/99-crypto.py.html",
+			"docsCategory": "Cryptocurrency.html",
+			"pathSegments": [
+				"Cryptocurrency"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": true
+				}
+			],
+			"title": "Crypto Ticker ($1USD)",
+			"version": "v2.0",
+			"author": "davidosomething",
+			"authors": [
+				{
+					"name": "David O'Trakoun",
+					"githubUsername": "davidosomething",
+					"imageURL": "https://avatars.githubusercontent.com/u/609213?v=4",
+					"bio": "middle out",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://i.imgur.com/B1nq4AU.jpg",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:44.37361Z",
+			"vars": null
+		}
+	]
+}

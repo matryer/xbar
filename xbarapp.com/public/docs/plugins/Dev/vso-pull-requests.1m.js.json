@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/vso-pull-requests.1m.js",
+				"filename": "vso-pull-requests.1m.js",
+				"content": "#!/usr/bin/env /usr/local/bin/node\n\n// \u003cbitbar.title\u003eVSO Pullrequests\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eJelle Kralt\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003ejellekralt\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eLists open pull requests from VSO\u003c/bitbar.desc\u003e\n// \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/b3KTgcg.png\u003c/bitbar.image\u003e\n\nvar https = require('https');\n\nvar USERNAME = 'vso_username';\nvar PASSWORD = 'vso_password';\nvar DOMAIN = 'vso_domain';\nvar COLLECTION = 'vso_collection';\nvar REPO = 'repository_id';\n\n/**\n * Makes an HTTP GET call\n * @param {string} path\n */\nfunction get(path) {\n    // Use native promise in favor of library so there is no dependency\n    return new Promise( function (resolve, reject) {\n        var options = {\n            host: DOMAIN,\n            path: path,\n            auth: USERNAME + ':' + PASSWORD,\n            json: true\n        };\n\n        return https.get(options, function (res) {\n            var body = '';\n            res.on('data', function (data) {\n                body += data;\n            });\n            res.on('end', function () {\n                resolve(JSON.parse(body));\n            });\n            res.on('error', function (err) {\n                reject(err);\n            });\n        });\n    });\n\n}\n\n/**\n * Handles API calls response\n * @param {Object} repo - Repository data\n * @param {Object} pullRequests - Pull requests data\n */\nfunction handleResponse(repo, pullRequests) {\n    console.log('↓⤸ ' + pullRequests.length + ' | dropdown=false');\n    console.log('---');\n    pullRequests.forEach(function(pr) {\n        console.log(pr.pullRequestId + ': ' + pr.title + ' | href=' + repo._links.web.href + '/pullrequest/' + pr.pullRequestId);\n    });\n    console.log('---');\n    console.log('✚ Create PR | href=' + repo._links.web.href + '/pullrequests?_a=createnew');\n}\n\n// Use native promise in favor of library so there is no dependency\nPromise.all([\n    get('/' + COLLECTION + '/_apis/git/repositories/' + REPO),\n    get('/' + COLLECTION + '/_apis/git/repositories/' + REPO + '/pullrequests')\n]).then(function(data) {\n    handleResponse(data[0], data[1].value);\n});\n\n"
+			}
+		],
+		"path": "Dev/vso-pull-requests.1m.js",
+		"filename": "vso-pull-requests.1m.js",
+		"dir": "Dev",
+		"docsPlugin": "Dev/vso-pull-requests.1m.js.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "VSO Pullrequests",
+		"version": "v1.0",
+		"author": "Jelle Kralt",
+		"authors": [
+			{
+				"name": "Jelle Kralt",
+				"githubUsername": "jellekralt",
+				"imageURL": "https://avatars.githubusercontent.com/u/214558?v=4",
+				"bio": "Frontend Engineering Manager @codezilla-nl. Love JavaScript, Angular, Node.js, CSS and more",
+				"primary": true
+			}
+		],
+		"desc": "Lists open pull requests from VSO",
+		"imageURL": "http://i.imgur.com/b3KTgcg.png",
+		"dependencies": [
+			"node"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.527171Z",
+		"vars": null
+	}
+}

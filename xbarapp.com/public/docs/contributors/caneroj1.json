@@ -1,0 +1,59 @@
+{
+	"person": {
+		"name": "Joe Canero",
+		"githubUsername": "caneroj1",
+		"imageURL": "https://avatars.githubusercontent.com/u/3110602?v=4",
+		"bio": "Software Engineer",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/Reddit/subreddit_links.rb",
+					"filename": "subreddit_links.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eSubreddit Links\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eJoe Canero\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecaneroj1\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/3ZDUdNH.png\u003c/bitbar.image\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n\nrequire 'net/http'\nrequire 'json'\n\n#### Tips ####\n# Update the list of subreddits below\n# to customize the functionality of this\n# plugin.\n# The format should be like this:\n# [name_of_subreddit, \"/top\" or \"/new\"]\n# If you instead want to get links from\n# the front page instead of a subreddit,\n# leave name_of_subreddit empty: \"\"\n#### #### ####\nSUBREDDITS = [\n  [\"\",            \"/top\"],\n  [\"r/AskReddit\", \"/top\"],\n]\n\n# Feel free to make the user agent your username\n# It looks like reddit just requires the user agent to be\n# something unique and not generic.\nUSER_AGENT = \"bitbar-user-agent\"\nREDDIT = \"https://www.reddit.com/\"\nDEFAULT_PORT = 443\n\ndef to_json(subreddit, type)\n  uri = URI.parse(\"#{REDDIT}#{subreddit}#{type}.json\")\n  @http = Net::HTTP::Get.new(uri)\n  @http.add_field('User-Agent', USER_AGENT)\n \n  res = Net::HTTP.start(uri.host, DEFAULT_PORT, :use_ssl =\u003e true) do |http| \n    http.request(@http)\n  end\n \n  data = JSON.parse(res.body)\n  data[\"subreddit_name\"] = (subreddit.eql?(\"\") ? \"Front Page\" : subreddit) + type\n  data\nend\n\ndef prettify(json)\n  puts \"---\"\n  if json[\"quarantine\"] || json[\"over_18\"]\n    puts \"NSFW | color=red\"\n  end\n\n  puts json[\"title\"] + \"| href=#{REDDIT}\" + json[\"permalink\"] + \" color=#337ab7\"\n  puts \"Score: #{json[\"score\"]}, Comments: #{json[\"num_comments\"]}\"\nend\n\n\nbegin\n  puts \"Reddit\\n---\"\n  SUBREDDITS.map { |subreddit| to_json(*subreddit) }\n            .each do |data|\n              puts \"\\n---\\n#{data[\"subreddit_name\"]} | color=black\\n---\"\n              data[\"data\"][\"children\"].each { |child| prettify(child[\"data\"]) }\n            end\nrescue =\u003e e\n  puts e\n  puts \"Content is currently unavailable. Please try resetting. | color=red\"\nend\n"
+				}
+			],
+			"path": "Web/Reddit/subreddit_links.rb",
+			"filename": "subreddit_links.rb",
+			"dir": "Web/Reddit",
+			"docsPlugin": "Web/Reddit/subreddit_links.rb.html",
+			"docsCategory": "Web/Reddit.html",
+			"pathSegments": [
+				"Web",
+				"Reddit"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/Reddit",
+					"text": "Reddit",
+					"isLast": true
+				}
+			],
+			"title": "Subreddit Links",
+			"version": "1.0",
+			"author": "Joe Canero",
+			"authors": [
+				{
+					"name": "Joe Canero",
+					"githubUsername": "caneroj1",
+					"imageURL": "https://avatars.githubusercontent.com/u/3110602?v=4",
+					"bio": "Software Engineer",
+					"primary": true
+				}
+			],
+			"desc": "",
+			"imageURL": "https://i.imgur.com/3ZDUdNH.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:09.066361Z",
+			"vars": null
+		}
+	]
+}

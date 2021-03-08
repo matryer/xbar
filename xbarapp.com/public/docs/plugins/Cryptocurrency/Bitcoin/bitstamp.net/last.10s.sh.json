@@ -1,0 +1,56 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh",
+				"filename": "last.10s.sh",
+				"content": "#!/bin/bash\n\n# Shows last BTC price (in USD) on Bitstamp exchange.\n#\n# \u003cbitbar.title\u003eBitstamp last price\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDamien Lajarretie\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edlajarretie\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows last BTC price (in USD) on Bitstamp exchange.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/aQCqOW6.png\u003c/bitbar.image\u003e\n#\n# by Damien Lajarretie\n# Based on Coinbase bitbar plugin by Mat Ryer\n\necho -n \"Bitstamp: $\"; curl -s \"https://www.bitstamp.net/api/ticker/\" | egrep -o '\"last\": \"[0-9]+(\\.)?([0-9]{0,2}\")?' | sed 's/\"last\": //' | sed 's/\\\"//g'"
+			}
+		],
+		"path": "Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh",
+		"filename": "last.10s.sh",
+		"dir": "Cryptocurrency/Bitcoin/bitstamp.net",
+		"docsPlugin": "Cryptocurrency/Bitcoin/bitstamp.net/last.10s.sh.html",
+		"docsCategory": "Cryptocurrency/Bitcoin/bitstamp.net.html",
+		"pathSegments": [
+			"Cryptocurrency",
+			"Bitcoin",
+			"bitstamp.net"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": false
+			},
+			{
+				"path": "Cryptocurrency/Bitcoin",
+				"text": "Bitcoin",
+				"isLast": false
+			},
+			{
+				"path": "Cryptocurrency/Bitcoin/bitstamp.net",
+				"text": "bitstamp.net",
+				"isLast": true
+			}
+		],
+		"title": "Bitstamp last price",
+		"version": "v1.0",
+		"author": "Damien Lajarretie",
+		"authors": [
+			{
+				"name": "Damien Lajarretie",
+				"githubUsername": "dlajarretie",
+				"imageURL": "https://avatars.githubusercontent.com/u/5681392?v=4",
+				"bio": "Lead developer @AirIntServices. Fiddling with JS, mostly. Cryptocurrencies enthusiast.",
+				"primary": true
+			}
+		],
+		"desc": "Shows last BTC price (in USD) on Bitstamp exchange.",
+		"imageURL": "http://i.imgur.com/aQCqOW6.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:44.78792Z",
+		"vars": null
+	}
+}

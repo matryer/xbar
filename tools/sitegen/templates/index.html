@@ -1,0 +1,160 @@
+{{ define "title" }}Welcome to xbar{{ end }}
+{{ define "head" }}
+	<meta name='description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta itemprop='name' content='xbar, the BitBar reboot'>
+	<meta itemprop='description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='xbar, the BitBar reboot'>
+	<meta name='twitter:description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='xbar, the BitBar reboot'>
+	<meta property='og:description' content='xbar lets you put the output of any executable script or program into your macOS menu bar'>
+	<meta property='og:url' content='https://xbarapp.com/'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/xbar-menu-preview.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.menu-preview {
+			width: auto;
+			max-width: 80%;
+			width: 500px;
+			margin-left: -500px;
+		}
+		.app-preview {
+			opacity: 0.9;
+			max-width: 80%;
+			width: 700px;
+			margin-top: -150px;
+			margin-right: -500px;
+		}
+	</style>
+{{ end }}
+{{ define "body" }}
+	<div class='flex-grow'>
+		<div class='container mx-auto text-white flex flex-col items-center'>
+			<h2 class='hidden md:block py-8 px-12 bg-white text-white bg-opacity-25 rounded text-5xl text-center font-bold m-16 mb-0 max-w-xl'>
+				Put <strong>anything</strong> in your macOS menu bar
+			</h2>
+			<h2 class='md:hidden text-3xl text-center font-bold m-16 mb-0 max-w-lg'>
+				Put <strong>anything</strong> in your macOS menu bar
+			</h2>
+			<p class='text-3xl mt-8 font-bold opacity-75'>
+				<span class='opacity-50'>(</span>the BitBar reboot<span class='opacity-50'>)</span>
+			</p>
+		</div>
+		<div class='hidden md:block mt-16 text-center'>
+			<p>
+				<img 
+					alt='Screenshot showing xbar menu in action'
+					class='inline menu-preview rounded-lg shadow-xl'
+					src='/public/img/xbar-menu-preview.png'
+				>
+			</p>
+			<p>
+				<img 
+					alt='Screenshot showing the xbar plugin browser app'
+					class='inline app-preview' 
+					src='/public/img/xbar-app-preview.png'
+				>
+			</p>
+		</div>
+		<div class='md:hidden mt-16'>
+			<p>
+				<img 
+					alt='Screenshot showing xbar menu in action'
+					class='inline rounded-lg shadow-xl'
+					src='/public/img/xbar-menu-preview.png'
+				>
+			</p>
+			<p class='mt-4'>
+				<img 
+					alt='Screenshot showing the xbar plugin browser app'
+					class='inline' 
+					src='/public/img/xbar-app-preview.png'
+				>
+			</p>
+		</div>
+		<div class='md:hidden mt-8 container mx-auto flex justify-center items-center text-white text-2xl'>
+			<a 
+				target='github'
+				href='/dl' 
+				class='text-sm rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+			>Coming soon</a>
+		</div>
+		</div>
+		<div class='container mx-auto flex justify-center items-center text-white text-2xl'>
+			<ul class='my-8 md:my-16 md:flex'>
+				<li class='p-8 text-center text-white text-3xl mt-8 font-bold max-w-sm'>
+					<span class='opacity-75'>Hundreds of</span> <strong>pre-built plugins</strong> <span class='opacity-75'>to choose from</span>
+				</li>
+				<li class='p-8 text-center text-white text-3xl mt-8 font-bold max-w-sm'>
+					<span class='opacity-75'>Information you care about,</span> <strong>at a glance</strong>
+				</li>
+				<li class='p-8 text-center text-white text-3xl mt-8 font-bold max-w-sm'>
+					<strong>Write your own plugins</strong><span class='opacity-75'>&mdash;in any language</span>
+				</li>
+			</ul>
+		</div>
+		<h2 class='p-8 text-center text-white text-3xl mt-8 font-bold'>
+			<span class='opacity-75'>with</span> Plugins <span class='opacity-75'>like these&hellip;</span>
+		</h2>
+		{{ template "plugins" .FeaturedPlugins }}
+		<div class='p-8 pb-2 text-center text-white text-3xl mt-8 font-bold'>
+			<span class='opacity-75'>Browse</span>
+			hundreds of plugins<span class='opacity-75'>&mdash;by category</span>
+		</div>
+		<div class='p-8 pt-0 text-center text-white text-2xl font-bold mt-8 max-w-2xl mx-auto'>
+			{{ range $k, $v := .Categories }}
+				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/{{ $k }}.html'>
+					{{ $v.Text }}
+				</a>
+			{{ end }}
+		</div>
+		<div class='container mx-auto flex flex-col justify-center items-center text-white m-16'>
+			<h2 class='p-8 text-center text-white text-3xl mt-8 font-bold'>
+				<span class='opacity-75'>Meet the</span> plugin contributors&hellip;
+			</h2>
+			<a href='/docs/contributors/index.html'><img class='rounded shadow-xl w-full' style='max-width:768px;' src='/public/img/contributors.jpg'></a>
+		</div>
+		<div class='container mx-auto flex flex-col justify-center items-center text-white m-16'>
+			<h2 class='p-8 text-center text-white text-3xl mt-8 font-bold'>
+				<span class='opacity-75'>
+					<span class='text-5xl pb-2'>💜</span><br>
+					Show your support<br>
+					by
+				</span> Sponsoring xbar
+			</h2>
+			<p class='p-8 pt-0 text-center text-white text-2xl opacity-75 max-w-md'>
+				Every contribution makes a <strong>big difference</strong>
+			</p>
+			<p class='p-8 pt-0 text-center text-white text-2xl opacity-75 max-w-md'>
+				If you use xbar, please consider
+				<a target='github' class='underline' href='https://github.com/sponsors/matryer'>sponsoring it on GitHub</a>
+			</p>
+		</div>
+	</div>
+{{ end }}
+{{ define "subcategories" }}
+	{{ if . }}
+		<ul>
+			{{ range $k, $v := . }}
+				<li>
+					<a href='/docs/plugins/{{ $v.Path }}.html'>
+						{{ $v.Text }}
+					</a>
+					{{ template "subcategories" $v.ChildrenCategories }}
+				</li>
+			{{ end }}
+		</ul>
+	{{ end }}
+{{ end }}

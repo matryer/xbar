@@ -1,0 +1,422 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Moon Phase in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shows the current moon phase - install xbar for free to get started.'>
+	<meta name='author' content='Volker Wieban'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png'>
+	<meta itemprop='name' content='Moon Phase in your macOS menu bar'>
+	<meta itemprop='description' content='Shows the current moon phase - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Moon Phase in your macOS menu bar'>
+	<meta name='twitter:description' content='Shows the current moon phase - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Moon Phase in your macOS menu bar'>
+	<meta property='og:description' content='Shows the current moon phase - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Lifestyle/moon-phase.1h.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png'>
+	<link rel='shortcut icon' href='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Moon Phase</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/hpcodecraft.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/1476865?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/hpcodecraft.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										hpcodecraft (<code style='color:white;'>@hpcodecraft</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shows the current moon phase
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Lifestyle%2fmoon-phase.1h.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png' 
+				alt='Image preview of Moon Phase plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>moon-phase.1h.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Lifestyle/moon-phase.1h.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Lifestyle/moon-phase.1h.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/local/bin/node
+
+// &lt;bitbar.title&gt;Moon Phase&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Volker Wieban&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;hpcodecraft&lt;/bitbar.author.github&gt;
+// &lt;bitbar.desc&gt;Shows the current moon phase&lt;/bitbar.desc&gt;
+// &lt;bitbar.image&gt;https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png&lt;/bitbar.image&gt;
+// &lt;bitbar.dependencies&gt;node&lt;/bitbar.dependencies&gt;
+
+// Moon phase calculations taken from https://github.com/tingletech/moon-phase
+Date.prototype.getJulian = function() {
+    return ((this / 86400000) - (this.getTimezoneOffset() / 1440) &#43; 2440587.5);
+};
+
+function moon_day(today) {
+    var GetFrac = function(fr) {
+        return (fr - Math.floor(fr));
+    };
+    var thisJD = today.getJulian();
+    var year = today.getFullYear();
+    var degToRad = 3.14159265 / 180;
+    var K0, T, T2, T3, J0, F0, M0, M1, B1, oldJ;
+    K0 = Math.floor((year - 1900) * 12.3685);
+    T = (year - 1899.5) / 100;
+    T2 = T * T;
+    T3 = T * T * T;
+    J0 = 2415020 &#43; 29 * K0;
+    F0 = 0.0001178 * T2 - 0.000000155 * T3 &#43; (0.75933 &#43; 0.53058868 * K0) - (0.000837 * T &#43; 0.000335 * T2);
+    M0 = 360 * (GetFrac(K0 * 0.08084821133)) &#43; 359.2242 - 0.0000333 * T2 - 0.00000347 * T3;
+    M1 = 360 * (GetFrac(K0 * 0.07171366128)) &#43; 306.0253 &#43; 0.0107306 * T2 &#43; 0.00001236 * T3;
+    B1 = 360 * (GetFrac(K0 * 0.08519585128)) &#43; 21.2964 - (0.0016528 * T2) - (0.00000239 * T3);
+    var phase = 0;
+    var jday = 0;
+    while (jday &lt; thisJD) {
+        var F = F0 &#43; 1.530588 * phase;
+        var M5 = (M0 &#43; phase * 29.10535608) * degToRad;
+        var M6 = (M1 &#43; phase * 385.81691806) * degToRad;
+        var B6 = (B1 &#43; phase * 390.67050646) * degToRad;
+        F -= 0.4068 * Math.sin(M6) &#43; (0.1734 - 0.000393 * T) * Math.sin(M5);
+        F &#43;= 0.0161 * Math.sin(2 * M6) &#43; 0.0104 * Math.sin(2 * B6);
+        F -= 0.0074 * Math.sin(M5 - M6) - 0.0051 * Math.sin(M5 &#43; M6);
+        F &#43;= 0.0021 * Math.sin(2 * M5) &#43; 0.0010 * Math.sin(2 * B6 - M6);
+        F &#43;= 0.5 / 1440;
+        oldJ = jday;
+        jday = J0 &#43; 28 * phase &#43; Math.floor(F);
+        phase&#43;&#43;;
+    }
+
+    // 29.53059 days per lunar month
+    return (((thisJD - oldJ) / 29.53059));
+}
+
+function phase_text(phase) {
+    var txt_phase;
+    if (phase &lt;= 0.0625 || phase &gt; 0.9375) {
+        txt_phase = &#34;new_moon&#34;;
+    } else if (phase &lt;= 0.1875) {
+        txt_phase = &#34;waxing_crescent_moon&#34;;
+    } else if (phase &lt;= 0.3125) {
+        txt_phase = &#34;first_quarter_moon&#34;;
+    } else if (phase &lt;= 0.4375) {
+        txt_phase = &#34;waxing_gibbous_moon&#34;;
+    } else if (phase &lt;= 0.5625) {
+        txt_phase = &#34;full_moon&#34;;
+    } else if (phase &lt;= 0.6875) {
+        txt_phase = &#34;waning_gibbous_moon&#34;;
+    } else if (phase &lt;= 0.8125) {
+        txt_phase = &#34;last_quarter_moon&#34;;
+    } else if (phase &lt;= 0.9375) {
+        txt_phase = &#34;waning_crescent_moon&#34;;
+    }
+
+    return txt_phase;
+}
+
+var phaseLabel = {
+  &#34;new_moon&#34;              : &#34;New moon&#34;,
+  &#34;waxing_crescent_moon&#34;  : &#34;Waxing crescent moon&#34;,
+  &#34;first_quarter_moon&#34;    : &#34;First quarter moon&#34;,
+  &#34;waxing_gibbous_moon&#34;   : &#34;Waxing gibbous moon&#34;,
+  &#34;full_moon&#34;             : &#34;Full moon&#34;,
+  &#34;waning_gibbous_moon&#34;   : &#34;Waning gibbous moon&#34;,
+  &#34;last_quarter_moon&#34;     : &#34;Third quarter moon&#34;,
+  &#34;waning_crescent_moon&#34;  : &#34;Waning crescent moon&#34;,
+};
+
+var phase     = moon_day(new Date()),
+    phase_str = phase_text(phase),
+    output    = &#39;:&#39; &#43; phase_str &#43; &#39;:|dropdown=false \n&#39; &#43;
+              &#39;---\n&#39; &#43;
+              phaseLabel[phase_str] &#43; &#39;\n&#39; &#43;
+              &#34;Completed &#34; &#43; Math.round(phase*100) &#43; &#34;% of lunar cycle&#34;;
+
+console.log(output);
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

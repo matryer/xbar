@@ -1,0 +1,556 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Pantheon - List Sites in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='List and manage all of your sites you are on in Pantheon. - install xbar for free to get started.'>
+	<meta name='author' content='Dave Wikoff'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/VYBizXY.png'>
+	<meta itemprop='name' content='Pantheon - List Sites in your macOS menu bar'>
+	<meta itemprop='description' content='List and manage all of your sites you are on in Pantheon. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Pantheon - List Sites in your macOS menu bar'>
+	<meta name='twitter:description' content='List and manage all of your sites you are on in Pantheon. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/VYBizXY.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Pantheon - List Sites in your macOS menu bar'>
+	<meta property='og:description' content='List and manage all of your sites you are on in Pantheon. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/pantheon-list-sites.1h.php.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/VYBizXY.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/VYBizXY.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/VYBizXY.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/VYBizXY.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Pantheon - List Sites</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/derimagia.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/999489?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/derimagia.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Dave Wikoff (<code style='color:white;'>@derimagia</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						List and manage all of your sites you are on in Pantheon.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fpantheon-list-sites.1h.php'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/VYBizXY.png' 
+				alt='Image preview of Pantheon - List Sites plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>pantheon-list-sites.1h.php</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/pantheon-list-sites.1h.php'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/pantheon-list-sites.1h.php'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/php
+&lt;?php
+
+// &lt;bitbar.title&gt;Pantheon - List Sites&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Dave Wikoff&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;derimagia&lt;/bitbar.author.github&gt;
+// &lt;bitbar.desc&gt;List and manage all of your sites you are on in Pantheon.&lt;/bitbar.desc&gt;
+// &lt;bitbar.dependencies&gt;php, terminus&lt;/bitbar.dependencies&gt;
+// &lt;bitbar.image&gt;https://i.imgur.com/VYBizXY.png&lt;/bitbar.image&gt;
+// &lt;bitbar.abouturl&gt;https://github.com/derimagia/pantheon-bitbar&lt;/bitbar.abouturl&gt;
+
+define(&#39;TERMINUS_PATH&#39;, &#39;/usr/local/bin/terminus&#39;);
+define(&#39;CONFIG_PATH&#39;, &#39;/tmp/pantheon-list-sites-config.json&#39;);
+define(&#39;DEBUG_MODE&#39;, false);
+
+$php = PHP_BINARY;
+$script = escapeshellarg($argv[0]);
+$directory = dirname(__FILE__);
+$html_filename = pathinfo(__FILE__, PATHINFO_FILENAME) . &#39;.dynamic.html&#39;;
+$html_filepath = $directory . &#39;/&#39; . $html_filename;
+$config = get_config();
+$env_id = $config-&gt;env_id ? $config-&gt;env_id : &#39;dev&#39;;
+
+if (!empty($argv[1]) &amp;&amp; function_exists($argv[1])) {
+  $args = $argv;
+  // Shift the first 2 arguments
+  array_shift($args);
+  array_shift($args);
+  call_user_func_array($argv[1], $args);
+  exit(0);
+}
+
+$sites = terminus(&#34;sites list --cached&#34;);
+
+if (!is_array($sites)) {
+  echo &#39;Could not get site list. Did you auth using Terminus?&#39;;
+  exit();
+}
+
+$symbolMap = [
+  &#39;dev&#39; =&gt; &#39;🔵&#39;,
+  &#39;test&#39; =&gt; &#39;⚫&#39;,
+  &#39;live&#39; =&gt; &#39;🔴&#39;,
+];
+
+$symbol = isset($symbolMap[$env_id]) ? $symbolMap[$env_id] : &#39;&#39;;
+
+$items = array(
+  [&#39;title&#39;  =&gt; &#34;Environment: $env_id -- $symbol&#34;, &#39;bash&#39; =&gt; $php, &#39;param1&#39; =&gt; $script, &#39;param2&#39; =&gt; &#39;pantheon_switch_environment&#39;, &#39;param3&#39; =&gt; $env_id, &#39;terminal&#39; =&gt; &#39;false&#39;, &#39;refresh&#39; =&gt; &#39;true&#39;],
+  &#39;---&#39;,
+);
+
+foreach ($sites as $site) {
+  $items[] = [&#39;title&#39; =&gt; $site-&gt;name, &#39;bash&#39; =&gt; $php, &#39;param1&#39; =&gt; $script, &#39;param2&#39; =&gt; &#39;pantheon_open_site&#39;, &#39;param3&#39; =&gt; $site-&gt;name, &#39;param4&#39; =&gt; $env_id, &#39;terminal&#39; =&gt; &#39;false&#39;];
+  if ($site-&gt;framework === &#39;drupal&#39;) {
+    $items[] = [&#39;title&#39; =&gt; &#34;$site-&gt;name -- 🔒&#34;, &#39;alternate&#39; =&gt; &#39;true&#39;, &#39;bash&#39; =&gt; $php, &#39;param1&#39; =&gt; $script, &#39;param2&#39; =&gt; &#39;drush_user_login&#39;, &#39;param3&#39; =&gt; $site-&gt;name, &#39;param4&#39; =&gt; $env_id, &#39;terminal&#39; =&gt; &#39;true&#39;];
+  }
+  $items[] = [&#39;title&#39; =&gt; &#39;└ Pantheon Dashboard -- ⚡&#39;, &#39;bash&#39; =&gt; $php, &#39;param1&#39; =&gt; $script, &#39;param2&#39; =&gt; &#39;pantheon_open_dashboard&#39;, &#39;param3&#39; =&gt; $site-&gt;name, &#39;param4&#39; =&gt; $env_id, &#39;terminal&#39; =&gt; &#39;true&#39;];
+  $items[] = &#39;---&#39;;
+}
+
+echo &#34;⚡\n&#34;;
+echo &#34;---\n&#34;;
+
+foreach ($items as $item) {
+  if (is_array($item)) {
+    $parts = [];
+    foreach ($item as $param =&gt; $value) {
+      $parts[] = $param . &#39;=&#34;&#39; . $value . &#39;&#34;&#39;;
+    }
+    $item = $item[&#39;title&#39;] . &#39; | &#39; . implode(&#39; &#39;, $parts);
+  }
+
+  echo $item . &#34;\n&#34;;
+}
+exit(0);
+
+/**
+ * Open the dashboard for a site
+ */
+function pantheon_open_dashboard($site_id) {
+  return browser_open(terminus(&#34;site dashboard --print&#34;, $site_id));
+}
+
+/**
+ * Login to the site as User 1 for Drupal
+ */
+function drush_user_login($site_id, $env_id) {
+  $login_url = drush($site_id, $env_id, &#34;user-login 1&#34;);
+  return browser_open($login_url);
+}
+
+/**
+ * Switch the environment
+ */
+function pantheon_switch_environment($current_env_id) {
+  global $script, $env_id, $config;
+
+  $environments = [&#39;dev&#39;, &#39;test&#39;, &#39;live&#39;];
+
+  foreach ($environments as $env) {
+    if ($env == $current_env_id) {
+      break;
+    }
+  }
+
+  $next_env = current($environments) ? current($environments) : &#39;dev&#39;;
+
+  $config-&gt;env_id = $next_env;
+  save_config($config);
+}
+
+/**
+ * Returns the domain for a pantheon site.
+ */
+function pantheon_open_site($site_id, $env_id) {
+  $alias = drush_get_alias($site_id, $env_id);
+
+  $url = sprintf(&#39;%s://%s&#39;, &#39;https&#39;, $alias[&#39;uri&#39;]);
+
+  return browser_open($url);
+}
+
+/**
+ * Gets a Drush Alias for a Site ID / Env ID
+ *
+ * @return bool|array
+ */
+function drush_get_alias($site_id, $env_id) {
+  $phpcode = terminus(&#39;sites aliases --print&#39;, NULL, NULL, FALSE);
+  /* @var $aliases array[] */
+  eval($phpcode);
+
+  if (empty($aliases[$site_id . &#39;.&#39; . $env_id])) {
+    echo &#39;Invalid Alias&#39;;
+    exit(1);
+  }
+
+  return $aliases[$site_id . &#39;.&#39; . $env_id];
+}
+
+/**
+ * Get a list of Pantheon Environments
+ */
+function pantheon_get_envs($site_id) {
+  return terminus(&#39;site environments&#39;, $site_id);
+}
+
+/**
+ * Opens a URL in the browser
+ */
+function browser_open($url) {
+  passthru(&#34;open $url&#34;, $return_var);
+  return $return_var;
+}
+
+/**
+ * Run a terminus command
+ * @return object
+ */
+function terminus($command, $site_id = null, $env_id = null, $json = TRUE) {
+  $extras = &#39; --yes&#39;;
+  if (!empty($json)) $extras .= &#39; --format=json&#39;;
+  if (!empty($site_id)) $extras .= &#39; --site=&#39; . $site_id;
+  if (!empty($env_id)) $extras .= &#39; --env=&#39; . $env_id;
+
+  $command = TERMINUS_PATH . &#34; {$command}{$extras}&#34;;
+
+  $output = passthrough_return($command);
+  return $json ? json_decode($output) : $output;
+}
+
+/**
+ * We need to manually call drush because we need to add custom SSH options that terminus doesn&#39;t support.
+ *
+ * @return bool
+ */
+function drush($site_id, $env_id, $drush_command) {
+  $alias = drush_get_alias($site_id, $env_id);
+  $remote_host = $alias[&#39;remote-host&#39;];
+  $remote_user = $alias[&#39;remote-user&#39;];
+  $ssh_options = $alias[&#39;ssh-options&#39;] . &#39; -o &#34;StrictHostKeyChecking=no&#34; -o &#34;UserKnownHostsFile=/dev/null&#34;&#39;;
+
+  $command = escapeshellarg(&#39;drush &#39; . $drush_command);
+  $command = &#39;ssh -T &#39; . $remote_user . &#39;@&#39; . $remote_host . &#39; &#39; . $ssh_options . &#39; &#39; . $command;
+
+  return passthrough_return($command);
+}
+
+/**
+ * Pass&#39;s the command through and returns it
+ */
+function passthrough_return($command) {
+  ob_start();
+
+  if (!DEBUG_MODE) {
+    $command = $command . &#39; 2&gt;/dev/null&#39;;
+  }
+
+  passthru($command);
+  $output = ob_get_clean();
+
+  if (DEBUG_MODE) {
+    echo &#34;----- DEBUG [$command] -----\n&#34;;
+    echo &#34;OUTPUT:\n&#34;;
+    var_dump($output);
+    echo &#34;\n&#34;;
+  }
+
+  return $output;
+}
+
+/**
+ * Gets the config for this plugin
+ */
+function get_config() {
+  if (file_exists(CONFIG_PATH)) {
+    $config = json_decode(file_get_contents(CONFIG_PATH));
+  }
+  return !empty($config) ? $config : new stdClass();
+}
+
+/**
+ * Saves the config for this plugin
+ */
+function save_config($config) {
+  return file_put_contents(CONFIG_PATH, json_encode($config));
+}
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

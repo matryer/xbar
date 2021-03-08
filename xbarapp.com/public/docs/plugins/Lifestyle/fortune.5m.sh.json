@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Lifestyle/fortune.5m.sh",
+				"filename": "fortune.5m.sh",
+				"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eFortune\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eVolker Wieban\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ehpcodecraft\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows a random fortune quote\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/1476865/24081772/fd2011c2-0cb9-11e7-8679-30f1c56c0acd.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash,fortune\u003c/bitbar.dependencies\u003e\n\ncookie=\"iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1NjIwYjM2NS0wZGZhLTQ0NjYtOGMyMi1lOGJhNzZjY2Q0MmIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzZDQTEzOTcwMDA4MTFFN0E0RENCMzkyNDkxNTY0OEEiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzZDQTEzOTYwMDA4MTFFN0E0RENCMzkyNDkxNTY0OEEiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NTAxQzY4MzU2OUMxMUU2OUZGRkNDMENDMUUwOUU5NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NTAxQzY4NDU2OUMxMUU2OUZGRkNDMENDMUUwOUU5NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl4lzYcAAARISURBVHjazFRLbBtVFD1vZuyxJ47tfJzm3/zTpIGSpIlJlVYtqIHCopVoFiyQilR+AlasUBfdoNAdIDZRCkIqggWV+CxSFaVqC+kiTUJr0jofkrhJHNmOY2fsjGdsz5eXBIQK2y640ls86b1zz73nnkssy8KTDAZPODgkHwIsC5gm/gjOIxpLYjuTLCgUjFci87/3Z8VY+UYs5m09cubrE2ffupxJbdLnNuSyEu5P3oPM+9DX14dUSoRhGBSQUFhTB4rKoGhAdHHyo+oi5YLPyqG93QXe0YrERgFCTOG11dAaoGbAMhaU1AblYIIQ5l8MGcrOW4ZHs4vu6dGRwPE21DfV1wKOCsBmp+w1pDNppGTmGpNcBQwdlpqHkyf0K/ffHlqaA8nQJkaHL94eaNyub+pogVlQBd3VCMPVRJ84Ieadecu0zxt5GRtrqzBUFXaHAIsToOk7LP8RlgmtxzF987v3nt8X7KztaIPG1cHy1IHxNIAhBObWOhTdNtPrP6qWlVUjbzkgazwUJS9AnH3HycoelXaMELIHmFyZ9Bclrp87UO2Fye4DU1AKuCrAOItBtkOU0RK9dnyvs4VYmFtwOvToea8680OZNL5tT0x83tXt/0Y3zH6Vst4BZTYeXu8XjI1u4q6ERftJ7G4wQgXM/BYQmURUdiWyXv+l8G8/vlFnTWVOtucvP9dpnJFkia0auMge6Oh6ubmhdpzn+Rd1XQcjhufqeaeHCuCgYstUJhsI7wETDyA6P425raLR+PgnX7WYYyP+ngam1FcMNctiwfkCDh1/abdMQRBQXl7+BVV9kDNtHk1RqZrgweRTsDIxwPcMBVchxkVUkNuDzz51WBCefg1Gjo6MsoTZCIFolOBvjSORSGx5ebmX47gIV9rUF0wmAookqoKr0oAhBmE6fbCqj2H/6QtoK3QLpLwbJmFhSZMAzb0Sk5F1mJAUFeHVR78mEonjdt5hUUCwH7z/ppSOLHWQVLxRKC4B76QpM1Fatht880kQz36YqgJk40BuEwyXwUQwi6llDVvBGw8MQ/fb7fwuU4MOOtN66Ohiddep4dByCNFQGtKmDEJdggRlE74FS1yCJa8D+QQ1FbUSSyCwBm4MD0GKrIw019aAlRPgslvglCT9q9LMLI+bn759VQvcOlvZ0omSqgLqRGo7wQHGTR1DvWvR/ulSEjYbcOmzMdyZjYd+mppvJJqKXC4Hi7Lb2VzESs0AnmJIooGxj8//zK8HBry+OrhLvCgotMMm0EP7YKgG5M044mIW384klXeHvjx48HDPihINg+zY96+ggMHdMkAE3J0IYvXOlQ/t4XtDrCTBXUQH3SaAGHmk01sQNQa5mu6rvp5T504Pvqqk1qm3mceXwx6gjYMu53H/7gw0ysZhZYqjD355PbUY8Oty2qPbCiWbr2VGqGm+0th1YiUZWUPvkWN7i4qW+jjg/31j/ynAAKk7+eVEqimNAAAAAElFTkSuQmCC\"\n\nfortune=\"/usr/local/bin/fortune\"\n\necho \"|dropdown=false image=$cookie\"\necho \"---\"\n\nif [[ -x $fortune ]]; then\n  echo \"Next cookie|refresh=true image=$cookie\"\n  echo \"---\"\n  echo \" |trim=false\"\n  $fortune|/usr/bin/sed 's/-/–/g; s/^/    /; s/$/  |font=Avenir size=14 trim=false/'\n  echo \" |trim=false\"\nelse\n  echo \"Fortune is not installed|color=red\"\n  echo \"|trim=false\"\n  echo \"Please install it via Homebrew using this command\"\n  echo \"brew install fortune|font=Courier color=green\"\n  echo \"Then refresh your Bitbar (Preferences ▶ Refresh all)\"\nfi\n"
+			}
+		],
+		"path": "Lifestyle/fortune.5m.sh",
+		"filename": "fortune.5m.sh",
+		"dir": "Lifestyle",
+		"docsPlugin": "Lifestyle/fortune.5m.sh.html",
+		"docsCategory": "Lifestyle.html",
+		"pathSegments": [
+			"Lifestyle"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Lifestyle",
+				"text": "Lifestyle",
+				"isLast": true
+			}
+		],
+		"title": "Fortune",
+		"version": "v1.0",
+		"author": "Volker Wieban",
+		"authors": [
+			{
+				"name": "hpcodecraft",
+				"githubUsername": "hpcodecraft",
+				"imageURL": "https://avatars.githubusercontent.com/u/1476865?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows a random fortune quote",
+		"imageURL": "https://cloud.githubusercontent.com/assets/1476865/24081772/fd2011c2-0cb9-11e7-8679-30f1c56c0acd.png",
+		"dependencies": [
+			"bash",
+			"fortune"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:55.270054Z",
+		"vars": null
+	}
+}

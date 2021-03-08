@@ -1,0 +1,109 @@
+{
+	"person": {
+		"name": "Bryan Stone",
+		"githubUsername": "aegixx",
+		"imageURL": "https://avatars.githubusercontent.com/u/7032283?v=4",
+		"bio": "Cloud Architect / Platform Engineer / Sr. Software Engineer\r\n\r\nLove bleeding edge and challenges!",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/wifisignal.sh",
+					"filename": "wifisignal.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eActive WIFI Signal\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eBryan Stone\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eaegixx\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays currently connected WIFI Signal\u003c/bitbar.desc\u003e\n\n# Themes copied from here: http://colorbrewer2.org/\n# shellcheck disable=SC2034\nRED_GREEN_THEME=(\"#d73027\" \"#fc8d59\" \"#fee08b\" \"#d9ef8b\" \"#91cf60\" \"#1a9850\")\nCOLORS=(\"${RED_GREEN_THEME[@]}\")\n\nWIFIDATA=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)\nSSID=$(echo \"$WIFIDATA\" | awk '/ SSID/ {print substr($0, index($0, $2))}')\nSIGNAL=$(echo \"$WIFIDATA\" | awk '/ agrCtlRSSI/ {print substr($0, index($0, $2))}')\nNOISE=$(echo \"$WIFIDATA\" | awk '/ agrCtlNoise/ {print substr($0, index($0, $2))}')\n\nSNR=\"$((SIGNAL - NOISE))\"\n\n# Signal Strength – 0dBm (strongest) and --100dBm (weakest). \n## -30 dBm  Amazing\n## -50 dBm\tExcellent\n## -60 dBm\tGood\n## -67 dBm\tReliable\n## -70 dBm\tOkay\n## -80 dBm\tNot Good\n## -90 dBm\tUnusable\nif ((\"$SIGNAL\" \u003e= -30)); then\n    RATING=\"Amazing\"\n    COLOR=${COLORS[6]}\nelif ((\"$SIGNAL\" \u003e= -50)); then\n    RATING=\"Excellent\"\n    COLOR=${COLORS[5]}\nelif ((\"$SIGNAL\" \u003e= -60)); then\n    RATING=\"Good\"\n    COLOR=${COLORS[4]}\nelif ((\"$SIGNAL\" \u003e= -67)); then\n    RATING=\"Reliable\"\n    COLOR=${COLORS[3]}\nelif ((\"$SIGNAL\" \u003e= -70)); then\n    RATING=\"Okay\"\n    COLOR=${COLORS[2]}\nelif ((\"$SIGNAL\" \u003e= -80)); then\n    RATING=\"Not Good\"\n    COLOR=${COLORS[1]}\nelif ((\"$SIGNAL\" \u003e= -90)); then\n    RATING=\"Unusable\"\n    COLOR=${COLORS[0]}\nelse\n    RATING=\"Unknown\"\n    COLOR=\"#ccc\"\nfi\n\n# Signal Quality - quality ~= 2* (dBm + 100)\n## High quality: 90% ~= -55dBm\n## Medium quality: 50% ~= -75dBm\n## Low quality: 30% ~= -85dBm\n## Unusable quality: 8% ~= -96dBm\nQUALITY=\"$((2 * SNR))\"\nQUALITY=\"$((QUALITY \u003c 100 ? QUALITY : 100))\"\n\necho \"📶 $SSID | color=$COLOR\"\necho \"---\"\necho \"Signal: $SIGNAL dbM ($RATING)\"\necho \"Quality: $QUALITY% ($SNR dBm SNR)\"\necho \"---\"\necho \"Refresh... | refresh=true\"\n"
+				}
+			],
+			"path": "Network/wifisignal.sh",
+			"filename": "wifisignal.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/wifisignal.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "Active WIFI Signal",
+			"version": "",
+			"author": "Bryan Stone",
+			"authors": [
+				{
+					"name": "Bryan Stone",
+					"githubUsername": "aegixx",
+					"imageURL": "https://avatars.githubusercontent.com/u/7032283?v=4",
+					"bio": "Cloud Architect / Platform Engineer / Sr. Software Engineer\r\n\r\nLove bleeding edge and challenges!",
+					"primary": true
+				}
+			],
+			"desc": "Displays currently connected WIFI Signal",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:00.369599Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb",
+					"filename": "accounts.1h.rb",
+					"content": "#!/usr/bin/env ruby\n# \u003cbitbar.title\u003eCoinbase.com Account Balances\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.author\u003eBryan Stone\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eaegixx\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows your balances in BTC \u0026 USD.  Be sure you add you API key \u0026 secret.\u003c/bitbar.desc\u003e\n\nrequire 'coinbase/wallet'\n\nAPI_KEY = 'YOUR_API_KEY'\nAPI_SECRET = 'YOUR_SECRET_KEY'\nLAST_BTC_FILE = '~/.bitbar_last_btc_rate'\n\ndef getDelta(current, last)\n  if current != last\n    delta = current - last\n    if delta.positive?\n      { color: 'green', symbol: '▲', amount: delta.abs }\n    else\n      { color: 'red', symbol: '▼', amount: delta.abs }\n    end\n  end\nend\n\ndef printPrimary\n  usd_total = @client.accounts.collect {|a| a.native_balance.amount}.inject(:+)\n  btc_total = @client.accounts.collect {|a| a.balance.amount}.inject(:+)\n  if @delta\n    printf \"1Ƀ = %.2f (#{@delta[:symbol]}%.2f) | color=#{@delta[:color]}\\n\", @current_btc_rate, @delta[:amount]\n    printf \"∑ $%.2f (#{@delta[:symbol]}%.2f) | color=#{@delta[:color]}\\n\", usd_total, (@delta[:amount] * btc_total)\n  else\n    printf \"1Ƀ = %.2f\\n\", @current_btc_rate\n    printf \"∑ $%.2f\\n\", usd_total\n  end\nend\n\ndef printBalance(account)\n  if @delta\n    printf \"%s: $%.2f (#{@delta[:symbol]}%.2f) | color=#{@delta[:color]}\\n\", account.name, account.native_balance.amount, (@delta[:amount] * account.balance.amount)\n  else\n    printf \"%s: $%.2f\\n\", account.name, account.native_balance.amount\n  end\nend\n\n@client = Coinbase::Wallet::Client.new(api_key: API_KEY, api_secret: API_SECRET)\n\nlast_path = File.expand_path(LAST_BTC_FILE)\n@last_btc_rate = BigDecimal.new(File.read(last_path)) if File.exist?(last_path)\n@current_btc_rate = @client.spot_price.amount\n@delta = getDelta(@current_btc_rate, @last_btc_rate)\nFile.open(last_path, 'w') {|f| f.write(@current_btc_rate) }\n\nprintPrimary\nputs '---'\n@client.accounts.each do |account|\n  printBalance(account)\nend\n"
+				}
+			],
+			"path": "Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb",
+			"filename": "accounts.1h.rb",
+			"dir": "Cryptocurrency/Bitcoin/coinbase.com",
+			"docsPlugin": "Cryptocurrency/Bitcoin/coinbase.com/accounts.1h.rb.html",
+			"docsCategory": "Cryptocurrency/Bitcoin/coinbase.com.html",
+			"pathSegments": [
+				"Cryptocurrency",
+				"Bitcoin",
+				"coinbase.com"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Cryptocurrency",
+					"text": "Cryptocurrency",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin",
+					"text": "Bitcoin",
+					"isLast": false
+				},
+				{
+					"path": "Cryptocurrency/Bitcoin/coinbase.com",
+					"text": "coinbase.com",
+					"isLast": true
+				}
+			],
+			"title": "Coinbase.com Account Balances",
+			"version": "v1.0",
+			"author": "Bryan Stone",
+			"authors": [
+				{
+					"name": "Bryan Stone",
+					"githubUsername": "aegixx",
+					"imageURL": "https://avatars.githubusercontent.com/u/7032283?v=4",
+					"bio": "Cloud Architect / Platform Engineer / Sr. Software Engineer\r\n\r\nLove bleeding edge and challenges!",
+					"primary": true
+				}
+			],
+			"desc": "Shows your balances in BTC \u0026 USD.  Be sure you add you API key \u0026 secret.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:45.034624Z",
+			"vars": null
+		}
+	]
+}

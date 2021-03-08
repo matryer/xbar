@@ -1,0 +1,75 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ foi transferido e está pronto para uso! Deseja instalar e reiniciar o %1$@ agora?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ não pode ser atualizado enquanto for executado a partir de um volume somente de leitura, como uma imagem de disco ou CD/DVD. Mova o %1$@ para a pasta Aplicativos, reinicie-o e tente novamente.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ é a versão mais recente disponível.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ está disponível – sua versão é %3$@. Deseja transferi-lo agora?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ está disponível – sua versão é %3$@. Deseja saber mais sobre esta atualização na web?";
+
+"%@ downloaded" = "%@ transferidos";
+
+"%@ of %@" = "%1$@ de %2$@";
+
+"A new version of %@ is available!" = "Uma nova versão do %@ está disponível!";
+
+"A new version of %@ is ready to install!" = "Uma nova versão do %@ está pronta para ser instalada!";
+
+"An error occurred in retrieving update information. Please try again later." = "Ocorreu um erro ao obter informações da atualização. Tente novamente mais tarde.";
+
+"An error occurred while downloading the update. Please try again later." = "Ocorreu um erro ao transferir a atualização. Tente novamente mais tarde.";
+
+"An error occurred while extracting the archive. Please try again later." = "Ocorreu um erro ao extrair o arquivo comprimido. Tente novamente mais tarde.";
+
+"An error occurred while installing the update. Please try again later." = "Ocorreu um erro ao instalar a atualização. Tente novamente mais tarde.";
+
+"An error occurred while parsing the update feed." = "Ocorreu um erro ao analisar o feed de atualização.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Ocorreu um erro ao reabrir o %1$@. A nova versão estará disponível da próxima vez que você abrir o %1$@.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Cancelar";
+
+"Cancel Update" = "Cancelar Atualização";
+
+"Checking for updates..." = "Buscando atualizações…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Transferindo atualização…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Extraindo atualização…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Instalar e Reabrir";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Instalando atualização…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "OK";
+
+"Ready to Install" = "Pronto para Instalar";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Deseja que o %1$@ busque atualizações automaticamente? Você pode buscar atualizações manualmente, através do menu %1$@.";
+
+"Update Error!" = "Erro de Atualização!";
+
+"Updating %@" = "Atualizando %@";
+
+"You already have the newest version of %@." = "Você já possui a versão mais recente do %@.";
+
+"You're up-to-date!" = "Você está atualizado!";
+

@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Git/daily-standup.sh",
+				"filename": "daily-standup.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eDaily Standup\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eKrishna Kumar\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekrishkumar\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays a list of all your git commits in the last 24 hours. Indicates days you have been chilling without committing any code. \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://raw.githubusercontent.com/krishkumar/daily-standup/master/daily-standup-gold.png\u003c/bitbar.image\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/krishkumar/daily-standup\u003c/bitbar.abouturl\u003e\n#\n# Dependencies: You need to have git-standup installed.\n# To install git-standup on OSX with homebrew, open Terminal and run - $ brew install git-standup\n# For other installation options, see this page - https://github.com/kamranahmedse/git-standup\n\n\n# Constants\nCOMMITINDICATOR=\"\"\nGOLDMEDAL=🥇 # More than 5 commits today\nSILVERMEDAL=🥈 # More than 3 commits today\nBRONZEMEDAL=🥉 # Atleast 1 commit today\nPROJECTINDICATOR=📂\nEMPTY_INDICATOR=❄️\nALERT_INDICATOR=🚨\nDAYS_SINCE_COMMIT_MESSAGE=\"Earn medals... Get to work! | color=blue\"\nDAYS_SINCE_COMMIT_CONTENT=\" days since last commit \"\nuser=$(whoami)\nPROJECTS_DIRECTORY=\"/Users/$user/projects/\"\nDAYS_SINCE_COMMIT=0\n\n# Start\nCOUNT=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup | grep -c \"\u003c$user\u003e\")\nCOUNT=\"$COUNT\"\nif [ \"$COUNT\" = 0 ]\nthen\n    COUNT=\"\"\n    COMMITINDICATOR=$EMPTY_INDICATOR\n    DAYS_SINCE_COMMIT=1\n    COUNT2=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 2 | grep -c \"\u003c$user\u003e\")\n    COUNT3=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 3 | grep -c \"\u003c$user\u003e\") \n    COUNT4=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 4 | grep -c \"\u003c$user\u003e\") \n    COUNT5=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 5 | grep -c \"\u003c$user\u003e\") \n    COUNT6=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 6 | grep -c \"\u003c$user\u003e\") \n    COUNT7=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 7 | grep -c \"\u003c$user\u003e\") \n    COUNT8=$(cd \"$PROJECTS_DIRECTORY\" || exit ;/usr/local/bin/git-standup -d 8 | grep -c \"\u003c$user\u003e\") \n    if [ \"$COUNT2\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$EMPTY_INDICATOR$EMPTY_INDICATOR\n      DAYS_SINCE_COMMIT=2\n    fi\n    if [ \"$COUNT3\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR\n      DAYS_SINCE_COMMIT=3\n    fi\n    if [ \"$COUNT4\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR\n      DAYS_SINCE_COMMIT=4\n    fi\n    if [ \"$COUNT5\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR\n      DAYS_SINCE_COMMIT=5\n    fi\n    if [ \"$COUNT6\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR\n      DAYS_SINCE_COMMIT=6\n    fi\n    if [ \"$COUNT7\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR$EMPTY_INDICATOR\n      DAYS_SINCE_COMMIT=7\n    fi\n    if [ \"$COUNT8\" = 0 ]\n    then\n      COUNT=\"\"\n      COMMITINDICATOR=$ALERT_INDICATOR\n      DAYS_SINCE_COMMIT=7+\n    fi\nfi\nif [[ $COUNT -gt 0 ]]\n  then\n  #statements\n  COMMITINDICATOR=$BRONZEMEDAL\nfi\nif [[ $COUNT -gt 2 ]]\n then\n  #statements\n  COMMITINDICATOR=$SILVERMEDAL\nfi\nif [[ $COUNT -gt 5 ]]\n  then\n  #statements\n  COMMITINDICATOR=$GOLDMEDAL\nfi\necho $COMMITINDICATOR\n\necho ---\n\n# On Click\ncd \"$PROJECTS_DIRECTORY\" || exit \nSTANDUP=$(/usr/local/bin/git-standup)\nif [[ -z \"$STANDUP\" ]]; then\n  echo \"$DAYS_SINCE_COMMIT| size=30 \"\n  echo \"$DAYS_SINCE_COMMIT_CONTENT\"\n  echo \"$DAYS_SINCE_COMMIT_MESSAGE\"\nelif [[ -n \"$STANDUP\" ]]; then\n  /usr/local/bin/git-standup | sed \"s@$PROJECTS_DIRECTORY@$PROJECTINDICATOR@;n\"\nfi\n"
+			}
+		],
+		"path": "Dev/Git/daily-standup.sh",
+		"filename": "daily-standup.sh",
+		"dir": "Dev/Git",
+		"docsPlugin": "Dev/Git/daily-standup.sh.html",
+		"docsCategory": "Dev/Git.html",
+		"pathSegments": [
+			"Dev",
+			"Git"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Git",
+				"text": "Git",
+				"isLast": true
+			}
+		],
+		"title": "Daily Standup",
+		"version": "v1.0",
+		"author": "Krishna Kumar",
+		"authors": [
+			{
+				"name": "Krishna",
+				"githubUsername": "krishkumar",
+				"imageURL": "https://avatars.githubusercontent.com/u/425580?v=4",
+				"bio": "\r\n    iOS main. generalist in security, AR, ML. ex 7-11, PayPal.\r\n\r\n\r\n",
+				"primary": true
+			}
+		],
+		"desc": "Displays a list of all your git commits in the last 24 hours. Indicates days you have been chilling without committing any code. ",
+		"imageURL": "http://raw.githubusercontent.com/krishkumar/daily-standup/master/daily-standup-gold.png",
+		"dependencies": null,
+		"aboutURL": "https://github.com/krishkumar/daily-standup",
+		"lastUpdated": "2021-03-08T15:21:48.114098Z",
+		"vars": null
+	}
+}

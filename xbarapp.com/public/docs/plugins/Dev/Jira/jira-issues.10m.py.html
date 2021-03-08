@@ -1,0 +1,450 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Jira issues in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Show your jira issues - install xbar for free to get started.'>
+	<meta name='author' content='Stefano Teodorani'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png'>
+	<meta itemprop='name' content='Jira issues in your macOS menu bar'>
+	<meta itemprop='description' content='Show your jira issues - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Jira issues in your macOS menu bar'>
+	<meta name='twitter:description' content='Show your jira issues - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Jira issues in your macOS menu bar'>
+	<meta property='og:description' content='Show your jira issues - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/Jira/jira-issues.10m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png'>
+	<link rel='shortcut icon' href='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Jira issues</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/teopost.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/2573389?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/teopost.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Stefano Teodorani (<code style='color:white;'>@teopost</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Show your jira issues
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fJira%2fjira-issues.10m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png' 
+				alt='Image preview of Jira issues plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>jira-issues.10m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/Jira/jira-issues.10m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/Jira/jira-issues.10m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/local/bin/python3
+
+# &lt;bitbar.title&gt;Jira issues&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Stefano Teodorani&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;teopost&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Show your jira issues&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://i.ibb.co/3SZ6D30/Schermata-2019-11-23-alle-19-26-24.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://www.stefanoteodorani.it/&lt;/bitbar.abouturl&gt;
+
+
+import requests
+import json
+import base64
+
+from urllib.parse import quote
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+class Jira:
+    base_url = &#34;&#34;
+    juser = &#34;&#34;
+    jpwd = &#34;&#34;
+    s = &#34;&#34;
+    issue_count = 0
+    issue_results = &#34;&#34;
+    max_results = 50
+    active_jql = &#34;&#34;
+
+    def __init__(self, BaseUrl, UserName, Password):
+        self.base_url = BaseUrl
+        self.juser = UserName
+        self.jpwd = Password
+
+        self.s = requests.Session()
+
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+    def Query(self, jql):
+        self.active_jql = jql
+        #expansion = &#39;summary,issuetype,status,assignee,renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations&#39;
+        expansion = &#39;summary,issuetype,status,assignee&#39;
+        payload = {&#39;jql&#39; : jql, &#39;maxResults&#39; : self.max_results, &#39;fields&#39; : expansion}
+        # renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations
+        r = self.s.get(self.base_url &#43; &#34;/rest/api/2/search&#34;, params=payload, verify=False, auth=(self.juser, self.jpwd))
+        parsed = json.loads(r.text)
+        self.issue_count, self.issue_results = parsed[&#39;total&#39;],parsed[&#39;issues&#39;]
+
+    def PrintIssues(self, filter, assignee=&#39;&#39;):
+        # print gray title
+        print(filter)
+        for issue in self.issue_results:
+            #print(issue)
+            status = issue[&#39;fields&#39;][&#39;status&#39;][&#39;name&#39;]
+            summary = issue[&#39;fields&#39;][&#39;summary&#39;].replace(&#39;|&#39;, &#39;-&#39;)
+
+            if filter.upper() == &#39;DEBUG&#39;:
+                print(&#39;DEBUG: &#39; &#43; status &#43; &#39;-&#39; &#43; summary)
+
+            try:
+                assignee = &#34; ▸&#34; &#43; issue[&#39;fields&#39;][&#39;assignee&#39;][&#39;name&#39;]
+            except:
+                assignee = &#34;&#34;
+
+            assignee = &#34;&#34;
+            iconurl = issue[&#39;fields&#39;][&#39;issuetype&#39;][&#39;iconUrl&#39;]
+            key = issue[&#39;key&#39;]
+
+            line = key &#43; &#39;: &#39; &#43; summary &#43; assignee &#43; &#39; | href=&#39; &#43; self.base_url &#43; &#39;/browse/&#39; &#43; key &#43; &#39; image=&#39; &#43; self.render_icon_string(iconurl)
+            if status.upper() != &#39;DEBUG&#39;:
+                if status.upper() == filter.upper():
+                    if assignee == &#39;&#39;:
+                        print(line)
+                    elif assignee == assignee:
+                        print(line)
+
+    def render_icon_string(self, iconurl):
+        if &#39;viewavatar&#39; in iconurl:
+            retvalue = iconurl &#43; &#39;&amp;format=png&#39;
+            retvalue = retvalue.replace(&#39;size=medium&#39;, &#39;size=xsmall&#39;)
+        else:
+            retvalue = iconurl
+        return str(base64.b64encode(self.s.get(retvalue).content))[2:-1]
+
+def print_title(toprint):
+    print(toprint)
+    print(&#39;---&#39;)
+
+def print_separator():
+    print(&#39;---&#39;)
+
+# ====
+# MAIN
+# ====
+if __name__ == &#39;__main__&#39;:
+
+    QUERY_NAME = &#34;Issues&#34;
+
+    JIRAURL = &#34;&lt;enter-jira-url&gt;&#34;
+    USERNAME = &#34;&lt;put here usernema&gt;&#34;
+    PASSWORD = &#34;&lt;put here password&gt;&#34;
+    JQL = &#34;resolution = Unresolved&#34;
+
+    Cloud = Jira(JIRAURL, USERNAME, PASSWORD)
+    Cloud.Query(JQL)
+
+    tot_count=str(Cloud.issue_count)
+
+    if tot_count == 0:
+        print_title(QUERY_NAME)
+    else:
+        print_title(QUERY_NAME &#43; &#34;: &#34; &#43; tot_count)
+
+    Cloud.PrintIssues(&#39;Triage&#39;)
+    Cloud.PrintIssues(&#39;Riaperta&#39;)
+    Cloud.PrintIssues(&#39;Waiting for support&#39;)
+    Cloud.PrintIssues(&#39;Waiting for customer&#39;)
+    Cloud.PrintIssues(&#39;In corso&#39;)
+    # Add here your preferrend jira workflow steps
+
+    print_separator()
+
+    print(&#34;▸ Go to Jira...&#34; &#43; &#39; | href=&#39; &#43; Cloud.base_url &#43; &#39;/issues/?jql=&#39; &#43; quote(Cloud.active_jql, &#39;&#39;))
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

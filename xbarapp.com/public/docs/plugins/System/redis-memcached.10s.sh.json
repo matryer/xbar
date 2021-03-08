@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/redis-memcached.10s.sh",
+				"filename": "redis-memcached.10s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eRedis - Memcached\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eHugo Defrane\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ekoleror\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThis plugin will start and stop a memcached and redis server\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://oi67.tinypic.com/28u1y1g.jpg\u003c/birtbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\nREDIS_PID=$(/usr/bin/pgrep redis-server)\nMEMCACHED_PID=$(/usr/bin/pgrep memcached)\n\n# GENERAL COMMANDS\nif [ \"$1\" = 'start_all' ]; then\n  # start all\n   /usr/local/bin/redis-server \u0026\n   /usr/local/bin/memcached \u0026\nfi\n\nif [ \"$1\" = 'restart_all' ]; then\n  /usr/bin/killall memcached\n  /usr/local/bin/redis-cli shutdown NOSAVE\n   /usr/local/bin/redis-server \u0026\n   /usr/local/bin/memcached \u0026\nfi\nif [ \"$1\" = 'stop_all' ]; then\n  /usr/bin/killall memcached\n  /usr/local/bin/redis-cli shutdown NOSAVE\nfi\n\n\n# MEMCACHED\nif [ \"$1\" = 'start_memcached' ]; then\n  # stop all previous processes\n  /usr/local/bin/memcached \u0026\nfi\nif [ \"$1\" = 'stop_memcached' ]; then\n  # send terminate signal to all processes of program 'redis-server'\n  /usr/bin/killall memcached\nfi\n\n# REDIS\nif [ \"$1\" = 'start_redis' ]; then\n  # stop all previous processes\n  echo \"start\"\n  /usr/local/bin/redis-server \u0026\nfi\nif [ \"$1\" = 'stop_redis' ]; then\n  /usr/local/bin/redis-cli shutdown NOSAVE\nfi\nif [ \"$1\" = 'flush_redis' ]; then\n  /usr/local/bin/redis-cli FLUSHALL\nfi\n\n\n# MENU\necho \"⚙️\"\necho '---'\nif [ \"$MEMCACHED_PID\" = \"\" ] \u0026\u0026 [ \"$REDIS_PID\" = \"\" ]; then\n  echo \"Start all | bash='$0' param1=start_all terminal=false refresh=true\"\nelse\n  echo \"Restart all | bash='$0' param1=restart_all terminal=false refresh=true\"\nfi\nif [ \"$MEMCACHED_PID\" != \"\" ] || [ \"$REDIS_PID\" != \"\" ]; then\n  echo \"Stop all | bash='$0' param1=stop_all terminal=false refresh=true\"\nfi\n\necho '---'\nif [ \"$MEMCACHED_PID\" = \"\" ]; then\n    echo \"Start memcached | bash='$0' param1=start_memcached terminal=false refresh=true\"\nelse\n    echo \"Stop memcached | bash='$0' param1=stop_memcached terminal=false refresh=true\"\nfi\necho '---'\nif [ \"$REDIS_PID\" = \"\" ]; then\n    echo \"Start redis server | bash='$0' param1=start_redis terminal=false refresh=true\"\nelse\n    echo \"Flush Redis | bash='$0' param1=flush_redis terminal=false\"\n    echo \"Stop Redis | bash='$0' param1=stop_redis terminal=false refresh=true\"\nfi\n"
+			}
+		],
+		"path": "System/redis-memcached.10s.sh",
+		"filename": "redis-memcached.10s.sh",
+		"dir": "System",
+		"docsPlugin": "System/redis-memcached.10s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Redis - Memcached",
+		"version": "v0.1",
+		"author": "Hugo Defrane",
+		"authors": [
+			{
+				"name": "Hugo Defrance",
+				"githubUsername": "koleror",
+				"imageURL": "https://avatars.githubusercontent.com/u/1033583?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "This plugin will start and stop a memcached and redis server",
+		"imageURL": "http://oi67.tinypic.com/28u1y1g.jpg",
+		"dependencies": [],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:04.506835Z",
+		"vars": null
+	}
+}

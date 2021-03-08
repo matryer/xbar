@@ -1,0 +1,54 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Homebrew/brew-services.10m.rb",
+				"filename": "brew-services.10m.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eBrew Services\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAdam Lindberg\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eeproxus\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows and manages Homebrew services.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/hVfhHYP.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby, brew, brew-services\u003c/bitbar.dependencies\u003e\n\n# BitBar Homebrew services plugin\n# by Adam Lindbeng (@eproxus)\n\n#--- User parameters ----------------------------------------------------------\n\nBAR_COLORS = true\n\n#--- Script internals ---------------------------------------------------------\n\nrequire 'pathname'\n\nSCRIPT_PATH = Pathname.new($0).realpath()\nBREW = \"/usr/local/bin/brew\"\nBREW_LINK = \"http://brew.sh/\"\nBREW_SERVICES = \"/usr/local/Homebrew/Library/Taps/homebrew/homebrew-services/cmd/services.rb\"\nBREW_SERVICES_LINK = \"https://github.com/Homebrew/homebrew-services\"\n\nREFRESH = \"---\\nRefresh | refresh=true\"\n\nif BAR_COLORS\n  DARK_MODE=`defaults read -g AppleInterfaceStyle 2\u003e /dev/null`.strip\n  RESET_COLOR = DARK_MODE == 'Dark' ? \"\\e[37m\" : \"\\e[30m\"\nelse\n  RESET_COLOR = \"\\e[37m\"\nend\n\nif !File.exist?(BREW)\n  puts [\n    \"Homebrew not installed | color=red\",\n    \"---\",\n    \"Install Homebrew... | href=#{BREW_LINK}\",\n    REFRESH,\n  ].join(\"\\n\")\n  exit(1)\nend\nif !File.exist?(BREW_SERVICES)\n  puts [\n    \"Homebrew Services not installed | color=red\",\n    \"---\",\n    \"Install Homebrew Services... | href=#{BREW_SERVICES_LINK}\",\n    REFRESH,\n  ].join(\"\\n\")\n  exit(1)\nend\n\ndef green(string)\n  \"\\e[1m\\e[32m#{string}#{RESET_COLOR}\"\nend\n\ndef service(command, name)\n  \"bash=\\\"#{BREW}\\\"\" \\\n    + \" param1=services param2=#{command} param3=\\\"#{name}\\\"\" \\\n    + \" terminal=false refresh=true\"\nend\n\ndef menu(name, status, user)\n  if status == \"started\"\n    [\n      \"#{name} | color=#4FFF50\",\n      \"--Restart | #{service(\"restart\", name)}\",\n      \"--Stop | #{service(\"stop\", name)}\",\n      \"-----\",\n      \"--State: #{status}\",\n      \"--User: #{user}\",\n    ]\n  else\n    [\n      name,\n      \"--Start | #{service(\"start\", name)}\",\n      \"-----\",\n      \"--State: #{status}\",\n    ]\n  end\nend\n\ndef plural(count)\n  count \u003c= 1 ? \"#{count} Service\" : \"#{count} Services\"\nend\n\noutput = `#{BREW} services list`.split(\"\\n\")[1..-1]\n\nservices = output \u0026\u0026 output.reduce({started: 0, menus: []}) do |acc, service|\n  name, status, user, _plist = service.split\n  acc[:started] += 1 if status == \"started\"\n  acc[:menus] += menu(name, status, user)\n  acc\nend\n\ntotal = (output || []).length\nstarted = services[:started]\nmenus = services[:menus].join(\"\\n\")\nall = \"\"\nif total \u003e 0\n  all = \"\"\"\nAll\n--Start #{plural(total - started)} | #{service(\"start\", \"--all\")}\n--Stop #{plural(started)} | #{service(\"stop\", \"--all\")}\n--Restart #{plural(total)} | #{service(\"restart\", \"--all\")}\n\"\"\"\nend\n\nputs \"\"\"\n#{started != 0 \u0026\u0026 BAR_COLORS ? green(started) : started}/#{total}\n---\n#{menus}\n---\n#{all}\n#{REFRESH}\n\"\"\"\n"
+			}
+		],
+		"path": "Dev/Homebrew/brew-services.10m.rb",
+		"filename": "brew-services.10m.rb",
+		"dir": "Dev/Homebrew",
+		"docsPlugin": "Dev/Homebrew/brew-services.10m.rb.html",
+		"docsCategory": "Dev/Homebrew.html",
+		"pathSegments": [
+			"Dev",
+			"Homebrew"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Homebrew",
+				"text": "Homebrew",
+				"isLast": true
+			}
+		],
+		"title": "Brew Services",
+		"version": "v1.0",
+		"author": "Adam Lindberg",
+		"authors": [
+			{
+				"name": "Adam Lindberg",
+				"githubUsername": "eproxus",
+				"imageURL": "https://avatars.githubusercontent.com/u/112878?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows and manages Homebrew services.",
+		"imageURL": "http://i.imgur.com/hVfhHYP.jpg",
+		"dependencies": [
+			"ruby",
+			"brew",
+			"brew-services"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:49.041183Z",
+		"vars": null
+	}
+}

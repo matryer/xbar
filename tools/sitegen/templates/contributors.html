@@ -1,0 +1,39 @@
+{{ define "title" }}{{ .PeopleLen }} wonderful people have contributed xbar plugins{{ end }}
+{{ define "head" }}
+	<meta name='description' content='{{ .PeopleLen }} wonderful people have contributed xbar plugins'>
+	<meta name='author' content='Mat Ryer + contributors'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://xbarapp.com/public/img/contributors.jpg'>
+	<meta itemprop='name' content='xbar plugin contributors'>
+	<meta itemprop='description' content='{{ .PeopleLen }} wonderful people have contributed xbar plugins'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='xbar plugin contributors'>
+	<meta name='twitter:description' content='{{ .PeopleLen }} wonderful people have contributed xbar plugins'>
+	<meta name='twitter:image' content='https://xbarapp.com/public/img/contributors.jpg'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='xbar plugin contributors'>
+	<meta property='og:description' content='{{ .PeopleLen }} wonderful people have contributed xbar plugins'>
+	<meta property='og:url' content='https://xbarapp.com/'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://xbarapp.com/public/img/contributors.jpg'>
+	<link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+	<link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+{{ end }}
+{{ define "body" }}
+	<div class='flex-grow text-center mt-8'>
+		{{ range .People -}}
+			<a href='/docs/contributors/{{ .GitHubUsername }}.html'><img
+				class='w-8 h-8 md:w-12 md:h-12 inline opacity-75 hover:opacity-100'
+				src='{{ .ImageURL }}' 
+				alt='Photo of the wonderful {{ .Desc }}'
+				title='{{ .Desc }}'
+				onerror='this.closest("a").remove();'
+			/></a>
+		{{- end }}
+	</div>
+{{ end }}

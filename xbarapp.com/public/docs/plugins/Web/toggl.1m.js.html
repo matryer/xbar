@@ -1,0 +1,719 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Toggl status in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shows hours completed today, hours completed this week. - install xbar for free to get started.'>
+	<meta name='author' content='Stefan du Fresne'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://i.imgur.com/1dlNZLW.png'>
+	<meta itemprop='name' content='Toggl status in your macOS menu bar'>
+	<meta itemprop='description' content='Shows hours completed today, hours completed this week. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Toggl status in your macOS menu bar'>
+	<meta name='twitter:description' content='Shows hours completed today, hours completed this week. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://i.imgur.com/1dlNZLW.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Toggl status in your macOS menu bar'>
+	<meta property='og:description' content='Shows hours completed today, hours completed this week. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Web/toggl.1m.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://i.imgur.com/1dlNZLW.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://i.imgur.com/1dlNZLW.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://i.imgur.com/1dlNZLW.png'>
+	<link rel='shortcut icon' href='https://i.imgur.com/1dlNZLW.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Toggl status</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/SCdF.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/583851?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/SCdF.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Stefan du Fresne (<code style='color:white;'>@SCdF</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shows hours completed today, hours completed this week.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Web%2ftoggl.1m.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://i.imgur.com/1dlNZLW.png' 
+				alt='Image preview of Toggl status plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>toggl.1m.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Web/toggl.1m.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Web/toggl.1m.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+// &lt;bitbar.title&gt;Toggl status&lt;/bitbar.title&gt;
+// &lt;bitbar.version&gt;v1.1&lt;/bitbar.version&gt;
+// &lt;bitbar.author&gt;Stefan du Fresne&lt;/bitbar.author&gt;
+// &lt;bitbar.author.github&gt;SCdF&lt;/bitbar.author.github&gt;
+// &lt;bitbar.desc&gt;Shows hours completed today, hours completed this week.&lt;/bitbar.desc&gt;
+// &lt;bitbar.image&gt;https://i.imgur.com/1dlNZLW.png&lt;/bitbar.image&gt;
+// &lt;bitbar.dependencies&gt;node&lt;/bitbar.dependencies&gt;
+
+/*jshint esversion: 6 */
+
+const fs = require(&#39;fs&#39;);
+
+// TODO: Add month-long work leveling
+//   You&#39;re supposed to work N hours a week, but also N*M hours a month
+//   Take longer / shorter weeks into account all the way to the month
+
+/* jshint -W100 */
+const AVATARS = {
+  &#39;👶&#39;: [&#39;👶&#39;, &#39;👶🏻&#39;, &#39;👶🏼&#39;, &#39;👶🏽&#39;, &#39;👶🏾&#39;, &#39;👶🏿&#39;],
+  &#39;👦&#39;: [&#39;👦&#39;, &#39;👦🏻&#39;, &#39;👦🏼&#39;, &#39;👦🏽&#39;, &#39;👦🏾&#39;, &#39;👦🏿&#39;],
+  &#39;👧&#39;: [&#39;👧&#39;, &#39;👧🏻&#39;, &#39;👧🏼&#39;, &#39;👧🏽&#39;, &#39;👧🏾&#39;, &#39;👧🏿&#39;],
+  &#39;👨&#39;: [&#39;👨&#39;, &#39;👨🏻&#39;, &#39;👨🏼&#39;, &#39;👨🏽&#39;, &#39;👨🏾&#39;, &#39;👨🏿&#39;],
+  &#39;👩&#39;: [&#39;👩&#39;, &#39;👩🏻&#39;, &#39;👩🏼&#39;, &#39;👩🏽&#39;, &#39;👩🏾&#39;, &#39;👩🏿&#39;],
+  &#39;👱‍♀️&#39;: [&#39;👱‍♀️&#39;, &#39;👱🏻‍♀️&#39;, &#39;👱🏼‍♀️&#39;, &#39;👱🏽‍♀️&#39;, &#39;👱🏾‍♀️&#39;, &#39;👱🏿‍♀️&#39;],
+  &#39;👱&#39;: [&#39;👱&#39;, &#39;👱🏻&#39;, &#39;👱🏼&#39;, &#39;👱🏽&#39;, &#39;👱🏾&#39;, &#39;👱🏿&#39;],
+  &#39;👴&#39;: [&#39;👴&#39;, &#39;👴🏻&#39;, &#39;👴🏼&#39;, &#39;👴🏽&#39;, &#39;👴🏾&#39;, &#39;👴🏿&#39;],
+  &#39;👵&#39;: [&#39;👵&#39;, &#39;👵🏻&#39;, &#39;👵🏼&#39;, &#39;👵🏽&#39;, &#39;👵🏾&#39;, &#39;👵🏿&#39;],
+  &#39;👲&#39;: [&#39;👲&#39;, &#39;👲🏻&#39;, &#39;👲🏼&#39;, &#39;👲🏽&#39;, &#39;👲🏾&#39;, &#39;👲🏿&#39;],
+  &#39;👳‍♀️&#39;: [&#39;👳‍♀️&#39;, &#39;👳🏻‍♀️&#39;, &#39;👳🏼‍♀️&#39;, &#39;👳🏽‍♀️&#39;, &#39;👳🏾‍♀️&#39;, &#39;👳🏿‍♀️&#39;],
+  &#39;👳&#39;: [&#39;👳&#39;, &#39;👳🏻&#39;, &#39;👳🏼&#39;, &#39;👳🏽&#39;, &#39;👳🏾&#39;, &#39;👳🏿&#39;],
+  &#39;👮‍♀️&#39;: [&#39;👮‍♀️&#39;, &#39;👮🏻‍♀️&#39;, &#39;👮🏼‍♀️&#39;, &#39;👮🏽‍♀️&#39;, &#39;👮🏾‍♀️&#39;, &#39;👮🏿‍♀️&#39;],
+  &#39;👮&#39;: [&#39;👮&#39;, &#39;👮🏻&#39;, &#39;👮🏼&#39;, &#39;👮🏽&#39;, &#39;👮🏾&#39;, &#39;👮🏿&#39;],
+  &#39;👷‍♀️&#39;: [&#39;👷‍♀️&#39;, &#39;👷🏻‍♀️&#39;, &#39;👷🏼‍♀️&#39;, &#39;👷🏽‍♀️&#39;, &#39;👷🏾‍♀️&#39;, &#39;👷🏿‍♀️&#39;],
+  &#39;👷&#39;: [&#39;👷&#39;, &#39;👷🏻&#39;, &#39;👷🏼&#39;, &#39;👷🏽&#39;, &#39;👷🏾&#39;, &#39;👷🏿&#39;],
+  &#39;💂‍♀️&#39;: [&#39;💂‍♀️&#39;, &#39;💂🏻‍♀️&#39;, &#39;💂🏼‍♀️&#39;, &#39;💂🏽‍♀️&#39;, &#39;💂🏾‍♀️&#39;, &#39;💂🏿‍♀️&#39;],
+  &#39;💂&#39;: [&#39;💂&#39;, &#39;💂🏻&#39;, &#39;💂🏼&#39;, &#39;💂🏽&#39;, &#39;💂🏾&#39;, &#39;💂🏿&#39;],
+  &#39;🕵️‍♀️&#39;: [&#39;🕵️‍♀️&#39;, &#39;🕵🏻‍♀️&#39;, &#39;🕵🏼‍♀️&#39;, &#39;🕵🏽‍♀️&#39;, &#39;🕵🏾‍♀️&#39;, &#39;🕵🏿‍♀️&#39;],
+  &#39;🕵️&#39;: [&#39;🕵️&#39;, &#39;🕵🏻&#39;, &#39;🕵🏼&#39;, &#39;🕵🏽&#39;, &#39;🕵🏾&#39;, &#39;🕵🏿&#39;],
+  &#39;👩‍⚕️&#39;: [&#39;👩‍⚕️&#39;, &#39;👩🏻‍⚕️&#39;, &#39;👩🏼‍⚕️&#39;, &#39;👩🏽‍⚕️&#39;, &#39;👩🏾‍⚕️&#39;, &#39;👩🏿‍⚕️&#39;],
+  &#39;👨‍⚕️&#39;: [&#39;👨‍⚕️&#39;, &#39;👨🏻‍⚕️&#39;, &#39;👨🏼‍⚕️&#39;, &#39;👨🏽‍⚕️&#39;, &#39;👨🏾‍⚕️&#39;, &#39;👨🏿‍⚕️&#39;],
+  &#39;👩‍🌾&#39;: [&#39;👩‍🌾&#39;, &#39;👩🏻‍🌾&#39;, &#39;👩🏼‍🌾&#39;, &#39;👩🏽‍🌾&#39;, &#39;👩🏾‍🌾&#39;, &#39;👩🏿‍🌾&#39;],
+  &#39;👨‍🌾&#39;: [&#39;👨‍🌾&#39;, &#39;👨🏻‍🌾&#39;, &#39;👨🏼‍🌾&#39;, &#39;👨🏽‍🌾&#39;, &#39;👨🏾‍🌾&#39;, &#39;👨🏿‍🌾&#39;],
+  &#39;👩‍🍳&#39;: [&#39;👩‍🍳&#39;, &#39;👩🏻‍🍳&#39;, &#39;👩🏼‍🍳&#39;, &#39;👩🏽‍🍳&#39;, &#39;👩🏾‍🍳&#39;, &#39;👩🏿‍🍳&#39;],
+  &#39;👨‍🍳&#39;: [&#39;👨‍🍳&#39;, &#39;👨🏻‍🍳&#39;, &#39;👨🏼‍🍳&#39;, &#39;👨🏽‍🍳&#39;, &#39;👨🏾‍🍳&#39;, &#39;👨🏿‍🍳&#39;],
+  &#39;👩‍🎓&#39;: [&#39;👩‍🎓&#39;, &#39;👩🏻‍🎓&#39;, &#39;👩🏼‍🎓&#39;, &#39;👩🏽‍🎓&#39;, &#39;👩🏾‍🎓&#39;, &#39;👩🏿‍🎓&#39;],
+  &#39;👨‍🎓&#39;: [&#39;👨‍🎓&#39;, &#39;👨🏻‍🎓&#39;, &#39;👨🏼‍🎓&#39;, &#39;👨🏽‍🎓&#39;, &#39;👨🏾‍🎓&#39;, &#39;👨🏿‍🎓&#39;],
+  &#39;👩‍🎤&#39;: [&#39;👩‍🎤&#39;, &#39;👩🏻‍🎤&#39;, &#39;👩🏼‍🎤&#39;, &#39;👩🏽‍🎤&#39;, &#39;👩🏾‍🎤&#39;, &#39;👩🏿‍🎤&#39;],
+  &#39;👨‍🎤&#39;: [&#39;👨‍🎤&#39;, &#39;👨🏻‍🎤&#39;, &#39;👨🏼‍🎤&#39;, &#39;👨🏽‍🎤&#39;, &#39;👨🏾‍🎤&#39;, &#39;👨🏿‍🎤&#39;],
+  &#39;👩‍🏫&#39;: [&#39;👩‍🏫&#39;, &#39;👩🏻‍🏫&#39;, &#39;👩🏼‍🏫&#39;, &#39;👩🏽‍🏫&#39;, &#39;👩🏾‍🏫&#39;, &#39;👩🏿‍🏫&#39;],
+  &#39;👨‍🏫&#39;: [&#39;👨‍🏫&#39;, &#39;👨🏻‍🏫&#39;, &#39;👨🏼‍🏫&#39;, &#39;👨🏽‍🏫&#39;, &#39;👨🏾‍🏫&#39;, &#39;👨🏿‍🏫&#39;],
+  &#39;👩‍🏭&#39;: [&#39;👩‍🏭&#39;, &#39;👩🏻‍🏭&#39;, &#39;👩🏼‍🏭&#39;, &#39;👩🏽‍🏭&#39;, &#39;👩🏾‍🏭&#39;, &#39;👩🏿‍🏭&#39;],
+  &#39;👨‍🏭&#39;: [&#39;👨‍🏭&#39;, &#39;👨🏻‍🏭&#39;, &#39;👨🏼‍🏭&#39;, &#39;👨🏽‍🏭&#39;, &#39;👨🏾‍🏭&#39;, &#39;👨🏿‍🏭&#39;],
+  &#39;👩‍💻&#39;: [&#39;👩‍💻&#39;, &#39;👩🏻‍💻&#39;, &#39;👩🏼‍💻&#39;, &#39;👩🏽‍💻&#39;, &#39;👩🏾‍💻&#39;, &#39;👩🏿‍💻&#39;],
+  &#39;👨‍💻&#39;: [&#39;👨‍💻&#39;, &#39;👨🏻‍💻&#39;, &#39;👨🏼‍💻&#39;, &#39;👨🏽‍💻&#39;, &#39;👨🏾‍💻&#39;, &#39;👨🏿‍💻&#39;],
+  &#39;👩‍💼&#39;: [&#39;👩‍💼&#39;, &#39;👩🏻‍💼&#39;, &#39;👩🏼‍💼&#39;, &#39;👩🏽‍💼&#39;, &#39;👩🏾‍💼&#39;, &#39;👩🏿‍💼&#39;],
+  &#39;👨‍💼&#39;: [&#39;👨‍💼&#39;, &#39;👨🏻‍💼&#39;, &#39;👨🏼‍💼&#39;, &#39;👨🏽‍💼&#39;, &#39;👨🏾‍💼&#39;, &#39;👨🏿‍💼&#39;],
+  &#39;👩‍🔧&#39;: [&#39;👩‍🔧&#39;, &#39;👩🏻‍🔧&#39;, &#39;👩🏼‍🔧&#39;, &#39;👩🏽‍🔧&#39;, &#39;👩🏾‍🔧&#39;, &#39;👩🏿‍🔧&#39;],
+  &#39;👨‍🔧&#39;: [&#39;👨‍🔧&#39;, &#39;👨🏻‍🔧&#39;, &#39;👨🏼‍🔧&#39;, &#39;👨🏽‍🔧&#39;, &#39;👨🏾‍🔧&#39;, &#39;👨🏿‍🔧&#39;],
+  &#39;👩‍🔬&#39;: [&#39;👩‍🔬&#39;, &#39;👩🏻‍🔬&#39;, &#39;👩🏼‍🔬&#39;, &#39;👩🏽‍🔬&#39;, &#39;👩🏾‍🔬&#39;, &#39;👩🏿‍🔬&#39;],
+  &#39;👨‍🔬&#39;: [&#39;👨‍🔬&#39;, &#39;👨🏻‍🔬&#39;, &#39;👨🏼‍🔬&#39;, &#39;👨🏽‍🔬&#39;, &#39;👨🏾‍🔬&#39;, &#39;👨🏿‍🔬&#39;],
+  &#39;👩‍🎨&#39;: [&#39;👩‍🎨&#39;, &#39;👩🏻‍🎨&#39;, &#39;👩🏼‍🎨&#39;, &#39;👩🏽‍🎨&#39;, &#39;👩🏾‍🎨&#39;, &#39;👩🏿‍🎨&#39;],
+  &#39;👨‍🎨&#39;: [&#39;👨‍🎨&#39;, &#39;👨🏻‍🎨&#39;, &#39;👨🏼‍🎨&#39;, &#39;👨🏽‍🎨&#39;, &#39;👨🏾‍🎨&#39;, &#39;👨🏿‍🎨&#39;],
+  &#39;👩‍🚒&#39;: [&#39;👩‍🚒&#39;, &#39;👩🏻‍🚒&#39;, &#39;👩🏼‍🚒&#39;, &#39;👩🏽‍🚒&#39;, &#39;👩🏾‍🚒&#39;, &#39;👩🏿‍🚒&#39;],
+  &#39;👨‍🚒&#39;: [&#39;👨‍🚒&#39;, &#39;👨🏻‍🚒&#39;, &#39;👨🏼‍🚒&#39;, &#39;👨🏽‍🚒&#39;, &#39;👨🏾‍🚒&#39;, &#39;👨🏿‍🚒&#39;],
+  &#39;👩‍✈️&#39;: [&#39;👩‍✈️&#39;, &#39;👩🏻‍✈️&#39;, &#39;👩🏼‍✈️&#39;, &#39;👩🏽‍✈️&#39;, &#39;👩🏾‍✈️&#39;, &#39;👩🏿‍✈️&#39;],
+  &#39;👨‍✈️&#39;: [&#39;👨‍✈️&#39;, &#39;👨🏻‍✈️&#39;, &#39;👨🏼‍✈️&#39;, &#39;👨🏽‍✈️&#39;, &#39;👨🏾‍✈️&#39;, &#39;👨🏿‍✈️&#39;],
+  &#39;👩‍🚀&#39;: [&#39;👩‍🚀&#39;, &#39;👩🏻‍🚀&#39;, &#39;👩🏼‍🚀&#39;, &#39;👩🏽‍🚀&#39;, &#39;👩🏾‍🚀&#39;, &#39;👩🏿‍🚀&#39;],
+  &#39;👨‍🚀&#39;: [&#39;👨‍🚀&#39;, &#39;👨🏻‍🚀&#39;, &#39;👨🏼‍🚀&#39;, &#39;👨🏽‍🚀&#39;, &#39;👨🏾‍🚀&#39;, &#39;👨🏿‍🚀&#39;],
+  &#39;👩‍⚖️&#39;: [&#39;👩‍⚖️&#39;, &#39;👩🏻‍⚖️&#39;, &#39;👩🏼‍⚖️&#39;, &#39;👩🏽‍⚖️&#39;, &#39;👩🏾‍⚖️&#39;, &#39;👩🏿‍⚖️&#39;],
+  &#39;👨‍⚖️&#39;: [&#39;👨‍⚖️&#39;, &#39;👨🏻‍⚖️&#39;, &#39;👨🏼‍⚖️&#39;, &#39;👨🏽‍⚖️&#39;, &#39;👨🏾‍⚖️&#39;, &#39;👨🏿‍⚖️&#39;],
+  &#39;🤶&#39;: [&#39;🤶&#39;, &#39;🤶🏻&#39;, &#39;🤶🏼&#39;, &#39;🤶🏽&#39;, &#39;🤶🏾&#39;, &#39;🤶🏿&#39;],
+  &#39;🎅&#39;: [&#39;🎅&#39;, &#39;🎅🏻&#39;, &#39;🎅🏼&#39;, &#39;🎅🏽&#39;, &#39;🎅🏾&#39;, &#39;🎅🏿&#39;],
+  &#39;👸&#39;: [&#39;👸&#39;, &#39;👸🏻&#39;, &#39;👸🏼&#39;, &#39;👸🏽&#39;, &#39;👸🏾&#39;, &#39;👸🏿&#39;],
+  &#39;🤴&#39;: [&#39;🤴&#39;, &#39;🤴🏻&#39;, &#39;🤴🏼&#39;, &#39;🤴🏽&#39;, &#39;🤴🏾&#39;, &#39;🤴🏿&#39;],
+  &#39;👰&#39;: [&#39;👰&#39;, &#39;👰🏻&#39;, &#39;👰🏼&#39;, &#39;👰🏽&#39;, &#39;👰🏾&#39;, &#39;👰🏿&#39;],
+  &#39;🤵 &#39;: [&#39;🤵&#39;, &#39;🤵🏻&#39;, &#39;🤵🏼&#39;, &#39;🤵🏽&#39;, &#39;🤵🏾&#39;, &#39;🤵🏿&#39;]
+};
+/* jshint &#43;W100 */
+const randomItem = array =&gt; array[Math.floor(Math.random() * array.length)];
+const randomAvatar = () =&gt; randomItem([].concat(...Object.values(AVATARS)));
+
+const CONFIG_FILE = `${process.env.HOME}/.toggl.json`;
+
+let configDirty = false;
+const config = (() =&gt; {
+  if (fs.existsSync(CONFIG_FILE)) {
+    try {
+      return JSON.parse(fs.readFileSync(CONFIG_FILE, &#39;utf8&#39;));
+    } catch (_) {}
+  }
+
+  // Defaults
+  configDirty = true;
+  return {
+    avatar: randomAvatar(),
+    hoursInDay: 8,
+    daysInWeek: 5,
+    style: &#39;hours&#39;
+  };
+})();
+
+const relativeThreshold = 15 * 60; // TODO: configurable?
+
+const endOutput = () =&gt; {
+  if (configDirty) {
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2));
+  }
+
+  console.log(&#39;---&#39;);
+  console.log(&#39;Refresh | refresh=true&#39;);
+  process.exit();
+};
+
+const badApiToken = wrong =&gt; {
+  console.log(`🚨 ${wrong ? &#39;provided api token is wrong&#39; : &#39;token needed&#39;} 🚨`);
+  console.log(&#39;---&#39;);
+  console.log(&#39;🖱 Click here to find your token| href=https://toggl.com/app/profile&#39;);
+  console.log(&#39;It will be at the bottom of the page|size=12&#39;);
+  console.log(`Once you&#39;ve found your token, copy it (CMD&#43;C)|size=12`);
+  console.log(`🤞 I&#39;ve copied it 🤞|bash=${process.argv[1]} param1=api_token refresh=true terminal=false `);
+  endOutput();
+};
+
+const NOW = new Date();
+
+const unix = date =&gt; Math.round(date.getTime() / 1000);
+const outputUnix = (unixTime, verbose) =&gt; {
+  const negative = (() =&gt; {if (unixTime &lt; 0) {
+    // TODO: turn red if it&#39;s negative
+    unixTime *= -1;
+    return true;
+  }})();
+
+  const fmt = x =&gt; x.toLocaleString(undefined, {minimumIntegerDigits: 2});
+  const hours = Math.floor(unixTime / 60 / 60);
+  const minutes = Math.floor(unixTime / 60) - (hours * 60);
+
+  if (verbose) {
+    return `${negative ? &#39;-&#39; : &#39;&#39;}${hours} hours ${minutes} minutes`;
+  } else {
+    return `${negative ? &#39;-&#39; : &#39;&#39;}${hours}:${fmt(minutes)}`;
+  }
+};
+
+// TODO: alter this so you can pass the considered start day (ie Sunday or Monday)
+//       Might as well be the offset integer, 0 or 1, but in theory could be 0-6
+const startOfWeek = () =&gt; {
+  const thisWeek = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate() - NOW.getDay());
+  return unix(thisWeek);
+};
+
+const avatar = () =&gt; config.avatar === &#39;avatar&#39; ?  randomAvatar() : config.avatar;
+
+const outputHeader = (timeDay, timeWeek) =&gt; {
+  let daySection; // Output string
+  let dayAmount; // single amount, if possible
+  if (typeof timeDay === &#39;object&#39;) {
+    const max = Math.max(...timeDay);
+    const min = Math.min(...timeDay);
+    if ((max - min) &gt; relativeThreshold) {
+      daySection = `${outputUnix(min)} — ${outputUnix(max)}`;
+    } else {
+      dayAmount = min &#43; Math.round((max - min) / 2);
+      daySection = `${outputUnix(dayAmount)}`;
+    }
+  } else {
+    dayAmount = timeDay;
+    daySection = `${outputUnix(dayAmount)}`;
+  }
+
+  if (dayAmount &amp;&amp; Math.abs(timeWeek - dayAmount) &gt; relativeThreshold) {
+    console.log(`${avatar()} ${daySection} (${outputUnix(timeWeek)})`);
+  } else {
+    console.log(`${avatar()} ${daySection}`);
+  }
+};
+
+const displayTimes = me =&gt; {
+  // Calculate times
+  const unixToday = unix(new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate()));
+  const completeDay = config.hoursInDay * 60 * 60;
+  const completeWeek = completeDay * config.daysInWeek;
+
+  let full = 0,
+      today = 0;
+  const days = [];
+
+  let currentlyWorking,
+      currentWid,
+      currentPid;
+
+  const timeByWidByPid = {};
+
+  (me.data.time_entries || []).forEach(({start, duration:entryDuration, wid, pid}) =&gt; {
+    // TODO: deal with partial entries that cross over midnight
+    //       (both daily and weekly)
+    // TODO: respect configured start of week in me.beginning_of_week
+    //
+    start = new Date(start);
+
+    let duration;
+    if (entryDuration &gt; 0) {
+      duration = entryDuration;
+    } else {
+      duration = unix(NOW) - unix(start);
+      currentlyWorking = true;
+      currentWid = wid;
+      currentPid = pid;
+    }
+
+    if (!timeByWidByPid[wid]) {
+      timeByWidByPid[wid] = {};
+    }
+    if (!timeByWidByPid[wid][pid]) {
+      timeByWidByPid[wid][pid] = 0;
+    }
+    timeByWidByPid[wid][pid] &#43;= duration;
+
+    if (unix(start) &gt; startOfWeek()) {
+      full &#43;= duration;
+      let day = start.getDay();
+      const end = new Date(start.getTime() &#43; duration * 1000);
+      if (day === end.getDay()) {
+        days[day] = (days[day] || 0) &#43; duration;
+      } else {
+        // TODO: We want to split a duration over midnights and distribute them to the correct days
+        days[day] = (days[day] || 0) &#43; duration;
+      }
+    }
+
+    if (unix(start) &gt; unixToday) {
+      today &#43;= duration;
+    }
+  });
+
+  // Output times
+  if (!currentlyWorking) {
+    process.exit(0);
+  }
+
+  switch(config.style) {
+    case &#39;hours&#39;: {
+      outputHeader(today, full);
+      break;
+    }
+    case &#39;left&#39;: {
+      outputHeader(completeDay - today, completeWeek - full);
+      break;
+    }
+    case &#39;percentage&#39;: {
+      const completeDay = config.hoursInDay * 60 * 60;
+      const completeWeek = completeDay * config.daysInWeek;
+      const dayPercent = Math.round((today / completeDay) * 100);
+      const weekPercent = Math.round((full / completeWeek) * 100);
+      console.log(`${avatar()} ${dayPercent}% (${weekPercent}%)`);
+      break;
+    }
+    case &#39;relative&#39;: {
+      const startOfWeekday = 1; // TODO: support using configured day from /me
+      const todayWeekday = NOW.getDay();
+      const daysLeft = config.daysInWeek - (todayWeekday - startOfWeekday);
+
+      const timeInWeek = config.daysInWeek * config.hoursInDay * 60 * 60;
+
+      const allButTodaysTime = full - today;
+      const allButTodaysTimeLeft = timeInWeek - allButTodaysTime;
+      const timePerDayLeft = Math.round(allButTodaysTimeLeft / daysLeft);
+      const amortisedTimeLeft = timePerDayLeft - today;
+
+      const onTrackTime = (daysLeft - 1) * config.hoursInDay * 60 * 60;
+      const timeOffTrack = allButTodaysTimeLeft - onTrackTime - today;
+      const fullDay = Math.min(completeDay - today, timeInWeek - full);
+
+      outputHeader([amortisedTimeLeft, timeOffTrack, fullDay], timeInWeek - full);
+      break;
+    }
+  }
+
+  // TODO: add end day time, either as its own option, or as a custom estimate
+  //       in the menu.
+  //       I think having it as an option might be a bit more chill, you don&#39;t
+  //       see it counting down, just an idea of when knocking off time is
+
+  // Have to filter first before showing length because Monday is idx 1 / length 2
+  if (days.filter(d =&gt; !!d).length &gt; 1) {
+    console.log(&#39;---&#39;);
+    const dayNames = [&#39;S&#39;, &#39;M&#39;, &#39;T&#39;, &#39;W&#39;, &#39;T&#39;, &#39;F&#39;, &#39;S&#39;];
+    days.forEach((val, day) =&gt; {
+      console.log(`${dayNames[day]}:\t${outputUnix(val, true)}`);
+    });
+    console.log(`Σ:\t${outputUnix(full, true)}`);
+    console.log(`T-:\t${outputUnix(completeWeek - full, true)}`);
+  }
+
+  // TODO: figure out how we want to pull in wids and pid labels, and if it&#39;s worth the extra api calls
+  // console.log(&#39;---&#39;);
+  // console.log(`${currentWid} :: ${currentPid}`);
+  // console.log(outputUnix(timeByWidByPid[currentWid][currentPid], true));
+
+  // TODO: display project summary for the week
+  // TODO: allow muting of a project as it relates to time
+  //       (if you&#39;re on a muted project just show emoji but not time)
+  //       (it would still show in this project summary)
+};
+
+const avatarChoice = () =&gt; {
+  console.log(`Change ${config.avatar}`);
+  console.log(`--((surprise me))|bash=${process.argv[1]} param1=avatar param2=avatar refresh=true terminal=false size=10`);
+  Object.keys(AVATARS).forEach(k =&gt; {
+    console.log(`--${k}|size=32`);
+    AVATARS[k].forEach(v =&gt; {
+      console.log(`----${v}|bash=${process.argv[1]} param1=avatar param2=${v} refresh=true terminal=false size=32`);
+    });
+  });
+};
+
+const styleChoice = () =&gt; {
+  const current = style =&gt; style === config.style ? &#39;✓ &#39; : &#39;&#39;;
+  const link = style =&gt; `|bash=${process.argv[1]} param1=style param2=${style} refresh=true terminal=false`;
+  console.log(&#39;Change reporting style&#39;);
+  console.log(`--${current(&#39;hours&#39;)}Hours complete${link(&#39;hours&#39;)}`);
+  console.log(`--${current(&#39;left&#39;)}Hours left${link(&#39;left&#39;)}`);
+  console.log(`--${current(&#39;percentage&#39;)}Percentage complete${link(&#39;percentage&#39;)}`);
+  console.log(`--${current(&#39;relative&#39;)}Relative weekly goals${link(&#39;relative&#39;)}`);
+};
+
+const input = () =&gt; {
+  switch (process.argv[2]) {
+    case &#39;avatar&#39;: {
+      config.avatar = process.argv[3];
+      configDirty = true;
+      break;
+    }
+    case &#39;api_token&#39;: {
+      config.apiToken = require(&#39;child_process&#39;).execSync(&#39;pbpaste&#39;).toString();
+      configDirty = true;
+      break;
+    }
+    case &#39;style&#39;: {
+      config.style = process.argv[3];
+      configDirty = true;
+      break;
+    }
+  }
+};
+
+const output = () =&gt; {
+  require(&#39;https&#39;).get({
+    hostname: &#39;toggl.com&#39;,
+    // NB: since is &#34;edited since&#34;, and so isn&#39;t really reliable
+    path: `/api/v8/me?with_related_data=true&amp;since=${startOfWeek()}`,
+    auth: `${config.apiToken}:api_token`
+  }, res =&gt; {
+    if (res.statusCode === 403) {
+      badApiToken(true);
+      endOutput();
+    }
+
+    let body = &#39;&#39;;
+    res.on(&#39;data&#39;, data =&gt; body &#43;= data);
+    res.on(&#39;end&#39;, () =&gt; {
+      try {
+        displayTimes(JSON.parse(body));
+        console.log(&#39;---&#39;);
+        avatarChoice();
+        styleChoice();
+        endOutput();
+      } catch (error) {
+        console.log(&#39;:-(&#39;);
+        console.log(&#39;---&#39;);
+        console.log(error);
+        console.log(&#39;---&#39;);
+        console.log(body);
+        endOutput();
+      }
+    });
+    res.on(&#39;error&#39;, err =&gt; {
+      console.log(&#39;:-(&#39;);
+      console.log(&#39;---&#39;);
+      console.log(err);
+      endOutput();
+    });
+  });
+};
+
+input();
+if (!config.apiToken) {
+  badApiToken();
+}
+output();
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

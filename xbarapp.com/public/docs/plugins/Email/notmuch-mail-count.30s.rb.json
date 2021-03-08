@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Email/notmuch-mail-count.30s.rb",
+				"filename": "notmuch-mail-count.30s.rb",
+				"content": "#!/usr/bin/env ruby\n# encoding: UTF-8\n\n# \u003cbitbar.title\u003eNotmuch inbox \u0026 unread counter\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSlamet Kristanto\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edrselump14\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow mutt inbox using notmuch inbox and unread\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://www.dropbox.com/s/cgkjb7hv6s1yx1a/Screenshot%202017-02-08%2020.40.02.png?raw=1\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003emutt,notmuch\u003c/bitbar.dependencies\u003e\n\ninbox = `/usr/local/bin/notmuch search tag:inbox tag:unread`\n\nmails = inbox.split(\"\\n\")\ncount = mails.length\nif count \u003e 0\n  puts \"📮 #{count} | color=red size=12\"\nelse\n  puts ''\nend\n\nputs \"---\"\n\nmails.each do |m|\n  mail = m.gsub(/thread.*\\]/,'')[0..25].gsub(/\\|/,':')\n  puts \"#{mail} | color=green size=12 bash='/usr/local/bin/mutt' \"\nend\n\n"
+			}
+		],
+		"path": "Email/notmuch-mail-count.30s.rb",
+		"filename": "notmuch-mail-count.30s.rb",
+		"dir": "Email",
+		"docsPlugin": "Email/notmuch-mail-count.30s.rb.html",
+		"docsCategory": "Email.html",
+		"pathSegments": [
+			"Email"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Email",
+				"text": "Email",
+				"isLast": true
+			}
+		],
+		"title": "Notmuch inbox \u0026 unread counter",
+		"version": "v1.0",
+		"author": "Slamet Kristanto",
+		"authors": [
+			{
+				"name": "Kris",
+				"githubUsername": "drselump14",
+				"imageURL": "https://avatars.githubusercontent.com/u/1251454?v=4",
+				"bio": "vim,tmux,alfred, ruby, rails, python, golang, typescript, swift, java, c, c++, elixir, terraform, terragrunt, serverless, AWS\r\n",
+				"primary": true
+			}
+		],
+		"desc": "Show mutt inbox using notmuch inbox and unread",
+		"imageURL": "https://www.dropbox.com/s/cgkjb7hv6s1yx1a/Screenshot%202017-02-08%2020.40.02.png?raw=1",
+		"dependencies": [
+			"mutt",
+			"notmuch"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.902156Z",
+		"vars": null
+	}
+}

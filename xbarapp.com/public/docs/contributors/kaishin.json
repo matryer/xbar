@@ -1,0 +1,61 @@
+{
+	"person": {
+		"name": "Reda Lemeden",
+		"githubUsername": "kaishin",
+		"imageURL": "https://avatars.githubusercontent.com/u/519433?v=4",
+		"bio": "Developer/Designer based in Stockholm.",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Dev/GitHub/swift-trending.15m.swift",
+					"filename": "swift-trending.15m.swift",
+					"content": "#!/usr/bin/swift\n\n// # \u003cbitbar.title\u003eTrending Swift on GitHub\u003c/bitbar.title\u003e\n// # \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// # \u003cbitbar.author\u003eReda Lemeden\u003c/bitbar.author\u003e\n// # \u003cbitbar.author.github\u003ekaishin\u003c/bitbar.author.github\u003e\n// # \u003cbitbar.desc\u003eList Swift repositories tending on GitHub in a given period.\u003c/bitbar.desc\u003e\n// # \u003cbitbar.image\u003ehttps://github.com/kaishin/swift-trending-bitbar/raw/master/screenshot.png\u003c/bitbar.image\u003e\n// # \u003cbitbar.dependencies\u003eswift\u003c/bitbar.dependencies\u003e\n// # \u003cbitbar.abouturl\u003ehttps://github.com/kaishin/swift-trending-bitbar\u003c/bitbar.abouturl\u003e\n\nimport Foundation\n\n// PREFERENCES (Feel free to change these to your liking)\n\nvar displayCount = 15 // Min: 10, Max: 25\nvar maxSubtitleLineLength = 70\nvar trendingPeriod = \"daily\" // Possible values: \"daily\", \"weekly\", \"monthly\"\n\n// Try not to edit the code below.\n\nlet icon = \"iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAuBJREFUWAm1l1uITlEUx8c9GmmIKR4UXsjtgZGaeHBLlEYpD0p5EZLMA0nJg0TzRKI8KJ6IlHiYKKE0D5PEvEgyLil3ocn98vvrW1/Lts85+3zzWfWbvfbaa62zzv725UxDQ32liXRLy6QcWMY5wfcdPvNhZ4Lvf3MZSeZX0JHyhEEFTpMY11uVka84N8KuSnulTPCAwHka/ZWBLaU7HicV8gu2pQSYTyuKptDLbjpt3pCon8FPBfyA5IU5GOfj0AwmQ1C6YbUZEttV+KkA8RzGQZJMxasHpjjv2eh9sMbZitQRONjPoCLOFwX48S10XsAcZ9yD/h3WOluRegcHmwW1C4sC/PhFOh9hWcWon6cLVMT6iq2oOYeDL0A/ZbKMwfMpfAN74ET0t/ATNEtFchIHX4D0lqIgP76Ajt5YgftB23QFqADZ9kKeHGMwLOBoXkBsTL+9JbmAPgr2Odsp9KEQkyMYLdba19jC8yYWW7XpvugES3AffRZcdrYb6LFtdtb5WLza6VBKRuPdC5ZEW7IdHjub1ss88HKTjsX4dpN3StVn4qhd4ROF2+wL4z75m8DfYrU2ahLdC7YoLVmsPY3fXIiNyXYVapYNRGYl9vbPOX73an56JXBHTnJfRJb+rL8FKP5gP4rQ4q2KTrxapYPArLfMs9/yD9TlshlKHQ4uwQH0vIfFxk64+D/qJf52Q2s4kNgvuya2h3nHYngEqlbfcIshdUZ0S26ETxB725hNV30T/CUz6H0AC3iIrulVMToJvUygo2taC/EJWEyZ9jBx/8hyLLp+Y4m0r99DykEUiw9tmrHm8LP8AcYeaANNrRf1h4Eup3qI8r3MSqRjtBfCquvd78wqQPZGOAT6rK7Hg/UdoBnWhWX5MmcAn6q0oF0HCyrbXiPWb2990NgpqmKSZRGemjL/BnnF3MVX/xtkyToG+lL3uk+in2YJ6K0mg47y4aBVrfv/NuhrqQuKZOtv52B4+dBxxIcAAAAASUVORK5CYII=\"\nlet templateImage = \"|templateImage=\\(icon)\"\n\n// Mark: - Regex\n\ninfix operator =~\n\nfunc =~ (value: String, pattern: String) -\u003e RegexResult {\n  var error: NSError?\n  let string = value as NSString\n  let options = NSRegularExpression.Options(rawValue: 0)\n  let regex: NSRegularExpression?\n\n  do {\n    regex = try NSRegularExpression(pattern: pattern, options: options)\n  } catch let error1 as NSError {\n    error = error1\n    regex = nil\n  }\n\n  if error != nil { return RegexResult(results: []) }\n\n  let all = NSRange(location: 0, length: string.length)\n  let matchingOptions = NSRegularExpression.MatchingOptions(rawValue: 0)\n  var matches: [String] = []\n\n  regex?.enumerateMatches(in: value, options: matchingOptions, range: all) { result, _, _ in\n    guard let result = result else { return }\n    let subString = string.substring(with: result.range)\n    matches.append(subString)\n  }\n\n  return RegexResult(results: matches)\n}\n\nstruct RegexResult {\n  let isMatching: Bool\n  let matches: [String]\n\n  init(results: [String]) {\n    matches = results\n    isMatching = matches.count \u003e 0\n  }\n}\n\n// Mark: - Foundation Extensions\n\nextension String {\n  func matches(pattern: String) -\u003e [String] {\n    let regexResult = (self =~ pattern)\n\n    if regexResult.isMatching {\n      return regexResult.matches\n    } else {\n      return []\n    }\n  }\n\n  func condenseWhitespace() -\u003e String {\n    let components = self.components(separatedBy: NSCharacterSet.whitespacesAndNewlines)\n    return components.filter { !$0.isEmpty }.joined(separator: \" \")\n  }\n\n  func trunc(length: Int, trailing: String = \"…\") -\u003e String {\n    return (self.count \u003e length) ? self.prefix(length) + trailing : self\n  }\n}\n\nextension Array {\n  func chunk(_ chunkSize: Int) -\u003e [[Element]] {\n    return stride(from: 0, to: self.count, by: chunkSize).map({ (startIndex) -\u003e [Element] in\n      let endIndex = (startIndex.advanced(by: chunkSize) \u003e self.count) ? self.count-startIndex : chunkSize\n      return Array(self[startIndex..\u003cstartIndex.advanced(by: endIndex)])\n    })\n  }\n}\n\n// Mark: - Repository\n\nstruct Repository {\n  let authorName: String\n  let projectName: String\n  let description: String\n  let starCount: Int\n  let newStarCount: Int\n\n  init?(string: String) {\n    let properties = string.split(separator: \"|\")\n    if properties.count != 4 { return nil }\n\n    self.authorName = String(describing: properties[0].split(separator: \"/\").first ?? \"\").trimmingCharacters(in: .whitespacesAndNewlines)\n    self.projectName = String(describing: properties[0].split(separator: \"/\").last ?? \"\").trimmingCharacters(in: .whitespacesAndNewlines)\n    self.description = String(describing: properties[1])\n      .trimmingCharacters(in: .whitespacesAndNewlines)\n      .replacingOccurrences(of: \"\u0026amp;\", with: \"\u0026\")\n\n    let stars = String(describing: properties[2]\n      .split(separator: \" \").first?.replacingOccurrences(of: \",\", with: \"\") ?? \"0\")\n    self.starCount = Int(stars) ?? 0\n\n    let newStarsString = String(describing: properties[3]\n      .split(separator: \" \").first?.replacingOccurrences(of: \",\", with: \"\") ?? \"0\")\n\n    self.newStarCount = Int(newStarsString) ?? 0\n  }\n\n  var gitHubURL: String {\n    return \"https://github.com/\\(authorName)/\\(projectName)/\"\n  }\n\n  var firstLine: String {\n    return \"\\(projectName) (by \\(authorName))\" + \"| href=\\(gitHubURL)\"\n  }\n\n  var secondLine: String {\n    return \"★\\(starCount) (+\\(newStarCount)) — \\(description)\" + \"| size=12 length=\\(maxSubtitleLineLength)\"\n  }\n\n  func multiLineDescription(wordCount count: Int) -\u003e String {\n    let fullDescriptionWords = description.split(separator: \" \")\n    let chunkedDescription = fullDescriptionWords.chunk(count).map { chunk in\n      return chunk.joined(separator: \" \")\n    }\n\n    return  chunkedDescription.joined(separator: \"| size=12 \\n\")\n  }\n}\n\nenum Period: String {\n  case daily, weekly, monthly\n\n  var title: String {\n    switch self {\n    case .daily:\n      return \"today\"\n    case .weekly:\n      return \"this week\"\n    default:\n      return \"this month\"\n    }\n  }\n}\n\n// Mark: - Free Functions\n\nfunc trendingRepositories(html: String) -\u003e [Repository] {\n  let repos = html.matches(pattern: \"\u003col class=\\\"repo-list\\\"\u003e(.|\\n)*?\u003c/ol\u003e\")[0]\n  let repoList = repos.matches(pattern: \"\u003cli class=(.|\\n)*?\u003c/li\u003e\")\n\n  return repoList.flatMap { repo in\n    let sanitizedString = repo.replacingOccurrences(of: \"\u003c[^\u003e]+\u003e\", with: \"\", options: .regularExpression)\n      .replacingOccurrences(of: \"\\n    Star|Built by\\n|\\n          Swift\", with: \"|\", options: .regularExpression)\n      .condenseWhitespace()\n\n    return Repository(string: sanitizedString)\n  }\n}\n\nfunc printOutput(responseHTML html: String) {\n  print(templateImage)\n  print(\"---\")\n\n  guard let period = Period(rawValue: trendingPeriod) else {\n    fatalError(\"Frequency specified should be one of the following options: 'daily', 'weekly', 'monthly'.\")\n  }\n\n  print(\"Trending Swift \\(period.title.capitalized)\")\n  print(\"---\")\n\n  let count = max(min(displayCount, 25), 10)\n\n  for repo in trendingRepositories(html: html)[0..\u003ccount] {\n    print(repo.firstLine)\n    print(repo.secondLine)\n  }\n}\n\n// Mark: - Output\n\nlet url = URL(string: \"https://github.com/trending/swift?since=\\(trendingPeriod)\")!\nlet html = try? String(contentsOf: url)\n\nprintOutput(responseHTML: html!)\n\n"
+				}
+			],
+			"path": "Dev/GitHub/swift-trending.15m.swift",
+			"filename": "swift-trending.15m.swift",
+			"dir": "Dev/GitHub",
+			"docsPlugin": "Dev/GitHub/swift-trending.15m.swift.html",
+			"docsCategory": "Dev/GitHub.html",
+			"pathSegments": [
+				"Dev",
+				"GitHub"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": false
+				},
+				{
+					"path": "Dev/GitHub",
+					"text": "GitHub",
+					"isLast": true
+				}
+			],
+			"title": "Trending Swift on GitHub",
+			"version": "v1.0",
+			"author": "Reda Lemeden",
+			"authors": [
+				{
+					"name": "Reda Lemeden",
+					"githubUsername": "kaishin",
+					"imageURL": "https://avatars.githubusercontent.com/u/519433?v=4",
+					"bio": "Developer/Designer based in Stockholm.",
+					"primary": true
+				}
+			],
+			"desc": "List Swift repositories tending on GitHub in a given period.",
+			"imageURL": "https://github.com/kaishin/swift-trending-bitbar/raw/master/screenshot.png",
+			"dependencies": [
+				"swift"
+			],
+			"aboutURL": "https://github.com/kaishin/swift-trending-bitbar",
+			"lastUpdated": "2021-03-08T15:21:48.691601Z",
+			"vars": null
+		}
+	]
+}

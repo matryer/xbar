@@ -1,0 +1,145 @@
+{
+	"person": {
+		"name": "hpcodecraft",
+		"githubUsername": "hpcodecraft",
+		"imageURL": "https://avatars.githubusercontent.com/u/1476865?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/fortune.5m.sh",
+					"filename": "fortune.5m.sh",
+					"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eFortune\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eVolker Wieban\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ehpcodecraft\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows a random fortune quote\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/1476865/24081772/fd2011c2-0cb9-11e7-8679-30f1c56c0acd.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash,fortune\u003c/bitbar.dependencies\u003e\n\ncookie=\"iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1NjIwYjM2NS0wZGZhLTQ0NjYtOGMyMi1lOGJhNzZjY2Q0MmIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzZDQTEzOTcwMDA4MTFFN0E0RENCMzkyNDkxNTY0OEEiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzZDQTEzOTYwMDA4MTFFN0E0RENCMzkyNDkxNTY0OEEiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NTAxQzY4MzU2OUMxMUU2OUZGRkNDMENDMUUwOUU5NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NTAxQzY4NDU2OUMxMUU2OUZGRkNDMENDMUUwOUU5NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl4lzYcAAARISURBVHjazFRLbBtVFD1vZuyxJ47tfJzm3/zTpIGSpIlJlVYtqIHCopVoFiyQilR+AlasUBfdoNAdIDZRCkIqggWV+CxSFaVqC+kiTUJr0jofkrhJHNmOY2fsjGdsz5eXBIQK2y640ls86b1zz73nnkssy8KTDAZPODgkHwIsC5gm/gjOIxpLYjuTLCgUjFci87/3Z8VY+UYs5m09cubrE2ffupxJbdLnNuSyEu5P3oPM+9DX14dUSoRhGBSQUFhTB4rKoGhAdHHyo+oi5YLPyqG93QXe0YrERgFCTOG11dAaoGbAMhaU1AblYIIQ5l8MGcrOW4ZHs4vu6dGRwPE21DfV1wKOCsBmp+w1pDNppGTmGpNcBQwdlpqHkyf0K/ffHlqaA8nQJkaHL94eaNyub+pogVlQBd3VCMPVRJ84Ieadecu0zxt5GRtrqzBUFXaHAIsToOk7LP8RlgmtxzF987v3nt8X7KztaIPG1cHy1IHxNIAhBObWOhTdNtPrP6qWlVUjbzkgazwUJS9AnH3HycoelXaMELIHmFyZ9Bclrp87UO2Fye4DU1AKuCrAOItBtkOU0RK9dnyvs4VYmFtwOvToea8680OZNL5tT0x83tXt/0Y3zH6Vst4BZTYeXu8XjI1u4q6ERftJ7G4wQgXM/BYQmURUdiWyXv+l8G8/vlFnTWVOtucvP9dpnJFkia0auMge6Oh6ubmhdpzn+Rd1XQcjhufqeaeHCuCgYstUJhsI7wETDyA6P425raLR+PgnX7WYYyP+ngam1FcMNctiwfkCDh1/abdMQRBQXl7+BVV9kDNtHk1RqZrgweRTsDIxwPcMBVchxkVUkNuDzz51WBCefg1Gjo6MsoTZCIFolOBvjSORSGx5ebmX47gIV9rUF0wmAookqoKr0oAhBmE6fbCqj2H/6QtoK3QLpLwbJmFhSZMAzb0Sk5F1mJAUFeHVR78mEonjdt5hUUCwH7z/ppSOLHWQVLxRKC4B76QpM1Fatht880kQz36YqgJk40BuEwyXwUQwi6llDVvBGw8MQ/fb7fwuU4MOOtN66Ohiddep4dByCNFQGtKmDEJdggRlE74FS1yCJa8D+QQ1FbUSSyCwBm4MD0GKrIw019aAlRPgslvglCT9q9LMLI+bn759VQvcOlvZ0omSqgLqRGo7wQHGTR1DvWvR/ulSEjYbcOmzMdyZjYd+mppvJJqKXC4Hi7Lb2VzESs0AnmJIooGxj8//zK8HBry+OrhLvCgotMMm0EP7YKgG5M044mIW384klXeHvjx48HDPihINg+zY96+ggMHdMkAE3J0IYvXOlQ/t4XtDrCTBXUQH3SaAGHmk01sQNQa5mu6rvp5T504Pvqqk1qm3mceXwx6gjYMu53H/7gw0ysZhZYqjD355PbUY8Oty2qPbCiWbr2VGqGm+0th1YiUZWUPvkWN7i4qW+jjg/31j/ynAAKk7+eVEqimNAAAAAElFTkSuQmCC\"\n\nfortune=\"/usr/local/bin/fortune\"\n\necho \"|dropdown=false image=$cookie\"\necho \"---\"\n\nif [[ -x $fortune ]]; then\n  echo \"Next cookie|refresh=true image=$cookie\"\n  echo \"---\"\n  echo \" |trim=false\"\n  $fortune|/usr/bin/sed 's/-/–/g; s/^/    /; s/$/  |font=Avenir size=14 trim=false/'\n  echo \" |trim=false\"\nelse\n  echo \"Fortune is not installed|color=red\"\n  echo \"|trim=false\"\n  echo \"Please install it via Homebrew using this command\"\n  echo \"brew install fortune|font=Courier color=green\"\n  echo \"Then refresh your Bitbar (Preferences ▶ Refresh all)\"\nfi\n"
+				}
+			],
+			"path": "Lifestyle/fortune.5m.sh",
+			"filename": "fortune.5m.sh",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/fortune.5m.sh.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Fortune",
+			"version": "v1.0",
+			"author": "Volker Wieban",
+			"authors": [
+				{
+					"name": "hpcodecraft",
+					"githubUsername": "hpcodecraft",
+					"imageURL": "https://avatars.githubusercontent.com/u/1476865?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows a random fortune quote",
+			"imageURL": "https://cloud.githubusercontent.com/assets/1476865/24081772/fd2011c2-0cb9-11e7-8679-30f1c56c0acd.png",
+			"dependencies": [
+				"bash",
+				"fortune"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:55.270054Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Lifestyle/moon-phase.1h.js",
+					"filename": "moon-phase.1h.js",
+					"content": "#!/usr/local/bin/node\n\n// \u003cbitbar.title\u003eMoon Phase\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eVolker Wieban\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003ehpcodecraft\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eShows the current moon phase\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttps://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n\n// Moon phase calculations taken from https://github.com/tingletech/moon-phase\nDate.prototype.getJulian = function() {\n    return ((this / 86400000) - (this.getTimezoneOffset() / 1440) + 2440587.5);\n};\n\nfunction moon_day(today) {\n    var GetFrac = function(fr) {\n        return (fr - Math.floor(fr));\n    };\n    var thisJD = today.getJulian();\n    var year = today.getFullYear();\n    var degToRad = 3.14159265 / 180;\n    var K0, T, T2, T3, J0, F0, M0, M1, B1, oldJ;\n    K0 = Math.floor((year - 1900) * 12.3685);\n    T = (year - 1899.5) / 100;\n    T2 = T * T;\n    T3 = T * T * T;\n    J0 = 2415020 + 29 * K0;\n    F0 = 0.0001178 * T2 - 0.000000155 * T3 + (0.75933 + 0.53058868 * K0) - (0.000837 * T + 0.000335 * T2);\n    M0 = 360 * (GetFrac(K0 * 0.08084821133)) + 359.2242 - 0.0000333 * T2 - 0.00000347 * T3;\n    M1 = 360 * (GetFrac(K0 * 0.07171366128)) + 306.0253 + 0.0107306 * T2 + 0.00001236 * T3;\n    B1 = 360 * (GetFrac(K0 * 0.08519585128)) + 21.2964 - (0.0016528 * T2) - (0.00000239 * T3);\n    var phase = 0;\n    var jday = 0;\n    while (jday \u003c thisJD) {\n        var F = F0 + 1.530588 * phase;\n        var M5 = (M0 + phase * 29.10535608) * degToRad;\n        var M6 = (M1 + phase * 385.81691806) * degToRad;\n        var B6 = (B1 + phase * 390.67050646) * degToRad;\n        F -= 0.4068 * Math.sin(M6) + (0.1734 - 0.000393 * T) * Math.sin(M5);\n        F += 0.0161 * Math.sin(2 * M6) + 0.0104 * Math.sin(2 * B6);\n        F -= 0.0074 * Math.sin(M5 - M6) - 0.0051 * Math.sin(M5 + M6);\n        F += 0.0021 * Math.sin(2 * M5) + 0.0010 * Math.sin(2 * B6 - M6);\n        F += 0.5 / 1440;\n        oldJ = jday;\n        jday = J0 + 28 * phase + Math.floor(F);\n        phase++;\n    }\n\n    // 29.53059 days per lunar month\n    return (((thisJD - oldJ) / 29.53059));\n}\n\nfunction phase_text(phase) {\n    var txt_phase;\n    if (phase \u003c= 0.0625 || phase \u003e 0.9375) {\n        txt_phase = \"new_moon\";\n    } else if (phase \u003c= 0.1875) {\n        txt_phase = \"waxing_crescent_moon\";\n    } else if (phase \u003c= 0.3125) {\n        txt_phase = \"first_quarter_moon\";\n    } else if (phase \u003c= 0.4375) {\n        txt_phase = \"waxing_gibbous_moon\";\n    } else if (phase \u003c= 0.5625) {\n        txt_phase = \"full_moon\";\n    } else if (phase \u003c= 0.6875) {\n        txt_phase = \"waning_gibbous_moon\";\n    } else if (phase \u003c= 0.8125) {\n        txt_phase = \"last_quarter_moon\";\n    } else if (phase \u003c= 0.9375) {\n        txt_phase = \"waning_crescent_moon\";\n    }\n\n    return txt_phase;\n}\n\nvar phaseLabel = {\n  \"new_moon\"              : \"New moon\",\n  \"waxing_crescent_moon\"  : \"Waxing crescent moon\",\n  \"first_quarter_moon\"    : \"First quarter moon\",\n  \"waxing_gibbous_moon\"   : \"Waxing gibbous moon\",\n  \"full_moon\"             : \"Full moon\",\n  \"waning_gibbous_moon\"   : \"Waning gibbous moon\",\n  \"last_quarter_moon\"     : \"Third quarter moon\",\n  \"waning_crescent_moon\"  : \"Waning crescent moon\",\n};\n\nvar phase     = moon_day(new Date()),\n    phase_str = phase_text(phase),\n    output    = ':' + phase_str + ':|dropdown=false \\n' +\n              '---\\n' +\n              phaseLabel[phase_str] + '\\n' +\n              \"Completed \" + Math.round(phase*100) + \"% of lunar cycle\";\n\nconsole.log(output);\n"
+				}
+			],
+			"path": "Lifestyle/moon-phase.1h.js",
+			"filename": "moon-phase.1h.js",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/moon-phase.1h.js.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Moon Phase",
+			"version": "v1.0",
+			"author": "Volker Wieban",
+			"authors": [
+				{
+					"name": "hpcodecraft",
+					"githubUsername": "hpcodecraft",
+					"imageURL": "https://avatars.githubusercontent.com/u/1476865?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the current moon phase",
+			"imageURL": "https://cloud.githubusercontent.com/assets/1476865/24201253/ce0d8c5e-0f0f-11e7-8e44-503654407850.png",
+			"dependencies": [
+				"node"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:55.654084Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Time/ddate.30m.js",
+					"filename": "ddate.30m.js",
+					"content": "#! /usr/local/bin/node\n\n// \u003cbitbar.title\u003eDiscordian Date\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eVolker Wieban\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003ehpcodecraft\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eShows the current date of the Discordian calendar\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttps://user-images.githubusercontent.com/1476865/69000513-2dee4b00-08d1-11ea-9d23-c4c5aaa8d815.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003ebash,node\u003c/bitbar.dependencies\u003e\n\n// SETUP\n// You need to have node installed for this to work\n// On Mac OS with Homebrew, `brew install node` will set you up\n\n// JS port of ddate\n// Copypasta'ed from:\n// https://github.com/ishmayeck/node-ddate/blob/master/ddate.js\n\nconst days = [\n  { l: \"Sweetmorn\", s: \"SM\" },\n  { l: \"Boomtime\", s: \"BT\" },\n  { l: \"Pungenday\", s: \"PD\" },\n  { l: \"Prickle-Prickle\", s: \"PP\" },\n  { l: \"Setting Orange\", s: \"SO\" }\n];\n\nconst seasons = [\n  { l: \"Chaos\", s: \"Chs\" },\n  { l: \"Discord\", s: \"Dsc\" },\n  { l: \"Confusion\", s: \"Cfn\" },\n  { l: \"Bureaucracy\", s: \"Bcy\" },\n  { l: \"The Aftermath\", s: \"Afm\" }\n];\n\nconst holydays = {\n  Chaos: {\n    5: \"Mungday\",\n    50: \"Chaoflux\"\n  },\n  Discord: {\n    5: \"Mojoday\",\n    50: \"Discoflux\"\n  },\n  Confusion: {\n    5: \"Syaday\",\n    50: \"Confuflux\"\n  },\n  Bureaucracy: {\n    5: \"Zaraday\",\n    50: \"Bureflux\"\n  },\n  \"The Aftermath\": {\n    5: \"Maladay\",\n    50: \"Afflux\"\n  }\n};\n\nconst minute = 1000 * 60;\nconst day = minute * 60 * 24;\nconst year = day * 365;\n\nconst DDate = function(epooch) {\n  /* for reference, epoch is Sweetmorn, 1 Chaos 3136 */\n  this.date = {};\n\n  this.initificate = function(epooch) {\n    epooch -= new Date().getTimezoneOffset() * minute;\n    const leps = Math.floor(epooch / year / 4);\n    epooch -= leps * day;\n\n    let cur = Math.floor((epooch % year) / day);\n    const flarf = Math.floor(epooch / (day * 365)) + 3136;\n    const ist = (flarf - 3130) % 4 == 0;\n    this.tabby = ist \u0026\u0026 cur == 59;\n    if (ist \u0026\u0026 cur \u003e 59) cur -= 1;\n\n    const gwar = Math.floor(cur % 73) + 1;\n    const sn = Math.floor(cur / 73);\n    let woody = 0;\n    for (let i = 1; i \u003c= cur; i++) {\n      woody = woody == 4 ? 0 : woody + 1;\n    }\n    const hoyl = holydays[seasons[sn].l][gwar] || false;\n    this.numricks = [woody, sn, gwar, flarf, hoyl];\n    if (this.tabby) return { tibs: true, year: flarf };\n    return {\n      tibs: false,\n      day: days[woody],\n      season: seasons[sn],\n      date: gwar,\n      year: flarf,\n      holyday: hoyl\n    };\n  };\n\n  this.numberize = function(num) {\n    const thtaghn = num % 100 \u003e 9 \u0026\u0026 num % 100 \u003c 15;\n    switch (num % 10) {\n      case 1:\n        return num + (thtaghn ? \"th\" : \"st\");\n      case 2:\n        return num + (thtaghn ? \"th\" : \"nd\");\n      case 3:\n        return num + (thtaghn ? \"th\" : \"rd\");\n      case 4:\n      default:\n        return num + \"th\";\n    }\n  };\n\n  this.toOldImmediateDateFormat = function() {\n    return (\n      this.date.day.l +\n      \", the \" +\n      this.numberize(this.date.date) +\n      \" day of \" +\n      this.date.season.l +\n      \" in the YOLD \" +\n      this.date.year\n    );\n  };\n\n  this.toDateString = function() {\n    return this.format(\"%{%A, %B %e%}, %Y YOLD\");\n  };\n\n  this.getDate = function() {\n    return this.date;\n  };\n\n  this.format = function(str) {\n    if (!str) return;\n    let r = \"\";\n    let stopit = false;\n    let tibsing = false;\n    for (let i = 0; i \u003c str.length; i++) {\n      if (stopit) break;\n      if (str[i] == \"%\" \u0026\u0026 str[i + 1] == \"}\") tibsing = (i += 2) == Infinity;\n      if (tibsing) continue;\n      if (str[i] == \"%\") {\n        switch (str[i + 1]) {\n          case \"A\":\n            r += days[this.numricks[0]].l;\n            break;\n          case \"a\":\n            r += days[this.numricks[0]].s;\n            break;\n          case \"B\":\n            r += seasons[this.numricks[1]].l;\n            break;\n          case \"b\":\n            r += seasons[this.numricks[1]].s;\n            break;\n          case \"d\":\n            r += this.numricks[2];\n            break;\n          case \"e\":\n            r += this.numberize(this.numricks[2]);\n            break;\n          case \"H\":\n            r += this.numricks[4] || \"\";\n            break;\n          case \"N\":\n            stopit = !Boolean(this.numricks[4]);\n            break;\n          case \"n\":\n            r += \"\\n\";\n            break;\n          case \"t\":\n            r += \"\\t\";\n            break;\n          case \"{\":\n            // if(this.tabby) tibsing = ((r += \"St. Tib's Day\") != Infinity);\n            if (this.tabby) tibsing = (r += \"\") != Infinity;\n            break;\n          case \".\":\n            r += \"I've nothing to say to you. (yet)\";\n            break;\n          case \"Y\":\n            r += this.numricks[3];\n            break;\n          default:\n            r += str[i];\n            break;\n        }\n        i++;\n      } else {\n        r += str[i];\n      }\n    }\n    return r;\n  };\n\n  this.date = this.initificate(epooch || new Date().getTime());\n};\n\n// ----------------------------------------\n// Bitbar script\n// ----------------------------------------\n\nconst color = \"goldenrod\";\nconst specialDayColor = \"seagreen\";\n\n// Current date/time\nconst d = new Date();\n\n// DDate format\nconst shortDate = \"%a, %b %e\";\nconst longDate = `%A|color=${color}%nThe %e day of %B|color=${color}%nIn %Y Year of Our Lady of Discord|color=${color}%n`;\n\n// Display Special Day\nlet specialDay = false;\nconst dd = new DDate();\nconst ddProps = dd.getDate();\n\nif (ddProps.tibs) {\n  specialDay = \"St. Tib's Day\";\n} else if (ddProps.holyday) {\n  specialDay = ddProps.holyday;\n} else if (d.getDay() === 5) {\n  specialDay = \"Hot Dog Day\";\n}\n\nconst output =\n  dd.format(shortDate) +\n  `|dropdown=false color=${color}\\n` +\n  \"---\\n\" +\n  dd.format(longDate) +\n  (specialDay ? \"\\nIt's \" + specialDay + `!|color=${specialDayColor}` : \"\");\n\nconsole.log(output);\n"
+				}
+			],
+			"path": "Time/ddate.30m.js",
+			"filename": "ddate.30m.js",
+			"dir": "Time",
+			"docsPlugin": "Time/ddate.30m.js.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Discordian Date",
+			"version": "v1.0",
+			"author": "Volker Wieban",
+			"authors": [
+				{
+					"name": "hpcodecraft",
+					"githubUsername": "hpcodecraft",
+					"imageURL": "https://avatars.githubusercontent.com/u/1476865?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Shows the current date of the Discordian calendar",
+			"imageURL": "https://user-images.githubusercontent.com/1476865/69000513-2dee4b00-08d1-11ea-9d23-c4c5aaa8d815.png",
+			"dependencies": [
+				"bash",
+				"node"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:05.741891Z",
+			"vars": null
+		}
+	]
+}

@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Web/edd.15m.py",
+				"filename": "edd.15m.py",
+				"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n\n# Easy Digital Downloads\n#\n# \u003cbitbar.title\u003eEasy Digital Downloads\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eZack Katz (zack@katz.co)\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ezackkatz\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003e\u003c/bitbar.image\u003e\n#\n# Fetch EDD sales for the day. Change your API domain, key, token, and currency as necessary.\n#\n# See http://docs.easydigitaldownloads.com/article/1135-edd-rest-api---stats for the API used\n# See http://docs.easydigitaldownloads.com/article/1131-edd-rest-api-introduction for general REST API info\n\nimport json\nimport urllib2\nimport calendar\nimport datetime\nfrom datetime import timedelta\n\ndomain = 'https://domain.co'\napi_key = 'yourAPIkey'\napi_token = 'yourAPItoken'\n\ndef get_edd():\n\n  if api_key == \"\":\n    return False\n\n  opener = urllib2.build_opener()\n  opener.addheaders = [('User-Agent', 'Mozilla/5.0')]\n  edd_stats = json.load( opener.open( domain + '/edd-api/stats/?key=' + api_key + '\u0026token=' + api_token ) )\n\n  try:\n    response = edd_stats\n  except KeyError:\n    return False\n\n  return response\n\ntry:\n  edd_data = get_edd()\n\n  # Get how many days have passed this month\n  now = datetime.datetime.now()\n  days_so_far = now.day\n\n  # Get how many days there were last month\n  last_month = now.replace(day=1) - timedelta(days=1)\n  days_last_month = calendar.monthrange(last_month.year, last_month.month)[1]\n\n  print 'Today: ${0:,.2f} from {1:,.0f} sales'.format( edd_data['stats']['earnings']['today'], float(edd_data['stats']['sales']['today']) )\n  print '---' # Show each of the next lines in a drop-down\n  print 'Current Month: ${0:,.2f} from {1:,.0f} sales'.format( edd_data['stats']['earnings']['current_month'], float(edd_data['stats']['sales']['current_month']))\n  print '${0:,.2f} daily average, ${1:,.2f} ASP'.format( float( edd_data['stats']['earnings']['current_month'] / days_so_far ), float(edd_data['stats']['earnings']['current_month'] / int(edd_data['stats']['sales']['current_month'])))\n  print 'Last Month: ${0:,.2f} from {1:,.0f} sales'.format( edd_data['stats']['earnings']['last_month'], float(edd_data['stats']['sales']['last_month']) )\n  print '${0:,.2f} daily average, ${1:,.2f} ASP'.format( float(edd_data['stats']['earnings']['last_month'] / days_last_month), float(edd_data['stats']['earnings']['last_month'] / int(edd_data['stats']['sales']['last_month'])))\n  print 'Total: ${0:,.2f} from {1:,.0f} sales'.format(edd_data['stats']['earnings']['totals'], float(edd_data['stats']['sales']['totals']))\n\nexcept Exception as inst:\n  print 'Error fetching stats'\n  print '---'\n  print type(inst)     # the exception instance\n  print inst.args      # arguments stored in .args\n  print inst\n"
+			}
+		],
+		"path": "Web/edd.15m.py",
+		"filename": "edd.15m.py",
+		"dir": "Web",
+		"docsPlugin": "Web/edd.15m.py.html",
+		"docsCategory": "Web.html",
+		"pathSegments": [
+			"Web"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Web",
+				"text": "Web",
+				"isLast": true
+			}
+		],
+		"title": "Easy Digital Downloads",
+		"version": "",
+		"author": "Zack Katz (zack@katz.co)",
+		"authors": [
+			{
+				"name": "Zack Katz",
+				"githubUsername": "zackkatz",
+				"imageURL": "https://avatars.githubusercontent.com/u/870979?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:09.682719Z",
+		"vars": null
+	}
+}

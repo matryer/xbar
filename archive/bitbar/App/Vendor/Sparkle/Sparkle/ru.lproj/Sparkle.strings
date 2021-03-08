@@ -1,0 +1,79 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ загружен и готов к использованию! Хотите установить и перезапустить %1$@?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "Во время работы %1$@ с тома, предназначенного только для чтения, как например, образа диска или накопителя на оптических дисках, его невозможно обновить. Переместите %1$@ в Папку приложений, перезапустите его оттуда и повторите попытку.";
+
+"%@ %@ is currently the newest version available." = "В настоящий момент %1$@ %2$@ является новейшей версией.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ теперь доступен – вы имеете %3$@. Хотите загрузить его сейчас?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ загружено";
+
+"%@ of %@" = "%1$@ из %2$@";
+
+"A new version of %@ is available!" = "Имеется новая версия %@!";
+
+"A new version of %@ is ready to install!" = "Новая версия %@ готова к установке!";
+
+"An error occurred in retrieving update information. Please try again later." = "Произошла ошибка при извлечении информации обновления. Повторите попытку позже.";
+
+"An error occurred while downloading the update. Please try again later." = "Произошла ошибка при загрузке обновления. Повторите попытку позже.";
+
+"An error occurred while extracting the archive. Please try again later." = "Произошла ошибка при извлечении архива. Повторите попытку позже.";
+
+"An error occurred while installing the update. Please try again later." = "Произошла ошибка при установке обновления. Повторите попытку позже.";
+
+"An error occurred while parsing the update feed." = "Ошибка произошла при извлечении канала обновления.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Произошла ошибка при перезапуске %1$@, но при последующем запуске %1$@ будет доступна новая версия.";
+
+/* the unit for bytes */
+"B" = "Б";
+
+"Cancel" = "Отменить";
+
+"Cancel Update" = "Отменить обновление";
+
+"Checking for updates..." = "Проверяю наличие обновлений…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Загружаю обновление…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Извлекаю обновление…";
+
+/* the unit for gigabytes */
+"GB" = "ГБ";
+
+"Install and Relaunch" = "Установить и перезапустить";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Устанавливаю обновление…";
+
+/* the unit for kilobytes */
+"KB" = "КБ";
+
+/* the unit for megabytes */
+"MB" = "МБ";
+
+"OK" = "OK";
+
+"Ready to Install" = "Готов к установке";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Должен ли %1$@ выполнять автоматическую проверку обновлений? Вы всегда можете выполнять проверку обновлений вручную в меню %1$@.";
+
+"Update Error!" = "Ошибка при обновлении!";
+
+"Updating %@" = "Обновляю %@";
+
+"You already have the newest version of %@." = "Вы уже имеете самую новую версию %@.";
+
+"You're up-to-date!" = "У вас все обновлено!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "Узнать больше…";

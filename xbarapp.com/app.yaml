@@ -1,0 +1,15 @@
+service: default
+runtime: go115
+
+handlers:
+- url: /docs/
+  static_dir: public/docs
+- url: /public/img/
+  static_dir: public/img
+- url: /public/css/
+  static_dir: public/css
+- url: /index.html
+  static_files: public/plugins/index.html
+  upload: public/plugins/index.html
+- url: /.*
+  script: auto

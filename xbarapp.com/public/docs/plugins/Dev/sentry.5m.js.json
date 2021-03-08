@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/sentry.5m.js",
+				"filename": "sentry.5m.js",
+				"content": "#!/usr/bin/env /usr/local/bin/node\n\n// \u003cbitbar.title\u003eSentry\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eTommy Brunn\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003enevon\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eShows your most recent error reports from Sentry (https://getsentry.com)\u003c/bitbar.desc\u003e\n// \u003cbitbar.dependencies\u003enode.js\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/GdEXQfY.png\u003c/bitbar.image\u003e\n\n// jshint asi:true\nvar https = require('https')\n\n/* EDIT HERE */\nvar AUTH_TOKEN = ''\nvar ORGANIZATION = ''\nvar PROJECT = ''\nvar ISSUE_COUNT = 5\n/* DON'T EDIT BELOW */\n\nvar API_URL = 'https://' + AUTH_TOKEN + ':@app.getsentry.com/api/0/'\nvar PROJECT_URL = 'https://app.getsentry.com/' + ORGANIZATION + '/' + PROJECT\nvar TITLE = [ORGANIZATION + '/' + PROJECT, '@', 'Sentry'].join(' ')\n\nfunction statusColor (issue) {\n  var status = issue.status\n  var isAssigned = issue.assignedTo !== null\n  if (status === 'resolved' || status === 'muted') {\n    return 'green'\n  }\n  if (status === 'unresolved' \u0026\u0026 isAssigned) {\n    return 'orange'\n  }\n\n  return 'red'\n}\n\nfunction timeSince (date) {\n  if (typeof date !== 'object') {\n    date = new Date(date)\n  }\n\n  var seconds = Math.floor((new Date() - date) / 1000)\n  var intervalType\n\n  var interval = Math.floor(seconds / 31536000)\n  if (interval \u003e= 1) {\n    intervalType = 'year'\n  } else {\n    interval = Math.floor(seconds / 2592000)\n    if (interval \u003e= 1) {\n      intervalType = 'month'\n    } else {\n      interval = Math.floor(seconds / 86400)\n      if (interval \u003e= 1) {\n        intervalType = 'day'\n      } else {\n        interval = Math.floor(seconds / 3600)\n        if (interval \u003e= 1) {\n          intervalType = 'hour'\n        } else {\n          interval = Math.floor(seconds / 60)\n          if (interval \u003e= 1) {\n            intervalType = 'minute'\n          } else {\n            interval = seconds\n            intervalType = 'second'\n          }\n        }\n      }\n    }\n  }\n\n  if (interval \u003e 1 || interval === 0) {\n    intervalType += 's'\n  }\n\n  return interval + ' ' + intervalType\n}\n\nfunction trimString (str, n) {\n  n = n || 72\n  return (str.length \u003e n) ? str.substr(0, n - 1) + '…' : str\n}\n\nfunction formatTitle (issue) {\n  return [trimString(issue.title), ' | href=', issue.permalink, ' size=11', ' color=' + statusColor(issue)].join('')\n}\n\nfunction formatCulprit (issue) {\n  return [trimString(issue.culprit), '| size=10'].join('')\n}\n\nfunction formatCount (count) {\n  var str = (count === 1) ? 'occurrence' : 'occurrences'\n  return [count, str, '| size=10'].join(' ')\n}\n\nfunction formatTimes (issue) {\n  var lastSeen = timeSince(new Date(issue.lastSeen)) + ' ago'\n  var firstSeen = timeSince(new Date(issue.firstSeen)) + ' old'\n  return [lastSeen, '-', firstSeen, '| size=10'].join(' ')\n}\n\nfunction formatIssue (issue) {\n  return [\n    formatTitle(issue),\n    formatCulprit(issue),\n    formatTimes(issue),\n    formatCount(issue.count)\n  ].join('\\n')\n}\n\nfunction handleResponse (body) {\n  var output = body.map(formatIssue).join('\\n---\\n')\n  console.log('Sentry' + '\\n---\\n' + TITLE + ' | href=' + PROJECT_URL + '\\n---\\n' + output)\n}\n\nhttps.get(API_URL + 'projects/' + ORGANIZATION + '/' + PROJECT + '/issues/?query=is%3Aunresolved\u0026limit=' + ISSUE_COUNT + '\u0026sort=date\u0026statsPeriod=24h', function (res) {\n  var body = ''\n  res.on('data', function (data) {\n    body += data\n  })\n  res.on('end', function () {\n    handleResponse(JSON.parse(body))\n  })\n})\n"
+			}
+		],
+		"path": "Dev/sentry.5m.js",
+		"filename": "sentry.5m.js",
+		"dir": "Dev",
+		"docsPlugin": "Dev/sentry.5m.js.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Sentry",
+		"version": "v1.0",
+		"author": "Tommy Brunn",
+		"authors": [
+			{
+				"name": "Tommy Brunn",
+				"githubUsername": "nevon",
+				"imageURL": "https://avatars.githubusercontent.com/u/83586?v=4",
+				"bio": "Open source maintainer and lead engineer for developer services at Klarna",
+				"primary": true
+			}
+		],
+		"desc": "Shows your most recent error reports from Sentry (https://getsentry.com)",
+		"imageURL": "http://i.imgur.com/GdEXQfY.png",
+		"dependencies": [
+			"node.js"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.146295Z",
+		"vars": null
+	}
+}

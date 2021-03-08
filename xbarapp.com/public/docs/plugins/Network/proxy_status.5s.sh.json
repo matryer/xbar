@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/proxy_status.5s.sh",
+				"filename": "proxy_status.5s.sh",
+				"content": "#!/bin/bash\n#\n# Proxy Status and toggler\n#\n# \u003cbitbar.title\u003eProxy Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCameron Currie\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecwc\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays proxy status and allows toggling it on and off.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/7dEg9ki.png\u003c/bitbar.image\u003e\n\ninterface=\"wi-fi\" # You can also set this to e.g. \"ethernet\"\n\nproxy_type=\"SOCKS\"\nproxy_get=\"-getsocksfirewallproxy\"\nproxy_set=\"-setsocksfirewallproxystate\"\n\nstate=$(networksetup $proxy_get $interface | grep \"No\")\n\nif [ \"$1\" = 'toggle' ]; then\n    # Prompts for the user's password, then toggles the SOCKS proxy state\n  if [ -n \"$state\" ]; then\n    networksetup $proxy_set $interface on\n  else\n    networksetup $proxy_set $interface off\n  fi\n\n  exit\nfi\n\nif [ -n \"$state\" ]; then\n  state_icon=\"☐\"\n  action_toggle=\"Enable\"\nelse\n  state_icon=\"☑\"\n  action_toggle=\"Disable\"\nfi\n\necho \"$state_icon $proxy_type | dropdown=false\"\n\necho \"---\"\n\necho \"$action_toggle Proxy | bash='$0' param1=toggle terminal=false refresh=true\"\n"
+			}
+		],
+		"path": "Network/proxy_status.5s.sh",
+		"filename": "proxy_status.5s.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/proxy_status.5s.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Proxy Status",
+		"version": "v1.0",
+		"author": "Cameron Currie",
+		"authors": [
+			{
+				"name": "Cameron Currie",
+				"githubUsername": "cwc",
+				"imageURL": "https://avatars.githubusercontent.com/u/115420?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays proxy status and allows toggling it on and off.",
+		"imageURL": "http://i.imgur.com/7dEg9ki.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:59.585336Z",
+		"vars": null
+	}
+}

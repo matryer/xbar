@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Simon",
+		"githubUsername": "warmup72",
+		"imageURL": "https://avatars.githubusercontent.com/u/30272587?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Tools/cryptbar.5m.sh",
+					"filename": "cryptbar.5m.sh",
+					"content": "#!/bin/bash\n# \u003cbitbar.title\u003eCryptBar\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSimon Egerland\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ewarmup72\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eAutomounter for GoCryptFS\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://warmup.mypump.de/cryptbar10.jpg\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eShell-Script for GoCryptFS\u003c/bitbar.dependencies\u003e\n\n# letzten BAckslash im Pfad wenn vorhanden entfernen\n# Mount - Fehler anzeigen, wenn Busy\n\ngocryptfspath=\"/usr/local/bin/\"\nhomepath=$(defaults read com.matryer.Bitbar | grep \"pluginsDirectory\" | cut -d\"\\\"\" -f 2)\n\n# --- Functions ---\nfunction checkmount {\n\tcolor[$i]=\"red\"\n\tstatus[$i]=\"not mounted | color=HotPink \"\n\tif [ ! -d \"${crypt[$i]}\" ]; then pathcheck[$i]=\"Crypt-Path not found\\n\"; fi\n\tif [ ! -d \"${mountpoint[$i]}\" ]; then pathcheck[$i]=\"${pathcheck[$i]}Mount-Path not found\\n\"; fi\n\tif [ ! -e \"${password[$i]}\" ]; then pathcheck[$i]=\"${pathcheck[$i]}Password-File not found\"; fi\n\tif [ \"${pathcheck[$i]}\" == \"\" ]; then\n    \tcheck=$(df -h | grep -i -c -a \"${mountpoint[$i]}\")\n    \tif [ \"$check\" != \"1\" ]; then\n\t\t\tcolor[$i]=\"gainsboro\"\n    \telse\n\t\t\tcolor[$i]=\"black\"\n\t\t\tstatus[$i]=\"mounted | color=DarkGreen \"\n    \tfi\n\tfi\n}\n\nfunction read_para {\n\tif [ ! -e \"${homepath}/.cryptbar_para\" ]; then\n\t\techo \"#Path to Crypt-Folder;Mounting Point;Password-File;Auto Mount [on|off];Parameters for gocryptfs (optional);\" \u003e \"$homepath/.cryptbar_para\"\n\t\techo \"CryptPath;Mountpoint;Password-File;AutoMount;Params;\" \u003e\u003e \"$homepath/.cryptbar_para\"\n\tfi\n\ti=0\n\twhile read -r line; do\n\t\tif [ \"${line:0:1}\" == \"#\" ]; then continue; fi\n\t\tcrypt[$i]=$(cut -d';' -f 1 \u003c\u003c\u003c \"${line}\"); crypt[$i]=${crypt[$i]%/}\n\t\t#if [ \"${crypt[$i]:(-1)}\" == \"/\" ]; then crypt[$i]=$(echo \"${crypt[$i]%%?}\"); fi\n    \tmountpoint[$i]=$(cut -d';' -f 2 \u003c\u003c\u003c \"${line}\"); mountpoint[$i]=${mountpoint[$i]%/}\n\t\t#if [ \"${mountpoint[$i]:(-1)}\" == \"/\" ]; then mountpoint[$i]=$(echo \"${mountpoint[$i]%%?}\"); fi\n    \tpassword[$i]=$(cut -d';' -f 3 \u003c\u003c\u003c \"${line}\"); password[$i]=${password[$i]%/}\n\t\tauto[$i]=$(cut -d';' -f 4 \u003c\u003c\u003c \"${line}\")\n    \tparams[$i]=$(cut -d';' -f 5 \u003c\u003c\u003c \"${line}\")\n    \tif [ \"${params[$i]}\" == \"\" ]; then params[$i]=\"-q\"; fi\n\t\tcheckmount\n\t\ti=$((i + 1))\n\tdone \u003c \"$homepath/.cryptbar_para\"\n\tlast=$((i - 1))\n}\n\nfunction write_para {\n\techo \"#Path to Crypt-Folder;Mounting Point;Password-File;Auto Mount [on|off];Parameters for gocryptfs (optional);\" \u003e \"$homepath/.cryptbar_para\"\n\t#for((i=0; i\u003c${#crypt[*]}; i++))\n\tfor((i=0; i\u003c=last; i++))\n\tdo\n\t\techo \"${crypt[$i]};${mountpoint[$i]};${password[$i]};${auto[$i]};${params[$i]};\" \u003e\u003e \"$homepath/.cryptbar_para\"\n\tdone\n}\n\nfunction mount {\n\tif [ \"${status[$i]:0:7}\" != \"mounted\" ]; then\n\t\tline=\"-passfile=${password[$i]} ${params[$i]} ${crypt[$i]} ${mountpoint[$i]}\"\n\t\t$gocryptfspath/gocryptfs -passfile=\"${password[$i]}\" \"${params[$i]}\" \"${crypt[$i]}\" \"${mountpoint[$i]}\" \u0026\u003e/dev/null\n\t\tcode=\"$?\"\n\t\tcheckmount\n\t\tif\t[ $code -ne 0 ]; then\n\t\t\tprefix=\"⚠️\"\n\t\t\terror[$i]=\"⚠️\"\n\t\t\tosascript -e 'display notification \"'\"Error $code mounting ${mountpoint[$i]} \"'\" with title \"'\"GoCryptFS-Mounter\"'\" sound name \"glass\"'\n\t\t\tcolor[$i]=\"red\"\n\t\telse\n\t\t\tprefix=\"\"\n\t\t\terror[$i]=\"\"\n\t\tfi\n\tfi\n}\n\nfunction menu {\n\techo \"${prefix}🔐\"\n\techo \"---\"\n\techo \"Mount Point Path | color=black\"\n\tfor((i=0; i\u003c${#menu[*]}; i++))\n\tdo\n\t\techo \"${menu[$i]}\"\n\t\techo \"${button[$i]}\"\n\t\tif [ \"${button2[$i]}\" != \"\" ]; then echo \"${button2[$i]}\"; fi\n\t\techo \"--Info | color=black\"\n\t\techo \"----Crypt Path: ${crypt[$i]} | color=RoyalBlue\"\n\t\techo \"----Mounted on: ${mountpoint[$i]} | color=RoyalBlue\"\n\t\techo \"----Auto Mount: ${auto[$i]} | color=black bash='$0' param1=autoswitch param2='$i' terminal=false refresh=true\u003e\"\n\t\techo \"----Status: ${status[$i]}\"\n\tdone\n\techo \"---\"\n\techo \"Edit Table | color=black bash='$0' param1=edit terminal=false refresh=true\u003e\"\n}\n\n# --- Buttons ---\nif [ \"$1\" = 'mount' ]; then\n    read_para\n\ti=$2\n\tauto[$i]=\"on\"\n\tmount\n    exit\nfi\n\nif [ \"$1\" = 'umount' ]; then\n    read_para\n\ti=$2\n\tumount \"${crypt[$i]}\" \u0026\u003e/dev/null\n\tcode=\"$?\"\n\tif\t[ $code -ne 0 ]; then\n\t\tosascript -e 'display notification \"'\"Error $code - Drive is busy!\"'\" with title \"'\"GoCryptFS-Mounter\"'\" sound name \"glass\"'\n    fi\n\texit\nfi\n\nif [ \"$1\" = 'open' ]; then\n    read_para\n\ti=$2\n\topen \"${mountpoint[$i]}\"\n    exit\nfi\n\nif [ \"$1\" = 'edit' ]; then\n    open \"${homepath}/.cryptbar_para\"\n    exit\nfi\n\nif [ \"$1\" = 'autoswitch' ]; then\n    read_para\n\ti=$2\n\tif [ \"${auto[$i]}\" = \"on\" ]; then auto[$i]=\"off\"; else auto[$i]=\"on\"; fi\n\twrite_para\n    exit\nfi\n\n# --- MAIN ---\nread_para\nfor((i=0; i\u003c=last; i++))\ndo\n\tif [ \"${auto[$i]}\" == \"on\" ] \u0026\u0026 [ \"${color[$i]}\" != \"red\" ]; then\n    \tmount\n\tfi\n\tif\t[ \"${pathcheck[$i]}\" != \"\" ]; then\n\t\tbutton[$i]=\"\"\n\t\tbutton2[$i]=\"--${pathcheck[$i]}\"\n\telse\n\t\tif\t[ \"${status[$i]:0:7}\" != \"mounted\" ]; then\n\t\t\tbutton[$i]=\"\"\n\t\t\tbutton2[$i]=\"--Mount | color=black bash='$0' param1=mount param2='$i' terminal=false refresh=true\u003e\"\n\t\telse\n\t\t\tbutton[$i]=\"--Open | color=black bash='$0' param1=open param2='$i' terminal=false refresh=true\u003e\"\n\t\t\tif [ \"${auto[$i]}\" != \"on\" ]; then\n\t\t\t\tbutton2[$i]=\"--Umount | color=black bash='$0' param1=umount param2='$i' terminal=false refresh=true\u003e\"\n\t\t\telse\n\t\t\t\tbutton2[$i]=\"\"\n\t\t\tfi\n\t\tfi\n\tfi\n\tmenu[$i]=\"   ▶︎ ${error[$i]}${mountpoint[$i]} | color=${color[$i]} trim=false\"\ndone\n\nmenu\n\nexit\n#----------------------------------------------\n"
+				}
+			],
+			"path": "Tools/cryptbar.5m.sh",
+			"filename": "cryptbar.5m.sh",
+			"dir": "Tools",
+			"docsPlugin": "Tools/cryptbar.5m.sh.html",
+			"docsCategory": "Tools.html",
+			"pathSegments": [
+				"Tools"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Tools",
+					"text": "Tools",
+					"isLast": true
+				}
+			],
+			"title": "CryptBar",
+			"version": "v1.0",
+			"author": "Simon Egerland",
+			"authors": [
+				{
+					"name": "Simon",
+					"githubUsername": "warmup72",
+					"imageURL": "https://avatars.githubusercontent.com/u/30272587?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Automounter for GoCryptFS",
+			"imageURL": "http://warmup.mypump.de/cryptbar10.jpg",
+			"dependencies": [
+				"Shell-Script for GoCryptFS"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:07.542858Z",
+			"vars": null
+		}
+	]
+}

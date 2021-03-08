@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/deleteVSCodeTemp.sh",
+				"filename": "deleteVSCodeTemp.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eDelete VSCode Temp Files\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author.github\u003eAlexPoulsen\u003c/bitbar.author.github\u003e\n# \u003cbitbar.author\u003eAlexPoulsen\u003c/bitbar.author\u003e\n# \u003cbitbar.desc\u003eDeletes Visual Studio Code Temporary Files\u003c/bitbar.desc\u003e\n\nif [ \"$1\" = 'clean' ]; then\n  sudo find /Users/macbookpro/Documents/VSCode\\ Projects/ -name \"temp*\" -d -ok rm {} \\;\n  # shellcheck disable=SC2162\n  read -p \"Files are about to be deleted, continue? [Y/n] \" check\n  if [[ ( $check == \"Y\" ) || ( $check == \"y\" ) ]]; then\n    sudo find /Users/macbookpro/Documents/VSCode\\ Projects/ -name \"temp*\" -d -exec rm {} \\;\n    echo \"Deleted from default directory\"\n  else\n    echo \"Files not deleted\"\n  fi\nfi\n\necho \"🗑\"\necho '---'\necho \"Clean Temp Files | bash='$0' param1=clean terminal=true\""
+			}
+		],
+		"path": "System/deleteVSCodeTemp.sh",
+		"filename": "deleteVSCodeTemp.sh",
+		"dir": "System",
+		"docsPlugin": "System/deleteVSCodeTemp.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "Delete VSCode Temp Files",
+		"version": "v1.0",
+		"author": "AlexPoulsen",
+		"authors": [
+			{
+				"name": "Alix Poulsen",
+				"githubUsername": "AlexPoulsen",
+				"imageURL": "https://avatars.githubusercontent.com/u/9259671?v=4",
+				"bio": "probably getting distracted ⚧",
+				"primary": true
+			}
+		],
+		"desc": "Deletes Visual Studio Code Temporary Files",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:03.121554Z",
+		"vars": null
+	}
+}

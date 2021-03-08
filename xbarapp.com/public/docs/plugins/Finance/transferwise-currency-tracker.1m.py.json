@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Finance/transferwise-currency-tracker.1m.py",
+				"filename": "transferwise-currency-tracker.1m.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n# \u003cbitbar.title\u003eCurrency Tracker Transferwise\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAndrew Keating\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eandrewzk\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eKeep an eye on Transferwise currency exchange rates\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://andrewzk.github.io/gh-pages/transferwise.png\u003c/bitbar.image\u003e\n\nimport urllib2\nimport json\n\nTRANSFERWISE_KEY = \"dad99d7d8e52c2c8aaf9fda788d8acdc\"\n\n# Replace with desired currencies\ncurrency_from = 'USD'\ncurrency_to = 'DKK'\n\nurl = \"https://transferwise.com/api/v1/payment/calculate?amount=1\" \\\n      \"\u0026amountCurrency=source\u0026hasDiscount=false\u0026isFixedRate=false\" \\\n      \"\u0026isGuaranteedFixedTarget=false\" \\\n      \"\u0026sourceCurrency={}\u0026targetCurrency={}\".format(currency_from, currency_to)\n\nreq = urllib2.Request(url)\nreq.add_header('X-Authorization-key', TRANSFERWISE_KEY)\n\nresult = json.loads(urllib2.urlopen(req).read())['transferwiseRate']\n\nprint \"{}: {:.2f}\".format(currency_to, result)\nprint \"---\"\nprint \"From: {}\".format(currency_from)\n"
+			}
+		],
+		"path": "Finance/transferwise-currency-tracker.1m.py",
+		"filename": "transferwise-currency-tracker.1m.py",
+		"dir": "Finance",
+		"docsPlugin": "Finance/transferwise-currency-tracker.1m.py.html",
+		"docsCategory": "Finance.html",
+		"pathSegments": [
+			"Finance"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Finance",
+				"text": "Finance",
+				"isLast": true
+			}
+		],
+		"title": "Currency Tracker Transferwise",
+		"version": "1.0",
+		"author": "Andrew Keating",
+		"authors": [
+			{
+				"name": "Andrew Keating",
+				"githubUsername": "andrewzk",
+				"imageURL": "https://avatars.githubusercontent.com/u/2158864?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Keep an eye on Transferwise currency exchange rates",
+		"imageURL": "http://andrewzk.github.io/gh-pages/transferwise.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:54.033863Z",
+		"vars": null
+	}
+}

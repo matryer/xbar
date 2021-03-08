@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/timezonesplus.30s.sh",
+				"filename": "timezonesplus.30s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eTimezones+\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAaron Edell\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eaaronedell\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eRotates current time through four common timezones \u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/Y4nhdZo.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eBash GNU AWK\u003c/bitbar.dependencies\u003e\n\necho -n \"NY \" ; TZ=\":US/Eastern\" date +'%l:%M %p'\necho -n \"SF \" ; TZ=\":US/Pacific\" date +'%l:%M %p'\necho -n \"LN \" ; TZ=\":Europe/London\" date +'%l:%M %p'\necho -n \"HK \" ; TZ=\"Asia/Hong_Kong\" date +'%l:%M %p'\n"
+			}
+		],
+		"path": "Time/timezonesplus.30s.sh",
+		"filename": "timezonesplus.30s.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/timezonesplus.30s.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Timezones+",
+		"version": "v1.0",
+		"author": "Aaron Edell",
+		"authors": [
+			{
+				"name": "AaronEdell",
+				"githubUsername": "aaronedell",
+				"imageURL": "https://avatars.githubusercontent.com/u/11819814?v=4",
+				"bio": "Not a good developer",
+				"primary": true
+			}
+		],
+		"desc": "Rotates current time through four common timezones ",
+		"imageURL": "http://i.imgur.com/Y4nhdZo.png",
+		"dependencies": [
+			"Bash GNU AWK"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:06.616851Z",
+		"vars": null
+	}
+}

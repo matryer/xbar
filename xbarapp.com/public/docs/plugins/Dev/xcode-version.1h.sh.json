@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/xcode-version.1h.sh",
+				"filename": "xcode-version.1h.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eXcode Version\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eFlorian Hirschmann\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ehirschfl\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the Xcode version that is currently selected with xcode-select.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003excodebuild\u003c/bitbar.dependencies\u003e\n\nxcodebuild -version | head -1\n"
+			}
+		],
+		"path": "Dev/xcode-version.1h.sh",
+		"filename": "xcode-version.1h.sh",
+		"dir": "Dev",
+		"docsPlugin": "Dev/xcode-version.1h.sh.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Xcode Version",
+		"version": "v1.0",
+		"author": "Florian Hirschmann",
+		"authors": [
+			{
+				"name": "Florian Hirschmann",
+				"githubUsername": "hirschfl",
+				"imageURL": "https://avatars.githubusercontent.com/u/6018375?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows the Xcode version that is currently selected with xcode-select.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"xcodebuild"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.53673Z",
+		"vars": null
+	}
+}

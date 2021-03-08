@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE013D281A10693600C29B2E /* AHProxySettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE013D271A10693600C29B2E /* AHProxySettingsTest.m */; };
+		BE013D2C1A10696C00C29B2E /* libAHProxySettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BECB2D6C1A0E699400AFA935 /* libAHProxySettings.a */; };
+		BE013D2E1A1069F800C29B2E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE013D2D1A1069F800C29B2E /* SystemConfiguration.framework */; };
+		BE013D301A1069FE00C29B2E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE013D2F1A1069FE00C29B2E /* Security.framework */; };
+		BE013D461A11435700C29B2E /* AHProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = BE013D441A11435700C29B2E /* AHProxy.h */; };
+		BE013D471A11435700C29B2E /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE013D451A11435700C29B2E /* AHProxy.m */; };
+		BE582A611A14741E007A1C11 /* NSTask+useSystemProxies.h in Headers */ = {isa = PBXBuildFile; fileRef = BE582A5F1A14741E007A1C11 /* NSTask+useSystemProxies.h */; };
+		BE582A621A14741E007A1C11 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = BE582A601A14741E007A1C11 /* NSTask+useSystemProxies.m */; };
+		BECB2D701A0E699400AFA935 /* AHProxySettings.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB2D6F1A0E699400AFA935 /* AHProxySettings.h */; };
+		BECB2D721A0E699400AFA935 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB2D711A0E699400AFA935 /* AHProxySettings.m */; };
+		BED077D81A1313E3009690DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BED077D71A1313E3009690DD /* main.m */; };
+		BED077DB1A1313E3009690DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BED077DA1A1313E3009690DD /* AppDelegate.m */; };
+		BED077DD1A1313E3009690DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED077DC1A1313E3009690DD /* Images.xcassets */; };
+		BED077E01A1313E3009690DD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BED077DE1A1313E3009690DD /* MainMenu.xib */; };
+		BED077F51A131708009690DD /* libAHProxySettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BECB2D6C1A0E699400AFA935 /* libAHProxySettings.a */; };
+		BED077F71A13176E009690DD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE013D2F1A1069FE00C29B2E /* Security.framework */; };
+		BED077F81A13177A009690DD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE013D2D1A1069F800C29B2E /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE013D2A1A10696700C29B2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BECB2D641A0E699400AFA935 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BECB2D6B1A0E699400AFA935;
+			remoteInfo = AHProxySettings;
+		};
+		BED077F31A1316FF009690DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BECB2D641A0E699400AFA935 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BECB2D6B1A0E699400AFA935;
+			remoteInfo = AHProxySettings;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE013D271A10693600C29B2E /* AHProxySettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHProxySettingsTest.m; sourceTree = "<group>"; };
+		BE013D2D1A1069F800C29B2E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BE013D2F1A1069FE00C29B2E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BE013D441A11435700C29B2E /* AHProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHProxy.h; sourceTree = "<group>"; };
+		BE013D451A11435700C29B2E /* AHProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHProxy.m; sourceTree = "<group>"; };
+		BE582A5F1A14741E007A1C11 /* NSTask+useSystemProxies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTask+useSystemProxies.h"; sourceTree = "<group>"; };
+		BE582A601A14741E007A1C11 /* NSTask+useSystemProxies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTask+useSystemProxies.m"; sourceTree = "<group>"; };
+		BECB2D6C1A0E699400AFA935 /* libAHProxySettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAHProxySettings.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BECB2D6F1A0E699400AFA935 /* AHProxySettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AHProxySettings.h; sourceTree = "<group>"; };
+		BECB2D711A0E699400AFA935 /* AHProxySettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AHProxySettings.m; sourceTree = "<group>"; };
+		BECB2D771A0E699400AFA935 /* AHProxySettingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AHProxySettingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BECB2D7A1A0E699400AFA935 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BED077D31A1313E3009690DD /* AHProxyExampe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHProxyExampe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BED077D61A1313E3009690DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BED077D71A1313E3009690DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BED077D91A1313E3009690DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BED077DA1A1313E3009690DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BED077DC1A1313E3009690DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BED077DF1A1313E3009690DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BECB2D691A0E699400AFA935 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BECB2D741A0E699400AFA935 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE013D301A1069FE00C29B2E /* Security.framework in Frameworks */,
+				BE013D2E1A1069F800C29B2E /* SystemConfiguration.framework in Frameworks */,
+				BE013D2C1A10696C00C29B2E /* libAHProxySettings.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED077D01A1313E3009690DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED077F51A131708009690DD /* libAHProxySettings.a in Frameworks */,
+				BED077F71A13176E009690DD /* Security.framework in Frameworks */,
+				BED077F81A13177A009690DD /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BECB2D631A0E699400AFA935 = {
+			isa = PBXGroup;
+			children = (
+				BECB2D6E1A0E699400AFA935 /* AHProxySettings */,
+				BECB2D781A0E699400AFA935 /* AHProxySettingsTests */,
+				BED077D41A1313E3009690DD /* AHProxyExampe */,
+				BED077F61A131759009690DD /* Frameworks */,
+				BECB2D6D1A0E699400AFA935 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BECB2D6D1A0E699400AFA935 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BECB2D6C1A0E699400AFA935 /* libAHProxySettings.a */,
+				BECB2D771A0E699400AFA935 /* AHProxySettingsTests.xctest */,
+				BED077D31A1313E3009690DD /* AHProxyExampe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BECB2D6E1A0E699400AFA935 /* AHProxySettings */ = {
+			isa = PBXGroup;
+			children = (
+				BECB2D6F1A0E699400AFA935 /* AHProxySettings.h */,
+				BECB2D711A0E699400AFA935 /* AHProxySettings.m */,
+				BE013D441A11435700C29B2E /* AHProxy.h */,
+				BE013D451A11435700C29B2E /* AHProxy.m */,
+				BE582A5F1A14741E007A1C11 /* NSTask+useSystemProxies.h */,
+				BE582A601A14741E007A1C11 /* NSTask+useSystemProxies.m */,
+			);
+			path = AHProxySettings;
+			sourceTree = "<group>";
+		};
+		BECB2D781A0E699400AFA935 /* AHProxySettingsTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE013D271A10693600C29B2E /* AHProxySettingsTest.m */,
+				BECB2D791A0E699400AFA935 /* Supporting Files */,
+			);
+			path = AHProxySettingsTests;
+			sourceTree = "<group>";
+		};
+		BECB2D791A0E699400AFA935 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BECB2D7A1A0E699400AFA935 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BED077D41A1313E3009690DD /* AHProxyExampe */ = {
+			isa = PBXGroup;
+			children = (
+				BED077D91A1313E3009690DD /* AppDelegate.h */,
+				BED077DA1A1313E3009690DD /* AppDelegate.m */,
+				BED077DC1A1313E3009690DD /* Images.xcassets */,
+				BED077DE1A1313E3009690DD /* MainMenu.xib */,
+				BED077D51A1313E3009690DD /* Supporting Files */,
+			);
+			path = AHProxyExampe;
+			sourceTree = "<group>";
+		};
+		BED077D51A1313E3009690DD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BED077D61A1313E3009690DD /* Info.plist */,
+				BED077D71A1313E3009690DD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BED077F61A131759009690DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE013D2F1A1069FE00C29B2E /* Security.framework */,
+				BE013D2D1A1069F800C29B2E /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BECB2D6A1A0E699400AFA935 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE013D461A11435700C29B2E /* AHProxy.h in Headers */,
+				BE582A611A14741E007A1C11 /* NSTask+useSystemProxies.h in Headers */,
+				BECB2D701A0E699400AFA935 /* AHProxySettings.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BECB2D6B1A0E699400AFA935 /* AHProxySettings */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BECB2D7D1A0E699400AFA935 /* Build configuration list for PBXNativeTarget "AHProxySettings" */;
+			buildPhases = (
+				BECB2D681A0E699400AFA935 /* Sources */,
+				BECB2D691A0E699400AFA935 /* Frameworks */,
+				BECB2D6A1A0E699400AFA935 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AHProxySettings;
+			productName = AHProxySettingsShellExport;
+			productReference = BECB2D6C1A0E699400AFA935 /* libAHProxySettings.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BECB2D761A0E699400AFA935 /* AHProxySettingsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BECB2D801A0E699400AFA935 /* Build configuration list for PBXNativeTarget "AHProxySettingsTests" */;
+			buildPhases = (
+				BECB2D731A0E699400AFA935 /* Sources */,
+				BECB2D741A0E699400AFA935 /* Frameworks */,
+				BECB2D751A0E699400AFA935 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE013D2B1A10696700C29B2E /* PBXTargetDependency */,
+			);
+			name = AHProxySettingsTests;
+			productName = AHProxySettingsShellExportTests;
+			productReference = BECB2D771A0E699400AFA935 /* AHProxySettingsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BED077D21A1313E3009690DD /* AHProxyExampe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BED077F11A1313E3009690DD /* Build configuration list for PBXNativeTarget "AHProxyExampe" */;
+			buildPhases = (
+				BED077CF1A1313E3009690DD /* Sources */,
+				BED077D01A1313E3009690DD /* Frameworks */,
+				BED077D11A1313E3009690DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BED077F41A1316FF009690DD /* PBXTargetDependency */,
+			);
+			name = AHProxyExampe;
+			productName = AHProxyExampe;
+			productReference = BED077D31A1313E3009690DD /* AHProxyExampe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BECB2D641A0E699400AFA935 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Eldon Ahrold";
+				TargetAttributes = {
+					BECB2D6B1A0E699400AFA935 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					BECB2D761A0E699400AFA935 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					BED077D21A1313E3009690DD = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = BECB2D671A0E699400AFA935 /* Build configuration list for PBXProject "AHProxySettings" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BECB2D631A0E699400AFA935;
+			productRefGroup = BECB2D6D1A0E699400AFA935 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BECB2D6B1A0E699400AFA935 /* AHProxySettings */,
+				BECB2D761A0E699400AFA935 /* AHProxySettingsTests */,
+				BED077D21A1313E3009690DD /* AHProxyExampe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BECB2D751A0E699400AFA935 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED077D11A1313E3009690DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED077DD1A1313E3009690DD /* Images.xcassets in Resources */,
+				BED077E01A1313E3009690DD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BECB2D681A0E699400AFA935 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BECB2D721A0E699400AFA935 /* AHProxySettings.m in Sources */,
+				BE013D471A11435700C29B2E /* AHProxy.m in Sources */,
+				BE582A621A14741E007A1C11 /* NSTask+useSystemProxies.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BECB2D731A0E699400AFA935 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE013D281A10693600C29B2E /* AHProxySettingsTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BED077CF1A1313E3009690DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED077DB1A1313E3009690DD /* AppDelegate.m in Sources */,
+				BED077D81A1313E3009690DD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE013D2B1A10696700C29B2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BECB2D6B1A0E699400AFA935 /* AHProxySettings */;
+			targetProxy = BE013D2A1A10696700C29B2E /* PBXContainerItemProxy */;
+		};
+		BED077F41A1316FF009690DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BECB2D6B1A0E699400AFA935 /* AHProxySettings */;
+			targetProxy = BED077F31A1316FF009690DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BED077DE1A1313E3009690DD /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BED077DF1A1313E3009690DD /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BECB2D7B1A0E699400AFA935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BECB2D7C1A0E699400AFA935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BECB2D7E1A0E699400AFA935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = AHProxySettings;
+			};
+			name = Debug;
+		};
+		BECB2D7F1A0E699400AFA935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = AHProxySettings;
+			};
+			name = Release;
+		};
+		BECB2D811A0E699400AFA935 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AHProxySettingsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = AHProxySettingsTests;
+			};
+			name = Debug;
+		};
+		BECB2D821A0E699400AFA935 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AHProxySettingsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = AHProxySettingsTests;
+			};
+			name = Release;
+		};
+		BED077ED1A1313E3009690DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AHProxyExampe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BED077EE1A1313E3009690DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AHProxyExampe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BECB2D671A0E699400AFA935 /* Build configuration list for PBXProject "AHProxySettings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BECB2D7B1A0E699400AFA935 /* Debug */,
+				BECB2D7C1A0E699400AFA935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BECB2D7D1A0E699400AFA935 /* Build configuration list for PBXNativeTarget "AHProxySettings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BECB2D7E1A0E699400AFA935 /* Debug */,
+				BECB2D7F1A0E699400AFA935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BECB2D801A0E699400AFA935 /* Build configuration list for PBXNativeTarget "AHProxySettingsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BECB2D811A0E699400AFA935 /* Debug */,
+				BECB2D821A0E699400AFA935 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BED077F11A1313E3009690DD /* Build configuration list for PBXNativeTarget "AHProxyExampe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BED077ED1A1313E3009690DD /* Debug */,
+				BED077EE1A1313E3009690DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BECB2D641A0E699400AFA935 /* Project object */;
+}

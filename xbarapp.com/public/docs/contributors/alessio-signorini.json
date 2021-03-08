@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Alessio Signorini",
+		"githubUsername": "alessio-signorini",
+		"imageURL": "https://avatars.githubusercontent.com/u/453354?v=4",
+		"bio": "👨🏻‍💻 Technologist\r\n👨🏻‍🎓 PhD in AI \u0026 Epidemiology\r\n🌎  Dir. of Tech at Ask.com\r\n🚀  TechStars \u0026 RockHealth\r\n🔬 Founder Evidation Health",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Weather/Foobot.10m.rb",
+					"filename": "Foobot.10m.rb",
+					"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eFoobot\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAlessio Signorini\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ealessio-signorini\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay readings from your sensors in the menu bar\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://user-images.githubusercontent.com/453354/93032602-57f2c580-f5e7-11ea-87f9-e4e559b0c12a.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://foobot.io/\u003c/bitbar.abouturl\u003e\n\n\n\n# ==============================================================================\n# SETTINGS\n# ==============================================================================\n\n# Request API key from\n#    http://api.foobot.io/apidoc/index.html\nAPI_KEY=\" ... \"\n\n# Get Device ID from\n#    http://api.foobot.io/apidoc/index.html#!/device-owner-controller/getDeviceUsingGET\nDEVICE_ID=\" ... \"\n\n# ==============================================================================\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# ==============================================================================\n# CODE\n# ==============================================================================\nrequire 'net/http'\nrequire 'json'\n\nuri = URI(\"http://api.foobot.io/v2/device/#{DEVICE_ID}/datapoint/0/last/600/\")\n\nreq = Net::HTTP::Get.new(uri)\nreq['Accept'] = 'application/json;charset=UTF-8'\nreq['X-API-KEY-TOKEN'] = API_KEY\n\nres = Net::HTTP.start(uri.hostname, uri.port) {|http|\n  http.request(req)\n}\n\ndata = JSON.parse(res.body)\n\ndef color(value, ok_threshold, bad_threshold)\n  return ' color=red' if value \u003e bad_threshold\n  return ' color=orange' if value \u003e ok_threshold\n  return ''\nend\n\nvalue = data['sensors'].each_with_index.map do |key, i|\n  [key, data['datapoints'].first[i] ]\nend.to_h\n\nputs \"🌿 #{value['allpollu'].round} | size=12\" + color(value['allpollu'],50,75)\n\nputs \"---\"\n\nputs \"#{(value['tmp'] * 9 / 5).round + 32}F / #{value['hum'].round}%\"\nputs \"pm #{value['pm'].round}ugm3 | \" + color(value['pm'],27,37.5)\nputs \"co2 #{value['co2'].round}ppm | \" + color(value['co2'], 1300,1925)\nputs \"voc #{value['voc'].round}ppb | \" + color(value['voc'], 300, 450)\n"
+				}
+			],
+			"path": "Weather/Foobot.10m.rb",
+			"filename": "Foobot.10m.rb",
+			"dir": "Weather",
+			"docsPlugin": "Weather/Foobot.10m.rb.html",
+			"docsCategory": "Weather.html",
+			"pathSegments": [
+				"Weather"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Weather",
+					"text": "Weather",
+					"isLast": true
+				}
+			],
+			"title": "Foobot",
+			"version": "v1.0",
+			"author": "Alessio Signorini",
+			"authors": [
+				{
+					"name": "Alessio Signorini",
+					"githubUsername": "alessio-signorini",
+					"imageURL": "https://avatars.githubusercontent.com/u/453354?v=4",
+					"bio": "👨🏻‍💻 Technologist\r\n👨🏻‍🎓 PhD in AI \u0026 Epidemiology\r\n🌎  Dir. of Tech at Ask.com\r\n🚀  TechStars \u0026 RockHealth\r\n🔬 Founder Evidation Health",
+					"primary": true
+				}
+			],
+			"desc": "Display readings from your sensors in the menu bar",
+			"imageURL": "https://user-images.githubusercontent.com/453354/93032602-57f2c580-f5e7-11ea-87f9-e4e559b0c12a.png",
+			"dependencies": [
+				"ruby"
+			],
+			"aboutURL": "https://foobot.io/",
+			"lastUpdated": "2021-03-08T15:22:08.532344Z",
+			"vars": null
+		}
+	]
+}

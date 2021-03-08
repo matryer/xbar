@@ -1,0 +1,53 @@
+{
+	"person": {
+		"name": "Johan Bloemberg",
+		"githubUsername": "aequitas",
+		"imageURL": "https://avatars.githubusercontent.com/u/365827?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/virtualbox-vms.5s.sh",
+					"filename": "virtualbox-vms.5s.sh",
+					"content": "#!/bin/sh\n#\n# \u003cbitbar.title\u003eVirtualbox VM status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eJohan Bloemberg\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eaequitas\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShow current number of running Virtualbox VM's. Allow to shut them all down.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://gist.githubusercontent.com/aequitas/7c57111556900aae6178/raw/76e4e457d700d31af6b2f32cbbb206ed1668b511/virtualbox.png\u003c/bitbar.image\u003e\n\nif test -x /usr/local/bin/VBoxManage;then\n    VBOX=/usr/local/bin/VBoxManage\nelif test -x /usr/bin/VBoxManage;then\n    VBOX=/usr/bin/VBoxManage\nelse\n    echo \"Failed to find VBoxManage command in default locations.\"\n    exit 1\nfi\n\nvms=\"$(${VBOX} list runningvms | cut -f2 -d\\\")\"\nvms_count=$(echo \"$vms\" | wc -l)\nvms_count=$((vms_count))\n\nif test ! -z \"$1\"; then\n    if test -z \"$2\"; then\n        echo \"$vms\" | xargs -I% ${VBOX} controlvm % \"$1\"\n    else\n        ${VBOX} controlvm \"$2\" \"$1\"\n    fi\n    exit\nfi\n\nif test -z \"$vms\"; then\n    echo \"V\"\nelse\n    echo \"V $vms_count\"\n    echo '---'\n    echo \"Poweroff all VM's | bash='$0' param1=poweroff terminal=false\"\n    echo \"ACPI Shutdown all VM's | bash='$0' param1=acpipowerbutton terminal=false\"\n    echo '---'\n    for vm in $vms;do\n        echo \"Poweroff $vm | bash='$0' param1=poweroff param2=$vm terminal=false\"\n        echo \"ACPI Shutdown $vm | bash='$0' param1=acpipowerbutton param2=$vm terminal=false\"\n    done\nfi\n"
+				}
+			],
+			"path": "System/virtualbox-vms.5s.sh",
+			"filename": "virtualbox-vms.5s.sh",
+			"dir": "System",
+			"docsPlugin": "System/virtualbox-vms.5s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Virtualbox VM status",
+			"version": "v0.1",
+			"author": "Johan Bloemberg",
+			"authors": [
+				{
+					"name": "Johan Bloemberg",
+					"githubUsername": "aequitas",
+					"imageURL": "https://avatars.githubusercontent.com/u/365827?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Show current number of running Virtualbox VM's. Allow to shut them all down.",
+			"imageURL": "https://gist.githubusercontent.com/aequitas/7c57111556900aae6178/raw/76e4e457d700d31af6b2f32cbbb206ed1668b511/virtualbox.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:05.236172Z",
+			"vars": null
+		}
+	]
+}

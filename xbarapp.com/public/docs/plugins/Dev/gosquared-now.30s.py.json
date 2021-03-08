@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/gosquared-now.30s.py",
+				"filename": "gosquared-now.30s.py",
+				"content": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n# \u003cbitbar.title\u003eGoSquared Visitors Online Now Count\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDavid Barker\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edavidbarker\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eThe total of all the sites you list is displayed. Drop-down menu shows individual visitor count for each site. Clicking on a menu option opens the relevant GoSquared stats page for that site in your browser.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/04lL6Ox.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://www.gosquared.com/\u003c/bitbar.abouturl\u003e\n\n\n# Change these variables (required)\n# You can create/view your API key(s) at https://www.gosquared.com/settings/api\napi_key = 'demo'\nsite_keys = {\n    'Official Team Fortress Wiki': 'GSN-106863-S',\n    'Poolga': 'GSN-181546-E'\n}\n\n# Change this variable (optional)\ncount_suffix = '☻'\n\n\n# You probably don't need to change anything below this line\nimport json\nimport urllib2\n\ndef get_visitors(site_token):\n    try:\n        request = urllib2.Request('https://api.gosquared.com/now/v3/overview?api_key=%s\u0026site_token=%s' % (api_key, site_token))\n        response = urllib2.urlopen(request)\n        response = json.load(response)\n        return response['visitors']\n    except Exception:\n        print 'Unable to load visitors. Check your site key(s).'\n\nsites = []\nfor site_name, site_token in site_keys.iteritems():\n    visitors = get_visitors(site_token)\n    sites.append({'name': site_name, 'token': site_token, 'visitors': visitors})\n\nsites = sorted(sites, key=lambda site: site['name'])\nsites = sorted(sites, key=lambda site: site['visitors'], reverse=True)\n\nformatted_sites = []\nfor site in sites:\n    formatted_sites.append((u'%s (%s)| href=https://www.gosquared.com/now/%s' % (site['name'], site['visitors'], site['token'])).encode('utf-8'))\n\nprint '%s %s' % (sum(site['visitors'] for site in sites), count_suffix)\nprint '---'\nprint '\\n' . join(formatted_sites)\nprint '---'\n"
+			}
+		],
+		"path": "Dev/gosquared-now.30s.py",
+		"filename": "gosquared-now.30s.py",
+		"dir": "Dev",
+		"docsPlugin": "Dev/gosquared-now.30s.py.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "GoSquared Visitors Online Now Count",
+		"version": "v1.0.0",
+		"author": "David Barker",
+		"authors": [
+			{
+				"name": "David Barker",
+				"githubUsername": "davidbarker",
+				"imageURL": "https://avatars.githubusercontent.com/u/1597139?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "The total of all the sites you list is displayed. Drop-down menu shows individual visitor count for each site. Clicking on a menu option opens the relevant GoSquared stats page for that site in your browser.",
+		"imageURL": "http://i.imgur.com/04lL6Ox.png",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "https://www.gosquared.com/",
+		"lastUpdated": "2021-03-08T15:21:51.516965Z",
+		"vars": null
+	}
+}

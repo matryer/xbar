@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Z O. Toups",
+		"githubUsername": "toupsz",
+		"imageURL": "https://avatars.githubusercontent.com/u/3452924?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/emoji-active-network-interface.sh",
+					"filename": "emoji-active-network-interface.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eEmoji Active Network Interface Indicator\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eZachary O. Toups\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etoupsz\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays an emoji to indicate if the active network interface is wifi or another connection.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/toupsz/emoji-active-network-interface-indicator\u003c/bitbar.abouturl\u003e\n\n# Text above --- displays an antenna emoji if the active network interface name contains \"Wi-Fi\", shows a plug otherwise.\n\n# Get the active network metadata\nActiveNetwork=$(route get default | grep interface | awk '{print $2}')\n\n# Get the name of the active network from the metadata\nActiveNetworkName=$(networksetup -listallhardwareports | grep -B 1 \"$ActiveNetwork\" | awk '/Hardware Port/{ print }'|cut -d \" \" -f3-)\n\n# Select an emoji based on the name\nif [[ $ActiveNetworkName = *\"Wi-Fi\"* ]]; then\n\techo \"📡\"\nelse\n\techo \"🔌\"\nfi\n"
+				}
+			],
+			"path": "Network/emoji-active-network-interface.sh",
+			"filename": "emoji-active-network-interface.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/emoji-active-network-interface.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "Emoji Active Network Interface Indicator",
+			"version": "v1.0",
+			"author": "Zachary O. Toups",
+			"authors": [
+				{
+					"name": "Z O. Toups",
+					"githubUsername": "toupsz",
+					"imageURL": "https://avatars.githubusercontent.com/u/3452924?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Displays an emoji to indicate if the active network interface is wifi or another connection.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "https://github.com/toupsz/emoji-active-network-interface-indicator",
+			"lastUpdated": "2021-03-08T15:21:58.80611Z",
+			"vars": null
+		}
+	]
+}

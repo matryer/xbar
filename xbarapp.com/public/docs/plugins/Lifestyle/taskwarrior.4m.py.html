@@ -1,0 +1,541 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Taskwarrior in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Task managment through your menu-bar. - install xbar for free to get started.'>
+	<meta name='author' content='Christoph Russ'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/vjEt7Is.jpg'>
+	<meta itemprop='name' content='Taskwarrior in your macOS menu bar'>
+	<meta itemprop='description' content='Task managment through your menu-bar. - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Taskwarrior in your macOS menu bar'>
+	<meta name='twitter:description' content='Task managment through your menu-bar. - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/vjEt7Is.jpg'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Taskwarrior in your macOS menu bar'>
+	<meta property='og:description' content='Task managment through your menu-bar. - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Lifestyle/taskwarrior.4m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/vjEt7Is.jpg'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/vjEt7Is.jpg'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/vjEt7Is.jpg'>
+	<link rel='shortcut icon' href='http://i.imgur.com/vjEt7Is.jpg'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Taskwarrior</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/christophruss.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/12080753?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/christophruss.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Christoph Russ (<code style='color:white;'>@christophruss</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Task managment through your menu-bar.
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Lifestyle%2ftaskwarrior.4m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/vjEt7Is.jpg' 
+				alt='Image preview of Taskwarrior plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>taskwarrior.4m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Lifestyle/taskwarrior.4m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Lifestyle/taskwarrior.4m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Taskwarrior
+#
+# &lt;bitbar.title&gt;Taskwarrior&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v2.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Christoph Russ&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;christophruss&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Task managment through your menu-bar.&lt;/bitbar.desc&gt;
+# &lt;bitbar.dependencies&gt;task,python&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/vjEt7Is.jpg&lt;/bitbar.image&gt;
+#
+# Dependencies:
+#   taskwarrior (http://taskwarrior.org)
+#      available via homebrew `brew install task`
+
+#
+# TODO
+# * In a sub-menu (at the bottom) Allow to restart previously completed tasks
+# * Allow to delete tasks (also in a sub-menu?)
+#
+
+import os
+import re
+import subprocess
+from subprocess import Popen, PIPE
+
+
+def trigger_actions(argv):
+    t_id = argv[-1]
+    action = argv[-2]
+    subprocess.call([&#39;/usr/local/bin/task&#39;, t_id, action])
+
+
+def build_command(t_id, action, refresh=True):
+    cmd = &#39;&#39;
+
+    if refresh:
+        cmd = cmd &#43; &#39; refresh=true&#39;
+
+    cmd = cmd &#43; &#39; bash=/usr/bin/python param1=&#39; &#43; __file__ &#43; &#39; param2=&#39;
+
+    cmd = cmd &#43; action
+
+    cmd = cmd &#43; &#39; param3=&#39; &#43; str(t_id)
+
+    cmd = cmd &#43; &#39; terminal=false&#39;
+
+    return cmd
+
+
+def print_output(
+        cmd,
+        color,
+        head,
+        print_content=True,
+        command=&#39;&#39;,
+        ignore_id_list=[],
+        highlight_id_list=[],
+        highlight_color=&#39; color=Red&#39;,
+        highlight_command=&#39;&#39;,
+        alternate_command=&#39;&#39;):
+    output = &#39;&#39;
+
+    # important: PIPE the stderr, since task likes to use that - a lot ...
+    p = Popen([&#39;/usr/local/bin/task&#39;, cmd],
+              stdin=None, stdout=PIPE, stderr=PIPE)
+    output, err = p.communicate()
+
+    output_lines = output.split(&#39;\n&#39;)
+
+    id_list = []
+    content_lines = []
+
+    for output_line in output_lines:
+        output_line = output_line.rstrip()
+        if not output_line:
+            continue
+        # When looking for &#39;active&#39; or &#39;next&#39; tasks, we want to look only at
+        # lines that start with a digit or a -. Other line are likely extra
+        # data like annotations from bugwarrior sync
+        content_id = output_line.split()[0]
+        if not content_id.isdigit() and content_id not in [&#39;--&#39;, &#39;-&#39;, &#39;ID&#39;]:
+            continue
+        line_groups = re.match(&#39;^(\s*\d&#43;|\s*ID|\s*-&#43;)(.*)&#39;, output_line)
+        content_lines.append(&#39;[{}]{}&#39;.format(*line_groups.groups()))
+
+    content_count = len(content_lines[2:-1])
+
+    if head:
+        if content_count == 0:
+            print &#39;ⓣ&#39;  # ⓪ #⓿
+        elif content_count &lt; 21:
+            circle_number = [&#39;⓪&#39;, &#39;①&#39;, &#39;②&#39;, &#39;③&#39;, &#39;④&#39;, &#39;⑤&#39;, &#39;⑥&#39;,
+                             &#39;⑦&#39;, &#39;⑧&#39;, &#39;⑨&#39;, &#39;⑩&#39;, &#39;⑪&#39;, &#39;⑫&#39;, &#39;⑬&#39;,
+                             &#39;⑭&#39;, &#39;⑮&#39;, &#39;⑯&#39;, &#39;⑰&#39;, &#39;⑱&#39;, &#39;⑲&#39;, &#39;⑳&#39;]
+            print circle_number[content_count]  # &#43; &#39;|&#39; &#43; color_pending
+        else:
+            print str(content_count)  # &#43; &#39;| color=Red&#39;
+
+        print &#39;---&#39;
+
+    if content_count &lt; 1:
+        return id_list
+
+    table_head = content_lines[0]
+
+    # total_number_of_tasks = content_lines[-1]
+
+    content_formatting = &#39; | size=12 font=Courier&#39;
+
+    if print_content:
+        print table_head &#43; content_formatting
+        print &#39;---&#39;
+
+    for content_line in content_lines[2:-1]:
+        content_re = re.match(&#39;^\[\s*(.&#43;)\]\s&#43;([0-9A-Fa-f]&#43;)?&#39;, content_line)
+        content_id = content_re.group(1)
+        
+        if content_id == &#39;-&#39;:
+            # should be the UUID in this case
+            content_id = content_re.group(2)
+
+        if content_id in ignore_id_list:
+            continue
+
+        id_list.append(content_id)
+
+        if print_content:
+            cmd = &#39;&#39;
+
+            if len(command) &gt; 0:
+                cmd = build_command(t_id=content_id, action=command)
+
+            if content_id in highlight_id_list:
+                if len(highlight_command) &gt; 0:
+                    cmd = build_command(
+                        t_id=content_id, action=highlight_command)
+                print content_line &#43; content_formatting &#43; highlight_color &#43; cmd
+            else:
+                print content_line &#43; content_formatting &#43; color &#43; cmd
+
+            # adding an alternative command (press ALT for this!)
+            # printing the same stuff again, only with a different action
+            # attached
+            if len(alternate_command) &gt; 0:
+                alt_cmd = build_command(
+                    t_id=content_id, action=alternate_command)
+
+                if content_id in highlight_id_list:
+                    print content_line &#43; content_formatting &#43; highlight_color &#43; alt_cmd &#43; &#39; alternate=true&#39;
+                else:
+                    print content_line &#43; content_formatting &#43; color &#43; alt_cmd &#43; &#39; alternate=true&#39;
+
+    return id_list
+
+
+def is_darkmode():
+    FNULL = open(os.devnull, &#39;w&#39;)
+    return_code = subprocess.call([&#39;/usr/bin/defaults&#39;, &#39;read&#39;, &#39;-g&#39;,
+                                   &#39;AppleInterfaceStyle&#39;], stdout=FNULL, stderr=subprocess.STDOUT)
+    if (return_code == 1):
+        return False
+    else:
+        return True
+
+
+def main(argv):
+
+    if len(argv) &gt; 1:
+        trigger_actions(argv)
+        exit()
+
+    if is_darkmode():
+        color_running = &#39; color=Red&#39;
+        color_pending = &#39; color=Yellow&#39;
+        color_completed = &#39; color=Green&#39;
+    else:
+        color_running = &#39; color=Red&#39;
+        color_pending = &#39; color=Black&#39;
+        color_completed = &#39; color=Green&#39;
+
+    id_list = print_output(&#39;active&#39;, color_running, True, print_content=False)
+
+    if len(id_list) &gt; 0:
+        print &#39;---&#39;
+
+    print_output(
+        &#39;next&#39;,
+        color_pending,
+        False,
+        command=&#39;start&#39;,
+        highlight_id_list=id_list,
+        highlight_color=color_running,
+        highlight_command=&#39;stop&#39;,
+        alternate_command=&#39;done&#39;)
+
+    print &#39;---&#39;
+
+    # ok, so if you want to delete a command, you have to press done first ...
+    # sorry, but there is only one alternative command I can provide above ...
+    print_output(
+        &#39;completed&#39;,
+        color_completed,
+        False,
+        command=&#39;start&#39;,
+        alternate_command=&#39;delete&#39;)
+
+    return
+
+if __name__ == &#34;__main__&#34;:
+    import sys
+    main(sys.argv)
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/solar-time.1s.py",
+				"filename": "solar-time.1s.py",
+				"content": "#!/usr/bin/python\n# -*- coding: utf-8 -*-\n#\n# \u003cbitbar.title\u003eApparent Solar Time\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAlexandre André\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eXanderLeaDaren\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays the apparent solar time. Specify your longitude in the script.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://github.com/XanderLeaDaren/bitbar-solar-time/blob/master/bitbar_solar-time.jpg?raw=true\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://github.com/XanderLeaDaren/bitbar-solar-time\u003c/bitbar.abouturl\u003e\n\nimport datetime\nfrom math import sin\nimport time\n\n# Local time and day of the year\ntoday = datetime.datetime.now()\nday = today.timetuple().tm_yday\n\n# Longitude on Earth (easily find it on http://ipinfo.io/json)\nlg = 5.1413\npos = lg/360*24*60\n\n# Time zone and Equation of time\ntz = time.timezone\neq_time = 7.655*sin(2*(day-4))+9.873*sin(4*(day-172))\n\n# Local solar time\nsun = today - datetime.timedelta(minutes=-pos+eq_time,seconds=-tz)\nprint \"☀️ \"+sun.strftime('%H:%M:%S')\nprint \"---\"\nprint \"Time Zone Offset: \"+str(tz/3600)+\" h\"\nprint \"Position Offset: %.3f\" % pos+\" min\"\nprint \"Equation of Time: %.3f\" % -eq_time+\" min\"\n"
+			}
+		],
+		"path": "Time/solar-time.1s.py",
+		"filename": "solar-time.1s.py",
+		"dir": "Time",
+		"docsPlugin": "Time/solar-time.1s.py.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Apparent Solar Time",
+		"version": "v1.0",
+		"author": "Alexandre André",
+		"authors": [
+			{
+				"name": "Aleks ANDRÉ",
+				"githubUsername": "XanderLeaDaren",
+				"imageURL": "https://avatars.githubusercontent.com/u/28948599?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays the apparent solar time. Specify your longitude in the script.",
+		"imageURL": "https://github.com/XanderLeaDaren/bitbar-solar-time/blob/master/bitbar_solar-time.jpg?raw=true",
+		"dependencies": [
+			"python"
+		],
+		"aboutURL": "https://github.com/XanderLeaDaren/bitbar-solar-time",
+		"lastUpdated": "2021-03-08T15:22:06.395619Z",
+		"vars": null
+	}
+}

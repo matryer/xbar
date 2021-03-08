@@ -1,0 +1,4 @@
+#include "ConfigFramework.xcconfig"
+
+// Unit tests need access to non-public classes
+GCC_SYMBOLS_PRIVATE_EXTERN = NO

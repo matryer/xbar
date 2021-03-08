@@ -1,0 +1,111 @@
+{
+	"person": {
+		"name": "Weibing Chen",
+		"githubUsername": "weibingchen17",
+		"imageURL": "https://avatars.githubusercontent.com/u/25602873?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "System/DoNotDisturb.1s.py",
+					"filename": "DoNotDisturb.1s.py",
+					"content": "#!/usr/bin/env LC_ALL=en_US.UTF-8 /usr/local/bin/python3\n# \u003cbitbar.title\u003eDo Not Disturb\u003c/bitbar.title\u003e\n# \u003cbitbar.author\u003eWeibing Chen\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eweibingchen17\u003c/bitbar.author.github\u003e\n# \u003cbitbar.image\u003ehttp://i67.tinypic.com/20ac9kl.png\u003c/bitbar.image\u003e\n# \u003cbitbar.desc\u003eTurn on \"Do Not Distrub\" for certain period. Only for Sierra and High Sierra.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython3\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \nimport os,sys\nimport datetime\n\ndef idle():\n    print(':bell:')\n    print(\"---\")\n    print(\"01 min | trim=false, color=blue bash=\" + fullPathFileName +  \" param1=1 terminal=false refresh=true\")\n    print(\"05 min | trim=false, color=blue bash=\" + fullPathFileName +  \" param1=5 terminal=false refresh=true\")\n    print(\"10 min | trim=false, color=blue bash=\" + fullPathFileName +  \" param1=10 terminal=false refresh=true\")\n    print(\"30 min | trim=false, color=blue bash=\" + fullPathFileName +  \" param1=30 terminal=false refresh=true\")\n    print(\"60 min | trim=false, color=blue bash=\" + fullPathFileName +  \" param1=60 terminal=false refresh=true\")\n    print(\"Custom | trim=false, color=blue bash=\" + fullPathFileName +  \" param1=set terminal=false refresh=true\")\n\ndef touch(a_file):\n    with open(a_file, 'a'):\n        os.utime(a_file, None)\n\ndef setATime(a_time):\n    touch(lockFile)\n    with open(setFile, 'w') as f:\n        f.write(a_time)\n    triggerDND()\n\ndef cancel():\n    triggerDND()\n    if os.path.isfile(setFile):\n        os.remove(setFile)\n    idle()\n\ndef alert():\n    cancel()\n    for _ in range(10):\n        os.system('afplay /System/Library/Sounds/Tink.aiff')\n\ndef triggerDND():\n    # Here is why only Sierra and High Sierra is supported: menu bar 1 is used\n    TriggerDND = '''osascript -e 'tell application \"System Events\"\n\ttell application process \"SystemUIServer\"\n\t\ttry\n\t\t\tif exists menu bar item \"Notification Center, Do Not Disturb enabled\" of menu bar 1 then\n\t\t\t\tkey down option\n\t\t\t\tclick menu bar item \"Notification Center, Do Not Disturb enabled\" of menu bar 1\n\t\t\t\tkey up option\n\t\t\telse\n\t\t\t\tkey down option\n\t\t\t\tclick menu bar item \"Notification Center\" of menu bar 1\n\t\t\t\tkey up option\n\t\t\tend if\n\t\ton error\n\t\t\tkey up option\n\t\tend try\n\tend tell\nend tell' 2\u003e/dev/null\n'''\n    os.popen(TriggerDND)\n\nlockFile = '/tmp/DoNotDisturb.lock'\nsetFile = '/tmp/DoNotDisturb.set'\nfullPathFileName = os.path.realpath(__file__)\n\nif len(sys.argv) == 1:\n    # No new \"Do Not Disturb\" is requested \n    if not os.path.isfile(setFile):\n        idle()\n    else:\n        with open(setFile, 'r') as f:\n            setTime = int(f.read())\n        timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(lockFile))\n        td = setTime - (datetime.datetime.now() - timestamp).total_seconds()\n        if td \u003c= 0: \n            alert()\n        else:\n            print(':no_bell: Do Not Disturb')\n            print(\"---\")\n            minute, second = divmod(td, 60)\n            if minute \u003c 60:\n                print(str(int(minute)) + ':' + '{0:02d}'.format(int(second)))\n            else:\n                hour, minute = divmod(minute, 60)\n                print(str(int(hour)) + ':' + '{0:02d}'.format(int(minute)) + ':' + '{0:02d}'.format(int(second)))\n            print(\"Cancel | color=red bash=\" + os.path.realpath(__file__) +  \" param1=cancel terminal=false refresh=true\")\nelse:\n    # A new \"Do Not Disturb\" is requested\n    if sys.argv[1].isdigit():\n        # Use preset period\n        setATime(str(int(sys.argv[1]) * 60))\n    else:\n        # Use custom period\n        if sys.argv[1] == 'cancel':\n            cancel()\n        elif sys.argv[1] == 'set':\n            line = '''osascript -e 'Tell application \"System Events\" to display dialog \"How many minutes of freeing yourself from the world? or [hh:]mm:ss \" default answer \"\"' -e 'text returned of result' 2\u003e/dev/null '''\n            a_time = os.popen(line).read().strip()\n            if ':' not in a_time:\n                if a_time.isdigit() and int(a_time) \u003e 0:\n                    setATime(str(int(a_time) * 60))\n            else:\n                try: \n                    hms = [int(i) for i in a_time.split(':')]\n                    if len(hms) == 2 and 0 \u003c= hms[0] \u003c 60 and 0 \u003c= hms[1] \u003c 60:\n                        setATime(str(hms[0] * 60 + hms[1]))\n                    if len(hms) == 3 and 0 \u003c= hms[1] \u003c 60 and 0 \u003c= hms[2] \u003c 60:\n                        setATime(str(hms[0] * 60 * 60 + hms[1] * 60  + hms[2]))\n                except:\n                    line = '''osascript -e 'tell application \"System Events\" to display dialog \"Wrong input format\" ' 2\u003e/dev/null '''\n                    os.popen(line)\n"
+				}
+			],
+			"path": "System/DoNotDisturb.1s.py",
+			"filename": "DoNotDisturb.1s.py",
+			"dir": "System",
+			"docsPlugin": "System/DoNotDisturb.1s.py.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Do Not Disturb",
+			"version": "v1.0",
+			"author": "Weibing Chen",
+			"authors": [
+				{
+					"name": "Weibing Chen",
+					"githubUsername": "weibingchen17",
+					"imageURL": "https://avatars.githubusercontent.com/u/25602873?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Turn on \"Do Not Distrub\" for certain period. Only for Sierra and High Sierra.",
+			"imageURL": "http://i67.tinypic.com/20ac9kl.png",
+			"dependencies": [
+				"python3"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:02.204345Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Music/musicRating.10s.sh",
+					"filename": "musicRating.10s.sh",
+					"content": "#!/bin/bash\n\n# Get current Music rating, compatible with Mac OS 10.15 and old versions.\n#\n# based on iTunes script by \n# Sebastian Winkler (sw2@github), Dan Turkel (daturkel@gmail.com) \n\n# metadata\n# \u003cbitbar.title\u003eMusic Rating\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eWeibing Chen, Sebastian Winkler, Dan Turkel\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eweibingchen17\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay currently rating from Music song and modify it.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://www.mindfuckbox.com/wp-content/uploads/2016/01/iTunes_Rating.png\u003c/bitbar.image\u003e\n\nvercomp () {\n    if [[ $1 == \"$2\" ]]; then\n        return 0\n    fi\n    local IFS=.\n    local i ver1=($1) ver2=($2)\n    # fill empty fields in ver1 with zeros\n    for ((i=${#ver1[@]}; i\u003c${#ver2[@]}; i++)); do\n        ver1[i]=0\n    done\n    for ((i=0; i\u003c${#ver1[@]}; i++)); do\n        if [[ -z ${ver2[i]} ]]; then\n            # fill empty fields in ver2 with zeros\n            ver2[i]=0\n        fi\n        if ((10#${ver1[i]} \u003c 10#${ver2[i]})); then\n            return 1\n        fi\n        if ((10#${ver1[i]} \u003e 10#${ver2[i]})); then\n            return 2\n        fi\n    done\n    return 0\n}\n\nMusicApp=\"Music\"\nSysVersion=$(sw_vers -productVersion)\nMacOSCatalina=\"10.15\"\nvercomp $MacOSCatalina \"$SysVersion\"\nif (($? \u003e  1)); then\n    MusicApp=\"iTunes\"\nfi\n\nLAUNCH=\"tell application \\\"$MusicApp\\\" to activate\"\nQUERY_RUNNING=\"application \\\"$MusicApp\\\" is running\"\nSET_TO_00=\"tell application \\\"$MusicApp\\\" to set rating of current track to 00\"\nSET_TO_20=\"tell application \\\"$MusicApp\\\" to set rating of current track to 20\"\nSET_TO_40=\"tell application \\\"$MusicApp\\\" to set rating of current track to 40\"\nSET_TO_60=\"tell application \\\"$MusicApp\\\" to set rating of current track to 60\"\nSET_TO_80=\"tell application \\\"$MusicApp\\\" to set rating of current track to 80\"\nSET_TO_100=\"tell application \\\"$MusicApp\\\" to set rating of current track to 100\"\nGET_NAME=\"tell application \\\"$MusicApp\\\" to name of current track as string\"\nGET_ARTIST=\"tell application \\\"$MusicApp\\\" to artist of current track as string\"\nGET_RATING=\"tell application \\\"$MusicApp\\\" to rating of current track as string\"\n\nif [ \"$1\" = 'launch' ]; then\n  osascript -e \"$LAUNCH\"\n  exit\nfi\n\nif [ \"$(osascript -e \"$QUERY_RUNNING\")\" = \"false\" ]; then\n  echo \"♫\"\n  echo \"---\"\n  echo \"Music is not running\"\n  echo \"Launch Music | bash='$0' param1=launch terminal=false\"\n  exit\nfi\n\ncase $1 in \n    'zero')\n        osascript -e \"$SET_TO_00\"\n        exit\n        ;;\n    'one')\n        osascript -e \"$SET_TO_20\"\n        exit\n        ;;\n    'two')\n        osascript -e \"$SET_TO_40\"\n        exit\n        ;;\n    'three')\n        osascript -e \"$SET_TO_60\"\n        exit\n        ;;\n    'four')\n        osascript -e \"$SET_TO_80\"\n        exit\n        ;;\n    'five')\n        osascript -e \"$SET_TO_100\"\n        exit\n        ;;\nesac\n\nrating_icon_black=\"★\"\nrating_icon_white=\"☆\"\n\ntrack=$(osascript -e \"$GET_NAME\" 2\u003e/dev/null);\nartist=$(osascript -e \"$GET_ARTIST\" 2\u003e/dev/null);\nrating=$(osascript -e \"$GET_RATING\" 2\u003e/dev/null);\n\ncase $rating in\n    00)\n        echo $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    20)\n        echo $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    40)\n        echo $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white \n        ;;\n    60)\n        echo $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white \n        ;;\n    80)\n        echo $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white \n        ;;\n    100)\n        echo $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black\n        ;;\n    *)\n        echo $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\nesac\n\necho \"---\"\n\ncase \"$0\" in\n  *\\ * )\n   echo \"Your script path | color=#ff0000\"\n   echo \"($0) | color=#ff0000\"\n   echo \"has a space in it, which BitBar does not support. | color=#ff0000\"\n   echo \"Play/Pause/Next/Previous buttons will not work. | color=#ff0000\"\n  ;;\nesac\n\necho \"$artist -- $track\"\n\ncase $rating in\n    00)\n        echo Rating: $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    20)\n        echo Rating: $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\n    40)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white \n        ;;\n    60)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white \n        ;;\n    80)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white \n        ;;\n    100)\n        echo Rating: $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black\n        ;;\n    *)\n        echo Rating: $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white\n        ;;\nesac\n\necho '---'\necho 'Rerate'\necho \"$rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white | bash='$0' param1=zero refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white $rating_icon_white | bash='$0' param1=one refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white $rating_icon_white | bash='$0' param1=two refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white $rating_icon_white | bash='$0' param1=three refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_white | bash='$0' param1=four refresh=true terminal=false \"\necho \"$rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black $rating_icon_black | bash='$0' param1=five refresh=true terminal=false \"\n"
+				}
+			],
+			"path": "Music/musicRating.10s.sh",
+			"filename": "musicRating.10s.sh",
+			"dir": "Music",
+			"docsPlugin": "Music/musicRating.10s.sh.html",
+			"docsCategory": "Music.html",
+			"pathSegments": [
+				"Music"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Music",
+					"text": "Music",
+					"isLast": true
+				}
+			],
+			"title": "Music Rating",
+			"version": "v0.1",
+			"author": "Weibing Chen,  Sebastian Winkler,  Dan Turkel",
+			"authors": [
+				{
+					"name": "Weibing Chen",
+					"githubUsername": "weibingchen17",
+					"imageURL": "https://avatars.githubusercontent.com/u/25602873?v=4",
+					"bio": "",
+					"primary": true
+				},
+				{
+					"name": "Sebastian Winkler",
+					"githubUsername": "",
+					"imageURL": "",
+					"bio": "",
+					"primary": false
+				},
+				{
+					"name": "Dan Turkel",
+					"githubUsername": "",
+					"imageURL": "",
+					"bio": "",
+					"primary": false
+				}
+			],
+			"desc": "Display currently rating from Music song and modify it.",
+			"imageURL": "http://www.mindfuckbox.com/wp-content/uploads/2016/01/iTunes_Rating.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:57.4625Z",
+			"vars": null
+		}
+	]
+}

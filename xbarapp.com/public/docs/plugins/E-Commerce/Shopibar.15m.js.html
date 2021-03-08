@@ -1,0 +1,517 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Shopibar in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shopify Admin Plugin for BitBar - install xbar for free to get started.'>
+	<meta name='author' content='Etka Özdemir'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/Dt499Nh.png'>
+	<meta itemprop='name' content='Shopibar in your macOS menu bar'>
+	<meta itemprop='description' content='Shopify Admin Plugin for BitBar - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Shopibar in your macOS menu bar'>
+	<meta name='twitter:description' content='Shopify Admin Plugin for BitBar - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/Dt499Nh.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Shopibar in your macOS menu bar'>
+	<meta property='og:description' content='Shopify Admin Plugin for BitBar - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/E-Commerce/Shopibar.15m.js.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/Dt499Nh.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/Dt499Nh.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/Dt499Nh.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/Dt499Nh.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Shopibar</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/m-etka.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/6973643?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/m-etka.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Etka Özdemir (<code style='color:white;'>@m-etka</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shopify Admin Plugin for BitBar
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=E-Commerce%2fShopibar.15m.js'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/Dt499Nh.png' 
+				alt='Image preview of Shopibar plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>Shopibar.15m.js</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/E-Commerce/Shopibar.15m.js'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/E-Commerce/Shopibar.15m.js'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env /usr/local/bin/node
+
+/*
+ * &lt;bitbar.title&gt;Shopibar&lt;/bitbar.title&gt;
+ * &lt;bitbar.version&gt;v1.0.1&lt;/bitbar.version&gt;
+ * &lt;bitbar.author&gt;Etka Özdemir&lt;/bitbar.author&gt;
+ * &lt;bitbar.author.github&gt;m-etka&lt;/bitbar.author.github&gt;
+ * &lt;bitbar.image&gt;http://i.imgur.com/Dt499Nh.png&lt;/bitbar.image&gt;
+ * &lt;bitbar.desc&gt;Shopify Admin Plugin for BitBar&lt;/bitbar.desc&gt;
+ * &lt;bitbar.dependencies&gt;node&lt;/bitbar.dependencies&gt;
+ *
+ */
+
+/*
+ * Visit http://shopibar.etka.org for installation and details
+ */
+
+
+/* Shopibar configuration */
+var admin = {
+    myShopifyAccountName: &#39;example.myshopify.com&#39;,
+    apiKey: &#39;example.com_api_key&#39;,
+    password: &#39;example.com_password&#39;
+};
+showCustomerCount = true;
+showPendingOrders = true;
+showUnshippedOrders = true;
+/* End of Shopibar configuration  */
+
+var verbose = true;
+
+// Start plug-in
+console.log(&#39;🛒&#39;);
+console.log(&#39;---&#39;);
+printBitBarLine(&#39;Shopibar&#39;, [&#39;color=black&#39;, &#39;font=Phosphate&#39;, &#39;size=20&#39;]);
+
+
+// Get data using Shopify Admin API
+get(admin, &#39;shop&#39;, function(data) {
+    // Show shop info
+    printBitBarLine(data.shop.name, [&#39;color=black&#39;, &#39;font=Calibri&#39;, &#39;size=18&#39;]);
+
+    if (showCustomerCount) {
+        // Get customer count
+        get(admin, &#39;customerCount&#39;, function(data) {
+            // Show customer count
+            printBitBarLine(&#39;Customer Count:&#39;, [&#39;color=gray&#39;, &#39;font=Calibri&#39;, &#39;size=14&#39;]);
+            printBitBarLine(data.count, [&#39;color=black&#39;, &#39;font=Calibri&#39;, &#39;size=16&#39;]);
+        });
+    }
+
+    if (showPendingOrders) {
+        // Get pending orders
+        get(admin, &#39;pendingOrders&#39;, function(data) {
+            printOrders(data, &#39;Pending Orders&#39;);
+        });
+    }
+
+    if (showUnshippedOrders) {
+        // Get unshipped orders
+        get(admin, &#39;unshippedOrders&#39;, function(data) {
+            printOrders(data, &#39;Unshipped Orders&#39;);
+        });
+    }
+
+});
+
+// Print order details
+function printOrders(data, title) {
+    // Show orders
+    printBitBarLine(&#39; &#39;);
+    printBitBarLine(title &#43; &#39;:&#39;, [&#39;color=gray&#39;, &#39;font=Calibri&#39;, &#39;size=14&#39;]);
+    printBitBarLine(data.orders.length, [&#39;color=black&#39;, &#39;font=Calibri&#39;, &#39;size=16&#39;]);
+    for (var i = 0; i &lt; data.orders.length; i&#43;&#43;) {
+        // Show order price and user info
+        printBitBarLine(&#39;--$&#39; &#43; data.orders[i].total_line_items_price, [&#39;color=black&#39;, &#39;font=Calibri&#39;, &#39;size=16&#39;]);
+        printBitBarLine(&#39;--&#39; &#43; data.orders[i].email, [&#39;font=Calibri&#39;, &#39;size=14&#39;]);
+        // Show items ordered
+        for (var j = 0; j &lt; data.orders[i].line_items.length; j&#43;&#43;) {
+            if (j !== 0) {
+                printBitBarLine(&#39;----&#39;);
+            }
+            printBitBarLine(&#39;----&#39; &#43; data.orders[i].line_items[j].title, [&#39;font=Calibri&#39;, &#39;size=16&#39;, &#39;color=black&#39;]);
+            printBitBarLine(&#39;----&#39;);
+            printBitBarLine(&#39;----Name     : &#39; &#43; data.orders[i].line_items[j].name, [&#39;font=Monaco&#39;, &#39;size=11&#39;]);
+            printBitBarLine(&#39;----SKU      : &#39; &#43; data.orders[i].line_items[j].sku, [&#39;font=Monaco&#39;, &#39;size=11&#39;]);
+            printBitBarLine(&#39;----Price    : $&#39; &#43; data.orders[i].line_items[j].price, [&#39;font=Monaco&#39;, &#39;size=11&#39;]);
+            printBitBarLine(&#39;----Quantity : &#39; &#43; data.orders[i].line_items[j].quantity, [&#39;font=Monaco&#39;, &#39;size=11&#39;]);
+
+        }
+        printBitBarLine(&#39;-----&#39;);
+
+    }
+}
+
+
+// Get
+function get(admin, requestName, callback) {
+    var endpoint = {
+        url: &#39;&#39;,
+        requestType: &#39;GET&#39;
+    };
+    switch (requestName) {
+        case &#39;shop&#39;:
+            endpoint.url = &#39;/admin/shop.json&#39;;
+            endpoint.requestType = &#39;GET&#39;;
+            break;
+        case &#39;customerCount&#39;:
+            endpoint.url = &#39;/admin/customers/count.json&#39;;
+            endpoint.requestType = &#39;GET&#39;;
+            break;
+        case &#39;pendingOrders&#39;:
+            endpoint.url = &#39;/admin/orders.json?status=pending&#39;;
+            endpoint.requestType = &#39;GET&#39;;
+            break;
+        case &#39;unshippedOrders&#39;:
+            endpoint.url = &#39;/admin/orders.json?fulfillment_status=unshipped&#39;;
+            endpoint.requestType = &#39;GET&#39;;
+            break;
+        default:
+            break;
+    }
+    performRequest(admin, endpoint.url, endpoint.requestType, function(data) {
+        if (data.errors &amp;&amp; verbose) {
+            console.log(&#39;Errors: &#39; &#43; data.errors);
+        } else {
+            callback(data);
+        }
+    });
+
+}
+
+// HTTPS request 
+function performRequest(admin, endpoint, method, success) {
+    var https = require(&#39;https&#39;);
+    var auth = new Buffer(admin.apiKey &#43; &#39;:&#39; &#43; admin.password).toString(&#39;base64&#39;);
+
+    var headers = {};
+
+    headers = {
+        &#39;Authorization&#39;: &#39;Basic &#39; &#43; auth,
+        &#39;Content-Type&#39;: &#39;application/json&#39;
+    };
+
+    var options = {
+        host: admin.myShopifyAccountName,
+        path: endpoint,
+        method: method,
+        headers: headers
+    };
+
+    var req = https.request(options, function(res) {
+        res.setEncoding(&#39;utf-8&#39;);
+
+        var responseString = &#39;&#39;;
+
+        res.on(&#39;data&#39;, function(data) {
+            responseString &#43;= data;
+        });
+
+        res.on(&#39;end&#39;, function() {
+            var responseObject = JSON.parse(responseString);
+            success(responseObject);
+        });
+    });
+
+    req.end();
+
+    req.on(&#39;error&#39;, function(err) {
+        console.log(&#39;Error: Could not connect! Check your credientials and connection.&#39;);
+        if (verbose) {
+            console.log(err);
+        }
+    });
+}
+
+// Plug-in output
+function printBitBarLine(title, args) {
+    var lineArgs = [];
+
+    if (title !== &#39;-----&#39;) {
+        for (var i in args) {
+            lineArgs.push(args[i]);
+        }
+
+        if (lineArgs.length !== 0) {
+            title = title &#43; &#39;|&#39;;
+        }
+    }
+    console.log(title &#43; lineArgs.join(&#39; &#39;));
+}</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

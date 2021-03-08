@@ -1,0 +1,267 @@
+{
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Lifestyle/memento_mori.py",
+					"filename": "memento_mori.py",
+					"content": "#!/usr/bin/env python\n\n# -*- coding: utf-8 -*-\n# \u003cbitbar.title\u003eMemento Mori\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eSufiyan Yasa\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003exr1337\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eMemento Mori - Remember, thou art mortal\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003epython\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://www.sufiyanyasa.com/img/avatar.jpg\u003c/bitbar.image\u003e\n\n\nfrom datetime import datetime as dt\nfrom datetime import timedelta\n\n# example 25/12/2011\nbirthday = \"\u003cYOUR BIRTHDAY\u003e\"\nend_age = 77\n\nbirthday_date = dt.strptime(birthday, \"%d/%m/%Y\")\nend_date = birthday_date + timedelta(days=end_age * 365)\ndays_left = (end_date - dt.now()).days\nprint('- {} days left -'.format(days_left))\n\n\n"
+				}
+			],
+			"path": "Lifestyle/memento_mori.py",
+			"filename": "memento_mori.py",
+			"dir": "Lifestyle",
+			"docsPlugin": "Lifestyle/memento_mori.py.html",
+			"docsCategory": "Lifestyle.html",
+			"pathSegments": [
+				"Lifestyle"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Lifestyle",
+					"text": "Lifestyle",
+					"isLast": true
+				}
+			],
+			"title": "Memento Mori",
+			"version": "1.0",
+			"author": "Sufiyan Yasa",
+			"authors": [
+				{
+					"name": "Sufiyan Yasa",
+					"githubUsername": "xr1337",
+					"imageURL": "https://avatars.githubusercontent.com/u/2070518?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Memento Mori - Remember, thou art mortal",
+			"imageURL": "https://www.sufiyanyasa.com/img/avatar.jpg",
+			"dependencies": [
+				"python"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:55.65337Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/trackpad-dot.1h.swift",
+					"filename": "trackpad-dot.1h.swift",
+					"content": "#!/usr/bin/env xcrun swift\n\n/*\n * \u003cbitbar.title\u003eTrackpad Dot\u003c/bitbar.title\u003e\n * \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n * \u003cbitbar.author\u003eManu Wallner\u003c/bitbar.author\u003e\n * \u003cbitbar.author.github\u003emilch\u003c/bitbar.author.github\u003e\n * \u003cbitbar.desc\u003eDisplays a coloured dot in the menu bar that gradually changes from green to yellow to red the lower your Magic Trackpad's battery\u003c/bitbar.desc\u003e\n * \u003cbitbar.image\u003ehttp://i.imgur.com/4G7B76u.png\u003c/bitbar.image\u003e\n * \u003cbitbar.dependencies\u003eXcode,swift\u003c/bitbar.dependencies\u003e\n */\n\nimport Foundation\n\ntypealias Color = (red : UInt, green : UInt, blue : UInt)\n\nfunc shell(_ args: String...) -\u003e String {\n    let task = Process()\n    task.launchPath = \"/bin/bash\"\n    task.arguments = [\"-c\"] + args\n    \n    let pipe = Pipe()\n    task.standardOutput = pipe\n    task.launch()\n    \n    let data = pipe.fileHandleForReading.readDataToEndOfFile()\n    let output: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String\n    \n    return output.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)\n}\n\nfunc rgb(_ r : UInt, _ g : UInt , _ b : UInt) -\u003e Color {\n    return (red: r, green: g, blue: b)\n}\n\nfunc linear(_ initial: UInt, next: UInt, percent: Double) -\u003e Double {\n    return Double(initial) * (1.0 - percent) + Double(next) * (percent)\n}\n\nfunc interpolate(_ first : Color, second : Color, percent: Double) -\u003e Color {\n    let r = linear(first.red, next: second.red, percent: percent)\n    let g = linear(first.green, next: second.green, percent: percent)\n    let b = linear(first.blue, next: second.blue, percent: percent)\n    return rgb(UInt(r), UInt(g), UInt(b))\n}\n\nfunc componentToHex(_ component : UInt) -\u003e String {\n    return String(format:\"%02X\", component)\n}\n\nfunc colorToHex(_ color: Color) -\u003e String {\n    return [\n        \"#\",\n        componentToHex(color.red),\n        componentToHex(color.green),\n        componentToHex(color.blue)\n        ].joined(separator: \"\")\n}\n\nlet commandString = \"ioreg -c BNBTrackpadDevice | egrep -o 'BatteryPercent. = \\\\d{0,3}' | sed -E 's/[^0-9]+([0-9]{0,3})/\\\\1/g'\"\nlet trackpadPercentString = shell(commandString)\nvar trackpadDropdownString = \"\\(trackpadPercentString)%\"\nvar colorString = \"\"\n\nlet colors = [\n    rgb(231, 76, 60),\n    rgb(241, 196, 15),\n    rgb(0, 177, 106)\n]\n\nif let trackpadPercent = Int(trackpadPercentString) {\n    var interpolationColors : (first: Color, second: Color) = (first: rgb(0,0,0), second: rgb(0,0,0))\n    \n    switch(trackpadPercent) {\n    case 0...50: interpolationColors = (first: colors[0], second: colors[1])\n    case 50...100: interpolationColors = (first: colors[1], second: colors[2])\n    // Catch all to satisfy the compiler\n    default: break\n    }\n    let percent = trackpadPercent % 50 == 0 ? 1.0 : Double(trackpadPercent % 50) / 50.0\n    let color = interpolate(interpolationColors.first, second: interpolationColors.second, percent: percent)\n    colorString = colorToHex(color)\n} else {\n    colorString = \"#bdc3c7\"\n    trackpadDropdownString = \"Not connected\"\n}\n\nprint(\"● | color=\\(colorString)\")\nprint(\"---\")\nprint(\"Trackpad: \\(trackpadDropdownString)\")\n\n"
+				}
+			],
+			"path": "System/trackpad-dot.1h.swift",
+			"filename": "trackpad-dot.1h.swift",
+			"dir": "System",
+			"docsPlugin": "System/trackpad-dot.1h.swift.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Trackpad Dot",
+			"version": "v1.0",
+			"author": "Manu Wallner",
+			"authors": [
+				{
+					"name": "Manu Wallner",
+					"githubUsername": "milch",
+					"imageURL": "https://avatars.githubusercontent.com/u/279407?v=4",
+					"bio": "Jack of all trades, master of none. Co-founded @xforge-at. @fastlane core-team member. DevOps @ AWS.\r\n\r\nI'm @acrooow on Twitter. ",
+					"primary": true
+				}
+			],
+			"desc": "Displays a coloured dot in the menu bar that gradually changes from green to yellow to red the lower your Magic Trackpad's battery",
+			"imageURL": "http://i.imgur.com/4G7B76u.png",
+			"dependencies": [
+				"Xcode",
+				"swift"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:04.852379Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "System/firewall_status_indicator.10s.sh",
+					"filename": "firewall_status_indicator.10s.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eFirewall Status Indicator\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMiles Wolbe\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etinyapps\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplay status of the built-in Application Firewall\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://tinyapps.org/screenshots/bitbar_firewall_status_indicator.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.abouturl\u003ehttps://tinyapps.org/blog/mac/201709100715_mac_firewall_status.html/\u003c/bitbar.abouturl\u003e\n\nstate=$(defaults read \"/Library/Preferences/com.apple.alf\" globalstate)\n\nif [ \"$state\" -eq 2 ]; then\n  echo \"🔒\"\nelif [ \"$state\" -eq 1 ]; then\n  echo \"❗️\"\nelse\n  echo \"‼️\"\nfi\n\necho \"---\"\necho \"Open Firewall preference pane| href='x-apple.systempreferences:com.apple.preference.security?Firewall'\"\n"
+				}
+			],
+			"path": "System/firewall_status_indicator.10s.sh",
+			"filename": "firewall_status_indicator.10s.sh",
+			"dir": "System",
+			"docsPlugin": "System/firewall_status_indicator.10s.sh.html",
+			"docsCategory": "System.html",
+			"pathSegments": [
+				"System"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "System",
+					"text": "System",
+					"isLast": true
+				}
+			],
+			"title": "Firewall Status Indicator",
+			"version": "v1.0",
+			"author": "Miles Wolbe",
+			"authors": [
+				{
+					"name": "Miles Wolbe",
+					"githubUsername": "tinyapps",
+					"imageURL": "https://avatars.githubusercontent.com/u/1616368?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Display status of the built-in Application Firewall",
+			"imageURL": "https://tinyapps.org/screenshots/bitbar_firewall_status_indicator.png",
+			"dependencies": [
+				"bash"
+			],
+			"aboutURL": "https://tinyapps.org/blog/mac/201709100715_mac_firewall_status.html/",
+			"lastUpdated": "2021-03-08T15:22:03.498121Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Time/waketime.1m.sh",
+					"filename": "waketime.1m.sh",
+					"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eWaketime\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMatthias Vogt\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematthias-vogt\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows the time since your mac last woke up in hours:minutes\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/jsB66g9.png\u003c/bitbar.image\u003e\n\nwake=$(\n\tsysctl -a | grep 'waketime' | grep -o \"\\d\\{10\\}\" ||\n\tsysctl -a | grep 'boottime' | grep -o \"\\d\\{10\\}\"\n);\nnow=$(date +'%s');\n\nhours=$(echo \"($now - $wake)/3600\" | bc)\nminutes=$(echo \"(($now - $wake)/60)%60\" | bc)\n\necho \"$hours:$(printf \"%02d\" \"$minutes\")h\"\n"
+				}
+			],
+			"path": "Time/waketime.1m.sh",
+			"filename": "waketime.1m.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/waketime.1m.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Waketime",
+			"version": "v1.0.1",
+			"author": "Matthias Vogt",
+			"authors": [
+				{
+					"name": "Matthias",
+					"githubUsername": "matthias-vogt",
+					"imageURL": "https://avatars.githubusercontent.com/u/4030513?v=4",
+					"bio": "23-year-old from Germany interested in Computer Science and Philosophy (and deciding if interested in Maths, actually not sure)",
+					"primary": true
+				}
+			],
+			"desc": "Shows the time since your mac last woke up in hours:minutes",
+			"imageURL": "http://i.imgur.com/jsB66g9.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.829323Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Time/watson.1m.sh",
+					"filename": "watson.1m.sh",
+					"content": "#!/bin/bash\n\n# Watson Status\n#\n# by Antoine Corcy \u003ccontact@sbin.dk\u003e\n#\n# \u003cbitbar.title\u003eWatson Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eAntoine Corcy\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003etoin0u\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows Watson's status\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eWatson\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/3OuXrWn.png\u003c/bitbar.image\u003e\n#\n# Dependencies:\n#   watson (http://tailordev.github.io/Watson/)\n\n# get the status text\nstatus=$(/usr/local/bin/watson status)\n\n# show watson\nif [[ \"$status\" == \"No project started\" ]]\nthen\n    echo \"⏱ Watson\"\n    exit 1\nfi\n\n# get the project name\nproject=$(echo \"$status\" | awk '{printf \"⏱ %s\", $2}')\n\n# get the started time and uppercase the sentence\nstarted=$(echo \"$status\" | grep -E -o 'started (.*) \\(')\nstarted=\"$(tr '[:lower:]' '[:upper:]' \u003c\u003c\u003c \"${started:0:1}\")${started:1}\"\n\n# get the tags\ntags=$(echo \"$status\" | awk '{printf \"Tags: %s\\n\", $3}')\n\n# main\necho \"$project\"\necho \"---\"\necho \"${started/(/} | color=green\"\necho \"$tags\"\n"
+				}
+			],
+			"path": "Time/watson.1m.sh",
+			"filename": "watson.1m.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/watson.1m.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Watson Status",
+			"version": "1.0",
+			"author": "Antoine Corcy",
+			"authors": [
+				{
+					"name": "Antoine Kirk",
+					"githubUsername": "toin0u",
+					"imageURL": "https://avatars.githubusercontent.com/u/672421?v=4",
+					"bio": "0x7F8C16C0C9A0A87B",
+					"primary": true
+				}
+			],
+			"desc": "Shows Watson's status",
+			"imageURL": "https://i.imgur.com/3OuXrWn.png",
+			"dependencies": [
+				"Watson"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.814001Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Network/nord-vpn-status.js",
+					"filename": "nord-vpn-status.js",
+					"content": "#!/usr/local/bin/node\n\n// \u003cbitbar.title\u003eNordVPN Status\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eDustin McBride\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003edustinmcbride\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eYour nordVPN protected status for bit bar\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttps://raw.githubusercontent.com/dustinmcbride/bitbar-nord-vpn-status/master/screenshots/protected.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.abouturl\u003ehttps://github.com/dustinmcbride/bitbar-nord-vpn-status\u003c/bitbar.abouturl\u003e\n\n'use strict';\n\nvar nordUri = 'https://nordvpn.com/wp-admin/admin-ajax.php?action=get_user_info_data';\nvar https = require('https');\n\nfunction createOutput (res) {\n  var titleMessage = res.status ? 'NordVPN | color=green' : '⛔ NordVPN | color=red';\n  var statusMessage = res.status ? 'Protected' : 'Unprotected';\n  \n  console.log(titleMessage);\n  console.log('---');\n  console.log('Status: ' + statusMessage);\n  console.log('ISP: ' + res.isp);\n  console.log('IP: ' + res.ip);\n}\n\nhttps.get(nordUri, function (res) {\n  res.setEncoding('utf8');\n  var body = '';\n  res.on('data', function (data) {\n    body += data;\n  });\n  res.on('end', function () {\n    createOutput(JSON.parse(body));\n  });\n});\n\n"
+				}
+			],
+			"path": "Network/nord-vpn-status.js",
+			"filename": "nord-vpn-status.js",
+			"dir": "Network",
+			"docsPlugin": "Network/nord-vpn-status.js.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "NordVPN Status",
+			"version": "v1.0",
+			"author": "Dustin McBride",
+			"authors": [
+				{
+					"name": "Dustin McBride",
+					"githubUsername": "dustinmcbride",
+					"imageURL": "https://avatars.githubusercontent.com/u/4693713?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Your nordVPN protected status for bit bar",
+			"imageURL": "https://raw.githubusercontent.com/dustinmcbride/bitbar-nord-vpn-status/master/screenshots/protected.png",
+			"dependencies": [
+				"node"
+			],
+			"aboutURL": "https://github.com/dustinmcbride/bitbar-nord-vpn-status",
+			"lastUpdated": "2021-03-08T15:21:59.250835Z",
+			"vars": null
+		}
+	]
+}

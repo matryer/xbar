@@ -1,0 +1,12 @@
+/* NSWindow () : <title:> (oid:5) */
+"" = "";
+
+/* NSButton (Automatically download and install updates in the future) : <title:Automatically download and install updates in the future> (oid:17) */
+"Automatically download and install updates in the future" = "Baixa i instal·la les actualitzacions automàticament en el futur";
+
+/* NSButton (Relaunch Later) : <title:Relaunch Later> (oid:16) */
+"Relaunch Later" = "Reinicia el programa més tard";
+
+/* NSButton (Relaunch Now) : <title:Relaunch Now> (oid:15) */
+"Relaunch Now" = "Reinicia el programa ara";
+

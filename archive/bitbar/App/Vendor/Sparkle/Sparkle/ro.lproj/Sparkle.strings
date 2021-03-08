@@ -1,0 +1,89 @@
+
+
+"%1$@ %2$@ has been downloaded and is ready to use! This is an important update; would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ a fost descărcată și este gata de utilizare! Aceasta este o actualizare importantă; dorești să o instalezi și să relansați %1$@ acum?";
+
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ a fost descărcată și este gata de utilizare! Dorești să o instalezi și să relansați %1$@ acum?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@ nu poate fi actualizată atunci când a fost pornită de pe un volum read-only ca o imagine disc sau o unitate optică. Mută %1$@ în directorul Aplicații, repornește-o de acolo și încearcă din nou.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@ este cea ultima versiune disponibilă.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ este disponibilă—tu ai %3$@. Dorești să o descărcarci acum?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ descărcat";
+
+"%@ of %@" = "%1$@ din %2$@";
+
+"A new version of %@ is available!" = "O nouă versiune pentru %@ este disponibilă!";
+
+"A new version of %@ is ready to install!" = "O nouă versiune pentru %@ este gata de instalare!";
+
+"An error occurred in retrieving update information. Please try again later." = "A apărut o eroare în timpul preluari informaţiilor pentru actualizare. Te rog încercă din nou mai târziu.";
+
+"An error occurred while downloading the update. Please try again later." = "A apărut o eroare în timp ce se descărca actualizărea. Te rog încercă din nou mai târziu.";
+
+"An error occurred while extracting the archive. Please try again later." = "A apărut o eroare în timpul dezarhivării. Te rog încercă din nou mai târziu.";
+
+"An error occurred while installing the update. Please try again later." = "A apărut o eroare în timpul instalări actualizări. Te rog încercă din nou mai târziu.";
+
+"An error occurred while parsing the update feed." = "A apărut o eroare în timpul citiri feed-ului de actualizare.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "A apărut o eroare în timpul relansării aplicației %1$@, dar noua versiune va fii disponibilă data viitoare când vei reporni %1$@.";
+
+"An important update to %@ is ready to install" = "O actualizare importantă pentru %@ este gata pentru a fi instalată";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "Anulează";
+
+"Cancel Update" = "Anulează actualizarea";
+
+"Checking for updates..." = "Verifică de actualizări…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Descarcă actualizarea…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Dezarhivează actualizarea…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "Instalează și Redeschide";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Instalează actualizarea…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+/* OK button. */
+"OK" = "OK";
+
+/* Status message on progress window once download has finished. */
+"Ready to Install" = "Pregatit pentru a instala";
+
+/* Message that is optionally shown at startup to allow users to turn on/off update checks. */
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "%1$@ ar trebui ca să caute în mod automat pentru actualizări? Puteți verifica mereu pentru actualizări din meniul %1$@.";
+
+"Update Error!" = "Eroare Actualizare!";
+
+"Updating %@" = "Actualizează %@";
+
+/* 'Error' message when the user checks for updates but is already current or the feed doesn't contain any updates. (not necessarily shown in UI) */
+"You already have the newest version of %@." = "Ai cea mai nouă versiune de %@.";
+
+/* Status message shown when the user checks for updates but is already current or the feed doesn't contain any updates. */
+"You're up-to-date!" = "Ai ultima versiune!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+ without a download but with a URL. */
+"Learn More..." = "Află mai multe…";

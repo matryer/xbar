@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/appcenter-status.1m.rb",
+				"filename": "appcenter-status.1m.rb",
+				"content": "#!/usr/bin/env ruby\n\n# \u003cbitbar.title\u003eAppcenter Status\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eRishabh Tayal\u003c/bitbar.author\u003e\n# \u003cbitbar.desc\u003eGet status for all your Appcenter apps\u003c/bitbar.desc\u003e\n# \u003cbitbar.author.github\u003erishabhtayal\u003c/bitbar.author.github\u003e\n# \u003cbitbar.dependencies\u003eruby\u003c/bitbar.dependencies\u003e\n\nrequire 'json'\nrequire 'uri'\nrequire 'net/http'\nrequire 'open-uri'\nrequire 'base64'\n\n# ----------------------------CONFIGURE THE VALUES----------------------------\n\nAPPCENTER_API_TOKEN = 'XXXXXXXXXXXXXXXXXXXXXXXX'.freeze\n\n# ----------------------------IGNORE THE LINES BELOW THIS---------------------\n\n# ----------------------------IGNORE THE LINES BELOW THIS----------------------------\nclass Appcenter\n  def self.list_apps\n    url = URI('https://api.appcenter.ms/v0.1/apps/')\n\n    http = Net::HTTP.new(url.host, url.port)\n    http.use_ssl = true\n\n    request = Net::HTTP::Get.new(url)\n    request['X-API-Token'] = APPCENTER_API_TOKEN\n\n    response = http.request(request)\n    apps = JSON.parse(response.read_body)\n    apps\n  end\n\n  def self.branches(owner, app_id)\n    url = URI(\"https://api.appcenter.ms/v0.1/apps/#{owner}/#{app_id}/branches\")\n\n    http = Net::HTTP.new(url.host, url.port)\n    http.use_ssl = true\n\n    request = Net::HTTP::Get.new(url)\n    request['X-API-Token'] = APPCENTER_API_TOKEN\n\n    response = http.request(request)\n    app_status = JSON.parse(response.read_body)\n    app_status\n  end\nend\n\napps = Appcenter.list_apps\nputs \"Appcenter (#{apps.count})\"\n\nputs '---'\n\napps.each do |app|\n  app_name = app['display_name']\n  app_id = app['name']\n  owner = app['owner']['name']\n  image_url = app['icon_url']\n  # puts \"calling: #{app_id}\"\n  branches = Appcenter.branches(owner, app_id)\n  if branches.is_a?(Array)\n    branches = branches.select { |branch| branch['branch']['name'] == 'master' }\n  end\n\n  # require 'pry'\n  # binding.pry\n  color = '#000000'\n  if branches.count \u003e 0 \u0026\u0026 branches.is_a?(Array) \u0026\u0026 !branches.first['lastBuild'].nil?\n    status_string = branches.first['lastBuild']['status']\n    color = '#ff0000' if status_string == 'failed'\n  else\n    color = 'gray'\n  end\n\n  if image_url.nil?\n    puts \"#{app_name} (#{owner}) | href=https://appcenter.ms/orgs/#{owner}/apps/#{app_name}/build/branches color=#{color}\"\n  else\n    # TODO: Fix the image not showing issue\n    # image = Base64.encode64(open(image_url, \u0026:read))\n    puts \"#{app_name} (#{owner}) | href=https://appcenter.ms/orgs/#{owner}/apps/#{app_name}/build/branches color=#{color}\"\n  end\nend\n"
+			}
+		],
+		"path": "Dev/appcenter-status.1m.rb",
+		"filename": "appcenter-status.1m.rb",
+		"dir": "Dev",
+		"docsPlugin": "Dev/appcenter-status.1m.rb.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Appcenter Status",
+		"version": "v1.0",
+		"author": "Rishabh Tayal",
+		"authors": [
+			{
+				"name": "Rishabh Tayal",
+				"githubUsername": "rishabhtayal",
+				"imageURL": "https://avatars.githubusercontent.com/u/2100166?v=4",
+				"bio": "iOS Developer at Sears\r\n\r\nhttps://resume.github.io/?rishabhtayal",
+				"primary": true
+			}
+		],
+		"desc": "Get status for all your Appcenter apps",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"ruby"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:50.725476Z",
+		"vars": null
+	}
+}

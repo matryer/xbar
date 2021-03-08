@@ -1,0 +1,47 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/bandwidth.1s.py",
+				"filename": "bandwidth.1s.py",
+				"content": "#!/usr/bin/env -S PATH=\"${PATH}:/usr/local/bin\" python3\n\n# \u003cbitbar.title\u003eBandwidth.py\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eChTBoner\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003echtboner\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays upload and download speeds\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/qDPtOxl.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003epython3, psutil\u003c/bitbar.dependencies\u003e\n#\n# by ChTBoner\n\n\"\"\"\n    An implementation in python of the Bandwith Bitbar Plugin\n    Should work on Linux too with Argos or other status bar (Polybar for example)\n    https://getbitbar.com/plugins/Network/bandwidth.1s.sh\n\n    Unlike the shell status bar, here he result displayed in the bar will the total of all interfaces\n\"\"\"\n\nimport psutil\nfrom time import sleep\n\n\ndef human_bytes(n):\n    \"\"\"\n        convert bytes to human readable format\n        'borrowed' from https://github.com/giampaolo/psutil/blob/master/scripts/ifconfig.py\n    \"\"\"\n\n    symbols = ('K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y')\n    prefix = {}\n    for i, s in enumerate(symbols):\n        prefix[s] = 1 \u003c\u003c (i + 1) * 10\n\n    for symbol in reversed(symbols):\n        if n \u003e= prefix[symbol]:\n            value = n / prefix[symbol]\n            return '{} {}'.format(round(value, 2), symbol)\n    return \"{} B\".format(round(n, 2))\n\n\ndef print_stats(upload, download):\n    \"\"\"\n    pretty prints the results\n    upload and download values are multiplied by 2 to compensate 0.5 second sleep\n    \"\"\"\n    return \"▼ {} - {} ▲\".format(human_bytes(upload * 2), human_bytes(download * 2))\n\n\ndef main():\n    # create dict to store results for every interface\n    results = {}\n\n    # set original data and store it in dict\n    results.update(\n        {'total': {\n            'up': psutil.net_io_counters(pernic=False).bytes_sent,\n            'down': psutil.net_io_counters(pernic=False).bytes_recv}\n        })\n\n    # loops through all interfaces to store upload and download data\n    for interface in psutil.net_io_counters(pernic=True):\n        results.update(\n            {interface: {\n                'up': psutil.net_io_counters(pernic=True)[interface].bytes_sent,\n                'down': psutil.net_io_counters(pernic=True)[interface].bytes_recv}\n            })\n\n    sleep(0.5)\n\n    # after sleeping, updates the data to be the difference between the two iterations\n    results.update(\n        {'total': {\n            'up': psutil.net_io_counters(pernic=False).bytes_sent - results[\"total\"][\"up\"],\n            'down': psutil.net_io_counters(pernic=False).bytes_recv - results[\"total\"][\"down\"]}\n        })\n\n    # iterates over interfaces to update data\n    for interface in results:\n        if interface != 'total':\n            results.update({\n                interface: {\n                    'up': psutil.net_io_counters(pernic=True)[interface].bytes_sent - results[interface][\"up\"],\n                    'down': psutil.net_io_counters(pernic=True)[interface].bytes_recv - results[interface][\"down\"]}\n            })\n\n    # print the result to the bar\n    print(print_stats(results[\"total\"][\"up\"], results[\"total\"][\"down\"]))\n\n    print('---')\n    # print in dropdown\n    for interface in results:\n        if interface != 'total':\n            print(\"{}: {}\".format(interface, print_stats(results[interface][\"up\"], results[interface][\"down\"])))\n\n\nif __name__ == '__main__':\n    main()\n"
+			}
+		],
+		"path": "Network/bandwidth.1s.py",
+		"filename": "bandwidth.1s.py",
+		"dir": "Network",
+		"docsPlugin": "Network/bandwidth.1s.py.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Bandwidth.py",
+		"version": "v1.0",
+		"author": "ChTBoner",
+		"authors": [
+			{
+				"name": "ChTBoner",
+				"githubUsername": "chtboner",
+				"imageURL": "https://avatars.githubusercontent.com/u/14848356?v=4",
+				"bio": "2 Masters Degrees in History. Somehow became a computer engineer...",
+				"primary": true
+			}
+		],
+		"desc": "Displays upload and download speeds",
+		"imageURL": "https://i.imgur.com/qDPtOxl.png",
+		"dependencies": [
+			"python3",
+			"psutil"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.383476Z",
+		"vars": null
+	}
+}

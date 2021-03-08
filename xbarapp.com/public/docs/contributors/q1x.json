@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Raymond Kuiper",
+		"githubUsername": "q1x",
+		"imageURL": "https://avatars.githubusercontent.com/u/1175880?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/netinfo.60s.sh",
+					"filename": "netinfo.60s.sh",
+					"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003eNetwork Info\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.01\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eRaymond Kuiper\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003eq1x\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eProvides network status information about your Mac: Internal and external IPv4+IPv6 addresses, Whois information and Speedtest.net results.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003espeedtest-cli\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/zFv3RvI.png\u003c/bitbar.image\u003e\n#\n#\n# This bitbar plugin was based on the original \"external-ip\" Bitbar plugin by Mat Ryer.\n# A lot of new functionality has been added, including adding support for speedtest.net and listing internal interface information.\n#\n\n# Set path and Speedtest tmp file\nPATH=/usr/local/bin:$PATH\nSPEEDTEST=\"/tmp/speedtest.txt\"\n\n\n# Function to notify the user via Aple Script\nnotify () {\n    osascript -e \"display notification \\\"$1\\\" with title \\\"Netinfo\\\"\"\n}\n\n# If called with parameter \"copy\", copy the second parameter to the clipboard\nif [ \"$1\" = \"copy\" ]; then\n  # Copy to clipboard\n  echo \"$2\" | pbcopy\n  notify \"Copied $2 to clipboard\"\n  exit 0\nfi\n\n# If called with parameter \"speedtest\", run speedtest-cli\nif [ \"$1\" = \"speedtest\" ]; then\n  # test if speedtest-cli is found\n  if [[ \"$(which speedtest-cli)\" != \"\" ]]; then\n    # Perform a speedtest\n    if speedtest-cli --simple --share \u003e \"$SPEEDTEST\"; then\n      notify \"Speedtest is finished\"\n    else\n      notify \"Speedtest failed\"\n    fi\n  else\n     notify \"Speedtest-cli not found!\"\n  fi\n  exit 0\nfi\n\n# Get external IPs\nEXTERNAL_IP4=$(curl -4 --connect-timeout 3 -s http://v4.ipv6-test.com/api/myip.php || echo None)\nEXTERNAL_IP6=$(curl -6 --connect-timeout 3 -s http://v6.ipv6-test.com/api/myip.php || echo None)\n\n# Perform whois lookup on the external IPv4 address.\n[[ \"$EXTERNAL_IP4\" == \"None\" ]] \u0026\u0026 WHOIS=\"\" || WHOIS=$(whois \"$EXTERNAL_IP4\" | awk '/descr: / {$1=\"\"; print $0 }' | head -n 1)\n\n# Find interfaces\nINTERFACES=$(ifconfig | grep UP | egrep -o '(^en[0-9]*|^utun[0-9]*)' | sort -n)\n\n# Start building output\n[[ \"$EXTERNAL_IP4\" == \"None\" \u0026\u0026 \"$EXTERNAL_IP6\" == \"None\" ]]  \u0026\u0026 echo \"❌\" || echo \"🌐\"\necho \"---\"\necho \"🔄 Refresh | colo=black refresh=true\"\necho \"---\"\necho \"Public: \"\necho \"IPv4: ${EXTERNAL_IP4}${WHOIS} | terminal=false bash='$0' param1=copy param2=$EXTERNAL_IP4\"\necho \"IPv6: ${EXTERNAL_IP6} | terminal=false bash='$0' param1=copy param2=$EXTERNAL_IP6\"\necho \"---\"\necho \"📈 Perform Speedtest | terminal=false refresh=true bash='$0' param1=speedtest\"\n\n# Pretty format the last speedtest if the tmp file is found\nif [[ -e \"$SPEEDTEST\" ]]; then\n     LAST=$(stat -f \"%Sm\" -t \"%Y-%m-%d %H:%M:%S\" \"$SPEEDTEST\")\n     PING=$(awk '/Ping: / { $1=\"\"; print $0 }' \"$SPEEDTEST\")\n     UP=$(awk '/Upload: / { $1=\"\"; print $0 }' \"$SPEEDTEST\")\n     DOWN=$(awk '/Download: / { $1=\"\"; print $0 }' \"$SPEEDTEST\")\n     LINK=$(awk '/Share results: / { $1=\"\"; $2=\"\"; print $0 }' \"$SPEEDTEST\")\n     echo \"Last checked: $LAST\"\n     [[ \"$PING\" != \"\" ]] \u0026\u0026 echo \"⏱$PING ▼$DOWN ▲$UP | href=$LINK\"|| echo \"No results...\"\nelse\n     echo \"Last checked: Never\"\nfi\n\n# Loop through the interfaces and output MAC, IPv4 and IPv6 information\necho \"---\"\nfor INT in $INTERFACES; do\n     echo \"$INT:\"\n     ifconfig \"$INT\" | awk \"/ether/ { print \\\"MAC: \\\" \\$2 \\\" | terminal=false bash='$0' param1=copy param2=\\\" \\$2 }; /inet / { print \\\"IPv4: \\\" \\$2 \\\" | terminal=false bash='$0' param1=copy param2=\\\" \\$2 };  /inet6/ { print \\\"IPv6: \\\" \\$2 \\\" | terminal=false bash='$0' param1=copy param2=\\\" \\$2 }\" | sed -e 's/%utun[0-9]*//g' -e 's/%en[0-9]*//g' | sort\n     echo \"---\"\ndone\n\n# EoF\n"
+				}
+			],
+			"path": "Network/netinfo.60s.sh",
+			"filename": "netinfo.60s.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/netinfo.60s.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "Network Info",
+			"version": "v1.01",
+			"author": "Raymond Kuiper",
+			"authors": [
+				{
+					"name": "Raymond Kuiper",
+					"githubUsername": "q1x",
+					"imageURL": "https://avatars.githubusercontent.com/u/1175880?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Provides network status information about your Mac: Internal and external IPv4+IPv6 addresses, Whois information and Speedtest.net results.",
+			"imageURL": "http://i.imgur.com/zFv3RvI.png",
+			"dependencies": [
+				"speedtest-cli"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:59.153334Z",
+			"vars": null
+		}
+	]
+}

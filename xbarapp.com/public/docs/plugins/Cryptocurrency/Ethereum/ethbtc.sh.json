@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Cryptocurrency/Ethereum/ethbtc.sh",
+				"filename": "ethbtc.sh",
+				"content": "#!/bin/bash\n\n# Shows last Ethereum price on Bitfinex in BTC.\n#\n# \u003cbitbar.title\u003eEthereum BFX price\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003e0.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eCorvin Wimmer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ecorv89\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eShows last Ethereum price on Bitfinex in BTC.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/w6D7HHe.png\u003c/bitbar.image\u003e\n\necho -n \"ETH \"; curl -s \"https://api.bitfinex.com/v1/pubticker/ETHBTC\" | grep -Eo 'last_price\":\"[0-9]+\\.[0-9]+' | sed 's/last_price\":\"//'"
+			}
+		],
+		"path": "Cryptocurrency/Ethereum/ethbtc.sh",
+		"filename": "ethbtc.sh",
+		"dir": "Cryptocurrency/Ethereum",
+		"docsPlugin": "Cryptocurrency/Ethereum/ethbtc.sh.html",
+		"docsCategory": "Cryptocurrency/Ethereum.html",
+		"pathSegments": [
+			"Cryptocurrency",
+			"Ethereum"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Cryptocurrency",
+				"text": "Cryptocurrency",
+				"isLast": false
+			},
+			{
+				"path": "Cryptocurrency/Ethereum",
+				"text": "Ethereum",
+				"isLast": true
+			}
+		],
+		"title": "Ethereum BFX price",
+		"version": "0.1",
+		"author": "Corvin Wimmer",
+		"authors": [
+			{
+				"name": "Corvin Wimmer",
+				"githubUsername": "corv89",
+				"imageURL": "https://avatars.githubusercontent.com/u/7198687?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Shows last Ethereum price on Bitfinex in BTC.",
+		"imageURL": "http://i.imgur.com/w6D7HHe.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:46.193158Z",
+		"vars": null
+	}
+}

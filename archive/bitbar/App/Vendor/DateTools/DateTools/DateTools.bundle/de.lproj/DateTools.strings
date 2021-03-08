@@ -1,0 +1,80 @@
+/* No comment provided by engineer. */
+ "%d days ago" = "Vor %d Tagen";
+ 
+ /* No comment provided by engineer. */
+ "%d hours ago" = "Vor %d Stunden";
+ 
+ /* No comment provided by engineer. */
+ "%d minutes ago" = "Vor %d Minuten";
+ 
+ /* No comment provided by engineer. */
+ "%d months ago" = "Vor %d Monaten";
+ 
+ /* No comment provided by engineer. */
+ "%d seconds ago" = "Vor %d Sekunden";
+ 
+ /* No comment provided by engineer. */
+ "%d weeks ago" = "Vor %d Wochen";
+ 
+ /* No comment provided by engineer. */
+ "%d years ago" = "Vor %d Jahren";
+ 
+ /* No comment provided by engineer. */
+ "A minute ago" = "Vor einer Minute";
+ 
+ /* No comment provided by engineer. */
+ "An hour ago" = "Vor einer Stunde";
+ 
+/* No comment provided by engineer. */
+"Just now" = "Gerade eben";
+
+/* No comment provided by engineer. */
+"Last month" = "Letzten Monat";
+
+/* No comment provided by engineer. */
+"Last week" = "Letzte Woche";
+
+/* No comment provided by engineer. */
+"Last year" = "Letztes Jahr";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Gestern";
+
+/* No comment provided by engineer. */
+"1 year ago" = "Vor 1 Jahr";
+
+/* No comment provided by engineer. */
+"1 month ago" = "Vor 1 Monat";
+
+/* No comment provided by engineer. */
+"1 week ago" = "Vor 1 Woche";
+
+/* No comment provided by engineer. */
+"1 day ago" = "Vor 1 Tag";
+
+/* No comment provided by engineer. */
+"This morning" = "Heute Morgen";
+
+/* No comment provided by engineer. */
+"This afternoon" = "Heute Nachmittag";
+
+/* No comment provided by engineer. */
+"Today" = "Heute";
+
+/* No comment provided by engineer. */
+"This week" = "Diese Woche";
+
+/* No comment provided by engineer. */
+"This month" = "Diesen Monat";
+
+/* No comment provided by engineer. */
+"This year" = "Dieses Jahr";
+
+/* Short format for */
+"%dy" = "%dJ"; // year
+"%dM" = "%dM"; // month
+"%dw" = "%dW"; // week
+"%dd" = "%dT"; // day
+"%dh" = "%dh"; // hour
+"%dm" = "%dm"; // minute
+"%ds" = "%ds"; // second

@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "System/umbrella.5s.sh",
+				"filename": "umbrella.5s.sh",
+				"content": "#!/usr/bin/env bash\n#\n## \u003cbitbar.title\u003eUmbrellaBeGone\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# # \u003cbitbar.author\u003eJeff Levensailor\u003c/bitbar.author\u003e\n# # \u003cbitbar.author.github\u003elevensailor\u003c/bitbar.author.github\u003e\n# # \u003cbitbar.desc\u003eEnable/Disable Umbrella with Status on Menubar\u003c/bitbar.desc\u003e\n# # \u003cbitbar.dependancies\u003eumbrella.15s.sh\u003c/bitbar.dependancies\u003e\n\n# Dependancies:\n# If you want seamless integration, add NOPASSWD=ALL to admin account in /etc/sudoers file\n\nexport PATH=\"$PATH:/usr/local/bin\"\numbrella_status() {\n    status=$(sudo launchctl list | grep com.cisco.anyconnect.vpnagentd)\n    if [ \"$status\" != \"\" ]; then\n        echo \"👆\"\n    elif [ \"$status\" = \"\" ]; then\n        echo \"👇\"\n    else echo \"err\"\n    fi\n    #echo \"$status\"\n}\n\nenable_umbrella() {\n    sudo launchctl load /Library/LaunchDaemons/com.cisco.anyconnect.vpnagentd.plist \u0026\u0026 umbrella_status\n}\ndisable_umbrella() {\n    sudo launchctl unload /Library/LaunchDaemons/com.cisco.anyconnect.vpnagentd.plist \u0026\u0026 umbrella_status\n}\n\nif [ \"${1}\" == \"enable\" ]; then\n    enable_umbrella\n    \n\nelif [ \"${1}\" == \"disable\" ]; then\n    disable_umbrella\n\nelse\n    umbrella_status\n    echo \"---\"\n    echo \"---\"\n    echo \"Enable Umbrella | bash=$0 param1=enable terminal=false\"\n    echo \"---\"\n    echo \"Disable Umbrella | bash=$0 param1=disable terminal=false\"\nfi\n"
+			}
+		],
+		"path": "System/umbrella.5s.sh",
+		"filename": "umbrella.5s.sh",
+		"dir": "System",
+		"docsPlugin": "System/umbrella.5s.sh.html",
+		"docsCategory": "System.html",
+		"pathSegments": [
+			"System"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "System",
+				"text": "System",
+				"isLast": true
+			}
+		],
+		"title": "UmbrellaBeGone",
+		"version": "v1.0",
+		"author": "Jeff Levensailor",
+		"authors": [
+			{
+				"name": "Jeff Levensailor",
+				"githubUsername": "levensailor",
+				"imageURL": "https://avatars.githubusercontent.com/u/2538218?v=4",
+				"bio": "Engineer trying to code stuff. Always learning. ",
+				"primary": true
+			}
+		],
+		"desc": "Enable/Disable Umbrella with Status on Menubar",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:05.053639Z",
+		"vars": null
+	}
+}

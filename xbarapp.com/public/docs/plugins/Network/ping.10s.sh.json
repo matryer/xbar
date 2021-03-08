@@ -1,0 +1,53 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/ping.10s.sh",
+				"filename": "ping.10s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eping\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.1\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eTrung Đinh Quang, Grant Sherrick and Kent Karlsson\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ethealmightygrant\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSends pings to a range of sites to determine network latency\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/lk3iGat.png?1\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003eping\u003c/bitbar.dependencies\u003e\n\n# This is a plugin of Bitbar\n# https://github.com/matryer/bitbar\n# It shows current ping to some servers at the top Menubar\n# This helps me to know my current connection speed\n#\n# Authors: (Trung Đinh Quang) trungdq88@gmail.com and (Grant Sherrick) https://github.com/thealmightygrant\n\n# Themes copied from here: http://colorbrewer2.org/\n# shellcheck disable=SC2034\nPURPLE_GREEN_THEME=(\"#762a83\" \"#9970ab\" \"#c2a5cf\" \"#a6dba0\" \"#5aae61\" \"#1b7837\")\n# shellcheck disable=SC2034\nRED_GREEN_THEME=(\"#d73027\" \"#fc8d59\" \"#fee08b\" \"#d9ef8b\" \"#91cf60\" \"#1a9850\")\n# shellcheck disable=SC2034\nORIGINAL_THEME=(\"#acacac\" \"#ff0101\" \"#cc673b\" \"#ce8458\" \"#6bbb15\" \"#0ed812\")\n\n# Configuration\nCOLORS=(${RED_GREEN_THEME[@]})\nMENUFONT=\"\" #size=10 font=UbuntuMono-Bold\"\nFONT=\"\"\nMAX_PING=1000\nSITES=(google.com youtube.com wikipedia.org github.com)\n\n#grab ping times for all sites\nSITE_INDEX=0\nPING_TIMES=\n\nwhile [ $SITE_INDEX -lt ${#SITES[@]} ]; do\n    NEXT_SITE=\"${SITES[$SITE_INDEX]}\"\n    if RES=$(ping -c 2 -n -q \"$NEXT_SITE\" 2\u003e/dev/null); then\n        NEXT_PING_TIME=$(echo \"$RES\" | awk -F '/' 'END {printf \"%.0f\\n\", $5}')\n    else\n        NEXT_PING_TIME=$MAX_PING\n    fi\n\n    if [ -z \"$PING_TIMES\" ]; then\n        PING_TIMES=($NEXT_PING_TIME)\n    else\n        PING_TIMES=(${PING_TIMES[@]} $NEXT_PING_TIME)\n    fi\n    SITE_INDEX=$(( SITE_INDEX + 1 ))\ndone\n\n# Calculate the average ping\nSITE_INDEX=0\nAVG=0\nwhile [ $SITE_INDEX -lt ${#SITES[@]} ]; do\n    AVG=$(( (AVG + ${PING_TIMES[$SITE_INDEX]}) ))\n    SITE_INDEX=$(( SITE_INDEX + 1 ))\ndone\nAVG=$(( AVG / ${#SITES[@]} ))\n\n# Calculate STD dev\nSITE_INDEX=0\nAVG_DEVS=0\nwhile [ $SITE_INDEX -lt ${#SITES[@]} ]; do\n    AVG_DEVS=$(( AVG_DEVS + (${PING_TIMES[$SITE_INDEX]} - AVG)**2 ))\n    SITE_INDEX=$(( SITE_INDEX + 1 ))\ndone\nAVG_DEVS=$(( AVG_DEVS / ${#SITES[@]} ))\nSD=$(echo \"sqrt ( $AVG_DEVS )\" | bc -l | awk '{printf \"%d\\n\", $1}')\n\nif [ $AVG -ge $MAX_PING ]; then\n  MSG=\" ☠ \"\nelse\n  MSG='⚡'\"$AVG\"'±'\"$SD\"\nfi\n\nfunction colorize {\n  if [ \"$1\" -ge $MAX_PING ]; then\n    echo \"${COLORS[0]}\"\n  elif [ \"$1\" -ge 600 ]; then\n    echo \"${COLORS[1]}\"\n  elif [ \"$1\" -ge 300 ]; then\n    echo \"${COLORS[2]}\"\n  elif [ \"$1\" -ge 100 ]; then\n    echo \"${COLORS[3]}\"\n  elif [ \"$1\" -ge 50 ]; then\n    echo \"${COLORS[4]}\"\n  else\n    echo \"${COLORS[5]}\"\n  fi\n}\n\necho \"$MSG | color=$(colorize $AVG) $MENUFONT\"\necho \"---\"\nSITE_INDEX=0\nwhile [ $SITE_INDEX -lt ${#SITES[@]} ]; do\n    PING_TIME=${PING_TIMES[$SITE_INDEX]}\n    if [ $PING_TIME -eq $MAX_PING ]; then\n        PING_TIME=\"☠\"\n    else\n        PING_TIME=\"$PING_TIME ms | color=$(colorize $PING_TIME) $FONT\"\n    fi\n\n    echo \"${SITES[$SITE_INDEX]}: $PING_TIME\"\n    SITE_INDEX=$(( SITE_INDEX + 1 ))\ndone\n\necho \"---\"\necho \"Refresh... | refresh=true\"\n"
+			}
+		],
+		"path": "Network/ping.10s.sh",
+		"filename": "ping.10s.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/ping.10s.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "ping",
+		"version": "v1.1",
+		"author": "Trung Đinh Quang,  Grant Sherrick and Kent Karlsson",
+		"authors": [
+			{
+				"name": "Grant Sherrick",
+				"githubUsername": "thealmightygrant",
+				"imageURL": "https://avatars.githubusercontent.com/u/4055018?v=4",
+				"bio": "My goal is to make myself better at something everyday.",
+				"primary": true
+			},
+			{
+				"name": "Grant Sherrick and Kent Karlsson",
+				"githubUsername": "",
+				"imageURL": "",
+				"bio": "",
+				"primary": false
+			}
+		],
+		"desc": "Sends pings to a range of sites to determine network latency",
+		"imageURL": "http://i.imgur.com/lk3iGat.png?1",
+		"dependencies": [
+			"ping"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:59.454729Z",
+		"vars": null
+	}
+}

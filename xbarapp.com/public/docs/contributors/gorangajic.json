@@ -1,0 +1,148 @@
+{
+	"person": {
+		"name": "Goran Gajic",
+		"githubUsername": "gorangajic",
+		"imageURL": "https://avatars.githubusercontent.com/u/249310?v=4",
+		"bio": "Full Stack Developer \r\n- \r\nNode.js, React, React-Native",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/Twitch/play-with-livestreamer.5m.js",
+					"filename": "play-with-livestreamer.5m.js",
+					"content": "#!/usr/bin/env /usr/local/bin/node\n\n// \u003cbitbar.title\u003eTwitch Livestreamer\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eGoran Gajic\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003egorangajic\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003elist top 10 twitch streams for provided GAME, defaults to Dota 2\u003c/bitbar.desc\u003e\n// \u003cbitbar.dependencies\u003enode.js, livestreamer\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/XEQQaxC.png\u003c/bitbar.image\u003e\n\n\nvar GAME = \"Dota 2\"; // game you want to fetch streams for\nvar LIMIT = 10; // streams limit\nvar url = 'https://api.twitch.tv/kraken/streams/?limit=' + LIMIT + '\u0026game=' + encodeURIComponent(GAME);\nvar icon = '👾';\nvar LIVESTREAMER_PATH = '/usr/local/bin/livestreamer';\n\nfunction handleResponse(body) {\n    var output = body.streams.map(function(stream){\n        var channel = stream.channel;\n        var url = channel.url.replace('http://', '');\n        var status = channel.status.replace(/\\|/g, '').substr(0,40) + '...';\n        return [status, '| size=9 \\n', channel.display_name, ' - ', stream.viewers, ' | size=12 terminal=false bash=' + LIVESTREAMER_PATH + ' param1=', url, ' param2=best\\n'].join('');\n    }).join('\\n---\\n');\n    console.log(icon + '\\n---\\n' + output);\n}\n\n\nvar https = require('https');\nhttps.get(url, function(res) {\n    var body = '';\n    res.on('data', function(data) {\n        body += data;\n    });\n    res.on('end', function() {\n        handleResponse(JSON.parse(body));\n    });\n});\n"
+				}
+			],
+			"path": "Web/Twitch/play-with-livestreamer.5m.js",
+			"filename": "play-with-livestreamer.5m.js",
+			"dir": "Web/Twitch",
+			"docsPlugin": "Web/Twitch/play-with-livestreamer.5m.js.html",
+			"docsCategory": "Web/Twitch.html",
+			"pathSegments": [
+				"Web",
+				"Twitch"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": false
+				},
+				{
+					"path": "Web/Twitch",
+					"text": "Twitch",
+					"isLast": true
+				}
+			],
+			"title": "Twitch Livestreamer",
+			"version": "v1.0",
+			"author": "Goran Gajic",
+			"authors": [
+				{
+					"name": "Goran Gajic",
+					"githubUsername": "gorangajic",
+					"imageURL": "https://avatars.githubusercontent.com/u/249310?v=4",
+					"bio": "Full Stack Developer \r\n- \r\nNode.js, React, React-Native",
+					"primary": true
+				}
+			],
+			"desc": "list top 10 twitch streams for provided GAME, defaults to Dota 2",
+			"imageURL": "http://i.imgur.com/XEQQaxC.png",
+			"dependencies": [
+				"node.js",
+				"livestreamer"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:09.144172Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Time/pomodoro.1s.sh",
+					"filename": "pomodoro.1s.sh",
+					"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003ePomodoro Timer\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eGoran Gajic\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003egorangajic\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003ePomodoro Timer that uses Pomodoro Technique™\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/T0zFY89.png\u003c/bitbar.image\u003e\n\nWORK_TIME=25\nBREAK_TIME=3\n\nSAVE_LOCATION=$TMPDIR/bitbar-promodo\nTOMATO='🍅'\n\nWORK_TIME_IN_SECONDS=$((WORK_TIME * 60))\nBREAK_TIME_IN_SECONDS=$((BREAK_TIME * 60))\n\nCURRENT_TIME=$(date +%s)\n\nif [ -f \"$SAVE_LOCATION\" ];\nthen\n    DATA=$(cat \"$SAVE_LOCATION\")\n\nelse\n    DATA=\"$CURRENT_TIME|0\"\nfi\n\nTIME=$(echo \"$DATA\" | cut -d \"|\" -f1)\nSTATUS=$(echo \"$DATA\" | cut -d \"|\" -f2)\n\nfunction changeStatus {\n    echo \"$CURRENT_TIME|$1\" \u003e \"$SAVE_LOCATION\";\n    osascript -e \"display notification \\\"$2\\\" with title \\\"$TOMATO Pomodoro\\\" sound name \\\"$3\\\"\" \u0026\u003e /dev/null\n}\n\nfunction breakMode {\n    changeStatus \"2\" \"Break Mode\" \"Glass\"\n}\n\nfunction workMode {\n    changeStatus \"1\" \"Work Mode\" \"Blow\"\n}\n\ncase \"$1\" in\n\"work\")\n    workMode\n    exit\n  ;;\n\"break\")\n    breakMode\n    exit\n  ;;\n\"disable\")\n    changeStatus \"0\" \"Disabled\"\n    exit\n  ;;\nesac\n\n\n\nfunction timeLeft {\n    local FROM=$1\n    local TIME_DIFF=$((CURRENT_TIME - TIME))\n    local TIME_LEFT=$((FROM - TIME_DIFF))\n    echo \"$TIME_LEFT\";\n}\n\nfunction getSeconds {\n    echo $(($1 % 60))\n}\n\nfunction getMinutes {\n    echo $(($1 / 60))\n}\n\nfunction printTime {\n    SECONDS=$(getSeconds \"$1\")\n    MINUTES=$(getMinutes \"$1\")\n    printf \"%s %02d:%02d| color=%s\\n\" \"$TOMATO\" \"$MINUTES\" \"$SECONDS\"  \"$2\"\n}\n\ncase \"$STATUS\" in\n# STOP MODE\n\"0\")\n    echo \"$TOMATO\"\n  ;;\n\"1\")\n    TIME_LEFT=$(timeLeft $WORK_TIME_IN_SECONDS)\n    if (( \"$TIME_LEFT\" \u003c 0 )); then\n        breakMode\n    fi\n    printTime \"$TIME_LEFT\" \"red\"\n  ;;\n\"2\")\n    TIME_LEFT=$(timeLeft $BREAK_TIME_IN_SECONDS)\n    if ((\"$TIME_LEFT\" \u003c 0)); then\n        workMode\n    fi\n    printTime \"$TIME_LEFT\" \"green\"\n  ;;\nesac\n\necho \"---\";\necho \"👔 Work | bash=\\\"$0\\\" param1=work terminal=false\"\necho \"☕ Break | bash=\\\"$0\\\" param1=break terminal=false\"\necho \"🔌 Disable | bash=\\\"$0\\\" param1=disable terminal=false\"\n"
+				}
+			],
+			"path": "Time/pomodoro.1s.sh",
+			"filename": "pomodoro.1s.sh",
+			"dir": "Time",
+			"docsPlugin": "Time/pomodoro.1s.sh.html",
+			"docsCategory": "Time.html",
+			"pathSegments": [
+				"Time"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Time",
+					"text": "Time",
+					"isLast": true
+				}
+			],
+			"title": "Pomodoro Timer",
+			"version": "v1.0",
+			"author": "Goran Gajic",
+			"authors": [
+				{
+					"name": "Goran Gajic",
+					"githubUsername": "gorangajic",
+					"imageURL": "https://avatars.githubusercontent.com/u/249310?v=4",
+					"bio": "Full Stack Developer \r\n- \r\nNode.js, React, React-Native",
+					"primary": true
+				}
+			],
+			"desc": "Pomodoro Timer that uses Pomodoro Technique™",
+			"imageURL": "http://i.imgur.com/T0zFY89.png",
+			"dependencies": null,
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:06.043564Z",
+			"vars": null
+		},
+		{
+			"files": [
+				{
+					"path": "Dev/project-list.5m.js",
+					"filename": "project-list.5m.js",
+					"content": "#!/usr/bin/env /usr/local/bin/node\n\n// \u003cbitbar.title\u003eSemaphore CI\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eGoran Gajic\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003egorangajic\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eList your project and their statuses, from semaphoreci.com\u003c/bitbar.desc\u003e\n// \u003cbitbar.dependencies\u003enode.js\u003c/bitbar.dependencies\u003e\n// \u003cbitbar.image\u003ehttp://i.imgur.com/tRd1clI.png\u003c/bitbar.image\u003e\n\nvar https = require('https');\nvar AUTH_TOKEN = ''; // YOUR AUTH TOKEN\nvar url = 'https://semaphoreci.com/api/v1/projects?auth_token='+AUTH_TOKEN;\nvar icon = '✅';\n\nfunction status(result) {\n    if (result === 'passed') {\n        return '✅';\n    }\n\n    if (result === 'pending') {\n        return '🌀';\n    }\n    return '🔴';\n}\n\nfunction color(result) {\n    if (result === 'passed') {\n        return 'green';\n    }\n    if (result === 'pending') {\n        return 'orange';\n    }\n\n    return 'red';\n}\n\nfunction branchesOutput(branches) {\n    return branches.map(function (branch){\n        if (branch.result === 'failed') {\n            icon = '🔴';\n        }\n        return ['- ', branch.branch_name,' ',status(branch.result), ' | color=', color(branch.result), ' href=', branch.build_url].join('');\n    }).join('\\n');\n}\n\nfunction handleResponse(body) {\n    var output = body.map(function(project){\n        return [project.owner, '/', project.name, ' | href=', project.html_url,'\\n', branchesOutput(project.branches)].join('');\n    }).join('\\n---\\n');\n    console.log(icon + '\\n---\\n ⚙ Semaphoreci | href=https://semaphoreci.com/ \\n---\\n' + output);\n}\n\nhttps.get(url, function(res) {\n    var body = '';\n    res.on('data', function(data) {\n        body += data;\n    });\n    res.on('end', function() {\n        handleResponse(JSON.parse(body));\n    });\n});\n\n"
+				}
+			],
+			"path": "Dev/project-list.5m.js",
+			"filename": "project-list.5m.js",
+			"dir": "Dev",
+			"docsPlugin": "Dev/project-list.5m.js.html",
+			"docsCategory": "Dev.html",
+			"pathSegments": [
+				"Dev"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Dev",
+					"text": "Dev",
+					"isLast": true
+				}
+			],
+			"title": "Semaphore CI",
+			"version": "v1.0",
+			"author": "Goran Gajic",
+			"authors": [
+				{
+					"name": "Goran Gajic",
+					"githubUsername": "gorangajic",
+					"imageURL": "https://avatars.githubusercontent.com/u/249310?v=4",
+					"bio": "Full Stack Developer \r\n- \r\nNode.js, React, React-Native",
+					"primary": true
+				}
+			],
+			"desc": "List your project and their statuses, from semaphoreci.com",
+			"imageURL": "http://i.imgur.com/tRd1clI.png",
+			"dependencies": [
+				"node.js"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:21:52.03557Z",
+			"vars": null
+		}
+	]
+}

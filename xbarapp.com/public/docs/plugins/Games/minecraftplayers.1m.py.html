@@ -1,0 +1,412 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Minecraft connected players in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Displays number of connected players on a Minecraft server - install xbar for free to get started.'>
+	<meta name='author' content='Páll Hilmarsson'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/ImBlVHD.png'>
+	<meta itemprop='name' content='Minecraft connected players in your macOS menu bar'>
+	<meta itemprop='description' content='Displays number of connected players on a Minecraft server - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Minecraft connected players in your macOS menu bar'>
+	<meta name='twitter:description' content='Displays number of connected players on a Minecraft server - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/ImBlVHD.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Minecraft connected players in your macOS menu bar'>
+	<meta property='og:description' content='Displays number of connected players on a Minecraft server - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Games/minecraftplayers.1m.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/ImBlVHD.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/ImBlVHD.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/ImBlVHD.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/ImBlVHD.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Minecraft connected players</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/pallih.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/501816?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/pallih.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Páll Hilmarsson (<code style='color:white;'>@pallih</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Displays number of connected players on a Minecraft server
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Games%2fminecraftplayers.1m.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/ImBlVHD.png' 
+				alt='Image preview of Minecraft connected players plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>minecraftplayers.1m.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Games/minecraftplayers.1m.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Games/minecraftplayers.1m.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Bitbar plugin showing number of connected players on a Minecraft server
+
+# &lt;bitbar.title&gt;Minecraft connected players&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v0.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Páll Hilmarsson&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;pallih&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Displays number of connected players on a Minecraft server&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/ImBlVHD.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+
+# Heavily based on https://github.com/Fanobii/minestatus-checker
+
+import socket
+import struct
+import json
+
+# Define your server ip address and port
+
+HOST = &#34;IP ADDRESS&#34;
+PORT = 25565
+
+
+def unpack_varint(s):
+    d = 0
+    for i in range(5):
+        b = ord(s.recv(1))
+        d |= (b &amp; 0x7F) &lt;&lt; 7*i
+        if not b &amp; 0x80:
+            break
+    return d
+
+
+def pack_varint(d):
+    o = &#34;&#34;
+    while True:
+        b = d &amp; 0x7F
+        d &gt;&gt;= 7
+        o &#43;= struct.pack(&#34;B&#34;, b | (0x80 if d &gt; 0 else 0))
+        if d == 0:
+            break
+    return o
+
+
+def pack_data(d):
+    return pack_varint(len(d)) &#43; d
+
+
+def pack_port(i):
+    return struct.pack(&#39;&gt;H&#39;, i)
+
+
+def get_info(host=&#39;localhost&#39;, port=25565):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((host, port))
+    s.send(pack_data(&#34;\x00\x00&#34; &#43; pack_data(host.encode(&#39;utf8&#39;)) &#43; pack_port(port) &#43; &#34;\x01&#34;))
+    s.send(pack_data(&#34;\x00&#34;))
+    unpack_varint(s)
+    unpack_varint(s)
+    l = unpack_varint(s)
+    d = &#34;&#34;
+    while len(d) &lt; l:
+        d &#43;= s.recv(1024)
+    s.close()
+    return d.decode(&#39;utf8&#39;)
+
+
+try:
+    result = json.loads(get_info(host=HOST, port=PORT))
+    if result[&#39;players&#39;][&#39;online&#39;] &gt; 0:
+        print &#34;☑️ &#34; &#43; str(result[&#39;players&#39;][&#39;online&#39;])
+        print &#34;---&#34;
+        for player in result[&#39;players&#39;][&#39;sample&#39;]:
+            print player[&#39;name&#39;]
+    else:
+        print &#34;🔘 &#34; &#43; str(result[&#39;players&#39;][&#39;online&#39;])
+except socket.error:
+    print &#34;✖️&#34;
+    print &#34;---&#34;
+    print &#34;Connection error&#34;
+
+print &#34;---&#34;
+print &#34;Start Minecraft | bash=/usr/bin/open param1=-a param2=Minecraft terminal=false&#34;
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

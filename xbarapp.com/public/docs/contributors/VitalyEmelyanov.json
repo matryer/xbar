@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Vitaly",
+		"githubUsername": "VitalyEmelyanov",
+		"imageURL": "https://avatars.githubusercontent.com/u/15330670?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Web/service-status.5s.js",
+					"filename": "service-status.5s.js",
+					"content": "#!/usr/bin/env /usr/local/bin/node\nconst https = require('https');\n\n// \u003cbitbar.title\u003eService Status\u003c/bitbar.title\u003e\n// \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n// \u003cbitbar.author\u003eVitaly Emelyanov\u003c/bitbar.author\u003e\n// \u003cbitbar.author.github\u003eVitalyEmelyanov\u003c/bitbar.author.github\u003e\n// \u003cbitbar.desc\u003eSimple plugin to monitor your services/websites availability\u003c/bitbar.desc\u003e\n// \u003cbitbar.image\u003ehttps://hsto.org/webt/dd/yv/qn/ddyvqnycz-hytbdolo5ti48pii4.png\u003c/bitbar.image\u003e\n// \u003cbitbar.dependencies\u003enodejs\u003c/bitbar.dependencies\u003e\n\n// Customize as you wish!\nconst services = [\n  {name: 'Example', url: 'https://example.com'},\n];\n\n// Emoji statuses\nconst successStatus = '🟢|size=10';\nconst warningStatus = '🟠|size=10';\nconst errorStatus = '🔴|size=10';\n\n// Text statuses - replace emoji if you want\n// const successStatus = '●|color=green';\n// const warningStatus = '●|color=orange';\n// const errorStatus = '●|color=red';\n\nfunction main() {\n  Promise.all(services.map(checkStatus))\n      .then(serviceStatuses =\u003e {\n        const allSuccess = serviceStatuses.every(s =\u003e s.status === 'success');\n        const allError = serviceStatuses.every(s =\u003e s.status === 'error');\n\n        let globalStatusIcon;\n\n        if (allSuccess) globalStatusIcon = successStatus;\n        else if (allError) globalStatusIcon = errorStatus;\n        else globalStatusIcon = warningStatus;\n\n        console.log(`${globalStatusIcon}`);\n        console.log('---');\n\n        serviceStatuses.forEach(s =\u003e {\n          const color = s.status === 'success' ? 'green' : 'red';\n          console.log(`${s.service.name} |color=${color}`);\n          if (s.status === 'success') {\n            console.log(`${s.res.statusCode} ${s.res.statusMessage} |size=10`);\n          } else {\n            console.log(`${s.error} |size=10`);\n          }\n          console.log('---');\n        });\n\n        if (!serviceStatuses.length) console.log('There are no configured services to check!\\n---');\n      });\n}\nmain();\n\nfunction checkStatus(service) {\n  return new Promise(resolve =\u003e {\n    const req = https.get(service.url, res =\u003e {\n      if (res.statusCode === 200) {\n        return resolve({status: 'success', res, service})\n      }\n      return resolve({status: 'error', error: `${res.statusCode} ${res.statusMessage}`, service})\n    });\n    req.on('error', error =\u003e resolve({status: 'error', error, service}));\n    req.end();\n\n    setTimeout(() =\u003e {\n      resolve({status: 'error', error: 'Request timeout', service});\n      req.abort();\n    }, 3000)\n  });\n}\n"
+				}
+			],
+			"path": "Web/service-status.5s.js",
+			"filename": "service-status.5s.js",
+			"dir": "Web",
+			"docsPlugin": "Web/service-status.5s.js.html",
+			"docsCategory": "Web.html",
+			"pathSegments": [
+				"Web"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Web",
+					"text": "Web",
+					"isLast": true
+				}
+			],
+			"title": "Service Status",
+			"version": "v1.0",
+			"author": "Vitaly Emelyanov",
+			"authors": [
+				{
+					"name": "Vitaly",
+					"githubUsername": "VitalyEmelyanov",
+					"imageURL": "https://avatars.githubusercontent.com/u/15330670?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Simple plugin to monitor your services/websites availability",
+			"imageURL": "https://hsto.org/webt/dd/yv/qn/ddyvqnycz-hytbdolo5ti48pii4.png",
+			"dependencies": [
+				"nodejs"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:10.395162Z",
+			"vars": null
+		}
+	]
+}

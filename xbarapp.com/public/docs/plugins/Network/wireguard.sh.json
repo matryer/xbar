@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/wireguard.sh",
+				"filename": "wireguard.sh",
+				"content": "#!/bin/bash\n# \u003cbitbar.title\u003eWireguard\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDaniel Barber\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edanbee\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eManages a Wireguard VPN connection\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://f001.backblazeb2.com/file/bitbar/wireguard.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n\n# You will need to add the following line to your sudoers file. Remember to edit\n# sudoers with `sudo visudo`.\n#\n# %admin  ALL=(ALL) NOPASSWD: /usr/local/bin/wg-quick\n#\n# Rename WG_CONFIG if your Wireguard config is not called `wg0-client`\n\nPATH=\"/usr/local/bin:$PATH\"\n\nWG_CONNECTED=\"iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAY1BMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////Iv5pwAAAAH3RSTlMAA0yMvd6sez0V7/qzbglj5qR0Ncj1KA7VLlQflkGEXYPQGAAAAAFiS0dEILNrPYAAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAHdElNRQfiCB0GISSxSlkqAAABpklEQVQ4y2VT7YKEIAik1GyzTNus1nbz/d/y8AO3u+OXIMLMgABkTcu4EJ1kvJN9A3/twYYQghqnHvQ8BMMev+/neB2sZEt8++SrcvJWpbEhmdiy3wL0IfBapOlCMZkDezsL9A7KWMq1aVPVThhzpADPXTZVEpzgL/Q9+VRxrX44WB8xCvJdbNKHu6klYhjvJSrCsE7PrbV2R9iUITCbOqo5Qz7fmPEYSrQHT+99FfV9qyvhXU42jcPja/hsX+pj5fDEp8h+QKIPLCYrCFMQ4EuWxMkVqLADV1TEhLEcIjeSQgEdUNUrHrpmRnU+lTsQyw+ARuhumTWireq6WmuMDL31GghNAcnpiDpNrySEnkxNGCvcEK4p7Yv2vtlIyMCqkmaScZInW8/YK1RoZRajhileIOsB8ZI8pinsD8SGIHZH0dI5jiVRZpIPKHCbwy+ahUqoaPa+Ls9Js2B5AQYCDM1RxgGWGkfr8zwEtj5Rlg5HrmPInLQifcY8pT9RpTy279c6Ew7V1p+ITty8m3061ENde9654Ozr3//ePeOHsNfCxsvrGv4BOvFCaHw59FkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMDgtMjlUMTA6MzM6MzYtMDQ6MDCYYoC0AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTA4LTI5VDEwOjMzOjM2LTA0OjAw6T84CAAAAABJRU5ErkJggg==\"\nWG_DISCONNECTED=\"iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAY1BMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////Iv5pwAAAAIHRSTlMAAhsxQk09K0Q6FgEHVFk/JVEoEklWDyAKBBkNHTUfLpaxL30AAAABYktHRCCzaz2AAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAB3RJTUUH4ggdBiEgtiedMwAAAaFJREFUOMtdU1GigyAMKyIiKihOVDY373/LVypl7vVHSjFNEwDgEJWslWq0bI3uevgfg7QOY5w6EJN1Xg6/9YnKRstZYPaolxD0DUUYR6HWK68AOufaAtI3LofO/apNYbbwiTmXfUWojfJe0UYtqL6GfCCo+oH5xjkjLiV3i+wSR8V52IHo3GPGrTjeIZrv/9NjfRoTcSw+oXoYSn26KL8knhhs3uzg4PrBU+/vG66Gd14ZsuOTRn+u39FHaPMKBxxwHpu+CKaZBOSRAmokSZwLgYEtZFU89/XQp9mKFMALVPVM30ZM+10cRsB5ICJEmDc8KpiZCwWrSRN+zEH+yAKgyhRJp+m6D2L25cBY6Dp3zq9UjtshVhbSyaKkn3VycpdtcrByhVrMFCIkHw/kbPFgn5t4lIeMW5DbhhrSTF4UoZItT2qla3vkNcmevSBW7P1W9HmxF/Ky1zJhEEu2A+ghqHhdgO5SU2HrvUa+aHlMP/kXX5HOl+sIMbKU/IyoCxkZnpxvaYD48zi7JvU5aXN4O2tW+B/DJz1/c85yPI/v339ndyeoPSR2pwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wOC0yOVQxMDozMzozMy0wNDowMMparxMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDgtMjlUMTA6MzM6MzItMDQ6MDAdcBwbAAAAAElFTkSuQmCC\"\n\nWG_EXECUTABLE=/usr/local/bin/wg-quick\n\nWG_CONFIG=\"wg0-client\"\n\nWG_PIDFILE=\"/var/run/wireguard/$WG_CONFIG.name\"\n\ncase \"$1\" in\n    connect)\n        sudo $WG_EXECUTABLE up $WG_CONFIG\n\n        # Wait for connection so menu item refreshes instantly\n        until [ -f $WG_PIDFILE ]; do sleep 1; done\n        ;;\n    disconnect)\n        sudo $WG_EXECUTABLE down $WG_CONFIG\n\n        # Wait for disconnection so menu item refreshes instantly\n        until [ ! -f $WG_PIDFILE ]; do sleep 1; done\n        ;;\nesac\n\nif [ -f $WG_PIDFILE ]; then\n    echo \"| templateImage=$WG_CONNECTED\"\n    echo '---'\n    echo \"Disconnect Wireguard | bash='$0' param1=disconnect terminal=false refresh=true\"\n    exit\nelse\n    echo \"| templateImage=$WG_DISCONNECTED\"\n    echo '---'\n    echo \"Connect Wireguard | bash='$0' param1=connect terminal=false refresh=true\"\n    exit\nfi\n"
+			}
+		],
+		"path": "Network/wireguard.sh",
+		"filename": "wireguard.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/wireguard.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Wireguard",
+		"version": "v1.0",
+		"author": "Daniel Barber",
+		"authors": [
+			{
+				"name": "Daniel Barber",
+				"githubUsername": "danbee",
+				"imageURL": "https://avatars.githubusercontent.com/u/165531?v=4",
+				"bio": "Drums and code.",
+				"primary": true
+			}
+		],
+		"desc": "Manages a Wireguard VPN connection",
+		"imageURL": "https://f001.backblazeb2.com/file/bitbar/wireguard.png",
+		"dependencies": [],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:00.400775Z",
+		"vars": null
+	}
+}

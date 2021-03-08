@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/sent-received.1s.sh",
+				"filename": "sent-received.1s.sh",
+				"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eNetwork Sent/Received Totals\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003ePaul W. Rankin\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ernkn\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays total sent and received wifi data for current sesssion.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttps://i.imgur.com/KxXfbKn.png\u003c/bitbar.image\u003e\n# \u003cbitbar.dependencies\u003ebash\u003c/bitbar.dependencies\u003e\n\n# BitBar Network Sent/Received plugin\n\nINTERFACE=\"en0\"\nTMPFILE=\"${TMPDIR}/bitbar-sent-received\"\n\nif [[ -r \"${TMPFILE}\" ]]\nthen\n    read -ra offsets \u003c \"${TMPFILE}\"\nelse\n    echo \"0 0\" \u003e \"${TMPFILE}\"\n    offsets=(0 0)\nfi\n\ntotals=$(netstat -I \"${INTERFACE}\" -b)\n\nif [[ $1 == reset ]]\nthen\n    awk 'NR-1==1 {print $7, $10}' \u003c\u003c\u003c \"${totals}\" \u003e \"${TMPFILE}\"\nfi\n\nif [[ $1 == undo_reset ]]\nthen\n    rm \"${TMPFILE}\"\nfi\n\nin_bytes=$(awk 'NR-1==1 {print $7}' \u003c\u003c\u003c \"${totals}\")\noffset_in_bytes=$(bc \u003c\u003c\u003c \"${in_bytes} - ${offsets[0]}\")\n\nout_bytes=$(awk 'NR-1==1 {print $10}' \u003c\u003c\u003c \"$totals\")\noffset_out_bytes=$(bc \u003c\u003c\u003c \"${out_bytes} - ${offsets[1]}\")\n\n\nfunction convert_bytes {\n    if [[ $1 -lt 1000000000 ]]\n    then\n        printf \"%0.1f MB\" \"$(bc \u003c\u003c\u003c \"scale = 1; $1 / 1048576\")\"\n    else\n        printf \"%0.2f GB\" \"$(bc \u003c\u003c\u003c \"scale = 2; $1 / 1073741824\")\"\n    fi\n}\n\n# shellcheck disable=SC2086\necho \"▼ $(convert_bytes ${offset_in_bytes}) ▲ $(convert_bytes ${offset_out_bytes})\"\necho \"---\"\necho \"Reset Counters | bash='$0' param1=reset terminal=false\"\necho \"Restore Counters | alternate=true bash='$0' param1=undo_reset terminal=false\"\necho \"---\"\necho \"Refresh | refresh=true terminal=false\"\n"
+			}
+		],
+		"path": "Network/sent-received.1s.sh",
+		"filename": "sent-received.1s.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/sent-received.1s.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Network Sent/Received Totals",
+		"version": "v1.0",
+		"author": "Paul W. Rankin",
+		"authors": [
+			{
+				"name": "Paul W. Rankin",
+				"githubUsername": "rnkn",
+				"imageURL": "https://avatars.githubusercontent.com/u/1256849?v=4",
+				"bio": "Filmmaker. Hobbyist programmer. Most repositories relate to screenwriting.",
+				"primary": true
+			}
+		],
+		"desc": "Displays total sent and received wifi data for current sesssion.",
+		"imageURL": "https://i.imgur.com/KxXfbKn.png",
+		"dependencies": [
+			"bash"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:59.618431Z",
+		"vars": null
+	}
+}

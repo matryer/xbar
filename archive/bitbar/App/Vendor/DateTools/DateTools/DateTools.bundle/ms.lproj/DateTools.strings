@@ -1,0 +1,89 @@
+/* No comment provided by engineer. */
+"%d days ago" = "%d hari yang lepas";
+
+/* No comment provided by engineer. */
+"%d hours ago" = "%d jam yang lepas";
+
+/* No comment provided by engineer. */
+"%d minutes ago" = "%d minit yang lepas";
+
+/* No comment provided by engineer. */
+"%d months ago" = "%d bulan yang lepas";
+
+/* No comment provided by engineer. */
+"%d seconds ago" = "%d saat yang lepas";
+
+/* No comment provided by engineer. */
+"%d weeks ago" = "%d minggu yang lepas";
+
+/* No comment provided by engineer. */
+"%d years ago" = "%d tahun yang lepas";
+
+/* No comment provided by engineer. */
+"A minute ago" = "Seminit yang lepas";
+
+/* No comment provided by engineer. */
+"An hour ago" = "Sejam yang lepas";
+
+/* No comment provided by engineer. */
+"Just now" = "Sebentar tadi";
+
+/* No comment provided by engineer. */
+"Last month" = "Bulan lepas";
+
+/* No comment provided by engineer. */
+"Last week" = "Minggu lepas";
+
+/* No comment provided by engineer. */
+"Last year" = "Tahun lepas";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Semalam";
+
+/* No comment provided by engineer. */
+"1 year ago" = "1 tahun lepas";
+
+/* No comment provided by engineer. */
+"1 month ago" = "1 bulan lepas";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 minggu lepas";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1 hari lepas";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1 jam lepas";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1 minit lepas";
+
+/* No comment provided by engineer. */
+"1 second ago" = "1 saat lepas";
+
+/* No comment provided by engineer. */
+"This morning" = "Pagi ini";
+
+/* No comment provided by engineer. */
+"This afternoon" = "Petang ini";
+
+/* No comment provided by engineer. */
+"Today" = "Hari ini";
+
+/* No comment provided by engineer. */
+"This week" = "Minggu ini";
+
+/* No comment provided by engineer. */
+"This month" = "Bulan ini";
+
+/* No comment provided by engineer. */
+"This year" = "Tahun ini";
+
+/* Short format for */
+"%dy" = "%dy"; // year
+"%dM" = "%dM"; // month
+"%dw" = "%dw"; // week
+"%dd" = "%dd"; // day
+"%dh" = "%dh"; // hour
+"%dm" = "%dm"; // minute
+"%ds" = "%ds"; // second

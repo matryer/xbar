@@ -1,0 +1,404 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Bitbucket Pull Requests in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Shows Bitbucket open pull request information - install xbar for free to get started.'>
+	<meta name='author' content='Mikey Beck'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png'>
+	<meta itemprop='name' content='Bitbucket Pull Requests in your macOS menu bar'>
+	<meta itemprop='description' content='Shows Bitbucket open pull request information - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Bitbucket Pull Requests in your macOS menu bar'>
+	<meta name='twitter:description' content='Shows Bitbucket open pull request information - install xbar for free to get started.'>
+	<meta name='twitter:image' content='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Bitbucket Pull Requests in your macOS menu bar'>
+	<meta property='og:description' content='Shows Bitbucket open pull request information - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/Dev/getopenPRs.10m.sh.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png'>
+	<link rel='shortcut icon' href='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Bitbucket Pull Requests</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/mikeybeck.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/468643?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/mikeybeck.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Mikey Beck (<code style='color:white;'>@mikeybeck</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Shows Bitbucket open pull request information
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=Dev%2fgetopenPRs.10m.sh'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png' 
+				alt='Image preview of Bitbucket Pull Requests plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>getopenPRs.10m.sh</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/Dev/getopenPRs.10m.sh'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/Dev/getopenPRs.10m.sh'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/bin/bash
+# shellcheck disable=SC2034
+# shellcheck disable=SC2154
+# shellcheck source=/dev/null
+
+# &lt;bitbar.title&gt;Bitbucket Pull Requests&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;1.0&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Mikey Beck&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;mikeybeck&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Shows Bitbucket open pull request information&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;jq&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/mikeybeck/bitbar-bitbucketPRs&lt;/bitbar.abouturl&gt;
+
+# Relevant documentation for BitBucket: http://web.archive.org/web/20150530151816/https://confluence.atlassian.com/display/BITBUCKET/pullrequests&#43;Resource#pullrequests
+
+USERNAME=
+PASSWORD=
+
+REPO_OWNER=
+REPO_SLUG=
+
+NUM_APPROVALS_REQ=2  # Number of approvals required for pull request
+
+# Export PATH
+export PATH=&#34;/usr/local/bin:/usr/bin:$PATH&#34;
+
+# Base64 icon to use in system bar
+icon=&#34;iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI&#43;CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24&#43;CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY&#43;CjwveDp4bXBtZXRhPgpMwidZAAACK0lEQVQ4EbWUO2tUQRSAb2K0CMgGsVCUoCCBlCIqNlY&#43;QImPxsLaH5AiIhYWQsDSQgSxsRHUwsJGLYRNFbXRgGDtgqKCqEl8Jz6&#43;b3bO3SFeDRYe&#43;PY85txzZs7euVXVkxU9M1nh9&#43;f4AHprtvuyXlYNk7Ef1uRMi4Rcw7iUHePSWDh2cIaEj9CBOTgOIRcxfsK5CBQ6TlKEqmo3ng8czNEJ9CdYBxfAtR/wAqZhCk7DKlB&#43;KzpJsJ2Wej8zmA/BYgvwPdv6wX3s1aDESZMzxu9nGE1eVR1Bf4AdcAui6Dy2I/kC7tj4DVDqgjHYKwSd3R34Bh5J8Ti3wYfPg7IdnoExc2Mj6ehRucXCu5z0GK2Us3mEfzlFuz/&#43;4xaUvd1QNVC&#43;FoMEPfYQODOLOTdzFmEPOIImsWiS2J2OwfDVzkixmMXfwl1YCX&#43;Ucod1F7JL2xm702gWjRqLRlLj4pKghf5azPx/KbikfrP7Xws6&#43;Jidc1uuWby/brV&#43;vcqHZl3JElct/FLHM971kHg2NYmEk6y6Qz8A6kOg1N0Lewv2K3gD5sb1w&#43;zKLpSvxuHsn0LbdW32bVoe0VtzM8dG0N6wcahlEmuq9rpGB3U0x3xf4yQbsN/DxrymOgttjUjy7u6ETaDsg/XwVAfxWKK8BD/EJ3SyHEPPhBP6OoafLDt5fLsq0VQ75ulovsIDeA5PoAVpLn3o6H4AexvcAz&#43;eTWIDb8xmcGev4Sp45/t/AVL9dQ7qDO64AAAAAElFTkSuQmCC&#34;
+response=$(curl -s -X GET --user $USERNAME:$PASSWORD &#34;https://bitbucket.org/api/2.0/repositories/$REPO_OWNER/$REPO_SLUG/pullrequests/&#34;)
+json=$(echo &#34;$response&#34; | jq -r -c &#39;[.values[] | {title: .title, author: .author.display_name, num_comments: .comment_count, link_html: .links.html.href, link_status: .links.statuses.href, link_self: .links.self.href}]&#39;)
+prs=$(echo &#34;$response&#34; | jq -r -c &#39;(.size|tostring)&#39;)
+
+num_approved_by_me=0
+declare -a lines
+
+for pr in $(echo &#34;${json}&#34; | jq -r &#39;.[] | @base64&#39;); do
+    _jq() {
+     echo &#34;${pr}&#34; | base64 --decode | jq -r &#34;${1}&#34;
+    }
+
+   build_state=$(curl -s -X GET --user $USERNAME:$PASSWORD &#34;$(_jq &#39;.link_status&#39;)&#34; | jq -r &#39;.values[].state&#39;)
+   self=$(curl -s -X GET --user $USERNAME:$PASSWORD &#34;$(_jq &#39;.link_self&#39;)&#34;)
+   num_approvals=$(echo &#34;$self&#34; | jq -r &#39;[select(.participants[].approved)] | length&#39;)
+   colour=&#34;red&#34;
+   if [[ $build_state == &#34;SUCCESSFUL&#34; ]]; then
+    colour=&#34;green&#34; # Colour to show if PR is good to go (approved &amp; build passed)
+    if [ &#34;$num_approvals&#34; -lt &#34;$NUM_APPROVALS_REQ&#34; ]; then
+      colour=&#34;black&#34; # Colour to show if PR build passed but not approved
+    fi
+   fi
+  
+   approved_by_me=$(echo &#34;$self&#34; | jq -r --arg USERNAME &#34;$USERNAME&#34; &#39;.participants[] | select(.user.username == $USERNAME) | .approved&#39;)
+   if [[ $approved_by_me == &#34;true&#34; ]]; then
+    approved_by_me=&#34;:heavy_check_mark:&#34;
+    ((num_approved_by_me&#43;&#43;))
+   else
+    approved_by_me=&#34;-&#34;
+   fi
+
+  line=&#34;$approved_by_me $(_jq &#39;.author&#39;) - $(_jq &#39;.title&#39;) ┃ :heavy_check_mark: $num_approvals ┃ :speech_balloon: $(_jq &#39;.num_comments&#39;) | href=$(_jq &#39;.link_html&#39;) color=$colour&#34;
+  lines&#43;=(&#34;$line&#34;)
+
+done
+
+# Print everything out
+
+num_unapproved_by_me=$((prs - num_approved_by_me))
+echo &#34;$prs / $num_unapproved_by_me | templateImage=$icon dropdown=false&#34; # Display number of PRs in menu bar
+echo &#34;---&#34;
+echo &#34;View all open pull requests | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/&#34;
+echo &#34;---&#34;
+
+for line in &#34;${lines[@]}&#34;
+do
+  echo &#34;$line&#34; # Display open PRs in dropdown
+done
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

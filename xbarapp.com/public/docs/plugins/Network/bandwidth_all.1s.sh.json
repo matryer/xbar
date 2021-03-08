@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Network/bandwidth_all.1s.sh",
+				"filename": "bandwidth_all.1s.sh",
+				"content": "#!/usr/bin/env bash\n\n# \u003cbitbar.title\u003eBandwidth (Mbit/s)\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev0.0.2\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDan Rohtbart\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003edanrohtbart\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays total bandwidth usage for all interfaces in Megabits/s. Especially useful if you are frequently switching between wi-fi and ethernet connections.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003eifstat\u003c/bitbar.dependencies\u003e\n\n# based on bandwidth.1s.sh by Ant Cosentino\n# based on bandwidth_primary.1s.sh by Kaspars Mickevics\n\n\nif [ ! -e /usr/local/bin/ifstat ]; then\n    echo \"Please install ifstat or change the path to it in the script.\"\n    exit 1\nfi\n\nfunction kilo_to_mega {\n  # in networking 1 mbit is 1000 kilobits (not 1024)\n  printf \"%0.1f\\\\n\" \"$(bc -q \u003c\u003c\u003c scale=3\\;\"${1}\"/1000)\"\n}\n\nfunction get_ifstat {\n    interface=$1\n    # 1 sample for 0.5 second interval\n    # outputs two values (in/out) in kilobits per second\n    /usr/local/bin/ifstat -n -w -i \"${interface}\" -b 0.5 1 | tail -n 1\n}\n\nfunction print_ifstat {\n    kbits_in=$(echo \"$1\" | awk '{ print $1 }')\n    kbits_out=$(echo \"$1\" | awk '{ print $2 }')\n    mbits_in=$(kilo_to_mega \"$kbits_in\")\n    mbits_out=$(kilo_to_mega \"$kbits_out\")\n    echo \"▼$mbits_in-$mbits_out▲\"\n}\n\nINTERFACES=$(ifconfig -lu)\n\nTOTAL_KBITS_IN=0\nTOTAL_KBITS_OUT=0\n\nfor INTERFACE in ${INTERFACES}\n  do\n    IFSTAT_OUTPUT=\"$(get_ifstat \"${INTERFACE}\")\"\n    KBITS_IN=$(echo \"$IFSTAT_OUTPUT\" | awk '{ print $1 }')\n    KBITS_OUT=$(echo \"$IFSTAT_OUTPUT\" | awk '{ print $2 }')\n    if [ \"$KBITS_IN\" != \"n/a\" ]\n    then\n      TOTAL_KBITS_IN=$(echo \"$TOTAL_KBITS_IN + $KBITS_IN\" | bc)\n      TOTAL_KBITS_OUT=$(echo \"$TOTAL_KBITS_OUT + $KBITS_OUT\" | bc)\n    fi\n\tdone\n\nprint_ifstat \"$TOTAL_KBITS_IN $TOTAL_KBITS_OUT\"\n"
+			}
+		],
+		"path": "Network/bandwidth_all.1s.sh",
+		"filename": "bandwidth_all.1s.sh",
+		"dir": "Network",
+		"docsPlugin": "Network/bandwidth_all.1s.sh.html",
+		"docsCategory": "Network.html",
+		"pathSegments": [
+			"Network"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Network",
+				"text": "Network",
+				"isLast": true
+			}
+		],
+		"title": "Bandwidth (Mbit/s)",
+		"version": "v0.0.2",
+		"author": "Dan Rohtbart",
+		"authors": [
+			{
+				"name": "Dan Rohtbart",
+				"githubUsername": "danrohtbart",
+				"imageURL": "https://avatars.githubusercontent.com/u/25237824?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Displays total bandwidth usage for all interfaces in Megabits/s. Especially useful if you are frequently switching between wi-fi and ethernet connections.",
+		"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+		"dependencies": [
+			"ifstat"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:58.425902Z",
+		"vars": null
+	}
+}

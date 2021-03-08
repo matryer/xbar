@@ -1,0 +1,18 @@
+/* NSButton (Automatically download and install updates in the future) : <title:Automatically download and install updates in the future> (oid:92) */
+"Automatically download and install updates in the future" = "Automatisk nedlastning og installering i fremtiden";
+
+/* NSButton (Install Update) : <title:Install Update> (oid:76) */
+"Install Update" = "Installer oppdatering";
+
+/* NSTextField (Release Notes:) : <title:Release Notes:> (oid:17) */
+"Release Notes:" = "Vedrørende utgivelsen:";
+
+/* NSButton (Remind Me Later) : <title:Remind Me Later> (oid:22) */
+"Remind Me Later" = "Påminn meg senere";
+
+/* NSButton (Skip This Version) : <title:Skip This Version> (oid:23) */
+"Skip This Version" = "Hopp over denne versjonen";
+
+/* NSWindow (Software Update) : <title:Software Update> (oid:5) */
+"Software Update" = "Programvareoppdatering";
+

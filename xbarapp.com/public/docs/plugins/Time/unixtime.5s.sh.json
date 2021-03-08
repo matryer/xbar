@@ -1,0 +1,44 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Time/unixtime.5s.sh",
+				"filename": "unixtime.5s.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eUnix Time\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eMat Ryer\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ematryer\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eDisplays unix time.\u003c/bitbar.desc\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/h2cyuYu.png\u003c/bitbar.image\u003e\n\ndate +%s\n"
+			}
+		],
+		"path": "Time/unixtime.5s.sh",
+		"filename": "unixtime.5s.sh",
+		"dir": "Time",
+		"docsPlugin": "Time/unixtime.5s.sh.html",
+		"docsCategory": "Time.html",
+		"pathSegments": [
+			"Time"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Time",
+				"text": "Time",
+				"isLast": true
+			}
+		],
+		"title": "Unix Time",
+		"version": "v1.0",
+		"author": "Mat Ryer",
+		"authors": [
+			{
+				"name": "Mat Ryer",
+				"githubUsername": "matryer",
+				"imageURL": "https://avatars.githubusercontent.com/u/101659?v=4",
+				"bio": "Building pace.dev and firesearch.dev - Gopher, developer, speaker, author (Go Programming Blueprints) - BitBar app getbitbar.com - Co-creator Gopherize.me",
+				"primary": true
+			}
+		],
+		"desc": "Displays unix time.",
+		"imageURL": "http://i.imgur.com/h2cyuYu.png",
+		"dependencies": null,
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:22:06.71329Z",
+		"vars": null
+	}
+}

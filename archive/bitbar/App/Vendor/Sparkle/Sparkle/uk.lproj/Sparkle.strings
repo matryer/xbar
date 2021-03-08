@@ -1,0 +1,79 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@ завантажений і готовий до використання! Бажаєте встановити і перезавантажити %1$@?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "Під час роботи з %1$@ з тому, що призначений лише для читання, наприклад, образу диска чи оптичного диску, його неможливо оновити. Перемістіть %1$@ у папку з програмами, перезавантажте його звідти і спробуйте ще раз.";
+
+"%@ %@ is currently the newest version available." = "У данний момент %1$@ %2$@ є останньою версією.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@ доступна – ви маєте %3$@. Бажаєте завантажити її зараз?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ завантажено";
+
+"%@ of %@" = "%1$@ із %2$@";
+
+"A new version of %@ is available!" = "Доступна нова версія %@!";
+
+"A new version of %@ is ready to install!" = "Нова версія %@ готова до встановлення!";
+
+"An error occurred in retrieving update information. Please try again later." = "Виникла помилка при отриманні інформації про оновлення. Спробуйте ще раз пізніше.";
+
+"An error occurred while downloading the update. Please try again later." = "Виникла помилка при завантаження оновлення. Спробуйте ще раз пізніше.";
+
+"An error occurred while extracting the archive. Please try again later." = "Виникла помилка при розпаковуванні архіву. Спробуйте ще раз пізніше.";
+
+"An error occurred while installing the update. Please try again later." = "Виникла помилка при встановленні оновлення. Спробуйте ще раз пізніше.";
+
+"An error occurred while parsing the update feed." = "Виникла помилка розбору каналу оновлень.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "Виникла помилка при перезавантаженні %1$@, але наступного разу при завантаження %1$@ буде доступна нова версія.";
+
+/* the unit for bytes */
+"B" = "Б";
+
+"Cancel" = "Відмінити";
+
+"Cancel Update" = "Відмінити оновлення";
+
+"Checking for updates..." = "Перевіряю наявність оновлень…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "Завантажую оновлення…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "Розпаковую оновлення…";
+
+/* the unit for gigabytes */
+"GB" = "ГБ";
+
+"Install and Relaunch" = "Встановити та перезавантажити";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "Встановлюю оновлення…";
+
+/* the unit for kilobytes */
+"KB" = "КБ";
+
+/* the unit for megabytes */
+"MB" = "МБ";
+
+"OK" = "OK";
+
+"Ready to Install" = "Готовий до встановлення";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "Чи повинен %1$@ автоматично виконувати перевірку на оновлення? Ви завжди можете самостійно перевірити оновлення у меню %1$@.";
+
+"Update Error!" = "Помилка оновлення!";
+
+"Updating %@" = "Оновлюю %@";
+
+"You already have the newest version of %@." = "Ви вже користуєтесь останньою версією програми %@.";
+
+"You're up-to-date!" = "У вас остання версія!";
+
+/* Alternative name for "Install" button if we have a paid update or other update
+	without a download but with a URL. */
+
+"Learn More..." = "Дізнатись більше…";

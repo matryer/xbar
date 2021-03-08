@@ -1,0 +1,50 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/Tutorial/is_darkmode.sh",
+				"filename": "is_darkmode.sh",
+				"content": "#!/bin/bash\n\n# \u003cbitbar.title\u003eIs Dark Mode?\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eDave Wikoff\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003ederimagia\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eExample script showing how to let your scripts determine whether OSX is in Dark Mode so you can adjust appearance. Must restart Bitbar after changing setting.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003e\u003c/bitbar.dependencies\u003e\n# \u003cbitbar.image\u003ehttp://i.imgur.com/2ark3Bq.png\u003c/bitbar.image\u003e\nBitBarDarkMode=${BitBarDarkMode}\n\nif [ \"$BitBarDarkMode\" ]; then\n  # OSX has Dark Mode enabled.\n  echo \"Dark | color=white\"\nelse\n  # OSX does not have Dark Mode\n  echo \"Light | color=black\"\nfi\n"
+			}
+		],
+		"path": "Dev/Tutorial/is_darkmode.sh",
+		"filename": "is_darkmode.sh",
+		"dir": "Dev/Tutorial",
+		"docsPlugin": "Dev/Tutorial/is_darkmode.sh.html",
+		"docsCategory": "Dev/Tutorial.html",
+		"pathSegments": [
+			"Dev",
+			"Tutorial"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": false
+			},
+			{
+				"path": "Dev/Tutorial",
+				"text": "Tutorial",
+				"isLast": true
+			}
+		],
+		"title": "Is Dark Mode?",
+		"version": "v1.0",
+		"author": "Dave Wikoff",
+		"authors": [
+			{
+				"name": "Dave Wikoff",
+				"githubUsername": "derimagia",
+				"imageURL": "https://avatars.githubusercontent.com/u/999489?v=4",
+				"bio": "",
+				"primary": true
+			}
+		],
+		"desc": "Example script showing how to let your scripts determine whether OSX is in Dark Mode so you can adjust appearance. Must restart Bitbar after changing setting.",
+		"imageURL": "http://i.imgur.com/2ark3Bq.png",
+		"dependencies": [],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:50.499365Z",
+		"vars": null
+	}
+}

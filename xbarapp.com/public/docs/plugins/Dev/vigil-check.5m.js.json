@@ -1,0 +1,46 @@
+{
+	"plugin": {
+		"files": [
+			{
+				"path": "Dev/vigil-check.5m.js",
+				"filename": "vigil-check.5m.js",
+				"content": "#!/usr/bin/env /usr/local/bin/node\n\n/*\n  \u003cbitbar.title\u003eVigil Website Monitoring\u003c/bitbar.title\u003e\n  \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n  \u003cbitbar.author\u003eCameron Rye\u003c/bitbar.author\u003e\n  \u003cbitbar.author.github\u003ecameronrye\u003c/bitbar.author.github\u003e\n  \u003cbitbar.desc\u003eDisplays the status of hosts being monitered by Vigil.\u003c/bitbar.desc\u003e\n  \u003cbitbar.image\u003ehttps://cameronrye.com/img/vigil-check.png\u003c/bitbar.image\u003e\n  \u003cbitbar.dependencies\u003enode\u003c/bitbar.dependencies\u003e\n\n  Vigil Website Monitoring\n  by Cameron Rye (@cameronrye)\n\n  Auth token can be scraped from the status board url @ http://client.vigil-app.com/?p=integrations\u0026t=sb\n\n*/\n\n'use strict';\n\nvar https = require('https'),\n    AUTH_TOKEN = 'YOUR AUTH TOKEN',\n    url = 'https://api.vigil-app.com/v1/user/' + AUTH_TOKEN + '/host?populateHostMonitors';\n\nfunction createBar(data) {\n  var isDown = false,\n      hosts = '',\n      bitbar = '';\n\n  hosts = data.hosts.map(function(host) {\n    var vigil = '',\n        protocol = '',\n        method = '',\n        time = '',\n        params = '';\n\n    if (!host.hostMonitors[0].lastMonitorResult.resultCode) isDown = true;\n\n    time = new Date(host.hostMonitors[0].lastMonitorResult.endTimestamp);\n\n    params = host.hostMonitors[0].parameters.map(function(param) {\n      switch (param.monitorParameterName) {\n        case 'monitors.webpage.protocol':\n          protocol = (param.value === 'https') ? 'https://' : 'http://';\n          break;\n        case 'monitors.webpage.method':\n          method = param.value;\n          break;\n      }\n    });\n\n    vigil  = host.hostMonitors[0].lastMonitorResult.resultCode ? ' ▲ ':' ▼ ';\n    vigil += host.hostMonitors[0].name + '| href=' + protocol + host.hostName + '\\n';\n    vigil += method + '\\u00A0\\u00A0\\u00A0' + protocol + host.hostName + '/\\n';\n    vigil += 'Status Code: ' + host.hostMonitors[0].lastMonitorResult.resultProperties['monitors.webpage.statusCode'];\n    vigil += ' (' + getStatus(host.hostMonitors[0].lastMonitorResult.resultProperties['monitors.webpage.statusCode']) + ')\\n';\n    vigil += 'Response Time: ' + (host.hostMonitors[0].lastMonitorResult.resultProperties['monitors.webpage.stats.totalSeconds'] * 1000) + 'ms\\n';\n    vigil += 'Avg Response: ' + (host.hostMonitors[0].uptime.responseTimeMean * 1000) + 'ms\\n';\n    vigil += 'Uptime: ' + host.hostMonitors[0].uptime.uptimePercent + '%\\n';\n    vigil += time + '| size: 10';\n\n    return vigil;\n\n  }).join('\\n---\\n');\n\n  bitbar  = isDown ? '▼':'▲';\n  bitbar += '| dropdown=false\\n---\\n';\n  bitbar += ' ▬\\n---\\n';\n  bitbar += hosts;\n  bitbar += '\\n---\\n ⚙ Vigil Website Monitoring | href=https://client.vigil-app.com/ \\n---\\n';\n\n  console.log(bitbar);\n}\n\nfunction getStatus(code) {\n  var status = '';\n  switch (code) {\n    case '100':\n      status = 'Continue';\n      break;\n    case '101':\n      status = 'Switching Protocol';\n      break;\n    case '200':\n      status = 'OK';\n      break;\n    case '201':\n      status = 'Created';\n      break;\n    case '202':\n      status = 'Accepted';\n      break;\n    case '203':\n      status = 'Non-Authoritative Information';\n      break;\n    case '204':\n      status = 'No Content';\n      break;\n    case '205':\n      status = 'Reset Content';\n      break;\n    case '206':\n      status = 'Partial Content';\n      break;\n    case '300':\n      status = 'Multiple Choice';\n      break;\n    case '301':\n      status = 'Moved Permanently';\n      break;\n    case '302':\n      status = 'Found';\n      break;\n    case '303':\n      status = 'See Other';\n      break;\n    case '304':\n      status = 'Not Modified';\n      break;\n    case '305':\n      status = 'Use Proxy';\n      break;\n    case '306':\n      status = 'Unused';\n      break;\n    case '307':\n      status = 'Temporary Redirect';\n      break;\n    case '308':\n      status = 'Permanent Redirect';\n      break;\n    case '400':\n      status = 'Bad Request';\n      break;\n    case '401':\n      status = 'Unauthorized';\n      break;\n    case '402':\n      status = 'Payment Required';\n      break;\n    case '403':\n      status = 'Forbidden';\n      break;\n    case '404':\n      status = 'Not Found';\n      break;\n    case '405':\n      status = 'Method Not Allowed';\n      break;\n    case '406':\n      status = 'Not Acceptable';\n      break;\n    case '407':\n      status = 'Proxy Authentication Required';\n      break;\n    case '408':\n      status = 'Request Timeout';\n      break;\n    case '409':\n      status = 'Conflict';\n      break;\n    case '410':\n      status = 'Gone';\n      break;\n    case '411':\n      status = 'Length Required';\n      break;\n    case '412':\n      status = 'Precondition Failed';\n      break;\n    case '413':\n      status = 'Payload Too Large';\n      break;\n    case '414':\n      status = 'URI Too Long';\n      break;\n    case '415':\n      status = 'Unsupported Media Type';\n      break;\n    case '416':\n      status = 'Requested Range Not Satisfiable';\n      break;\n    case '417':\n      status = 'Expectation Failed';\n      break;\n    case '418':\n      status = 'I\\'m a teapot';\n      break;\n    case '421':\n      status = 'Misdirected Request';\n      break;\n    case '426':\n      status = 'Upgrade Required';\n      break;\n    case '428':\n      status = 'Precondition Required';\n      break;\n    case '429':\n      status = 'Too Many Requests';\n      break;\n    case '431':\n      status = 'Request Header Fields Too Large';\n      break;\n    case '500':\n      status = 'Internal Server Error';\n      break;\n    case '501':\n      status = 'Not Implemented';\n      break;\n    case '502':\n      status = 'Bad Gateway';\n      break;\n    case '503':\n      status = 'Service Unavailable';\n      break;\n    case '504':\n      status = 'Gateway Timeout';\n      break;\n    case '505':\n      status = 'HTTP Version Not Supported';\n      break;\n    case '506':\n      status = 'Variant Also Negotiates';\n      break;\n    case '507':\n      status = 'Variant Also Negotiates';\n      break;\n    case '511':\n      status = 'Network Authentication Required';\n      break;\n  }\n  return status;\n}\n\nhttps.get(url, function(res) {\n  var json = '';\n  res.on('data', function(data) {\n    json = data;\n  });\n  res.on('end', function() {\n    createBar(JSON.parse(json));\n  });\n});\n"
+			}
+		],
+		"path": "Dev/vigil-check.5m.js",
+		"filename": "vigil-check.5m.js",
+		"dir": "Dev",
+		"docsPlugin": "Dev/vigil-check.5m.js.html",
+		"docsCategory": "Dev.html",
+		"pathSegments": [
+			"Dev"
+		],
+		"categoryPathSegments": [
+			{
+				"path": "Dev",
+				"text": "Dev",
+				"isLast": true
+			}
+		],
+		"title": "Vigil Website Monitoring",
+		"version": "v1.0",
+		"author": "Cameron Rye",
+		"authors": [
+			{
+				"name": "Cameron Rye",
+				"githubUsername": "cameronrye",
+				"imageURL": "https://avatars.githubusercontent.com/u/47811?v=4",
+				"bio": "Lamps in video games use real electricity ✩◝(◍⌣̎◍)◜✩",
+				"primary": true
+			}
+		],
+		"desc": "Displays the status of hosts being monitered by Vigil.",
+		"imageURL": "https://cameronrye.com/img/vigil-check.png",
+		"dependencies": [
+			"node"
+		],
+		"aboutURL": "",
+		"lastUpdated": "2021-03-08T15:21:52.434785Z",
+		"vars": null
+	}
+}

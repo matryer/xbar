@@ -1,0 +1,55 @@
+{
+	"person": {
+		"name": "Shinya Fujino",
+		"githubUsername": "morinokami",
+		"imageURL": "https://avatars.githubusercontent.com/u/7889778?v=4",
+		"bio": "",
+		"primary": true
+	},
+	"plugins": [
+		{
+			"files": [
+				{
+					"path": "Network/wakeonlan.sh",
+					"filename": "wakeonlan.sh",
+					"content": "#!/bin/bash\n#\n# \u003cbitbar.title\u003ewakeonlan\u003c/bitbar.title\u003e\n# \u003cbitbar.version\u003ev1.0\u003c/bitbar.version\u003e\n# \u003cbitbar.author\u003eShinya Fujino\u003c/bitbar.author\u003e\n# \u003cbitbar.author.github\u003emorinokami\u003c/bitbar.author.github\u003e\n# \u003cbitbar.desc\u003eSends 'magic packets' to turn on a computer.\u003c/bitbar.desc\u003e\n# \u003cbitbar.dependencies\u003ewakeonlan\u003c/bitbar.dependencies\u003e\n\n# Dependancies:\n#   wakeonlan (brew install wakeonlan)\n\nexport PATH=\"/usr/local/bin:$PATH\"\n\nMAC_ADDRESS='01:23:45:67:89:AB' # Replace this with the target computer's MAC address\nCOMMAND_PATH=$(command -v wakeonlan)\n\necho 'WoL'\necho '---'\n\nif [[ $COMMAND_PATH ]]; then\n  echo \"Turn on ${MAC_ADDRESS} | bash=/bin/bash param1=${COMMAND_PATH} param2=${MAC_ADDRESS} terminal=false\"\nelse\n  echo 'wakeonlan not installed'\nfi\n"
+				}
+			],
+			"path": "Network/wakeonlan.sh",
+			"filename": "wakeonlan.sh",
+			"dir": "Network",
+			"docsPlugin": "Network/wakeonlan.sh.html",
+			"docsCategory": "Network.html",
+			"pathSegments": [
+				"Network"
+			],
+			"categoryPathSegments": [
+				{
+					"path": "Network",
+					"text": "Network",
+					"isLast": true
+				}
+			],
+			"title": "wakeonlan",
+			"version": "v1.0",
+			"author": "Shinya Fujino",
+			"authors": [
+				{
+					"name": "Shinya Fujino",
+					"githubUsername": "morinokami",
+					"imageURL": "https://avatars.githubusercontent.com/u/7889778?v=4",
+					"bio": "",
+					"primary": true
+				}
+			],
+			"desc": "Sends 'magic packets' to turn on a computer.",
+			"imageURL": "https://xbarapp.com/public/img/xbar-2048.png",
+			"dependencies": [
+				"wakeonlan"
+			],
+			"aboutURL": "",
+			"lastUpdated": "2021-03-08T15:22:00.278831Z",
+			"vars": null
+		}
+	]
+}

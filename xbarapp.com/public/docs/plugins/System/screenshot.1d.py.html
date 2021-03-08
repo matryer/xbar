@@ -1,0 +1,495 @@
+
+<!doctype html>
+<html lang='en' style='background: #111;'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width' />
+		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+		<title>Screenshot in your macOS menu bar</title>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb=08%20Mar%2021%2015%3a22%20GMT'>
+		<link rel='preconnect' href='https://fonts.gstatic.com'>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
+		
+	<meta name='description' content='Allows for screenshots to be uploaded, saved, and added to the clipboard - install xbar for free to get started.'>
+	<meta name='author' content='Brandon Barker,  Soumya Ranjan Mohanty'>
+	<meta name='keywords' content='macos,menubar,xbar,bitbar'>
+	<meta itemprop='image' content='http://i.imgur.com/51rg3EJ.png'>
+	<meta itemprop='name' content='Screenshot in your macOS menu bar'>
+	<meta itemprop='description' content='Allows for screenshots to be uploaded, saved, and added to the clipboard - install xbar for free to get started.'>
+	<meta name='twitter:card' content='summary_large_image'>
+	<meta name='twitter:title' content='Screenshot in your macOS menu bar'>
+	<meta name='twitter:description' content='Allows for screenshots to be uploaded, saved, and added to the clipboard - install xbar for free to get started.'>
+	<meta name='twitter:image' content='http://i.imgur.com/51rg3EJ.png'>
+	<meta name='twitter:creator' content='matryer'>
+	<meta property='og:title' content='Screenshot in your macOS menu bar'>
+	<meta property='og:description' content='Allows for screenshots to be uploaded, saved, and added to the clipboard - install xbar for free to get started.'>
+	<meta property='og:url' content='https://xbarapp.com/plugins/System/screenshot.1d.py.html'>
+	<meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+	<meta property='og:type' content='article'>
+	<meta property='og:image' content='http://i.imgur.com/51rg3EJ.png'>
+	<link rel='apple-touch-icon' sizes='180x180' href='http://i.imgur.com/51rg3EJ.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='http://i.imgur.com/51rg3EJ.png'>
+	<link rel='shortcut icon' href='http://i.imgur.com/51rg3EJ.png'>
+	<meta name='msapplication-TileColor' content='#ffffff'>
+	<meta name='msapplication-config' content='/public/browserconfig.xml'>
+	<meta name='theme-color' content='#ffffff'>
+	<style>
+		.code-background {
+			background: rgb(255,255,255);
+			background: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+		}
+		.plugin-app-link {
+			margin-left: -32px;
+		}
+	</style>
+
+	</head>
+	<body>
+		<header class='flex flex-col'>
+			<div class='container mx-auto'>
+				<div class='flex items-center space-x-8 p-8 text-white'>
+					<a href='/' class='inline-block py-2 text-2xl flex items-center space-x-2 font-bold'>
+						<img alt='xbar logo: a circle with three dots inside it' src='/public/img/xbar-2048.png' style='width:48px;height:48px;' />
+						<span>xbar</span>
+					</a>
+					<div class='flex-grow'></div>
+					<div>
+						<a 
+							target='github'
+							href='https://github.com/sponsors/matryer' 
+							class='text-white px-4 py-2 whitespace-nowrap'
+						><span class='mr-1'>💜</span> Sponsor</a>
+					</div>
+					<div class='hidden md:block'>
+						<a 
+							target='github'
+							href='/dl' 
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						>Coming soon</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id='menubar' class='text-white whitespace-nowrap overflow-hidden flex flex-wrap justify-end items-center text-right'>
+			
+			
+				<a 
+					
+					href='/docs/plugins/AWS.html'
+				>
+					AWS
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Cryptocurrency.html'
+				>
+					Cryptocurrency
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Dev.html'
+				>
+					Dev
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/E-Commerce.html'
+				>
+					E-Commerce
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Email.html'
+				>
+					Email
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Environment.html'
+				>
+					Environment
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Finance.html'
+				>
+					Finance
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Games.html'
+				>
+					Games
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/IoT.html'
+				>
+					IoT
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Lifestyle.html'
+				>
+					Lifestyle
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Music.html'
+				>
+					Music
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Network.html'
+				>
+					Network
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Politics.html'
+				>
+					Politics
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Science.html'
+				>
+					Science
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Sports.html'
+				>
+					Sports
+				</a>
+			
+				<a 
+					 class='rounded selected' 
+					href='/docs/plugins/System.html'
+				>
+					System
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Time.html'
+				>
+					Time
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Tools.html'
+				>
+					Tools
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Travel.html'
+				>
+					Travel
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Weather.html'
+				>
+					Weather
+				</a>
+			
+				<a 
+					
+					href='/docs/plugins/Web.html'
+				>
+					Web
+				</a>
+			
+		</div>
+		
+	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
+		<div class='flex flex-col justify-start'>
+			<div class='px-8 py-2 max-w-3xl'>
+				<h1 class='fancy-font text-white text-6xl'>Screenshot</h1>
+			</div>
+			<div class='p-8 text-sm'>
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/ProjectBarks.html'
+									>
+										<img class='rounded shadow primary' src='https://avatars.githubusercontent.com/u/4194371?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/ProjectBarks.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Brandon Barker (<code style='color:white;'>@ProjectBarks</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+					
+						
+							<div class='flex space-x-4 pb-8'>
+								<div class='tiny-photo'>
+									<a 
+										href='/docs/contributors/geekysrm.html'
+									>
+										<img class='rounded shadow ' src='https://avatars.githubusercontent.com/u/10224804?v=4'>
+									</a>
+								</div>
+								<div>
+									<a 
+										href='/docs/contributors/geekysrm.html'
+										class='light-background rounded-sm shadow-md px-4 py-2 text-white' 
+										style='text-decoration: none;'
+									>
+										Soumya Ranjan Mohanty (<code style='color:white;'>@geekysrm</code> on GitHub)
+									</a>
+								</div>
+							</div>
+						
+					
+				
+				
+					<p class='my-8 text-white opacity-75 text-lg max-w-lg'>
+						Allows for screenshots to be uploaded, saved, and added to the clipboard
+					</p>
+				
+				<div class='plugin-app-link hidden md:flex items-end p-8 m-8 mb-16 bg-black bg-opacity-25 rounded-lg shadow max-w-md'>
+					<div>
+						<a 
+							href='xbar://app.xbarapp.com/openPlugin?path=System%2fscreenshot.1d.py'
+							class='rounded bg-white text-gray-800 hover:text-black px-4 py-2 shadow hover:shadow-lg whitespace-nowrap'
+						><span class='mr-1'>🖥</span> Open in xbar app</a>
+					</div>
+					<div class='opacity-50 text-sm text-white ml-3'>Requires <a target='github' href='/dl' class='underline'>xbar app</a></div>
+				</div>
+				
+			</div>
+		</div>
+		<div 
+			class='flex flex-col justify-center mb-16'
+		>
+			<img 
+				class='max-w-md w-full'
+				src='http://i.imgur.com/51rg3EJ.png' 
+				alt='Image preview of Screenshot plugin.'
+				onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+			/>
+		</div>
+	</div>
+
+	
+		<div class='code-background text-white p-8 pb-24'>
+			<div class='container mx-auto'>
+				<div class='flex flex-wrap py-8 space-x-4 justify-end'>
+					<div>
+						<h2 class='md:text-2xl text-bold'>
+							<code>screenshot.1d.py</code>
+						</h2>
+					</div>
+					<div class='flex-grow'></div>
+					<div>
+						<a class='text-sm text-white hover:text-black hover:bg-white px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/edit/master/System/screenshot.1d.py'>Edit</a>
+					</div>
+					<div>
+						<a class='text-sm text-gray-700 bg-white hover:bg-gray-100 active:text-black px-4 py-2 rounded' target='github' href='https://github.com/matryer/bitbar-plugins/blob/master/System/screenshot.1d.py'>Open on GitHub</a>
+					</div>
+				</div>
+				<div>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>#!/usr/bin/env python
+# coding=utf-8
+# &lt;bitbar.title&gt;Screenshot&lt;/bitbar.title&gt;
+# &lt;bitbar.version&gt;v1.1&lt;/bitbar.version&gt;
+# &lt;bitbar.author&gt;Brandon Barker, Soumya Ranjan Mohanty&lt;/bitbar.author&gt;
+# &lt;bitbar.author.github&gt;ProjectBarks, geekysrm&lt;/bitbar.author.github&gt;
+# &lt;bitbar.desc&gt;Allows for screenshots to be uploaded, saved, and added to the clipboard&lt;/bitbar.desc&gt;
+# &lt;bitbar.image&gt;http://i.imgur.com/51rg3EJ.png&lt;/bitbar.image&gt;
+# &lt;bitbar.dependencies&gt;python&lt;/bitbar.dependencies&gt;
+# &lt;bitbar.abouturl&gt;https://github.com/matryer/bitbar-plugins/blob/master/System/screenshot.1d.py&lt;/bitbar.abouturl&gt;
+
+import os, subprocess, tempfile, hashlib, requests, sys, platform, time
+from distutils.version import StrictVersion
+
+SAVE_PATH = &#34;~/Pictures/&#34;
+
+
+def screenshot(path, copy_to_clipboard=False, show_cursor=False, show_errors=False, interactive=False,
+               only_main_monitor=False, window_mode=False, open_in_preview=False, selection_mode=True,
+               sounds=True, delay=5):
+    params = &#34;&#34;
+    if copy_to_clipboard:
+        params &#43;= &#34;-c &#34;
+    if show_cursor:
+        params &#43;= &#34;-C &#34;
+    if show_errors:
+        params &#43;= &#34;-d &#34;
+    if interactive:
+        params &#43;= &#34;-i &#34;
+    if only_main_monitor:
+        params &#43;= &#34;-m &#34;
+    if window_mode:
+        params &#43;= &#34;-o &#34;
+    if open_in_preview:
+        params &#43;= &#34;-P &#34;
+    if selection_mode:
+        params &#43;= &#34;-s &#34;
+    if sounds:
+        params &#43;= &#34;-x &#34;
+    if delay != 5 and delay &gt;= 0:
+        params &#43;= &#34;-T {} &#34;.format(delay)
+
+    os.system(&#34;screencapture {} {}&#34;.format(params, path))
+    return os.path.isfile(path)
+
+
+def text_to_clipboard(output):
+    process = subprocess.Popen(&#39;pbcopy&#39;, env={&#39;LANG&#39;: &#39;en_US.UTF-8&#39;}, stdin=subprocess.PIPE)
+    process.communicate(output.encode(&#39;utf-8&#39;))
+
+
+def notify(title, subtitle, message):
+    command = &#34;display notification \&#34;{}\&#34; with title \&#34;{}\&#34;&#34;.format(message, title)
+    if len(subtitle) &gt; 0:
+        command &#43;= &#34; subtitle \&#34;{}\&#34;&#34;.format(subtitle)
+    os.system(&#34;osascript -e &#39;{}&#39;&#34;.format(command))
+
+
+def upload_image(upload):
+    # upload is the path of the image
+    headers = {
+        &#39;authorization&#39;: &#39;Client-ID 6fcd294cd0e8aa1&#39;,
+    }  
+    files = {
+        &#39;image&#39;: (open(upload, &#39;rb&#39;)),
+    }
+    r = requests.post(&#39;https://api.imgur.com/3/upload&#39;, headers=headers, files=files)
+    import json
+    return json.loads(r.text)[&#39;data&#39;][&#39;link&#39;]
+
+class Command(object):
+    def __init__(self, title, name):
+        self.title = title
+        self.name = name
+
+    def get_name(self):
+        return self.name
+
+    def get_description(self):
+        return &#34;{0} |bash={2} param1={1} terminal=false&#34;.format(self.title, self.name, os.path.realpath(__file__))
+
+    def execute(self):
+        raise Exception(&#34;Abstract Function&#34;)
+
+
+class Upload(Command):
+    def __init__(self):
+        super(Upload, self).__init__(&#34;Upload Online&#34;, &#34;upload&#34;)
+
+    def execute(self):
+        temp_path = tempfile.NamedTemporaryFile().name &#43; &#34;.png&#34;
+        if not screenshot(temp_path):
+            exit()
+        notify(&#34;Uploading Screenshot&#34;, &#34;&#34;, &#34;Your image is being uploaded online!&#34;)
+        url = upload_image(temp_path)
+        os.remove(temp_path)
+        notify(&#34;Copied Screenshot&#34;, &#34;&#34;, &#34;Image URL copied to clipboard!&#34;)
+        text_to_clipboard(url)
+
+
+class Clipboard(Command):
+    def __init__(self):
+        super(Clipboard, self).__init__(&#34;Copy to Clipboard&#34;, &#34;clipboard&#34;)
+
+    def execute(self):
+        temp_path = tempfile.NamedTemporaryFile().name &#43; &#34;.png&#34;
+        if not screenshot(temp_path):
+            exit()
+        os.system(&#34;osascript -e &#39;set the clipboard to POSIX file \&#34;{}\&#34;&#39;&#34;.format(temp_path))
+        notify(&#34;Copied Screenshot&#34;, &#34;&#34;, &#34;Image copied to clipboard!&#34;)
+
+
+class SaveFile(Command):
+    def __init__(self):
+        super(SaveFile, self).__init__(&#34;Save to File&#34;, &#34;save&#34;)
+
+    def execute(self):
+        temp_path = os.path.join(os.path.expanduser(SAVE_PATH), time.strftime(&#34;screenshot-%Y%m%d-%H%M%S.png&#34;))
+        parent = os.path.dirname(temp_path)
+        if not os.path.isdir(parent):
+            os.mkdir(parent)
+        if not screenshot(temp_path):
+            exit()
+        os.system(&#34;open -R {0}&#34;.format(temp_path))
+
+
+version = platform.mac_ver()[0]
+if StrictVersion(version) &lt; StrictVersion(&#34;10.9&#34;):
+    raise Exception(&#34;Mac OSX is too old!&#34;)
+
+sub_commands = [Upload(), Clipboard(), SaveFile()]
+
+if len(sys.argv) &lt;= 1:
+    print(&#34;📸&#34;)
+    print(&#34;---&#34;)
+    for sub_command in sub_commands:
+        print(sub_command.get_description())
+else:
+    try:
+        for sub_command in sub_commands:
+            if sub_command.get_name() != sys.argv[1]:
+                continue
+            sub_command.execute()
+    except Exception, e:
+        notify(&#34;Error&#34;, &#34;&#34;, str(e))
+</code></pre>
+				</div>
+			</div>
+		</div>
+	
+
+		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
+			<div class='text-center p-16'>
+				<p>
+					<div>
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						•
+						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+					</div>
+					<div class='mt-8'>
+						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+					</div>
+					<div class='opacity-50 mt-2'>
+						Last updated on 08 Mar 21 15:22 GMT
+					</div>
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

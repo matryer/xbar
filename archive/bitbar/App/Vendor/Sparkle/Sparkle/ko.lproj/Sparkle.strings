@@ -1,0 +1,75 @@
+"%1$@ %2$@ has been downloaded and is ready to use! Would you like to install it and relaunch %1$@ now?" = "%1$@ %2$@이(가) 다운로드 되었습니다. 프로그램을 업데이트하고 재실행 하시겠습니까?";
+
+"%1$@ can't be updated when it's running from a read-only volume like a disk image or an optical drive. Move %1$@ to your Applications folder, relaunch it from there, and try again." = "%1$@이(가) 디스크 이미지나 CD 드라이브 같은 읽기 전용 볼륨에서 실행되고 있으므로 업데이트 할 수 없습니다. %1$@을(를) 응용프로그램 폴더로 이동하여 다시 실행해 주십시오.";
+
+"%@ %@ is currently the newest version available." = "%1$@ %2$@이(가) 현재 최신 버전입니다.";
+
+/* Description text for SUUpdateAlert when the update is downloadable. */
+"%@ %@ is now available--you have %@. Would you like to download it now?" = "%1$@ %2$@이(가) 업데이트 되었습니다. (현재 버전 : %3$@) 다운로드 하시겠습니까?";
+
+/* Description text for SUUpdateAlert when the update informational with no download. */
+"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?" = "%1$@ %2$@ is now available--you have %3$@. Would you like to learn more about this update on the web?";
+
+"%@ downloaded" = "%@ 다운로드 완료";
+
+"%@ of %@" = "%1$@ / %2$@";
+
+"A new version of %@ is available!" = "%@ 새 버전이 있습니다.";
+
+"A new version of %@ is ready to install!" = "%@ 새 버전을 설치할 준비가 되었습니다.";
+
+"An error occurred in retrieving update information. Please try again later." = "업데이트 정보를 수집하는 중 오류가 발생하였습니다. 나중에 다시 시도해 주십시오.";
+
+"An error occurred while downloading the update. Please try again later." = "업데이트를 다운로드 하는 중 오류가 발생하였습니다. 나중에 다시 시도해 주십시오.";
+
+"An error occurred while extracting the archive. Please try again later." = "압축 파일을 푸는 중 오류가 발생하였습니다. 나중에 다시 시도해 주십시오.";
+
+"An error occurred while installing the update. Please try again later." = "업데이트를 설치하는 중 오류가 발생하였습니다. 나중에 다시 시도해 주십시오.";
+
+"An error occurred while parsing the update feed." = "업데이트 피드를 분석하는 중 오류가 발생하였습니다.";
+
+"An error occurred while relaunching %1$@, but the new version will be available next time you run %1$@." = "%1$@을(를) 재실행하는 중 오류가 발생하였습니다. 업데이트는 완료되었으므로 다음 실행시에는 새 버전으로 실행됩니다.";
+
+/* the unit for bytes */
+"B" = "B";
+
+"Cancel" = "취소";
+
+"Cancel Update" = "업데이트 취소";
+
+"Checking for updates..." = "업데이트 확인 중…";
+
+/* Take care not to overflow the status window. */
+"Downloading update..." = "다운로드 중…";
+
+/* Take care not to overflow the status window. */
+"Extracting update..." = "압축 푸는 중…";
+
+/* the unit for gigabytes */
+"GB" = "GB";
+
+"Install and Relaunch" = "설치 & 재실행";
+
+/* Take care not to overflow the status window. */
+"Installing update..." = "설치 중…";
+
+/* the unit for kilobytes */
+"KB" = "KB";
+
+/* the unit for megabytes */
+"MB" = "MB";
+
+"OK" = "확인";
+
+"Ready to Install" = "설치 준비 완료";
+
+"Should %1$@ automatically check for updates? You can always check for updates manually from the %1$@ menu." = "%1$@ 업데이트 확인을 자동으로 할까요? %1$@ 메뉴에서 수동 설정을 할 수 있습니다.";
+
+"Update Error!" = "업데이트 오류!";
+
+"Updating %@" = "%@ 업데이트 중";
+
+"You already have the newest version of %@." = "이미 %@ 최신 버전입니다.";
+
+"You're up-to-date!" = "최신 버전입니다.";
+
