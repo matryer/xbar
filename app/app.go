@@ -22,7 +22,6 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/menu/keys"
 )
 
-// todo: make pluginDirectory configurable somehow.
 var (
 	pluginDirectory = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "plugins")
 	cacheDirectory  = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "cache")
