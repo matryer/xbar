@@ -16,6 +16,7 @@
 	import Button from './elements/Button.svelte'
 	import Error from './elements/Error.svelte'
 	import { globalWaiter, wait } from './waiters.svelte'
+	import KeyboardShortcuts from './elements/KeyboardShortcuts.svelte'
 
 	let err
 
@@ -32,6 +33,7 @@
 	})
 
 	onMount(() => {
+
 		const done = wait()
 		const done2 = wait()
 		refreshCategories(categories)
@@ -74,6 +76,8 @@
 <svelte:body 
 	class='noselect'
 ></svelte:body>
+
+<KeyboardShortcuts />
 
 <Error err={err} />
 

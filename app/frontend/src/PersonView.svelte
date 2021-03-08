@@ -7,6 +7,7 @@
 	import Button from './elements/Button.svelte'
 	import Breadcrumbs from './elements/Breadcrumbs.svelte'
 	import PluginCollection from './elements/PluginCollection.svelte'
+	import { clearNav } from './pagedata.svelte'
 
 	let err
 
@@ -14,6 +15,7 @@
 	let personDetails = null
 
 	function loadPersonDetails(githubUsername) {
+		clearNav()
 		const done = wait()
 		getPersonDetails(githubUsername)
 			.then(details => personDetails = details)
