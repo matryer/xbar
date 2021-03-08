@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+app/build
+app/frontend/package.json.md5
+xbarapp.com/public/docs/
+tools/sitegen/sitegen
+app/node_modules
+pkg/update/testarea
+xbarapp.com/node_modules
+xbarapp.com/package-lock.json
+app/assets/mac/info.plist
