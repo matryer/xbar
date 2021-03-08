@@ -210,7 +210,7 @@
 		{/if}
 	</div>
 	{#if installedPlugin && installedPlugin.vars && installedPlugin.enabled}
-		<div class='shadow-lg'>
+		<div class='shadow-lg dark:shadow-none'>
 			<Variables 
 				on:change={onValuesChanged}
 				variables={installedPlugin.vars} 

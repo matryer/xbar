@@ -28,7 +28,7 @@
     {#if variable.type === 'string'}
         <input 
             id='{variable.name}'
-            class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-gray-700 border-gray-300 dark:border-gray-600 dark:bg-opacity-50'
+            class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-black dark:bg-opacity-50 border-gray-300 dark:border-gray-600'
             type='text' 
             bind:value='{ values[variable.name] }'
             disabled={disabled}
@@ -37,7 +37,7 @@
         <label class='flex items-center'>
             <input 
                 id='{variable.name}'
-                class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-gray-700 border-gray-300 dark:border-gray-600 dark:bg-opacity-50'
+                class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-black dark:bg-opacity-50 border-gray-300 dark:border-gray-600'
                 type='checkbox' 
                 bind:checked='{ values[variable.name] }'
                 disabled={disabled}
@@ -51,7 +51,7 @@
     {:else if variable.type === 'number'}
         <input 
             id='{variable.name}'
-            class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-gray-700 border-gray-300 dark:border-gray-600 dark:bg-opacity-50'
+            class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-black dark:bg-opacity-50 border-gray-300 dark:border-gray-600'
             type='number' 
             bind:value='{ values[variable.name] }'
             disabled={disabled}
@@ -59,7 +59,7 @@
     {:else if variable.type === 'list'}
         <select 
             id='{variable.name}'
-            class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-gray-700 border-gray-300 dark:border-gray-600 dark:bg-opacity-50'
+            class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-black dark:bg-opacity-50 border-gray-300 dark:border-gray-600'
             bind:value='{ values[variable.name] }'
             disabled={disabled}
         >

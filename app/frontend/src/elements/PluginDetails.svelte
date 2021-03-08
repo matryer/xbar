@@ -34,7 +34,7 @@
 </style>
 
 {#if plugin}
-	<div class='flex flex-col bg-white dark:bg-gray-700 bg-opacity-50 mt-0 mb-6 rounded shadow-lg'>
+	<div class='flex flex-col bg-white dark:bg-black bg-opacity-25 mt-0 mb-6 rounded shadow-lg dark:shadow-none'>
 
 		{#if $$slots.action}
 			<div class='pt-4 px-4 flex'>

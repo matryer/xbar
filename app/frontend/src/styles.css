@@ -10,12 +10,11 @@ html {
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 	-webkit-font-smoothing: subpixel-antialiased;
 	font-size: 13px;
-	background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
 	html {
-		background-color: rgba(53, 35, 159, 0.1);
+		background-color: #18181C;
 	}
 }
 

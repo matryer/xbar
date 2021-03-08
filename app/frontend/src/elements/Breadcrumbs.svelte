@@ -23,7 +23,13 @@
     @media (prefers-color-scheme: dark) {
         .breadcrumbs {
             background: rgb(55,65,81);
-            background: linear-gradient(90deg, rgba(55,65,81,0.5) 0%, rgba(55,65,81,0) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+        }
+        input:focus, select:focus {
+            outline: rgba(0,0,0,0.5) auto 1px;
+            outline-color: rgba(0,0,0,0.5);
+            outline-style: auto;
+            outline-width: 2px;
         }
     }
 </style>

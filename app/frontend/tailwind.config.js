@@ -1,3 +1,6 @@
+
+const colors = require('tailwindcss/colors')
+
 module.exports = {
 	purge: [
 		'./src/**/*.html',
@@ -6,9 +9,12 @@ module.exports = {
 	],
 	darkMode: 'media',
 	theme: {
-		fill: theme => ({
-			gray: theme('colors.warmGray')
-		})
+		colors: {
+			gray: colors.trueGray,
+			blue: colors.blue,
+			black: colors.black,
+			white: colors.white,
+		},
 	},
 	variants: {
 		extend: {},

@@ -51,7 +51,7 @@
 	<div class='flex flex-wrap p-3'>
 		{#each plugins as plugin}
 			<div
-				class='flex flex-col bg-white dark:bg-gray-700 bg-opacity-50 m-3 mt-0 mb-6 w-80 rounded shadow-lg'
+				class='flex flex-col bg-white dark:bg-black bg-opacity-25 m-3 mt-0 mb-6 w-80 rounded shadow-lg dark:shadow-none'
 			>
 				<div class='flex-grow'>
 					<h2 class='text-black flex-grow dark:text-white text-lg p-4 pb-0'>
