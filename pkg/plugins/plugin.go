@@ -242,17 +242,16 @@ func (p *Plugin) CurrentCycleItem() *Item {
 func (p *Plugin) refresh(ctx context.Context) error {
 	commandCtx, cancel := context.WithTimeout(ctx, p.Timeout)
 	defer cancel()
-	cmd := exec.CommandContext(commandCtx, p.Command)
+	cmd := exec.CommandContext(commandCtx, "./"+filepath.Base(p.Command))
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Setpgid: true,
 	}
+	cmd.Dir = filepath.Dir(p.Command)
 	// inherit outside environment
 	cmd.Env = append(cmd.Env, os.Environ()...)
 	// add variables from .vars.json file
 	cmd.Env = append(cmd.Env, p.Variables...)
-
 	var stdout, stderr bytes.Buffer
-
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
 	if p.Stdout != nil {
@@ -280,6 +279,7 @@ func (p *Plugin) loadVariablesFromJSONFile() ([]string, error) {
 	f, err := os.Open(variablesJSONFilename)
 	if err != nil && os.IsNotExist(err) {
 		// no .vars.json file - no probs
+		p.Debugf("%s, no such file:", variablesJSONFilename)
 		return nil, nil
 	} else if err != nil {
 		p.Debugf("ERR: %s", variablesJSONFilename, err)
@@ -290,13 +290,14 @@ func (p *Plugin) loadVariablesFromJSONFile() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
+	p.Debugf("vars json: %s", string(b))
 	var varmap map[string]interface{}
 	if err := json.Unmarshal(b, &varmap); err != nil {
 		return nil, errors.Wrap(err, "json.Unmarshal")
 	}
 	var vars []string
 	for k, v := range varmap {
-		vars = append(vars, fmt.Sprintf("%s=%q", k, v))
+		vars = append(vars, fmt.Sprintf("%s=%v", k, v))
 	}
 	return vars, nil
 }
