@@ -51,6 +51,17 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 			items.ExpandedItems = append(items.ExpandedItems, separatorItem)
 			continue
 		}
+		if captureExpanded && trimmedText == "" {
+			// empty lines should be smaller
+			blankLineItem := &Item{
+				Plugin: p,
+				Text:   " ",
+				Params: params,
+			}
+			blankLineItem.Params.Size = 1
+			items.ExpandedItems = append(items.ExpandedItems, blankLineItem)
+			continue
+		}
 		for !strings.HasPrefix(text, depthPrefix) {
 			// drop a level
 			ancestorItems = ancestorItems[:len(ancestorItems)-1]

@@ -193,6 +193,25 @@ three`)))
 
 }
 
+func TestBlankLines(t *testing.T) {
+	is := is.New(t)
+	ctx := context.Background()
+	p := &Plugin{}
+	items, err := p.parseOutput(ctx, "test.txt", strings.NewReader(strings.TrimSpace(`
+items
+---
+one
+
+two
+
+three
+`)))
+	is.NoErr(err)
+	is.Equal(len(items.CycleItems), 1)
+	is.Equal(len(items.ExpandedItems), 5)
+	is.Equal(items.ExpandedItems[1].Params.Size, 1) // items.ExpandedItems[1].Params.Size
+}
+
 func TestErrors(t *testing.T) {
 	is := is.New(t)
 
