@@ -18,7 +18,7 @@ func TestForReals(t *testing.T) {
 
 	u := &Updater{
 		CurrentVersion:              "v0.0.1",
-		LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/updatetest/releases/latest",
+		LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/xbar/releases/latest",
 		Client:                      &http.Client{Timeout: 10 * time.Minute},
 		SelectAsset: func(release Release, asset Asset) bool {
 			return asset.Name == "xbar."+release.TagName+".tar.gz"

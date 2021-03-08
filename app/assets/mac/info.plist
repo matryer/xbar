@@ -3,8 +3,8 @@
 	<key>CFBundlePackageType</key><string>APPL</string>
 	<key>CFBundleName</key><string>xbar</string>
 	<key>CFBundleExecutable</key><string>xbar</string>
-	<key>CFBundleIdentifier</key><string>xbar.v0.0.10-102-g9fddac4</string>
-	<key>CFBundleVersion</key><string>v0.0.10-102-g9fddac4</string>
+	<key>CFBundleIdentifier</key><string>xbar.v2.0.1-beta</string>
+	<key>CFBundleVersion</key><string>v2.0.1-beta</string>
 	<key>CFBundleURLTypes</key>
     	<array>
     		<dict>
@@ -17,7 +17,7 @@
     		</dict>
     	</array>
 	<key>CFBundleGetInfoString</key><string>Put anything into your macOS menu bar (https://xbarapp.com)</string>
-	<key>CFBundleShortVersionString</key><string>v0.0.10-102-g9fddac4</string>
+	<key>CFBundleShortVersionString</key><string>v2.0.1-beta</string>
 	<key>CFBundleIconFile</key><string>iconfile</string>
 	<key>NSHighResolutionCapable</key><string>true</string>
 </dict></plist>
