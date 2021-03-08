@@ -9,3 +9,4 @@ pkg/update/testarea
 xbarapp.com/node_modules
 xbarapp.com/package-lock.json
 app/assets/mac/info.plist
+app/frontend/package-lock.json
