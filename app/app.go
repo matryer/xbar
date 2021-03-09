@@ -526,5 +526,5 @@ func (a *app) checkForUpdates(passive bool) {
 // tickOS waits a beat after some os changes to give the system
 // time to reflect those changes.
 func tickOS() {
-	time.Sleep(1 * time.Second)
+	time.Sleep(500 * time.Millisecond)
 }

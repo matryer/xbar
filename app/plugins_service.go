@@ -173,6 +173,7 @@ func (p *PluginsService) InstallPlugin(plugin metadata.Plugin) (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "Install")
 	}
+	tickOS() // wait a beat
 	return installedPluginPath, nil
 }
 
@@ -210,6 +211,7 @@ func (p *PluginsService) UninstallPlugin(installedPluginInfo UninstallPluginRequ
 	if err != nil {
 		return errors.Wrap(err, "uninstall")
 	}
+	tickOS() // wait a beat
 	return nil
 }
 
@@ -251,6 +253,7 @@ func (p *PluginsService) GetInstalledPluginMetadata(installedPluginPath string) 
 func (p *PluginsService) LoadVariableValues(installedPluginPath string) (map[string]interface{}, error) {
 	p.osLock.Lock()
 	defer p.osLock.Unlock()
+	defer tickOS() // wait a beat
 	return plugins.LoadVariableValues(pluginDirectory, installedPluginPath)
 }
 
@@ -258,6 +261,7 @@ func (p *PluginsService) LoadVariableValues(installedPluginPath string) (map[str
 func (p *PluginsService) SaveVariableValues(installedPluginPath string, values map[string]interface{}) error {
 	p.osLock.Lock()
 	defer p.osLock.Unlock()
+	defer tickOS() // wait a beat
 	return plugins.SaveVariableValues(pluginDirectory, installedPluginPath, values)
 }
 
@@ -271,9 +275,11 @@ func (p *PluginsService) SetEnabled(installedPluginPath string, enabled bool) (s
 	if err != nil {
 		return "", err
 	}
+	tickOS() // wait a beat
 	return newPath, err
 }
 
+// SetRefreshIntervalResult is the refresh interval result returned from SetRefreshInterval.
 type SetRefreshIntervalResult struct {
 	InstalledPluginPath string                  `json:"installedPluginPath"`
 	RefreshInterval     plugins.RefreshInterval `json:"refreshInterval"`
@@ -292,5 +298,6 @@ func (p *PluginsService) SetRefreshInterval(installedPluginPath string, refreshI
 		InstalledPluginPath: newPath,
 		RefreshInterval:     newInterval,
 	}
+	tickOS() // wait a beat
 	return result, nil
 }
