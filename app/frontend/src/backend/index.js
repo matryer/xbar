@@ -39,6 +39,13 @@ const backend = {
         return window.backend.main.CommandService.OpenURL(arg1);
       },
       /**
+       * RefreshAllPlugins
+       * @returns {Promise} 
+       */
+      "RefreshAllPlugins": () => {
+        return window.backend.main.CommandService.RefreshAllPlugins();
+      },
+      /**
        * WindowHide
        * @returns {Promise} 
        */

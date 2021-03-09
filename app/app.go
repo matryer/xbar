@@ -83,12 +83,26 @@ func newApp() *app {
 
 	app.CategoriesService = NewCategoriesService(client)
 	app.PersonService = NewPersonService(client)
-	app.CommandService = NewCommandService()
+	app.CommandService = NewCommandService(app.RefreshAll)
 	app.PluginsService = NewPluginsService(client, "https://xbarapp.com/docs/plugins/")
 
 	app.PluginsService.OnRefresh = app.RefreshAll
 	app.createDefaultMenus()
 	return app
+}
+
+func (a *app) Start(runtime *wails.Runtime) {
+	a.runtime = runtime
+	a.PluginsService.runtime = runtime
+	a.CommandService.runtime = runtime
+	a.CommandService.clearCache = a.clearCache
+	a.createDefaultMenus()
+	// ensure the plugin directory is there
+	if err := os.MkdirAll(pluginDirectory, 0777); err != nil {
+		log.Println("failed to create plugin directory:", err)
+	}
+	a.RefreshAll()
+	go a.checkForUpdates(true)
 }
 
 func (a *app) RefreshAll() {
@@ -150,19 +164,6 @@ func (a *app) RefreshAll() {
 		a.plugins.Run(ctx)
 		close(a.pluginsStoppedSignal)
 	}()
-}
-
-func (a *app) Start(runtime *wails.Runtime) {
-	a.runtime = runtime
-	a.PluginsService.runtime = runtime
-	a.CommandService.runtime = runtime
-	a.createDefaultMenus()
-	// ensure the plugin directory is there
-	if err := os.MkdirAll(pluginDirectory, 0777); err != nil {
-		log.Println("failed to create plugin directory:", err)
-	}
-	a.RefreshAll()
-	go a.checkForUpdates(true)
 }
 
 // CheckForUpdates proactively checks for updates.

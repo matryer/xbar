@@ -8,15 +8,14 @@
 	} from './pagedata.svelte'
 	import { 
 			refreshCategories, refreshInstalledPlugins, 
-			openURL,
+			openURL, refreshAllPlugins, clearCache,
 	 } from './rpc.svelte'
-	import Spinner from './elements/Spinner.svelte'
 	import A from './elements/A.svelte'
 	import Button from './elements/Button.svelte'
 	import Error from './elements/Error.svelte'
 	import { globalWaiter, wait } from './waiters.svelte'
 	import KeyboardShortcuts from './elements/KeyboardShortcuts.svelte'
-    import { sigRefresh } from './signals.svelte'
+    import { sigRefresh, fireSigRefresh, keyCombination } from './signals.svelte'
 
 	let err
 
@@ -63,6 +62,32 @@
 		event.preventDefault()
 		openURL('https://github.com/matryer/xbar#writing-plugins')
 			.catch(e => err = e)
+	}
+
+	// refresh will use fireSigRefresh to trigger refresh.
+	// alt|cmd: will refresh all plugins too.
+	//  +shift: will clear cache as well
+	function onRefreshClick(keyCombination) {
+		if (keyCombination.altKey || keyCombination.metaKey) {
+			if (keyCombination.shiftKey) {
+				// clear cache
+				clearCache()
+					.finally(() => {
+						refreshAllPlugins()
+						.finally(() => {
+							fireSigRefresh()
+						})
+					})
+				return
+			} 
+			// send refresh callr
+			refreshAllPlugins()
+				.finally(() => {
+					fireSigRefresh()
+				})
+			return
+		}
+		fireSigRefresh()
 	}
 
 </script>
@@ -157,7 +182,23 @@
 	<div class='flex-grow h-full flex flex-col bg-opacity-25 bg-gray-200 text-gray-700 dark:text-gray-300'>
 		<div class='top-bar flex-shrink-0 px-6 py-3 flex items-center space-x-5' data-wails-drag>
 			<div>
-				<Spinner waiter={$globalWaiter} />
+				<Button 
+					waiter={$globalWaiter}
+					on:click='{ () => onRefreshClick($keyCombination) }'
+					cssclass='py-1 opacity-75'
+					style='{ $keyCombination.altKey ? 'primary' : 'default' }'
+				>↺</Button>
+				{#if $keyCombination.altKey || $keyCombination.metaKey}
+					{#if $keyCombination.shiftKey}
+						<span class='text-gray-800 dark:text-white ml-3'>
+							Clear cache
+						</span>
+					{:else}
+						<span class='text-gray-800 dark:text-white ml-3'>
+							Refresh plugins
+						</span>
+					{/if}
+				{/if}
 			</div>
 			<div class='flex-grow' ></div>
 			<div>

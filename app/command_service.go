@@ -12,12 +12,26 @@ import (
 
 // CommandService provides window service.
 type CommandService struct {
-	runtime *wails.Runtime
+	runtime    *wails.Runtime
+	OnRefresh  func()
+	clearCache func(passive bool)
 }
 
 // NewCommandService makes a new CommandService.
-func NewCommandService() *CommandService {
-	return &CommandService{}
+func NewCommandService(OnRefresh func()) *CommandService {
+	return &CommandService{
+		OnRefresh: OnRefresh,
+	}
+}
+
+// ClearCache clears the cache.
+func (c *CommandService) ClearCache() {
+	c.clearCache(false)
+}
+
+// RefreshAllPlugins refreshes all plugins.
+func (c *CommandService) RefreshAllPlugins() {
+	c.OnRefresh()
 }
 
 // WindowHide hides the window.

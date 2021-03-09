@@ -70,6 +70,14 @@
 		return backend.main.PluginsService.SetRefreshInterval(installedPluginPath, refreshInterval)
 	}
 
+	export function refreshAllPlugins() {
+		return backend.main.CommandService.RefreshAllPlugins()
+	}
+
+	export function clearCache() {
+		return backend.main.CommandService.ClearCache()
+	}
+
 	// getCategoryByPath gets a cateogry by path.
 	// Pass in categories, imported from this file.
 	// getCategoryByPath($categories, categoryPath)

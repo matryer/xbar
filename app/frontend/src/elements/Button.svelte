@@ -1,11 +1,17 @@
 <script>
 
+	import Spinner from './Spinner.svelte'
+
 	// style is the style of button.
 	// default or primary, see classes below.
 	export let style = 'default'
 
 	// cssclass appends per-element css classes.
 	export let cssclass = ''
+
+	// waiter will show a spinner inside the button
+	// if > 0.
+	export let waiter = 0
 
 	// classes are the css classes to use for each style of button
 	const classes = {
@@ -21,5 +27,7 @@
 	on:click
 	class='{css}'
 >
-	<slot />
+	<div class:animate-spin={waiter}>
+		<slot />
+	</div>
 </button>
