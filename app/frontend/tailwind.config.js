@@ -10,6 +10,8 @@ module.exports = {
 	darkMode: 'media',
 	theme: {
 		colors: {
+			transparent: 'transparent',
+
 			gray: colors.trueGray,
 			blue: colors.blue,
 			black: colors.black,

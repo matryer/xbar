@@ -51,8 +51,8 @@
                 </tr>
             {/each}
         </table>
-        <p class='p-3 mb-3 opacity-75 text-sm max-w-sm'>
-            <span class='bg-yellow-100 bg-opacity-50' class:invisible={ !changed }>Choose <strong>Preferences > Refresh all</strong> from an xbar menu for your changes to take effect.</span>
+        <p class='py-3 mb-3 opacity-75 text-sm max-w-sm'>
+            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent' class:invisible={ !changed }>💡 Choose <strong>Preferences > Refresh all</strong> from an xbar menu for your changes to take effect.</span>
         </p>
     </div>
 {/if}
