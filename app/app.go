@@ -222,7 +222,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
 			Type:        menu.TextType,
-			Label:       "Edit",
+			Label:       "Open plugin…",
 			Accelerator: keys.CmdOrCtrl("e"),
 			Click: func(_ *menu.CallbackData) {
 				a.runtime.Window.Show()
