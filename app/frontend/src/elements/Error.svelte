@@ -2,6 +2,7 @@
 	import { slide } from 'svelte/transition'
 	import { openURL } from '../rpc.svelte'
 	import { fireSigRefresh } from '../signals.svelte'
+	import Button from './Button.svelte'
 	export let err = null
 
 	function reportError(err) {
@@ -37,15 +38,11 @@
 </script>
 {#if err}
 	{#if isNotFoundError(err)}
-		<div class='px-8 py-4 bg-white bg-opacity-50'>
+		<div class='px-8 py-4 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-25'>
 			<code>404</code> Not found
-			-
-			<a 
-				href='{ location.hash }'
-				on:click|preventDefault={ onRefreshClicked }
-				class='underline'
-			>{#if refreshing}Refreshing&hellip;{:else}Refresh{/if}
-			</a>
+			<Button cssclass='ml-4' on:click={ onRefreshClicked }>
+				{#if refreshing}Refreshing&hellip;{:else}Refresh{/if}
+			</Button>
 		</div>
 		<p class='p-8 py-4'>
 			← Use the navigation to 
