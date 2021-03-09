@@ -34,6 +34,7 @@
 
 	function loadPluginMetadata(installedPluginPath) {
 		if (!installedPluginPath) { return }
+		err = null
 		const done1 = wait()
 		const done2 = wait()
 		getInstalledPluginMetadata(installedPluginPath)
@@ -150,78 +151,80 @@
 
 <Error err={err} />
 
-<Breadcrumbs>
-	{#if installedPlugin}
-		<strong>
-			{installedPlugin.title || installedPlugin.filename}
-		</strong>
-	{/if}
-</Breadcrumbs>
+{#if !err}
+	<Breadcrumbs>
+		{#if installedPlugin}
+			<strong>
+				{installedPlugin.title || installedPlugin.filename}
+			</strong>
+		{/if}
+	</Breadcrumbs>
 
-<div class='flex flex-col h-full max-w-full'>
-	<div class='flex p-6 flex-wrap space-x-8 flex-fix'>
-		<div>
-			<PluginDetails plugin={installedPlugin}>
-				<div slot='action' class='pl-3'>
-					<Spinner 
-						width=16 
-						height=16
-						waiter={ pluginEnableToggleWaiter } 
+	<div class='flex flex-col h-full max-w-full'>
+		<div class='flex p-6 flex-wrap space-x-8 flex-fix'>
+			<div>
+				<PluginDetails plugin={installedPlugin}>
+					<div slot='action' class='pl-3'>
+						<Spinner 
+							width=16 
+							height=16
+							waiter={ pluginEnableToggleWaiter } 
+						/>
+						<Switch 
+							on={ installedPlugin.enabled } 
+							loading={ pluginEnableToggleWaiter>0 }
+							on:click={ toggleEnabled }
+						/>
+					</div>
+					<div slot='footer'>
+						{#if refreshInterval}
+							<div class='p-4 text-right'>
+								<span class='mr-1'>Refresh every:</span>
+								<Duration 
+									value={refreshInterval} 
+									on:change={ onDurationChanged }
+									disabled={ !installedPlugin.enabled }
+								/>
+							</div>
+						{/if}
+					</div>
+				</PluginDetails>
+				{#if installedPlugin}
+					<div class='p-3 flex space-x-5'>
+						<Button on:click={ () => gotoOpenPluginIssue(installedPlugin) }>
+							Open issue&hellip;
+						</Button>
+						<Button on:click={ onUninstallClick }>
+							Uninstall this plugin
+						</Button>
+					</div>
+				{/if}
+			</div>
+			{#if installedPlugin && installedPlugin.imageURL}
+				<div class='flex-shrink mb-8'>
+					<img 
+						alt='Screenshot of {installedPlugin.title}' 
+						src={installedPlugin.imageURL} 
+						onerror='this.style.display="none"'
+						class='plugin-image max-h-64'
 					/>
-					<Switch 
-						on={ installedPlugin.enabled } 
-						loading={ pluginEnableToggleWaiter>0 }
-						on:click={ toggleEnabled }
-					/>
-				</div>
-				<div slot='footer'>
-					{#if refreshInterval}
-						<div class='p-4 text-right'>
-							<span class='mr-1'>Refresh every:</span>
-							<Duration 
-								value={refreshInterval} 
-								on:change={ onDurationChanged }
-								disabled={ !installedPlugin.enabled }
-							/>
-						</div>
-					{/if}
-				</div>
-			</PluginDetails>
-			{#if installedPlugin}
-				<div class='p-3'>
-					<Button on:click={ () => gotoOpenPluginIssue(installedPlugin) }>
-						Open issue&hellip;
-					</Button>
-					<Button on:click={ onUninstallClick }>
-						Uninstall this plugin
-					</Button>
 				</div>
 			{/if}
 		</div>
-		{#if installedPlugin && installedPlugin.imageURL}
-			<div class='flex-shrink mb-8'>
-				<img 
-					alt='Screenshot of {installedPlugin.title}' 
-					src={installedPlugin.imageURL} 
-					onerror='this.style.display="none"'
-					class='plugin-image max-h-64'
+		{#if installedPlugin && installedPlugin.vars && installedPlugin.enabled}
+			<div class='shadow-lg dark:shadow-none'>
+				<Variables 
+					on:change={onValuesChanged}
+					variables={installedPlugin.vars} 
+					values={variableValues}
+					disabled={ !installedPlugin.enabled }
 				/>
 			</div>
 		{/if}
+		{#if installedPlugin}
+			<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-600 bg-opacity-75'>
+				<PluginSourceBrowser files={installedPlugin.files} />
+			</div>
+		{/if}
 	</div>
-	{#if installedPlugin && installedPlugin.vars && installedPlugin.enabled}
-		<div class='shadow-lg dark:shadow-none'>
-			<Variables 
-				on:change={onValuesChanged}
-				variables={installedPlugin.vars} 
-				values={variableValues}
-				disabled={ !installedPlugin.enabled }
-			/>
-		</div>
-	{/if}
-	{#if installedPlugin}
-		<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-600 bg-opacity-75'>
-			<PluginSourceBrowser files={installedPlugin.files} />
-		</div>
-	{/if}
-</div>
+{/if}
