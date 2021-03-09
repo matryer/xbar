@@ -35,7 +35,8 @@ func OffTestItemAction(t *testing.T) {
 	item = Item{
 		Text: "Item",
 		Params: ItemParams{
-			Shell: `echo \"hello\"`,
+			Shell:       `echo`,
+			ShellParams: []string{`Hello`},
 		},
 	}
 	action = item.Action()

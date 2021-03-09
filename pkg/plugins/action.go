@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 	"syscall"
 	"time"
 )
@@ -28,7 +29,7 @@ const actionTimeout = 10 * time.Second
 //  	actionFunc(ctx)
 //  }
 func (i *Item) Action() ActionFunc {
-	debugf := DebugfNoop
+	debugf := DebugfLog
 	if i.Plugin != nil {
 		debugf = i.Plugin.Debugf
 	}
@@ -96,9 +97,8 @@ func actionShell(debugf DebugFunc, item *Item, command string, params []string) 
 			commandExec = command
 			commandArgs = params
 		}
-		commandCtx, cancel := context.WithTimeout(ctx, actionTimeout)
-		defer cancel()
-		err := exec.CommandContext(commandCtx, commandExec, commandArgs...).Start()
+		debugf("exec: %s %s", commandExec, strings.Join(commandArgs, " "))
+		err := exec.CommandContext(context.Background(), commandExec, commandArgs...).Start()
 		if err != nil {
 			debugf("ERR: action shell: %s", err)
 			return
