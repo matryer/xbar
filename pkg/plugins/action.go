@@ -98,7 +98,11 @@ func actionShell(debugf DebugFunc, item *Item, command string, params []string) 
 			commandArgs = params
 		}
 		debugf("exec: %s %s", commandExec, strings.Join(commandArgs, " "))
-		err := exec.CommandContext(context.Background(), commandExec, commandArgs...).Start()
+		cmd := exec.CommandContext(context.Background(), commandExec, commandArgs...)
+		cmd.SysProcAttr = &syscall.SysProcAttr{
+			Setpgid: true,
+		}
+		err := cmd.Start()
 		if err != nil {
 			debugf("ERR: action shell: %s", err)
 			return
