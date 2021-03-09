@@ -31,6 +31,11 @@
 	Events.On('xbar.incomingURL.openPlugin', function(params){
 		location.hash = `/plugin-details/${params.path}`
 	})
+	
+	Events.On('xbar.browser.openInstalledPlugin', function(params){
+		location.hash = `/installed-plugins/${params.path}`
+	})
+	
 
 	$: if ($sigRefresh) {
 		const done = wait()

@@ -32,7 +32,6 @@ type app struct {
 
 	// appMenu isn't visible - it's used for key shortcuts.
 	appMenu         *menu.Menu
-	preferencesMenu *menu.Menu
 	defaultTrayMenu *menu.TrayMenu
 	plugins         plugins.Plugins
 	pluginTrays     map[string]*menu.TrayMenu
@@ -136,7 +135,7 @@ func (a *app) RefreshAll() {
 		plugin.Debugf = plugins.DebugfLog
 		a.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
-			Menu:    a.preferencesMenu,
+			Menu:    a.generatePreferencesMenu(plugin),
 			OnOpen:  a.onMenuWillOpen,
 			OnClose: a.onMenuDidClose,
 		}
@@ -193,7 +192,7 @@ func (a *app) onErr(err string) {
 	errorMenu := &menu.Menu{}
 	errorMenu.Append(menu.Text(err, nil, nil))
 	errorMenu.Append(menu.Separator())
-	errorMenu.Merge(a.preferencesMenu)
+	errorMenu.Merge(a.generatePreferencesMenu(nil))
 	a.defaultTrayMenu = &menu.TrayMenu{
 		Label: "⚠️ xbar",
 		Menu:  errorMenu,
@@ -211,58 +210,79 @@ func (a *app) Shutdown() {
 	}
 }
 
-func (a *app) createDefaultMenus() {
-	prefsMenu := &menu.Menu{
-		Items: []*menu.MenuItem{
-			{
-				Type:        menu.TextType,
-				Label:       "Refresh all",
-				Accelerator: keys.CmdOrCtrl("r"),
-				Click:       a.onPluginsRefreshMenuClicked,
+func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
+	var items []*menu.MenuItem
+	items = append(items, &menu.MenuItem{
+		Type:        menu.TextType,
+		Label:       "Refresh all",
+		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
+		Click:       a.onPluginsRefreshMenuClicked,
+	})
+	items = append(items, menu.Separator())
+	if plugin != nil {
+		items = append(items, &menu.MenuItem{
+			Type:        menu.TextType,
+			Label:       "Edit",
+			Accelerator: keys.CmdOrCtrl("e"),
+			Click: func(_ *menu.CallbackData) {
+				a.runtime.Window.Show()
+				rel, err := filepath.Rel(pluginDirectory, plugin.Command)
+				if err != nil {
+					log.Println(err)
+					return
+				}
+				a.runtime.Events.Emit("xbar.browser.openInstalledPlugin", map[string]string{
+					"path": rel,
+				})
 			},
-			{
-				Type:        menu.TextType,
-				Label:       "Plugins…",
-				Accelerator: keys.CmdOrCtrl("p"),
-				Click:       a.onPluginsMenuClicked,
-			},
-			{
-				Type:  menu.TextType,
-				Label: "Open plugin folder",
-				Click: a.onOpenPluginsFolderClicked,
-			},
-			menu.Separator(),
-			{
-				Type:     menu.TextType,
-				Label:    fmt.Sprintf("xbar (%s)", version),
-				Disabled: true,
-			},
-			{
-				Type:  menu.TextType,
-				Label: "Check for updates…",
-				Click: a.onCheckForUpdatesMenuClick,
-			},
-			{
-				// todo: remove this item once cmd+R is working #refresh
-				Type:  menu.TextType,
-				Label: "Clear cache",
-				Click: a.onClearCacheMenuClicked,
-			},
-			menu.Separator(),
-			{
-				Type:        menu.TextType,
-				Label:       "Quit xbar",
-				Accelerator: keys.CmdOrCtrl("q"),
-				Click:       a.onQuitMenuClicked,
-			},
-		},
+		})
 	}
-	a.preferencesMenu = menu.NewMenuFromItems(
-		menu.SubMenu("Preferences", prefsMenu),
+	items = append(items, &menu.MenuItem{
+		Type:        menu.TextType,
+		Label:       "Plugin browser…",
+		Accelerator: keys.CmdOrCtrl("p"),
+		Click:       a.onPluginsMenuClicked,
+	})
+	items = append(items, &menu.MenuItem{
+		Type:  menu.TextType,
+		Label: "Open plugin folder…",
+		Click: a.onOpenPluginsFolderClicked,
+	})
+	items = append(items, menu.Separator())
+	items = append(items, &menu.MenuItem{
+		Type:     menu.TextType,
+		Label:    fmt.Sprintf("xbar (%s)", version),
+		Disabled: true,
+	})
+	items = append(items, &menu.MenuItem{
+		Type:  menu.TextType,
+		Label: "Check for updates…",
+		Click: a.onCheckForUpdatesMenuClick,
+	})
+	items = append(items, &menu.MenuItem{
+		// todo: remove this item once cmd+R is working #refresh
+		Type:  menu.TextType,
+		Label: "Clear cache",
+		Click: a.onClearCacheMenuClicked,
+	})
+	items = append(items, menu.Separator())
+	items = append(items, &menu.MenuItem{
+		Type:        menu.TextType,
+		Label:       "Quit xbar",
+		Accelerator: keys.CmdOrCtrl("q"),
+		Click:       a.onQuitMenuClicked,
+	})
+	return menu.NewMenuFromItems(
+		menu.SubMenu("Preferences", &menu.Menu{
+			Items: items,
+		}),
 	)
+}
+
+func (a *app) createDefaultMenus() {
 	a.defaultTrayMenu = &menu.TrayMenu{
 		Label: "xbar",
-		Menu:  prefsMenu,
+		Menu:  a.generatePreferencesMenu(nil),
 	}
 }
 
@@ -280,6 +300,10 @@ func (a *app) onQuitMenuClicked(_ *menu.CallbackData) {
 
 func (a *app) onPluginsRefreshMenuClicked(_ *menu.CallbackData) {
 	a.RefreshAll()
+}
+
+func (a *app) onPluginRefreshMenuClicked(_ *menu.CallbackData) {
+
 }
 
 func (a *app) onBrowserRefreshMenuClicked(_ *menu.CallbackData) {
@@ -370,10 +394,10 @@ func (a *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	a.updateLabel(tray, p)
 	pluginMenu := a.menuParser.ParseItems(ctx, p.Items.ExpandedItems)
 	if pluginMenu == nil {
-		pluginMenu = a.preferencesMenu
+		pluginMenu = a.generatePreferencesMenu(p)
 	} else {
 		pluginMenu.Append(menu.Separator())
-		pluginMenu.Merge(a.preferencesMenu)
+		pluginMenu.Merge(a.generatePreferencesMenu(p))
 	}
 	tray.Menu = pluginMenu
 	a.runtime.Menu.SetTrayMenu(tray)
