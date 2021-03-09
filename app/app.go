@@ -302,10 +302,6 @@ func (a *app) onPluginsRefreshMenuClicked(_ *menu.CallbackData) {
 	a.RefreshAll()
 }
 
-func (a *app) onPluginRefreshMenuClicked(_ *menu.CallbackData) {
-
-}
-
 func (a *app) onBrowserRefreshMenuClicked(_ *menu.CallbackData) {
 	a.runtime.Events.Emit("xbar.browser.refresh")
 }
@@ -525,4 +521,10 @@ func (a *app) checkForUpdates(passive bool) {
 		})
 		return
 	}
+}
+
+// tickOS waits a beat after some os changes to give the system
+// time to reflect those changes.
+func tickOS() {
+	time.Sleep(1 * time.Second)
 }
