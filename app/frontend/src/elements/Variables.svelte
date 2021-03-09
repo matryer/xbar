@@ -12,18 +12,21 @@
     export let debounce = 1000
     export let disabled = false
 
+    export let changed = false
+
     let _debounceTimer
     function valueDidChange() {
         clearTimeout(_debounceTimer)
         _debounceTimer = setTimeout(() => {
             dispatch('change')
+            changed = true
         }, debounce)
     }
 
 </script>
 
 {#if variables && variables.length && values}
-    <div class='p-6 bg-white dark:bg-gray-700 dark:bg-opacity-25 bg-opacity-50 border-t border-gray-100 dark:border-gray-600'>
+    <div class='p-6 pb-0 bg-white dark:bg-gray-700 dark:bg-opacity-25 bg-opacity-50 border-t border-gray-100 dark:border-gray-600'>
         <table class='table-auto'>
             {#each variables as variable}
                 <tr>
@@ -48,5 +51,8 @@
                 </tr>
             {/each}
         </table>
+        <p class='p-3 mb-3 opacity-75 text-sm max-w-sm'>
+            <span class='bg-yellow-100 bg-opacity-50' class:invisible={ !changed }>Choose <strong>Preferences > Refresh all</strong> from an xbar menu for your changes to take effect.</span>
+        </p>
     </div>
 {/if}
