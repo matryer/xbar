@@ -155,7 +155,7 @@
 		</div>
 	</div>
 	<div class='flex-grow h-full flex flex-col bg-opacity-25 bg-gray-200 text-gray-700 dark:text-gray-300'>
-		<div class='top-bar flex-shrink-0 px-6 py-3 flex items-center space-x-6' data-wails-drag>
+		<div class='top-bar flex-shrink-0 px-6 py-3 flex items-center space-x-5' data-wails-drag>
 			<div>
 				<Spinner waiter={$globalWaiter} />
 			</div>
