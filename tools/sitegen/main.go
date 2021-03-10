@@ -504,6 +504,10 @@ func (g *generator) generateCategoryPluginsJSONFiles(categories map[string]metad
 				plugins = append(plugins, thesePlugins...)
 			}
 		}
+		// sort plugins by name
+		sort.Slice(plugins, func(i, j int) bool {
+			return plugins[i].Title < plugins[j].Title
+		})
 		if err := g.generateCategoryPluginsJSON(category.Path, plugins); err != nil {
 			return err
 		}
