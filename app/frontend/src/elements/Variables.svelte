@@ -1,5 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte'
+    import { refreshAllPlugins } from '../rpc.svelte'
+    import Button from './Button.svelte'
 
     // dispatch handles the following events:
     // 		on:change - fired when the values change
@@ -21,6 +23,11 @@
             dispatch('change')
             changed = true
         }, debounce)
+    }
+
+    function onRefreshThePluginsClick() {
+        changed = false
+        refreshAllPlugins()
     }
 
 </script>
@@ -52,7 +59,7 @@
             {/each}
         </table>
         <p class='pt-3 pb-6 opacity-75 text-sm max-w-sm'>
-            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent' class:invisible={ !changed }>💡 Choose <strong>Preferences > Refresh all</strong> from an xbar menu for your changes to take effect.</span>
+            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent' class:invisible={ !changed }>💡 To see your changes, <Button on:click={ onRefreshThePluginsClick }>Refresh the plugins</Button></span>
         </p>
     </div>
 {/if}
