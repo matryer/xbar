@@ -25,6 +25,10 @@ import (
 var (
 	pluginDirectory = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "plugins")
 	cacheDirectory  = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "cache")
+
+	// concurrentIncomingURLs is the number of concurrent incoming URLs to handle at
+	// the same time.
+	concurrentIncomingURLs int = 1
 )
 
 type app struct {
@@ -46,6 +50,10 @@ type app struct {
 	PersonService     *PersonService
 	CommandService    *CommandService
 
+	// incomingURLSemaphore is a buffered channel that keeps the
+	// number of incoming URLs being parsed to one at a time.
+	incomingURLSemaphore chan struct{}
+
 	// lock protects menu items when RefreshAll
 	// is called.
 	// Also protects stopPluginsFunc, pluginsStoppedSignal,
@@ -56,7 +64,7 @@ type app struct {
 	// If they're open, they will not be updated.
 	menuIsOpen bool
 	// pluginsStoppedSignal is closed when plugins have stopped running.
-	pluginsStoppedSignal  chan (struct{})
+	pluginsStoppedSignal  chan struct{}
 	defaultTrayMenuActive bool
 	// isDarkMode indicates whether the system is running
 	// in dark mode or not.
@@ -66,7 +74,8 @@ type app struct {
 // newApp makes a new app.
 func newApp() *app {
 	app := &app{
-		menuParser: NewMenuParser(),
+		menuParser:           NewMenuParser(),
+		incomingURLSemaphore: make(chan struct{}, concurrentIncomingURLs),
 	}
 	app.appMenu = menu.NewMenuFromItems(
 		menu.AppMenu(),
@@ -395,6 +404,14 @@ func (a *app) clearCache(passive bool) {
 }
 
 func (a *app) handleIncomingURL(url string) {
+	// wait for a space
+	a.incomingURLSemaphore <- struct{}{}
+	defer func() {
+		// free up this space
+		<-a.incomingURLSemaphore
+	}()
+
+	log.Println("incoming URL: handleIncomingURL", url)
 	incomingURL, err := parseIncomingURL(url)
 	if err != nil {
 		a.runtime.Dialog.Message(&dialog.MessageDialog{
@@ -413,18 +430,19 @@ func (a *app) handleIncomingURL(url string) {
 			"path": incomingURL.Params.Get("path"),
 		})
 	case "refreshPlugin":
-		// todo: refresh only the specified plugin
-
 		for _, plugin := range a.plugins {
 			rel, err := filepath.Rel(pluginDirectory, plugin.Command)
 			if err != nil {
-				log.Println("rel for this failed", err)
+				log.Println("incoming URL: rel for this failed", err)
 				continue
 			}
-			log.Println("TODO: refresh only", rel)
+			if rel == incomingURL.Params.Get("path") {
+				plugin.TriggerRefresh()
+				return
+			}
 		}
-
-		a.RefreshAll()
+	default:
+		log.Println("incoming URL: skipping, unknown action %q", incomingURL.Action)
 	}
 }
 
