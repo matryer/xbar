@@ -112,7 +112,11 @@
 	function onUninstallClick() {
 		const done = wait()
 		uninstallPlugin(installedPlugin)
-			.then(() => {
+			.then((result) => {
+				if (result === false) {
+					// canceled
+					return 
+				}
 				clearNav()
 				location.hash = ''
 				refreshInstalledPlugins(installedPlugins)

@@ -185,7 +185,7 @@ type UninstallPluginRequest struct {
 }
 
 // UninstallPlugin removes a plugin.
-func (p *PluginsService) UninstallPlugin(installedPluginInfo UninstallPluginRequest) error {
+func (p *PluginsService) UninstallPlugin(installedPluginInfo UninstallPluginRequest) (bool, error) {
 	defer p.OnRefresh()
 	p.osLock.Lock()
 	defer p.osLock.Unlock()
@@ -201,7 +201,7 @@ func (p *PluginsService) UninstallPlugin(installedPluginInfo UninstallPluginRequ
 		case "Uninstall":
 			// continue
 		case "Cancel":
-			return nil
+			return false, nil
 		}
 	}
 	installer := &plugins.Installer{
@@ -209,10 +209,10 @@ func (p *PluginsService) UninstallPlugin(installedPluginInfo UninstallPluginRequ
 	}
 	err := installer.Uninstall(installedPluginInfo.Path)
 	if err != nil {
-		return errors.Wrap(err, "uninstall")
+		return false, errors.Wrap(err, "uninstall")
 	}
 	tickOS() // wait a beat
-	return nil
+	return true, nil
 }
 
 // InstalledPluginMetadata is the metadata extracted from an installed

@@ -15,6 +15,13 @@ const backend = {
     }
     "CommandService": {
       /**
+       * ClearCache
+       * @returns {Promise} 
+       */
+      "ClearCache": () => {
+        return window.backend.main.CommandService.ClearCache();
+      },
+      /**
        * OpenFile
        * @param {string} arg1 - Go Type: string
        * @returns {Promise<Error>}  - Go Type: error
@@ -155,7 +162,7 @@ const backend = {
       /**
        * UninstallPlugin
        * @param {any} arg1 - Go Type: main.UninstallPluginRequest
-       * @returns {Promise<Error>}  - Go Type: error
+       * @returns {Promise<boolean|Error>}  - Go Type: bool
        */
       "UninstallPlugin": (arg1) => {
         return window.backend.main.PluginsService.UninstallPlugin(arg1);
