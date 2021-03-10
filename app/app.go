@@ -141,7 +141,6 @@ func (a *app) RefreshAll() {
 	for _, plugin := range a.plugins {
 		menu, ok := a.pluginTrays[plugin.Command]
 		if !ok {
-			log.Println("weird: no menu for", plugin.Command)
 			continue
 		}
 		a.runtime.Menu.DeleteTrayMenu(menu)
