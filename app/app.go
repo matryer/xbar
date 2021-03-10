@@ -443,7 +443,7 @@ func (a *app) handleIncomingURL(url string) {
 			}
 		}
 	default:
-		log.Println("incoming URL: skipping, unknown action %q", incomingURL.Action)
+		log.Printf("incoming URL: skipping, unknown action %q\n", incomingURL.Action)
 	}
 }
 
