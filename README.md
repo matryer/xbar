@@ -316,6 +316,6 @@ It is possible to control xbar using special `xbar://` URLs:
 
 ## Thanks
 
-  * Special thanks to [@leaanthony at https://wails.app](https://wails.app) and @ianfoo, [@muhqu](https://github.com/muhqu), [@tylerb](https://github.com/tylerb) for their help
+  * Special thanks to [@leaanthony at https://wails.app](https://wails.app) and [@ianfoo](https://github.com/ianfoo), [@gingerbeardman](https://github.com/gingerbeardman), [@iosdeveloper](https://github.com/iosdeveloper), [@muhqu](https://github.com/muhqu), [@m-cat](https://github.com/m-cat), [@mpicard](https://github.com/mpicard), [@tylerb](https://github.com/tylerb) for their help
   * Thanks to [Chris Ryer](http://www.chrisryer.co.uk/) for the app logo - and to [@mazondo](https://twitter.com/mazondo) for the original
   * Thanks for all our [plugin contributors](https://xbarapp.com/) who have come up with some pretty genius things
