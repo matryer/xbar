@@ -15,7 +15,7 @@
 	import Error from './elements/Error.svelte'
 	import { globalWaiter, wait } from './waiters.svelte'
 	import KeyboardShortcuts from './elements/KeyboardShortcuts.svelte'
-    import { sigRefresh, fireSigRefresh, keyCombination } from './signals.svelte'
+    import { sigRefresh, fireSigRefresh } from './signals.svelte'
 
 	let err
 
@@ -64,29 +64,11 @@
 	}
 
 	// refresh will use fireSigRefresh to trigger refresh.
-	// alt|cmd: will refresh all plugins too.
-	//  +shift: will clear cache as well
-	function onRefreshClick(keyCombination) {
-		if (keyCombination.altKey || keyCombination.metaKey) {
-			if (keyCombination.shiftKey) {
-				// clear cache
-				clearCache()
-					.finally(() => {
-						refreshAllPlugins()
-						.finally(() => {
-							fireSigRefresh()
-						})
-					})
-				return
-			} 
-			// send refresh callr
-			refreshAllPlugins()
-				.finally(() => {
-					fireSigRefresh()
-				})
-			return
-		}
-		fireSigRefresh()
+	function onRefreshClick() {
+		refreshAllPlugins()
+			.finally(() => {
+				fireSigRefresh()
+			})
 	}
 
 </script>
@@ -183,21 +165,9 @@
 			<div>
 				<Button 
 					waiter={$globalWaiter}
-					on:click='{ () => onRefreshClick($keyCombination) }'
+					on:click='{ onRefreshClick }'
 					cssclass='py-1 opacity-75'
-					style='{ $keyCombination.altKey ? 'primary' : 'default' }'
 				>↺</Button>
-				<!-- {#if $keyCombination.altKey || $keyCombination.metaKey}
-					{#if $keyCombination.shiftKey}
-						<span class='text-gray-800 dark:text-white ml-3'>
-							Clear cache
-						</span>
-					{:else}
-						<span class='text-gray-800 dark:text-white ml-3'>
-							Refresh plugins
-						</span>
-					{/if}
-				{/if} -->
 			</div>
 			<div class='flex-grow' ></div>
 			<div>

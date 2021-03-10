@@ -1,6 +1,6 @@
 <script>
     
-    import { fireSigRefresh, keyCombination } from '../signals.svelte'
+    import { fireSigRefresh } from '../signals.svelte'
 
     function handleKeydown(e) {
         if (e.key === 'r' && e.metaKey && !e.shiftKey) {
@@ -18,24 +18,9 @@
             backend.main.CommandService.WindowMinimise()
             return
         }
-        let combo = {
-            altKey: e.altKey,
-            shiftKey: e.shiftKey,
-            metaKey: e.metaKey,
-        }
-        keyCombination.set(combo)
-    }
-
-    function handleKeyUp(e) {
-        keyCombination.set({
-            altKey: false,
-            shiftKey: false,
-            metaKey: false,
-        })
     }
     
 </script>
 <svelte:window 
     on:keydown={handleKeydown}
-    on:keyup={handleKeyUp}
 />
