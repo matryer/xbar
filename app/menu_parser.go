@@ -10,6 +10,8 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/menu/keys"
 )
 
+const defaultMenuFontSize = 14
+
 // MenuParser translates xbar items into Wails menu items.
 type MenuParser struct{}
 
@@ -63,6 +65,9 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 	menuItem.Image = item.Params.Image
 	menuItem.FontName = item.Params.Font
 	menuItem.FontSize = item.Params.Size
+	if menuItem.FontSize == 0 {
+		menuItem.FontSize = defaultMenuFontSize
+	}
 	menuItem.RGBA = item.Params.Color
 	// Check for template image
 	if item.Params.TemplateImage != "" {

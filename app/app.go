@@ -162,9 +162,9 @@ func (a *app) RefreshAll() {
 		// Setup plugin
 		plugin.OnCycle = a.onCycle
 		plugin.OnRefresh = a.onRefresh
-		plugin.Stdout = os.Stdout
-		plugin.Stderr = os.Stderr
 		if a.Verbose {
+			plugin.Stdout = os.Stdout
+			plugin.Stderr = os.Stderr
 			plugin.Debugf = plugins.DebugfLog
 		}
 		a.pluginTrays[plugin.Command] = &menu.TrayMenu{
@@ -235,6 +235,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	var items []*menu.MenuItem
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
+			FontSize:    defaultMenuFontSize,
 			Type:        menu.TextType,
 			Label:       "Refresh",
 			Accelerator: keys.CmdOrCtrl("r"),
@@ -244,6 +245,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		})
 	}
 	items = append(items, &menu.MenuItem{
+		FontSize:    defaultMenuFontSize,
 		Type:        menu.TextType,
 		Label:       "Refresh all",
 		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
@@ -252,6 +254,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	items = append(items, menu.Separator())
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
+			FontSize:    defaultMenuFontSize,
 			Type:        menu.TextType,
 			Label:       "Open plugin…",
 			Accelerator: keys.CmdOrCtrl("e"),
@@ -269,28 +272,33 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		})
 	}
 	items = append(items, &menu.MenuItem{
+		FontSize:    defaultMenuFontSize,
 		Type:        menu.TextType,
 		Label:       "Plugin browser…",
 		Accelerator: keys.CmdOrCtrl("p"),
 		Click:       a.onPluginsMenuClicked,
 	})
 	items = append(items, &menu.MenuItem{
-		Type:  menu.TextType,
-		Label: "Open plugin folder…",
-		Click: a.onOpenPluginsFolderClicked,
+		FontSize: defaultMenuFontSize,
+		Type:     menu.TextType,
+		Label:    "Open plugin folder…",
+		Click:    a.onOpenPluginsFolderClicked,
 	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
+		FontSize: defaultMenuFontSize,
 		Type:     menu.TextType,
 		Label:    fmt.Sprintf("xbar (%s)", version),
 		Disabled: true,
 	})
 	items = append(items, &menu.MenuItem{
-		Type:  menu.TextType,
-		Label: "Check for updates…",
-		Click: a.onCheckForUpdatesMenuClick,
+		FontSize: defaultMenuFontSize,
+		Type:     menu.TextType,
+		Label:    "Check for updates…",
+		Click:    a.onCheckForUpdatesMenuClick,
 	})
 	items = append(items, &menu.MenuItem{
+		FontSize: defaultMenuFontSize,
 		// todo: remove this item once cmd+R is working #refresh
 		Type:  menu.TextType,
 		Label: "Clear cache",
@@ -298,6 +306,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
+		FontSize:    defaultMenuFontSize,
 		Type:        menu.TextType,
 		Label:       "Quit xbar",
 		Accelerator: keys.CmdOrCtrl("q"),

@@ -232,7 +232,6 @@ func (p *Plugin) Run(ctx context.Context) {
 
 // TriggerRefresh triggers a refresh on this Plugin.
 func (p *Plugin) TriggerRefresh() {
-	log.Println("TriggerRefresh")
 	// disable the menu
 	p.CycleIndex = 0 // reset
 	// just keep the current item
@@ -242,7 +241,6 @@ func (p *Plugin) TriggerRefresh() {
 		currentItem,
 	}
 	p.CycleIndex = 0 // reset
-	log.Printf("TriggerRefresh: p.OnRefresh: %+v\n", p.Items)
 	if p.OnCycle != nil {
 		p.cycleSignal <- struct{}{}
 	}
