@@ -23,8 +23,7 @@
 	$: installedPluginsDisabled = $installedPlugins ? $installedPlugins.filter(p => !p.enabled) : []
 
 	Events.On('xbar.browser.refresh', function(){
-		console.info('on xbar.browser.refresh')
-		// todo(leaanthony): how do we refresh/reload the page? #refresh
+		fireSigRefresh()
 	})
 
 	Events.On('xbar.incomingURL.openPlugin', function(params){
