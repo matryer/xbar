@@ -430,7 +430,6 @@ func (a *app) handleIncomingURL(url string) {
 		// free up this space
 		<-a.incomingURLSemaphore
 	}()
-
 	log.Println("incoming URL: handleIncomingURL", url)
 	incomingURL, err := parseIncomingURL(url)
 	if err != nil {

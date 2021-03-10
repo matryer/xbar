@@ -40,7 +40,9 @@ func (i *Item) Action() ActionFunc {
 		return actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams)
 	}
 	if i.Params.Refresh == true {
-		return actionRefresh(debugf, i.Plugin.Refresh)
+		return actionRefresh(debugf, func(_ context.Context) {
+			i.Plugin.TriggerRefresh()
+		})
 	}
 	return nil // no action
 }
