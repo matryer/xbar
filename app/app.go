@@ -421,7 +421,7 @@ func (a *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	}
 	tray, ok := a.pluginTrays[p.Command]
 	if !ok {
-		log.Println("todo: no item - probably refreshing", tray.Label)
+		log.Println("no item - probably refreshing", tray.Label)
 		return
 	}
 	a.updateLabel(tray, p)
