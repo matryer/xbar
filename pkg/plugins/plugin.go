@@ -60,6 +60,10 @@ type Plugin struct {
 	Stdout io.Writer
 	// Stderr is a writer that will have stderr written to if not nil.
 	Stderr io.Writer
+
+	// refreshSignal is a signal which will trigger the plugin to refresh.
+	// Called via TriggerRefresh().
+	refreshSignal chan (struct{})
 }
 
 // CleanFilename gets a clean human readable representation of the
@@ -150,6 +154,7 @@ func NewPlugin(command string) *Plugin {
 		CycleInterval: 5 * time.Second,
 		Command:       command,
 		Debugf:        DebugfNoop,
+		refreshSignal: make(chan struct{}, 1),
 	}
 	var err error
 	p.RefreshInterval, err = ParseFilenameInterval(filename)
@@ -199,6 +204,10 @@ func (p *Plugin) Run(ctx context.Context) {
 		defer wg.Done()
 		for {
 			select {
+			case <-p.refreshSignal:
+				p.Debugf("refreshing: %s", filepath.Base(p.Command))
+				p.Refresh(ctx)
+				cycleReset <- struct{}{}
 			case <-time.After(p.RefreshInterval.Duration()):
 				p.Debugf("refreshing: %s", filepath.Base(p.Command))
 				p.Refresh(ctx)
@@ -212,7 +221,13 @@ func (p *Plugin) Run(ctx context.Context) {
 	p.Debugf("finished")
 }
 
+// TriggerRefresh triggers a refresh on this Plugin.
+func (p *Plugin) TriggerRefresh() {
+	p.refreshSignal <- struct{}{}
+}
+
 // Refresh executes and updates the Plugin.
+// The menu is updated in an instant, unlike with Refresh().
 // Run calls this method periodically.
 func (p *Plugin) Refresh(ctx context.Context) {
 	err := p.refresh(ctx)

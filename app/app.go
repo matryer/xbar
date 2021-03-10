@@ -234,11 +234,21 @@ func (a *app) Shutdown() {
 
 func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	var items []*menu.MenuItem
+	if plugin != nil {
+		items = append(items, &menu.MenuItem{
+			Type:        menu.TextType,
+			Label:       "Refresh",
+			Accelerator: keys.CmdOrCtrl("r"),
+			Click: func(ctx *menu.CallbackData) {
+				a.onPluginsRefreshMenuClicked(ctx, plugin)
+			},
+		})
+	}
 	items = append(items, &menu.MenuItem{
 		Type:        menu.TextType,
 		Label:       "Refresh all",
 		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
-		Click:       a.onPluginsRefreshMenuClicked,
+		Click:       a.onPluginsRefreshAllMenuClicked,
 	})
 	items = append(items, menu.Separator())
 	if plugin != nil {
@@ -320,7 +330,11 @@ func (a *app) onQuitMenuClicked(_ *menu.CallbackData) {
 	a.runtime.Quit()
 }
 
-func (a *app) onPluginsRefreshMenuClicked(_ *menu.CallbackData) {
+func (a *app) onPluginsRefreshMenuClicked(_ *menu.CallbackData, p *plugins.Plugin) {
+	p.TriggerRefresh()
+}
+
+func (a *app) onPluginsRefreshAllMenuClicked(_ *menu.CallbackData) {
 	a.RefreshAll()
 }
 
