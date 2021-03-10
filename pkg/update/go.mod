@@ -3,6 +3,7 @@ module github.com/matryer/xbar/pkg/update
 go 1.16
 
 require (
+	github.com/Masterminds/semver/v3 v3.1.1 // indirect
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
 	github.com/matryer/is v1.4.0

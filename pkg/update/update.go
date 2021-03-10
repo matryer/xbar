@@ -11,6 +11,7 @@ import (
 	"strings"
 	"time"
 
+	semver "github.com/Masterminds/semver/v3"
 	"github.com/mholt/archiver"
 	"github.com/pkg/errors"
 )
@@ -55,7 +56,8 @@ func (u *Updater) Update() (*Release, error) {
 	if err != nil {
 		return nil, err
 	}
-	if latest.TagName == u.CurrentVersion {
+	hasUpdate := hasUpdate(u.CurrentVersion, latest.TagName)
+	if !hasUpdate {
 		return nil, nil
 	}
 	var selectedAsset *Asset
@@ -119,8 +121,39 @@ func (u *Updater) HasUpdate() (*Release, bool, error) {
 	if err != nil {
 		return nil, false, err
 	}
-	hasUpdate := u.CurrentVersion != latest.TagName
+	hasUpdate := hasUpdate(u.CurrentVersion, latest.TagName)
 	return latest, hasUpdate, nil
+}
+
+// hasUpdate compares the current and latest version strings to
+// see if there is an update.
+// Returns false if the versions match.
+// Returns false is current is in front of latest.
+// If semver checking fails, direct string comparison is used.
+func hasUpdate(current, latest string) bool {
+	semverValid := true
+	currentV, err := semver.NewVersion(current)
+	if err != nil {
+		semverValid = false
+	}
+	latestV, err := semver.NewVersion(latest)
+	if err != nil {
+		semverValid = false
+	}
+	if semverValid {
+		if currentV.Equal(latestV) {
+			return false // up-to-date
+		}
+		if currentV.GreaterThan(latestV) {
+			return false // local version is higher
+		}
+	} else {
+		// semver failed - just check tags
+		if latest == current {
+			return false
+		}
+	}
+	return true
 }
 
 func (u *Updater) downloadAndReplaceApp(asset Asset) error {

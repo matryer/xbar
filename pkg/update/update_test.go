@@ -117,3 +117,97 @@ func TestAppPathFromExecutable(t *testing.T) {
 	is.NoErr(err)
 	is.Equal(appPath, "/path/to/xbar.app")
 }
+
+func TestMatchingVersions(t *testing.T) {
+	is := is.New(t)
+
+	t.Cleanup(func() {
+		err := os.RemoveAll(filepath.Join("testreal-testarea"))
+		is.NoErr(err)
+	})
+
+	apiServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		version := "v2.1.0"
+		response := Release{
+			TagName: version,
+			Assets: []Asset{
+				{
+					Name:               "xbar-" + version + ".tar.gz",
+					BrowserDownloadURL: "/xbar-" + version + ".tar.gz",
+				},
+			},
+		}
+		b, err := json.Marshal(response)
+		is.NoErr(err) // marshal
+		_, err = w.Write(b)
+		is.NoErr(err) // write
+	}))
+	t.Cleanup(func() {
+		apiServer.Close()
+	})
+
+	u := &Updater{
+		CurrentVersion:              "v2.1.0",
+		LatestReleaseGitHubEndpoint: apiServer.URL,
+		Client:                      &http.Client{Timeout: 10 * time.Minute},
+		SelectAsset: func(release Release, asset Asset) bool {
+			return asset.Name == "xbar."+release.TagName+".tar.gz"
+		},
+		DownloadBytesLimit: 10_741_824, // 10MB
+		GetExecutable: func() (string, error) {
+			return "./testreal-testarea/xbar.app/Contents/MacOS/xbar", nil
+		},
+	}
+	_, hasUpdate, err := u.HasUpdate()
+	is.NoErr(err)
+	is.Equal(hasUpdate, false)
+	_, err = u.Update()
+	is.NoErr(err)
+}
+
+func TestLocalVersionIsHigher(t *testing.T) {
+	is := is.New(t)
+
+	t.Cleanup(func() {
+		err := os.RemoveAll(filepath.Join("testreal-testarea"))
+		is.NoErr(err)
+	})
+
+	apiServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		version := "v2.1.0"
+		response := Release{
+			TagName: version,
+			Assets: []Asset{
+				{
+					Name:               "xbar-" + version + ".tar.gz",
+					BrowserDownloadURL: "/xbar-" + version + ".tar.gz",
+				},
+			},
+		}
+		b, err := json.Marshal(response)
+		is.NoErr(err) // marshal
+		_, err = w.Write(b)
+		is.NoErr(err) // write
+	}))
+	t.Cleanup(func() {
+		apiServer.Close()
+	})
+
+	u := &Updater{
+		CurrentVersion:              "v2.1.1",
+		LatestReleaseGitHubEndpoint: apiServer.URL,
+		Client:                      &http.Client{Timeout: 10 * time.Minute},
+		SelectAsset: func(release Release, asset Asset) bool {
+			return asset.Name == "xbar."+release.TagName+".tar.gz"
+		},
+		DownloadBytesLimit: 10_741_824, // 10MB
+		GetExecutable: func() (string, error) {
+			return "./testreal-testarea/xbar.app/Contents/MacOS/xbar", nil
+		},
+	}
+	_, hasUpdate, err := u.HasUpdate()
+	is.NoErr(err)
+	is.Equal(hasUpdate, false)
+	_, err = u.Update()
+	is.NoErr(err)
+}
