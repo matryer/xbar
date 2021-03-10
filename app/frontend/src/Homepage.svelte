@@ -20,7 +20,7 @@
 	})
 
 	function openGetInTouchWindow() {
-		openURL('https://xbarapp.com/#featured-plugins')
+		openURL('https://twitter.com/matryer')
 			.catch(e => err = e)
 	}
 
@@ -32,7 +32,7 @@
 	</h2>
 </div>
 <PluginCollection plugins={featuredPlugins} />
-<div class='p-6 pt-0 text-right'>
+<div class='p-6 pt-0'>
 	<strong>
 		Get featured:
 	</strong>
