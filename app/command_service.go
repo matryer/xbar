@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"syscall"
 
 	"github.com/pkg/errors"
 	wails "github.com/wailsapp/wails/v2"
@@ -45,8 +46,8 @@ func (c *CommandService) WindowMinimise() {
 }
 
 // OpenPath opens a window.
-func (CommandService) OpenPath(path string) error {
-	err := run("open", path)
+func (c CommandService) OpenPath(path string) error {
+	err := c.runCommand("open", path)
 	if err != nil {
 		return errors.Wrapf(err, "unable to open path %q", path)
 	}
@@ -54,8 +55,8 @@ func (CommandService) OpenPath(path string) error {
 }
 
 // OpenURL opens a window.
-func (CommandService) OpenURL(url string) error {
-	err := run("open", url)
+func (c CommandService) OpenURL(url string) error {
+	err := c.runCommand("open", url)
 	if err != nil {
 		return errors.Wrapf(err, "unable to open URL %s", url)
 	}
@@ -63,23 +64,28 @@ func (CommandService) OpenURL(url string) error {
 }
 
 // OpenFile opens a file for editing.
-func (CommandService) OpenFile(path string) error {
+func (c CommandService) OpenFile(path string) error {
 	// try with $EDITOR
-	err := run(os.Getenv("EDITOR"), filepath.Join(pluginDirectory, path))
+	err := c.runCommand(os.Getenv("EDITOR"), filepath.Join(pluginDirectory, path))
 	if nil == err {
-		return nil
+		return nil // done
 	}
 	log.Println("open failed:", err)
 	// try with open
-	err = run("open", filepath.Join(pluginDirectory, path))
+	err = c.runCommand("open", filepath.Join(pluginDirectory, path))
 	if err != nil {
 		return errors.Wrapf(err, "unable to open directory %q", path)
 	}
 	return nil
 }
 
-func run(name string, args ...string) error {
-	c := exec.Command(name, args...)
-	c.Env = os.Environ()
-	return c.Run()
+// runCommand runs the command, wiring up stdout and stderr, and
+// inheriting the environment.
+func (CommandService) runCommand(name string, args ...string) error {
+	cmd := exec.Command(name, args...)
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Setpgid: true,
+	}
+	cmd.Env = os.Environ()
+	return cmd.Run()
 }
