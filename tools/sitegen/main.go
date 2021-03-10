@@ -69,6 +69,9 @@ func run(ctx context.Context, args []string) error {
 			log.Println(err)
 		}
 	})
+	sort.Slice(plugins, func(i, j int) bool {
+		return plugins[i].Title < plugins[j].Title
+	})
 	reader := &RepoReader{
 		RepoOwner:         "matryer",
 		RepoName:          "xbar-plugins",
@@ -196,6 +199,13 @@ func run(ctx context.Context, args []string) error {
 			if *errs == true {
 				log.Println(errors.Wrap(err, "generateContributorsPage"))
 			}
+		}
+	}()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		if err := g.generateBigPluginsPayload(plugins); err != nil {
+			log.Println(errors.Wrap(err, "generateBigPluginsPayload"))
 		}
 	}()
 	wg.Wait()
@@ -565,6 +575,26 @@ func (g *generator) generateCategoryPluginsJSON(categoryPath string, plugins []m
 	}
 	defer f.Close()
 	if _, err := io.WriteString(f, string(b)); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *generator) generateBigPluginsPayload(plugins []metadata.Plugin) error {
+	f, err := os.Create(filepath.Join(g.pluginsDir, "all-plugins.json"))
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	var payload struct {
+		Plugins []metadata.Plugin `json:"plugins"`
+	}
+	payload.Plugins = plugins
+	b, err := json.MarshalIndent(payload, "", "\t")
+	if err != nil {
+		return err
+	}
+	if _, err := f.Write(b); err != nil {
 		return err
 	}
 	return nil
