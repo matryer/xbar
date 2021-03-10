@@ -13,7 +13,12 @@ echo ""
 echo "  xbar ${VERSION}..."
 echo ""
 
-cd ../ && ./test.sh
+# run all tests
+cd ../
+./test.sh
+
+cd app
+
 sed "s/0.0.0/${VERSION}/" ./assets/mac/info.plist.src > ./assets/mac/info.plist
 wails build -package -production -ldflags "-X main.version=${VERSION}"
 cd ./build/darwin/desktop

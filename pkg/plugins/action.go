@@ -29,7 +29,7 @@ const actionTimeout = 10 * time.Second
 //  	actionFunc(ctx)
 //  }
 func (i *Item) Action() ActionFunc {
-	debugf := DebugfLog
+	debugf := DebugfNoop
 	if i.Plugin != nil {
 		debugf = i.Plugin.Debugf
 	}
