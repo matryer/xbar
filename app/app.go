@@ -163,9 +163,9 @@ func (a *app) RefreshAll() {
 		plugin.OnCycle = a.onCycle
 		plugin.OnRefresh = a.onRefresh
 		if a.Verbose {
-			plugin.Stdout = os.Stdout
+			//plugin.Stdout = os.Stdout
 			plugin.Stderr = os.Stderr
-			plugin.Debugf = plugins.DebugfLog
+			plugin.Debugf = plugins.DebugfPrefix(plugin.CleanFilename(), plugins.DebugfLog)
 		}
 		a.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
@@ -414,6 +414,16 @@ func (a *app) handleIncomingURL(url string) {
 		})
 	case "refreshPlugin":
 		// todo: refresh only the specified plugin
+
+		for _, plugin := range a.plugins {
+			rel, err := filepath.Rel(pluginDirectory, plugin.Command)
+			if err != nil {
+				log.Println("rel for this failed", err)
+				continue
+			}
+			log.Println("TODO: refresh only", rel)
+		}
+
 		a.RefreshAll()
 	}
 }

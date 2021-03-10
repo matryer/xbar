@@ -424,6 +424,21 @@ func DebugfLog(format string, v ...interface{}) {
 	log.Printf(format, v...)
 }
 
+// DebugfPrefix wraps a DebugFunc and prepends a prefix string.
+func DebugfPrefix(prefix string, debugf DebugFunc) DebugFunc {
+	return func(format string, v ...interface{}) {
+		s := fmt.Sprintf(format, v...)
+		if len(prefix) > 0 {
+			lines := strings.Split(s, "\n")
+			for i := range lines {
+				lines[i] = prefix + ": " + lines[i]
+			}
+			s = strings.Join(lines, "\n")
+		}
+		debugf("%s", s)
+	}
+}
+
 // errParsing is used for output parsing errors.
 type errParsing struct {
 	filename string
