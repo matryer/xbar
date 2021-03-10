@@ -95,15 +95,25 @@ To write a plugin, just write some form of executable script that outputs to the
 
 ### Parameters
 
+Use the pipe `|` character to specify extra parameters onto the menu item.
+
+For example:
+
+```
+Open website | href=https://xbarapp.com | color=red | key=CmdOrCtrl+o
+Open home folder | shell=open | param1="~/"
+App version: v1.0 | disabled=true | size=10
+```
+
 The supported parameters are:
 
 * `key=shift+k` to add a key shortcut 
 * * Use `+` to create combinations
 * * Example options: `CmdOrCtrl`, `OptionOrAlt`, `shift`, `ctrl`, `super`, `tab`, `plus`, `return`, `escape`, `f12`, `up`, `down`, `space`
 * `href=..` to make the item clickable
-* `color=..` to change their text color. eg. `color=red` or `color=#ff0000`
-* `font=..` to change their text font. eg. `font=UbuntuMono-Bold`
-* `size=..` to change their text size. eg. `size=12`
+* `color=..` to change the text color. eg. `color=red` or `color=#ff0000`
+* `font=..` to change the text font. eg. `font=UbuntuMono-Bold`
+* `size=..` to change the text size. eg. `size=12`
 * `shell=..` to make the item run a given script terminal with your script e.g. `shell=/Users/user/xbar_Plugins/scripts/nginx.restart.sh` if there are spaces in the file path you will need quotes e.g. `shell="/Users/user/xbar Plugins/scripts/nginx.restart.sh"` (`bash` is also supported but is deprecated)
 * `param1=` to specify arguments to the script. Additional params like this `param2=foo param3=bar`
 * * For example `shell="/Users/user/xbar_Plugins/scripts/nginx.restart.sh" param1=--verbose` assuming that nginx.restart.sh is executable or `shell=/usr/bin/ruby param1=/Users/user/rubyscript.rb param2=arg1 param3=arg2` if script is not executable
