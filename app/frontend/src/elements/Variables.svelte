@@ -1,5 +1,5 @@
 <script>
-	import { createEventDispatcher } from 'svelte'
+	import { onMount, createEventDispatcher } from 'svelte'
     import { refreshAllPlugins } from '../rpc.svelte'
     import Button from './Button.svelte'
 
@@ -14,19 +14,30 @@
     export let debounce = 1000
     export let disabled = false
 
-    export let changed = false
+    export let showingTip = false
+    export let showShouldRefreshTip = false
+
+    onMount(() => {
+        // wait a second before looking for the
+        // refresh tip
+        setTimeout(() => {
+            showingTip = true
+        }, 500)
+    })
 
     let _debounceTimer
     function valueDidChange() {
         clearTimeout(_debounceTimer)
         _debounceTimer = setTimeout(() => {
             dispatch('change')
-            changed = true
+            if (showingTip) {
+                showShouldRefreshTip = true
+            }
         }, debounce)
     }
 
     function onRefreshThePluginsClick() {
-        changed = false
+        showShouldRefreshTip = false
         refreshAllPlugins()
     }
 
@@ -37,7 +48,7 @@
         <table class='table-auto'>
             {#each variables as variable}
                 <tr>
-                    <td class='py-3 pr-6'>
+                    <td class='py-3 pr-6 text-sm'>
 						<label for='{variable.name}'>
 							<code>
 								{variable.name}
@@ -59,7 +70,7 @@
             {/each}
         </table>
         <p class='pt-3 pb-6 opacity-75 text-sm max-w-sm'>
-            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent' class:invisible={ !changed }>💡 To see your changes, <Button on:click={ onRefreshThePluginsClick }>Refresh the plugins</Button></span>
+            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent' class:invisible={ !showShouldRefreshTip }>💡 To see your changes, <Button on:click={ onRefreshThePluginsClick }>Refresh the plugins</Button></span>
         </p>
     </div>
 {/if}
