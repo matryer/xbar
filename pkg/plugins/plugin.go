@@ -246,7 +246,7 @@ func (p *Plugin) TriggerRefresh() {
 	if p.OnCycle != nil {
 		p.cycleSignal <- struct{}{}
 	}
-	time.Sleep(5 * time.Second)
+	time.Sleep(1 * time.Second)
 	// trigger the actual refresh
 	p.refreshSignal <- struct{}{}
 }
