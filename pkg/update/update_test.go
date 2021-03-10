@@ -6,7 +6,9 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"path"
+	"path/filepath"
 	"testing"
 	"time"
 
@@ -15,6 +17,11 @@ import (
 
 func TestForReals(t *testing.T) {
 	is := is.New(t)
+
+	t.Cleanup(func() {
+		err := os.RemoveAll(filepath.Join("testreal-testarea"))
+		is.NoErr(err)
+	})
 
 	u := &Updater{
 		CurrentVersion:              "v0.0.1",
@@ -25,7 +32,7 @@ func TestForReals(t *testing.T) {
 		},
 		DownloadBytesLimit: 10_741_824, // 10MB
 		GetExecutable: func() (string, error) {
-			return "./testarea/xbar.app/Contents/MacOS/xbar", nil
+			return "./testreal-testarea/xbar.app/Contents/MacOS/xbar", nil
 		},
 	}
 	_, hasUpdate, err := u.HasUpdate()
@@ -37,6 +44,12 @@ func TestForReals(t *testing.T) {
 
 func TestUpdate(t *testing.T) {
 	is := is.New(t)
+
+	t.Cleanup(func() {
+		err := os.RemoveAll(filepath.Join("testupdate-testarea"))
+		is.NoErr(err)
+	})
+
 	downloadServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		gzipWriter := gzip.NewWriter(w)
 		defer func() {
@@ -89,7 +102,7 @@ func TestUpdate(t *testing.T) {
 			return path.Base(asset.BrowserDownloadURL) == "xbar-"+release.TagName+".tar.gz"
 		},
 		GetExecutable: func() (string, error) {
-			return "./testarea/xbar.app/Contents/MacOS/xbar", nil
+			return "./testupdate-testarea/xbar.app/Contents/MacOS/xbar", nil
 		},
 	}
 	release, err := u.Update()

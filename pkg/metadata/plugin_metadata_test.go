@@ -183,7 +183,6 @@ func TestErrors(t *testing.T) {
 			is := is.New(t)
 			_, err := Parse(DebugfNoop, "test.script", src)
 			is.True(err != nil) // expected to error
-			t.Logf("err: %s (looking for %q)", err, expected)
 			is.True(strings.Contains(err.Error(), expected))
 		})
 	}

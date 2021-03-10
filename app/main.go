@@ -1,7 +1,8 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"os"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
@@ -13,7 +14,20 @@ import (
 var version string = "dev"
 
 func main() {
+	if err := run(); err != nil {
+		fmt.Fprintf(os.Stderr, "%s\n", err)
+		os.Exit(1)
+	}
+	println("xbar exited")
+}
+
+func run() error {
 	app := newApp()
+	wailsLogLevel := logger.ERROR
+	app.Verbose = true
+	if app.Verbose {
+		wailsLogLevel = logger.DEBUG
+	}
 	err := wails.Run(&options.App{
 		Title:             "xbar",
 		Width:             1080,
@@ -29,10 +43,11 @@ func main() {
 			Menu:                          app.appMenu,
 			ActivationPolicy:              mac.NSApplicationActivationPolicyAccessory,
 			URLHandlers: map[string]func(string){
+				// xbar://...
 				"xbar": app.handleIncomingURL,
 			},
 		},
-		LogLevel: logger.DEBUG,
+		LogLevel: wailsLogLevel,
 		Startup:  app.Start,
 		Shutdown: app.Shutdown,
 		Bind: []interface{}{
@@ -43,7 +58,7 @@ func main() {
 		},
 	})
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-	println("xbar exited")
+	return nil
 }

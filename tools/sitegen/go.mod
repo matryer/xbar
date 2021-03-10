@@ -1,4 +1,4 @@
-module github.com/matryer/xbar/pkg/pluginrepo
+module github.com/matryer/xbar/tools/sitegen
 
 go 1.15
 

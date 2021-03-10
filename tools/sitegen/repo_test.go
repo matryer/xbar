@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"os"
 	"testing"
 	"time"
 
@@ -10,6 +11,10 @@ import (
 )
 
 func TestReadRepo(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipping")
+		return
+	}
 	is := is.New(t)
 	ctx := context.Background()
 	var cancel context.CancelFunc
@@ -22,7 +27,7 @@ func TestReadRepo(t *testing.T) {
 		RepoOwner:         "matryer",
 		RepoName:          "xbar-plugins",
 		EachPluginFn:      each,
-		GitHubAccessToken: "",
+		GitHubAccessToken: os.Getenv("XBAR_GITHUB_ACCESS_TOKEN"),
 	}
 	err := r.All(ctx)
 	is.NoErr(err) // ReadRepo

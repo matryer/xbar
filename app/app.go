@@ -37,15 +37,20 @@ type app struct {
 	pluginTrays     map[string]*menu.TrayMenu
 	menuParser      *MenuParser
 
+	// Verbose gets whether verbose output will be printed
+	// or not.
+	Verbose bool
+
 	CategoriesService *CategoriesService
 	PluginsService    *PluginsService
 	PersonService     *PersonService
 	CommandService    *CommandService
 
-	// menuUpdateLock protects menu items when RefreshAll
+	// lock protects menu items when RefreshAll
 	// is called.
-	// Also protects stopPluginsFunc, pluginsStoppedSignal and menuIsOpen.
-	menuUpdateLock  sync.Mutex
+	// Also protects stopPluginsFunc, pluginsStoppedSignal,
+	// menuIsOpen and isDarkMode.
+	lock            sync.Mutex
 	stopPluginsFunc context.CancelFunc
 	// menuIsOpen keeps track of whether menus are open or not.
 	// If they're open, they will not be updated.
@@ -53,6 +58,9 @@ type app struct {
 	// pluginsStoppedSignal is closed when plugins have stopped running.
 	pluginsStoppedSignal  chan (struct{})
 	defaultTrayMenuActive bool
+	// isDarkMode indicates whether the system is running
+	// in dark mode or not.
+	isDarkMode bool
 }
 
 // newApp makes a new app.
@@ -87,16 +95,26 @@ func newApp() *app {
 	app.PluginsService = NewPluginsService(client, "https://xbarapp.com/docs/plugins/")
 
 	app.PluginsService.OnRefresh = app.RefreshAll
-	app.createDefaultMenus()
+	app.defaultTrayMenu = &menu.TrayMenu{
+		Label: "xbar",
+		Menu:  app.generatePreferencesMenu(nil),
+	}
 	return app
 }
 
 func (a *app) Start(runtime *wails.Runtime) {
+	runtime.Events.OnThemeChange(func(darkMode bool) {
+		// keep track of dark mode changing, and refresh all
+		// plugins if it does.
+		a.lock.Lock()
+		a.isDarkMode = darkMode
+		a.lock.Unlock()
+		a.RefreshAll()
+	})
 	a.runtime = runtime
 	a.PluginsService.runtime = runtime
 	a.CommandService.runtime = runtime
 	a.CommandService.clearCache = a.clearCache
-	a.createDefaultMenus()
 	// ensure the plugin directory is there
 	if err := os.MkdirAll(pluginDirectory, 0777); err != nil {
 		log.Println("failed to create plugin directory:", err)
@@ -106,8 +124,8 @@ func (a *app) Start(runtime *wails.Runtime) {
 }
 
 func (a *app) RefreshAll() {
-	a.menuUpdateLock.Lock()
-	defer a.menuUpdateLock.Unlock()
+	a.lock.Lock()
+	defer a.lock.Unlock()
 	if a.stopPluginsFunc != nil {
 		// plugins are already running - let's stop them
 		// and wait for them to stop
@@ -116,6 +134,7 @@ func (a *app) RefreshAll() {
 	}
 	// remove plugins
 	if len(a.plugins) == 0 && a.defaultTrayMenuActive {
+		// only default menu - remove it
 		a.runtime.Menu.DeleteTrayMenu(a.defaultTrayMenu)
 		a.defaultTrayMenuActive = false
 	}
@@ -146,7 +165,9 @@ func (a *app) RefreshAll() {
 		plugin.OnRefresh = a.onRefresh
 		plugin.Stdout = os.Stdout
 		plugin.Stderr = os.Stderr
-		plugin.Debugf = plugins.DebugfLog
+		if a.Verbose {
+			plugin.Debugf = plugins.DebugfLog
+		}
 		a.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
 			Menu:    a.generatePreferencesMenu(plugin),
@@ -172,14 +193,14 @@ func (a *app) CheckForUpdates() {
 }
 
 func (a *app) onMenuWillOpen() {
-	a.menuUpdateLock.Lock()
-	defer a.menuUpdateLock.Unlock()
+	a.lock.Lock()
+	defer a.lock.Unlock()
 	a.menuIsOpen = true
 }
 
 func (a *app) onMenuDidClose() {
-	a.menuUpdateLock.Lock()
-	defer a.menuUpdateLock.Unlock()
+	a.lock.Lock()
+	defer a.lock.Unlock()
 	a.menuIsOpen = false
 }
 
@@ -376,8 +397,8 @@ func (a *app) handleIncomingURL(url string) {
 }
 
 func (a *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
-	a.menuUpdateLock.Lock()
-	defer a.menuUpdateLock.Unlock()
+	a.lock.Lock()
+	defer a.lock.Unlock()
 	if a.menuIsOpen {
 		// don't update while the menu is open
 		// as this can cause a crash
@@ -401,8 +422,8 @@ func (a *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 }
 
 func (a *app) onCycle(_ context.Context, p *plugins.Plugin) {
-	a.menuUpdateLock.Lock()
-	defer a.menuUpdateLock.Unlock()
+	a.lock.Lock()
+	defer a.lock.Unlock()
 	if a.menuIsOpen {
 		// don't update while the menu is open
 		// as this can cause a crash

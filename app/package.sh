@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 VERSION=`git describe --tags`
 
 # usage:
@@ -8,11 +10,10 @@ VERSION=`git describe --tags`
 #   ./build.sh
 
 echo ""
-echo ""
-echo "\txbar ${VERSION}..."
-echo ""
+echo "  xbar ${VERSION}..."
 echo ""
 
+cd ../ && ./test.sh
 sed "s/0.0.0/${VERSION}/" ./assets/mac/info.plist.src > ./assets/mac/info.plist
 wails build -package -production -ldflags "-X main.version=${VERSION}"
 cd ./build/darwin/desktop
