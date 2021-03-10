@@ -264,8 +264,10 @@ func parseInt(s string) (int, error) {
 
 // truncate shrinks a string if it's too long.
 func truncate(s string, max int) string {
-	if max > 0 && len(s) > max {
-		return s[:max-1] + "…"
+	runes := []rune(s)
+	if max > 0 && len(runes) > max {
+		s = string(runes[:max-1]) + "…"
+		return s
 	}
 	return s
 }
