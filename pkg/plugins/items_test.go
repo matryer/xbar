@@ -236,3 +236,14 @@ Click me | href=
 	is.Equal(items.ExpandedItems[0].Params.Href, "https://xbarapp.com")
 
 }
+
+func TestTruncate(t *testing.T) {
+	is := is.New(t)
+	const maxLen = 10
+	for input, expected := range map[string]string{
+		"basic characters":   "basic cha…",
+		"På tide å logge av": "På tide å…",
+	} {
+		is.Equal(truncate(input, maxLen), expected)
+	}
+}

@@ -101,3 +101,23 @@ func TestParseEmoji(t *testing.T) {
 	is.NoErr(err)
 	is.Equal(items.CycleItems[0].Text, text)
 }
+
+func TestParseMultiplePipes(t *testing.T) {
+
+	const text = `cloudflare | bash=/tmp/bitbar_dns_switcher_cloudflare | terminal=false | refresh=true
+google | bash=/tmp/bitbar_dns_switcher_google | terminal=true | refresh=false
+`
+	var (
+		is = is.New(t)
+		p  = &Plugin{}
+		r  = strings.NewReader(text)
+	)
+	items, err := p.parseOutput(context.Background(), "optional-pipes.txt", r)
+	is.NoErr(err)
+	is.Equal(items.CycleItems[0].Text, "cloudflare")
+	is.Equal(items.CycleItems[0].Params.Terminal, false)
+	is.Equal(items.CycleItems[0].Params.Refresh, true)
+	is.Equal(items.CycleItems[1].Text, "google")
+	is.Equal(items.CycleItems[1].Params.Terminal, true)
+	is.Equal(items.CycleItems[1].Params.Refresh, false)
+}

@@ -128,6 +128,10 @@ func parseParamStr(params *ItemParams, s string) error {
 		}
 		offset := i + len(splitStr)
 		key := s[:i]
+		if key[0] == '|' {
+			key = key[1:]
+			key = strings.TrimSpace(key)
+		}
 		valuePart := s[offset:]
 		end := strings.Index(valuePart, endStr)
 		if end < 0 {
@@ -264,8 +268,10 @@ func parseInt(s string) (int, error) {
 
 // truncate shrinks a string if it's too long.
 func truncate(s string, max int) string {
-	if max > 0 && len(s) > max {
-		return s[:max-1] + "…"
+	runes := []rune(s)
+	if max > 0 && len(runes) > max {
+		s = string(runes[:max-1]) + "…"
+		return s
 	}
 	return s
 }
