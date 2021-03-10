@@ -128,6 +128,10 @@ func parseParamStr(params *ItemParams, s string) error {
 		}
 		offset := i + len(splitStr)
 		key := s[:i]
+		if key[0] == '|' {
+			key = key[1:]
+			key = strings.TrimSpace(key)
+		}
 		valuePart := s[offset:]
 		end := strings.Index(valuePart, endStr)
 		if end < 0 {
