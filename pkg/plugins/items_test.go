@@ -38,7 +38,8 @@ func TestParseParamStr(t *testing.T) {
 		`param8=parameterValue8`,
 		`param9=parameterValue9`,
 		`param10=parameterValue10`,
-		`key=cmd+shift+g`,
+		`key=shift+g`,
+		`disabled=true`,
 	}, " "))
 	is.NoErr(err)
 	is.Equal(params.Href, "https://xbarapp.com")
@@ -55,7 +56,8 @@ func TestParseParamStr(t *testing.T) {
 	is.Equal(params.Image, "abc123")
 	is.Equal(params.Emojize, false)
 	is.Equal(params.ANSI, false)
-	is.Equal(params.Key, "cmd+shift+g")
+	is.Equal(params.Key, "shift+g")
+	is.Equal(params.Disabled, true)
 	is.Equal(len(params.ShellParams), 10)
 	is.Equal(params.ShellParams[0], "parameterValue1")
 	is.Equal(params.ShellParams[1], "parameterValue2")

@@ -234,16 +234,16 @@ func (a *app) Shutdown() {
 
 func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	var items []*menu.MenuItem
-	if plugin != nil {
-		items = append(items, &menu.MenuItem{
-			Type:        menu.TextType,
-			Label:       "Refresh",
-			Accelerator: keys.CmdOrCtrl("r"),
-			Click: func(ctx *menu.CallbackData) {
-				a.onPluginsRefreshMenuClicked(ctx, plugin)
-			},
-		})
-	}
+	// if plugin != nil {
+	// 	items = append(items, &menu.MenuItem{
+	// 		Type:        menu.TextType,
+	// 		Label:       "Refresh",
+	// 		Accelerator: keys.CmdOrCtrl("r"),
+	// 		Click: func(ctx *menu.CallbackData) {
+	// 			a.onPluginsRefreshMenuClicked(ctx, plugin)
+	// 		},
+	// 	})
+	// }
 	items = append(items, &menu.MenuItem{
 		Type:        menu.TextType,
 		Label:       "Refresh all",
@@ -410,6 +410,7 @@ func (a *app) handleIncomingURL(url string) {
 	}
 }
 
+// onRefresh is fired when a plugin needs to refresh.
 func (a *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	a.lock.Lock()
 	defer a.lock.Unlock()
@@ -464,6 +465,7 @@ func (a *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 	}
 	tray.Label = cycleItem.DisplayText()
 	tray.Icon = cycleItem.Params.Image
+	// tray.Disabled = cycleItem.Params.Disabled
 	return true
 }
 

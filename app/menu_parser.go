@@ -31,7 +31,6 @@ func (m MenuParser) ParseItems(ctx context.Context, items []*plugins.Item) *menu
 		}
 		menuItem := m.ParseMenuItem(ctx, item)
 		theMenu.Append(menuItem)
-
 		if item.Alternate != nil {
 			menuItem = m.ParseMenuItem(ctx, item.Alternate)
 			theMenu.Append(menuItem)
@@ -80,7 +79,11 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 		menuItem.SubMenu = m.ParseItems(ctx, item.Items)
 	}
 	if itemAction == nil && menuItem.SubMenu == nil {
-		// no action and no sub items
+		// no action and no submenu, disable it.
+		menuItem.Disabled = true
+	}
+	if item.Params.Disabled {
+		// explicity disabled
 		menuItem.Disabled = true
 	}
 	return menuItem

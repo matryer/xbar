@@ -47,6 +47,9 @@ func (i Item) DisplayText() string {
 
 // ItemParams represent parameters for an Item.
 type ItemParams struct {
+	// Disabled indicates that this Item should appear
+	// disabled.
+	Disabled bool
 	// Separator indicates that this Item is a separator.
 	Separator bool
 	// Href is the URL to open when the item is clicked.
@@ -160,6 +163,12 @@ var defaultParams = ItemParams{
 
 func (p *ItemParams) setValueByKey(key, value string) error {
 	switch key {
+	case "disabled":
+		var err error
+		p.Disabled, err = parseBool(value)
+		if err != nil {
+			return errors.Wrap(err, key)
+		}
 	case "key":
 		p.Key = value
 	case "href":

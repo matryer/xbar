@@ -64,6 +64,11 @@ type Plugin struct {
 	// refreshSignal is a signal which will trigger the plugin to refresh.
 	// Called via TriggerRefresh().
 	refreshSignal chan (struct{})
+	// cycleSignal is a signal channel which will trigger the plugin to
+	// update its cycle.
+	// Called in TriggerRefresh() when updating the plugin menu to the
+	// refreshing state, before refreshSignal is triggered.
+	cycleSignal chan (struct{})
 }
 
 // CleanFilename gets a clean human readable representation of the
@@ -155,6 +160,7 @@ func NewPlugin(command string) *Plugin {
 		Command:       command,
 		Debugf:        DebugfNoop,
 		refreshSignal: make(chan struct{}, 1),
+		cycleSignal:   make(chan struct{}, 1),
 	}
 	var err error
 	p.RefreshInterval, err = ParseFilenameInterval(filename)
@@ -190,6 +196,9 @@ func (p *Plugin) Run(ctx context.Context) {
 				// timer again.
 				p.CycleIndex = 0
 				continue
+			case <-p.cycleSignal:
+				p.Debugf("cycling: %s", filepath.Base(p.Command))
+				p.cycle(ctx)
 			case <-time.After(p.CycleInterval):
 				p.Debugf("cycling: %s", filepath.Base(p.Command))
 				p.cycle(ctx)
@@ -223,6 +232,22 @@ func (p *Plugin) Run(ctx context.Context) {
 
 // TriggerRefresh triggers a refresh on this Plugin.
 func (p *Plugin) TriggerRefresh() {
+	log.Println("TriggerRefresh")
+	// disable the menu
+	p.CycleIndex = 0 // reset
+	// just keep the current item
+	currentItem := p.CurrentCycleItem()
+	currentItem.Text = "…"
+	p.Items.CycleItems = []*Item{
+		currentItem,
+	}
+	p.CycleIndex = 0 // reset
+	log.Printf("TriggerRefresh: p.OnRefresh: %+v\n", p.Items)
+	if p.OnCycle != nil {
+		p.cycleSignal <- struct{}{}
+	}
+	time.Sleep(5 * time.Second)
+	// trigger the actual refresh
 	p.refreshSignal <- struct{}{}
 }
 
