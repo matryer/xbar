@@ -187,7 +187,7 @@
 					cssclass='py-1 opacity-75'
 					style='{ $keyCombination.altKey ? 'primary' : 'default' }'
 				>↺</Button>
-				{#if $keyCombination.altKey || $keyCombination.metaKey}
+				<!-- {#if $keyCombination.altKey || $keyCombination.metaKey}
 					{#if $keyCombination.shiftKey}
 						<span class='text-gray-800 dark:text-white ml-3'>
 							Clear cache
@@ -197,7 +197,7 @@
 							Refresh plugins
 						</span>
 					{/if}
-				{/if}
+				{/if} -->
 			</div>
 			<div class='flex-grow' ></div>
 			<div>
