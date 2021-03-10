@@ -236,6 +236,16 @@ From there, the values will be available as environment variables.
 load_data -apikey=$VAR_API_KEY
 ```
 
+#### Detecting dark mode
+
+When the system appearance changes, xbar will update the following environment variable:
+
+```
+XBARDarkMode=true|false
+```
+
+* Use `XBARDarkMode` in your plugins to render different things in light/dark modes
+
 ### Supported languages
 
 Anything that can write to standard out is supported, but here is a list that have been explicitly tested, along with some helpful tips.

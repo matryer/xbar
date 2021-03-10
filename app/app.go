@@ -115,8 +115,27 @@ func (a *app) Start(runtime *wails.Runtime) {
 	runtime.Events.OnThemeChange(func(darkMode bool) {
 		// keep track of dark mode changing, and refresh all
 		// plugins if it does.
+		var err error
 		a.lock.Lock()
-		a.isDarkMode = darkMode
+		if darkMode {
+			err = os.Setenv("BitBarDarkMode", "true") // backwards compatibility
+			if err != nil {
+				log.Println("os.Setenv", err)
+			}
+			err = os.Setenv("XBARDarkMode", "true")
+			if err != nil {
+				log.Println("os.Setenv", err)
+			}
+		} else {
+			err = os.Setenv("BitBarDarkMode", "false") // backwards compatibility
+			if err != nil {
+				log.Println("os.Setenv", err)
+			}
+			err = os.Setenv("XBARDarkMode", "false")
+			if err != nil {
+				log.Println("os.Setenv", err)
+			}
+		}
 		a.lock.Unlock()
 		a.RefreshAll()
 	})
