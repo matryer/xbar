@@ -8,6 +8,7 @@
 		loadVariableValues, saveVariableValues,
 		setEnabled,
 		setRefreshInterval,
+		openURL,
 	} from './rpc.svelte'
 	import { installedPlugins, selectedInstalledPluginPath, clearNav } from './pagedata.svelte'
 	import { wait } from './waiters.svelte'
@@ -126,18 +127,22 @@
 	}
 
 	function gotoOpenPluginIssue(plugin) {
-		let body = `re: ${plugin.title}`
-		const githubUsernamesList = plugin.authors
-			.map(author => author.githubUsername)
-			.filter(githubUsername => githubUsername && githubUsername != '')
-			.join(', ')
-		if (plugin.authors.length > 0) {
-			body = `fao @${githubUsernamesList} - ${body}`
+		let body = ``
+		if (plugin.authors) {
+			const githubUsernamesList = plugin.authors
+				.map(author => author.githubUsername)
+				.filter(githubUsername => githubUsername && githubUsername != '')
+				.join(', ')
+			if (plugin.authors.length > 0) {
+				body = `fao @${githubUsernamesList} - ${body}`
+			}
 		}
-		body = `${body}
+		if (body != '') {
+			body = `${body}
 
 ` // line feeds
-		const path = `https://github.com/matryer/xbar-plugins/issues/new?body=${encodeURIComponent(body)}&title=${encodeURIComponent(plugin.path)}:%20`
+		}
+		const path = `https://github.com/matryer/xbar-plugins/issues/new?body=${encodeURIComponent(body)}&title=${encodeURIComponent(plugin.path+": ")}`
 		openURL(path)
 			.catch(e => err = e)
 	}
