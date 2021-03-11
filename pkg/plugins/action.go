@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strings"
 	"syscall"
@@ -132,6 +133,10 @@ func actionShell(debugf DebugFunc, item *Item, command string, params []string) 
 		cmd.SysProcAttr = &syscall.SysProcAttr{
 			Setpgid: true,
 		}
+		// wd should be where the plugin is running
+		cmd.Dir = filepath.Dir(item.Plugin.Command)
+		// and it can inherit the environment
+		cmd.Env = append(cmd.Env, os.Environ()...)
 		err := cmd.Start()
 		if err != nil {
 			debugf("ERR: action shell: %s", err)
