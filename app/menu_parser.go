@@ -10,7 +10,9 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/menu/keys"
 )
 
-const defaultMenuFontSize = 14
+// defaultMenuFontSize is the default font-size to use
+// for menus.
+const defaultMenuFontSize = 13
 
 // MenuParser translates xbar items into Wails menu items.
 type MenuParser struct{}
