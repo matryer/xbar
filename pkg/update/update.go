@@ -3,6 +3,7 @@ package update
 import (
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -88,8 +89,11 @@ func (u *Updater) Restart() error {
 	if err != nil {
 		return errors.Wrap(err, "start app")
 	}
-	time.Sleep(2 * time.Second)
-	os.Exit(1)
+	go func() {
+		time.Sleep(2 * time.Second)
+		log.Println("terminating after update")
+		os.Exit(0)
+	}()
 	return nil
 }
 

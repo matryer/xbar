@@ -406,7 +406,6 @@ func (app *app) handleIncomingURL(url string) {
 	// wait for a space
 	app.incomingURLSemaphore <- struct{}{}
 	defer func() {
-		time.Sleep(1 * time.Second)
 		// free up this space
 		<-app.incomingURLSemaphore
 	}()
