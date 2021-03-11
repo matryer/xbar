@@ -41,7 +41,17 @@ func (i *Item) Action() ActionFunc {
 		actions = append(actions, actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams))
 	}
 	if i.Params.Refresh == true {
+		shouldDelayBeforeRefresh := false
+		if len(actions) > 0 {
+			// there are actions other than refresh, so let's introduce a
+			// delay to let those other actions work before triggering
+			// the refresh.
+			shouldDelayBeforeRefresh = true
+		}
 		actions = append(actions, actionRefresh(debugf, func(ctx context.Context) {
+			if shouldDelayBeforeRefresh {
+				time.Sleep(1 * time.Second)
+			}
 			i.Plugin.TriggerRefresh()
 		}))
 	}
