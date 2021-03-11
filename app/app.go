@@ -111,155 +111,135 @@ func newApp() *app {
 	return app
 }
 
-func (a *app) Start(runtime *wails.Runtime) {
+func (app *app) Start(runtime *wails.Runtime) {
+	app.setDarkMode(runtime.System.IsDarkMode())
 	runtime.Events.OnThemeChange(func(darkMode bool) {
 		// keep track of dark mode changing, and refresh all
 		// plugins if it does.
-		var err error
-		a.lock.Lock()
-		if darkMode {
-			err = os.Setenv("BitBarDarkMode", "true") // backwards compatibility
-			if err != nil {
-				log.Println("os.Setenv", err)
-			}
-			err = os.Setenv("XBARDarkMode", "true")
-			if err != nil {
-				log.Println("os.Setenv", err)
-			}
-		} else {
-			err = os.Setenv("BitBarDarkMode", "false") // backwards compatibility
-			if err != nil {
-				log.Println("os.Setenv", err)
-			}
-			err = os.Setenv("XBARDarkMode", "false")
-			if err != nil {
-				log.Println("os.Setenv", err)
-			}
-		}
-		a.lock.Unlock()
-		a.RefreshAll()
+		app.setDarkMode(darkMode)
+		app.RefreshAll()
 	})
-	a.runtime = runtime
-	a.PluginsService.runtime = runtime
-	a.CommandService.runtime = runtime
-	a.CommandService.clearCache = a.clearCache
+	app.runtime = runtime
+	app.PluginsService.runtime = runtime
+	app.CommandService.runtime = runtime
+	app.CommandService.clearCache = app.clearCache
 	// ensure the plugin directory is there
 	if err := os.MkdirAll(pluginDirectory, 0777); err != nil {
 		log.Println("failed to create plugin directory:", err)
 	}
-	a.RefreshAll()
-	go a.checkForUpdates(true)
+	app.RefreshAll()
+	go app.checkForUpdates(true)
 }
 
-func (a *app) RefreshAll() {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-	if a.stopPluginsFunc != nil {
+func (app *app) RefreshAll() {
+	app.lock.Lock()
+	defer app.lock.Unlock()
+	if app.stopPluginsFunc != nil {
 		// plugins are already running - let's stop them
 		// and wait for them to stop
-		a.stopPluginsFunc()
-		<-a.pluginsStoppedSignal
+		app.stopPluginsFunc()
+		<-app.pluginsStoppedSignal
 	}
 	// remove plugins
-	if len(a.plugins) == 0 && a.defaultTrayMenuActive {
+	if len(app.plugins) == 0 && app.defaultTrayMenuActive {
 		// only default menu - remove it
-		a.runtime.Menu.DeleteTrayMenu(a.defaultTrayMenu)
-		a.defaultTrayMenuActive = false
+		app.runtime.Menu.DeleteTrayMenu(app.defaultTrayMenu)
+		app.defaultTrayMenuActive = false
 	}
-	for _, plugin := range a.plugins {
-		menu, ok := a.pluginTrays[plugin.Command]
+	for _, plugin := range app.plugins {
+		menu, ok := app.pluginTrays[plugin.Command]
 		if !ok {
 			continue
 		}
-		a.runtime.Menu.DeleteTrayMenu(menu)
+		app.runtime.Menu.DeleteTrayMenu(menu)
 	}
 	var err error
-	a.plugins, err = plugins.Dir(pluginDirectory)
+	app.plugins, err = plugins.Dir(pluginDirectory)
 	if err != nil {
-		a.onErr(err.Error())
+		app.onErr(err.Error())
 		return
 	}
-	a.pluginTrays = make(map[string]*menu.TrayMenu)
-	if len(a.plugins) == 0 {
+	app.pluginTrays = make(map[string]*menu.TrayMenu)
+	if len(app.plugins) == 0 {
 		// no plugins - use default
-		a.runtime.Menu.SetTrayMenu(a.defaultTrayMenu)
-		a.defaultTrayMenuActive = true
+		app.runtime.Menu.SetTrayMenu(app.defaultTrayMenu)
+		app.defaultTrayMenuActive = true
 		return
 	}
-	for _, plugin := range a.plugins {
+	for _, plugin := range app.plugins {
 		// Setup plugin
-		plugin.OnCycle = a.onCycle
-		plugin.OnRefresh = a.onRefresh
-		if a.Verbose {
+		plugin.OnCycle = app.onCycle
+		plugin.OnRefresh = app.onRefresh
+		if app.Verbose {
 			//plugin.Stdout = os.Stdout
 			plugin.Stderr = os.Stderr
 			plugin.Debugf = plugins.DebugfPrefix(plugin.CleanFilename(), plugins.DebugfLog)
 		}
-		a.pluginTrays[plugin.Command] = &menu.TrayMenu{
+		app.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
-			Menu:    a.generatePreferencesMenu(plugin),
-			OnOpen:  a.onMenuWillOpen,
-			OnClose: a.onMenuDidClose,
+			Menu:    app.generatePreferencesMenu(plugin),
+			OnOpen:  app.onMenuWillOpen,
+			OnClose: app.onMenuDidClose,
 		}
-		a.runtime.Menu.SetTrayMenu(a.pluginTrays[plugin.Command])
+		app.runtime.Menu.SetTrayMenu(app.pluginTrays[plugin.Command])
 	}
-	a.pluginsStoppedSignal = make(chan struct{})
+	app.pluginsStoppedSignal = make(chan struct{})
 	var ctx context.Context
-	ctx, a.stopPluginsFunc = context.WithCancel(context.Background())
+	ctx, app.stopPluginsFunc = context.WithCancel(context.Background())
 	go func() {
 		// use stopPluginsFunc to allow the context to
 		// be canceled - which will kill all running plugin subprocesses.
-		a.plugins.Run(ctx)
-		close(a.pluginsStoppedSignal)
+		app.plugins.Run(ctx)
+		close(app.pluginsStoppedSignal)
 	}()
 }
 
 // CheckForUpdates proactively checks for updates.
-func (a *app) CheckForUpdates() {
-	a.checkForUpdates(false)
+func (app *app) CheckForUpdates() {
+	app.checkForUpdates(false)
 }
 
-func (a *app) onMenuWillOpen() {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-	a.menuIsOpen = true
+func (app *app) onMenuWillOpen() {
+	app.lock.Lock()
+	defer app.lock.Unlock()
+	app.menuIsOpen = true
 }
 
-func (a *app) onMenuDidClose() {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-	a.menuIsOpen = false
+func (app *app) onMenuDidClose() {
+	app.lock.Lock()
+	defer app.lock.Unlock()
+	app.menuIsOpen = false
 }
 
 // onErr adds a single menu showing the specified error
 // string.
-func (a *app) onErr(err string) {
-	if a.defaultTrayMenuActive {
-		a.runtime.Menu.DeleteTrayMenu(a.defaultTrayMenu)
-		a.defaultTrayMenuActive = false
+func (app *app) onErr(err string) {
+	if app.defaultTrayMenuActive {
+		app.runtime.Menu.DeleteTrayMenu(app.defaultTrayMenu)
+		app.defaultTrayMenuActive = false
 	}
 	errorMenu := &menu.Menu{}
 	errorMenu.Append(menu.Text(err, nil, nil))
 	errorMenu.Append(menu.Separator())
-	errorMenu.Merge(a.generatePreferencesMenu(nil))
-	a.defaultTrayMenu = &menu.TrayMenu{
+	errorMenu.Merge(app.generatePreferencesMenu(nil))
+	app.defaultTrayMenu = &menu.TrayMenu{
 		Label: "⚠️ xbar",
 		Menu:  errorMenu,
 	}
-	a.runtime.Menu.SetTrayMenu(a.defaultTrayMenu)
-	a.defaultTrayMenuActive = true
+	app.runtime.Menu.SetTrayMenu(app.defaultTrayMenu)
+	app.defaultTrayMenuActive = true
 }
 
 // Shutdown shuts down the app.
-func (a *app) Shutdown() {
-	if a.stopPluginsFunc != nil {
+func (app *app) Shutdown() {
+	if app.stopPluginsFunc != nil {
 		// it's possible this gets called _before_ the stop
 		// func is set. In which case, we'll just ignore it.
-		a.stopPluginsFunc()
+		app.stopPluginsFunc()
 	}
 }
 
-func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
+func (app *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	var items []*menu.MenuItem
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
@@ -268,7 +248,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 			Label:       "Refresh",
 			Accelerator: keys.CmdOrCtrl("r"),
 			Click: func(ctx *menu.CallbackData) {
-				a.onPluginsRefreshMenuClicked(ctx, plugin)
+				app.onPluginsRefreshMenuClicked(ctx, plugin)
 			},
 		})
 	}
@@ -277,7 +257,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		Type:        menu.TextType,
 		Label:       "Refresh all",
 		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
-		Click:       a.onPluginsRefreshAllMenuClicked,
+		Click:       app.onPluginsRefreshAllMenuClicked,
 	})
 	items = append(items, menu.Separator())
 	if plugin != nil {
@@ -287,13 +267,13 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 			Label:       "Open plugin…",
 			Accelerator: keys.CmdOrCtrl("e"),
 			Click: func(_ *menu.CallbackData) {
-				a.runtime.Window.Show()
+				app.runtime.Window.Show()
 				rel, err := filepath.Rel(pluginDirectory, plugin.Command)
 				if err != nil {
 					log.Println(err)
 					return
 				}
-				a.runtime.Events.Emit("xbar.browser.openInstalledPlugin", map[string]string{
+				app.runtime.Events.Emit("xbar.browser.openInstalledPlugin", map[string]string{
 					"path": rel,
 				})
 			},
@@ -304,13 +284,13 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		Type:        menu.TextType,
 		Label:       "Plugin browser…",
 		Accelerator: keys.CmdOrCtrl("p"),
-		Click:       a.onPluginsMenuClicked,
+		Click:       app.onPluginsMenuClicked,
 	})
 	items = append(items, &menu.MenuItem{
 		FontSize: defaultMenuFontSize,
 		Type:     menu.TextType,
 		Label:    "Open plugin folder…",
-		Click:    a.onOpenPluginsFolderClicked,
+		Click:    app.onOpenPluginsFolderClicked,
 	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
@@ -323,14 +303,14 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		FontSize: defaultMenuFontSize,
 		Type:     menu.TextType,
 		Label:    "Check for updates…",
-		Click:    a.onCheckForUpdatesMenuClick,
+		Click:    app.onCheckForUpdatesMenuClick,
 	})
 	items = append(items, &menu.MenuItem{
 		FontSize: defaultMenuFontSize,
 		// todo: remove this item once cmd+R is working #refresh
 		Type:  menu.TextType,
 		Label: "Clear cache",
-		Click: a.onClearCacheMenuClicked,
+		Click: app.onClearCacheMenuClicked,
 	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
@@ -338,7 +318,7 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		Type:        menu.TextType,
 		Label:       "Quit xbar",
 		Accelerator: keys.CmdOrCtrl("q"),
-		Click:       a.onQuitMenuClicked,
+		Click:       app.onQuitMenuClicked,
 	})
 	return menu.NewMenuFromItems(
 		menu.SubMenu("Preferences", &menu.Menu{
@@ -347,61 +327,61 @@ func (a *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 	)
 }
 
-func (a *app) createDefaultMenus() {
-	a.defaultTrayMenu = &menu.TrayMenu{
+func (app *app) createDefaultMenus() {
+	app.defaultTrayMenu = &menu.TrayMenu{
 		Label: "xbar",
-		Menu:  a.generatePreferencesMenu(nil),
+		Menu:  app.generatePreferencesMenu(nil),
 	}
 }
 
-func (a *app) onPluginsMenuClicked(_ *menu.CallbackData) {
-	a.runtime.Window.Show()
+func (app *app) onPluginsMenuClicked(_ *menu.CallbackData) {
+	app.runtime.Window.Show()
 }
 
-func (a *app) onOpenPluginsFolderClicked(_ *menu.CallbackData) {
-	a.CommandService.OpenPath(pluginDirectory)
+func (app *app) onOpenPluginsFolderClicked(_ *menu.CallbackData) {
+	app.CommandService.OpenPath(pluginDirectory)
 }
 
-func (a *app) onQuitMenuClicked(_ *menu.CallbackData) {
-	a.runtime.Quit()
+func (app *app) onQuitMenuClicked(_ *menu.CallbackData) {
+	app.runtime.Quit()
 }
 
-func (a *app) onPluginsRefreshMenuClicked(_ *menu.CallbackData, p *plugins.Plugin) {
+func (app *app) onPluginsRefreshMenuClicked(_ *menu.CallbackData, p *plugins.Plugin) {
 	p.TriggerRefresh()
 }
 
-func (a *app) onPluginsRefreshAllMenuClicked(_ *menu.CallbackData) {
-	a.RefreshAll()
+func (app *app) onPluginsRefreshAllMenuClicked(_ *menu.CallbackData) {
+	app.RefreshAll()
 }
 
-func (a *app) onBrowserRefreshMenuClicked(_ *menu.CallbackData) {
-	a.runtime.Events.Emit("xbar.browser.refresh")
+func (app *app) onBrowserRefreshMenuClicked(_ *menu.CallbackData) {
+	app.runtime.Events.Emit("xbar.browser.refresh")
 }
 
-func (a *app) onBrowserHardRefreshMenuClicked(ctx *menu.CallbackData) {
-	a.clearCache(true)
-	a.runtime.Events.Emit("xbar.browser.refresh")
+func (app *app) onBrowserHardRefreshMenuClicked(ctx *menu.CallbackData) {
+	app.clearCache(true)
+	app.runtime.Events.Emit("xbar.browser.refresh")
 }
 
-func (a *app) onCheckForUpdatesMenuClick(_ *menu.CallbackData) {
-	a.CheckForUpdates()
+func (app *app) onCheckForUpdatesMenuClick(_ *menu.CallbackData) {
+	app.CheckForUpdates()
 }
 
-func (a *app) onClearCacheMenuClicked(_ *menu.CallbackData) {
-	a.clearCache(false)
+func (app *app) onClearCacheMenuClicked(_ *menu.CallbackData) {
+	app.clearCache(false)
 }
 
-func (a *app) clearCache(passive bool) {
+func (app *app) clearCache(passive bool) {
 	// bit cheeky - but use the oslock in PluginsService to protect
 	// against this from being run concurrently.
-	a.PluginsService.osLock.Lock()
-	defer a.PluginsService.osLock.Unlock()
+	app.PluginsService.osLock.Lock()
+	defer app.PluginsService.osLock.Unlock()
 	err := os.RemoveAll(cacheDirectory)
 	if err != nil {
 		if passive {
 			return
 		}
-		a.runtime.Dialog.Message(&dialog.MessageDialog{
+		app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.ErrorDialog,
 			Title:        "Clear cache failed",
 			Message:      err.Error(),
@@ -413,7 +393,7 @@ func (a *app) clearCache(passive bool) {
 	if passive {
 		return
 	}
-	a.runtime.Dialog.Message(&dialog.MessageDialog{
+	app.runtime.Dialog.Message(&dialog.MessageDialog{
 		Type:         dialog.InfoDialog,
 		Title:        "Cache cleared",
 		Message:      "The local cache was successfully cleared.",
@@ -422,18 +402,18 @@ func (a *app) clearCache(passive bool) {
 	})
 }
 
-func (a *app) handleIncomingURL(url string) {
+func (app *app) handleIncomingURL(url string) {
 	// wait for a space
-	a.incomingURLSemaphore <- struct{}{}
+	app.incomingURLSemaphore <- struct{}{}
 	defer func() {
 		time.Sleep(1 * time.Second)
 		// free up this space
-		<-a.incomingURLSemaphore
+		<-app.incomingURLSemaphore
 	}()
 	log.Println("incoming URL: handleIncomingURL", url)
 	incomingURL, err := parseIncomingURL(url)
 	if err != nil {
-		a.runtime.Dialog.Message(&dialog.MessageDialog{
+		app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.ErrorDialog,
 			Title:        "Invalid URL",
 			Message:      err.Error(),
@@ -444,12 +424,12 @@ func (a *app) handleIncomingURL(url string) {
 	}
 	switch incomingURL.Action {
 	case "openPlugin":
-		a.runtime.Window.Show()
-		a.runtime.Events.Emit("xbar.incomingURL.openPlugin", map[string]string{
+		app.runtime.Window.Show()
+		app.runtime.Events.Emit("xbar.incomingURL.openPlugin", map[string]string{
 			"path": incomingURL.Params.Get("path"),
 		})
 	case "refreshPlugin":
-		for _, plugin := range a.plugins {
+		for _, plugin := range app.plugins {
 			rel, err := filepath.Rel(pluginDirectory, plugin.Command)
 			if err != nil {
 				log.Println("incoming URL: rel for this failed", err)
@@ -466,51 +446,51 @@ func (a *app) handleIncomingURL(url string) {
 }
 
 // onRefresh is fired when a plugin needs to refresh.
-func (a *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-	if a.menuIsOpen {
+func (app *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
+	app.lock.Lock()
+	defer app.lock.Unlock()
+	if app.menuIsOpen {
 		// don't update while the menu is open
 		// as this can cause a crash
 		return
 	}
-	tray, ok := a.pluginTrays[p.Command]
+	tray, ok := app.pluginTrays[p.Command]
 	if !ok {
 		log.Println("no item - probably refreshing", tray.Label)
 		return
 	}
-	a.updateLabel(tray, p)
-	pluginMenu := a.menuParser.ParseItems(ctx, p.Items.ExpandedItems)
+	app.updateLabel(tray, p)
+	pluginMenu := app.menuParser.ParseItems(ctx, p.Items.ExpandedItems)
 	if pluginMenu == nil {
-		pluginMenu = a.generatePreferencesMenu(p)
+		pluginMenu = app.generatePreferencesMenu(p)
 	} else {
 		pluginMenu.Append(menu.Separator())
-		pluginMenu.Merge(a.generatePreferencesMenu(p))
+		pluginMenu.Merge(app.generatePreferencesMenu(p))
 	}
 	tray.Menu = pluginMenu
-	a.runtime.Menu.SetTrayMenu(tray)
+	app.runtime.Menu.SetTrayMenu(tray)
 }
 
-func (a *app) onCycle(_ context.Context, p *plugins.Plugin) {
-	a.lock.Lock()
-	defer a.lock.Unlock()
-	if a.menuIsOpen {
+func (app *app) onCycle(_ context.Context, p *plugins.Plugin) {
+	app.lock.Lock()
+	defer app.lock.Unlock()
+	if app.menuIsOpen {
 		// don't update while the menu is open
 		// as this can cause a crash
 		return
 	}
-	tray, ok := a.pluginTrays[p.Command]
+	tray, ok := app.pluginTrays[p.Command]
 	if !ok {
 		// no tray item - it's probably refreshing
 		// so we'll just skip silently.
 		return
 	}
-	if a.updateLabel(tray, p) {
-		a.runtime.Menu.UpdateTrayMenuLabel(tray)
+	if app.updateLabel(tray, p) {
+		app.runtime.Menu.UpdateTrayMenuLabel(tray)
 	}
 }
 
-func (a *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
+func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 	cycleItem := p.CurrentCycleItem()
 	if cycleItem == nil {
 		return false
@@ -527,11 +507,11 @@ func (a *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 // checkForUpdates looks to see if there's a newer version of xbar,
 // downloads it and installs it.
 // If passive is true, it won't complain if it fails.
-func (a *app) checkForUpdates(passive bool) {
+func (app *app) checkForUpdates(passive bool) {
 	if version == "dev" {
 		log.Println("dev: skipping update check")
 		if !passive {
-			a.runtime.Dialog.Message(&dialog.MessageDialog{
+			app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.ErrorDialog,
 				Title:        "Update check failed",
 				Message:      "Cannot check for updates with a dev build. Build for production and try again.",
@@ -556,7 +536,7 @@ func (a *app) checkForUpdates(passive bool) {
 	if err != nil {
 		log.Println("failed to check for updates:", err)
 		if !passive {
-			a.runtime.Dialog.Message(&dialog.MessageDialog{
+			app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.ErrorDialog,
 				Title:        "Update check failed",
 				Message:      err.Error(),
@@ -569,7 +549,7 @@ func (a *app) checkForUpdates(passive bool) {
 	if !hasUpdate {
 		// they are using the latest version
 		if !passive {
-			a.runtime.Dialog.Message(&dialog.MessageDialog{
+			app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.InfoDialog,
 				Title:        "You're up to date",
 				Message:      fmt.Sprintf("%s is the latest version.", latest.TagName),
@@ -579,7 +559,7 @@ func (a *app) checkForUpdates(passive bool) {
 		}
 		return
 	}
-	switch a.runtime.Dialog.Message(&dialog.MessageDialog{
+	switch app.runtime.Dialog.Message(&dialog.MessageDialog{
 		Type:          dialog.QuestionDialog,
 		Title:         "Update xbar?",
 		Message:       fmt.Sprintf("xbar %s is now available (you have %s).\n\nWould you like to update?", latest.TagName, u.CurrentVersion),
@@ -594,7 +574,7 @@ func (a *app) checkForUpdates(passive bool) {
 	}
 	_, err = u.Update()
 	if err != nil {
-		a.runtime.Dialog.Message(&dialog.MessageDialog{
+		app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.ErrorDialog,
 			Title:        "Update failed",
 			Message:      err.Error(),
@@ -605,7 +585,7 @@ func (a *app) checkForUpdates(passive bool) {
 	}
 	err = u.Restart()
 	if err != nil {
-		a.runtime.Dialog.Message(&dialog.MessageDialog{
+		app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.InfoDialog,
 			Title:        "Update successful",
 			Message:      "Please restart xbar for the changes to take effect.",
@@ -620,4 +600,33 @@ func (a *app) checkForUpdates(passive bool) {
 // time to reflect those changes.
 func tickOS() {
 	time.Sleep(500 * time.Millisecond)
+}
+
+// setDarkMode sets the current dark mode state.
+// It updates app.isDarkMode and also sets the
+// appropriate environment variables.
+func (app *app) setDarkMode(darkmode bool) {
+	app.lock.Lock()
+	defer app.lock.Unlock()
+	app.isDarkMode = darkmode
+	var err error
+	if darkmode {
+		err = os.Setenv("BitBarDarkMode", "true") // backwards compatibility
+		if err != nil {
+			log.Println("os.Setenv", err)
+		}
+		err = os.Setenv("XBARDarkMode", "true")
+		if err != nil {
+			log.Println("os.Setenv", err)
+		}
+	} else {
+		err = os.Setenv("BitBarDarkMode", "false") // backwards compatibility
+		if err != nil {
+			log.Println("os.Setenv", err)
+		}
+		err = os.Setenv("XBARDarkMode", "false")
+		if err != nil {
+			log.Println("os.Setenv", err)
+		}
+	}
 }
