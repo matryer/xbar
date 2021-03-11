@@ -1,6 +1,7 @@
 package plugins
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"os"
@@ -137,9 +138,14 @@ func actionShell(debugf DebugFunc, item *Item, command string, params []string) 
 		cmd.Dir = filepath.Dir(item.Plugin.Command)
 		// and it can inherit the environment
 		cmd.Env = append(cmd.Env, os.Environ()...)
-		err := cmd.Start()
+		var stderr bytes.Buffer
+		cmd.Stderr = &stderr
+		err := cmd.Run()
 		if err != nil {
-			debugf("ERR: action shell: %s", err)
+			debugf("ERR: action shell: %s", errExec{
+				err:    err,
+				Stderr: stderr.String(),
+			})
 			return
 		}
 	}
