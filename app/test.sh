@@ -2,6 +2,8 @@
 
 set -e
 
+VERSION=`git describe --tags`
+
 go test
 
 cd ../pkg/metadata
@@ -17,6 +19,7 @@ go test
 cd ../../app
 
 cd ../tools/sitegen
+echo -n $VERSION > .version
 go test -short
 cd ../../app
 

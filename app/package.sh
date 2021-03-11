@@ -12,6 +12,7 @@ VERSION=`git describe --tags`
 echo ""
 echo "  xbar ${VERSION}..."
 echo ""
+echo -n $VERSION > .version
 
 # run all tests
 ./test.sh

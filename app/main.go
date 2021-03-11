@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"os"
 
@@ -10,8 +11,8 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 )
 
-// version is the xbar version (set by the git tag in build.sh).
-var version string = "dev"
+//go:embed .version
+var version string
 
 func main() {
 	println("xbar", version)
