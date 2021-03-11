@@ -14,6 +14,7 @@ import (
 var version string = "dev"
 
 func main() {
+	println("xbar", version)
 	if err := run(); err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 		os.Exit(1)
