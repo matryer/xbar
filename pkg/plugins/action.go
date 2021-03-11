@@ -33,18 +33,36 @@ func (i *Item) Action() ActionFunc {
 	if i.Plugin != nil {
 		debugf = i.Plugin.Debugf
 	}
+	var actions []ActionFunc
 	if i.Params.Href != "" {
-		return actionHref(debugf, i.Params.Href)
+		actions = append(actions, actionHref(debugf, i.Params.Href))
 	}
 	if i.Params.Shell != "" {
-		return actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams)
+		actions = append(actions, actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams))
 	}
 	if i.Params.Refresh == true {
-		return actionRefresh(debugf, func(_ context.Context) {
+		actions = append(actions, actionRefresh(debugf, func(ctx context.Context) {
 			i.Plugin.TriggerRefresh()
-		})
+		}))
 	}
-	return nil // no action
+	if len(actions) == 0 {
+		return nil // no actions
+	}
+	return actionFuncs(actions...)
+}
+
+// actionFuncs makes an ActionFunc that runs multuple functions
+// in order.
+func actionFuncs(actions ...ActionFunc) ActionFunc {
+	return func(ctx context.Context) {
+		for i := range actions {
+			if err := ctx.Err(); err != nil {
+				return // don't bother - context cancelled
+			}
+			fn := actions[i]
+			fn(ctx)
+		}
+	}
 }
 
 // actionHref gets an ActionFunc that opens a URL.
