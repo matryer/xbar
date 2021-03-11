@@ -27,20 +27,28 @@ html, body {
 	
 }
 
-::-webkit-scrollbar-thumb {
-	background-color: rgba(255,255,255.0.5);
-	border: 2px solid transparent;
-	border-radius: 10px;
-	background-clip: padding-box;
+::-webkit-scrollbar-track
+{
+	background: transparent;
+	border-radius: 2px;
+	padding: 2px;
+	padding-right: 10px;
 }
 
-::-webkit-scrollbar-corner {
-	background: rgba(0,0,0,0);
+::-webkit-scrollbar
+{
+	width: 12px;
+	width: 6px;
+	background: transparent;
+	margin-right: 50px;
 }
 
-::-webkit-scrollbar-track {
-	background-color: rgba(128,128,128,0);
-} 
+::-webkit-scrollbar-thumb
+{
+	border-radius: 2px;
+	width: 6px;
+	background: rgba(135,125,135,0.5);
+}
 
 /* Credit: https://stackoverflow.com/a/4407335 */
 .noselect {

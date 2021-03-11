@@ -100,7 +100,7 @@
 				BETA
 			</div>
 		</div>
-		<div class='p-3 pt-0 overflow-scroll'>
+		<div class='p-3 pt-0 overflow-y-scroll overflow-x-hidden'>
 			{#if $installedPlugins}
 				{#if installedPluginsEnabled.length}
 					<h2 class='text-sm text-gray-500 dark:text-gray-400 text-bold mb-1'>
@@ -181,7 +181,7 @@
 				</Button>
 			</div>
 		</div>
-		<div class='flex-1 overflow-scroll'>
+		<div class='flex-1 overflow-y-scroll overflow-x-hidden'>
 			<Router />
 		</div>
 	</div>

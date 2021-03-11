@@ -66,7 +66,7 @@
 				Anon.
 			{/if}
 		</p>
-		<div class='flex-grow p-4 plugin-desc break-word max-w-md mt-2 text-lg overflow-scroll'>
+		<div class='flex-grow p-4 plugin-desc break-word max-w-md mt-2 text-lg overflow-y-scroll overflow-x-hidden'>
 			<p>
 				{plugin.desc}
 			</p>
