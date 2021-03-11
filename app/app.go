@@ -74,7 +74,7 @@ type app struct {
 // newApp makes a new app.
 func newApp() *app {
 	app := &app{
-		Verbose:              false,
+		Verbose:              true,
 		menuParser:           NewMenuParser(),
 		incomingURLSemaphore: make(chan struct{}, concurrentIncomingURLs),
 	}
