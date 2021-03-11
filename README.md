@@ -2,7 +2,7 @@
 
 # Welcome to xbar
 
-xbar (the BitBar reboot, by [Mat Ryer](https://twitter.com/matryer)) lets you put the output from any script/program in your macOS menu bar.
+xbar (the BitBar reboot) lets you put the output from any script/program in your macOS menu bar.
 
   * **Complete rewrite from the ground up** - in Go by @matryer and @leaanthony - using [Wails.app (build cross-platform desktop apps using Go & HTML/CSS/JS)](https://wails.app)
   * Completely open source
