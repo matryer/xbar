@@ -25,7 +25,7 @@
 		<meta name='viewport' content='width=device-width' />
 		<meta http-equiv='X-UA-Compatible' content='ie=edge'>
 		<title>{{ template "title" . }}</title>
-		<link rel='stylesheet' href='/public/css/xbar.css?cb={{ .LastUpdatedFormatted }}'>
+		<link rel='stylesheet' href='/public/css/xbar.css?cb={{ .Version }}'>
 		<link rel='preconnect' href='https://fonts.gstatic.com'>
 		<link rel='preconnect' href='https://fonts.googleapis.com'>
 		<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap'>
@@ -84,7 +84,7 @@
 						Copyright &copy;2021 Mat Ryer + contributors • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
 					</div>
 					<div class='opacity-50 mt-2'>
-						Last updated on {{ .LastUpdatedFormatted }}
+						Updated {{ .LastUpdatedFormatted }} - <code>{{ .Version }}</code>
 					</div>
 				</p>
 			</div>

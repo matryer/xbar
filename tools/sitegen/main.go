@@ -3,6 +3,7 @@ package main
 import (
 	"archive/zip"
 	"context"
+	_ "embed"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -22,6 +23,9 @@ import (
 	"github.com/snabb/sitemap"
 )
 
+//go:embed .version
+var version string
+
 func main() {
 	if err := run(context.Background(), os.Args); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
@@ -31,6 +35,7 @@ func main() {
 
 func run(ctx context.Context, args []string) error {
 	rand.Seed(time.Now().UnixNano())
+	fmt.Println("xbarapp.com site generator", version)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	var (
 		out      = flags.String("out", "../../xbarapp.com/public/docs", "output folder")
@@ -336,12 +341,16 @@ func (g *generator) generateAuthorJSON(pluginsByPath map[string][]metadata.Plugi
 		return err
 	}
 	defer f.Close()
-	var payload = struct {
-		Person  metadata.Person   `json:"person"`
-		Plugins []metadata.Plugin `json:"plugins"`
+	payload := struct {
+		Version     string            `json:"version"`
+		LastUpdated string            `json:"lastUpdated"`
+		Person      metadata.Person   `json:"person"`
+		Plugins     []metadata.Plugin `json:"plugins"`
 	}{
-		Person:  author,
-		Plugins: thisUsersPlugins,
+		Version:     version,
+		LastUpdated: time.Now().Format(time.RFC822),
+		Person:      author,
+		Plugins:     thisUsersPlugins,
 	}
 	b, err := json.MarshalIndent(payload, "", "\t")
 	if err != nil {
@@ -375,6 +384,7 @@ func (g *generator) generateContributorPage(categories map[string]metadata.Categ
 		return err
 	}
 	pageData := struct {
+		Version              string
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 		Author               metadata.Person
@@ -388,6 +398,7 @@ func (g *generator) generateContributorPage(categories map[string]metadata.Categ
 		Plugins:              thisUsersPlugins,
 		CategoriesJSON:       template.JS(j),
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
+		Version:              version,
 	}
 	if err := g.contributorTemplate.ExecuteTemplate(f, "_main", pageData); err != nil {
 		return err
@@ -419,6 +430,7 @@ func (g *generator) generateContributorsPage(categories map[string]metadata.Cate
 	}
 	defer f.Close()
 	pageData := struct {
+		Version              string
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 		People               map[string]metadata.Person
@@ -430,6 +442,7 @@ func (g *generator) generateContributorsPage(categories map[string]metadata.Cate
 		Categories:           categories,
 		People:               people,
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
+		Version:              version,
 		PeopleLen:            len(people),
 	}
 	if err := g.contributorsTemplate.ExecuteTemplate(f, "_main", pageData); err != nil {
@@ -453,6 +466,7 @@ func (g *generator) generatePluginsIndexPage(
 		return err
 	}
 	pageData := struct {
+		Version              string
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 		PluginsByPath        map[string][]metadata.Plugin
@@ -467,6 +481,7 @@ func (g *generator) generatePluginsIndexPage(
 		CategoriesJSON:       template.JS(j),
 		FeaturedPlugins:      featuredPlugins,
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
+		Version:              version,
 	}
 	pageData.GetPlugins = func(pathPrefix string) ([]metadata.Plugin, error) {
 		var matchingPlugins []metadata.Plugin
@@ -491,9 +506,13 @@ func (g *generator) generateCategoriesJSON(categories map[string]metadata.Catego
 	}
 	defer f.Close()
 	payload := struct {
-		Categories []metadata.Category `json:"categories"`
+		Version     string              `json:"version"`
+		LastUpdated string              `json:"lastUpdated"`
+		Categories  []metadata.Category `json:"categories"`
 	}{
-		Categories: categoryList,
+		Version:     version,
+		LastUpdated: time.Now().Format(time.RFC822),
+		Categories:  categoryList,
 	}
 	b, err := json.MarshalIndent(payload, "", "\t")
 	if err != nil {
@@ -531,9 +550,13 @@ func (g *generator) generateCategoryPluginsJSONFiles(categories map[string]metad
 func (g *generator) generateFeaturedPluginsJSON(featuredPlugins []metadata.Plugin) error {
 	filename := filepath.Join(g.pluginsDir, "featured-plugins.json")
 	payload := struct {
-		Plugins []metadata.Plugin `json:"plugins"`
+		Version     string            `json:"version"`
+		LastUpdated string            `json:"lastUpdated"`
+		Plugins     []metadata.Plugin `json:"plugins"`
 	}{
-		Plugins: featuredPlugins,
+		Version:     version,
+		LastUpdated: time.Now().Format(time.RFC822),
+		Plugins:     featuredPlugins,
 	}
 	b, err := json.MarshalIndent(payload, "", "\t")
 	if err != nil {
@@ -557,9 +580,13 @@ func (g *generator) generateCategoryPluginsJSON(categoryPath string, plugins []m
 	}
 	filename := filepath.Join(dir, "plugins.json")
 	payload := struct {
-		Plugins []metadata.Plugin `json:"plugins"`
+		Version     string            `json:"version"`
+		LastUpdated string            `json:"lastUpdated"`
+		Plugins     []metadata.Plugin `json:"plugins"`
 	}{
-		Plugins: plugins,
+		Version:     version,
+		LastUpdated: time.Now().Format(time.RFC822),
+		Plugins:     plugins,
 	}
 	// sort the plugins by title
 	sort.Slice(payload.Plugins, func(i, j int) bool {
@@ -586,10 +613,15 @@ func (g *generator) generateBigPluginsPayload(plugins []metadata.Plugin) error {
 		return err
 	}
 	defer f.Close()
-	var payload struct {
-		Plugins []metadata.Plugin `json:"plugins"`
+	payload := struct {
+		Version     string            `json:"version"`
+		LastUpdated string            `json:"lastUpdated"`
+		Plugins     []metadata.Plugin `json:"plugins"`
+	}{
+		Version:     version,
+		LastUpdated: time.Now().Format(time.RFC822),
+		Plugins:     plugins,
 	}
-	payload.Plugins = plugins
 	b, err := json.MarshalIndent(payload, "", "\t")
 	if err != nil {
 		return err
@@ -623,10 +655,15 @@ func (g generator) generatePluginJSONPayload(plugin metadata.Plugin) error {
 		return err
 	}
 	defer f.Close()
-	var payload struct {
-		Plugin metadata.Plugin `json:"plugin"`
+	payload := struct {
+		Version     string          `json:"version"`
+		LastUpdated string          `json:"lastUpdated"`
+		Plugin      metadata.Plugin `json:"plugins"`
+	}{
+		Version:     version,
+		LastUpdated: time.Now().Format(time.RFC822),
+		Plugin:      plugin,
 	}
-	payload.Plugin = plugin
 	b, err := json.MarshalIndent(payload, "", "\t")
 	if err != nil {
 		return err
@@ -653,6 +690,7 @@ func (g *generator) generatePluginPage(categories map[string]metadata.Category, 
 		return err
 	}
 	pageData := struct {
+		Version              string
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 		Plugin               metadata.Plugin
@@ -664,6 +702,7 @@ func (g *generator) generatePluginPage(categories map[string]metadata.Category, 
 		Plugin:               plugin,
 		CategoriesJSON:       template.JS(j),
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
+		Version:              version,
 	}
 	if err := g.pluginTemplate.ExecuteTemplate(f, "_main", pageData); err != nil {
 		return err
@@ -708,6 +747,7 @@ func (g *generator) generateCategoryPage(categories map[string]metadata.Category
 		return err
 	}
 	pageData := struct {
+		Version              string
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 		Category             metadata.Category
@@ -723,6 +763,7 @@ func (g *generator) generateCategoryPage(categories map[string]metadata.Category
 		FeaturedPlugins:      metadata.RandomPlugins(pluginsByPath, category.Path, 3),
 		CategoriesJSON:       template.JS(j),
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
+		Version:              version,
 	}
 	if err := g.categoryTemplate.ExecuteTemplate(f, "_main", pageData); err != nil {
 		return err

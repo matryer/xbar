@@ -1,6 +1,6 @@
 module github.com/matryer/xbar/tools/sitegen
 
-go 1.15
+go 1.16
 
 replace github.com/matryer/xbar/pkg/metadata => ../../pkg/metadata
 
