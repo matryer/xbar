@@ -50,7 +50,7 @@ func (i *Item) Action() ActionFunc {
 		}
 		actions = append(actions, actionRefresh(debugf, func(ctx context.Context) {
 			if shouldDelayBeforeRefresh {
-				time.Sleep(1 * time.Second)
+				time.Sleep(500 * time.Millisecond)
 			}
 			i.Plugin.TriggerRefresh()
 		}))
