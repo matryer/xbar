@@ -1,11 +1,15 @@
 package main
 
 import (
+	_ "embed"
 	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
 )
+
+//go:embed .version
+var version string
 
 func main() {
 	if err := run(); err != nil {
