@@ -176,6 +176,22 @@ func (app *app) RefreshAll() {
 			plugin.Stderr = os.Stderr
 			plugin.Debugf = plugins.DebugfPrefix(plugin.CleanFilename(), plugins.DebugfLog)
 		}
+		// todo: resolve this
+		//
+		// https://github.com/matryer/xbar/issues/615
+		// CycleItems don't get processed in the same way extended items
+		// do. This is because it's the tray menu itself.
+		//
+		// I suppose in BitBar, this was resolved because all menu items
+		// were created the same way. I think we need to do the same here.
+		//
+		// How close is a menu.TrayMenu to a menu.Item? In a way, if they were
+		// the same (even down to OnOpen and OnClose working for submenus)
+		// it would simplify this. We'd just swap the Tray.MenuItem with a new one
+		// and call the appropriate SetTrayMenu method.
+		//
+		// If you did this, the TrayMenu.Menu would instead just be another
+		// SubMenu *Menu inside the Item.
 		app.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
 			Menu:    app.generatePreferencesMenu(plugin),
@@ -500,6 +516,8 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 	}
 	tray.Label = cycleItem.DisplayText()
 	tray.Icon = cycleItem.Params.Image
+	// todo: is it possible to have the effect of disabling the
+	// menu item, so it's clear it's updating.
 	// tray.Disabled = cycleItem.Params.Disabled
 	return true
 }

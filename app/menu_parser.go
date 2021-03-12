@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"path/filepath"
 
 	"github.com/matryer/xbar/pkg/plugins"
 	"github.com/wailsapp/wails/v2/pkg/menu"
@@ -70,11 +72,15 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 		menuItem.FontSize = defaultMenuFontSize
 	}
 	menuItem.RGBA = item.Params.Color
+
+	log.Println("item:", filepath.Base(item.Plugin.Command), "i:", item.Params.Image, "ti:", item.Params.TemplateImage)
+
 	// Check for template image
 	if item.Params.TemplateImage != "" {
 		menuItem.Image = item.Params.TemplateImage
 		// get template images working on all macOS versions
 		menuItem.MacTemplateImage = true
+		log.Println("menuItem.MacTemplateImage = true")
 	}
 	menuItem.MacAlternate = item.Params.Alternate
 	if item.Params.Dropdown == false {
