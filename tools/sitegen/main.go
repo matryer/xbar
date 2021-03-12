@@ -658,7 +658,7 @@ func (g generator) generatePluginJSONPayload(plugin metadata.Plugin) error {
 	payload := struct {
 		Version     string          `json:"version"`
 		LastUpdated string          `json:"lastUpdated"`
-		Plugin      metadata.Plugin `json:"plugins"`
+		Plugin      metadata.Plugin `json:"plugin"`
 	}{
 		Version:     version,
 		LastUpdated: time.Now().Format(time.RFC822),
