@@ -11,5 +11,5 @@ rm sitegen
 # run the tests in xbarapp.com - we may have
 # just broken them
 cd ../../xbarapp.com
-echo -n "${VERSION}" > .version
+./gen.sh
 go test

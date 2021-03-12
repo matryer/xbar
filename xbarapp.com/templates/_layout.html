@@ -73,15 +73,15 @@
 		</div>
 		{{ template "body" . }}
 		<footer class='container mx-auto text-white text-lg opacity-75 mt-8'>
-			<div class='text-center p-16'>
+			<div class='text-center p-16 pb-24'>
 				<p>
 					<div>
-						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
+						<a target='github' class='hover:underline hover:text-white' href='https://github.com/matryer/xbar'>GitHub project</a>
 						•
-						<a target='github' class='underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
+						<a target='github' class='hover:underline hover:text-white' href='https://github.com/matryer/xbar#writing-plugins'>Writing plugins guide</a>
 					</div>
 					<div class='mt-8'>
-						<a target='github' href='https://github.com/matryer/xbar/blob/master/LICENSE.txt'>MIT License</a> • <a target='twitter' class='underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
+						<a target='github' class='hover:underline' href='https://github.com/matryer/xbar/blob/master/LICENSE.txt'>MIT License</a> • <a target='twitter' class='hover:underline hover:text-white' href='https://twitter.com/matryer'>@matryer</a>
 					</div>
 					<div class='opacity-50 mt-2 text-sm mt-8'>
 						Updated {{ .LastUpdatedFormatted }} - <code>{{ .Version }}</code>
