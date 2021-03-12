@@ -18,7 +18,7 @@ echo -n $VERSION > .version
 ./test.sh
 
 sed "s/0.0.0/${VERSION}/" ./assets/mac/info.plist.src > ./assets/mac/info.plist
-CGO_LDFLAGS=-mmacosx-version-min=10.15 wails build -package -production
+CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production
 cd ./build/darwin/desktop
 create-dmg ./xbar.app --overwrite --dmg-title "Install xbar"
 tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
