@@ -52,8 +52,8 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 		}
 		itemAction(ctx)
 	})
-	if item.String() != displayText {
-		menuItem.Tooltip = item.String()
+	if item.Text != displayText {
+		menuItem.Tooltip = item.Text
 	}
 	if item.Params.Key != "" {
 		acc, err := keys.Parse(item.Params.Key)

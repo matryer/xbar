@@ -495,7 +495,7 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 	if cycleItem == nil {
 		return false
 	}
-	if tray.Label == cycleItem.String() {
+	if tray.Label == cycleItem.DisplayText() {
 		return false // no change
 	}
 	tray.Label = cycleItem.DisplayText()
