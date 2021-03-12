@@ -23,7 +23,7 @@ func run() error {
 	http.Handle("/docs/", http.StripPrefix("/docs/", http.FileServer(http.Dir(filepath.Join("public", "docs")))))
 	http.Handle("/public/img/", http.StripPrefix("/public/img/", http.FileServer(http.Dir(filepath.Join("public", "img")))))
 	http.Handle("/public/css/", http.StripPrefix("/public/css/", http.FileServer(http.Dir(filepath.Join("public", "css")))))
-	http.Handle("/dl", http.RedirectHandler("https://github.com/matryer/xbar/releases/latest", http.StatusFound))
+	http.Handle("/dl", downloadHandler())
 	http.Handle("/", serveFileHandler(filepath.Join("public", "docs", "plugins", "index.html")))
 	fmt.Printf("listening on 0.0.0.0%s\n", port)
 	return http.ListenAndServe("0.0.0.0"+port, nil)
