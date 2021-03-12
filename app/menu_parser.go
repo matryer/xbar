@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 
 	"github.com/matryer/xbar/pkg/plugins"
 	"github.com/wailsapp/wails/v2/pkg/menu"
@@ -74,9 +73,8 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 	// Check for template image
 	if item.Params.TemplateImage != "" {
 		menuItem.Image = item.Params.TemplateImage
-		// todo: get template images working on all macOS versions
-		log.Println("(skipping) menuItem.MacTemplateImage = true")
-		//menuItem.MacTemplateImage = true
+		// get template images working on all macOS versions
+		menuItem.MacTemplateImage = true
 	}
 	menuItem.MacAlternate = item.Params.Alternate
 	if item.Params.Dropdown == false {

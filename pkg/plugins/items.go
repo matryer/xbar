@@ -34,10 +34,6 @@ type Item struct {
 	Alternate *Item
 }
 
-func (i Item) String() string {
-	return truncate(i.Text, 50)
-}
-
 // DisplayText gets the text that should be displayed for
 // this item.
 // It takes into account the Length parameter.
@@ -125,7 +121,8 @@ func parseParamStr(params *ItemParams, s string) error {
 		if i < 0 {
 			return errors.New("malformed parameters: missing equals")
 		}
-		if len(s) > i+1 && (s[i+1] == '"' || s[i+1] == '\'') { // quotes
+		if len(s) > i+1 && (s[i+1] == '"' || s[i+1] == '\'') {
+			// quotes
 			endStr = string(s[i+1])
 			splitStr = "=" + endStr
 		}
@@ -136,7 +133,7 @@ func parseParamStr(params *ItemParams, s string) error {
 			key = strings.TrimSpace(key)
 		}
 		valuePart := s[offset:]
-		end := strings.Index(valuePart, endStr)
+		end := strings.IndexAny(valuePart, endStr+"|")
 		if end < 0 {
 			end = len(s)
 		} else {

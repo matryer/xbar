@@ -77,59 +77,18 @@ func TestParseParamStr(t *testing.T) {
 		`href="https://xbarapp.com"`,
 		`color=red`,
 		`font="MyFont"`,
-		`size=12`,
-		`shell="script.sh"`,
-		`terminal=false`,
-		`refresh=true`,
-		`dropdown=false`,
-		`length=10`,
-		`trim=false`,
-		`alternate=true`,
-		`templateImage="abc123"`,
-		`image='abc123'`,
-		`emojize=false`,
-		`ansi=false`,
-		`param1=parameterValue1`,
-		`param2=parameterValue2`,
-		`param3=parameterValue3`,
-		`param4=parameterValue4`,
-		`param5=parameterValue5`,
-		`param6=parameterValue6`,
-		`param7=parameterValue7`,
-		`param8=parameterValue8`,
-		`param9=parameterValue9`,
-		`param10=parameterValue10`,
-		`key=shift+g`,
-		`disabled=true`,
 	}, " "))
 	is.NoErr(err)
 	is.Equal(params.Href, "https://xbarapp.com")
 	is.Equal(params.Color, "red")
 	is.Equal(params.Font, "MyFont")
-	is.Equal(params.Shell, "script.sh")
-	is.Equal(params.Terminal, false)
-	is.Equal(params.Refresh, true)
-	is.Equal(params.Dropdown, false)
-	is.Equal(params.Length, 10)
-	is.Equal(params.Trim, false)
-	is.Equal(params.Alternate, true)
-	is.Equal(params.TemplateImage, "abc123")
-	is.Equal(params.Image, "abc123")
-	is.Equal(params.Emojize, false)
-	is.Equal(params.ANSI, false)
-	is.Equal(params.Key, "shift+g")
-	is.Equal(params.Disabled, true)
-	is.Equal(len(params.ShellParams), 10)
-	is.Equal(params.ShellParams[0], "parameterValue1")
-	is.Equal(params.ShellParams[1], "parameterValue2")
-	is.Equal(params.ShellParams[2], "parameterValue3")
-	is.Equal(params.ShellParams[3], "parameterValue4")
-	is.Equal(params.ShellParams[4], "parameterValue5")
-	is.Equal(params.ShellParams[5], "parameterValue6")
-	is.Equal(params.ShellParams[6], "parameterValue7")
-	is.Equal(params.ShellParams[7], "parameterValue8")
-	is.Equal(params.ShellParams[8], "parameterValue9")
-	is.Equal(params.ShellParams[9], "parameterValue10")
+
+	// tight pipe separator
+	err = parseParamStr(&params, `|href="https://xbarapp.com"|color=red|font="MyFont"`)
+	is.NoErr(err)
+	is.Equal(params.Href, "https://xbarapp.com")
+	is.Equal(params.Color, "red")
+	is.Equal(params.Font, "MyFont")
 
 	// bash should work as well as shell
 	params = defaultParams

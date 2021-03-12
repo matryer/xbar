@@ -89,10 +89,10 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 				parentItem := ancestorItems[len(ancestorItems)-1]
 				parentItem.Items = append(parentItem.Items, item)
 			} else {
-				if item.Params.Alternate == true {
+				if item.Params.Alternate {
 					// add to previous item, as Alternate
 					previousItem.Alternate = item
-				} else if item.Params.Dropdown == true {
+				} else if item.Params.Dropdown {
 					// if Dropdown=false then don't include it
 					items.ExpandedItems = append(items.ExpandedItems, item)
 				}
