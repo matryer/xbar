@@ -2,7 +2,7 @@
 
 set -e
 VERSION=`git describe --tags`
-echo -n "${VERSION}" > .version
+printf "package main\n\nconst version = \"${VERSION}\"" > version.gen.go
 
 echo "Deploying xbarapp.com (${VERSION})..."
 
