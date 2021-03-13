@@ -1,29 +1,14 @@
-Plugin authors are upgrading their plugins to use new xbar features.
+xbar (the BitBar reboot) has shipped, and you might want to upgrade your BitBar plugin.
 
-# Your plugin already works
+Your BitBar plugin will run in xbar without any changes. However, there are a few tweaks you should make and one or two shiny new features to look at.
 
-Your BitBar plugin works the same in xbar without any changes.
+# What's new in xbar?
 
-# But you should make some tweaks
-
-* The `bash` parameter is now `shell`
-* There is now no limit to the number of `paramN` parameters you can use
-
-# Plus, there are new features
-
-xbar brings a few new features that you may like to use in your plugin.
-
-## Keyboard shortcuts
-
-xbar lets you specify keyboard shortcuts for your menu items.
-
-Use the `key` parameter:
-
-```
-Let's go | key=shift+g | href=https://xbarapp.com/
-```
-
-You can specify a range of modifiers and special keys, for a full list check out the [Parameters documentation](https://github.com/matryer/xbar#parameters).
+1. Update your metadata - change `<bitbar.*>` tags to `<xbar.*>`
+1. Use the `shell` parameter instead of `bash`
+1. There is now no limit to the number of `paramN` parameters you can use
+1. Use variables (new feature) instead of asking users to edit your scripts
+1. Add keyboard shortcuts (new feature) to make your plugins even easier to use
 
 ## Variables
 
@@ -38,6 +23,18 @@ To make it work:
 1. Add the `xbar.var` metadata to your plugin code (read the [Metadata documentation](https://github.com/matryer/xbar#metadata))
 1. Remove any previous variables
 1. Get the values by using environment variables
+
+## Keyboard shortcuts
+
+xbar lets you specify keyboard shortcuts for your menu items.
+
+Use the `key` parameter:
+
+```
+Let's go | key=shift+g | href=https://xbarapp.com/
+```
+
+You can specify a range of modifiers and special keys, for a full list check out the [Parameters documentation](https://github.com/matryer/xbar#parameters).
 
 # Please try xbar, and report any issues
 

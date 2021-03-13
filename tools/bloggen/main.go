@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"context"
 	_ "embed"
 	"encoding/json"
@@ -63,7 +65,8 @@ func run(ctx context.Context, args []string) error {
 			filename := filepath.Base(path)
 			filename = strings.ToLower(filename[:len(filename)-2] + "html")
 			dest = filepath.Join(destFolder, filepath.Dir(rel), filename)
-			err := g.processMarkdownFile(ctx, dest, path)
+			destFilename := filepath.Join(filepath.Dir(rel), filename)
+			err := g.processMarkdownFile(ctx, destFilename, dest, path)
 			if err != nil {
 				return errors.Wrap(err, path)
 			}
@@ -78,7 +81,6 @@ func run(ctx context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
@@ -118,10 +120,25 @@ func newGenerator() (*generator, error) {
 	return g, nil
 }
 
-func (g *generator) processMarkdownFile(ctx context.Context, dest, src string) error {
+func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src string) error {
 	b, err := os.ReadFile(src)
 	if err != nil {
 		return err
+	}
+	firstLine := string(bytes.Split(b, []byte("\n"))[0])
+
+	// find the first image
+	var imagePath string
+	s := bufio.NewScanner(bytes.NewReader(b))
+	for s.Scan() {
+		line := strings.TrimSpace(s.Text())
+		if strings.HasPrefix(line, "![") {
+			imagePath = strings.Split(line, "](")[1]
+			imagePath = strings.TrimSuffix(imagePath, ")")
+			imagePath = filepath.Join(filepath.Dir(path), imagePath)
+			imagePath = "https://xbarapp.com/docs/" + imagePath
+			break
+		}
 	}
 	html := markdown.ToHTML(b, nil, nil)
 	err = os.MkdirAll(filepath.Dir(dest), 0777)
@@ -142,15 +159,21 @@ func (g *generator) processMarkdownFile(ctx context.Context, dest, src string) e
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 
-		Title string
-		HTML  template.HTML
+		Path     string
+		Title    string
+		Desc     string
+		ImageURL string
+		HTML     template.HTML
 	}{
 		Version:              version,
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
 		Categories:           g.categories,
 
-		Title: title,
-		HTML:  template.HTML(html),
+		Path:     path,
+		Title:    title,
+		Desc:     firstLine,
+		ImageURL: imagePath,
+		HTML:     template.HTML(html),
 	}
 	err = g.template.ExecuteTemplate(f, "_main", pagedata)
 	if err != nil {

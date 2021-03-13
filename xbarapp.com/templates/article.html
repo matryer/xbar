@@ -1,8 +1,52 @@
 {{ define "title" }}{{ .Title }}{{ end }}
 {{ define "head" }}
+    <meta name='description' content='{{ .Desc }}'>
+    <meta name='author' content='Mat Ryer + contributors'>
+    <meta name='keywords' content='macos,menubar,xbar,bitbar'>
+    <meta itemprop='image' content='{{ .ImageURL }}'>
+    <meta itemprop='name' content='{{ .Title }}'>
+    <meta itemprop='description' content='{{ .Desc }}'>
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta name='twitter:title' content='{{ .Title }}'>
+    <meta name='twitter:description' content='{{ .Desc }}'>
+    <meta name='twitter:image' content='{{ .ImageURL }}'>
+    <meta name='twitter:creator' content='matryer'>
+    <meta property='og:title' content='{{ .Title }}'>
+    <meta property='og:description' content='{{ .Desc }}'>
+    <meta property='og:url' content='https://xbarapp.com/docs/{{ .Path }}'>
+    <meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
+    <meta property='og:type' content='article'>
+    <meta property='og:image' content='{{ .ImageURL }}'>
+    <link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
+    <link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
+    <link rel='shortcut icon' href='/public/img/xbar-2048.png'>
+    <meta name='msapplication-TileColor' content='#0f0c29'>
+    <meta name='msapplication-config' content='/public/browserconfig.xml'>
+    <meta name='theme-color' content='#0f0c29'>
     <style>
         .article {
             color: #ddd;
+        }
+        .article a {
+            text-decoration: underline;
+            padding: 1px 4px;
+            margin-left: -2px;
+            margin-right: -2px;
+        }
+        .article a:hover {
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            padding: 1px 4px;
+            margin-left: -2px;
+            margin-right: -2px;
+        }
+        .article img {
+            box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
+            max-width: 100%;
+            display: block;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
         .article p {
             margin-top: 10px;
@@ -10,6 +54,7 @@
         }
         .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
             margin-top: 40px;
+            margin-bottom: 20px;
             font-weight: bolder;
             color: white;
         }
@@ -37,6 +82,7 @@
         .article pre {
             padding: 20px;
             padding-top: 10px;
+            font-size: 0.9em;
         }
         .article code {
             font-size: 0.8em;
@@ -45,10 +91,12 @@
 {{ end }}
 {{ define "body" }}
     <div class='article container mx-auto max-w-3xl p-8 pt-0'>
-        <h1 class='text-3xl lg:text-6xl bg-black bg-opacity-25 p-8 rounded-lg'>
-            {{ .Title }}
+        <h1 class='title text-5xl bg-black bg-opacity-25 p-8 rounded-lg shadow-lg'>
+            <div class='max-w-xl'>
+                {{ .Title }}
+            </div>
         </h1>
-        <div class='text-2xl pt-8 p-2'>
+        <div class='text-xl pt-8 p-2'>
             {{ .HTML }}
         </div>
         {{ template "support" . }}
