@@ -2,6 +2,7 @@ package plugins
 
 import (
 	"context"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -94,11 +95,13 @@ func TestParseEmoji(t *testing.T) {
 	)
 	items, err := p.parseOutput(context.Background(), "with-emoji.txt", r)
 	is.NoErr(err)
+	is.Equal(len(items.CycleItems), 1)
 	is.Equal(items.CycleItems[0].Text, "I sure would like some 🍝 and 🍕.")
 
 	r = strings.NewReader(text + " | emojize=false")
 	items, err = p.parseOutput(context.Background(), "no-emoji.txt", r)
 	is.NoErr(err)
+	is.Equal(len(items.CycleItems), 1)
 	is.Equal(items.CycleItems[0].Text, text)
 }
 
@@ -130,4 +133,23 @@ func TestHandoffToggle(t *testing.T) {
 	is.NoErr(err)
 	is.Equal(len(items.CycleItems), 1)
 	is.True(items.CycleItems[0].Params.TemplateImage != "")
+}
+
+// OffTestTokenTooLong tests for really long tokens.
+// https://github.com/matryer/xbar/issues/629
+func TestTokenTooLong(t *testing.T) {
+	is := is.New(t)
+
+	f, err := os.Open(filepath.Join("testdata", "token-too-long", "jma.1h.sh.output"))
+	is.NoErr(err) // os.Open
+	t.Cleanup(func() {
+		err := f.Close()
+		is.NoErr(err) // f.Close
+	})
+
+	p := Plugin{}
+	ctx := context.Background()
+	items, err := p.parseOutput(ctx, "jma.1h.sh", f)
+	is.NoErr(err)
+	is.Equal(len(items.CycleItems), 1)
 }

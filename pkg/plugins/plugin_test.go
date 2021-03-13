@@ -316,15 +316,3 @@ func TestCleanFilename(t *testing.T) {
 	is.Equal(p.CleanFilename(), "file.sh")
 
 }
-
-// OffTestTokenTooLong tests for really long tokens.
-// https://github.com/matryer/xbar/issues/629
-func OffTestTokenTooLong(t *testing.T) {
-	is := is.New(t)
-
-	ctx := context.Background()
-	p := NewPlugin(filepath.Join("testdata", "token-too-long", "jma.1h.sh"))
-	err := p.refresh(ctx)
-	is.NoErr(err)
-
-}

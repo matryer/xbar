@@ -12,18 +12,30 @@ import (
 // parseOutput parses the output of a plugin run, and returns the
 // Items.
 func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) (Items, error) {
-	var items Items
-	var params ItemParams
-	var depthPrefix string
-	var previousItem *Item
-	var ancestorItems []*Item
-	var err error
-	line := 0
-	src := bufio.NewScanner(r)
-	captureExpanded := false
-	for src.Scan() {
+	var (
+		items           Items
+		params          ItemParams
+		depthPrefix     string
+		previousItem    *Item
+		ancestorItems   []*Item
+		captureExpanded bool
+		line            int
+		text            string
+		err             error
+		readErr         error
+	)
+	br := bufio.NewReader(r)
+	for readErr == nil { // keep reading until we hit io.EOF
 		line++
-		text := src.Text()
+		text, readErr = br.ReadString('\n')
+		if readErr != nil && readErr != io.EOF {
+			// some other error reading (io.EOF is fine)
+			break
+		}
+		if readErr == io.EOF && text == "" {
+			// io.EOF and no text - looks like were done.
+			break
+		}
 		trimmedText := strings.TrimSpace(text)
 		text, params, err = parseParams(text)
 		if err != nil {
@@ -102,8 +114,8 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 		}
 		previousItem = item
 	}
-	if err := src.Err(); err != nil {
-		return items, errors.Wrap(err, "scanning")
+	if err != nil && err != io.EOF {
+		return items, errors.Wrap(err, "reading")
 	}
 	return items, nil
 }
