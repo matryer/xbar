@@ -10,11 +10,17 @@ Your BitBar plugin will run in xbar without any changes. However, there are a fe
 1. Use variables (new feature) instead of asking users to edit your scripts
 1. Add keyboard shortcuts (new feature) to make your plugins even easier to use
 
-## Variables
+## Variables for configuration
 
-Instead of asking users to edit your plugin script in order to configure the script, xbar introduces Variables.
+Instead of asking users to edit your plugin script, xbar introduces Variables.
 
 ![Screenshot showing an xbar plugin with variables](xbar-plugin-with-variables.png)
+
+Variables are great for:
+
+* API keys or tokens that your plugin needs
+* Different style or presentation options
+* Number of items to show
 
 Variables are defined in your plugin's metadata. The xbar UI lets users configure the values without editing your script.
 
