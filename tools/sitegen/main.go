@@ -386,6 +386,7 @@ func (g *generator) generateContributorPage(categories map[string]metadata.Categ
 	pageData := struct {
 		Version              string
 		CurrentCategoryPath  string
+		Categories           map[string]metadata.Category
 		Author               metadata.Person
 		Plugins              []metadata.Plugin
 		CategoriesJSON       template.JS
