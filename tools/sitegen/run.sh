@@ -5,7 +5,7 @@ VERSION=`git describe --tags`
 echo -n "${VERSION}" > .version
 
 go build -o sitegen 
-./sitegen
+./sitegen $1
 rm sitegen
 
 # run the tests in xbarapp.com - we may have

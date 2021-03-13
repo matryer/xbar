@@ -21,3 +21,4 @@ tools/sitegen/.version
 app/.version
 xbarapp.com/.version
 xbarapp.com/xbarappcom
+xbarapp.com/version.gen.go
