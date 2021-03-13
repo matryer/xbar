@@ -1,4 +1,4 @@
-Plugin authors are upgrading their plugins to make use of new xbar features.
+Plugin authors are upgrading their plugins to use new xbar features.
 
 # Your plugin already works
 
@@ -11,7 +11,7 @@ Your BitBar plugin works the same in xbar without any changes.
 
 # Plus, there are new features
 
-xbar brings a few new features that you may like to make use of in your plugin.
+xbar brings a few new features that you may like to use in your plugin.
 
 ## Keyboard shortcuts
 
