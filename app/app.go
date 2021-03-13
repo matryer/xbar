@@ -331,13 +331,6 @@ func (app *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		Label:    "Check for updates…",
 		Click:    app.onCheckForUpdatesMenuClick,
 	})
-	items = append(items, &menu.MenuItem{
-		FontSize: defaultMenuFontSize,
-		// todo: remove this item once cmd+R is working #refresh
-		Type:  menu.TextType,
-		Label: "Clear cache",
-		Click: app.onClearCacheMenuClicked,
-	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
 		FontSize:    defaultMenuFontSize,
