@@ -23,7 +23,11 @@ cd app/frontend && npm run dev
 
 ### Building
 
-In this directory run `wails build`. The binary will be generated in `./build/darwin/desktop/`.
+In this directory run `./build.sh`. The binary will be generated in `./build/darwin/desktop/`.
+
+```bash
+./build.sh && ./build/darwin/desktop/xbar
+```
 
 ### Updates
 
