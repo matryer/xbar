@@ -846,7 +846,7 @@ func firstSegment(path string) string {
 
 var (
 	moonCycle   = cycleString{"\r🌕", "\r🌖", "\r🌗", "\r🌘", "\r🌑", "\r🌒", "\r🌓", "\r🌔"}
-	peopleCycle = cycleString{"👧 ", "🧑🏾‍🦱 ", "🧑‍🦰 ", "👩‍🦳 ", "👩🏽‍🦱 ", "🧔🏿 ", "👨🏽‍🦲 ", "👱‍♂️ "}
+	peopleCycle = cycleString{"😃 "}
 )
 
 // cycleString cycles through strings.
