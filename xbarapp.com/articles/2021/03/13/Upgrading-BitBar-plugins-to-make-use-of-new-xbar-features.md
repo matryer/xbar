@@ -1,6 +1,6 @@
 xbar (the BitBar reboot) has shipped, and you might want to upgrade your BitBar plugin.
 
-Your BitBar plugin will run in xbar without any changes. However, there are a few tweaks you should make and one or two shiny new features to look at.
+Your plugin will run in xbar without any changes. However, there are a few tweaks you should make and one or two shiny new features to look at.
 
 # What's new in xbar?
 
