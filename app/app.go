@@ -610,6 +610,9 @@ func (app *app) checkForUpdates(passive bool) {
 		})
 		return
 	}
+	// wait for the update to complete before
+	// restarting.
+	time.Sleep(1 * time.Second)
 	err = u.Restart()
 	if err != nil {
 		app.runtime.Dialog.Message(&dialog.MessageDialog{

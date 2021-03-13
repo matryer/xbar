@@ -226,6 +226,8 @@ type Asset struct {
 	BrowserDownloadURL string `json:"browser_download_url"`
 }
 
+// appPathFromExecutable gets the .app path from the currently
+// running executable.
 func appPathFromExecutable(p string) (string, error) {
 	if !strings.HasSuffix(p, "/Contents/MacOS/xbar") {
 		return "", errors.New("executable not where it should be")
