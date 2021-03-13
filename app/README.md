@@ -1,14 +1,6 @@
 # xbar
 Put anything into your macOS menu bar (sequel to BitBar)
  
-## App user guide
-
-* Navigate through installed plugins, and categories of new plugins
-* Refresh button
-* * Reload the current view
-* * Hold cmd to refresh plugins
-* * Hold cmd+shift to clear cache 
-
 ## Development
 
 To build xbar, you will need:
