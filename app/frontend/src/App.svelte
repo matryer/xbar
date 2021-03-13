@@ -166,7 +166,7 @@
 				<Button 
 					waiter={$globalWaiter}
 					on:click='{ onRefreshClick }'
-					cssclass='py-1 opacity-75'
+					cssclass='py-1 opacity-75 select-none'
 				>↺</Button>
 			</div>
 			<div class='flex-grow' ></div>
