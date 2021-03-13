@@ -49,9 +49,10 @@ func run() error {
 				"xbar": app.handleIncomingURL,
 			},
 		},
-		LogLevel: wailsLogLevel,
-		Startup:  app.Start,
-		Shutdown: app.Shutdown,
+		ContextMenus: app.contextMenus,
+		LogLevel:     wailsLogLevel,
+		Startup:      app.Start,
+		Shutdown:     app.Shutdown,
 		Bind: []interface{}{
 			app.PersonService,
 			app.CategoriesService,
