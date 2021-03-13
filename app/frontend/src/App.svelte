@@ -162,7 +162,7 @@
 	</div>
 	<div class='flex-grow h-full flex flex-col bg-opacity-25 bg-gray-200 text-gray-700 dark:text-gray-300'>
 		<div class='top-bar flex-shrink-0 px-6 py-3 flex items-center space-x-5' data-wails-drag>
-			<div>
+			<div data-wails-no-drag data-wails-context-menu-id="refresh">
 				<Button 
 					waiter={$globalWaiter}
 					on:click='{ onRefreshClick }'

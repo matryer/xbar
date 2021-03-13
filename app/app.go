@@ -36,6 +36,7 @@ type app struct {
 
 	// appMenu isn't visible - it's used for key shortcuts.
 	appMenu         *menu.Menu
+	contextMenus    []*menu.ContextMenu
 	defaultTrayMenu *menu.TrayMenu
 	plugins         plugins.Plugins
 	pluginTrays     map[string]*menu.TrayMenu
@@ -91,6 +92,14 @@ func newApp() *app {
 			),
 		},
 	)
+
+	app.contextMenus = []*menu.ContextMenu{
+		menu.NewContextMenu("refresh", menu.NewMenuFromItems(
+			menu.Text("Refresh page data", nil, app.onBrowserHardRefreshMenuClicked),
+			menu.Text("Refresh plugins", nil, app.onPluginsRefreshAllMenuClicked),
+			menu.Text("Clear Cache", nil, app.onClearCacheMenuClicked),
+		)),
+	}
 
 	// client-side caching to cacheDirectory
 	tp := httpcache.NewTransport(diskcache.New(cacheDirectory))
