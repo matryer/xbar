@@ -1,0 +1,56 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "head" }}
+    <style>
+        .article {
+            color: #ddd;
+        }
+        .article p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
+            margin-top: 40px;
+            font-weight: bolder;
+            color: white;
+        }
+        .article ul {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .article ol {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            list-style-type: decimal;
+            margin-left: 30px;
+        }
+        .article ul li {
+            padding-left: 5px;
+        }
+        .article ol li {
+            padding-left: 15px;
+        }
+        .article li {
+            margin-bottom: 10px;
+        }
+        .article pre {
+            padding: 20px;
+            padding-top: 10px;
+        }
+        .article code {
+            font-size: 0.8em;
+        }
+    </style>
+{{ end }}
+{{ define "body" }}
+    <div class='article container mx-auto max-w-3xl p-8 pt-0'>
+        <h1 class='text-3xl lg:text-6xl bg-black bg-opacity-25 p-8 rounded-lg'>
+            {{ .Title }}
+        </h1>
+        <div class='text-2xl pt-8 p-2'>
+            {{ .HTML }}
+        </div>
+        {{ template "support" . }}
+    </div>
+{{ end }}
