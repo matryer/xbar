@@ -37,7 +37,7 @@
 	<div class='container mx-auto flex flex-wrap space-x-8 justify-start items-start mt-16'>
 		<div class='flex flex-col justify-start'>
 			<div class='px-8 py-2 max-w-3xl'>
-				<h1 class='fancy-font text-white text-6xl'>{{ .Plugin.Title }}</h1>
+				<h1 class='fancy-font text-white text-xl md:text-6xl'>{{ .Plugin.Title }}</h1>
 			</div>
 			<div class='p-8 text-sm'>
 				{{ range .Plugin.Authors }}
@@ -121,7 +121,7 @@
 					</div>
 				</div>
 				<div>
-					<pre class='text-sm whitespace-pre-wrap'><code class='break-all '>{{ .Content }}</code></pre>
+					<pre class='text-sm whitespace-pre-wrap'><code class='break-all'>{{ .Content }}</code></pre>
 				</div>
 			</div>
 		</div>
