@@ -12,4 +12,5 @@ rm sitegen
 # just broken them
 cd ../../xbarapp.com
 ./gen.sh
+npm run build
 go test

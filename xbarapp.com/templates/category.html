@@ -53,10 +53,10 @@
 							{{ end }}
 							{{ range .Authors }}
 								{{ if .Name }}
-									<div class='mt-4 text-sm text-white text-right'>
+									<div class='mt-4 text-sm text-white text-center md:text-right'>
 										{{ if .GitHubUsername }}
 											<a href='/docs/contributors/{{ .GitHubUsername }}.html'>
-												<span class='mr-3'>
+												<span class='mr-3 break-all block md:inline mb-1'>
 													{{ .Name }} (@{{ .GitHubUsername }})
 												</span>
 												{{ if .ImageURL }}

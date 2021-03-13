@@ -94,9 +94,9 @@
 {{ end }}
 {{ define "plugins" }}
 	{{ if . }}
-		<div class='grid grid-cols-none md:grid-cols-2 lg:grid-cols-3 gap-8 divide-white container mx-auto'>
+		<div class='container mx-auto md:grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
 			{{ range . }}
-				<div class='p-8 bg-black bg-opacity-25 text-white rounded-lg flex flex-col'>
+				<div class='flex flex-col p-8 bg-black bg-opacity-25 text-white rounded-lg mt-1 md:mt-0'>
 					<p>
 						<a
 							class='hover:underline'
@@ -105,33 +105,47 @@
 					</p>
 					{{ if .Desc }}{{ if not .ImageURL }}&mdash;{{ .Desc }}{{ end }}{{ end }}
 					{{ if .ImageURL }}
-						<div class='flex flex-grow flex-wrap space-x-4 items-center p-4'>
+						<div class='md:hidden'>
+							{{if ne .ImageURL "https://xbarapp.com/public/img/xbar-2048.png"}}
+								<a href='/docs/plugins/{{ .Path }}.html'>
+									<img 
+										class='plugin-image w-full' 
+										src='{{ .ImageURL }}'
+										onerror='this.onerror=null;this.style.display="none";'
+									>
+								</a>
+							{{ end }}
+							<p class='hyphens-auto break-all flex-grow md:text-base'>
+								{{ .Desc }}
+							</p>
+						</div>
+						<div class='hidden md:flex flex-grow space-x-4 items-center p-4'>
 							<div class='max-w-md md:w-1/3'>
 								<a href='/docs/plugins/{{ .Path }}.html'>
 									<img 
 										class='plugin-image w-full' 
 										src='{{ .ImageURL }}'
-										onerror='this.onerror=null;this.src="/public/img/xbar-2048.png";'
+										onerror='this.onerror=null;this.style.display="none";'
 									>
 								</a>
 							</div>
-							<div class='md:w-2/3 text-sm flex-grow flex flex-col'>
-								<div class='hyphens-auto break-word flex-grow text-xl md:text-base'>
+							<div class='md:w-2/3 text-sm flex-grow flex flex-col mt-3 md:mt-0'>
+								<div class='hyphens-auto break-all flex-grow text-xl md:text-base'>
 									{{ .Desc }}
 								</div>
 							</div>
 						</div>
 						{{ range .Authors }}
-							<div class='text-right text-sm'>
-								<a class='flex space-x-2 justify-end items-center' href='/docs/contributors/{{ .GitHubUsername }}.html'>
-									<span class='text-right break-all'>
+							<div class='text-center md:text-right text-sm mt-3 md:mt-0'>
+								<a href='/docs/contributors/{{ .GitHubUsername }}.html'>
+									<span class='break-all block md:inline mb-1'>
 										<strong>{{ .Name }}</strong>
 										{{ if .GitHubUsername }}
 											(@{{ .GitHubUsername }})
 										{{ end }}
 									</span>
 									{{ if .ImageURL }}
-										<img class='w-10 h-10 rounded-full inline' src='{{ .ImageURL }}'>
+										<img class='w-8 h-8 rounded-full inline' src='{{ .ImageURL }}'>
 									{{ end }}
 								</a>
 							</div>
