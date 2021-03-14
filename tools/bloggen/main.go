@@ -10,9 +10,11 @@ import (
 	"html/template"
 	"io"
 	"io/fs"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/gomarkdown/markdown"
@@ -45,6 +47,7 @@ func run(ctx context.Context, args []string) error {
 	if err != nil {
 		return errors.Wrap(err, "generator")
 	}
+	articles := make(map[string]string)
 	err = filepath.Walk(sourceArticlesFolder, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -62,15 +65,8 @@ func run(ctx context.Context, args []string) error {
 		dest := filepath.Join(destFolder, rel)
 		ext := filepath.Ext(path)
 		if ext == ".md" {
-			filename := filepath.Base(path)
-			filename = strings.ToLower(filename[:len(filename)-2] + "html")
-			dest = filepath.Join(destFolder, filepath.Dir(rel), filename)
-			destFilename := filepath.Join(filepath.Dir(rel), filename)
-			err := g.processMarkdownFile(ctx, destFilename, dest, path)
-			if err != nil {
-				return errors.Wrap(err, path)
-			}
-			return nil
+			articles[path] = rel
+			return nil // don't copy the file
 		}
 		_, err = copy(dest, path)
 		if err != nil {
@@ -81,6 +77,23 @@ func run(ctx context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	var wg sync.WaitGroup
+	for path, rel := range articles {
+		wg.Add(1)
+		go func(path, rel string) {
+			defer wg.Done()
+			dest := filepath.Join(destFolder, rel)
+			filename := filepath.Base(path)
+			filename = strings.ToLower(filename[:len(filename)-2] + "html")
+			dest = filepath.Join(destFolder, filepath.Dir(rel), filename)
+			destFilename := filepath.Join(filepath.Dir(rel), filename)
+			err := g.processMarkdownFile(ctx, destFilename, dest, path)
+			if err != nil {
+				log.Printf("%s: %s", path, err)
+			}
+		}(path, rel)
+	}
+	wg.Wait()
 	return nil
 }
 
@@ -121,6 +134,7 @@ func newGenerator() (*generator, error) {
 }
 
 func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src string) error {
+	fmt.Printf("%s\n", path)
 	b, err := os.ReadFile(src)
 	if err != nil {
 		return err
@@ -190,6 +204,9 @@ func copy(dst, src string) (int64, error) {
 	}
 	if !sourceFileStat.Mode().IsRegular() {
 		return 0, fmt.Errorf("%s is not a regular file", src)
+	}
+	if err := os.MkdirAll(filepath.Dir(dst), 0777); err != nil {
+		return 0, err
 	}
 	source, err := os.Open(src)
 	if err != nil {

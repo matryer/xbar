@@ -326,12 +326,29 @@ Anything that can write to standard out is supported, but here is a list that ha
    - Utilities:
       - xbar PHP Formatter - <https://github.com/SteveEdson/bitbar-php>  
 
-## xbar:// control API
+## Advanced APIs
+
+### xbar:// control API
 
 It is possible to control xbar using special `xbar://` URLs:
 
 * `xbar://app.xbarapp.com/openPlugin?path=path/to/plugin` - `openPlugin` opens a plugin in the app
 * `xbar://app.xbarapp.com/refreshPlugin?path=path/to/plugin` - `refreshPlugin` refreshes a specific plugin
+
+### Variables JSON files
+
+Variables are stored in JSON files alongside your plugin. The key is the name of the Variable and the name of the environment variable. The values are the user's preferences.
+
+You can programmatically modify the JSON files to adjust the values. Use the refresh control API above to refresh plugins after changing variables.
+
+For example, the variables file for the `tail.5s.sh` plugin looks like this:
+
+```json
+{
+	"VAR_FILE": "./001-tail.5s.sh",
+	"VAR_LINES": 15
+}
+```
 
 ## Thanks
 
