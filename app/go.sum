@@ -99,8 +99,8 @@ github.com/ugorji/go/codec v1.1.7/go.mod h1:Ax+UKWsSmolVDwsd+7N3ZtXu+yMGCf907BLY
 github.com/ulikunitz/xz v0.5.6/go.mod h1:2bypXElzHzzJZwzH67Y6wb67pO62Rzfn7BSiF4ABRW8=
 github.com/ulikunitz/xz v0.5.10 h1:t92gobL9l3HE202wg3rlk19F6X+JOxl9BBrCCMYEYd8=
 github.com/ulikunitz/xz v0.5.10/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
-github.com/wailsapp/wails/v2 v2.0.0-alpha.50 h1:vAYqyauPsf7VHNkgXHDx0Ra4yLAWGeBVUnUFiDvqdjI=
-github.com/wailsapp/wails/v2 v2.0.0-alpha.50/go.mod h1:Yc65JRHZwCwYfBTaemkOzN7nOl2e1iBVZMzEVPxsQ9s=
+github.com/wailsapp/wails/v2 v2.0.0-alpha.51 h1:8WaoUXZnuKl4WSEkkMlxiXq4qud7CKppWzx8/MO3NVM=
+github.com/wailsapp/wails/v2 v2.0.0-alpha.51/go.mod h1:Yc65JRHZwCwYfBTaemkOzN7nOl2e1iBVZMzEVPxsQ9s=
 github.com/wzshiming/ctc v1.2.3/go.mod h1:2tVAtIY7SUyraSk0JxvwmONNPFL4ARavPuEsg5+KA28=
 github.com/wzshiming/winseq v0.0.0-20200112104235-db357dc107ae/go.mod h1:VTAq37rkGeV+WOybvZwjXiJOicICdpLCN8ifpISjK20=
 github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 h1:nIPpBwaJSVYIxUFsDv3M8ofmx9yWTog9BfvIu0q41lo=

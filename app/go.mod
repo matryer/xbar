@@ -12,7 +12,7 @@ require (
 	github.com/matryer/xbar/pkg/update v0.0.0-00010101000000-000000000000
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/wailsapp/wails/v2 v2.0.0-alpha.50
+	github.com/wailsapp/wails/v2 v2.0.0-alpha.51
 	golang.org/x/sys v0.0.0-20201207223542-d4d67f95c62d // indirect
 )
 
