@@ -30,7 +30,7 @@ func TestRun(t *testing.T) {
 		plugins[i].Timeout = 2 * time.Second
 		plugins[i].Debugf = func(format string, v ...interface{}) { /* silent */ }
 		plugins[i].CycleInterval = 100 * time.Millisecond
-		plugins[i].RefreshInterval = RefreshInterval{N: 250, Unit: "ms"}
+		plugins[i].RefreshInterval = RefreshInterval{N: 250, Unit: "milliseconds"}
 		plugins[i].OnRefresh = func(ctx context.Context, p *Plugin, err error) {
 			lock.Lock()
 			counters.refreshes++
@@ -284,7 +284,7 @@ func TestEnvironmentVariables(t *testing.T) {
 		Command:         filepath.Join("testdata", "vars-test", "plugin.sh"),
 		Debugf:          DebugfNoop,
 		Timeout:         1 * time.Second,
-		RefreshInterval: RefreshInterval{N: 250, Unit: "ms"},
+		RefreshInterval: RefreshInterval{N: 250, Unit: "milliseconds"},
 		CycleInterval:   500 * time.Millisecond,
 	}
 	p.Run(ctx)

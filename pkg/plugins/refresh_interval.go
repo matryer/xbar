@@ -28,8 +28,7 @@ type RefreshInterval struct {
 // Duration gets the time.Duration for this RefreshInterval.
 func (r RefreshInterval) Duration() time.Duration {
 	switch r.Unit {
-	case "ms":
-		// special case for testing
+	case "milliseconds":
 		return time.Duration(r.N) * time.Millisecond
 	case "days":
 		return time.Hour * time.Duration(24*r.N)
@@ -57,6 +56,8 @@ func (r RefreshInterval) String() string {
 		return fmt.Sprintf("%dm", r.N)
 	case "seconds":
 		return fmt.Sprintf("%ds", r.N)
+	case "milliseconds":
+		return fmt.Sprintf("%dms", r.N)
 	default:
 		return "<invalid>"
 	}
@@ -99,7 +100,7 @@ func validateRefreshInterval(refreshInterval RefreshInterval) error {
 	if n := refreshInterval.N; n < 1 {
 		return errors.Errorf("bad interval value: %d", n)
 	}
-	for _, unit := range []string{"days", "hours", "minutes", "seconds"} {
+	for _, unit := range []string{"days", "hours", "minutes", "seconds", "milliseconds"} {
 		if refreshInterval.Unit == unit {
 			return nil
 		}
@@ -144,21 +145,33 @@ func findIntervalInFilename(filename string) string {
 }
 
 func parseInterval(interval string) (RefreshInterval, error) {
-	unit := interval[len(interval)-1]
-	valStr := interval[:len(interval)-1]
+	var (
+		unit   string
+		valStr string
+	)
+	switch {
+	case strings.HasSuffix(interval, "ms"):
+		unit = "ms"
+		valStr = interval[:len(interval)-2]
+	default:
+		unit = string(interval[len(interval)-1])
+		valStr = interval[:len(interval)-1]
+	}
 	val, err := strconv.ParseInt(valStr, 10, 64)
 	if err != nil {
 		return defaultRefreshInterval, errors.Errorf("bad interval value: %s", valStr)
 	}
 	switch unit {
-	case 'd': // turn days into hours
+	case "d": // turn days into hours
 		return RefreshInterval{N: val, Unit: "days"}, nil
-	case 'h':
+	case "h":
 		return RefreshInterval{N: val, Unit: "hours"}, nil
-	case 'm':
+	case "m":
 		return RefreshInterval{N: val, Unit: "minutes"}, nil
-	case 's':
+	case "s":
 		return RefreshInterval{N: val, Unit: "seconds"}, nil
+	case "ms":
+		return RefreshInterval{N: val, Unit: "milliseconds"}, nil
 	default:
 		return defaultRefreshInterval, errors.Errorf("bad interval unit: %s", string(unit))
 	}

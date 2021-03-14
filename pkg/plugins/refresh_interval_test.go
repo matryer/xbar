@@ -126,13 +126,14 @@ func TestParseFilenameInterval(t *testing.T) {
 	is := is.New(t)
 
 	for filename, expected := range map[string]time.Duration{
-		"":                    1 * time.Minute, // default
-		"/path/to/file.sh":    1 * time.Minute, // default
-		"/path/to/file.1s.sh": 1 * time.Second,
-		"/path/to/file.2m.sh": 2 * time.Minute,
-		"/path/to/file.3h.sh": 3 * time.Hour,
-		"/path/to/file.1d.sh": 24 * time.Hour,
-		"/path/to/file.2d.sh": 48 * time.Hour,
+		"":                       1 * time.Minute,        // default
+		"/path/to/file.sh":       1 * time.Minute,        // default
+		"/path/to/file.500ms.sh": 500 * time.Millisecond, // default
+		"/path/to/file.1s.sh":    1 * time.Second,
+		"/path/to/file.2m.sh":    2 * time.Minute,
+		"/path/to/file.3h.sh":    3 * time.Hour,
+		"/path/to/file.1d.sh":    24 * time.Hour,
+		"/path/to/file.2d.sh":    48 * time.Hour,
 
 		"/path/to/file.5s.sh.off": 5 * time.Second,
 	} {
@@ -162,6 +163,7 @@ func TestValidateRefreshInterval(t *testing.T) {
 		{N: 42, Unit: "days"},
 		{N: 22, Unit: "minutes"},
 		{N: 3, Unit: "seconds"},
+		{N: 500, Unit: "milliseconds"},
 	} {
 		err := validateRefreshInterval(ri)
 		is.NoErr(err)
