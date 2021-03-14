@@ -27,7 +27,7 @@
                 >Edit</Button>
             </div>
         </div>
-        <pre class='whitespace-pre-wrap break-all text-sm pb-8'>
+        <pre class='whitespace-pre-wrap nice-wrapping text-sm pb-8'>
             <code>
                 {file.content}
             </code>

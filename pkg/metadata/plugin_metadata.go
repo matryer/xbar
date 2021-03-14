@@ -77,6 +77,14 @@ func (p Plugin) Validate() error {
 	return nil // ok
 }
 
+// NiceDesc gets a nice description.
+func (p Plugin) NiceDesc() string {
+	if p.Desc == "" {
+		return p.Title
+	}
+	return truncate(p.Desc, 75)
+}
+
 // File is a single file.
 type File struct {
 	// Path is the path of the File.
@@ -441,4 +449,14 @@ func (e errParse) Error() string {
 		return fmt.Sprintf("%s: %q", e.err, e.src)
 	}
 	return e.err.Error()
+}
+
+// truncate shrinks a string if it's too long.
+func truncate(s string, max int) string {
+	runes := []rune(s)
+	if max > 0 && len(runes) > max {
+		s = string(runes[:max-1]) + "…"
+		return s
+	}
+	return s
 }

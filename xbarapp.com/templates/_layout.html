@@ -115,7 +115,7 @@
 									>
 								</a>
 							{{ end }}
-							<p class='hyphens-auto break-all flex-grow md:text-base'>
+							<p class='nice-wrapping flex-grow md:text-base'>
 								{{ .Desc }}
 							</p>
 						</div>
@@ -130,15 +130,15 @@
 								</a>
 							</div>
 							<div class='md:w-2/3 text-sm flex-grow flex flex-col mt-3 md:mt-0'>
-								<div class='hyphens-auto break-all flex-grow text-xl md:text-base'>
-									{{ .Desc }}
+								<div class='nice-wrapping flex-grow text-xl md:text-base'>
+									{{ .NiceDesc }}
 								</div>
 							</div>
 						</div>
 						{{ range .Authors }}
 							<div class='text-center md:text-right text-sm mt-3 md:mt-0'>
 								<a href='/docs/contributors/{{ .GitHubUsername }}.html'>
-									<span class='break-all block md:inline mb-1'>
+									<span class='nice-wrapping block md:inline mb-1'>
 										<strong>{{ .Name }}</strong>
 										{{ if .GitHubUsername }}
 											(@{{ .GitHubUsername }})
