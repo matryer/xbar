@@ -1,4 +1,5 @@
 # xbar
+
 Put anything into your macOS menu bar (sequel to BitBar)
  
 ## Development
