@@ -135,6 +135,18 @@ func newGenerator() (*generator, error) {
 
 func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src string) error {
 	fmt.Printf("%s\n", path)
+
+	pathSegs := strings.Split(path, string(filepath.Separator))
+	yearStr := pathSegs[0]
+	monthStr := pathSegs[1]
+	log.Println("The year and month: ", yearStr, monthStr)
+
+	articleTime, err := time.Parse("01/2006", fmt.Sprintf("%s/%s", monthStr, yearStr))
+	if err != nil {
+		return errors.Wrap(err, "parse time from path")
+	}
+	articleTimeStr := articleTime.Format("January 2006")
+
 	b, err := os.ReadFile(src)
 	if err != nil {
 		return err
@@ -172,21 +184,23 @@ func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src str
 		CurrentCategoryPath  string
 		Categories           map[string]metadata.Category
 
-		Path     string
-		Title    string
-		Desc     string
-		ImageURL string
-		HTML     template.HTML
+		Path           string
+		ArticleTimeStr string
+		Title          string
+		Desc           string
+		ImageURL       string
+		HTML           template.HTML
 	}{
 		Version:              version,
 		LastUpdatedFormatted: time.Now().Format(time.RFC822),
 		Categories:           g.categories,
 
-		Path:     path,
-		Title:    title,
-		Desc:     firstLine,
-		ImageURL: imagePath,
-		HTML:     template.HTML(html),
+		Path:           path,
+		ArticleTimeStr: articleTimeStr,
+		Title:          title,
+		Desc:           firstLine,
+		ImageURL:       imagePath,
+		HTML:           template.HTML(html),
 	}
 	err = g.template.ExecuteTemplate(f, "_main", pagedata)
 	if err != nil {

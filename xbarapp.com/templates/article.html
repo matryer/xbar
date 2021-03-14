@@ -47,15 +47,18 @@
             display: block;
             margin-top: 30px;
             margin-bottom: 30px;
+            border-radius: .10rem;
         }
         .article p {
             margin-top: 10px;
             margin-bottom: 20px;
         }
+        .article h1.title {
+            font-weight: bold;
+        }
         .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
             margin-top: 40px;
             margin-bottom: 20px;
-            font-weight: bolder;
             color: white;
         }
         .article ul {
@@ -85,6 +88,7 @@
             font-size: 0.9em;
             background-color: rgba(0,0,0,0.25);
             border-radius: .5rem;
+            white-space: pre-wrap;
             word-wrap: break-word;
         }
         .article code {
@@ -93,14 +97,23 @@
     </style>
 {{ end }}
 {{ define "body" }}
-    <div class='article container mx-auto max-w-3xl p-8 pt-0'>
-        <h1 class='title text-5xl bg-black bg-opacity-25 p-8 rounded-lg shadow-lg'>
-            <div class='max-w-xl'>
-                {{ .Title }}
+    <div class='article'>
+        <div class='p-8 rounded-lg shadow-2xl w-full'>
+            <div class='container mx-auto max-w-3xl'>
+                <h1 class='text-5xl title fancy-font text-center mx-4 mb-8 pb-8'>
+                    {{ .Title }}
+                </h1>
+                <div class='text-xl fancy-font opacity-50 text-center uppercase pb-8'>
+                    {{ .ArticleTimeStr }}
+                </div>
             </div>
-        </h1>
-        <div class='text-xl pt-8 p-2'>
-            {{ .HTML }}
+        </div>
+        <div class='shadow-2xl bg-black bg-opacity-25'>
+            <div class='container mx-auto max-w-3xl'>
+                <div class='text-2xl py-16 pb-32 p-2'>
+                    {{ .HTML }}
+                </div>
+            </div>
         </div>
         {{ template "support" . }}
     </div>

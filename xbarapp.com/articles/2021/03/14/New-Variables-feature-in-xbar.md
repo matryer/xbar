@@ -2,7 +2,7 @@ xbar plugins can now define Variables in their metadata. End users will be promp
 
 The [new xbar app](https://github.com/matryer/xbar/releases/latest) renders variables like this:
 
-![](xbar-plugin-with-variables.png)
+![](xbar-plugin-with-variables.jpg)
 
 ## Defining variables
 
