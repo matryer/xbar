@@ -71,11 +71,10 @@ For example:
 
   * `date.1m.sh` would refresh every minute.
 
-Most plugins will come with a default, but you can change it to anything you like:
+Most plugins will come with a default, but you can change it to anything you like using the app:
 
   * 10s - ten seconds
-  * 1m - 
-  minute
+  * 1m - one  minute
   * 2h - two hours
   * 1d - a day
 
