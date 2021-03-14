@@ -7,3 +7,4 @@ cd ../bloggen
 ./run.sh
 
 cd ../../xbarapp.com
+./gen.sh

@@ -126,7 +126,6 @@ func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src str
 		return err
 	}
 	firstLine := string(bytes.Split(b, []byte("\n"))[0])
-
 	// find the first image
 	var imagePath string
 	s := bufio.NewScanner(bytes.NewReader(b))
