@@ -30,12 +30,24 @@
 			width: 500px;
 			margin-left: -500px;
 		}
+		.robomonkeys {
+			position: relative;
+			width: auto;
+			max-width: 80%;
+			width: 250px;
+			margin: auto;
+			margin-top: 250px;
+			margin-left: -400px;
+		}
 		.app-preview {
 			opacity: 0.9;
 			max-width: 80%;
 			width: 700px;
-			margin-top: -150px;
+			margin-top: -250px;
 			margin-right: -500px;
+		}
+		.opacity-0 {
+			opacity: 0;
 		}
 	</style>
 {{ end }}
@@ -52,12 +64,18 @@
 				<span class='opacity-50'>(</span>the BitBar reboot<span class='opacity-50'>)</span>
 			</p>
 		</div>
-		<div class='hidden md:block mt-16 text-center'>
+		<div class='hidden md:block text-center'>
 			<p>
 				<img 
 					alt='Screenshot showing xbar menu in action'
 					class='inline menu-preview rounded-lg shadow-xl'
 					src='/public/img/xbar-menu-preview.png'
+				>
+				<img
+					id='robomonkeys'
+					alt='Hand drawing of robo monkeys working on the menu bar. Drawn by David Hernandez.'
+					class='inline transition duration-1000 delay-1000 robomonkeys opacity-0'
+					src='/public/img/robomonkeys-by-dahernan.png'
 				>
 			</p>
 			<p>
@@ -127,6 +145,25 @@
 			<a href='/docs/contributors/index.html'><img class='rounded shadow-xl w-full' style='max-width:768px;' src='/public/img/contributors.jpg'></a>
 		</div>
 		{{ template "support" . }}
+		<script>
+			let robomonkeysVisible = false
+			function robomonkeysassemble() {
+				const el = document.getElementById('robomonkeys')
+				if (!el) { return }
+				robomonkeys.classList.remove('opacity-0')
+			}
+			function robomonkeysgoawayplease() {
+				const el = document.getElementById('robomonkeys')
+				if (!el) { return }
+				robomonkeys.classList.add('opacity-0')
+			}
+			window.addEventListener('keydown', e => {
+				robomonkeysassemble()
+			})
+			window.addEventListener('keyup', e => {
+				robomonkeysgoawayplease()
+			})
+		</script>
 	</div>
 {{ end }}
 {{ define "subcategories" }}
