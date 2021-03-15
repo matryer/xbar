@@ -49,7 +49,7 @@
 			find your way back.
 		</p>
 	{:else}
-		<div transition:slide class='flex px-8 py-4 bg-yellow-200 bg-opacity-50'>
+		<div transition:slide class='flex px-8 py-4 bg-yellow-200 bg-opacity-50 dark:text-white'>
 			<div class='flex-grow'>
 				<strong>Something went wrong, this:</strong> {err}
 				<a class='ml-4 underline' href='#/report-error' on:click|preventDefault='{ () => { reportError(err) } }'>Open issue</a>

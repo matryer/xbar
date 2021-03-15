@@ -8,7 +8,7 @@
 		loadVariableValues, saveVariableValues,
 		setEnabled,
 		setRefreshInterval,
-		openURL,
+		openURL, openFile,
 	} from './rpc.svelte'
 	import { installedPlugins, selectedInstalledPluginPath, clearNav } from './pagedata.svelte'
 	import { wait } from './waiters.svelte'
@@ -147,6 +147,11 @@
 			.catch(e => err = e)
 	}
 
+	function openEditor(e) {
+		openFile(installedPlugin.path)
+			.catch(e => err = e)
+	}
+
 </script>
 
 <style>
@@ -232,7 +237,11 @@
 		{/if}
 		{#if installedPlugin}
 			<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-600 bg-opacity-75'>
-				<PluginSourceBrowser files={installedPlugin.files} />
+				<PluginSourceBrowser 
+					showEditButton={true}
+					on:openEditor={ openEditor }
+					files={installedPlugin.files} 
+				/>
 			</div>
 		{/if}
 	</div>
