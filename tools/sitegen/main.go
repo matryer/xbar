@@ -42,6 +42,7 @@ func run(ctx context.Context, args []string) error {
 		small    = flags.Bool("small", false, "run only a small sample (default is to process all)")
 		skipdata = flags.Bool("skipdata", false, "skip the data - just render the index template")
 		errs     = flags.Bool("errs", false, "print out error details")
+		nodocs   = flags.Bool("nodocs", false, "skip docs generation")
 	)
 	if err := flags.Parse(args[1:]); err != nil {
 		return err
@@ -173,15 +174,6 @@ func run(ctx context.Context, args []string) error {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		if err := g.generateSitemap(categories, pluginsByPath, *out); err != nil {
-			if *errs == true {
-				log.Println(errors.Wrap(err, "generateSitemap"))
-			}
-		}
-	}()
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
 		if err := g.generateContributorPages(categories, pluginsByPath); err != nil {
 			if *errs == true {
 				log.Println(errors.Wrap(err, "generateContributorPages"))
@@ -216,8 +208,20 @@ func run(ctx context.Context, args []string) error {
 	wg.Wait()
 	fmt.Println()
 	log.Printf("processed %d plugins\n", len(allPlugins))
-	// log.Printf("categories: %+v\n", categories)
-	// log.Printf("//pluginsByPath: %+v\n", //pluginsByPath)
+	var articles []Article
+	if !*nodocs {
+		articles, err = generateDocs(ctx)
+		if err != nil {
+			if *errs == true {
+				log.Println(errors.Wrap(err, "generateDocs"))
+			}
+		}
+	}
+	if err := g.generateSitemap(categories, pluginsByPath, articles, *out); err != nil {
+		if *errs == true {
+			log.Println(errors.Wrap(err, "generateSitemap"))
+		}
+	}
 	return nil
 }
 
@@ -771,7 +775,7 @@ func (g *generator) generateCategoryPage(categories map[string]metadata.Category
 	return nil
 }
 
-func (g *generator) generateSitemap(categories map[string]metadata.Category, pluginsByPath map[string][]metadata.Plugin, outputDir string) error {
+func (g *generator) generateSitemap(categories map[string]metadata.Category, pluginsByPath map[string][]metadata.Plugin, articles []Article, outputDir string) error {
 	now := time.Now()
 	sm := sitemap.New()
 	sm.Add(&sitemap.URL{
@@ -779,6 +783,13 @@ func (g *generator) generateSitemap(categories map[string]metadata.Category, plu
 		LastMod:    &now,
 		ChangeFreq: sitemap.Weekly,
 	})
+	for _, article := range articles {
+		sm.Add(&sitemap.URL{
+			Loc:        "https://xbarapp.com/docs/" + article.Path,
+			LastMod:    &now,
+			ChangeFreq: sitemap.Weekly,
+		})
+	}
 	var addCategory func(categories map[string]metadata.Category)
 	addCategory = func(categories map[string]metadata.Category) {
 		for _, category := range categories {

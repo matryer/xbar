@@ -23,9 +23,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-//go:embed .version
-var version string
-
 var (
 	sourceArticlesFolder = filepath.Join("../", "../", "xbarapp.com", "articles")
 	destFolder           = filepath.Join("../", "../", "xbarapp.com", "public", "docs")
@@ -36,18 +33,11 @@ var (
 	categoriesJSON = filepath.Join("../", "../", "xbarapp.com", "public", "docs", "plugins", "categories.json")
 )
 
-func main() {
-	if err := run(context.Background(), os.Args); err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
-		os.Exit(1)
-	}
-}
-
-func run(ctx context.Context, args []string) error {
+func generateDocs(ctx context.Context) ([]Article, error) {
 	rand.Seed(time.Now().Unix())
-	g, err := newGenerator()
+	g, err := newDocsGenerator()
 	if err != nil {
-		return errors.Wrap(err, "generator")
+		return nil, errors.Wrap(err, "newDocsGenerator")
 	}
 	docs := make(map[string]string)
 	err = filepath.Walk(sourceArticlesFolder, func(path string, info fs.FileInfo, err error) error {
@@ -77,7 +67,7 @@ func run(ctx context.Context, args []string) error {
 		return nil
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
 	for path, rel := range docs {
 		dest := filepath.Join(destFolder, rel)
@@ -96,13 +86,13 @@ func run(ctx context.Context, args []string) error {
 	})
 	err = g.generateArticlePages()
 	if err != nil {
-		return errors.Wrap(err, "generateArticlePages")
+		return nil, errors.Wrap(err, "generateArticlePages")
 	}
 	err = g.generateArticlesIndexPage()
 	if err != nil {
-		return errors.Wrap(err, "generateArticlesIndexPage")
+		return nil, errors.Wrap(err, "generateArticlesIndexPage")
 	}
-	return nil
+	return g.articles, nil
 }
 
 type Article struct {
@@ -117,14 +107,14 @@ type Article struct {
 	HTML           template.HTML
 }
 
-type generator struct {
+type docsGenerator struct {
 	articleTemplate       *template.Template
 	articlesIndexTemplate *template.Template
 	categories            map[string]metadata.Category
 	articles              []Article
 }
 
-func newGenerator() (*generator, error) {
+func newDocsGenerator() (*docsGenerator, error) {
 	articleTemplate, err := template.ParseFiles(
 		filepath.Join(templatesFolder, "_layout.html"),
 		filepath.Join(templatesFolder, "article.html"),
@@ -155,7 +145,7 @@ func newGenerator() (*generator, error) {
 	for _, category := range payload.Categories {
 		categoriesMap[category.Path] = category
 	}
-	g := &generator{
+	g := &docsGenerator{
 		articleTemplate:       articleTemplate,
 		articlesIndexTemplate: articlesIndexTemplate,
 		categories:            categoriesMap,
@@ -163,8 +153,8 @@ func newGenerator() (*generator, error) {
 	return g, nil
 }
 
-func (g *generator) parseArticleSource(ctx context.Context, path, dest, src string) error {
-	fmt.Printf("%s\n", path)
+func (g *docsGenerator) parseArticleSource(ctx context.Context, path, dest, src string) error {
+	fmt.Printf("parsing: %s\n", path)
 	pathSegs := strings.Split(path, string(filepath.Separator))
 	yearStr := pathSegs[0]
 	monthStr := pathSegs[1]
@@ -214,8 +204,9 @@ func (g *generator) parseArticleSource(ctx context.Context, path, dest, src stri
 	return nil
 }
 
-func (g *generator) generateArticlePages() error {
+func (g *docsGenerator) generateArticlePages() error {
 	for _, article := range g.articles {
+		fmt.Printf("creating: %s\n", article.DestFilepath)
 		f, err := os.Create(article.DestFilepath)
 		if err != nil {
 			return errors.Wrap(err, "create dest")
@@ -245,7 +236,7 @@ func (g *generator) generateArticlePages() error {
 	return nil
 }
 
-func (g *generator) generateArticlesIndexPage() error {
+func (g *docsGenerator) generateArticlesIndexPage() error {
 	f, err := os.Create(filepath.Join(destFolder, "index.html"))
 	if err != nil {
 		return errors.Wrap(err, "create index.html")
@@ -274,7 +265,7 @@ func (g *generator) generateArticlesIndexPage() error {
 // randomArticles gets a selection of random articles.
 // excluding is the path of an article to exclude, empty string
 // will include them all.
-func (g *generator) randomArticles(excluding string, n int) []Article {
+func (g *docsGenerator) randomArticles(excluding string, n int) []Article {
 	skips := make(map[string]bool)
 	if n > len(g.articles) {
 		// not enough articles, we'll just return fewer.

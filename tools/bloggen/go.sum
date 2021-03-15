@@ -1,8 +1,0 @@
-github.com/gomarkdown/markdown v0.0.0-20210208175418-bda154fe17d8 h1:nWU6p08f1VgIalT6iZyqXi4o5cZsz4X6qa87nusfcsc=
-github.com/gomarkdown/markdown v0.0.0-20210208175418-bda154fe17d8/go.mod h1:aii0r/K0ZnHv7G0KF7xy1v0A7s2Ljrb5byB7MO5p6TU=
-github.com/matryer/is v1.4.0/go.mod h1:8I/i5uYgLzgsgEloJE1U6xx5HkBQpAZvepWuujKwMRU=
-github.com/matryer/xbar/pkg/metadata v0.0.0-20210313181431-2dfbd8ce9318 h1:WZBKw6Sj/fTvCaZp3wNKmfN+uwVf815Afvb54iV7glM=
-github.com/matryer/xbar/pkg/metadata v0.0.0-20210313181431-2dfbd8ce9318/go.mod h1:KYMTrUZYW0od/4hkL0Psb9zSwRVv4soFN6Np2W0QGu8=
-github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
-github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
-golang.org/dl v0.0.0-20190829154251-82a15e2f2ead/go.mod h1:IUMfjQLJQd4UTqG1Z90tenwKoCX93Gn3MAQJMOSBsDQ=

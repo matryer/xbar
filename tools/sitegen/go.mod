@@ -6,6 +6,7 @@ replace github.com/matryer/xbar/pkg/metadata => ../../pkg/metadata
 
 require (
 	github.com/golang/protobuf v1.4.2 // indirect
+	github.com/gomarkdown/markdown v0.0.0-20210208175418-bda154fe17d8
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/matryer/is v1.4.0
