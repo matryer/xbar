@@ -27,23 +27,44 @@
 {{ define "body" }}
 	<div class='bg-gray-900 bg-opacity-25'>
 		<div class='container mx-auto'>
-			<div class='rounded p-8 text-white md:pt-16'>
-				<h2 class='font-bold text-2xl fancy-font'>
+			<div class='rounded p-8 text-white md:py-16'>
+				<h1 class='font-bold text-6xl fancy-font mb-16'>
 					Welcome to xbar docs
-				</h2>
-				<ul class='py-8 list-style-disc'>
-				{{ range .AllArticles }}
-					<li class='mb-3'>
-						{{ .PublishTimeStr }}
-						<a 
-							href='/docs/{{ .Path }}'
-							class='hover:underline opacity-75'
-						>
-							{{ .Title }}
-						</a>
-					</li>
-				{{ end }}
-				</ul>
+				</h1>
+				<div class='flex flex-wrap mt-4'>
+					<div class='md:mr-8'>
+						<h2 class='font-bold text-2xl fancy-font mb-3'>
+							Reference
+						</h2>
+						<ul class='list-style-disc'>
+							<li class='mb-3'>
+								<a class='hover:underline' href='https://github.com/matryer/xbar#writing-plugins'>
+									Writing plugins guide
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h2 class='font-bold text-2xl fancy-font mb-3'>
+							Articles
+						</h2>
+						<ul class='list-style-disc'>
+							{{ range .AllArticles }}
+								<li class='mb-3'>
+									<span class='opacity-75'>
+										{{ .PublishTimeStr }}
+									</span>
+									<a 
+										href='/docs/{{ .Path }}'
+										class='hover:underline'
+									>
+										{{ .Title }}
+									</a>
+								</li>
+							{{ end }}
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
