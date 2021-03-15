@@ -113,7 +113,7 @@
 			<span class='opacity-75'>Browse</span>
 			hundreds of plugins<span class='opacity-75'>&mdash;by category</span>
 		</div>
-		<div class='p-8 pt-0 text-center text-white text-2xl font-bold mt-8 max-w-2xl mx-auto'>
+		<div class='p-8 pt-0 text-center text-white text-2xl font-bold mt-8 max-w-2xl mx-auto leading-8'>
 			{{ range $k, $v := .Categories }}
 				<a class='opacity-50 hover:opacity-100 mr-4' href='/docs/plugins/{{ $k }}.html'>
 					{{ $v.Text }}

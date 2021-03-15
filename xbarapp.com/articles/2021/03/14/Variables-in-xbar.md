@@ -4,6 +4,14 @@ The [new xbar app](https://github.com/matryer/xbar/releases/latest) renders vari
 
 ![](xbar-plugin-with-variables.jpg)
 
+## Use cases
+
+Variables are great for:
+
+* API keys or tokens that your plugin needs
+* Different style or presentation options
+* Letting users decide how many items to show
+
 ## Defining variables
 
 To define variables for your plugin, use `xbar.var` tags.

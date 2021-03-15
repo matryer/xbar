@@ -11,10 +11,11 @@ import (
 	"io"
 	"io/fs"
 	"log"
+	"math/rand"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
-	"sync"
 	"time"
 
 	"github.com/gomarkdown/markdown"
@@ -43,11 +44,12 @@ func main() {
 }
 
 func run(ctx context.Context, args []string) error {
+	rand.Seed(time.Now().Unix())
 	g, err := newGenerator()
 	if err != nil {
 		return errors.Wrap(err, "generator")
 	}
-	articles := make(map[string]string)
+	docs := make(map[string]string)
 	err = filepath.Walk(sourceArticlesFolder, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -65,10 +67,10 @@ func run(ctx context.Context, args []string) error {
 		dest := filepath.Join(destFolder, rel)
 		ext := filepath.Ext(path)
 		if ext == ".md" {
-			articles[path] = rel
+			docs[path] = rel
 			return nil // don't copy the file
 		}
-		_, err = copy(dest, path)
+		_, err = copyFile(dest, path)
 		if err != nil {
 			return err
 		}
@@ -77,35 +79,62 @@ func run(ctx context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	var wg sync.WaitGroup
-	for path, rel := range articles {
-		wg.Add(1)
-		go func(path, rel string) {
-			defer wg.Done()
-			dest := filepath.Join(destFolder, rel)
-			filename := filepath.Base(path)
-			filename = strings.ToLower(filename[:len(filename)-2] + "html")
-			dest = filepath.Join(destFolder, filepath.Dir(rel), filename)
-			destFilename := filepath.Join(filepath.Dir(rel), filename)
-			err := g.processMarkdownFile(ctx, destFilename, dest, path)
-			if err != nil {
-				log.Printf("%s: %s", path, err)
-			}
-		}(path, rel)
+	for path, rel := range docs {
+		dest := filepath.Join(destFolder, rel)
+		filename := filepath.Base(path)
+		filename = strings.ToLower(filename[:len(filename)-2] + "html")
+		dest = filepath.Join(destFolder, filepath.Dir(rel), filename)
+		destFilename := filepath.Join(filepath.Dir(rel), filename)
+		err := g.parseArticleSource(ctx, destFilename, dest, path)
+		if err != nil {
+			log.Printf("%s: %s", path, err)
+		}
 	}
-	wg.Wait()
+	// sort articles by time
+	sort.Slice(g.articles, func(i, j int) bool {
+		return g.articles[i].PublishTime.Before(g.articles[j].PublishTime)
+	})
+	err = g.generateArticlePages()
+	if err != nil {
+		return errors.Wrap(err, "generateArticlePages")
+	}
+	err = g.generateArticlesIndexPage()
+	if err != nil {
+		return errors.Wrap(err, "generateArticlesIndexPage")
+	}
 	return nil
 }
 
+type Article struct {
+	Path         string
+	DestFilepath string
+
+	Title          string
+	Desc           string
+	ImageURL       string
+	PublishTime    time.Time
+	PublishTimeStr string
+	HTML           template.HTML
+}
+
 type generator struct {
-	template   *template.Template
-	categories map[string]metadata.Category
+	articleTemplate       *template.Template
+	articlesIndexTemplate *template.Template
+	categories            map[string]metadata.Category
+	articles              []Article
 }
 
 func newGenerator() (*generator, error) {
-	tpl, err := template.ParseFiles(
+	articleTemplate, err := template.ParseFiles(
 		filepath.Join(templatesFolder, "_layout.html"),
 		filepath.Join(templatesFolder, "article.html"),
+	)
+	if err != nil {
+		return nil, err
+	}
+	articlesIndexTemplate, err := template.ParseFiles(
+		filepath.Join(templatesFolder, "_layout.html"),
+		filepath.Join(templatesFolder, "articles-index.html"),
 	)
 	if err != nil {
 		return nil, err
@@ -127,26 +156,24 @@ func newGenerator() (*generator, error) {
 		categoriesMap[category.Path] = category
 	}
 	g := &generator{
-		template:   tpl,
-		categories: categoriesMap,
+		articleTemplate:       articleTemplate,
+		articlesIndexTemplate: articlesIndexTemplate,
+		categories:            categoriesMap,
 	}
 	return g, nil
 }
 
-func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src string) error {
+func (g *generator) parseArticleSource(ctx context.Context, path, dest, src string) error {
 	fmt.Printf("%s\n", path)
-
 	pathSegs := strings.Split(path, string(filepath.Separator))
 	yearStr := pathSegs[0]
 	monthStr := pathSegs[1]
-	log.Println("The year and month: ", yearStr, monthStr)
-
-	articleTime, err := time.Parse("01/2006", fmt.Sprintf("%s/%s", monthStr, yearStr))
+	dayStr := pathSegs[1]
+	publishTime, err := time.Parse("02/01/2006", fmt.Sprintf("%s/%s/%s", dayStr, monthStr, yearStr))
 	if err != nil {
 		return errors.Wrap(err, "parse time from path")
 	}
-	articleTimeStr := articleTime.Format("January 2006")
-
+	publishTimeStr := publishTime.Format("January 2006")
 	b, err := os.ReadFile(src)
 	if err != nil {
 		return err
@@ -170,48 +197,110 @@ func (g *generator) processMarkdownFile(ctx context.Context, path, dest, src str
 	if err != nil {
 		return err
 	}
-	f, err := os.Create(dest)
-	if err != nil {
-		return errors.Wrap(err, "create dest")
-	}
-	defer f.Close()
 	title := filepath.Base(src)
 	title = title[:len(title)-len(filepath.Ext(title))]
 	title = strings.ReplaceAll(title, "-", " ")
-	pagedata := struct {
-		Version              string
-		LastUpdatedFormatted string
-		CurrentCategoryPath  string
-		Categories           map[string]metadata.Category
-
-		Path           string
-		ArticleTimeStr string
-		Title          string
-		Desc           string
-		ImageURL       string
-		HTML           template.HTML
-	}{
-		Version:              version,
-		LastUpdatedFormatted: time.Now().Format(time.RFC822),
-		Categories:           g.categories,
-
+	a := Article{
 		Path:           path,
-		ArticleTimeStr: articleTimeStr,
+		DestFilepath:   dest,
+		PublishTime:    publishTime,
+		PublishTimeStr: publishTimeStr,
 		Title:          title,
 		Desc:           firstLine,
 		ImageURL:       imagePath,
 		HTML:           template.HTML(html),
 	}
-	err = g.template.ExecuteTemplate(f, "_main", pagedata)
+	g.articles = append(g.articles, a)
+	return nil
+}
+
+func (g *generator) generateArticlePages() error {
+	for _, article := range g.articles {
+		f, err := os.Create(article.DestFilepath)
+		if err != nil {
+			return errors.Wrap(err, "create dest")
+		}
+		defer f.Close()
+		pagedata := struct {
+			Version              string
+			LastUpdatedFormatted string
+			CurrentCategoryPath  string
+			Categories           map[string]metadata.Category
+			AllArticles          []Article
+			RandomArticles       []Article
+			Article              Article
+		}{
+			Version:              version,
+			LastUpdatedFormatted: time.Now().Format(time.RFC822),
+			Categories:           g.categories,
+			AllArticles:          g.articles,
+			RandomArticles:       g.randomArticles(article.Path, 5),
+			Article:              article,
+		}
+		err = g.articleTemplate.ExecuteTemplate(f, "_main", pagedata)
+		if err != nil {
+			return errors.Wrap(err, "render")
+		}
+	}
+	return nil
+}
+
+func (g *generator) generateArticlesIndexPage() error {
+	f, err := os.Create(filepath.Join(destFolder, "index.html"))
+	if err != nil {
+		return errors.Wrap(err, "create index.html")
+	}
+	defer f.Close()
+
+	pagedata := struct {
+		Version              string
+		LastUpdatedFormatted string
+		CurrentCategoryPath  string
+		Categories           map[string]metadata.Category
+		AllArticles          []Article
+	}{
+		Version:              version,
+		LastUpdatedFormatted: time.Now().Format(time.RFC822),
+		Categories:           g.categories,
+		AllArticles:          g.articles,
+	}
+	err = g.articlesIndexTemplate.ExecuteTemplate(f, "_main", pagedata)
 	if err != nil {
 		return errors.Wrap(err, "render")
 	}
 	return nil
 }
 
-// copy copies a file.
+// randomArticles gets a selection of random articles.
+// excluding is the path of an article to exclude, empty string
+// will include them all.
+func (g *generator) randomArticles(excluding string, n int) []Article {
+	skips := make(map[string]bool)
+	if n > len(g.articles) {
+		// not enough articles, we'll just return fewer.
+		n = len(g.articles)
+	}
+	if excluding != "" {
+		skips[excluding] = true
+		if n == len(g.articles) {
+			// expect one less
+			n--
+		}
+	}
+	selectedArticles := make([]Article, 0, n)
+	for len(selectedArticles) < n {
+		randomArticle := g.articles[rand.Intn(len(g.articles))]
+		if _, shouldSkip := skips[randomArticle.Path]; shouldSkip {
+			continue
+		}
+		selectedArticles = append(selectedArticles, randomArticle)
+	}
+	return selectedArticles
+}
+
+// copyFile copies a file.
 // from https://opensource.com/article/18/6/copying-files-go
-func copy(dst, src string) (int64, error) {
+func copyFile(dst, src string) (int64, error) {
 	sourceFileStat, err := os.Stat(src)
 	if err != nil {
 		return 0, err

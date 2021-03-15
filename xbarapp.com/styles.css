@@ -87,6 +87,9 @@ strong.bg-brand-text {
 #menubar a.selected {
 	background-color: rgba(255, 255, 255, 0.15);
 }
+.plugin-image {
+	max-height: 150px;
+}
 
 @tailwind base;
 @tailwind components;

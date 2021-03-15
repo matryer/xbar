@@ -4,7 +4,7 @@ Your plugin will run in xbar without any changes. However, there are a few tweak
 
 # What's new in xbar?
 
-1. Update your metadata - change `<bitbar.*>` tags to `<xbar.*>`
+1. Unlock new features by upgrading your metadata - change `<bitbar.*>` tags to `<xbar.*>`
 1. Use the `shell` parameter instead of `bash`
 1. There is now no limit to the number of `paramN` parameters you can use
 1. Use variables (new feature) instead of asking users to edit your scripts
@@ -12,23 +12,9 @@ Your plugin will run in xbar without any changes. However, there are a few tweak
 
 ## Variables for configuration
 
-Instead of asking users to edit your plugin script, xbar introduces Variables.
-
-![Screenshot showing an xbar plugin with variables](xbar-plugin-with-variables.png)
-
-Variables are great for:
-
-* API keys or tokens that your plugin needs
-* Different style or presentation options
-* Number of items to show
-
 Variables are defined in your plugin's metadata. The xbar UI lets users configure the values without editing your script.
 
-To make it work:
-
-1. Add the `xbar.var` metadata to your plugin code (read the [Metadata documentation](https://github.com/matryer/xbar#metadata))
-1. Remove any previous variables
-1. Get the values by using environment variables
+* To learn more, read about the [New Variables feature in xbar](/docs/2021/03/14/new-variables-feature-in-xbar.html)
 
 ## Keyboard shortcuts
 

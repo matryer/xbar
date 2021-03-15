@@ -1,22 +1,22 @@
-{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "title" }}{{ .Article.Title }}{{ end }}
 {{ define "head" }}
-    <meta name='description' content='{{ .Desc }}'>
+    <meta name='description' content='{{ .Article.Desc }}'>
     <meta name='author' content='Mat Ryer + contributors'>
     <meta name='keywords' content='macos,menubar,xbar,bitbar'>
-    <meta itemprop='image' content='{{ .ImageURL }}'>
-    <meta itemprop='name' content='{{ .Title }}'>
-    <meta itemprop='description' content='{{ .Desc }}'>
+    <meta itemprop='image' content='{{ .Article.ImageURL }}'>
+    <meta itemprop='name' content='{{ .Article.Title }}'>
+    <meta itemprop='description' content='{{ .Article.Desc }}'>
     <meta name='twitter:card' content='summary_large_image'>
-    <meta name='twitter:title' content='{{ .Title }}'>
-    <meta name='twitter:description' content='{{ .Desc }}'>
-    <meta name='twitter:image' content='{{ .ImageURL }}'>
+    <meta name='twitter:title' content='{{ .Article.Title }}'>
+    <meta name='twitter:description' content='{{ .Article.Desc }}'>
+    <meta name='twitter:image' content='{{ .Article.ImageURL }}'>
     <meta name='twitter:creator' content='matryer'>
-    <meta property='og:title' content='{{ .Title }}'>
-    <meta property='og:description' content='{{ .Desc }}'>
-    <meta property='og:url' content='https://xbarapp.com/docs/{{ .Path }}'>
+    <meta property='og:title' content='{{ .Article.Title }}'>
+    <meta property='og:description' content='{{ .Article.Desc }}'>
+    <meta property='og:url' content='https://xbarapp.com/docs/{{ .Article.Path }}'>
     <meta property='og:site_name' content='xbar lets you put anything into your macOS menu bar'>
     <meta property='og:type' content='article'>
-    <meta property='og:image' content='{{ .ImageURL }}'>
+    <meta property='og:image' content='{{ .Article.ImageURL }}'>
     <link rel='apple-touch-icon' sizes='180x180' href='/public/img/xbar-2048.png'>
     <link rel='icon' type='image/png' sizes='32x32' href='/public/img/xbar-2048.png'>
     <link rel='shortcut icon' href='/public/img/xbar-2048.png'>
@@ -52,14 +52,25 @@
         .article p {
             margin-top: 10px;
             margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.75);
         }
-        .article h1.title {
+        h1.title {
             font-weight: bold;
         }
         .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
-            margin-top: 40px;
+            font-family: 'Bodoni Moda', serif;
+            margin-top: 50px;
             margin-bottom: 20px;
             color: white;
+        }
+        .article h1 {
+            font-size: 1.8rem;
+        }
+        .article h2 {
+            font-size: 1.6rem;
+        }
+        .article h3 {
+            font-size: 1.4rem;
         }
         .article ul {
             margin-top: 10px;
@@ -93,28 +104,44 @@
         }
         .article code {
             font-size: 0.8em;
+            color: white;
         }
     </style>
 {{ end }}
 {{ define "body" }}
-    <div class='article'>
+    <main>
         <div class='p-8 rounded-lg shadow-2xl w-full'>
-            <div class='container mx-auto max-w-3xl'>
-                <h1 class='text-5xl title fancy-font text-center mx-4 mb-8 pb-8'>
-                    {{ .Title }}
-                </h1>
-                <div class='text-xl fancy-font opacity-50 text-center uppercase pb-8'>
-                    {{ .ArticleTimeStr }}
+            <div class='container mx-auto mt-4 text-white'>
+                <div class='text-xl fancy-font opacity-50 mx-4 uppercase'>
+                    {{ .Article.PublishTimeStr }}
                 </div>
+                <h1 class='text-4xl title fancy-font mx-4 mb-8 max-w-3xl'>
+                    {{ .Article.Title }}
+                </h1>
             </div>
         </div>
         <div class='shadow-2xl bg-black bg-opacity-25'>
-            <div class='container mx-auto max-w-3xl'>
-                <div class='text-2xl py-16 pb-32 p-2'>
-                    {{ .HTML }}
+            <div class='container mx-auto lg:flex lg:space-x-8'>
+                <div class='article max-w-screen-md text-xl py-4 lg:py-12 pb-8 lg:pb-32 p-2'>
+                    {{ .Article.HTML }}
+                </div>
+                <div class='py-4 lg:py-8 pb-32'>
+                    <div class='bg-gray-900 bg-opacity-25 rounded p-8 text-white'>
+                        <h2 class='font-bold mb-4'>You might also like</h2>
+                        {{ range .AllArticles }}
+                            <p class='mb-3'>
+                                <a 
+                                    href='/docs/{{ .Path }}'
+                                    class='hover:underline opacity-75'
+                                >
+                                    {{ .Title }}
+                                </a>
+                            </p>
+                        {{ end }}
+                    </div>
                 </div>
             </div>
         </div>
         {{ template "support" . }}
-    </div>
+    </main>
 {{ end }}
