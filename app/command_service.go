@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -65,16 +64,9 @@ func (c CommandService) OpenURL(url string) error {
 
 // OpenFile opens a file for editing.
 func (c CommandService) OpenFile(path string) error {
-	// try with $EDITOR
-	err := c.runCommand(os.Getenv("EDITOR"), filepath.Join(pluginDirectory, path))
-	if nil == err {
-		return nil // done
-	}
-	log.Println("open failed:", err)
-	// try with open
 	err = c.runCommand("open", filepath.Join(pluginDirectory, path))
 	if err != nil {
-		return errors.Wrapf(err, "unable to open directory %q", path)
+		return errors.Wrapf(err, "failed to open %q", path)
 	}
 	return nil
 }
