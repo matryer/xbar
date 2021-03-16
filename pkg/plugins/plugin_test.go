@@ -316,3 +316,20 @@ func TestCleanFilename(t *testing.T) {
 	is.Equal(p.CleanFilename(), "file.sh")
 
 }
+
+// TestPluginWontQuit tests to see if plugins that ignore the signal
+// still end up refreshing. Turns out they do because we're using exec.CommandContext.
+func TestPluginWontQuit(t *testing.T) {
+	p := Plugin{
+		Debugf:  t.Logf,
+		Command: filepath.Join("testdata", "broken-plugins", "wont-quit.1m.sh"),
+	}
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
+	t.Cleanup(func() {
+		cancel()
+	})
+	p.Refresh(ctx)
+	p.Refresh(ctx)
+	p.Refresh(ctx)
+}
