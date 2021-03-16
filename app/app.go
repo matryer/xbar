@@ -94,7 +94,7 @@ func newApp() *app {
 	)
 
 	app.contextMenus = []*menu.ContextMenu{
-		menu.NewContextMenu("refresh", menu.NewMenuFromItems(
+		menu.NewContextMenu("refreshContextMenu", menu.NewMenuFromItems(
 			menu.Text("Refresh page data", nil, app.onBrowserHardRefreshMenuClicked),
 			menu.Text("Refresh plugins", nil, app.onPluginsRefreshAllMenuClicked),
 			menu.Text("Clear Cache", nil, app.onClearCacheMenuClicked),
