@@ -278,7 +278,7 @@ func TestGoodColors(t *testing.T) {
 	named | color=red
 	RGB | color=#333
 	RGBA | color=#3338
-	RRGGBB | color=#333333
+	RRGGBB | color=#4078C0
 	RRGGBBAA | color=#33333388
 	darkviolet | color=DarkViolet
 	`)))
@@ -287,7 +287,7 @@ func TestGoodColors(t *testing.T) {
 	is.Equal(items.CycleItems[0].Params.Color, `#ff0000`)
 	is.Equal(items.CycleItems[1].Params.Color, `#333`)
 	is.Equal(items.CycleItems[2].Params.Color, `#3338`)
-	is.Equal(items.CycleItems[3].Params.Color, `#333333`)
+	is.Equal(items.CycleItems[3].Params.Color, `#4078c0`)
 	is.Equal(items.CycleItems[4].Params.Color, `#33333388`)
 	is.Equal(items.CycleItems[5].Params.Color, `#9400d3`)
 }
