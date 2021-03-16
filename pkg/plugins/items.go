@@ -273,6 +273,7 @@ func parseColor(s string) (string, error) {
 	if len(s) == 0 {
 		return "", errors.Errorf("expected hex string or named color") // Probably an error?
 	}
+	s = strings.ToLower(s)
 	if s[0] == '#' {
 		// Matches #RGB #RGBA #RRGGBB #RRGGBBAA
 		if !colorRegexp.Match([]byte(s)) {
@@ -280,7 +281,7 @@ func parseColor(s string) (string, error) {
 		}
 		return s, nil
 	}
-	hexValue, valid := namedColors[strings.ToLower(s)]
+	hexValue, valid := namedColors[s]
 	if !valid {
 		return "", errors.Errorf(`invalid named color "%s"`, s)
 	}
