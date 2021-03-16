@@ -147,9 +147,10 @@
 			.catch(e => err = e)
 	}
 
+	let openEditorErr = null
 	function openEditor(e) {
 		openFile(installedPlugin.path)
-			.catch(e => err = e)
+			.catch(e => openEditorErr = e)
 	}
 
 </script>
@@ -236,6 +237,7 @@
 			</div>
 		{/if}
 		{#if installedPlugin}
+			<Error err={openEditorErr} />
 			<div class='flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-600 bg-opacity-75'>
 				<PluginSourceBrowser 
 					showEditButton={true}

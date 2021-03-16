@@ -22,7 +22,7 @@
                 <div class='pr-3'>
                     <Button
                         on:click={ () => editFile(file) }
-                    >Edit</Button>
+                    >Open in external editor</Button>
                 </div>
             {/if}
         </div>
