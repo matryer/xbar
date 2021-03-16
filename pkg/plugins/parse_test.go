@@ -21,9 +21,9 @@ func TestPluginParams(t *testing.T) {
 	p.Refresh(ctx)
 	is.Equal(len(p.Items.CycleItems), 3)
 	is.Equal(p.Items.CycleItems[0].Text, "one")
-	is.Equal(p.Items.CycleItems[0].Params.Color, "red")
+	is.Equal(p.Items.CycleItems[0].Params.Color, "#ff0000")
 	is.Equal(p.Items.CycleItems[1].Text, "two")
-	is.Equal(p.Items.CycleItems[1].Params.Color, "blue")
+	is.Equal(p.Items.CycleItems[1].Params.Color, "#0000ff")
 	is.Equal(p.Items.CycleItems[2].Text, "three")
 	is.Equal(p.Items.CycleItems[2].Params.Href, "https://xbarapp.com")
 }

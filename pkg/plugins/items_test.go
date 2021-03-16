@@ -45,7 +45,7 @@ func TestParseParamStr(t *testing.T) {
 	}, " | "))
 	is.NoErr(err)
 	is.Equal(params.Href, "https://xbarapp.com")
-	is.Equal(params.Color, "red")
+	is.Equal(params.Color, "#ff0000")
 	is.Equal(params.Font, "MyFont")
 	is.Equal(params.Shell, "script.sh")
 	is.Equal(params.Terminal, false)
@@ -80,14 +80,14 @@ func TestParseParamStr(t *testing.T) {
 	}, " "))
 	is.NoErr(err)
 	is.Equal(params.Href, "https://xbarapp.com")
-	is.Equal(params.Color, "red")
+	is.Equal(params.Color, "#ff0000")
 	is.Equal(params.Font, "MyFont")
 
 	// tight pipe separator
 	err = parseParamStr(&params, `|href="https://xbarapp.com"|color=red|font="MyFont"`)
 	is.NoErr(err)
 	is.Equal(params.Href, "https://xbarapp.com")
-	is.Equal(params.Color, "red")
+	is.Equal(params.Color, "#ff0000")
 	is.Equal(params.Font, "MyFont")
 
 	// bash should work as well as shell
@@ -268,3 +268,56 @@ func TestTruncate(t *testing.T) {
 		is.Equal(truncate(input, maxLen), expected)
 	}
 }
+
+func TestGoodColors(t *testing.T) {
+	is := is.New(t)
+
+	ctx := context.Background()
+	p := &Plugin{}
+	items, err := p.parseOutput(ctx, "colors.txt", strings.NewReader(strings.TrimSpace(`
+	named | color=red
+	RGB | color=#333
+	RGBA | color=#3338
+	RRGGBB | color=#333333
+	RRGGBBAA | color=#33333388
+	darkviolet | color=DarkViolet
+	`)))
+	is.NoErr(err)
+	is.Equal(len(items.CycleItems), 6) // CycleItems
+	is.Equal(items.CycleItems[0].Params.Color, `#ff0000`)
+	is.Equal(items.CycleItems[1].Params.Color, `#333`)
+	is.Equal(items.CycleItems[2].Params.Color, `#3338`)
+	is.Equal(items.CycleItems[3].Params.Color, `#333333`)
+	is.Equal(items.CycleItems[4].Params.Color, `#33333388`)
+	is.Equal(items.CycleItems[5].Params.Color, `#9400d3`)
+}
+
+func TestBadColors(t *testing.T) {
+	is := is.New(t)
+
+	ctx := context.Background()
+	cols := map[string]string{
+		``:         "colors.txt:1: color: expected hex string or named color",
+		`""`:       "colors.txt:1: color: expected hex string or named color",
+		`#`:        "colors.txt:1: color: invalid hex format \"#\"",
+		`#fmty`:    "colors.txt:1: color: invalid hex format \"#fmty\"",
+		`badname`:  "colors.txt:1: color: invalid named color \"badname\"",
+		`#12`:      "colors.txt:1: color: invalid hex format \"#12\"",
+		`#12345`:   "colors.txt:1: color: invalid hex format \"#12345\"",
+		`#1234567`: "colors.txt:1: color: invalid hex format \"#1234567\"",
+	}
+	for col, errorMessage := range cols {
+		t.Run(col, func(t *testing.T) {
+			is := is.New(t)
+			p := &Plugin{}
+			_, err := p.parseOutput(ctx, "colors.txt", strings.NewReader(strings.TrimSpace(`
+bad | color=`+col)))
+			is.True(err != nil)
+			is.Equal(err.Error(), errorMessage)
+		})
+	}
+}
+
+/**
+
+ */

@@ -171,7 +171,11 @@ func (p *ItemParams) setValueByKey(key, value string) error {
 	case "href":
 		p.Href = value
 	case "color":
-		p.Color = value
+		var err error
+		p.Color, err = parseColor(value)
+		if err != nil {
+			return errors.Wrap(err, key)
+		}
 	case "font":
 		p.Font = value
 	case "size":
@@ -260,6 +264,27 @@ func parseBool(s string) (bool, error) {
 		return false, errors.Errorf(`expected "true" or "false", not "%s"`, s)
 	}
 	return b, nil
+}
+
+// parseColor parses the color value given.
+// Valid values: named color, #RGB, #RGBA, #RRGGBB, #RRGGBBAA.
+// Returns a nice error if it fails.
+func parseColor(s string) (string, error) {
+	if len(s) == 0 {
+		return "", errors.Errorf("expected hex string or named color") // Probably an error?
+	}
+	if s[0] == '#' {
+		// Matches #RGB #RGBA #RRGGBB #RRGGBBAA
+		if !colorRegexp.Match([]byte(s)) {
+			return "", errors.Errorf(`invalid hex format "%s"`, s)
+		}
+		return s, nil
+	}
+	hexValue, valid := namedColors[strings.ToLower(s)]
+	if !valid {
+		return "", errors.Errorf(`invalid named color "%s"`, s)
+	}
+	return hexValue, nil
 }
 
 // parseInt parses an int from a string, returning a nice
