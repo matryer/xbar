@@ -151,7 +151,7 @@ func (app *app) RefreshAll() {
 		<-app.pluginsStoppedSignal
 	}
 	// remove plugins
-	if len(app.plugins) == 0 && app.defaultTrayMenuActive {
+	if app.defaultTrayMenuActive {
 		// only default menu - remove it
 		app.runtime.Menu.DeleteTrayMenu(app.defaultTrayMenu)
 		app.defaultTrayMenuActive = false
