@@ -205,7 +205,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
     echo "Six"
 
   * Only One, Two and Three will appear in the top bar
-  * Clicking the plugin menu item will show all lines
+  * Clicking the plugin menu item will show the remaining items in the dropdown
 
 #### Multi-line plugin with links and colors
 
