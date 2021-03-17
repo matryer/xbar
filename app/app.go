@@ -92,7 +92,6 @@ func newApp() *app {
 			),
 		},
 	)
-
 	app.contextMenus = []*menu.ContextMenu{
 		menu.NewContextMenu("refreshContextMenu", menu.NewMenuFromItems(
 			menu.Text("Refresh page data", nil, app.onBrowserHardRefreshMenuClicked),
@@ -100,23 +99,20 @@ func newApp() *app {
 			menu.Text("Clear Cache", nil, app.onClearCacheMenuClicked),
 		)),
 	}
-
 	// client-side caching to cacheDirectory
 	tp := httpcache.NewTransport(diskcache.New(cacheDirectory))
 	client := &http.Client{
 		Transport: tp,
 		Timeout:   3 * time.Minute,
 	}
-
 	app.CategoriesService = NewCategoriesService(client)
 	app.PersonService = NewPersonService(client)
 	app.CommandService = NewCommandService(app.RefreshAll)
 	app.PluginsService = NewPluginsService(client, "https://xbarapp.com/docs/plugins/")
-
 	app.PluginsService.OnRefresh = app.RefreshAll
 	app.defaultTrayMenu = &menu.TrayMenu{
 		Label: "xbar",
-		Menu:  app.generatePreferencesMenu(nil),
+		Menu:  app.newXbarMenu(nil, false),
 	}
 	return app
 }
@@ -203,7 +199,7 @@ func (app *app) RefreshAll() {
 		// SubMenu *Menu inside the Item.
 		app.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
-			Menu:    app.generatePreferencesMenu(plugin),
+			Menu:    app.newXbarMenu(plugin, false),
 			OnOpen:  app.onMenuWillOpen,
 			OnClose: app.onMenuDidClose,
 		}
@@ -247,7 +243,7 @@ func (app *app) onErr(err string) {
 	errorMenu := &menu.Menu{}
 	errorMenu.Append(menu.Text(err, nil, nil))
 	errorMenu.Append(menu.Separator())
-	errorMenu.Merge(app.generatePreferencesMenu(nil))
+	errorMenu.Merge(app.newXbarMenu(nil, false))
 	app.defaultTrayMenu = &menu.TrayMenu{
 		Label: "⚠️ xbar",
 		Menu:  errorMenu,
@@ -265,7 +261,7 @@ func (app *app) Shutdown() {
 	}
 }
 
-func (app *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
+func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	var items []*menu.MenuItem
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
@@ -339,17 +335,22 @@ func (app *app) generatePreferencesMenu(plugin *plugins.Plugin) *menu.Menu {
 		Accelerator: keys.CmdOrCtrl("q"),
 		Click:       app.onQuitMenuClicked,
 	})
-	return menu.NewMenuFromItems(
-		menu.SubMenu("Preferences", &menu.Menu{
-			Items: items,
-		}),
-	)
+	if asSubmenu {
+		m := menu.NewMenuFromItems(
+			menu.SubMenu("xbar", &menu.Menu{
+				Items: items,
+			}),
+		)
+		return m
+	}
+	m := &menu.Menu{Items: items}
+	return m
 }
 
 func (app *app) createDefaultMenus() {
 	app.defaultTrayMenu = &menu.TrayMenu{
 		Label: "xbar",
-		Menu:  app.generatePreferencesMenu(nil),
+		Menu:  app.newXbarMenu(nil, false),
 	}
 }
 
@@ -480,10 +481,10 @@ func (app *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	app.updateLabel(tray, p)
 	pluginMenu := app.menuParser.ParseItems(ctx, p.Items.ExpandedItems)
 	if pluginMenu == nil {
-		pluginMenu = app.generatePreferencesMenu(p)
+		pluginMenu = app.newXbarMenu(p, false)
 	} else {
 		pluginMenu.Append(menu.Separator())
-		pluginMenu.Merge(app.generatePreferencesMenu(p))
+		pluginMenu.Merge(app.newXbarMenu(p, true))
 	}
 	tray.Menu = pluginMenu
 	app.runtime.Menu.SetTrayMenu(tray)
@@ -517,7 +518,15 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 		return false // no change
 	}
 	tray.Label = cycleItem.DisplayText()
-	tray.Icon = cycleItem.Params.Image
+	tray.Image = cycleItem.Params.Image
+	tray.FontName = cycleItem.Params.Font
+	tray.FontSize = cycleItem.Params.Size
+	tray.RGBA = cycleItem.Params.Color
+	if cycleItem.Params.TemplateImage != "" {
+		tray.Image = cycleItem.Params.TemplateImage
+		tray.MacTemplateImage = true
+	}
+
 	// todo: is it possible to have the effect of disabling the
 	// menu item, so it's clear it's updating.
 	// tray.Disabled = cycleItem.Params.Disabled
