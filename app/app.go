@@ -518,7 +518,15 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 		return false // no change
 	}
 	tray.Label = cycleItem.DisplayText()
-	tray.Icon = cycleItem.Params.Image
+	tray.Image = cycleItem.Params.Image
+	tray.FontName = cycleItem.Params.Font
+	tray.FontSize = cycleItem.Params.Size
+	tray.RGBA = cycleItem.Params.Color
+	if cycleItem.Params.TemplateImage != "" {
+		tray.Image = cycleItem.Params.TemplateImage
+		tray.MacTemplateImage = true
+	}
+
 	// todo: is it possible to have the effect of disabling the
 	// menu item, so it's clear it's updating.
 	// tray.Disabled = cycleItem.Params.Disabled
