@@ -134,7 +134,11 @@ func (app *app) Start(runtime *wails.Runtime) {
 		log.Println("failed to create plugin directory:", err)
 	}
 	app.RefreshAll()
-	go app.checkForUpdates(true)
+	go func() {
+		// wait before checking for updates
+		time.Sleep(10 * time.Second)
+		app.checkForUpdates(true)
+	}()
 }
 
 func (app *app) RefreshAll() {
@@ -508,19 +512,6 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 // downloads it and installs it.
 // If passive is true, it won't complain if it fails.
 func (app *app) checkForUpdates(passive bool) {
-	if version == "dev" {
-		log.Println("dev: skipping update check")
-		if !passive {
-			app.runtime.Dialog.Message(&dialog.MessageDialog{
-				Type:         dialog.ErrorDialog,
-				Title:        "Update check failed",
-				Message:      "Cannot check for updates with a dev build. Build for production and try again.",
-				Buttons:      []string{"OK"},
-				CancelButton: "OK",
-			})
-		}
-		return
-	}
 	u := update.Updater{
 		CurrentVersion: version,
 		//LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/xbar/releases/latest",
