@@ -106,16 +106,13 @@ func TestParseEmoji(t *testing.T) {
 }
 
 func TestParseMultiplePipes(t *testing.T) {
+	is := is.New(t)
 
 	const text = `cloudflare | bash=/tmp/bitbar_dns_switcher_cloudflare | terminal=false | refresh=true
 google | bash=/tmp/bitbar_dns_switcher_google | terminal=true | refresh=false
 `
-	var (
-		is = is.New(t)
-		p  = &Plugin{}
-		r  = strings.NewReader(text)
-	)
-	items, err := p.parseOutput(context.Background(), "optional-pipes.txt", r)
+	p := &Plugin{}
+	items, err := p.parseOutput(context.Background(), "optional-pipes.txt", strings.NewReader(text))
 	is.NoErr(err)
 	is.Equal(items.CycleItems[0].Text, "cloudflare")
 	is.Equal(items.CycleItems[0].Params.Terminal, false)
@@ -135,7 +132,7 @@ func TestHandoffToggle(t *testing.T) {
 	is.True(items.CycleItems[0].Params.TemplateImage != "")
 }
 
-// OffTestTokenTooLong tests for really long tokens.
+// TestTokenTooLong tests for really long tokens.
 // https://github.com/matryer/xbar/issues/629
 func TestTokenTooLong(t *testing.T) {
 	is := is.New(t)
@@ -152,4 +149,36 @@ func TestTokenTooLong(t *testing.T) {
 	items, err := p.parseOutput(ctx, "jma.1h.sh", f)
 	is.NoErr(err)
 	is.Equal(len(items.CycleItems), 1)
+}
+
+// TestNestedSeparators ensures separators work inside submenus.
+// https://github.com/matryer/xbar/issues/648
+func TestNestedSeparators(t *testing.T) {
+	is := is.New(t)
+
+	src := `a
+---
+b
+--c
+-----
+--d
+----e
+-------
+----f`
+	p := &Plugin{}
+	items, err := p.parseOutput(context.Background(), "optional-pipes.txt", strings.NewReader(src))
+	is.NoErr(err)
+
+	is.Equal(len(items.ExpandedItems), 1)
+	is.Equal(items.ExpandedItems[0].Text, "b")
+	is.Equal(len(items.ExpandedItems[0].Items), 3) // should be three items
+	is.Equal(items.ExpandedItems[0].Items[0].Text, "c")
+	is.Equal(items.ExpandedItems[0].Items[1].Params.Separator, true) // should be separator
+	is.Equal(items.ExpandedItems[0].Items[2].Text, "d")
+
+	is.Equal(len(items.ExpandedItems[0].Items[2].Items), 3)
+	is.Equal(items.ExpandedItems[0].Items[2].Items[0].Text, "e")
+	is.Equal(items.ExpandedItems[0].Items[2].Items[1].Params.Separator, true)
+	is.Equal(items.ExpandedItems[0].Items[2].Items[2].Text, "f")
+
 }

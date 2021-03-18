@@ -36,7 +36,10 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 			// io.EOF and no text - looks like were done.
 			break
 		}
-		trimmedText := strings.TrimSpace(text)
+		if readErr != io.EOF {
+			// not io.EOF, to trim off the delimiter
+			text = text[:len(text)-1]
+		}
 		text, params, err = parseParams(text)
 		if err != nil {
 			return items, &errParsing{
@@ -46,32 +49,10 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 				err:      err,
 			}
 		}
-		if !captureExpanded && trimmedText == "---" {
+		if !captureExpanded && strings.TrimSpace(text) == "---" {
 			// first --- means end of cycle items,
 			// start collecting expanded items now
 			captureExpanded = true
-			continue
-		}
-		if captureExpanded && trimmedText == "---" {
-			// subsequent --- is a separator
-			params.Separator = true
-			separatorItem := &Item{
-				Plugin: p,
-				Text:   text,
-				Params: params,
-			}
-			items.ExpandedItems = append(items.ExpandedItems, separatorItem)
-			continue
-		}
-		if captureExpanded && trimmedText == "" {
-			// empty lines should be smaller
-			blankLineItem := &Item{
-				Plugin: p,
-				Text:   " ",
-				Params: params,
-			}
-			//blankLineItem.Params.Size = 5
-			items.ExpandedItems = append(items.ExpandedItems, blankLineItem)
 			continue
 		}
 		for !strings.HasPrefix(text, depthPrefix) {
@@ -80,11 +61,30 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 			depthPrefix = strings.TrimPrefix(depthPrefix, "--")
 		}
 		if strings.HasPrefix(text, depthPrefix+"--") {
-			// increase a level
-			ancestorItems = append(ancestorItems, previousItem)
-			depthPrefix += "--"
+			// if this is a separator in the submenu,
+			// then don't treat it as a another submenu.
+			if strings.TrimPrefix(text, depthPrefix) != "---" {
+				// increase a level
+				ancestorItems = append(ancestorItems, previousItem)
+				depthPrefix += "--"
+			}
 		}
 		text = strings.TrimPrefix(text, depthPrefix)
+		if captureExpanded && strings.TrimSpace(text) == "---" {
+			params.Separator = true
+			separatorItem := &Item{
+				Plugin: p,
+				Text:   text,
+				Params: params,
+			}
+			if len(ancestorItems) > 0 {
+				parentItem := ancestorItems[len(ancestorItems)-1]
+				parentItem.Items = append(parentItem.Items, separatorItem)
+			} else {
+				items.ExpandedItems = append(items.ExpandedItems, separatorItem)
+			}
+			continue
+		}
 		if params.Trim {
 			text = strings.TrimSpace(text)
 		}
