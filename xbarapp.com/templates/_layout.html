@@ -126,11 +126,11 @@
 					</p>
 					{{ if .Desc }}{{ if not .ImageURL }}&mdash;{{ .Desc }}{{ end }}{{ end }}
 					{{ if .ImageURL }}
-						<div class='md:hidden'>
+						<div class='md:hidden my-1'>
 							{{if ne .ImageURL "https://xbarapp.com/public/img/xbar-2048.png"}}
 								<a href='/docs/plugins/{{ .Path }}.html'>
 									<img 
-										class='plugin-image w-full' 
+										class='plugin-image max-w-full' 
 										src='{{ .ImageURL }}'
 										onerror='this.onerror=null;this.style.display="none";'
 									>
@@ -144,7 +144,7 @@
 							<div class='max-w-md md:w-1/3'>
 								<a href='/docs/plugins/{{ .Path }}.html'>
 									<img 
-										class='plugin-image w-full' 
+										class='plugin-image max-w-full' 
 										src='{{ .ImageURL }}'
 										onerror='this.onerror=null;this.style.display="none";'
 									>
