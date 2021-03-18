@@ -65,7 +65,6 @@ func run(ctx context.Context, args []string) error {
 		categoriesLock.Lock()
 		plugins = append(plugins, plugin)
 		metadata.CategoryEnsurePath(categories, nil, plugin.PathSegments)
-		pluginsByPath[plugin.Dir] = append(pluginsByPath[plugin.Dir], plugin)
 		allPlugins = append(allPlugins, plugin)
 		categoriesLock.Unlock()
 		moonCycleIndex, err = moonCycle.Print(os.Stdout, moonCycleIndex)
@@ -135,6 +134,9 @@ func run(ctx context.Context, args []string) error {
 		outputDir: *out,
 	}
 	d.DownloadImages(plugins)
+	for _, plugin := range plugins {
+		pluginsByPath[plugin.Dir] = append(pluginsByPath[plugin.Dir], plugin)
+	}
 	featuredPlugins := metadata.RandomPlugins(pluginsByPath, "", 6)
 	var wg sync.WaitGroup
 	wg.Add(1)
