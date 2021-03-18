@@ -58,6 +58,10 @@ type Plugin struct {
 	LastUpdated time.Time `json:"lastUpdated"`
 	// Vars are the configurable values for this Plugin.
 	Vars []PluginVar `json:"vars"`
+
+	// ProcessingNotes is a list of errors/warnings/notes that are set during
+	// the processing of this plugin.
+	ProcessingNotes []string `json:"processingNotes"`
 }
 
 // Validate checks the plugin data.

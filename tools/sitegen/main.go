@@ -11,6 +11,7 @@ import (
 	"io"
 	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
@@ -62,9 +63,6 @@ func run(ctx context.Context, args []string) error {
 	moonCycleIndex := 0
 	eachPlugin := EachFunc(func(plugin metadata.Plugin) {
 		categoriesLock.Lock()
-		if plugin.ImageURL == "" {
-			plugin.ImageURL = metadata.DefaultPluginImage
-		}
 		plugins = append(plugins, plugin)
 		metadata.CategoryEnsurePath(categories, nil, plugin.PathSegments)
 		pluginsByPath[plugin.Dir] = append(pluginsByPath[plugin.Dir], plugin)
@@ -74,9 +72,6 @@ func run(ctx context.Context, args []string) error {
 		if err != nil {
 			log.Println(err)
 		}
-	})
-	sort.Slice(plugins, func(i, j int) bool {
-		return plugins[i].Title < plugins[j].Title
 	})
 	reader := &RepoReader{
 		RepoOwner:         "matryer",
@@ -91,12 +86,16 @@ func run(ctx context.Context, args []string) error {
 			return err
 		}
 	} else {
+		metadata.CategoryEnsurePath(categories, nil, []string{"Parent"})
+		metadata.CategoryEnsurePath(categories, nil, []string{"Parent", "Child"})
 		metadata.CategoryEnsurePath(categories, nil, []string{"One"})
 		metadata.CategoryEnsurePath(categories, nil, []string{"Two"})
 		metadata.CategoryEnsurePath(categories, nil, []string{"Three"})
 		plugins = []metadata.Plugin{
 			{
-				Title: "Plugin 1",
+				Path:     "Parent/Child/plugin1.1m.sh",
+				Title:    "Plugin 1",
+				ImageURL: "https://xbarapp.com/public/img/xbar-menu-preview.png",
 				Authors: []metadata.Person{
 					{
 						GitHubUsername: "matryer",
@@ -108,7 +107,9 @@ func run(ctx context.Context, args []string) error {
 				},
 			},
 			{
-				Title: "Plugin 2",
+				Path:     "Parent/Child/plugin2.1m.sh",
+				Title:    "Plugin 2",
+				ImageURL: "https://xbarapp.com/public/img/xbar-menu-preview.png",
 				Authors: []metadata.Person{
 					{
 						GitHubUsername: "leaanthony",
@@ -121,9 +122,19 @@ func run(ctx context.Context, args []string) error {
 			},
 		}
 	}
+	sort.Slice(plugins, func(i, j int) bool {
+		return plugins[i].Title < plugins[j].Title
+	})
 	if err := g.mkdirall(); err != nil {
-		return errors.Wrap(err, "mkDirAll")
+		return errors.Wrap(err, "mkdirall")
 	}
+	d := imageDownloader{
+		client: &http.Client{
+			Timeout: 5 * time.Second,
+		},
+		outputDir: *out,
+	}
+	d.DownloadImages(plugins)
 	featuredPlugins := metadata.RandomPlugins(pluginsByPath, "", 6)
 	var wg sync.WaitGroup
 	wg.Add(1)
