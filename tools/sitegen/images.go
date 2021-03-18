@@ -74,7 +74,7 @@ func (d *imageDownloader) downloadImage(plugin *metadata.Plugin) error {
 	defer f.Close()
 	const mb = 1 << 20 // megabyte
 	if resp.ContentLength > 5*mb {
-		plugin.ProcessingNotes = append(plugin.ProcessingNotes, fmt.Sprintf("image too big, should be less than 5MB", resp.StatusCode))
+		plugin.ProcessingNotes = append(plugin.ProcessingNotes, "image too big, should be less than 5MB")
 		return nil
 	}
 	_, err = io.Copy(f, io.LimitReader(resp.Body, 5*mb))
