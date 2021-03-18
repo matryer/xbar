@@ -236,7 +236,8 @@ func (p *Plugin) TriggerRefresh() {
 	p.CycleIndex = 0 // reset
 	// just keep the current item
 	currentItem := p.CurrentCycleItem()
-	currentItem.Text = "…"
+	//currentItem.Text = "…"
+	currentItem.Params.Disabled = true
 	p.Items.CycleItems = []*Item{
 		currentItem,
 	}

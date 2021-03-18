@@ -153,11 +153,11 @@ func (app *app) RefreshAll() {
 		app.defaultTrayMenuActive = false
 	}
 	for _, plugin := range app.plugins {
-		menu, ok := app.pluginTrays[plugin.Command]
+		m, ok := app.pluginTrays[plugin.Command]
 		if !ok {
 			continue
 		}
-		app.runtime.Menu.DeleteTrayMenu(menu)
+		app.runtime.Menu.DeleteTrayMenu(m)
 	}
 	var err error
 	app.plugins, err = plugins.Dir(pluginDirectory)
@@ -181,22 +181,6 @@ func (app *app) RefreshAll() {
 			plugin.Stderr = os.Stderr
 			plugin.Debugf = plugins.DebugfPrefix(plugin.CleanFilename(), plugins.DebugfLog)
 		}
-		// todo: resolve this
-		//
-		// https://github.com/matryer/xbar/issues/615
-		// CycleItems don't get processed in the same way extended items
-		// do. This is because it's the tray menu itself.
-		//
-		// I suppose in BitBar, this was resolved because all menu items
-		// were created the same way. I think we need to do the same here.
-		//
-		// How close is a menu.TrayMenu to a menu.Item? In a way, if they were
-		// the same (even down to OnOpen and OnClose working for submenus)
-		// it would simplify this. We'd just swap the Tray.MenuItem with a new one
-		// and call the appropriate SetTrayMenu method.
-		//
-		// If you did this, the TrayMenu.Menu would instead just be another
-		// SubMenu *Menu inside the Item.
 		app.pluginTrays[plugin.Command] = &menu.TrayMenu{
 			Label:   " ",
 			Menu:    app.newXbarMenu(plugin, false),
@@ -265,7 +249,6 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	var items []*menu.MenuItem
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
-			FontSize:    defaultMenuFontSize,
 			Type:        menu.TextType,
 			Label:       "Refresh",
 			Accelerator: keys.CmdOrCtrl("r"),
@@ -275,7 +258,6 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		})
 	}
 	items = append(items, &menu.MenuItem{
-		FontSize:    defaultMenuFontSize,
 		Type:        menu.TextType,
 		Label:       "Refresh all",
 		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
@@ -284,7 +266,6 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	items = append(items, menu.Separator())
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
-			FontSize:    defaultMenuFontSize,
 			Type:        menu.TextType,
 			Label:       "Open plugin…",
 			Accelerator: keys.CmdOrCtrl("e"),
@@ -302,34 +283,29 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		})
 	}
 	items = append(items, &menu.MenuItem{
-		FontSize:    defaultMenuFontSize,
 		Type:        menu.TextType,
 		Label:       "Plugin browser…",
 		Accelerator: keys.CmdOrCtrl("p"),
 		Click:       app.onPluginsMenuClicked,
 	})
 	items = append(items, &menu.MenuItem{
-		FontSize: defaultMenuFontSize,
-		Type:     menu.TextType,
-		Label:    "Open plugin folder…",
-		Click:    app.onOpenPluginsFolderClicked,
+		Type:  menu.TextType,
+		Label: "Open plugin folder…",
+		Click: app.onOpenPluginsFolderClicked,
 	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
-		FontSize: defaultMenuFontSize,
 		Type:     menu.TextType,
 		Label:    fmt.Sprintf("xbar (%s)", version),
 		Disabled: true,
 	})
 	items = append(items, &menu.MenuItem{
-		FontSize: defaultMenuFontSize,
-		Type:     menu.TextType,
-		Label:    "Check for updates…",
-		Click:    app.onCheckForUpdatesMenuClick,
+		Type:  menu.TextType,
+		Label: "Check for updates…",
+		Click: app.onCheckForUpdatesMenuClick,
 	})
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
-		FontSize:    defaultMenuFontSize,
 		Type:        menu.TextType,
 		Label:       "Quit xbar",
 		Accelerator: keys.CmdOrCtrl("q"),
@@ -359,7 +335,7 @@ func (app *app) onPluginsMenuClicked(_ *menu.CallbackData) {
 }
 
 func (app *app) onOpenPluginsFolderClicked(_ *menu.CallbackData) {
-	app.CommandService.OpenPath(pluginDirectory)
+	_ = app.CommandService.OpenPath(pluginDirectory)
 }
 
 func (app *app) onQuitMenuClicked(_ *menu.CallbackData) {
@@ -378,7 +354,7 @@ func (app *app) onBrowserRefreshMenuClicked(_ *menu.CallbackData) {
 	app.runtime.Events.Emit("xbar.browser.refresh")
 }
 
-func (app *app) onBrowserHardRefreshMenuClicked(ctx *menu.CallbackData) {
+func (app *app) onBrowserHardRefreshMenuClicked(_ *menu.CallbackData) {
 	app.clearCache(true)
 	app.runtime.Events.Emit("xbar.browser.refresh")
 }
@@ -514,22 +490,17 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 	if cycleItem == nil {
 		return false
 	}
-	if tray.Label == cycleItem.DisplayText() {
-		return false // no change
-	}
 	tray.Label = cycleItem.DisplayText()
 	tray.Image = cycleItem.Params.Image
 	tray.FontName = cycleItem.Params.Font
 	tray.FontSize = cycleItem.Params.Size
 	tray.RGBA = cycleItem.Params.Color
+	tray.Disabled = cycleItem.Params.Disabled
 	if cycleItem.Params.TemplateImage != "" {
 		tray.Image = cycleItem.Params.TemplateImage
 		tray.MacTemplateImage = true
 	}
 
-	// todo: is it possible to have the effect of disabling the
-	// menu item, so it's clear it's updating.
-	// tray.Disabled = cycleItem.Params.Disabled
 	return true
 }
 
