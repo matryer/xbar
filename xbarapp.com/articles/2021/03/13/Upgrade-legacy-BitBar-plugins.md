@@ -2,7 +2,7 @@ xbar (the BitBar reboot) has shipped, and you might want to upgrade your BitBar 
 
 Your plugin will run in xbar without any changes. However, there are a few tweaks you should make and one or two shiny new features to look at.
 
-# What's new in xbar?
+# What's new/changed in xbar?
 
 1. Unlock new features by upgrading your metadata - change `<bitbar.*>` tags to `<xbar.*>`
 1. Use the `shell` parameter instead of `bash`
