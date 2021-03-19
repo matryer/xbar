@@ -309,14 +309,6 @@ func (p *Plugin) refresh(ctx context.Context) error {
 	if err != nil {
 		return errors.Wrap(err, "parse stdout")
 	}
-	// json := func(v interface{}) string {
-	// 	b, err := json.MarshalIndent(v, "\t", "\t")
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// 	return string(b)
-	// }
-	// log.Println(json(p.Items.CycleItems[0].Params))
 	return nil
 }
 
