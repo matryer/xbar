@@ -10,28 +10,28 @@ import (
 // Items hold the menu items for a plugin.
 type Items struct {
 	// CycleItems are the items that appear in the menu bar.
-	CycleItems []*Item
+	CycleItems []*Item `json:"cycleItems"`
 	// ExpandedItems are the items that appear when the menu
 	// is open.
-	ExpandedItems []*Item
+	ExpandedItems []*Item `json:"expandedItems"`
 }
 
 // Item is a single menu item.
 type Item struct {
 	// Plugin is the Plugin that this item belong to.
-	Plugin *Plugin
+	Plugin *Plugin `json:"-"`
 	// Text is the content of the menu item.
-	Text string
+	Text string `json:"text"`
 	// Params are the parameters associated with this Item.
-	Params ItemParams
+	Params ItemParams `json:"params"`
 	// Items are a collection of items that appear as a
 	// sub menu.
-	Items []*Item
+	Items []*Item `json:"items"`
 	// Alternate is an Item to be used in place of this when
 	// the option key is held by the user.
 	// These are added to the previous line when printed with the alternate=true
 	// parameter.
-	Alternate *Item
+	Alternate *Item `json:"alternate"`
 }
 
 // DisplayText gets the text that should be displayed for
@@ -45,49 +45,49 @@ func (i Item) DisplayText() string {
 type ItemParams struct {
 	// Disabled indicates that this Item should appear
 	// disabled.
-	Disabled bool
+	Disabled bool `json:"disabled"`
 	// Separator indicates that this Item is a separator.
-	Separator bool
+	Separator bool `json:"separator"`
 	// Href is the URL to open when the item is clicked.
-	Href string
+	Href string `json:"href"`
 	// Key is the accelerator (shortcut) for this item.
-	Key string
+	Key string `json:"key"`
 	// Color is the color of the text.
-	Color string
+	Color string `json:"color"`
 	// Font is the font for the text.
-	Font string
+	Font string `json:"font"`
 	// Size is the font size.
-	Size int
+	Size int `json:"size"`
 	// Shell is a shell script to run when the item is clicked.
-	Shell string
+	Shell string `json:"shell"`
 	// ShellParams are the arguments to pass to the shell executable.
-	ShellParams []string
+	ShellParams []string `json:"shell_params"`
 	// Terminal indicates whether to run the shell command in a terminal or not.
 	// Default is false.
-	Terminal bool
+	Terminal bool `json:"terminal"`
 	// Refresh indicates whether clicking this item will cause the plugin
 	// to refresh or not.
-	Refresh bool
+	Refresh bool `json:"refresh"`
 	// Dropdown indicates whether the item appears in the dropdown
 	// or not.
-	Dropdown bool
+	Dropdown bool `json:"dropdown"`
 	// Length is the maximum length of the item before the text will
 	// be truncated.
-	Length int
+	Length int `json:"length"`
 	// Trim indicates whether to trim whitespace from the text or not.
-	Trim bool
+	Trim bool `json:"trim"`
 	// Alternate indicates that this item is an alternative for the
 	// previous item. It will be shown when the option key is depressed.
-	Alternate bool
+	Alternate bool `json:"alternate"`
 	// TemplateImage is the te`mplate image for this item.
-	TemplateImage string
+	TemplateImage string `json:"template_image"`
 	// Image is the item for this item.
-	Image string
+	Image string `json:"image"`
 	// Emojize indicates whether to process emoji strings (like :mushroom:)
 	// or not.
-	Emojize bool
+	Emojize bool `json:"emojize"`
 	// ANSI indicates whether to parsing ANSI codes.
-	ANSI bool
+	ANSI bool `json:"ansi"`
 }
 
 // parseParams parses the parameters from a single line.
