@@ -105,6 +105,8 @@ type PluginVar struct {
 	Type string `json:"type"`
 	// Name is the name of the variable.
 	Name string `json:"name"`
+	// Label is the display text for this variable (derived from Name).
+	Label string `json:"label"`
 	// Default is the default value.
 	Default string `json:"default"`
 	// Desc is a description of the variable.
@@ -397,6 +399,9 @@ func parsePluginVar(s string) (PluginVar, error) {
 			err: errors.New("malformed xbar.var format (name needs VAR_ prefix)"),
 		}
 	}
+	v.Label = strings.ToLower(strings.TrimPrefix(v.Name, "VAR_"))
+	v.Label = strings.ToUpper(v.Label[0:1]) + v.Label[1:]
+	v.Label = strings.ReplaceAll(v.Label, "_", " ")
 	switch v.Type {
 	case "string", "number", "boolean":
 		// valid types - but no work to do

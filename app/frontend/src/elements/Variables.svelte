@@ -51,7 +51,7 @@
                     <td class='py-3 pr-6 text-sm'>
 						<label for='{variable.name}'>
 							<code>
-								{variable.name}
+								{variable.label}
 							</code>
 						</label>
                     </td>

@@ -128,36 +128,40 @@ func TestVariables(t *testing.T) {
 		<xbar.var>string(VAR_NAME="Mat Ryer"): Your name.</xbar.var>
 		<xbar.var>number(VAR_COUNTER=1): A counter.</xbar.var>
 		<xbar.var>boolean(VAR_VERBOSE=true): Whether to be verbose or not.</xbar.var>
-		<xbar.var>select(VAR_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
+		<xbar.var>select(VAR_DISPLAY_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
 	*/
 		`)
 	is.NoErr(err)
 
 	is.Equal(len(md.Vars), 4) // len(md.Vars)
 
-	is.Equal(md.Vars[0].Name, "VAR_NAME")
-	is.Equal(md.Vars[0].Type, "string")
-	is.Equal(md.Vars[0].Desc, "Your name.")
-	is.Equal(md.Vars[0].Default, "Mat Ryer")
+	is.Equal(md.Vars[0].Name, "VAR_NAME")    // Name
+	is.Equal(md.Vars[0].Label, "Name")       // Label
+	is.Equal(md.Vars[0].Type, "string")      // Type
+	is.Equal(md.Vars[0].Desc, "Your name.")  // Desc
+	is.Equal(md.Vars[0].Default, "Mat Ryer") // Default
 
-	is.Equal(md.Vars[1].Name, "VAR_COUNTER")
-	is.Equal(md.Vars[1].Type, "number")
-	is.Equal(md.Vars[1].Desc, "A counter.")
-	is.Equal(md.Vars[1].Default, "1")
+	is.Equal(md.Vars[1].Name, "VAR_COUNTER") // Name
+	is.Equal(md.Vars[1].Label, "Counter")    // Label
+	is.Equal(md.Vars[1].Type, "number")      // Type
+	is.Equal(md.Vars[1].Desc, "A counter.")  // Desc
+	is.Equal(md.Vars[1].Default, "1")        // Default
 
-	is.Equal(md.Vars[2].Name, "VAR_VERBOSE")
-	is.Equal(md.Vars[2].Type, "boolean")
-	is.Equal(md.Vars[2].Desc, "Whether to be verbose or not.")
-	is.Equal(md.Vars[2].Default, "true")
+	is.Equal(md.Vars[2].Name, "VAR_VERBOSE")                   // Name
+	is.Equal(md.Vars[2].Label, "Verbose")                      // Label
+	is.Equal(md.Vars[2].Type, "boolean")                       // Type
+	is.Equal(md.Vars[2].Desc, "Whether to be verbose or not.") // Desc
+	is.Equal(md.Vars[2].Default, "true")                       // Default
 
-	is.Equal(md.Vars[3].Name, "VAR_STYLE")
-	is.Equal(md.Vars[3].Type, "select")
-	is.Equal(md.Vars[3].Desc, "Which style to use.")
-	is.Equal(md.Vars[3].Default, "normal")
-	is.Equal(len(md.Vars[3].Options), 3)
-	is.Equal(md.Vars[3].Options[0], "small")
-	is.Equal(md.Vars[3].Options[1], "normal")
-	is.Equal(md.Vars[3].Options[2], "big")
+	is.Equal(md.Vars[3].Name, "VAR_DISPLAY_STYLE")   // Name
+	is.Equal(md.Vars[3].Label, "Display style")      // Label
+	is.Equal(md.Vars[3].Type, "select")              // Type
+	is.Equal(md.Vars[3].Desc, "Which style to use.") // Desc
+	is.Equal(md.Vars[3].Default, "normal")           // Default
+	is.Equal(len(md.Vars[3].Options), 3)             // Options
+	is.Equal(md.Vars[3].Options[0], "small")         // Options
+	is.Equal(md.Vars[3].Options[1], "normal")        // Options
+	is.Equal(md.Vars[3].Options[2], "big")           // Options
 
 }
 
