@@ -11,35 +11,7 @@
 
     export let variables = null
     export let values
-    export let debounce = 1000
     export let disabled = false
-
-    export let showingTip = false
-    export let showShouldRefreshTip = false
-
-    onMount(() => {
-        // wait a second before looking for the
-        // refresh tip
-        setTimeout(() => {
-            showingTip = true
-        }, 500)
-    })
-
-    let _debounceTimer
-    function valueDidChange() {
-        clearTimeout(_debounceTimer)
-        _debounceTimer = setTimeout(() => {
-            dispatch('change')
-            if (showingTip) {
-                showShouldRefreshTip = true
-            }
-        }, debounce)
-    }
-
-    function onRefreshThePluginsClick() {
-        showShouldRefreshTip = false
-        refreshAllPlugins()
-    }
 
 </script>
 
@@ -57,7 +29,6 @@
                     </td>
                     <td class='py-3 pr-6'>
 						<VariableInput 
-							on:change={valueDidChange}
 							values={values}
 							variable={variable}
                             disabled={disabled}
@@ -69,8 +40,8 @@
                 </tr>
             {/each}
         </table>
-        <p class='pt-3 pb-6 opacity-75 text-sm max-w-sm'>
-            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent' class:invisible={ !showShouldRefreshTip }>💡 To see your changes, <Button on:click={ onRefreshThePluginsClick }>Refresh the plugins</Button></span>
+        <p class='pt-3 pb-6 opacity-75 text-sm'>
+            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent'>💡 You must refresh the plugin for changes to take effect.</span>
         </p>
     </div>
 {/if}
