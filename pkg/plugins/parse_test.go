@@ -59,7 +59,7 @@ func TestParseParams(t *testing.T) {
 	is.Equal(s, "Before params ")
 	is.Equal(params.Shell, "/annoying path with spaces/file.sh")
 
-	s, params, err = parseParams(`Before params | nope=badparam`)
+	_, params, err = parseParams(`Before params | nope=badparam`)
 	is.True(err != nil)
 	is.Equal(err.Error(), "unknown parameter: nope")
 
@@ -122,7 +122,7 @@ google | bash=/tmp/bitbar_dns_switcher_google | terminal=true | refresh=false
 	is.Equal(items.CycleItems[1].Params.Refresh, false)
 }
 
-func TestHandoffToggle(t *testing.T) {
+func TestStartWithPipe(t *testing.T) {
 	is := is.New(t)
 	const src = `| templateImage=iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB70lEQVR4AWJwL/ABtFsOMHfDURSft2iOjdnlvMUv1oJ5wWej/Z5ZjcEQc2YwxWOcOZoRzIid7Jzx2Uza5Jde9d7zbvuSf0NxBbgCXAEpjizLayRJega+i6L4pZqwJ3sLgrA6n4BD4BMeOAcuVJlz7M0ZOQVA4TEUnK/VutmbM/Jt4CgKLtVKAHtzRkUCcE1AnYSVbgbrCW1VVUXmai4Aw7agxgAnFEW5T2CfBAnmai6Ag0ZGRoKGYeyJRCKdhPbo6GgAAuL12ICpaZrtOE5XMrqum8hF67GBvV6vdx+uvmR8Pp/DXD02sJ+/FkM7ksFWDOT21UNAdGhoKGzb9q5k+F0gF6vHK/APDg6GLMvamczw8HCA4uqxgUBTCmCsLAGbNm2ahgcn/xFwBFws0MSXSwBykXzPsjdn0F68ePEUj8czlUEJ10GIuA4+wP6B+23c74I7hD64BZvx1z09PSY+vB3JMIaad6xhbRZu/un9AVyBncDs+X/XOhfORgR3wu7nh8ZV/yEIP0xQExUE4Ulvb28sXUBfX18UtTxL2MCBve8v8A32Ab1gG88duM8o60TE94y/nC9dAGPIWTU/kkF9f3t7+zFd14c1TRshtBnj9mouYNmyZbN4wlEU5TNW+xa8ps3YihUrZrqn4pYT4Ar4CW6NezCnH1ZyAAAAAElFTkSuQmCC`
 	p := &Plugin{}
@@ -164,12 +164,14 @@ b
 --d
 ----e
 -------
-----f`
+----f
+---
+g`
 	p := &Plugin{}
-	items, err := p.parseOutput(context.Background(), "optional-pipes.txt", strings.NewReader(src))
+	items, err := p.parseOutput(context.Background(), "nesting.txt", strings.NewReader(src))
 	is.NoErr(err)
 
-	is.Equal(len(items.ExpandedItems), 1)
+	is.Equal(len(items.ExpandedItems), 3)
 	is.Equal(items.ExpandedItems[0].Text, "b")
 	is.Equal(len(items.ExpandedItems[0].Items), 3) // should be three items
 	is.Equal(items.ExpandedItems[0].Items[0].Text, "c")
