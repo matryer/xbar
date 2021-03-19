@@ -17,11 +17,12 @@ Variables are great for:
 To define variables for your plugin, use `xbar.var` tags.
 
 ```
-<xbar.var>type(NAME=default): description [options]</xbar.var>
+<xbar.var>type(VAR_NAME=default): description [options]</xbar.var>
 ```
 
 * `type` - the kind of field (can be `string`, `number`, `boolean`, or `list`)
-* `NAME` - the name of the variable (will become an environment variable when the plugin runs)
+* `VAR_NAME` - the name of the variable (will become an environment variable when the plugin runs)
+* * Prefix names with `VAR_` and use underscores for spaces
 * `default` - the default/initial value for this variable
 * `description` - a short label describing the variable
 * `[options]` - for `list` types, a comma separated list of option strings
@@ -48,7 +49,7 @@ The `NAME` you use in the metadata will become the environment variable that hol
 echo "Hello, ${VAR_NAME}"
 ```
 
-* Remember: Environment variables are always strings
+* Remember: Environment variable values are always strings
 
 ## Values are stored in sidecar JSON files
 

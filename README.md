@@ -160,7 +160,7 @@ You must add the following metadata to your source code (usually in comments som
 * `xbar.image` - A hosted image showing a preview of your plugin (ideally open)
 * `xbar.dependencies` - Comma separated list of dependencies
 * `xbar.abouturl` - Absolute URL to about information
-* `xbar.var` - A user-input parameter which will be available as an environment variable with the same name
+* `xbar.var` - A user-input parameter which will be available as an environment variable with the same name (learn more about [Variables in xbar](https://xbarapp.com/docs/2021/03/14/variables-in-xbar.html))
 
 For a real example, see the [Cycle text and detail plugin source code](https://github.com/matryer/xbar-plugins/blob/master/Dev/Tutorial/cycle_text_and_detail.sh).
 

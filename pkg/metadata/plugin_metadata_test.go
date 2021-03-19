@@ -177,6 +177,9 @@ func TestErrors(t *testing.T) {
 		"malformed": `
 			<xbar.var>select(VAR_STYLE="): Missing options.</xbar.var>
 		`,
+		"name needs VAR_ prefix": `
+			<xbar.var>select(ABadName="): Names should begin with VAR_.</xbar.var>
+		`,
 	}
 	for expected, src := range errs {
 		t.Run(expected, func(t *testing.T) {
