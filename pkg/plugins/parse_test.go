@@ -165,22 +165,59 @@ b
 ----e
 -------
 ----f
+-----
+--g
 ---
-g`
+h`
+
 	p := &Plugin{}
 	items, err := p.parseOutput(context.Background(), "nesting.txt", strings.NewReader(src))
 	is.NoErr(err)
 
-	is.Equal(len(items.ExpandedItems), 2)
+	is.Equal(len(items.ExpandedItems), 3)
+
+	// root items
 	is.Equal(items.ExpandedItems[0].Text, "b")
-	is.Equal(len(items.ExpandedItems[0].Items), 4)
+	is.Equal(items.ExpandedItems[1].Params.Separator, true)
+	is.Equal(items.ExpandedItems[2].Text, "h")
+
+	// b submenu
+	is.Equal(len(items.ExpandedItems[0].Items), 5)
 	is.Equal(items.ExpandedItems[0].Items[0].Text, "c")
 	is.Equal(items.ExpandedItems[0].Items[1].Params.Separator, true) // should be separator
 	is.Equal(items.ExpandedItems[0].Items[2].Text, "d")
+	is.Equal(items.ExpandedItems[0].Items[3].Params.Separator, true)
+	is.Equal(items.ExpandedItems[0].Items[4].Text, "g")
 
-	// is.Equal(len(items.ExpandedItems[0].Items[2].Items), 3)
-	// is.Equal(items.ExpandedItems[0].Items[2].Items[0].Text, "e")
-	// is.Equal(items.ExpandedItems[0].Items[2].Items[1].Params.Separator, true)
-	// is.Equal(items.ExpandedItems[0].Items[2].Items[2].Text, "f")
+	// d submenu
+	is.Equal(len(items.ExpandedItems[0].Items[2].Items), 3)
+	is.Equal(items.ExpandedItems[0].Items[2].Items[0].Text, "e")
+	is.Equal(items.ExpandedItems[0].Items[2].Items[1].Params.Separator, true)
+	is.Equal(items.ExpandedItems[0].Items[2].Items[2].Text, "f")
+
+}
+
+func TestParseSeparator(t *testing.T) {
+	is := is.New(t)
+
+	text, isSep := parseSeparator("no")
+	is.Equal(isSep, false)
+	is.Equal(text, "no")
+
+	text, isSep = parseSeparator(separator)
+	is.Equal(isSep, true)
+	is.Equal(text, "")
+
+	text, isSep = parseSeparator(nesting + separator)
+	is.Equal(isSep, true)
+	is.Equal(text, nesting)
+
+	text, isSep = parseSeparator(nesting + nesting + separator)
+	is.Equal(isSep, true)
+	is.Equal(text, nesting+nesting)
+
+	text, isSep = parseSeparator(nesting + nesting + "item")
+	is.Equal(isSep, false)
+	is.Equal(text, nesting+nesting+"item")
 
 }

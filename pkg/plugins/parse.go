@@ -9,6 +9,11 @@ import (
 	"github.com/pkg/errors"
 )
 
+const (
+	nesting   = "--"
+	separator = "---"
+)
+
 // parseOutput parses the output of a plugin run, and returns the
 // Items.
 func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) (Items, error) {
@@ -49,28 +54,31 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 				err:      err,
 			}
 		}
-		if !captureExpanded && strings.TrimSpace(text) == "---" {
+		if !captureExpanded && strings.TrimSpace(text) == separator {
 			// first --- means end of cycle items,
 			// start collecting expanded items now
 			captureExpanded = true
 			continue
 		}
+
+		text, isSeparator := parseSeparator(text)
+
 		for !strings.HasPrefix(text, depthPrefix) {
 			// drop a level
 			ancestorItems = ancestorItems[:len(ancestorItems)-1]
-			depthPrefix = strings.TrimPrefix(depthPrefix, "--")
+			depthPrefix = strings.TrimPrefix(depthPrefix, nesting)
 		}
-		if strings.HasPrefix(text, depthPrefix+"--") {
+		if strings.HasPrefix(text, depthPrefix+nesting) {
 			// if this is a separator in the submenu,
 			// then don't treat it as a another submenu.
-			if strings.TrimPrefix(text, depthPrefix) != "---" {
+			if strings.TrimPrefix(text, depthPrefix) != separator {
 				// increase a level
 				ancestorItems = append(ancestorItems, previousItem)
-				depthPrefix += "--"
+				depthPrefix += nesting
 			}
 		}
 		text = strings.TrimPrefix(text, depthPrefix)
-		if captureExpanded && strings.TrimSpace(text) == "---" {
+		if captureExpanded && isSeparator {
 			params.Separator = true
 			separatorItem := &Item{
 				Plugin: p,
@@ -118,4 +126,18 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 		return items, errors.Wrap(err, "reading")
 	}
 	return items, nil
+}
+
+func parseSeparator(src string) (string, bool) {
+	text := strings.TrimSpace(src)
+	if text == separator {
+		return "", true
+	}
+	for strings.HasPrefix(text, nesting) {
+		text = strings.TrimPrefix(text, nesting)
+		if text == separator {
+			return src[:len(src)-3], true
+		}
+	}
+	return src, false
 }
