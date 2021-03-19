@@ -136,6 +136,10 @@ func Dir(path string) (Plugins, error) {
 			// ignore .dot files
 			continue
 		}
+		if file.IsDir() {
+			// ignore directories
+			continue
+		}
 		if strings.HasSuffix(filename, variableJSONFileExt) {
 			// ignore .vars.json files
 			continue
