@@ -393,15 +393,12 @@ func parsePluginVar(s string) (PluginVar, error) {
 		v.Name = nameSegs[0]
 		v.Default = strings.Trim(nameSegs[1], `"'`)
 	}
-	if !strings.HasPrefix(v.Name, "VAR_") {
-		return v, errParse{
-			src: s,
-			err: errors.New("malformed xbar.var format (name needs VAR_ prefix)"),
-		}
+	v.Label = v.Name
+	if strings.HasPrefix(v.Name, "VAR_") {
+		v.Label = strings.ToLower(strings.TrimPrefix(v.Name, "VAR_"))
+		v.Label = strings.ToUpper(v.Label[0:1]) + v.Label[1:]
+		v.Label = strings.ReplaceAll(v.Label, "_", " ")
 	}
-	v.Label = strings.ToLower(strings.TrimPrefix(v.Name, "VAR_"))
-	v.Label = strings.ToUpper(v.Label[0:1]) + v.Label[1:]
-	v.Label = strings.ReplaceAll(v.Label, "_", " ")
 	switch v.Type {
 	case "string", "number", "boolean":
 		// valid types - but no work to do

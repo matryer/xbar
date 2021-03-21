@@ -22,7 +22,8 @@ To define variables for your plugin, use `xbar.var` tags.
 
 * `type` - the kind of field (can be `string`, `number`, `boolean`, or `list`)
 * `VAR_NAME` - the name of the variable (will become an environment variable when the plugin runs)
-* * Prefix names with `VAR_` and use underscores for spaces
+* * If you prefix your variable name with `VAR_` xbar will nicely format the variable label in the UI
+ Prefix names with `VAR_` and use underscores for spaces
 * `default` - the default/initial value for this variable
 * `description` - a short label describing the variable
 * `[options]` - for `list` types, a comma separated list of option strings

@@ -129,11 +129,15 @@ func TestVariables(t *testing.T) {
 		<xbar.var>number(VAR_COUNTER=1): A counter.</xbar.var>
 		<xbar.var>boolean(VAR_VERBOSE=true): Whether to be verbose or not.</xbar.var>
 		<xbar.var>select(VAR_DISPLAY_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
+
+		Variables without VAR_ prefix won't be formatted:
+		<xbar.var>string(TWITTER_USERNAME="@matryer"): Your Twitter username.</xbar.var>
+
 	*/
 		`)
 	is.NoErr(err)
 
-	is.Equal(len(md.Vars), 4) // len(md.Vars)
+	is.Equal(len(md.Vars), 5) // len(md.Vars)
 
 	is.Equal(md.Vars[0].Name, "VAR_NAME")    // Name
 	is.Equal(md.Vars[0].Label, "Name")       // Label
@@ -163,6 +167,12 @@ func TestVariables(t *testing.T) {
 	is.Equal(md.Vars[3].Options[1], "normal")        // Options
 	is.Equal(md.Vars[3].Options[2], "big")           // Options
 
+	is.Equal(md.Vars[4].Name, "TWITTER_USERNAME")       // Name
+	is.Equal(md.Vars[4].Label, "TWITTER_USERNAME")      // Label
+	is.Equal(md.Vars[4].Type, "string")                 // Type
+	is.Equal(md.Vars[4].Desc, "Your Twitter username.") // Desc
+	is.Equal(md.Vars[4].Default, "@matryer")            // Default
+
 }
 
 func TestErrors(t *testing.T) {
@@ -180,9 +190,6 @@ func TestErrors(t *testing.T) {
 		`,
 		"malformed": `
 			<xbar.var>select(VAR_STYLE="): Missing options.</xbar.var>
-		`,
-		"name needs VAR_ prefix": `
-			<xbar.var>select(ABadName="): Names should begin with VAR_.</xbar.var>
 		`,
 	}
 	for expected, src := range errs {
