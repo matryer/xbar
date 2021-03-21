@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "xbar",
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
