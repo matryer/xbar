@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"time"
 
 	"github.com/matryer/xbar/pkg/metadata"
 )
@@ -36,8 +35,7 @@ func (p *PersonService) GetPersonDetails(githubUsername string) (*PersonDetails,
 	if err != nil {
 		return nil, err
 	}
-	timeout := 5 * time.Second
-	ctx, cancel := context.WithTimeout(req.Context(), timeout)
+	ctx, cancel := context.WithTimeout(req.Context(), apiRequestTimeout)
 	defer cancel()
 	req = req.WithContext(ctx)
 	res, err := p.Client.Do(req)
