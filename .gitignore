@@ -22,5 +22,6 @@ app/.version
 xbarapp.com/.version
 xbarapp.com/xbarappcom
 xbarapp.com/version.gen.go
+xbarapp.com/node_modules
 tools/bloggen/.version
 pkg/.DS_Store
