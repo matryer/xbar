@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/wailsapp/wails/v2/pkg/mac"
 	"log"
 	"net/http"
 	"os"
@@ -35,12 +36,13 @@ type app struct {
 	runtime *wails.Runtime
 
 	// appMenu isn't visible - it's used for key shortcuts.
-	appMenu         *menu.Menu
-	contextMenus    []*menu.ContextMenu
-	defaultTrayMenu *menu.TrayMenu
-	plugins         plugins.Plugins
-	pluginTrays     map[string]*menu.TrayMenu
-	menuParser      *MenuParser
+	appMenu           *menu.Menu
+	contextMenus      []*menu.ContextMenu
+	defaultTrayMenu   *menu.TrayMenu
+	plugins           plugins.Plugins
+	pluginTrays       map[string]*menu.TrayMenu
+	menuParser        *MenuParser
+	startsAtLoginMenu *menu.MenuItem
 
 	// Verbose gets whether verbose output will be printed
 	// or not.
@@ -99,6 +101,21 @@ func newApp() *app {
 			menu.Text("Clear Cache", nil, app.onClearCacheMenuClicked),
 		)),
 	}
+
+	app.startsAtLoginMenu = &menu.MenuItem{
+		Label:   "Start at Login",
+		Type:    menu.CheckboxType,
+		Checked: false,
+		Click:   app.updateStartOnLogin,
+	}
+	startsAtLogin, err := mac.StartsAtLogin()
+	if err != nil {
+		app.startsAtLoginMenu.Label = "Start at Login unavailable"
+		app.startsAtLoginMenu.Disabled = true
+	} else {
+		app.startsAtLoginMenu.Checked = startsAtLogin
+	}
+
 	// client-side caching to cacheDirectory
 	tp := httpcache.NewTransport(diskcache.New(cacheDirectory))
 	client := &http.Client{
@@ -221,6 +238,17 @@ func (app *app) onMenuDidClose() {
 	app.menuIsOpen = false
 }
 
+func (app *app) updateStartOnLogin(data *menu.CallbackData) {
+	err := mac.StartAtLogin(data.MenuItem.Checked)
+	if err != nil {
+		app.startsAtLoginMenu.Label = "Start at Login unavailable"
+		app.startsAtLoginMenu.Disabled = true
+	}
+	// We need to refresh all as the menuitem is used in multiple places.
+	// If we don't refresh, only the menuitem clicked will toggle in the UI.
+	app.RefreshAll()
+}
+
 // onErr adds a single menu showing the specified error
 // string.
 func (app *app) onErr(err string) {
@@ -308,6 +336,7 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		Label: "Check for updates…",
 		Click: app.onCheckForUpdatesMenuClick,
 	})
+	items = append(items, app.startsAtLoginMenu)
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
 		Type:        menu.TextType,
