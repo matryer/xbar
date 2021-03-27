@@ -43,6 +43,7 @@ type app struct {
 	pluginTrays       map[string]*menu.TrayMenu
 	menuParser        *MenuParser
 	startsAtLoginMenu *menu.MenuItem
+	appUpdatesMenu    *menu.MenuItem
 
 	// Verbose gets whether verbose output will be printed
 	// or not.
@@ -100,6 +101,12 @@ func newApp() *app {
 			menu.Text("Refresh plugins", nil, app.onPluginsRefreshAllMenuClicked),
 			menu.Text("Clear Cache", nil, app.onClearCacheMenuClicked),
 		)),
+	}
+
+	app.appUpdatesMenu = &menu.MenuItem{
+		Type:  menu.TextType,
+		Label: "Check for updates…",
+		Click: app.onCheckForUpdatesMenuClick,
 	}
 
 	app.startsAtLoginMenu = &menu.MenuItem{
@@ -246,7 +253,7 @@ func (app *app) updateStartOnLogin(data *menu.CallbackData) {
 	}
 	// We need to refresh all as the menuitem is used in multiple places.
 	// If we don't refresh, only the menuitem clicked will toggle in the UI.
-	app.RefreshAll()
+	app.refreshMenus()
 }
 
 // onErr adds a single menu showing the specified error
@@ -331,11 +338,7 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		Label:    fmt.Sprintf("xbar (%s)", version),
 		Disabled: true,
 	})
-	items = append(items, &menu.MenuItem{
-		Type:  menu.TextType,
-		Label: "Check for updates…",
-		Click: app.onCheckForUpdatesMenuClick,
-	})
+	items = append(items, app.appUpdatesMenu)
 	items = append(items, app.startsAtLoginMenu)
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
@@ -518,6 +521,16 @@ func (app *app) onCycle(_ context.Context, p *plugins.Plugin) {
 	}
 }
 
+// refreshMenus refreshes all tray menus to ensure they
+// are in sync with the data, EG: checkbox sync
+func (app *app) refreshMenus() {
+	app.onMenuWillOpen()
+	for _, tray := range app.pluginTrays {
+		app.runtime.Menu.SetTrayMenu(tray)
+	}
+	app.onMenuDidClose()
+}
+
 func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 	cycleItem := p.CurrentCycleItem()
 	if cycleItem == nil {
@@ -577,6 +590,13 @@ func (app *app) checkForUpdates(passive bool) {
 				CancelButton: "OK",
 			})
 		}
+		return
+	}
+
+	if passive {
+		// Update menu text
+		app.appUpdatesMenu.Label = "Click to update to " + latest.TagName
+		app.refreshMenus()
 		return
 	}
 	switch app.runtime.Dialog.Message(&dialog.MessageDialog{
