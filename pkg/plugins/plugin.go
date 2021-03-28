@@ -321,7 +321,7 @@ func (p *Plugin) loadVariablesFromJSONFile() ([]string, error) {
 	f, err := os.Open(variablesJSONFilename)
 	if err != nil && os.IsNotExist(err) {
 		// no .vars.json file - no probs
-		p.Debugf("%s, no such file:", variablesJSONFilename)
+		p.Debugf("(skipping) no variable file: %s", variablesJSONFilename)
 		return nil, nil
 	} else if err != nil {
 		p.Debugf("ERR: %s", variablesJSONFilename, err)
@@ -332,7 +332,7 @@ func (p *Plugin) loadVariablesFromJSONFile() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	p.Debugf("vars json: %s", string(b))
+	p.Debugf("%s: %s", variablesJSONFilename, string(b))
 	var varmap map[string]interface{}
 	if err := json.Unmarshal(b, &varmap); err != nil {
 		return nil, errors.Wrap(err, "json.Unmarshal")
