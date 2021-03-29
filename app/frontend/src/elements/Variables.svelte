@@ -1,7 +1,6 @@
 <script>
-	import { onMount, createEventDispatcher } from 'svelte'
+	import { createEventDispatcher } from 'svelte'
     import { refreshAllPlugins } from '../rpc.svelte'
-    import Button from './Button.svelte'
 
     // dispatch handles the following events:
     // 		on:change - fired when the values change
@@ -12,6 +11,21 @@
     export let variables = null
     export let values
     export let disabled = false
+
+    let onChangeDebounceTimeout
+    function onChange() {
+        clearTimeout(onChangeDebounceTimeout)
+        onChangeDebounceTimeout = setTimeout(fireOnChangeEvent, 300)
+    }
+
+    function fireOnChangeEvent() {
+        dispatch('change')
+    }
+
+    function refresh() {
+        dispatch('change')
+        setTimeout(refreshAllPlugins, 100)
+    }
 
 </script>
 
@@ -29,6 +43,7 @@
                     </td>
                     <td class='py-3 pr-6'>
 						<VariableInput 
+                            on:change={onChange}
 							values={values}
 							variable={variable}
                             disabled={disabled}
@@ -41,7 +56,7 @@
             {/each}
         </table>
         <p class='pt-3 pb-6 opacity-75 text-sm'>
-            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent'>💡 You must refresh the plugin for changes to take effect.</span>
+            <span class='bg-yellow-100 bg-opacity-50 dark:bg-transparent'>💡 You must <a href='#/refresh-all' class='underline' on:click|preventDefault={refresh}>refresh the plugin</a> for changes to take effect.</span>
         </p>
     </div>
 {/if}

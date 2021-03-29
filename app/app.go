@@ -30,6 +30,9 @@ var (
 	// concurrentIncomingURLs is the number of concurrent incoming URLs to handle at
 	// the same time.
 	concurrentIncomingURLs int = 1
+
+	// apiRequestTimeout is the timeout for making API calls.
+	apiRequestTimeout = 30 * time.Second
 )
 
 type app struct {
@@ -127,7 +130,7 @@ func newApp() *app {
 	tp := httpcache.NewTransport(diskcache.New(cacheDirectory))
 	client := &http.Client{
 		Transport: tp,
-		Timeout:   3 * time.Minute,
+		Timeout:   apiRequestTimeout,
 	}
 	app.CategoriesService = NewCategoriesService(client)
 	app.PersonService = NewPersonService(client)

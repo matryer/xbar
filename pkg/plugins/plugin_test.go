@@ -2,8 +2,6 @@ package plugins
 
 import (
 	"context"
-	"log"
-	"os"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -265,38 +263,6 @@ It also contains a very long line which should be wrapped, because otherwise it 
 	is.Equal(len(p.Items.ExpandedItems), 3)
 
 }
-
-func TestEnvironmentVariables(t *testing.T) {
-	is := is.New(t)
-
-	err := os.Setenv("XBAR_TEST_EXPLICIT_VAR", "explicit")
-	is.NoErr(err)
-	t.Cleanup(func() {
-		err := os.Unsetenv("XBAR_TEST_EXPLICIT_VAR")
-		is.NoErr(err)
-	})
-
-	ctx := context.Background()
-	ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
-	defer cancel()
-
-	p := &Plugin{
-		Command:         filepath.Join("testdata", "vars-test", "plugin.sh"),
-		Debugf:          DebugfNoop,
-		Timeout:         1 * time.Second,
-		RefreshInterval: RefreshInterval{N: 250, Unit: "milliseconds"},
-		CycleInterval:   500 * time.Millisecond,
-	}
-	p.Run(ctx)
-
-	log.Printf("%+v\n", p.Items.ExpandedItems)
-
-	is.Equal(len(p.Items.CycleItems), 2)
-	is.Equal(p.Items.CycleItems[0].Text, `XBAR_TEST_EXPLICIT_VAR=explicit`)
-	is.Equal(p.Items.CycleItems[1].Text, `XBAR_TEST_SET_IN_VARS_JSON=json`)
-
-}
-
 func TestCleanFilename(t *testing.T) {
 	is := is.New(t)
 

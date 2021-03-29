@@ -3,7 +3,6 @@ package plugins
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -181,7 +180,7 @@ func NewPlugin(command string) *Plugin {
 // Use the context for cancelation.
 func (p *Plugin) Run(ctx context.Context) {
 	var err error
-	p.Variables, err = p.loadVariablesFromJSONFile()
+	p.Variables, err = p.loadVariablesAsEnvVars()
 	if err != nil {
 		p.Debugf("ERR: %s", err)
 		p.OnErr(err)
@@ -314,34 +313,6 @@ func (p *Plugin) refresh(ctx context.Context) error {
 		return errors.Wrap(err, "parse stdout")
 	}
 	return nil
-}
-
-func (p *Plugin) loadVariablesFromJSONFile() ([]string, error) {
-	variablesJSONFilename := p.Command + variableJSONFileExt
-	f, err := os.Open(variablesJSONFilename)
-	if err != nil && os.IsNotExist(err) {
-		// no .vars.json file - no probs
-		p.Debugf("%s, no such file:", variablesJSONFilename)
-		return nil, nil
-	} else if err != nil {
-		p.Debugf("ERR: %s", variablesJSONFilename, err)
-		p.OnErr(err)
-	}
-	defer f.Close()
-	b, err := io.ReadAll(io.LimitReader(f, 1_000_000))
-	if err != nil {
-		return nil, err
-	}
-	p.Debugf("vars json: %s", string(b))
-	var varmap map[string]interface{}
-	if err := json.Unmarshal(b, &varmap); err != nil {
-		return nil, errors.Wrap(err, "json.Unmarshal")
-	}
-	var vars []string
-	for k, v := range varmap {
-		vars = append(vars, fmt.Sprintf("%s=%v", k, v))
-	}
-	return vars, nil
 }
 
 // OnErr is called when something has gone wrong at some point.

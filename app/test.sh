@@ -3,6 +3,7 @@
 set -e
 
 VERSION=`git describe --tags`
+echo -n $VERSION > .version
 
 go test
 

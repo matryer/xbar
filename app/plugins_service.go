@@ -50,8 +50,7 @@ func (p *PluginsService) GetPlugins(categoryPath string) ([]metadata.Plugin, err
 	if err != nil {
 		return nil, err
 	}
-	timeout := 5 * time.Second
-	ctx, cancel := context.WithTimeout(req.Context(), timeout)
+	ctx, cancel := context.WithTimeout(req.Context(), apiRequestTimeout)
 	defer cancel()
 	req = req.WithContext(ctx)
 	res, err := p.client.Do(req)
@@ -79,8 +78,7 @@ func (p *PluginsService) GetPlugin(pluginPath string) (*metadata.Plugin, error) 
 	if err != nil {
 		return nil, err
 	}
-	timeout := 5 * time.Second
-	ctx, cancel := context.WithTimeout(req.Context(), timeout)
+	ctx, cancel := context.WithTimeout(req.Context(), apiRequestTimeout)
 	defer cancel()
 	req = req.WithContext(ctx)
 	res, err := p.client.Do(req)
@@ -108,8 +106,7 @@ func (p *PluginsService) GetFeaturedPlugins() ([]metadata.Plugin, error) {
 	if err != nil {
 		return nil, err
 	}
-	timeout := 5 * time.Second
-	ctx, cancel := context.WithTimeout(req.Context(), timeout)
+	ctx, cancel := context.WithTimeout(req.Context(), apiRequestTimeout)
 	defer cancel()
 	req = req.WithContext(ctx)
 	res, err := p.client.Do(req)

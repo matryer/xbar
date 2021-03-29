@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"time"
 )
 
 // Category represents a group of plugins.
@@ -43,8 +42,7 @@ func (c *CategoriesService) GetCategories() ([]Category, error) {
 	if err != nil {
 		return nil, err
 	}
-	timeout := 5 * time.Second
-	ctx, cancel := context.WithTimeout(req.Context(), timeout)
+	ctx, cancel := context.WithTimeout(req.Context(), apiRequestTimeout)
 	defer cancel()
 	req = req.WithContext(ctx)
 	res, err := c.client.Do(req)
