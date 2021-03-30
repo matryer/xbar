@@ -604,7 +604,7 @@ func (app *app) checkForUpdates(passive bool) {
 	// old - do a soft prompt.
 	if passive && latest.CreatedAt.After(time.Now().Add(0-oneWeek)) {
 		// Update menu text
-		app.appUpdatesMenu.Label = "Install " + latest.TagName
+		app.appUpdatesMenu.Label = "Install " + latest.TagName + "…"
 		app.refreshMenus()
 		return
 	}
@@ -632,11 +632,9 @@ func (app *app) checkForUpdates(passive bool) {
 		})
 		return
 	}
-	// wait for the update to complete before
-	// restarting.
-	time.Sleep(1 * time.Second)
 	err = u.Restart()
 	if err != nil {
+		log.Println("failed to restart:", err)
 		app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.InfoDialog,
 			Title:        "Update successful",
