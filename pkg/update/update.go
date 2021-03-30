@@ -116,6 +116,10 @@ func (u *Updater) getLatestRelease() (*Release, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "marshal")
 	}
+	latestRelease.CreatedAt, err = time.Parse(time.RFC3339Nano, latestRelease.CreatedAtString)
+	if err != nil {
+		return nil, errors.Wrap(err, "time.Parse: created_at")
+	}
 	return &latestRelease, nil
 }
 
@@ -215,9 +219,11 @@ func (u *Updater) downloadAndReplaceApp(asset Asset) error {
 
 // Release is a GitHub release.
 type Release struct {
-	TagName string  `json:"tag_name"`
-	Assets  []Asset `json:"assets"`
-	Body    string  `json:"body"`
+	TagName         string    `json:"tag_name"`
+	Assets          []Asset   `json:"assets"`
+	Body            string    `json:"body"`
+	CreatedAtString string    `json:"created_at"`
+	CreatedAt       time.Time `json:"created_at_time"`
 }
 
 // Asset is a file within a Release on GitHub.

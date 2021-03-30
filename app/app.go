@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/wailsapp/wails/v2/pkg/mac"
 	"log"
 	"net/http"
 	"os"
@@ -11,6 +10,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/wailsapp/wails/v2/pkg/mac"
 
 	"github.com/gregjones/httpcache"
 	"github.com/gregjones/httpcache/diskcache"
@@ -120,7 +121,10 @@ func newApp() *app {
 	}
 	startsAtLogin, err := mac.StartsAtLogin()
 	if err != nil {
-		app.startsAtLoginMenu.Label = "Start at Login unavailable"
+		if app.Verbose {
+			log.Println("start at login:", err)
+		}
+		app.startsAtLoginMenu.Label = "Start at Login"
 		app.startsAtLoginMenu.Disabled = true
 	} else {
 		app.startsAtLoginMenu.Checked = startsAtLogin
@@ -595,10 +599,12 @@ func (app *app) checkForUpdates(passive bool) {
 		}
 		return
 	}
-
-	if passive {
+	oneWeek := 168 * time.Hour
+	// if this check is passive, and the release is only a few days
+	// old - do a soft prompt.
+	if passive && latest.CreatedAt.After(time.Now().Add(0-oneWeek)) {
 		// Update menu text
-		app.appUpdatesMenu.Label = "Click to update to " + latest.TagName
+		app.appUpdatesMenu.Label = "Install " + latest.TagName
 		app.refreshMenus()
 		return
 	}
