@@ -17,6 +17,8 @@ echo -n $VERSION > .version
 # run all tests
 ./test.sh
 
+rm -rf ./build
+
 sed "s/0.0.0/${VERSION}/" ./assets/mac/info.plist.src > ./assets/mac/info.plist
 CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/amd64
 #CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/arm64
