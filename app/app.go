@@ -185,7 +185,11 @@ func (app *app) Start(runtime *wails.Runtime) {
 	go func() {
 		// wait before checking for updates
 		time.Sleep(10 * time.Second)
-		app.checkForUpdates(true)
+		for {
+			app.checkForUpdates(true)
+			// check again in twelve hours
+			time.Sleep(12 * time.Hour)
+		}
 	}()
 }
 
