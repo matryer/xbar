@@ -10,6 +10,7 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 
 	semver "github.com/Masterminds/semver/v3"
@@ -81,16 +82,29 @@ func (u *Updater) Update() (*Release, error) {
 // Restart spawns the current executable again, and terminates
 // the running one.
 func (u *Updater) Restart() error {
+	time.Sleep(1 * time.Second)
 	thisExecuable, err := os.Executable()
 	if err != nil {
 		return errors.Wrap(err, "get executable")
 	}
-	err = exec.Command(thisExecuable).Start()
+	log.Println("restarting", thisExecuable)
+	cmd := exec.Command(thisExecuable)
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Setpgid: false,
+	}
+	cmd.Dir = filepath.Dir(thisExecuable)
+	cmd.Env = os.Environ()
+	cmd.Args = os.Args
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err = cmd.Start()
 	if err != nil {
+		if exitErr, ok := err.(*exec.ExitError); ok {
+			return errors.Wrapf(err, "start app: exit code %d", exitErr.ExitCode())
+		}
 		return errors.Wrap(err, "start app")
 	}
 	go func() {
-		time.Sleep(2 * time.Second)
 		log.Println("terminating after update")
 		os.Exit(0)
 	}()
