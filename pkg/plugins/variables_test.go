@@ -34,9 +34,10 @@ func TestEnvironmentVariables(t *testing.T) {
 	}
 	p.Run(ctx)
 
-	is.Equal(len(p.Items.CycleItems), 2)
-	is.Equal(p.Items.CycleItems[0].Text, `XBAR_TEST_EXPLICIT_VAR=explicit`) // inherited
-	is.Equal(p.Items.CycleItems[1].Text, `XBAR_TEST_SET_IN_VARS_JSON=json`) // in vars.json file
+	is.Equal(len(p.Items.CycleItems), 3)
+	is.Equal(p.Items.CycleItems[0].Text, `XBAR_TEST_EXPLICIT_VAR=explicit`)     // inherited
+	is.Equal(p.Items.CycleItems[1].Text, `XBAR_TEST_SET_IN_VARS_JSON=json`)     // in vars.json file
+	is.Equal(p.Items.CycleItems[2].Text, `XBAR_TEST_DEFAULT_VAR=default-value`) // from plugin metadata
 
 }
 
