@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/pkg/errors"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -24,13 +25,16 @@ func main() {
 }
 
 func run() error {
-	app := newApp()
+	app, err := newApp()
+	if err != nil {
+		return errors.Wrap(err, "newApp")
+	}
 	wailsLogLevel := logger.ERROR
 	app.Verbose = true
 	if app.Verbose {
 		wailsLogLevel = logger.DEBUG
 	}
-	err := wails.Run(&options.App{
+	err = wails.Run(&options.App{
 		Title:             "xbar",
 		Width:             1080,
 		Height:            700,

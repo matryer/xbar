@@ -11,6 +11,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/pkg/errors"
 	"github.com/wailsapp/wails/v2/pkg/mac"
 
 	"github.com/gregjones/httpcache"
@@ -27,6 +28,7 @@ import (
 var (
 	pluginDirectory = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "plugins")
 	cacheDirectory  = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "cache")
+	configFilename  = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "xbar", "xbar.config.json")
 
 	// concurrentIncomingURLs is the number of concurrent incoming URLs to handle at
 	// the same time.
@@ -39,6 +41,8 @@ var (
 type app struct {
 	runtime *wails.Runtime
 
+	settings *settings
+
 	// appMenu isn't visible - it's used for key shortcuts.
 	appMenu           *menu.Menu
 	contextMenus      []*menu.ContextMenu
@@ -47,6 +51,7 @@ type app struct {
 	pluginTrays       map[string]*menu.TrayMenu
 	menuParser        *MenuParser
 	startsAtLoginMenu *menu.MenuItem
+	autoupdateMenu    *menu.MenuItem
 	appUpdatesMenu    *menu.MenuItem
 
 	// Verbose gets whether verbose output will be printed
@@ -80,8 +85,13 @@ type app struct {
 }
 
 // newApp makes a new app.
-func newApp() *app {
+func newApp() (*app, error) {
+	settings, err := loadSettings(configFilename)
+	if err != nil {
+		return nil, errors.Wrap(err, "loadSettings")
+	}
 	app := &app{
+		settings:             settings,
 		Verbose:              true,
 		menuParser:           NewMenuParser(),
 		incomingURLSemaphore: make(chan struct{}, concurrentIncomingURLs),
@@ -111,6 +121,13 @@ func newApp() *app {
 		Type:  menu.TextType,
 		Label: "Check for updates…",
 		Click: app.onCheckForUpdatesMenuClick,
+	}
+
+	app.autoupdateMenu = &menu.MenuItem{
+		Label:   "Automatically update",
+		Type:    menu.CheckboxType,
+		Checked: app.settings.AutoUpdate,
+		Click:   app.updateAutoupdate,
 	}
 
 	app.startsAtLoginMenu = &menu.MenuItem{
@@ -145,7 +162,7 @@ func newApp() *app {
 		Label: "xbar",
 		Menu:  app.newXbarMenu(nil, false),
 	}
-	return app
+	return app, nil
 }
 
 func (app *app) Start(runtime *wails.Runtime) {
@@ -263,6 +280,28 @@ func (app *app) updateStartOnLogin(data *menu.CallbackData) {
 	app.refreshMenus()
 }
 
+func (app *app) updateAutoupdate(data *menu.CallbackData) {
+	if data.MenuItem.Checked && app.settings.AutoUpdate {
+		// nothing to do
+		return
+	}
+	if !data.MenuItem.Checked && !app.settings.AutoUpdate {
+		// nothing to do
+		return
+	}
+	app.settings.AutoUpdate = data.MenuItem.Checked
+	if err := app.settings.save(); err != nil {
+		log.Println("err: updateAutoupdate:", err)
+		return
+	}
+	if app.settings.AutoUpdate {
+		go app.checkForUpdates(false)
+	}
+	// We need to refresh all as the menuitem is used in multiple places.
+	// If we don't refresh, only the menuitem clicked will toggle in the UI.
+	app.refreshMenus()
+}
+
 // onErr adds a single menu showing the specified error
 // string.
 func (app *app) onErr(err string) {
@@ -346,6 +385,7 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		Disabled: true,
 	})
 	items = append(items, app.appUpdatesMenu)
+	items = append(items, app.autoupdateMenu)
 	items = append(items, app.startsAtLoginMenu)
 	items = append(items, menu.Separator())
 	items = append(items, &menu.MenuItem{
@@ -561,6 +601,12 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 // downloads it and installs it.
 // If passive is true, it won't complain if it fails.
 func (app *app) checkForUpdates(passive bool) {
+	version = "0.0.0" // TODO: REMOVE ME
+	if app.Verbose {
+		log.Printf("checking for updates... (current: %s)", version)
+		log.Println("updates: passive", passive)
+		log.Println("updates: AutoUpdate", app.settings.AutoUpdate)
+	}
 	u := update.Updater{
 		CurrentVersion: version,
 		//LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/xbar/releases/latest",
@@ -574,7 +620,9 @@ func (app *app) checkForUpdates(passive bool) {
 	}
 	latest, hasUpdate, err := u.HasUpdate()
 	if err != nil {
-		log.Println("failed to check for updates:", err)
+		if app.Verbose {
+			log.Println("failed to check for updates:", err)
+		}
 		if !passive {
 			app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.ErrorDialog,
@@ -588,6 +636,9 @@ func (app *app) checkForUpdates(passive bool) {
 	}
 	if !hasUpdate {
 		// they are using the latest version
+		if app.Verbose {
+			log.Println("update: you have the latest version")
+		}
 		if !passive {
 			app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.InfoDialog,
@@ -599,49 +650,64 @@ func (app *app) checkForUpdates(passive bool) {
 		}
 		return
 	}
-	oneWeek := 168 * time.Hour
-	// if this check is passive, and the release is only a few days
-	// old - do a soft prompt.
-	if passive && latest.CreatedAt.After(time.Now().Add(0-oneWeek)) {
-		// Update menu text
-		app.appUpdatesMenu.Label = "Install " + latest.TagName + "…"
-		app.refreshMenus()
-		return
-	}
-	switch app.runtime.Dialog.Message(&dialog.MessageDialog{
-		Type:          dialog.QuestionDialog,
-		Title:         "Update xbar?",
-		Message:       fmt.Sprintf("xbar %s is now available (you have %s).\n\nWould you like to update?", latest.TagName, u.CurrentVersion),
-		Buttons:       []string{"Update", "Later"},
-		DefaultButton: "Update",
-		CancelButton:  "Later",
-	}) {
-	case "Update":
-		// continue
-	case "Later":
-		return
+	if !app.settings.AutoUpdate {
+		oneWeek := 168 * time.Hour
+		// if this check is passive, and the release is only a few days
+		// old - do a soft prompt.
+		if passive && latest.CreatedAt.After(time.Now().Add(0-oneWeek)) {
+			// Update menu text
+			app.appUpdatesMenu.Label = "Install " + latest.TagName + "…"
+			app.refreshMenus()
+			return
+		}
+		switch app.runtime.Dialog.Message(&dialog.MessageDialog{
+			Type:          dialog.QuestionDialog,
+			Title:         "Update xbar?",
+			Message:       fmt.Sprintf("xbar %s is now available (you have %s).\n\nWould you like to update?", latest.TagName, u.CurrentVersion),
+			Buttons:       []string{"Update", "Later"},
+			DefaultButton: "Update",
+			CancelButton:  "Later",
+		}) {
+		case "Update":
+			// continue
+		case "Later":
+			return
+		}
+	} else {
+		if app.Verbose {
+			log.Println("autoupdating...")
+		}
 	}
 	_, err = u.Update()
 	if err != nil {
-		app.runtime.Dialog.Message(&dialog.MessageDialog{
-			Type:         dialog.ErrorDialog,
-			Title:        "Update failed",
-			Message:      err.Error(),
-			Buttons:      []string{"OK"},
-			CancelButton: "OK",
-		})
+		if app.Verbose {
+			log.Println("failed to update:", err)
+		}
+		if !passive {
+			app.runtime.Dialog.Message(&dialog.MessageDialog{
+				Type:         dialog.InfoDialog,
+				Title:        "Update successful",
+				Message:      "Please restart xbar for the changes to take effect.",
+				Buttons:      []string{"OK"},
+				CancelButton: "OK",
+			})
+		}
 		return
 	}
 	err = u.Restart()
 	if err != nil {
-		log.Println("failed to restart:", err)
-		app.runtime.Dialog.Message(&dialog.MessageDialog{
-			Type:         dialog.InfoDialog,
-			Title:        "Update successful",
-			Message:      "Please restart xbar for the changes to take effect.",
-			Buttons:      []string{"OK"},
-			CancelButton: "OK",
-		})
+		if app.Verbose {
+			log.Println("failed to restart:", err)
+		}
+		if !passive {
+			app.runtime.Dialog.Message(&dialog.MessageDialog{
+				Type:         dialog.InfoDialog,
+				Title:        "Update successful",
+				Message:      "Please restart xbar for the changes to take effect.",
+				Buttons:      []string{"OK"},
+				CancelButton: "OK",
+			})
+		}
 		return
 	}
 }
