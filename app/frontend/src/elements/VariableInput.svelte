@@ -56,7 +56,7 @@
             bind:value='{ values[variable.name] }'
             disabled={disabled}
         />
-    {:else if variable.type === 'list'}
+    {:else if variable.type === 'select'}
         <select 
             id='{variable.name}'
             class='border px-2 bg-gray-100 active:bg-gray-300 dark:text-gray-400 dark:bg-black dark:bg-opacity border-gray-300 dark:border-gray-600'

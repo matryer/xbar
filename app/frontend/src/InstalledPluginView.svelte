@@ -62,7 +62,7 @@
 			}
 			switch (v.type) {
 			case 'string':
-			case 'list':
+			case 'select':
 				values[v.name] = v.default
 				break
 			case 'boolean':

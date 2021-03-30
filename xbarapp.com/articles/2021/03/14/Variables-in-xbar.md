@@ -20,12 +20,12 @@ To define variables for your plugin, use `xbar.var` tags.
 <xbar.var>type(VAR_NAME=default): description [options]</xbar.var>
 ```
 
-* `type` - the kind of field (can be `string`, `number`, `boolean`, or `list`)
+* `type` - the kind of field (can be `string`, `number`, `boolean`, or `select`)
 * `VAR_NAME` - the name of the variable (will become an environment variable when the plugin runs). If you prefix your variable name with `"VAR_"`, xbar will nicely format the variable label in the UI
  Prefix names with `VAR_` and use underscores for spaces
 * `default` - the default/initial value for this variable
 * `description` - a short label describing the variable
-* `[options]` - for `list` types, a comma separated list of option strings
+* `[options]` - for `select` types, a comma separated list of option strings
 
 Some examples include:
 
@@ -33,12 +33,12 @@ Some examples include:
 #  <xbar.var>string(VAR_NAME="Mat Ryer"): Your name.</xbar.var>
 #  <xbar.var>number(VAR_COUNTER=1): A counter.</xbar.var>
 #  <xbar.var>boolean(VAR_VERBOSE=true): Verbose or not?</xbar.var>
-#  <xbar.var>list(VAR_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
+#  <xbar.var>select(VAR_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
 ```
 
-### List options
+### Select options
 
-The `[small, normal, big]` in the example above shows the valid options. It is required for `list` types.
+The `[small, normal, big]` in the example above shows the valid options. It is required for `select` types.
 
 ## Using variables in your plugin
 

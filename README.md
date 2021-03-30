@@ -148,7 +148,7 @@ You must add the following metadata to your source code (usually in comments som
 #  <xbar.var>string(VAR_NAME="Mat Ryer"): Your name.</xbar.var>
 #  <xbar.var>number(VAR_COUNTER=1): A counter.</xbar.var>
 #  <xbar.var>boolean(VAR_VERBOSE=true): Whether to be verbose or not.</xbar.var>
-#  <xbar.var>list(VAR_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
+#  <xbar.var>select(VAR_STYLE="normal"): Which style to use. [small, normal, big]</xbar.var>
 ```
 
 * The comment characters can be anything - use what is suitable for your language
