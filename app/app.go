@@ -601,7 +601,6 @@ func (app *app) updateLabel(tray *menu.TrayMenu, p *plugins.Plugin) bool {
 // downloads it and installs it.
 // If passive is true, it won't complain if it fails.
 func (app *app) checkForUpdates(passive bool) {
-	version = "0.0.0" // TODO: REMOVE ME
 	if app.Verbose {
 		log.Printf("checking for updates... (current: %s)", version)
 		log.Println("updates: passive", passive)
