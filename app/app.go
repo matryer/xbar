@@ -124,7 +124,7 @@ func newApp() (*app, error) {
 	}
 
 	app.autoupdateMenu = &menu.MenuItem{
-		Label:   "Automatically update",
+		Label:   "Update automatically",
 		Type:    menu.CheckboxType,
 		Checked: app.settings.AutoUpdate,
 		Click:   app.updateAutoupdate,
@@ -295,7 +295,7 @@ func (app *app) updateAutoupdate(data *menu.CallbackData) {
 		return
 	}
 	if app.settings.AutoUpdate {
-		go app.checkForUpdates(false)
+		go app.checkForUpdates(true)
 	}
 	// We need to refresh all as the menuitem is used in multiple places.
 	// If we don't refresh, only the menuitem clicked will toggle in the UI.
