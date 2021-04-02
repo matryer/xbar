@@ -548,7 +548,7 @@ func (app *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	} else {
 		if app.settings.Terminal.AppleScriptTemplate != "false" {
 			pluginMenu.Append(menu.Separator())
-			pluginMenu.Append(menu.Text("Run in terminal…", keys.CmdOrCtrl("return"), func(_ *menu.CallbackData) {
+			pluginMenu.Append(menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
 				err := p.RunInTerminal(app.settings.Terminal.AppleScriptTemplate)
 				if err != nil {
 					app.runtime.Dialog.Message(&dialog.MessageDialog{
