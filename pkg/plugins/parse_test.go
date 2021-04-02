@@ -39,7 +39,7 @@ func TestParseParams(t *testing.T) {
 	s, params, err = parseParams(`no params`)
 	is.NoErr(err)
 	is.Equal(s, "no params")
-	is.Equal(params.Terminal, "false")  // Terminal
+	is.Equal(params.Terminal, false)  // Terminal
 	is.Equal(params.Refresh, false)   // Refresh
 	is.Equal(params.Dropdown, true)   // Dropdown
 	is.Equal(params.Length, 0)        // Length
