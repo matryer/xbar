@@ -81,7 +81,7 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 		menuItem.Disabled = true
 	}
 	if item.Params.Disabled {
-		// explicity disabled
+		// explicitly disabled
 		menuItem.Disabled = true
 	}
 	return menuItem

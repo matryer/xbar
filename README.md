@@ -335,7 +335,7 @@ It is possible to control xbar using special `xbar://` URLs:
 * `xbar://app.xbarapp.com/openPlugin?path=path/to/plugin` - `openPlugin` opens a plugin in the app
 * `xbar://app.xbarapp.com/refreshPlugin?path=path/to/plugin` - `refreshPlugin` refreshes a specific plugin
 
-### Variables JSON files
+### Plugin variable JSON files
 
 Variables are stored in JSON files alongside your plugin. The key is the name of the Variable and the name of the environment variable. The values are the user's preferences.
 
@@ -349,6 +349,27 @@ For example, the variables file for the `tail.5s.sh` plugin looks like this:
 	"VAR_LINES": 15
 }
 ```
+
+### Xbar config
+
+You can control xbar behaviour by modifying the `/Library/Application Support/xbar/xbar.config.json` file:
+
+* This file doesn't exist by default, you may need to create it.
+
+```json
+{
+	"autoupdate": true,
+	"terminal": {
+		"appleScriptTemplate": ""
+   }
+}
+```
+
+* Change take effect next time xbar starts
+* `autoupdate` - (boolean) whether to keep xbar automatically updated or not
+* `terminal.appleScriptTemplate` - (string) the AppleScript to use when **Run in terminal** option is used (use `"false"` to turn this feature off)
+
+You can delete this file and restart xbar to reset to defaults.
 
 ## Thanks
 

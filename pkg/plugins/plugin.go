@@ -13,6 +13,7 @@ import (
 	"strings"
 	"sync"
 	"syscall"
+	"text/template"
 	"time"
 
 	"github.com/pkg/errors"
@@ -276,6 +277,35 @@ func (p *Plugin) CurrentCycleItem() *Item {
 		p.CycleIndex = 0
 	}
 	return p.Items.CycleItems[p.CycleIndex]
+}
+
+func (p *Plugin) RunInTerminal(terminalAppleScript string) error {
+	tpl, err := template.New("appleScriptTemplate").Parse(terminalAppleScript)
+	if err != nil {
+		return err
+	}
+	var renderedScript bytes.Buffer
+	err = tpl.Execute(&renderedScript, struct {
+		Command string
+	}{
+		Command: p.Command,
+	})
+	if err != nil {
+		return err
+	}
+	appleScript := renderedScript.String()
+	log.Println(p.Command, "RunInTerminal", appleScript)
+	cmd := exec.Command("osascript", "-s", "h", "-e", appleScript)
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	err = cmd.Run()
+	if err != nil {
+		p.Debugf("(ignoring) RunInTerminal failed: %s", err)
+	}
+	if cmd.ProcessState != nil && cmd.ProcessState.ExitCode() != 0 {
+		return errors.Errorf("run in terminal script failed: %s", stderr.String())
+	}
+	return nil
 }
 
 // refresh runs the plugin and parses the output, updating the

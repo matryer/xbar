@@ -5,16 +5,35 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"sync"
 
 	"github.com/pkg/errors"
 )
 
 type settings struct {
+	sync.Mutex
+
 	path string `json:"-"`
 
 	// AutoUpdate indicates that xbar should automatically
 	// update itself.
 	AutoUpdate bool `json:"autoupdate"`
+
+	Terminal struct {
+		AppleScriptTemplate string `json:"appleScriptTemplate"`
+	} `json:"terminal"`
+}
+
+func (s *settings) setDefaults() {
+	if s.Terminal.AppleScriptTemplate == "" {
+		s.Terminal.AppleScriptTemplate = `activate application "Terminal"
+tell application "Terminal" 
+	if not (exists window 1) then reopen
+	set quotedScriptName to quoted form of "{{ .Command }}"
+	do script quotedScriptName
+end tell
+`
+	}
 }
 
 func loadSettings(path string) (*settings, error) {
@@ -25,6 +44,7 @@ func loadSettings(path string) (*settings, error) {
 	if err != nil {
 		if os.IsNotExist(err) {
 			// file not found - it's ok, just use defaults
+			s.setDefaults()
 			return s, nil
 		}
 		return nil, errors.Wrap(err, "ReadFile")
@@ -33,10 +53,14 @@ func loadSettings(path string) (*settings, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "Unmarshal")
 	}
+	s.setDefaults()
 	return s, nil
 }
 
 func (s *settings) save() error {
+	s.Lock()
+	defer s.Unlock()
+	s.setDefaults()
 	b, err := json.MarshalIndent(s, "", "\t")
 	if err != nil {
 		return errors.Wrap(err, "MarshalIndent")
