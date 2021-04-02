@@ -29,6 +29,7 @@ type PluginsService struct {
 	// osLock is used whenever there are operating system changes,
 	// like renaming files. This prevents overlap and potentially strange
 	// state.
+	// todo: move this to a better place.
 	osLock sync.Mutex
 
 	// OnRefresh is called whenever the menus should

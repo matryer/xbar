@@ -77,7 +77,8 @@ func TestUpdate(t *testing.T) {
 	apiServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		version := "v2.0.0"
 		response := Release{
-			TagName: version,
+			CreatedAtString: time.Now().Format(time.RFC3339Nano),
+			TagName:         version,
 			Assets: []Asset{
 				{
 					Name:               "xbar-" + version + ".tar.gz",
@@ -129,7 +130,8 @@ func TestMatchingVersions(t *testing.T) {
 	apiServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		version := "v2.1.0"
 		response := Release{
-			TagName: version,
+			CreatedAtString: time.Now().Format(time.RFC3339Nano),
+			TagName:         version,
 			Assets: []Asset{
 				{
 					Name:               "xbar-" + version + ".tar.gz",
@@ -176,7 +178,8 @@ func TestLocalVersionIsHigher(t *testing.T) {
 	apiServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		version := "v2.1.0"
 		response := Release{
-			TagName: version,
+			CreatedAtString: time.Now().Format(time.RFC3339Nano),
+			TagName:         version,
 			Assets: []Asset{
 				{
 					Name:               "xbar-" + version + ".tar.gz",
