@@ -176,7 +176,6 @@ func TestGetInstalledPluginName(t *testing.T) {
 // 		is.True(err != nil)
 // 	})
 // }
-
-const simplePlugin = `#!/bin/bash
-echo "Hello, xbar."
-`
+// const simplePlugin = `#!/bin/bash
+// echo "Hello, xbar."
+// `
