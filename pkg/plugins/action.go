@@ -42,7 +42,7 @@ func (i *Item) Action() ActionFunc {
 	if i.Params.Shell != "" {
 		actions = append(actions, actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams))
 	}
-	if i.Params.Refresh == true {
+	if i.Params.Refresh {
 		shouldDelayBeforeRefresh := false
 		if len(actions) > 0 {
 			// there are actions other than refresh, so let's introduce a
@@ -157,6 +157,5 @@ func actionRefresh(debugf DebugFunc, refreshFunc func(ctx context.Context)) Acti
 	return func(ctx context.Context) {
 		debugf("action refresh")
 		refreshFunc(ctx)
-		return
 	}
 }
