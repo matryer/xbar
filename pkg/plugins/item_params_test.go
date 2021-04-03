@@ -275,12 +275,12 @@ func TestGoodColors(t *testing.T) {
 	ctx := context.Background()
 	p := &Plugin{}
 	items, err := p.parseOutput(ctx, "colors.txt", strings.NewReader(strings.TrimSpace(`
-	named | color=red
-	RGB | color=#333
-	RGBA | color=#3338
-	RRGGBB | color=#4078C0
-	RRGGBBAA | color=#33333388
-	darkviolet | color=DarkViolet
+named | color=red
+RGB | color=#333
+RGBA | color=#3338
+RRGGBB | color=#4078C0
+RRGGBBAA | color=#33333388
+darkviolet | color=DarkViolet
 	`)))
 	is.NoErr(err)
 	is.Equal(len(items.CycleItems), 6) // CycleItems

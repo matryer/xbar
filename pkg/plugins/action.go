@@ -11,6 +11,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 // ActionFunc is a function that handles the
@@ -40,7 +42,7 @@ func (i *Item) Action() ActionFunc {
 		actions = append(actions, actionHref(debugf, i.Params.Href))
 	}
 	if i.Params.Shell != "" {
-		actions = append(actions, actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams))
+		actions = append(actions, actionShell(debugf, i.Plugin, i, i.Params.Shell, i.Params.ShellParams))
 	}
 	if i.Params.Refresh {
 		shouldDelayBeforeRefresh := false
@@ -114,8 +116,19 @@ func actionHref(debugf DebugFunc, href string) ActionFunc {
 }
 
 // actionShell gets an ActionFunc that runs a shell command.
-func actionShell(debugf DebugFunc, item *Item, command string, params []string) ActionFunc {
+func actionShell(debugf DebugFunc, plugin *Plugin, item *Item, command string, params []string) ActionFunc {
 	return func(ctx context.Context) {
+		if item.Params.Terminal {
+			if plugin.OnRunInTerminal == nil {
+				debugf("ERR: action shell: terminal=true", errExec{
+					err:    errors.New(""),
+					Stderr: "plugin.OnRunInTerminal not set",
+				})
+				return
+			}
+			plugin.OnRunInTerminal(item.Params.Shell, item.Params.ShellParams...)
+			return
+		}
 		var commandExec string
 		var commandArgs []string
 		if item.Params.Terminal {

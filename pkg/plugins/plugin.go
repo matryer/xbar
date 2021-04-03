@@ -13,7 +13,6 @@ import (
 	"strings"
 	"sync"
 	"syscall"
-	"text/template"
 	"time"
 
 	"github.com/pkg/errors"
@@ -55,6 +54,10 @@ type Plugin struct {
 	OnRefresh RefreshFunc
 	// OnCycle is called when the Plugin's CycleIndex has changed.
 	OnCycle CycleFunc
+
+	// OnRunInTerminal is fired when a shell command should be run in the
+	// terminal.
+	OnRunInTerminal func(command string, args ...string)
 
 	// Stdout is a writer that will have stdout written to if not nil.
 	Stdout io.Writer
@@ -277,35 +280,6 @@ func (p *Plugin) CurrentCycleItem() *Item {
 		p.CycleIndex = 0
 	}
 	return p.Items.CycleItems[p.CycleIndex]
-}
-
-func (p *Plugin) RunInTerminal(terminalAppleScript string) error {
-	tpl, err := template.New("appleScriptTemplate").Parse(terminalAppleScript)
-	if err != nil {
-		return err
-	}
-	var renderedScript bytes.Buffer
-	err = tpl.Execute(&renderedScript, struct {
-		Command string
-	}{
-		Command: p.Command,
-	})
-	if err != nil {
-		return err
-	}
-	appleScript := renderedScript.String()
-	log.Println(p.Command, "RunInTerminal", appleScript)
-	cmd := exec.Command("osascript", "-s", "h", "-e", appleScript)
-	var stderr bytes.Buffer
-	cmd.Stderr = &stderr
-	err = cmd.Run()
-	if err != nil {
-		p.Debugf("(ignoring) RunInTerminal failed: %s", err)
-	}
-	if cmd.ProcessState != nil && cmd.ProcessState.ExitCode() != 0 {
-		return errors.Errorf("run in terminal script failed: %s", stderr.String())
-	}
-	return nil
 }
 
 // refresh runs the plugin and parses the output, updating the

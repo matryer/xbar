@@ -1,14 +1,17 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"sync"
+	"text/template"
 	"time"
 
 	"github.com/pkg/errors"
@@ -232,6 +235,50 @@ func (app *app) RefreshAll() {
 		// Setup plugin
 		plugin.OnCycle = app.onCycle
 		plugin.OnRefresh = app.onRefresh
+		plugin.OnRunInTerminal = func(command string, args ...string) {
+			//app.runInTerminal(fmt.Sprintf("%q", strings.Join(append([]string{command}, args...), " ")))
+
+			log.Println("runInTerminal: ", command)
+
+			script := `
+			tell application "Terminal"
+				if not (exists window 1) then reopen
+				set quotedScriptName to quoted form of "{{ .Command }}"
+				do script quotedScriptName
+			end tell
+			`
+
+			tpl, err := template.New("appleScriptTemplate").Parse(script)
+			if err != nil {
+				log.Println("xrunInTerminal: ERR:", err)
+				return
+			}
+			var renderedScript bytes.Buffer
+			err = tpl.Execute(&renderedScript, struct {
+				Command string
+			}{
+				Command: command,
+			})
+			if err != nil {
+				log.Println("xrunInTerminal: ERR:", err)
+				return
+			}
+			appleScript := renderedScript.String()
+			cmd := exec.Command("osascript", "-s", "h", "-e", appleScript)
+			var stderr bytes.Buffer
+			cmd.Stderr = &stderr
+			err = cmd.Run()
+			if err != nil {
+				err = errors.Wrapf(err, "run in terminal script: %s: %s", command, stderr.String())
+				log.Println("xrunInTerminal: ERR:", err)
+				return
+			}
+			if cmd.ProcessState != nil && cmd.ProcessState.ExitCode() != 0 {
+				err = errors.Errorf("run in terminal script: failed with non-zero exit code %s: %s", stderr.String(), command)
+				log.Println("xrunInTerminal: ERR:", err)
+				return
+			}
+		}
 		if app.Verbose {
 			//plugin.Stdout = os.Stdout
 			plugin.Stderr = os.Stderr
@@ -354,6 +401,22 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	})
 	items = append(items, menu.Separator())
 	if plugin != nil {
+		if app.settings.Terminal.AppleScriptTemplate != "false" {
+			items = append(items, menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
+				err := app.runInTerminal(fmt.Sprintf("%q", plugin.Command))
+				if err != nil {
+					app.runtime.Dialog.Message(&dialog.MessageDialog{
+						Type:         dialog.ErrorDialog,
+						Title:        "Run in terminal",
+						Message:      err.Error(),
+						Buttons:      []string{"OK"},
+						CancelButton: "OK",
+					})
+					return
+				}
+			}))
+			items = append(items, menu.Separator())
+		}
 		items = append(items, &menu.MenuItem{
 			Type:        menu.TextType,
 			Label:       "Open plugin…",
@@ -546,22 +609,6 @@ func (app *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	if pluginMenu == nil {
 		pluginMenu = app.newXbarMenu(p, false)
 	} else {
-		if app.settings.Terminal.AppleScriptTemplate != "false" {
-			pluginMenu.Append(menu.Separator())
-			pluginMenu.Append(menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
-				err := p.RunInTerminal(app.settings.Terminal.AppleScriptTemplate)
-				if err != nil {
-					app.runtime.Dialog.Message(&dialog.MessageDialog{
-						Type:         dialog.ErrorDialog,
-						Title:        "Run in terminal",
-						Message:      err.Error(),
-						Buttons:      []string{"OK"},
-						CancelButton: "OK",
-					})
-					return
-				}
-			}))
-		}
 		pluginMenu.Append(menu.Separator())
 		pluginMenu.Merge(app.newXbarMenu(p, true))
 	}
@@ -764,4 +811,32 @@ func (app *app) setDarkMode(darkmode bool) {
 			log.Println("os.Setenv", err)
 		}
 	}
+}
+
+func (app *app) runInTerminal(command string) error {
+	tpl, err := template.New("appleScriptTemplate").Parse(app.settings.Terminal.AppleScriptTemplate)
+	if err != nil {
+		return err
+	}
+	var renderedScript bytes.Buffer
+	err = tpl.Execute(&renderedScript, struct {
+		Command string
+	}{
+		Command: command,
+	})
+	if err != nil {
+		return err
+	}
+	appleScript := renderedScript.String()
+	cmd := exec.Command("osascript", "-s", "h", "-e", appleScript)
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	err = cmd.Run()
+	if err != nil {
+		return errors.Wrapf(err, "run in terminal script: %s: %s", command, stderr.String())
+	}
+	if cmd.ProcessState != nil && cmd.ProcessState.ExitCode() != 0 {
+		return errors.Errorf("run in terminal script: failed with non-zero exit code %s: %s", stderr.String(), command)
+	}
+	return nil
 }

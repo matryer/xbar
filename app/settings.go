@@ -27,7 +27,7 @@ type settings struct {
 func (s *settings) setDefaults() {
 	if s.Terminal.AppleScriptTemplate == "" {
 		s.Terminal.AppleScriptTemplate = `activate application "Terminal"
-tell application "Terminal" 
+tell application "Terminal"
 	if not (exists window 1) then reopen
 	set quotedScriptName to quoted form of "{{ .Command }}"
 	do script quotedScriptName
