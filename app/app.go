@@ -352,6 +352,21 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
 		Click:       app.onPluginsRefreshAllMenuClicked,
 	})
+	if plugin != nil {
+		items = append(items, menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
+			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptTemplate)
+			if err != nil {
+				app.runtime.Dialog.Message(&dialog.MessageDialog{
+					Type:         dialog.ErrorDialog,
+					Title:        "Run in terminal",
+					Message:      err.Error(),
+					Buttons:      []string{"OK"},
+					CancelButton: "OK",
+				})
+				return
+			}
+		}))
+	}
 	items = append(items, menu.Separator())
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
@@ -546,22 +561,22 @@ func (app *app) onRefresh(ctx context.Context, p *plugins.Plugin, _ error) {
 	if pluginMenu == nil {
 		pluginMenu = app.newXbarMenu(p, false)
 	} else {
-		if app.settings.Terminal.AppleScriptTemplate != "false" {
-			pluginMenu.Append(menu.Separator())
-			pluginMenu.Append(menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
-				err := p.RunInTerminal(app.settings.Terminal.AppleScriptTemplate)
-				if err != nil {
-					app.runtime.Dialog.Message(&dialog.MessageDialog{
-						Type:         dialog.ErrorDialog,
-						Title:        "Run in terminal",
-						Message:      err.Error(),
-						Buttons:      []string{"OK"},
-						CancelButton: "OK",
-					})
-					return
-				}
-			}))
-		}
+		// if app.settings.Terminal.AppleScriptTemplate != "false" {
+		// 	pluginMenu.Append(menu.Separator())
+		// 	pluginMenu.Append(menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
+		// 		err := p.RunInTerminal(app.settings.Terminal.AppleScriptTemplate)
+		// 		if err != nil {
+		// 			app.runtime.Dialog.Message(&dialog.MessageDialog{
+		// 				Type:         dialog.ErrorDialog,
+		// 				Title:        "Run in terminal",
+		// 				Message:      err.Error(),
+		// 				Buttons:      []string{"OK"},
+		// 				CancelButton: "OK",
+		// 			})
+		// 			return
+		// 		}
+		// 	}))
+		// }
 		pluginMenu.Append(menu.Separator())
 		pluginMenu.Merge(app.newXbarMenu(p, true))
 	}
