@@ -3,7 +3,7 @@
 	<key>CFBundlePackageType</key><string>APPL</string>
 	<key>CFBundleName</key><string>xbar</string>
 	<key>CFBundleExecutable</key><string>xbar</string>
-	<key>CFBundleIdentifier</key><string>xbar.0.0.0</string>
+	<key>CFBundleIdentifier</key><string>matryer.xbar</string>
 	<key>CFBundleVersion</key><string>0.0.0</string>
 	<key>CFBundleURLTypes</key>
     	<array>
