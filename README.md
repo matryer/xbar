@@ -360,14 +360,14 @@ You can control xbar behaviour by modifying the `/Library/Application Support/xb
 {
 	"autoupdate": true,
 	"terminal": {
-		"appleScriptTemplate": ""
+		"appleScriptWithVarsTemplate": ""
    }
 }
 ```
 
-* Change take effect next time xbar starts
+* Changes take effect next time xbar starts
 * `autoupdate` - (boolean) whether to keep xbar automatically updated or not
-* `terminal.appleScriptTemplate` - (string) the AppleScript to use when **Run in terminal** option is used (use `"false"` to turn this feature off)
+* `terminal.appleScriptWithVarsTemplate` - (string) the AppleScript to use when **Run in terminal** option is used (use `"false"` to turn this feature off)
 
 You can delete this file and restart xbar to reset to defaults.
 
