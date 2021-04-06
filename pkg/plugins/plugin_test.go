@@ -299,3 +299,18 @@ func TestPluginWontQuit(t *testing.T) {
 	p.Refresh(ctx)
 	p.Refresh(ctx)
 }
+
+func TestVariablesEnvString(t *testing.T) {
+	is := is.New(t)
+
+	vars := []string{
+		"one=1",
+		"two=2",
+		"spaces=I have spaces",
+		"malformed",
+	}
+
+	s := variablesEnvString(vars)
+	is.Equal(s, `one="1" two="2" spaces="I have spaces"`)
+
+}

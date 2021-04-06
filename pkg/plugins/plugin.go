@@ -279,16 +279,21 @@ func (p *Plugin) CurrentCycleItem() *Item {
 	return p.Items.CycleItems[p.CycleIndex]
 }
 
-func (p *Plugin) RunInTerminal(terminalAppleScript string) error {
-	tpl, err := template.New("appleScriptTemplate").Parse(terminalAppleScript)
+// RunInTerminal runs this plugin in a terminal using the template
+// apple script.
+func (p *Plugin) RunInTerminal(appleScriptWithVarsTemplate string) error {
+	tpl, err := template.New("appleScriptWithVarsTemplate").Parse(appleScriptWithVarsTemplate)
 	if err != nil {
 		return err
 	}
+	commandLine := p.Command
 	var renderedScript bytes.Buffer
 	err = tpl.Execute(&renderedScript, struct {
 		Command string
+		Vars    string
 	}{
-		Command: p.Command,
+		Command: commandLine,
+		Vars:    fmt.Sprintf("%q", variablesEnvString(p.Variables)),
 	})
 	if err != nil {
 		return err
@@ -454,4 +459,18 @@ type errParsing struct {
 
 func (e *errParsing) Error() string {
 	return fmt.Sprintf("%s:%d: %v", e.filename, e.line, e.err)
+}
+
+func variablesEnvString(vars []string) string {
+	quotesVars := make([]string, len(vars))
+	for i := range vars {
+		split := strings.Index(vars[i], "=")
+		if split == -1 {
+			// skip malformed variable (shouldn't happen)
+			log.Println("skipping malformed variable:", vars[i])
+			continue
+		}
+		quotesVars[i] = fmt.Sprintf("%s=%q", vars[i][:split], vars[i][split+1:])
+	}
+	return strings.Join(quotesVars, " ")
 }

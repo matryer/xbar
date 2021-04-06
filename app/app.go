@@ -354,7 +354,7 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	})
 	if plugin != nil {
 		items = append(items, menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
-			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptTemplate)
+			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptWithVarsTemplate)
 			if err != nil {
 				app.runtime.Dialog.Message(&dialog.MessageDialog{
 					Type:         dialog.ErrorDialog,

@@ -20,17 +20,18 @@ type settings struct {
 	AutoUpdate bool `json:"autoupdate"`
 
 	Terminal struct {
-		AppleScriptTemplate string `json:"appleScriptTemplate"`
+		AppleScriptWithVarsTemplate string `json:"appleScriptWithVarsTemplate"`
 	} `json:"terminal"`
 }
 
 func (s *settings) setDefaults() {
-	if s.Terminal.AppleScriptTemplate == "" {
-		s.Terminal.AppleScriptTemplate = `activate application "Terminal"
+	if s.Terminal.AppleScriptWithVarsTemplate == "" {
+		s.Terminal.AppleScriptWithVarsTemplate = `activate application "Terminal"
 tell application "Terminal" 
 	if not (exists window 1) then reopen
 	set quotedScriptName to quoted form of "{{ .Command }}"
-	do script quotedScriptName
+	set commandLine to {{ .Vars }} & " " & quotedScriptName
+	do script commandLine
 end tell
 `
 	}
