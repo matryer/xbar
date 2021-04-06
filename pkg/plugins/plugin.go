@@ -462,7 +462,7 @@ func (e *errParsing) Error() string {
 }
 
 func variablesEnvString(vars []string) string {
-	quotesVars := make([]string, len(vars))
+	quotesVars := make([]string, 0, len(vars))
 	for i := range vars {
 		split := strings.Index(vars[i], "=")
 		if split == -1 {
@@ -470,7 +470,7 @@ func variablesEnvString(vars []string) string {
 			log.Println("skipping malformed variable:", vars[i])
 			continue
 		}
-		quotesVars[i] = fmt.Sprintf("%s=%q", vars[i][:split], vars[i][split+1:])
+		quotesVars = append(quotesVars, fmt.Sprintf("%s=%q", vars[i][:split], vars[i][split+1:]))
 	}
 	return strings.Join(quotesVars, " ")
 }
