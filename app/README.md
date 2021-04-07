@@ -49,5 +49,4 @@ git push origin v0.1.0
 ./package.sh
 ```
 
-* You will need `npm install --global create-dmg` see https://github.com/sindresorhus/create-dmg
-* You will need `brew install graphicsmagick imagemagick`
+* For code signing, xbar uses https://github.com/matryer/gon (fork of https://github.com/mitchellh/gon) 

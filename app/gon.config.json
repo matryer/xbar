@@ -6,7 +6,7 @@
 	"apple_id": {
 		"username": "@env:AC_USERNAME",
 		"password": "@env:AC_PASSWORD",
-		"provider": "MatRyer173337473"
+		"provider": "@env:AC_PROVIDER"
 	},
 	"sign": {
 		"application_identity": "2F00310F58CB6A52D928B715F7F4626B3B1A1813"

@@ -181,10 +181,10 @@ func hasUpdate(current, latest string) bool {
 func (u *Updater) downloadAndReplaceApp(asset Asset) error {
 	filename := path.Base(asset.BrowserDownloadURL)
 	switch {
-	case strings.HasSuffix(filename, ".tar.gz"):
+	case strings.HasSuffix(filename, ".zip"):
 		// fine
 	default:
-		return errors.Errorf("%s files not supported", filename)
+		return errors.Errorf("file not supported: %s", filename)
 	}
 	resp, err := u.Client.Get(asset.BrowserDownloadURL)
 	if err != nil {

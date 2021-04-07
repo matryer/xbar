@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
 	"sync"
 	"time"
 
@@ -631,8 +630,8 @@ func (app *app) checkForUpdates(passive bool) {
 		LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/xbar/releases/latest",
 		Client:                      &http.Client{Timeout: 10 * time.Minute},
 		SelectAsset: func(release update.Release, asset update.Asset) bool {
-			// get the .tar.gz file
-			return strings.HasSuffix(asset.Name, ".tar.gz")
+			// look for the zip file
+			return filepath.Ext(asset.Name) == ".zip"
 		},
 		DownloadBytesLimit: 10_741_824, // 10MB
 	}

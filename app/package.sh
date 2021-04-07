@@ -28,7 +28,7 @@ CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platfor
 #tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
 #rm -rf ./xbar.app
 
-gon ./gon.config.json
+gon -log-level=debug ./gon.config.json
 
 mv ./build/xbar.dmg "./build/xbar.${VERSION}.dmg"
 mv ./build/xbar.zip "./build/xbar.${VERSION}.zip"
