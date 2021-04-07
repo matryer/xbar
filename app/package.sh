@@ -23,9 +23,14 @@ sed "s/0.0.0/${VERSION}/" ./assets/mac/Info.plist.src > ./assets/mac/Info.plist
 CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/amd64
 #CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/arm64
 #CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/universal
-cd ./build/darwin/desktop
-create-dmg ./xbar.app --overwrite --dmg-title "Install xbar"
-tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
+#cd ./build/darwin/desktop
+#create-dmg ./xbar.app --overwrite --dmg-title "Install xbar"
+#tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
 #rm -rf ./xbar.app
 
-open .
+gon ./gon.config.json
+
+mv ./build/xbar.dmg "./build/xbar.${VERSION}.dmg"
+mv ./build/xbar.zip "./build/xbar.${VERSION}.zip"
+
+open ./build
