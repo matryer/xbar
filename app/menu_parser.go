@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/leaanthony/go-ansi-parser"
+	"strconv"
 
 	"github.com/matryer/xbar/pkg/plugins"
 	"github.com/wailsapp/wails/v2/pkg/menu"
@@ -40,6 +42,7 @@ func (m MenuParser) ParseItems(ctx context.Context, items []*plugins.Item) *menu
 
 // ParseMenuItem parses a single item, returning the new menu.
 func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu.MenuItem {
+	var err error
 	displayText := item.DisplayText()
 	itemAction := item.Action()
 	menuItem := menu.Text(displayText, nil, func(_ *menu.CallbackData) {
@@ -49,7 +52,21 @@ func (m MenuParser) ParseMenuItem(ctx context.Context, item *plugins.Item) *menu
 		itemAction(ctx)
 	})
 	if item.Text != displayText {
-		menuItem.Tooltip = item.Text
+		tooltip := item.Text
+		if item.Params.ANSI {
+			tooltip, err = strconv.Unquote(`"` + tooltip + `"`)
+			if err != nil {
+				tooltip = item.Text
+			}
+		}
+		if ansi.HasEscapeCodes(tooltip) {
+			menuItem.Tooltip, err = ansi.Cleanse(tooltip)
+			if err != nil {
+				menuItem.Tooltip = err.Error()
+			}
+		} else {
+			menuItem.Tooltip = tooltip
+		}
 	}
 	if item.Params.Key != "" {
 		acc, err := keys.Parse(item.Params.Key)

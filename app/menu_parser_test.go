@@ -79,10 +79,16 @@ func TestMenuParser(t *testing.T) {
 				},
 			},
 		},
+		{
+			Text: "\033[0;38;2;255;0;0mA\033[0;38;2;255;127;0mN\033[0;38;2;255;255;0mS\033[0;38;2;0;255;0mI\u001B[0m",
+			Params: plugins.ItemParams{
+				Refresh: true,
+			},
+		},
 	}
 	menuitems := NewMenuParser().ParseItems(ctx, items)
 
-	is.Equal(len(menuitems.Items), 10) // len(menuitems.Items)
+	is.Equal(len(menuitems.Items), 11) // len(menuitems.Items)
 
 	is.Equal(menuitems.Items[0].Label, "one")
 	is.Equal(menuitems.Items[0].Disabled, false)
@@ -119,6 +125,8 @@ func TestMenuParser(t *testing.T) {
 	is.Equal(menuitems.Items[8].Label, "Non Alternate")
 	is.Equal(menuitems.Items[9].Label, "Alternate")
 	is.Equal(menuitems.Items[9].MacAlternate, true)
+
+	is.Equal(menuitems.Items[10].Tooltip, "ANSI")
 }
 
 func JSON(menu *menu.Menu, is *is.I) string {
