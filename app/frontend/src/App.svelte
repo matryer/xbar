@@ -17,7 +17,7 @@
 	import KeyboardShortcuts from './elements/KeyboardShortcuts.svelte'
     import { sigRefresh, fireSigRefresh } from './signals.svelte'
 
-	let err
+	let err;
 
 	$: installedPluginsEnabled = $installedPlugins ? $installedPlugins.filter(p => p.enabled) : []
 	$: installedPluginsDisabled = $installedPlugins ? $installedPlugins.filter(p => !p.enabled) : []
@@ -33,7 +33,6 @@
 	Events.On('xbar.browser.openInstalledPlugin', function(params){
 		location.hash = `/installed-plugins/${params.path}`
 	})
-	
 
 	$: if ($sigRefresh) {
 		const done = wait()
