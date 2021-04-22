@@ -18,8 +18,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-// https://api.github.com/repos/matryer/bitbar/releases/latest
-
 // Updater updates an app.
 type Updater struct {
 	// CurrentVersion is the current install version.
