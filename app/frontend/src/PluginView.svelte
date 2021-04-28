@@ -45,6 +45,10 @@
 	.plugin-image {
 		max-width: 300px;
 	}
+
+	.min-height-m-c {
+		min-height: min-content;
+	}
 </style>
 
 <Error err={err} />
@@ -55,7 +59,7 @@
 
 {#if plugin}
 	<div class='flex flex-col h-full max-w-full'>
-		<div class='p-6 flex flex-wrap space-x-8'>
+		<div class='p-6 flex flex-wrap space-x-8 min-height-m-c'>
 			<div>
 				<PluginDetails plugin={plugin} />
 				<p class='p-3'>
