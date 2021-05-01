@@ -536,6 +536,8 @@ func (app *app) handleIncomingURL(url string) {
 				return
 			}
 		}
+	case "refreshAllPlugins":
+		app.RefreshAll()
 	default:
 		log.Printf("incoming URL: skipping, unknown action %q\n", incomingURL.Action)
 	}

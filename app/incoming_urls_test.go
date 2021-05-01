@@ -19,6 +19,10 @@ func TestParseIncomingURL(t *testing.T) {
 	is.Equal(result.Action, "refreshPlugin")
 	is.Equal(result.Params.Get("path"), "cycle_text_and_detail")
 
+	result, err = parseIncomingURL(`xbar://app.xbarapp.com/refreshAllPlugins`)
+	is.NoErr(err)
+	is.Equal(result.Action, "refreshAllPlugins")
+
 	result, err = parseIncomingURL(`xbar://app.xbarapp.com/nope?path=cycle_text_and_detail`)
 	is.True(err != nil)
 

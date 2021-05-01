@@ -29,6 +29,7 @@ func parseIncomingURL(urlStr string) (incomingURL, error) {
 	switch inURL.Action {
 	case "openPlugin":
 	case "refreshPlugin":
+	case "refreshAllPlugins":
 	default: // not ok
 		return inURL, errors.Errorf("unsupported action %q", inURL.Action)
 	}

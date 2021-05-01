@@ -334,6 +334,7 @@ It is possible to control xbar using special `xbar://` URLs:
 
 * `xbar://app.xbarapp.com/openPlugin?path=path/to/plugin` - `openPlugin` opens a plugin in the app
 * `xbar://app.xbarapp.com/refreshPlugin?path=path/to/plugin` - `refreshPlugin` refreshes a specific plugin
+* `xbar://app.xbarapp.com/refreshAllPlugins` - `refreshAllPlugins` refreshes all plugins
 
 ### Plugin variable JSON files
 
