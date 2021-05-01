@@ -16,21 +16,21 @@ type incomingURL struct {
 
 // parseIncomingURL parses an incoming xbar:// URL.
 func parseIncomingURL(urlStr string) (incomingURL, error) {
-	var incomingURL incomingURL
+	var inURL incomingURL
 	u, err := url.Parse(urlStr)
 	if err != nil {
-		return incomingURL, err
+		return inURL, err
 	}
 	if u.Scheme != "xbar" && u.Host != "app.xbarapp.com" {
-		return incomingURL, errors.New("not an xbar:// url")
+		return inURL, errors.New("not an xbar:// url")
 	}
-	incomingURL.Action = strings.Trim(u.Path, "/")
-	incomingURL.Params = u.Query()
-	switch incomingURL.Action {
+	inURL.Action = strings.Trim(u.Path, "/")
+	inURL.Params = u.Query()
+	switch inURL.Action {
 	case "openPlugin":
 	case "refreshPlugin":
 	default: // not ok
-		return incomingURL, errors.Errorf("unsupported action %q", incomingURL.Action)
+		return inURL, errors.Errorf("unsupported action %q", inURL.Action)
 	}
-	return incomingURL, nil
+	return inURL, nil
 }
