@@ -12,14 +12,28 @@ To build xbar, you will need:
 
 ### Running
 
+If running for the first time first generate the `.version` file and install the npm dependencies by running: 
+
 ```bash
-cd app && wails dev
+cd app && git describe --tags > .version 
+```
+
+and 
+
+```bash
+cd app/frontend && npm install
+```
+
+To start the application run:
+
+```bash
+cd app/frontend && npm run dev
 ```
 
 and
 
-```
-cd app/frontend && npm run dev
+```bash
+cd app && wails dev
 ```
 
 ### Building
