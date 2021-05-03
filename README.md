@@ -362,7 +362,7 @@ You can control xbar behaviour by modifying the `/Library/Application Support/xb
 	"autoupdate": true,
 	"terminal": {
 		"appleScriptWithVarsTemplate": ""
-   }
+	}
 }
 ```
 
