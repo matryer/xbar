@@ -1,6 +1,7 @@
 package plugins
 
 import (
+	"github.com/leaanthony/go-ansi-parser"
 	"strconv"
 	"strings"
 
@@ -37,8 +38,17 @@ type Item struct {
 // DisplayText gets the text that should be displayed for
 // this item.
 // It takes into account the Length parameter.
+// @matryer - is there a better way to handle these errors?
 func (i Item) DisplayText() string {
-	return truncate(i.Text, i.Params.Length)
+	var err error
+	displayText := i.Text
+	if i.Params.ANSI {
+		displayText, err = strconv.Unquote(`"` + displayText + `"`)
+		if err != nil {
+			displayText = i.Text
+		}
+	}
+	return truncate(displayText, i.Params.Length)
 }
 
 // ItemParams represent parameters for an Item.
@@ -300,10 +310,20 @@ func parseInt(s string) (int, error) {
 
 // truncate shrinks a string if it's too long.
 func truncate(s string, max int) string {
-	runes := []rune(s)
-	if max > 0 && len(runes) > max {
-		s = string(runes[:max-1]) + "…"
+	truncated, err := ansi.Truncate(s, max-1)
+	if err != nil {
+		// If, for some reason, there's an error when
+		// parsing, do what we used to do
+		runes := []rune(s)
+		if max > 0 && len(runes) > max {
+			s = string(runes[:max-1]) + "…"
+		}
 		return s
 	}
-	return s
+	length, _ := ansi.Length(truncated)
+	if length == max-1 {
+		truncated += "…"
+	}
+
+	return truncated
 }

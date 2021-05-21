@@ -2,6 +2,7 @@ package metadata
 
 import (
 	"fmt"
+	"github.com/leaanthony/go-ansi-parser"
 	"math/rand"
 	"os"
 	"path"
@@ -465,10 +466,20 @@ func (e errParse) Error() string {
 
 // truncate shrinks a string if it's too long.
 func truncate(s string, max int) string {
-	runes := []rune(s)
-	if max > 0 && len(runes) > max {
-		s = string(runes[:max-1]) + "…"
+	truncated, err := ansi.Truncate(s, max)
+	if err != nil {
+		// If, for some reason, there's an error when
+		// parsing, do what we used to do
+		runes := []rune(s)
+		if max > 0 && len(runes) > max {
+			s = string(runes[:max-1]) + "…"
+		}
 		return s
 	}
-	return s
+	length, _ := ansi.Length(truncated)
+	if length == max-1 {
+		truncated += "…"
+	}
+
+	return truncated
 }
