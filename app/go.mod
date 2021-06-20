@@ -23,4 +23,4 @@ replace github.com/matryer/xbar/pkg/metadata => ../pkg/metadata
 
 replace github.com/matryer/xbar/pkg/update => ../pkg/update
 
-//replace github.com/wailsapp/wails/v2 => ../../../wailsapp/wails/v2
+replace github.com/wailsapp/wails/v2 => ../../wails/v2

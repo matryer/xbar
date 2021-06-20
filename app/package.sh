@@ -17,13 +17,13 @@ echo -n $VERSION > .version
 # run all tests
 ./test.sh
 
-rm -rf ./build
+rm -rf ./build/bin
 
-sed "s/0.0.0/${VERSION}/" ./assets/mac/Info.plist.src > ./assets/mac/Info.plist
-CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/amd64
-#CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/arm64
-#CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/universal
-#cd ./build/darwin/desktop
+sed "s/0.0.0/${VERSION}/" ./build/darwin/Info.plist.src > ./build/darwin/Info.plist
+CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/amd64 -o xbar
+#CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/arm64 -o xbar
+#CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/universal -o xbar
+#cd ./build/bin/
 #create-dmg ./xbar.app --overwrite --dmg-title "Install xbar"
 #tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
 #rm -rf ./xbar.app
