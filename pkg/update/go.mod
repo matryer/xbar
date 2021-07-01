@@ -3,11 +3,12 @@ module github.com/matryer/xbar/pkg/update
 go 1.16
 
 require (
-	github.com/Masterminds/semver/v3 v3.1.1 // indirect
+	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/dsnet/compress v0.0.1 // indirect
+	github.com/frankban/quicktest v1.13.0 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
 	github.com/matryer/is v1.4.0
-	github.com/mholt/archiver v3.1.1+incompatible // indirect
+	github.com/mholt/archiver v3.1.1+incompatible
 	github.com/nwaples/rardecode v1.1.0 // indirect
 	github.com/pierrec/lz4 v2.6.0+incompatible // indirect
 	github.com/pkg/errors v0.9.1
