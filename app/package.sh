@@ -82,11 +82,14 @@ sed "s/0.0.0/${VERSION}/" ./build/darwin/Info.plist.src > ./build/darwin/Info.pl
 CGO_LDFLAGS=-mmacosx-version-min=10.13 wails build -package -production -platform darwin/universal -o xbar
 
 cd ./build/bin/
-create-dmg ./xbar.app --overwrite --identity="${XBAR_SIGNING_IDENTITY}" --dmg-title "Install xbar"
-mv xbar*.dmg "xbar.${VERSION}.dmg"
 
 echo "Signing the binary..."
 codesign -s "${XBAR_SIGNING_IDENTITY}" -o runtime -v "./xbar.app/Contents/MacOS/xbar"
+
+echo "Creating DMG..."
+
+create-dmg ./xbar.app --overwrite --dmg-title "Install xbar"
+mv xbar*.dmg "xbar.${VERSION}.dmg"
 
 echo "Zipping..."
 zip -r xbar.zip ./xbar.app
