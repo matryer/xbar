@@ -31,5 +31,4 @@ func TestReadRepo(t *testing.T) {
 	}
 	err := r.All(ctx)
 	is.NoErr(err) // ReadRepo
-
 }
