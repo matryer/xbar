@@ -88,7 +88,7 @@ codesign -s "${XBAR_SIGNING_IDENTITY}" -o runtime -v "./xbar.app/Contents/MacOS/
 
 echo "Creating DMG..."
 
-create-dmg ./xbar.app --overwrite --dmg-title "Install xbar"
+create-dmg ./xbar.app --overwrite --identity="${XBAR_SIGNING_IDENTITY}" --dmg-title "Install xbar"
 mv xbar*.dmg "xbar.${VERSION}.dmg"
 
 echo "Zipping..."
@@ -101,4 +101,6 @@ echo "Notorizing..."
 notarizefile "xbar.${VERSION}.zip" "com.xbarapp.app"
 notarizefile "xbar.${VERSION}.dmg" "com.xbarapp.app"
 
-open ./build
+rm -rf ./build/bin/xbar.app
+
+open ./build/bin
