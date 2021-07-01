@@ -142,14 +142,18 @@ func (p *PluginsService) InstallPlugin(plugin metadata.Plugin) (string, error) {
 	p.osLock.Lock()
 	defer p.osLock.Unlock()
 	if p.runtime != nil {
-		switch p.runtime.Dialog.Message(&dialog.MessageDialog{
+		response, err := p.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:          "Question",
 			Title:         "Install plugin",
 			Message:       fmt.Sprintf("Are you sure you want to install %s?", plugin.Title),
 			Buttons:       []string{"Install", "Cancel"},
 			DefaultButton: "Install",
 			CancelButton:  "Cancel",
-		}) {
+		})
+		if err != nil {
+			return "", err
+		}
+		switch response {
 		case "Install":
 			// continue
 		case "Cancel":
@@ -188,14 +192,18 @@ func (p *PluginsService) UninstallPlugin(installedPluginInfo UninstallPluginRequ
 	p.osLock.Lock()
 	defer p.osLock.Unlock()
 	if p.runtime != nil {
-		switch p.runtime.Dialog.Message(&dialog.MessageDialog{
+		response, err := p.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:          "Question",
 			Title:         "Uninstall plugin",
 			Message:       fmt.Sprintf("Are you sure you want to remove %s?\n\nThis cannot be undone.", installedPluginInfo.Title),
 			Buttons:       []string{"Uninstall", "Cancel"},
 			DefaultButton: "Uninstall",
 			CancelButton:  "Cancel",
-		}) {
+		})
+		if err != nil {
+			return false, err
+		}
+		switch response {
 		case "Uninstall":
 			// continue
 		case "Cancel":

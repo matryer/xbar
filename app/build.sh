@@ -8,4 +8,4 @@ echo "  xbar ${VERSION}..."
 echo ""
 echo -n $VERSION > .version
 
-wails build
+wails build -o xbar

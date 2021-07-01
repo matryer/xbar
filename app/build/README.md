@@ -1,12 +1,11 @@
-# Assets Directory
+# Build Directory
 
-The assets directory is used to house all the assets of your application. 
+The build directory houses all the build-related assets of your application. 
 
 The structure is:
 
   * dialog - Icons for dialogs
   * tray - Icons for the system tray
-  * custom - A place for assets you wish to bundle in the application
   * mac - MacOS specific files
   * linux - Linux specific files
   * windows - Windows specific files
@@ -27,7 +26,7 @@ Examples:
 
 ### Order of preference
 
-Icons are selected with the following order of preference:
+Icons are used with the following order of preference:
 
 For High Definition displays:
 * name-(theme)2x.png
@@ -47,13 +46,3 @@ The name of the filename will be the ID to reference the image.
 Example:
 
 * `mypic.png` - May be referenced using `runtime.Tray.SetIcon("mypic")` 
-
-## Custom
-
-Any file in this directory will be embedded into the app using the Wails asset bundler.
-Assets can be retrieved using the following methods:
-
-* `wails.Assets().Read(filename string) ([]byte, error)`  
-* `wails.Assets().String(filename string) (string, error)`
-
-The filename should include the path to the file relative to the `custom` directory.

@@ -355,13 +355,17 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 		items = append(items, menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
 			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptWithVarsTemplate)
 			if err != nil {
-				app.runtime.Dialog.Message(&dialog.MessageDialog{
+				_, err2 := app.runtime.Dialog.Message(&dialog.MessageDialog{
 					Type:         dialog.ErrorDialog,
 					Title:        "Run in terminal",
 					Message:      err.Error(),
 					Buttons:      []string{"OK"},
 					CancelButton: "OK",
 				})
+				if err2 != nil {
+					log.Println(err2)
+					return
+				}
 				return
 			}
 		}))
@@ -478,25 +482,33 @@ func (app *app) clearCache(passive bool) {
 		if passive {
 			return
 		}
-		app.runtime.Dialog.Message(&dialog.MessageDialog{
+		_, err2 := app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.ErrorDialog,
 			Title:        "Clear cache failed",
 			Message:      err.Error(),
 			Buttons:      []string{"OK"},
 			CancelButton: "OK",
 		})
+		if err2 != nil {
+			log.Println(err2)
+			return
+		}
 		return
 	}
 	if passive {
 		return
 	}
-	app.runtime.Dialog.Message(&dialog.MessageDialog{
+	_, err2 := app.runtime.Dialog.Message(&dialog.MessageDialog{
 		Type:         dialog.InfoDialog,
 		Title:        "Cache cleared",
 		Message:      "The local cache was successfully cleared.",
 		Buttons:      []string{"OK"},
 		CancelButton: "OK",
 	})
+	if err2 != nil {
+		log.Println(err2)
+		return
+	}
 }
 
 func (app *app) handleIncomingURL(url string) {
@@ -509,13 +521,17 @@ func (app *app) handleIncomingURL(url string) {
 	log.Println("incoming URL: handleIncomingURL", url)
 	incomingURL, err := parseIncomingURL(url)
 	if err != nil {
-		app.runtime.Dialog.Message(&dialog.MessageDialog{
+		_, err2 := app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:         dialog.ErrorDialog,
 			Title:        "Invalid URL",
 			Message:      err.Error(),
 			Buttons:      []string{"OK"},
 			CancelButton: "OK",
 		})
+		if err2 != nil {
+			log.Println(err2)
+			return
+		}
 		return
 	}
 	switch incomingURL.Action {
@@ -643,13 +659,17 @@ func (app *app) checkForUpdates(passive bool) {
 			log.Println("failed to check for updates:", err)
 		}
 		if !passive {
-			app.runtime.Dialog.Message(&dialog.MessageDialog{
+			_, err := app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.ErrorDialog,
 				Title:        "Update check failed",
 				Message:      err.Error(),
 				Buttons:      []string{"OK"},
 				CancelButton: "OK",
 			})
+			if err != nil {
+				log.Println(err)
+				return
+			}
 		}
 		return
 	}
@@ -659,13 +679,17 @@ func (app *app) checkForUpdates(passive bool) {
 			log.Println("update: you have the latest version")
 		}
 		if !passive {
-			app.runtime.Dialog.Message(&dialog.MessageDialog{
+			_, err := app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.InfoDialog,
 				Title:        "You're up to date",
 				Message:      fmt.Sprintf("%s is the latest version.", latest.TagName),
 				Buttons:      []string{"OK"},
 				CancelButton: "OK",
 			})
+			if err != nil {
+				log.Println(err)
+				return
+			}
 		}
 		return
 	}
@@ -679,14 +703,19 @@ func (app *app) checkForUpdates(passive bool) {
 			app.refreshMenus()
 			return
 		}
-		switch app.runtime.Dialog.Message(&dialog.MessageDialog{
+		response, err := app.runtime.Dialog.Message(&dialog.MessageDialog{
 			Type:          dialog.QuestionDialog,
 			Title:         "Update xbar?",
 			Message:       fmt.Sprintf("xbar %s is now available (you have %s).\n\nWould you like to update?", latest.TagName, u.CurrentVersion),
 			Buttons:       []string{"Update", "Later"},
 			DefaultButton: "Update",
 			CancelButton:  "Later",
-		}) {
+		})
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		switch response {
 		case "Update":
 			// continue
 		case "Later":
@@ -703,13 +732,17 @@ func (app *app) checkForUpdates(passive bool) {
 			log.Println("failed to update:", err)
 		}
 		if !passive {
-			app.runtime.Dialog.Message(&dialog.MessageDialog{
+			_, err := app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.InfoDialog,
 				Title:        "Update successful",
 				Message:      "Please restart xbar for the changes to take effect.",
 				Buttons:      []string{"OK"},
 				CancelButton: "OK",
 			})
+			if err != nil {
+				log.Println(err)
+				return
+			}
 		}
 		return
 	}
@@ -719,13 +752,17 @@ func (app *app) checkForUpdates(passive bool) {
 			log.Println("failed to restart:", err)
 		}
 		if !passive {
-			app.runtime.Dialog.Message(&dialog.MessageDialog{
+			_, err := app.runtime.Dialog.Message(&dialog.MessageDialog{
 				Type:         dialog.InfoDialog,
 				Title:        "Update successful",
 				Message:      "Please restart xbar for the changes to take effect.",
 				Buttons:      []string{"OK"},
 				CancelButton: "OK",
 			})
+			if err != nil {
+				log.Println(err)
+				return
+			}
 		}
 		return
 	}
