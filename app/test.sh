@@ -19,7 +19,7 @@ cd ../pkg/update
 go test
 cd ../../app
 
-cd ../tools/sitegen
-echo -n $VERSION > .version
-go test -short
-cd ../../app
+# cd ../tools/sitegen
+# echo -n $VERSION > .version
+# go test -short
+# cd ../../app
