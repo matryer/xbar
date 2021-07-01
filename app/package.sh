@@ -106,4 +106,4 @@ xcrun stapler staple "xbar.${VERSION}.dmg"
 
 rm -rf ./build/bin/xbar.app
 
-open ./build/bin
+open .
