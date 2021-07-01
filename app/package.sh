@@ -87,9 +87,11 @@ echo "Signing the binary..."
 codesign -s "${XBAR_SIGNING_IDENTITY}" -o runtime -v "./xbar.app/Contents/MacOS/xbar"
 
 echo "Creating DMG..."
-
 create-dmg ./xbar.app --overwrite --identity="${XBAR_SIGNING_IDENTITY}" --dmg-title "Install xbar"
 mv xbar*.dmg "xbar.${VERSION}.dmg"
+
+echo "TARing..."
+tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
 
 echo "Zipping..."
 zip -r xbar.zip ./xbar.app
@@ -100,6 +102,7 @@ echo "Notorizing..."
 
 notarizefile "xbar.${VERSION}.zip" "com.xbarapp.app"
 notarizefile "xbar.${VERSION}.dmg" "com.xbarapp.app"
+xcrun stapler staple "xbar.${VERSION}.dmg"
 
 rm -rf ./build/bin/xbar.app
 
