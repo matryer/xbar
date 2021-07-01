@@ -667,7 +667,7 @@ func (app *app) checkForUpdates(passive bool) {
 				CancelButton: "OK",
 			})
 			if err != nil {
-				// @matryer - how do you want to handle these errors?
+				log.Println(err)
 				return
 			}
 		}
@@ -687,7 +687,7 @@ func (app *app) checkForUpdates(passive bool) {
 				CancelButton: "OK",
 			})
 			if err != nil {
-				// @matryer - how do you want to handle these errors?
+				log.Println(err)
 				return
 			}
 		}
@@ -712,7 +712,7 @@ func (app *app) checkForUpdates(passive bool) {
 			CancelButton:  "Later",
 		})
 		if err != nil {
-			// @matryer - how do you want to handle these errors?
+			log.Println(err)
 			return
 		}
 		switch response {
@@ -740,7 +740,7 @@ func (app *app) checkForUpdates(passive bool) {
 				CancelButton: "OK",
 			})
 			if err != nil {
-				// @matryer - how do you want to handle these errors?
+				log.Println(err)
 				return
 			}
 		}
@@ -760,7 +760,7 @@ func (app *app) checkForUpdates(passive bool) {
 				CancelButton: "OK",
 			})
 			if err != nil {
-				// @matryer - how do you want to handle these errors?
+				log.Println(err)
 				return
 			}
 		}
