@@ -85,12 +85,12 @@ cd ./build/bin/
 create-dmg ./xbar.app --overwrite --identity="${XBAR_SIGNING_IDENTITY}" --dmg-title "Install xbar"
 mv xbar*.dmg "xbar.${VERSION}.dmg"
 
+echo "Signing the binary..."
+codesign -s "${XBAR_SIGNING_IDENTITY}" -o runtime -v "./xbar.app/Contents/MacOS/xbar"
+
 echo "Zipping..."
 zip -r xbar.zip ./xbar.app
 mv xbar.zip "xbar.${VERSION}.zip"
-
-echo "Signing the zip..."
-codesign -s "${XBAR_SIGNING_IDENTITY}" "xbar.${VERSION}.zip"
 
 #xcrun notarytool submit "xbar.${VERSION}.zip" --keychain-profile "${AC_PASSWORD}" --wait
 echo "Notorizing..."
