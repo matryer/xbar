@@ -181,7 +181,7 @@
 
 	<div class="flex flex-col h-full max-w-full">
 		<div class="p-6 space-x-8">
-			<div>
+			<div class="flex space-x-8">
 				<PluginDetails plugin="{installedPlugin}">
 					<div slot="action" class="pl-3">
 						<Spinner
@@ -208,28 +208,27 @@
 						{/if}
 					</div>
 				</PluginDetails>
-				{#if installedPlugin}
-					<div class="p-3 flex space-x-5">
-						<Button
-							on:click="{() =>
-								gotoOpenPluginIssue(installedPlugin)}"
-						>
-							Open issue&hellip;
-						</Button>
-						<Button on:click="{onUninstallClick}">
-							Uninstall this plugin
-						</Button>
+				{#if installedPlugin && installedPlugin.imageURL}
+					<div class="flex-shrink mb-8">
+						<img
+							alt="Screenshot of {installedPlugin.title}"
+							src="{installedPlugin.imageURL}"
+							onerror="this.style.display='none'"
+							class="plugin-image max-h-64"
+						/>
 					</div>
 				{/if}
 			</div>
-			{#if installedPlugin && installedPlugin.imageURL}
-				<div class="flex-shrink mb-8">
-					<img
-						alt="Screenshot of {installedPlugin.title}"
-						src="{installedPlugin.imageURL}"
-						onerror="this.style.display='none'"
-						class="plugin-image max-h-64"
-					/>
+			{#if installedPlugin}
+				<div class="p-3 flex space-x-5">
+					<Button
+						on:click="{() => gotoOpenPluginIssue(installedPlugin)}"
+					>
+						Open issue&hellip;
+					</Button>
+					<Button on:click="{onUninstallClick}">
+						Uninstall this plugin
+					</Button>
 				</div>
 			{/if}
 		</div>
