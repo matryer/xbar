@@ -92,19 +92,20 @@ func (u *Updater) Restart() error {
 	}
 	cmd.Dir = filepath.Dir(thisExecuable)
 	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, "XBAR_UPDATE_RESTART_COUNTER=1")
 	cmd.Args = os.Args
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err = cmd.Start()
 	if err != nil {
 		if exitErr, ok := err.(*exec.ExitError); ok {
-			return errors.Wrapf(err, "start app: exit code %d", exitErr.ExitCode())
+			return errors.Wrapf(err, "starting new app failed: exit code %d", exitErr.ExitCode())
 		}
-		return errors.Wrap(err, "start app")
+		return errors.Wrap(err, "starting new app failed")
 	}
-	log.Println("waiting before terminating after update")
+	log.Println("waiting before terminating after update...")
 	time.Sleep(1 * time.Second)
-	log.Println("terminating after update")
+	log.Println("terminating after update.")
 	os.Exit(0)
 	return nil
 }
