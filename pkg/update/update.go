@@ -102,10 +102,10 @@ func (u *Updater) Restart() error {
 		}
 		return errors.Wrap(err, "start app")
 	}
-	go func() {
-		log.Println("terminating after update")
-		os.Exit(0)
-	}()
+	log.Println("waiting before terminating after update")
+	time.Sleep(1 * time.Second)
+	log.Println("terminating after update")
+	os.Exit(0)
 	return nil
 }
 

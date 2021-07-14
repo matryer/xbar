@@ -90,8 +90,8 @@ echo "Creating DMG..."
 create-dmg ./xbar.app --overwrite --identity="${XBAR_SIGNING_IDENTITY}" --dmg-title "Install xbar"
 mv xbar*.dmg "xbar.${VERSION}.dmg"
 
-echo "TARing..."
-tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
+#echo "TARing..."
+#tar -czvf xbar.${VERSION}.tar.gz ./xbar.app
 
 echo "Zipping..."
 zip -r xbar.zip ./xbar.app
