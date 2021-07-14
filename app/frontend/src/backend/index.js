@@ -16,7 +16,7 @@ const backend = {
     "CommandService": {
       /**
        * ClearCache
-       * @returns {Promise} 
+       * @returns {Promise<void>} 
        */
       "ClearCache": () => {
         return window.backend.main.CommandService.ClearCache();
@@ -47,21 +47,21 @@ const backend = {
       },
       /**
        * RefreshAllPlugins
-       * @returns {Promise} 
+       * @returns {Promise<void>} 
        */
       "RefreshAllPlugins": () => {
         return window.backend.main.CommandService.RefreshAllPlugins();
       },
       /**
        * WindowHide
-       * @returns {Promise} 
+       * @returns {Promise<void>} 
        */
       "WindowHide": () => {
         return window.backend.main.CommandService.WindowHide();
       },
       /**
        * WindowMinimise
-       * @returns {Promise} 
+       * @returns {Promise<void>} 
        */
       "WindowMinimise": () => {
         return window.backend.main.CommandService.WindowMinimise();
