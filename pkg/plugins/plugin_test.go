@@ -314,3 +314,20 @@ func TestVariablesEnvString(t *testing.T) {
 	is.Equal(s, `one="1" two="2" spaces="I have spaces"`)
 
 }
+
+// TestPipeElsewhere checks to see if the plugin can handle
+// a pipe elsewhere in the output.
+// https://github.com/matryer/xbar/issues/743
+func TestPipeElsewhere(t *testing.T) {
+	is := is.New(t)
+
+	p := &Plugin{}
+	in := `Copy TITLE | font=Monaco size=10 alternate=true shell='/bin/bash' param1='-c' param2="echo -n string | pbcopy" terminal=false`
+	items, err := p.parseOutput(context.Background(), "text.txt", strings.NewReader(in))
+	is.NoErr(err)
+
+	is.Equal(len(items.CycleItems), 1)
+	is.Equal(len(items.CycleItems[0].Params.ShellParams), 2)
+	is.Equal(items.CycleItems[0].Params.ShellParams[0], "-c")
+	is.Equal(items.CycleItems[0].Params.ShellParams[1], "echo -n string | pbcopy")
+}

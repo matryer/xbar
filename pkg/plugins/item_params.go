@@ -1,9 +1,10 @@
 package plugins
 
 import (
-	"github.com/leaanthony/go-ansi-parser"
 	"strconv"
 	"strings"
+
+	"github.com/leaanthony/go-ansi-parser"
 
 	"github.com/pkg/errors"
 )
@@ -143,7 +144,10 @@ func parseParamStr(params *ItemParams, s string) error {
 			key = strings.TrimSpace(key)
 		}
 		valuePart := s[offset:]
-		end := strings.IndexAny(valuePart, endStr+"|")
+		end := strings.Index(valuePart, endStr)
+		if end < 0 {
+			end = strings.Index(valuePart, "|")
+		}
 		if end < 0 {
 			end = len(s)
 		} else {
