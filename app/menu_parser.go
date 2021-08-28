@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/leaanthony/go-ansi-parser"
 	"strconv"
 
+	"github.com/leaanthony/go-ansi-parser"
 	"github.com/matryer/xbar/pkg/plugins"
 	"github.com/wailsapp/wails/v2/pkg/menu"
 	"github.com/wailsapp/wails/v2/pkg/menu/keys"

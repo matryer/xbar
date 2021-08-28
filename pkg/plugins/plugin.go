@@ -279,21 +279,21 @@ func (p *Plugin) CurrentCycleItem() *Item {
 	return p.Items.CycleItems[p.CycleIndex]
 }
 
-// RunInTerminal runs this plugin in a terminal using the template
-// apple script.
-func (p *Plugin) RunInTerminal(appleScriptWithVarsTemplate string) error {
-	tpl, err := template.New("appleScriptWithVarsTemplate").Parse(appleScriptWithVarsTemplate)
+func (p *Plugin) runInTerminal(appleScriptTemplate2, command, paramsStr string, vars []string) error {
+	tpl, err := template.New("appleScriptTemplate2").Parse(appleScriptTemplate2)
 	if err != nil {
 		return err
 	}
-	commandLine := p.Command
+	commandLine := command
 	var renderedScript bytes.Buffer
 	err = tpl.Execute(&renderedScript, struct {
 		Command string
 		Vars    string
+		Params  string
 	}{
 		Command: commandLine,
-		Vars:    fmt.Sprintf("%q", variablesEnvString(p.Variables)),
+		Vars:    fmt.Sprintf("%q", variablesEnvString(vars)),
+		Params:  paramsStr,
 	})
 	if err != nil {
 		return err
@@ -311,6 +311,12 @@ func (p *Plugin) RunInTerminal(appleScriptWithVarsTemplate string) error {
 		return errors.Errorf("run in terminal script failed: %s", stderr.String())
 	}
 	return nil
+}
+
+// RunInTerminal runs this plugin in a terminal using the template
+// apple script.
+func (p *Plugin) RunInTerminal(appleScriptTemplate2 string) error {
+	return p.runInTerminal(appleScriptTemplate2, p.Command, "", p.Variables)
 }
 
 // refresh runs the plugin and parses the output, updating the

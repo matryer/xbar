@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"syscall"
 	"time"
@@ -40,7 +41,7 @@ func (i *Item) Action() ActionFunc {
 		actions = append(actions, actionHref(debugf, i.Params.Href))
 	}
 	if i.Params.Shell != "" {
-		actions = append(actions, actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams))
+		actions = append(actions, actionShell(debugf, i, i.Params.Shell, i.Params.ShellParams, i.Plugin.Variables))
 	}
 	if i.Params.Refresh {
 		shouldDelayBeforeRefresh := false
@@ -114,21 +115,24 @@ func actionHref(debugf DebugFunc, href string) ActionFunc {
 }
 
 // actionShell gets an ActionFunc that runs a shell command.
-func actionShell(debugf DebugFunc, item *Item, command string, params []string) ActionFunc {
+func actionShell(debugf DebugFunc, item *Item, command string, params, envVars []string) ActionFunc {
+	if item.Params.Terminal {
+		return actionShellTerminal(debugf, item, command, params, envVars)
+	}
 	return func(ctx context.Context) {
 		var commandExec string
 		var commandArgs []string
-		if item.Params.Terminal {
-			shell := os.Getenv("SHELL")
-			if shell == "" {
-				shell = "/bin/bash"
-			}
-			commandExec = shell
-			commandArgs = append([]string{command}, params...)
-		} else {
-			commandExec = command
-			commandArgs = params
-		}
+		// if item.Params.Terminal {
+		// 	shell := os.Getenv("SHELL")
+		// 	if shell == "" {
+		// 		shell = "/bin/bash"
+		// 	}
+		// 	commandExec = shell
+		// 	commandArgs = append([]string{command}, params...)
+		// } else {
+		commandExec = command
+		commandArgs = params
+		//}
 		debugf("exec: %s %s", commandExec, strings.Join(commandArgs, " "))
 		cmd := exec.CommandContext(context.Background(), commandExec, commandArgs...)
 		cmd.SysProcAttr = &syscall.SysProcAttr{
@@ -146,6 +150,38 @@ func actionShell(debugf DebugFunc, item *Item, command string, params []string) 
 				err:    err,
 				Stderr: stderr.String(),
 			})
+			return
+		}
+	}
+}
+
+// actionShellTerminal runs shell commands where terminal=true.
+func actionShellTerminal(debugf DebugFunc, item *Item, command string, params, envVars []string) ActionFunc {
+	return func(ctx context.Context) {
+		debugf("exec: RunInTerminal...")
+		script := `
+			activate application "Terminal"
+			tell application "Terminal" 
+				if not (exists window 1) then reopen
+				set quotedScriptName to quoted form of "{{ .Command }}"
+				{{ if .Params }}
+					set commandLine to {{ .Vars }} & " " & quotedScriptName & " " & {{ .Params }}
+				{{ else }}
+					set commandLine to {{ .Vars }} & " " & quotedScriptName
+				{{ end }}
+				do script commandLine
+			end tell
+		`
+		command := strconv.Quote(command)
+		command = command[1 : len(command)-1] // trim quotes off
+		for i := range params {
+			params[i] = strconv.Quote(params[i])
+			params[i] = params[i][1 : len(params[i])-1] // trim quotes off
+		}
+		paramsStr := strconv.Quote(strings.Join(params, " "))
+		err := item.Plugin.runInTerminal(script, command, paramsStr, envVars)
+		if err != nil {
+			debugf("exec: RunInTerminal: err=%s", err)
 			return
 		}
 	}

@@ -18,9 +18,12 @@ func TestMenuParser(t *testing.T) {
 	ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
 	defer cancel()
 
+	plugin := &plugins.Plugin{}
+
 	items := []*plugins.Item{
 		{
-			Text: "one",
+			Plugin: plugin,
+			Text:   "one",
 			Items: []*plugins.Item{
 				{Text: "sub1"},
 				{Text: "sub2"},
@@ -28,7 +31,8 @@ func TestMenuParser(t *testing.T) {
 			},
 		},
 		{
-			Text: "two",
+			Plugin: plugin,
+			Text:   "two",
 			Params: plugins.ItemParams{
 				Font: "Courier New",
 				Size: 26,
@@ -36,42 +40,49 @@ func TestMenuParser(t *testing.T) {
 			},
 		},
 		{
-			Text: "three",
+			Plugin: plugin,
+			Text:   "three",
 		},
 		{
-			Text: "four",
+			Plugin: plugin,
+			Text:   "four",
 			Params: plugins.ItemParams{
 				Href: "https://xbarapp.com",
 			},
 		},
 		{
-			Text: "five",
+			Plugin: plugin,
+			Text:   "five",
 			Params: plugins.ItemParams{
 				Shell:       "echo",
 				ShellParams: []string{"hi"},
 			},
 		},
 		{
-			Text: "six",
+			Plugin: plugin,
+			Text:   "six",
 			Params: plugins.ItemParams{
 				Refresh: true,
 			},
 		},
 		{
-			Text: "seven but this will be truncated",
+			Plugin: plugin,
+			Text:   "seven but this will be truncated",
 			Params: plugins.ItemParams{
 				Refresh: true,
 				Length:  5,
 			},
 		},
 		{
-			Text: "Template Image",
+			Plugin: plugin,
+			Text:   "Template Image",
 			Params: plugins.ItemParams{
 				TemplateImage: "base64stuff",
 			},
 		},
 		{
-			Text: "Non Alternate",
+			Plugin: plugin,
+			Text:   "Non Alternate",
 			Alternate: &plugins.Item{
 				Text: "Alternate",
 				Params: plugins.ItemParams{
