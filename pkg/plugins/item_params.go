@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/leaanthony/go-ansi-parser"
-
 	"github.com/pkg/errors"
 )
 
@@ -76,6 +75,9 @@ type ItemParams struct {
 	// Terminal indicates whether to run the shell command in a terminal or not.
 	// Default is false.
 	Terminal bool `json:"terminal"`
+	// // appleScriptTemplate3 is the template for the AppleScript
+	// // to run this action in a terminal.
+	// AppleScriptTemplate string `json:"-"`
 	// Refresh indicates whether clicking this item will cause the plugin
 	// to refresh or not.
 	Refresh bool `json:"refresh"`

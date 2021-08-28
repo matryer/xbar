@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"sync"
@@ -20,24 +21,30 @@ type settings struct {
 	AutoUpdate bool `json:"autoupdate"`
 
 	Terminal struct {
-		AppleScriptTemplate2 string `json:"appleScriptTemplate2"`
+		AppleScriptTemplate3 string `json:"appleScriptTemplate3"`
 	} `json:"terminal"`
 }
 
 func (s *settings) setDefaults() {
-	if s.Terminal.AppleScriptTemplate2 == "" {
-		s.Terminal.AppleScriptTemplate2 = `
-			activate application "Terminal"
-			tell application "Terminal" 
-				if not (exists window 1) then reopen
-				set quotedScriptName to quoted form of "{{ .Command }}"
-				{{ if .Params }}
-					set commandLine to {{ .Vars }} & " " & quotedScriptName & " " & {{ .Params }}
-				{{ else }}
-					set commandLine to {{ .Vars }} & " " & quotedScriptName
-				{{ end }}
-				do script commandLine
-			end tell
+	if s.Terminal.AppleScriptTemplate3 == "" {
+		s.Terminal.AppleScriptTemplate3 = `
+			set quotedScriptName to quoted form of "{{ .Command }}"
+		{{ if .Params }}
+			set commandLine to {{ .Vars }} & " " & quotedScriptName & " " & {{ .Params }}
+		{{ else }}
+			set commandLine to {{ .Vars }} & " " & quotedScriptName
+		{{ end }}
+			if application "Terminal" is running then 
+				tell application "Terminal"
+					do script commandLine
+					activate
+				end tell
+			else
+				tell application "Terminal"
+					do script commandLine in window 1
+					activate
+				end tell
+			end if
 		`
 	}
 }
@@ -60,6 +67,7 @@ func loadSettings(path string) (*settings, error) {
 		return nil, errors.Wrap(err, "Unmarshal")
 	}
 	s.setDefaults()
+	log.Printf("### - settings: %+v\n", s)
 	return s, nil
 }
 

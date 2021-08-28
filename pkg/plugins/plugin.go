@@ -69,6 +69,10 @@ type Plugin struct {
 	// Called in TriggerRefresh() when updating the plugin menu to the
 	// refreshing state, before refreshSignal is triggered.
 	cycleSignal chan (struct{})
+
+	// appleScriptTemplate3 is the template for the AppleScript
+	// to run this action in a terminal.
+	AppleScriptTemplate string
 }
 
 // CleanFilename gets a clean human readable representation of the
@@ -279,8 +283,8 @@ func (p *Plugin) CurrentCycleItem() *Item {
 	return p.Items.CycleItems[p.CycleIndex]
 }
 
-func (p *Plugin) runInTerminal(appleScriptTemplate2, command, paramsStr string, vars []string) error {
-	tpl, err := template.New("appleScriptTemplate2").Parse(appleScriptTemplate2)
+func (p *Plugin) runInTerminal(appleScriptTemplate3, command, paramsStr string, vars []string) error {
+	tpl, err := template.New("appleScriptTemplate3").Parse(appleScriptTemplate3)
 	if err != nil {
 		return err
 	}
@@ -315,8 +319,8 @@ func (p *Plugin) runInTerminal(appleScriptTemplate2, command, paramsStr string, 
 
 // RunInTerminal runs this plugin in a terminal using the template
 // apple script.
-func (p *Plugin) RunInTerminal(appleScriptTemplate2 string) error {
-	return p.runInTerminal(appleScriptTemplate2, p.Command, "", p.Variables)
+func (p *Plugin) RunInTerminal(appleScriptTemplate3 string) error {
+	return p.runInTerminal(appleScriptTemplate3, p.Command, "", p.Variables)
 }
 
 // refresh runs the plugin and parses the output, updating the

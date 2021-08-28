@@ -229,6 +229,7 @@ func (app *app) RefreshAll() {
 	}
 	for _, plugin := range app.plugins {
 		// Setup plugin
+		plugin.AppleScriptTemplate = app.settings.Terminal.AppleScriptTemplate3
 		plugin.OnCycle = app.onCycle
 		plugin.OnRefresh = app.onRefresh
 		if app.Verbose {
@@ -353,7 +354,7 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	})
 	if plugin != nil {
 		items = append(items, menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
-			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptTemplate2)
+			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptTemplate3)
 			if err != nil {
 				_, err2 := app.runtime.Dialog.Message(&dialog.MessageDialog{
 					Type:         dialog.ErrorDialog,
