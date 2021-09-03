@@ -80,7 +80,7 @@ Most plugins will come with a default, but you can change it to anything you lik
 
 ### Ensure the plugin is executable
 
-Ensure the plugin is executable by running `chmod +x plugin.sh`.
+Ensure the plugin is executable by running `chmod +x plugin.sh`. Also ensure that the script uses the `#!/usr/bin/env` style shebang, EG: `#!/usr/bin/env bash`.
 
 ## Plugin API
 
@@ -177,12 +177,12 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 
 #### One line plugin
 
-    #!/bin/bash
+    #!/usr/bin/env bash
     date
 
 #### Multi-line plugin
 
-    #!/bin/bash
+    #!/usr/bin/env bash
 
     # the current date and time
     date
@@ -195,7 +195,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 
 #### Multi-line plugin with extra data
 
-    #!/bin/bash
+    #!/usr/bin/env bash
     echo "One"
     echo "Two"
     echo "Three"
@@ -209,7 +209,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 
 #### Multi-line plugin with links and colors
 
-    #!/bin/bash
+    #!/usr/bin/env bash
     curl -m 1 http://example.com -I >/dev/null 2>&1
     [ $? -gt 0 ] && echo "FAIL | color=red" || echo "OK | color=green"
     echo "---"
@@ -220,7 +220,7 @@ For a real example, see the [Cycle text and detail plugin source code](https://g
 
 ![xbar Example showing colored fonts](https://raw.github.com/xbar/master/Docs/xbar-Example-Menu-Colors-Fonts.png)
 
-    #!/bin/zsh
+    #!/usr/bin/env zsh
     FONT=( 'size=14' 'font=UbuntuMono' )
     if ((0)); then echo "DO | $FONT color=orange"
     else           echo "DO | $FONT color=cadetblue"
@@ -235,7 +235,7 @@ for values when they install the plugin.
 From there, the values will be available as environment variables.
 
 ```bash
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # ... other metadata ...
 #
