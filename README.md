@@ -80,7 +80,9 @@ Most plugins will come with a default, but you can change it to anything you lik
 
 ### Ensure the plugin is executable
 
-Ensure the plugin is executable by running `chmod +x plugin.sh`. It is recommended to use `#!/usr/bin/env`. For example, `#!/usr/bin/env bash`.
+Ensure the plugin is executable by running `chmod +x plugin.sh`.
+
+It is recommended to use `#!/usr/bin/env`. For example, `#!/usr/bin/env bash`.
 
 ## Plugin API
 
