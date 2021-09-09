@@ -13,7 +13,7 @@ xbar (the BitBar reboot) lets you put the output from any script/program in your
 Digging deeper:
 
   * [Browse plugin repository](https://xbarapp.com/)
-  * [Guide to writing your own plugins](#writing-plugins)
+  * [Guide to writing your own plugins](https://github.com/matryer/xbar-plugins/blob/main/CONTRIBUTING.md)
 
 And finally...
 
