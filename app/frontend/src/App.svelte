@@ -58,7 +58,7 @@
 
 	function openPluginGuide(event) {
 		event.preventDefault()
-		openURL('https://github.com/matryer/xbar#writing-plugins')
+		openURL('https://github.com/matryer/xbar-plugins/blob/main/CONTRIBUTING.md')
 			.catch(e => err = e)
 	}
 
