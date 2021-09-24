@@ -10,6 +10,7 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"time"
 
 	semver "github.com/Masterminds/semver/v3"
@@ -86,7 +87,9 @@ func (u *Updater) Restart() error {
 	}
 	log.Println("restarting", thisExecuable)
 	cmd := exec.Command(thisExecuable)
-	Setpgid(cmd)
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Setpgid: false,
+	}
 	cmd.Dir = filepath.Dir(thisExecuable)
 	cmd.Env = os.Environ()
 	cmd.Env = append(cmd.Env, "XBAR_UPDATE_RESTART_COUNTER=1")

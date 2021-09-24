@@ -27,11 +27,24 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 		line            int
 		text            string
 		err             error
+		readErr         error
 	)
-	scanner := bufio.NewScanner(r)
-	for scanner.Scan() {
+	br := bufio.NewReader(r)
+	for readErr == nil { // keep reading until we hit io.EOF
 		line++
-		text = scanner.Text()
+		text, readErr = br.ReadString('\n')
+		if readErr != nil && readErr != io.EOF {
+			// some other error reading (io.EOF is fine)
+			break
+		}
+		if readErr == io.EOF && text == "" {
+			// io.EOF and no text - looks like were done.
+			break
+		}
+		if readErr != io.EOF {
+			// not io.EOF, to trim off the delimiter
+			text = text[:len(text)-1]
+		}
 		text, params, err = parseParams(text)
 		if err != nil {
 			return items, &errParsing{
@@ -108,9 +121,6 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 			items.CycleItems = append(items.CycleItems, item)
 		}
 		previousItem = item
-	}
-	if err := scanner.Err(); err != nil {
-		return items, errors.Wrap(err, "reading")
 	}
 	if err != nil && err != io.EOF {
 		return items, errors.Wrap(err, "reading")
