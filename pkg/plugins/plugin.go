@@ -10,9 +10,9 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
-	"syscall"
 	"text/template"
 	"time"
 
@@ -328,10 +328,14 @@ func (p *Plugin) RunInTerminal(appleScriptTemplate3 string) error {
 func (p *Plugin) refresh(ctx context.Context) error {
 	commandCtx, cancel := context.WithTimeout(ctx, p.Timeout)
 	defer cancel()
-	cmd := exec.CommandContext(commandCtx, "./"+filepath.Base(p.Command))
-	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Setpgid: true,
+	var path string
+	if runtime.GOOS == "windows" {
+		path = p.Command
+	} else {
+		path = "./" + filepath.Base(p.Command)
 	}
+	cmd := exec.CommandContext(commandCtx, path)
+	Setpgid(cmd)
 	cmd.Dir = filepath.Dir(p.Command)
 	// inherit outside environment
 	cmd.Env = append(cmd.Env, os.Environ()...)

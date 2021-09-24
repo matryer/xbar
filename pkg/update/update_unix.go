@@ -1,0 +1,13 @@
+//go:build linux || darwin
+package update
+
+import (
+	"os/exec"
+	"syscall"
+)
+
+func Setpgid(cmd *exec.Cmd) {
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Setpgid: true,
+	}
+}
