@@ -10,7 +10,6 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
-	"syscall"
 	"time"
 )
 
@@ -88,21 +87,15 @@ func actionHref(debugf DebugFunc, href string) ActionFunc {
 		switch runtime.GOOS {
 		case "linux":
 			cmd := exec.CommandContext(commandCtx, "xdg-open", href)
-			cmd.SysProcAttr = &syscall.SysProcAttr{
-				Setpgid: true,
-			}
+			Setpgid(cmd)
 			cmd.Run()
 		case "windows":
 			cmd := exec.CommandContext(commandCtx, "rundll32", "url.dll,FileProtocolHandler", href)
-			cmd.SysProcAttr = &syscall.SysProcAttr{
-				Setpgid: true,
-			}
+			Setpgid(cmd)
 			cmd.Run()
 		case "darwin":
 			cmd := exec.CommandContext(commandCtx, "open", href)
-			cmd.SysProcAttr = &syscall.SysProcAttr{
-				Setpgid: true,
-			}
+			Setpgid(cmd)
 			cmd.Run()
 		default:
 			err = fmt.Errorf("unsupported platform")
@@ -126,9 +119,7 @@ func actionShell(debugf DebugFunc, item *Item, appleScriptTemplate, command stri
 		commandArgs = params
 		debugf("exec: %s %s", commandExec, strings.Join(commandArgs, " "))
 		cmd := exec.CommandContext(context.Background(), commandExec, commandArgs...)
-		cmd.SysProcAttr = &syscall.SysProcAttr{
-			Setpgid: true,
-		}
+		Setpgid(cmd)
 		// wd should be where the plugin is running
 		cmd.Dir = filepath.Dir(item.Plugin.Command)
 		// and it can inherit the environment

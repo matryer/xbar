@@ -10,10 +10,9 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
-	"syscall"
-	"text/template"
 	"time"
 
 	"github.com/pkg/errors"
@@ -283,40 +282,6 @@ func (p *Plugin) CurrentCycleItem() *Item {
 	return p.Items.CycleItems[p.CycleIndex]
 }
 
-func (p *Plugin) runInTerminal(appleScriptTemplate3, command, paramsStr string, vars []string) error {
-	tpl, err := template.New("appleScriptTemplate3").Parse(appleScriptTemplate3)
-	if err != nil {
-		return err
-	}
-	commandLine := command
-	var renderedScript bytes.Buffer
-	err = tpl.Execute(&renderedScript, struct {
-		Command string
-		Vars    string
-		Params  string
-	}{
-		Command: commandLine,
-		Vars:    fmt.Sprintf("%q", variablesEnvString(vars)),
-		Params:  paramsStr,
-	})
-	if err != nil {
-		return err
-	}
-	appleScript := renderedScript.String()
-	log.Println(p.Command, "RunInTerminal", appleScript)
-	cmd := exec.Command("osascript", "-s", "h", "-e", appleScript)
-	var stderr bytes.Buffer
-	cmd.Stderr = &stderr
-	err = cmd.Run()
-	if err != nil {
-		p.Debugf("(ignoring) RunInTerminal failed: %s", err)
-	}
-	if cmd.ProcessState != nil && cmd.ProcessState.ExitCode() != 0 {
-		return errors.Errorf("run in terminal script failed: %s", stderr.String())
-	}
-	return nil
-}
-
 // RunInTerminal runs this plugin in a terminal using the template
 // apple script.
 func (p *Plugin) RunInTerminal(appleScriptTemplate3 string) error {
@@ -328,10 +293,14 @@ func (p *Plugin) RunInTerminal(appleScriptTemplate3 string) error {
 func (p *Plugin) refresh(ctx context.Context) error {
 	commandCtx, cancel := context.WithTimeout(ctx, p.Timeout)
 	defer cancel()
-	cmd := exec.CommandContext(commandCtx, "./"+filepath.Base(p.Command))
-	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Setpgid: true,
+	var path string
+	if runtime.GOOS == "windows" {
+		path = p.Command
+	} else {
+		path = "./" + filepath.Base(p.Command)
 	}
+	cmd := exec.CommandContext(commandCtx, path)
+	Setpgid(cmd)
 	cmd.Dir = filepath.Dir(p.Command)
 	// inherit outside environment
 	cmd.Env = append(cmd.Env, os.Environ()...)
