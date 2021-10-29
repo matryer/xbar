@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"sync"
@@ -67,7 +66,6 @@ func loadSettings(path string) (*settings, error) {
 		return nil, errors.Wrap(err, "Unmarshal")
 	}
 	s.setDefaults()
-	log.Printf("### - settings: %+v\n", s)
 	return s, nil
 }
 
