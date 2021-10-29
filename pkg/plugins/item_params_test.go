@@ -317,3 +317,17 @@ bad | color=`+col)))
 		})
 	}
 }
+
+func TestQuotedParams(t *testing.T) {
+	is := is.New(t)
+
+	ctx := context.Background()
+	p := &Plugin{}
+	items, err := p.parseOutput(ctx, "test.txt", strings.NewReader(strings.TrimSpace(`
+	cycle1 | param1="this is quoted"
+	`)))
+	is.NoErr(err)
+	is.Equal(len(items.CycleItems), 1)
+	is.Equal(items.CycleItems[0].Params.ShellParams[0], "this is quoted")
+
+}
