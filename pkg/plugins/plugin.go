@@ -163,7 +163,7 @@ func Dir(path string) (Plugins, error) {
 func NewPlugin(command string) *Plugin {
 	filename := filepath.Base(command)
 	p := &Plugin{
-		Timeout:       1 * time.Minute,
+		Timeout:       2 * time.Minute,
 		CycleInterval: 5 * time.Second,
 		Command:       command,
 		Debugf:        DebugfNoop,
