@@ -30,7 +30,7 @@ And finally...
 
 From an xbar menu, choose **Preferences > Plugins...** to use the xbar app to discover and manage plugins.
 
-You can [browse all the plugins](https://xbarapp.com/) online, or [write your own](#writing-plugins).
+You can [browse all the plugins](https://xbarapp.com/) online, or [write your own](https://github.com/matryer/xbar-plugins/blob/main/CONTRIBUTING.md).
 
 ### The Plugin Directory
 
