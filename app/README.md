@@ -8,7 +8,7 @@ To build xbar, you will need:
 
   * Go v1.15+
   * npm v6.14.9
-  * Wails v2 cli - `go get github.com/wailsapp/wails/v2/cmd/wails`
+  * Wails v2 cli - `go install github.com/wailsapp/wails/v2/cmd/wails@v2.0.0-alpha.72`
 
 ### Running
 
