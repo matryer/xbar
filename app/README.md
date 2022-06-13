@@ -41,7 +41,7 @@ cd app && wails dev
 In this directory run `./build.sh`. The binary will be generated in `./build/darwin/desktop/`.
 
 ```bash
-./build.sh && ./build/darwin/desktop/xbar
+./build.sh && ./build/bin/xbar
 ```
 
 ### Updates
