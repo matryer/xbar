@@ -130,7 +130,7 @@ func newApp() (*app, error) {
 	}
 
 	app.startsAtLoginMenu = &menu.MenuItem{
-		Label:   "Start at Login",
+		Label:   "Open at Login",
 		Type:    menu.CheckboxType,
 		Checked: false,
 		Click:   app.updateStartOnLogin,
@@ -138,9 +138,9 @@ func newApp() (*app, error) {
 	startsAtLogin, err := mac.StartsAtLogin()
 	if err != nil {
 		if app.Verbose {
-			log.Println("start at login:", err)
+			log.Println("open at login:", err)
 		}
-		app.startsAtLoginMenu.Label = "Start at Login"
+		app.startsAtLoginMenu.Label = "Open at Login"
 		app.startsAtLoginMenu.Disabled = true
 	} else {
 		app.startsAtLoginMenu.Checked = startsAtLogin
