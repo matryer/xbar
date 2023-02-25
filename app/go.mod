@@ -19,7 +19,7 @@ require (
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/wailsapp/wails/v2 v2.0.0-alpha.72
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
 )
 
