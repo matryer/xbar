@@ -245,7 +245,7 @@
 		{#if installedPlugin}
 			<Error err="{openEditorErr}" />
 			<div
-				class="flex-grow bg-white dark:bg-gray-700 p-3 border-t border-gray-200 dark:border-gray-600 bg-opacity-75"
+				class="flex-grow bg-white/75 dark:bg-gray-700/75 p-3 border-t border-gray-200 dark:border-gray-600"
 			>
 				<PluginSourceBrowser
 					showEditButton="{true}"

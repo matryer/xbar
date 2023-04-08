@@ -38,7 +38,7 @@
 </script>
 {#if err}
 	{#if isNotFoundError(err)}
-		<div class='px-8 py-4 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-25'>
+		<div class='px-8 py-4 bg-white bg-opacity-50 dark:bg-black/25'>
 			<code>404</code> Not found
 			<Button cssclass='ml-4' on:click={ onRefreshClicked }>
 				{#if refreshing}Refreshing&hellip;{:else}Refresh{/if}
