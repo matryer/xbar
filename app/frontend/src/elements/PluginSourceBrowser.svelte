@@ -26,10 +26,6 @@
                 </div>
             {/if}
         </div>
-        <pre class='whitespace-pre-wrap nice-wrapping text-sm pb-8'>
-            <code>
-                {file.content}
-            </code>
-        </pre>
+        <pre class='whitespace-pre-wrap nice-wrapping text-sm pb-8'><code>{file.content}</code></pre>
     {/each}
 {/if}
