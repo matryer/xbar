@@ -118,19 +118,19 @@ func newApp() (*app, error) {
 
 	app.appUpdatesMenu = &menu.MenuItem{
 		Type:  menu.TextType,
-		Label: "Check for updates…",
+		Label: "Check for Updates…",
 		Click: app.onCheckForUpdatesMenuClick,
 	}
 
 	app.autoupdateMenu = &menu.MenuItem{
-		Label:   "Update automatically",
+		Label:   "Update Automatically",
 		Type:    menu.CheckboxType,
 		Checked: app.settings.AutoUpdate,
 		Click:   app.updateAutoupdate,
 	}
 
 	app.startsAtLoginMenu = &menu.MenuItem{
-		Label:   "Start at Login",
+		Label:   "Open at Login",
 		Type:    menu.CheckboxType,
 		Checked: false,
 		Click:   app.updateStartOnLogin,
@@ -138,9 +138,9 @@ func newApp() (*app, error) {
 	startsAtLogin, err := mac.StartsAtLogin()
 	if err != nil {
 		if app.Verbose {
-			log.Println("start at login:", err)
+			log.Println("open at login:", err)
 		}
-		app.startsAtLoginMenu.Label = "Start at Login"
+		app.startsAtLoginMenu.Label = "Open at Login"
 		app.startsAtLoginMenu.Disabled = true
 	} else {
 		app.startsAtLoginMenu.Checked = startsAtLogin
@@ -348,17 +348,17 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	}
 	items = append(items, &menu.MenuItem{
 		Type:        menu.TextType,
-		Label:       "Refresh all",
+		Label:       "Refresh All",
 		Accelerator: keys.Combo("r", keys.CmdOrCtrlKey, keys.ShiftKey),
 		Click:       app.onPluginsRefreshAllMenuClicked,
 	})
 	if plugin != nil {
-		items = append(items, menu.Text("Run in terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
+		items = append(items, menu.Text("Run in Terminal…", keys.CmdOrCtrl("t"), func(_ *menu.CallbackData) {
 			err := plugin.RunInTerminal(app.settings.Terminal.AppleScriptTemplate3)
 			if err != nil {
 				_, err2 := app.runtime.Dialog.Message(&dialog.MessageDialog{
 					Type:         dialog.ErrorDialog,
-					Title:        "Run in terminal",
+					Title:        "Run in Terminal",
 					Message:      err.Error(),
 					Buttons:      []string{"OK"},
 					CancelButton: "OK",
@@ -375,7 +375,7 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	if plugin != nil {
 		items = append(items, &menu.MenuItem{
 			Type:        menu.TextType,
-			Label:       "Open plugin…",
+			Label:       "Open Plugin…",
 			Accelerator: keys.CmdOrCtrl("e"),
 			Click: func(_ *menu.CallbackData) {
 				app.runtime.Window.Show()
@@ -392,13 +392,13 @@ func (app *app) newXbarMenu(plugin *plugins.Plugin, asSubmenu bool) *menu.Menu {
 	}
 	items = append(items, &menu.MenuItem{
 		Type:        menu.TextType,
-		Label:       "Plugin browser…",
+		Label:       "Plugin Browser…",
 		Accelerator: keys.CmdOrCtrl("p"),
 		Click:       app.onPluginsMenuClicked,
 	})
 	items = append(items, &menu.MenuItem{
 		Type:  menu.TextType,
-		Label: "Open plugin folder…",
+		Label: "Open Plugin Folder…",
 		Click: app.onOpenPluginsFolderClicked,
 	})
 	items = append(items, menu.Separator())
