@@ -60,14 +60,16 @@
 						</a>
 					</h2>
 					<div class='flex'>
-						<a href='#/plugin-details/{plugin.path}'>
-							<img 
-								class='plugin-pic float-left m-4 mr-0'
-								alt='Photo for {plugin.title}' 
-								src='{plugin.imageURL}'
-								onerror='this.style.display="none"'
-							>
-						</a>
+						{#if plugin.imageURL}
+							<a href='#/plugin-details/{plugin.path}'>
+								<img
+									class='plugin-pic float-left m-4 mr-0'
+									alt='Photo for {plugin.title}'
+									src='{plugin.imageURL}'
+									onerror='this.style.display="none"'
+								>
+							</a>
+						{/if}
 						<p class='plugin-desc mb-2 p-4 test-gray break-words'>
 							{plugin.desc}
 						</p>
