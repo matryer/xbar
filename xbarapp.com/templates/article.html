@@ -120,13 +120,13 @@
                 </h1>
             </div>
         </div>
-        <div class='shadow-2xl bg-black bg-opacity-25'>
+        <div class='shadow-2xl bg-black/25'>
             <div class='container mx-auto lg:flex lg:space-x-8'>
                 <div class='article max-w-screen-md text-xl py-4 lg:py-12 pb-8 lg:pb-32 p-2'>
                     {{ .Article.HTML }}
                 </div>
                 <div class='py-4 lg:py-8 pb-32'>
-                    <div class='bg-gray-900 bg-opacity-25 rounded p-8 text-white'>
+                    <div class='bg-gray-900/25 rounded p-8 text-white'>
                         <h2 class='font-bold mb-4'>You might also like</h2>
                         {{ range .AllArticles }}
                             <p class='mb-3'>

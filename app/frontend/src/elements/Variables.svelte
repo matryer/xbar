@@ -30,7 +30,7 @@
 </script>
 
 {#if variables && variables.length && values}
-    <div class='p-6 pb-0 bg-white dark:bg-gray-700 dark:bg-opacity-25 bg-opacity-50 border-t border-gray-100 dark:border-gray-600'>
+    <div class='p-6 pb-0 bg-white/25 dark:bg-gray-700/50 border-t border-gray-100 dark:border-gray-600'>
         <table class='table-auto'>
             {#each variables as variable}
                 <tr>
