@@ -7,20 +7,16 @@ module.exports = {
 		'./src/**/*.js',
 		'./src/**/*.svelte',
 	],
-	darkMode: 'media',
 	theme: {
 		colors: {
 			transparent: 'transparent',
 
-			gray: colors.trueGray,
+			gray: colors.neutral,
 			blue: colors.blue,
 			black: colors.black,
 			white: colors.white,
 			yellow: colors.yellow,
 		},
-	},
-	variants: {
-		extend: {},
 	},
 	plugins: [],
 }
