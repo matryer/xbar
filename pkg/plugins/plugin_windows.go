@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// Setpidgid is a no-op in Windows
+// Setpgid is a no-op in Windows
 func Setpgid(cmd *exec.Cmd) {
 }
 
