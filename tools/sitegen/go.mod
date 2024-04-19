@@ -13,6 +13,6 @@ require (
 	github.com/matryer/xbar/pkg/metadata v0.0.0-00010101000000-000000000000
 	github.com/pkg/errors v0.9.1
 	github.com/snabb/sitemap v1.0.0
-	golang.org/x/net v0.17.0 // indirect
+	golang.org/x/net v0.23.0 // indirect
 	golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421
 )
