@@ -1,4 +1,3 @@
-
 ## Run in dev
 
 ```
@@ -8,7 +7,7 @@ go run main.go
 ## deploy
 
 ```bash
-gcloud app deploy --project xbarapp --version beta
+gcloud app deploy --project xbarapp --version 6
 ```
 
 ## Install
