@@ -20,6 +20,8 @@ jobs:
 
       - name: Run sitegen
         working-directory: tools/sitegen
+        env:
+          XBAR_GITHUB_ACCESS_TOKEN: ${{ secrets.XBAR_GITHUB_ACCESS_TOKEN }}
         run: ./run.sh
 
       - name: Auth with Google Cloud
@@ -33,6 +35,8 @@ jobs:
           version: ">= 363.0.0"
 
       - name: Deploy to Google App Engine
+        env:
+          GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
           VERSION=$(date +%Y%m%d%H%M%S)
           gcloud app deploy --project xbarapp --version $VERSION --quiet
