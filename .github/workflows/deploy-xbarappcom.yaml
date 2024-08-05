@@ -26,10 +26,6 @@ jobs:
         working-directory: tools/sitegen
         run: ./run.sh
 
-      - name: xbarapp.com/gen.sh
-        working-directory: xbarapp.com
-        run: ./gen.sh
-
       - name: Auth with Google Cloud
         uses: google-github-actions/auth@v2
         with:
