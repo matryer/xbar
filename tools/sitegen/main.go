@@ -18,7 +18,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/alecthomas/repr"
 	"github.com/matryer/xbar/pkg/metadata"
 	"github.com/pkg/errors"
 	"github.com/snabb/sitemap"
@@ -43,6 +42,7 @@ func run(ctx context.Context, args []string) error {
 		skipdata = flags.Bool("skipdata", false, "skip the data - just render the index template")
 		errs     = flags.Bool("errs", false, "print out error details")
 		nodocs   = flags.Bool("nodocs", false, "skip docs generation")
+		verbose  = flags.Bool("verbose", false, "verbose output")
 	)
 	if err := flags.Parse(args[1:]); err != nil {
 		return err
@@ -61,9 +61,8 @@ func run(ctx context.Context, args []string) error {
 	var allPlugins []metadata.Plugin
 	moonCycleIndex := 0
 	eachPlugin := EachFunc(func(plugin metadata.Plugin) {
-		fmt.Println(plugin.CategoryPath)
-		if plugin.CategoryPath == "." {
-			repr.Println(plugin)
+		if *verbose {
+			fmt.Println(plugin.CategoryPath)
 		}
 		categoriesLock.Lock()
 		plugins = append(plugins, plugin)
