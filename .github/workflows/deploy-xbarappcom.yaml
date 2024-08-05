@@ -39,6 +39,7 @@ jobs:
           version: ">= 363.0.0"
 
       - name: Deploy to Google App Engine
+        working-directory: xbarapp.com
         env:
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
