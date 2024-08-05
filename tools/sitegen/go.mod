@@ -5,7 +5,6 @@ go 1.22
 replace github.com/matryer/xbar/pkg/metadata => ../../pkg/metadata
 
 require (
-	github.com/alecthomas/repr v0.4.0
 	github.com/gomarkdown/markdown v0.0.0-20210208175418-bda154fe17d8
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/matryer/is v1.4.0

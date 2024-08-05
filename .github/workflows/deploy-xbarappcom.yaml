@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   schedule:
-    - cron: "0 0 */2 * *" # every 2 days
+    - cron: "0 0 */2 * *" # every 2 hours
 
 jobs:
   build-and-deploy:
@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all history for all tags and branches
 
       - name: Set up Go
         uses: actions/setup-go@v3
@@ -19,8 +21,6 @@ jobs:
 
       - name: Run sitegen
         working-directory: tools/sitegen
-        env:
-          XBAR_GITHUB_ACCESS_TOKEN: ${{ secrets.XBAR_GITHUB_ACCESS_TOKEN }}
         run: ./run.sh
 
       - name: Auth with Google Cloud
@@ -28,8 +28,8 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: "Set up Cloud SDK"
-        uses: "google-github-actions/setup-gcloud@v2"
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
         with:
           version: ">= 363.0.0"
 
