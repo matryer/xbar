@@ -1,0 +1,42 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.22"
+
+      - name: Build the Go project
+        working-directory: tools/sitegen
+        run: go build -o sitegen
+
+      - name: Run sitegen
+        working-directory: tools/sitegen
+        run: ./sitegen
+
+      - name: Auth with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2"
+        with:
+          version: ">= 363.0.0"
+
+      - name: Deploy to Google App Engine
+        run: |
+          VERSION=$(date +%Y%m%d%H%M%S)
+          gcloud app deploy --project xbarapp --version $VERSION --quiet
