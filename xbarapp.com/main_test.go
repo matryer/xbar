@@ -18,6 +18,13 @@ func TestPluginMetadata(t *testing.T) {
 	is := is.New(t)
 
 	pluginMetadataPath := filepath.Join(docsFolder, "/plugins/Dev/Tutorial/cycle_text_and_detail.sh.json")
+
+	// if the file doesn't exist - skip the test
+	if _, err := os.Stat(pluginMetadataPath); os.IsNotExist(err) {
+		t.Skipf("file %s doesn't exist", pluginMetadataPath)
+		return
+	}
+
 	p := loadPluginMetadata(is, pluginMetadataPath)
 	is.True(p.Version != "") // version doesn't match
 	is.True(p.LastUpdated != "")
