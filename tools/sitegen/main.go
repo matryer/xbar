@@ -10,7 +10,6 @@ import (
 	"html/template"
 	"io"
 	"log"
-	"math/rand"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -19,6 +18,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/alecthomas/repr"
 	"github.com/matryer/xbar/pkg/metadata"
 	"github.com/pkg/errors"
 	"github.com/snabb/sitemap"
@@ -35,7 +35,6 @@ func main() {
 }
 
 func run(ctx context.Context, args []string) error {
-	rand.Seed(time.Now().UnixNano())
 	fmt.Println("xbarapp.com site generator", version)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	var (
@@ -62,6 +61,10 @@ func run(ctx context.Context, args []string) error {
 	var allPlugins []metadata.Plugin
 	moonCycleIndex := 0
 	eachPlugin := EachFunc(func(plugin metadata.Plugin) {
+		fmt.Println(plugin.CategoryPath)
+		if plugin.CategoryPath == "." {
+			repr.Println(plugin)
+		}
 		categoriesLock.Lock()
 		plugins = append(plugins, plugin)
 		metadata.CategoryEnsurePath(categories, nil, plugin.PathSegments)
@@ -875,15 +878,16 @@ var (
 
 // cycleString cycles through strings.
 // Make a counter and use Print to write the strings and keep count.
-//   moonCycle = cycleString{"🌕", "🌖", "🌗", "🌘", "🌑", "🌒", "🌓", "🌔"}
-//   var moonIndex int
-//   var err error
-//   for {
-//	 	moonIndex, err = moonCycle.Print(os.Stdout, moonIndex)
-//      if err != nil {
-//        return errors.Wrap(err, "write error")
-//      }
-//   }
+//
+//	  moonCycle = cycleString{"🌕", "🌖", "🌗", "🌘", "🌑", "🌒", "🌓", "🌔"}
+//	  var moonIndex int
+//	  var err error
+//	  for {
+//		 	moonIndex, err = moonCycle.Print(os.Stdout, moonIndex)
+//	     if err != nil {
+//	       return errors.Wrap(err, "write error")
+//	     }
+//	  }
 type cycleString []string
 
 // Next gets the index of the next string.

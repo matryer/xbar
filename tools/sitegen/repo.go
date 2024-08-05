@@ -86,12 +86,17 @@ func (r *RepoReader) All(ctx context.Context) error {
 		tree.Entries = tree.Entries[:50]
 	}
 	for _, item := range tree.Entries {
+		time.Sleep(50 * time.Millisecond) // keep cool
 		if err := ctx.Err(); err != nil {
 			return err
 		}
 		if *item.Type == "blob" {
 			if strings.HasPrefix(path.Base(*item.Path), ".") {
 				// skip dotfiles
+				continue
+			}
+			if filepath.Ext(*item.Path) == ".md" {
+				// skip markdown files
 				continue
 			}
 			wg.Add(1)
