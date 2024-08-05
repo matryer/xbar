@@ -1,6 +1,9 @@
 name: Build and Deploy
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: "0 0 */2 * *" # every 2 hours
 
