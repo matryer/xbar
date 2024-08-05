@@ -24,7 +24,7 @@ jobs:
 
       - name: Run sitegen
         working-directory: tools/sitegen
-        run: ./sitegen
+        run: ./run.sh
 
       - name: Generate version file
         working-directory: xbarapp.com
