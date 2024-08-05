@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
 
   background: #0f0c29; /* fallback for old browsers */
-  background-image: linear-gradient(to top, #003586 0%, #270718 100%);
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
   overflow-x: hidden;
 }
 

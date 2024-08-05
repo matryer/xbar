@@ -49,16 +49,22 @@
 		.opacity-0 {
 			opacity: 0;
 		}
+		.highlight {
+			padding-left: 10px;
+			padding-right: 10px;
+			display: inline-block;
+			transform: rotate(-2deg);
+		}
 	</style>
 {{ end }}
 {{ define "body" }}
 	<div class='flex-grow'>
 		<div class='container mx-auto text-white flex flex-col items-center'>
 			<h2 class='hidden md:block py-8 px-12 bg-white/25 text-white rounded text-5xl text-center font-bold m-16 mb-0 max-w-xl'>
-				Put <strong>anything</strong> in your macOS menu bar
+				Put <strong class='highlight'>anything</strong> in your macOS menu bar
 			</h2>
 			<h2 class='md:hidden text-3xl text-center font-bold m-16 mb-0 max-w-lg'>
-				Put <strong>anything</strong> in your macOS menu bar
+				Put <strong class='highlight'>anything</strong> in your macOS menu bar
 			</h2>
 			<p class='text-3xl mt-8 font-bold opacity-75'>
 				<span class='opacity-50'>(</span>the BitBar reboot<span class='opacity-50'>)</span>
@@ -74,7 +80,7 @@
 				<img
 					id='robomonkeys'
 					alt='Hand drawing of robo monkeys working on the menu bar. Drawn by David Hernandez.'
-					class='inline transition duration-1000 delay-1000 robomonkeys opacity-0'
+					class='inline robomonkeys'
 					src='/public/img/robomonkeys-by-dahernan.png'
 				>
 			</p>
@@ -145,25 +151,6 @@
 			<a href='/docs/contributors/index.html'><img class='rounded shadow-xl w-full' style='max-width:768px;' src='/public/img/contributors.jpg'></a>
 		</div>
 		{{ template "support" . }}
-		<script>
-			let robomonkeysVisible = false
-			function robomonkeysassemble() {
-				const el = document.getElementById('robomonkeys')
-				if (!el) { return }
-				robomonkeys.classList.remove('opacity-0')
-			}
-			function robomonkeysgoawayplease() {
-				const el = document.getElementById('robomonkeys')
-				if (!el) { return }
-				robomonkeys.classList.add('opacity-0')
-			}
-			window.addEventListener('keydown', e => {
-				robomonkeysassemble()
-			})
-			window.addEventListener('keyup', e => {
-				robomonkeysgoawayplease()
-			})
-		</script>
 	</div>
 {{ end }}
 {{ define "subcategories" }}
