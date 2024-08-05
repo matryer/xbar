@@ -24,7 +24,9 @@ jobs:
 
       - name: Run sitegen
         working-directory: tools/sitegen
-        run: ./run.sh
+        env:
+          XBAR_GITHUB_ACCESS_TOKEN: ${{ secrets.XBAR_GITHUB_ACCESS_TOKEN }}
+        run: ./run.sh -skipdata
 
       - name: Auth with Google Cloud
         uses: google-github-actions/auth@v2
