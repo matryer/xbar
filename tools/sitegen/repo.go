@@ -86,7 +86,7 @@ func (r *RepoReader) All(ctx context.Context) error {
 		tree.Entries = tree.Entries[:50]
 	}
 	for _, item := range tree.Entries {
-		time.Sleep(50 * time.Millisecond) // keep cool
+		time.Sleep(55 * time.Millisecond) // keep cool
 		if err := ctx.Err(); err != nil {
 			return err
 		}
