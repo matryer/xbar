@@ -18,10 +18,6 @@ jobs:
         with:
           go-version: "1.22"
 
-      - name: go build -o sitegen
-        working-directory: tools/sitegen
-        run: go build -o sitegen
-
       - name: Run sitegen
         working-directory: tools/sitegen
         run: ./run.sh
