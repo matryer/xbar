@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 0 */2 * *" # every 2 hours
+    - cron: "0 0 * * 0" # every week
 
 jobs:
   build-and-deploy:
@@ -44,4 +44,4 @@ jobs:
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
           VERSION=$(date +%Y%m%d%H%M%S)
-          gcloud app deploy --project xbarapp --version $VERSION --verbosity=debug
+          gcloud app deploy --project xbarapp --version $VERSION --quiet --verbosity=debug
