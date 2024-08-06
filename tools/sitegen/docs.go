@@ -70,10 +70,9 @@ func generateDocs(ctx context.Context) ([]Article, error) {
 		return nil, err
 	}
 	for path, rel := range docs {
-		dest := filepath.Join(destFolder, rel)
 		filename := filepath.Base(path)
 		filename = strings.ToLower(filename[:len(filename)-2] + "html")
-		dest = filepath.Join(destFolder, filepath.Dir(rel), filename)
+		dest := filepath.Join(destFolder, filepath.Dir(rel), filename)
 		destFilename := filepath.Join(filepath.Dir(rel), filename)
 		err := g.parseArticleSource(ctx, destFilename, dest, path)
 		if err != nil {
@@ -153,7 +152,7 @@ func newDocsGenerator() (*docsGenerator, error) {
 	return g, nil
 }
 
-func (g *docsGenerator) parseArticleSource(ctx context.Context, path, dest, src string) error {
+func (g *docsGenerator) parseArticleSource(_ context.Context, path, dest, src string) error {
 	fmt.Printf("parsing: %s\n", path)
 	pathSegs := strings.Split(path, string(filepath.Separator))
 	yearStr := pathSegs[0]

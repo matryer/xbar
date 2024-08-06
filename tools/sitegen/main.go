@@ -37,12 +37,12 @@ func run(ctx context.Context, args []string) error {
 	fmt.Println("xbarapp.com site generator", version)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	var (
-		out      = flags.String("out", "../../xbarapp.com/public/docs", "output folder")
-		small    = flags.Bool("small", false, "run only a small sample (default is to process all)")
-		skipdata = flags.Bool("skipdata", false, "skip the data - just render the index template")
-		errs     = flags.Bool("errs", false, "print out error details")
-		nodocs   = flags.Bool("nodocs", false, "skip docs generation")
-		verbose  = flags.Bool("verbose", false, "verbose output")
+		out             = flags.String("out", "../../xbarapp.com/public/docs", "output folder")
+		small           = flags.Bool("small", false, "run only a small sample (default is to process all)")
+		skipdata        = flags.Bool("skipdata", false, "skip the data - just render the index template")
+		shouldPrintErrs = flags.Bool("errs", false, "print out error details")
+		nodocs          = flags.Bool("nodocs", false, "skip docs generation")
+		verbose         = flags.Bool("verbose", false, "verbose output")
 	)
 	if err := flags.Parse(args[1:]); err != nil {
 		return err
@@ -80,7 +80,7 @@ func run(ctx context.Context, args []string) error {
 		EachPluginFn:      eachPlugin,
 		GitHubAccessToken: os.Getenv("XBAR_GITHUB_ACCESS_TOKEN"),
 		SmallSample:       *small,
-		PrintErrors:       *errs,
+		PrintErrors:       *shouldPrintErrs,
 	}
 	if !*skipdata {
 		if err := reader.All(ctx); err != nil {
@@ -145,7 +145,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generatePluginsIndexPage(categories, pluginsByPath, featuredPlugins); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generatePluginsIndexPage"))
 			}
 		}
@@ -154,7 +154,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generateCategoriesJSON(categories); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateCategoriesJSON"))
 			}
 		}
@@ -163,7 +163,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generateCategoryPluginsJSONFiles(categories, pluginsByPath); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateCategoryPluginsJSONFiles"))
 			}
 		}
@@ -172,7 +172,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generateCategoryPages(categories, categories, pluginsByPath); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateCategoryPages"))
 			}
 		}
@@ -181,7 +181,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generatePluginPages(categories, plugins); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generatePluginPages"))
 			}
 		}
@@ -190,7 +190,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generateContributorPages(categories, pluginsByPath); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateContributorPages"))
 			}
 		}
@@ -199,7 +199,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generateFeaturedPluginsJSON(featuredPlugins); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateFeaturedPluginsJSON"))
 			}
 		}
@@ -208,7 +208,7 @@ func run(ctx context.Context, args []string) error {
 	go func() {
 		defer wg.Done()
 		if err := g.generateContributorsPage(categories, plugins); err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateContributorsPage"))
 			}
 		}
@@ -227,13 +227,13 @@ func run(ctx context.Context, args []string) error {
 	if !*nodocs {
 		articles, err = generateDocs(ctx)
 		if err != nil {
-			if *errs == true {
+			if *shouldPrintErrs {
 				log.Println(errors.Wrap(err, "generateDocs"))
 			}
 		}
 	}
 	if err := g.generateSitemap(categories, pluginsByPath, articles, *out); err != nil {
-		if *errs == true {
+		if *shouldPrintErrs {
 			log.Println(errors.Wrap(err, "generateSitemap"))
 		}
 	}
@@ -423,6 +423,9 @@ func (g *generator) generateContributorPage(categories map[string]metadata.Categ
 		return err
 	}
 	g.peopleCycleIndex, err = peopleCycle.Print(os.Stdout, g.peopleCycleIndex)
+	if err != nil {
+		return err
+	}
 	fmt.Print()
 	return nil
 }
