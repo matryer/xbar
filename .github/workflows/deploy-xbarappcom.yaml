@@ -44,4 +44,4 @@ jobs:
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
           VERSION=$(date +%Y%m%d%H%M%S)
-          gcloud app deploy --project xbarapp --version $VERSION --quiet
+          gcloud app deploy --project xbarapp --version $VERSION --verbosity=debug
