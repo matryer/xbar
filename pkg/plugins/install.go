@@ -120,6 +120,7 @@ func (i Installer) writePluginFiles(dstPath string, plugin metadata.Plugin) erro
 		if err != nil {
 			return errors.Wrapf(err, "create plugin file %s", f.Path)
 		}
+		defer writer.Close()
 		reader := strings.NewReader(f.Content)
 		if _, err := io.Copy(writer, reader); err != nil {
 			return errors.Wrapf(err, "write plugin file %s", f.Path)
