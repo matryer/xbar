@@ -15,7 +15,8 @@ app/build/.DS_Store
 app/.DS_Store
 xbarapp.com/public/.DS_Store
 tools/sitegen/.version
-app/.version
+# app/.version is intentionally tracked so `go build` works without running build.sh first.
+# The CI and build.sh overwrite this file with the real version before compiling.
 xbarapp.com/.version
 xbarapp.com/xbarappcom
 xbarapp.com/version.gen.go

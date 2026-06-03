@@ -645,8 +645,8 @@ func (app *app) checkForUpdates(passive bool) {
 	}
 	u := update.Updater{
 		CurrentVersion: version,
-		//LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/xbar/releases/latest",
-		LatestReleaseGitHubEndpoint: "https://api.github.com/repos/matryer/xbar/releases/latest",
+		
+		LatestReleaseGitHubEndpoint: "https://api.github.com/repos/xgitqa/xbar/releases/latest",
 		Client:                      &http.Client{Timeout: 10 * time.Minute},
 		SelectAsset: func(release update.Release, asset update.Asset) bool {
 			// look for the zip file

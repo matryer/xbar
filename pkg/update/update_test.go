@@ -15,6 +15,9 @@ import (
 )
 
 func TestForReals(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipping live network test in short mode")
+	}
 	is := is.New(t)
 
 	t.Cleanup(func() {

@@ -1,53 +1,70 @@
 [![](xbarapp.com/public/img/xbar-menu-preview.png)](https://xbarapp.com/)
 
-# Welcome to xbar
+# xbar (Apple Silicon fork)
+
+> **This is a maintained fork of [matryer/xbar](https://github.com/matryer/xbar) with native Apple Silicon support.**
+>
+> The original project is unmaintained. Its releases are x86-only binaries that require Rosetta 2 — and [Apple is removing Rosetta 2 support](https://support.apple.com/en-us/102527) in a future macOS release. This fork builds a **universal binary** (arm64 + amd64) that runs natively on both Apple Silicon and Intel Macs, with no Rosetta 2 required.
+
+---
 
 xbar (the BitBar reboot) lets you put the output from any script/program in your macOS menu bar.
 
-  * **Complete rewrite from the ground up** - in Go by @matryer and @leaanthony - using [Wails.app (build cross-platform desktop apps using Go & HTML/CSS/JS)](https://wails.app)
-  * Completely open source
-  * [Download latest xbar release](https://github.com/matryer/xbar/releases/latest) - requires macOS Catalina or newer (>= 10.15)
-  * [Visit the app homepage at https://xbarapp.com](https://xbarapp.com)
-  * [Get started](#get-started) and [installing plugins](#installing-plugins)
+## Download
 
-Digging deeper:
+**[⬇ Download latest release (Universal – Apple Silicon + Intel)](https://github.com/xgitqa/xbar/releases/latest)**
 
-  * [Browse plugin repository](https://xbarapp.com/)
-  * [Guide to writing your own plugins](https://github.com/matryer/xbar-plugins/blob/main/CONTRIBUTING.md)
+Unzip and drag **xbar.app** to `/Applications`.
 
-And finally...
+> **Note on Gatekeeper:** This build is unsigned. On first launch, right-click → Open to bypass Gatekeeper, or run:
+> ```
+> xattr -dr com.apple.quarantine /Applications/xbar.app
+> ```
 
-  * [Read the story about how xbar unexpectedly got going](https://medium.com/@matryer/what-happens-when-your-old-open-source-project-unexpectedly-gets-to-the-top-of-hacker-news-31114c6c6efb#.fznvtgskb)
-  * [Contributing](#contributing) and [special thanks](#thanks)
+## Why this fork?
+
+| | Original (`matryer/xbar`) | This fork (`xgitqa/xbar`) |
+|---|---|---|
+| Apple Silicon (arm64) | Rosetta 2 only | Native ✓ |
+| Intel (amd64) | Native ✓ | Native ✓ |
+| Universal binary | No | Yes ✓ |
+| Maintained | No (last release 2021) | Yes ✓ |
+| Rosetta 2 required | Yes (removed by Apple) | No ✓ |
+
+## Features
+
+  * **Runs natively on Apple Silicon** – no Rosetta 2, no translation layer
+  * **Universal binary** – same download works on M1/M2/M3 and Intel Macs
+  * Put the output from any script/program in your macOS menu bar
+  * Complete rewrite from the ground up in Go using [Wails](https://wails.app)
+  * [Browse the plugin repository](https://xbarapp.com/)
 
 ## Get started
 
 ### Install
 
-* [Download the latest release of xbar](https://github.com/matryer/xbar/releases).
+1. [Download the latest release](https://github.com/xgitqa/xbar/releases/latest)
+2. Unzip and drag **xbar.app** to `/Applications`
+3. Launch xbar — plugins live in `~/Library/Application Support/xbar/plugins/`
 
-## Installing plugins
+### Installing plugins
 
-From an xbar menu, choose **Preferences > Plugins...** to use the xbar app to discover and manage plugins.
-
-You can [browse all the plugins](https://xbarapp.com/) online, or [write your own](https://github.com/matryer/xbar-plugins/blob/main/CONTRIBUTING.md).
+From an xbar menu, choose **Preferences > Plugins...** to discover and manage plugins, or [browse all plugins online](https://xbarapp.com/).
 
 ### The Plugin Directory
 
-The plugin directory is folder on your Mac where the plugins live, located at `~/Library/Application Support/xbar/plugins`.
+Plugins live in `~/Library/Application Support/xbar/plugins`.
 
-* If you're transitioning from Bitbar, move your plugins into this new folder to install them
+* If you're transitioning from BitBar, move your plugins into this folder
 
 ## Contributing
 
-If you'd like to contribute a plugin, head over to https://github.com/matryer/xbar-plugins to get started.
+For plugins, head over to https://github.com/matryer/xbar-plugins.
 
-Please do not send pull requests to this repo. Open an issue and start a conversation first. PRs will likely not be accepted.
-
-* Get started with our [Writing plugins guide](https://github.com/matryer/xbar-plugins/blob/main/CONTRIBUTING.md)
+For issues with this fork (build, Apple Silicon compatibility, etc.), open an issue in this repo.
 
 ## Thanks
 
-  * Special thanks to [@leaanthony at https://wails.app](https://wails.app) and [@ianfoo](https://github.com/ianfoo), [@gingerbeardman](https://github.com/gingerbeardman), [@iosdeveloper](https://github.com/iosdeveloper), [@muhqu](https://github.com/muhqu), [@m-cat](https://github.com/m-cat), [@mpicard](https://github.com/mpicard), [@tylerb](https://github.com/tylerb) for their help
-  * Thanks to [Chris Ryer](http://www.chrisryer.co.uk/) for the app logo - and to [@mazondo](https://twitter.com/mazondo) for the original
-  * Thanks for all our [plugin contributors](https://xbarapp.com/) who have come up with some pretty genius things
+  * Original xbar by [@matryer](https://github.com/matryer) and [@leaanthony](https://github.com/leaanthony)
+  * Thanks to [Chris Ryer](http://www.chrisryer.co.uk/) for the app logo
+  * Thanks to all [plugin contributors](https://xbarapp.com/)

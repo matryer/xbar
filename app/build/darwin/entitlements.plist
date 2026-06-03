@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Required for Hardened Runtime + WebView (WKWebView used by Wails) -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <true/>
+    <!-- Allow loading unsigned libraries (Wails injects JS bridge at runtime) -->
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <true/>
+    <!-- Allow outbound network connections for plugin downloads / update checks -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+    <!-- User-selected files: read/write (open plugin files) -->
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+    <!-- Plugin scripts live in ~/Library/Application Support/xbar/plugins -->
+    <key>com.apple.security.temporary-exception.files.home-relative-path.read-write</key>
+    <array>
+        <string>/Library/Application Support/xbar/</string>
+    </array>
+</dict>
+</plist>

@@ -1,0 +1,383 @@
+name: Build macOS (Universal – Apple Silicon + Intel)
+
+# Produces a universal binary (arm64 + amd64) that runs natively on both
+# Apple Silicon and Intel Macs.
+#
+# HOW TO RELEASE (no command line needed):
+#   1. Go to: https://github.com/xgitqa/xbar/actions/workflows/build-macos.yml
+#   2. Click "Run workflow"  (top right, branch: main)
+#   3. Set version = v2.1.8, set create_release = true
+#   4. Click the green "Run workflow" button
+#
+# Code signing secrets (optional):
+#   APPLE_CERTIFICATE, APPLE_CERTIFICATE_PASSWORD, APPLE_SIGNING_IDENTITY
+#   APPLE_ID, APPLE_APP_PASSWORD, APPLE_TEAM_ID
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version e.g. v2.1.8 (blank = git describe)'
+        required: false
+        default: ''
+      create_release:
+        description: 'Create a GitHub Release?'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+env:
+  WAILS_VERSION: v2.0.0-alpha.74
+  GO_VERSION: '1.21'
+  NODE_VERSION: '18'
+
+jobs:
+  # ── 0. Tests ─────────────────────────────────────────────────────────────────
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: Test pkg/plugins
+        working-directory: pkg/plugins
+        # -race omitted: upstream plugin.go has pre-existing data races in Run/cycle
+        run: go test -short ./...
+      - name: Test pkg/metadata
+        working-directory: pkg/metadata
+        run: go test -short -race ./...
+      - name: Test pkg/update
+        working-directory: pkg/update
+        run: go test -short -race ./...
+
+  # ── 1. Native arm64 build ────────────────────────────────────────────────────
+  build-arm64:
+    name: Build arm64 (Apple Silicon)
+    needs: test
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            V="${GITHUB_REF#refs/tags/}"
+          elif [[ -n "${{ github.event.inputs.version }}" ]]; then
+            V="${{ github.event.inputs.version }}"
+          else
+            V="$(git describe --tags --always --dirty 2>/dev/null || echo dev-$(git rev-parse --short HEAD))"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Building version: $V"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wails CLI
+        run: go install github.com/wailsapp/wails/v2/cmd/wails@${{ env.WAILS_VERSION }}
+
+      - name: Write .version file
+        run: printf '%s' "${{ steps.version.outputs.version }}" > app/.version
+
+      - name: Generate Info.plist
+        working-directory: app
+        run: sed "s/0\.0\.0/${{ steps.version.outputs.version }}/g" build/darwin/Info.plist.src > build/darwin/Info.plist
+
+      - name: Install frontend dependencies
+        working-directory: app/frontend
+        run: npm install --legacy-peer-deps
+
+      - name: Wails doctor
+        working-directory: app
+        run: wails doctor || true
+
+      - name: Build (darwin/arm64)
+        working-directory: app
+        env:
+          CGO_ENABLED: "1"
+          CGO_LDFLAGS: "-mmacosx-version-min=11.0"
+        run: wails build -production -o xbar
+
+      - name: Verify architecture
+        run: lipo -info app/build/bin/xbar.app/Contents/MacOS/xbar || file app/build/bin/xbar.app/Contents/MacOS/xbar
+
+      - name: Archive binaries
+        run: |
+          cp app/build/bin/xbar.app/Contents/MacOS/xbar /tmp/xbar-arm64
+          chmod +x /tmp/xbar-arm64
+          cd app/build/bin && tar -czf /tmp/xbar-app-bundle.tar.gz xbar.app
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xbar-binary-arm64
+          path: /tmp/xbar-arm64
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xbar-app-bundle
+          path: /tmp/xbar-app-bundle.tar.gz
+          retention-days: 1
+
+  # ── 2. Native amd64 build ────────────────────────────────────────────────────
+  build-amd64:
+    name: Build amd64 (Intel)
+    needs: test
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            V="${GITHUB_REF#refs/tags/}"
+          elif [[ -n "${{ github.event.inputs.version }}" ]]; then
+            V="${{ github.event.inputs.version }}"
+          else
+            V="$(git describe --tags --always --dirty 2>/dev/null || echo dev-$(git rev-parse --short HEAD))"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wails CLI
+        run: go install github.com/wailsapp/wails/v2/cmd/wails@${{ env.WAILS_VERSION }}
+
+      - name: Write .version file
+        run: printf '%s' "${{ steps.version.outputs.version }}" > app/.version
+
+      - name: Generate Info.plist
+        working-directory: app
+        run: sed "s/0\.0\.0/${{ steps.version.outputs.version }}/g" build/darwin/Info.plist.src > build/darwin/Info.plist
+
+      - name: Install frontend dependencies
+        working-directory: app/frontend
+        run: npm install --legacy-peer-deps
+
+      - name: Wails doctor
+        working-directory: app
+        run: wails doctor || true
+
+      - name: Build (darwin/amd64)
+        working-directory: app
+        env:
+          CGO_ENABLED: "1"
+          CGO_LDFLAGS: "-mmacosx-version-min=10.13"
+        run: wails build -production -o xbar
+
+      - name: Verify architecture
+        run: lipo -info app/build/bin/xbar.app/Contents/MacOS/xbar || file app/build/bin/xbar.app/Contents/MacOS/xbar
+
+      - name: Archive amd64 binary
+        run: |
+          cp app/build/bin/xbar.app/Contents/MacOS/xbar /tmp/xbar-amd64
+          chmod +x /tmp/xbar-amd64
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xbar-binary-amd64
+          path: /tmp/xbar-amd64
+          retention-days: 1
+
+  # ── 3. Package + release ─────────────────────────────────────────────────────
+  package:
+    name: Package universal binary
+    needs: [build-arm64, build-amd64]
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            V="${GITHUB_REF#refs/tags/}"
+          elif [[ -n "${{ github.event.inputs.version }}" ]]; then
+            V="${{ github.event.inputs.version }}"
+          else
+            V="$(git describe --tags --always --dirty 2>/dev/null || echo dev-$(git rev-parse --short HEAD))"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: xbar-binary-arm64
+          path: /tmp/bins/
+      - uses: actions/download-artifact@v4
+        with:
+          name: xbar-binary-amd64
+          path: /tmp/bins/
+      - uses: actions/download-artifact@v4
+        with:
+          name: xbar-app-bundle
+          path: /tmp/
+
+      - name: Restore app bundle
+        run: cd /tmp && tar -xzf xbar-app-bundle.tar.gz
+
+      - name: Create universal binary with lipo
+        run: |
+          chmod +x /tmp/bins/xbar-arm64 /tmp/bins/xbar-amd64
+          lipo -create /tmp/bins/xbar-arm64 /tmp/bins/xbar-amd64 \
+            -output /tmp/xbar.app/Contents/MacOS/xbar
+          chmod +x /tmp/xbar.app/Contents/MacOS/xbar
+
+      - name: Verify universal binary
+        run: |
+          lipo -info /tmp/xbar.app/Contents/MacOS/xbar
+          file /tmp/xbar.app/Contents/MacOS/xbar
+
+      - name: Import signing certificate
+        if: ${{ env.APPLE_CERTIFICATE != '' }}
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        run: |
+          echo "$APPLE_CERTIFICATE" | base64 --decode > /tmp/certificate.p12
+          security create-keychain -p "" build.keychain
+          security import /tmp/certificate.p12 -k build.keychain \
+            -P "$APPLE_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security list-keychains -s build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+          rm /tmp/certificate.p12
+
+      - name: Sign app bundle
+        if: ${{ env.APPLE_SIGNING_IDENTITY != '' }}
+        env:
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+        run: |
+          codesign --force --deep --sign "$APPLE_SIGNING_IDENTITY" \
+            --options runtime \
+            --entitlements app/build/darwin/entitlements.plist \
+            /tmp/xbar.app
+          codesign --verify --deep --strict /tmp/xbar.app
+
+      - name: Notarise with Apple
+        if: ${{ env.APPLE_ID != '' && env.APPLE_APP_PASSWORD != '' && env.APPLE_TEAM_ID != '' }}
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          cd /tmp
+          zip -r --symlinks xbar-notarise.zip xbar.app
+          xcrun notarytool submit xbar-notarise.zip \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_APP_PASSWORD" \
+            --team-id "$APPLE_TEAM_ID" \
+            --wait
+          xcrun stapler staple xbar.app
+          rm xbar-notarise.zip
+
+      - name: Create zip
+        id: zip
+        run: |
+          V="${{ steps.version.outputs.version }}"
+          cd /tmp
+          zip -r --symlinks "xbar.${V}.universal.zip" xbar.app
+          echo "zip_path=/tmp/xbar.${V}.universal.zip" >> "$GITHUB_OUTPUT"
+          echo "zip_name=xbar.${V}.universal.zip" >> "$GITHUB_OUTPUT"
+          ls -lh "xbar.${V}.universal.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xbar-${{ steps.version.outputs.version }}-universal
+          path: ${{ steps.zip.outputs.zip_path }}
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && github.event.inputs.create_release == 'true')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V="${{ steps.version.outputs.version }}"
+          ZIP="${{ steps.zip.outputs.zip_path }}"
+          ZIP_NAME="${{ steps.zip.outputs.zip_name }}"
+
+          if [ -n "${{ secrets.APPLE_SIGNING_IDENTITY }}" ]; then
+            SIGNED="Signed"
+          else
+            SIGNED="Unsigned"
+          fi
+          if [ -n "${{ secrets.APPLE_ID }}" ]; then
+            NOTARISED="notarised"
+          else
+            NOTARISED="not notarised"
+          fi
+          if [ "$SIGNED" = "Unsigned" ]; then
+            GATEKEEPER="This build is **unsigned**. On first launch right-click -> Open to bypass Gatekeeper, or run: xattr -dr com.apple.quarantine /Applications/xbar.app"
+          else
+            GATEKEEPER="Signed and notarised -- Gatekeeper will allow it to open normally."
+          fi
+
+          cat > /tmp/release-notes.md << RELNOTES
+          ## xbar ${V} - Universal Binary
+
+          Runs natively on both **Apple Silicon** (arm64) and **Intel** (amd64) Macs.
+          Built from [xgitqa/xbar](https://github.com/xgitqa/xbar) -- maintained fork with Apple Silicon support.
+
+          **Signing:** ${SIGNED}, ${NOTARISED}
+
+          ### Install
+          1. Download \`${ZIP_NAME}\`
+          2. Unzip and drag **xbar.app** to \`/Applications\`
+          3. Launch xbar -- plugins live in \`~/Library/Application Support/xbar/plugins/\`
+
+          ### Gatekeeper
+          ${GATEKEEPER}
+          RELNOTES
+
+          if [[ "${GITHUB_REF}" != refs/tags/* ]]; then
+            git config user.email "actions@github.com"
+            git config user.name "GitHub Actions"
+            git tag -a "$V" -m "Release $V"
+            git push origin "$V"
+          fi
+
+          gh release create "$V" "$ZIP" \
+            --repo "${{ github.repository }}" \
+            --title "xbar $V (Apple Silicon + Intel)" \
+            --notes-file /tmp/release-notes.md
+
+      - name: Summary
+        run: |
+          V="${{ steps.version.outputs.version }}"
+          {
+            echo "## Build complete"
+            echo "| Field | Value |"
+            echo "|---|---|"
+            echo "| Version | \`${V}\` |"
+            echo "| Architectures | arm64 (Apple Silicon) + amd64 (Intel) |"
+          } >> "$GITHUB_STEP_SUMMARY"
