@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/matryer/xbar/pkg/metadata"
@@ -45,6 +46,10 @@ func LoadVariableValues(pluginDir, installedPluginPath string) (map[string]inter
 	b, err := io.ReadAll(io.LimitReader(f, 1_000_000 /* ~1MB */))
 	if err != nil {
 		return nil, errors.Wrap(err, "ReadAll")
+	}
+	trimmedLower := strings.ToLower(strings.TrimSpace(string(b)))
+	if strings.HasPrefix(trimmedLower, "<!doctype") || strings.HasPrefix(trimmedLower, "<html") || strings.HasPrefix(strings.TrimSpace(string(b)), "<") {
+		return nil, errors.Errorf("unexpected HTML content in variable file %s: expected JSON", filename)
 	}
 	var values map[string]interface{}
 	err = json.Unmarshal(b, &values)
@@ -110,6 +115,10 @@ func (p *Plugin) loadVariablesFromJSONFile() (map[string]interface{}, error) {
 	b, err := io.ReadAll(io.LimitReader(f, 1_000_000))
 	if err != nil {
 		return nil, err
+	}
+	trimmedLower := strings.ToLower(strings.TrimSpace(string(b)))
+	if strings.HasPrefix(trimmedLower, "<!doctype") || strings.HasPrefix(trimmedLower, "<html") || strings.HasPrefix(strings.TrimSpace(string(b)), "<") {
+		return nil, errors.Errorf("unexpected HTML content in variable file %s: expected JSON", variablesJSONFilename)
 	}
 	var vars map[string]interface{}
 	if err := json.Unmarshal(b, &vars); err != nil {

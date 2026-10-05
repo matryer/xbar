@@ -54,6 +54,17 @@ func (p *Plugin) parseOutput(ctx context.Context, filename string, r io.Reader) 
 				err:      err,
 			}
 		}
+		if line == 1 {
+			trimmedLower := strings.ToLower(strings.TrimSpace(text))
+			if strings.HasPrefix(trimmedLower, "<!doctype") || strings.HasPrefix(trimmedLower, "<html") || strings.HasPrefix(trimmedLower, "<head") || strings.HasPrefix(trimmedLower, "<body") {
+				return items, &errParsing{
+					filename: filename,
+					line:     line,
+					text:     text,
+					err:      errors.New("unexpected HTML output: expected plugin menu format"),
+				}
+			}
+		}
 		if !captureExpanded && strings.TrimSpace(text) == separator {
 			// first --- means end of cycle items,
 			// start collecting expanded items now

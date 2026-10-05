@@ -190,7 +190,7 @@ func (p *Plugin) Run(ctx context.Context) {
 		p.OnErr(err)
 	}
 	p.Refresh(ctx)
-	cycleReset := make(chan struct{})
+	cycleReset := make(chan struct{}, 1)
 	var wg sync.WaitGroup
 	// cycle loop
 	wg.Add(1)
@@ -223,11 +223,17 @@ func (p *Plugin) Run(ctx context.Context) {
 			case <-p.refreshSignal:
 				p.Debugf("refreshing: %s", filepath.Base(p.Command))
 				p.Refresh(ctx)
-				cycleReset <- struct{}{}
+				select {
+				case cycleReset <- struct{}{}:
+				default:
+				}
 			case <-time.After(p.RefreshInterval.Duration()):
 				p.Debugf("refreshing: %s", filepath.Base(p.Command))
 				p.Refresh(ctx)
-				cycleReset <- struct{}{}
+				select {
+				case cycleReset <- struct{}{}:
+				default:
+				}
 			case <-ctx.Done():
 				return
 			}

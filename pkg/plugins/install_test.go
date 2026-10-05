@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/matryer/is"
@@ -21,7 +22,7 @@ func TestInstall(t *testing.T) {
 	t.Run("single-file plugin installation", func(t *testing.T) {
 		var (
 			is        = is.New(t)
-			pluginDir = filepath.Join("testdata", "single_file_install_tests")
+			pluginDir = filepath.Join(t.TempDir(), "single_file_install_tests")
 		)
 		t.Cleanup(func() {
 			err := os.RemoveAll(pluginDir)
@@ -92,7 +93,7 @@ func TestInstall(t *testing.T) {
 	t.Run("multiple installations of single plugin", func(t *testing.T) {
 		var (
 			is        = is.New(t)
-			pluginDir = filepath.Join("testdata", "multi_install_tests")
+			pluginDir = filepath.Join(t.TempDir(), "multi_install_tests")
 		)
 		t.Cleanup(func() {
 			err := os.RemoveAll(pluginDir)
@@ -179,3 +180,91 @@ func TestGetInstalledPluginName(t *testing.T) {
 // const simplePlugin = `#!/bin/bash
 // echo "Hello, xbar."
 // `
+
+func TestFetchPlugin_HTMLError(t *testing.T) {
+	t.Run("content type text/html with 200 OK", func(t *testing.T) {
+		is := is.New(t)
+		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.WriteHeader(http.StatusOK)
+			_, _ = w.Write([]byte("<!DOCTYPE html><html><body>Plugin Not Found</body></html>"))
+		}))
+		defer srv.Close()
+
+		installer := Installer{
+			Client:    srv.Client(),
+			PluginDir: t.TempDir(),
+		}
+		targetURL, err := url.Parse(srv.URL + "/plugin.json")
+		is.NoErr(err)
+
+		_, err = installer.Install(targetURL)
+		is.True(err != nil)
+		is.True(strings.Contains(err.Error(), "unexpected content type") || strings.Contains(err.Error(), "unexpected HTML response"))
+		is.True(!strings.Contains(err.Error(), "invalid character '<' looking for beginning of value"))
+	})
+
+	t.Run("body with doctype and non-html content type", func(t *testing.T) {
+		is := is.New(t)
+		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/plain")
+			w.WriteHeader(http.StatusOK)
+			_, _ = w.Write([]byte("<!DOCTYPE html>\n<html><body>502 Bad Gateway</body></html>"))
+		}))
+		defer srv.Close()
+
+		installer := Installer{
+			Client:    srv.Client(),
+			PluginDir: t.TempDir(),
+		}
+		targetURL, err := url.Parse(srv.URL + "/plugin.json")
+		is.NoErr(err)
+
+		_, err = installer.Install(targetURL)
+		is.True(err != nil)
+		is.True(strings.Contains(err.Error(), "unexpected HTML response"))
+		is.True(!strings.Contains(err.Error(), "invalid character '<' looking for beginning of value"))
+	})
+
+	t.Run("body with html tag prefix and non-html content type", func(t *testing.T) {
+		is := is.New(t)
+		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "text/plain")
+			w.WriteHeader(http.StatusOK)
+			_, _ = w.Write([]byte("<html><body>Error</body></html>"))
+		}))
+		defer srv.Close()
+
+		installer := Installer{
+			Client:    srv.Client(),
+			PluginDir: t.TempDir(),
+		}
+		targetURL, err := url.Parse(srv.URL + "/plugin.json")
+		is.NoErr(err)
+
+		_, err = installer.Install(targetURL)
+		is.True(err != nil)
+		is.True(strings.Contains(err.Error(), "unexpected HTML response"))
+		is.True(!strings.Contains(err.Error(), "invalid character '<' looking for beginning of value"))
+	})
+
+	t.Run("empty response body", func(t *testing.T) {
+		is := is.New(t)
+		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(http.StatusOK)
+			_, _ = w.Write([]byte(""))
+		}))
+		defer srv.Close()
+
+		installer := Installer{
+			Client:    srv.Client(),
+			PluginDir: t.TempDir(),
+		}
+		targetURL, err := url.Parse(srv.URL + "/plugin.json")
+		is.NoErr(err)
+
+		_, err = installer.Install(targetURL)
+		is.True(err != nil)
+		is.True(strings.Contains(err.Error(), "empty response"))
+	})
+}
