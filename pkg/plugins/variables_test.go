@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -69,4 +70,18 @@ func TestVariablesPersistence(t *testing.T) {
 	is.Equal(loadedValues["VAR_NAME"], "Mat")
 	is.Equal(loadedValues["VAR_CITY"], "London")
 	is.Equal(loadedValues["VAR_COUNTRY"], "UK")
+}
+
+func TestVariables_HTMLError(t *testing.T) {
+	is := is.New(t)
+	dir := t.TempDir()
+	pluginPath := "test-plugin.1s.sh"
+	varsFile := filepath.Join(dir, pluginPath+".vars.json")
+	err := os.WriteFile(varsFile, []byte("<!DOCTYPE html>\n<html><body>Error</body></html>\n"), 0644)
+	is.NoErr(err)
+
+	_, err = LoadVariableValues(dir, pluginPath)
+	is.True(err != nil)
+	is.True(strings.Contains(err.Error(), "unexpected HTML content"))
+	is.True(!strings.Contains(err.Error(), "invalid character '<' looking for beginning of value"))
 }

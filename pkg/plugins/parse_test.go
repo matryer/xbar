@@ -221,3 +221,15 @@ func TestParseSeparator(t *testing.T) {
 	is.Equal(text, nesting+nesting+"item")
 
 }
+
+func TestParseOutput_HTMLError(t *testing.T) {
+	is := is.New(t)
+	p := &Plugin{}
+	_, err := p.parseOutput(context.Background(), "test.sh", strings.NewReader("<!DOCTYPE html>\n<html>\n<body>Error</body>\n</html>\n"))
+	is.True(err != nil)
+	is.True(strings.Contains(err.Error(), "unexpected HTML output"))
+
+	_, err2 := p.parseOutput(context.Background(), "test.sh", strings.NewReader("<html>\n<body>502 Bad Gateway</body>\n</html>\n"))
+	is.True(err2 != nil)
+	is.True(strings.Contains(err2.Error(), "unexpected HTML output"))
+}

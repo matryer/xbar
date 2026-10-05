@@ -59,20 +59,47 @@ func (i Installer) Install(pluginPath *url.URL) (string, error) {
 	return installedPluginPath, nil
 }
 
+// checkJSONResponse inspects the Content-Type header and body content to verify that
+// the response is JSON and not an HTML error or non-JSON document.
+func checkJSONResponse(contentType string, body []byte) error {
+	if contentType != "" {
+		mediaType := strings.ToLower(contentType)
+		if strings.Contains(mediaType, "text/html") {
+			return errors.Errorf("unexpected HTML response with content type %q: expected JSON", contentType)
+		}
+	}
+	trimmed := strings.TrimSpace(string(body))
+	trimmedLower := strings.ToLower(trimmed)
+	if strings.HasPrefix(trimmedLower, "<!doctype") || strings.HasPrefix(trimmedLower, "<html") || strings.HasPrefix(trimmed, "<") {
+		return errors.New("unexpected HTML response: expected JSON")
+	}
+	if len(trimmed) == 0 {
+		return errors.New("empty response: expected JSON")
+	}
+	return nil
+}
+
 // fetchPlugin fetches the plugin metadata and file contents from the xbar website.
 func (i Installer) fetchPlugin(pluginPath *url.URL) (metadata.Plugin, error) {
 	resp, err := i.Client.Get(pluginPath.String())
 	if err != nil {
 		return metadata.Plugin{}, err
 	}
+	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		return metadata.Plugin{}, errors.Errorf("error fetching plugin %s: %s", pluginPath, resp.Status)
 	}
-	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return metadata.Plugin{}, errors.Wrapf(err, "error reading plugin response %s", pluginPath)
+	}
+	if err := checkJSONResponse(resp.Header.Get("Content-Type"), body); err != nil {
+		return metadata.Plugin{}, errors.Wrapf(err, "error fetching plugin %s", pluginPath)
+	}
 	var responseBody struct {
 		Plugin metadata.Plugin `json:"plugin"`
 	}
-	if err := json.NewDecoder(resp.Body).Decode(&responseBody); err != nil {
+	if err := json.Unmarshal(body, &responseBody); err != nil {
 		return metadata.Plugin{}, errors.Wrapf(err, "error decoding plugin %s", pluginPath)
 	}
 	return responseBody.Plugin, nil
